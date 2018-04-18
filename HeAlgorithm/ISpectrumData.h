@@ -1,0 +1,4 @@
+#ifndef ISPECTRUMDATA_H
+#define ISPECTRUMDATA_H
+
+#endif // ISPECTRUMDATA_H

@@ -1,0 +1,4 @@
+#ifndef ICHROMATICITY_H
+#define ICHROMATICITY_H
+
+#endif // ICHROMATICITY_H
