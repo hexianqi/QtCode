@@ -3,10 +3,10 @@
 
 #include <QtCore/qglobal.h>
 
-#if defined(HECORE_LIBRARY)
-#  define HECORESHARED_EXPORT Q_DECL_EXPORT
+#if defined(HECORE)
+#  define HECORE_EXPORT Q_DECL_EXPORT
 #else
-#  define HECORESHARED_EXPORT Q_DECL_IMPORT
+#  define HECORE_EXPORT Q_DECL_IMPORT
 #endif
 
 #endif // HECORE_GLOBAL_H

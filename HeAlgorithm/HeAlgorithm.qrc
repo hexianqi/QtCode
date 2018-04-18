@@ -1,2 +1,12 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>dat/CIE1931.dat</file>
+        <file>dat/Isotherm.dat</file>
+        <file>dat/CIE_DAY.dat</file>
+        <file>dat/CIE_TC_32.dat</file>
+        <file>dat/CIE_UCS.dat</file>
+        <file>dat/CIE_UCS_P.dat</file>
+        <file>dat/MesopticVision.dat</file>
+        <file>dat/PhotopicVision.dat</file>
+    </qresource>
+</RCC>
