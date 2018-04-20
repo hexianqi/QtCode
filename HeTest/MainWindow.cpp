@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(this, SIGNAL(grabMouse()), this, SLOT(test()));
 }
 
 MainWindow::~MainWindow()
@@ -21,4 +22,9 @@ void MainWindow::paintEvent(QPaintEvent *)
     painter.fillRect(0, 0, 200, 200, Qt::yellow);
     painter.setViewport(0, 0, 100, 100);
     painter.fillRect(0, 0, 100, 100, Qt::red);
+}
+
+void MainWindow::test()
+{
+
 }

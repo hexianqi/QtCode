@@ -2,13 +2,14 @@
 #define HSPECTRUMHELPER_H
 
 #include "IChromaticity.h"
+#include <QScopedPointer>
 #include <memory>
+
+class HSpectrumFacadePrivate;
 
 namespace He {
 namespace Algorithm {
 namespace Spectrum {
-
-class HPhotopicVision;
 
 // 光谱计算外观类
 class HEALGORITHM_EXPORT HSpectrumFacade
@@ -22,12 +23,10 @@ public:
     // 设置色度参数计算方法
     void setChromaticity(int type);
     // 获取色度参数计算方法
-    std::shared_ptr<IChromaticity> getChromaticity() { return _chromaticity; }
+    std::shared_ptr<IChromaticity> getChromaticity();
 
-protected:
-    int _chromaticityType;
-    std::shared_ptr<IChromaticity> _chromaticity;
-    std::shared_ptr<HPhotopicVision> _photopicVision;
+private:
+    QScopedPointer<HSpectrumFacadePrivate> d_ptr;
 };
 
 } // namespace Spectrum

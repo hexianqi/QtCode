@@ -20,7 +20,7 @@ public:
     double calcRatio(QString type, double value);
 
 protected:
-    void initialize();
+    void readStandard();
 
 protected:
     QHash<QString, QPolygonF> _stdData;

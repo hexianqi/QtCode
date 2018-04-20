@@ -9,7 +9,7 @@ using namespace He::Algorithm::Spectrum;
 
 HCieTc32::HCieTc32()
 {
-    initialize();
+    readStandard();
 }
 
 CIE_TC_32 HCieTc32::data(int i)
@@ -17,7 +17,7 @@ CIE_TC_32 HCieTc32::data(int i)
     return _stdData[i];
 }
 
-void HCieTc32::initialize()
+void HCieTc32::readStandard()
 {
     int i,j,n;
     QString str;
@@ -43,7 +43,7 @@ void HCieTc32::initialize()
 HCie1931::HCie1931()
 {
     _cieTc32 = std::make_shared<HCieTc32>();
-    initialize();
+    readStandard();
 }
 
 QPointF HCie1931::calcCoordinateUv(QPolygonF spd)
@@ -209,7 +209,6 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
     double ubar,vbar,wbar;
     double P,U,V,W,R;
     double Pprime,Uprime,Vprime,Wprime,Rprime;
-    ISOTHERM iso;
 
     U = 0;
     V = 0;
@@ -233,16 +232,11 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
     }
     R = U + V + W;
     Rprime = Uprime + Vprime + Wprime;
-    iso.Tc = tc;
-    iso.u = U / R;
-    iso.v = V / R;
-    iso.slope = -1 * (Uprime * R - U * Rprime) / (Vprime * R - V * Rprime);
-    return iso;
+    return ISOTHERM {tc, U / R, V / R, -1.0 * (Uprime * R - U * Rprime) / (Vprime * R - V * Rprime) };
 }
 
 ISOTHERM HCie1931::calcIsothermFit(double tc)
 {
-    ISOTHERM iso;
     QVector<double> as;
     QVector<QPointF> points;
 
@@ -251,11 +245,7 @@ ISOTHERM HCie1931::calcIsothermFit(double tc)
     for (int i = 0; i < 11; i++)
         points.append(calcIsoCoordinateUv(tc + (i - 4) * 0.1));
     Math::polyfit(points, as);
-    iso.Tc = tc;
-    iso.u = uv.x();
-    iso.v = uv.y();
-    iso.slope = -1.0 / as[0];
-    return iso;
+    return ISOTHERM { tc, uv.x(), uv.y(), -1.0 / as[0] };
 }
 
 //void HCie1931::calcIsothermFitXy(double tc, QPointF &xy, double &slope)
@@ -265,7 +255,7 @@ ISOTHERM HCie1931::calcIsothermFit(double tc)
 //    slope *= 2.0 / 3;
 //}
 
-void HCie1931::initialize()
+void HCie1931::readStandard()
 {
     int i,n;
     QString str;
@@ -286,7 +276,7 @@ void HCie1931::initialize()
 
 HCieDay::HCieDay()
 {
-    initialize();
+    readStandard();
 }
 
 double HCieDay::calcRefSourceSpectrum(double tc, double wave)
@@ -334,7 +324,7 @@ QPolygonF HCieDay::calcRefSourceSpectrum(double tc, QPointF wave, double interva
     return poly;
 }
 
-void HCieDay::initialize()
+void HCieDay::readStandard()
 {
     int i,j,n;
     QString str;
@@ -359,7 +349,7 @@ void HCieDay::initialize()
 
 HIsotherm::HIsotherm()
 {
-    initialize();
+    readStandard();
 }
 
 double HIsotherm::calcColorTemperature(QPointF uv)
@@ -385,7 +375,7 @@ double HIsotherm::calcColorTemperature(double u, double v)
     return index == 0 ? 0 : 1/(1/_stdData[index-1].Tc + (1/_stdData[index].Tc - 1/_stdData[index-1].Tc) * d1 / (d1 - d2));
 }
 
-void HIsotherm::initialize()
+void HIsotherm::readStandard()
 {
     int i,n;
     QString str;

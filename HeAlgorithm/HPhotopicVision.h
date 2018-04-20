@@ -20,7 +20,7 @@ public:
     double calcVisionEnergy(QPolygonF value);
 
 protected:
-    void initialize();
+    void readStandard();
 
 protected:
     QPolygonF _stdData;

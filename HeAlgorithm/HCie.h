@@ -74,7 +74,7 @@ public:
     CIE_TC_32 data(int i);
 
 protected:
-    void initialize();
+    void readStandard();
 
 protected:
     QVector<CIE_TC_32> _stdData;
@@ -104,7 +104,7 @@ public:
     ISOTHERM calcIsothermFit(double tc);
 
 protected:
-    void initialize();
+    void readStandard();
 
 protected:
     QVector<CIE1931> _stdData;
@@ -123,7 +123,7 @@ public:
     QPolygonF calcRefSourceSpectrum(double tc, QPointF wave, double interval = 1.0);
 
 protected:
-    void initialize();
+    void readStandard();
 
 protected:
     QVector<CIE_DAY> _stdData;
@@ -141,7 +141,7 @@ public:
     double calcColorTemperature(double u, double v);
 
 protected:
-    void initialize();
+    void readStandard();
     double calcDistance(int i, double u, double v);
 
 protected:

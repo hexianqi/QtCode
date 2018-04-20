@@ -1,8 +1,8 @@
 #ifndef HMULTITON_H
 #define HMULTITON_H
 
-#include <map>
 #include <string>
+#include <unordered_map>
 #include <memory>
 
 using namespace std;
@@ -42,18 +42,18 @@ private:
         return instance;
     }
 
-private:
-    HMultiton(void);
-    ~HMultiton(void);
-    HMultiton(const HMultiton&);
-    HMultiton& operator = (const HMultiton&);
+protected:
+    HMultiton() = default;
+    ~HMultiton(void) = default;
+    HMultiton(const HMultiton&) = delete;
+    HMultiton& operator = (const HMultiton&) = delete;
 
-private:
-    static map<K, std::shared_ptr<T>> __map;
+protected:
+    static std::unordered_map<K, std::shared_ptr<T>> __map;
 };
 
 template <class T, class K>
-map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
+unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
 
 } // Core
 } // He

@@ -17,6 +17,9 @@ public:
 
     void paintEvent(QPaintEvent *);
 
+public slots:
+    void test();
+
 private:
     Ui::MainWindow *ui;
 };

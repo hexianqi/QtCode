@@ -7,7 +7,7 @@ using namespace He::Algorithm::Spectrum;
 
 HPhotopicVision::HPhotopicVision()
 {
-    initialize();
+    readStandard();
 }
 
 void HPhotopicVision::calcVisionRatio(QPolygonF value, double &energy, double &red, double &green, double &blue)
@@ -82,7 +82,7 @@ double HPhotopicVision::calcVisionEnergy(QPolygonF value)
     return energy;
 }
 
-void HPhotopicVision::initialize()
+void HPhotopicVision::readStandard()
 {
     int i,n;
     double x,y;

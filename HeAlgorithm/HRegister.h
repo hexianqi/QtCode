@@ -2,8 +2,9 @@
 #define HREGISTER_H
 
 #include "HeAlgorithm_global.h"
+#include <QScopedPointer>
 
-#include <QString>
+class HRegisterPrivate;
 
 namespace He {
 namespace Algorithm {
@@ -11,8 +12,12 @@ namespace Algorithm {
 // 注册机
 class HEALGORITHM_EXPORT HRegister
 {
+    Q_DECLARE_PRIVATE(HRegister)
+    Q_DISABLE_COPY(HRegister)
+
 public:
     HRegister();
+    virtual ~HRegister() = default;
 
 public:
     // 获取注册码
@@ -31,11 +36,11 @@ public:
     // 试用
     void trial();
 
-private:
-    QString _registerId;
-    QString _serialNumber;
-    int _trialTimes;
-    int _firstDate;
+protected:
+    HRegister(HRegisterPrivate &dd);
+
+protected:
+    QScopedPointer<HRegisterPrivate> d_ptr;
 };
 
 } // Algorithm

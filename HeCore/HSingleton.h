@@ -11,10 +11,10 @@ template <typename T>
 class HSingleton
 {
 public:
-template<typename... Args>
+    template<typename... Args>
     static T *instance(Args&&... args)
     {
-        if(__instance==nullptr)
+        if(__instance == nullptr)
             __instance = new T(std::forward<Args>(args)...);
         return __instance;
     }
@@ -32,13 +32,13 @@ template<typename... Args>
         __instance = nullptr;
     }
 
-private:
-    HSingleton(void);
-    ~HSingleton(void);
-    HSingleton(const HSingleton&);
-    HSingleton& operator = (const HSingleton&);
+protected:
+    HSingleton() = default;
+    ~HSingleton() = default;
+    HSingleton(const HSingleton&) = delete;
+    HSingleton& operator = (const HSingleton&) = delete;
 
-private:
+protected:
     static T *__instance;
 };
 

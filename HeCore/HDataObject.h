@@ -1,5 +1,5 @@
-#ifndef HOBJECT_H
-#define HOBJECT_H
+#ifndef HDATAOBJECT_H
+#define HDATAOBJECT_H
 
 #include "HeCore_global.h"
 #include <QString>
@@ -8,10 +8,10 @@ namespace He {
 namespace Core {
 
 // 提供静态函数tr，数据类型。
-class HECORE_EXPORT HObject
+class HECORE_EXPORT HDataObject
 {
 public:
-    HObject();
+    HDataObject();
 
 public:
     static QString tr(const char *sourceText, const char *comment = 0, int n = -1);
@@ -34,4 +34,4 @@ protected:
 } // He
 
 
-#endif // HOBJECT_H
+#endif // HDATAOBJECT_H

@@ -24,13 +24,20 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-    HObject.cpp \
-    HDataFormatInfo.cpp
+            HAppContext.cpp \
+            HDataObject.cpp \
+            HDataFormatInfo.cpp
 
 HEADERS     += \
             HeCore_global.h \
-    HObject.h \
-    HDataFormatInfo.h
+            HAppContext.h \
+            HErrorType.h \
+            HActionType.h \
+            HDataObject.h \
+            HDataFormatInfo.h
+
+#RESOURCES   += \
+#            HeCore.qrc
 
 Debug:      TARGET  = HeCored
 Release:    TARGET  = HeCore
@@ -41,3 +48,6 @@ unix {
 }
 
 include(Template.pri)
+
+RESOURCES += \
+    HeCore.qrc

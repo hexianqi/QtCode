@@ -52,27 +52,56 @@ void calcSpectrumEnergy(QPolygonF poly, double &totalEnergy, double &maxEnergy, 
     bandwidth = qFabs(x - y);
 }
 
-HSpectrumFacade::HSpectrumFacade()
+class HSpectrumFacadePrivate
 {
-    _chromaticityType = 0;
-    _chromaticity = std::shared_ptr<HChromaticity>(new HChromaticity());
-    _photopicVision = std::make_shared<HPhotopicVision>();
+public:
+    HSpectrumFacadePrivate()
+    {
+        _chromaticity = std::shared_ptr<HChromaticity>(new HChromaticity());
+        _photopicVision = std::make_shared<HPhotopicVision>();
+    }
+
+public:
+    void calcSpectrum(ISpectrumData *sp)
+    {
+        calcSpectrumEnergy(sp->Energy, sp->TotalEnergy, sp->MaxEnergy, sp->PeakWave, sp->Bandwidth);
+        _chromaticity->calcSpectrum(sp);
+        _photopicVision->calcVisionRatio(sp->Energy, sp->EnergyRatio, sp->RedRatio, sp->GreenRadio, sp->BlueRatio);
+        sp->VisionEnergy = _photopicVision->calcVisionEnergy(sp->Energy);
+    }
+
+    void setChromaticity(int type)
+    {
+        if (type == _chromaticityType || type < 0 || type > 2)
+            return;
+        if (type == 0)
+            _chromaticity.reset(new HChromaticity);
+        if (type == 1)
+            _chromaticity.reset(new HChromaticityV2);
+    }
+
+public:
+    int _chromaticityType = 0;
+    std::shared_ptr<HChromaticity> _chromaticity;
+    std::shared_ptr<HPhotopicVision> _photopicVision;
+};
+
+HSpectrumFacade::HSpectrumFacade()
+    : d_ptr(new HSpectrumFacadePrivate)
+{
 }
 
 void HSpectrumFacade::calcSpectrum(ISpectrumData *sp)
 {
-    calcSpectrumEnergy(sp->Energy, sp->TotalEnergy, sp->MaxEnergy, sp->PeakWave, sp->Bandwidth);
-    _chromaticity->calcSpectrum(sp);
-    _photopicVision->calcVisionRatio(sp->Energy, sp->EnergyRatio, sp->RedRatio, sp->GreenRadio, sp->BlueRatio);
-    sp->VisionEnergy = _photopicVision->calcVisionEnergy(sp->Energy);
+    d_ptr->calcSpectrum(sp);
 }
 
 void HSpectrumFacade::setChromaticity(int type)
 {
-    if (type == _chromaticityType || type < 0 || type > 2)
-        return;
-    if (type == 0)
-        _chromaticity.reset(new HChromaticity);
-    if (type == 1)
-        _chromaticity.reset(new HChromaticityV2);
+    d_ptr->setChromaticity(type);
+}
+
+std::shared_ptr<IChromaticity> HSpectrumFacade::getChromaticity()
+{
+    return d_ptr->_chromaticity;
 }

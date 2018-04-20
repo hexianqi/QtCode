@@ -7,7 +7,7 @@ using namespace He::Algorithm::Spectrum;
 
 HMesopticVision::HMesopticVision()
 {
-    initialize();
+    readStandard();
 }
 
 double HMesopticVision::calcRatio(QString type, double value)
@@ -17,7 +17,7 @@ double HMesopticVision::calcRatio(QString type, double value)
     return Math::interpolate(value, _stdData[type]);
 }
 
-void HMesopticVision::initialize()
+void HMesopticVision::readStandard()
 {
     int i,j;
     double y;

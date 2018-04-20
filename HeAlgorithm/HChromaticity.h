@@ -14,6 +14,7 @@ class HChromaticity : public IChromaticity
 {
 public:
     HChromaticity();
+    virtual ~HChromaticity() = default;
 
 public:
     // 计算光谱参数
