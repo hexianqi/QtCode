@@ -5,9 +5,7 @@
 #include "HCie.h"
 #include <QLineF>
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 // 色度参数计算类
 class HChromaticity : public IChromaticity
@@ -47,7 +45,6 @@ protected:
     std::shared_ptr<HIsotherm> _isotherm;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
+HE_ALGORITHM_END_NAMESPACE
+
 #endif // HLIGHTSOURCE_H

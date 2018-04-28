@@ -8,9 +8,9 @@ TEMPLATE    = lib
 
 CONFIG      += c++11
 
-DESTDIR     = "../../Dest"
+DESTDIR     = "../Dest"
 
-DEFINES     += HEALGORITHM
+DEFINES     += HE_BUILD_ALGORITHM_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -28,12 +28,12 @@ SOURCES     += \
             HMath.cpp
 
 HEADERS     += \
-            HeAlgorithm_global.h \
+            HAlgorithmGlobal.h \
+            HMath.h \
             HRegister.h \
-            HMath.h
+            HRegister_p.h
 
-RESOURCES   += \
-            HeAlgorithm.qrc
+RESOURCES   += HeAlgorithm.qrc
 
 Debug:      TARGET  = HeAlgorithmd
 Release:    TARGET  = HeAlgorithm

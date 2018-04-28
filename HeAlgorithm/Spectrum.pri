@@ -7,7 +7,8 @@ HEADERS += \
     $$PWD/HMesopticVision.h \
     $$PWD/HChromaticity.h \
     $$PWD/HChromaticityV2.h \
-    $$PWD/HSpectrumFacade.h
+    $$PWD/HSpectrumFacade.h \
+    $$PWD/HSpectrumFacade_p.h
 
 SOURCES += \
     $$PWD/HSpectrum.cpp \

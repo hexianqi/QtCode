@@ -46,7 +46,7 @@ protected:
     HMultiton() = default;
     ~HMultiton(void) = default;
     HMultiton(const HMultiton&) = delete;
-    HMultiton& operator = (const HMultiton&) = delete;
+    HMultiton &operator=(const HMultiton&) = delete;
 
 protected:
     static std::unordered_map<K, std::shared_ptr<T>> __map;

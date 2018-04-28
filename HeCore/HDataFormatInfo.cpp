@@ -1,91 +1,144 @@
-#include "HDataFormatInfo.h"
+#include "HDataFormatInfo_p.h"
 #include <QDoubleValidator>
 
-using namespace He::Core;
+HE_CORE_USE_NAMESPACE
+
+void HDataFormatInfoPrivate::init(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color)
+{
+    this->typeName = typeName;
+    this->unit = unit;
+    this->color = color;
+    this->decimals = decimals;
+    this->min = min;
+    this->max = max;
+    this->singleStep = singleStep;
+}
 
 HDataFormatInfo::HDataFormatInfo()
+    : d_ptr(new HDataFormatInfoPrivate)
 {
-    initialize("");
 }
 
-HDataFormatInfo::HDataFormatInfo(QString type, double min, double max, int decimals, double singleStep)
+HDataFormatInfo::HDataFormatInfo(QString typeName, double min, double max, int decimals, double singleStep)
+    : HDataFormatInfo()
 {
-    initialize(type, "", min, max, decimals, singleStep);
+    d_ptr->init(typeName, "", min, max, decimals, singleStep);
 }
 
-HDataFormatInfo::HDataFormatInfo(QString type, QString unit, double min, double max, int decimals, double singleStep, QColor color)
+HDataFormatInfo::HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color)
+    : HDataFormatInfo()
 {
-    initialize(type, unit, min, max, decimals, singleStep, color);
+    d_ptr->init(typeName, unit, min, max, decimals, singleStep, color);
 }
 
-void HDataFormatInfo::initialize(QString type, QString unit, double min, double max, int decimals, double singleStep, QColor color)
+HDataFormatInfo::HDataFormatInfo(const HDataFormatInfo &rhs)
+    : d_ptr(rhs.d_ptr)
 {
-    _type = type;
-    _unit = unit;
-    _color = color;
-    _decimals = decimals;
-    _botton = min;
-    _top = max;
-    _singleStep = singleStep;
 }
 
-void HDataFormatInfo::setType(QString text)
+HDataFormatInfo::HDataFormatInfo(HDataFormatInfoPrivate &p)
+    : d_ptr(&p)
 {
-    _type = text;
+}
+
+HDataFormatInfo &HDataFormatInfo::operator=(const HDataFormatInfo &rhs)
+{
+    if (this != &rhs)
+        d_ptr.operator=(rhs.d_ptr);
+    return *this;
+}
+
+HDataFormatInfo::~HDataFormatInfo()
+{
+}
+
+void HDataFormatInfo::setTypeName(QString text)
+{
+    d_ptr->typeName = text;
 }
 
 void HDataFormatInfo::setUnit(QString text)
 {
-    _unit = text;
+    d_ptr->unit = text;
 }
 
 void HDataFormatInfo::setColor(QColor value)
 {
-    _color = value;
+    d_ptr->color = value;
 }
 
 void HDataFormatInfo::setDecimals(int value)
 {
-    _decimals = value;
+    d_ptr->decimals = value;
 }
 
-void HDataFormatInfo::setBotton(double value)
+void HDataFormatInfo::setMin(double value)
 {
-    _botton = value;
+    d_ptr->min = value;
 }
 
-void HDataFormatInfo::setTop(double value)
+void HDataFormatInfo::setMax(double value)
 {
-    _top = value;
+    d_ptr->max = value;
 }
 
 void HDataFormatInfo::setRange(double min, double max, int decimals)
 {
-    _botton = min;
-    _top = max;
-    _decimals = decimals;
+    d_ptr->min = min;
+    d_ptr->max = max;
+    d_ptr->decimals = decimals;
 }
 
 void HDataFormatInfo::setSingleStep(double value)
 {
-    _singleStep = value;
+    d_ptr->singleStep = value;
 }
 
-QString HDataFormatInfo::unit(bool color) const
+QString HDataFormatInfo::typeName() const
 {
-    return color ? QString("<font color=%1>%2</font>").arg(_color.name()).arg(_unit) : _unit;
+    return d_ptr->typeName;
+}
+
+QString HDataFormatInfo::unit(bool withColor) const
+{
+    return withColor ? QString("<font color=%1>%2</font>").arg(color().name()).arg(d_ptr->unit) : d_ptr->unit;
+}
+
+QColor HDataFormatInfo::color() const
+{
+    return d_ptr->color;
+}
+
+int HDataFormatInfo::decimals() const
+{
+    return d_ptr->decimals;
+}
+
+double HDataFormatInfo::min() const
+{
+    return d_ptr->min;
+}
+
+double HDataFormatInfo::max() const
+{
+    return d_ptr->max;
+}
+
+double HDataFormatInfo::singleStep() const
+{
+    return d_ptr->singleStep;
 }
 
 QDoubleValidator *HDataFormatInfo::toDoubleValidator(QObject * parent)
 {
-    QDoubleValidator *v = new QDoubleValidator(_botton, _top, _decimals, parent);
+    QDoubleValidator *v = new QDoubleValidator(min(), max(), decimals(), parent);
     v->setNotation(QDoubleValidator::StandardNotation);
     return v;
 }
 
 QIntValidator *HDataFormatInfo::toIntValidator(QObject *parent)
 {
-    return new QIntValidator(static_cast<int>(_botton), static_cast<int>(_top), parent);
+    return new QIntValidator(static_cast<int>(min()), static_cast<int>(max()), parent);
 }
 
 //void HDataFormatInfo::toInitWidget(QSpinBox *widget)

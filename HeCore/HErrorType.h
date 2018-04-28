@@ -1,10 +1,11 @@
 #ifndef HERRORTYPE_H
 #define HERRORTYPE_H
 
-namespace He {
-namespace Core {
+#include "HCoreGlobal.h"
 
-enum ErrorType
+HE_CORE_BEGIN_NAMESPACE
+
+enum HErrorType
 {
     E_OK                            = 0x0000,
     E_PORT_NO_DEFINE                = 0x0101,
@@ -39,8 +40,6 @@ enum ErrorType
     E_FILE_UNMATCH                  = 0x4001
 };
 
-
-} // Core
-} // He
+HE_CORE_END_NAMESPACE
 
 #endif // HERRORTYPE_H

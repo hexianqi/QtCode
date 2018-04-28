@@ -1,0 +1,47 @@
+#ifndef HABSTRACTPORT_H
+#define HABSTRACTPORT_H
+
+#include "IPort.h"
+#include <QObject>
+#include <QScopedPointer>
+
+HE_COMMUNICATE_BEGIN_NAMESPACE
+
+class HAbstractPortPrivate;
+
+class HE_COMMUNICATE_EXPORT HAbstractPort : public QObject, public IPort
+{
+    Q_OBJECT
+    Q_DECLARE_PRIVATE(HAbstractPort)
+    Q_DISABLE_COPY(HAbstractPort)
+
+public:
+    explicit HAbstractPort(QObject *parent = nullptr);
+    ~HAbstractPort();
+
+public:
+    virtual void initialize(QVariantMap param) override;
+    virtual bool isConnected() override;
+    virtual HErrorType open(int portNum = 1) override;
+    virtual HErrorType close() override;
+    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 10) override;
+    virtual HErrorType write(QVector<uchar> data) override;
+    virtual HErrorType read(QVector<uchar> &data) override;
+    virtual HErrorType clear() override;
+
+protected:
+    HAbstractPort(HAbstractPortPrivate &p, QObject *parent = nullptr);
+
+protected:
+    virtual HErrorType openPort(int portNum) = 0;
+    virtual HErrorType closePort() = 0;
+    virtual HErrorType writeData(uchar *data, int maxSize) = 0;
+    virtual HErrorType readData(uchar *data, int maxSize) = 0;
+
+protected:
+    QScopedPointer<HAbstractPortPrivate> d_ptr;
+};
+
+HE_COMMUNICATE_END_NAMESPACE
+
+#endif // HABSTRACTPORT_H

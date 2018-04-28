@@ -1,28 +1,27 @@
 #ifndef HAPPCONTEXT_H
 #define HAPPCONTEXT_H
 
-#include "HeCore_global.h"
 #include "HSingleton.h"
 #include <QObject>
 #include <QVariant>
 
 class QSettings;
 
-namespace He {
-namespace Core {
+HE_CORE_BEGIN_NAMESPACE
+
+class HAppContextPrivate;
 
 // 应用程序上下文
-class HECORE_EXPORT HAppContext : public QObject, public HSingleton<HAppContext>
+class HE_CORE_EXPORT HAppContext : public QObject, public HSingleton<HAppContext>
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HAppContext)
+    Q_DISABLE_COPY(HAppContext)
     H_FRIEND_SINGLETON(HAppContext)
-
-protected:
-    HAppContext(QObject *parent = 0);
 
 public:
     // 创建INI配置
-    std::shared_ptr<QSettings> createSettings(QObject *parent);
+    std::shared_ptr<QSettings> createSettings();
     void setSetting(QString fileName);
 
 public:
@@ -38,21 +37,23 @@ public:
     void setContextPointer(QString key, QObject *value);
 
 protected:
+    HAppContext();
+    HAppContext(HAppContextPrivate &p);
+    ~HAppContext();
+
+protected:
     void initActionComment();
     void initErrorComment();
     void initDataFormatInfo();
     void initDataCaption();
-    void initMimeType();
-    void readMimeType(const QString &filename);
+    void readMimeType();
 
 protected:
-    QHash<QString, QVariant> _contextValue;
-    QHash<QString, QObject*> _contextPointer;
+    QScopedPointer<HAppContextPrivate> d_ptr;
 };
 
 extern std::shared_ptr<HAppContext> hApp;
 
-}
-}
+HE_CORE_END_NAMESPACE
 
 #endif // HAPPCONTEXT_H

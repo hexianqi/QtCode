@@ -1,43 +1,163 @@
-#include "HAppContext.h"
-#include "HActionType.h"
-#include "HErrorType.h"
+#include "HAppContext_p.h"
+#include "HCore.h"
 #include "HDataFormatInfo.h"
+#include <QVariant>
+#include <QPointF>
+#include <QDateTime>
 #include <QCoreApplication>
 #include <QSettings>
 #include <QFile>
 #include <QSet>
 #include <QTextStream>
 
-namespace He {
-namespace Core {
+HE_CORE_BEGIN_NAMESPACE
 
-QHash<ActionType, QString>          hashActionComment;
-QHash<ErrorType, QString>           hashErrorComment;
-QHash<QString, HDataFormatInfo>     hashDataFormatInfo;
+QHash<HActionType, QString>         hashActionComment;
+QHash<HErrorType, QString>          hashErrorComment;
+QHash<QString, HDataFormatInfo*>    hashDataFormatInfo;
 QHash<QString, QString>             hashDataCaption;
-QHash<QString, QSet<QString> >  hashFormatForMimeType;
-//QHash<QString, QSet<QString> >  hashFormatForMimeType;
+QHash<QString, QSet<QString>>       hashMimeType;
 
-std::shared_ptr<HAppContext> hApp = std::shared_ptr<HAppContext>(HAppContext::instance());
+//std::shared_ptr<HAppContext> hApp = std::shared_ptr<HAppContext>(HAppContext::instance());
 
-HAppContext::HAppContext(QObject *parent) :
-    QObject(parent)
+QString toComment(HActionType type)
+{
+    return hashActionComment.value(type);
+}
+
+QString toComment(HErrorType type)
+{
+    return hashErrorComment.value(type);
+}
+
+HDataFormatInfo *toFormatInfo(QString type)
+{
+    if (!hashDataFormatInfo.contains(type))
+        return new HDataFormatInfo();
+    return hashDataFormatInfo.value(type);
+}
+
+QString toString(QString type, double value, char f)
+{
+    auto info = toFormatInfo(type);
+    return QString().setNum(value, f, info->decimals());
+}
+
+QString toString(QString type, QVariant value)
+{
+    QString str;
+    if (value.type() == QVariant::PointF)
+        str = QString("(%1, %2)").arg(toString(type, value.toPointF().x())).arg(toString(type, value.toPointF().y()));
+    if (value.type() == QVariant::Point)
+        str = QString("(%1, %2)").arg(toString(type, value.toPoint().x())).arg(toString(type, value.toPoint().y()));
+    if (value.type() == QVariant::Double)
+        str = toString(type, value.toDouble());
+    if (value.type() == QVariant::Int)
+        str = toString(type, value.toInt());
+    if (value.type() == QVariant::LongLong)
+        str = toString(type, value.toLongLong());
+    if (value.type() == QVariant::String)
+        str = value.toString();
+    if (value.type() == QVariant::DateTime)
+        str = value.toDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    if (value.type() == QVariant::Date)
+        str = value.toDate().toString("yyyy-MM-dd");
+    if (value.type() == QVariant::Time)
+        str = value.toTime().toString("hh:mm:ss");
+    return str;
+}
+
+QString toUnit(QString type)
+{
+    return toFormatInfo(type)->unit(false);
+}
+
+QString toCaption(QString type)
+{
+    return hashDataCaption.value(type, type.mid(1, type.size()-2));
+}
+
+QStringList toCaption(QStringList types)
+{
+    QStringList list;
+    for (auto type : types)
+        list << toCaption(type);
+    return list;
+}
+
+QString toCaptionUnit(QString type)
+{
+    auto caption = toCaption(type);
+    auto unit = toUnit(type);
+    if (!unit.isEmpty())
+        caption += "(" + unit + ")";
+    return caption;
+}
+
+QStringList toCaptionUnit(QStringList types)
+{
+    QStringList list;
+    for (auto type : types)
+        list << toCaptionUnit(type);
+    return list;
+}
+
+QString filenameFilter(const QString &name, const QList<QByteArray> formats)
+{
+    QStringList list;
+
+    for (auto ba : formats)
+        list += ba;
+    if (list.isEmpty())
+        list << "*";
+    else
+        list.sort();
+    return QString("%1 (*.").arg(name) + list.join(" *.") + ")";
+}
+
+QString filenameFilter(const QString &name, const QStringList &mimeTypes)
+{
+    QSet<QString> formats;
+    QStringList list;
+
+    for (auto mimeType : mimeTypes)
+        formats.unite(hashMimeType.value(mimeType));
+    list = QStringList::fromSet(formats);
+    if (list.isEmpty())
+        list << "*";
+    else
+        list.sort();
+    return QString("%1 (*.").arg(name) + list.join(" *.") + ")";
+}
+
+HAppContext::HAppContext()
+    : d_ptr(new HAppContextPrivate)
 {
     QCoreApplication::addLibraryPath("./plugins");
-    qRegisterMetaType<ErrorType>("ErrorType");
-    qRegisterMetaType<ActionType>("ActionType");
+    qRegisterMetaType<HErrorType>("HErrorType");
+    qRegisterMetaType<HActionType>("HActionType");
     initActionComment();
     initErrorComment();
     initDataFormatInfo();
     initDataCaption();
-    initMimeType();
+    readMimeType();
     setSetting("Ini\\Settings.ini");
 }
 
-std::shared_ptr<QSettings> HAppContext::createSettings(QObject *parent)
+HAppContext::HAppContext(HAppContextPrivate &p)
+    : d_ptr(&p)
+{
+    // 可能需要同样的初始化
+}
+
+HAppContext::~HAppContext()
+{
+}
+
+std::shared_ptr<QSettings> HAppContext::createSettings()
 {
     auto fileName = getContextValue<QString>("SettingsFileName");
-    return std::make_shared<QSettings>(fileName, QSettings::IniFormat, parent);
+    return std::make_shared<QSettings>(fileName, QSettings::IniFormat);
 }
 
 void HAppContext::setSetting(QString fileName)
@@ -48,27 +168,31 @@ void HAppContext::setSetting(QString fileName)
 template<class T>
 T HAppContext::getContextValue(QString key)
 {
-    if (!_contextValue.contains(key))
+    Q_D(HAppContext);
+    if (!d->contextValue.contains(key))
         return T();
-    return _contextValue[key].value<T>();
+    return d->contextValue[key].value<T>();
 }
 
 template<class T>
 T HAppContext::getContextPointer(QString key)
 {
-    if (!_contextPointer.contains(key))
+    Q_D(HAppContext);
+    if (!d->contextPointer.contains(key))
         return nullptr;
-    return dynamic_cast<T>(_contextPointer[key]);
+    return dynamic_cast<T>(d->contextPointer[key]);
 }
 
 void HAppContext::setContextValue(QString key, QVariant value)
 {
-    _contextValue[key] = value;
+    Q_D(HAppContext);
+    d->contextValue[key] = value;
 }
 
 void HAppContext::setContextPointer(QString key, QObject *value)
 {
-    _contextPointer[key] = value;
+    Q_D(HAppContext);
+    d->contextPointer[key] = value;
 }
 
 void HAppContext::initActionComment()
@@ -198,9 +322,9 @@ void HAppContext::initErrorComment()
 void HAppContext::initDataFormatInfo()
 {
     hashDataFormatInfo.clear();
-    hashDataFormatInfo.insert("",                               HDataFormatInfo());
-    hashDataFormatInfo.insert("[]",                             HDataFormatInfo("[]"));
-    hashDataFormatInfo.insert("[_Fi]",                          HDataFormatInfo("[_Fi]", 0, 65535));
+    hashDataFormatInfo.insert("",                               new HDataFormatInfo());
+    hashDataFormatInfo.insert("[]",                             new HDataFormatInfo("[]"));
+    hashDataFormatInfo.insert("[_Fi]",                          new HDataFormatInfo("[_Fi]", 0, 65535));
 //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
 //    hashFormatInfo.insert(tr("[反向电压_Fi]"),                     FTypeInfo(tr("[反向电压_Fi]"), 0, 65535));
@@ -352,43 +476,30 @@ void HAppContext::initDataCaption()
     hashDataCaption.insert("",                                  tr(""));
     hashDataCaption.insert("[]",                                tr(" "));
     hashDataCaption.insert("[_Fi]",                             tr("_虚拟"));
-    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
-    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));
-    hashDataCaption.insert("[正向电流_3]",                      tr("正向电流(大)"));
-    hashDataCaption.insert("[回溯电流_1]",                      tr("回溯电流(微)"));
-    hashDataCaption.insert("[回溯电流_2]",                      tr("回溯电流(小)"));
-    hashDataCaption.insert("[回溯电流_3]",                      tr("回溯电流(大)"));
-    hashDataCaption.insert("[正向电流_L2_1]",                   tr("正向电流(1路)"));
-    hashDataCaption.insert("[正向电流_L2_2]",                   tr("正向电流(2路)"));
-    hashDataCaption.insert("[正向电流_L2_3]",                   tr("正向电流(3路)"));
-    hashDataCaption.insert("[正向电流_L2_4]",                   tr("正向电流(4路)"));
-    hashDataCaption.insert("[色坐标]",                          tr("色坐标xy"));
-    hashDataCaption.insert("[色坐标up]",                        tr("色坐标u'"));
-    hashDataCaption.insert("[色坐标vp]",                        tr("色坐标v'"));
-    hashDataCaption.insert("[色坐标uvp]",                       tr("色坐标u'v'"));
-    hashDataCaption.insert("[光谱光通量]",                      tr("光通量"));
-    hashDataCaption.insert("[测试日期时间]",                    tr("测试时间"));
-    hashDataCaption.insert("[分级_别名]",                       tr("分级"));
+//    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
+//    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));
+//    hashDataCaption.insert("[正向电流_3]",                      tr("正向电流(大)"));
+//    hashDataCaption.insert("[回溯电流_1]",                      tr("回溯电流(微)"));
+//    hashDataCaption.insert("[回溯电流_2]",                      tr("回溯电流(小)"));
+//    hashDataCaption.insert("[回溯电流_3]",                      tr("回溯电流(大)"));
+//    hashDataCaption.insert("[正向电流_L2_1]",                   tr("正向电流(1路)"));
+//    hashDataCaption.insert("[正向电流_L2_2]",                   tr("正向电流(2路)"));
+//    hashDataCaption.insert("[正向电流_L2_3]",                   tr("正向电流(3路)"));
+//    hashDataCaption.insert("[正向电流_L2_4]",                   tr("正向电流(4路)"));
+//    hashDataCaption.insert("[色坐标]",                          tr("色坐标xy"));
+//    hashDataCaption.insert("[色坐标up]",                        tr("色坐标u'"));
+//    hashDataCaption.insert("[色坐标vp]",                        tr("色坐标v'"));
+//    hashDataCaption.insert("[色坐标uvp]",                       tr("色坐标u'v'"));
+//    hashDataCaption.insert("[光谱光通量]",                      tr("光通量"));
+//    hashDataCaption.insert("[测试日期时间]",                    tr("测试时间"));
+//    hashDataCaption.insert("[分级_别名]",                       tr("分级"));
 }
 
-void HAppContext::initMimeType()
+void HAppContext::readMimeType()
 {
-    if (hashFormatForMimeType.isEmpty())
-    {
-        QString filename("/etc/Mime.types");
-        if (QFile::exists(filename))
-            readMimeType(filename);
-        readMimeType(":/dat/Mime.types");
-    }
-}
-
-void HAppContext::readMimeType(const QString &filename)
-{
-    QString line;
-    QStringList parts;
-    QSet<QString> suffixes;
     QRegExp whitespace("\\s+");
-    QFile file(filename);
+    QString fileName = QFile::exists("/etc/Mime.types") ? "/etc/Mime.types" : ":/dat/Mime.types";
+    QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -396,16 +507,13 @@ void HAppContext::readMimeType(const QString &filename)
     QTextStream in(&file);
     while (!in.atEnd())
     {
-        line = in.readLine();
-        parts = line.split(whitespace);
+        auto line = in.readLine();
+        auto parts = line.split(whitespace);
         if (parts.isEmpty())
             continue;
-        suffixes = QSet<QString>::fromList(parts.mid(1));
-        hashFormatForMimeType[parts.at(0)].unite(suffixes);
+        hashMimeType[parts.at(0)].unite(QSet<QString>::fromList(parts.mid(1)));
     }
     file.close();
 }
 
-}
-}
-
+HE_CORE_END_NAMESPACE

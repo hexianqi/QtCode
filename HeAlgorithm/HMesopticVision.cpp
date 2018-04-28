@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QTextStream>
 
-using namespace He::Algorithm::Spectrum;
+HE_ALGORITHM_USE_NAMESPACE
 
 HMesopticVision::HMesopticVision()
 {
@@ -14,7 +14,7 @@ double HMesopticVision::calcRatio(QString type, double value)
 {
     if (!_stdData.contains(type))
         return 0;
-    return Math::interpolate(value, _stdData[type]);
+    return HMath::interpolate(value, _stdData[type]);
 }
 
 void HMesopticVision::readStandard()

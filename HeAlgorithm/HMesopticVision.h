@@ -1,12 +1,11 @@
 #ifndef HMESOPTICVISION_H
 #define HMESOPTICVISION_H
 
+#include "HAlgorithmGlobal.h"
 #include <QHash>
 #include <QPolygonF>
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 // 常用路灯不同亮度下的中间视觉照度与明视觉照度的比例系数计算类
 class HMesopticVision
@@ -26,8 +25,6 @@ protected:
     QHash<QString, QPolygonF> _stdData;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // HMESOPTICVISION_H

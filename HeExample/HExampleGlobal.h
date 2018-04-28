@@ -1,0 +1,25 @@
+#ifndef HEEXAMPLE_GLOBAL_H
+#define HEEXAMPLE_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(HE_BUILD_EXAMPLE_LIB)
+#  define HE_EXAMPLE_EXPORT Q_DECL_EXPORT
+#else
+#  define HE_EXAMPLE_EXPORT Q_DECL_IMPORT
+#endif
+
+#define HE_EXAMPLE_NAMESPACE HeExample
+
+#ifdef HE_EXAMPLE_NAMESPACE
+#  define HE_EXAMPLE_BEGIN_NAMESPACE namespace HE_EXAMPLE_NAMESPACE {
+#  define HE_EXAMPLE_END_NAMESPACE }
+#  define HE_EXAMPLE_USE_NAMESPACE using namespace HE_EXAMPLE_NAMESPACE;
+#else
+#  define HE_EXAMPLE_BEGIN_NAMESPACE
+#  define HE_EXAMPLE_END_NAMESPACE
+#  define HE_EXAMPLE_USE_NAMESPACE
+#endif
+
+
+#endif // HEEXAMPLE_GLOBAL_H

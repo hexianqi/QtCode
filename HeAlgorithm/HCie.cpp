@@ -5,7 +5,7 @@
 #include <QTextStream>
 #include <QtMath>
 
-using namespace He::Algorithm::Spectrum;
+HE_ALGORITHM_USE_NAMESPACE
 
 HCieTc32::HCieTc32()
 {
@@ -200,7 +200,7 @@ QPointF HCie1931::calcIsoCoordinateUv(double tc)
 
 QPointF HCie1931::calcIsoCoordinateXy(double tc)
 {
-    return uv2xy(calcIsoCoordinateUv(tc));
+    return HSpectrum::uv2xy(calcIsoCoordinateUv(tc));
 }
 
 ISOTHERM HCie1931::calcIsotherm(double tc)
@@ -221,11 +221,11 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
         ubar = _stdData[i].X * 2 / 3;
         vbar = _stdData[i].Y;
         wbar = -0.5 * _stdData[i].X + 1.5 * _stdData[i].Y + 0.5 * _stdData[i].Z;
-        P = planck(_stdData[i].wave, tc);
+        P = HSpectrum::planck(_stdData[i].wave, tc);
         U += P * ubar;
         V += P * vbar;
         W += P * wbar;
-        Pprime = planckPrime(_stdData[i].wave, tc);
+        Pprime = HSpectrum::planckPrime(_stdData[i].wave, tc);
         Uprime += Pprime * ubar;
         Vprime += Pprime * vbar;
         Wprime += Pprime * wbar;
@@ -244,7 +244,7 @@ ISOTHERM HCie1931::calcIsothermFit(double tc)
     auto uv = calcIsoCoordinateUv(tc);
     for (int i = 0; i < 11; i++)
         points.append(calcIsoCoordinateUv(tc + (i - 4) * 0.1));
-    Math::polyfit(points, as);
+    HMath::polyfit(points, as);
     return ISOTHERM { tc, uv.x(), uv.y(), -1.0 / as[0] };
 }
 
@@ -285,7 +285,7 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
         return 0;
 
     if (tc <= 5000)
-        return planck(wave, tc);
+        return HSpectrum::planck(wave, tc);
 
     int i;
     double xd;
@@ -305,7 +305,7 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
     auto wave2 = _stdData[i].wave;
     auto sp1 = _stdData[i-1].S[0] + m1 * _stdData[i-1].S[1] + m2 * _stdData[i-1].S[2];
     auto sp2 = _stdData[i].S[0] + m1 * _stdData[i].S[1] + m2 * _stdData[i].S[2];
-    return qMax(0.0, Math::interpolate(wave, wave1, sp1, wave2, sp2));
+    return qMax(0.0, HMath::interpolate(wave, wave1, sp1, wave2, sp2));
 }
 
 QPolygonF HCieDay::calcRefSourceSpectrum(double tc, QPointF wave, double interval)

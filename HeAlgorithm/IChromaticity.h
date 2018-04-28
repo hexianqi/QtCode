@@ -1,23 +1,19 @@
 #ifndef ICHROMATICITY_H
 #define ICHROMATICITY_H
 
-#include "HeAlgorithm_global.h"
+#include "HAlgorithmGlobal.h"
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 class ISpectrumData;
 
 // 色度参数计算接口
-class HEALGORITHM_EXPORT IChromaticity
+class HE_ALGORITHM_EXPORT IChromaticity
 {
 public:
     virtual void calcSpectrum(ISpectrumData *sp) = 0;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // ICHROMATICITY_H

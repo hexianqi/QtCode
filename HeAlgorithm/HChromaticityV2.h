@@ -3,9 +3,7 @@
 
 #include "HChromaticity.h"
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HChromaticityV2 : public HChromaticity
 {
@@ -22,8 +20,6 @@ protected:
     std::shared_ptr<HCieUcs> _cieUcs;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // HCHROMATICITYV2_H

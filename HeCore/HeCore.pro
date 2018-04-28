@@ -4,13 +4,13 @@
 #
 #-------------------------------------------------
 
-TEMPLATE     = lib
+TEMPLATE    = lib
 
 CONFIG      += c++11
 
-DESTDIR     = "../../Dest"
+DESTDIR     = "../Dest"
 
-DEFINES     += HECORE
+DEFINES     += HE_BUILD_CORE_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -25,22 +25,34 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 
 SOURCES     += \
             HAppContext.cpp \
+            HDataFormatInfo.cpp \
             HDataObject.cpp \
-            HDataFormatInfo.cpp
+            HCore.cpp
 
 HEADERS     += \
-            HeCore_global.h \
+            HCoreGlobal.h \
+            HCore.h \
             HAppContext.h \
             HErrorType.h \
             HActionType.h \
+            HDataFormatInfo.h \
+            HAppContext_p.h \
+            HDataFormatInfo_p.h \
+            HDataCollection.h \
             HDataObject.h \
-            HDataFormatInfo.h
+            HDataObject_p.h \
 
-#RESOURCES   += \
-#            HeCore.qrc
+RESOURCES   += HeCore.qrc
 
-Debug:      TARGET  = HeCored
-Release:    TARGET  = HeCore
+INCLUDEPATH += ".."
+
+Debug {
+    TARGET  = HeCored
+}
+
+Release {
+    TARGET  = HeCore
+}
 
 unix {
     target.path = /usr/lib
@@ -48,6 +60,6 @@ unix {
 }
 
 include(Template.pri)
+include(Interface.pri)
+include(Reflect.pri)
 
-RESOURCES += \
-    HeCore.qrc

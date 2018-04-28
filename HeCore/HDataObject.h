@@ -1,37 +1,41 @@
 #ifndef HDATAOBJECT_H
 #define HDATAOBJECT_H
 
-#include "HeCore_global.h"
-#include <QString>
+#include "HCoreGlobal.h"
+#include <QVariantMap>
+#include <QSharedDataPointer>
 
-namespace He {
-namespace Core {
+HE_CORE_BEGIN_NAMESPACE
 
-// 提供静态函数tr，数据类型。
-class HECORE_EXPORT HDataObject
+class HDataObjectPrivate;
+
+class HE_CORE_EXPORT HDataObject
 {
+    Q_DECLARE_PRIVATE(HDataObject)
+
 public:
-    HDataObject();
+    HDataObject(QString type = QString());
+    HDataObject(const HDataObject &);
+    HDataObject &operator=(const HDataObject &);
+    virtual ~HDataObject();
 
 public:
     static QString tr(const char *sourceText, const char *comment = 0, int n = -1);
 
 public:
-    virtual void initialize(QString type);
+    virtual void initialize(QVariantMap param);
     virtual void setType(QString value);
 
 public:
     QString type(bool bracket = true) const;
 
 protected:
-    QString removeBracket(QString text) const;
+    HDataObject(HDataObjectPrivate &p);
 
 protected:
-    QString _type;
+    QExplicitlySharedDataPointer<HDataObjectPrivate> d_ptr;
 };
 
-} // Core
-} // He
-
+HE_CORE_END_NAMESPACE
 
 #endif // HDATAOBJECT_H

@@ -1,11 +1,10 @@
 #ifndef HPHOTOPICVISION_H
 #define HPHOTOPICVISION_H
 
+#include "HAlgorithmGlobal.h"
 #include <QPolygonF>
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 // 明视觉比例系数计算类
 class HPhotopicVision
@@ -26,8 +25,6 @@ protected:
     QPolygonF _stdData;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // HPHOTOPICVISION_H

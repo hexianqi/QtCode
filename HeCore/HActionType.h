@@ -1,10 +1,11 @@
 #ifndef HACTIONTYPE_H
 #define HACTIONTYPE_H
 
-namespace He {
-namespace Core {
+#include "HCoreGlobal.h"
 
-using ActionType = long long;
+HE_CORE_BEGIN_NAMESPACE
+
+using HActionType = long long;
 
 #define     ACT_IDLE                                0x00000000
 #define     ACT_EXIT                                0x00000001
@@ -94,7 +95,6 @@ using ActionType = long long;
 //#define     ACT_RESET_JUDGMENT                      0xF0000003
 //#define     ACT_RESET_CIRCUIT                       0xF0000004
 
-} // Core
-} // He
+HE_CORE_END_NAMESPACE
 
 #endif // HACTIONTYPE_H

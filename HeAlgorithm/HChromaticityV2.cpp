@@ -3,7 +3,7 @@
 #include "HCie.h"
 #include "HSpectrum.h"
 
-using namespace He::Algorithm::Spectrum;
+HE_ALGORITHM_USE_NAMESPACE
 
 HChromaticityV2::HChromaticityV2()
 {
@@ -17,8 +17,8 @@ void HChromaticityV2::calcSpectrum(ISpectrumData *sp)
 
     sp->CoordinateUv = _cie1931->calcCoordinateUv(sp->Energy);
     _cieUcs->calcColorTemperature(sp->CoordinateUv, sp->ColorTemperature, sp->Duv);
-    sp->CoordinateXy = uv2xy(sp->CoordinateUv);
-    sp->CoordinateUvp = uv2uvp(sp->CoordinateUv);
+    sp->CoordinateXy = HSpectrum::uv2xy(sp->CoordinateUv);
+    sp->CoordinateUvp = HSpectrum::uv2uvp(sp->CoordinateUv);
     _cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
     sp->RenderingIndex = calcColorRenderingIndex(sp->CoordinateUv, sp->Energy, sp->ColorTemperature);
     sp->RenderingIndexAvg = calcColorRenderingIndexAvg(sp->RenderingIndex);

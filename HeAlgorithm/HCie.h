@@ -1,12 +1,11 @@
 #ifndef HCIE1931_H
 #define HCIE1931_H
 
+#include "HAlgorithmGlobal.h"
 #include <QPolygonF>
 #include <memory>
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 struct CIE1931
 {
@@ -169,8 +168,6 @@ protected:
     QVector<CIE_UCS_P> _cieUcsP;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // HCIE1931_H

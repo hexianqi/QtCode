@@ -5,7 +5,7 @@
 #include <QTextStream>
 #include <QtMath>
 
-using namespace He::Algorithm::Spectrum;
+HE_ALGORITHM_USE_NAMESPACE
 
 HChromaticity::HChromaticity()
 {
@@ -20,8 +20,8 @@ void HChromaticity::calcSpectrum(ISpectrumData *sp)
         return;
 
     sp->CoordinateUv = _cie1931->calcCoordinateUv(sp->Energy);
-    sp->CoordinateXy = uv2xy(sp->CoordinateUv);
-    sp->CoordinateUvp = uv2uvp(sp->CoordinateUv);
+    sp->CoordinateXy = HSpectrum::uv2xy(sp->CoordinateUv);
+    sp->CoordinateUvp = HSpectrum::uv2uvp(sp->CoordinateUv);
     sp->ColorTemperature = _isotherm->calcColorTemperature(sp->CoordinateUv);
     sp->Duv = _cie1931->calcDuv(sp->CoordinateUv, sp->ColorTemperature);
     _cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
@@ -45,8 +45,8 @@ QLineF HChromaticity::calcIsothermUv(double tc, double duv)
 QLineF HChromaticity::calcIsothermXy(double tc, double duv)
 {
     auto line = calcIsothermUv(tc, duv);
-    auto p1 = uv2xy(line.p1());
-    auto p2 = uv2xy(line.p2());
+    auto p1 = HSpectrum::uv2xy(line.p1());
+    auto p2 = HSpectrum::uv2xy(line.p2());
     return QLineF(p1, p2);
 }
 
@@ -158,7 +158,7 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF sp
         Wri[i] = refer.Wr[i];
     }
 
-    auto cdk = uv2cd(uvk);
+    auto cdk = HSpectrum::uv2cd(uvk);
     ck = cdk.x();
     dk = cdk.y();
     _cie1931->calcColorReflectance(spdk, uki, vki, Yki);
@@ -199,9 +199,9 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
 
     spd = _cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
     uvt = _cie1931->calcIsoCoordinateUv(tc);
-    xyt = uv2xy(uvt);
+    xyt = HSpectrum::uv2xy(uvt);
     uv = _cie1931->calcCoordinateUv(spd);
-    cd = uv2cd(uv);
+    cd = HSpectrum::uv2cd(uv);
     _cie1931->calcColorReflectance(spd, uri, vri, Yri);
     for (i = 0; i < 14; i++)
     {

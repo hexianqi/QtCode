@@ -1,11 +1,42 @@
 #include "HDataObject.h"
-#include <QObject>
+#include "HDataObject_p.h"
+#include <QString>
+#include "IInitializeable.h"
 
-using namespace He::Core;
+HE_CORE_USE_NAMESPACE
 
-HDataObject::HDataObject()
+QString removeBracket(QString text)
 {
-    _type = tr("[]");
+    text.remove(QChar('['));
+    text.remove(QChar(']'));
+    return text;
+}
+
+HDataObject::HDataObject(QString type)
+    : d_ptr(new HDataObjectPrivate)
+{
+    d_ptr->type = type;
+}
+
+HDataObject::HDataObject(const HDataObject &rhs)
+    : d_ptr(rhs.d_ptr)
+{
+}
+
+HDataObject::HDataObject(HDataObjectPrivate &p)
+    : d_ptr(&p)
+{
+}
+
+HDataObject &HDataObject::operator=(const HDataObject &rhs)
+{
+    if (this != &rhs)
+        d_ptr.operator=(rhs.d_ptr);
+    return *this;
+}
+
+HDataObject::~HDataObject()
+{
 }
 
 QString HDataObject::tr(const char *sourceText, const char *comment, int n)
@@ -13,27 +44,20 @@ QString HDataObject::tr(const char *sourceText, const char *comment, int n)
     return QObject::tr(sourceText, comment, n);
 }
 
-void HDataObject::initialize(QString type)
+void HDataObject::initialize(QVariantMap param)
 {
-    setType(type);
+    if (param.contains("type"))
+        setType(param["type"].toString());
 }
 
 void HDataObject::setType(QString value)
 {
-    value = removeBracket(value);
-    _type = QChar('[') + value + QChar(']');
+    Q_D(HDataObject);
+    d->type = QChar('[') + removeBracket(value) + QChar(']');;
 }
 
 QString HDataObject::type(bool bracket) const
 {
-    return bracket ? _type : removeBracket(_type);
-}
-
-QString HDataObject::removeBracket(QString text) const
-{
-    QString str;
-    str = text;
-    str.remove(QChar('['));
-    str.remove(QChar(']'));
-    return str;
+    Q_D(const HDataObject);
+    return bracket ? d->type : removeBracket(d->type);
 }

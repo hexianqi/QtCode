@@ -30,16 +30,17 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 
 SOURCES     += \
             main.cpp \
-            MainWindow.cpp
+            MainWindow.cpp \
+    ssdsd.cpp
 
 HEADERS     += \
-            MainWindow.h
+            MainWindow.h \
+    ssdsd.h
 
 FORMS       += \
             MainWindow.ui
 
-#INCLUDEPATH += \
-#            "..\HeAlgorithm"
+INCLUDEPATH += ".."
 
 Debug {
     CONFIG  += console

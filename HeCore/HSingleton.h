@@ -1,10 +1,10 @@
 #ifndef HSINGLETON_H
 #define HSINGLETON_H
 
+#include "HCoreGlobal.h"
 #include <memory>
 
-namespace He {
-namespace Core {
+HE_CORE_BEGIN_NAMESPACE
 
 // 单例模板
 template <typename T>
@@ -36,7 +36,7 @@ protected:
     HSingleton() = default;
     ~HSingleton() = default;
     HSingleton(const HSingleton&) = delete;
-    HSingleton& operator = (const HSingleton&) = delete;
+    HSingleton &operator=(const HSingleton&) = delete;
 
 protected:
     static T *__instance;
@@ -48,7 +48,6 @@ T *HSingleton<T>::__instance = nullptr;
 #define H_FRIEND_SINGLETON(theClass) \
     friend class HSingleton<theClass>;
 
-} // Core
-} // He
+HE_CORE_END_NAMESPACE
 
 #endif // HSINGLETON_H

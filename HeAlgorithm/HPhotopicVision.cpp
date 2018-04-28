@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QTextStream>
 
-using namespace He::Algorithm::Spectrum;
+HE_ALGORITHM_USE_NAMESPACE
 
 HPhotopicVision::HPhotopicVision()
 {
@@ -105,5 +105,5 @@ void HPhotopicVision::readStandard()
     }
     file.close();
 
-    _stdData = Math::interpolate(poly, poly.first().x(), poly.last().x(), 0.1);
+    _stdData = HMath::interpolate(poly, poly.first().x(), poly.last().x(), 0.1);
 }

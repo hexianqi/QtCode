@@ -1,23 +1,22 @@
 #ifndef HREGISTER_H
 #define HREGISTER_H
 
-#include "HeAlgorithm_global.h"
+#include "HAlgorithmGlobal.h"
 #include <QScopedPointer>
+
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HRegisterPrivate;
 
-namespace He {
-namespace Algorithm {
-
 // 注册机
-class HEALGORITHM_EXPORT HRegister
+class HE_ALGORITHM_EXPORT HRegister
 {
     Q_DECLARE_PRIVATE(HRegister)
     Q_DISABLE_COPY(HRegister)
 
 public:
     HRegister();
-    virtual ~HRegister() = default;
+    ~HRegister();
 
 public:
     // 获取注册码
@@ -37,13 +36,12 @@ public:
     void trial();
 
 protected:
-    HRegister(HRegisterPrivate &dd);
+    HRegister(HRegisterPrivate &p);
 
 protected:
     QScopedPointer<HRegisterPrivate> d_ptr;
 };
 
-} // Algorithm
-} // He
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // HREGISTER_H

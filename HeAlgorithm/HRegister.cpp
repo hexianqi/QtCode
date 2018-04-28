@@ -1,13 +1,11 @@
-#include "HRegister.h"
-#include <QString>
+#include "HRegister_p.h"
 #include <QSettings>
 #include <QDate>
 #include <exception>
 #include <memory>
 #include <windows.h>
 
-using namespace std;
-using namespace He::Algorithm;
+HE_ALGORITHM_USE_NAMESPACE
 
 const QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\ebangTest";
 const QString REGISTER_ID = "banben";
@@ -35,31 +33,17 @@ int encryptDate(QDate value)
     return (value.year() - 2010) * 430 + value.month() * 32 + value.day();
 }
 
-class HRegisterPrivate
-{
-    Q_DECLARE_PUBLIC(HRegister)
-
-public:
-    HRegisterPrivate(HRegister *q)
-        : q_ptr(q)
-    {
-    }
-
-public:
-    HRegister *q_ptr;
-    QString _registerId = "";
-    QString _serialNumber = "";
-    int _trialTimes = 0;
-    int _firstDate = 0;
-};
-
 HRegister::HRegister()
-    : d_ptr(new HRegisterPrivate(this))
+    : d_ptr(new HRegisterPrivate)
 {
 }
 
-HRegister::HRegister(HRegisterPrivate &dd)
-    : d_ptr(&dd)
+HRegister::HRegister(HRegisterPrivate &p)
+    : d_ptr(&p)
+{
+}
+
+HRegister::~HRegister()
 {
 }
 
@@ -68,11 +52,11 @@ bool HRegister::getRegisterCode(QString &registerCode)
     registerCode = "";
     try
     {
-        auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
+        auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
         registerCode = reg->value(REGISTER_CODE).toString();
         return true;
     }
-    catch (exception e)
+    catch (std::exception e)
     {
         return false;
     }
@@ -85,11 +69,11 @@ bool HRegister::setRegisterCode(QString registerCode)
     {
         auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
         reg->setValue(REGISTER_CODE, registerCode);
-        reg->setValue(REGISTER_ID, d->_registerId);
-        reg->setValue(SERIAL_NUMBER, d->_serialNumber);
+        reg->setValue(REGISTER_ID, d->registerId);
+        reg->setValue(SERIAL_NUMBER, d->serialNumber);
         return true;
     }
-    catch (exception e)
+    catch (std::exception e)
     {
         return false;
     }
@@ -98,18 +82,18 @@ bool HRegister::setRegisterCode(QString registerCode)
 QString HRegister::getRegisterId()
 {
     Q_D(HRegister);
-    if (!d->_registerId.isEmpty())
-        return d->_registerId;
+    if (!d->registerId.isEmpty())
+        return d->registerId;
 
     DWORD volumeSerialNumber;
     GetVolumeInformation(L"C:\\", nullptr, 0, &volumeSerialNumber, nullptr, nullptr, nullptr, 0);
-    d->_serialNumber =  QString::number(volumeSerialNumber, 16).toUpper();
+    d->serialNumber =  QString::number(volumeSerialNumber, 16).toUpper();
     QString zcmNumber = "";
     bool ok;
-    for (int i = 0; i < d->_serialNumber.length(); i++)
-        zcmNumber += QString::number(QString(d->_serialNumber[i]).toInt(&ok, 16), 10);
-    d->_registerId = zcmNumber;
-    return d->_registerId;
+    for (int i = 0; i < d->serialNumber.length(); i++)
+        zcmNumber += QString::number(QString(d->serialNumber[i]).toInt(&ok, 16), 10);
+    d->registerId = zcmNumber;
+    return d->registerId;
 }
 
 bool HRegister::checkRegisterCode()
@@ -127,7 +111,7 @@ bool HRegister::checkRegisterCode(QString registerId, QString registerCode)
         auto encryptNum = encrypt(registerId);
         return encryptNum == registerCode;
     }
-    catch (exception ex)
+    catch (std::exception ex)
     {
         return false;
     }
@@ -145,22 +129,22 @@ QString HRegister::encrypt(QString registerId)
 bool HRegister::isExpires()
 {
     Q_D(HRegister);
-    auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
-    d->_trialTimes = reg->value(TRIAL_TIMES, 0).toInt();
-    d->_firstDate = reg->value(FIRST_DATE, 0).toInt();
-    if (d->_trialTimes == 0 && d->_firstDate == 0)
+    auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
+    d->trialTimes = reg->value(TRIAL_TIMES, 0).toInt();
+    d->firstDate = reg->value(FIRST_DATE, 0).toInt();
+    if (d->trialTimes == 0 && d->firstDate == 0)
         return false;
 
     auto expires = encryptDate(QDate::currentDate());
-    return d->_trialTimes > 60 && expires - d->_firstDate > 30;
+    return d->trialTimes > 60 && expires - d->firstDate > 30;
 }
 
 void HRegister::trial()
 {
     Q_D(HRegister);
-    d->_trialTimes++;
+    d->trialTimes++;
     auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
-    reg->setValue(TRIAL_TIMES, d->_trialTimes);
-    if (d->_firstDate == 0)
+    reg->setValue(TRIAL_TIMES, d->trialTimes);
+    if (d->firstDate == 0)
         reg->setValue(FIRST_DATE, encryptDate(QDate::currentDate()));
 }

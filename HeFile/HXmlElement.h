@@ -1,19 +1,16 @@
 #ifndef HXMLELEMENT_H
 #define HXMLELEMENT_H
 
-#include "HeFile_global.h"
-#include <QString>
-#include <QList>
+#include "HFileGlobal.h"
+#include <QStringList>
 #include <functional>
 
 class QDomElement;
 
-namespace He {
-namespace File {
-namespace Xml {
+HE_FILE_BEGIN_NAMESPACE
 
 // 重新封装的XML元素类，目的是为了简化XML查询操作
-class HEFILE_EXPORT HXmlElement
+class HE_FILE_EXPORT HXmlElement
 {
 public:
     // 装载XML文档
@@ -58,8 +55,6 @@ protected:
     QList<HXmlElement*> _childs;
 };
 
-} // Xml
-} // File
-} // He
+HE_FILE_END_NAMESPACE
 
 #endif // HXMLELEMENT_H

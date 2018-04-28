@@ -14,7 +14,7 @@ CONFIG      += c++11
 
 DESTDIR     = "../../Dest"
 
-DEFINES     += HEFILE
+DEFINES     += HE_BUILD_FILE_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -30,10 +30,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES     +=
 
 HEADERS     += \
-            HeFile_global.h
+            HFileGlobal.h
 
-Debug:      TARGET  = HeFiled
-Release:    TARGET  = HeFile
+INCLUDEPATH += ".."
+
+Debug {
+    TARGET  = HeFiled
+    LIBS    += -L$$DESTDIR -lHeCored \
+}
+
+Release {
+    TARGET  = HeFile
+    LIBS    += -L$$DESTDIR -lHeCore \
+}
 
 unix {
     target.path = /usr/lib

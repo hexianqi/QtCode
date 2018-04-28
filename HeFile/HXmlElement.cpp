@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QTextStream>
 
-using namespace He::File::Xml;
+HE_FILE_USE_NAMESPACE
 
 HXmlElement *HXmlElement::load(QString fileName)
 {

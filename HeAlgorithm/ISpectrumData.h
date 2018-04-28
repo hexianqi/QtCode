@@ -1,16 +1,14 @@
 #ifndef ISPECTRUMDATA_H
 #define ISPECTRUMDATA_H
 
-#include "HeAlgorithm_global.h"
+#include "HAlgorithmGlobal.h"
 
 #include <QPolygonF>
 
-namespace He {
-namespace Algorithm {
-namespace Spectrum {
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 // 光谱数据
-class HEALGORITHM_EXPORT ISpectrumData
+class HE_ALGORITHM_EXPORT ISpectrumData
 {
 public:
     ISpectrumData() { clear(); }
@@ -69,9 +67,6 @@ public:
     double SDCM;
 };
 
-} // namespace Spectrum
-} // namespace Algorithm
-} // namespace He
-
+HE_ALGORITHM_END_NAMESPACE
 
 #endif // ISPECTRUMDATA_H
