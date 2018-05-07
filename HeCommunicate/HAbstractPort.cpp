@@ -27,7 +27,7 @@ void HAbstractPort::initialize(QVariantMap param)
 
 bool HAbstractPort::isConnected()
 {
-    return d_ptr->isConnect;
+    return d_ptr->connected;
 }
 
 HErrorType HAbstractPort::open(int portNum)
@@ -38,7 +38,7 @@ HErrorType HAbstractPort::open(int portNum)
     if (error != E_OK)
         return error;
     d_ptr->portNum = portNum;
-    d_ptr->isConnect = true;
+    d_ptr->connected = true;
     clear();
     return E_OK;
 }
@@ -51,7 +51,7 @@ HErrorType HAbstractPort::close()
     auto error = closePort();
     if (error != E_OK)
         return error;
-    d_ptr->isConnect = false;
+    d_ptr->connected = false;
     return E_OK;
 }
 

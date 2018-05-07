@@ -16,11 +16,11 @@ void HUsbPortCyPrivate::loadDll()
     if (!lib->load())
         return;
 
-    open = (FunOpen)(lib->resolve("Open"));
-    close = (FunClose)(lib->resolve("Close"));
-    setTimeout = (FnSetTimeout)(lib->resolve("SetTimeout"));
-    readData = (FunReadData)(lib->resolve("ReadData"));
-    writeData = (FunWriteData)(lib->resolve("WriteData"));
+    open = FunOpen(lib->resolve("Open"));
+    close = FunClose(lib->resolve("Close"));
+    setTimeout = FnSetTimeout(lib->resolve("SetTimeout"));
+    readData = FunReadData(lib->resolve("ReadData"));
+    writeData = FunWriteData(lib->resolve("WriteData"));
     isLoaded = true;
 }
 

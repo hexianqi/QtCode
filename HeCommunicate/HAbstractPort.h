@@ -12,8 +12,6 @@ class HAbstractPortPrivate;
 class HE_COMMUNICATE_EXPORT HAbstractPort : public QObject, public IPort
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HAbstractPort)
-    Q_DISABLE_COPY(HAbstractPort)
 
 public:
     explicit HAbstractPort(QObject *parent = nullptr);

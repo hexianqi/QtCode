@@ -5,12 +5,6 @@
 
 HE_COMMUNICATE_USE_NAMESPACE
 
-//
-//#include <QString>
-//#include <Windows.h>
-//#include <winioctl.h>
-//#define ASYNC
-
 HUsbPortCy7c68013::HUsbPortCy7c68013(QObject *parent)
     : HAbstractPort(*new HUsbPortCy7c68013Private(), parent)
 {

@@ -201,6 +201,7 @@ void HAppContext::initActionComment()
     hashActionComment.insert(ACT_IDLE,                          tr("空闲"));
     hashActionComment.insert(ACT_EXIT,                          tr("退出"));
     hashActionComment.insert(ACT_UNLOCK_DEVICE,                 tr("设备解锁"));
+    hashActionComment.insert(ACT_CHECK_DEVICE,                  tr("检查设备"));
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
 //    hashActionComment.insert(ACT_SET_ELEC_MODULE,                QStringList() << tr("ACT_SET_ELEC_MODULE") << tr("设置电学参数模块"));
@@ -287,36 +288,51 @@ void HAppContext::initErrorComment()
 {
     hashErrorComment.clear();
     hashErrorComment.insert(E_OK,                               tr("成功"));
-    hashErrorComment.insert(E_PORT_NO_DEFINE,                   tr("端口未定义"));
-    hashErrorComment.insert(E_PORT_NO_DLL,                      tr("找不到DLL"));
-    hashErrorComment.insert(E_PORT_INVALID_HANDLE,              tr("无效的句柄"));
+    hashErrorComment.insert(E_PORT_INVALID,                     tr("端口无效"));
+    hashErrorComment.insert(E_PORT_NO_DLL,                      tr("找不到驱动"));
+    hashErrorComment.insert(E_PORT_INVALID_HANDLE,              tr("端口句柄无效"));
     hashErrorComment.insert(E_PORT_OPENED,                      tr("端口已经打开"));
     hashErrorComment.insert(E_PORT_CLOSED,                      tr("端口已经关闭"));
-    hashErrorComment.insert(E_PORT_WRITE_FAILED,                tr("发送数据失败"));
-    hashErrorComment.insert(E_PORT_READ_FAILED,                 tr("接收数据失败"));
     hashErrorComment.insert(E_PORT_WRITE_DATA_LESS,             tr("发送数据太少"));
+    hashErrorComment.insert(E_PORT_WRITE_FAILED,                tr("发送数据失败"));
     hashErrorComment.insert(E_PORT_READ_DATA_LESS,              tr("接收数据太少"));
-    hashErrorComment.insert(E_PORT_CHECKCODE_ERROR,             tr("校验码错误"));
-    hashErrorComment.insert(E_PORT_RETURN_DATA_ERROR,           tr("返回数据错误"));
-    hashErrorComment.insert(E_RETURN_STATUS_OK,                 tr("返回状态正确"));
-    hashErrorComment.insert(E_RETURN_STATUS_FORMAT_ERROR,       tr("返回状态错误"));
-    hashErrorComment.insert(E_RETURN_STATUS_MODULE_NORESPONSE,  tr("模块无应答"));
-    hashErrorComment.insert(E_RETURN_STATUS_OVERFLOW,           tr("数据溢出"));
-    hashErrorComment.insert(E_RETURN_STATUS_BUSY,               tr("模块繁忙"));
-    hashErrorComment.insert(E_RETURN_STATUS_CHIP_NORESPONSE,    tr("芯片无响应"));
-    hashErrorComment.insert(E_RETURN_STATUS_COMMAND_ERROR,      tr("命令错误"));
+    hashErrorComment.insert(E_PORT_READ_FAILED,                 tr("接收数据失败"));
     hashErrorComment.insert(E_DEVICE_NO_FOUND,                  tr("找不到设备"));
-    hashErrorComment.insert(E_DEVICE_LOCKED,                    tr("设备锁定"));
-    hashErrorComment.insert(E_DEVICE_UNMATCH,                   tr("设备不匹配"));
-    hashErrorComment.insert(E_DEVICE_UNMATCH_ID,                tr("设备识别码不匹配"));
-    hashErrorComment.insert(E_DEVICE_UNMATCH_VERSION,           tr("设备版本号不匹配"));
-    hashErrorComment.insert(E_DEVICE_MODULE_ERROR,              tr("设备模块异常"));
-    hashErrorComment.insert(E_DEVICE_MAPPED_ERROR,              tr("设备映射表异常"));
-    hashErrorComment.insert(E_DEVICE_MAPPED_NO_KEY,             tr("找不到对应的模块通道映射"));
-    hashErrorComment.insert(E_PROCESS_NO_FOUND,                 tr("找不到相应的进程"));
-    hashErrorComment.insert(E_PROCESS_NO_ACT,                   tr("找不到相应的动作处理"));
-    hashErrorComment.insert(E_SEND_WRONG_DATA,                  tr("发送错误数据"));
-    hashErrorComment.insert(E_FILE_UNMATCH,                     tr("文件不匹配"));
+    hashErrorComment.insert(E_DEVICE_RETURN_DATA_ERROR,         tr("设备返回数据错误"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_OK,               tr("设备反馈 - 成功"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_FORMAT_ERROR,     tr("设备反馈 - 格式错误"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_MODULE_NORESPONSE,tr("设备反馈 - 模块无应答"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_OVERFLOW,         tr("设备反馈 - 数据溢出"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_BUSY,             tr("设备反馈 - 模块繁忙"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_CHIP_NORESPONSE,  tr("设备反馈 - 芯片无响应"));
+    hashErrorComment.insert(E_DEVICE_FEEDBACK_COMMAND_ERROR,    tr("设备反馈 - 命令错误"));
+
+
+    hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
+    hashErrorComment.insert(E_PROTOCOL_INFO_INVALID,            tr("通讯协议配置无效"));
+    hashErrorComment.insert(E_PROTOCOL_INFO_ERROR,              tr("通讯协议配置错误"));
+//    hashErrorComment.insert(E_PORT_CHECKCODE_ERROR,             tr("校验码错误"));
+//    hashErrorComment.insert(E_PORT_RETURN_DATA_ERROR,           tr("返回数据错误"));
+//    hashErrorComment.insert(E_RETURN_STATUS_OK,                 tr("返回状态正确"));
+//    hashErrorComment.insert(E_RETURN_STATUS_FORMAT_ERROR,       tr("返回状态错误"));
+//    hashErrorComment.insert(E_RETURN_STATUS_MODULE_NORESPONSE,  tr("模块无应答"));
+//    hashErrorComment.insert(E_RETURN_STATUS_OVERFLOW,           tr("数据溢出"));
+//    hashErrorComment.insert(E_RETURN_STATUS_BUSY,               tr("模块繁忙"));
+//    hashErrorComment.insert(E_RETURN_STATUS_CHIP_NORESPONSE,    tr("芯片无响应"));
+//    hashErrorComment.insert(E_RETURN_STATUS_COMMAND_ERROR,      tr("命令错误"));
+
+//    hashErrorComment.insert(E_DEVICE_LOCKED,                    tr("设备锁定"));
+//    hashErrorComment.insert(E_DEVICE_UNMATCH,                   tr("设备不匹配"));
+//    hashErrorComment.insert(E_DEVICE_UNMATCH_ID,                tr("设备识别码不匹配"));
+//    hashErrorComment.insert(E_DEVICE_UNMATCH_VERSION,           tr("设备版本号不匹配"));
+//    hashErrorComment.insert(E_DEVICE_MODULE_ERROR,              tr("设备模块异常"));
+//    hashErrorComment.insert(E_DEVICE_MAPPED_ERROR,              tr("设备映射表异常"));
+//    hashErrorComment.insert(E_DEVICE_MAPPED_NO_KEY,             tr("找不到对应的模块通道映射"));
+//
+//    hashErrorComment.insert(E_PROCESS_NO_FOUND,                 tr("找不到相应的进程"));
+//    hashErrorComment.insert(E_PROCESS_NO_ACT,                   tr("找不到相应的动作处理"));
+//    hashErrorComment.insert(E_SEND_WRONG_DATA,                  tr("发送错误数据"));
+//    hashErrorComment.insert(E_FILE_UNMATCH,                     tr("文件不匹配"));
 }
 
 void HAppContext::initDataFormatInfo()

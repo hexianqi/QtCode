@@ -10,7 +10,7 @@ class HAbstractPortPrivate
 public:
     int portNum = 1;
     int timeOut = 3000;
-    bool isConnect = false;
+    bool connected = false;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

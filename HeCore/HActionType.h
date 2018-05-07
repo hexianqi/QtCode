@@ -10,6 +10,7 @@ using HActionType = long long;
 #define     ACT_IDLE                                0x00000000
 #define     ACT_EXIT                                0x00000001
 #define     ACT_UNLOCK_DEVICE                       0x00000011
+#define     ACT_CHECK_DEVICE                        0X00000080
 ////#define     ACT_REFRESH_USE_TIME                    0x00000012
 
 //#define     ACT_SET_ELEC_MODULE                     0x00000101

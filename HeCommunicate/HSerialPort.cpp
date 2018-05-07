@@ -27,9 +27,10 @@ HSerialPort::~HSerialPort()
 
 void HSerialPort::initialize(QVariantMap param)
 {
+    Q_D(HSerialPort);
     HAbstractPort::initialize(param);
     if (param.contains("baudRate"))
-        d_ptr->timeOut = param.value("baudRate").toInt();
+        d->baudRate = param.value("baudRate").toInt();
 }
 
 HErrorType HSerialPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
