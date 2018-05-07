@@ -298,6 +298,7 @@ void HAppContext::initErrorComment()
     hashErrorComment.insert(E_PORT_READ_DATA_LESS,              tr("接收数据太少"));
     hashErrorComment.insert(E_PORT_READ_FAILED,                 tr("接收数据失败"));
     hashErrorComment.insert(E_DEVICE_NO_FOUND,                  tr("找不到设备"));
+    hashErrorComment.insert(E_DEVICE_CHECKCODE_ERROR,           tr("设备校验码错误"));
     hashErrorComment.insert(E_DEVICE_RETURN_DATA_ERROR,         tr("设备返回数据错误"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_OK,               tr("设备反馈 - 成功"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_FORMAT_ERROR,     tr("设备反馈 - 格式错误"));
@@ -309,8 +310,8 @@ void HAppContext::initErrorComment()
 
 
     hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
-    hashErrorComment.insert(E_PROTOCOL_INFO_INVALID,            tr("通讯协议配置无效"));
-    hashErrorComment.insert(E_PROTOCOL_INFO_ERROR,              tr("通讯协议配置错误"));
+    hashErrorComment.insert(E_PROTOCOL_STRATEGY_INVALID,        tr("通讯策略无效"));
+    hashErrorComment.insert(E_PROTOCOL_STRATEGY_ERROR,          tr("通讯策略错误"));
 //    hashErrorComment.insert(E_PORT_CHECKCODE_ERROR,             tr("校验码错误"));
 //    hashErrorComment.insert(E_PORT_RETURN_DATA_ERROR,           tr("返回数据错误"));
 //    hashErrorComment.insert(E_RETURN_STATUS_OK,                 tr("返回状态正确"));

@@ -1,98 +1,79 @@
-#include "HAbstractProtocol_p.h"
-#include "IPort.h"
-#include "IProtocolInfo.h"
+#include "HProtocol_p.h"
+#include "IProtocolStrategy.h"
 #include <QMutex>
 #include <QVector>
 
 HE_CORE_USE_NAMESPACE
 HE_COMMUNICATE_USE_NAMESPACE
 
-HAbstractProtocolPrivate::HAbstractProtocolPrivate()
+HProtocolPrivate::HProtocolPrivate()
 {
     mutex = new QMutex();
 }
 
-HAbstractProtocol::HAbstractProtocol(QObject *parent)
-    : QObject(parent), d_ptr(new HAbstractProtocolPrivate)
+HProtocol::HProtocol(QObject *parent)
+    : QObject(parent), d_ptr(new HProtocolPrivate)
 {
 }
 
-HAbstractProtocol::HAbstractProtocol(HAbstractProtocolPrivate &p, QObject *parent)
+HProtocol::HProtocol(HProtocolPrivate &p, QObject *parent)
     : QObject(parent), d_ptr(&p)
 {
 }
 
-HAbstractProtocol::~HAbstractProtocol()
+HProtocol::~HProtocol()
 {
     close();
 }
 
-void HAbstractProtocol::initialize(QVariantMap param)
+void HProtocol::initialize(QVariantMap param)
 {
-    if (param.contains("protocolInfo"))
-        setProtocolInfo(static_cast<IProtocolInfo *>(param.value("protocolInfo").value<void *>()));
+    if (param.contains("strategy"))
+        setStrategy(static_cast<IProtocolStrategy *>(param.value("strategy").value<void *>()));
 }
 
-void HAbstractProtocol::setProtocolInfo(IProtocolInfo *info)
+void HProtocol::setStrategy(IProtocolStrategy *strategy)
 {
     close();
-    d_ptr->info = info;
-    d_ptr->port = info->port();
+    d_ptr->strategy = strategy;
 }
 
-HErrorType HAbstractProtocol::open()
+HErrorType HProtocol::open()
 {
-    close();
     QMutexLocker locker(d_ptr->mutex);
 
-    if (d_ptr->info == nullptr)
-        return E_PROTOCOL_INFO_INVALID;
-    if (d_ptr->port == nullptr)
-        return E_PORT_INVALID;
-
-    auto error = openPort(d_ptr->info->portNum());
-    if (error == E_OK || !d_ptr->info->isPortNumScan())
-        return error;
-
-    for (int i = 0; i < 10; i++)
-    {
-        error = openPort(i);
-        if (error == E_OK)
-        {
-            d_ptr->info->setPortNum(i);
-            return E_OK;
-        }
-    }
-    return E_DEVICE_NO_FOUND;
+    if (d_ptr->strategy == nullptr)
+        return E_PROTOCOL_STRATEGY_INVALID;
+    return d_ptr->strategy->open();
 }
 
-HErrorType HAbstractProtocol::close()
+HErrorType HProtocol::close()
 {
-    if (d_ptr->port != nullptr)
-        d_ptr->port->close();
+    if (d_ptr->strategy != nullptr)
+        d_ptr->strategy->close();
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, int value, int delay)
+HErrorType HProtocol::setData(HActionType action, int value, int delay)
 {
     QVector<uchar> data;
     data << uchar(value % 256) << uchar(value / 256);
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, double value, double factor, int delay)
+HErrorType HProtocol::setData(HActionType action, double value, double factor, int delay)
 {
     return setData(action, int(value * factor), delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, uchar value, int delay)
+HErrorType HProtocol::setData(HActionType action, uchar value, int delay)
 {
     QVector<uchar> data;
     data << value;
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, uint value, int delay)
+HErrorType HProtocol::setData(HActionType action, uint value, int delay)
 {
     QVector<uchar> data;
     data.append((value >>  0) & 0xFF);
@@ -102,7 +83,7 @@ HErrorType HAbstractProtocol::setData(HActionType action, uint value, int delay)
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<int> value, int delay)
+HErrorType HProtocol::setData(HActionType action, QVector<int> value, int delay)
 {
     QVector<uchar> data;
     for (auto i : value)
@@ -110,7 +91,7 @@ HErrorType HAbstractProtocol::setData(HActionType action, QVector<int> value, in
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<double> value, double factor, int delay)
+HErrorType HProtocol::setData(HActionType action, QVector<double> value, double factor, int delay)
 {
     QVector<uchar> data;
     for (auto d : value)
@@ -121,12 +102,12 @@ HErrorType HAbstractProtocol::setData(HActionType action, QVector<double> value,
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<uchar> value, int delay)
+HErrorType HProtocol::setData(HActionType action, QVector<uchar> value, int delay)
 {
-    return interactionSet(action, value, delay);
+    return d_ptr->strategy->setData(action, value, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<uint> value, int delay)
+HErrorType HProtocol::setData(HActionType action, QVector<uint> value, int delay)
 {
     QVector<uchar> data;
     for (auto i : value)
@@ -139,7 +120,7 @@ HErrorType HAbstractProtocol::setData(HActionType action, QVector<uint> value, i
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, int &value, int delay)
+HErrorType HProtocol::getData(HActionType action, int &value, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -149,7 +130,7 @@ HErrorType HAbstractProtocol::getData(HActionType action, int &value, int delay)
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, double &value, double factor, int delay)
+HErrorType HProtocol::getData(HActionType action, double &value, double factor, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -159,7 +140,7 @@ HErrorType HAbstractProtocol::getData(HActionType action, double &value, double 
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, uchar &value, int delay)
+HErrorType HProtocol::getData(HActionType action, uchar &value, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -169,7 +150,7 @@ HErrorType HAbstractProtocol::getData(HActionType action, uchar &value, int dela
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, uint &value, int delay)
+HErrorType HProtocol::getData(HActionType action, uint &value, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -179,7 +160,7 @@ HErrorType HAbstractProtocol::getData(HActionType action, uint &value, int delay
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<int> &value, int delay)
+HErrorType HProtocol::getData(HActionType action, QVector<int> &value, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -193,7 +174,7 @@ HErrorType HAbstractProtocol::getData(HActionType action, QVector<int> &value, i
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<double> &value, double factor, int delay)
+HErrorType HProtocol::getData(HActionType action, QVector<double> &value, double factor, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -207,12 +188,12 @@ HErrorType HAbstractProtocol::getData(HActionType action, QVector<double> &value
     return E_OK;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
+HErrorType HProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
 {
-    return interactionGet(action, value, delay);
+    return d_ptr->strategy->getData(action, value, delay);
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<uint> &value, int delay)
+HErrorType HProtocol::getData(HActionType action, QVector<uint> &value, int delay)
 {
     QVector<uchar> data;
     auto error = getData(action, data, delay);
@@ -225,16 +206,3 @@ HErrorType HAbstractProtocol::getData(HActionType action, QVector<uint> &value, 
         value[i] = data[4 * i] + data[4 * i + 1] * 256 + data[4 * i + 2] * 256 * 256 + data[4 * i + 3] * 256 * 256 * 256;
     return E_OK;
 }
-
-HErrorType HAbstractProtocol::openPort(int num)
-{
-    auto error = d_ptr->port->open(num);
-    if (error != E_OK)
-        return error;
-
-    error = checkDevice();
-    if (error != E_OK)
-        d_ptr->port->close();
-    return error;
-}
-

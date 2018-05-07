@@ -1,12 +1,11 @@
-#ifndef HPROTOCOLINFO_P_H
-#define HPROTOCOLINFO_P_H
+#ifndef HABSTRACTPROTOCOLSTRATEGY_P_H
+#define HABSTRACTPROTOCOLSTRATEGY_P_H
 
-#include "HProtocolInfo.h"
-#include <QSharedData>
+#include "HAbstractProtocolStrategy.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HProtocolInfoPrivate : public QSharedData
+class HAbstractProtocolStrategyPrivate
 {
 public:
     IPort *port;
@@ -18,4 +17,4 @@ public:
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HPROTOCOLINFO_P_H
+#endif // HABSTRACTPROTOCOLSTRATEGY_P_H

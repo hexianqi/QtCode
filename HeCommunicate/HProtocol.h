@@ -1,5 +1,5 @@
-#ifndef HABSTRACTPROTOCOL_H
-#define HABSTRACTPROTOCOL_H
+#ifndef HPROTOCOL_H
+#define HPROTOCOL_H
 
 #include "IProtocol.h"
 #include <QObject>
@@ -7,19 +7,19 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HAbstractProtocolPrivate;
+class HProtocolPrivate;
 
-class HE_COMMUNICATE_EXPORT HAbstractProtocol : public QObject, public IProtocol
+class HProtocol : public QObject, public IProtocol
 {
     Q_OBJECT
 
 public:
-    explicit HAbstractProtocol(QObject *parent = nullptr);
-    ~HAbstractProtocol();
+    explicit HProtocol(QObject *parent = nullptr);
+    ~HProtocol();
 
 public:
     virtual void initialize(QVariantMap param) override;
-    virtual void setProtocolInfo(IProtocolInfo *info) override;
+    virtual void setStrategy(IProtocolStrategy *strategy) override;
     virtual HErrorType open() override;
     virtual HErrorType close() override;
 
@@ -44,18 +44,12 @@ public:
     virtual HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
 
 protected:
-    HAbstractProtocol(HAbstractProtocolPrivate &p, QObject *parent = nullptr);
+    HProtocol(HProtocolPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual HErrorType openPort(int num);
-    virtual HErrorType checkDevice() = 0;
-    virtual HErrorType interactionSet(HActionType action, QVector<uchar> value, int delay = 0) = 0;
-    virtual HErrorType interactionGet(HActionType action, QVector<uchar> &value, int delay = 0) = 0;
-
-protected:
-    QScopedPointer<HAbstractProtocolPrivate> d_ptr;
+    QScopedPointer<HProtocolPrivate> d_ptr;
 };
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HABSTRACTPROTOCOL_H
+#endif // HPROTOCOL_H

@@ -22,7 +22,7 @@ public:
     virtual bool isConnected() override;
     virtual HErrorType open(int portNum = 1) override;
     virtual HErrorType close() override;
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 10) override;
+    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
     virtual HErrorType write(QVector<uchar> data) override;
     virtual HErrorType read(QVector<uchar> &data) override;
     virtual HErrorType clear() override;

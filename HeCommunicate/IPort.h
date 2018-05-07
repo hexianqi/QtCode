@@ -25,7 +25,7 @@ public:
     // 读数据
     virtual HErrorType read(QVector<uchar> &data) = 0;
     // 传输数据
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 10) = 0;
+    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) = 0;
     // 清空缓存
     virtual HErrorType clear() = 0;
 };

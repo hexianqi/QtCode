@@ -10,13 +10,13 @@ HE_CORE_USE_NAMESPACE
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class IProtocolInfo;
+class IProtocolStrategy;
 
 class HE_COMMUNICATE_EXPORT IProtocol
 {
 public:
     virtual void initialize(QVariantMap param) = 0;
-    virtual void setProtocolInfo(IProtocolInfo *info) = 0;
+    virtual void setStrategy(IProtocolStrategy *strategy) = 0;
     virtual HErrorType open() = 0;
     virtual HErrorType close() = 0;
 
