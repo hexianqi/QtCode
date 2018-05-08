@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(this, SIGNAL(grabMouse()), this, SLOT(test()));
+//    connect(this, SIGNAL(grabMouse()), this, SLOT(test()));
 }
 
 MainWindow::~MainWindow()

@@ -14,7 +14,7 @@ class HProtocol : public QObject, public IProtocol
     Q_OBJECT
 
 public:
-    explicit HProtocol(QObject *parent = nullptr);
+    explicit HProtocol(QString name, QObject *parent = nullptr);
     ~HProtocol();
 
 public:

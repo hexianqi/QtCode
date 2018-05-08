@@ -19,6 +19,7 @@ public:
     virtual void setStrategy(IProtocolStrategy *strategy) = 0;
     virtual HErrorType open() = 0;
     virtual HErrorType close() = 0;
+    virtual QString objectName() = 0;
 
 public:
     virtual HErrorType setData(HActionType action, int value, int delay = 0) = 0;

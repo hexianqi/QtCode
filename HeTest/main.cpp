@@ -28,14 +28,17 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    std::function<int(int,int)> fun;
-    TestRegister();
+//    std::function<int(int,int)> fun;
+//    TestRegister();
 
-    HSpectrumFacade sf;
-    sf.getChromaticity();
+//    HSpectrumFacade sf;
+//    sf.getChromaticity();
 
-//    MainWindow w;
-//    w.show();
+    MainWindow w;
+    qDebug() << w.objectName();
+    w.setObjectName("Test123");
+    qDebug() << w.objectName();
+    w.show();
 
     return a.exec();
 }

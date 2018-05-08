@@ -52,7 +52,7 @@ protected:
     QScopedPointer<HAppContextPrivate> d_ptr;
 };
 
-extern std::shared_ptr<HAppContext> hApp;
+extern HE_CORE_EXPORT std::shared_ptr<HAppContext> hApp;
 
 HE_CORE_END_NAMESPACE
 

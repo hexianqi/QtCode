@@ -1,20 +1,20 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-04-08T14:14:48
+# Project created by QtCreator 2018-05-08T09:26:40
 #
 #-------------------------------------------------
 
-QT          += core gui
+QT          -= gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT          += core
 
-TEMPLATE    = app
+TEMPLATE    = lib
 
 CONFIG      += c++11
 
-TARGET      = HeTest
-
 DESTDIR     = "../Dest"
+
+DEFINES     += HE_BUILD_CONTROLLER_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -27,26 +27,32 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
-SOURCES     += \
-            main.cpp \
-            MainWindow.cpp
+SOURCES     +=
 
 HEADERS     += \
-            MainWindow.h
-
-FORMS       += \
-            MainWindow.ui
+            HControllerGlobal.h
 
 INCLUDEPATH += ".."
 
 Debug {
-    CONFIG  += console
+    TARGET = HeControllerd
     LIBS    += \
-            -L$$DESTDIR -lHeAlgorithmd
+            -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHeCommunicated
+
 }
 
 Release {
+    TARGET  = HeController
     LIBS    += \
-            -L$$DESTDIR -lHeAlgorithm
+            -L$$DESTDIR -lHeCore \
+            -L$$DESTDIR -lHeCommunicate
 }
+
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+}
+
+include(Thread.pri)
+include(Model.pri)

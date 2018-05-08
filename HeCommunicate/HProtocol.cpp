@@ -11,9 +11,10 @@ HProtocolPrivate::HProtocolPrivate()
     mutex = new QMutex();
 }
 
-HProtocol::HProtocol(QObject *parent)
+HProtocol::HProtocol(QString name, QObject *parent)
     : QObject(parent), d_ptr(new HProtocolPrivate)
 {
+    setObjectName(name);
 }
 
 HProtocol::HProtocol(HProtocolPrivate &p, QObject *parent)
@@ -28,6 +29,8 @@ HProtocol::~HProtocol()
 
 void HProtocol::initialize(QVariantMap param)
 {
+    if (param.contains("objectName"))
+        setObjectName(param.value("objectName").toString());
     if (param.contains("strategy"))
         setStrategy(static_cast<IProtocolStrategy *>(param.value("strategy").value<void *>()));
 }

@@ -312,6 +312,10 @@ void HAppContext::initErrorComment()
     hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
     hashErrorComment.insert(E_PROTOCOL_STRATEGY_INVALID,        tr("通讯策略无效"));
     hashErrorComment.insert(E_PROTOCOL_STRATEGY_ERROR,          tr("通讯策略错误"));
+    hashErrorComment.insert(E_MODEL_NO_PROTOCOL_STRATEGY,       tr("找不到通讯策略"));
+
+
+
 //    hashErrorComment.insert(E_PORT_CHECKCODE_ERROR,             tr("校验码错误"));
 //    hashErrorComment.insert(E_PORT_RETURN_DATA_ERROR,           tr("返回数据错误"));
 //    hashErrorComment.insert(E_RETURN_STATUS_OK,                 tr("返回状态正确"));
