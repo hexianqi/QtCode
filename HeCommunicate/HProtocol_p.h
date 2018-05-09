@@ -13,7 +13,7 @@ public:
     HProtocolPrivate();
 
 public:
-    IProtocolStrategy *strategy;
+    IDevice *device;
     QMutex *mutex;
 };
 

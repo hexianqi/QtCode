@@ -1,82 +1,87 @@
-#include "HProtocolStrategySL_p.h"
+#include "HDeviceSL_p.h"
 #include "IPort.h"
 
 HE_COMMUNICATE_USE_NAMESPACE
 
-HProtocolStrategySLPrivate::HProtocolStrategySLPrivate()
+HDeviceSLPrivate::HDeviceSLPrivate()
 {
     encrypts << false;
     checkCodes << false;
 }
 
-void HProtocolStrategySLPrivate::setEncrypt(QVector<bool> value)
+void HDeviceSLPrivate::setEncrypt(QVector<bool> value)
 {
     encrypts = value;
     if (encrypts.size() == 0)
         encrypts.append(false);
 }
 
-void HProtocolStrategySLPrivate::setCheckCode(QVector<bool> value)
+void HDeviceSLPrivate::setCheckCode(QVector<bool> value)
 {
     checkCodes = value;
     if (checkCodes.size() == 0)
         checkCodes.append(false);
 }
 
-bool HProtocolStrategySLPrivate::isEncrypt(int n)
+bool HDeviceSLPrivate::isEncrypt(int n)
 {
     n = qBound(0, n, encrypts.size() - 1);
     return encrypts[n];
 }
 
-bool HProtocolStrategySLPrivate::isCheckCode(int n)
+bool HDeviceSLPrivate::isCheckCode(int n)
 {
     n = qBound(0, n, checkCodes.size() - 1);
     return checkCodes[n];
 }
 
-HProtocolStrategySL::HProtocolStrategySL()
-    : HAbstractProtocolStrategy(*new HProtocolStrategySLPrivate())
+HDeviceSL::HDeviceSL(QObject *parent)
+    : HAbstractDevice(*new HDeviceSLPrivate(), parent)
 {
 }
 
-HProtocolStrategySL::HProtocolStrategySL(HProtocolStrategySLPrivate &p)
-    : HAbstractProtocolStrategy(p)
+HDeviceSL::HDeviceSL(HDeviceSLPrivate &p, QObject *parent)
+    : HAbstractDevice(p, parent)
 {
 }
 
-HProtocolStrategySL::~HProtocolStrategySL()
+HDeviceSL::~HDeviceSL()
 {
 }
 
-void HProtocolStrategySL::initialize(QVariantMap param)
+void HDeviceSL::initialize(QVariantMap param)
 {
-    Q_D(HProtocolStrategySL);
-    HAbstractProtocolStrategy::initialize(param);
+    Q_D(HDeviceSL);
+    HAbstractDevice::initialize(param);
     if (param.contains("encrypt"))
         d->setEncrypt(param.value("encrypt").value<QVector<bool>>());
     if (param.contains("checkCode"))
         d->setCheckCode(param.value("checkCode").value<QVector<bool>>());
 }
 
-void HProtocolStrategySL::setEncrypt(QVector<bool> value)
+QString HDeviceSL::typeName()
 {
-    Q_D(HProtocolStrategySL);
+    return tr("SL");
+}
+
+void HDeviceSL::setEncrypt(QVector<bool> value)
+{
+    Q_D(HDeviceSL);
     d->setEncrypt(value);
 }
 
-void HProtocolStrategySL::setCheckCode(QVector<bool> value)
+void HDeviceSL::setCheckCode(QVector<bool> value)
 {
-    Q_D(HProtocolStrategySL);
+    Q_D(HDeviceSL);
     d->setCheckCode(value);
 }
 
-HErrorType HProtocolStrategySL::setData(HActionType action, QVector<uchar> value, int delay)
+HErrorType HDeviceSL::setData(HActionType action, QVector<uchar> value, int delay)
 {
-    Q_D(HProtocolStrategySL);
+    Q_D(HDeviceSL);
     auto param = d->actionParam.value(action);
     if (param.size() < 4)
-        return E_PROTOCOL_STRATEGY_ERROR;
+        return E_DEVICE_ACTION_ERROR;
 
     QVector<uchar> downData, upData;
     int size = value.size() + 3;
@@ -97,12 +102,12 @@ HErrorType HProtocolStrategySL::setData(HActionType action, QVector<uchar> value
     return E_OK;
 }
 
-HErrorType HProtocolStrategySL::getData(HActionType action, QVector<uchar> &value, int delay)
+HErrorType HDeviceSL::getData(HActionType action, QVector<uchar> &value, int delay)
 {
-    Q_D(HProtocolStrategySL);
+    Q_D(HDeviceSL);
     auto param = d->actionParam.value(action);
     if (param.size() < 4)
-        return E_PROTOCOL_STRATEGY_ERROR;
+        return E_DEVICE_ACTION_ERROR;
 
     QVector<uchar> downData, upData;
     downData << (uchar(d->deviceID)) << 0x03 << 0x00 << param[2] << param[3];
@@ -123,9 +128,9 @@ HErrorType HProtocolStrategySL::getData(HActionType action, QVector<uchar> &valu
     return E_OK;
 }
 
-HErrorType HProtocolStrategySL::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
+HErrorType HDeviceSL::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
-    Q_D(HProtocolStrategySL);
+    Q_D(HDeviceSL);
     int n = 0;
     HErrorType error;
     QVector<uchar> downDataE, upDataE;
@@ -156,7 +161,7 @@ HErrorType HProtocolStrategySL::transport(QVector<uchar> &downData, QVector<ucha
     return E_OK;
 }
 
-QVector<uchar> HProtocolStrategySL::encrypt(QVector<uchar> value, int size)
+QVector<uchar> HDeviceSL::encrypt(QVector<uchar> value, int size)
 {
     int n = value.size();
     QVector<uchar> result(n + size);
@@ -169,7 +174,7 @@ QVector<uchar> HProtocolStrategySL::encrypt(QVector<uchar> value, int size)
     return result;
 }
 
-QVector<uchar> HProtocolStrategySL::decrypt(QVector<uchar> value, int size)
+QVector<uchar> HDeviceSL::decrypt(QVector<uchar> value, int size)
 {
     int n = value.size() - size;
     QVector<uchar> result(n);
@@ -184,7 +189,7 @@ QVector<uchar> HProtocolStrategySL::decrypt(QVector<uchar> value, int size)
     return result;
 }
 
-uchar HProtocolStrategySL::calcCode(QVector<uchar> value)
+uchar HDeviceSL::calcCode(QVector<uchar> value)
 {
     uint sum = 0;
     for (auto i : value)
@@ -192,7 +197,7 @@ uchar HProtocolStrategySL::calcCode(QVector<uchar> value)
     return sum % 128;
 }
 
-bool HProtocolStrategySL::checkCode(QVector<uchar> value, uchar code)
+bool HDeviceSL::checkCode(QVector<uchar> value, uchar code)
 {
     uint sum = 0;
     for (auto i : value)

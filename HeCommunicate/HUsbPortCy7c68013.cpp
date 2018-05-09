@@ -27,6 +27,10 @@ void HUsbPortCy7c68013::initialize(QVariantMap param)
         d->isAsync = param.value("baudRate").toBool();
 }
 
+QString HUsbPortCy7c68013::typeName()
+{
+    return "USB";
+}
 
 HErrorType HUsbPortCy7c68013::openPort(int portNum)
 {

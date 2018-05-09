@@ -1,25 +1,25 @@
-#include "HAbstractProtocolStrategy_p.h"
+#include "HAbstractDevice_p.h"
 #include "IPort.h"
 #include <QVector>
 
 HE_COMMUNICATE_USE_NAMESPACE
 
-HAbstractProtocolStrategy::HAbstractProtocolStrategy()
-    : d_ptr(new HAbstractProtocolStrategyPrivate)
+HAbstractDevice::HAbstractDevice(QObject *parent)
+    : QObject(parent), d_ptr(new HAbstractDevicePrivate)
 {
 }
 
-HAbstractProtocolStrategy::HAbstractProtocolStrategy(HAbstractProtocolStrategyPrivate &p)
-    : d_ptr(&p)
+HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p, QObject *parent)
+    : QObject(parent), d_ptr(&p)
 {
 }
 
-HAbstractProtocolStrategy::~HAbstractProtocolStrategy()
+HAbstractDevice::~HAbstractDevice()
 {
     close();
 }
 
-void HAbstractProtocolStrategy::initialize(QVariantMap param)
+void HAbstractDevice::initialize(QVariantMap param)
 {
     if (param.contains("port"))
         d_ptr->port = static_cast<IPort *>(param.value("port").value<void *>());
@@ -31,36 +31,36 @@ void HAbstractProtocolStrategy::initialize(QVariantMap param)
         d_ptr->deviceID = param.value("deviceID").toInt();
 }
 
-void HAbstractProtocolStrategy::setPort(IPort *port, int num, bool scan)
+void HAbstractDevice::setPort(IPort *port, int num, bool scan)
 {
     d_ptr->port = port;
     d_ptr->portNum = num;
     d_ptr->portNumScan = scan;
 }
 
-void HAbstractProtocolStrategy::setDeviceID(int id)
+void HAbstractDevice::setDeviceID(int id)
 {
     d_ptr->deviceID = id;
 }
 
-void HAbstractProtocolStrategy::addActionParam(HActionType key, QList<uchar> value)
+void HAbstractDevice::addActionParam(HActionType key, QList<uchar> value)
 {
     d_ptr->actionParam.insert(key, value);
 }
 
-HErrorType HAbstractProtocolStrategy::open()
+HErrorType HAbstractDevice::open()
 {
     if (d_ptr->port == nullptr)
         return E_PORT_INVALID;
 
     close();
-    auto error = openDevice(d_ptr->portNum);
+    auto error = open(d_ptr->portNum);
     if (error == E_OK || !d_ptr->portNumScan)
         return error;
 
     for (int i = 0; i < 10; i++)
     {
-        error = openDevice(i);
+        error = open(i);
         if (error == E_OK)
         {
             d_ptr->portNum = i;
@@ -70,26 +70,26 @@ HErrorType HAbstractProtocolStrategy::open()
     return E_DEVICE_NO_FOUND;
 }
 
-HErrorType HAbstractProtocolStrategy::close()
+HErrorType HAbstractDevice::close()
 {
     if (d_ptr->port != nullptr)
         d_ptr->port->close();
     return E_OK;
 }
 
-HErrorType HAbstractProtocolStrategy::openDevice(int num)
+HErrorType HAbstractDevice::open(int num)
 {
     auto error = d_ptr->port->open(num);
     if (error != E_OK)
         return error;
 
-    error = checkDevice();
+    error = check();
     if (error != E_OK)
         d_ptr->port->close();
     return error;
 }
 
-HErrorType HAbstractProtocolStrategy::checkDevice()
+HErrorType HAbstractDevice::check()
 {
     QVector<uchar> data;
     return getData(ACT_CHECK_DEVICE, data);

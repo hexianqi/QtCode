@@ -17,6 +17,8 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HAbstractThreadPrivate
 {
+    Q_DECLARE_PUBLIC(HAbstractThread)
+
 public:
     HAbstractThreadPrivate();
 
@@ -26,6 +28,7 @@ public:
     void clearAction();
 
 public:
+    HAbstractThread *q_ptr;
     IModel *model;
     QMutex *mutex;
     QWaitCondition *waitConditionAction;
@@ -35,7 +38,7 @@ public:
     int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
-    QList<IProtocol*> protocols;
+    QMap<QString, IProtocol*> protocols;
 };
 
 HE_CONTROLLER_END_NAMESPACE

@@ -34,11 +34,11 @@ using HActionType = long long;
 //#define     ACT_GET_LUMINOUS                        0x00000281
 //#define     ACT_GET_ANGULAR_DISTRIBUTION            0x000002C1
 
-//#define     ACT_SET_INTEGRAL_TIME                   0x00000301
-//#define     ACT_SET_MACHINE_AVG_TIMES               0x00000302
-//#define     ACT_SET_SPECTRUM_SAMPLE_DELAY           0x00000303
-//#define     ACT_GET_INTEGRAL_TIME                   0x00000381
-//#define     ACT_GET_SPECTRUM                        0x00000382
+#define     ACT_SET_INTEGRAL_TIME                   0x00010101
+#define     ACT_SET_MACHINE_AVG_TIMES               0x00010102
+#define     ACT_SET_SPECTRUM_SAMPLE_DELAY           0x00010103
+#define     ACT_GET_INTEGRAL_TIME                   0x00010181
+#define     ACT_GET_SPECTRUM                        0x00010182
 
 //#define     ACT_RESET_MOTOR                         0x00001101
 

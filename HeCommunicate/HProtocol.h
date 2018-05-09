@@ -2,24 +2,23 @@
 #define HPROTOCOL_H
 
 #include "IProtocol.h"
-#include <QObject>
 #include <QScopedPointer>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HProtocolPrivate;
 
-class HProtocol : public QObject, public IProtocol
+class HE_COMMUNICATE_EXPORT HProtocol : public QObject, public IProtocol
 {
     Q_OBJECT
 
 public:
-    explicit HProtocol(QString name, QObject *parent = nullptr);
+    explicit HProtocol(QObject *parent = nullptr);
     ~HProtocol();
 
 public:
     virtual void initialize(QVariantMap param) override;
-    virtual void setStrategy(IProtocolStrategy *strategy) override;
+    virtual void setDevice(IDevice *device) override;
     virtual HErrorType open() override;
     virtual HErrorType close() override;
 

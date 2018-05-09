@@ -1,11 +1,11 @@
-#ifndef HABSTRACTPROTOCOLSTRATEGY_P_H
-#define HABSTRACTPROTOCOLSTRATEGY_P_H
+#ifndef HABSTRACTDEVICE_P_H
+#define HABSTRACTDEVICE_P_H
 
-#include "HAbstractProtocolStrategy.h"
+#include "HAbstractDevice.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HAbstractProtocolStrategyPrivate
+class HAbstractDevicePrivate
 {
 public:
     IPort *port;
@@ -17,4 +17,4 @@ public:
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HABSTRACTPROTOCOLSTRATEGY_P_H
+#endif // HABSTRACTDEVICE_P_H

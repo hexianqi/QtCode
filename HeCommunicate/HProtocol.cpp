@@ -1,5 +1,5 @@
 #include "HProtocol_p.h"
-#include "IProtocolStrategy.h"
+#include "IDevice.h"
 #include <QMutex>
 #include <QVector>
 
@@ -11,10 +11,9 @@ HProtocolPrivate::HProtocolPrivate()
     mutex = new QMutex();
 }
 
-HProtocol::HProtocol(QString name, QObject *parent)
+HProtocol::HProtocol(QObject *parent)
     : QObject(parent), d_ptr(new HProtocolPrivate)
 {
-    setObjectName(name);
 }
 
 HProtocol::HProtocol(HProtocolPrivate &p, QObject *parent)
@@ -29,31 +28,29 @@ HProtocol::~HProtocol()
 
 void HProtocol::initialize(QVariantMap param)
 {
-    if (param.contains("objectName"))
-        setObjectName(param.value("objectName").toString());
-    if (param.contains("strategy"))
-        setStrategy(static_cast<IProtocolStrategy *>(param.value("strategy").value<void *>()));
+    if (param.contains("device"))
+        setDevice(static_cast<IDevice *>(param.value("device").value<void *>()));
 }
 
-void HProtocol::setStrategy(IProtocolStrategy *strategy)
+void HProtocol::setDevice(IDevice *device)
 {
     close();
-    d_ptr->strategy = strategy;
+    d_ptr->device = device;
 }
 
 HErrorType HProtocol::open()
 {
     QMutexLocker locker(d_ptr->mutex);
 
-    if (d_ptr->strategy == nullptr)
-        return E_PROTOCOL_STRATEGY_INVALID;
-    return d_ptr->strategy->open();
+    if (d_ptr->device == nullptr)
+        return E_DEVICE_INVALID;
+    return d_ptr->device->open();
 }
 
 HErrorType HProtocol::close()
 {
-    if (d_ptr->strategy != nullptr)
-        d_ptr->strategy->close();
+    if (d_ptr->device != nullptr)
+        d_ptr->device->close();
     return E_OK;
 }
 
@@ -107,7 +104,7 @@ HErrorType HProtocol::setData(HActionType action, QVector<double> value, double 
 
 HErrorType HProtocol::setData(HActionType action, QVector<uchar> value, int delay)
 {
-    return d_ptr->strategy->setData(action, value, delay);
+    return d_ptr->device->setData(action, value, delay);
 }
 
 HErrorType HProtocol::setData(HActionType action, QVector<uint> value, int delay)
@@ -193,7 +190,7 @@ HErrorType HProtocol::getData(HActionType action, QVector<double> &value, double
 
 HErrorType HProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
 {
-    return d_ptr->strategy->getData(action, value, delay);
+    return d_ptr->device->getData(action, value, delay);
 }
 
 HErrorType HProtocol::getData(HActionType action, QVector<uint> &value, int delay)

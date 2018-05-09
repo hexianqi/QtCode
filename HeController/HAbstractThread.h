@@ -20,18 +20,11 @@ public:
     ~HAbstractThread();
 
 signals:
-    void startFailed(HErrorType err);
+    void startFailed(QString text);
     void startFinished();
     void stopFinished();
-    void actionFailed(HActionType action, HErrorType err);
+    void actionFailed(HActionType action, QString text);
     void actionFinished(HActionType action);
-
-
-    void protocolFailed(HErrorType err);
-    void protocolOpened();
-    void protocolClosed();
-    void actionDealFailed(HActionType action, HErrorType err);
-    void actionDealFinished(HActionType action);
 
 public:
     virtual void initialize(QVariantMap param) override;
@@ -55,9 +48,9 @@ protected:
     virtual void debugMode();
     virtual void offLineMode();
     virtual void normalMode();
-    virtual HErrorType openProtocol();
+    virtual bool openProtocol();
     virtual void closeProtocol();
-
+    virtual void actionFail(HActionType action, HErrorType error);
 
 protected:
     QScopedPointer<HAbstractThreadPrivate> d_ptr;

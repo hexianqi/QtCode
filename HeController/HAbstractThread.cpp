@@ -1,6 +1,8 @@
 #include "HAbstractThread_p.h"
 #include "HeCore/HAppContext.h"
-#include "HeCommunicate/IProtocol.h"
+#include "HeCore/HCore.h"
+//#include "HeCommunicate/IProtocol.h"
+#include "HeCommunicate/IDevice.h"
 #include "IModel.h"
 #include <QSettings>
 #include <QWaitCondition>
@@ -8,7 +10,6 @@
 
 HE_CORE_USE_NAMESPACE
 HE_CONTROLLER_USE_NAMESPACE
-
 
 HAbstractThreadPrivate::HAbstractThreadPrivate()
 {
@@ -41,12 +42,14 @@ HAbstractThread::HAbstractThread(IModel *model, QObject *parent)
     : IThread(parent), d_ptr(new HAbstractThreadPrivate)
 {
     d_ptr->model = model;
+    d_ptr->q_ptr = this;
     readSettings();
 }
 
 HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent)
     : IThread(parent), d_ptr(&p)
 {
+    d_ptr->q_ptr = this;
     readSettings();
 }
 
@@ -106,7 +109,7 @@ bool HAbstractThread::checkAction(HActionType action)
 
 void HAbstractThread::readSettings()
 {
-    auto settings =  HAppContext::instance()->createSettings();
+    auto settings =  hApp->createSettings();
     settings->beginGroup("Thread");
     d_ptr->runMode = settings->value("iRunMode", 2).toInt();
     d_ptr->retry = settings->value("iRetry", 3).toInt();
@@ -116,7 +119,7 @@ void HAbstractThread::readSettings()
 
 void HAbstractThread::writeSettings()
 {
-    auto settings = HAppContext::instance()->createSettings();
+    auto settings = hApp->createSettings();
     settings->beginGroup("Thread");
     settings->setValue("iRunMode", d_ptr->runMode);
     settings->setValue("iRetry", d_ptr->retry);
@@ -127,11 +130,9 @@ void HAbstractThread::writeSettings()
 void HAbstractThread::debugMode()
 {
     HActionType action;
-    HErrorType error = openProtocol();
-    if (error != E_OK)
-        emit protocolFailed(error);
-    else
-        emit protocolOpened();
+    HErrorType error;
+
+    openProtocol();
 
     forever
     {
@@ -140,8 +141,8 @@ void HAbstractThread::debugMode()
             break;
         error = handleAction(action);
         if (error != E_OK)
-            emit actionDealFailed(action, error);
-        emit actionDealFinished(action);
+            actionFail(action, error);
+        emit actionFinished(action);
     }
     closeProtocol();
 }
@@ -153,7 +154,7 @@ void HAbstractThread::offLineMode()
         auto action = d_ptr->dequeueAction();
         if (action == ACT_EXIT)
             break;
-        emit actionDealFinished(action);
+        emit actionFinished(action);
     }
 }
 
@@ -161,14 +162,12 @@ void HAbstractThread::normalMode()
 {
     int i;
     HActionType action;
-    HErrorType error = openProtocol();
-    if (error != E_OK)
-    {
-        emit protocolFailed(error);
-        return;
-    }
-    emit protocolOpened();
+    HErrorType error;
 
+    if (!openProtocol())
+        return;
+
+    error = E_OK;
     forever
     {
         action = d_ptr->dequeueAction();
@@ -179,85 +178,66 @@ void HAbstractThread::normalMode()
             error = handleAction(action);
             if (error == E_OK)
             {
-                emit actionDealFinished(action);
+                emit actionFinished(action);
                 break;
             }
             msleep(d_ptr->sleepTime);
         }
         if (i >= d_ptr->retry)
         {
-            emit actionDealFailed(action, error);
+            actionFail(action, error);
             break;
         }
     }
     closeProtocol();
 }
 
-HErrorType HAbstractThread::openProtocol()
+bool HAbstractThread::openProtocol()
 {
-    HErrorType error;
-    QList<IProtocol *> list;
-    for (auto p : d_ptr->protocols)
-    {
-        auto startegy = d_ptr->model->protocolStrategy(p->objectName());
-        if (startegy == nullptr)
-            return E_MODEL_NO_PROTOCOL_STRATEGY;
-        p->setStrategy(startegy);
-        error = p->open();
-        if (error != E_OK)
-        {
-            for (auto l : list)
-                l->close();
-            return error;
-        }
-        list.append(p);
-    }
-    return E_OK;
-
-
+//    auto p = d_ptr->model->device("key");
+//    p->setDeviceID(122);
+//    QString text;
 //    HErrorType error;
-//    foreach(d_ptr->protocols.keys())
+//    QList<IProtocol *> list;
+
+//    for (auto key : d_ptr->protocols.keys())
 //    {
-
-
-//    }
-//    for (auto p : d_ptr->protocols)
-//    {
-//        auto startegy = d_ptr->model->protocolStrategy(p->
-//        p->setStrategy(d_ptr->model->)
-//        error = p->open();
-//    }
-
-//    if (m_pItem->itemSize() != m_pProtocolList.size())
-//        return E_DEVICE_MAPPED_ERROR;
-
-//    int i,j;
-//    ErrorType err;
-
-//    err = E_OK;
-//    for (i = 0; i < m_pItem->itemSize(); i++)
-//    {
-//        err = m_pProtocolList[i]->openProtocol(m_pItem->item(i));
-//        if (err != E_OK)
+//        auto startegy = d_ptr->model->protocolStrategy(key);
+//        if (startegy == nullptr)
 //        {
-//            m_nErrPortType = m_pItem->item(i)->portType();
-//            m_nErrorModules = m_pProtocolList[i]->errorModule();
-//            if (close)
-//            {
-//                for (j = 0; j < i; j++)
-//                    m_pProtocolList[j]->closeProtocol();
-//                return err;
-//            }
+//            text = toComment(E_MODEL_NO_PROTOCOL_STRATEGY);
+//            break;
 //        }
+//        auto p = d_ptr->protocols.value(key);
+//        p->setStrategy(startegy);
+//        error = p->open();
+//        if (error != E_OK)
+//        {
+//            text = tr("请检查%1端口！<p>%2").arg(startegy->portType()).arg(toComment(error));
+//            break;
+//        }
+//        list.append(p);
+//    }
+//    if (text.isEmpty())
+//    {
+//        emit startFinished();
+//        return true;
 //    }
 
-//    return err;
-
+//    for (auto p : list)
+//        p->close();
+//    emit startFailed(tr("<body><center>设备连接失败！<p>%1</center></body>").arg(text));
+    return false;
 }
 
 void HAbstractThread::closeProtocol()
 {
-    for (auto p : d_ptr->protocols)
-        p->close();
-    emit protocolClosed();
+//    for (auto p : d_ptr->protocols)
+//        p->close();
+//    emit stopFinished();
+}
+
+void HAbstractThread::actionFail(HActionType action, HErrorType error)
+{
+    emit actionFailed(action, tr("\n指令“%1”错误，错误原因是“%2”\n").arg(toComment(action)).arg(toComment(error)));
 }

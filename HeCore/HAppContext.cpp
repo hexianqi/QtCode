@@ -202,6 +202,15 @@ void HAppContext::initActionComment()
     hashActionComment.insert(ACT_EXIT,                          tr("退出"));
     hashActionComment.insert(ACT_UNLOCK_DEVICE,                 tr("设备解锁"));
     hashActionComment.insert(ACT_CHECK_DEVICE,                  tr("检查设备"));
+
+    hashActionComment.insert(ACT_SET_INTEGRAL_TIME,             tr("设置积分时间"));
+    hashActionComment.insert(ACT_SET_MACHINE_AVG_TIMES,         tr("设置光谱下位机平均次数"));
+    hashActionComment.insert(ACT_SET_SPECTRUM_SAMPLE_DELAY,     tr("设置光谱采样延时"));
+    hashActionComment.insert(ACT_GET_INTEGRAL_TIME,             tr("获取积分时间"));
+    hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
+
+
+
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
 //    hashActionComment.insert(ACT_SET_ELEC_MODULE,                QStringList() << tr("ACT_SET_ELEC_MODULE") << tr("设置电学参数模块"));
@@ -225,11 +234,6 @@ void HAppContext::initActionComment()
 //    hashActionComment.insert(ACT_GET_LUMINOUS,                   QStringList() << tr("ACT_GET_LUMINOUS") << tr("获取光度数据"));
 //    hashActionComment.insert(ACT_GET_ANGULAR_DISTRIBUTION,       QStringList() << tr("ACT_GET_ANGULAR_DISTRIBUTION") << tr("获取角度分布数据"));
 
-//    hashActionComment.insert(ACT_SET_INTEGRAL_TIME,              QStringList() << tr("ACT_SET_INTEGRAL_TIME") << tr("设置积分时间"));
-//    hashActionComment.insert(ACT_SET_MACHINE_AVG_TIMES,          QStringList() << tr("ACT_SET_MACHINE_AVG_TIMES") << tr("设置光谱下位机平均次数"));
-//    hashActionComment.insert(ACT_SET_SPECTRUM_SAMPLE_DELAY,      QStringList() << tr("ACT_SET_SPECTRUM_SAMPLE_DELAY") << tr("设置光谱采样延时"));
-//    hashActionComment.insert(ACT_GET_INTEGRAL_TIME,              QStringList() << tr("ACT_GET_INTEGRAL_TIME") << tr("获取积分时间"));
-//    hashActionComment.insert(ACT_GET_SPECTRUM,                   QStringList() << tr("ACT_GET_SPECTRUM") << tr("获取光谱数据"));
 
 //    hashActionComment.insert(ACT_RESET_MOTOR,                    QStringList() << tr("ACT_RESET_MOTOR") << tr("电机复位"));
 
@@ -297,7 +301,9 @@ void HAppContext::initErrorComment()
     hashErrorComment.insert(E_PORT_WRITE_FAILED,                tr("发送数据失败"));
     hashErrorComment.insert(E_PORT_READ_DATA_LESS,              tr("接收数据太少"));
     hashErrorComment.insert(E_PORT_READ_FAILED,                 tr("接收数据失败"));
+    hashErrorComment.insert(E_DEVICE_INVALID,                   tr("设备无效"));
     hashErrorComment.insert(E_DEVICE_NO_FOUND,                  tr("找不到设备"));
+    hashErrorComment.insert(E_DEVICE_ACTION_ERROR,              tr("设备命令错误"));
     hashErrorComment.insert(E_DEVICE_CHECKCODE_ERROR,           tr("设备校验码错误"));
     hashErrorComment.insert(E_DEVICE_RETURN_DATA_ERROR,         tr("设备返回数据错误"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_OK,               tr("设备反馈 - 成功"));
@@ -310,9 +316,9 @@ void HAppContext::initErrorComment()
 
 
     hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
-    hashErrorComment.insert(E_PROTOCOL_STRATEGY_INVALID,        tr("通讯策略无效"));
-    hashErrorComment.insert(E_PROTOCOL_STRATEGY_ERROR,          tr("通讯策略错误"));
-    hashErrorComment.insert(E_MODEL_NO_PROTOCOL_STRATEGY,       tr("找不到通讯策略"));
+
+//    hashErrorComment.insert(E_PROTOCOL_STRATEGY_ERROR,          tr("通讯策略错误"));
+//    hashErrorComment.insert(E_MODEL_NO_PROTOCOL_STRATEGY,       tr("找不到通讯策略"));
 
 
 

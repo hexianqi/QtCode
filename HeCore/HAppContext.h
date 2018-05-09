@@ -11,6 +11,8 @@ HE_CORE_BEGIN_NAMESPACE
 
 class HAppContextPrivate;
 
+#define hApp HAppContext::instance()
+
 // 应用程序上下文
 class HE_CORE_EXPORT HAppContext : public QObject, public HSingleton<HAppContext>
 {
@@ -51,8 +53,6 @@ protected:
 protected:
     QScopedPointer<HAppContextPrivate> d_ptr;
 };
-
-extern HE_CORE_EXPORT std::shared_ptr<HAppContext> hApp;
 
 HE_CORE_END_NAMESPACE
 

@@ -15,6 +15,9 @@ public:
     explicit HUsbPortCy(QObject *parent = nullptr);
     ~HUsbPortCy();
 
+public:
+    virtual QString typeName() override;
+
 protected:
     HUsbPortCy(HUsbPortCyPrivate &p, QObject *parent = nullptr);
 

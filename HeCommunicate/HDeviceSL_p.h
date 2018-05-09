@@ -1,16 +1,16 @@
-#ifndef HPROTOCOLSTRATEGYSL_P_H
-#define HPROTOCOLSTRATEGYSL_P_H
+#ifndef HDEVICESL_P_H
+#define HDEVICESL_P_H
 
-#include "HAbstractProtocolStrategy_p.h"
-#include "HProtocolStrategySL.h"
+#include "HAbstractDevice_p.h"
+#include "HDeviceSL.h"
 #include <QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HProtocolStrategySLPrivate : public HAbstractProtocolStrategyPrivate
+class HDeviceSLPrivate : public HAbstractDevicePrivate
 {
 public:
-    HProtocolStrategySLPrivate();
+    HDeviceSLPrivate();
 
 public:
     void setEncrypt(QVector<bool> value);

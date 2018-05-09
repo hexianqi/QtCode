@@ -63,6 +63,11 @@ HUsbPortLpc214::~HUsbPortLpc214()
     d->unloadDLL();
 }
 
+QString HUsbPortLpc214::typeName()
+{
+    return "USB";
+}
+
 HErrorType HUsbPortLpc214::openPort(int portNum)
 {
     Q_UNUSED(portNum)

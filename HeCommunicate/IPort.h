@@ -14,6 +14,8 @@ class HE_COMMUNICATE_EXPORT IPort
 public:
     // 初始化
     virtual void initialize(QVariantMap param) = 0;
+    // 类型
+    virtual QString typeName() = 0;
     // 是否连接
     virtual bool isConnected() = 0;
     // 打开

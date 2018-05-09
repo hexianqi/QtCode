@@ -1,29 +1,30 @@
-#ifndef HPROTOCOLSTRATEGYSL_H
-#define HPROTOCOLSTRATEGYSL_H
+#ifndef HDEVICESL_H
+#define HDEVICESL_H
 
-#include "HAbstractProtocolStrategy.h"
+#include "HAbstractDevice.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HProtocolStrategySLPrivate;
+class HDeviceSLPrivate;
 
-class HProtocolStrategySL : public HAbstractProtocolStrategy
+class HDeviceSL : public HAbstractDevice
 {
-    Q_DECLARE_PRIVATE(HProtocolStrategySL)
+    Q_DECLARE_PRIVATE(HDeviceSL)
 
 public:
-    HProtocolStrategySL();
-    ~HProtocolStrategySL();
+    explicit HDeviceSL(QObject *parent = nullptr);
+    ~HDeviceSL();
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
     virtual void setEncrypt(QVector<bool> value);
     virtual void setCheckCode(QVector<bool> value);
     virtual HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
     virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HProtocolStrategySL(HProtocolStrategySLPrivate &p);
+    HDeviceSL(HDeviceSLPrivate &p, QObject *parent = nullptr);
 
 protected:
     virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
@@ -35,4 +36,4 @@ protected:
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HPROTOCOLSTRATEGYSL_H
+#endif // HDEVICESL_H

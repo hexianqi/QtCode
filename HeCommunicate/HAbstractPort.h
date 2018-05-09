@@ -2,7 +2,6 @@
 #define HABSTRACTPORT_H
 
 #include "IPort.h"
-#include <QObject>
 #include <QScopedPointer>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE

@@ -1,4 +1,6 @@
 HEADERS += \
-    $$PWD/IModel.h
+    $$PWD/IModel.h \
+    $$PWD/HAbstractModel.h
 
-SOURCES +=
+SOURCES += \
+    $$PWD/HAbstractModel.cpp

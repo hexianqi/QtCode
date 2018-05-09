@@ -33,6 +33,11 @@ void HSerialPort::initialize(QVariantMap param)
         d->baudRate = param.value("baudRate").toInt();
 }
 
+QString HSerialPort::typeName()
+{
+    return "COM";
+}
+
 HErrorType HSerialPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
     Q_D(HSerialPort);

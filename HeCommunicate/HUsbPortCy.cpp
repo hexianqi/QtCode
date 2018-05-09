@@ -69,6 +69,11 @@ HUsbPortCy::~HUsbPortCy()
     d->unloadDLL();
 }
 
+QString HUsbPortCy::typeName()
+{
+    return "USB";
+}
+
 HErrorType HUsbPortCy::openPort(int portNum)
 {
     Q_D(HUsbPortCy);

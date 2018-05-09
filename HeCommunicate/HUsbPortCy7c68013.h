@@ -17,6 +17,7 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
 
 protected:
     HUsbPortCy7c68013(HUsbPortCy7c68013Private &p, QObject *parent = nullptr);
