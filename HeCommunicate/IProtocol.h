@@ -2,9 +2,9 @@
 #define IPROTOCOL_H
 
 #include "HCommunicateGlobal.h"
-#include "HeCore/HErrorType.h"
+#include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
-#include <QVariant>
+#include "HeCore/HErrorType.h"
 
 HE_CORE_USE_NAMESPACE
 
@@ -12,11 +12,9 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IDevice;
 
-class HE_COMMUNICATE_EXPORT IProtocol
+class HE_COMMUNICATE_EXPORT IProtocol : public IInitializeable
 {
 public:
-    // 初始化
-    virtual void initialize(QVariantMap param) = 0;
     // 设置设备
     virtual void setDevice(IDevice *device) = 0;
     // 打开

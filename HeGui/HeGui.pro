@@ -1,8 +1,10 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-04-13T17:01:09
+# Project created by QtCreator 2018-05-11T08:34:21
 #
 #-------------------------------------------------
+
+QT          += widgets
 
 TEMPLATE    = lib
 
@@ -10,7 +12,7 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
-DEFINES     += HE_BUILD_CORE_LIB
+DEFINES     += HE_BUILD_GUI_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -24,33 +26,31 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-            HAppContext.cpp \
-            HDataFormatInfo.cpp \
-            HDataObject.cpp \
-            HCore.cpp
+    HAction.cpp \
+    HGuiHelper.cpp
 
 HEADERS     += \
-            HCoreGlobal.h \
-            HCore.h \
-            HAppContext.h \
-            HErrorType.h \
-            HActionType.h \
-            HDataFormatInfo.h \
-            HAppContext_p.h \
-            HDataFormatInfo_p.h \
-            HDataObject.h \
-            HDataObject_p.h
-
-RESOURCES   += HeCore.qrc
+            HGuiGlobal.h \
+    HAction.h \
+    HAction_p.h \
+    HGuiHelper.h
 
 INCLUDEPATH += ".."
 
 Debug {
-    TARGET  = HeCored
+    TARGET = HeGuid
+    LIBS    += \
+            -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHeCommunicated \
+            -L$$DESTDIR -lHeControllerd
 }
 
 Release {
-    TARGET  = HeCore
+    TARGET  = HeGui
+    LIBS    += \
+            -L$$DESTDIR -lHeCore \
+            -L$$DESTDIR -lHeCommunicate \
+            -L$$DESTDIR -lHeController
 }
 
 unix {
@@ -58,7 +58,4 @@ unix {
     INSTALLS += target
 }
 
-include(Template.pri)
-include(Interface.pri)
-include(Reflect.pri)
-
+include(handle.pri)

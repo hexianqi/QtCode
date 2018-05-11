@@ -1,5 +1,6 @@
 #include "HDataFormatInfo_p.h"
 #include <QDoubleValidator>
+#include <HAppContext.h>
 
 HE_CORE_USE_NAMESPACE
 

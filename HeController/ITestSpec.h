@@ -1,18 +1,17 @@
 #ifndef ITESTSPEC_H
 #define ITESTSPEC_H
 
-#include "HControllerGlobal.h"
-#include <QVariant>
+#include "ITestData.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class ITestSpec
+class ITestSpec : public ITestData
 {
-public:
-    virtual void setTestData(QString type, QVariant value) = 0;
 
 public:
-    virtual QVariant testData(QString type) = 0;
+    virtual bool setSample(QVector<double> value, bool avg = false) = 0;
+    virtual void clearQueue() = 0;
+
 
 };
 

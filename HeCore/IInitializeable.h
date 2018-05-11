@@ -7,10 +7,8 @@
 HE_CORE_BEGIN_NAMESPACE
 
 // 可初始化接口
-class IInitializeable
+class HE_CORE_EXPORT IInitializeable
 {
-public:
-    virtual ~IInitializeable() = default;
 public:
     virtual void initialize(QVariantMap param) = 0;
 };

@@ -22,7 +22,7 @@ public:
     static T *getInstance()
     {
         if (__instance == nullptr)
-            throw std::logic_error("the instance is not init, please initialize the instance first");
+            throw std::logic_error("The instance is not init, Please initialize the instance first.");
         return __instance;
     }
 

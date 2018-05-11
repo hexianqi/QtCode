@@ -22,13 +22,18 @@ HAbstractDevice::~HAbstractDevice()
 void HAbstractDevice::initialize(QVariantMap param)
 {
     if (param.contains("port"))
-        d_ptr->port = static_cast<IPort *>(param.value("port").value<void *>());
+        d_ptr->port = FromVariant(IPort, param.value("port"));
     if (param.contains("portNum"))
         d_ptr->portNum = param.value("portNum").toInt();
     if (param.contains("portNumScan"))
         d_ptr->portNumScan = param.value("portNumScan").toBool();
     if (param.contains("deviceID"))
         d_ptr->deviceID = param.value("deviceID").toInt();
+}
+
+bool HAbstractDevice::isSupport(HActionType action)
+{
+    return d_ptr->actionParam.contains(action);
 }
 
 void HAbstractDevice::setPort(IPort *port, int num, bool scan)

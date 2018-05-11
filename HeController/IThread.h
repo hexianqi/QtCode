@@ -2,21 +2,29 @@
 #define ITHREAD_H
 
 #include "HControllerGlobal.h"
+#include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
 #include <QThread>
-#include <QVariant>
 
 HE_CORE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HE_CONTROLLER_EXPORT IThread : public QThread
+class HE_CONTROLLER_EXPORT IThread : public QThread, public IInitializeable
 {
+    Q_OBJECT
+
 public:
     using QThread::QThread;
 
+signals:
+    void startFailed(QString text);
+    void startFinished();
+    void stopFinished();
+    void actionFailed(HActionType action, QString text);
+    void actionFinished(HActionType action);
+
 public:
-    virtual void initialize(QVariantMap param) = 0;
     virtual QString threadInfo() = 0;
 
 public:

@@ -156,43 +156,55 @@ HAppContext::~HAppContext()
 
 std::shared_ptr<QSettings> HAppContext::createSettings()
 {
-    auto fileName = getContextValue<QString>("SettingsFileName");
+    auto fileName = getContextValue<QString>("settingsFileName");
     return std::make_shared<QSettings>(fileName, QSettings::IniFormat);
 }
 
 void HAppContext::setSetting(QString fileName)
 {
-    setContextValue("SettingsFileName", fileName);
+    setContextValue("settingsFileName", fileName);
+}
+
+void HAppContext::setContextValue(QString key, QVariant value)
+{
+    d_ptr->contextValue[key] = value;
+}
+
+void HAppContext::setContextPointer(QString key, void *value)
+{
+    d_ptr->contextPointer[key] = value;
+}
+
+QVariant HAppContext::getContextValue(QString key)
+{
+    if (!d_ptr->contextValue.contains(key))
+        return QVariant();
+    return d_ptr->contextValue.value(key);
+}
+
+void *HAppContext::getContextPointer(QString key)
+{
+    if (!d_ptr->contextPointer.contains(key))
+        return nullptr;
+    return d_ptr->contextPointer.value(key);
 }
 
 template<class T>
 T HAppContext::getContextValue(QString key)
 {
-    Q_D(HAppContext);
-    if (!d->contextValue.contains(key))
-        return T();
-    return d->contextValue[key].value<T>();
+    return getContextValue(key).value<T>();
+//    if (!d_ptr->contextValue.contains(key))
+//        return T();
+//    return d_ptr->contextValue[key].value<T>();
 }
 
 template<class T>
-T HAppContext::getContextPointer(QString key)
+T *HAppContext::getContextPointer(QString key)
 {
-    Q_D(HAppContext);
-    if (!d->contextPointer.contains(key))
-        return nullptr;
-    return dynamic_cast<T>(d->contextPointer[key]);
-}
-
-void HAppContext::setContextValue(QString key, QVariant value)
-{
-    Q_D(HAppContext);
-    d->contextValue[key] = value;
-}
-
-void HAppContext::setContextPointer(QString key, QObject *value)
-{
-    Q_D(HAppContext);
-    d->contextPointer[key] = value;
+    return dynamic_cast<T *>(getContextPointer(key));
+//    if (!d_ptr->contextPointer.contains(key))
+//        return nullptr;
+//    return dynamic_cast<T>(d_ptr->contextPointer[key]);
 }
 
 void HAppContext::initActionComment()
@@ -204,7 +216,7 @@ void HAppContext::initActionComment()
     hashActionComment.insert(ACT_CHECK_DEVICE,                  tr("检查设备"));
 
     hashActionComment.insert(ACT_SET_INTEGRAL_TIME,             tr("设置积分时间"));
-    hashActionComment.insert(ACT_SET_MACHINE_AVG_TIMES,         tr("设置光谱下位机平均次数"));
+    hashActionComment.insert(ACT_SET_SPECTRUM_AVG_TIMES,        tr("设置光谱平均次数"));
     hashActionComment.insert(ACT_SET_SPECTRUM_SAMPLE_DELAY,     tr("设置光谱采样延时"));
     hashActionComment.insert(ACT_GET_INTEGRAL_TIME,             tr("获取积分时间"));
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
@@ -313,9 +325,10 @@ void HAppContext::initErrorComment()
     hashErrorComment.insert(E_DEVICE_FEEDBACK_BUSY,             tr("设备反馈 - 模块繁忙"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_CHIP_NORESPONSE,  tr("设备反馈 - 芯片无响应"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_COMMAND_ERROR,    tr("设备反馈 - 命令错误"));
-
-
     hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
+    hashErrorComment.insert(E_THREAD_NO_HANDLE,                 tr("线程无法处理"));
+
+
 
 //    hashErrorComment.insert(E_PROTOCOL_STRATEGY_ERROR,          tr("通讯策略错误"));
 //    hashErrorComment.insert(E_MODEL_NO_PROTOCOL_STRATEGY,       tr("找不到通讯策略"));
@@ -352,6 +365,11 @@ void HAppContext::initDataFormatInfo()
     hashDataFormatInfo.insert("",                               new HDataFormatInfo());
     hashDataFormatInfo.insert("[]",                             new HDataFormatInfo("[]"));
     hashDataFormatInfo.insert("[_Fi]",                          new HDataFormatInfo("[_Fi]", 0, 65535));
+    //光谱参数
+    hashDataFormatInfo.insert(tr("[积分时间]"),                 new HDataFormatInfo("[积分时间]", tr("ms"), 1, 5000, 1));
+    hashDataFormatInfo.insert(tr("[光谱平均次数]"),             new HDataFormatInfo("[光谱平均次数]", 1, 8));
+    hashDataFormatInfo.insert(tr("[光谱采样延时]"),             new HDataFormatInfo("[光谱采样延时]", 0, 600));
+    hashDataFormatInfo.insert(tr("[光谱采样等待时间]"),         new HDataFormatInfo("[光谱采样等待时间]", 0, 1000));
 //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
 //    hashFormatInfo.insert(tr("[反向电压_Fi]"),                     FTypeInfo(tr("[反向电压_Fi]"), 0, 65535));
@@ -434,8 +452,6 @@ void HAppContext::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[左1/5光强度角]"),                   FTypeInfo(tr("[左1/5光强度角]"), tr("°"), 0, 360, 1));
 //    hashFormatInfo.insert(tr("[右1/5光强度角]"),                   FTypeInfo(tr("[右1/5光强度角]"), tr("°"), 0, 360, 1));
 //    hashFormatInfo.insert(tr("[理论光通量]"),                      FTypeInfo(tr("[理论光通量]"), tr("lm"), 0, 99999, 2, 100));
-//    //光谱测试参数
-//    hashFormatInfo.insert(tr("[积分时间]"),                        FTypeInfo(tr("[积分时间]"), tr("ms"), 1, 5000, 1));
 //    //光谱能量参数
 //    hashFormatInfo.insert(tr("[波长]"),                            FTypeInfo(tr("[波长]"), tr("nm"), 300, 1100, 1));
 //    hashFormatInfo.insert(tr("[峰值波长]"),                        FTypeInfo(tr("[峰值波长]"), tr("nm"), 300, 1100, 1));
@@ -471,8 +487,8 @@ void HAppContext::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[平滑次数]"),                        FTypeInfo(tr("[平滑次数]"), 0, 100));
 //    hashFormatInfo.insert(tr("[平滑范围]"),                        FTypeInfo(tr("[平滑范围]"), 0, 100));
 //    hashFormatInfo.insert(tr("[平滑帧数]"),                        FTypeInfo(tr("[平滑帧数]"), 1, 100));
-//    hashFormatInfo.insert(tr("[机器平均次数]"),                    FTypeInfo(tr("[机器平均次数]"), 1, 8));
-//    hashFormatInfo.insert(tr("[快速采样延时]"),                    FTypeInfo(tr("[快速采样延时]"), 0, 600));
+//
+//
 //    hashFormatInfo.insert(tr("[循环采样间隔]"),                    FTypeInfo(tr("[循环采样间隔]"), 0, 20000));
 //    hashFormatInfo.insert(tr("[标准色温]"),                        FTypeInfo(tr("[标准色温]"), tr("K"), 2300, 4000, 2));
 //    hashFormatInfo.insert(tr("[拟合_多项式次数]"),                 FTypeInfo(tr("[拟合_多项式次数]"), 2, 20));

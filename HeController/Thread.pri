@@ -7,5 +7,4 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractThread.cpp \
-#    $$PWD/IThread.cpp
     $$PWD/HThreadSpec.cpp

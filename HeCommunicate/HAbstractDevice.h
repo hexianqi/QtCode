@@ -2,7 +2,6 @@
 #define HABSTRACTDEVICE_H
 
 #include "IDevice.h"
-#include <QScopedPointer>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -18,6 +17,7 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual bool isSupport(HActionType action) override;
     virtual void setPort(IPort *port, int num = 0, bool scan = true) override;
     virtual void setDeviceID(int id) override;
     virtual void addActionParam(HActionType key, QList<uchar> value) override;

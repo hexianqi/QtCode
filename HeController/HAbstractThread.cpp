@@ -1,7 +1,7 @@
 #include "HAbstractThread_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
-//#include "HeCommunicate/IProtocol.h"
+#include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IDevice.h"
 #include "IModel.h"
 #include <QSettings>
@@ -194,50 +194,32 @@ void HAbstractThread::normalMode()
 
 bool HAbstractThread::openProtocol()
 {
-//    auto p = d_ptr->model->device("key");
-//    p->setDeviceID(122);
-//    QString text;
-//    HErrorType error;
-//    QList<IProtocol *> list;
-
-//    for (auto key : d_ptr->protocols.keys())
-//    {
-//        auto startegy = d_ptr->model->protocolStrategy(key);
-//        if (startegy == nullptr)
-//        {
-//            text = toComment(E_MODEL_NO_PROTOCOL_STRATEGY);
-//            break;
-//        }
-//        auto p = d_ptr->protocols.value(key);
-//        p->setStrategy(startegy);
-//        error = p->open();
-//        if (error != E_OK)
-//        {
-//            text = tr("请检查%1端口！<p>%2").arg(startegy->portType()).arg(toComment(error));
-//            break;
-//        }
-//        list.append(p);
-//    }
-//    if (text.isEmpty())
-//    {
-//        emit startFinished();
-//        return true;
-//    }
-
-//    for (auto p : list)
-//        p->close();
-//    emit startFailed(tr("<body><center>设备连接失败！<p>%1</center></body>").arg(text));
-    return false;
+    QList<IProtocol *> list;
+    for (auto key : d_ptr->protocols.keys())
+    {
+        auto p = d_ptr->protocols.value(key);
+        auto error = p->open();
+        if (error != E_OK)
+        {
+            for (auto item : list)
+                item->close();
+            emit startFailed(tr("\n设备“%1”连接失败！错误原因是“%2”\n").arg(key).arg(toComment(error)));
+            return false;
+        }
+        list.append(p);
+    }
+    emit startFinished();
+    return true;
 }
 
 void HAbstractThread::closeProtocol()
 {
-//    for (auto p : d_ptr->protocols)
-//        p->close();
-//    emit stopFinished();
+    for (auto p : d_ptr->protocols)
+        p->close();
+    emit stopFinished();
 }
 
 void HAbstractThread::actionFail(HActionType action, HErrorType error)
 {
-    emit actionFailed(action, tr("\n指令“%1”错误，错误原因是“%2”\n").arg(toComment(action)).arg(toComment(error)));
+    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(toComment(action)).arg(toComment(error)));
 }

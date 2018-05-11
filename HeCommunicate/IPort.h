@@ -2,6 +2,7 @@
 #define IPORT_H
 
 #include "HCommunicateGlobal.h"
+#include "HeCore/IInitializeable.h"
 #include "HeCore/HErrorType.h"
 #include <QVariant>
 
@@ -9,15 +10,15 @@ HE_CORE_USE_NAMESPACE
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HE_COMMUNICATE_EXPORT IPort
+class HE_COMMUNICATE_EXPORT IPort : public IInitializeable
 {
 public:
-    // 初始化
-    virtual void initialize(QVariantMap param) = 0;
     // 类型
     virtual QString typeName() = 0;
     // 是否连接
     virtual bool isConnected() = 0;
+
+public:
     // 打开
     virtual HErrorType open(int portNum = 1) = 0;
     // 关闭

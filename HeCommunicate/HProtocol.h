@@ -2,7 +2,6 @@
 #define HPROTOCOL_H
 
 #include "IProtocol.h"
-#include <QScopedPointer>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

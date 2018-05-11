@@ -13,18 +13,9 @@ class HAbstractThreadPrivate;
 
 class HAbstractThread : public IThread
 {
-    Q_OBJECT
-
 public:
     explicit HAbstractThread(IModel *model, QObject *parent = nullptr);
     ~HAbstractThread();
-
-signals:
-    void startFailed(QString text);
-    void startFinished();
-    void stopFinished();
-    void actionFailed(HActionType action, QString text);
-    void actionFinished(HActionType action);
 
 public:
     virtual void initialize(QVariantMap param) override;

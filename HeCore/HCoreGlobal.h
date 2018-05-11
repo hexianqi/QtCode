@@ -22,6 +22,8 @@
 #endif
 
 HE_CORE_BEGIN_NAMESPACE
+#define ToVariant(Value)            QVariant::fromValue(static_cast<void *>(Value))
+#define FromVariant(Class, Value)   static_cast<Class *>(Value.value<void *>())
 HE_CORE_END_NAMESPACE
 
 #endif // HCORE_GLOBAL_H

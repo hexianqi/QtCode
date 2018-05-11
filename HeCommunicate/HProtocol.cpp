@@ -29,7 +29,7 @@ HProtocol::~HProtocol()
 void HProtocol::initialize(QVariantMap param)
 {
     if (param.contains("device"))
-        setDevice(static_cast<IDevice *>(param.value("device").value<void *>()));
+        setDevice(FromVariant(IDevice, param.value("port")));
 }
 
 void HProtocol::setDevice(IDevice *device)
@@ -41,7 +41,6 @@ void HProtocol::setDevice(IDevice *device)
 HErrorType HProtocol::open()
 {
     QMutexLocker locker(d_ptr->mutex);
-
     if (d_ptr->device == nullptr)
         return E_DEVICE_INVALID;
     return d_ptr->device->open();

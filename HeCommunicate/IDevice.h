@@ -2,9 +2,9 @@
 #define IDEVICE_H
 
 #include "HCommunicateGlobal.h"
+#include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
 #include "HeCore/HErrorType.h"
-#include <QVariant>
 
 HE_CORE_USE_NAMESPACE
 
@@ -12,13 +12,13 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IPort;
 
-class HE_COMMUNICATE_EXPORT IDevice
+class HE_COMMUNICATE_EXPORT IDevice : public IInitializeable
 {
 public:
-    // 初始化
-    virtual void initialize(QVariantMap param) = 0;
     // 类型
     virtual QString typeName() = 0;
+    // 是否支持命令
+    virtual bool isSupport(HActionType action) = 0;
     // 设置通讯口
     virtual void setPort(IPort *port, int num = 0, bool scan = true) = 0;
     // 设置设备ID

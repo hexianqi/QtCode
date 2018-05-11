@@ -2,7 +2,6 @@
 #define ISPECTRUMDATA_H
 
 #include "HAlgorithmGlobal.h"
-
 #include <QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE

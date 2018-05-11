@@ -19,9 +19,9 @@ void HCommunicateFactory::initialize(QVariantMap param)
 IPort *HCommunicateFactory::createPort(QString type, QVariantMap param)
 {
     IPort *port = nullptr;
-    if (type == "[COM]")
+    if (type.compare("COM", Qt::CaseInsensitive) == 0)
         port = new HSerialPort(this);
-    if (type == "[USB_Cy]")
+    if (type.compare("USB_Cy", Qt::CaseInsensitive) == 0)
         port = new HUsbPortCy(this);
     if (port != nullptr)
         port->initialize(param);
@@ -31,7 +31,7 @@ IPort *HCommunicateFactory::createPort(QString type, QVariantMap param)
 IDevice *HCommunicateFactory::createDevice(QString type, QVariantMap param)
 {
     IDevice *device = nullptr;
-    if (type == "[SL]")
+    if (type.compare("SL", Qt::CaseInsensitive) == 0)
         device = new HDeviceSL(this);
     if (device != nullptr)
         device->initialize(param);

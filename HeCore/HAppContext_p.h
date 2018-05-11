@@ -10,7 +10,7 @@ class HAppContextPrivate
 {
 public:
     QHash<QString, QVariant> contextValue;
-    QHash<QString, QObject*> contextPointer;
+    QHash<QString, void *> contextPointer;
 };
 
 HE_CORE_END_NAMESPACE
