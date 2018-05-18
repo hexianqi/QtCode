@@ -2,16 +2,15 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeCommunicate/IProtocol.h"
-#include "HeCommunicate/IDevice.h"
-#include "IModel.h"
 #include <QSettings>
 #include <QWaitCondition>
 #include <QMutexLocker>
+#include <QDebug>
 
-HE_CORE_USE_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
+HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractThreadPrivate::HAbstractThreadPrivate()
+HAbstractThreadPrivate::HAbstractThreadPrivate(HAbstractThread *q)
+    : q_ptr(q)
 {
     mutex = new QMutex;
     waitConditionAction = new QWaitCondition;
@@ -38,18 +37,15 @@ void HAbstractThreadPrivate::clearAction()
     actionQueue.clear();
 }
 
-HAbstractThread::HAbstractThread(IModel *model, QObject *parent)
-    : IThread(parent), d_ptr(new HAbstractThreadPrivate)
+HAbstractThread::HAbstractThread(QObject *parent)
+    : IThread(parent), d_ptr(new HAbstractThreadPrivate(this))
 {
-    d_ptr->model = model;
-    d_ptr->q_ptr = this;
     readSettings();
 }
 
 HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent)
     : IThread(parent), d_ptr(&p)
 {
-    d_ptr->q_ptr = this;
     readSettings();
 }
 
@@ -57,6 +53,7 @@ HAbstractThread::~HAbstractThread()
 {
     writeSettings();
     stop();
+    qDebug() << "HAbstractThread Destroy";
 }
 
 void HAbstractThread::initialize(QVariantMap param)
@@ -109,7 +106,7 @@ bool HAbstractThread::checkAction(HActionType action)
 
 void HAbstractThread::readSettings()
 {
-    auto settings =  hApp->createSettings();
+    auto settings = new QSettings(HAppContext::getContextValue<QString>("Settings"), QSettings::IniFormat, this);
     settings->beginGroup("Thread");
     d_ptr->runMode = settings->value("iRunMode", 2).toInt();
     d_ptr->retry = settings->value("iRetry", 3).toInt();
@@ -119,7 +116,7 @@ void HAbstractThread::readSettings()
 
 void HAbstractThread::writeSettings()
 {
-    auto settings = hApp->createSettings();
+    auto settings = new QSettings(HAppContext::getContextValue<QString>("Settings"), QSettings::IniFormat, this);
     settings->beginGroup("Thread");
     settings->setValue("iRunMode", d_ptr->runMode);
     settings->setValue("iRetry", d_ptr->retry);
@@ -223,3 +220,5 @@ void HAbstractThread::actionFail(HActionType action, HErrorType error)
 {
     emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(toComment(action)).arg(toComment(error)));
 }
+
+HE_CONTROLLER_END_NAMESPACE

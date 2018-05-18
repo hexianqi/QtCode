@@ -12,7 +12,7 @@ TEMPLATE    = lib
 
 CONFIG      += c++11
 
-DESTDIR     = "../../Dest"
+DESTDIR     = "../Dest"
 
 DEFINES     += HE_BUILD_FILE_LIB
 

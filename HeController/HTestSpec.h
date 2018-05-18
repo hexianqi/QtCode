@@ -1,0 +1,30 @@
+#ifndef HTESTSPEC_H
+#define HTESTSPEC_H
+
+#include "HTestData.h"
+#include "ITestSpec.h"
+
+HE_CONTROLLER_BEGIN_NAMESPACE
+
+class HTestSpecPrivate;
+
+class HTestSpec : public HTestData, public ITestSpec
+{
+    Q_DECLARE_PRIVATE(HTestSpec)
+
+public:
+    explicit HTestSpec();
+    ~HTestSpec();
+
+public:
+    virtual void initialize(QVariantMap param) override;
+    virtual bool setSample(QVector<double> value, bool avg = false) override;
+    virtual void clearQueue() override;
+
+protected:
+    HTestSpec(HTestSpecPrivate &p);
+};
+
+HE_CONTROLLER_END_NAMESPACE
+
+#endif // HTESTSPEC_H

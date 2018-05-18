@@ -1,7 +1,7 @@
 #include "HReflectFun2.h"
 #include <QtCore>
 
-HE_EXAMPLE_USE_NAMESPACE
+HE_EXAMPLE_BEGIN_NAMESPACE
 
 template <typename T>
 class EventHandler : public QObject
@@ -148,3 +148,5 @@ void test()
     QVariantMap reply4 = service.process(request4);
     os << "\njson:\n" << reply4["json"].toByteArray() << endl;
 }
+
+HE_EXAMPLE_END_NAMESPACE

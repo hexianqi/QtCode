@@ -1,7 +1,7 @@
 #include "HDeviceSL_p.h"
 #include "IPort.h"
 
-HE_COMMUNICATE_USE_NAMESPACE
+HE_COMMUNICATE_BEGIN_NAMESPACE
 
 HDeviceSLPrivate::HDeviceSLPrivate()
 {
@@ -35,13 +35,13 @@ bool HDeviceSLPrivate::isCheckCode(int n)
     return checkCodes[n];
 }
 
-HDeviceSL::HDeviceSL(QObject *parent)
-    : HAbstractDevice(*new HDeviceSLPrivate(), parent)
+HDeviceSL::HDeviceSL()
+    : HAbstractDevice(*new HDeviceSLPrivate)
 {
 }
 
-HDeviceSL::HDeviceSL(HDeviceSLPrivate &p, QObject *parent)
-    : HAbstractDevice(p, parent)
+HDeviceSL::HDeviceSL(HDeviceSLPrivate &p)
+    : HAbstractDevice(p)
 {
 }
 
@@ -61,7 +61,7 @@ void HDeviceSL::initialize(QVariantMap param)
 
 QString HDeviceSL::typeName()
 {
-    return tr("SL");
+    return "SL";
 }
 
 void HDeviceSL::setEncrypt(QVector<bool> value)
@@ -111,7 +111,7 @@ HErrorType HDeviceSL::getData(HActionType action, QVector<uchar> &value, int del
 
     QVector<uchar> downData, upData;
     downData << (uchar(d->deviceID)) << 0x03 << 0x00 << param[2] << param[3];
-    upData.resize(6 + param[0] + param[1] * 256);
+    upData.resize(6 + param[0] * 256 + param[1]);
 
     auto error = transport(downData, upData, delay);
     if (error != E_OK)
@@ -204,3 +204,5 @@ bool HDeviceSL::checkCode(QVector<uchar> value, uchar code)
         sum += i;
     return code == sum % 128;
 }
+
+HE_COMMUNICATE_END_NAMESPACE

@@ -11,11 +11,11 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 class HSerialPortPrivate : public HAbstractPortPrivate
 {
 public:
-    bool openSerialPort(int portNum, QObject *parent);
+    bool openSerialPort(int portNum);
 
 public:
     qint32 baudRate = 115200;
-    QSerialPort *serial;
+    QScopedPointer<QSerialPort> serial;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

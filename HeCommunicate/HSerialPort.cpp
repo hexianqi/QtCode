@@ -2,22 +2,21 @@
 #include <QVector>
 #include <QtSerialPort/QSerialPort>
 
-HE_COMMUNICATE_USE_NAMESPACE
+HE_COMMUNICATE_BEGIN_NAMESPACE
 
-bool HSerialPortPrivate::openSerialPort(int portNum, QObject *parent)
+bool HSerialPortPrivate::openSerialPort(int portNum)
 {
-    serial = new QSerialPort(QString("COM%1").arg(portNum), parent);
+    serial.reset(new QSerialPort(QString("COM%1").arg(portNum)));
     return serial->setBaudRate(baudRate) && serial->open(QIODevice::ReadWrite);
 }
 
-
-HSerialPort::HSerialPort(QObject *parent)
-    : HAbstractPort(*new HSerialPortPrivate(), parent)
+HSerialPort::HSerialPort()
+    : HAbstractPort(*new HSerialPortPrivate)
 {
 }
 
-HSerialPort::HSerialPort(HSerialPortPrivate &p, QObject *parent)
-    : HAbstractPort(p, parent)
+HSerialPort::HSerialPort(HSerialPortPrivate &p)
+    : HAbstractPort(p)
 {
 }
 
@@ -64,7 +63,7 @@ HErrorType HSerialPort::clear()
 HErrorType HSerialPort::openPort(int portNum)
 {
     Q_D(HSerialPort);
-    if (!d->openSerialPort(portNum, this))
+    if (!d->openSerialPort(portNum))
         return E_PORT_INVALID_HANDLE;
     return E_OK;
 }
@@ -98,3 +97,5 @@ HErrorType HSerialPort::readData(uchar *data, int maxSize)
         return E_PORT_READ_DATA_LESS;
     return E_OK;
 }
+
+HE_COMMUNICATE_END_NAMESPACE

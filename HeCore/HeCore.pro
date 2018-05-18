@@ -27,7 +27,8 @@ SOURCES     += \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
             HDataObject.cpp \
-            HCore.cpp
+            HCore.cpp \
+    HGlobalInstance.cpp
 
 HEADERS     += \
             HCoreGlobal.h \
@@ -36,10 +37,11 @@ HEADERS     += \
             HErrorType.h \
             HActionType.h \
             HDataFormatInfo.h \
-            HAppContext_p.h \
             HDataFormatInfo_p.h \
             HDataObject.h \
-            HDataObject_p.h
+            HDataObject_p.h \
+    HGlobalInstance.h \
+    HGlobalInstance_p.h
 
 RESOURCES   += HeCore.qrc
 

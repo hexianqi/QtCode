@@ -14,7 +14,7 @@ class HAbstractThreadPrivate;
 class HAbstractThread : public IThread
 {
 public:
-    explicit HAbstractThread(IModel *model, QObject *parent = nullptr);
+    explicit HAbstractThread(QObject *parent = nullptr);
     ~HAbstractThread();
 
 public:

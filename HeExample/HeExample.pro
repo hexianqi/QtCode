@@ -10,7 +10,7 @@ TEMPLATE    = lib
 
 CONFIG      += c++11
 
-DESTDIR     = "../../Dest"
+DESTDIR     = "../Dest"
 
 DEFINES     += HE_BUILD_EXAMPLE_LIB
 
@@ -26,12 +26,12 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-    HDPointer.cpp
+            HDPointer.cpp
 
 HEADERS     += \
             HExampleGlobal.h \
-    HDPointer.h \
-    HDPointer_p.h
+            HDPointer.h \
+            HDPointer_p.h
 
 INCLUDEPATH += ".."
 

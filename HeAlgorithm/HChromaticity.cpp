@@ -5,7 +5,7 @@
 #include <QTextStream>
 #include <QtMath>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 HChromaticity::HChromaticity()
 {
@@ -244,6 +244,8 @@ bool HChromaticity::exportIsotherm(QString fileName, QVector<ISOTHERM> data)
     file.close();
     return true;
 }
+
+HE_ALGORITHM_END_NAMESPACE
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //http://www.lrc.rpi.edu/programs/nlpip/lightinganswers/lightsources/appendixb1.asp

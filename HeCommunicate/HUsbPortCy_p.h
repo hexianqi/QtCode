@@ -31,7 +31,7 @@ public:
     FnSetTimeout setTimeout;
     FunReadData readData;
     FunWriteData writeData;
-    QLibrary *lib;
+    QScopedPointer<QLibrary> lib;
 #endif
 };
 

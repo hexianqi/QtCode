@@ -1,63 +1,59 @@
+/**********************************************************************************************************************
+ * 获取上下文指针是需要注意事项：
+ * 1.单继承时：T类型必须是设置类型或其父类型。
+ * 2.多继承时：T类型必须是设置类型。
+ * 例如：  HCommunicateFactory 是QObject和ICommunicateFactory的子类。
+ *         setContextPointer("ICommunicateFactory", new HCommunicateFactory(this));
+ *         auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");//编译不会有问题，使用factory会出问题。
+ * 替换成：setContextPointer("ICommunicateFactory", new HCommunicateFactory(this));
+ *         auto factory = HAppContext::getContextPointer<HCommunicateFactory>("ICommunicateFactory");// ICommunicateFactory->HCommunicateFactory
+ * 替换成：ICommunicateFactory *factory = new HCommunicateFactory(this);
+ *         setContextPointer("ICommunicateFactory", factory);
+ *         auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");
+ *********************************************************************************************************************/
+
 #ifndef HAPPCONTEXT_H
 #define HAPPCONTEXT_H
 
-#include "HSingleton.h"
-#include <QObject>
+#include "HCoreGlobal.h"
 #include <QVariant>
-
-class QSettings;
 
 HE_CORE_BEGIN_NAMESPACE
 
-class HAppContextPrivate;
-
-#define hApp HAppContext::instance()
-#define hContextPointer(Class, Key) static_cast<Class *>(hApp->getContextPointer(Key))
-#define hContextValue(Class, Key)   hApp->getContextValue(Key).value<Class>()
-
-// 应用程序上下文
-class HE_CORE_EXPORT HAppContext : public QObject, public HSingleton<HAppContext>
+class HE_CORE_EXPORT HAppContext
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(HAppContext)
-    H_FRIEND_SINGLETON(HAppContext)
-
-public:
-    // 创建INI配置
-    std::shared_ptr<QSettings> createSettings();
-    void setSetting(QString fileName);
-
 public:
     // 设置上下文数值
-    void setContextValue(QString key, QVariant value);
+    static void setContextValue(QString key, QVariant value);
     // 设置上下文指针
-    void setContextPointer(QString key, void *value);
+    static void setContextPointer(QString key, void *value);
     // 获取上下文数值
-    QVariant getContextValue(QString key);
+    static QVariant getContextValue(QString key);
     // 获取上下文指针
-    void *getContextPointer(QString key);
+    static void *getContextPointer(QString key);
     // 获取上下文数值
     template<class T>
-    T getContextValue(QString key);
+    static T getContextValue(QString key);
     // 获取上下文指针
     template<class T>
-    T *getContextPointer(QString key);
+    static T *getContextPointer(QString key);
 
 protected:
-    HAppContext();
-    HAppContext(HAppContextPrivate &p);
-    ~HAppContext();
-
-protected:
-    void initActionComment();
-    void initErrorComment();
-    void initDataFormatInfo();
-    void initDataCaption();
-    void readMimeType();
-
-protected:
-    QScopedPointer<HAppContextPrivate> d_ptr;
+    static QHash<QString, QVariant> __contextValue;
+    static QHash<QString, void *> __contextPointer;
 };
+
+template<class T>
+T HAppContext::getContextValue(QString key)
+{
+    return getContextValue(key).value<T>();
+}
+
+template<class T>
+T *HAppContext::getContextPointer(QString key)
+{
+    return static_cast<T *>(getContextPointer(key));
+}
 
 HE_CORE_END_NAMESPACE
 

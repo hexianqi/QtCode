@@ -1,7 +1,7 @@
 #include "HAction_p.h"
 #include "HeCore/IHandler.h"
 
-HE_GUI_USE_NAMESPACE
+HE_GUI_BEGIN_NAMESPACE
 
 HAction::HAction(QObject* parent)
     : QAction(parent), d_ptr(new HActionPrivate)
@@ -40,3 +40,5 @@ void HAction::call()
     param.insert("data", this->data());
     d_ptr->handler->execute(this, param);
 }
+
+HE_GUI_END_NAMESPACE

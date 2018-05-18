@@ -3,15 +3,15 @@
 #include <QVariantMap>
 #include <windows.h>
 
-HE_COMMUNICATE_USE_NAMESPACE
+HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HUsbPortCy7c68013::HUsbPortCy7c68013(QObject *parent)
-    : HAbstractPort(*new HUsbPortCy7c68013Private(), parent)
+HUsbPortCy7c68013::HUsbPortCy7c68013()
+    : HAbstractPort(*new HUsbPortCy7c68013Private)
 {
 }
 
-HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p, QObject *parent)
-    : HAbstractPort(p, parent)
+HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p)
+    : HAbstractPort(p)
 {
 }
 
@@ -107,3 +107,5 @@ HErrorType HUsbPortCy7c68013::readData(uchar *data, int maxSize)
         return E_PORT_READ_DATA_LESS;
     return E_OK;
 }
+
+HE_COMMUNICATE_END_NAMESPACE

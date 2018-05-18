@@ -1,22 +1,23 @@
 #ifndef HDEVICECOLLECTION_H
 #define HDEVICECOLLECTION_H
 
-#include "HCommunicateGlobal.h"
-#include "HeCore/HActionType.h"
-#include <QMap>
-#include <QScopedPointer>
-
-HE_CORE_USE_NAMESPACE
+#include "IDeviceCollection.h"
+#include "HeCore/HCollection.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class IDevice;
 class HDeviceCollectionPrivate;
 
-class HE_COMMUNICATE_EXPORT HDeviceCollection : public QMap<QString, IDevice *>
+class HDeviceCollection : public HCollection<IDevice>, public IDeviceCollection
 {
 public:
-    bool isSupport(HActionType action);
+    explicit HDeviceCollection();
+    ~HDeviceCollection();
+
+public:
+    virtual void initialize(QVariantMap param) override;
+    virtual void addSupport(HActionType action) override;
+    virtual bool isSupport(HActionType action) override;
 
 protected:
     HDeviceCollection(HDeviceCollectionPrivate &p);

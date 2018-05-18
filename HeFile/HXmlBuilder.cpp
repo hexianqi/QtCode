@@ -4,7 +4,7 @@
 #include "HeCore/HTypeHelper.h"
 
 HE_CORE_USE_NAMESPACE
-HE_FILE_USE_NAMESPACE
+HE_FILE_BEGIN_NAMESPACE
 
 template<class T>
 T *HXmlBuilder::createObject(HXmlElement *xe)
@@ -24,3 +24,5 @@ T *HXmlBuilder::createObject(HXmlElement *xe, QVariantMap param)
     }
     return t;
 }
+
+HE_FILE_END_NAMESPACE

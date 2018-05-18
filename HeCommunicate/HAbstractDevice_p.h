@@ -8,11 +8,11 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 class HAbstractDevicePrivate
 {
 public:
-    IPort *port;
+    IPort* port = nullptr;
     int portNum;
     bool portNumScan;
     int deviceID;
-    QMap<HActionType, QList<uchar>> actionParam;
+    QHash<HActionType, QList<uchar>> actionParam;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

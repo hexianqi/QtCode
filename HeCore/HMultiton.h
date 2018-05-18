@@ -1,14 +1,14 @@
 #ifndef HMULTITON_H
 #define HMULTITON_H
 
+#include "HCoreGlobal.h"
 #include <string>
 #include <unordered_map>
 #include <memory>
 
 using namespace std;
 
-namespace He {
-namespace Core {
+HE_CORE_BEGIN_NAMESPACE
 
 template <class T, class K = string>
 class HMultiton
@@ -55,7 +55,6 @@ protected:
 template <class T, class K>
 unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
 
-} // Core
-} // He
+HE_CORE_END_NAMESPACE
 
 #endif // HMULTITON_H

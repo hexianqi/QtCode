@@ -1,0 +1,15 @@
+#ifndef HCONTROLLERFACTORY_P_H
+#define HCONTROLLERFACTORY_P_H
+
+#include "HControllerFactory.h"
+
+HE_CONTROLLER_BEGIN_NAMESPACE
+
+class HControllerFactoryPrivate
+{
+};
+
+HE_CONTROLLER_END_NAMESPACE
+
+
+#endif // HCONTROLLERFACTORY_P_H

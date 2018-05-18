@@ -4,7 +4,6 @@
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HErrorType.h"
-#include <QVariant>
 
 HE_CORE_USE_NAMESPACE
 

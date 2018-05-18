@@ -2,19 +2,22 @@
 #define ITESTDATA_H
 
 #include "HControllerGlobal.h"
+#include "HeCore/IInitializeable.h"
 #include <QVariant>
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class ITestData
+class ITestData : public IInitializeable
 {
 public:
-    virtual void initialize(QVariantMap param) = 0;
-    virtual void setSuccessor(ITestData *successor);
-    virtual void setTestData(QString type, QVariant value) = 0;
+    // 设置后继者
+    virtual void setSuccessor(ITestData *successor) = 0;
+    virtual void setData(QString type, QVariant value) = 0;
 
 public:
-    virtual QVariant testData(QString type) = 0;
+    virtual QVariant data(QString type) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

@@ -7,12 +7,10 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HAbstractPortPrivate;
 
-class HE_COMMUNICATE_EXPORT HAbstractPort : public QObject, public IPort
+class HAbstractPort : public IPort
 {
-    Q_OBJECT
-
 public:
-    explicit HAbstractPort(QObject *parent = nullptr);
+    explicit HAbstractPort();
     ~HAbstractPort();
 
 public:
@@ -26,7 +24,7 @@ public:
     virtual HErrorType clear() override;
 
 protected:
-    HAbstractPort(HAbstractPortPrivate &p, QObject *parent = nullptr);
+    HAbstractPort(HAbstractPortPrivate &p);
 
 protected:
     virtual HErrorType openPort(int portNum) = 0;

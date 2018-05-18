@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QTextStream>
 
-HE_FILE_USE_NAMESPACE
+HE_FILE_BEGIN_NAMESPACE
 
 HXmlElement *HXmlElement::load(QString fileName)
 {
@@ -137,3 +137,4 @@ void HXmlElement::forEach(std::function<void(HXmlElement*)> fun)
         item->forEach(fun);
 }
 
+HE_FILE_END_NAMESPACE

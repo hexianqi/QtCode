@@ -1,7 +1,7 @@
 #include "HReflectFun.h"
 #include <QtCore>
 
-HE_EXAMPLE_USE_NAMESPACE
+HE_EXAMPLE_BEGIN_NAMESPACE
 
 HReflectFun::HReflectFun(QObject *parent)
     : QObject(parent)
@@ -107,3 +107,5 @@ void Test()
     QVariantMap reply4 = service.process(request4);
     os << "\njson:\n" << reply4["json"].toByteArray() << endl;
 }
+
+HE_EXAMPLE_END_NAMESPACE

@@ -3,21 +3,20 @@
 #include <QMutex>
 #include <QVector>
 
-HE_CORE_USE_NAMESPACE
-HE_COMMUNICATE_USE_NAMESPACE
+HE_COMMUNICATE_BEGIN_NAMESPACE
 
 HProtocolPrivate::HProtocolPrivate()
-{
-    mutex = new QMutex();
-}
-
-HProtocol::HProtocol(QObject *parent)
-    : QObject(parent), d_ptr(new HProtocolPrivate)
+    : mutex(new QMutex)
 {
 }
 
-HProtocol::HProtocol(HProtocolPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HProtocol::HProtocol()
+    : d_ptr(new HProtocolPrivate)
+{
+}
+
+HProtocol::HProtocol(HProtocolPrivate &p)
+    : d_ptr(&p)
 {
 }
 
@@ -29,7 +28,7 @@ HProtocol::~HProtocol()
 void HProtocol::initialize(QVariantMap param)
 {
     if (param.contains("device"))
-        setDevice(FromVariant(IDevice, param.value("port")));
+        setDevice(FromVariant(IDevice, param.value("device")));
 }
 
 void HProtocol::setDevice(IDevice *device)
@@ -205,3 +204,5 @@ HErrorType HProtocol::getData(HActionType action, QVector<uint> &value, int dela
         value[i] = data[4 * i] + data[4 * i + 1] * 256 + data[4 * i + 2] * 256 * 256 + data[4 * i + 3] * 256 * 256 * 256;
     return E_OK;
 }
+
+HE_COMMUNICATE_END_NAMESPACE

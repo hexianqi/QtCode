@@ -23,7 +23,7 @@ public:
     using Fn = int(*)(int, uchar *, int, int);
     Fn readData;
     Fn writeData;
-    QLibrary *lib;
+    QScopedPointer<QLibrary> lib;
 #endif
 };
 

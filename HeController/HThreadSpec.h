@@ -7,12 +7,12 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HThreadSpecPrivate;
 
-class HThreadSpec : public HAbstractThread
+class HE_CONTROLLER_EXPORT HThreadSpec : public HAbstractThread
 {
     Q_DECLARE_PRIVATE(HThreadSpec)
 
 public:
-    explicit HThreadSpec(IModel *model, QObject *parent = nullptr);
+    explicit HThreadSpec(QObject *parent = nullptr);
     ~HThreadSpec();
 
 public:

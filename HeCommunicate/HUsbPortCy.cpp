@@ -12,7 +12,7 @@ HE_COMMUNICATE_USE_NAMESPACE
 #define WriteData   d->writeData
 void HUsbPortCyPrivate::loadDll()
 {
-    lib = new QLibrary("CYUSB.dll");
+    lib.reset(new QLibrary("CYUSB.dll"));
     if (!lib->load())
         return;
 
@@ -30,7 +30,6 @@ void HUsbPortCyPrivate::unloadDLL()
         return;
     lib->unload();
     isLoaded = false;
-    delete lib;
 }
 #else
 #include "include/CYUSB.h"
@@ -49,15 +48,15 @@ void HUsbPortCyPrivate::unloadDLL()
 #endif
 
 
-HUsbPortCy::HUsbPortCy(QObject *parent)
-    : HAbstractPort(*new HUsbPortCyPrivate(), parent)
+HUsbPortCy::HUsbPortCy()
+    : HAbstractPort(*new HUsbPortCyPrivate)
 {
     Q_D(HUsbPortCy);
     d->loadDll();
 }
 
-HUsbPortCy::HUsbPortCy(HUsbPortCyPrivate &p, QObject *parent)
-    : HAbstractPort(p, parent)
+HUsbPortCy::HUsbPortCy(HUsbPortCyPrivate &p)
+    : HAbstractPort(p)
 {
     Q_D(HUsbPortCy);
     d->loadDll();

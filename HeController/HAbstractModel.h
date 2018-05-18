@@ -7,7 +7,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HAbstractModelPrivate;
 
-class HAbstractModel : public IModel
+class HE_CONTROLLER_EXPORT HAbstractModel : public IModel
 {
 public:
     explicit HAbstractModel(QObject *parent = nullptr);
@@ -15,16 +15,13 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual bool initConfig() override;
     virtual void addAction(HActionType action) override;
-
-public:
-    virtual IDevice *device(QString name) override;
 
 protected:
     HAbstractModel(HAbstractModelPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual void initDevice() = 0;
     virtual void initThread();
     virtual void startThread();
     virtual void stopThread();

@@ -3,7 +3,7 @@
 #include "HCie.h"
 #include "HSpectrum.h"
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 HChromaticityV2::HChromaticityV2()
 {
@@ -31,3 +31,5 @@ QVector<double> HChromaticityV2::calcColorRenderingIndex(QPointF uvk, QPolygonF 
         ucs = calcCieUcs(tc);
     return HChromaticity::calcColorRenderingIndex(uvk, spdk, ucs);
 }
+
+HE_ALGORITHM_END_NAMESPACE

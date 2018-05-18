@@ -1,16 +1,21 @@
 #include "HAbstractModel_p.h"
 #include "IThread.h"
-#include "HeCommunicate/HDeviceCollection.h"
+#include "IThreadCollection.h"
+#include "HeCore/HAppContext.h"
+#include "HeCommunicate/IDeviceCollection.h"
+#include <QDebug>
 
-HE_CONTROLLER_USE_NAMESPACE
+HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractModelPrivate::HAbstractModelPrivate()
+HAbstractModelPrivate::HAbstractModelPrivate(HAbstractModel *q)
+    : q_ptr(q)
 {
- //   devices = new HDeviceCollection();
+    devices = HAppContext::getContextPointer<IDeviceCollection>("IDeviceCollection");
+    threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
 }
 
 HAbstractModel::HAbstractModel(QObject *parent)
-    : IModel(parent), d_ptr(new HAbstractModelPrivate)
+    : IModel(parent), d_ptr(new HAbstractModelPrivate(this))
 {
 }
 
@@ -21,17 +26,20 @@ HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent)
 
 HAbstractModel::~HAbstractModel()
 {
+    stopThread();
+    qDebug() << "HAbstractModel Destroy";
 }
 
 void HAbstractModel::initialize(QVariantMap param)
 {
     Q_UNUSED(param)
-//    if (param.contains("runMode"))
-//        d_ptr->runMode = param.value("iRunMode", 2).toInt();
-//    if (param.contains("retry"))
-//        d_ptr->retry = param.value("retry", 3).toInt();
-//    if (param.contains("sleepTime"))
-//        d_ptr->sleepTime = param.value("sleepTime", 1000).toUInt();
+}
+
+bool HAbstractModel::initConfig()
+{
+    initThread();
+    startThread();
+    return true;
 }
 
 void HAbstractModel::addAction(HActionType action)
@@ -45,20 +53,16 @@ void HAbstractModel::addAction(HActionType action)
     if (!d_ptr->devices->isSupport(action))
         return;
 
-    for (auto t : d_ptr->threads)
+    for (auto t : d_ptr->threads->values())
         t->addAction(action);
-}
-
-IDevice *HAbstractModel::device(QString name)
-{
-    return d_ptr->devices->value(name);
 }
 
 void HAbstractModel::initThread()
 {
     QStringList list;
-    for (auto t : d_ptr->threads.values())
+    for (auto t : d_ptr->threads->values())
     {
+        t->setParent(this);
         connect(t, &IThread::startFailed, this, &IModel::deviceFailed);
         connect(t, &IThread::startFinished, [=]{ emit threadStateChanged(t->threadInfo(), 1); });
         connect(t, &IThread::stopFinished, [=]{ emit threadStateChanged(t->threadInfo(), 0); });
@@ -71,12 +75,14 @@ void HAbstractModel::initThread()
 
 void HAbstractModel::startThread()
 {
-    for (auto t : d_ptr->threads)
+    for (auto t : d_ptr->threads->values())
         t->start();
 }
 
 void HAbstractModel::stopThread()
 {
-    for (auto t : d_ptr->threads)
+    for (auto t : d_ptr->threads->values())
         t->stop();
 }
+
+HE_CONTROLLER_END_NAMESPACE

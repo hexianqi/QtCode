@@ -7,12 +7,12 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HSerialPortPrivate;
 
-class HE_COMMUNICATE_EXPORT HSerialPort : public HAbstractPort
+class HSerialPort : public HAbstractPort
 {
     Q_DECLARE_PRIVATE(HSerialPort)
 
 public:
-    explicit HSerialPort(QObject *parent = nullptr);
+    explicit HSerialPort();
     ~HSerialPort();
 
 public:
@@ -22,7 +22,7 @@ public:
     virtual HErrorType clear() override;
 
 protected:
-    HSerialPort(HSerialPortPrivate &p, QObject *parent = nullptr);
+    HSerialPort(HSerialPortPrivate &p);
 
 protected:
     virtual HErrorType openPort(int portNum) override;

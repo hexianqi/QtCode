@@ -30,10 +30,8 @@ signals:
     void actionFinished(HActionType action);
 
 public:
+    virtual bool initConfig() = 0;
     virtual void addAction(HActionType action) = 0;
-
-public:
-    virtual IDevice *device(QString name) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

@@ -7,12 +7,10 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HProtocolPrivate;
 
-class HE_COMMUNICATE_EXPORT HProtocol : public QObject, public IProtocol
+class HProtocol : public IProtocol
 {
-    Q_OBJECT
-
 public:
-    explicit HProtocol(QObject *parent = nullptr);
+    explicit HProtocol();
     ~HProtocol();
 
 public:
@@ -42,7 +40,7 @@ public:
     virtual HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
 
 protected:
-    HProtocol(HProtocolPrivate &p, QObject *parent = nullptr);
+    HProtocol(HProtocolPrivate &p);
 
 protected:
     QScopedPointer<HProtocolPrivate> d_ptr;

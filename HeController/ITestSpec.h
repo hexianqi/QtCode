@@ -5,14 +5,11 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class ITestSpec : public ITestData
+class ITestSpec : virtual public ITestData
 {
-
 public:
     virtual bool setSample(QVector<double> value, bool avg = false) = 0;
     virtual void clearQueue() = 0;
-
-
 };
 
 HE_CONTROLLER_END_NAMESPACE

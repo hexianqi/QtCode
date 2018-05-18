@@ -12,7 +12,7 @@ class HDeviceSL : public HAbstractDevice
     Q_DECLARE_PRIVATE(HDeviceSL)
 
 public:
-    explicit HDeviceSL(QObject *parent = nullptr);
+    explicit HDeviceSL();
     ~HDeviceSL();
 
 public:
@@ -24,7 +24,7 @@ public:
     virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HDeviceSL(HDeviceSLPrivate &p, QObject *parent = nullptr);
+    HDeviceSL(HDeviceSLPrivate &p);
 
 protected:
     virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);

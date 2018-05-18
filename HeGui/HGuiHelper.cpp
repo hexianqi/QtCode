@@ -7,7 +7,7 @@
 #include <QAction>
 
 HE_CORE_USE_NAMESPACE
-HE_GUI_USE_NAMESPACE
+HE_GUI_BEGIN_NAMESPACE
 
 QString HGuiHelper::copy(QTableView *widget, bool withHeader)
 {
@@ -181,4 +181,6 @@ QAction *HGuiHelper::addSeparator(QWidget *widget)
     widget->addAction(action);
     return action;
 }
+
+HE_GUI_END_NAMESPACE
 

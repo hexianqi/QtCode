@@ -26,14 +26,20 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-    HAction.cpp \
-    HGuiHelper.cpp
+            HAction.cpp \
+            HGuiHelper.cpp \
+            HMainWindow.cpp \
+    HAbstractBuilder.cpp
 
 HEADERS     += \
             HGuiGlobal.h \
-    HAction.h \
-    HAction_p.h \
-    HGuiHelper.h
+            HAction.h \
+            HAction_p.h \
+            HGuiHelper.h \
+            HMainWindow.h \
+            HMainWindow_p.h \
+    HAbstractBuilder.h \
+    HAbstractBuilder_p.h
 
 INCLUDEPATH += ".."
 

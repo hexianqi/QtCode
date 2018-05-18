@@ -13,7 +13,7 @@ class HThreadSpecPrivate : public HAbstractThreadPrivate
     Q_DECLARE_PUBLIC(HThreadSpec)
 
 public:
-    void init();
+    HThreadSpecPrivate(HThreadSpec *q);
 
 public:
     IProtocol *protocolSpec;

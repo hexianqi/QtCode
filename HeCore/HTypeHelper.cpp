@@ -30,7 +30,7 @@
 #include "IInitializeable.h"
 #include <QMetaType>
 
-HE_CORE_USE_NAMESPACE
+HE_CORE_BEGIN_NAMESPACE
 
 template<class T>
 T *HTypeHelper::createObject(QString className)
@@ -48,3 +48,5 @@ T *HTypeHelper::createObject(QString className, QVariantMap param)
         t.initialize(param);
     return t;
 }
+
+HE_CORE_END_NAMESPACE

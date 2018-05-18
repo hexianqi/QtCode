@@ -9,7 +9,7 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 void HUsbPortLpc214Private::loadDll()
 {
-    lib = new QLibrary("EasyUSB214x.dll");
+    lib.reset(new QLibrary("EasyUSB214x.dll"));
     if (!lib->load())
         return;
 
@@ -25,7 +25,6 @@ void HUsbPortLpc214Private::unloadDLL()
         return;
     lib->unload();
     isLoaded = false;
-    delete lib;
 }
 #else
 #include "include/EasyUSB214x.h"
@@ -43,15 +42,15 @@ void HUsbPortLpc214Private::unloadDLL()
 }
 #endif
 
-HUsbPortLpc214::HUsbPortLpc214(QObject *parent)
-    : HAbstractPort(*new HUsbPortLpc214Private(), parent)
+HUsbPortLpc214::HUsbPortLpc214()
+    : HAbstractPort(*new HUsbPortLpc214Private)
 {
     Q_D(HUsbPortLpc214);
     d->loadDll();
 }
 
-HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p, QObject *parent)
-    : HAbstractPort(p, parent)
+HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p)
+    : HAbstractPort(p)
 {
     Q_D(HUsbPortLpc214);
     d->loadDll();

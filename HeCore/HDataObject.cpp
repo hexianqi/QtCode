@@ -3,7 +3,7 @@
 #include <QString>
 #include "IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
+HE_CORE_BEGIN_NAMESPACE
 
 QString removeBracket(QString text)
 {
@@ -61,3 +61,5 @@ QString HDataObject::type(bool bracket) const
     Q_D(const HDataObject);
     return bracket ? d->type : removeBracket(d->type);
 }
+
+HE_CORE_END_NAMESPACE

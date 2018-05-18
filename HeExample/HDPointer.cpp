@@ -1,7 +1,7 @@
 #include "HDPointer.h"
 #include "HDPointer_p.h"
 
-HE_EXAMPLE_USE_NAMESPACE
+HE_EXAMPLE_BEGIN_NAMESPACE
 
 void HDPointerPrivate::init()
 {
@@ -33,3 +33,5 @@ void HDPointer::test()
 {
 
 }
+
+HE_EXAMPLE_END_NAMESPACE

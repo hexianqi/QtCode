@@ -9,6 +9,11 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 class HRegisterPrivate
 {
 public:
+    QString getRegisterId();
+    bool isExpires();
+    void trial();
+
+public:
     QString registerId;
     QString serialNumber;
     int trialTimes;

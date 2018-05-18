@@ -2,7 +2,7 @@
 #include <QPolygonF>
 #include <QtMath>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 const double C1 = 3.741844e-12;
 const double C2 = 1.438833;
@@ -59,3 +59,5 @@ double HSpectrum::planckPrime(double wave, double tc)
     auto temp = qExp(C2 / wave / tc);
     return C1 * C2 * qPow(tc, -2) * qPow(wave, -6) * temp * qPow(temp - 1, -2);
 }
+
+HE_ALGORITHM_END_NAMESPACE

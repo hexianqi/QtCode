@@ -15,12 +15,10 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HAbstractThreadPrivate
+class HE_CONTROLLER_EXPORT HAbstractThreadPrivate
 {
-    Q_DECLARE_PUBLIC(HAbstractThread)
-
 public:
-    HAbstractThreadPrivate();
+    HAbstractThreadPrivate(HAbstractThread *q);
 
 public:
     void enqueueAction(HActionType action);
@@ -29,7 +27,6 @@ public:
 
 public:
     HAbstractThread *q_ptr;
-    IModel *model;
     QMutex *mutex;
     QWaitCondition *waitConditionAction;
     volatile bool running;
@@ -38,7 +35,7 @@ public:
     int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
-    QMap<QString, IProtocol*> protocols;
+    QHash<QString, IProtocol*> protocols;
 };
 
 HE_CONTROLLER_END_NAMESPACE

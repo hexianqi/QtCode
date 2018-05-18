@@ -5,7 +5,7 @@
 #include <QTextStream>
 #include <QtMath>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 HCieTc32::HCieTc32()
 {
@@ -503,4 +503,6 @@ void HCieUcs::readStandardP()
         in >> _cieUcsP[i].Tc >> _cieUcsP[i].urt >> _cieUcsP[i].vrt;
     file.close();
 }
+
+HE_ALGORITHM_END_NAMESPACE
 

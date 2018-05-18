@@ -3,7 +3,7 @@
 #include <QPointF>
 #include <QPolygonF>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 double HMath::interpolate(double x, double x1, double y1, double x2, double y2)
 {
@@ -162,3 +162,4 @@ bool HMath::polyfit(QVector<QPointF> points, QVector<double> &factors)
     return true;
 }
 
+HE_ALGORITHM_END_NAMESPACE

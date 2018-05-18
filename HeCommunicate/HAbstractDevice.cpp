@@ -2,15 +2,15 @@
 #include "IPort.h"
 #include <QVector>
 
-HE_COMMUNICATE_USE_NAMESPACE
+HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HAbstractDevice::HAbstractDevice(QObject *parent)
-    : QObject(parent), d_ptr(new HAbstractDevicePrivate)
+HAbstractDevice::HAbstractDevice()
+    : d_ptr(new HAbstractDevicePrivate)
 {
 }
 
-HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p)
+    : d_ptr(&p)
 {
 }
 
@@ -36,7 +36,7 @@ bool HAbstractDevice::isSupport(HActionType action)
     return d_ptr->actionParam.contains(action);
 }
 
-void HAbstractDevice::setPort(IPort *port, int num, bool scan)
+void HAbstractDevice::setPort(IPort* port, int num, bool scan)
 {
     d_ptr->port = port;
     d_ptr->portNum = num;
@@ -48,9 +48,9 @@ void HAbstractDevice::setDeviceID(int id)
     d_ptr->deviceID = id;
 }
 
-void HAbstractDevice::addActionParam(HActionType key, QList<uchar> value)
+void HAbstractDevice::addActionParam(HActionType action, QList<uchar> value)
 {
-    d_ptr->actionParam.insert(key, value);
+    d_ptr->actionParam.insert(action, value);
 }
 
 HErrorType HAbstractDevice::open()
@@ -99,3 +99,6 @@ HErrorType HAbstractDevice::check()
     QVector<uchar> data;
     return getData(ACT_CHECK_DEVICE, data);
 }
+
+HE_COMMUNICATE_END_NAMESPACE
+

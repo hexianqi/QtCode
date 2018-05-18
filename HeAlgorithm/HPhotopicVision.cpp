@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QTextStream>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 HPhotopicVision::HPhotopicVision()
 {
@@ -107,3 +107,5 @@ void HPhotopicVision::readStandard()
 
     _stdData = HMath::interpolate(poly, poly.first().x(), poly.last().x(), 0.1);
 }
+
+HE_ALGORITHM_END_NAMESPACE

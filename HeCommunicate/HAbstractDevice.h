@@ -7,12 +7,10 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HAbstractDevicePrivate;
 
-class HAbstractDevice : public QObject, public IDevice
+class HAbstractDevice : public IDevice
 {
-    Q_OBJECT
-
 public:
-    explicit HAbstractDevice(QObject *parent = nullptr);
+    explicit HAbstractDevice();
     virtual ~HAbstractDevice();
 
 public:
@@ -20,14 +18,14 @@ public:
     virtual bool isSupport(HActionType action) override;
     virtual void setPort(IPort *port, int num = 0, bool scan = true) override;
     virtual void setDeviceID(int id) override;
-    virtual void addActionParam(HActionType key, QList<uchar> value) override;
+    virtual void addActionParam(HActionType action, QList<uchar> value) override;
 
 public:
     virtual HErrorType open() override;
     virtual HErrorType close() override;
 
 protected:
-    HAbstractDevice(HAbstractDevicePrivate &p, QObject *parent = nullptr);
+    HAbstractDevice(HAbstractDevicePrivate &p);
 
 protected:
     virtual HErrorType open(int num);

@@ -4,22 +4,23 @@
 #include "HAbstractModel.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
-class HDeviceCollection;
+class IDeviceCollection;
 HE_COMMUNICATE_END_NAMESPACE
 HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class IThread;
+class IThreadCollection;
 
-class HAbstractModelPrivate
+class HE_CONTROLLER_EXPORT HAbstractModelPrivate
 {
 public:
-    HAbstractModelPrivate();
+    HAbstractModelPrivate(HAbstractModel *q);
 
 public:
-    HDeviceCollection *devices;
-    QMap<QString, IThread *> threads;
+    HAbstractModel *q_ptr;
+    IDeviceCollection *devices;
+    IThreadCollection *threads;
 };
 
 HE_CONTROLLER_END_NAMESPACE

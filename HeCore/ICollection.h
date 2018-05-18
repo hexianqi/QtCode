@@ -1,0 +1,20 @@
+#ifndef ICOLLECTION_H
+#define ICOLLECTION_H
+
+#include "IInitializeable.h"
+
+HE_CORE_BEGIN_NAMESPACE
+
+// 集合模板接口
+template <class T>
+class ICollection : public IInitializeable
+{
+public:
+    virtual void insert(QString name, T *value) = 0;
+    virtual T *value(QString name) = 0;
+    virtual QList<T *> values() = 0;
+};
+
+HE_CORE_END_NAMESPACE
+
+#endif // ICOLLECTION_H

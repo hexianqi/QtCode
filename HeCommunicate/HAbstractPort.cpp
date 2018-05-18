@@ -2,15 +2,15 @@
 #include "HeCore/HCore.h"
 #include <QVector>
 
-HE_COMMUNICATE_USE_NAMESPACE
+HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HAbstractPort::HAbstractPort(QObject *parent)
-    : QObject(parent), d_ptr(new HAbstractPortPrivate)
+HAbstractPort::HAbstractPort()
+    : d_ptr(new HAbstractPortPrivate)
 {
 }
 
-HAbstractPort::HAbstractPort(HAbstractPortPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HAbstractPort::HAbstractPort(HAbstractPortPrivate &p)
+    : d_ptr(&p)
 {
 }
 
@@ -85,3 +85,6 @@ HErrorType HAbstractPort::read(QVector<uchar> &data)
 {
     return readData(data.data(), data.size());
 }
+
+HE_COMMUNICATE_END_NAMESPACE
+

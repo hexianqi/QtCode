@@ -1,15 +1,15 @@
 #include "HThreadSpec_p.h"
-#include "IModel.h"
 #include "ITestSpec.h"
 #include "HeCore/HAppContext.h"
-#include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
+#include "HeCommunicate/IProtocolCollection.h"
 #include <QVector>
+#include <QDebug>
 
-HE_CORE_USE_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
+HE_CONTROLLER_BEGIN_NAMESPACE
 
-void HThreadSpecPrivate::init()
+HThreadSpecPrivate::HThreadSpecPrivate(HThreadSpec *q)
+    : HAbstractThreadPrivate(q)
 {
     actionSupport = QList<HActionType>()
             << ACT_SET_INTEGRAL_TIME
@@ -18,32 +18,26 @@ void HThreadSpecPrivate::init()
             << ACT_GET_INTEGRAL_TIME
             << ACT_GET_SPECTRUM;
 
-    QVariantMap param;
-    param.insert("device", ToVariant(model->device("Spec")));
-
-    testSpec = hContextPointer(ITestSpec, "ITestSpec");
-    protocolSpec =  hContextPointer(ICommunicateFactory, "ICommunicateFactory")->createProtocol("Spec", param);
+    protocolSpec = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
+    Q_ASSERT(protocolSpec != nullptr);
     protocols.insert("Spec", protocolSpec);
+    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
+    Q_ASSERT(testSpec != nullptr);
 }
 
-HThreadSpec::HThreadSpec(IModel *model, QObject *parent)
-    : HAbstractThread(model, parent)
+HThreadSpec::HThreadSpec(QObject *parent)
+    : HAbstractThread(*new HThreadSpecPrivate(this), parent)
 {
-    Q_D(HThreadSpec);
-    d->q_ptr = this;
-    d->init();
 }
 
 HThreadSpec::HThreadSpec(HThreadSpecPrivate &p, QObject *parent)
     : HAbstractThread(p, parent)
 {
-    Q_D(HThreadSpec);
-    d->q_ptr = this;
-    d->init();
 }
 
 HThreadSpec::~HThreadSpec()
 {
+    qDebug() << "HThreadSpec Destroy";
 }
 
 QString HThreadSpec::threadInfo()
@@ -61,24 +55,27 @@ HErrorType HThreadSpec::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
-        error = d->protocolSpec->setData(action, uint(d->testSpec->testData("[积分时间]").toDouble() * 500));
+        error = d->protocolSpec->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
         if (error == E_OK)
             d->testSpec->clearQueue();
         return error;
     case ACT_SET_SPECTRUM_AVG_TIMES:
-        return d->protocolSpec->setData(action, d->testSpec->testData("[光谱平均次数]").toInt());
+        return d->protocolSpec->setData(action, d->testSpec->data("[光谱平均次数]").toInt());
     case ACT_SET_SPECTRUM_SAMPLE_DELAY:
-        return d->protocolSpec->setData(action, d->testSpec->testData("[光谱采样延时]").toInt());
+        return d->protocolSpec->setData(action, d->testSpec->data("[光谱采样延时]").toInt());
     case ACT_GET_INTEGRAL_TIME:
         error = d->protocolSpec->getData(action, i);
         if (error == E_OK)
-            d->testSpec->setTestData("[积分时间]", i / 500.0);
+            d->testSpec->setData("[积分时间]", i / 500.0);
         return error;
     case ACT_GET_SPECTRUM:
-        error = d->protocolSpec->getData(action, t, d->testSpec->testData("[光谱采样等待时间]").toInt());
+        error = d->protocolSpec->getData(action, t, d->testSpec->data("[光谱采样等待时间]").toInt());
         if (error == E_OK)
             d->testSpec->setSample(t, true);
         return error;
     }
     return E_THREAD_NO_HANDLE;
 }
+
+HE_CONTROLLER_END_NAMESPACE
+

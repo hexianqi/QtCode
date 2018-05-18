@@ -2,9 +2,9 @@
 #include <QEventLoop>
 #include <QTimer>
 
-HE_CORE_USE_NAMESPACE
+HE_CORE_BEGIN_NAMESPACE
 
-void HeCore::msleep(int msecs)
+void msleep(int msecs)
 {
     QEventLoop eventLoop;
     QTimer timer;
@@ -24,3 +24,5 @@ void HeCore::msleep(int msecs)
 //    while (QTime::currentTime() < dieTime )
 //        QCoreApplication::processEvents(QEventLoop::AllEvents, 10);
 //}
+
+HE_CORE_END_NAMESPACE

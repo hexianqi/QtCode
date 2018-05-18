@@ -13,8 +13,8 @@ public:
     HProtocolPrivate();
 
 public:
-    IDevice *device;
-    QMutex *mutex;
+    IDevice *device = nullptr;
+    QMutex *mutex = nullptr;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

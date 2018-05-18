@@ -11,9 +11,6 @@ class HRegisterPrivate;
 // 注册机
 class HE_ALGORITHM_EXPORT HRegister
 {
-    Q_DECLARE_PRIVATE(HRegister)
-    Q_DISABLE_COPY(HRegister)
-
 public:
     HRegister();
     ~HRegister();

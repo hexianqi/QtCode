@@ -5,7 +5,7 @@
 #include "HPhotopicVision.h"
 #include <QtMath>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_ALGORITHM_BEGIN_NAMESPACE
 
 void calcSpectrumEnergy(QPolygonF poly, double &totalEnergy, double &maxEnergy, double &peakWave, double &bandwidth)
 {
@@ -94,3 +94,5 @@ std::shared_ptr<IChromaticity> HSpectrumFacade::getChromaticity()
 {
     return d_ptr->chromaticity;
 }
+
+HE_ALGORITHM_END_NAMESPACE

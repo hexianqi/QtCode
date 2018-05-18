@@ -28,12 +28,13 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-    HCommunicateFactory.cpp
+            HCommunicateFactory.cpp
 
 HEADERS     += \
             HCommunicateGlobal.h \
             ICommunicateFactory.h \
-    HCommunicateFactory.h
+            HCommunicateFactory.h \
+            HCommunicateFactory_p.h
 
 INCLUDEPATH += ".."
 

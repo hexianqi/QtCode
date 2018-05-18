@@ -2,7 +2,7 @@
 #include <QDoubleValidator>
 #include <HAppContext.h>
 
-HE_CORE_USE_NAMESPACE
+HE_CORE_BEGIN_NAMESPACE
 
 void HDataFormatInfoPrivate::init(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color)
 {
@@ -158,3 +158,4 @@ QIntValidator *HDataFormatInfo::toIntValidator(QObject *parent)
 //    widget->setSuffix(QString(" %1 ").arg(unit(false)));
 //    widget->setAlignment(Qt::AlignCenter);
 //}
+HE_CORE_END_NAMESPACE
