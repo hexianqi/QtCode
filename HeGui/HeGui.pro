@@ -28,18 +28,19 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 SOURCES     += \
             HAction.cpp \
             HGuiHelper.cpp \
-            HMainWindow.cpp \
-    HAbstractBuilder.cpp
+            HAbstractBuilder.cpp \
+    HGuiFactory.cpp
 
 HEADERS     += \
             HGuiGlobal.h \
             HAction.h \
             HAction_p.h \
             HGuiHelper.h \
-            HMainWindow.h \
-            HMainWindow_p.h \
-    HAbstractBuilder.h \
-    HAbstractBuilder_p.h
+            HAbstractBuilder.h \
+            HAbstractBuilder_p.h \
+            IGuiFactory.h \
+    HGuiFactory.h \
+    HGuiFactory_p.h
 
 INCLUDEPATH += ".."
 
@@ -64,4 +65,5 @@ unix {
     INSTALLS += target
 }
 
-include(handle.pri)
+include(handler.pri)
+include(mainWindow.pri)

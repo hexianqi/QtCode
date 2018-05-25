@@ -34,7 +34,7 @@ void HSerialPort::initialize(QVariantMap param)
 
 QString HSerialPort::typeName()
 {
-    return "COM";
+    return "HSerialPort";
 }
 
 HErrorType HSerialPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)

@@ -24,24 +24,22 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
+            HCore.cpp \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
-            HDataObject.cpp \
-            HCore.cpp \
-    HGlobalInstance.cpp
+            HGlobalInstance.cpp
+
 
 HEADERS     += \
             HCoreGlobal.h \
-            HCore.h \
-            HAppContext.h \
             HErrorType.h \
             HActionType.h \
+            HCore.h \
+            HAppContext.h \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
-            HDataObject.h \
-            HDataObject_p.h \
-    HGlobalInstance.h \
-    HGlobalInstance_p.h
+            HGlobalInstance.h \
+            HGlobalInstance_p.h
 
 RESOURCES   += HeCore.qrc
 

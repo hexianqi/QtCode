@@ -15,6 +15,7 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
     virtual void setDevice(IDevice *device) override;
     virtual HErrorType open() override;
     virtual HErrorType close() override;

@@ -16,4 +16,9 @@ HProtocolCollection::~HProtocolCollection()
 {
 }
 
+QString HProtocolCollection::typeName()
+{
+    return "HProtocolCollection";
+}
+
 HE_COMMUNICATE_END_NAMESPACE

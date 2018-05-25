@@ -2,12 +2,9 @@
 #define HMAINWINDOW_P_H
 
 #include "HMainWindow.h"
-#include "HeController/HControllerGlobal.h"
+#include <QMap>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
-class IModel;
-HE_CONTROLLER_END_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
+class QLabel;
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -18,7 +15,9 @@ public:
 
 public:
     HMainWindow *q_ptr;
+    QString fileName;
     IModel *model;
+    QMap<QString, QLabel *> labels;
 };
 
 HE_GUI_END_NAMESPACE

@@ -15,6 +15,9 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
+
+public:
     virtual IThreadCollection *createThreadCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:

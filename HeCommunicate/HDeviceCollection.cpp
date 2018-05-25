@@ -27,6 +27,11 @@ void HDeviceCollection::initialize(QVariantMap param)
     }
 }
 
+QString HDeviceCollection::typeName()
+{
+    return "HDeviceCollection";
+}
+
 void HDeviceCollection::addSupport(HActionType action)
 {
     d_ptr->additionals.insert(action);

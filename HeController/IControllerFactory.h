@@ -10,7 +10,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class IThreadCollection;
 
-class HE_CONTROLLER_EXPORT IControllerFactory : public IInitializeable
+class IControllerFactory : public IInitializeable
 {
 public:
     // 创建线程集合

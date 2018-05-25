@@ -14,7 +14,7 @@ class IDeviceCollection;
 class IProtocol;
 class IProtocolCollection;
 
-class HE_COMMUNICATE_EXPORT ICommunicateFactory : public IInitializeable
+class ICommunicateFactory : public IInitializeable
 {
 public:
     // 创建通讯端口

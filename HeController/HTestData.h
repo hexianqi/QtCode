@@ -15,7 +15,8 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
-    virtual void setSuccessor(ITestData *successor) override;
+    virtual QString typeName() override;
+    virtual void setSuccessor(ITestData *) override;
     virtual void setData(QString type, QVariant value) override;
 
 public:

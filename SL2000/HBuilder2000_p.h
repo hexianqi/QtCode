@@ -7,6 +7,7 @@
 class HBuilder2000Private : public HAbstractBuilderPrivate
 {
 public:
+    HBuilder2000Private();
 
 
 };

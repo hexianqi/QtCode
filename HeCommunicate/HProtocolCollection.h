@@ -14,6 +14,9 @@ public:
     explicit HProtocolCollection();
     ~HProtocolCollection();
 
+public:
+    virtual QString typeName() override;
+
 protected:
     HProtocolCollection(HProtocolCollectionPrivate &p);
 

@@ -12,11 +12,9 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IPort;
 
-class HE_COMMUNICATE_EXPORT IDevice : public IInitializeable
+class IDevice : public IInitializeable
 {
 public:
-    // 类型
-    virtual QString typeName() = 0;
     // 是否支持命令
     virtual bool isSupport(HActionType action) = 0;
     // 设置通讯口

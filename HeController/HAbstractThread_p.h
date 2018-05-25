@@ -15,7 +15,7 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HE_CONTROLLER_EXPORT HAbstractThreadPrivate
+class HAbstractThreadPrivate
 {
 public:
     HAbstractThreadPrivate(HAbstractThread *q);
@@ -35,7 +35,7 @@ public:
     int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
-    QHash<QString, IProtocol*> protocols;
+    QMap<QString, IProtocol*> protocols;
 };
 
 HE_CONTROLLER_END_NAMESPACE

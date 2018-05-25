@@ -1,7 +1,10 @@
 HEADERS += \
+    $$PWD/HFactory.h \
+    $$PWD/HObjectFactory.h \
     $$PWD/HTypeHelper.h \
-    $$PWD/HObjectFactory.h
+
 
 SOURCES += \
+    $$PWD/HFactory.cpp \
+    $$PWD/HObjectFactory.cpp \
     $$PWD/HTypeHelper.cpp \
-    $$PWD/HObjectFactory.cpp

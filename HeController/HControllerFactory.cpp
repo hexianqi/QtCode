@@ -22,6 +22,11 @@ void HControllerFactory::initialize(QVariantMap param)
     Q_UNUSED(param)
 }
 
+QString HControllerFactory::typeName()
+{
+    return "HControllerFactory";
+}
+
 IThreadCollection *HControllerFactory::createThreadCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)

@@ -11,7 +11,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IDevice;
 
-class HE_COMMUNICATE_EXPORT IDeviceCollection : virtual public ICollection<IDevice>
+class IDeviceCollection : virtual public ICollection<IDevice>
 {
 public:
     // 添加支持动作

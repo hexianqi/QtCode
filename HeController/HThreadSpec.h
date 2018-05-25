@@ -16,6 +16,7 @@ public:
     ~HThreadSpec();
 
 public:
+    virtual QString typeName() override;
     virtual QString threadInfo() override;
 
 protected:

@@ -34,7 +34,7 @@ public:
         ColorPurity = 0.0;
         RenderingIndex.fill(0, 14);
         RenderingIndexAvg = 0.0;
-        SpectrueLuminous = 0.0;
+        Luminous = 0.0;
         SDCM = 0;
     }
 
@@ -62,7 +62,7 @@ public:
     QVector<double> RenderingIndex;
     double RenderingIndexAvg;
     // 其他
-    double SpectrueLuminous;
+    double Luminous;
     double SDCM;
 };
 

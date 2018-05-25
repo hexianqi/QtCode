@@ -49,7 +49,7 @@ void HTestData::initialize(QVariantMap param)
         d_ptr->successor = FromVariant(ITestData, param.value("successor"));
     if (param.contains("datas"))
     {
-        QHashIterator<QString, QVariant> i(param.value("datas").toHash());
+        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
         while (i.hasNext())
         {
             i.next();
@@ -58,9 +58,14 @@ void HTestData::initialize(QVariantMap param)
     }
 }
 
-void HTestData::setSuccessor(ITestData *successor)
+QString HTestData::typeName()
 {
-    d_ptr->successor = successor;
+    return "HTestData";
+}
+
+void HTestData::setSuccessor(ITestData *p)
+{
+    d_ptr->successor = p;
 }
 
 void HTestData::setData(QString type, QVariant value)

@@ -10,7 +10,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class IThread;
 
-class HE_CONTROLLER_EXPORT IThreadCollection : virtual public ICollection<IThread>
+class IThreadCollection : virtual public ICollection<IThread>
 {
 };
 

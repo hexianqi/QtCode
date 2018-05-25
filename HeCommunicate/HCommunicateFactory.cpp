@@ -5,48 +5,43 @@
 #include "HDeviceSL.h"
 #include "HProtocol.h"
 #include "HProtocolCollection.h"
+#include "HeCore/HFactory.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 HCommunicateFactory::HCommunicateFactory()
     : d_ptr(new HCommunicateFactoryPrivate)
 {
+    registerClass();
 }
 
 HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p)
     : d_ptr(&p)
 {
+    registerClass();
 }
 
 HCommunicateFactory::~HCommunicateFactory()
 {
 }
 
-void HCommunicateFactory::initialize(QVariantMap param)
+void HCommunicateFactory::initialize(QVariantMap /*param*/)
 {
-    Q_UNUSED(param)
+}
+
+QString HCommunicateFactory::typeName()
+{
+    return "HCommunicateFactory";
 }
 
 IPort *HCommunicateFactory::createPort(QString type, QVariantMap param)
 {
-    IPort *p = nullptr;
-    if (type.compare("COM", Qt::CaseInsensitive) == 0)
-        p = new HSerialPort;
-    if (type.compare("USB_Cy", Qt::CaseInsensitive) == 0)
-        p = new HUsbPortCy;
-    if (p != nullptr)
-        p->initialize(param);
-    return p;
+    return HFactory::createObject<IPort>(type, param);
 }
 
 IDevice *HCommunicateFactory::createDevice(QString type, QVariantMap param)
 {
-    IDevice *p = nullptr;
-    if (type.compare("SL", Qt::CaseInsensitive) == 0)
-        p = new HDeviceSL;
-    if (p != nullptr)
-        p->initialize(param);
-    return p;
+    return HFactory::createObject<IDevice>(type, param);
 }
 
 IDeviceCollection *HCommunicateFactory::createDeviceCollection(QString type, QVariantMap param)
@@ -71,6 +66,13 @@ IProtocolCollection *HCommunicateFactory::createProtocolCollection(QString type,
     HProtocolCollection *p = new HProtocolCollection;
     p->initialize(param);
     return p;
+}
+
+void HCommunicateFactory::registerClass()
+{
+    HFactory::registerClass<HSerialPort>("HSerialPort");
+    HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
+    HFactory::registerClass<HDeviceSL>("HDeviceSL");
 }
 
 HE_COMMUNICATE_END_NAMESPACE

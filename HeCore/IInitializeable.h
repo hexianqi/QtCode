@@ -7,9 +7,12 @@
 HE_CORE_BEGIN_NAMESPACE
 
 // 可初始化接口
-class HE_CORE_EXPORT IInitializeable
+class IInitializeable
 {
 public:
+    // 类型名称
+    virtual QString typeName() = 0;
+    // 初始化
     virtual void initialize(QVariantMap param) = 0;
 };
 

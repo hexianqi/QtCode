@@ -10,20 +10,12 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-QHash<QByteArray, std::function<QObject*(QObject*)>> HObjectFactory::hashConstructor;
+QHash<QByteArray, std::function<QObject*(QObject*)>> HObjectFactory::__hashConstructor;
 
 template<typename T>
 void HObjectFactory::registerClass()
 {
-    hashConstructor.insert(T::staticMetaObject.className(), &constructorHelper<T>);
-}
-
-template<typename T>
-T *HeCore::HObjectFactory::createObject(const QByteArray &className, QObject *parent)
-{
-    if (!hashConstructor.contains(className))
-        return nullptr;
-    return dynamic_cast<T*>(hashConstructor[className](parent));
+    __hashConstructor.insert(T::staticMetaObject.className(), &constructorHelper<T>);
 }
 
 template<typename T>

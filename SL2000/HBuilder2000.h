@@ -16,17 +16,27 @@ public:
     explicit HBuilder2000(QObject *parent = nullptr);
     ~HBuilder2000();
 
+signals:
+    void configManageChanged(quint32 type);
+
 public:
     virtual HMainWindow *createMainWindow() override;
 
 protected:
+    void buildMainWindow();
     void buildFactory();
     void buildTestData();
+    void buildConfigManage();
     void buildDevices();
     void buildProtocols();
     void buildThreads();
     void buildModel();
-    void buildMainWindow();
+
+
+
+    void initMainWindow();
+    void initConfigManageDefault();
+    void initTestData(quint32 type);
 };
 
 #endif // HBUILDER2000_H

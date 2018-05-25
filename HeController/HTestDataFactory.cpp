@@ -13,25 +13,29 @@ HTestDataFactory::HTestDataFactory(HTestDataFactoryPrivate &p)
 {
 }
 
-void HTestDataFactory::initialize(QVariantMap param)
+void HTestDataFactory::initialize(QVariantMap /*param*/)
 {
-    Q_UNUSED(param)
+}
+
+QString HTestDataFactory::typeName()
+{
+    return "HTestDataFactory";
 }
 
 ITestData *HTestDataFactory::createTestData(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ITestData *test = new HTestData;
-    test->initialize(param);
-    return test;
+    ITestData *p = new HTestData;
+    p->initialize(param);
+    return p;
 }
 
 ITestSpec *HTestDataFactory::createTestSpec(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ITestSpec *test = new HTestSpec;
-    test->initialize(param);
-    return test;
+    ITestSpec *p = new HTestSpec;
+    p->initialize(param);
+    return p;
 }
 
 HE_CONTROLLER_END_NAMESPACE

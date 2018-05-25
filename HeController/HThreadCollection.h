@@ -14,6 +14,9 @@ public:
     explicit HThreadCollection();
     ~HThreadCollection();
 
+public:
+    virtual QString typeName() override;
+
 protected:
     HThreadCollection(HThreadCollectionPrivate &p);
 

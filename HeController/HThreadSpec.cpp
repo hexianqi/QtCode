@@ -40,6 +40,11 @@ HThreadSpec::~HThreadSpec()
     qDebug() << "HThreadSpec Destroy";
 }
 
+QString HThreadSpec::typeName()
+{
+    return "HThreadSpec";
+}
+
 QString HThreadSpec::threadInfo()
 {
     return tr("光谱线程");

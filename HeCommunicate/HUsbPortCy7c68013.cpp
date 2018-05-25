@@ -29,7 +29,7 @@ void HUsbPortCy7c68013::initialize(QVariantMap param)
 
 QString HUsbPortCy7c68013::typeName()
 {
-    return "USB";
+    return "HUsbPortCy7c68013";
 }
 
 HErrorType HUsbPortCy7c68013::openPort(int portNum)

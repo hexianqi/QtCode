@@ -14,11 +14,12 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
     virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
     virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
-    HTestDataFactory(HTestDataFactoryPrivate &p);
+    HTestDataFactory(HTestDataFactoryPrivate &);
 
 protected:
     QScopedPointer<HTestDataFactoryPrivate> d_ptr;

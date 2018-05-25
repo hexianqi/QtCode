@@ -10,9 +10,6 @@ class HModel2000Private : public HAbstractModelPrivate
 
 public:
     HModel2000Private(HModel2000 *q);
-
-public:
-    void init();
 };
 
 #endif // HMODEL2000_P_H

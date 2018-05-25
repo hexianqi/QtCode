@@ -64,7 +64,7 @@ HUsbPortLpc214::~HUsbPortLpc214()
 
 QString HUsbPortLpc214::typeName()
 {
-    return "USB";
+    return "HUsbPortLpc214";
 }
 
 HErrorType HUsbPortLpc214::openPort(int portNum)

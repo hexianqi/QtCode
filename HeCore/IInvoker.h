@@ -7,13 +7,13 @@ HE_CORE_BEGIN_NAMESPACE
 
 class IHandler;
 
-class HE_CORE_EXPORT IInvoker : public IInitializeable
+// 调用者
+class IInvoker : public IInitializeable
 {
-//public:
-//    virtual ~IInvoker() = default;
-
 public:
-    virtual void setHandler(IHandler *handler) = 0;
+    // 设置处理者
+    virtual void setHandler(IHandler *) = 0;
+    // 调用命令类
     virtual void call() = 0;
 };
 

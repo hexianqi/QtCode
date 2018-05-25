@@ -12,11 +12,11 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IDevice;
 
-class HE_COMMUNICATE_EXPORT IProtocol : public IInitializeable
+class IProtocol : public IInitializeable
 {
 public:
     // 设置设备
-    virtual void setDevice(IDevice *device) = 0;
+    virtual void setDevice(IDevice *) = 0;
     // 打开
     virtual HErrorType open() = 0;
     // 关闭

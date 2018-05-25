@@ -10,7 +10,10 @@ template <class T>
 class ICollection : public IInitializeable
 {
 public:
+    virtual void clear() = 0;
+    virtual bool contains(QString name) = 0;
     virtual void insert(QString name, T *value) = 0;
+    virtual T *first() = 0;
     virtual T *value(QString name) = 0;
     virtual QList<T *> values() = 0;
 };

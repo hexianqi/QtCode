@@ -14,17 +14,20 @@ public:
     ~HCollection();
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual void clear() override;
+    virtual bool contains(QString name) override;
     virtual void insert(QString name, T *value) override;
+    virtual T *first() override;
     virtual T *value(QString name) override;
     virtual QList<T *> values() override;
 
 protected:
-    QScopedPointer<QHash<QString, T *>> _datas;
+    QScopedPointer<QMap<QString, T *>> _datas;
 };
 
 template <class T>
 inline HCollection<T>::HCollection()
-    : _datas(new QHash<QString, T *>)
+    : _datas(new QMap<QString, T *>)
 {
 }
 
@@ -38,7 +41,7 @@ inline void HCollection<T>::initialize(QVariantMap param)
 {
     if (param.contains("datas"))
     {
-        QHashIterator<QString, QVariant> i(param.value("datas").toHash());
+        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
         while (i.hasNext())
         {
             i.next();
@@ -47,10 +50,28 @@ inline void HCollection<T>::initialize(QVariantMap param)
     }
 }
 
+template<class T>
+inline void HCollection<T>::clear()
+{
+    _datas->clear();
+}
+
+template<class T>
+inline bool HCollection<T>::contains(QString name)
+{
+    return _datas->contains(name);
+}
+
 template <class T>
 inline void HCollection<T>::insert(QString name, T *value)
 {
     _datas->insert(name, value);
+}
+
+template<class T>
+inline T *HCollection<T>::first()
+{
+    return _datas->first();
 }
 
 template <class T>

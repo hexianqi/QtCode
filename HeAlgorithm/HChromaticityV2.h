@@ -5,19 +5,24 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+class HChromaticityV2Private;
+
 class HChromaticityV2 : public HChromaticity
 {
-public:
-    HChromaticityV2();
+    Q_DECLARE_PRIVATE(HChromaticityV2)
 
 public:
-    virtual void calcSpectrum(ISpectrumData *sp) override;
+    explicit HChromaticityV2();
+    ~HChromaticityV2();
+
+public:
+    virtual void calcSpectrum(ISpectrumData *) override;
 
 protected:
     virtual QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc) override;
 
 protected:
-    std::shared_ptr<HCieUcs> _cieUcs;
+    HChromaticityV2(HChromaticityV2Private &p);
 };
 
 HE_ALGORITHM_END_NAMESPACE

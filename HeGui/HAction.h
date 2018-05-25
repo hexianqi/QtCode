@@ -21,7 +21,8 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
-    virtual void setHandler(IHandler *handle) override;
+    virtual QString typeName() override;
+    virtual void setHandler(IHandler *) override;
     virtual void call() override;
 
 protected:

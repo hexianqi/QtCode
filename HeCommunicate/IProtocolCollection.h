@@ -10,7 +10,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IProtocol;
 
-class HE_COMMUNICATE_EXPORT IProtocolCollection : virtual public ICollection<IProtocol>
+class IProtocolCollection : virtual public ICollection<IProtocol>
 {
 };
 

@@ -26,14 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    HModel2000.cpp \
-    HMainWindow2000.cpp \
+        HModel2000.cpp \
+#    HMainWindow2000.cpp \
     HBuilder2000.cpp
 
 HEADERS += \
     HModel2000.h \
-    HMainWindow2000.h \
-    HMainWindow2000_p.h \
+#    HMainWindow2000.h \
+#    HMainWindow2000_p.h \
     HModel2000_p.h \
     HBuilder2000.h \
     HBuilder2000_p.h
@@ -46,6 +46,7 @@ Debug {
     CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHeDatad \
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeControllerd \
             -L$$DESTDIR -lHeGuid
@@ -53,7 +54,8 @@ Debug {
 
 Release {
     LIBS    += \
-            -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHeCore \
+            -L$$DESTDIR -lHeData \
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeController \
             -L$$DESTDIR -lHeGui

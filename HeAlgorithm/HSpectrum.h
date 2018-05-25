@@ -7,7 +7,7 @@ class QPointF;
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HSpectrum
+class HE_ALGORITHM_EXPORT HSpectrum
 {
 public:
     //色坐标转换

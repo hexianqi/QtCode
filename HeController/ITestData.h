@@ -13,7 +13,7 @@ class ITestData : public IInitializeable
 {
 public:
     // 设置后继者
-    virtual void setSuccessor(ITestData *successor) = 0;
+    virtual void setSuccessor(ITestData *) = 0;
     virtual void setData(QString type, QVariant value) = 0;
 
 public:

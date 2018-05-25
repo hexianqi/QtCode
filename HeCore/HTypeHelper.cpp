@@ -45,7 +45,7 @@ T *HTypeHelper::createObject(QString className, QVariantMap param)
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");
     auto t = createObject<T>(className);
     if (t != nullptr)
-        t.initialize(param);
+        t->initialize(param);
     return t;
 }
 

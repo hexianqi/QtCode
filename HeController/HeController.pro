@@ -26,13 +26,13 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-    HControllerFactory.cpp
+            HControllerFactory.cpp
 
 HEADERS     += \
             HControllerGlobal.h \
-    IControllerFactory.h \
-    HControllerFactory.h \
-    HControllerFactory_p.h
+            IControllerFactory.h \
+            HControllerFactory.h \
+            HControllerFactory_p.h
 
 INCLUDEPATH += ".."
 
@@ -40,15 +40,18 @@ Debug {
     TARGET = HeControllerd
     LIBS    += \
             -L$$DESTDIR -lHeCored \
-            -L$$DESTDIR -lHeCommunicated
-
+            -L$$DESTDIR -lHeCommunicated \
+            -L$$DESTDIR -lHeDatad \
+            -L$$DESTDIR -lHeAlgorithmd
 }
 
 Release {
     TARGET  = HeController
     LIBS    += \
             -L$$DESTDIR -lHeCore \
-            -L$$DESTDIR -lHeCommunicate
+            -L$$DESTDIR -lHeCommunicate \
+            -L$$DESTDIR -lHeData \
+            -L$$DESTDIR -lHeAlgorithm
 }
 
 unix {
@@ -56,6 +59,6 @@ unix {
     INSTALLS += target
 }
 
-include(Thread.pri)
-include(Model.pri)
-include(Test.pri)
+include(thread.pri)
+include(model.pri)
+include(test.pri)

@@ -7,7 +7,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HCommunicateFactoryPrivate;
 
-class HE_COMMUNICATE_EXPORT HCommunicateFactory : public ICommunicateFactory
+class HCommunicateFactory : public ICommunicateFactory
 {
 public:
     explicit HCommunicateFactory();
@@ -15,6 +15,9 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
+
+public:
     virtual IPort *createPort(QString type, QVariantMap param = QVariantMap()) override;
     virtual IDevice *createDevice(QString type, QVariantMap param = QVariantMap()) override;
     virtual IDeviceCollection *createDeviceCollection(QString type, QVariantMap param = QVariantMap()) override;
@@ -23,6 +26,9 @@ public:
 
 protected:
     HCommunicateFactory(HCommunicateFactoryPrivate &p);
+
+private:
+    void registerClass();
 
 protected:
     QScopedPointer<HCommunicateFactoryPrivate> d_ptr;

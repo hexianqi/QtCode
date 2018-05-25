@@ -11,7 +11,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 class ITestData;
 class ITestSpec;
 
-class HE_CONTROLLER_EXPORT ITestDataFactory : public IInitializeable
+class ITestDataFactory : public IInitializeable
 {
 public:
     // 创建测试数据

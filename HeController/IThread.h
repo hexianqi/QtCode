@@ -10,7 +10,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HE_CONTROLLER_EXPORT IThread : public QThread, public IInitializeable
+class IThread : public QThread, public IInitializeable
 {
     Q_OBJECT
 

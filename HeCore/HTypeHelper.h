@@ -7,7 +7,7 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HTypeHelper
+class HTypeHelper
 {
 public:
     template<class T>

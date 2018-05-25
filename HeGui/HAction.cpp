@@ -27,15 +27,19 @@ void HAction::initialize(QVariantMap param)
         setData(param.value("data"));
 }
 
-void HAction::setHandler(IHandler *handler)
+QString HAction::typeName()
 {
-    d_ptr->handler = handler;
+    return "HAction";
+}
+
+void HAction::setHandler(IHandler *p)
+{
+    d_ptr->handler = p;
 }
 
 void HAction::call()
 {
-    if (d_ptr->handler == nullptr)
-        throw std::logic_error(QString("Action'%1': The handler is not init.").arg(text()).toStdString());
+    Q_ASSERT_X(d_ptr->handler != nullptr, "HAction", " The handler is not init.");
     QVariantMap param;
     param.insert("data", this->data());
     d_ptr->handler->execute(this, param);

@@ -16,11 +16,12 @@ public:
     explicit HModel2000(QObject *parent = nullptr);
     ~HModel2000();
 
+public:
+    virtual QString typeName() override;
+
+
 protected:
     HModel2000(HModel2000Private &p, QObject *parent = nullptr);
-
-public:
-    virtual bool initConfig();
 };
 
 #endif // HMODEL2000_H

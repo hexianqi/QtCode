@@ -20,7 +20,7 @@ public:
 
 public:
     // 计算光谱参数
-    void calcSpectrum(ISpectrumData *sp);
+    void calcSpectrum(ISpectrumData *);
     // 设置色度参数计算方法
     void setChromaticity(int type);
     // 获取色度参数计算方法

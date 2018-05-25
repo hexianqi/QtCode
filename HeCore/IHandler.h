@@ -5,7 +5,8 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT IHandler : public IInitializeable
+// 处理者接口
+class IHandler : public IInitializeable
 {
 public:
     virtual void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) = 0;

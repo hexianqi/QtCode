@@ -14,7 +14,7 @@ public:
 
 public:
     ITestData *successor = nullptr;
-    QVariantHash datas;
+    QVariantMap datas;
 };
 
 HE_CONTROLLER_END_NAMESPACE

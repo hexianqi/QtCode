@@ -61,7 +61,7 @@ void HDeviceSL::initialize(QVariantMap param)
 
 QString HDeviceSL::typeName()
 {
-    return "SL";
+    return "HDeviceSL";
 }
 
 void HDeviceSL::setEncrypt(QVector<bool> value)

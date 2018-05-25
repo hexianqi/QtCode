@@ -1,4 +1,4 @@
-#include "HChromaticity.h"
+#include "HChromaticity_p.h"
 #include "ISpectrumData.h"
 #include "HSpectrum.h"
 #include <QFile>
@@ -7,11 +7,25 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-HChromaticity::HChromaticity()
+HChromaticityPrivate::HChromaticityPrivate()
 {
-    _cie1931 = std::make_shared<HCie1931>();
-    _cieDay = std::make_shared<HCieDay>();
-    _isotherm = std::make_shared<HIsotherm>();
+    cie1931 = std::make_shared<HCie1931>();
+    cieDay = std::make_shared<HCieDay>();
+    isotherm = std::make_shared<HIsotherm>();
+}
+
+HChromaticity::HChromaticity()
+    : d_ptr(new HChromaticityPrivate)
+{
+}
+
+HChromaticity::HChromaticity(HChromaticityPrivate &p)
+    : d_ptr(&p)
+{
+}
+
+HChromaticity::~HChromaticity()
+{
 }
 
 void HChromaticity::calcSpectrum(ISpectrumData *sp)
@@ -19,12 +33,12 @@ void HChromaticity::calcSpectrum(ISpectrumData *sp)
     if (sp->Energy.isEmpty())
         return;
 
-    sp->CoordinateUv = _cie1931->calcCoordinateUv(sp->Energy);
+    sp->CoordinateUv = d_ptr->cie1931->calcCoordinateUv(sp->Energy);
     sp->CoordinateXy = HSpectrum::uv2xy(sp->CoordinateUv);
     sp->CoordinateUvp = HSpectrum::uv2uvp(sp->CoordinateUv);
-    sp->ColorTemperature = _isotherm->calcColorTemperature(sp->CoordinateUv);
-    sp->Duv = _cie1931->calcDuv(sp->CoordinateUv, sp->ColorTemperature);
-    _cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
+    sp->ColorTemperature = d_ptr->isotherm->calcColorTemperature(sp->CoordinateUv);
+    sp->Duv = d_ptr->cie1931->calcDuv(sp->CoordinateUv, sp->ColorTemperature);
+    d_ptr->cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
     sp->RenderingIndex = calcColorRenderingIndex(sp->CoordinateUv, sp->Energy, sp->ColorTemperature);
     sp->RenderingIndexAvg = calcColorRenderingIndexAvg(sp->RenderingIndex);
 }
@@ -32,7 +46,7 @@ void HChromaticity::calcSpectrum(ISpectrumData *sp)
 QLineF HChromaticity::calcIsothermUv(double tc, double duv)
 {
     QLineF line;
-    auto iso = _cie1931->calcIsothermFit(tc);
+    auto iso = d_ptr->cie1931->calcIsothermFit(tc);
     auto angle = qRadiansToDegrees(qAtan(iso.slope));
     if (angle < 0)
         angle = angle + 180;
@@ -74,7 +88,7 @@ bool HChromaticity::exportIsotherm(QString fileName, QPointF tc, double interval
     for (i = 0; i < n; i++)
     {
         t = tc.x() + interval * i;
-        isotherm.append(_cie1931->calcIsotherm(t));
+        isotherm.append(d_ptr->cie1931->calcIsotherm(t));
     }
     return exportIsotherm(fileName, isotherm);
 }
@@ -89,7 +103,7 @@ bool HChromaticity::exportIsotherm(QString fileName)
     for (i = 1; i < 601; i++)
         mrecpK.append(i);
     for (i = 0; i < mrecpK.size(); i++)
-        isotherm.append(_cie1931->calcIsotherm(1000000.0 / mrecpK[i]));
+        isotherm.append(d_ptr->cie1931->calcIsotherm(1000000.0 / mrecpK[i]));
     return exportIsotherm(fileName, isotherm);
 }
 
@@ -161,7 +175,7 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF sp
     auto cdk = HSpectrum::uv2cd(uvk);
     ck = cdk.x();
     dk = cdk.y();
-    _cie1931->calcColorReflectance(spdk, uki, vki, Yki);
+    d_ptr->cie1931->calcColorReflectance(spdk, uki, vki, Yki);
 
     for (i = 0; i < 14; i++)
     {
@@ -197,12 +211,12 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     QPolygonF spd;
     CIE_UCS ucs;
 
-    spd = _cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
-    uvt = _cie1931->calcIsoCoordinateUv(tc);
+    spd = d_ptr->cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
+    uvt = d_ptr->cie1931->calcIsoCoordinateUv(tc);
     xyt = HSpectrum::uv2xy(uvt);
-    uv = _cie1931->calcCoordinateUv(spd);
+    uv = d_ptr->cie1931->calcCoordinateUv(spd);
     cd = HSpectrum::uv2cd(uv);
-    _cie1931->calcColorReflectance(spd, uri, vri, Yri);
+    d_ptr->cie1931->calcColorReflectance(spd, uri, vri, Yri);
     for (i = 0; i < 14; i++)
     {
         Wri[i] = 25 * pow(Yri[i], 1.0/3) - 17;

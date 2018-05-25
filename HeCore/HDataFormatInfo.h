@@ -18,7 +18,7 @@ class HE_CORE_EXPORT HDataFormatInfo
 {
 public:
     HDataFormatInfo();
-    HDataFormatInfo(QString typeName, double min = 0, double max = 0, int decimals = 0, double singleStep = 1);
+    HDataFormatInfo(QString typeName, double min = 0, double max = 65535, int decimals = 0, double singleStep = 1);
     HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals = 0, double singleStep = 1, QColor color = Qt::black);
     HDataFormatInfo(const HDataFormatInfo &);
     HDataFormatInfo &operator=(const HDataFormatInfo &);

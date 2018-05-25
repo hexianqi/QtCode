@@ -31,10 +31,15 @@ void HProtocol::initialize(QVariantMap param)
         setDevice(FromVariant(IDevice, param.value("device")));
 }
 
-void HProtocol::setDevice(IDevice *device)
+QString HProtocol::typeName()
+{
+    return "HProtocol";
+}
+
+void HProtocol::setDevice(IDevice *p)
 {
     close();
-    d_ptr->device = device;
+    d_ptr->device = p;
 }
 
 HErrorType HProtocol::open()

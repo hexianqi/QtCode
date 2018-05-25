@@ -166,6 +166,9 @@ void HGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_GET_INTEGRAL_TIME,             tr("获取积分时间"));
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
 
+    hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱"));
+
+
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
 //    hashActionComment.insert(ACT_SET_ELEC_MODULE,                QStringList() << tr("ACT_SET_ELEC_MODULE") << tr("设置电学参数模块"));
@@ -238,7 +241,6 @@ void HGlobalInstance::initActionComment()
 //    hashActionComment.insert(ACT_GET_LUMINOUS_SPECTRUM,          QStringList() << tr("ACT_GET_LUMINOUS_SPECTRUM") << tr("获取光色数据"));
 
 //    hashActionComment.insert(ACT_RESET_GRADE,                    QStringList() << tr("ACT_RESET_GRADE") << tr("重新设置分级"));
-//    hashActionComment.insert(ACT_RESET_SPECTRUM,                 QStringList() << tr("ACT_RESET_SPECTRUM") << tr("重新设置光谱波长范围"));
 //    hashActionComment.insert(ACT_RESET_JUDGMENT,                 QStringList() << tr("ACT_RESET_JUDGMENT") << tr("重新设置合格判定"));
 //    hashActionComment.insert(ACT_RESET_CIRCUIT,                  QStringList() << tr("ACT_RESET_CIRCUIT") << tr("重新设置线路配置"));
 }
@@ -303,12 +305,67 @@ void HGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("",                               new HDataFormatInfo());
     hashDataFormatInfo.insert("[]",                             new HDataFormatInfo("[]"));
     hashDataFormatInfo.insert("[_Fi]",                          new HDataFormatInfo("[_Fi]", 0, 65535));
-    //光谱参数
-    hashDataFormatInfo.insert(tr("[积分时间]"),                 new HDataFormatInfo("[积分时间]", tr("ms"), 1, 5000, 1));
-    hashDataFormatInfo.insert(tr("[光谱平均次数]"),             new HDataFormatInfo("[光谱平均次数]", 1, 8));
-    hashDataFormatInfo.insert(tr("[光谱采样延时]"),             new HDataFormatInfo("[光谱采样延时]", 0, 600));
-    hashDataFormatInfo.insert(tr("[光谱采样等待时间]"),         new HDataFormatInfo("[光谱采样等待时间]", 0, 1000));
-//    //电参数
+    // 光谱设置参数
+    hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 500, 1));
+    hashDataFormatInfo.insert("[光谱采样等待时间]",             new HDataFormatInfo("[光谱采样等待时间]", 0, 1000));
+    hashDataFormatInfo.insert("[光谱平均次数]",                 new HDataFormatInfo("[光谱平均次数]", 1, 8));
+    hashDataFormatInfo.insert("[光谱采样延时]",                 new HDataFormatInfo("[光谱采样延时]", 0, 600));
+    hashDataFormatInfo.insert("[积分时间范围]",                 new HDataFormatInfo("[积分时间范围]", "ms", 1, 500, 1));
+    hashDataFormatInfo.insert("[光谱平滑帧数]",                 new HDataFormatInfo("[光谱平滑帧数]", 1, 100));
+    hashDataFormatInfo.insert("[光谱保留像元]",                 new HDataFormatInfo("[光谱保留像元]", 0, 2047));
+    hashDataFormatInfo.insert("[光谱固定暗底]",                 new HDataFormatInfo("[光谱固定暗底]", 0, 9999.9, 1));
+    hashDataFormatInfo.insert("[光谱左右暗底差]",               new HDataFormatInfo("[光谱左右暗底差]", 0, 9999.9, 1));
+    hashDataFormatInfo.insert("[光谱平滑次数]",                 new HDataFormatInfo("[光谱平滑次数]", 0, 100));
+    hashDataFormatInfo.insert("[光谱平滑范围]",                 new HDataFormatInfo("[光谱平滑范围]", 0, 100));
+    hashDataFormatInfo.insert("[光谱采样范围]",                 new HDataFormatInfo("[光谱采样范围]", 0.0, 65536.0, 1));
+    hashDataFormatInfo.insert("[光谱波长范围]",                 new HDataFormatInfo("[光谱波长范围]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[光谱波长间隔]",                 new HDataFormatInfo("[光谱波长间隔]", "nm", 0, 100, 1));
+    hashDataFormatInfo.insert("[光谱屏蔽波长范围]",             new HDataFormatInfo("[光谱屏蔽波长范围]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[光谱拟合范围]",                 new HDataFormatInfo("[光谱拟合范围]", 0, 65535));
+    //hashDataFormatInfo.insert("[光谱拟合系数]",                 new HDataFormatInfo("[光谱拟合系数]", 0, 65535));
+//    hashDataFormatInfo.insert("[拟合_多项式次数]"),                 FTypeInfo(tr("[拟合_多项式次数]"), 2, 20));
+//    hashDataFormatInfo.insert("[拟合_取样次数]"),                   FTypeInfo(tr("[拟合_取样次数]"), 2, 500));
+    hashDataFormatInfo.insert("[标准色温]",                     new HDataFormatInfo("[标准色温]", "K", 2300, 4000, 2));
+    hashDataFormatInfo.insert("[标准光谱光通量]",               new HDataFormatInfo("[标准光谱光通量]", "lm", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
+
+
+    //    //光谱设置参数
+    //    hashFormatInfo.insert(tr("[像元位置]"),                        FTypeInfo(tr("[像元位置]"), 0, 2047));
+   //
+
+
+
+    // 光谱数据
+    hashDataFormatInfo.insert("[光谱采样]",                     new HDataFormatInfo("[光谱采样]", 0.0, 65536.0, 1));
+
+
+    hashDataFormatInfo.insert("[波长]",                         new HDataFormatInfo("[波长]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[峰值波长]",                     new HDataFormatInfo("[峰值波长]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[峰值带宽]",                     new HDataFormatInfo("[峰值带宽]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[主波长]",                       new HDataFormatInfo("[主波长]", "nm", 360, 780, 1));
+    hashDataFormatInfo.insert("[色纯度]",                       new HDataFormatInfo("[色纯度]", 0, 100, 3));
+    hashDataFormatInfo.insert("[色温]",                         new HDataFormatInfo("[色温]", "K", 1400, 25000));
+    hashDataFormatInfo.insert("[显色指数]",                     new HDataFormatInfo("[显色指数]", 0, 100, 2));
+    hashDataFormatInfo.insert("[显色指数Rx]",                   new HDataFormatInfo("[显色指数Rx]", 0, 100, 1));
+    hashDataFormatInfo.insert("[色坐标]",                       new HDataFormatInfo("[色坐标]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标uv]",                     new HDataFormatInfo("[色坐标uv]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标uvp]",                    new HDataFormatInfo("[色坐标uvp]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标x]",                      new HDataFormatInfo("[色坐标x]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标y]",                      new HDataFormatInfo("[色坐标y]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标u]",                      new HDataFormatInfo("[色坐标u]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标v]",                      new HDataFormatInfo("[色坐标v]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标up]",                     new HDataFormatInfo("[色坐标up]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标vp]",                     new HDataFormatInfo("[色坐标vp]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[Duv]",                          new HDataFormatInfo("[Duv]", 0, 0.5, 3, 0.01));
+    hashDataFormatInfo.insert("[红色比]",                       new HDataFormatInfo("[红色比]", "%", 0, 100, 1));
+    hashDataFormatInfo.insert("[蓝色比]",                       new HDataFormatInfo("[蓝色比]", "%", 0, 100, 1));
+    hashDataFormatInfo.insert("[绿色比]",                       new HDataFormatInfo("[绿色比]", "%", 0, 100, 1));
+    hashDataFormatInfo.insert("[光谱光通量]",                   new HDataFormatInfo("[光谱光通量]", "lm", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[色容差]",                       new HDataFormatInfo("[色容差]", "SDCM", 0, 100, 1, 1));
+
+
+            //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
 //    hashFormatInfo.insert(tr("[反向电压_Fi]"),                     FTypeInfo(tr("[反向电压_Fi]"), 0, 65535));
 //    hashFormatInfo.insert(tr("[正向电流_Fi]"),                     FTypeInfo(tr("[正向电流_Fi]"), 0, 65535));
@@ -391,46 +448,12 @@ void HGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[右1/5光强度角]"),                   FTypeInfo(tr("[右1/5光强度角]"), tr("°"), 0, 360, 1));
 //    hashFormatInfo.insert(tr("[理论光通量]"),                      FTypeInfo(tr("[理论光通量]"), tr("lm"), 0, 99999, 2, 100));
 //    //光谱能量参数
-//    hashFormatInfo.insert(tr("[波长]"),                            FTypeInfo(tr("[波长]"), tr("nm"), 300, 1100, 1));
-//    hashFormatInfo.insert(tr("[峰值波长]"),                        FTypeInfo(tr("[峰值波长]"), tr("nm"), 300, 1100, 1));
-//    hashFormatInfo.insert(tr("[峰值带宽]"),                        FTypeInfo(tr("[峰值带宽]"), tr("nm"), 300, 1100, 1));
-//    hashFormatInfo.insert(tr("[主波长]"),                          FTypeInfo(tr("[主波长]"), tr("nm"), 360, 780, 1));
-//    hashFormatInfo.insert(tr("[色纯度]"),                          FTypeInfo(tr("[色纯度]"), tr(""), 0, 100, 3));
-//    hashFormatInfo.insert(tr("[色温]"),                            FTypeInfo(tr("[色温]"), tr("K"), 1400, 25000));
-//    hashFormatInfo.insert(tr("[显色指数]"),                        FTypeInfo(tr("[显色指数]"), 0, 100, 2));
-//    hashFormatInfo.insert(tr("[显色指数Rx]"),                      FTypeInfo(tr("[显色指数Rx]"), 0, 100, 1));
-//    hashFormatInfo.insert(tr("[色坐标]"),                          FTypeInfo(tr("[色坐标]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标uv]"),                        FTypeInfo(tr("[色坐标uv]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标uvp]"),                       FTypeInfo(tr("[色坐标uvp]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标x]"),                         FTypeInfo(tr("[色坐标x]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标y]"),                         FTypeInfo(tr("[色坐标y]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标u]"),                         FTypeInfo(tr("[色坐标u]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标v]"),                         FTypeInfo(tr("[色坐标v]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标up]"),                        FTypeInfo(tr("[色坐标up]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[色坐标vp]"),                        FTypeInfo(tr("[色坐标vp]"), 0, 1, 4, 0.001));
-//    hashFormatInfo.insert(tr("[Duv]"),                             FTypeInfo(tr("[Duv]"), 0, 0.5, 3, 0.01));
-//    hashFormatInfo.insert(tr("[红色比]"),                          FTypeInfo(tr("[红色比]"), tr("%"), 0, 100, 1));
-//    hashFormatInfo.insert(tr("[蓝色比]"),                          FTypeInfo(tr("[蓝色比]"), tr("%"), 0, 100, 1));
-//    hashFormatInfo.insert(tr("[绿色比]"),                          FTypeInfo(tr("[绿色比]"), tr("%"), 0, 100, 1));
-//    hashFormatInfo.insert(tr("[光谱光通量]"),                      FTypeInfo(tr("[光谱光通量]"), tr("lm"), 0, 99999, 2, 100));
-//    hashFormatInfo.insert(tr("[色容差]"),                          FTypeInfo(tr("[色容差]"), tr("SDCM"), 0, 100, 1, 1));
 
-//    //光谱设置参数
-//    hashFormatInfo.insert(tr("[像元位置]"),                        FTypeInfo(tr("[像元位置]"), 0, 2047));
-//    hashFormatInfo.insert(tr("[波长范围]"),                        FTypeInfo(tr("[波长范围]"), tr("nm"), 300, 1100, 1));
-//    hashFormatInfo.insert(tr("[波长间隔]"),                        FTypeInfo(tr("[波长间隔]"), tr("nm"), 0, 100, 1));
-//    hashFormatInfo.insert(tr("[光谱采样]"),                        FTypeInfo(tr("[光谱采样]"), 0, 65536.0, 1));
-//    hashFormatInfo.insert(tr("[固定暗底]"),                        FTypeInfo(tr("[固定暗底]"), 0, 9999.9, 1));
-//    hashFormatInfo.insert(tr("[左右暗底]"),                        FTypeInfo(tr("[左右暗底]"), 0, 9999.9, 1));
-//    hashFormatInfo.insert(tr("[平滑次数]"),                        FTypeInfo(tr("[平滑次数]"), 0, 100));
-//    hashFormatInfo.insert(tr("[平滑范围]"),                        FTypeInfo(tr("[平滑范围]"), 0, 100));
-//    hashFormatInfo.insert(tr("[平滑帧数]"),                        FTypeInfo(tr("[平滑帧数]"), 1, 100));
+//    ;
 //
 //
 //    hashFormatInfo.insert(tr("[循环采样间隔]"),                    FTypeInfo(tr("[循环采样间隔]"), 0, 20000));
-//    hashFormatInfo.insert(tr("[标准色温]"),                        FTypeInfo(tr("[标准色温]"), tr("K"), 2300, 4000, 2));
-//    hashFormatInfo.insert(tr("[拟合_多项式次数]"),                 FTypeInfo(tr("[拟合_多项式次数]"), 2, 20));
-//    hashFormatInfo.insert(tr("[拟合_取样次数]"),                   FTypeInfo(tr("[拟合_取样次数]"), 2, 500));
+//
 //    hashFormatInfo.insert(tr("[偏移量]"),                          FTypeInfo(tr("[偏移量]"), -0.5, 0.5, 4, 0.001));
 ////    //电机参数
 ////    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));

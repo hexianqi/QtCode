@@ -16,4 +16,9 @@ HThreadCollection::~HThreadCollection()
 {
 }
 
+QString HThreadCollection::typeName()
+{
+    return "HThreadCollection";
+}
+
 HE_CONTROLLER_END_NAMESPACE
