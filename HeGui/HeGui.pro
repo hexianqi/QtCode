@@ -29,7 +29,7 @@ SOURCES     += \
             HAction.cpp \
             HGuiHelper.cpp \
             HAbstractBuilder.cpp \
-    HGuiFactory.cpp
+            HGuiFactory.cpp
 
 HEADERS     += \
             HGuiGlobal.h \
@@ -39,8 +39,10 @@ HEADERS     += \
             HAbstractBuilder.h \
             HAbstractBuilder_p.h \
             IGuiFactory.h \
-    HGuiFactory.h \
-    HGuiFactory_p.h
+            HGuiFactory.h \
+            HGuiFactory_p.h \
+
+RESOURCES   = HeGui.qrc
 
 INCLUDEPATH += ".."
 
@@ -67,3 +69,5 @@ unix {
 
 include(handler.pri)
 include(mainWindow.pri)
+
+

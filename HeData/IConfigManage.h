@@ -23,9 +23,16 @@ Q_DECLARE_FLAGS(ConfigContainTypes, ConfigContainType)
 class IConfigManage : virtual public IFileStream, public IInitializeable
 {
 public:
-    virtual void setContain(ConfigContainType value) = 0;
+    virtual void setContain(quint32 value) = 0;
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) = 0;
-    virtual ISpecCalibrate *getSpecCalibrate(QString name) = 0;
+
+public:
+    virtual quint32 contain() = 0;
+    virtual ISpecCalibrate *specCalibrate(QString name) = 0;
+
+public:
+    virtual bool importPart(quint32 value) = 0;
+    virtual bool exportPart(quint32 value) = 0;
 };
 
 HE_DATA_END_NAMESPACE

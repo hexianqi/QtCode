@@ -1,5 +1,6 @@
 #include "HBuilder2000_p.h"
 #include "HModel2000.h"
+#include "HMainWindow2000.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IDevice.h"
 #include "HeCommunicate/IDeviceCollection.h"
@@ -13,31 +14,30 @@
 #include "HeController/HControllerFactory.h"
 #include "HeController/HTestDataFactory.h"
 #include "HeController/HThreadSpec.h"
-#include "HeGui/HMainWindow.h"
+#include "HeGui/HGuiFactory.h"
+#include "HeGui/HAction.h"
 #include <QMessageBox>
+#include <QMenuBar>
 #include <QDebug>
 
 HBuilder2000Private::HBuilder2000Private()
 {
-    cfgFileName = "SL2000.cfg";
 }
 
 HBuilder2000::HBuilder2000(QObject *parent)
     : HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
 {
     HAppContext::setContextValue("Settings", "Ini\\SL2000.ini");
-    connect(this, &HBuilder2000::configManageChanged, this, &HBuilder2000::initTestData);
 }
 
 HBuilder2000::~HBuilder2000()
 {
-    qDebug() << "HBuilder2000 Destroy";
+    qDebug() << __func__;
 }
 
 HMainWindow *HBuilder2000::createMainWindow()
 {
     Q_D(HBuilder2000);
-    buildMainWindow();
     buildFactory();
     buildTestData();
     buildConfigManage();
@@ -45,15 +45,10 @@ HMainWindow *HBuilder2000::createMainWindow()
     buildProtocols();
     buildThreads();
     buildModel();
+    buildMainWindow();
+    buildMenu();
     initMainWindow();
     return d->window;
-}
-
-void HBuilder2000::buildMainWindow()
-{
-    Q_D(HBuilder2000);
-    d->window = new HMainWindow;
-    HAppContext::setContextPointer("MainWindow", d->window);
 }
 
 void HBuilder2000::buildFactory()
@@ -63,10 +58,12 @@ void HBuilder2000::buildFactory()
     d->testDataFactory = new HTestDataFactory;
     d->communicateFactory = new HCommunicateFactory;
     d->controllerFactory = new HControllerFactory;
+    d->guiFactory = new HGuiFactory(this);
     HAppContext::setContextPointer("IDataFactory", d->dataFactory);
     HAppContext::setContextPointer("ITestDataFactory", d->testDataFactory);
     HAppContext::setContextPointer("ICommunicateFactory", d->communicateFactory);
     HAppContext::setContextPointer("IControllerFactory", d->controllerFactory);
+    HAppContext::setContextPointer("IGuiFactory", d->guiFactory);
 }
 
 void HBuilder2000::buildTestData()
@@ -136,26 +133,34 @@ void HBuilder2000::buildModel()
     HAppContext::setContextPointer("IModel", d->model);
 }
 
+void HBuilder2000::buildMainWindow()
+{
+    Q_D(HBuilder2000);
+    d->window = new HMainWindow2000;
+    connect(d->window, &HMainWindow::configManageChanged, this, initTestData);
+    HAppContext::setContextPointer("MainWindow", d->window);
+}
+
+void HBuilder2000::buildMenu()
+{
+//    Q_D(HBuilder2000);
+//    auto help = d->window->menuBar()->addMenu("帮助(&H)");
+//    help->addAction(d->guiFactory->createAction(tr("关于(&A)..."), "HAboutHandler"));
+//    help->addAction(d->guiFactory->createAction(tr("测试..."), "HTestHandler"));
+}
+
 void HBuilder2000::initMainWindow()
 {
     Q_D(HBuilder2000);
 
-    if (!d->configManage->readFile(d->cfgFileName))
-    {
-        QMessageBox::warning(nullptr, "", tr("找不到校准文件，正在使用默认的校准。"));
+    d->window->setConfigFile("SL2000.cfg");
+    if (!d->window->setConfigManage(d->configManage))
         initConfigManageDefault();
-    }
     d->window->setModel(d->model);
-    emit configManageChanged(ConfigContainType::CCT_Spec);
 
 
 
-
-//
-    //    if (d->configManage->readFile(d->cfgFileName))
-
-    //    d->configManage->readFile();
-     //
+    initTestData(d->configManage->contain());
 }
 
 void HBuilder2000::initConfigManageDefault()
@@ -176,7 +181,7 @@ void HBuilder2000::initTestData(quint32 type)
     Q_D(HBuilder2000);
     if (type & ConfigContainType::CCT_Spec)
     {
-        d->testSpec->setCalibrate(d->configManage->getSpecCalibrate("1"));
+        d->testSpec->setCalibrate(d->configManage->specCalibrate("1"));
         d->model->addAction(ACT_RESET_SPECTRUM);
     }
 }

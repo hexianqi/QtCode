@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/ZoomIn.png</file>
+        <file>image/ZoomOut.png</file>
+        <file>dat/Chromaticity.dat</file>
+        <file>image/CIE1931.png</file>
+    </qresource>
+</RCC>

@@ -51,9 +51,9 @@ HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent)
 
 HAbstractThread::~HAbstractThread()
 {
+    qDebug() << __func__;
     writeSettings();
     stop();
-    qDebug() << "HAbstractThread Destroy";
 }
 
 void HAbstractThread::initialize(QVariantMap param)

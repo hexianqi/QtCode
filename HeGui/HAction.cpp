@@ -16,7 +16,6 @@ HAction::HAction(HActionPrivate &p, QObject *parent)
 
 HAction::~HAction()
 {
-
 }
 
 void HAction::initialize(QVariantMap param)

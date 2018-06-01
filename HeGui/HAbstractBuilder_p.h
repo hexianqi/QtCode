@@ -29,15 +29,16 @@ HE_CONTROLLER_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
 
 class HMainWindow;
+class IGuiFactory;
 
 class HAbstractBuilderPrivate
 {
 public:
-    QString cfgFileName;
     IDataFactory *dataFactory = nullptr;
     ITestDataFactory *testDataFactory = nullptr;
     ICommunicateFactory *communicateFactory = nullptr;
     IControllerFactory *controllerFactory = nullptr;
+    IGuiFactory *guiFactory = nullptr;
     IConfigManage *configManage = nullptr;
     ITestSpec *testSpec = nullptr;
     IDeviceCollection *devices = nullptr;

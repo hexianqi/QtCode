@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core gui
+QT          += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -43,10 +43,19 @@ INCLUDEPATH += ".."
 Debug {
     CONFIG  += console
     LIBS    += \
-            -L$$DESTDIR -lHeAlgorithmd
+            -L$$DESTDIR -lHeAlgorithmd \
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
     LIBS    += \
-            -L$$DESTDIR -lHeAlgorithm
+            -L$$DESTDIR -lHeAlgorithm \
+            -L$$DESTDIR -lHePlugin
 }
+
+DISTFILES +=
+
+STATECHARTS +=
+
+RESOURCES += \
+    HeTest.qrc

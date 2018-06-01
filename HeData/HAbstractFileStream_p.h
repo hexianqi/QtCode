@@ -14,6 +14,7 @@ public:
 
 public:
     IDataFactory *factory;
+    QString fileName;
     quint32 magicNumber;
     quint32 fileVersion;
     QString fileFilter;

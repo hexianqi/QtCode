@@ -26,8 +26,8 @@ HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent)
 
 HAbstractModel::~HAbstractModel()
 {
+    qDebug() << __func__;
     stopThread();
-    qDebug() << "HAbstractModel Destroy";
 }
 
 void HAbstractModel::initialize(QVariantMap param)

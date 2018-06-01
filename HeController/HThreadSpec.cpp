@@ -37,7 +37,7 @@ HThreadSpec::HThreadSpec(HThreadSpecPrivate &p, QObject *parent)
 
 HThreadSpec::~HThreadSpec()
 {
-    qDebug() << "HThreadSpec Destroy";
+    qDebug() << __func__;
 }
 
 QString HThreadSpec::typeName()

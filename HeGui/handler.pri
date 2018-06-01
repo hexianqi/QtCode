@@ -1,5 +1,9 @@
 HEADERS += \
-    $$PWD/HAbout.h
+    $$PWD/HAbstractGuiHandler.h \
+    $$PWD/HAbstractGuiHandler_p.h \
+    $$PWD/HTestHandler.h \
+    $$PWD/IGuiHandler.h
 
 SOURCES += \
-    $$PWD/HAbout.cpp
+    $$PWD/HAbstractGuiHandler.cpp \
+    $$PWD/HTestHandler.cpp

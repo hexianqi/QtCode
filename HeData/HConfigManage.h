@@ -21,11 +21,19 @@ public:
     virtual QString typeName() override;
 
 public:
-    virtual void setContain(ConfigContainType value) override;
+    virtual void setContain(quint32 value) override;
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
-    virtual ISpecCalibrate *getSpecCalibrate(QString name) override;
 
 public:
+    virtual quint32 contain() override;
+    virtual ISpecCalibrate *specCalibrate(QString name) override;
+
+public:
+    virtual bool importPart(quint32 value) override;
+    virtual bool exportPart(quint32 value) override;
+
+
+protected:
     virtual void readContent(QDataStream &) override;
     virtual void writeContent(QDataStream &) override;
 

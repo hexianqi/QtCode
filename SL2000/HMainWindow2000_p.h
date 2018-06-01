@@ -10,6 +10,8 @@ class HMainWindow2000Private : public HMainWindowPrivate
 
 public:
     HMainWindow2000Private(HMainWindow2000 *q);
+
+
 };
 
 #endif // HMAINWINDOW2100_P_H

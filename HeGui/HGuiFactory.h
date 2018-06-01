@@ -7,7 +7,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HGuiFactoryPrivate;
 
-class HGuiFactory : public QObject, public IGuiFactory
+class HE_GUI_EXPORT HGuiFactory : public QObject, public IGuiFactory
 {
 public:
     explicit HGuiFactory(QObject *parent = nullptr);
@@ -18,7 +18,8 @@ public:
     virtual QString typeName() override;
 
 public:
-    virtual IHandler *createHandler(QString type, QVariantMap param) override;
+    virtual IGuiHandler *createHandler(QString type, QVariantMap param = QVariantMap()) override;
+    virtual HAction *createAction(QString text, QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HGuiFactory(HGuiFactoryPrivate &p);

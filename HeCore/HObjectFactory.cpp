@@ -10,18 +10,6 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-QHash<QByteArray, std::function<QObject*(QObject*)>> HObjectFactory::__hashConstructor;
-
-template<typename T>
-void HObjectFactory::registerClass()
-{
-    __hashConstructor.insert(T::staticMetaObject.className(), &constructorHelper<T>);
-}
-
-template<typename T>
-QObject *HObjectFactory::constructorHelper(QObject *parent)
-{
-    return new T(parent);
-}
+QHash<QString, std::function<QObject*(QObject*)>> HObjectFactory::__hashConstructor;
 
 HE_CORE_END_NAMESPACE

@@ -1,6 +1,8 @@
 #include "HGuiFactory_p.h"
-#include "HeCore/IHandler.h"
-#include "HeCore/HFactory.h"
+#include "HeCore/HObjectFactory.h"
+#include "HAction.h"
+#include "HTestHandler.h"
+#include <QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -18,6 +20,7 @@ HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p)
 
 HGuiFactory::~HGuiFactory()
 {
+    qDebug() << __func__;
 }
 
 void HGuiFactory::initialize(QVariantMap /*param*/)
@@ -29,16 +32,25 @@ QString HGuiFactory::typeName()
     return "HGuiFactory";
 }
 
-IHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
+IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 {
-    param.insert("parent", QVariant::fromValue(this));
-    return HFactory::createObject<IHandler>(type, param);
+    auto p = HObjectFactory::createObject<IGuiHandler>(type, param, this);
+    if (p == nullptr)
+        p = new HTestHandler(this);
+    return p;
+}
+
+HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param)
+{
+    auto action = new HAction;
+    action->setText(text);
+    action->setHandler(createHandler(type, param));
+    return action;
 }
 
 void HGuiFactory::registerClass()
 {
-//    HFactory::registerClass<HSerialPort>("HSerialPort");
-//    HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
+    HObjectFactory::registerClass<HTestHandler>("HTestHandler");
 //    HFactory::registerClass<HDeviceSL>("HDeviceSL");
 }
 

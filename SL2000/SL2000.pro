@@ -26,17 +26,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+        HBuilder2000.cpp \
         HModel2000.cpp \
-#    HMainWindow2000.cpp \
-    HBuilder2000.cpp
+        HMainWindow2000.cpp \
+
 
 HEADERS += \
-    HModel2000.h \
-#    HMainWindow2000.h \
-#    HMainWindow2000_p.h \
-    HModel2000_p.h \
-    HBuilder2000.h \
-    HBuilder2000_p.h
+        HBuilder2000.h \
+        HBuilder2000_p.h \
+        HModel2000.h \
+        HModel2000_p.h \
+        HMainWindow2000.h \
+        HMainWindow2000_p.h \
 
 TARGET = SL2000
 

@@ -23,7 +23,6 @@ public:
     virtual HMainWindow *createMainWindow() override;
 
 protected:
-    void buildMainWindow();
     void buildFactory();
     void buildTestData();
     void buildConfigManage();
@@ -31,6 +30,8 @@ protected:
     void buildProtocols();
     void buildThreads();
     void buildModel();
+    void buildMainWindow();
+    void buildMenu();
 
 
 

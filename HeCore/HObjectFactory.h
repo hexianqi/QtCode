@@ -1,10 +1,9 @@
 #ifndef HOBJECTFACTORY_H
 #define HOBJECTFACTORY_H
 
-#include "HCoreGlobal.h"
+#include "IInitializeable.h"
 #include <functional>
-#include <QHash>
-#include <QObject>
+#include <QVariant>
 
 HE_CORE_BEGIN_NAMESPACE
 
@@ -12,25 +11,52 @@ class HE_CORE_EXPORT HObjectFactory
 {
 public:
     template<typename T>
-    static void registerClass();
+    static void registerClass(QString className = QString());
 
     template<typename T>
-    static T *createObject(const QByteArray &className, QObject *parent = nullptr);
+    static T *createObject(const QString &className, QObject *parent = nullptr);
+
+    template<typename T>
+    static T *createObject(const QString &className, QVariantMap param, QObject *parent = nullptr);
 
 protected:
-      template<typename T>
-      static QObject *constructorHelper(QObject* parent);
+    template<typename T>
+    static QObject *constructorHelper(QObject* parent);
 
 protected:
-    static QHash<QByteArray, std::function<QObject*(QObject*)>> __hashConstructor;
+    static QHash<QString, std::function<QObject*(QObject*)>> __hashConstructor;
 };
 
 template<typename T>
-T *HObjectFactory::createObject(const QByteArray &className, QObject *parent)
+void HObjectFactory::registerClass(QString className)
+{
+    if (className.isEmpty())
+        className = T::staticMetaObject.className();
+    __hashConstructor.insert(className, &constructorHelper<T>);
+}
+
+template<typename T>
+T *HObjectFactory::createObject(const QString &className, QObject *parent)
 {
     if (!__hashConstructor.contains(className))
         return nullptr;
     return qobject_cast<T*>(__hashConstructor[className](parent));
+}
+
+template<typename T>
+T *HObjectFactory::createObject(const QString &className, QVariantMap param, QObject *parent)
+{
+    static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");
+    auto t = createObject<T>(className, parent);
+    if (t != nullptr)
+        t->initialize(param);
+    return t;
+}
+
+template<typename T>
+QObject *HObjectFactory::constructorHelper(QObject *parent)
+{
+    return new T(parent);
 }
 
 HE_CORE_END_NAMESPACE

@@ -16,9 +16,6 @@ public:
     explicit HMainWindow2000(QWidget *parent = 0);
     ~HMainWindow2000();
 
-public:
-    virtual void init() override;
-
 protected:
     HMainWindow2000(HMainWindow2000Private &p, QWidget *parent = nullptr);
 };
