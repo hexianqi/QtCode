@@ -38,6 +38,9 @@ HEADERS     += \
 FORMS       += \
             MainWindow.ui
 
+RESOURCES   += \
+            HeTest.qrc
+
 INCLUDEPATH += ".."
 
 Debug {
@@ -53,9 +56,13 @@ Release {
             -L$$DESTDIR -lHePlugin
 }
 
-DISTFILES +=
 
-STATECHARTS +=
 
-RESOURCES += \
-    HeTest.qrc
+
+
+LIBS    += \
+        -LD:/Qt/gsl-1.8/lib/ -lgsl \
+        -LD:/Qt/gsl-1.8/lib/ -lgslcblas
+
+INCLUDEPATH += D:/Qt/gsl-1.8/include
+DEPENDPATH += D:/Qt/gsl-1.8/include

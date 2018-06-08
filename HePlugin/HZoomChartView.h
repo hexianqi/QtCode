@@ -21,6 +21,7 @@ protected:
     HZoomChartView(HZoomChartViewPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    virtual void resizeEvent(QResizeEvent *) override;
     virtual void mouseReleaseEvent(QMouseEvent *) override;
     virtual void keyPressEvent(QKeyEvent *) override;
 

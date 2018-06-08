@@ -15,7 +15,7 @@ void HPositionTracking::setValidRegion(QRectF value)
 {
     d_ptr->validRegion = value;
     auto h = fontMetrics().height();
-    setGeometry(value.left() + 15, value.top() + 5, value.width() - 30, h);
+    setGeometry(value.left() + 10, value.top() + 10, value.width() - 20, h);
 }
 
 void HPositionTracking::setEnableTracking(bool b)

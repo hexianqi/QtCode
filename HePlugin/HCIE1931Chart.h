@@ -1,19 +1,23 @@
 #ifndef HCIE1931CHART_H
 #define HCIE1931CHART_H
 
-#include <QtCharts/QChart>
+#include "HSingleAxisChart.h"
 
 QT_CHARTS_USE_NAMESPACE
 
 class HCIE1931ChartPrivate;
 
-class HCIE1931Chart : public QChart
+class HCIE1931Chart : public HSingleAxisChart
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HCIE1931Chart)
 
 public:
     explicit HCIE1931Chart(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
     ~HCIE1931Chart();
+
+signals:
+    void pointFocusChanged(QPointF value);
 
 public:
     void setEnableCIE(bool b);
@@ -39,13 +43,9 @@ public:
     void addPoint(QPointF value, bool focus = true);
     void clearPoint();
 
-protected:
-    QScopedPointer<HCIE1931ChartPrivate> d_ptr;
-
 private:
-    void initSeries();
     void initAxes();
-    void initLegend();
+    void initSeries();
     void updateHorseshoeBrush();
 };
 

@@ -16,7 +16,7 @@ public:
 signals:
     void positionChanged(QPoint pos);
 
-public slots:
+public:
     void setValidRegion(QRectF value);
     void setEnableTracking(bool b);
 

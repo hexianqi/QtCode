@@ -4,6 +4,8 @@
 #include "HZoomChartView.h"
 
 class HCIE1931ViewPrivate;
+class HCIE1931Chart;
+class HPositionTracking;
 
 class QDESIGNER_WIDGET_EXPORT HCIE1931View : public HZoomChartView
 {
@@ -14,12 +16,21 @@ public:
     explicit HCIE1931View(QWidget *parent = nullptr);
     ~HCIE1931View();
 
+signals:
+    void mouseDoubleClicked(QPointF point);
+
+public:
+    HCIE1931Chart *cieChart();
+    HPositionTracking *tracking();
+
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 protected slots:
-    void updatePosition(QPointF pos);
+    void handlePlotAreaChanged(QRectF value);
+    void handlePointFocusChanged(QPointF pos);
+    void handlePositionChanged(QPointF pos);
 
 private:
     void init();

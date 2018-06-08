@@ -24,6 +24,17 @@ HZoomChartView::HZoomChartView(HZoomChartViewPrivate &p, QWidget *parent)
     init();
 }
 
+void HZoomChartView::resizeEvent(QResizeEvent *e)
+{
+    if (scene())
+    {
+        auto size = e->size();
+        scene()->setSceneRect(QRect(QPoint(0, 0), size));
+        chart()->resize(size);
+    }
+    QChartView::resizeEvent(e);
+}
+
 HZoomChartView::~HZoomChartView()
 {
 }
@@ -56,9 +67,6 @@ void HZoomChartView::keyPressEvent(QKeyEvent *e)
 
 void HZoomChartView::init()
 {
-    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    setContextMenuPolicy(Qt::ActionsContextMenu);
-    setRubberBand(QChartView::RectangleRubberBand);
     d_ptr->actionZoomReset = new QAction(tr("还原(&R)"));
     d_ptr->actionZoomIn = new QAction(QIcon(":/image/ZoomIn.png"), tr("放大(&I)"));
     d_ptr->actionZoomOut = new QAction(QIcon(":/image/ZoomOut.png"), tr("缩小(&O)"));
@@ -68,4 +76,7 @@ void HZoomChartView::init()
     addAction(d_ptr->actionZoomReset);
     addAction(d_ptr->actionZoomIn);
     addAction(d_ptr->actionZoomOut);
+    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    setContextMenuPolicy(Qt::ActionsContextMenu);
+    setRubberBand(QChartView::RectangleRubberBand);
 }
