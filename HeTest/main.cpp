@@ -4,6 +4,7 @@
 #include "HeAlgorithm/HRegister.h"
 #include "HeAlgorithm/HSpectrumFacade.h"
 #include "HePlugin/HCIE1931View.h"
+#include "HePlugin/HDiagramView.h"
 #include <functional>
 #include <QTreeWidgetItem>
 #include <QtMath>
@@ -11,7 +12,7 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
-#include <gsl/gsl_sf_bessel.h>
+//#include <gsl/gsl_sf_bessel.h>
 #include <iostream>
 
 QT_CHARTS_USE_NAMESPACE
@@ -31,12 +32,12 @@ void TestRegister()
     reg.setRegisterCode(code);
 }
 
-void TestGsl()
-{
-    auto x = 10.0;
-    auto y = gsl_sf_bessel_j0(x);
-    qDebug() << QString("Jo(%1) = %2").arg(x).arg(y);
-}
+//void TestGsl()
+//{
+//    auto x = 10.0;
+//    auto y = gsl_sf_bessel_j0(x);
+//    qDebug() << QString("Jo(%1) = %2").arg(x).arg(y);
+//}
 
 QWidget *TestChart()
 {
@@ -55,8 +56,9 @@ QWidget *TestChart()
     chart->legend()->hide();
     chart->createDefaultAxes();
 
-    auto *chartView = new HCIE1931View;
-    //   chartView->setChart(chart);
+    auto *chartView = new HDiagramView;
+    chartView->setChart(chart);
+    chart->setZValue(20);
     return chartView;
 }
 
@@ -82,15 +84,14 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 
-    TestTran();
 
 
-//    QMainWindow window;
-//    window.setCentralWidget(TestChart());
-//    window.resize(400, 300);
-//    window.grabGesture(Qt::PanGesture);
-//    window.grabGesture(Qt::PinchGesture);
-//    window.show();
+    QMainWindow window;
+    window.setCentralWidget(TestChart());
+    window.resize(400, 300);
+    window.grabGesture(Qt::PanGesture);
+    window.grabGesture(Qt::PinchGesture);
+    window.show();
 
     return a.exec();
 }

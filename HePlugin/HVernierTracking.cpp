@@ -1,11 +1,12 @@
 #include "HVernierTracking_p.h"
+#include <QStyleOptionFocusRect>
 #include <QStylePainter>
+#include <QMouseEvent>
 
-HVernierTrackingPrivate::HVernierTrackingPrivate()
+HVernierTrackingPrivate::HVernierTrackingPrivate(Qt::Orientation o, QWidget *p)
+    : HAbstractMouseStrategyPrivate(p)
 {
-    pos = -1;
-    enableTracking = true;
-    color = Qt::blue;
+    orientation = o;
     validRegion.setRect(0, 0, 1, 1);
 }
 
@@ -26,7 +27,7 @@ void HVernierTrackingPrivate::setValidRegion(QRectF value)
 
 void HVernierTrackingPrivate::setVernier(int size)
 {
-    verniers.reserve(size);
+    verniers.resize(size);
     if (size < 1)
         return;
 
@@ -59,10 +60,40 @@ void HVernierTrackingPrivate::paintVernier(QStylePainter *p)
     p->restore();
 }
 
-HVernierTracking::HVernierTracking(Qt::Orientation orientation, QWidget *parent)
-    : QWidget(parent), d_ptr(new HVernierTrackingPrivate)
+bool HVernierTrackingPrivate::mousePress(QPointF point)
 {
-    d_ptr->orientation = orientation;
+    for (int i = 0; i < verniers.size(); i++)
+    {
+        if (orientation == Qt::Horizontal && qAbs(point.y() - verniers[i].y()) < 5)
+        {
+            pos = i;
+            parent->setCursor(Qt::SizeVerCursor);
+            return true;
+        }
+        if (orientation == Qt::Vertical && qAbs(point.x() - verniers[i].x()) < 5)
+        {
+            pos = i;
+            parent->setCursor(Qt::SizeHorCursor);
+            return true;
+        }
+    }
+    return false;
+}
+
+void HVernierTrackingPrivate::mouseRelease()
+{
+    pos = -1;
+    parent->unsetCursor();
+}
+
+HVernierTracking::HVernierTracking(Qt::Orientation orientation, QWidget *parent)
+    : HAbstractMouseStrategy(*new HVernierTrackingPrivate(orientation, parent), parent)
+{
+}
+
+HVernierTracking::HVernierTracking(HVernierTrackingPrivate &p, QWidget *parent)
+    : HAbstractMouseStrategy(p, parent)
+{
 }
 
 HVernierTracking::~HVernierTracking()
@@ -71,73 +102,72 @@ HVernierTracking::~HVernierTracking()
 
 void HVernierTracking::setValidRegion(QRectF value)
 {
-    d_ptr->setValidRegion(value);
-}
-
-void HVernierTracking::setEnableTracking(bool b)
-{
-    d_ptr->enableTracking = b;
+    Q_D(HVernierTracking);
+    d->setValidRegion(value);
 }
 
 void HVernierTracking::setVernierColor(QColor value)
 {
-    d_ptr->color = value;
+    Q_D(HVernierTracking);
+    d->color = value;
 }
 
 void HVernierTracking::setVernier(int size)
 {
-    d_ptr->setVernier(size);
+    Q_D(HVernierTracking);
+    d->setVernier(size);
     emit vernierChanged();
 }
 
 void HVernierTracking::setVernier(int i, double percent)
 {
-    d_ptr->setVernier(i, percent);
-    emit vernierChanged(d_ptr->verniers[i]);
+    Q_D(HVernierTracking);
+    d->setVernier(i, percent);
+    emit vernierChanged(d->verniers[i]);
 }
 
-bool HVernierTracking::isEnableTracking()
+QVector<QPointF> HVernierTracking::verniers()
 {
-    return d_ptr->enableTracking;
+    Q_D(HVernierTracking);
+    return d->verniers;
 }
 
-void HVernierTracking::paintEvent(QPaintEvent *)
+void HVernierTracking::paintEvent(QStylePainter *p)
 {
-    d_ptr->paintVernier(new QStylePainter(this));
+    Q_D(HVernierTracking);
+    if (!isEnable())
+        return;
+    d->paintVernier(p);
 }
 
-void HVernierTracking::mousePressEvent(QMouseEvent *e)
+bool HVernierTracking::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton)
-    {
-        for (int i = 0; i < d_ptr->verniers.size(); i++)
-        {
-            if (d_ptr->orientation == Qt::Horizontal && qAbs(e->y() - m_ptVerniers[i].y()) < 5)
-            {
-                d_ptr->pos = i;
-                setCursor(Qt::SizeVerCursor);
-                break;
-            }
-            if (d_ptr->orientation == Qt::Vertical && qAbs(e->x() - m_ptVerniers[i].x()) < 5)
-            {
-                m_nPos = i;
-                m_bTracking = true;
-                m_pWidget->setCursor(Qt::SizeHorCursor);
-                break;
-            }
-        }
-    }
-    QWidget::mousePressEvent(e);
+    Q_D(HVernierTracking);
+    if (!isEnable() || e->button() != Qt::LeftButton)
+        return false;
+    return d->mousePress(e->localPos());
 }
 
-void HVernierTracking::mouseMoveEvent(QMouseEvent *)
+bool HVernierTracking::mouseMoveEvent(QMouseEvent *e)
 {
+    Q_D(HVernierTracking);
+    auto pos = d->pos;
+    if (!d->isValid(e->localPos()) || pos == -1)
+        return false;
 
+    emit vernierChanged(d->verniers[pos]);
+    d->verniers[pos] = e->localPos();
+    emit vernierChanged(d->verniers[pos]);
+    return true;
 }
 
-void HVernierTracking::mouseReleaseEvent(QMouseEvent *)
+bool HVernierTracking::mouseReleaseEvent(QMouseEvent *e)
 {
+    Q_D(HVernierTracking);
+    if (!isEnable() || e->button() != Qt::LeftButton || d->pos == -1 )
+        return false;
 
+    emit vernierChanged(d->verniers[d->pos]);
+    d->mouseRelease();
+    return true;
 }
-
-

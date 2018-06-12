@@ -1,33 +1,40 @@
 #ifndef HPOSITIONTRACKING_H
 #define HPOSITIONTRACKING_H
 
-#include <QLabel>
+#include "HAbstractMouseStrategy.h"
+#include <QPointF>
 
+class QLabel;
 class HPositionTrackingPrivate;
 
-class HPositionTracking : public QLabel
+class HPositionTracking : public HAbstractMouseStrategy
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HPositionTracking)
 
 public:
     explicit HPositionTracking(QWidget *parent = nullptr);
     ~HPositionTracking();
 
 signals:
-    void positionChanged(QPoint pos);
+    void positionChanged(QPointF pos);
 
 public:
-    void setValidRegion(QRectF value);
-    void setEnableTracking(bool b);
+    virtual void setValidRegion(QRectF value) override;
+    virtual void setEnable(bool b) override;
+    virtual void setText(QString text);
 
 public:
-    bool isEnableTracking();
+    QLabel *label();
 
 public:
-    virtual void mouseMoveEvent(QMouseEvent *) override;
+    virtual void paintEvent(QStylePainter *) override;
+    virtual bool mousePressEvent(QMouseEvent *) override;
+    virtual bool mouseMoveEvent(QMouseEvent *) override;
+    virtual bool mouseReleaseEvent(QMouseEvent *) override;
 
 protected:
-    QScopedPointer<HPositionTrackingPrivate> d_ptr;
+    HPositionTracking(HPositionTrackingPrivate &p, QWidget *parent = nullptr);
 };
 
 #endif // HPOSITIONTRACKING_H

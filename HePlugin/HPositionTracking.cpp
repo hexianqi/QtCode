@@ -1,10 +1,22 @@
 #include "HPositionTracking_p.h"
+#include <QLabel>
 #include <QMouseEvent>
 
-HPositionTracking::HPositionTracking(QWidget *parent)
-    : QLabel(parent), d_ptr(new HPositionTrackingPrivate)
+HPositionTrackingPrivate::HPositionTrackingPrivate(QWidget *p)
+    : HAbstractMouseStrategyPrivate(p)
 {
-    setAlignment(Qt::AlignLeft | Qt::AlignBottom);
+    label = new QLabel(parent);
+    label->setAlignment(Qt::AlignLeft | Qt::AlignBottom);
+}
+
+HPositionTracking::HPositionTracking(QWidget *parent)
+    : HAbstractMouseStrategy(*new HAbstractMouseStrategyPrivate(parent), parent)
+{
+}
+
+HPositionTracking::HPositionTracking(HPositionTrackingPrivate &p, QWidget *parent)
+    : HAbstractMouseStrategy(p, parent)
+{
 }
 
 HPositionTracking::~HPositionTracking()
@@ -13,24 +25,43 @@ HPositionTracking::~HPositionTracking()
 
 void HPositionTracking::setValidRegion(QRectF value)
 {
-    d_ptr->validRegion = value;
-    auto h = fontMetrics().height();
-    setGeometry(value.left() + 10, value.top() + 10, value.width() - 20, h);
+    Q_D(HPositionTracking);
+    d->label->setGeometry(value.left() + 10, value.top() + 10, value.width() - 20, d->label->fontMetrics().height());
+    HAbstractMouseStrategy::setValidRegion(value);
 }
 
-void HPositionTracking::setEnableTracking(bool b)
+void HPositionTracking::setEnable(bool b)
 {
-    d_ptr->enableTracking = b;
-    setVisible(b);
+    Q_D(HPositionTracking);
+    d->label->setVisible(b);
+    HAbstractMouseStrategy::setEnable(b);
 }
 
-bool HPositionTracking::isEnableTracking()
+void HPositionTracking::setText(QString text)
 {
-    return d_ptr->enableTracking;
+    Q_D(HPositionTracking);
+    d->label->setText(text);
 }
 
-void HPositionTracking::mouseMoveEvent(QMouseEvent *e)
+void HPositionTracking::paintEvent(QStylePainter *)
 {
-    if(isEnableTracking() && d_ptr->validRegion.contains(e->pos()))
-        emit positionChanged(e->pos());
+}
+
+bool HPositionTracking::mousePressEvent(QMouseEvent *)
+{
+    return true;
+}
+
+bool HPositionTracking::mouseMoveEvent(QMouseEvent *e)
+{
+    Q_D(HPositionTracking);
+    if (!d->isValid(e->localPos()))
+        return false;
+    emit positionChanged(e->localPos());
+    return true;
+}
+
+bool HPositionTracking::mouseReleaseEvent(QMouseEvent *)
+{
+    return true;
 }

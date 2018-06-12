@@ -41,7 +41,7 @@ void HCIE1931View::mouseMoveEvent(QMouseEvent *e)
 void HCIE1931View::mouseDoubleClickEvent(QMouseEvent *e)
 {
     Q_D(HCIE1931View);
-    if (d->tracking->isEnableTracking())
+    if (d->tracking->isEnable())
         emit mouseDoubleClicked(chart()->mapToValue(e->pos()));
     HZoomChartView::mouseMoveEvent(e);
 }

@@ -11,12 +11,12 @@ DESTDIR     = "../Dest"
 SOURCES     += \
             class2Plugin.cpp \
             HCollectionInterface.cpp \
-    HePluginHelper.cpp
+            HePluginHelper.cpp
 
 HEADERS     += \
             class2Plugin.h \
             HCollectionInterface.h \
-    HPluginHelper.h
+            HPluginHelper.h
 
 RESOURCES   = HePlugin.qrc
 
@@ -28,7 +28,8 @@ Release {
     TARGET  = HePlugin
 }
 
-include(tracking.pri)
+include(domain.pri)
+include(strategy.pri)
 include(chart.pri)
+include(diagram.pri)
 include(class2.pri)
-

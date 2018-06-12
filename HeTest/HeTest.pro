@@ -60,9 +60,9 @@ Release {
 
 
 
-LIBS    += \
-        -LD:/Qt/gsl-1.8/lib/ -lgsl \
-        -LD:/Qt/gsl-1.8/lib/ -lgslcblas
+#LIBS    += \
+#        -LD:/Qt/gsl-1.8/lib/ -lgsl \
+#        -LD:/Qt/gsl-1.8/lib/ -lgslcblas
 
-INCLUDEPATH += D:/Qt/gsl-1.8/include
-DEPENDPATH += D:/Qt/gsl-1.8/include
+#INCLUDEPATH += D:/Qt/gsl-1.8/include
+#DEPENDPATH += D:/Qt/gsl-1.8/include

@@ -1,13 +1,15 @@
 #ifndef HVERNIERTRACKING_H
 #define HVERNIERTRACKING_H
 
-#include <QWidget>
+#include "HAbstractMouseStrategy.h"
+#include <QPointF>
 
 class HVernierTrackingPrivate;
 
-class HVernierTracking : public QWidget
+class HVernierTracking : public HAbstractMouseStrategy
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HVernierTracking)
 
 public:
     explicit HVernierTracking(Qt::Orientation orientation, QWidget *parent = nullptr);
@@ -18,24 +20,22 @@ signals:
     void vernierChanged();
 
 public:
-    void setValidRegion(QRectF value);
-    void setEnableTracking(bool b);
-    void setVernierColor(QColor value);
-    void setVernier(int size);
-    void setVernier(int i, double percent);
+    virtual void setValidRegion(QRectF value) override;
+    virtual void setVernierColor(QColor value);
+    virtual void setVernier(int size);
+    virtual void setVernier(int i, double percent);
 
 public:
-    bool isEnableTracking();
+    QVector<QPointF> verniers();
 
 public:
-    virtual void paintEvent(QPaintEvent *) override;
-    virtual void mousePressEvent(QMouseEvent *) override;
-    virtual void mouseMoveEvent(QMouseEvent *) override;
-    virtual void mouseReleaseEvent(QMouseEvent *) override;
-
+    virtual void paintEvent(QStylePainter *) override;
+    virtual bool mousePressEvent(QMouseEvent *) override;
+    virtual bool mouseMoveEvent(QMouseEvent *) override;
+    virtual bool mouseReleaseEvent(QMouseEvent *) override;
 
 protected:
-    QScopedPointer<HVernierTrackingPrivate> d_ptr;
+    HVernierTracking(HVernierTrackingPrivate &p, QWidget *parent = nullptr);
 };
 
 #endif // HVERNIERTRACKING_H

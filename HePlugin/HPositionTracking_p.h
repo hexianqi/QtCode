@@ -2,12 +2,15 @@
 #define HPOSITIONTRACKING_P_H
 
 #include "HPositionTracking.h"
+#include "HAbstractMouseStrategy_p.h"
 
-class HPositionTrackingPrivate
+class HPositionTrackingPrivate : public HAbstractMouseStrategyPrivate
 {
 public:
-    bool enableTracking = true;
-    QRectF validRegion;
+    HPositionTrackingPrivate(QWidget *p);
+
+public:
+    QLabel *label;
 };
 
 #endif // HPOSITIONTRACKING_P_H
