@@ -10,7 +10,7 @@ HPositionTrackingPrivate::HPositionTrackingPrivate(QWidget *p)
 }
 
 HPositionTracking::HPositionTracking(QWidget *parent)
-    : HAbstractMouseStrategy(*new HAbstractMouseStrategyPrivate(parent), parent)
+    : HAbstractMouseStrategy(*new HPositionTrackingPrivate(parent), parent)
 {
 }
 

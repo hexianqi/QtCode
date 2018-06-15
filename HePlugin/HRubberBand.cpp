@@ -39,9 +39,8 @@ bool HRubberBand::mousePressEvent(QMouseEvent *e)
     Q_D(HRubberBand);
     if (!d->isValid(e->localPos()) || e->button() != Qt::LeftButton)
         return false;
-
     d->origin = e->pos();
-    d->rubberBand->setGeometry(QRect(d->origin, QSize()));
+    d->rubberBand->setGeometry(QRect(e->pos(), QSize()));
     d->rubberBand->show();
     return true;
 }
@@ -62,13 +61,7 @@ bool HRubberBand::mouseReleaseEvent(QMouseEvent *e)
         return false;
 
     d->rubberBand->hide();
-    auto validRegion = d->validRegion;
-    auto geometry = d->rubberBand->geometry();
-    QRectF rect;
-    rect.setLeft(qBound(validRegion.left(), 1.0 * geometry.left(), validRegion.right()));
-    rect.setRight(qBound(validRegion.left(), 1.0 * geometry.right(), validRegion.right()));
-    rect.setTop(qBound(validRegion.top(), 1.0 * geometry.top(), validRegion.bottom()));
-    rect.setBottom(qBound(validRegion.top(), 1.0 * geometry.bottom(), validRegion.bottom()));
+    auto rect = d->validRegion.intersected(d->rubberBand->geometry());
     rect = rect.normalized();
     if (rect.width() < 4 || rect.height() < 4)
         return false;

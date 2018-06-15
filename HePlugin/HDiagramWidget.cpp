@@ -232,7 +232,7 @@ void HDiagramWidget::refreshPixmap(bool refresh)
         return;
 
     d_ptr->pixmap = QPixmap(size());
-    d_ptr->pixmap.fill(this, 0, 0);
+    d_ptr->pixmap.fill(Qt::transparent);
     QPainter painter(&d_ptr->pixmap);
 
     initPainter(&painter);
@@ -283,7 +283,7 @@ bool HDiagramWidget::drawFrame(QPainter *painter)
 
 bool HDiagramWidget::drawRuler(QPainter *)
 {
-    if (!isDrawRuler() || d_ptr->plotArea.isValid())
+    if (!isDrawRuler() || !d_ptr->plotArea.isValid())
         return false;
     return true;
 }
@@ -333,5 +333,3 @@ void HDiagramWidget::init()
     setFocusPolicy(Qt::NoFocus);
     setContextMenuPolicy(Qt::ActionsContextMenu);
 }
-
-

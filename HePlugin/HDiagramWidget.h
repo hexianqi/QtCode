@@ -2,10 +2,11 @@
 #define HDIAGRAMWIDGET_H
 
 #include <QWidget>
+#include <QtUiPlugin/QDesignerExportWidget>
 
 class HDiagramWidgetPrivate;
 
-class HDiagramWidget : public QWidget
+class QDESIGNER_WIDGET_EXPORT HDiagramWidget : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QMargins margins READ margins WRITE setMargins)

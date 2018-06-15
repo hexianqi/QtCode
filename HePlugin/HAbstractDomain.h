@@ -13,20 +13,40 @@ public:
     explicit HAbstractDomain(QObject *parent = nullptr);
     ~HAbstractDomain();
 
-public:
-    static void looseNiceNumbers(double &min, double &max, int &ticksCount);
-    static qreal niceNumber(double x, bool ceiling);
+signals:
+    void updated();
+    void rangeHorizontalChanged(double min, double max);
+    void rangeVerticalChanged(double min, double max);
 
 public:
-//    void zoomReset();
-//    void storeZoomReset();
+    void setRangeX(double min, double max);
+    void setRangeY(double min, double max);
+    void setMinX(double min);
+    void setMaxX(double max);
+    void setMinY(double min);
+    void setMaxY(double max);
+    void setBlockRangeSignals(bool b);
+    void zoomReset();
+    void storeZoomReset();
 
 public:
-    virtual bool zoomIn(const QRectF &rect) = 0;
-    virtual bool zoomOut(const QRectF &rect) = 0;
-    virtual QPointF calcDomainPoint(const QPointF &point) const = 0;
-    virtual QPointF calcGeometryPoint(const QPointF &point, bool &ok) const = 0;
-    virtual QVector<QPointF> calcGeometryPoints(const QVector<QPointF> &vector) const = 0;
+    double minX() const;
+    double maxX() const;
+    double minY() const;
+    double maxY() const;
+    double spanX() const;
+    double spanY() const;
+    bool isEmpty() const;
+    bool isRangeSignalsBlocked() const;
+    bool isZoomed();
+
+public:
+    virtual void setRange(double minX, double maxX, double minY, double maxY) = 0;
+    virtual bool zoomIn(QRectF &rect) = 0;
+    virtual bool zoomOut(QRectF &rect) = 0;
+    virtual QPointF calcDomainPoint(QPointF &point) const = 0;
+    virtual QPointF calcGeometryPoint(QPointF &point, bool &ok) const = 0;
+    virtual QVector<QPointF> calcGeometryPoints(QVector<QPointF> &vector) const = 0;
 
 protected:
     HAbstractDomain(HAbstractDomainPrivate &p, QObject *parent = nullptr);

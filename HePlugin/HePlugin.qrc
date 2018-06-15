@@ -4,5 +4,6 @@
         <file>image/ZoomOut.png</file>
         <file>dat/Chromaticity.dat</file>
         <file>image/CIE1931.png</file>
+        <file>image/CIE1931_s.png</file>
     </qresource>
 </RCC>

@@ -1,5 +1,4 @@
 #include "HAbstractDomain_p.h"
-#include <QtMath>
 
 HAbstractDomain::HAbstractDomain(QObject *parent)
     : QObject(parent), d_ptr(new HAbstractDomainPrivate)
@@ -15,37 +14,110 @@ HAbstractDomain::~HAbstractDomain()
 {
 }
 
-//algorithm defined by Paul S.Heckbert GraphicalGems I
-void HAbstractDomain::looseNiceNumbers(qreal &min, qreal &max, int &ticksCount)
+void HAbstractDomain::setRangeX(double min, double max)
 {
-    auto range = niceNumber(max - min, true); //range with ceiling
-    auto step = niceNumber(range / (ticksCount - 1), false);
-    min = qFloor(min / step);
-    max = qCeil(max / step);
-    ticksCount = int(max - min) + 1;
-    min *= step;
-    max *= step;
+    setRange(min, max, d_ptr->minY, d_ptr->maxY);
 }
 
-//nice numbers can be expressed as form of 1*10^n, 2* 10^n or 5*10^n
-double HAbstractDomain::niceNumber(double x, bool ceiling)
+void HAbstractDomain::setRangeY(double min, double max)
 {
-    auto z = qPow(10.0, qFloor(std::log10(x))); //find corresponding number of the form of 10^n than is smaller than x
-    auto q = x / z; //q<10 && q>=1;
+    setRange(d_ptr->minX, d_ptr->maxX, min, max);
+}
 
-    if (ceiling)
+void HAbstractDomain::setMinX(double min)
+{
+    setRange(min, d_ptr->maxX, d_ptr->minY, d_ptr->maxY);
+}
+
+void HAbstractDomain::setMaxX(double max)
+{
+    setRange(d_ptr->minX, max, d_ptr->minY, d_ptr->maxY);
+}
+
+void HAbstractDomain::setMinY(double min)
+{
+    setRange(d_ptr->minX, d_ptr->maxX, min, d_ptr->maxY);
+}
+
+void HAbstractDomain::setMaxY(double max)
+{
+    setRange(d_ptr->minX, d_ptr->maxX, d_ptr->minY, max);
+}
+
+void HAbstractDomain::setBlockRangeSignals(bool b)
+{
+    if (d_ptr->signalsBlocked == b)
+        return;
+    d_ptr->signalsBlocked = b;
+    if (!b)
     {
-        if (q <= 1.0) q = 1;
-        else if (q <= 2.0) q = 2;
-        else if (q <= 5.0) q = 5;
-        else q = 10;
+        emit rangeHorizontalChanged(d_ptr->minX, d_ptr->maxX);
+        emit rangeVerticalChanged(d_ptr->minY, d_ptr->maxY);
     }
-    else
-    {
-        if (q < 1.5) q = 1;
-        else if (q < 3.0) q = 2;
-        else if (q < 7.0) q = 5;
-        else q = 10;
-    }
-    return q * z;
+}
+
+void HAbstractDomain::zoomReset()
+{
+    if (!d_ptr->zoomed)
+        return;
+    setRange(d_ptr->zoomResetMinX, d_ptr->zoomResetMaxX, d_ptr->zoomResetMinY, d_ptr->zoomResetMaxY);
+    d_ptr->zoomed = false;
+}
+
+void HAbstractDomain::storeZoomReset()
+{
+    if (d_ptr->zoomed)
+        return;
+    d_ptr->zoomed = true;
+    d_ptr->zoomResetMinX = d_ptr->minX;
+    d_ptr->zoomResetMaxX = d_ptr->maxX;
+    d_ptr->zoomResetMinY = d_ptr->minY;
+    d_ptr->zoomResetMaxY = d_ptr->maxY;
+}
+
+double HAbstractDomain::minX() const
+{
+    return d_ptr->minX;
+}
+
+double HAbstractDomain::maxX() const
+{
+    return d_ptr->maxX;
+}
+
+double HAbstractDomain::minY() const
+{
+    return d_ptr->minY;
+}
+
+double HAbstractDomain::maxY() const
+{
+    return d_ptr->maxY;
+}
+
+double HAbstractDomain::spanX() const
+{
+    Q_ASSERT(d_ptr->maxX >= d_ptr->minX);
+    return d_ptr->maxX - d_ptr->minX;
+}
+
+double HAbstractDomain::spanY() const
+{
+    Q_ASSERT(d_ptr->maxY >= d_ptr->minY);
+    return d_ptr->maxY - d_ptr->minY;
+}
+
+bool HAbstractDomain::isEmpty() const
+{
+    return qFuzzyCompare(spanX(), 0) || qFuzzyCompare(spanY(), 0);
+}
+
+bool HAbstractDomain::isRangeSignalsBlocked() const
+{
+    return d_ptr->signalsBlocked;
+}
+
+bool HAbstractDomain::isZoomed()
+{
+    return d_ptr->zoomed;
 }

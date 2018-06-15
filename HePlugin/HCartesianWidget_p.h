@@ -4,9 +4,7 @@
 #include "HCartesianWidget.h"
 #include "HDiagramWidget_p.h"
 
-class HRubberBand;
-
-class HCartesianWidgetPrivate : HDiagramWidgetPrivate
+class HCartesianWidgetPrivate : public HDiagramWidgetPrivate
 {
     Q_DECLARE_PUBLIC(HCartesianWidget)
 
@@ -14,9 +12,12 @@ public:
     HCartesianWidgetPrivate(HCartesianWidget *q);
 
 public:
-
-    HRubberBand *rubberBand;
-
+    HCartesianZoom *zoom;
+    HCartesianCoordinate *coordinate;
+    QAction *actionResetCoordinate;
+    bool unitInRuler;
+    QString unitX;
+    QString unitY;
 };
 
 #endif // HCARTESIANWIDGET_P_H

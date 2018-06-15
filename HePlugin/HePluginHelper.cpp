@@ -1,6 +1,7 @@
 #include "HPluginHelper.h"
 #include <QWidget>
 #include <QAction>
+#include <QtMath>
 
 QAction *HPluginHelper::addSeparator(QWidget *widget)
 {
@@ -9,3 +10,4 @@ QAction *HPluginHelper::addSeparator(QWidget *widget)
     widget->addAction(action);
     return action;
 }
+

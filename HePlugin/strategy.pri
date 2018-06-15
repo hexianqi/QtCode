@@ -7,9 +7,12 @@ HEADERS += \
     $$PWD/HVernierTracking_p.h \
     $$PWD/HRubberBand.h \
     $$PWD/HRubberBand_p.h \
+    $$PWD/HCartesianZoom.h \
+    $$PWD/HCartesianZoom_p.h
 
 SOURCES += \
     $$PWD/HAbstractMouseStrategy.cpp \
     $$PWD/HPositionTracking.cpp \
     $$PWD/HVernierTracking.cpp \
-    $$PWD/HRubberBand.cpp
+    $$PWD/HRubberBand.cpp \
+    $$PWD/HCartesianZoom.cpp

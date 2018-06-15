@@ -4,7 +4,7 @@
 #include "HeAlgorithm/HRegister.h"
 #include "HeAlgorithm/HSpectrumFacade.h"
 #include "HePlugin/HCIE1931View.h"
-#include "HePlugin/HDiagramView.h"
+#include "HePlugin/HCIE1931Widget.h"
 #include <functional>
 #include <QTreeWidgetItem>
 #include <QtMath>
@@ -18,7 +18,6 @@
 QT_CHARTS_USE_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
 
-// 测试注册机
 void TestRegister()
 {
     HRegister reg;
@@ -56,42 +55,28 @@ QWidget *TestChart()
     chart->legend()->hide();
     chart->createDefaultAxes();
 
-    auto *chartView = new HDiagramView;
+    auto *chartView = new HCIE1931View;
     chartView->setChart(chart);
     chart->setZValue(20);
     return chartView;
-}
-
-void TestTran()
-{
-    QRectF target(30, 30, 300, 300);
-    QRectF source(10, 10, 200, 200);
-    QPointF p1(50, 50);
-
-    QTransform tran;
-    tran.translate(-source.left(), -source.top());
-    tran.scale(target.width() / source.width(), target.height() / source.height());
-  //  tran.translate(target.left(), target.top());
-    tran.translate(20, 20);
-
-
-    auto p2 = tran.map(p1);
-    qDebug() << p2;
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    HCIE1931Widget w;
+//    QPolygonF poly = QPolygonF() << QPointF(0.1, 0.1) << QPointF(0.2,0.3) << QPointF(0.4,0.5) << QPointF(0.7,0.1) << QPointF(0.6,0.4);
+//    w.addPolygon(1, poly, Qt::red);
+    w.show();
 
 
-
-    QMainWindow window;
-    window.setCentralWidget(TestChart());
-    window.resize(400, 300);
-    window.grabGesture(Qt::PanGesture);
-    window.grabGesture(Qt::PinchGesture);
-    window.show();
+//    QMainWindow window;
+//    window.setCentralWidget(TestChart());
+//    window.resize(400, 300);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
 
     return a.exec();
 }
