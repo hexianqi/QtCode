@@ -33,7 +33,7 @@ void TestRegister()
 
 //void TestGsl()
 //{
-//    auto x = 10.0;
+    auto x = 10.0;
 //    auto y = gsl_sf_bessel_j0(x);
 //    qDebug() << QString("Jo(%1) = %2").arg(x).arg(y);
 //}
