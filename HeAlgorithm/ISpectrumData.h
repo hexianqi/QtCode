@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  ISpectrumData 光谱数据接口。
+***************************************************************************************************/
+
 #ifndef ISPECTRUMDATA_H
 #define ISPECTRUMDATA_H
 
@@ -6,7 +10,6 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-// 光谱数据
 class HE_ALGORITHM_EXPORT ISpectrumData
 {
 public:

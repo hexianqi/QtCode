@@ -13,11 +13,11 @@ public:
 
 public:
     void setValidRegion(QRectF value);
-    void setVernier(int size);
     void setVernier(int i, double percent);
+    void resizeVernier(int size);
 
 public:
-    void paintVernier(QStylePainter *);
+    void paintVernier();
     bool mousePress(QPointF point);
     void mouseRelease();
 

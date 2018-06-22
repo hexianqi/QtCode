@@ -1,3 +1,12 @@
+/***************************************************************************************************
+**      2018-06-19  标准的CIE数据格式及计算。
+**                  HCieTc32    14种彩色测试样品的光谱反射数据。
+**                  HCie1931    CIE1931数据计算类。
+**                  HCieDay     CIE日光色数据计算类。
+**                  HCieUcs     CIE_UCS数据计算类。
+**                  HIsotherm   等温线数据计算类。
+***************************************************************************************************/
+
 #ifndef HCIE1931_H
 #define HCIE1931_H
 
@@ -62,7 +71,6 @@ struct CIE_UCS_P
     double vrt;
 };
 
-// 14种彩色测试样品的光谱反射数据
 class HCieTc32
 {
 public:
@@ -79,7 +87,6 @@ protected:
     QVector<CIE_TC_32> _stdData;
 };
 
-// CIE1931数据计算类
 class HCie1931
 {
 public:
@@ -110,7 +117,6 @@ protected:
     std::shared_ptr<HCieTc32> _cieTc32;
 };
 
-// CIE日光色数据计算类
 class HCieDay
 {
 public:
@@ -128,7 +134,6 @@ protected:
     QVector<CIE_DAY> _stdData;
 };
 
-// 等温线数据计算类
 class HIsotherm
 {
 public:
@@ -147,7 +152,6 @@ protected:
     QVector<ISOTHERM> _stdData;
 };
 
-// CIE_UCS数据计算类
 class HCieUcs
 {
 public:

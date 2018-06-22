@@ -37,12 +37,12 @@ INCLUDEPATH += ".."
 
 Debug {
     TARGET  = HeExampled
-    LIBS    += -L$$DESTDIR -lHeFiled \
+#    LIBS    += -L$$DESTDIR -lHeFiled \
 }
 
 Release {
     TARGET  = HeExample
-    LIBS    += -L$$DESTDIR -lHeFile \
+#    LIBS    += -L$$DESTDIR -lHeFile \
 }
 
 unix {
@@ -51,3 +51,4 @@ unix {
 }
 
 include(Reflect.pri)
+include(gsl.pri)

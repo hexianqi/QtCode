@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HDiagramWidget 图表窗口部件。
+***************************************************************************************************/
+
 #ifndef HDIAGRAMWIDGET_H
 #define HDIAGRAMWIDGET_H
 
@@ -44,9 +48,6 @@ public:
     void setColorFrame(QColor value);
     void setColorRuler(QColor value);
     void setColorGrid(QColor value);
-    void setPolygon(int id, QPolygonF value, bool refresh = true);
-    void addPolygon(int id, QPolygonF value, QColor color = Qt::black, bool refresh = true);
-    void clearPolygon(int id);
 
 public:
     QMargins margins() const;
@@ -61,6 +62,11 @@ public:
     QColor colorRuler() const;
     QColor colorGrid() const;
 
+public:
+    virtual void setPolygon(int id, QPolygonF value, bool refresh = true);
+    virtual void addPolygon(int id, QPolygonF value, QColor color = Qt::black, bool refresh = true);
+    virtual void clearPolygon(int id);
+
 protected:
     HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent = nullptr);
 
@@ -72,7 +78,7 @@ protected:
     virtual bool drawRuler(QPainter *);
     virtual bool drawGrid(QPainter *);
     virtual bool drawPolygon(QPainter *);
-    virtual void drawElse(QPainter *);
+    virtual bool drawElse(QPainter *);
     virtual void resizeEvent(QResizeEvent *) override;
     virtual void paintEvent(QPaintEvent *) override;
 

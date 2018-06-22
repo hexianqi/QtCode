@@ -43,7 +43,7 @@ void HPositionTracking::setText(QString text)
     d->label->setText(text);
 }
 
-void HPositionTracking::paintEvent(QStylePainter *)
+void HPositionTracking::paintEvent(QPaintEvent *)
 {
 }
 

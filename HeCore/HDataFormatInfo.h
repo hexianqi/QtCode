@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HDataFormatInfo 数据格式信息类。
+***************************************************************************************************/
+
 #ifndef HDATAFORMATINFO_H
 #define HDATAFORMATINFO_H
 
@@ -13,7 +17,6 @@ HE_CORE_BEGIN_NAMESPACE
 
 class HDataFormatInfoPrivate;
 
-// 数据格式信息类
 class HE_CORE_EXPORT HDataFormatInfo
 {
 public:

@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  ICollection 集合模板接口。
+***************************************************************************************************/
+
 #ifndef ICOLLECTION_H
 #define ICOLLECTION_H
 
@@ -5,7 +9,6 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-// 集合模板接口
 template <class T>
 class ICollection : public IInitializeable
 {

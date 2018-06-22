@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HSpectrumFacade 光谱计算外观类。
+***************************************************************************************************/
+
 #ifndef HSPECTRUMHELPER_H
 #define HSPECTRUMHELPER_H
 
@@ -11,7 +15,6 @@ class ISpectrumData;
 class IChromaticity;
 class HSpectrumFacadePrivate;
 
-// 光谱计算外观类
 class HE_ALGORITHM_EXPORT HSpectrumFacade
 {
 public:

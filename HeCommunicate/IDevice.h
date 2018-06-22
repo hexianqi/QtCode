@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  IDevice 设备接口。
+***************************************************************************************************/
+
 #ifndef IDEVICE_H
 #define IDEVICE_H
 
@@ -23,7 +27,6 @@ public:
     virtual void setDeviceID(int id) = 0;
     // 添加命令参数
     virtual void addActionParam(HActionType key, QList<uchar> value) = 0;
-
 public:
     // 打开
     virtual HErrorType open() = 0;

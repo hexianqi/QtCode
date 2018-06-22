@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HChromaticity 色度参数计算类。
+***************************************************************************************************/
+
 #ifndef HLIGHTSOURCE_H
 #define HLIGHTSOURCE_H
 
@@ -9,7 +13,6 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HChromaticityPrivate;
 
-// 色度参数计算类
 class HChromaticity : public IChromaticity
 {
 public:

@@ -143,26 +143,6 @@ void HDiagramWidget::setColorGrid(QColor value)
     refreshPixmap();
 }
 
-void HDiagramWidget::setPolygon(int id, QPolygonF value, bool refresh)
-{
-    d_ptr->polygons.insert(id, value);
-    if (refresh)
-        refreshPixmap();
-}
-
-void HDiagramWidget::addPolygon(int id, QPolygonF value, QColor color, bool refresh)
-{
-    d_ptr->polygonColors.insert(id, color);
-    setPolygon(id, value, refresh);
-}
-
-void HDiagramWidget::clearPolygon(int id)
-{
-    d_ptr->polygonColors.remove(id);
-    d_ptr->polygons.remove(id);
-    refreshPixmap();
-}
-
 QMargins HDiagramWidget::margins() const
 {
     return d_ptr->margins;
@@ -216,6 +196,26 @@ QColor HDiagramWidget::colorRuler() const
 QColor HDiagramWidget::colorGrid() const
 {
     return d_ptr->colorGrid;
+}
+
+void HDiagramWidget::setPolygon(int id, QPolygonF value, bool refresh)
+{
+    d_ptr->polygons.insert(id, value);
+    if (refresh)
+        refreshPixmap();
+}
+
+void HDiagramWidget::addPolygon(int id, QPolygonF value, QColor color, bool refresh)
+{
+    d_ptr->polygonColors.insert(id, color);
+    setPolygon(id, value, refresh);
+}
+
+void HDiagramWidget::clearPolygon(int id)
+{
+    d_ptr->polygonColors.remove(id);
+    d_ptr->polygons.remove(id);
+    refreshPixmap();
 }
 
 void HDiagramWidget::setPlotArea(QRectF value)
@@ -302,7 +302,7 @@ bool HDiagramWidget::drawPolygon(QPainter *)
     return true;
 }
 
-void HDiagramWidget::drawElse(QPainter *)
+bool HDiagramWidget::drawElse(QPainter *)
 {
 }
 

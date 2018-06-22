@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HCIE1931Widget CIE1931窗口部件。
+***************************************************************************************************/
+
 #ifndef HCIE1931WIDGET_H
 #define HCIE1931WIDGET_H
 
@@ -73,7 +77,7 @@ public:
 protected:
     virtual void mouseMoveEvent(QMouseEvent *) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *) override;
-    virtual void drawElse(QPainter *) override;
+    virtual bool drawElse(QPainter *) override;
     virtual bool drawCIE(QPainter *);
     virtual bool drawHorseshoe(QPainter *);
     virtual bool drawPlanckian(QPainter *);

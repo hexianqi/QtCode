@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HCartesianZoom 缩放策略。
+***************************************************************************************************/
+
 #ifndef HCARTESIANZOOM_H
 #define HCARTESIANZOOM_H
 
@@ -26,7 +30,7 @@ public:
     virtual void setValidRegion(QRectF value) override;
 
 public:
-    virtual void paintEvent(QStylePainter *) override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

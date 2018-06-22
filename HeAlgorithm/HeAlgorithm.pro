@@ -43,4 +43,5 @@ unix {
     INSTALLS += target
 }
 
-include(Spectrum.pri)
+include(gsl.pri)
+include(spec.pri)

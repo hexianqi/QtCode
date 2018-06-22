@@ -1,16 +1,19 @@
 /**********************************************************************************************************************
- * 获取上下文指针是需要注意事项：
- * 1.单继承时：T类型必须是设置类型或其父类型。
- * 2.多继承时：T类型必须是设置类型。
- * 例如：  HCommunicateFactory 是QObject和ICommunicateFactory的子类。
- *         setContextPointer("ICommunicateFactory", new HCommunicateFactory(this));
- *         auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");//编译不会有问题，使用factory会出问题。
- * 替换成：setContextPointer("ICommunicateFactory", new HCommunicateFactory(this));
- *         auto factory = HAppContext::getContextPointer<HCommunicateFactory>("ICommunicateFactory");// ICommunicateFactory->HCommunicateFactory
- * 替换成：ICommunicateFactory *factory = new HCommunicateFactory(this);
- *         setContextPointer("ICommunicateFactory", factory);
- *         auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");
- *********************************************************************************************************************/
+**  2018-06-19  HAppContext 上下文类。
+**              获取上下文指针是需要注意事项：
+**              1.单继承时：T类型必须是设置类型或其父类型。
+**              2.多继承时：T类型必须是设置类型。
+**              例如：  HCommunicateFactory 是QObject和ICommunicateFactory的子类。
+**              setContextPointer("ICommunicateFactory", new HCommunicateFactory(this));
+**              // 编译不会有问题，使用factory会出问题。
+**              auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");
+**              替换成：setContextPointer("ICommunicateFactory", new HCommunicateFactory(this));
+**                      // ICommunicateFactory->HCommunicateFactory
+**                      auto factory = HAppContext::getContextPointer<HCommunicateFactory>("ICommunicateFactory");
+**              替换成：ICommunicateFactory *factory = new HCommunicateFactory(this);
+**                      setContextPointer("ICommunicateFactory", factory);
+**                      auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");
+**********************************************************************************************************************/
 
 #ifndef HAPPCONTEXT_H
 #define HAPPCONTEXT_H

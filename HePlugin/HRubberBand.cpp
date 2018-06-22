@@ -1,5 +1,4 @@
 #include "HRubberBand_p.h"
-#include "HAbstractDomain.h"
 #include <QRubberBand>
 #include <QMouseEvent>
 
@@ -30,7 +29,7 @@ void HRubberBand::setEnable(bool b)
     HAbstractMouseStrategy::setEnable(b);
 }
 
-void HRubberBand::paintEvent(QStylePainter *)
+void HRubberBand::paintEvent(QPaintEvent *)
 {
 }
 

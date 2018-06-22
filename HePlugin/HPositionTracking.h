@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HPositionTracking 鼠标追踪策略。
+***************************************************************************************************/
+
 #ifndef HPOSITIONTRACKING_H
 #define HPOSITIONTRACKING_H
 
@@ -28,7 +32,7 @@ public:
     QLabel *label();
 
 public:
-    virtual void paintEvent(QStylePainter *) override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

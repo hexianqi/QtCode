@@ -25,17 +25,6 @@ void HVernierTrackingPrivate::setValidRegion(QRectF value)
     validRegion = value;
 }
 
-void HVernierTrackingPrivate::setVernier(int size)
-{
-    verniers.resize(size);
-    if (size < 1)
-        return;
-
-    verniers[0] = validRegion.topLeft();
-    for (int i = 1; i < size; i++)
-        setVernier(i, i / (size - 1));
-}
-
 void HVernierTrackingPrivate::setVernier(int i, double percent)
 {
     if (i < 0 || i >= verniers.size())
@@ -46,18 +35,30 @@ void HVernierTrackingPrivate::setVernier(int i, double percent)
     verniers[i].ry() = validRegion.top() + validRegion.height() * percent;
 }
 
-void HVernierTrackingPrivate::paintVernier(QStylePainter *p)
+void HVernierTrackingPrivate::resizeVernier(int size)
 {
-    p->save();
-    p->setPen(color);
+    verniers.resize(size);
+    if (size < 1)
+        return;
+
+    verniers[0] = validRegion.topLeft();
+    for (int i = 1; i < size; i++)
+        setVernier(i, i / (size - 1));
+}
+
+void HVernierTrackingPrivate::paintVernier()
+{
+    QStylePainter painter(parent);
+    painter.save();
+    painter.setPen(color);
     for (auto v : verniers)
     {
         if (orientation == Qt::Horizontal)
-            p->drawLine(validRegion.left() + 2, v.y(), validRegion.right() - 2, v.y());
+            painter.drawLine(validRegion.left() + 2, v.y(), validRegion.right() - 2, v.y());
         if (orientation == Qt::Vertical)
-            p->drawLine(v.x(), validRegion.top() + 2, v.x(), validRegion.bottom() - 2);
+            painter.drawLine(v.x(), validRegion.top() + 2, v.x(), validRegion.bottom() - 2);
     }
-    p->restore();
+    painter.restore();
 }
 
 bool HVernierTrackingPrivate::mousePress(QPointF point)
@@ -100,6 +101,15 @@ HVernierTracking::~HVernierTracking()
 {
 }
 
+void HVernierTracking::setOrientation(Qt::Orientation value)
+{
+    Q_D(HVernierTracking);
+    if (d->orientation == value)
+        return;
+    d->orientation = value;
+    emit orientationChanged(value);
+}
+
 void HVernierTracking::setValidRegion(QRectF value)
 {
     Q_D(HVernierTracking);
@@ -112,18 +122,24 @@ void HVernierTracking::setVernierColor(QColor value)
     d->color = value;
 }
 
-void HVernierTracking::setVernier(int size)
-{
-    Q_D(HVernierTracking);
-    d->setVernier(size);
-    emit vernierChanged();
-}
-
 void HVernierTracking::setVernier(int i, double percent)
 {
     Q_D(HVernierTracking);
     d->setVernier(i, percent);
     emit vernierChanged(d->verniers[i]);
+}
+
+void HVernierTracking::resizeVernier(int size)
+{
+    Q_D(HVernierTracking);
+    d->resizeVernier(size);
+    emit vernierSizeChanged(size);
+}
+
+Qt::Orientation HVernierTracking::orientation()
+{
+    Q_D(HVernierTracking);
+    return d->orientation;
 }
 
 QVector<QPointF> HVernierTracking::verniers()
@@ -132,12 +148,12 @@ QVector<QPointF> HVernierTracking::verniers()
     return d->verniers;
 }
 
-void HVernierTracking::paintEvent(QStylePainter *p)
+void HVernierTracking::paintEvent(QPaintEvent *)
 {
     Q_D(HVernierTracking);
     if (!isEnable())
         return;
-    d->paintVernier(p);
+    d->paintVernier();
 }
 
 bool HVernierTracking::mousePressEvent(QMouseEvent *e)

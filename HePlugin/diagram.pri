@@ -8,11 +8,17 @@ HEADERS += \
     $$PWD/HCIE1931Widget.h \
     $$PWD/HCIE1931Widget_p.h \
     $$PWD/HVernierWidget.h \
-    $$PWD/HVernierWidget_p.h
+    $$PWD/HVernierWidget_p.h \
+    $$PWD/HSpecDiagramWidget.h \
+    $$PWD/HSpecDiagramWidget_p.h \
+    $$PWD/HRibbonDiagramWidget.h \
+    $$PWD/HRibbonDiagramWidget_p.h
 
 SOURCES += \
     $$PWD/HDiagramWidget.cpp \
     $$PWD/HCartesianWidget.cpp \
     $$PWD/HCartesianCoordinate.cpp \
     $$PWD/HCIE1931Widget.cpp \
-    $$PWD/HVernierWidget.cpp
+    $$PWD/HVernierWidget.cpp \
+    $$PWD/HSpecDiagramWidget.cpp \
+    $$PWD/HRibbonDiagramWidget.cpp

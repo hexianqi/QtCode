@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HXmlElement 重新封装的XML元素类，目的是为了简化XML查询操作。
+***************************************************************************************************/
+
 #ifndef HXMLELEMENT_H
 #define HXMLELEMENT_H
 
@@ -9,7 +13,6 @@ class QDomElement;
 
 HE_FILE_BEGIN_NAMESPACE
 
-// 重新封装的XML元素类，目的是为了简化XML查询操作
 class HE_FILE_EXPORT HXmlElement
 {
 public:

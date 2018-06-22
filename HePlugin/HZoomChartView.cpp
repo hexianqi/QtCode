@@ -49,7 +49,8 @@ void HZoomChartView::mouseReleaseEvent(QMouseEvent *e)
 
 void HZoomChartView::keyPressEvent(QKeyEvent *e)
 {
-    switch (e->key()) {
+    switch (e->key())
+    {
     case Qt::Key_Plus:
         chart()->zoomIn();
         break;

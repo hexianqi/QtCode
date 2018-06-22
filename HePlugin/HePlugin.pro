@@ -20,12 +20,16 @@ HEADERS     += \
 
 RESOURCES   = HePlugin.qrc
 
+INCLUDEPATH += ".."
+
 Debug {
-    TARGET = HePlugind
+    TARGET  = HePlugind
+    LIBS    += -L$$DESTDIR -lHeAlgorithmd
 }
 
 Release {
     TARGET  = HePlugin
+    LIBS    += -L$$DESTDIR -lHeAlgorithm
 }
 
 include(domain.pri)

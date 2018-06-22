@@ -1,9 +1,13 @@
+/***************************************************************************************************
+**      2018-06-19  HAbstractMouseStrategy 抽象鼠标策略。
+***************************************************************************************************/
+
 #ifndef HABSTRACTMOUSESTRATEGY_H
 #define HABSTRACTMOUSESTRATEGY_H
 
 #include <QObject>
 
-class QStylePainter;
+class QPaintEvent;
 class QMouseEvent;
 class HAbstractMouseStrategyPrivate;
 
@@ -23,7 +27,7 @@ public:
     bool isEnable();
 
 public:
-    virtual void paintEvent(QStylePainter *) = 0;
+    virtual void paintEvent(QPaintEvent *) = 0;
     virtual bool mousePressEvent(QMouseEvent *) = 0;
     virtual bool mouseMoveEvent(QMouseEvent *) = 0;
     virtual bool mouseReleaseEvent(QMouseEvent *) = 0;

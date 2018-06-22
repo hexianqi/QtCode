@@ -331,7 +331,7 @@ void HCIE1931Widget::mouseDoubleClickEvent(QMouseEvent *e)
     HCartesianWidget::mouseDoubleClickEvent(e);
 }
 
-void HCIE1931Widget::drawElse(QPainter *painter)
+bool HCIE1931Widget::drawElse(QPainter *painter)
 {
     HCartesianWidget::drawElse(painter);
     drawCIE(painter);

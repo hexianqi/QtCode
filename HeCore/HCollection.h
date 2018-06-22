@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HCollection 集合模板。
+***************************************************************************************************/
+
 #ifndef HCOLLECTION_H
 #define HCOLLECTION_H
 
@@ -5,7 +9,6 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-// 集合模板
 template <class T>
 class HCollection : virtual public ICollection<T>
 {

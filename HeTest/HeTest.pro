@@ -27,13 +27,22 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES     += \
             main.cpp \
-            MainWindow.cpp
+            MainWindow.cpp \
+            HTestAlgorithm.cpp \
+    HTestPlugin.cpp \
+    HTestChart.cpp \
+    HTestGsl.cpp \
+    HChartView.cpp
 
 HEADERS     += \
-            MainWindow.h
+            MainWindow.h \
+            HTestAlgorithm.h \
+    HTestPlugin.h \
+    HTestChart.h \
+    HTestGsl.h \
+    HChartView.h
 
 FORMS       += \
             MainWindow.ui
@@ -47,22 +56,13 @@ Debug {
     CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
-            -L$$DESTDIR -lHePlugind
+            -L$$DESTDIR -lHePlugind \
+            -L$$DESTDIR -lHeExampled
 }
 
 Release {
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithm \
-            -L$$DESTDIR -lHePlugin
+            -L$$DESTDIR -lHePlugin \
+            -L$$DESTDIR -lHeExample
 }
-
-
-
-
-
-#LIBS    += \
-#        -LD:/Qt/gsl-1.8/lib/ -lgsl \
-#        -LD:/Qt/gsl-1.8/lib/ -lgslcblas
-
-#INCLUDEPATH += D:/Qt/gsl-1.8/include
-#DEPENDPATH += D:/Qt/gsl-1.8/include

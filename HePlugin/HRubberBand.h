@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HRubberBand 橡皮带策略。
+***************************************************************************************************/
+
 #ifndef HRUBBERBAND_H
 #define HRUBBERBAND_H
 
@@ -23,7 +27,7 @@ public:
     virtual void setEnable(bool b) override;
 
 public:
-    virtual void paintEvent(QStylePainter *) override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

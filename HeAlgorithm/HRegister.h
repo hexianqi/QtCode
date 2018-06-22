@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HRegister 注册机类。
+***************************************************************************************************/
+
 #ifndef HREGISTER_H
 #define HREGISTER_H
 
@@ -8,7 +12,6 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HRegisterPrivate;
 
-// 注册机
 class HE_ALGORITHM_EXPORT HRegister
 {
 public:

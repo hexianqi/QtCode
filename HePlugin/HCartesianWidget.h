@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  HCartesianWidget 笛卡尔坐标系窗口部件。支持缩放。
+***************************************************************************************************/
+
 #ifndef HCARTESIANWIDGET_H
 #define HCARTESIANWIDGET_H
 
@@ -45,7 +49,7 @@ protected:
     virtual bool drawPolygon(QPainter *painter) override;
 
 protected slots:
-    void handleCoordinateChanged(HCartesianCoordinate *);
+    virtual void handleCoordinateChanged(HCartesianCoordinate *);
 
 private:
     void init();

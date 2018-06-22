@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2018-06-19  IChromaticity 色度参数计算接口。
+***************************************************************************************************/
+
 #ifndef ICHROMATICITY_H
 #define ICHROMATICITY_H
 
@@ -8,7 +12,6 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 class ISpectrumData;
 
-// 色度参数计算接口
 class HE_ALGORITHM_EXPORT IChromaticity
 {
 public:
