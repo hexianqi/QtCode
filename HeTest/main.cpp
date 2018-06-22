@@ -16,6 +16,7 @@ QPolygonF readFile()
     int i,n;
     QString str;
 
+
     QFile file(":/dat/CIE_DAY.dat");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
