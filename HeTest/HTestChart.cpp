@@ -34,18 +34,26 @@ QChartView *HTestChart::zoomChart()
 
 QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
 {
-    auto chartView = new QChartView;
+    auto chartView = new HChartView;
     auto chart = new QChart();
-    for (auto p : polys)
+    if (polys.size() > 0)
+    {
+        auto scatter = new QScatterSeries();
+        scatter->setName("Scatter");
+        scatter->setMarkerSize(10);
+        scatter->append(polys[0].toList());
+        chart->addSeries(scatter);
+    }
+    for (int i = 0; i < polys.size(); i++)
     {
         auto series = new QLineSeries();
-        series->append(p.toList());
+        series->setName(QString("Line %1").arg(i + 1));
+        series->append(polys[i].toList());
         chart->addSeries(series);
     }
-    chart->legend()->hide();
     chart->createDefaultAxes();
-    chartView->setRubberBand(QChartView::RectangleRubberBand);
     chartView->setChart(chart);
+    chartView->connectMarkers();
     return chartView;
 }
 

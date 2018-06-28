@@ -51,4 +51,3 @@ unix {
 }
 
 include(Reflect.pri)
-include(gsl.pri)

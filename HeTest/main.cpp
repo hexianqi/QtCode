@@ -8,59 +8,32 @@
 #include <functional>
 #include <QChartView>
 #include <QPolygonF>
-#include <QFile>
-#include <QTextStream>
 
-QPolygonF readFile()
+void TestVector(QVector<double> *c)
 {
-    int i,n;
-    QString str;
+    qDebug() << (*c)[0];
 
-
-    QFile file(":/dat/CIE_DAY.dat");
-    file.open(QIODevice::ReadOnly);
-    QTextStream in(&file);
-
-    QPolygonF poly;
-    double x,y,t1,t2;
-
-    in >> str >> n;
-    str = in.readLine();
-    str = in.readLine();
-
-    for (i = 0; i < n; i++)
-    {
-        in >> x >> y >> t1 >> t2;
-        poly << QPointF(x,y);
-    }
-    file.close();
-    return poly;
+    *c << 2.0 << 3.0;
+    qDebug() << *c;
 }
-
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    HTestGsl gsl;
+    QVector<double> t;
+    t.fill(1.0, 3);
+    TestVector(&t);
 
-//    QPolygonF p1,p2;
-//    for (int i = 0; i < 10; i++)
-//        p1 << QPointF(i + 0.5 * std::sin(i), i + std::cos(i * i));
-//    p2 = gsl.interpolation(p1);
-//    auto chart = HTestChart::diffChart(p1, p2);
+    qDebug() << t;
 
-    auto p1 = readFile();
-    auto p2 = gsl.interpolation(p1);
-    auto chart = HTestChart::diffChart(p1, p2);
-
-
-    QMainWindow window;
-    window.setCentralWidget(chart);
-    window.resize(400, 300);
-    window.grabGesture(Qt::PanGesture);
-    window.grabGesture(Qt::PinchGesture);
-    window.show();
+//    HTestGsl gsl;
+//    QMainWindow window;
+//    window.setCentralWidget(gsl.linearFitting());
+//    window.resize(800, 600);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
 
     return a.exec();
 }
