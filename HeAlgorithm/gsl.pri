@@ -5,8 +5,9 @@ HEADERS += \
     $$PWD/HSpecialFunction.h \
     $$PWD/HDigitalFilter.h \
     $$PWD/HBSplines.h \
-    $$PWD/HLinearFitting.h \
-    $$PWD/HComplexNumber.h
+    $$PWD/HComplexNumber.h \
+    $$PWD/HLinearFit.h \
+    $$PWD/HMultiFit.h
 
 
 SOURCES += \
@@ -16,8 +17,9 @@ SOURCES += \
     $$PWD/HSpecialFunction.cpp \
     $$PWD/HDigitalFilter.cpp \
     $$PWD/HBSplines.cpp \
-    $$PWD/HLinearFitting.cpp \
-    $$PWD/HComplexNumber.cpp
+    $$PWD/HComplexNumber.cpp \
+    $$PWD/HLinearFit.cpp \
+    $$PWD/HMultiFit.cpp
 
 
 DEFINES     += GSL_DLL  #此句不加将会遇到一些连接错误

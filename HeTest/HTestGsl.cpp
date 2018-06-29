@@ -1,10 +1,13 @@
 #include "HTestGsl.h"
 #include "HeAlgorithm/HInterp.h"
 #include "HeAlgorithm/HPolynomial.h"
-#include "HeAlgorithm/HLinearFitting.h"
+#include "HeAlgorithm/HLinearFit.h"
+#include "HeAlgorithm/HMultiFit.h"
 #include "HTestChart.h"
 #include <QFile>
 #include <QTextStream>
+#include <QtMath>
+#include <QRandomGenerator>
 #include <QDebug>
 #include <QtCharts/QChartView>
 
@@ -90,7 +93,7 @@ QWidget *HTestGsl::interpEval()
     return HTestChart::diffChart(p1, p2);
 }
 
-QWidget *HTestGsl::linearFitting()
+QWidget *HTestGsl::linearFit()
 {
     QPolygonF p1;
     QList<QPolygonF> list;
@@ -105,12 +108,12 @@ QWidget *HTestGsl::linearFitting()
 
         w.fill(1, 4);
         w[j] = 10;
-        HLinearFitting::wlinear(p1, w, c, cov, &chisq);
+        HLinearFit::linear(p1, w, c, cov, &chisq);
 
         for (int i = -30; i < 130; i++)
         {
             xf = p1.first().x() + (p1.last().x() - p1.first().x()) * i / 100.0;
-            HLinearFitting::linearEst(xf, c, cov, &yf, &yf_err);
+            HLinearFit::linearEst(xf, c, cov, &yf, &yf_err);
             p2 << QPointF(xf, yf);
             p3 << QPointF(xf, yf + yf_err);
             p4 << QPointF(xf, yf - yf_err);
@@ -125,4 +128,36 @@ QWidget *HTestGsl::linearFitting()
         qDebug() << QString("  %1, %2 ]").arg(cov[1]).arg(cov[2]);
     }
     return HTestChart::lineChart(list);
+}
+
+QWidget *HTestGsl::multiFit()
+{
+    double chisq;
+    QString text;
+    QPolygonF p1;
+    QVector<double> w,c,cov;
+
+    c.resize(3);
+    for (double x = 0.1; x < 2; x+= 0.1)
+    {
+        auto y = qExp(x);
+        auto sigma = 0.1 * y;
+        auto dy = ((qrand() % 10) - 5) / 100.0;
+        p1 << QPointF(x, y * (1 + dy));
+        w << sigma;
+    }
+    HMultiFit::linear(p1, w, c, cov, &chisq);
+    text = QString("best fit: Y = %1").arg(c[0]);
+    for (int i = 1; i < c.size(); i++)
+        text += QString(" + %1 * x^%2").arg(c[i]).arg(i);
+
+    qDebug() << __FUNCTION__;
+    qDebug() << text;
+    qDebug() << QString("chisq = %1").arg(chisq);
+    qDebug() << QString("covariance matrix:");
+//    qDebug() << QString("[ %1, %2").arg(cov[0]).arg(cov[1]);
+//    qDebug() << QString("  %1, %2 ]").arg(cov[1]).arg(cov[2]);
+    return HTestChart::zoomChart();
+
+
 }

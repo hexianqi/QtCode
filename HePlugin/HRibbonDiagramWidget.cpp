@@ -43,26 +43,26 @@ bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
     if (!d->plotArea.isValid())
         return false;
 
-    QColor color;
-    if (d->brushPlotArea != Qt::NoBrush)
-        color = d->brushPlotArea.color();
-    else if (d->brushBackground.style() != Qt::NoBrush)
-        color = d->brushBackground.color();
-    else
-        color = palette().background().color();
+//    QColor color;
+//    if (d->brushPlotArea != Qt::NoBrush)
+//        color = d->brushPlotArea.color();
+//    else if (d->brushBackground.style() != Qt::NoBrush)
+//        color = d->brushBackground.color();
+//    else
+//        color = palette().background().color();
 
-    auto target = d->plotArea.adjusted(1, 1, -1, -1);
-    auto source = d->coordinate->mapToAxis(d->pixmapRibbon.rect(), QRectF(360, 0, 470, 100));
-    auto poly = d->coordinate->mapToPosition(d->polyRibbon, d->plotArea);
-    poly = HMath::interpolate(poly, d->plotArea.left(), d->plotArea.right(), d->plotArea.bottom(), 1);
+//    auto target = d->plotArea.adjusted(1, 1, -1, -1);
+//    auto source = d->coordinate->mapToAxis(d->pixmapRibbon.rect(), QRectF(360, 0, 470, 100));
+//    auto poly = d->coordinate->mapToPosition(d->polyRibbon, d->plotArea);
+//    poly = HMath::interpolate(poly, d->plotArea.left(), d->plotArea.right(), d->plotArea.bottom(), 1);
 
-    painter->save();
-    painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
-    painter->drawPixmap(target, d->pixmapRibbon, source);
-    painter->setPen(color);
-    for (auto p : poly)
-        painter->drawLine(p.x(), d->plotArea.top(), p.x(), p.y());
-    painter->restore();
+//    painter->save();
+//    painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
+//    painter->drawPixmap(target, d->pixmapRibbon, source);
+//    painter->setPen(color);
+//    for (auto p : poly)
+//        painter->drawLine(p.x(), d->plotArea.top(), p.x(), p.y());
+//    painter->restore();
     return true;
 }
 

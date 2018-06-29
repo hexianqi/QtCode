@@ -36,11 +36,11 @@ void gslInterp(QPolygonF basis, HInterpType type, std::function<void(gsl_spline 
     uint size = basis.size();
     Q_ASSERT(t != nullptr && size >= t->min_size);
 
-    QVector<double> xa, ya;
-    HGslHelper::split(basis, xa, ya);
+    QVector<double> x, y;
+    HGslHelper::split(basis, x, y);
     auto acc = gsl_interp_accel_alloc();
     auto spline = gsl_spline_alloc(t, size);
-    gsl_spline_init(spline, xa.data(), ya.data(), size);
+    gsl_spline_init(spline, x.data(), y.data(), size);
     spline->interp->xmin = __DBL_MIN__;
     spline->interp->xmax = __DBL_MAX__;
     func(spline, acc);

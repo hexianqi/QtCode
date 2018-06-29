@@ -18,7 +18,8 @@ public:
     QPolygonF specialAirAi();
     QPolygonF specialAirBi();
     QWidget *interpEval();
-    QWidget *linearFitting();
+    QWidget *linearFit();
+    QWidget *multiFit();
 
 
 

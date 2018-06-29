@@ -1,17 +1,17 @@
 /***************************************************************************************************
-**      2018-06-20  HLinearFitting GSL线性最小二乘拟合函数类。
+**      2018-06-20  HLinearFit GSL线性最小二乘拟合函数类。
 **                  http://www.gnu.org/software/gsl/doc/html/lls.html
 ***************************************************************************************************/
 
-#ifndef HLINEARFITTING_H
-#define HLINEARFITTING_H
+#ifndef HLINEARFIT_H
+#define HLINEARFIT_H
 
 #include "HAlgorithmGlobal.h"
 #include <QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HLinearFitting
+class HE_ALGORITHM_EXPORT HLinearFit
 {
 public:
     // Y = c0 + c1 * x
@@ -32,4 +32,4 @@ public:
 
 HE_ALGORITHM_END_NAMESPACE
 
-#endif // HLINEARFITTING_H
+#endif // HLINEARFIT_H
