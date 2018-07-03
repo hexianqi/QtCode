@@ -29,10 +29,6 @@ void HRubberBand::setEnable(bool b)
     HAbstractMouseStrategy::setEnable(b);
 }
 
-void HRubberBand::paintEvent(QPaintEvent *)
-{
-}
-
 bool HRubberBand::mousePressEvent(QMouseEvent *e)
 {
     Q_D(HRubberBand);

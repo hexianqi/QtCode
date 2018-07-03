@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2018-06-19  HPositionTracking 鼠标追踪策略。
+**      2018-06-19  HPositionTracking 鼠标位置追踪策略。
 ***************************************************************************************************/
 
 #ifndef HPOSITIONTRACKING_H
@@ -9,6 +9,7 @@
 #include <QPointF>
 
 class QLabel;
+class IPositionTrackingControl;
 class HPositionTrackingPrivate;
 
 class HPositionTracking : public HAbstractMouseStrategy
@@ -24,15 +25,12 @@ signals:
     void positionChanged(QPointF pos);
 
 public:
+    virtual void setControl(IPositionTrackingControl *);
     virtual void setValidRegion(QRectF value) override;
     virtual void setEnable(bool b) override;
     virtual void setText(QString text);
 
 public:
-    QLabel *label();
-
-public:
-    virtual void paintEvent(QPaintEvent *) override;
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

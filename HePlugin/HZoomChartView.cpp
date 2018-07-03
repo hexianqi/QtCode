@@ -24,6 +24,10 @@ HZoomChartView::HZoomChartView(HZoomChartViewPrivate &p, QWidget *parent)
     init();
 }
 
+HZoomChartView::~HZoomChartView()
+{
+}
+
 void HZoomChartView::resizeEvent(QResizeEvent *e)
 {
     if (scene())
@@ -33,10 +37,6 @@ void HZoomChartView::resizeEvent(QResizeEvent *e)
         chart()->resize(size);
     }
     QChartView::resizeEvent(e);
-}
-
-HZoomChartView::~HZoomChartView()
-{
 }
 
 void HZoomChartView::mouseReleaseEvent(QMouseEvent *e)

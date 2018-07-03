@@ -50,7 +50,7 @@ HCIE1931Chart::HCIE1931Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
     : HSingleAxisChart(*new HCIE1931ChartPrivate(this), parent, wFlags)
 {
     initAxes();
-    initSeries();
+    readSeries();
     legend()->hide();
     setMinimumSize(300, 300);
     connect(this, &HCIE1931Chart::plotAreaChanged, this, updateHorseshoeBrush);
@@ -221,7 +221,7 @@ void HCIE1931Chart::initAxes()
     setAxisY(axisY);
 }
 
-void HCIE1931Chart::initSeries()
+void HCIE1931Chart::readSeries()
 {
     Q_D(HCIE1931Chart);
     int i,n;

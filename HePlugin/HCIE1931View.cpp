@@ -1,6 +1,7 @@
 #include "HCIE1931View_p.h"
 #include "HCIE1931Chart.h"
 #include "HPositionTracking.h"
+#include "HPositionTrackingGraphics.h"
 #include "HPluginHelper.h"
 #include <QAction>
 
@@ -71,6 +72,7 @@ void HCIE1931View::init()
     Q_D(HCIE1931View);
     d->chart = new HCIE1931Chart;
     d->tracking = new HPositionTracking(this);
+    d->tracking->setControl(new HPositionTrackingGraphics(d->chart));
     d->pointFocus = new QGraphicsSimpleTextItem(d->chart);
     d->pointFocus->setPen(QPen(Qt::red));
     d->pointFocus->setZValue(100);

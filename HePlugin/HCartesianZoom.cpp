@@ -56,10 +56,6 @@ void HCartesianZoom::setValidRegion(QRectF value)
     HAbstractMouseStrategy::setValidRegion(value);
 }
 
-void HCartesianZoom::paintEvent(QPaintEvent *)
-{
-}
-
 bool HCartesianZoom::mousePressEvent(QMouseEvent *e)
 {
     Q_D(HCartesianZoom);

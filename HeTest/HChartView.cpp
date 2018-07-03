@@ -14,54 +14,6 @@ HChartView::HChartView(QChart *chart, QWidget *parent)
     setRubberBand(QChartView::RectangleRubberBand);
 }
 
-void HChartView::connectMarkers()
-{
-    auto markers = chart()->legend()->markers();
-    for (auto *marker : markers)
-    {
-        // Disconnect possible existing connection to avoid multiple connections
-        disconnect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
-        connect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
-    }
-}
-
-void HChartView::disconnectMarkers()
-{
-    auto markers = chart()->legend()->markers();
-    for (auto *marker : markers)
-        disconnect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
-}
-
-void HChartView::handleMarkerClicked()
-{
-    auto marker = qobject_cast<QLegendMarker*> (sender());
-    if (marker->type() == QLegendMarker::LegendMarkerTypeXY)
-    {
-        marker->series()->setVisible(!marker->series()->isVisible());
-        marker->setVisible(true);
-        auto alpha = marker->series()->isVisible() ? 1.0 : 0.5;
-        auto brush = marker->labelBrush();
-        auto color = brush.color();
-        color.setAlphaF(alpha);
-        brush.setColor(color);
-        marker->setLabelBrush(brush);
-
-        brush = marker->brush();
-        color = brush.color();
-        color.setAlphaF(alpha);
-        brush.setColor(color);
-        marker->setBrush(brush);
-
-        auto pen = marker->pen();
-        color = pen.color();
-        color.setAlphaF(alpha);
-        pen.setColor(color);
-        marker->setPen(pen);
-    }
-    else
-        qDebug() << "Unknown marker type";
-}
-
 void HChartView::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())

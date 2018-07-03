@@ -13,11 +13,6 @@ public:
     explicit HChartView(QWidget *parent = nullptr);
     explicit HChartView(QChart *chart, QWidget *parent = nullptr);
 
-public slots:
-    void connectMarkers();
-    void disconnectMarkers();
-    void handleMarkerClicked();
-
 protected:
     virtual void keyPressEvent(QKeyEvent *) override;
 };

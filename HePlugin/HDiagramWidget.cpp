@@ -304,6 +304,7 @@ bool HDiagramWidget::drawPolygon(QPainter *)
 
 bool HDiagramWidget::drawElse(QPainter *)
 {
+    return true;
 }
 
 void HDiagramWidget::resizeEvent(QResizeEvent *e)

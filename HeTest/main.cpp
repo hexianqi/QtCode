@@ -13,14 +13,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    HTestGsl gsl;
-    gsl.multiFit();
-//    QMainWindow window;
-//    window.setCentralWidget(gsl.linearFitting());
-//    window.resize(800, 600);
-//    window.grabGesture(Qt::PanGesture);
-//    window.grabGesture(Qt::PinchGesture);
-//    window.show();
+//    HTestGsl gsl;
+    QMainWindow window;
+    window.setCentralWidget(HTestPlugin::testCIE1931View());
+    window.resize(800, 600);
+    window.grabGesture(Qt::PanGesture);
+    window.grabGesture(Qt::PinchGesture);
+    window.show();
 
     return a.exec();
 }

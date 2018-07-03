@@ -1,5 +1,6 @@
 #include "HTestChart.h"
 #include "HChartView.h"
+#include "HePlugin/HMarkerChart.h"
 #include <QtMath>
 #include <QRandomGenerator>
 #include <QtCharts/QChartView>
@@ -35,7 +36,7 @@ QChartView *HTestChart::zoomChart()
 QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
 {
     auto chartView = new HChartView;
-    auto chart = new QChart();
+    auto chart = new HMarkerChart();
     if (polys.size() > 0)
     {
         auto scatter = new QScatterSeries();
@@ -52,8 +53,9 @@ QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
         chart->addSeries(series);
     }
     chart->createDefaultAxes();
+    chart->connectMarkers();
+    chart->legend()->setAlignment(Qt::AlignRight);
     chartView->setChart(chart);
-    chartView->connectMarkers();
     return chartView;
 }
 
@@ -61,7 +63,7 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
 {
     auto points = p1.toList();
     auto chartView = new HChartView;
-    auto chart = new QChart();
+    auto chart = new HMarkerChart();
     auto line1 = new QLineSeries();
     auto spline1 = new QSplineSeries();
     auto scatter1 = new QScatterSeries();
@@ -80,9 +82,7 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
     chart->addSeries(scatter1);
     chart->addSeries(line2);
     chart->createDefaultAxes();
+    chart->connectMarkers();
     chartView->setChart(chart);
-    chartView->connectMarkers();
     return chartView;
 }
-
-

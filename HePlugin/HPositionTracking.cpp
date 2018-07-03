@@ -1,12 +1,10 @@
 #include "HPositionTracking_p.h"
-#include <QLabel>
+#include "IPositionTrackingControl.h"
 #include <QMouseEvent>
 
 HPositionTrackingPrivate::HPositionTrackingPrivate(QWidget *p)
     : HAbstractMouseStrategyPrivate(p)
 {
-    label = new QLabel(parent);
-    label->setAlignment(Qt::AlignLeft | Qt::AlignBottom);
 }
 
 HPositionTracking::HPositionTracking(QWidget *parent)
@@ -23,28 +21,30 @@ HPositionTracking::~HPositionTracking()
 {
 }
 
+void HPositionTracking::setControl(IPositionTrackingControl *p)
+{
+    Q_D(HPositionTracking);
+    d->control = p;
+}
+
 void HPositionTracking::setValidRegion(QRectF value)
 {
     Q_D(HPositionTracking);
-    d->label->setGeometry(value.left() + 10, value.top() + 10, value.width() - 20, d->label->fontMetrics().height());
+    d->control->setValidRegion(value);
     HAbstractMouseStrategy::setValidRegion(value);
 }
 
 void HPositionTracking::setEnable(bool b)
 {
     Q_D(HPositionTracking);
-    d->label->setVisible(b);
+    d->control->setVisible(b);
     HAbstractMouseStrategy::setEnable(b);
 }
 
 void HPositionTracking::setText(QString text)
 {
     Q_D(HPositionTracking);
-    d->label->setText(text);
-}
-
-void HPositionTracking::paintEvent(QPaintEvent *)
-{
+    d->control->setText(text);
 }
 
 bool HPositionTracking::mousePressEvent(QMouseEvent *)

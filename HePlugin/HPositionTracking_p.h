@@ -10,7 +10,7 @@ public:
     HPositionTrackingPrivate(QWidget *p);
 
 public:
-    QLabel *label;
+    IPositionTrackingControl *control;
 };
 
 #endif // HPOSITIONTRACKING_P_H

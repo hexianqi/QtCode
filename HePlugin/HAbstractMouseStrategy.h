@@ -27,7 +27,6 @@ public:
     bool isEnable();
 
 public:
-    virtual void paintEvent(QPaintEvent *) = 0;
     virtual bool mousePressEvent(QMouseEvent *) = 0;
     virtual bool mouseMoveEvent(QMouseEvent *) = 0;
     virtual bool mouseReleaseEvent(QMouseEvent *) = 0;

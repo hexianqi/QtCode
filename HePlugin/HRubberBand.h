@@ -27,7 +27,6 @@ public:
     virtual void setEnable(bool b) override;
 
 public:
-    virtual void paintEvent(QPaintEvent *) override;
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

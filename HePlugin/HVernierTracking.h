@@ -31,13 +31,12 @@ public:
     virtual void setVernier(int i, double percent);
     virtual void resizeVernier(int size);
 
-
 public:
     Qt::Orientation orientation();
     QVector<QPointF> verniers();
 
 public:
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *);
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

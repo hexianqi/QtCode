@@ -132,32 +132,100 @@ QWidget *HTestGsl::linearFit()
 
 QWidget *HTestGsl::multiFit()
 {
+    int i, j;
     double chisq;
     QString text;
-    QPolygonF p1;
+    QPolygonF p1, p2, p3, p4;
     QVector<double> w,c,cov;
 
-    c.resize(3);
+    c.resize(5);
     for (double x = 0.1; x < 2; x+= 0.1)
     {
         auto y = qExp(x);
         auto sigma = 0.1 * y;
-        auto dy = ((qrand() % 10) - 5) / 100.0;
+        auto dy = ((qrand() % 10) - 5) / 50.0;
         p1 << QPointF(x, y * (1 + dy));
         w << sigma;
     }
     HMultiFit::linear(p1, w, c, cov, &chisq);
-    text = QString("best fit: Y = %1").arg(c[0]);
-    for (int i = 1; i < c.size(); i++)
-        text += QString(" + %1 * x^%2").arg(c[i]).arg(i);
+
+    for (double xf = 0.05; xf < 2.05; xf += 0.01)
+    {
+        double yf, yf_err;
+        HMultiFit::linearEst(xf, c, cov, &yf, &yf_err);
+        p2 << QPointF(xf, yf);
+        p3 << QPointF(xf, yf + yf_err);
+        p4 << QPointF(xf, yf - yf_err);
+    }
 
     qDebug() << __FUNCTION__;
+    text = QString("best fit: Y = %1").arg(c[0]);
+    for (i = 1; i < c.size(); i++)
+        text += QString(" + %1 * x^%2").arg(c[i]).arg(i);
     qDebug() << text;
     qDebug() << QString("chisq = %1").arg(chisq);
     qDebug() << QString("covariance matrix:");
-//    qDebug() << QString("[ %1, %2").arg(cov[0]).arg(cov[1]);
-//    qDebug() << QString("  %1, %2 ]").arg(cov[1]).arg(cov[2]);
-    return HTestChart::zoomChart();
+    for (i = 0; i < c.size(); i++)
+    {
+        QStringList list;
+        for (j = 0; j < c.size(); j++)
+            list << QString(" %1").arg(cov[i * c.size() + j]);
+        qDebug() << list.join(",");
+    }
 
+    return HTestChart::lineChart(QList<QPolygonF>() << p1 << p2 << p3 << p4);
+}
 
+QWidget *HTestGsl::multiFit2()
+{
+    int i, j;
+
+    QPolygonF p1;
+    QVector<double> c,cov;
+    QList<HRobustType> types;
+    QList<QPolygonF> list;
+
+    types << HRobustType::Bisquare << HRobustType::Cauchy << HRobustType::Fair
+          << HRobustType::Huber << HRobustType::Ols << HRobustType::Welsch;
+    c.resize(5);
+    for (double x = 0.1; x < 2; x+= 0.1)
+    {
+        auto y = qExp(x);
+        auto dy = ((qrand() % 10) - 5) / 50.0;
+        p1 << QPointF(x, y * (1 + dy));
+    }
+    list << p1;
+
+    for(auto type : types)
+    {
+        QString text;
+        QPolygonF p2, p3, p4;
+
+        HMultiFit::robust(p1, c, cov, type);
+        for (double xf = 0.05; xf < 2.05; xf += 0.01)
+        {
+            double yf, yf_err;
+            HMultiFit::robustEst(xf, c, cov, &yf, &yf_err);
+            p2 << QPointF(xf, yf);
+            p3 << QPointF(xf, yf + yf_err);
+            p4 << QPointF(xf, yf - yf_err);
+        }
+
+        qDebug() << __FUNCTION__;
+        text = QString("best fit: Y = %1").arg(c[0]);
+        for (i = 1; i < c.size(); i++)
+            text += QString(" + %1 * x^%2").arg(c[i]).arg(i);
+        qDebug() << text;
+        qDebug() << QString("covariance matrix:");
+        for (i = 0; i < c.size(); i++)
+        {
+            QStringList list;
+            for (j = 0; j < c.size(); j++)
+                list << QString(" %1").arg(cov[i * c.size() + j]);
+            qDebug() << list.join(",");
+        }
+        list << p2 << p3 << p4;
+    }
+
+    return HTestChart::lineChart(list);
 }

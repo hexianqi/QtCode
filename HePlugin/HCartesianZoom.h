@@ -30,7 +30,6 @@ public:
     virtual void setValidRegion(QRectF value) override;
 
 public:
-    virtual void paintEvent(QPaintEvent *) override;
     virtual bool mousePressEvent(QMouseEvent *) override;
     virtual bool mouseMoveEvent(QMouseEvent *) override;
     virtual bool mouseReleaseEvent(QMouseEvent *) override;

@@ -34,6 +34,8 @@ Release {
 
 include(domain.pri)
 include(strategy.pri)
+include(control.pri)
 include(chart.pri)
+include(view.pri)
 include(diagram.pri)
 include(class2.pri)

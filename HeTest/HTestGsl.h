@@ -20,6 +20,7 @@ public:
     QWidget *interpEval();
     QWidget *linearFit();
     QWidget *multiFit();
+    QWidget *multiFit2();
 
 
 

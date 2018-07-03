@@ -2,6 +2,7 @@
 #include "HCartesianCoordinate.h"
 #include "HPluginHelper.h"
 #include "HPositionTracking.h"
+#include "HPositionTrackingLabel.h"
 #include <QAction>
 #include <QFile>
 #include <QIcon>
@@ -339,6 +340,7 @@ bool HCIE1931Widget::drawElse(QPainter *painter)
     drawPlanckian(painter);
     drawGradeBlock(painter);
     drawPoint(painter);
+    return true;
 }
 
 bool HCIE1931Widget::drawCIE(QPainter *painter)
@@ -442,6 +444,7 @@ void HCIE1931Widget::init()
 {
     Q_D(HCIE1931Widget);
     d->tracking = new HPositionTracking(this);
+    d->tracking->setControl(new HPositionTrackingLabel(this));
     d->actionCIE = new QAction(tr("色品图(&E)"));
     d->actionCIE->setCheckable(true);
     d->actionCIE->setChecked(isDrawCIE());

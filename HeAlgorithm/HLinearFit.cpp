@@ -23,10 +23,10 @@ QVector<double> HLinearFit::linear(QPolygonF basis, QVector<double> w)
 void HLinearFit::linear(QPolygonF basis, QVector<double> &c, QVector<double> &cov, double *sumsq)
 {
     double c0, c1, cov00, cov01, cov11;
-    QVector<double> xa, ya;
+    QVector<double> x, y;
 
-    HGslHelper::split(basis, xa, ya);
-    gsl_fit_linear(xa.data(), 1, ya.data(), 1, basis.size(), &c0, &c1, &cov00, &cov01, &cov11, sumsq);
+    HGslHelper::split(basis, x, y);
+    gsl_fit_linear(x.data(), 1, y.data(), 1, basis.size(), &c0, &c1, &cov00, &cov01, &cov11, sumsq);
     c = QVector<double>() << c0 << c1;
     cov = QVector<double>() << cov00 << cov01 << cov11;
 }
@@ -34,10 +34,10 @@ void HLinearFit::linear(QPolygonF basis, QVector<double> &c, QVector<double> &co
 void HLinearFit::linear(QPolygonF basis, QVector<double> w, QVector<double> &c, QVector<double> &cov, double *chisq)
 {
     double c0, c1, cov00, cov01, cov11;
-    QVector<double> xa, ya;
+    QVector<double> x, y;
 
-    HGslHelper::split(basis, xa, ya);
-    gsl_fit_wlinear(xa.data(), 1, w.data(), 1, ya.data(), 1, basis.size(), &c0, &c1, &cov00, &cov01, &cov11, chisq);
+    HGslHelper::split(basis, x, y);
+    gsl_fit_wlinear(x.data(), 1, w.data(), 1, y.data(), 1, basis.size(), &c0, &c1, &cov00, &cov01, &cov11, chisq);
     c = QVector<double>() << c0 << c1;
     cov = QVector<double>() << cov00 << cov01 << cov11;
 }
@@ -64,16 +64,16 @@ double HLinearFit::mul(QPolygonF basis, QVector<double> w)
 
 void HLinearFit::mul(QPolygonF basis, double *c, double *cov, double *sumsq)
 {
-    QVector<double> xa, ya;
-    HGslHelper::split(basis, xa, ya);
-    gsl_fit_mul(xa.data(), 1, ya.data(), 1, basis.size(), c, cov, sumsq);
+    QVector<double> x, y;
+    HGslHelper::split(basis, x, y);
+    gsl_fit_mul(x.data(), 1, y.data(), 1, basis.size(), c, cov, sumsq);
 }
 
 void HLinearFit::mul(QPolygonF basis, QVector<double> w, double *c, double *cov, double *chisq)
 {
-    QVector<double> xa, ya;
-    HGslHelper::split(basis, xa, ya);
-    gsl_fit_wmul(xa.data(), 1, w.data(), 1, ya.data(), 1, basis.size(), c, cov, chisq);
+    QVector<double> x, y;
+    HGslHelper::split(basis, x, y);
+    gsl_fit_wmul(x.data(), 1, w.data(), 1, y.data(), 1, basis.size(), c, cov, chisq);
 }
 
 void HLinearFit::mulEst(double x, double c, double cov, double *y, double *y_err)

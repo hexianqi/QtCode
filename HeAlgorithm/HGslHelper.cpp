@@ -26,15 +26,20 @@ void HGslHelper::split(QPolygonF poly, QVector<double> &x, QVector<double> &y)
 QVector<double> HGslHelper::fromGsl(gsl_vector *v)
 {
     QVector<double> r(v->size);
-    for (int i = 0; i < v->size; i++)
+    for (uint i = 0; i < v->size; i++)
         r[i] = gsl_vector_get(v, i);
+    return r;
 }
 
 QVector<double> HGslHelper::fromGsl(gsl_matrix *m)
 {
-    QVector<double> r(m->tda);
+    QVector<double> r;
+    for (uint i = 0; i < m->size1; i++)
+    {
+        for (uint j = 0; j < m->size2; j++)
+            r << gsl_matrix_get(m, i, j);
+    }
     return r;
 }
-
 
 HE_ALGORITHM_END_NAMESPACE
