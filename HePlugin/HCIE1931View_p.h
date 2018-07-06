@@ -17,7 +17,8 @@ public:
 public:
     HCIE1931Chart *chart;
     HPositionTracking *tracking;
-    QGraphicsSimpleTextItem *pointFocus;
+    QGraphicsSimpleTextItem *positionItem;
+    QGraphicsSimpleTextItem *pointFocusItem;
     QAction *actionEnableCIE;
     QAction *actionEnableHorseshoe;
     QAction *actionEnablePlanckian;

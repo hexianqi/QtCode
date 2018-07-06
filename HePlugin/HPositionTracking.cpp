@@ -1,5 +1,4 @@
 #include "HPositionTracking_p.h"
-#include "IPositionTrackingControl.h"
 #include <QMouseEvent>
 
 HPositionTrackingPrivate::HPositionTrackingPrivate(QWidget *p)
@@ -19,32 +18,6 @@ HPositionTracking::HPositionTracking(HPositionTrackingPrivate &p, QWidget *paren
 
 HPositionTracking::~HPositionTracking()
 {
-}
-
-void HPositionTracking::setControl(IPositionTrackingControl *p)
-{
-    Q_D(HPositionTracking);
-    d->control = p;
-}
-
-void HPositionTracking::setValidRegion(QRectF value)
-{
-    Q_D(HPositionTracking);
-    d->control->setValidRegion(value);
-    HAbstractMouseStrategy::setValidRegion(value);
-}
-
-void HPositionTracking::setEnable(bool b)
-{
-    Q_D(HPositionTracking);
-    d->control->setVisible(b);
-    HAbstractMouseStrategy::setEnable(b);
-}
-
-void HPositionTracking::setText(QString text)
-{
-    Q_D(HPositionTracking);
-    d->control->setText(text);
 }
 
 bool HPositionTracking::mousePressEvent(QMouseEvent *)

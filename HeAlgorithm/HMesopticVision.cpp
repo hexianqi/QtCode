@@ -1,5 +1,5 @@
 #include "HMesopticVision.h"
-#include "HMath.h"
+#include "HInterp.h"
 #include <QFile>
 #include <QTextStream>
 
@@ -14,7 +14,7 @@ double HMesopticVision::calcRatio(QString type, double value)
 {
     if (!_stdData.contains(type))
         return 0;
-    return HMath::interpolate(value, _stdData[type]);
+    return HInterp::eval(_stdData[type], value);
 }
 
 void HMesopticVision::readStandard()

@@ -46,7 +46,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *) override;
     virtual void handleCoordinateChanged(HCartesianCoordinate *) override;
     virtual void handleOrientationChanged();
-    virtual void handleVernierChanged(QPointF pos);
+    virtual void handleVernierPosChanged(QPointF pos);
     virtual void handleVernierSizeChanged();
     void updateVernierValue();
     QString toString(QVector<double> value);

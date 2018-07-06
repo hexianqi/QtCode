@@ -116,7 +116,7 @@ void HVernierWidget::handleOrientationChanged()
     updateVernierValue();
 }
 
-void HVernierWidget::handleVernierChanged(QPointF pos)
+void HVernierWidget::handleVernierPosChanged(QPointF pos)
 {
     Q_D(HVernierWidget);
     if (d->tracking->orientation() == Qt::Vertical)
@@ -170,6 +170,7 @@ void HVernierWidget::init()
 {
     Q_D(HVernierWidget);
     d->tracking = new HVernierTracking(Qt::Vertical, this);
+    d->tracking->resizeVernier(2);
     d->labelLeft = new QLabel(this);
     d->labelLeft->setAlignment(Qt::AlignLeft | Qt::AlignBottom);
     d->labelCenter = new QLabel(this);
@@ -182,6 +183,6 @@ void HVernierWidget::init()
     d->layoutLabel->addWidget(d->labelRight, 0, 2);
     connect(this, &HVernierWidget::plotAreaChanged, d->tracking, &HVernierTracking::setValidRegion);
     connect(d->tracking, &HVernierTracking::orientationChanged, this, handleOrientationChanged);
-    connect(d->tracking, &HVernierTracking::vernierChanged, this, handleVernierChanged);
+    connect(d->tracking, &HVernierTracking::vernierPosChanged, this, handleVernierPosChanged);
     connect(d->tracking, &HVernierTracking::vernierSizeChanged, this, handleVernierSizeChanged);
 }

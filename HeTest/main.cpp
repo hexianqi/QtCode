@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-//    HTestGsl gsl;
+    HTestGsl gsl;
     QMainWindow window;
-    window.setCentralWidget(HTestPlugin::testCIE1931View());
+    window.setCentralWidget(gsl.multiFit2());
     window.resize(800, 600);
     window.grabGesture(Qt::PanGesture);
     window.grabGesture(Qt::PinchGesture);
@@ -23,6 +23,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-
-
-

@@ -13,6 +13,8 @@ class HAbstractModelPrivate;
 
 class HE_CONTROLLER_EXPORT HAbstractModel : public IModel
 {
+    Q_OBJECT
+
 public:
     explicit HAbstractModel(QObject *parent = nullptr);
     ~HAbstractModel();

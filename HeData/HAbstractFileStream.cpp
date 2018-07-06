@@ -32,7 +32,6 @@ void HAbstractFileStream::setFileVersion(quint32 value)
 
 void HAbstractFileStream::setFileFilter(QString value)
 {
-
     d_ptr->fileFilter = value;
 }
 

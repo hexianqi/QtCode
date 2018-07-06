@@ -30,6 +30,4 @@ public:
 
 HE_DATA_END_NAMESPACE
 
-
-
 #endif // ISPECCALIBRATE_H

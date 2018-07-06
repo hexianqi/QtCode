@@ -4,6 +4,7 @@
 #include "HCIE1931Widget.h"
 #include "HCartesianWidget_p.h"
 
+class QLabel;
 class HPositionTracking;
 
 class HCIE1931WidgetPrivate : public HCartesianWidgetPrivate
@@ -18,6 +19,7 @@ public:
 
 public:
     HPositionTracking *tracking;
+    QLabel *label;
     bool drawCIE = true;
     bool drawHorseshoe = true;
     bool drawPlanckian = true;

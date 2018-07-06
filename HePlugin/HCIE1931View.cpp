@@ -1,7 +1,6 @@
 #include "HCIE1931View_p.h"
 #include "HCIE1931Chart.h"
 #include "HPositionTracking.h"
-#include "HPositionTrackingGraphics.h"
 #include "HPluginHelper.h"
 #include <QAction>
 
@@ -20,16 +19,17 @@ HCIE1931View::~HCIE1931View()
 {
 }
 
+void HCIE1931View::setEnableTracking(bool b)
+{
+    Q_D(HCIE1931View);
+    d->tracking->setEnable(b);
+    d->positionItem->setVisible(b);
+}
+
 HCIE1931Chart *HCIE1931View::cieChart()
 {
     Q_D(HCIE1931View);
     return d->chart;
-}
-
-HPositionTracking *HCIE1931View::tracking()
-{
-    Q_D(HCIE1931View);
-    return d->tracking;
 }
 
 void HCIE1931View::mouseMoveEvent(QMouseEvent *e)
@@ -51,20 +51,21 @@ void HCIE1931View::handlePlotAreaChanged(QRectF value)
 {
     Q_D(HCIE1931View);
     d->tracking->setValidRegion(value);
-    d->pointFocus->setPos(value.right() - d->pointFocus->boundingRect().width() - 10, value.top() + 10);
+    d->positionItem->setPos(value.left() + 10, value.top() + 10);
+    d->pointFocusItem->setPos(value.right() - d->pointFocusItem->boundingRect().width() - 10, value.top() + 10);
 }
 
 void HCIE1931View::handlePointFocusChanged(QPointF pos)
 {
     Q_D(HCIE1931View);
-    d->pointFocus->setText(QString("(%1, %2)").arg(pos.x(), 0, 'f', 4).arg(pos.y(), 0, 'f', 4));
+    d->pointFocusItem->setText(QString("(%1, %2)").arg(pos.x(), 0, 'f', 4).arg(pos.y(), 0, 'f', 4));
 }
 
 void HCIE1931View::handlePositionChanged(QPointF pos)
 {
     Q_D(HCIE1931View);
     auto p = chart()->mapToValue(pos);
-    d->tracking->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
+    d->positionItem->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
 }
 
 void HCIE1931View::init()
@@ -72,11 +73,12 @@ void HCIE1931View::init()
     Q_D(HCIE1931View);
     d->chart = new HCIE1931Chart;
     d->tracking = new HPositionTracking(this);
-    d->tracking->setControl(new HPositionTrackingGraphics(d->chart));
-    d->pointFocus = new QGraphicsSimpleTextItem(d->chart);
-    d->pointFocus->setPen(QPen(Qt::red));
-    d->pointFocus->setZValue(100);
-    d->pointFocus->setText(QString("(%1, %2)").arg(0.0, 0, 'f', 4).arg(0.0, 0, 'f', 4));
+    d->positionItem = new QGraphicsSimpleTextItem(d->chart);
+    d->positionItem->setZValue(100);
+    d->pointFocusItem = new QGraphicsSimpleTextItem(d->chart);
+    d->pointFocusItem->setPen(QPen(Qt::red));
+    d->pointFocusItem->setZValue(100);
+    d->pointFocusItem->setText(QString("(%1, %2)").arg(0.0, 0, 'f', 4).arg(0.0, 0, 'f', 4));
     d->actionEnableCIE = new QAction(tr("色品图(&E)"));
     d->actionEnableCIE->setCheckable(true);
     d->actionEnableCIE->setChecked(d->chart->isEnableCIE());

@@ -2,8 +2,8 @@
 #include "HCartesianCoordinate.h"
 #include "HPluginHelper.h"
 #include "HPositionTracking.h"
-#include "HPositionTrackingLabel.h"
 #include <QAction>
+#include <QLabel>
 #include <QFile>
 #include <QIcon>
 #include <QMouseEvent>
@@ -65,6 +65,7 @@ void HCIE1931Widget::setEnableTracking(bool b)
 {
     Q_D(HCIE1931Widget);
     d->tracking->setEnable(b);
+    d->label->setVisible(b);
 }
 
 void HCIE1931Widget::setDrawCIE(bool b)
@@ -433,18 +434,25 @@ bool HCIE1931Widget::drawPoint(QPainter *painter)
     return true;
 }
 
+void HCIE1931Widget::handlePlotAreaChanged(QRectF value)
+{
+    Q_D(HCIE1931Widget);
+    d->tracking->setValidRegion(value);
+    d->label->setGeometry(value.left() + 10, value.top() + 10, value.width() - 20, fontMetrics().height());
+}
+
 void HCIE1931Widget::handlePositionChanged(QPointF pos)
 {
     Q_D(HCIE1931Widget);
     auto p = d->coordinate->mapToValue(pos, d->plotArea);
-    d->tracking->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
+    d->label->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
 }
 
 void HCIE1931Widget::init()
 {
     Q_D(HCIE1931Widget);
     d->tracking = new HPositionTracking(this);
-    d->tracking->setControl(new HPositionTrackingLabel(this));
+    d->label = new QLabel(this);
     d->actionCIE = new QAction(tr("色品图(&E)"));
     d->actionCIE->setCheckable(true);
     d->actionCIE->setChecked(isDrawCIE());
@@ -470,7 +478,7 @@ void HCIE1931Widget::init()
     addAction(d->actionPoint);
     addAction(d->actionClearPoint);
 
-    connect(this, &HCIE1931Widget::plotAreaChanged, d->tracking, &HPositionTracking::setValidRegion);
+    connect(this, &HCIE1931Widget::plotAreaChanged, this, handlePlotAreaChanged);
     connect(d->tracking, &HPositionTracking::positionChanged, this, handlePositionChanged);
     connect(d->actionCIE, &QAction::toggled, this, setDrawCIE);
     connect(d->actionHorseshoe, &QAction::toggled, this, setDrawHorseshoe);

@@ -2,30 +2,17 @@
 #define HVERNIERTRACKING_P_H
 
 #include "HVernierTracking.h"
-#include "HAbstractMouseStrategy_p.h"
+#include "HAbstractVernierTracking_p.h"
 #include <QColor>
 #include <QVector>
 
-class HVernierTrackingPrivate : public HAbstractMouseStrategyPrivate
+class HVernierTrackingPrivate : public HAbstractVernierTrackingPrivate
 {
 public:
     HVernierTrackingPrivate(Qt::Orientation o, QWidget *p);
 
 public:
-    void setValidRegion(QRectF value);
-    void setVernier(int i, double percent);
-    void resizeVernier(int size);
-
-public:
     void paintVernier();
-    bool mousePress(QPointF point);
-    void mouseRelease();
-
-public:
-    Qt::Orientation orientation;
-    QColor color = Qt::blue;
-    int pos = -1;
-    QVector<QPointF> verniers;
 };
 
 #endif // HVERNIERTRACKING_P_H

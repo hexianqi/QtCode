@@ -8,8 +8,6 @@ class HBuilder2000Private : public HAbstractBuilderPrivate
 {
 public:
     HBuilder2000Private();
-
-
 };
 
 #endif // HBUILDER2000_P_H

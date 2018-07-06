@@ -56,13 +56,26 @@ Debug {
     CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
-            -L$$DESTDIR -lHePlugind \
-            -L$$DESTDIR -lHeExampled
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithm \
-            -L$$DESTDIR -lHePlugin \
-            -L$$DESTDIR -lHeExample
+            -L$$DESTDIR -lHePlugin
 }
+
+#版本信息
+VERSION = 4.0.2.666
+# 图标
+RC_ICONS = Image/Icon.ico
+# 公司名称
+QMAKE_TARGET_COMPANY = "Digia"
+# 产品名称
+QMAKE_TARGET_PRODUCT = "Qt Creator"
+# 文件说明
+QMAKE_TARGET_DESCRIPTION = "Qt Creator based on Qt 5.7.0 (MSVC 2013, 32 bit)"
+# 版权信息
+QMAKE_TARGET_COPYRIGHT = "Copyright 2008-2016 The Qt Company Ltd. All rights reserved."
+# 中文（简体）
+RC_LANG = 0x0004

@@ -85,6 +85,7 @@ protected:
     virtual bool drawPoint(QPainter *);
 
 protected slots:
+    void handlePlotAreaChanged(QRectF value);
     void handlePositionChanged(QPointF pos);
 
 protected:

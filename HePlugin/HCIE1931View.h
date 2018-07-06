@@ -24,8 +24,10 @@ signals:
     void mouseDoubleClicked(QPointF point);
 
 public:
+    void setEnableTracking(bool b);
+
+public:
     HCIE1931Chart *cieChart();
-    HPositionTracking *tracking();
 
 protected:
     virtual void mouseMoveEvent(QMouseEvent *) override;

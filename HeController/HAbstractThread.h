@@ -17,6 +17,8 @@ class HAbstractThreadPrivate;
 
 class HAbstractThread : public IThread
 {
+    Q_OBJECT
+
 public:
     explicit HAbstractThread(QObject *parent = nullptr);
     ~HAbstractThread();

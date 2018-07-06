@@ -8,8 +8,6 @@
 #include "HAbstractMouseStrategy.h"
 #include <QPointF>
 
-class QLabel;
-class IPositionTrackingControl;
 class HPositionTrackingPrivate;
 
 class HPositionTracking : public HAbstractMouseStrategy
@@ -23,12 +21,6 @@ public:
 
 signals:
     void positionChanged(QPointF pos);
-
-public:
-    virtual void setControl(IPositionTrackingControl *);
-    virtual void setValidRegion(QRectF value) override;
-    virtual void setEnable(bool b) override;
-    virtual void setText(QString text);
 
 public:
     virtual bool mousePressEvent(QMouseEvent *) override;

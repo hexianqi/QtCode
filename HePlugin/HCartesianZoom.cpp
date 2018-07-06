@@ -47,13 +47,15 @@ void HCartesianZoom::resetCoordinate()
     setCoordinate(d->coordinates.first());
 }
 
-void HCartesianZoom::setValidRegion(QRectF value)
+bool HCartesianZoom::setValidRegion(QRectF value)
 {
     Q_D(HCartesianZoom);
+    if (!HAbstractMouseStrategy::setValidRegion(value))
+        return false;
     d->rubberBand->setValidRegion(value);
     d->zoomIn->move(value.right() - 1 - d->zoomIn->width() - d->zoomOut->width(), value.top() + 1);
     d->zoomOut->move(value.right() - 1 - d->zoomOut->width(), value.top() + 1);
-    HAbstractMouseStrategy::setValidRegion(value);
+    return true;
 }
 
 bool HCartesianZoom::mousePressEvent(QMouseEvent *e)

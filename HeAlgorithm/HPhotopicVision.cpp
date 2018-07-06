@@ -1,5 +1,5 @@
 #include "HPhotopicVision.h"
-#include "HMath.h"
+#include "HInterp.h"
 #include <QFile>
 #include <QTextStream>
 
@@ -105,7 +105,7 @@ void HPhotopicVision::readStandard()
     }
     file.close();
 
-    _stdData = HMath::interpolate(poly, poly.first().x(), poly.last().x(), 0.1);
+    _stdData = HInterp::eval(poly, poly.first().x(), poly.last().x());
 }
 
 HE_ALGORITHM_END_NAMESPACE

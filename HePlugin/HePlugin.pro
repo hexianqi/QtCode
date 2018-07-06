@@ -32,9 +32,8 @@ Release {
     LIBS    += -L$$DESTDIR -lHeAlgorithm
 }
 
-include(domain.pri)
 include(strategy.pri)
-include(control.pri)
+include(extend.pri)
 include(chart.pri)
 include(view.pri)
 include(diagram.pri)

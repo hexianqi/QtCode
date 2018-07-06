@@ -1,6 +1,6 @@
 #include "HRibbonDiagramWidget_p.h"
 #include "HCartesianCoordinate.h"
-#include "HeAlgorithm/HMath.h"
+#include "HeAlgorithm/HInterp.h"
 #include <QPainter>
 
 HE_ALGORITHM_USE_NAMESPACE
@@ -55,7 +55,7 @@ bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
     auto target = d->plotArea.adjusted(1, 1, -1, -1);
     auto source = d->coordinate->mapToAxis(d->pixmapRibbon.rect(), QRectF(360, 0, 470, 100));
     auto poly = d->coordinate->mapToPosition(d->polyRibbon, d->plotArea);
-    poly = HMath::interpolate(poly, d->plotArea.left(), d->plotArea.right(), d->plotArea.bottom(), 1);
+    poly = HInterp::eval(poly, d->plotArea.left(), d->plotArea.right(), 1);
 
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));

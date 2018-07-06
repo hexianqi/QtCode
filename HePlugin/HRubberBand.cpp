@@ -22,11 +22,13 @@ HRubberBand::~HRubberBand()
 {
 }
 
-void HRubberBand::setEnable(bool b)
+bool HRubberBand::setEnable(bool b)
 {
     Q_D(HRubberBand);
+    if (!HAbstractMouseStrategy::setEnable(b))
+        return false;
     d->rubberBand->setEnabled(b);
-    HAbstractMouseStrategy::setEnable(b);
+    return true;
 }
 
 bool HRubberBand::mousePressEvent(QMouseEvent *e)

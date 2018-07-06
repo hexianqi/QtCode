@@ -27,7 +27,7 @@ public:
     void resetCoordinate();
 
 public:
-    virtual void setValidRegion(QRectF value) override;
+    virtual bool setValidRegion(QRectF value) override;
 
 public:
     virtual bool mousePressEvent(QMouseEvent *) override;

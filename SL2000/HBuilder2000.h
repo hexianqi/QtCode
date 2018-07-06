@@ -32,9 +32,6 @@ protected:
     void buildModel();
     void buildMainWindow();
     void buildMenu();
-
-
-
     void initMainWindow();
     void initConfigManageDefault();
     void initTestData(quint32 type);

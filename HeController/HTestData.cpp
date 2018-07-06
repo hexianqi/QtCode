@@ -70,7 +70,7 @@ void HTestData::setSuccessor(ITestData *p)
 
 void HTestData::setData(QString type, QVariant value)
 {
-     d_ptr->setData(type, value);
+    d_ptr->setData(type, value);
 }
 
 QVariant HTestData::data(QString type)

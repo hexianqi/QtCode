@@ -16,6 +16,8 @@ QString HTestHandler::typeName()
 
 void HTestHandler::execute(QObject *sender, QVariantMap param)
 {
+    Q_UNUSED(sender)
+    Q_UNUSED(param)
     QMessageBox::information(d_ptr->parent, "" , tr("敬请期待"));
 }
 

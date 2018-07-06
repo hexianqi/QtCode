@@ -13,6 +13,7 @@ class HThreadSpecPrivate;
 
 class HE_CONTROLLER_EXPORT HThreadSpec : public HAbstractThread
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HThreadSpec)
 
 public:

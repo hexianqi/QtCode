@@ -9,6 +9,8 @@ class HGuiFactoryPrivate;
 
 class HE_GUI_EXPORT HGuiFactory : public QObject, public IGuiFactory
 {
+    Q_OBJECT
+
 public:
     explicit HGuiFactory(QObject *parent = nullptr);
     ~HGuiFactory();

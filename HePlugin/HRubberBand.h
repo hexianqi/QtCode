@@ -24,7 +24,7 @@ signals:
     void rubberBandChanged(QRectF value);
 
 public:
-    virtual void setEnable(bool b) override;
+    virtual bool setEnable(bool b) override;
 
 public:
     virtual bool mousePressEvent(QMouseEvent *) override;

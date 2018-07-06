@@ -25,14 +25,20 @@ HAbstractMouseStrategy::~HAbstractMouseStrategy()
 {
 }
 
-void HAbstractMouseStrategy::setValidRegion(QRectF value)
+bool HAbstractMouseStrategy::setValidRegion(QRectF value)
 {
+    if (d_ptr->validRegion == value)
+        return false;
     d_ptr->validRegion = value;
+    return true;
 }
 
-void HAbstractMouseStrategy::setEnable(bool b)
+bool HAbstractMouseStrategy::setEnable(bool b)
 {
+    if (d_ptr->enable == b)
+        return false;
     d_ptr->enable = b;
+    return true;
 }
 
 bool HAbstractMouseStrategy::isEnable()

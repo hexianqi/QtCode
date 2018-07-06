@@ -20,8 +20,8 @@ public:
     ~HAbstractMouseStrategy();
 
 public:
-    virtual void setValidRegion(QRectF value);
-    virtual void setEnable(bool b);
+    virtual bool setValidRegion(QRectF value);
+    virtual bool setEnable(bool b);
 
 public:
     bool isEnable();
