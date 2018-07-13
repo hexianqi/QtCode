@@ -2,13 +2,13 @@
 #define HSPECFITTING_P_H
 
 #include "HSpecFitting.h"
+#include "HAbstractCalibrateItem_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecFittingPrivate
+class HSpecFittingPrivate : public HAbstractCalibrateItemPrivate
 {
 public:
-    QVariantMap datas;
     QList<double> coefficients;
 };
 

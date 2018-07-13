@@ -13,10 +13,10 @@ HE_CORE_BEGIN_NAMESPACE
 class IInitializeable
 {
 public:
-    // 类型名称
-    virtual QString typeName() = 0;
     // 初始化
     virtual void initialize(QVariantMap param) = 0;
+    // 类型名称
+    virtual QString typeName() = 0;
 };
 
 HE_CORE_END_NAMESPACE

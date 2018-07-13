@@ -19,6 +19,8 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+
+public:
     virtual bool isConnected() override;
     virtual HErrorType open(int portNum = 1) override;
     virtual HErrorType close() override;

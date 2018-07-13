@@ -22,10 +22,12 @@ public:
 
 public:
     virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
+
+public:
     virtual void setCalibrate(ISpecCalibrate *) override;
     virtual void setIntegralTime(double value) override;
     virtual bool setSample(QVector<double> value, bool avg = false) override;
-    virtual void clearQueue() override;
 
 protected:
     HTestSpec(HTestSpecPrivate &p);

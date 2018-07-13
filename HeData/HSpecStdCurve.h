@@ -5,18 +5,26 @@
 #ifndef HSPECSTDCURVE_H
 #define HSPECSTDCURVE_H
 
-#include "HDataGlobal.h"
-#include <QScopedPointer>
+#include "HAbstractCalibrateItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecStdCurvePrivate;
 
-class HSpecStdCurve
+class HSpecStdCurve : public HAbstractCalibrateItem
 {
+    Q_DECLARE_PRIVATE(HSpecStdCurve)
+
 public:
     explicit HSpecStdCurve();
     ~HSpecStdCurve();
+
+public:
+    virtual void restoreDefault() override;
+
+public:
+    virtual void readContent(QDataStream &) override;
+    virtual void writeContent(QDataStream &) override;
 
 public:
     void setData(QVector<double> value);
@@ -24,13 +32,6 @@ public:
 
 protected:
     HSpecStdCurve(HSpecStdCurvePrivate &p);
-
-protected:
-    QScopedPointer<HSpecStdCurvePrivate> d_ptr;
-
-private:
-    friend QDataStream &operator<<(QDataStream &, const HSpecStdCurve &);
-    friend QDataStream &operator>>(QDataStream &, HSpecStdCurve &);
 };
 
 HE_DATA_END_NAMESPACE

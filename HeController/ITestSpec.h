@@ -21,7 +21,6 @@ public:
     virtual void setCalibrate(ISpecCalibrate *) = 0;
     virtual void setIntegralTime(double value) = 0;
     virtual bool setSample(QVector<double> value, bool avg = false) = 0;
-    virtual void clearQueue() = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

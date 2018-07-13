@@ -26,15 +26,17 @@ protected:
     void buildFactory();
     void buildTestData();
     void buildConfigManage();
-    void buildDevices();
-    void buildProtocols();
-    void buildThreads();
+    void buildDevice();
+    void buildProtocol();
+    void buildThread();
     void buildModel();
     void buildMainWindow();
     void buildMenu();
+
+protected:
     void initMainWindow();
     void initConfigManageDefault();
-    void initTestData(quint32 type);
+    void syncData(quint32 type);
 };
 
 #endif // HBUILDER2000_H

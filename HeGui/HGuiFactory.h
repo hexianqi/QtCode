@@ -24,7 +24,7 @@ public:
     virtual HAction *createAction(QString text, QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
-    HGuiFactory(HGuiFactoryPrivate &p);
+    HGuiFactory(HGuiFactoryPrivate &p, QObject *parent = nullptr);
 
 private:
     void registerClass();

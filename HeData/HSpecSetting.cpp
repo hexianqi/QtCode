@@ -8,13 +8,13 @@ HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecSetting::HSpecSetting()
-    : d_ptr(new HSpecSettingPrivate)
+    : HAbstractCalibrateItem(*new HSpecSettingPrivate)
 {
     restoreDefault();
 }
 
 HSpecSetting::HSpecSetting(HSpecSettingPrivate &p)
-    : d_ptr(&p)
+    : HAbstractCalibrateItem(p)
 {
     restoreDefault();
 }
@@ -25,6 +25,7 @@ HSpecSetting::~HSpecSetting()
 
 void HSpecSetting::restoreDefault()
 {
+    Q_D(HSpecSetting);
     setData("[光谱平均次数]", 1);
     setData("[光谱采样延时]", 0);
     setData("[积分时间范围]", QPointF(0.0, 500.0));
@@ -39,18 +40,29 @@ void HSpecSetting::restoreDefault()
     setData("[光谱波长间隔]", 0.1);
     setData("[光谱屏蔽波长范围]", QPointF(0.0, 0.0));
     setData("[标准色温]", 2855.61);
-    d_ptr->isUsePlanck = true;
-    d_ptr->isUseShield = false;
+    d->isUsePlanck = true;
+    d->isUseShield = false;
 }
 
-void HSpecSetting::setData(QString name, QVariant value)
+void HSpecSetting::readContent(QDataStream &s)
 {
-    d_ptr->datas.insert(name, value);
+    Q_D(HSpecSetting);
+    quint32 version;
+    s >> version;
+    s >> d->datas;
+    s >> d->isUsePlanck;
+    s >> d->isUseShield;
+    s >> d->stdEnergy;
 }
 
-QVariant HSpecSetting::data(QString name)
+void HSpecSetting::writeContent(QDataStream &s)
 {
-    return d_ptr->datas.value(name);
+    Q_D(HSpecSetting);
+    s << quint32(1);
+    s << d->datas;
+    s << d->isUsePlanck;
+    s << d->isUseShield;
+    s << d->stdEnergy;
 }
 
 QVariantMap HSpecSetting::testParam()
@@ -128,7 +140,7 @@ QVector<double> HSpecSetting::smoothCurve(QVector<double> value)
     return value;
 }
 
-QPolygonF HSpecSetting::interpolateEnergy(QPolygonF value)
+QPolygonF HSpecSetting::interpEnergy(QPolygonF value)
 {
     auto range = data("[光谱波长范围]").toPointF();
     auto interval = data("[光谱波长间隔]").toDouble();
@@ -139,7 +151,8 @@ QPolygonF HSpecSetting::interpolateEnergy(QPolygonF value)
 
 QPolygonF HSpecSetting::shieldEnergy(QPolygonF value)
 {
-    if (!d_ptr->isUseShield)
+    Q_D(HSpecSetting);
+    if (!d->isUseShield)
         return value;
 
     QPolygonF result;
@@ -155,31 +168,11 @@ QPolygonF HSpecSetting::shieldEnergy(QPolygonF value)
 
 double HSpecSetting::calcEnergy(double wave)
 {
+    Q_D(HSpecSetting);
     auto tc = data("[标准色温]").toDouble();
-    if (d_ptr->isUsePlanck || d_ptr->stdEnergy.size() < 2)
+    if (d->isUsePlanck || d->stdEnergy.size() < 2)
         return HSpectrum::planck(wave, tc);
-    return HMath::interpolate(wave, d_ptr->stdEnergy);
-}
-
-QDataStream &operator>>(QDataStream &s, HSpecSetting &spec)
-{
-    quint32 version;
-    s >> version;
-    s >> spec.d_ptr->isUsePlanck;
-    s >> spec.d_ptr->isUseShield;
-    s >> spec.d_ptr->stdEnergy;
-    s >> spec.d_ptr->datas;
-    return s;
-}
-
-QDataStream &operator<<(QDataStream &s, const HSpecSetting &spec)
-{
-    s << quint32(1);
-    s << spec.d_ptr->isUsePlanck;
-    s << spec.d_ptr->isUseShield;
-    s << spec.d_ptr->stdEnergy;
-    s << spec.d_ptr->datas;
-    return s;
+    return HMath::interpolate(wave, d->stdEnergy);
 }
 
 HE_DATA_END_NAMESPACE

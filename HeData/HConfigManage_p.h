@@ -2,22 +2,23 @@
 #define HCONFIGMANAGE_P_H
 
 #include "HConfigManage.h"
-#include "HAbstractFileStream_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
-
-class ISpecCalibrateCollection;
-
-class HConfigManagePrivate : public HAbstractFileStreamPrivate
+class HConfigManagePrivate
 {
 public:
-    HConfigManagePrivate(IDataFactory *);
+    HConfigManagePrivate(IDataFactory *f);
 
 public:
-    quint32 contain = 0;
-    ISpecCalibrateCollection *specCalibrates = nullptr;
+    void readContent(QDataStream &);
+    void writeContent(QDataStream &);
+
+public:
+    IDataFactory *factory;
+    ISpecCalibrateCollection *specCalibrates;
+    IFileStream *fileStream;
+    quint32 contain;
 };
 
 HE_DATA_END_NAMESPACE

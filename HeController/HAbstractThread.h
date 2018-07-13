@@ -12,7 +12,6 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class IModel;
 class HAbstractThreadPrivate;
 
 class HAbstractThread : public IThread
@@ -43,8 +42,10 @@ protected:
 
 protected:
     virtual void debugMode();
-    virtual void offLineMode();
+    virtual void offlineMode();
     virtual void normalMode();
+
+protected:
     virtual bool openProtocol();
     virtual void closeProtocol();
     virtual void actionFail(HActionType action, HErrorType error);

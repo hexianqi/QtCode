@@ -1,17 +1,18 @@
 #include "HDataFactory_p.h"
+#include "HFileStream.h"
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-HDataFactory::HDataFactory()
-    : d_ptr(new HDataFactoryPrivate)
+HDataFactory::HDataFactory(QObject *parent)
+    : QObject(parent), d_ptr(new HDataFactoryPrivate)
 {
 }
 
-HDataFactory::HDataFactory(HDataFactoryPrivate &p)
-    : d_ptr(&p)
+HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent)
+    :  QObject(parent), d_ptr(&p)
 {
 }
 
@@ -26,6 +27,14 @@ void HDataFactory::initialize(QVariantMap /*param*/)
 QString HDataFactory::typeName()
 {
     return "HDataFactory";
+}
+
+IFileStream *HDataFactory::createFileStream(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IFileStream *p = new HFileStream(this);
+    p->initialize(param);
+    return p;
 }
 
 IConfigManage *HDataFactory::createConfigManage(QString type, QVariantMap param)

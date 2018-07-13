@@ -5,23 +5,26 @@
 #ifndef HSPECFITTING_H
 #define HSPECFITTING_H
 
-#include "HDataGlobal.h"
-#include <QVariant>
+#include "HAbstractCalibrateItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecFittingPrivate;
 
-class HSpecFitting
+class HSpecFitting : public HAbstractCalibrateItem
 {
+    Q_DECLARE_PRIVATE(HSpecFitting)
+
 public:
     explicit HSpecFitting();
     ~HSpecFitting();
 
 public:
-    void restoreDefault();
-    void setData(QString name, QVariant value);
-    QVariant data(QString name);
+    virtual void restoreDefault() override;
+
+public:
+    virtual void readContent(QDataStream &) override;
+    virtual void writeContent(QDataStream &) override;
 
 public:
     double handle(double value, bool abovezero = true);
@@ -29,13 +32,6 @@ public:
 
 protected:
     HSpecFitting(HSpecFittingPrivate &p);
-
-protected:
-    QScopedPointer<HSpecFittingPrivate> d_ptr;
-
-private:
-    friend QDataStream &operator<<(QDataStream &, const HSpecFitting &);
-    friend QDataStream &operator>>(QDataStream &, HSpecFitting &);
 };
 
 HE_DATA_END_NAMESPACE

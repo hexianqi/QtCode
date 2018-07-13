@@ -30,16 +30,10 @@ HAbstractModel::~HAbstractModel()
     stopThread();
 }
 
-void HAbstractModel::initialize(QVariantMap param)
-{
-    Q_UNUSED(param)
-}
-
-bool HAbstractModel::initConfig()
+void HAbstractModel::start()
 {
     initThread();
     startThread();
-    return true;
 }
 
 void HAbstractModel::addAction(HActionType action)
@@ -63,14 +57,14 @@ void HAbstractModel::initThread()
     for (auto t : d_ptr->threads->values())
     {
         t->setParent(this);
-        connect(t, &IThread::startFailed, this, &IModel::deviceFailed);
+        connect(t, &IThread::startFailed, this, &IModel::threadStartFailed);
         connect(t, &IThread::startFinished, [=]{ emit threadStateChanged(t->threadInfo(), 1); });
         connect(t, &IThread::stopFinished, [=]{ emit threadStateChanged(t->threadInfo(), 0); });
         connect(t, &IThread::actionFailed, this, &IModel::actionFailed);
         connect(t, &IThread::actionFinished, this, &IModel::actionFinished);
         list << t->threadInfo();
     }
-    emit initThreadFinished(list);
+    emit threadInitFinished(list);
 }
 
 void HAbstractModel::startThread()

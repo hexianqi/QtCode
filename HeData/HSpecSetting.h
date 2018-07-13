@@ -5,24 +5,26 @@
 #ifndef HSPECSETTING_H
 #define HSPECSETTING_H
 
-#include "HDataGlobal.h"
-#include <QVariant>
-#include <QVector>
+#include "HAbstractCalibrateItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecSettingPrivate;
 
-class HSpecSetting
+class HSpecSetting : public HAbstractCalibrateItem
 {
+    Q_DECLARE_PRIVATE(HSpecSetting)
+
 public:
     explicit HSpecSetting();
     ~HSpecSetting();
 
 public:
-    void restoreDefault();
-    void setData(QString name, QVariant value);
-    QVariant data(QString name);
+    virtual void restoreDefault() override;
+
+public:
+    virtual void readContent(QDataStream &) override;
+    virtual void writeContent(QDataStream &) override;
 
 public:
     // 对外参数
@@ -38,7 +40,7 @@ public:
     // 平滑数据
     QVector<double> smoothCurve(QVector<double> value);
     // 计算并插值光谱能量，value是波长和采样值与标准曲线比值的集合
-    QPolygonF interpolateEnergy(QPolygonF value);
+    QPolygonF interpEnergy(QPolygonF value);
     // 屏蔽能量
     QPolygonF shieldEnergy(QPolygonF value);
 
@@ -47,13 +49,6 @@ protected:
 
 protected:
     double calcEnergy(double wave);
-
-protected:
-    QScopedPointer<HSpecSettingPrivate> d_ptr;
-
-private:
-    friend QDataStream &operator<<(QDataStream &, const HSpecSetting &);
-    friend QDataStream &operator>>(QDataStream &, HSpecSetting &);
 };
 
 HE_DATA_END_NAMESPACE

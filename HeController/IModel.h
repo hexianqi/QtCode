@@ -27,14 +27,14 @@ public:
     using QObject::QObject;
 
 signals:
-    void deviceFailed(QString text);
-    void initThreadFinished(QStringList list);
+    void threadInitFinished(QStringList list);
+    void threadStartFailed(QString text);
     void threadStateChanged(QString name, int state);
     void actionFailed(HActionType action, QString text);
     void actionFinished(HActionType action);
 
 public:
-    virtual bool initConfig() = 0;
+    virtual void start() = 0;
     virtual void addAction(HActionType action) = 0;
 };
 

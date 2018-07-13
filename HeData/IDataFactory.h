@@ -12,6 +12,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IFileStream;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
@@ -19,6 +20,8 @@ class ISpecCalibrateCollection;
 class IDataFactory : public IInitializeable
 {
 public:
+    // 创建文件流
+    virtual IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建配置管理
     virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准

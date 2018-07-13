@@ -20,6 +20,8 @@ public:
 public:
     virtual void initialize(QVariantMap param) override;
     virtual QString typeName() override;
+
+public:
     virtual QVariantMap testParam() override;
     virtual QVector<double> preprocess(QVector<double> value, bool fitting = true) override;
     virtual QPolygonF calcEnergy(QVector<double> value) override;

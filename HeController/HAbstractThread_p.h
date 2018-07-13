@@ -4,6 +4,7 @@
 #include "HAbstractThread.h"
 #include "HeCommunicate/HCommunicateGlobal.h"
 #include <QQueue>
+#include <QSet>
 
 class QMutex;
 class QWaitCondition;
@@ -30,8 +31,8 @@ public:
     QMutex *mutex;
     QWaitCondition *waitConditionAction;
     volatile bool running;
-    QQueue<HActionType> actionQueue;
-    QList<HActionType> actionSupport;
+    QQueue<HActionType> actionCache;
+    QSet<HActionType> actionSupport;
     int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;

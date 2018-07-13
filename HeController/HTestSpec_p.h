@@ -3,7 +3,7 @@
 
 #include "HTestSpec.h"
 #include "HTestData_p.h"
-#include "HeAlgorithm/HSpectrumFacade.h"
+#include "HeAlgorithm/HAlgorithmGlobal.h"
 #include <QVector>
 #include <QQueue>
 
@@ -13,7 +13,6 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 class HSpectrumFacade;
 HE_ALGORITHM_END_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
-
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -26,7 +25,6 @@ public:
     void setCalibrate(ISpecCalibrate *);
     void setIntegralTime(double value);
     bool setSample(QVector<double> value, bool avg = false);
-    void clearQueue();
 
 public:
     QVector<double> average(QVector<double> value);
@@ -34,7 +32,7 @@ public:
     void calcMaxSample();
     bool isOverFrame();
     int checkOverflow();
-    void clearResult();
+    void clearCache();
 
 public:
     QReadWriteLock *lock;

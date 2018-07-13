@@ -9,14 +9,14 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HCommunicateFactory::HCommunicateFactory()
-    : d_ptr(new HCommunicateFactoryPrivate)
+HCommunicateFactory::HCommunicateFactory(QObject *parent)
+    : QObject(parent), d_ptr(new HCommunicateFactoryPrivate)
 {
     registerClass();
 }
 
-HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p)
-    : d_ptr(&p)
+HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject *parent)
+    : QObject(parent), d_ptr(&p)
 {
     registerClass();
 }

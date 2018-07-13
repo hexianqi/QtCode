@@ -2,11 +2,12 @@
 #define HSPECSETTING_P_H
 
 #include "HSpecSetting.h"
+#include "HAbstractCalibrateItem_p.h"
 #include <QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecSettingPrivate
+class HSpecSettingPrivate : public HAbstractCalibrateItemPrivate
 {
 public:
     bool isUsePlanck;

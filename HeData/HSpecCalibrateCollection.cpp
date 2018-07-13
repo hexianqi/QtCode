@@ -1,25 +1,30 @@
 #include "HSpecCalibrateCollection_p.h"
 #include "ISpecCalibrate.h"
 #include "IDataFactory.h"
+#include "IFileStream.h"
 #include <QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(IDataFactory *f)
-    : HAbstractFileStreamPrivate(f)
+HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *q, IDataFactory *f)
+    : q_ptr(q)
 {
-    magicNumber = 0x00020001;
-    fileVersion = 0x01010101;
-    fileFilter = QObject::tr("Spec calibrate files (*.hcs)");
+    factory = f;
+    fileStream = f->createFileStream("HFileStream");
+    fileStream->setMagicNumber(0x00020001);
+    fileStream->setFileVersion(0x01010101);
+    fileStream->setFileFilter(QObject::tr("Spec calibrate files (*.hcs)"));
+    fileStream->setReadContent([=](QDataStream &s) { q_ptr->readContent(s); });
+    fileStream->setWriteContent([=](QDataStream &s) { q_ptr->writeContent(s); });
 }
 
-HSpecCalibrateCollection::HSpecCalibrateCollection(HeData::IDataFactory *f)
-    : HAbstractFileStream(*new HSpecCalibrateCollectionPrivate(f))
+HSpecCalibrateCollection::HSpecCalibrateCollection(IDataFactory *f)
+    : d_ptr(new HSpecCalibrateCollectionPrivate(this, f))
 {
 }
 
 HSpecCalibrateCollection::HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &p)
-    : HAbstractFileStream(p)
+    : d_ptr(&p)
 {
 }
 
@@ -32,21 +37,24 @@ QString HSpecCalibrateCollection::typeName()
     return "HSpecCalibrateCollection";
 }
 
+IFileStream *HSpecCalibrateCollection::fileStream()
+{
+    return d_ptr->fileStream;
+}
+
 void HSpecCalibrateCollection::readContent(QDataStream &s)
 {
-    Q_D(HSpecCalibrateCollection);
-
     quint32 version;
-    quint32 n;
+    quint32 size;
     QString key, type;
 
     clear();
     s >> version;
-    s >> n;
-    for (quint32 i = 0; i < n; i++)
+    s >> size;
+    for (quint32 i = 0; i < size; i++)
     {
         s >> key >> type;
-        auto item = d->factory->createSpecCalibrate(type);
+        auto item = d_ptr->factory->createSpecCalibrate(type);
         item->readContent(s);
         if (s.status() != QDataStream::Ok)
         {
@@ -59,7 +67,6 @@ void HSpecCalibrateCollection::readContent(QDataStream &s)
 
 void HSpecCalibrateCollection::writeContent(QDataStream &s)
 {
-    s << typeName();
     s << quint32(1);
     s << quint32(_datas->size());
     auto it = _datas->constEnd();
@@ -67,7 +74,7 @@ void HSpecCalibrateCollection::writeContent(QDataStream &s)
     while (it != begin)
     {
         --it;
-        s << it.key();
+        s << it.key() << it.value()->typeName();
         it.value()->writeContent(s);
     }
 }

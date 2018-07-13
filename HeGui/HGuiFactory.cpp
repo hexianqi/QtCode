@@ -1,7 +1,7 @@
 #include "HGuiFactory_p.h"
-#include "HeCore/HObjectFactory.h"
 #include "HAction.h"
 #include "HTestHandler.h"
+#include "HeCore/HObjectFactory.h"
 #include <QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -12,8 +12,8 @@ HGuiFactory::HGuiFactory(QObject *parent)
     registerClass();
 }
 
-HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p)
-    : d_ptr(&p)
+HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p, QObject *parent)
+    : QObject(parent), d_ptr(&p)
 {
     registerClass();
 }
@@ -51,7 +51,6 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 void HGuiFactory::registerClass()
 {
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
-//    HFactory::registerClass<HDeviceSL>("HDeviceSL");
 }
 
 HE_GUI_END_NAMESPACE

@@ -4,13 +4,13 @@
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecLuminous::HSpecLuminous()
-    : d_ptr(new HSpecLuminousPrivate)
+    : HAbstractCalibrateItem(*new HSpecLuminousPrivate)
 {
     restoreDefault();
 }
 
 HSpecLuminous::HSpecLuminous(HSpecLuminousPrivate &p)
-    : d_ptr(&p)
+    : HAbstractCalibrateItem(p)
 {
     restoreDefault();
 }
@@ -25,34 +25,24 @@ void HSpecLuminous::restoreDefault()
     setData("[光谱光通量系数]", 0);
 }
 
-void HSpecLuminous::setData(QString name, QVariant value)
+void HSpecLuminous::readContent(QDataStream &s)
 {
-    d_ptr->datas.insert(name, value);
+    Q_D(HSpecLuminous);
+    quint32 version;
+    s >> version;
+    s >> d->datas;
 }
 
-QVariant HSpecLuminous::data(QString name)
+void HSpecLuminous::writeContent(QDataStream &s)
 {
-    return d_ptr->datas.value(name);
+    Q_D(HSpecLuminous);
+    s << quint32(1);
+    s << d->datas;
 }
 
 double HSpecLuminous::handle(double value)
 {
     return data("[光谱光通量系数]").toDouble() * value;
-}
-
-QDataStream &operator>>(QDataStream &s, HSpecLuminous &spec)
-{
-    quint32 version;
-    s >> version;
-    s >> spec.d_ptr->datas;
-    return s;
-}
-
-QDataStream &operator<<(QDataStream &s, const HSpecLuminous &spec)
-{
-    s << quint32(1);
-    s << spec.d_ptr->datas;
-    return s;
 }
 
 HE_DATA_END_NAMESPACE

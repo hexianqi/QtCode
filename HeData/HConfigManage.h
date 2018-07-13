@@ -6,18 +6,16 @@
 #define HCONFIGMANAGE_H
 
 #include "IConfigManage.h"
-#include "HAbstractFileStream.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IDataFactory;
 class HConfigManagePrivate;
 
-class HConfigManage : public HAbstractFileStream, public IConfigManage
+class HConfigManage : public IConfigManage
 {
-    Q_DECLARE_PRIVATE(HConfigManage)
-
 public:
-    explicit HConfigManage(IDataFactory *);
+    explicit HConfigManage(IDataFactory *f);
     ~HConfigManage();
 
 public:
@@ -31,18 +29,17 @@ public:
 public:
     virtual quint32 contain() override;
     virtual ISpecCalibrate *specCalibrate(QString name) override;
+    virtual IFileStream *fileStream() override;
 
 public:
     virtual bool importPart(quint32 value) override;
     virtual bool exportPart(quint32 value) override;
 
-
-protected:
-    virtual void readContent(QDataStream &) override;
-    virtual void writeContent(QDataStream &) override;
-
 protected:
     HConfigManage(HConfigManagePrivate &p);
+
+protected:
+    QScopedPointer<HConfigManagePrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE

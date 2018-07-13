@@ -2,14 +2,15 @@
 #define HSPECSTDCURVE_P_H
 
 #include "HSpecStdCurve.h"
+#include "HAbstractCalibrateItem_p.h"
 #include <QVector>
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecStdCurvePrivate
+class HSpecStdCurvePrivate : public HAbstractCalibrateItemPrivate
 {
 public:
-    QVector<double> datas;
+    QVector<double> curve;
 };
 
 HE_DATA_END_NAMESPACE

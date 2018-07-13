@@ -1,28 +1,23 @@
 #include "HBuilder2000_p.h"
 #include "HModel2000.h"
-#include "HMainWindow2000.h"
+//#include "HMainWindow2000.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IDevice.h"
 #include "HeCommunicate/IDeviceCollection.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeCommunicate/HCommunicateFactory.h"
+//#include "HeData/IFileStream.h"
 #include "HeData/IConfigManage.h"
-#include "HeData/ISpecCalibrateCollection.h"
+//#include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/HDataFactory.h"
 #include "HeController/ITestSpec.h"
 #include "HeController/IThreadCollection.h"
 #include "HeController/HControllerFactory.h"
-#include "HeController/HTestDataFactory.h"
-#include "HeController/HThreadSpec.h"
 #include "HeGui/HGuiFactory.h"
-#include "HeGui/HAction.h"
-#include <QMessageBox>
-#include <QMenuBar>
+//#include "HeGui/HAction.h"
+//#include <QMessageBox>
+//#include <QMenuBar>
 #include <QDebug>
-
-HBuilder2000Private::HBuilder2000Private()
-{
-}
 
 HBuilder2000::HBuilder2000(QObject *parent)
     : HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
@@ -41,9 +36,9 @@ HMainWindow *HBuilder2000::createMainWindow()
     buildFactory();
     buildTestData();
     buildConfigManage();
-    buildDevices();
-    buildProtocols();
-    buildThreads();
+    buildDevice();
+    buildProtocol();
+    buildThread();
     buildModel();
     buildMainWindow();
     buildMenu();
@@ -54,30 +49,27 @@ HMainWindow *HBuilder2000::createMainWindow()
 void HBuilder2000::buildFactory()
 {
     Q_D(HBuilder2000);
-    d->dataFactory = new HDataFactory;
-    d->testDataFactory = new HTestDataFactory;
-    d->communicateFactory = new HCommunicateFactory;
-    d->controllerFactory = new HControllerFactory;
+    d->communicateFactory = new HCommunicateFactory(this);
+    d->controllerFactory = new HControllerFactory(this);
+    d->dataFactory = new HDataFactory(this);
     d->guiFactory = new HGuiFactory(this);
-    HAppContext::setContextPointer("IDataFactory", d->dataFactory);
-    HAppContext::setContextPointer("ITestDataFactory", d->testDataFactory);
     HAppContext::setContextPointer("ICommunicateFactory", d->communicateFactory);
     HAppContext::setContextPointer("IControllerFactory", d->controllerFactory);
+    HAppContext::setContextPointer("IDataFactory", d->dataFactory);
     HAppContext::setContextPointer("IGuiFactory", d->guiFactory);
 }
 
 void HBuilder2000::buildTestData()
 {
     Q_D(HBuilder2000);
-    QVariantMap param1, param2;
-    auto other = d->testDataFactory->createTestData("Other");
-    param1.insert("successor", ToVariant(other));
-    d->testSpec = d->testDataFactory->createTestSpec("Spec", param1);
-    param2.insert("successor", ToVariant(d->testSpec));
-    auto main = d->testDataFactory->createTestData("Main", param2);
+    auto main = d->controllerFactory->createTestData("Main");
+    auto other = d->controllerFactory->createTestData("Other");
+    d->testSpec = d->controllerFactory->createTestSpec("Spec");
+    d->testSpec->setSuccessor(other);
+    main->setSuccessor(d->testSpec);
+    HAppContext::setContextPointer("ITestMain", main);
     HAppContext::setContextPointer("ITestOther", other);
     HAppContext::setContextPointer("ITestSpec", d->testSpec);
-    HAppContext::setContextPointer("ITestMain", main);
 }
 
 void HBuilder2000::buildConfigManage()
@@ -87,7 +79,7 @@ void HBuilder2000::buildConfigManage()
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
 
-void HBuilder2000::buildDevices()
+void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
     QVariantMap param;
@@ -107,7 +99,7 @@ void HBuilder2000::buildDevices()
     HAppContext::setContextPointer("IDeviceCollection", d->devices);
 }
 
-void HBuilder2000::buildProtocols()
+void HBuilder2000::buildProtocol()
 {
     Q_D(HBuilder2000);
     QVariantMap param;
@@ -118,11 +110,12 @@ void HBuilder2000::buildProtocols()
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
-void HBuilder2000::buildThreads()
+void HBuilder2000::buildThread()
 {
     Q_D(HBuilder2000);
+    auto thread = d->controllerFactory->createThread("HThreadSpec");
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
-    threads->insert("Spec", new HThreadSpec);
+    threads->insert("Spec", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
 }
 
@@ -135,10 +128,10 @@ void HBuilder2000::buildModel()
 
 void HBuilder2000::buildMainWindow()
 {
-    Q_D(HBuilder2000);
-    d->window = new HMainWindow2000;
-    connect(d->window, &HMainWindow::configManageChanged, this, initTestData);
-    HAppContext::setContextPointer("MainWindow", d->window);
+//    Q_D(HBuilder2000);
+//    d->window = new HMainWindow2000;
+//    connect(d->window, &HMainWindow::configManageChanged, this, syncData);
+//    HAppContext::setContextPointer("MainWindow", d->window);
 }
 
 void HBuilder2000::buildMenu()
@@ -151,37 +144,37 @@ void HBuilder2000::buildMenu()
 
 void HBuilder2000::initMainWindow()
 {
-    Q_D(HBuilder2000);
+//    Q_D(HBuilder2000);
 
-    d->window->setConfigFile("SL2000.cfg");
-    if (!d->window->setConfigManage(d->configManage))
-        initConfigManageDefault();
-    d->window->setModel(d->model);
+//    d->window->setConfigFile("SL2000.cfg");
+//    if (!d->window->setConfigManage(d->configManage))
+//        initConfigManageDefault();
+//    d->window->setModel(d->model);
 
 
 
-    initTestData(d->configManage->contain());
+//    syncData(d->configManage->contain());
 }
 
 void HBuilder2000::initConfigManageDefault()
 {
-    Q_D(HBuilder2000);
-    auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
-    if (!specs->readFile(":/Dat/Spectrum.hcs"))
-    {
-        auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
-        specs->insert("1", spec);
-    }
-    d->configManage->setContain(ConfigContainType::CCT_Spec);
-    d->configManage->setSpecCalibrateCollection(specs);
+//    Q_D(HBuilder2000);
+//    auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
+//    if (!specs->fileStream()->readFile(":/Dat/Spectrum.hcs"))
+//    {
+//        auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
+//        specs->insert("1", spec);
+//    }
+//    d->configManage->setContain(ConfigContainType::CCT_Spec);
+//    d->configManage->setSpecCalibrateCollection(specs);
 }
 
-void HBuilder2000::initTestData(quint32 type)
+void HBuilder2000::syncData(quint32 type)
 {
-    Q_D(HBuilder2000);
-    if (type & ConfigContainType::CCT_Spec)
-    {
-        d->testSpec->setCalibrate(d->configManage->specCalibrate("1"));
-        d->model->addAction(ACT_RESET_SPECTRUM);
-    }
+//    Q_D(HBuilder2000);
+//    if (type & ConfigContainType::CCT_Spec)
+//    {
+//        d->testSpec->setCalibrate(d->configManage->specCalibrate("1"));
+//        d->model->addAction(ACT_RESET_SPECTRUM);
+//    }
 }

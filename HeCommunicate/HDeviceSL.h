@@ -22,10 +22,14 @@ public:
 public:
     virtual void initialize(QVariantMap param) override;
     virtual QString typeName() override;
-    virtual void setEncrypt(QVector<bool> value);
-    virtual void setCheckCode(QVector<bool> value);
+
+public:
     virtual HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
     virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
+
+public:
+    virtual void setEncrypt(QVector<bool> value);
+    virtual void setCheckCode(QVector<bool> value);
 
 protected:
     HDeviceSL(HDeviceSLPrivate &p);

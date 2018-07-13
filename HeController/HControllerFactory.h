@@ -11,10 +11,12 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HControllerFactoryPrivate;
 
-class HE_CONTROLLER_EXPORT HControllerFactory : public IControllerFactory
+class HE_CONTROLLER_EXPORT HControllerFactory : public QObject, public IControllerFactory
 {
+    Q_OBJECT
+
 public:
-    explicit HControllerFactory();
+    explicit HControllerFactory(QObject *parent = nullptr);
     ~HControllerFactory();
 
 public:
@@ -22,13 +24,19 @@ public:
     virtual QString typeName() override;
 
 public:
+    virtual IThread *createThread(QString type, QVariantMap param) override;
     virtual IThreadCollection *createThreadCollection(QString type, QVariantMap param = QVariantMap()) override;
+    virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
+    virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
-    HControllerFactory(HControllerFactoryPrivate &p);
+    HControllerFactory(HControllerFactoryPrivate &p, QObject *parent = nullptr);
 
 protected:
     QScopedPointer<HControllerFactoryPrivate> d_ptr;
+
+private:
+    void registerClass();
 };
 
 HE_CONTROLLER_END_NAMESPACE

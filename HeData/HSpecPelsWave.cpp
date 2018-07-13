@@ -7,13 +7,13 @@ HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecPelsWave::HSpecPelsWave()
-    : d_ptr(new HSpecPelsWavePrivate)
+    : HAbstractCalibrateItem(*new HSpecPelsWavePrivate)
 {
     restoreDefault();
 }
 
 HSpecPelsWave::HSpecPelsWave(HSpecPelsWavePrivate &p)
-    : d_ptr(&p)
+    : HAbstractCalibrateItem(p)
 {
     restoreDefault();
 }
@@ -24,48 +24,53 @@ HSpecPelsWave::~HSpecPelsWave()
 
 void HSpecPelsWave::restoreDefault()
 {
-    d_ptr->datas = QPolygonF() << QPointF(124, 404.7)
-                               << QPointF(300, 435.8)
-                               << QPointF(432, 546.1)
-                               << QPointF(900, 632.8)
-                               << QPointF(1275, 696.5)
-                               << QPointF(1540, 750.4)
-                               << QPointF(1760, 763.5);
+    Q_D(HSpecPelsWave);
+    d->pelsWave = QPolygonF() << QPointF(124, 404.7)
+                              << QPointF(300, 435.8)
+                              << QPointF(432, 546.1)
+                              << QPointF(900, 632.8)
+                              << QPointF(1275, 696.5)
+                              << QPointF(1540, 750.4)
+                              << QPointF(1760, 763.5);
+}
+
+void HSpecPelsWave::readContent(QDataStream &s)
+{
+    Q_D(HSpecPelsWave);
+    quint32 version;
+    s >> version;
+    s >> d->datas;
+    s >> d->pelsWave;
+}
+
+void HSpecPelsWave::writeContent(QDataStream &s)
+{
+    Q_D(HSpecPelsWave);
+    s << quint32(1);
+    s << d->datas;
+    s << d->pelsWave;
 }
 
 void HSpecPelsWave::setData(QPolygonF value)
 {
-    d_ptr->datas = value;
+    Q_D(HSpecPelsWave);
+    d->pelsWave = value;
 }
 
 QPolygonF HSpecPelsWave::data()
 {
-    return d_ptr->datas;
+    Q_D(HSpecPelsWave);
+    return d->pelsWave;
 }
 
 double HSpecPelsWave::toWave(double value)
 {
-    return HMath::interpolate(value, d_ptr->datas);
+    return HMath::interpolate(value, data());
 }
 
 double HSpecPelsWave::toPels(double value)
 {
-    return HMath::interpolateY(value, d_ptr->datas);
-}
-
-QDataStream &operator>>(QDataStream &s, HSpecPelsWave &spec)
-{
-    quint32 version;
-    s >> version;
-    s >> spec.d_ptr->datas;
-    return s;
-}
-
-QDataStream &operator<<(QDataStream &s, const HSpecPelsWave &spec)
-{
-    s << quint32(1);
-    s << spec.d_ptr->datas;
-    return s;
+    return HMath::interpolateY(value, data());
 }
 
 HE_DATA_END_NAMESPACE

@@ -20,8 +20,7 @@ public:
     ~HAbstractModel();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual bool initConfig() override;
+    virtual void start() override;
     virtual void addAction(HActionType action) override;
 
 protected:

@@ -5,7 +5,6 @@ HMainWindow2000Private::HMainWindow2000Private(HMainWindow2000 *q)
 {
 }
 
-
 HMainWindow2000::HMainWindow2000(QWidget *parent)
     : HMainWindow(*new HMainWindow2000Private(this), parent)
 {

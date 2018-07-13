@@ -1,40 +1,36 @@
-#ifndef HSPECLUMINOUS_H
-#define HSPECLUMINOUS_H
-
 /***************************************************************************************************
 **      2018-06-19  HSpecLuminous 光谱光通量数据类。
 ***************************************************************************************************/
 
-#include "HDataGlobal.h"
-#include <QVariant>
+#ifndef HSPECLUMINOUS_H
+#define HSPECLUMINOUS_H
+
+#include "HAbstractCalibrateItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecLuminousPrivate;
 
-class HSpecLuminous
+class HSpecLuminous : public HAbstractCalibrateItem
 {
+    Q_DECLARE_PRIVATE(HSpecLuminous)
+
 public:
     explicit HSpecLuminous();
     ~HSpecLuminous();
 
 public:
-    void restoreDefault();
-    void setData(QString name, QVariant value);
-    QVariant data(QString name);
+    virtual void restoreDefault() override;
+
+public:
+    virtual void readContent(QDataStream &) override;
+    virtual void writeContent(QDataStream &) override;
 
 public:
     double handle(double value);
 
 protected:
     HSpecLuminous(HSpecLuminousPrivate &p);
-
-protected:
-    QScopedPointer<HSpecLuminousPrivate> d_ptr;
-
-private:
-    friend QDataStream &operator<<(QDataStream &, const HSpecLuminous &);
-    friend QDataStream &operator>>(QDataStream &, HSpecLuminous &);
 };
 
 HE_DATA_END_NAMESPACE

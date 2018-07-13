@@ -26,21 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-            HAbstractFileStream.cpp \
             HDataFactory.cpp \
-            HConfigManage.cpp
+            HConfigManage.cpp \
+            HAbstractCalibrateItem.cpp
 
 HEADERS     += \
-            IFileStream.h \
             IDataFactory.h \
             IConfigManage.h \
             HDataGlobal.h \
-            HAbstractFileStream.h \
-            HAbstractFileStream_p.h \
             HDataFactory.h \
             HDataFactory_p.h \
             HConfigManage.h \
-            HConfigManage_p.h
+            HConfigManage_p.h \
+            HAbstractCalibrateItem.h \
+            HAbstractCalibrateItem_p.h
 
 INCLUDEPATH += ".."
 
@@ -63,4 +62,5 @@ unix {
     INSTALLS += target
 }
 
+include(extend.pri)
 include(spectrum.pri)

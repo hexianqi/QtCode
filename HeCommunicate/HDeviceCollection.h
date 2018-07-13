@@ -21,6 +21,8 @@ public:
 public:
     virtual void initialize(QVariantMap param) override;
     virtual QString typeName() override;
+
+public:
     virtual void addSupport(HActionType action) override;
     virtual bool isSupport(HActionType action) override;
 

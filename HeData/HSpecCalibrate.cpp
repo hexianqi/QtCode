@@ -32,9 +32,8 @@ HSpecCalibrate::~HSpecCalibrate()
 {
 }
 
-void HSpecCalibrate::initialize(QVariantMap param)
+void HSpecCalibrate::initialize(QVariantMap /*param*/)
 {
-    Q_UNUSED(param)
 }
 
 QString HSpecCalibrate::typeName()
@@ -70,6 +69,7 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
 
     if (size <= 0)
         return poly;
+
     for (int i = 0; i < size; i++)
     {
         x = d_ptr->pelsWave->toWave(i);
@@ -81,7 +81,7 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
             y = value[i] / curve[i];
         poly.append(QPointF(x,y));
     }
-    poly = d_ptr->setting->interpolateEnergy(poly);
+    poly = d_ptr->setting->interpEnergy(poly);
     return d_ptr->setting->shieldEnergy(poly);
 }
 
@@ -109,22 +109,21 @@ void HSpecCalibrate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    s >> *d_ptr->setting;
-    s >> *d_ptr->pelsWave;
-    s >> *d_ptr->stdCurve;
-    s >> *d_ptr->fitting;
-    s >> *d_ptr->luminous;
+    d_ptr->setting->readContent(s);
+    d_ptr->pelsWave->readContent(s);
+    d_ptr->stdCurve->readContent(s);
+    d_ptr->fitting->readContent(s);
+    d_ptr->luminous->readContent(s);
 }
 
 void HSpecCalibrate::writeContent(QDataStream &s)
 {
-    s << typeName();
     s << quint32(1);
-    s << *d_ptr->setting;
-    s << *d_ptr->pelsWave;
-    s << *d_ptr->stdCurve;
-    s << *d_ptr->fitting;
-    s << *d_ptr->luminous;
+    d_ptr->setting->writeContent(s);
+    d_ptr->pelsWave->writeContent(s);
+    d_ptr->stdCurve->writeContent(s);
+    d_ptr->fitting->writeContent(s);
+    d_ptr->luminous->writeContent(s);
 }
 
 HE_DATA_END_NAMESPACE

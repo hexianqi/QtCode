@@ -1,10 +1,10 @@
 #include "HTestSpec_p.h"
-#include "HeAlgorithm/HSpectrumFacade.h"
 #include "HeAlgorithm/ISpectrumData.h"
+#include "HeAlgorithm/HSpectrumFacade.h"
 #include "HeData/ISpecCalibrate.h"
 #include <QVector>
 #include <QQueue>
-#include<QReadWriteLock>
+#include <QReadWriteLock>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -32,6 +32,7 @@ void HTestSpecPrivate::setIntegralTime(double value)
 {
     setData("[光谱采样等待时间]", calibrate->calcCommWaitTime(value));
     setData("[积分时间]", value);
+    clearCache();
 }
 
 bool HTestSpecPrivate::setSample(QVector<double> value, bool avg)
@@ -43,9 +44,21 @@ bool HTestSpecPrivate::setSample(QVector<double> value, bool avg)
     return calcSpectrum();
 }
 
-void HTestSpecPrivate::clearQueue()
+QVector<double> HTestSpecPrivate::average(QVector<double> value)
 {
-    sampleCache.clear();
+    int i,j;
+    if (isOverFrame())
+        sampleCache.dequeue();
+    sampleCache.enqueue(value);
+
+    for (i = 0; i < value.size(); i++)
+    {
+        auto avg = 0.0;
+        for (j = 0; j < sampleCache.size(); j++)
+            avg += sampleCache[j][i];
+        value[i] = avg / j;
+    }
+    return value;
 }
 
 bool HTestSpecPrivate::calcSpectrum()
@@ -89,23 +102,6 @@ void HTestSpecPrivate::calcMaxSample()
         maxSample = qMax(maxSample, samples[0][i]);
 }
 
-QVector<double> HTestSpecPrivate::average(QVector<double> value)
-{
-    int i,j;
-    if (isOverFrame())
-        sampleCache.dequeue();
-    sampleCache.enqueue(value);
-
-    for (i = 0; i < value.size(); i++)
-    {
-        auto avg = 0.0;
-        for (j = 0; j < sampleCache.size(); j++)
-            avg += sampleCache[j][i];
-        value[i] = avg / j;
-    }
-    return value;
-}
-
 bool HTestSpecPrivate::isOverFrame()
 {
     return calibrate->isOverFrame(sampleCache.size());
@@ -116,9 +112,11 @@ int HTestSpecPrivate::checkOverflow()
     return calibrate->checkOverflow(maxSample);
 }
 
-void HTestSpecPrivate::clearResult()
+void HTestSpecPrivate::clearCache()
 {
+    sampleCache.clear();
 }
+
 
 HTestSpec::HTestSpec()
     : HTestData(*new HTestSpecPrivate)
@@ -139,6 +137,11 @@ void HTestSpec::initialize(QVariantMap param)
     HTestData::initialize(param);
 }
 
+QString HTestSpec::typeName()
+{
+    return "HTestSpec";
+}
+
 void HTestSpec::setCalibrate(ISpecCalibrate *p)
 {
     Q_D(HTestSpec);
@@ -157,12 +160,6 @@ bool HTestSpec::setSample(QVector<double> value, bool avg)
     if (value.size() < 1)
         return false;
     return d->setSample(value, avg);
-}
-
-void HTestSpec::clearQueue()
-{
-    Q_D(HTestSpec);
-    d->clearQueue();
 }
 
 HE_CONTROLLER_END_NAMESPACE

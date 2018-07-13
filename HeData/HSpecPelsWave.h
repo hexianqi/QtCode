@@ -5,21 +5,28 @@
 #ifndef HSPECPELSWAVE_H
 #define HSPECPELSWAVE_H
 
-#include "HDataGlobal.h"
-#include <QVariant>
+#include "HAbstractCalibrateItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecPelsWavePrivate;
 
-class HSpecPelsWave
+class HSpecPelsWave : public HAbstractCalibrateItem
 {
+    Q_DECLARE_PRIVATE(HSpecPelsWave)
+
 public:
     explicit HSpecPelsWave();
     ~HSpecPelsWave();
 
 public:
-    void restoreDefault();
+    virtual void restoreDefault() override;
+
+public:
+    virtual void readContent(QDataStream &) override;
+    virtual void writeContent(QDataStream &) override;
+
+public:
     void setData(QPolygonF value);
     QPolygonF data();
 
@@ -29,13 +36,6 @@ public:
 
 protected:
     HSpecPelsWave(HSpecPelsWavePrivate &p);
-
-protected:
-    QScopedPointer<HSpecPelsWavePrivate> d_ptr;
-
-private:
-    friend QDataStream &operator<<(QDataStream &, const HSpecPelsWave &);
-    friend QDataStream &operator>>(QDataStream &, HSpecPelsWave &);
 };
 
 HE_DATA_END_NAMESPACE

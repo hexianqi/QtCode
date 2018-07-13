@@ -11,10 +11,12 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HCommunicateFactoryPrivate;
 
-class HCommunicateFactory : public ICommunicateFactory
+class HCommunicateFactory : public QObject, public ICommunicateFactory
 {
+    Q_OBJECT
+
 public:
-    explicit HCommunicateFactory();
+    explicit HCommunicateFactory(QObject *parent = nullptr);
     ~HCommunicateFactory();
 
 public:
@@ -29,13 +31,13 @@ public:
     virtual IProtocolCollection *createProtocolCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
-    HCommunicateFactory(HCommunicateFactoryPrivate &p);
-
-private:
-    void registerClass();
+    HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject *parent = nullptr);
 
 protected:
     QScopedPointer<HCommunicateFactoryPrivate> d_ptr;
+
+private:
+    void registerClass();
 };
 
 HE_COMMUNICATE_END_NAMESPACE

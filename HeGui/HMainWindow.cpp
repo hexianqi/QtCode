@@ -1,6 +1,7 @@
 #include "HMainWindow_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
+#include "HeData/IFileStream.h"
 #include "HeData/IConfigManage.h"
 #include <QStatusBar>
 #include <QMenuBar>
@@ -43,7 +44,7 @@ void HMainWindow::setConfigFile(QString fileName)
 bool HMainWindow::setConfigManage(IConfigManage *p)
 {
     d_ptr->configManage = p;
-    if (!d_ptr->configManage->readFile(d_ptr->cfgFileName))
+    if (!d_ptr->configManage->fileStream()->readFile(d_ptr->cfgFileName))
     {
         QMessageBox::warning(this, "", tr("找不到校准文件，正在使用默认的校准。"));
         return false;
@@ -55,12 +56,12 @@ void HMainWindow::setModel(IModel *p)
 {
     d_ptr->model = p;
     d_ptr->model->setParent(this);
-    connect(d_ptr->model, &IModel::deviceFailed, this, &HMainWindow::showDeviceFailed);
+    connect(d_ptr->model, &IModel::threadStartFailed, this, &HMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::actionFailed, this, &HMainWindow::showActionFailed);
-    connect(d_ptr->model, &IModel::initThreadFinished, this, &HMainWindow::updateStatusBar);
+    connect(d_ptr->model, &IModel::threadInitFinished, this, &HMainWindow::updateStatusBar);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HMainWindow::updateLabel);
     //    connect(d->model, &IModel::actionFinished, this, [=](HActionType action) { QMessageBox::information(this, "", toComment(action)); });
-    d_ptr->model->initConfig();
+    d_ptr->model->start();
 }
 
 void HMainWindow::init()
@@ -223,7 +224,7 @@ void HMainWindow::updateLabel(QString name, int state)
 void HMainWindow::open()
 {
     QString fileName;
-    if (!d_ptr->configManage->openFile("", ".", &fileName))
+    if (!d_ptr->configManage->fileStream()->openFile("", ".", &fileName))
         return;
     QMessageBox::information(this, "", tr("\n打开文件成功！\n"));
     setConfigFile(fileName);
@@ -232,7 +233,7 @@ void HMainWindow::open()
 
 void HMainWindow::save()
 {
-    if (!d_ptr->configManage->writeFile(d_ptr->cfgFileName))
+    if (!d_ptr->configManage->fileStream()->writeFile(d_ptr->cfgFileName))
         return;
     QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
 }
@@ -240,7 +241,7 @@ void HMainWindow::save()
 void HMainWindow::saveAs()
 {
     QString fileName;
-    if (!d_ptr->configManage->saveAsFile("", ".", &fileName))
+    if (!d_ptr->configManage->fileStream()->saveAsFile("", ".", &fileName))
         return;
     QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
     setConfigFile(fileName);
@@ -254,7 +255,7 @@ void HMainWindow::about()
     text = tr("<h2>%1</h2><p>").arg(abbreviation)
             + tr("<p>版本 %1<p>").arg(QApplication::applicationVersion())
             + tr("<p>%1<p>").arg(QApplication::applicationName())
-            + tr("<p>版权 2010-2014 %1. 保留所有权利. <p>").arg(QApplication::organizationName())
+            + tr("<p>版权 2017-2019 %1. 保留所有权利. <p>").arg(QApplication::organizationName())
             + tr("<p>%1<p>").arg(d_ptr->summary);
     QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
 }

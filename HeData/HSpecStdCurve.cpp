@@ -4,42 +4,54 @@
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecStdCurve::HSpecStdCurve()
-    : d_ptr(new HSpecStdCurvePrivate)
+    : HAbstractCalibrateItem(*new HSpecStdCurvePrivate)
 {
 }
 
 HSpecStdCurve::HSpecStdCurve(HSpecStdCurvePrivate &p)
-    : d_ptr(&p)
+    : HAbstractCalibrateItem(p)
 {
+    restoreDefault();
 }
 
 HSpecStdCurve::~HSpecStdCurve()
 {
+    restoreDefault();
+}
+
+void HSpecStdCurve::restoreDefault()
+{
+    Q_D(HSpecStdCurve);
+    d->curve.clear();
+}
+
+void HSpecStdCurve::readContent(QDataStream &s)
+{
+    Q_D(HSpecStdCurve);
+    quint32 version;
+    s >> version;
+    s >> d->datas;
+    s >> d->curve;
+}
+
+void HSpecStdCurve::writeContent(QDataStream &s)
+{
+    Q_D(HSpecStdCurve);
+    s << quint32(1);
+    s << d->datas;
+    s << d->curve;
 }
 
 void HSpecStdCurve::setData(QVector<double> value)
 {
-    d_ptr->datas = value;
+    Q_D(HSpecStdCurve);
+    d->curve = value;
 }
 
 QVector<double> HSpecStdCurve::data()
 {
-    return d_ptr->datas;
-}
-
-QDataStream &operator>>(QDataStream &s, HSpecStdCurve &spec)
-{
-    quint32 version;
-    s >> version;
-    s >> spec.d_ptr->datas;
-    return s;
-}
-
-QDataStream &operator<<(QDataStream &s, const HSpecStdCurve &spec)
-{
-    s << quint32(1);
-    s << spec.d_ptr->datas;
-    return s;
+    Q_D(HSpecStdCurve);
+    return d->curve;
 }
 
 HE_DATA_END_NAMESPACE

@@ -14,7 +14,6 @@ class IGuiHandler : public QObject, public IHandler
 
 public:
     using QObject::QObject;
-
 };
 
 HE_GUI_END_NAMESPACE

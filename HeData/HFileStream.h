@@ -1,27 +1,35 @@
 /***************************************************************************************************
-**      2018-06-19  HAbstractFileStream 抽象文件流类。
+**      2018-07-09  HFileStream 文件流类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTFILESTREAM_H
-#define HABSTRACTFILESTREAM_H
+#ifndef HFILESTREAM_H
+#define HFILESTREAM_H
 
 #include "IFileStream.h"
-#include <QScopedPointer>
+#include <QObject>
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
-class HAbstractFileStreamPrivate;
+class HFileStreamPrivate;
 
-class HAbstractFileStream : virtual public IFileStream
+class HFileStream : public QObject, public IFileStream
 {
-public:
-    explicit HAbstractFileStream(IDataFactory *);
-    ~HAbstractFileStream();
+    Q_OBJECT
 
 public:
+    explicit HFileStream(QObject *parent = nullptr);
+    ~HFileStream();
+
+public:
+    virtual void initialize(QVariantMap param) override;
+    virtual QString typeName() override;
+
+public:
+    virtual void setMagicNumber(quint32 value) override;
     virtual void setFileVersion(quint32 value) override;
     virtual void setFileFilter(QString value) override;
+    virtual void setReadContent(std::function<void(QDataStream &)> func) override;
+    virtual void setWriteContent(std::function<void(QDataStream &)> func) override;
     virtual quint32 fileVersion() override;
     virtual QString fileFilter() override;
 
@@ -30,14 +38,16 @@ public:
     virtual bool saveAsFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = 0) override;
     virtual bool readFile(QString fileName) override;
     virtual bool writeFile(QString fileName) override;
+    virtual bool readContent(QDataStream &) override;
+    virtual bool writeContent(QDataStream &) override;
 
 protected:
-    HAbstractFileStream(HAbstractFileStreamPrivate &p);
+    HFileStream(HFileStreamPrivate &p, QObject *parent = nullptr);
 
 protected:
-    QScopedPointer<HAbstractFileStreamPrivate> d_ptr;
+    QScopedPointer<HFileStreamPrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE
 
-#endif // HABSTRACTFILESTREAM_H
+#endif // HFILESTREAM_H

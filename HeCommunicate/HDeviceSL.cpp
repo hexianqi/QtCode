@@ -64,18 +64,6 @@ QString HDeviceSL::typeName()
     return "HDeviceSL";
 }
 
-void HDeviceSL::setEncrypt(QVector<bool> value)
-{
-    Q_D(HDeviceSL);
-    d->setEncrypt(value);
-}
-
-void HDeviceSL::setCheckCode(QVector<bool> value)
-{
-    Q_D(HDeviceSL);
-    d->setCheckCode(value);
-}
-
 HErrorType HDeviceSL::setData(HActionType action, QVector<uchar> value, int delay)
 {
     Q_D(HDeviceSL);
@@ -126,6 +114,18 @@ HErrorType HDeviceSL::getData(HActionType action, QVector<uchar> &value, int del
         return HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]);
     value = upData.mid(6);
     return E_OK;
+}
+
+void HDeviceSL::setEncrypt(QVector<bool> value)
+{
+    Q_D(HDeviceSL);
+    d->setEncrypt(value);
+}
+
+void HDeviceSL::setCheckCode(QVector<bool> value)
+{
+    Q_D(HDeviceSL);
+    d->setCheckCode(value);
 }
 
 HErrorType HDeviceSL::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)

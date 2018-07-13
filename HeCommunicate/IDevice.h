@@ -27,6 +27,7 @@ public:
     virtual void setDeviceID(int id) = 0;
     // 添加命令参数
     virtual void addActionParam(HActionType key, QList<uchar> value) = 0;
+
 public:
     // 打开
     virtual HErrorType open() = 0;

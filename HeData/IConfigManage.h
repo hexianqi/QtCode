@@ -5,13 +5,14 @@
 #ifndef ICONFIGMANAGE_H
 #define ICONFIGMANAGE_H
 
-#include "IFileStream.h"
+#include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 
 HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IFileStream;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
 
@@ -24,7 +25,7 @@ enum ConfigContainType
 
 Q_DECLARE_FLAGS(ConfigContainTypes, ConfigContainType)
 
-class IConfigManage : virtual public IFileStream, public IInitializeable
+class IConfigManage : public IInitializeable
 {
 public:
     virtual void setContain(quint32 value) = 0;
@@ -33,6 +34,7 @@ public:
 public:
     virtual quint32 contain() = 0;
     virtual ISpecCalibrate *specCalibrate(QString name) = 0;
+    virtual IFileStream *fileStream() = 0;
 
 public:
     virtual bool importPart(quint32 value) = 0;

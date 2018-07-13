@@ -2,14 +2,15 @@
 #define HSPECPELSWAVE_P_H
 
 #include "HSpecPelsWave.h"
+#include "HAbstractCalibrateItem_p.h"
 #include <QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecPelsWavePrivate
+class HSpecPelsWavePrivate : public HAbstractCalibrateItemPrivate
 {
 public:
-    QPolygonF datas;
+    QPolygonF pelsWave;
 };
 
 HE_DATA_END_NAMESPACE

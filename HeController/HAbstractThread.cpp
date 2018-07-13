@@ -19,22 +19,22 @@ HAbstractThreadPrivate::HAbstractThreadPrivate(HAbstractThread *q)
 void HAbstractThreadPrivate::enqueueAction(HActionType action)
 {
     QMutexLocker locker(mutex);
-    actionQueue.enqueue(action);
+    actionCache.enqueue(action);
     waitConditionAction->wakeOne();
 }
 
 HActionType HAbstractThreadPrivate::dequeueAction()
 {
     QMutexLocker locker(mutex);
-    if (actionQueue.isEmpty())
+    if (actionCache.isEmpty())
         waitConditionAction->wait(mutex);
-    return actionQueue.dequeue();
+    return actionCache.dequeue();
 }
 
 void HAbstractThreadPrivate::clearAction()
 {
     QMutexLocker locker(mutex);
-    actionQueue.clear();
+    actionCache.clear();
 }
 
 HAbstractThread::HAbstractThread(QObject *parent)
@@ -93,7 +93,7 @@ void HAbstractThread::run()
     if (d_ptr->runMode == 0)
         debugMode();
     if (d_ptr->runMode == 1)
-        offLineMode();
+        offlineMode();
     if (d_ptr->runMode == 2)
         normalMode();
     d_ptr->running = false;
@@ -106,7 +106,8 @@ bool HAbstractThread::checkAction(HActionType action)
 
 void HAbstractThread::readSettings()
 {
-    auto settings = new QSettings(HAppContext::getContextValue<QString>("Settings"), QSettings::IniFormat, this);
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("Thread");
     d_ptr->runMode = settings->value("iRunMode", 2).toInt();
     d_ptr->retry = settings->value("iRetry", 3).toInt();
@@ -116,7 +117,8 @@ void HAbstractThread::readSettings()
 
 void HAbstractThread::writeSettings()
 {
-    auto settings = new QSettings(HAppContext::getContextValue<QString>("Settings"), QSettings::IniFormat, this);
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("Thread");
     settings->setValue("iRunMode", d_ptr->runMode);
     settings->setValue("iRetry", d_ptr->retry);
@@ -130,7 +132,6 @@ void HAbstractThread::debugMode()
     HErrorType error;
 
     openProtocol();
-
     forever
     {
         action = d_ptr->dequeueAction();
@@ -144,7 +145,7 @@ void HAbstractThread::debugMode()
     closeProtocol();
 }
 
-void HAbstractThread::offLineMode()
+void HAbstractThread::offlineMode()
 {
     forever
     {
@@ -200,7 +201,7 @@ bool HAbstractThread::openProtocol()
         {
             for (auto item : list)
                 item->close();
-            emit startFailed(tr("\n设备“%1”连接失败！错误原因是“%2”\n").arg(key).arg(toComment(error)));
+            emit startFailed(tr("\n设备“%1”连接失败！错误原因“%2”。\n").arg(key).arg(toComment(error)));
             return false;
         }
         list.append(p);

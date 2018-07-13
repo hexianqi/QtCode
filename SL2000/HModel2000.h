@@ -17,8 +17,8 @@ public:
     ~HModel2000();
 
 public:
+    virtual void initialize(QVariantMap param) override;
     virtual QString typeName() override;
-
 
 protected:
     HModel2000(HModel2000Private &p, QObject *parent = nullptr);
