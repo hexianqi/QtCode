@@ -13,9 +13,9 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 enum HFilterEndType
 {
-  PadZero,  // 零填充
-  PadValue, // 第一个和最后一个值填充
-  Truncate  // 不执行填充
+    PadZero,  // 零填充
+    PadValue, // 第一个和最后一个值填充
+    Truncate  // 不执行填充
 };
 
 class HE_ALGORITHM_EXPORT HDigitalFilter

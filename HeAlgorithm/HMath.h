@@ -24,7 +24,7 @@ public:
     static double interpolateY(double y, QPointF p1, QPointF p2);
     static double interpolateY(double y, QPolygonF poly);
     // 多项式拟合
-    static  bool polyfit(QVector<QPointF> points, QVector<double> &factors);
+    static bool polyfit(QVector<QPointF> points, QVector<double> &factors);
 };
 
 HE_ALGORITHM_END_NAMESPACE

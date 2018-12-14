@@ -41,7 +41,7 @@ HEADERS     += \
             HAbstractCalibrateItem.h \
             HAbstractCalibrateItem_p.h
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET = HeDatad

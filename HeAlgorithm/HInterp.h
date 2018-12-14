@@ -27,15 +27,15 @@ class HE_ALGORITHM_EXPORT HInterp
 public:
     // 求值
     static double eval(QPolygonF basis, double x, HInterpType type = HInterpType::Linera);
-    static QVector<double> eval(QPolygonF basis, QVector<double> x, HInterpType type = HInterpType::Linera);
+    static QVector<double> eval(QPolygonF basis, QVector<double> xa, HInterpType type = HInterpType::Linera);
     // 求[a,b:interval]值
     static QPolygonF eval(QPolygonF basis, double a, double b, double interval = 0.1, HInterpType type = HInterpType::Cspline);
     // 求一阶导数值
-    static QVector<double> evalDeriv(QPolygonF basis, QVector<double> x, HInterpType type = HInterpType::Cspline);
+    static QVector<double> eval_deriv(QPolygonF basis, QVector<double> xa, HInterpType type = HInterpType::Cspline);
     // 求二阶导数值
-    static QVector<double> evalDeriv2(QPolygonF basis, QVector<double> x, HInterpType type = HInterpType::Cspline);
+    static QVector<double> eval_deriv2(QPolygonF basis, QVector<double> xa, HInterpType type = HInterpType::Cspline);
     // 求[a,b]积分值
-    double evalInteg(QPolygonF basis, double a, double b, HInterpType type = HInterpType::Linera);
+    static double eval_integ(QPolygonF basis, double a, double b, HInterpType type = HInterpType::Linera);
 };
 
 HE_ALGORITHM_END_NAMESPACE

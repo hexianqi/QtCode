@@ -8,6 +8,7 @@
 
 #include "HAlgorithmGlobal.h"
 #include "gsl/gsl_complex.h"
+#include <QPointF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

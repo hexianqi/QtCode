@@ -29,7 +29,7 @@ public:
         return __instance;
     }
 
-    static void DestroyInstance()
+    static void destroyInstance()
     {
         delete __instance;
         __instance = nullptr;
@@ -48,8 +48,7 @@ protected:
 template <class T>
 T *HSingleton<T>::__instance = nullptr;
 
-#define H_FRIEND_SINGLETON(theClass) \
-    friend class HSingleton<theClass>;
+#define H_FRIEND_SINGLETON(theClass)    friend class HSingleton<theClass>;
 
 HE_CORE_END_NAMESPACE
 

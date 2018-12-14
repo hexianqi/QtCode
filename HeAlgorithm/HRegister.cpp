@@ -58,7 +58,7 @@ bool HRegisterPrivate::isExpires()
         return false;
 
     auto expires = encryptDate(QDate::currentDate());
-    return trialTimes > 60 && expires - firstDate > 30;
+    return trialTimes > 100 && expires - firstDate > 60;
 }
 
 void HRegisterPrivate::trial()
@@ -132,8 +132,7 @@ bool HRegister::checkRegisterCode(QString registerId, QString registerCode)
 {
     try
     {
-        auto encryptNum = encrypt(registerId);
-        return encryptNum == registerCode;
+        return encrypt(registerId) == registerCode;
     }
     catch (std::exception ex)
     {

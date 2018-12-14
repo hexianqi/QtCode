@@ -32,7 +32,7 @@ SOURCES     +=
 HEADERS     += \
             HFileGlobal.h
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET  = HeFiled

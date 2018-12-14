@@ -28,12 +28,16 @@ const gsl_multifit_robust_type *toGsl(HRobustType type)
     }
 }
 
-void fillAsPow(gsl_matrix *m, QVector<double> x)
+void fillAsPow(gsl_matrix *m, QVector<double> xa)
 {
     uint i,j;
     for (i = 0; i < m->size1; i++)
+    {
         for (j = 0; j < m->size2; j++)
-            gsl_matrix_set(m, i, j, pow(x[i], j));
+        {
+            gsl_matrix_set(m, i, j, pow(xa[i], j));
+        }
+    }
 }
 
 void fillAsPow(gsl_vector *v, double x)
@@ -42,96 +46,92 @@ void fillAsPow(gsl_vector *v, double x)
         gsl_vector_set(v, i, pow(x, i));
 }
 
-void doFit(QPolygonF basis, QVector<double> &c, QVector<double> &cov, std::function<void(gsl_matrix *, gsl_vector *, gsl_vector *, gsl_matrix *)> func)
+void doFit(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, std::function<void(gsl_matrix *, gsl_vector *, gsl_vector *, gsl_matrix *)> func)
 {
-    QVector<double> x, y;
-    HGslHelper::split(basis, x, y);
+    QVector<double> xa, ya;
+    HGslHelper::split(basis, xa, ya);
 
-    auto p = c.size();
+    auto p = ca.size();
     auto n = basis.size();
-    auto xt = gsl_matrix_alloc(n, p);
-    auto yt = gsl_vector_view_array(y.data(), n);
-    auto ct = gsl_vector_alloc(p);
-    auto covt = gsl_matrix_alloc(p, p);
+    auto x = gsl_matrix_alloc(n, p);
+    auto y = gsl_vector_view_array(ya.data(), n);
+    auto c = gsl_vector_alloc(p);
+    auto cov = gsl_matrix_alloc(p, p);
 
-    fillAsPow(xt, x);
-    func(xt, &yt.vector, ct, covt);
-    c = HGslHelper::fromGsl(ct);
-    cov = HGslHelper::fromGsl(covt);
+    fillAsPow(x, xa);   // 可替换
+    func(x, &y.vector, c, cov);
+    ca = HGslHelper::fromGsl(c);
+    cova = HGslHelper::fromGsl(cov);
 
-    gsl_matrix_free(xt);
-    gsl_vector_free(ct);
-    gsl_matrix_free(covt);
+    gsl_matrix_free(x);
+    gsl_vector_free(c);
+    gsl_matrix_free(cov);
 }
 
-void doEst(double x, QVector<double> c, QVector<double> cov, std::function<void(gsl_vector *, gsl_vector *, gsl_matrix *)> func)
+void doEst(double x, QVector<double> ca, QVector<double> cova, std::function<void(gsl_vector *, gsl_vector *, gsl_matrix *)> func)
 {
-    auto p = c.size();
-    auto n = cov.size() / p;
-    auto covt = gsl_matrix_view_array(cov.data(), n, p);
-    auto ct = gsl_vector_view_array(c.data(), p);
+    auto p = ca.size();
+    auto n = cova.size() / p;
+    auto cov = gsl_matrix_view_array(cova.data(), n, p);
+    auto c = gsl_vector_view_array(ca.data(), p);
     auto xt = gsl_vector_alloc(p);
 
-    fillAsPow(xt, x);
-    func(xt, &ct.vector, &covt.matrix);
+    fillAsPow(xt, x);   // 可替换
+    func(xt, &c.vector, &cov.matrix);
 
     gsl_vector_free(xt);
 }
 
-HMultiFit::HMultiFit()
+void HMultiFit::linear(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, double *chisq)
 {
-}
-
-void HMultiFit::linear(QPolygonF basis, QVector<double> &c, QVector<double> &cov, double *chisq)
-{
-    auto work = gsl_multifit_linear_alloc(basis.size(), c.size());
-    auto func = [&](gsl_matrix *xt, gsl_vector *yt, gsl_vector *ct, gsl_matrix *covt)
+    auto work = gsl_multifit_linear_alloc(basis.size(), ca.size());
+    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov)
     {
-        gsl_multifit_linear(xt, yt, ct, covt, chisq, work);
+        gsl_multifit_linear(x, y, c, cov, chisq, work);
     };
-    doFit(basis, c, cov, func);
+    doFit(basis, ca, cova, func);
     gsl_multifit_linear_free(work);
 }
 
-void HMultiFit::linear(QPolygonF basis, QVector<double> w, QVector<double> &c, QVector<double> &cov, double *chisq)
+void HMultiFit::linear(QPolygonF basis, QVector<double> wa, QVector<double> &ca, QVector<double> &cova, double *chisq)
 {
-    auto wt = gsl_vector_view_array(w.data(), w.size());
-    auto work = gsl_multifit_linear_alloc(basis.size(), c.size());
-    auto func = [&](gsl_matrix *xt, gsl_vector *yt, gsl_vector *ct, gsl_matrix *covt)
+    auto w = gsl_vector_view_array(wa.data(), wa.size());
+    auto work = gsl_multifit_linear_alloc(basis.size(), ca.size());
+    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov)
     {
-        gsl_multifit_wlinear(xt, &wt.vector, yt, ct, covt, chisq, work);
+        gsl_multifit_wlinear(x, &w.vector, y, c, cov, chisq, work);
     };
-    doFit(basis, c, cov, func);
+    doFit(basis, ca, cova, func);
     gsl_multifit_linear_free(work);
 }
 
-void HMultiFit::linearEst(double x, QVector<double> c, QVector<double> cov, double *y, double *y_err)
+void HMultiFit::linear_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err)
 {
-    auto func = [&](gsl_vector *xt, gsl_vector *ct, gsl_matrix *covt)
+    auto func = [&](gsl_vector *xt, gsl_vector *c, gsl_matrix *cov)
     {
-        gsl_multifit_linear_est(xt, ct, covt, y, y_err);
+        gsl_multifit_linear_est(xt, c, cov, y, y_err);
     };
-    doEst(x, c, cov, func);
+    doEst(x, ca, cova, func);
 }
 
-void HMultiFit::robust(QPolygonF basis, QVector<double> &c, QVector<double> &cov, HRobustType type)
+void HMultiFit::robust(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, HRobustType type)
 {
-    auto work = gsl_multifit_robust_alloc(toGsl(type), basis.size(), c.size());
-    auto func = [&](gsl_matrix *xt, gsl_vector *yt, gsl_vector *ct, gsl_matrix *covt)
+    auto work = gsl_multifit_robust_alloc(toGsl(type), basis.size(), ca.size());
+    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov)
     {
-        gsl_multifit_robust(xt, yt, ct, covt, work);
+        gsl_multifit_robust(x, y, c, cov, work);
     };
-    doFit(basis, c, cov, func);
+    doFit(basis, ca, cova, func);
     gsl_multifit_robust_free(work);
 }
 
-void HMultiFit::robustEst(double x, QVector<double> c, QVector<double> cov, double *y, double *y_err)
+void HMultiFit::robust_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err)
 {
-    auto func = [&](gsl_vector *xt, gsl_vector *ct, gsl_matrix *covt)
+    auto func = [&](gsl_vector *xt, gsl_vector *c, gsl_matrix *cov)
     {
-        gsl_multifit_robust_est(xt, ct, covt, y, y_err);
+        gsl_multifit_robust_est(xt, c, cov, y, y_err);
     };
-    doEst(x, c, cov, func);
+    doEst(x, ca, cova, func);
 }
 
 HE_ALGORITHM_END_NAMESPACE

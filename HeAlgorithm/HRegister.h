@@ -25,7 +25,7 @@ public:
     bool setRegisterCode(QString registerCode);
     // 获取注册号
     QString getRegisterId();
-     //校验注册码
+    // 校验注册码
     bool checkRegisterCode();
     bool checkRegisterCode(QString registerId, QString registerCode);
     // 解密注册号

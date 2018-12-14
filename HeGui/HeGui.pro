@@ -44,7 +44,7 @@ HEADERS     += \
 
 RESOURCES   = HeGui.qrc
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET = HeGuid

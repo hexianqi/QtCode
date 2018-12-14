@@ -108,5 +108,4 @@ int HBSplines::test()
     return 0;
 }
 
-
 HE_ALGORITHM_END_NAMESPACE

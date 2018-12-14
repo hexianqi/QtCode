@@ -1,7 +1,7 @@
 #include "HMath.h"
-#include <QtMath>
 #include <QPointF>
 #include <QPolygonF>
+#include <QtMath>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -10,9 +10,9 @@ double HMath::interpolate(double x, double x1, double y1, double x2, double y2)
     return (x - x1) * (y2 - y1) / (x2 - x1) + y1;
 }
 
-double HMath::interpolate(double n, QPointF p1, QPointF p2)
+double HMath::interpolate(double x, QPointF p1, QPointF p2)
 {
-    return interpolate(n, p1.x(), p1.y(), p2.x(), p2.y());
+    return interpolate(x, p1.x(), p1.y(), p2.x(), p2.y());
 }
 
 double HMath::interpolate(double x, QPolygonF poly)
@@ -22,9 +22,11 @@ double HMath::interpolate(double x, QPolygonF poly)
 
     int i;
     for (i = 1; i < poly.size() - 1; i++)
+    {
         if (x <= poly[i].x())
             break;
-    return interpolate(x, poly[i-1], poly[i]);
+    }
+    return interpolate(x, poly[i - 1], poly[i]);
 }
 
 QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double interval)
@@ -43,7 +45,7 @@ QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double interv
     for (i = 0, j = 1; i < n; i++)
     {
         x = x1 + i * interval;
-        for (; x > poly[j].x() && j < poly.size()-1; j++);
+        for (; x > poly[j].x() && j < poly.size() - 1; j++);
         y = interpolate(x, poly[j-1], poly[j]);
         result.append(QPointF(x, y));
     }
@@ -100,6 +102,7 @@ bool HMath::polyfit(QVector<QPointF> points, QVector<double> &factors)
     n = factors.size();
     if (n < 0 || m < 1)
         return false;
+
     if (n > m)
     {
         n = m;

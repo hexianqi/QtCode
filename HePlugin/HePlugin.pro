@@ -20,7 +20,7 @@ HEADERS     += \
 
 RESOURCES   = HePlugin.qrc
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET  = HePlugind

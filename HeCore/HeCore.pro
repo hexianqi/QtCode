@@ -43,7 +43,7 @@ HEADERS     += \
 
 RESOURCES   += HeCore.qrc
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET  = HeCored

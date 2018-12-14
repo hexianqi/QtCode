@@ -1,26 +1,18 @@
 HEADERS += \
     $$PWD/HGslHelper.h \
-    $$PWD/HInterp.h \
-    $$PWD/HPolynomial.h \
-    $$PWD/HSpecialFunction.h \
-    $$PWD/HDigitalFilter.h \
-    $$PWD/HBSplines.h \
     $$PWD/HComplexNumber.h \
-    $$PWD/HLinearFit.h \
-    $$PWD/HMultiFit.h
+    $$PWD/HPoly.h
 
+#    $$PWD/HDigitalFilter.h \
+#    $$PWD/HBSplines.h \
 
 SOURCES += \
     $$PWD/HGslHelper.cpp \
-    $$PWD/HInterp.cpp \
-    $$PWD/HPolynomial.cpp \
-    $$PWD/HSpecialFunction.cpp \
-    $$PWD/HDigitalFilter.cpp \
-    $$PWD/HBSplines.cpp \
     $$PWD/HComplexNumber.cpp \
-    $$PWD/HLinearFit.cpp \
-    $$PWD/HMultiFit.cpp
+    $$PWD/HPoly.cpp
 
+#    $$PWD/HDigitalFilter.cpp \
+#    $$PWD/HBSplines.cpp \
 
 DEFINES     += GSL_DLL  #此句不加将会遇到一些连接错误
 
@@ -30,3 +22,7 @@ LIBS        += \
 
 INCLUDEPATH += D:/Qt/gsl/include
 DEPENDPATH  += D:/Qt/gsl/include
+
+include(gsl_sf.pri)
+include(gsl_interp.pri)
+include(gsl_fit.pri)

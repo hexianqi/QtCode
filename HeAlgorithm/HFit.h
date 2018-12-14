@@ -11,23 +11,23 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HLinearFit
+class HE_ALGORITHM_EXPORT HFit
 {
 public:
     // Y = c0 + c1 * x
     static QVector<double> linear(QPolygonF basis);
-    static QVector<double> linear(QPolygonF basis, QVector<double> w);
-    static void linear(QPolygonF basis, QVector<double> &c, QVector<double> &cov, double *sumsq);
-    static void linear(QPolygonF basis, QVector<double> w, QVector<double> &c, QVector<double> &cov, double *chisq);
-    static void linearEst(double x, QVector<double> c, QVector<double> cov, double *y, double *y_err);
+    static QVector<double> linear(QPolygonF basis, QVector<double> wa);
+    static void linear(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, double *sumsq);
+    static void linear(QPolygonF basis, QVector<double> wa, QVector<double> &ca, QVector<double> &cova, double *chisq);
+    static void linear_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err);
 
 public:
     // Y = c0 * x
     static double mul(QPolygonF basis);
-    static double mul(QPolygonF basis, QVector<double> w);
+    static double mul(QPolygonF basis, QVector<double> wa);
     static void mul(QPolygonF basis, double *c, double *cov, double *sumsq);
-    static void mul(QPolygonF basis, QVector<double> w, double *c, double *cov, double *chisq);
-    static void mulEst(double x, double c, double cov, double *y, double *y_err);
+    static void mul(QPolygonF basis, QVector<double> wa, double *c, double *cov, double *chisq);
+    static void mul_est(double x, double c, double cov, double *y, double *y_err);
 };
 
 HE_ALGORITHM_END_NAMESPACE

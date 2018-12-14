@@ -36,7 +36,7 @@ HEADERS     += \
             HCommunicateFactory.h \
             HCommunicateFactory_p.h
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET = HeCommunicated

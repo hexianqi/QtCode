@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     HTestGsl gsl;
     QMainWindow window;
-    window.setCentralWidget(gsl.multiFit2());
+    window.setCentralWidget(gsl.interpEval());
     window.resize(800, 600);
     window.grabGesture(Qt::PanGesture);
     window.grabGesture(Qt::PinchGesture);

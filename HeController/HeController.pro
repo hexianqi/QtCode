@@ -34,7 +34,7 @@ HEADERS     += \
             HControllerFactory.h \
             HControllerFactory_p.h
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     TARGET = HeControllerd

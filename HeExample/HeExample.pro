@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core-private
+QT          += core-private widgets
 
 TEMPLATE    = lib
 
@@ -33,7 +33,9 @@ HEADERS     += \
             HDPointer.h \
             HDPointer_p.h
 
-INCLUDEPATH += ".."
+RESOURCES   += HeExample.qrc
+
+INCLUDEPATH += ..
 
 Debug {
     TARGET  = HeExampled
@@ -51,3 +53,6 @@ unix {
 }
 
 include(Reflect.pri)
+include(Layout.pri)
+
+

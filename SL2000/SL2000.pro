@@ -41,7 +41,7 @@ HEADERS += \
 
 TARGET = SL2000
 
-INCLUDEPATH += ".."
+INCLUDEPATH += ..
 
 Debug {
     CONFIG  += console

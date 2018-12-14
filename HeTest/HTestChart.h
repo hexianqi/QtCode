@@ -16,8 +16,6 @@ public:
     static QChartView *zoomChart();
     static QChartView *lineChart(QList<QPolygonF> polys);
     static QChartView *diffChart(QPolygonF p1, QPolygonF p2);
-
-
 };
 
 #endif // HTESTCHART_H

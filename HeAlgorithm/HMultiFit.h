@@ -25,15 +25,12 @@ enum HRobustType
 class HE_ALGORITHM_EXPORT HMultiFit
 {
 public:
-    HMultiFit();
-
-public:
-    // P(x) = a[0] + a[1] x + a[2] x^2 + ... + a[len-1] x^(len-1)
-    static void linear(QPolygonF basis, QVector<double> &c, QVector<double> &cov, double *chisq);
-    static void linear(QPolygonF basis, QVector<double> w, QVector<double> &c, QVector<double> &cov, double *chisq);
-    static void linearEst(double x, QVector<double> c, QVector<double> cov, double *y, double *y_err);
-    static void robust(QPolygonF basis, QVector<double> &c, QVector<double> &cov, HRobustType type = HRobustType::Default);
-    static void robustEst(double x, QVector<double> c, QVector<double> cov, double *y, double *y_err);
+    // P(x) = c[0] + c[1] x + c[2] x^2 + ... + c[len-1] x^(len-1)
+    static void linear(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, double *chisq);
+    static void linear(QPolygonF basis, QVector<double> wa, QVector<double> &ca, QVector<double> &cova, double *chisq);
+    static void linear_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err);
+    static void robust(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, HRobustType type = HRobustType::Default);
+    static void robust_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err);
 };
 
 HE_ALGORITHM_END_NAMESPACE
