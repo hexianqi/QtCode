@@ -1,6 +1,6 @@
 #include "HChromaticity_p.h"
-#include "ISpectrumData.h"
-#include "HSpectrum.h"
+#include "HSpectrumData.h"
+#include "HSpectrumHelper.h"
 #include <QFile>
 #include <QTextStream>
 #include <QtMath>
@@ -28,14 +28,14 @@ HChromaticity::~HChromaticity()
 {
 }
 
-void HChromaticity::calcSpectrum(ISpectrumData *sp)
+void HChromaticity::calcSpectrum(HSpectrumData *sp)
 {
     if (sp->Energy.isEmpty())
         return;
 
     sp->CoordinateUv = d_ptr->cie1931->calcCoordinateUv(sp->Energy);
-    sp->CoordinateXy = HSpectrum::uv2xy(sp->CoordinateUv);
-    sp->CoordinateUvp = HSpectrum::uv2uvp(sp->CoordinateUv);
+    sp->CoordinateXy = HSpectrumHelper::uv2xy(sp->CoordinateUv);
+    sp->CoordinateUvp = HSpectrumHelper::uv2uvp(sp->CoordinateUv);
     sp->ColorTemperature = d_ptr->isotherm->calcColorTemperature(sp->CoordinateUv);
     sp->Duv = d_ptr->cie1931->calcDuv(sp->CoordinateUv, sp->ColorTemperature);
     d_ptr->cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
@@ -56,19 +56,19 @@ QLineF HChromaticity::calcIsothermUv(double tc, double duv)
     return line;
 }
 
-QLineF HChromaticity::calcIsothermXy(double tc, double duv)
-{
-    auto line = calcIsothermUv(tc, duv);
-    auto p1 = HSpectrum::uv2xy(line.p1());
-    auto p2 = HSpectrum::uv2xy(line.p2());
-    return QLineF(p1, p2);
-}
-
 QLineF HChromaticity::calcIsothermUv(double tc, double duvB, double duvE)
 {
     auto line1 = calcIsothermUv(tc, duvB);
     auto line2 = calcIsothermUv(tc, duvE);
     return QLineF(line1.p2(), line2.p2());
+}
+
+QLineF HChromaticity::calcIsothermXy(double tc, double duv)
+{
+    auto line = calcIsothermUv(tc, duv);
+    auto p1 = HSpectrumHelper::uv2xy(line.p1());
+    auto p2 = HSpectrumHelper::uv2xy(line.p2());
+    return QLineF(p1, p2);
 }
 
 QLineF HChromaticity::calcIsothermXy(double tc, double duvB, double duvE)
@@ -172,7 +172,7 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF sp
         Wri[i] = refer.Wr[i];
     }
 
-    auto cdk = HSpectrum::uv2cd(uvk);
+    auto cdk = HSpectrumHelper::uv2cd(uvk);
     ck = cdk.x();
     dk = cdk.y();
     d_ptr->cie1931->calcColorReflectance(spdk, uki, vki, Yki);
@@ -213,9 +213,9 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
 
     spd = d_ptr->cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
     uvt = d_ptr->cie1931->calcIsoCoordinateUv(tc);
-    xyt = HSpectrum::uv2xy(uvt);
+    xyt = HSpectrumHelper::uv2xy(uvt);
     uv = d_ptr->cie1931->calcCoordinateUv(spd);
-    cd = HSpectrum::uv2cd(uv);
+    cd = HSpectrumHelper::uv2cd(uv);
     d_ptr->cie1931->calcColorReflectance(spd, uri, vri, Yri);
     for (i = 0; i < 14; i++)
     {

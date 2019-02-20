@@ -10,11 +10,16 @@ HMesopticVision::HMesopticVision()
     readStandard();
 }
 
+QStringList HMesopticVision::sourceTypes() const
+{
+    return _stdData.keys();
+}
+
 double HMesopticVision::calcRatio(QString type, double value)
 {
     if (!_stdData.contains(type))
         return 0;
-    return HInterp::eval(_stdData[type], value);
+    return HInterp::eval(_stdData[type], value, HInterpType::Cspline);
 }
 
 void HMesopticVision::readStandard()

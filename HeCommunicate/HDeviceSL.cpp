@@ -80,10 +80,7 @@ HErrorType HDeviceSL::setData(HActionType action, QVector<uchar> value, int dela
     if (error != E_OK)
         return error;
 
-    if (upData.size() < 6
-            || upData[0] != d->deviceID
-            || upData[3] != param[2]
-            || upData[4] != param[3])
+    if (upData.size() < 6 || upData[0] != d->deviceID || upData[3] != param[2] || upData[4] != param[3])
         return E_DEVICE_RETURN_DATA_ERROR;
     if (upData[5] != 0x00)
         return HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]);
@@ -105,10 +102,7 @@ HErrorType HDeviceSL::getData(HActionType action, QVector<uchar> &value, int del
     if (error != E_OK)
         return error;
 
-    if (upData.size() < 6
-            || upData[0] != d->deviceID
-            || upData[3] != param[2]
-            || upData[4] != param[3])
+    if (upData.size() < 6 || upData[0] != d->deviceID || upData[3] != param[2] || upData[4] != param[3])
         return E_DEVICE_RETURN_DATA_ERROR;
     if (upData[5] != 0x00)
         return HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]);
@@ -135,14 +129,13 @@ HErrorType HDeviceSL::transport(QVector<uchar> &downData, QVector<uchar> &upData
     HErrorType error;
     QVector<uchar> downDataE, upDataE;
 
-    //    n = d->isEncrypt(0) ? qCeil((downData.size()) / 7.0) : 0;
-    downDataE = d->isEncrypt(0) ? encrypt(downData, 2) : downData;
+    downDataE = d->isEncrypt(0) ? encrypt(downData) : downData;
     if (d->isCheckCode(0))
         downDataE << calcCode(downDataE);
 
     n = 0;
     if (d->isEncrypt(1))
-        n += 2;
+        n += calcEncryptSize(upData);
     if (d->isCheckCode(1))
         n += 1;
     upDataE.resize(upData.size() + n);
@@ -154,17 +147,18 @@ HErrorType HDeviceSL::transport(QVector<uchar> &downData, QVector<uchar> &upData
     if (d->isCheckCode(1))
     {
         auto code = upDataE.takeLast();
-        if (!checkCode(upDataE, code))
+        if (calcCode(upDataE) != code)
             return E_DEVICE_CHECKCODE_ERROR;
     }
-    upData = d->isEncrypt(1) ? decrypt(upDataE, 2) : upDataE;
+    upData = d->isEncrypt(1) ? decrypt(upDataE) : upDataE;
     return E_OK;
 }
 
-QVector<uchar> HDeviceSL::encrypt(QVector<uchar> value, int size)
+QVector<uchar> HDeviceSL::encrypt(QVector<uchar> value)
 {
     int n = value.size();
-    QVector<uchar> result(n + size);
+    int m = calcEncryptSize(value);
+    QVector<uchar> result(n + m);
 
     for (int i = 0; i < n; i++)
     {
@@ -174,9 +168,16 @@ QVector<uchar> HDeviceSL::encrypt(QVector<uchar> value, int size)
     return result;
 }
 
-QVector<uchar> HDeviceSL::decrypt(QVector<uchar> value, int size)
+int HDeviceSL::calcEncryptSize(QVector<uchar> value)
 {
-    int n = value.size() - size;
+    Q_UNUSED(value)
+    return 2;
+    // return qCeil(value.size() / 7.0);
+}
+
+QVector<uchar> HDeviceSL::decrypt(QVector<uchar> value)
+{
+    int n = value.size() - calcEncryptSize(value);
     QVector<uchar> result(n);
 
     for (int i = 0; i < n; i++)
@@ -195,14 +196,6 @@ uchar HDeviceSL::calcCode(QVector<uchar> value)
     for (auto i : value)
         sum += i;
     return sum % 128;
-}
-
-bool HDeviceSL::checkCode(QVector<uchar> value, uchar code)
-{
-    uint sum = 0;
-    for (auto i : value)
-        sum += i;
-    return code == sum % 128;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

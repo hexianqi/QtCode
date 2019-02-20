@@ -12,6 +12,7 @@ HE_CORE_BEGIN_NAMESPACE
 class IHandler : public IInitializeable
 {
 public:
+    // 执行
     virtual void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) = 0;
 };
 

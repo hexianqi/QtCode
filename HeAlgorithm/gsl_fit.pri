@@ -1,7 +1,7 @@
 HEADERS += \
-    $$PWD/HFit.h \
-    $$PWD/HMultiFit.h
+    $$PWD/HMultiFit.h \
+    $$PWD/HLinearFit.h
 
 SOURCES += \
-    $$PWD/HFit.cpp \
     $$PWD/HMultiFit.cpp \
+    $$PWD/HLinearFit.cpp

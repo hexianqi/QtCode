@@ -1,7 +1,7 @@
 HEADERS += \
     $$PWD/HGslHelper.h \
     $$PWD/HComplexNumber.h \
-    $$PWD/HPoly.h
+    $$PWD/HPolynomial.h
 
 #    $$PWD/HDigitalFilter.h \
 #    $$PWD/HBSplines.h \
@@ -9,7 +9,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/HGslHelper.cpp \
     $$PWD/HComplexNumber.cpp \
-    $$PWD/HPoly.cpp
+    $$PWD/HPolynomial.cpp
 
 #    $$PWD/HDigitalFilter.cpp \
 #    $$PWD/HBSplines.cpp \

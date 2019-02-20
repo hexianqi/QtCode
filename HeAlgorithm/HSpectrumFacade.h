@@ -11,7 +11,7 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class ISpectrumData;
+class HSpectrumData;
 class IChromaticity;
 class HSpectrumFacadePrivate;
 
@@ -23,7 +23,7 @@ public:
 
 public:
     // 计算光谱参数
-    void calcSpectrum(ISpectrumData *);
+    void calcSpectrum(HSpectrumData *);
     // 设置色度参数计算方法
     void setChromaticity(int type);
     // 获取色度参数计算方法

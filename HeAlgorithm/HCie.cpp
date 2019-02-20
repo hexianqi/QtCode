@@ -1,5 +1,6 @@
 #include "HCie.h"
-#include "HSpectrum.h"
+#include "HLinearFit.h"
+#include "HSpectrumHelper.h"
 #include "HMath.h"
 #include <QFile>
 #include <QTextStream>
@@ -10,6 +11,11 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 HCieTc32::HCieTc32()
 {
     readStandard();
+}
+
+int HCieTc32::size()
+{
+    return _stdData.size();
 }
 
 CIE_TC_32 HCieTc32::data(int i)
@@ -73,9 +79,7 @@ QPointF HCie1931::calcCoordinateUv(QPolygonF spd)
             j++;
     }
     Z = (X + 15 * Y + 3 * Z);
-    if (qFuzzyIsNull(Z))
-        return QPointF(0.0, 0.0);
-    return QPointF(4 * X / Z, 6 * Y / Z);
+    return qFuzzyIsNull(Z) ? QPointF(0.0, 0.0) : QPointF(4 * X / Z, 6 * Y / Z);
 }
 
 double HCie1931::calcDuv(QPointF uv, double tc)
@@ -97,7 +101,7 @@ void HCie1931::calcDominantWave(QPointF xy, double &wave, double &purity)
         ls = _stdData[i].slope;
         lx = _stdData[i].x;
         ly = _stdData[i].y;
-        while(1)
+        while (1)
         {
             i++;
             rs = _stdData[i].slope;
@@ -118,7 +122,7 @@ void HCie1931::calcDominantWave(QPointF xy, double &wave, double &purity)
         rs = _stdData[i].slope;
         rx = _stdData[i].x;
         ry = _stdData[i].y;
-        while(1)
+        while (1)
         {
             i--;
             ls = _stdData[i].slope;
@@ -200,7 +204,8 @@ QPointF HCie1931::calcIsoCoordinateUv(double tc)
 
 QPointF HCie1931::calcIsoCoordinateXy(double tc)
 {
-    return HSpectrum::uv2xy(calcIsoCoordinateUv(tc));
+    auto uv = calcIsoCoordinateUv(tc);
+    return HSpectrumHelper::uv2xy(uv);
 }
 
 ISOTHERM HCie1931::calcIsotherm(double tc)
@@ -221,39 +226,30 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
         ubar = _stdData[i].X * 2 / 3;
         vbar = _stdData[i].Y;
         wbar = -0.5 * _stdData[i].X + 1.5 * _stdData[i].Y + 0.5 * _stdData[i].Z;
-        P = HSpectrum::planck(_stdData[i].wave, tc);
+        P = HSpectrumHelper::planck(_stdData[i].wave, tc);
         U += P * ubar;
         V += P * vbar;
         W += P * wbar;
-        Pprime = HSpectrum::planckPrime(_stdData[i].wave, tc);
+        Pprime = HSpectrumHelper::planckPrime(_stdData[i].wave, tc);
         Uprime += Pprime * ubar;
         Vprime += Pprime * vbar;
         Wprime += Pprime * wbar;
     }
     R = U + V + W;
     Rprime = Uprime + Vprime + Wprime;
-    return ISOTHERM {tc, U / R, V / R, -1.0 * (Uprime * R - U * Rprime) / (Vprime * R - V * Rprime) };
+    return ISOTHERM { tc, U / R, V / R, -1.0 * (Uprime * R - U * Rprime) / (Vprime * R - V * Rprime) };
 }
 
 ISOTHERM HCie1931::calcIsothermFit(double tc)
 {
-    QVector<double> as;
     QVector<QPointF> points;
 
-    as.resize(2);
     auto uv = calcIsoCoordinateUv(tc);
     for (int i = 0; i < 11; i++)
         points.append(calcIsoCoordinateUv(tc + (i - 4) * 0.1));
-    HMath::polyfit(points, as);
-    return ISOTHERM { tc, uv.x(), uv.y(), -1.0 / as[0] };
+    auto ca = HLinearFit::linear(points);
+    return ISOTHERM { tc, uv.x(), uv.y(), -1.0 / ca[0] };
 }
-
-//void HCie1931::calcIsothermFitXy(double tc, QPointF &xy, double &slope)
-//{
-//    auto iso = calcIsothermFit(tc);
-//    xy = uv2xy(QPointF(iso.u, iso.v));
-//    slope *= 2.0 / 3;
-//}
 
 void HCie1931::readStandard()
 {
@@ -285,7 +281,7 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
         return 0;
 
     if (tc <= 5000)
-        return HSpectrum::planck(wave, tc);
+        return HSpectrumHelper::planck(wave, tc);
 
     int i;
     double xd;
@@ -305,7 +301,7 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
     auto wave2 = _stdData[i].wave;
     auto sp1 = _stdData[i-1].S[0] + m1 * _stdData[i-1].S[1] + m2 * _stdData[i-1].S[2];
     auto sp2 = _stdData[i].S[0] + m1 * _stdData[i].S[1] + m2 * _stdData[i].S[2];
-    return qMax(0.0, HMath::interpolate(wave, wave1, sp1, wave2, sp2));
+    return qMax(0.0, HMath::interpolate(wave, wave1, wave2, sp1, sp2));
 }
 
 QPolygonF HCieDay::calcRefSourceSpectrum(double tc, QPointF wave, double interval)

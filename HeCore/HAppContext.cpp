@@ -10,16 +10,16 @@ void HAppContext::setContextValue(QString key, QVariant value)
     __contextValue[key] = value;
 }
 
-void HAppContext::setContextPointer(QString key, void *value)
-{
-    __contextPointer[key] = value;
-}
-
 QVariant HAppContext::getContextValue(QString key)
 {
     if (!__contextValue.contains(key))
         return QVariant();
     return __contextValue.value(key);
+}
+
+void HAppContext::setContextPointer(QString key, void *value)
+{
+    __contextPointer[key] = value;
 }
 
 void *HAppContext::getContextPointer(QString key)

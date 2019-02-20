@@ -6,7 +6,6 @@
 #define HTYPEHELPER_H
 
 #include "HCoreGlobal.h"
-#include "HeFile/HFileGlobal.h"
 #include <QVariant>
 
 HE_CORE_BEGIN_NAMESPACE
@@ -14,9 +13,10 @@ HE_CORE_BEGIN_NAMESPACE
 class HTypeHelper
 {
 public:
+    // 创建对象
     template<class T>
     static T *createObject(QString className);
-
+    // 创建对象
     template<class T>
     static T *createObject(QString className, QVariantMap param);
 };

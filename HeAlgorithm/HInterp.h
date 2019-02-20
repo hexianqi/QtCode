@@ -29,7 +29,7 @@ public:
     static double eval(QPolygonF basis, double x, HInterpType type = HInterpType::Linera);
     static QVector<double> eval(QPolygonF basis, QVector<double> xa, HInterpType type = HInterpType::Linera);
     // 求[a,b:interval]值
-    static QPolygonF eval(QPolygonF basis, double a, double b, double interval = 0.1, HInterpType type = HInterpType::Cspline);
+    static QPolygonF eval(QPolygonF basis, double a, double b, double interval = 0.1, HInterpType type = HInterpType::Linera);
     // 求一阶导数值
     static QVector<double> eval_deriv(QPolygonF basis, QVector<double> xa, HInterpType type = HInterpType::Cspline);
     // 求二阶导数值

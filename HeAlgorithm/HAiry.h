@@ -1,10 +1,10 @@
 /***************************************************************************************************
-**      2018-12-06  HAiryFunction 艾里函数类。
+**      2018-12-06  HAiry 艾里函数类。
 **                  http://www.gnu.org/software/gsl/doc/html/specfunc.html
 ***************************************************************************************************/
 
-#ifndef HAIRYFUNCTION_H
-#define HAIRYFUNCTION_H
+#ifndef HAIRY_H
+#define HAIRY_H
 
 #include "HAlgorithmGlobal.h"
 
@@ -33,4 +33,4 @@ public:
 
 HE_ALGORITHM_END_NAMESPACE
 
-#endif // HAIRYFUNCTION_H
+#endif // HAIRY_H

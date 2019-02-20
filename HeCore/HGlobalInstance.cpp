@@ -478,7 +478,7 @@ void HGlobalInstance::initDataCaption()
 {
     hashDataCaption.clear();
     hashDataCaption.insert("",                                  tr(""));
-    hashDataCaption.insert("[]",                                tr(" "));
+    hashDataCaption.insert("[]",                                tr(""));
     hashDataCaption.insert("[_Fi]",                             tr("_虚拟"));
 //    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
 //    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));

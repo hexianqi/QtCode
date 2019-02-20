@@ -7,8 +7,8 @@
 **                  HIsotherm   等温线数据计算类。
 ***************************************************************************************************/
 
-#ifndef HCIE1931_H
-#define HCIE1931_H
+#ifndef HCIE_H
+#define HCIE_H
 
 #include "HAlgorithmGlobal.h"
 #include <QPolygonF>
@@ -77,7 +77,7 @@ public:
     HCieTc32();
 
 public:
-    int size() { return _stdData.size(); }
+    int size();
     CIE_TC_32 data(int i);
 
 protected:
@@ -123,7 +123,7 @@ public:
     HCieDay();
 
 public:
-    //计算参考源光谱能量
+    // 计算参考源光谱能量
     double calcRefSourceSpectrum(double tc, double wave);
     QPolygonF calcRefSourceSpectrum(double tc, QPointF wave, double interval = 1.0);
 
@@ -174,4 +174,4 @@ protected:
 
 HE_ALGORITHM_END_NAMESPACE
 
-#endif // HCIE1931_H
+#endif // HCIE_H

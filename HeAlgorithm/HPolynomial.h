@@ -12,7 +12,7 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HPoly
+class HE_ALGORITHM_EXPORT HPolynomial
 {
 public:
     // 求值

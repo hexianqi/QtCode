@@ -13,9 +13,8 @@ void HUsbPortLpc214Private::loadDll()
     if (!lib->load())
         return;
 
-    writeData = Fn(lib->resolve("WriteData214x"));
-    readData = Fn(lib->resolve("ReadData214x"));
-
+    writeData = Fun(lib->resolve("WriteData214x"));
+    readData = Fun(lib->resolve("ReadData214x"));
     isLoaded = true;
 }
 

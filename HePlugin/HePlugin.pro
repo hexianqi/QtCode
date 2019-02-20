@@ -1,6 +1,6 @@
 QT          += designer charts
 
-CONFIG      += plugin debug_and_release
+CONFIG      += plugin
 
 TEMPLATE    = lib
 

@@ -1,33 +1,33 @@
-#include "HPoly.h"
+#include "HPolynomial.h"
 #include "gsl/gsl_poly.h"
 #include "gsl/gsl_complex_math.h"
 #include <QVector>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-double HPoly::eval(QVector<double> c, double x)
+double HPolynomial::eval(QVector<double> c, double x)
 {
     return gsl_poly_eval(c.data(), c.size(), x);
 }
 
-gsl_complex HPoly::complex_eval(QVector<double> c, gsl_complex z)
+gsl_complex HPolynomial::complex_eval(QVector<double> c, gsl_complex z)
 {
     return gsl_poly_complex_eval(c.data(), c.size(), z);
 }
 
-gsl_complex HPoly::complex_eval(QVector<gsl_complex> c, gsl_complex z)
+gsl_complex HPolynomial::complex_eval(QVector<gsl_complex> c, gsl_complex z)
 {
     return gsl_complex_poly_complex_eval(c.data(), c.size(), z);
 }
 
-QVector<double> HPoly::eval_derivs(QVector<double> c, double x, int n)
+QVector<double> HPolynomial::eval_derivs(QVector<double> c, double x, int n)
 {
     QVector<double> r(n);
     gsl_poly_eval_derivs(c.data(), c.size(), x, r.data(), r.size());
     return r;
 }
 
-QVector<gsl_complex> HPoly::complex_solve(QVector<double> a)
+QVector<gsl_complex> HPolynomial::complex_solve(QVector<double> a)
 {
     QVector<gsl_complex> r;
     auto size = a.size();
@@ -42,7 +42,7 @@ QVector<gsl_complex> HPoly::complex_solve(QVector<double> a)
     return r;
 }
 
-QVector<double> HPoly::solve_quadratic(double a, double b, double c)
+QVector<double> HPolynomial::solve_quadratic(double a, double b, double c)
 {
     QVector<double> r;
     double x0,x1;
@@ -54,7 +54,7 @@ QVector<double> HPoly::solve_quadratic(double a, double b, double c)
     return r;
 }
 
-QVector<gsl_complex> HPoly::complex_solve_quadratic(double a, double b, double c)
+QVector<gsl_complex> HPolynomial::complex_solve_quadratic(double a, double b, double c)
 {
     QVector<gsl_complex> r;
     gsl_complex z0,z1;
@@ -66,7 +66,7 @@ QVector<gsl_complex> HPoly::complex_solve_quadratic(double a, double b, double c
     return r;
 }
 
-QVector<double> HPoly::solve_cubic(double a, double b, double c)
+QVector<double> HPolynomial::solve_cubic(double a, double b, double c)
 {
     QVector<double> r;
     double x0,x1,x2;
@@ -78,7 +78,7 @@ QVector<double> HPoly::solve_cubic(double a, double b, double c)
     return r;
 }
 
-QVector<gsl_complex> HPoly::complex_solve_cubic(double a, double b, double c)
+QVector<gsl_complex> HPolynomial::complex_solve_cubic(double a, double b, double c)
 {
     QVector<gsl_complex> r;
     gsl_complex z0,z1,z2;

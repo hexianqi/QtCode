@@ -7,6 +7,8 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+using namespace std;
+
 const QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\ebangTest";
 const QString REGISTER_ID = "banben";
 const QString REGISTER_CODE = "xulie";
@@ -51,7 +53,7 @@ QString HRegisterPrivate::getRegisterId()
 
 bool HRegisterPrivate::isExpires()
 {
-    auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
+    auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
     trialTimes = reg->value(TRIAL_TIMES, 0).toInt();
     firstDate = reg->value(FIRST_DATE, 0).toInt();
     if (trialTimes == 0 && firstDate == 0)
@@ -64,7 +66,7 @@ bool HRegisterPrivate::isExpires()
 void HRegisterPrivate::trial()
 {
     trialTimes++;
-    auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
+    auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
     reg->setValue(TRIAL_TIMES, trialTimes);
     if (firstDate == 0)
         reg->setValue(FIRST_DATE, encryptDate(QDate::currentDate()));
@@ -89,11 +91,11 @@ bool HRegister::getRegisterCode(QString &registerCode)
     registerCode = "";
     try
     {
-        auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
+        auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
         registerCode = reg->value(REGISTER_CODE).toString();
         return true;
     }
-    catch (std::exception e)
+    catch (exception e)
     {
         return false;
     }
@@ -103,13 +105,13 @@ bool HRegister::setRegisterCode(QString registerCode)
 {
     try
     {
-        auto reg = std::make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
+        auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
         reg->setValue(REGISTER_CODE, registerCode);
         reg->setValue(REGISTER_ID, d_ptr->registerId);
         reg->setValue(SERIAL_NUMBER, d_ptr->serialNumber);
         return true;
     }
-    catch (std::exception e)
+    catch (exception e)
     {
         return false;
     }

@@ -18,7 +18,7 @@ void HUsbPortCyPrivate::loadDll()
 
     open = FunOpen(lib->resolve("Open"));
     close = FunClose(lib->resolve("Close"));
-    setTimeout = FnSetTimeout(lib->resolve("SetTimeout"));
+    setTimeout = FunSetTimeout(lib->resolve("SetTimeout"));
     readData = FunReadData(lib->resolve("ReadData"));
     writeData = FunWriteData(lib->resolve("WriteData"));
     isLoaded = true;
@@ -80,7 +80,7 @@ HErrorType HUsbPortCy::openPort(int portNum)
         return E_PORT_NO_DLL;
     if (!Open(portNum))
         return E_PORT_INVALID_HANDLE;
-    SetTimeout(500);
+    SetTimeout(d->timeOut);
     return E_OK;
 }
 

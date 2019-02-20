@@ -1,6 +1,6 @@
 #include "HSpecSetting_p.h"
-#include "HeAlgorithm/HMath.h"
-#include "HeAlgorithm/HSpectrum.h"
+#include "HeAlgorithm/HInterp.h"
+#include "HeAlgorithm/HSpectrumHelper.h"
 #include <QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
@@ -146,7 +146,7 @@ QPolygonF HSpecSetting::interpEnergy(QPolygonF value)
     auto interval = data("[光谱波长间隔]").toDouble();
     for (int i = 0; i < value.size(); i++)
         value[i].ry() *= calcEnergy(value[i].x());
-    return HMath::interpolate(value, range.x(), range.y(), interval);
+    return HInterp::eval(value, range.x(), range.y(), interval, HInterpType::Cspline);
 }
 
 QPolygonF HSpecSetting::shieldEnergy(QPolygonF value)
@@ -171,8 +171,8 @@ double HSpecSetting::calcEnergy(double wave)
     Q_D(HSpecSetting);
     auto tc = data("[标准色温]").toDouble();
     if (d->isUsePlanck || d->stdEnergy.size() < 2)
-        return HSpectrum::planck(wave, tc);
-    return HMath::interpolate(wave, d->stdEnergy);
+        return HSpectrumHelper::planck(wave, tc);
+    return HInterp::eval(d->stdEnergy, wave, HInterpType::Cspline);
 }
 
 HE_DATA_END_NAMESPACE

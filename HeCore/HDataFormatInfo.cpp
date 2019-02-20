@@ -1,6 +1,5 @@
 #include "HDataFormatInfo_p.h"
 #include <QDoubleValidator>
-#include <HAppContext.h>
 
 HE_CORE_BEGIN_NAMESPACE
 
@@ -21,13 +20,13 @@ HDataFormatInfo::HDataFormatInfo()
 }
 
 HDataFormatInfo::HDataFormatInfo(QString typeName, double min, double max, int decimals, double singleStep)
-    : HDataFormatInfo()
+    : d_ptr(new HDataFormatInfoPrivate)
 {
     d_ptr->init(typeName, "", min, max, decimals, singleStep);
 }
 
 HDataFormatInfo::HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color)
-    : HDataFormatInfo()
+    : d_ptr(new HDataFormatInfoPrivate)
 {
     d_ptr->init(typeName, unit, min, max, decimals, singleStep, color);
 }

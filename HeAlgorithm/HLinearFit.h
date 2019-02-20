@@ -11,7 +11,7 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HFit
+class HE_ALGORITHM_EXPORT HLinearFit
 {
 public:
     // Y = c0 + c1 * x

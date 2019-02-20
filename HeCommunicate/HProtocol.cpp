@@ -64,11 +64,6 @@ HErrorType HProtocol::setData(HActionType action, int value, int delay)
     return setData(action, data, delay);
 }
 
-HErrorType HProtocol::setData(HActionType action, double value, double factor, int delay)
-{
-    return setData(action, int(value * factor), delay);
-}
-
 HErrorType HProtocol::setData(HActionType action, uchar value, int delay)
 {
     QVector<uchar> data;
@@ -91,17 +86,6 @@ HErrorType HProtocol::setData(HActionType action, QVector<int> value, int delay)
     QVector<uchar> data;
     for (auto i : value)
         data << uchar(i % 256) << uchar(i / 256);
-    return setData(action, data, delay);
-}
-
-HErrorType HProtocol::setData(HActionType action, QVector<double> value, double factor, int delay)
-{
-    QVector<uchar> data;
-    for (auto d : value)
-    {
-        int i = int(d * factor);
-        data << uchar(i % 256) << uchar(i / 256);
-    }
     return setData(action, data, delay);
 }
 
@@ -130,16 +114,6 @@ HErrorType HProtocol::getData(HActionType action, int &value, int delay)
     if (error != E_OK)
         return error;
     value = data[0] + data[1] * 256;
-    return E_OK;
-}
-
-HErrorType HProtocol::getData(HActionType action, double &value, double factor, int delay)
-{
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = (data[0] + data[1] * 256) * factor;
     return E_OK;
 }
 
@@ -174,20 +148,6 @@ HErrorType HProtocol::getData(HActionType action, QVector<int> &value, int delay
     auto size = qMin(value.size(), data.size() / 2);
     for (int i = 0; i < size; i++)
         value[i] = data[2 * i] + data[2 * i + 1] * 256;
-    return E_OK;
-}
-
-HErrorType HProtocol::getData(HActionType action, QVector<double> &value, double factor, int delay)
-{
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    if (value.size() == 0)
-        value.resize(data.size()/2);
-    auto size = qMin(value.size(), data.size() / 2);
-    for (int i = 0; i < size; i++)
-        value[i] = (data[2 * i] + data[2 * i + 1] * 256) * factor;
     return E_OK;
 }
 

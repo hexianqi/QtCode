@@ -20,10 +20,10 @@ public:
     virtual ~HChromaticity();
 
 public:
-    virtual void calcSpectrum(ISpectrumData *) override;
+    virtual void calcSpectrum(HSpectrumData *) override;
     virtual QLineF calcIsothermUv(double tc, double duv) override;
-    virtual QLineF calcIsothermXy(double tc, double duv) override;
     virtual QLineF calcIsothermUv(double tc, double duvB, double duvE) override;
+    virtual QLineF calcIsothermXy(double tc, double duv) override;
     virtual QLineF calcIsothermXy(double tc, double duvB, double duvE) override;
 
 public:

@@ -36,10 +36,10 @@ protected:
 
 protected:
     virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
-    virtual QVector<uchar> encrypt(QVector<uchar> value, int size);
-    virtual QVector<uchar> decrypt(QVector<uchar> value, int size);
+    virtual QVector<uchar> encrypt(QVector<uchar> value);
+    virtual QVector<uchar> decrypt(QVector<uchar> value);
+    virtual int calcEncryptSize(QVector<uchar> value);
     virtual uchar calcCode(QVector<uchar> value);
-    virtual bool checkCode(QVector<uchar> value, uchar code);
 };
 
 HE_COMMUNICATE_END_NAMESPACE

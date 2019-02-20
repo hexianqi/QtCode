@@ -1,5 +1,5 @@
 #include "HTestSpec_p.h"
-#include "HeAlgorithm/ISpectrumData.h"
+#include "HeAlgorithm/HSpectrumData.h"
 #include "HeAlgorithm/HSpectrumFacade.h"
 #include "HeData/ISpecCalibrate.h"
 #include <QVector>
@@ -69,7 +69,7 @@ bool HTestSpecPrivate::calcSpectrum()
     if (checkOverflow() != 0)
         return false;
 
-    ISpectrumData *sp = new ISpectrumData;
+    HSpectrumData *sp = new HSpectrumData;
     sp->Energy = calibrate->calcEnergy(samples[1]);
     if(sp->Energy.isEmpty())
         return false;

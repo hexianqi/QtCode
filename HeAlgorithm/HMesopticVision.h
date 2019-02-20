@@ -17,7 +17,7 @@ public:
     HMesopticVision();
 
 public:
-    QStringList sourceTypes() const { return _stdData.keys(); }
+    QStringList sourceTypes() const;
     // 计算明视觉比例
     double calcRatio(QString type, double value);
 

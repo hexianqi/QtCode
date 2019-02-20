@@ -1,5 +1,5 @@
 #include "HSpectrumFacade_p.h"
-#include "ISpectrumData.h"
+#include "HSpectrumData.h"
 #include "HChromaticity.h"
 #include "HChromaticityV2.h"
 #include "HPhotopicVision.h"
@@ -77,7 +77,7 @@ HSpectrumFacade::~HSpectrumFacade()
 {
 }
 
-void HSpectrumFacade::calcSpectrum(ISpectrumData *sp)
+void HSpectrumFacade::calcSpectrum(HSpectrumData *sp)
 {
     calcSpectrumEnergy(sp->Energy, sp->TotalEnergy, sp->MaxEnergy, sp->PeakWave, sp->Bandwidth);
     d_ptr->chromaticity->calcSpectrum(sp);

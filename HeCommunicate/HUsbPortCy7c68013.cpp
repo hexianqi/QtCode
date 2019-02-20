@@ -24,7 +24,7 @@ void HUsbPortCy7c68013::initialize(QVariantMap param)
     Q_D(HUsbPortCy7c68013);
     HAbstractPort::initialize(param);
     if (param.contains("async"))
-        d->isAsync = param.value("baudRate").toBool();
+        d->isAsync = param.value("async").toBool();
 }
 
 QString HUsbPortCy7c68013::typeName()

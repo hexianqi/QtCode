@@ -14,12 +14,13 @@ HE_CORE_BEGIN_NAMESPACE
 class HE_CORE_EXPORT HFactory
 {
 public:
+    // 注册类
     template<typename T>
     static void registerClass(QString className);
-
+    // 创建对象
     template<typename T>
     static T *createObject(QString className);
-
+    // 创建对象
     template<typename T>
     static T *createObject(QString className, QVariantMap param);
 
@@ -42,7 +43,7 @@ T *HFactory::createObject(QString className)
 {
     if (!__hashConstructor.contains(className))
         return nullptr;
-    return static_cast<T*>(__hashConstructor[className]());
+    return static_cast<T *>(__hashConstructor[className]());
 }
 
 template<typename T>

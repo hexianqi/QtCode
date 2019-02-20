@@ -6,12 +6,14 @@
 #define HXMLELEMENT_H
 
 #include "HFileGlobal.h"
-#include <QStringList>
+#include <QScopedPointer>
 #include <functional>
 
 class QDomElement;
 
 HE_FILE_BEGIN_NAMESPACE
+
+class HXmlElementPrivate;
 
 class HE_FILE_EXPORT HXmlElement
 {
@@ -19,7 +21,7 @@ public:
     // 装载XML文档
     static HXmlElement *load(QString fileName);
     // 解析XML文档
-    static HXmlElement *pares(QDomElement *domElement, HXmlElement *parent, QString fileName);
+    static HXmlElement *parse(QString fileName, QDomElement *domElement, HXmlElement *parent);
 
 public:
     // 元素名称
@@ -42,20 +44,18 @@ public:
     // 移除子节点
     void removeChild(HXmlElement *xe);
     // 遍历所有元素 查找符合条件的首个元素
-    HXmlElement *findElement(std::function<bool(HXmlElement*)> fun);
+    HXmlElement *findElement(std::function<bool(HXmlElement*)> func);
     // 遍历所有元素 查找符合条件的所有元素
-    QList<HXmlElement*> findElementAll(std::function<bool(HXmlElement*)> fun);
+    QList<HXmlElement*> findElementAll(std::function<bool(HXmlElement*)> func);
     // 遍历所有元素 执行
-    void forEach(std::function<void(HXmlElement*)> fun);
+    void forEach(std::function<void(HXmlElement*)> func);
 
 protected:
-    HXmlElement(QDomElement *domElement, HXmlElement *parent, QString fileName);
+    HXmlElement(QString fileName, QDomElement *domElement, HXmlElement *parent);
+    HXmlElement(HXmlElementPrivate &p);
 
-protected:
-    QString _fileName;
-    QDomElement *_domElement;
-    HXmlElement *_parent;
-    QList<HXmlElement*> _childs;
+private:
+    QScopedPointer<HXmlElementPrivate> d_ptr;
 };
 
 HE_FILE_END_NAMESPACE

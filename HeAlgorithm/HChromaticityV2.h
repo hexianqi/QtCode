@@ -21,7 +21,7 @@ public:
     ~HChromaticityV2();
 
 public:
-    virtual void calcSpectrum(ISpectrumData *) override;
+    virtual void calcSpectrum(HSpectrumData *) override;
 
 protected:
     virtual QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc) override;

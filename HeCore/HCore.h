@@ -31,8 +31,6 @@ HE_CORE_EXPORT QStringList toCaptionUnit(QStringList types);
 HE_CORE_EXPORT QString filenameFilter(const QString &name, const QList<QByteArray> formats);
 HE_CORE_EXPORT QString filenameFilter(const QString &name, const QStringList &mimeTypes);
 
-HE_CORE_EXPORT void msleep(int msecs);
-
 HE_CORE_END_NAMESPACE
 
 #endif // HCORE_H

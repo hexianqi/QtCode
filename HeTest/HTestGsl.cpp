@@ -1,7 +1,7 @@
 #include "HTestGsl.h"
 #include "HeAlgorithm/HInterp.h"
-#include "HeAlgorithm/HPoly.h"
-#include "HeAlgorithm/HFit.h"
+#include "HeAlgorithm/HPolynomial.h"
+#include "HeAlgorithm/HLinearFit.h"
 #include "HeAlgorithm/HMultiFit.h"
 #include "HTestChart.h"
 #include <QFile>
@@ -44,7 +44,7 @@ void HTestGsl::polyEval()
     QVector<double> a;
     a << 1.0 << 0.5 << 0.3;
     auto x = 0.5;
-    auto y = HPoly::eval(a, x);
+    auto y = HPolynomial::eval(a, x);
     qDebug() << __FUNCTION__;
     qDebug() << "P(x) =  1 + 0.5 * x + 0.3 * x^2";
     qDebug() << "P(0.5) = " << y;
@@ -55,7 +55,7 @@ void HTestGsl::polySolve()
 {
     QVector<double> a;
     a << -1 << 0 << 0 << 0 << 0 << 1;
-    auto r = HPoly::complex_solve(a);
+    auto r = HPolynomial::complex_solve(a);
     qDebug() << __FUNCTION__;
     qDebug() << "P(x) =  -1 + x^5";
     for (int i = 0; i < r.size(); i++)

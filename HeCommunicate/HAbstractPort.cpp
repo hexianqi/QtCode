@@ -1,5 +1,5 @@
 #include "HAbstractPort_p.h"
-#include "HeCore/HCore.h"
+#include <QThread>
 #include <QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -55,6 +55,16 @@ HErrorType HAbstractPort::close()
     return E_OK;
 }
 
+HErrorType HAbstractPort::write(QVector<uchar> data)
+{
+    return writeData(data.data(), data.size());
+}
+
+HErrorType HAbstractPort::read(QVector<uchar> &data)
+{
+    return readData(data.data(), data.size());
+}
+
 HErrorType HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
     auto error = write(downData);
@@ -62,7 +72,7 @@ HErrorType HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &up
         return error;
 
     if (delay >= 10)
-        HeCore::msleep(delay);
+        QThread::msleep(delay);
 
     return read(upData);
 }
@@ -74,16 +84,6 @@ HErrorType HAbstractPort::clear()
     QVector<uchar> data(100);
     read(data);
     return E_OK;
-}
-
-HErrorType HAbstractPort::write(QVector<uchar> data)
-{
-    return writeData(data.data(), data.size());
-}
-
-HErrorType HAbstractPort::read(QVector<uchar> &data)
-{
-    return readData(data.data(), data.size());
 }
 
 HE_COMMUNICATE_END_NAMESPACE

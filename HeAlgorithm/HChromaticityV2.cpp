@@ -1,6 +1,6 @@
 #include "HChromaticityV2_p.h"
-#include "ISpectrumData.h"
-#include "HSpectrum.h"
+#include "HSpectrumData.h"
+#include "HSpectrumHelper.h"
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -23,7 +23,7 @@ HChromaticityV2::~HChromaticityV2()
 {
 }
 
-void HChromaticityV2::calcSpectrum(ISpectrumData *sp)
+void HChromaticityV2::calcSpectrum(HSpectrumData *sp)
 {
     Q_D(HChromaticityV2);
     if (sp->Energy.isEmpty())
@@ -31,8 +31,8 @@ void HChromaticityV2::calcSpectrum(ISpectrumData *sp)
 
     sp->CoordinateUv = d->cie1931->calcCoordinateUv(sp->Energy);
     d->cieUcs->calcColorTemperature(sp->CoordinateUv, sp->ColorTemperature, sp->Duv);
-    sp->CoordinateXy = HSpectrum::uv2xy(sp->CoordinateUv);
-    sp->CoordinateUvp = HSpectrum::uv2uvp(sp->CoordinateUv);
+    sp->CoordinateXy = HSpectrumHelper::uv2xy(sp->CoordinateUv);
+    sp->CoordinateUvp = HSpectrumHelper::uv2uvp(sp->CoordinateUv);
     d->cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
     sp->RenderingIndex = calcColorRenderingIndex(sp->CoordinateUv, sp->Energy, sp->ColorTemperature);
     sp->RenderingIndexAvg = calcColorRenderingIndexAvg(sp->RenderingIndex);

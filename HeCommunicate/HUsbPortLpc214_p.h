@@ -20,9 +20,9 @@ public:
     bool isLoaded;
 #ifndef Q_CC_MSVC
 public:
-    using Fn = int(*)(int, uchar *, int, int);
-    Fn readData;
-    Fn writeData;
+    using Fun = int(*)(int, uchar *, int, int);
+    Fun readData;
+    Fun writeData;
     QScopedPointer<QLibrary> lib;
 #endif
 };

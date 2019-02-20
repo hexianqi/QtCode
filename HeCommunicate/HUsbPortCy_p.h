@@ -22,13 +22,13 @@ public:
 public:
     using FunOpen = bool(*)(int);
     using FunClose = bool(*)();
-    using FnSetTimeout = bool(*)(int);
+    using FunSetTimeout = bool(*)(int);
     using FunReadData = int(*)(uchar *, int);
     using FunWriteData = int(*)(uchar *, int);
 
     FunOpen open;
     FunClose close;
-    FnSetTimeout setTimeout;
+    FunSetTimeout setTimeout;
     FunReadData readData;
     FunWriteData writeData;
     QScopedPointer<QLibrary> lib;

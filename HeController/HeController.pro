@@ -25,33 +25,34 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES     += \
-            HControllerFactory.cpp
-
 HEADERS     += \
             HControllerGlobal.h \
             IControllerFactory.h \
             HControllerFactory.h \
             HControllerFactory_p.h
 
+SOURCES     += \
+            HControllerFactory.cpp
+
 INCLUDEPATH += ..
 
 Debug {
     TARGET = HeControllerd
     LIBS    += \
+            -L$$DESTDIR -lHeAlgorithmd \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeDatad \
-            -L$$DESTDIR -lHeAlgorithmd
+
 }
 
 Release {
     TARGET  = HeController
     LIBS    += \
+            -L$$DESTDIR -lHeAlgorithm \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeCommunicate \
-            -L$$DESTDIR -lHeData \
-            -L$$DESTDIR -lHeAlgorithm
+            -L$$DESTDIR -lHeData
 }
 
 unix {

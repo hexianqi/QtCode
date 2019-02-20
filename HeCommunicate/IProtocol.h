@@ -29,20 +29,16 @@ public:
 public:
     // 设置数据
     virtual HErrorType setData(HActionType action, int value, int delay = 0) = 0;
-    virtual HErrorType setData(HActionType action, double value, double factor = 1.0, int delay = 0) = 0;
     virtual HErrorType setData(HActionType action, uchar value, int delay = 0) = 0;
     virtual HErrorType setData(HActionType action, uint value, int delay = 0) = 0;
     virtual HErrorType setData(HActionType action, QVector<int> value, int delay = 0) = 0;
-    virtual HErrorType setData(HActionType action, QVector<double> value, double factor = 1.0, int delay = 0) = 0;
     virtual HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) = 0;
     virtual HErrorType setData(HActionType action, QVector<uint> value, int delay = 0) = 0;
-    virtual HErrorType getData(HActionType action, int &value, int delay = 0) = 0;
     // 读取数据
-    virtual HErrorType getData(HActionType action, double &value, double factor = 1.0, int delay = 0) = 0;
+    virtual HErrorType getData(HActionType action, int &value, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, uchar &value, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, uint &value, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) = 0;
-    virtual HErrorType getData(HActionType action, QVector<double> &value, double factor = 1.0, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) = 0;
 };

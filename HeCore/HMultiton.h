@@ -10,8 +10,6 @@
 #include <unordered_map>
 #include <memory>
 
-using namespace std;
-
 HE_CORE_BEGIN_NAMESPACE
 
 template <class T, class K = string>
