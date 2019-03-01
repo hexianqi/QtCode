@@ -9,8 +9,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractThreadPrivate::HAbstractThreadPrivate(HAbstractThread *q)
-    : q_ptr(q)
+HAbstractThreadPrivate::HAbstractThreadPrivate()
 {
     mutex = new QMutex;
     waitConditionAction = new QWaitCondition;
@@ -38,7 +37,7 @@ void HAbstractThreadPrivate::clearAction()
 }
 
 HAbstractThread::HAbstractThread(QObject *parent)
-    : IThread(parent), d_ptr(new HAbstractThreadPrivate(this))
+    : IThread(parent), d_ptr(new HAbstractThreadPrivate)
 {
     readSettings();
 }

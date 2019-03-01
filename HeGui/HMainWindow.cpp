@@ -8,8 +8,8 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QTimer>
-#include <QDebug>
 #include <QApplication>
+#include <QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -21,13 +21,11 @@ HMainWindowPrivate::HMainWindowPrivate(HMainWindow *p)
 HMainWindow::HMainWindow(QWidget *parent)
     : QMainWindow(parent), d_ptr(new HMainWindowPrivate(this))
 {
-    init();
 }
 
 HMainWindow::HMainWindow(HMainWindowPrivate &p, QWidget *parent)
     : QMainWindow(parent), d_ptr(&p)
 {
-    init();
 }
 
 HMainWindow::~HMainWindow()
@@ -41,26 +39,19 @@ void HMainWindow::setConfigFile(QString fileName)
     setWindowFilePath(fileName);
 }
 
-bool HMainWindow::setConfigManage(IConfigManage *p)
+void HMainWindow::setConfigManage(IConfigManage *p)
 {
     d_ptr->configManage = p;
-    if (!d_ptr->configManage->fileStream()->readFile(d_ptr->cfgFileName))
-    {
-        QMessageBox::warning(this, "", tr("找不到校准文件，正在使用默认的校准。"));
-        return false;
-    }
-    return true;
 }
 
 void HMainWindow::setModel(IModel *p)
 {
     d_ptr->model = p;
     d_ptr->model->setParent(this);
-    connect(d_ptr->model, &IModel::threadStartFailed, this, &HMainWindow::showDeviceFailed);
-    connect(d_ptr->model, &IModel::actionFailed, this, &HMainWindow::showActionFailed);
     connect(d_ptr->model, &IModel::threadInitFinished, this, &HMainWindow::updateStatusBar);
+    connect(d_ptr->model, &IModel::threadStartFailed, this, &HMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HMainWindow::updateLabel);
-    //    connect(d->model, &IModel::actionFinished, this, [=](HActionType action) { QMessageBox::information(this, "", toComment(action)); });
+    connect(d_ptr->model, &IModel::actionFailed, this, &HMainWindow::showActionFailed);
     d_ptr->model->start();
 }
 
@@ -215,10 +206,8 @@ void HMainWindow::updateLabel(QString name, int state)
 {
     if (!d_ptr->labels.contains(name))
         return;
-    if (state == 1)
-        d_ptr->labels.value(name)->setText(tr("%1:<font color=#00FF00>开启</font>").arg(name));
-    else
-        d_ptr->labels.value(name)->setText(tr("%1:<font color=#FF0000>关闭</font>").arg(name));
+    QString text = state == 1 ? tr("%1:<font color=#00FF00>开启</font>").arg(name) : tr("%1:<font color=#FF0000>关闭</font>").arg(name);
+    d_ptr->labels.value(name)->setText(text);
 }
 
 void HMainWindow::open()
@@ -256,7 +245,7 @@ void HMainWindow::about()
             + tr("<p>版本 %1<p>").arg(QApplication::applicationVersion())
             + tr("<p>%1<p>").arg(QApplication::applicationName())
             + tr("<p>版权 2017-2019 %1. 保留所有权利. <p>").arg(QApplication::organizationName())
-            + tr("<p>%1<p>").arg(d_ptr->summary);
+            + tr("<p>%1<p>").arg(summary());
     QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
 }
 
@@ -276,6 +265,11 @@ void HMainWindow::exportFile(QAction *p)
     if (p == nullptr || d_ptr->configManage->exportPart(p->data().toUInt()))
         return;
     QMessageBox::information(this, "", tr("\n导出成功！\n"));
+}
+
+QString HMainWindow::summary()
+{
+    return QString();
 }
 
 HE_GUI_END_NAMESPACE

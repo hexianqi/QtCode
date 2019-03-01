@@ -19,7 +19,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 class HAbstractThreadPrivate
 {
 public:
-    HAbstractThreadPrivate(HAbstractThread *q);
+    HAbstractThreadPrivate();
 
 public:
     void enqueueAction(HActionType action);
@@ -27,7 +27,6 @@ public:
     void clearAction();
 
 public:
-    HAbstractThread *q_ptr;
     QMutex *mutex;
     QWaitCondition *waitConditionAction;
     volatile bool running;

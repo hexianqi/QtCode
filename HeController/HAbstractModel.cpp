@@ -7,15 +7,14 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractModelPrivate::HAbstractModelPrivate(HAbstractModel *q)
-    : q_ptr(q)
+HAbstractModelPrivate::HAbstractModelPrivate()
 {
     devices = HAppContext::getContextPointer<IDeviceCollection>("IDeviceCollection");
     threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
 }
 
 HAbstractModel::HAbstractModel(QObject *parent)
-    : IModel(parent), d_ptr(new HAbstractModelPrivate(this))
+    : IModel(parent), d_ptr(new HAbstractModelPrivate)
 {
 }
 

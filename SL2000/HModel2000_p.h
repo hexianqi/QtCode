@@ -6,10 +6,8 @@
 
 class HModel2000Private : public HAbstractModelPrivate
 {
-    Q_DECLARE_PUBLIC(HModel2000)
-
 public:
-    HModel2000Private(HModel2000 *q);
+    HModel2000Private();
 };
 
 #endif // HMODEL2000_P_H

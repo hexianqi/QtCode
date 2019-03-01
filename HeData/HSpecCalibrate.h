@@ -23,12 +23,14 @@ public:
 
 public:
     virtual QVariantMap testParam() override;
+
+public:
     virtual QVector<double> preprocess(QVector<double> value, bool fitting = true) override;
     virtual QPolygonF calcEnergy(QVector<double> value) override;
     virtual double calcLuminous(double value) override;
     virtual int calcCommWaitTime(double &value) override;
-    virtual bool isOverFrame(int size) override;
-    virtual int checkOverflow(double value) override;
+    virtual bool checkFrameOverflow(int size) override;
+    virtual int checkEnergyOverflow(double value) override;
 
 public:
     virtual void readContent(QDataStream &) override;

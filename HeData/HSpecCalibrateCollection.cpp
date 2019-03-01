@@ -69,13 +69,11 @@ void HSpecCalibrateCollection::writeContent(QDataStream &s)
 {
     s << quint32(1);
     s << quint32(_datas->size());
-    auto it = _datas->constEnd();
-    auto begin = _datas->constBegin();
-    while (it != begin)
+    auto i = _datas->constBegin();
+    while (i != _datas->constEnd())
     {
-        --it;
-        s << it.key() << it.value()->typeName();
-        it.value()->writeContent(s);
+        s << i.key() << i.value()->typeName();
+        i.value()->writeContent(s);
     }
 }
 

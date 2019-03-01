@@ -4,7 +4,6 @@
 #include <QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
-
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecSetting::HSpecSetting()
@@ -26,20 +25,20 @@ HSpecSetting::~HSpecSetting()
 void HSpecSetting::restoreDefault()
 {
     Q_D(HSpecSetting);
+    setData("[积分时间范围]", QPointF(0.0, 500.0));
+    setData("[标准色温]", 2855.61);
     setData("[光谱平均次数]", 1);
     setData("[光谱采样延时]", 0);
-    setData("[积分时间范围]", QPointF(0.0, 500.0));
-    setData("[光谱平滑帧数]", 1);
     setData("[光谱保留像元]", QPoint(15, 32));
     setData("[光谱固定暗底]", 0.0);
     setData("[光谱左右暗底差]", 0.0);
+    setData("[光谱平滑帧数]", 1);
     setData("[光谱平滑次数]", 2);
     setData("[光谱平滑范围]", 2);
     setData("[光谱采样范围]", QPointF(6500.0, 64000.0));
     setData("[光谱波长范围]", QPointF(380.0, 780.0));
     setData("[光谱波长间隔]", 0.1);
     setData("[光谱屏蔽波长范围]", QPointF(0.0, 0.0));
-    setData("[标准色温]", 2855.61);
     d->isUsePlanck = true;
     d->isUseShield = false;
 }
@@ -82,12 +81,12 @@ int HSpecSetting::calcCommWaitTime(double &value)
     return value * times + 50;
 }
 
-bool HSpecSetting::isOverFrame(int size)
+bool HSpecSetting::checkFrameOverflow(int size)
 {
     return size >= data("[光谱平滑帧数]").toInt();
 }
 
-int HSpecSetting::checkOverflow(double value)
+int HSpecSetting::checkEnergyOverflow(double value)
 {
     auto range = data("[光谱采样范围]").toPointF();
     if (value < range.x())
@@ -99,17 +98,18 @@ int HSpecSetting::checkOverflow(double value)
 
 QVector<double> HSpecSetting::dealBotton(QVector<double> value)
 {
+    int i;
     auto size = value.size();
     auto pels = data("[光谱保留像元]").toPoint();
     auto fixup = data("[光谱固定暗底]").toDouble();
     auto diff = data("[光谱左右暗底差]").toDouble();
     auto avgbase = 0.0;
 
-    for (int i = pels.x(); i <= pels.y() && i < size; i++)
+    for (i = pels.x(); i <= pels.y() && i < size; i++)
         avgbase += value[i];
     avgbase /= pels.y() - pels.x() + 1;
 
-    for (int i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
         value[i] = value[i] - avgbase + fixup + i * diff / size;
 
     return value;
@@ -126,7 +126,7 @@ QVector<double> HSpecSetting::smoothCurve(QVector<double> value)
     {
         for (int i = 0; i < size; i++)
         {
-            auto avgbase = 0.0;
+            auto avgbase = value[i];
             for (int j = 1; j <= range; j++)
             {
                 auto m = qMax(i - j, 0);

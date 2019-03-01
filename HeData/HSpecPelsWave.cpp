@@ -3,7 +3,6 @@
 #include <QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
-
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecPelsWave::HSpecPelsWave()

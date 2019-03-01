@@ -18,6 +18,7 @@ class ISpecCalibrate;
 class ISpecCalibrateCollection : virtual public ICollection<ISpecCalibrate>
 {
 public:
+    // 获取文件流
     virtual IFileStream *fileStream() = 0;
 };
 

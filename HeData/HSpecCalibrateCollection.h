@@ -18,7 +18,7 @@ class HSpecCalibrateCollection : public HCollection<ISpecCalibrate>, public ISpe
     Q_DECLARE_PRIVATE(HSpecCalibrateCollection)
 
 public:
-    explicit HSpecCalibrateCollection(IDataFactory *f);
+    explicit HSpecCalibrateCollection(IDataFactory *);
     ~HSpecCalibrateCollection();
 
 public:

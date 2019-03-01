@@ -8,8 +8,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HThreadSpecPrivate::HThreadSpecPrivate(HThreadSpec *q)
-    : HAbstractThreadPrivate(q)
+HThreadSpecPrivate::HThreadSpecPrivate()
 {
     actionSupport << ACT_SET_INTEGRAL_TIME
                   << ACT_SET_SPECTRUM_AVG_TIMES
@@ -18,14 +17,12 @@ HThreadSpecPrivate::HThreadSpecPrivate(HThreadSpec *q)
                   << ACT_GET_SPECTRUM;
 
     protocolSpec = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
-    Q_ASSERT(protocolSpec != nullptr);
     protocols.insert("Spec", protocolSpec);
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-    Q_ASSERT(testSpec != nullptr);
 }
 
 HThreadSpec::HThreadSpec(QObject *parent)
-    : HAbstractThread(*new HThreadSpecPrivate(this), parent)
+    : HAbstractThread(*new HThreadSpecPrivate, parent)
 {
 }
 

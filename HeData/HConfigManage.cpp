@@ -76,6 +76,11 @@ void HConfigManage::setSpecCalibrateCollection(ISpecCalibrateCollection *p)
     d_ptr->specCalibrates = p;
 }
 
+IFileStream *HConfigManage::fileStream()
+{
+    return d_ptr->fileStream;
+}
+
 quint32 HConfigManage::contain()
 {
     return d_ptr->contain;
@@ -87,11 +92,6 @@ ISpecCalibrate *HConfigManage::specCalibrate(QString name)
     if (d_ptr->specCalibrates->contains(name))
         return d_ptr->specCalibrates->value(name);
     return d_ptr->specCalibrates->first();
-}
-
-IFileStream *HConfigManage::fileStream()
-{
-    return d_ptr->fileStream;
 }
 
 bool HConfigManage::importPart(quint32 value)

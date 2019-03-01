@@ -10,24 +10,24 @@ double HMath::interpolate(double x, double x1, double y1, double x2, double y2)
     return (x - x1) * (y2 - y1) / (x2 - x1) + y1;
 }
 
-//double HMath::interpolate(double x, QPointF p1, QPointF p2)
-//{
-//    return interpolate(x, p1.x(), p1.y(), p2.x(), p2.y());
-//}
+double HMath::interpolate(double x, QPointF p1, QPointF p2)
+{
+    return interpolate(x, p1.x(), p1.y(), p2.x(), p2.y());
+}
 
-//double HMath::interpolate(double x, QPolygonF poly)
-//{
-//    if (poly.size() < 2)
-//        return 0;
+double HMath::interpolate(double x, QPolygonF poly)
+{
+    if (poly.size() < 2)
+        return 0;
 
-//    int i;
-//    for (i = 1; i < poly.size() - 1; i++)
-//    {
-//        if (x <= poly[i].x())
-//            break;
-//    }
-//    return interpolate(x, poly[i - 1], poly[i]);
-//}
+    int i;
+    for (i = 1; i < poly.size() - 1; i++)
+    {
+        if (x <= poly[i].x())
+            break;
+    }
+    return interpolate(x, poly[i - 1], poly[i]);
+}
 
 //QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double interval)
 //{
@@ -75,22 +75,22 @@ double HMath::interpolate(double x, double x1, double y1, double x2, double y2)
 //    return result;
 //}
 
-//double HMath::interpolateY(double y, QPointF p1, QPointF p2)
-//{
-//    return interpolate(y, p1.y(), p1.x(), p2.y(), p2.x());
-//}
+double HMath::interpolateY(double y, QPointF p1, QPointF p2)
+{
+    return interpolate(y, p1.y(), p1.x(), p2.y(), p2.x());
+}
 
-//double HMath::interpolateY(double y, QPolygonF poly)
-//{
-//    if (poly.size() < 2)
-//        return 0;
+double HMath::interpolateY(double y, QPolygonF poly)
+{
+    if (poly.size() < 2)
+        return 0;
 
-//    int i;
-//    for (i = 1; i < poly.size() - 1; i++)
-//        if (y < poly[i].y())
-//            break;
-//    return interpolateY(y, poly[i-1], poly[i]);
-//}
+    int i;
+    for (i = 1; i < poly.size() - 1; i++)
+        if (y < poly[i].y())
+            break;
+    return interpolateY(y, poly[i-1], poly[i]);
+}
 
 //bool HMath::polyfit(QVector<QPointF> points, QVector<double> &factors)
 //{

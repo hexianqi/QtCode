@@ -10,7 +10,7 @@ class HSpecCalibrateCollectionPrivate
     Q_DECLARE_PUBLIC(HSpecCalibrateCollection)
 
 public:
-    HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *q, IDataFactory *f);
+    HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *, IDataFactory *);
 
 public:
     HSpecCalibrateCollection *q_ptr;

@@ -16,7 +16,6 @@ public:
 
 public:
     HMainWindow *q_ptr;
-    QString summary;
     QString cfgFileName;
     IConfigManage *configManage;
     IModel *model;
@@ -30,11 +29,11 @@ public:
     QAction *actionSave;
     QAction *actionSaveAs;
     QAction *actionExit;
-    QAction *actionStartThread;
-    QAction *actionStopThread;
-    QAction *actionProductInfoEdit;
-    QAction *actionDatabaseDWidget;
-    QAction *actionDatabaseTWidget;
+//    QAction *actionStartThread;
+//    QAction *actionStopThread;
+//    QAction *actionProductInfoEdit;
+//    QAction *actionDatabaseDWidget;
+//    QAction *actionDatabaseTWidget;
     QAction *actionAbout;
     QAction *actionSeparator;
     QActionGroup *actionGroupImport;

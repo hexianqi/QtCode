@@ -41,6 +41,7 @@ public:
     virtual HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) override;
     virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
     virtual HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
+    virtual HErrorType getData(HActionType action, QVector<double> &value, int delay = 0) override;
 
 protected:
     HProtocol(HProtocolPrivate &p);

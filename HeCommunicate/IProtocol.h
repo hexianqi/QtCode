@@ -41,6 +41,7 @@ public:
     virtual HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) = 0;
     virtual HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) = 0;
+    virtual HErrorType getData(HActionType action, QVector<double> &value, int delay = 0) = 0;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

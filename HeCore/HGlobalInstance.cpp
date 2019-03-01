@@ -338,8 +338,6 @@ void HGlobalInstance::initDataFormatInfo()
 
     // 光谱数据
     hashDataFormatInfo.insert("[光谱采样]",                     new HDataFormatInfo("[光谱采样]", 0.0, 65536.0, 1));
-
-
     hashDataFormatInfo.insert("[波长]",                         new HDataFormatInfo("[波长]", "nm", 300, 1100, 1));
     hashDataFormatInfo.insert("[峰值波长]",                     new HDataFormatInfo("[峰值波长]", "nm", 300, 1100, 1));
     hashDataFormatInfo.insert("[峰值带宽]",                     new HDataFormatInfo("[峰值带宽]", "nm", 300, 1100, 1));

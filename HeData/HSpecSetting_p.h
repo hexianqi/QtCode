@@ -13,7 +13,6 @@ public:
     bool isUsePlanck;
     bool isUseShield;
     QPolygonF stdEnergy;
-    QVariantMap datas;
 };
 
 HE_DATA_END_NAMESPACE

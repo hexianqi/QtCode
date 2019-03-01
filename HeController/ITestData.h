@@ -18,9 +18,9 @@ class ITestData : public IInitializeable
 public:
     // 设置后继者
     virtual void setSuccessor(ITestData *) = 0;
+    // 设置数据
     virtual void setData(QString type, QVariant value) = 0;
-
-public:
+    // 获取数据
     virtual QVariant data(QString type) = 0;
 };
 

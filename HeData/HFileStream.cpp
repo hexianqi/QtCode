@@ -134,7 +134,7 @@ bool HFileStream::writeFile(QString fileName)
     s << d_ptr->magicNumber;
     s << d_ptr->fileFilter;
     s << d_ptr->fileVersion;
-    if (!readContent(s))
+    if (!writeContent(s))
         return false;
     file.close();
     return true;

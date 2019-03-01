@@ -63,12 +63,12 @@ HXmlElement *HXmlElement::parent()
     return d_ptr->parent;
 }
 
-QList<HXmlElement*> HXmlElement::childs()
+QList<HXmlElement *> HXmlElement::childs()
 {
     return d_ptr->childs;
 }
 
-void HXmlElement::setChild(QList<HXmlElement*> value)
+void HXmlElement::setChild(QList<HXmlElement *> value)
 {
     d_ptr->childs = value;
 }
@@ -116,7 +116,7 @@ void HXmlElement::removeChild(HXmlElement *xe)
     xe->d_ptr->parent = nullptr;
 }
 
-HXmlElement *HXmlElement::findElement(std::function<bool(HXmlElement*)> func)
+HXmlElement *HXmlElement::findElement(std::function<bool(HXmlElement *)> func)
 {
     if (func(this))
         return this;
@@ -131,9 +131,9 @@ HXmlElement *HXmlElement::findElement(std::function<bool(HXmlElement*)> func)
     return xe;
 }
 
-QList<HXmlElement*> HXmlElement::findElementAll(std::function<bool(HXmlElement*)> func)
+QList<HXmlElement*> HXmlElement::findElementAll(std::function<bool(HXmlElement *)> func)
 {
-    QList<HXmlElement*> list;
+    QList<HXmlElement *> list;
     if (func(this))
         list << this;
     for (auto item : childs())
@@ -141,7 +141,7 @@ QList<HXmlElement*> HXmlElement::findElementAll(std::function<bool(HXmlElement*)
     return list;
 }
 
-void HXmlElement::forEach(std::function<void(HXmlElement*)> func)
+void HXmlElement::forEach(std::function<void(HXmlElement *)> func)
 {
     func(this);
     for (auto item : childs())

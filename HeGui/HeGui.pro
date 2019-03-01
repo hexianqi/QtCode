@@ -69,5 +69,4 @@ unix {
 
 include(handler.pri)
 include(mainWindow.pri)
-
-
+include(testWidget.pri)

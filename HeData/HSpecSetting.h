@@ -27,14 +27,14 @@ public:
     virtual void writeContent(QDataStream &) override;
 
 public:
-    // 对外参数
+    // 测量参数
     QVariantMap testParam();
     // 计算通讯等待时间
     int calcCommWaitTime(double &value);
-    // 是否超过帧数
-    bool isOverFrame(int size);
-    // 是否数据溢出
-    int checkOverflow(double value);
+    // 检查帧溢出
+    bool checkFrameOverflow(int size);
+    // 检查数据溢出
+    int checkEnergyOverflow(double value);
     // 扣暗底
     QVector<double> dealBotton(QVector<double> value);
     // 平滑数据

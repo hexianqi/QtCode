@@ -11,7 +11,9 @@ class HMainWindow2000Private : public HMainWindowPrivate
 public:
     HMainWindow2000Private(HMainWindow2000 *q);
 
-
+public:
+    QAction *actionCalibrateSpectrum;
+    QMenu *menuCalibrate;
 };
 
 #endif // HMAINWINDOW2100_P_H

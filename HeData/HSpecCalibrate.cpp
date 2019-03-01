@@ -53,11 +53,8 @@ QVector<double> HSpecCalibrate::preprocess(QVector<double> value, bool fitting)
 
     value = d_ptr->setting->dealBotton(value);
     if (fitting)
-    {
         value = d_ptr->fitting->handle(value);
-        value = d_ptr->setting->smoothCurve(value);
-    }
-    return value;
+    return d_ptr->setting->smoothCurve(value);
 }
 
 QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
@@ -95,14 +92,14 @@ int HSpecCalibrate::calcCommWaitTime(double &value)
     return d_ptr->setting->calcCommWaitTime(value);
 }
 
-bool HSpecCalibrate::isOverFrame(int size)
+bool HSpecCalibrate::checkFrameOverflow(int size)
 {
-    return d_ptr->setting->isOverFrame(size);
+    return d_ptr->setting->checkFrameOverflow(size);
 }
 
-int HSpecCalibrate::checkOverflow(double value)
+int HSpecCalibrate::checkEnergyOverflow(double value)
 {
-    return d_ptr->setting->checkOverflow(value);
+    return d_ptr->setting->checkEnergyOverflow(value);
 }
 
 void HSpecCalibrate::readContent(QDataStream &s)

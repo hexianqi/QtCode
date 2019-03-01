@@ -8,7 +8,6 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 class ICommunicateFactory;
-class IDeviceCollection;
 HE_COMMUNICATE_END_NAMESPACE
 HE_COMMUNICATE_USE_NAMESPACE
 
@@ -26,8 +25,8 @@ HE_DATA_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HMainWindow;
 class IGuiFactory;
+class HMainWindow;
 
 class HAbstractBuilderPrivate
 {
@@ -37,7 +36,6 @@ public:
     IDataFactory *dataFactory = nullptr;
     IGuiFactory *guiFactory = nullptr;
     IConfigManage *configManage = nullptr;
-    IDeviceCollection *devices = nullptr;
     IModel *model = nullptr;
     HMainWindow *window = nullptr;
 };

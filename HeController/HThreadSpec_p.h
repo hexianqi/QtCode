@@ -10,10 +10,8 @@ class ITestSpec;
 
 class HThreadSpecPrivate : public HAbstractThreadPrivate
 {
-    Q_DECLARE_PUBLIC(HThreadSpec)
-
 public:
-    HThreadSpecPrivate(HThreadSpec *q);
+    HThreadSpecPrivate();
 
 public:
     IProtocol *protocolSpec;

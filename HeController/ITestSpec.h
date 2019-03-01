@@ -18,8 +18,11 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 class ITestSpec : virtual public ITestData
 {
 public:
+    // 设置校准数据
     virtual void setCalibrate(ISpecCalibrate *) = 0;
+    // 设置积分时间
     virtual void setIntegralTime(double value) = 0;
+    // 设置采样数据
     virtual bool setSample(QVector<double> value, bool avg = false) = 0;
 };
 

@@ -47,7 +47,7 @@ bool HTestSpecPrivate::setSample(QVector<double> value, bool avg)
 QVector<double> HTestSpecPrivate::average(QVector<double> value)
 {
     int i,j;
-    if (isOverFrame())
+    if (checkFrameOverflow())
         sampleCache.dequeue();
     sampleCache.enqueue(value);
 
@@ -66,7 +66,7 @@ bool HTestSpecPrivate::calcSpectrum()
     QWriteLocker locker(lock);
 
     calcMaxSample();
-    if (checkOverflow() != 0)
+    if (checkEnergyOverflow() != 0)
         return false;
 
     HSpectrumData *sp = new HSpectrumData;
@@ -91,7 +91,7 @@ bool HTestSpecPrivate::calcSpectrum()
     addData("[蓝色比]", sp->BlueRatio);
     addData("[绿色比]", sp->GreenRadio);
     addData("[光谱光通量]", sp->Luminous);
-    addData("[色容差]", sp->SDCM);
+//    addData("[色容差]", sp->SDCM);
     return true;
 }
 
@@ -102,21 +102,20 @@ void HTestSpecPrivate::calcMaxSample()
         maxSample = qMax(maxSample, samples[0][i]);
 }
 
-bool HTestSpecPrivate::isOverFrame()
+bool HTestSpecPrivate::checkFrameOverflow()
 {
-    return calibrate->isOverFrame(sampleCache.size());
+    return calibrate->checkFrameOverflow(sampleCache.size());
 }
 
-int HTestSpecPrivate::checkOverflow()
+int HTestSpecPrivate::checkEnergyOverflow()
 {
-    return calibrate->checkOverflow(maxSample);
+    return calibrate->checkEnergyOverflow(maxSample);
 }
 
 void HTestSpecPrivate::clearCache()
 {
     sampleCache.clear();
 }
-
 
 HTestSpec::HTestSpec()
     : HTestData(*new HTestSpecPrivate)

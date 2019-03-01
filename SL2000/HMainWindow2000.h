@@ -18,6 +18,17 @@ public:
 
 protected:
     HMainWindow2000(HMainWindow2000Private &p, QWidget *parent = nullptr);
+
+protected:
+    virtual void initImportExport() override;
+    virtual void createAction() override;
+    virtual void createMenu() override;
+    virtual void createConnect() override;
+    virtual void initMenu() override;
+    virtual bool openCalibrateDlg(QDialog *dlg, bool message = true);
+
+protected slots:
+    void openCalibrateSpectrumDialog();
 };
 
 #endif // HMAINWINDOW2100_H

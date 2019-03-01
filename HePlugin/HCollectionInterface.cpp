@@ -7,7 +7,6 @@ HCollectionInterface::HCollectionInterface(QObject *parent)
 {
   //  m_widgets.append(new class1Plugin(this));
     _widgets.append(new class2Plugin(this));
-
 }
 
 QList<QDesignerCustomWidgetInterface*> HCollectionInterface::customWidgets() const

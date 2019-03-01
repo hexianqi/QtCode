@@ -42,7 +42,6 @@ HTestData::HTestData(HTestDataPrivate &p)
 {
 }
 
-
 void HTestData::initialize(QVariantMap param)
 {
     if (param.contains("successor"))

@@ -170,4 +170,18 @@ HErrorType HProtocol::getData(HActionType action, QVector<uint> &value, int dela
     return E_OK;
 }
 
+HErrorType HProtocol::getData(HActionType action, QVector<double> &value, int delay)
+{
+    QVector<uchar> data;
+    auto error = getData(action, data, delay);
+    if (error != E_OK)
+        return error;
+    if (value.size() == 0)
+        value.resize(data.size() / 2);
+    auto size = qMin(value.size(), data.size() / 2);
+    for (int i = 0; i < size; i++)
+        value[i] = data[2 * i] + data[2 * i + 1] * 256;
+    return E_OK;
+}
+
 HE_COMMUNICATE_END_NAMESPACE

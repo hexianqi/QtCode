@@ -15,7 +15,7 @@ class HConfigManagePrivate;
 class HConfigManage : public IConfigManage
 {
 public:
-    explicit HConfigManage(IDataFactory *f);
+    explicit HConfigManage(IDataFactory *);
     ~HConfigManage();
 
 public:
@@ -27,9 +27,9 @@ public:
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
 
 public:
+    virtual IFileStream *fileStream() override;
     virtual quint32 contain() override;
     virtual ISpecCalibrate *specCalibrate(QString name) override;
-    virtual IFileStream *fileStream() override;
 
 public:
     virtual bool importPart(quint32 value) override;

@@ -30,8 +30,8 @@ public:
     QVector<double> average(QVector<double> value);
     bool calcSpectrum();
     void calcMaxSample();
-    bool isOverFrame();
-    int checkOverflow();
+    bool checkFrameOverflow();
+    int checkEnergyOverflow();
     void clearCache();
 
 public:
@@ -40,8 +40,8 @@ public:
     ISpecCalibrate *calibrate;
     bool fitting = true;
     double maxSample = 0;
-    QVector<QVector<double> > samples;
-    QQueue<QVector<double> > sampleCache;
+    QVector<QVector<double>> samples;
+    QQueue<QVector<double>> sampleCache;
 };
 
 HE_CONTROLLER_END_NAMESPACE

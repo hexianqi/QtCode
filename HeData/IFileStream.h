@@ -35,6 +35,4 @@ public:
 
 HE_DATA_END_NAMESPACE
 
-
-
 #endif // IFILESTREAM_H

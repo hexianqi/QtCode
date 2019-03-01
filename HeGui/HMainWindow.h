@@ -1,3 +1,7 @@
+/***************************************************************************************************
+**      2019-03-01  HMainWindow 主窗口。
+***************************************************************************************************/
+
 #ifndef HMAINWINDOW_H
 #define HMAINWINDOW_H
 
@@ -36,7 +40,7 @@ signals:
 
 public:
     virtual void setConfigFile(QString fileName);
-    virtual bool setConfigManage(IConfigManage *);
+    virtual void setConfigManage(IConfigManage *);
     virtual void setModel(IModel *);
 
 protected:
@@ -68,6 +72,9 @@ protected:
     virtual void initMenu();
     virtual void initToolBar();
     virtual void initStatusBar();
+
+protected:
+    virtual QString summary();
 
 protected:
     QScopedPointer<HMainWindowPrivate> d_ptr;

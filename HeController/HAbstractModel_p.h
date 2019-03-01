@@ -15,10 +15,9 @@ class IThreadCollection;
 class HE_CONTROLLER_EXPORT HAbstractModelPrivate
 {
 public:
-    HAbstractModelPrivate(HAbstractModel *q);
+    HAbstractModelPrivate();
 
 public:
-    HAbstractModel *q_ptr;
     IDeviceCollection *devices;
     IThreadCollection *threads;
 };

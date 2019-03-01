@@ -24,10 +24,9 @@ public:
 
 protected:
     void buildFactory();
-    void buildTestData();
     void buildConfigManage();
+    void buildTestData();
     void buildDevice();
-    void buildProtocol();
     void buildThread();
     void buildModel();
     void buildMainWindow();
@@ -35,7 +34,7 @@ protected:
 
 protected:
     void initMainWindow();
-    void initConfigManageDefault();
+    void initConfigManage();
     void syncData(quint32 type);
 };
 

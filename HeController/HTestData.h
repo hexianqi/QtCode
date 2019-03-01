@@ -24,8 +24,6 @@ public:
 public:
     virtual void setSuccessor(ITestData *) override;
     virtual void setData(QString type, QVariant value) override;
-
-public:
     virtual QVariant data(QString type) override;
 
 protected:
