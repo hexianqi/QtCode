@@ -74,6 +74,7 @@ void HSpecCalibrateCollection::writeContent(QDataStream &s)
     {
         s << i.key() << i.value()->typeName();
         i.value()->writeContent(s);
+        i++;
     }
 }
 

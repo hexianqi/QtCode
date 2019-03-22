@@ -5,25 +5,38 @@
 #ifndef HABSTRACTBUILDER_H
 #define HABSTRACTBUILDER_H
 
-#include "HGuiGlobal.h"
+#include "IBuilder.h"
 #include <QObject>
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HAbstractBuilderPrivate;
-class HMainWindow;
 
-class HE_GUI_EXPORT HAbstractBuilder : public QObject
+class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
 {
+    Q_OBJECT
+
 public:
     explicit HAbstractBuilder(QObject *parent = nullptr);
-    ~HAbstractBuilder();
+    ~HAbstractBuilder() override;
 
 public:
-    virtual HMainWindow *createMainWindow() = 0;
+    void initialize(QVariantMap param) override;
+
+public:
+    void buildAll() override;
 
 protected:
     HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent = nullptr);
+
+protected:
+    virtual void buildFactory() = 0;
+    virtual void buildConfigManage() = 0;
+    virtual void buildTestData() = 0;
+    virtual void buildDevice() = 0;
+    virtual void buildThread() = 0;
+    virtual void buildModel() = 0;
+    virtual void buildTestWidget() = 0;
 
 protected:
     QScopedPointer<HAbstractBuilderPrivate> d_ptr;

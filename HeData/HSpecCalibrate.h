@@ -15,26 +15,26 @@ class HSpecCalibrate : public ISpecCalibrate
 {
 public:
     explicit HSpecCalibrate();
-    ~HSpecCalibrate();
+    virtual ~HSpecCalibrate();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual QVariantMap testParam() override;
+    QVariantMap testParam() override;
 
 public:
-    virtual QVector<double> preprocess(QVector<double> value, bool fitting = true) override;
-    virtual QPolygonF calcEnergy(QVector<double> value) override;
-    virtual double calcLuminous(double value) override;
-    virtual int calcCommWaitTime(double &value) override;
-    virtual bool checkFrameOverflow(int size) override;
-    virtual int checkEnergyOverflow(double value) override;
+    QVector<double> preprocess(QVector<double> value, bool fitting = true) override;
+    QPolygonF calcEnergy(QVector<double> value) override;
+    double calcLuminous(double value) override;
+    int calcCommWaitTime(double &value) override;
+    bool checkFrameOverflow(int size) override;
+    int checkEnergyOverflow(double value) override;
 
 public:
-    virtual void readContent(QDataStream &) override;
-    virtual void writeContent(QDataStream &) override;
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
 
 protected:
     HSpecCalibrate(HSpecCalibratePrivate &p);

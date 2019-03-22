@@ -14,7 +14,7 @@ template <typename T>
 class HSingleton
 {
 public:
-    template<typename... Args>
+    template <typename... Args>
     static T *instance(Args&&... args)
     {
         if(__instance == nullptr)
@@ -45,7 +45,7 @@ protected:
     static T *__instance;
 };
 
-template <class T>
+template <typename T>
 T *HSingleton<T>::__instance = nullptr;
 
 #define H_FRIEND_SINGLETON(theClass)    friend class HSingleton<theClass>;

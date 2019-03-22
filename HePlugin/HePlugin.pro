@@ -24,17 +24,25 @@ INCLUDEPATH += ..
 
 Debug {
     TARGET  = HePlugind
-    LIBS    += -L$$DESTDIR -lHeAlgorithmd
+    LIBS    += \
+            -L$$DESTDIR -lHeAlgorithmd \
+            -L$$DESTDIR -lHeCored
 }
 
 Release {
     TARGET  = HePlugin
-    LIBS    += -L$$DESTDIR -lHeAlgorithm
+    LIBS    += \
+            -L$$DESTDIR -lHeAlgorithm \
+            -L$$DESTDIR -lHeCore
 }
 
-include(strategy.pri)
-include(extend.pri)
 include(chart.pri)
-include(view.pri)
+include(delegate.pri)
 include(diagram.pri)
+include(extend.pri)
+include(promotion.pri)
+include(strategy.pri)
+include(table.pri)
+include(view.pri)
+
 include(class2.pri)

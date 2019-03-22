@@ -36,7 +36,7 @@ public:
     void trial();
 
 protected:
-    HRegister(HRegisterPrivate &p);
+    HRegister(HRegisterPrivate &);
 
 protected:
     QScopedPointer<HRegisterPrivate> d_ptr;

@@ -15,10 +15,10 @@ class HXmlElement;
 class HE_FILE_EXPORT HXmlBuilder
 {
 public:
-    template<class T>
+    template <typename T>
     static T *createObject(HXmlElement *xe);
 
-    template<class T>
+    template <typename T>
     static T *createObject(HXmlElement *xe, QVariantMap param);
 };
 

@@ -27,14 +27,14 @@ class QDESIGNER_WIDGET_EXPORT HDiagramWidget : public QWidget
 
 public:
     explicit HDiagramWidget(QWidget *parent = nullptr);
-    ~HDiagramWidget();
+    ~HDiagramWidget() override;
 
 signals:
     void plotAreaChanged(QRectF value);
 
 public:
-    virtual QSize sizeHint() const;
-    virtual QSize minimumSizeHint() const;
+    virtual QSize sizeHint() const override;
+    virtual QSize minimumSizeHint() const override;
 
 public:
     void setMargins(QMargins value);
@@ -73,7 +73,7 @@ protected:
 protected:
     virtual void setPlotArea(QRectF value);
     virtual void refreshPixmap(bool refresh = true);
-    virtual void initPainter(QPainter *);
+    virtual void initPixmap(QPainter *);
     virtual bool drawFrame(QPainter *);
     virtual bool drawRuler(QPainter *);
     virtual bool drawGrid(QPainter *);

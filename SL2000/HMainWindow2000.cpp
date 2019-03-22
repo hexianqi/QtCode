@@ -9,16 +9,14 @@ HMainWindow2000Private::HMainWindow2000Private(HMainWindow2000 *q)
 {
 }
 
-HMainWindow2000::HMainWindow2000(QWidget *parent)
-    : HMainWindow(*new HMainWindow2000Private(this), parent)
+HMainWindow2000::HMainWindow2000(QWidget *parent, const HCallorHelper &helper)
+    : HAbstractMainWindow(*new HMainWindow2000Private(this), helper, parent)
 {
-    init();
 }
 
-HMainWindow2000::HMainWindow2000(HMainWindow2000Private &p, QWidget *parent)
-    : HMainWindow(p, parent)
+HMainWindow2000::HMainWindow2000(HMainWindow2000Private &p, const HCallorHelper &helper, QWidget *parent)
+    : HAbstractMainWindow(p, helper, parent)
 {
-    init();
 }
 
 HMainWindow2000::~HMainWindow2000()
@@ -28,37 +26,37 @@ HMainWindow2000::~HMainWindow2000()
 
 void HMainWindow2000::initImportExport()
 {
+    HAbstractMainWindow::initImportExport();
     Q_D(HMainWindow2000);
-    HMainWindow::initImportExport();
     d->importExport.insert(tr("1.光谱定标数据(&S)..."),           ConfigContainType::CCT_Spec);
 }
 
 void HMainWindow2000::createAction()
 {
+    HAbstractMainWindow::createAction();
     Q_D(HMainWindow2000);
-    HMainWindow2000::createAction();
     d->actionCalibrateSpectrum = new QAction(tr("光谱定标(&S)..."), this);
 }
 
 void HMainWindow2000::createMenu()
 {
+    HAbstractMainWindow::createMenu();
     Q_D(HMainWindow2000);
-    HMainWindow2000::createMenu();
     d->menuCalibrate = new QMenu(tr("定标(&C)"));
     d->menuCalibrate->addAction(d->actionCalibrateSpectrum);
 }
 
 void HMainWindow2000::createConnect()
 {
+    HAbstractMainWindow::createConnect();
     Q_D(HMainWindow2000);
-    HMainWindow2000::createConnect();
-    connect(d->actionCalibrateSpectrum, &QAction::triggered, this, openCalibrateSpectrumDialog);
+    connect(d->actionCalibrateSpectrum, &QAction::triggered, this, &HMainWindow2000::openCalibrateSpectrumDialog);
 }
 
 void HMainWindow2000::initMenu()
 {
+    HAbstractMainWindow::initMenu();
     Q_D(HMainWindow2000);
-    HMainWindow2000::initMenu();
     menuBar()->insertMenu(d->actionSeparator, d->menuCalibrate);
 }
 

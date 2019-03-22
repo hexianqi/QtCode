@@ -27,8 +27,8 @@ SOURCES     += \
             HCore.cpp \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
-            HGlobalInstance.cpp
-
+            HGlobalInstance.cpp \
+            HCallorHelper.cpp
 
 HEADERS     += \
             HCoreGlobal.h \
@@ -39,7 +39,8 @@ HEADERS     += \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HGlobalInstance.h \
-            HGlobalInstance_p.h
+            HGlobalInstance_p.h \
+            HCallorHelper.h
 
 RESOURCES   += HeCore.qrc
 

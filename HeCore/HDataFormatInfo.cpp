@@ -141,20 +141,4 @@ QIntValidator *HDataFormatInfo::toIntValidator(QObject *parent)
     return new QIntValidator(static_cast<int>(min()), static_cast<int>(max()), parent);
 }
 
-//void HDataFormatInfo::toInitWidget(QSpinBox *widget)
-//{
-//    widget->setRange(int(_botton), int(_top));
-//    widget->setSingleStep(_singleStep);
-//    widget->setSuffix(QString(" %1 ").arg(unit(false)));
-//    widget->setAlignment(Qt::AlignCenter);
-//}
-
-//void HDataFormatInfo::toInitWidget(QDoubleSpinBox *widget)
-//{
-//    widget->setDecimals(_decimals);
-//    widget->setRange(_botton, _top);
-//    widget->setSingleStep(_singleStep);
-//    widget->setSuffix(QString(" %1 ").arg(unit(false)));
-//    widget->setAlignment(Qt::AlignCenter);
-//}
 HE_CORE_END_NAMESPACE

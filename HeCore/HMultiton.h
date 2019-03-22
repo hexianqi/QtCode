@@ -12,24 +12,24 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-template <class T, class K = string>
+template <typename T, typename K = string>
 class HMultiton
 {
 public:
-    template<typename... Args>
+    template <typename... Args>
     static std::shared_ptr<T> instance(const K &key, Args&&... args)
     {
         return getInstance(key, std::forward<Args>(args)...);
     }
 
-    template<typename... Args>
+    template <typename... Args>
     static std::shared_ptr<T> instance(K&& key, Args&&... args)
     {
         return getInstance(key, std::forward<Args>(args)...);
     }
 
 private:
-    template<typename Key, typename... Args>
+    template <typename Key, typename... Args>
     static std::shared_ptr<T> getInstance(Key&& key, Args&&...args)
     {
         std::shared_ptr<T> instance = nullptr;
@@ -54,7 +54,7 @@ protected:
     static std::unordered_map<K, std::shared_ptr<T>> __map;
 };
 
-template <class T, class K>
+template <typename T, typename K>
 unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
 
 HE_CORE_END_NAMESPACE

@@ -16,27 +16,27 @@ class HConfigManage : public IConfigManage
 {
 public:
     explicit HConfigManage(IDataFactory *);
-    ~HConfigManage();
+    virtual ~HConfigManage();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void setContain(quint32 value) override;
-    virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
+    void setContain(quint32 value) override;
+    void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
 
 public:
-    virtual IFileStream *fileStream() override;
-    virtual quint32 contain() override;
-    virtual ISpecCalibrate *specCalibrate(QString name) override;
+    IFileStream *fileStream() override;
+    quint32 contain() override;
+    ISpecCalibrate *specCalibrate(QString name) override;
 
 public:
-    virtual bool importPart(quint32 value) override;
-    virtual bool exportPart(quint32 value) override;
+    bool importPart(quint32 value) override;
+    bool exportPart(quint32 value) override;
 
 protected:
-    HConfigManage(HConfigManagePrivate &p);
+    HConfigManage(HConfigManagePrivate &);
 
 protected:
     QScopedPointer<HConfigManagePrivate> d_ptr;

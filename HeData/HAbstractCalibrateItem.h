@@ -16,7 +16,7 @@ class HAbstractCalibrateItem
 {
 public:
     explicit HAbstractCalibrateItem();
-    ~HAbstractCalibrateItem();
+    virtual ~HAbstractCalibrateItem();
 
 public:
     virtual void restoreDefault() = 0;
@@ -28,7 +28,7 @@ public:
     virtual void writeContent(QDataStream &) = 0;
 
 protected:
-    HAbstractCalibrateItem(HAbstractCalibrateItemPrivate &p);
+    HAbstractCalibrateItem(HAbstractCalibrateItemPrivate &);
 
 protected:
     QScopedPointer<HAbstractCalibrateItemPrivate> d_ptr;

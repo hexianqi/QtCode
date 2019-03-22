@@ -32,14 +32,14 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-template<class T>
+template <typename T>
 T *HTypeHelper::createObject(QString className)
 {
     int id = QMetaType::type(className.toLatin1());
     return id == QMetaType::UnknownType ? nullptr : dynamic_cast<T*>(QMetaType::create(id));
 }
 
-template<class T>
+template <typename T>
 T *HTypeHelper::createObject(QString className, QVariantMap param)
 {
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");

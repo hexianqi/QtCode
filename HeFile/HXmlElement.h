@@ -52,7 +52,7 @@ public:
 
 protected:
     HXmlElement(QString fileName, QDomElement *domElement, HXmlElement *parent);
-    HXmlElement(HXmlElementPrivate &p);
+    HXmlElement(HXmlElementPrivate &);
 
 private:
     QScopedPointer<HXmlElementPrivate> d_ptr;

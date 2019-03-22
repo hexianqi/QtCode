@@ -1,19 +1,14 @@
 #include "HZoomChartView_p.h"
 #include <QAction>
 
-HZoomChartViewPrivate::HZoomChartViewPrivate(HZoomChartView *q)
-    : q_ptr(q)
-{
-}
-
 HZoomChartView::HZoomChartView(QWidget *parent)
-    : QChartView(parent), d_ptr(new HZoomChartViewPrivate(this))
+    : QChartView(parent), d_ptr(new HZoomChartViewPrivate)
 {
     init();
 }
 
 HZoomChartView::HZoomChartView(QChart *chart, QWidget *parent)
-    : QChartView(chart, parent), d_ptr(new HZoomChartViewPrivate(this))
+    : QChartView(chart, parent), d_ptr(new HZoomChartViewPrivate)
 {
     init();
 }

@@ -25,7 +25,7 @@ void HMarkerChartExtend::connectMarkers()
 {
     Q_D(HMarkerChartExtend);
     auto markers = d->chart->legend()->markers();
-    for (auto *marker : markers)
+    for (auto marker : markers)
     {
         // Disconnect possible existing connection to avoid multiple connections
         disconnect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
@@ -37,7 +37,7 @@ void HMarkerChartExtend::disconnectMarkers()
 {
     Q_D(HMarkerChartExtend);
     auto markers = d->chart->legend()->markers();
-    for (auto *marker : markers)
+    for (auto marker : markers)
         disconnect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
 }
 

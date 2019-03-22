@@ -10,15 +10,10 @@ class QAreaSeries;
 class QScatterSeries;
 QT_CHARTS_END_NAMESPACE
 
-class HCIE1931ChartPrivate : HSingleAxisChartPrivate
+class HCIE1931ChartPrivate : public HSingleAxisChartPrivate
 {
-    Q_DECLARE_PUBLIC(HCIE1931Chart)
-
 public:
-    HCIE1931ChartPrivate(HCIE1931Chart *q);
-
-public:
-    QImage getCrossImage(QPen pen);
+    HCIE1931ChartPrivate();
 
 public:
     QPixmap cie;

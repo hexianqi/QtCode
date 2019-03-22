@@ -20,19 +20,19 @@ public:
     virtual ~HChromaticity();
 
 public:
-    virtual void calcSpectrum(HSpectrumData *) override;
-    virtual QLineF calcIsothermUv(double tc, double duv) override;
-    virtual QLineF calcIsothermUv(double tc, double duvB, double duvE) override;
-    virtual QLineF calcIsothermXy(double tc, double duv) override;
-    virtual QLineF calcIsothermXy(double tc, double duvB, double duvE) override;
+    void calcSpectrum(HSpecData *) override;
+    QLineF calcIsothermUv(double tc, double duv) override;
+    QLineF calcIsothermUv(double tc, double duvB, double duvE) override;
+    QLineF calcIsothermXy(double tc, double duv) override;
+    QLineF calcIsothermXy(double tc, double duvB, double duvE) override;
 
 public:
-    virtual bool exportIsotherm(QString fileName, QPointF tc, double interval = 1.0) override;
-    virtual bool exportIsotherm(QString fileName) override;
-    virtual bool exportCieUcs(QString fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) override;
+    bool exportIsotherm(QString fileName, QPointF tc, double interval = 1.0) override;
+    bool exportIsotherm(QString fileName) override;
+    bool exportCieUcs(QString fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) override;
 
 protected:
-    HChromaticity(HChromaticityPrivate &p);
+    HChromaticity(HChromaticityPrivate &);
 
 protected:
     virtual QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc);

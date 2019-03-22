@@ -5,15 +5,10 @@
 #include "HZoomChartView_p.h"
 
 class QGraphicsSimpleTextItem;
-class HCIE1931Chart;
+class HPositionTracking;
 
 class HCIE1931ViewPrivate : public HZoomChartViewPrivate
 {
-    Q_DECLARE_PUBLIC(HCIE1931View)
-
-public:
-    HCIE1931ViewPrivate(HCIE1931View *q);
-
 public:
     HCIE1931Chart *chart;
     HPositionTracking *tracking;

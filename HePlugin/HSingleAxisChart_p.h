@@ -6,10 +6,6 @@
 class HSingleAxisChartPrivate
 {
 public:
-    HSingleAxisChartPrivate(HSingleAxisChart *q);
-
-public:
-    HSingleAxisChart *q_ptr;
     QAbstractAxis *axisX;
     QAbstractAxis *axisY;
 };

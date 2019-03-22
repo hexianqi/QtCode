@@ -20,21 +20,21 @@ public:
     ~HSerialPort();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 10) override;
-    virtual HErrorType clear() override;
+    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 10) override;
+    HErrorType clear() override;
 
 protected:
-    HSerialPort(HSerialPortPrivate &p);
+    HSerialPort(HSerialPortPrivate &);
 
 protected:
-    virtual HErrorType openPort(int portNum) override;
-    virtual HErrorType closePort() override;
-    virtual HErrorType writeData(uchar *data, int maxSize) override;
-    virtual HErrorType readData(uchar *data, int maxSize) override;
+    HErrorType openPort(int portNum) override;
+    HErrorType closePort() override;
+    HErrorType writeData(uchar *data, int maxSize) override;
+    HErrorType readData(uchar *data, int maxSize) override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

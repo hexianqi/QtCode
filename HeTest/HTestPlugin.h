@@ -7,8 +7,6 @@ class HTestPlugin
 {
 public:
     static QWidget *testCIE1931View();
-
-
 };
 
 #endif // HTESTPLUGIN_H

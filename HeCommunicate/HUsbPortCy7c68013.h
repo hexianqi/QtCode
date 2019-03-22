@@ -17,20 +17,20 @@ class HUsbPortCy7c68013 : public HAbstractPort
 
 public:
     explicit HUsbPortCy7c68013();
-    ~HUsbPortCy7c68013();
+    ~HUsbPortCy7c68013() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 protected:
-    HUsbPortCy7c68013(HUsbPortCy7c68013Private &p);
+    HUsbPortCy7c68013(HUsbPortCy7c68013Private &);
 
 protected:
-    virtual HErrorType openPort(int portNum) override;
-    virtual HErrorType closePort() override;
-    virtual HErrorType writeData(uchar *data, int maxSize) override;
-    virtual HErrorType readData(uchar *data, int maxSize) override;
+    HErrorType openPort(int portNum) override;
+    HErrorType closePort() override;
+    HErrorType writeData(uchar *data, int maxSize) override;
+    HErrorType readData(uchar *data, int maxSize) override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

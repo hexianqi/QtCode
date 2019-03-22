@@ -1,23 +1,23 @@
 #ifndef HMAINWINDOW2100_H
 #define HMAINWINDOW2100_H
 
-#include "HeGui/HMainWindow.h"
+#include "HeGui/HAbstractMainWindow.h"
 
 HE_GUI_USE_NAMESPACE
 
 class HMainWindow2000Private;
 
-class HMainWindow2000 : public HMainWindow
+class HMainWindow2000 : public HAbstractMainWindow
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HMainWindow2000)
 
 public:
-    explicit HMainWindow2000(QWidget *parent = 0);
+    explicit HMainWindow2000(QWidget *parent = 0, const HCallorHelper &helper = HCallorHelper());
     ~HMainWindow2000();
 
 protected:
-    HMainWindow2000(HMainWindow2000Private &p, QWidget *parent = nullptr);
+    HMainWindow2000(HMainWindow2000Private &p, const HCallorHelper &helper, QWidget *parent = nullptr);
 
 protected:
     virtual void initImportExport() override;

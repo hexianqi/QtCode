@@ -9,15 +9,6 @@ HAbstractVernierTrackingPrivate::HAbstractVernierTrackingPrivate(Qt::Orientation
     validRegion.setRect(0, 0, 1, 1);
 }
 
-bool HAbstractVernierTrackingPrivate::setOrientation(Qt::Orientation value)
-{
-    if (orientation == value)
-        return false;
-
-    orientation = value;
-    return true;
-}
-
 bool HAbstractVernierTrackingPrivate::setValidRegion(QRectF value)
 {
     if (validRegion == value)
@@ -37,11 +28,18 @@ bool HAbstractVernierTrackingPrivate::setValidRegion(QRectF value)
     return true;
 }
 
+bool HAbstractVernierTrackingPrivate::setOrientation(Qt::Orientation value)
+{
+    if (orientation == value)
+        return false;
+    orientation = value;
+    return true;
+}
+
 bool HAbstractVernierTrackingPrivate::setVernierColor(QColor value)
 {
     if (color == value)
         return false;
-
     color = value;
     return true;
 }

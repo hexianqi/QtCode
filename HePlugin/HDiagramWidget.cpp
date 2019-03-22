@@ -235,7 +235,7 @@ void HDiagramWidget::refreshPixmap(bool refresh)
     d_ptr->pixmap.fill(Qt::transparent);
     QPainter painter(&d_ptr->pixmap);
 
-    initPainter(&painter);
+    initPixmap(&painter);
     drawFrame(&painter);
     drawRuler(&painter);
     drawPolygon(&painter);
@@ -246,7 +246,7 @@ void HDiagramWidget::refreshPixmap(bool refresh)
         update();
 }
 
-void HDiagramWidget::initPainter(QPainter *painter)
+void HDiagramWidget::initPixmap(QPainter *painter)
 {
     painter->initFrom(this);
     painter->setBrush(d_ptr->brushBackground);

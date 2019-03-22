@@ -5,12 +5,12 @@ HEADERS += \
     $$PWD/HMesopticVision.h \
     $$PWD/HChromaticity.h \
     $$PWD/HChromaticityV2.h \
-    $$PWD/HSpectrumFacade.h \
-    $$PWD/HSpectrumFacade_p.h \
     $$PWD/HChromaticity_p.h \
     $$PWD/HChromaticityV2_p.h \
-    $$PWD/HSpectrumHelper.h \
-    $$PWD/HSpectrumData.h
+    $$PWD/HSpecData.h \
+    $$PWD/HSpecFacade.h \
+    $$PWD/HSpecFacade_p.h \
+    $$PWD/HSpecHelper.h
 
 SOURCES += \
     $$PWD/HCie.cpp \

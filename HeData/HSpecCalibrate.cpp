@@ -61,7 +61,7 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
 {
     double x,y;
     QPolygonF poly;
-    auto curve = d_ptr->stdCurve->data();
+    auto curve = d_ptr->stdCurve->curve();
     auto size = qMin(curve.size(), value.size());
 
     if (size <= 0)
@@ -78,8 +78,7 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
             y = value[i] / curve[i];
         poly.append(QPointF(x,y));
     }
-    poly = d_ptr->setting->interpEnergy(poly);
-    return d_ptr->setting->shieldEnergy(poly);
+    return d_ptr->setting->interpEnergy(poly);
 }
 
 double HSpecCalibrate::calcLuminous(double value)

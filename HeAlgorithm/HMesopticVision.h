@@ -17,6 +17,7 @@ public:
     HMesopticVision();
 
 public:
+    // 源类型
     QStringList sourceTypes() const;
     // 计算明视觉比例
     double calcRatio(QString type, double value);

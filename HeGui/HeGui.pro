@@ -28,19 +28,17 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 SOURCES     += \
             HAction.cpp \
             HGuiHelper.cpp \
-            HAbstractBuilder.cpp \
-            HGuiFactory.cpp
+            HGuiFactory.cpp \
+
 
 HEADERS     += \
             HGuiGlobal.h \
             HAction.h \
             HAction_p.h \
             HGuiHelper.h \
-            HAbstractBuilder.h \
-            HAbstractBuilder_p.h \
             IGuiFactory.h \
             HGuiFactory.h \
-            HGuiFactory_p.h \
+            HGuiFactory_p.h
 
 RESOURCES   = HeGui.qrc
 
@@ -51,7 +49,9 @@ Debug {
     LIBS    += \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeCommunicated \
-            -L$$DESTDIR -lHeControllerd
+            -L$$DESTDIR -lHeControllerd \
+            -L$$DESTDIR -lHeDatad \
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
@@ -59,7 +59,9 @@ Release {
     LIBS    += \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeCommunicate \
-            -L$$DESTDIR -lHeController
+            -L$$DESTDIR -lHeController \
+            -L$$DESTDIR -lHeData \
+            -L$$DESTDIR -lHePlugin
 }
 
 unix {
@@ -67,6 +69,10 @@ unix {
     INSTALLS += target
 }
 
+include(builder.pri)
 include(handler.pri)
 include(mainWindow.pri)
+include(spec.pri)
 include(testWidget.pri)
+
+

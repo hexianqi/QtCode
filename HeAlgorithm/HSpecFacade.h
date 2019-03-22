@@ -2,8 +2,8 @@
 **      2018-06-19  HSpectrumFacade 光谱计算外观类。
 ***************************************************************************************************/
 
-#ifndef HSPECTRUMHELPER_H
-#define HSPECTRUMHELPER_H
+#ifndef HSPECFACADE_H
+#define HSPECFACADE_H
 
 #include "HAlgorithmGlobal.h"
 #include <QScopedPointer>
@@ -11,28 +11,28 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HSpectrumData;
+class HSpecData;
 class IChromaticity;
-class HSpectrumFacadePrivate;
+class HSpecFacadePrivate;
 
-class HE_ALGORITHM_EXPORT HSpectrumFacade
+class HE_ALGORITHM_EXPORT HSpecFacade
 {
 public:
-    HSpectrumFacade();
-    ~HSpectrumFacade();
+    HSpecFacade();
+    ~HSpecFacade();
 
 public:
     // 计算光谱参数
-    void calcSpectrum(HSpectrumData *);
+    void calcSpectrum(HSpecData *);
     // 设置色度参数计算方法
     void setChromaticity(int type);
     // 获取色度参数计算方法
     std::shared_ptr<IChromaticity> getChromaticity();
 
 private:
-    QScopedPointer<HSpectrumFacadePrivate> d_ptr;
+    QScopedPointer<HSpecFacadePrivate> d_ptr;
 };
 
 HE_ALGORITHM_END_NAMESPACE
 
-#endif // HSPECTRUMHELPER_H
+#endif // HSPECFACADE_H

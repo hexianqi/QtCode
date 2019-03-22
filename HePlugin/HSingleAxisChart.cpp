@@ -1,12 +1,7 @@
 #include "HSingleAxisChart_p.h"
 
-HSingleAxisChartPrivate::HSingleAxisChartPrivate(HSingleAxisChart *q)
-    : q_ptr(q)
-{
-}
-
 HSingleAxisChart::HSingleAxisChart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
-    : QChart(parent, wFlags), d_ptr(new HSingleAxisChartPrivate(this))
+    : QChart(parent, wFlags), d_ptr(new HSingleAxisChartPrivate)
 {
 }
 

@@ -13,13 +13,15 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    HTestGsl gsl;
-    QMainWindow window;
-    window.setCentralWidget(gsl.interpEval());
-    window.resize(800, 600);
-    window.grabGesture(Qt::PanGesture);
-    window.grabGesture(Qt::PinchGesture);
-    window.show();
+    HTestPlugin::testCIE1931View()->show();
+
+//    HTestGsl gsl;
+//    QMainWindow window;
+//    window.setCentralWidget(gsl.interpEval());
+//    window.resize(800, 600);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
 
     return a.exec();
 }

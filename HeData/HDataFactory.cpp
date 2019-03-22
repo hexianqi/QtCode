@@ -3,6 +3,7 @@
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
+#include <QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -18,6 +19,7 @@ HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent)
 
 HDataFactory::~HDataFactory()
 {
+    qDebug() << __func__;
 }
 
 void HDataFactory::initialize(QVariantMap /*param*/)

@@ -9,7 +9,7 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-template <class T>
+template <typename T>
 class HCollection : virtual public ICollection<T>
 {
 public:
@@ -17,30 +17,30 @@ public:
     ~HCollection();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual void clear() override;
-    virtual bool contains(QString name) override;
-    virtual void insert(QString name, T *value) override;
-    virtual T *first() override;
-    virtual T *value(QString name) override;
-    virtual QList<T *> values() override;
+    void initialize(QVariantMap param) override;
+    void clear() override;
+    bool contains(QString name) override;
+    void insert(QString name, T *value) override;
+    T *first() override;
+    T *value(QString name) override;
+    QList<T *> values() override;
 
 protected:
     QScopedPointer<QMap<QString, T *>> _datas;
 };
 
-template <class T>
+template <typename T>
 HCollection<T>::HCollection()
     : _datas(new QMap<QString, T *>)
 {
 }
 
-template <class T>
+template <typename T>
 HCollection<T>::~HCollection()
 {
 }
 
-template <class T>
+template <typename T>
 void HCollection<T>::initialize(QVariantMap param)
 {
     if (param.contains("datas"))
@@ -54,37 +54,37 @@ void HCollection<T>::initialize(QVariantMap param)
     }
 }
 
-template<class T>
+template <typename T>
 void HCollection<T>::clear()
 {
     _datas->clear();
 }
 
-template<class T>
+template <typename T>
 bool HCollection<T>::contains(QString name)
 {
     return _datas->contains(name);
 }
 
-template <class T>
+template <typename T>
 void HCollection<T>::insert(QString name, T *value)
 {
     _datas->insert(name, value);
 }
 
-template<class T>
+template <typename T>
 T *HCollection<T>::first()
 {
     return _datas->first();
 }
 
-template <class T>
+template <typename T>
 T *HCollection<T>::value(QString name)
 {
     return _datas->value(name);
 }
 
-template <class T>
+template <typename T>
 QList<T *> HCollection<T>::values()
 {
     return _datas->values();

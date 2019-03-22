@@ -17,17 +17,17 @@ class HE_CONTROLLER_EXPORT HControllerFactory : public QObject, public IControll
 
 public:
     explicit HControllerFactory(QObject *parent = nullptr);
-    ~HControllerFactory();
+    ~HControllerFactory() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual IThread *createThread(QString type, QVariantMap param) override;
-    virtual IThreadCollection *createThreadCollection(QString type, QVariantMap param = QVariantMap()) override;
-    virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
-    virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
+    IThread *createThread(QString type, QVariantMap param) override;
+    IThreadCollection *createThreadCollection(QString type, QVariantMap param = QVariantMap()) override;
+    ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
+    ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HControllerFactory(HControllerFactoryPrivate &p, QObject *parent = nullptr);

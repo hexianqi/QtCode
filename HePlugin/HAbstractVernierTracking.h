@@ -17,7 +17,7 @@ class HAbstractVernierTracking : public HAbstractMouseStrategy
 
 public:
     explicit HAbstractVernierTracking(Qt::Orientation orientation, QWidget *parent = nullptr);
-    ~HAbstractVernierTracking();
+    ~HAbstractVernierTracking() override;
 
 signals:
     void orientationChanged(Qt::Orientation value);
@@ -36,8 +36,8 @@ public:
     QVector<QPointF> verniers();
 
 public:
-    virtual bool mousePressEvent(QMouseEvent *) override;
-    virtual bool mouseReleaseEvent(QMouseEvent *) override;
+    bool mousePressEvent(QMouseEvent *) override;
+    bool mouseReleaseEvent(QMouseEvent *) override;
 
 protected:
     HAbstractVernierTracking(HAbstractVernierTrackingPrivate &p, QWidget *parent = nullptr);

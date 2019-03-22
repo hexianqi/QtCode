@@ -15,10 +15,11 @@ class HTestHandler : public HAbstractGuiHandler
 
 public:
     explicit HTestHandler(QObject *parent = nullptr);
+    ~HTestHandler() override;
 
 public:
-    virtual QString typeName() override;
-    virtual void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) override;
+    QString typeName() override;
+    void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) override;
 };
 
 HE_GUI_END_NAMESPACE

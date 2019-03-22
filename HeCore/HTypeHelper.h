@@ -14,10 +14,10 @@ class HTypeHelper
 {
 public:
     // 创建对象
-    template<class T>
+    template <typename T>
     static T *createObject(QString className);
     // 创建对象
-    template<class T>
+    template <typename T>
     static T *createObject(QString className, QVariantMap param);
 };
 

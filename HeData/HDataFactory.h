@@ -17,17 +17,17 @@ class HE_DATA_EXPORT HDataFactory : public QObject, public IDataFactory
 
 public:
     explicit HDataFactory(QObject *parent = nullptr);
-    ~HDataFactory();
+    ~HDataFactory() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) override;
-    virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
-    virtual ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
-    virtual ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) override;
+    IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
+    ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
+    ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HDataFactory(HDataFactoryPrivate &p, QObject *parent = nullptr);

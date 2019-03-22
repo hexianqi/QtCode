@@ -21,13 +21,13 @@ public:
     ~HTestSpec();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void setCalibrate(ISpecCalibrate *) override;
-    virtual void setIntegralTime(double value) override;
-    virtual bool setSample(QVector<double> value, bool avg = false) override;
+    void setCalibrate(ISpecCalibrate *) override;
+    void setIntegralTime(double value) override;
+    bool setSample(QVector<double> value, bool avg = false) override;
 
 protected:
     HTestSpec(HTestSpecPrivate &p);

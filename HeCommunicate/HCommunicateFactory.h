@@ -17,18 +17,18 @@ class HCommunicateFactory : public QObject, public ICommunicateFactory
 
 public:
     explicit HCommunicateFactory(QObject *parent = nullptr);
-    ~HCommunicateFactory();
+    ~HCommunicateFactory() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual IPort *createPort(QString type, QVariantMap param = QVariantMap()) override;
-    virtual IDevice *createDevice(QString type, QVariantMap param = QVariantMap()) override;
-    virtual IDeviceCollection *createDeviceCollection(QString type, QVariantMap param = QVariantMap()) override;
-    virtual IProtocol *createProtocol(QString type, QVariantMap param = QVariantMap()) override;
-    virtual IProtocolCollection *createProtocolCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IPort *createPort(QString type, QVariantMap param = QVariantMap()) override;
+    IDevice *createDevice(QString type, QVariantMap param = QVariantMap()) override;
+    IDeviceCollection *createDeviceCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IProtocol *createProtocol(QString type, QVariantMap param = QVariantMap()) override;
+    IProtocolCollection *createProtocolCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject *parent = nullptr);

@@ -17,11 +17,21 @@ class HE_CONTROLLER_EXPORT HAbstractModel : public IModel
 
 public:
     explicit HAbstractModel(QObject *parent = nullptr);
-    ~HAbstractModel();
+    ~HAbstractModel() override;
 
 public:
-    virtual void start() override;
-    virtual void addAction(HActionType action) override;
+    void initialize(QVariantMap param) override;
+
+public:
+    void start() override;
+    void addAction(HActionType action) override;
+
+public:
+    bool openFile() override;
+    bool saveFile() override;
+    bool saveAsFile() override;
+    bool importFile(quint32 type) override;
+    bool exportFile(quint32 type) override;
 
 protected:
     HAbstractModel(HAbstractModelPrivate &p, QObject *parent = nullptr);
@@ -30,6 +40,10 @@ protected:
     virtual void initThread();
     virtual void startThread();
     virtual void stopThread();
+
+protected:
+    virtual void setConfigFile(QString fileName);
+    virtual void syncTestData(quint32 type) = 0;
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

@@ -17,7 +17,7 @@ class HCIE1931Chart : public HSingleAxisChart
     Q_DECLARE_PRIVATE(HCIE1931Chart)
 
 public:
-    explicit HCIE1931Chart(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    explicit HCIE1931Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
     ~HCIE1931Chart();
 
 signals:

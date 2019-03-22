@@ -20,7 +20,7 @@ signals:
     void configManageChanged(quint32 type);
 
 public:
-    virtual HMainWindow *createMainWindow() override;
+    virtual QWidget *createWidget() override;
 
 protected:
     void buildFactory();

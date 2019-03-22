@@ -6,7 +6,7 @@ HE_GUI_BEGIN_NAMESPACE
 HAction::HAction(QObject* parent)
     : QAction(parent), d_ptr(new HActionPrivate)
 {
-    connect(this, &HAction::triggered, this, &HAction::call);
+    connect(this, &HAction::triggered, this, call);
 }
 
 HAction::HAction(HActionPrivate &p, QObject *parent)

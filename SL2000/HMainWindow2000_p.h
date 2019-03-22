@@ -2,7 +2,7 @@
 #define HMAINWINDOW2100_P_H
 
 #include "HMainWindow2000.h"
-#include "HeGui/HMainWindow_p.h"
+#include "HeGui/HAbstractMainWindow_p.h"
 
 class HMainWindow2000Private : public HMainWindowPrivate
 {

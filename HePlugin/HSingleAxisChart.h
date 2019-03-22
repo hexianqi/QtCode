@@ -16,18 +16,18 @@ class HSingleAxisChart : public QChart
     Q_OBJECT
 
 public:
-    explicit HSingleAxisChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = 0);
+    explicit HSingleAxisChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
     ~HSingleAxisChart();
 
 public:
-    void addSeries(QAbstractSeries *series);
+    void addSeries(QAbstractSeries *);
     void setAxisX(QAbstractAxis *);
     void setAxisY(QAbstractAxis *);
     QAbstractAxis *axisX() const;
     QAbstractAxis *axisY() const;
 
 protected:
-    HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = 0);
+    HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
 
 protected:
     QScopedPointer<HSingleAxisChartPrivate> d_ptr;

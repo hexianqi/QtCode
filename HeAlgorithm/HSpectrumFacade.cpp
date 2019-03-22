@@ -1,5 +1,5 @@
-#include "HSpectrumFacade_p.h"
-#include "HSpectrumData.h"
+#include "HSpecFacade_p.h"
+#include "HSpecData.h"
 #include "HChromaticity.h"
 #include "HChromaticityV2.h"
 #include "HPhotopicVision.h"
@@ -52,13 +52,13 @@ void calcSpectrumEnergy(QPolygonF poly, double &totalEnergy, double &maxEnergy, 
     bandwidth = qFabs(x - y);
 }
 
-HSpectrumFacadePrivate::HSpectrumFacadePrivate()
+HSpecFacadePrivate::HSpecFacadePrivate()
 {
     chromaticity = std::shared_ptr<HChromaticity>(new HChromaticity());
     photopicVision = std::make_shared<HPhotopicVision>();
 }
 
-void HSpectrumFacadePrivate::setChromaticity(int type)
+void HSpecFacadePrivate::setChromaticity(int type)
 {
     if (type == chromaticityType || type < 0 || type > 2)
         return;
@@ -68,16 +68,16 @@ void HSpectrumFacadePrivate::setChromaticity(int type)
         chromaticity.reset(new HChromaticityV2);
 }
 
-HSpectrumFacade::HSpectrumFacade()
-    : d_ptr(new HSpectrumFacadePrivate)
+HSpecFacade::HSpecFacade()
+    : d_ptr(new HSpecFacadePrivate)
 {
 }
 
-HSpectrumFacade::~HSpectrumFacade()
+HSpecFacade::~HSpecFacade()
 {
 }
 
-void HSpectrumFacade::calcSpectrum(HSpectrumData *sp)
+void HSpecFacade::calcSpectrum(HSpecData *sp)
 {
     calcSpectrumEnergy(sp->Energy, sp->TotalEnergy, sp->MaxEnergy, sp->PeakWave, sp->Bandwidth);
     d_ptr->chromaticity->calcSpectrum(sp);
@@ -85,12 +85,12 @@ void HSpectrumFacade::calcSpectrum(HSpectrumData *sp)
     sp->VisionEnergy = d_ptr->photopicVision->calcVisionEnergy(sp->Energy);
 }
 
-void HSpectrumFacade::setChromaticity(int type)
+void HSpecFacade::setChromaticity(int type)
 {
     d_ptr->setChromaticity(type);
 }
 
-std::shared_ptr<IChromaticity> HSpectrumFacade::getChromaticity()
+std::shared_ptr<IChromaticity> HSpecFacade::getChromaticity()
 {
     return d_ptr->chromaticity;
 }

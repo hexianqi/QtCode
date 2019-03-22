@@ -22,18 +22,17 @@ public:
 public:
     explicit HBorderLayout(QWidget *parent, int margin = 0, int spacing = -1);
     explicit HBorderLayout();
-    virtual ~HBorderLayout();
-
+    ~HBorderLayout() override;
 
 public:
-    virtual int count() const override;
-    virtual void addItem(QLayoutItem *) override;
-    virtual QLayoutItem *itemAt(int index) const override;
-    virtual QLayoutItem *takeAt(int index) override;
-    virtual QSize sizeHint() const override;
-    virtual QSize minimumSize() const override;
-    virtual Qt::Orientations expandingDirections() const override;
-    virtual void setGeometry(const QRect &rect) override;
+    int count() const override;
+    void addItem(QLayoutItem *) override;
+    QLayoutItem *itemAt(int index) const override;
+    QLayoutItem *takeAt(int index) override;
+    QSize sizeHint() const override;
+    QSize minimumSize() const override;
+    Qt::Orientations expandingDirections() const override;
+    void setGeometry(const QRect &rect) override;
 
 public:
     void add(QLayoutItem *item, Position position);

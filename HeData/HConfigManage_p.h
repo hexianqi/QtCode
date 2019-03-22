@@ -8,7 +8,7 @@ HE_DATA_BEGIN_NAMESPACE
 class HConfigManagePrivate
 {
 public:
-    HConfigManagePrivate(IDataFactory *f);
+    HConfigManagePrivate(IDataFactory *);
 
 public:
     void readContent(QDataStream &);

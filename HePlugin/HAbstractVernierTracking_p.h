@@ -12,8 +12,8 @@ public:
     HAbstractVernierTrackingPrivate(Qt::Orientation o, QWidget *p);
 
 public:
-    virtual bool setOrientation(Qt::Orientation value);
     virtual bool setValidRegion(QRectF value);
+    virtual bool setOrientation(Qt::Orientation value);
     virtual bool setVernierColor(QColor value);
     virtual bool setVernier(int i, double percent);
     virtual void resizeVernier(int size);

@@ -17,14 +17,14 @@ class HSpecLuminous : public HAbstractCalibrateItem
 
 public:
     explicit HSpecLuminous();
-    ~HSpecLuminous();
+    ~HSpecLuminous() override;
 
 public:
-    virtual void restoreDefault() override;
+    void restoreDefault() override;
 
 public:
-    virtual void readContent(QDataStream &) override;
-    virtual void writeContent(QDataStream &) override;
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
 
 public:
     double handle(double value);

@@ -42,13 +42,13 @@ void HSpecStdCurve::writeContent(QDataStream &s)
     s << d->curve;
 }
 
-void HSpecStdCurve::setData(QVector<double> value)
+void HSpecStdCurve::setCurve(QVector<double> value)
 {
     Q_D(HSpecStdCurve);
     d->curve = value;
 }
 
-QVector<double> HSpecStdCurve::data()
+QVector<double> HSpecStdCurve::curve()
 {
     Q_D(HSpecStdCurve);
     return d->curve;

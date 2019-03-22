@@ -16,18 +16,18 @@ class HDeviceCollection : public HCollection<IDevice>, public IDeviceCollection
 {
 public:
     explicit HDeviceCollection();
-    ~HDeviceCollection();
+    virtual ~HDeviceCollection();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void addSupport(HActionType action) override;
-    virtual bool isSupport(HActionType action) override;
+    void addSupport(HActionType action) override;
+    bool isSupport(HActionType action) override;
 
 protected:
-    HDeviceCollection(HDeviceCollectionPrivate &p);
+    HDeviceCollection(HDeviceCollectionPrivate &);
 
 protected:
     QScopedPointer<HDeviceCollectionPrivate> d_ptr;

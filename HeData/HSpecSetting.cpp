@@ -1,7 +1,8 @@
 #include "HSpecSetting_p.h"
 #include "HeAlgorithm/HInterp.h"
-#include "HeAlgorithm/HSpectrumHelper.h"
+#include "HeAlgorithm/HSpecHelper.h"
 #include <QDataStream>
+#include <QtMath>
 
 HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
@@ -24,9 +25,11 @@ HSpecSetting::~HSpecSetting()
 
 void HSpecSetting::restoreDefault()
 {
-    Q_D(HSpecSetting);
-    setData("[积分时间范围]", QPointF(0.0, 500.0));
     setData("[标准色温]", 2855.61);
+    setData("[积分时间范围]", QPointF(0.0, 500.0));
+    setData("[光谱采样范围]", QPointF(6500.0, 64000.0));
+    setData("[光谱波长范围]", QPointF(380.0, 780.0));
+    setData("[光谱波长间隔]", 0.1);
     setData("[光谱平均次数]", 1);
     setData("[光谱采样延时]", 0);
     setData("[光谱保留像元]", QPoint(15, 32));
@@ -35,12 +38,6 @@ void HSpecSetting::restoreDefault()
     setData("[光谱平滑帧数]", 1);
     setData("[光谱平滑次数]", 2);
     setData("[光谱平滑范围]", 2);
-    setData("[光谱采样范围]", QPointF(6500.0, 64000.0));
-    setData("[光谱波长范围]", QPointF(380.0, 780.0));
-    setData("[光谱波长间隔]", 0.1);
-    setData("[光谱屏蔽波长范围]", QPointF(0.0, 0.0));
-    d->isUsePlanck = true;
-    d->isUseShield = false;
 }
 
 void HSpecSetting::readContent(QDataStream &s)
@@ -49,9 +46,6 @@ void HSpecSetting::readContent(QDataStream &s)
     quint32 version;
     s >> version;
     s >> d->datas;
-    s >> d->isUsePlanck;
-    s >> d->isUseShield;
-    s >> d->stdEnergy;
 }
 
 void HSpecSetting::writeContent(QDataStream &s)
@@ -59,9 +53,6 @@ void HSpecSetting::writeContent(QDataStream &s)
     Q_D(HSpecSetting);
     s << quint32(1);
     s << d->datas;
-    s << d->isUsePlanck;
-    s << d->isUseShield;
-    s << d->stdEnergy;
 }
 
 QVariantMap HSpecSetting::testParam()
@@ -78,7 +69,7 @@ int HSpecSetting::calcCommWaitTime(double &value)
     auto range = data("[积分时间范围]").toPointF();
     auto times = data("[光谱平均次数]").toInt();
     value = qBound(range.x(), value, range.y());
-    return value * times + 50;
+    return qCeil(value * times);
 }
 
 bool HSpecSetting::checkFrameOverflow(int size)
@@ -149,30 +140,10 @@ QPolygonF HSpecSetting::interpEnergy(QPolygonF value)
     return HInterp::eval(value, range.x(), range.y(), interval, HInterpType::Cspline);
 }
 
-QPolygonF HSpecSetting::shieldEnergy(QPolygonF value)
-{
-    Q_D(HSpecSetting);
-    if (!d->isUseShield)
-        return value;
-
-    QPolygonF result;
-    auto range = data("[光谱屏蔽波长范围]").toPointF();
-    for (auto p : value)
-    {
-        auto x = p.x();
-        auto y = (x >= range.x() && x <= range.y()) ? 0 : p.y();
-        result.append(QPointF(x ,y));
-    }
-    return result;
-}
-
 double HSpecSetting::calcEnergy(double wave)
 {
-    Q_D(HSpecSetting);
     auto tc = data("[标准色温]").toDouble();
-    if (d->isUsePlanck || d->stdEnergy.size() < 2)
-        return HSpectrumHelper::planck(wave, tc);
-    return HInterp::eval(d->stdEnergy, wave, HInterpType::Cspline);
+    return HSpecHelper::planck(wave, tc);
 }
 
 HE_DATA_END_NAMESPACE

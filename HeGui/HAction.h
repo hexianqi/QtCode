@@ -21,15 +21,15 @@ class HAction : public QAction, public IInvoker
 
 public:
     explicit HAction(QObject *parent = nullptr);
-    ~HAction();
+    ~HAction() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void setHandler(IHandler *) override;
-    virtual void call() override;
+    void setHandler(IHandler *) override;
+    void call() override;
 
 protected:
     HAction(HActionPrivate &p, QObject *parent = nullptr);

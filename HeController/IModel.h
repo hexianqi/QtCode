@@ -36,6 +36,13 @@ signals:
 public:
     virtual void start() = 0;
     virtual void addAction(HActionType action) = 0;
+
+public:
+    virtual bool openFile() = 0;
+    virtual bool saveFile() = 0;
+    virtual bool saveAsFile() = 0;
+    virtual bool importFile(quint32 type) = 0;
+    virtual bool exportFile(quint32 type) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

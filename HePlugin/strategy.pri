@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/IMouseStrategy.h \
     $$PWD/HAbstractMouseStrategy.h \
     $$PWD/HAbstractMouseStrategy_p.h \
     $$PWD/HVernierTracking.h \
@@ -12,7 +13,7 @@ HEADERS += \
     $$PWD/HAbstractVernierTracking.h \
     $$PWD/HAbstractVernierTracking_p.h \
     $$PWD/HGraphicsVernierTracking.h \
-    $$PWD/HGraphicsVernierTracking_p.h
+    $$PWD/HGraphicsVernierTracking_p.h \
 
 SOURCES += \
     $$PWD/HAbstractMouseStrategy.cpp \

@@ -18,17 +18,17 @@ class HE_CONTROLLER_EXPORT HThreadSpec : public HAbstractThread
 
 public:
     explicit HThreadSpec(QObject *parent = nullptr);
-    ~HThreadSpec();
+    ~HThreadSpec() override;
 
 public:
-    virtual QString typeName() override;
-    virtual QString threadInfo() override;
+    QString typeName() override;
+    QString threadInfo() override;
 
 protected:
     HThreadSpec(HThreadSpecPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual HErrorType handleAction(HActionType action) override;
+    HErrorType handleAction(HActionType action) override;
 };
 
 HE_CONTROLLER_END_NAMESPACE

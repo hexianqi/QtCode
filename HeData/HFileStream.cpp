@@ -77,7 +77,7 @@ QString HFileStream::fileFilter()
 bool HFileStream::openFile(QString caption, QString dir, QString *selectedFileName)
 {
     QString fileName;
-    fileName = QFileDialog::getOpenFileName(0, caption, dir, d_ptr->fileFilter);
+    fileName = QFileDialog::getOpenFileName(nullptr, caption, dir, d_ptr->fileFilter);
     if (fileName.isEmpty())
         return false;
     if (!readFile(fileName))
@@ -90,7 +90,7 @@ bool HFileStream::openFile(QString caption, QString dir, QString *selectedFileNa
 bool HFileStream::saveAsFile(QString caption, QString dir, QString *selectedFileName)
 {
     QString fileName;
-    fileName = QFileDialog::getSaveFileName(0, caption, dir, d_ptr->fileFilter);
+    fileName = QFileDialog::getSaveFileName(nullptr, caption, dir, d_ptr->fileFilter);
     if (fileName.isEmpty())
         return false;
     if (!writeFile(fileName))
@@ -142,7 +142,7 @@ bool HFileStream::writeFile(QString fileName)
 
 bool HFileStream::readContent(QDataStream &s)
 {
-    if (d_ptr->readContent != nullptr)
+    if (d_ptr->readContent == nullptr)
         return false;
     d_ptr->readContent(s);
     return true;
@@ -150,7 +150,7 @@ bool HFileStream::readContent(QDataStream &s)
 
 bool HFileStream::writeContent(QDataStream &s)
 {
-    if (d_ptr->writeContent != nullptr)
+    if (d_ptr->writeContent == nullptr)
         return false;
     d_ptr->writeContent(s);
     return true;

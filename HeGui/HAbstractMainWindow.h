@@ -7,62 +7,45 @@
 
 #include "HGuiGlobal.h"
 #include "HeCore/HActionType.h"
-#include "HeController/HControllerGlobal.h"
-#include "HeData/HDataGlobal.h"
+#include "HeCore/HCallorHelper.h"
 #include <QMainWindow>
 
 HE_CORE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
-class IModel;
-HE_CONTROLLER_END_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
-class IConfigManage;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HMainWindowPrivate;
 
-class HE_GUI_EXPORT HMainWindow : public QMainWindow
+class HE_GUI_EXPORT HAbstractMainWindow : public QMainWindow, public IConstructorCall
 {
     Q_OBJECT
 
 public:
-    explicit HMainWindow(QWidget *parent = nullptr);
-    ~HMainWindow();
-
-signals:
-    void configManageChanged(quint32 type);
-
-public:
-    virtual void setConfigFile(QString fileName);
-    virtual void setConfigManage(IConfigManage *);
-    virtual void setModel(IModel *);
+    explicit HAbstractMainWindow(QWidget *parent = nullptr);
+    ~HAbstractMainWindow() override;
 
 protected:
-    HMainWindow(HMainWindowPrivate &p, QWidget *parent = nullptr);
+    HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);
 
 protected slots:
     void showDeviceFailed(QString text);
     void showActionFailed(HActionType action, QString text);
     void updateStatusBar(QStringList list);
     void updateLabel(QString name, int state);
+    void updatetWindowTitle();
 
 protected slots:
     void open();
     void save();
     void saveAs();
-    void about();
     void importFile(QAction *);
     void exportFile(QAction *);
+    void about();
 
 protected:
-    virtual void init();
+    virtual void initialize() override;
     virtual void initImportExport();
+    virtual void createBuilder() = 0;
     virtual void createAction();
     virtual void createActionGroup();
     virtual void createMenu();
@@ -72,6 +55,8 @@ protected:
     virtual void initMenu();
     virtual void initToolBar();
     virtual void initStatusBar();
+    virtual void initModel();
+    virtual void initCentralWidget();
 
 protected:
     virtual QString summary();

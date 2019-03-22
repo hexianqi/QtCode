@@ -19,7 +19,7 @@ class QDESIGNER_WIDGET_EXPORT HZoomChartView : public QChartView
 public:
     explicit HZoomChartView(QWidget *parent = Q_NULLPTR);
     explicit HZoomChartView(QChart *chart, QWidget *parent = Q_NULLPTR);
-    ~HZoomChartView();
+    ~HZoomChartView() override;
 
 protected:
     HZoomChartView(HZoomChartViewPrivate &p, QWidget *parent = nullptr);

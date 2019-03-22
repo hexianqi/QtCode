@@ -1,28 +1,41 @@
 #ifndef HMAINWINDOW_P_H
 #define HMAINWINDOW_P_H
 
-#include "HMainWindow.h"
+#include "HAbstractMainWindow.h"
+#include "HeController/HControllerGlobal.h"
+#include "HeData/HDataGlobal.h"
 #include <QMap>
 
 class QLabel;
 class QActionGroup;
 
+HE_CONTROLLER_BEGIN_NAMESPACE
+class IModel;
+HE_CONTROLLER_END_NAMESPACE
+HE_CONTROLLER_USE_NAMESPACE
+
 HE_GUI_BEGIN_NAMESPACE
+
+class IBuilder;
+class ITestWidget;
 
 class HE_GUI_EXPORT HMainWindowPrivate
 {
 public:
-    HMainWindowPrivate(HMainWindow *p);
+    HMainWindowPrivate(HAbstractMainWindow *p);
 
 public:
-    HMainWindow *q_ptr;
-    QString cfgFileName;
-    IConfigManage *configManage;
+    HAbstractMainWindow *q_ptr;
+    IBuilder *builder;
     IModel *model;
+    ITestWidget *testWidget;
 
 public:
     QMap<QString, quint32> importExport;
     QMap<QString, QLabel *> labels;
+
+public:
+    QPixmap logo;
 
 public:
     QAction *actionOpen;
@@ -45,6 +58,9 @@ public:
     QMenu *menuExport;
     QMenu *menuDatabase;
     QMenu *menuHelp;
+
+public:
+    QToolBar *toolBarLogo;
 };
 
 HE_GUI_END_NAMESPACE

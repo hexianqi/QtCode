@@ -4,13 +4,8 @@
 #include "HPluginHelper.h"
 #include <QAction>
 
-HCIE1931ViewPrivate::HCIE1931ViewPrivate(HCIE1931View *q)
-    : HZoomChartViewPrivate(q)
-{
-}
-
 HCIE1931View::HCIE1931View(QWidget *parent)
-    : HZoomChartView(*new HCIE1931ViewPrivate(this), parent)
+    : HZoomChartView(*new HCIE1931ViewPrivate, parent)
 {
     init();
 }

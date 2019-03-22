@@ -15,30 +15,30 @@ class HE_CORE_EXPORT HFactory
 {
 public:
     // 注册类
-    template<typename T>
+    template <typename T>
     static void registerClass(QString className);
     // 创建对象
-    template<typename T>
+    template <typename T>
     static T *createObject(QString className);
     // 创建对象
-    template<typename T>
+    template <typename T>
     static T *createObject(QString className, QVariantMap param);
 
 protected:
-    template<typename T>
+    template <typename T>
     static void *constructorHelper();
 
 protected:
     static QHash<QString, std::function<void *()>> __hashConstructor;
 };
 
-template<typename T>
+template <typename T>
 void HFactory::registerClass(QString className)
 {
     __hashConstructor.insert(className, &constructorHelper<T>);
 }
 
-template<typename T>
+template <typename T>
 T *HFactory::createObject(QString className)
 {
     if (!__hashConstructor.contains(className))
@@ -46,7 +46,7 @@ T *HFactory::createObject(QString className)
     return static_cast<T *>(__hashConstructor[className]());
 }
 
-template<typename T>
+template <typename T>
 T *HFactory::createObject(QString className, QVariantMap param)
 {
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");
@@ -56,7 +56,7 @@ T *HFactory::createObject(QString className, QVariantMap param)
     return t;
 }
 
-template<typename T>
+template <typename T>
 void *HFactory::constructorHelper()
 {
     return new T();

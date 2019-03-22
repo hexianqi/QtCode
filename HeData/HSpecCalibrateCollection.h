@@ -19,16 +19,16 @@ class HSpecCalibrateCollection : public HCollection<ISpecCalibrate>, public ISpe
 
 public:
     explicit HSpecCalibrateCollection(IDataFactory *);
-    ~HSpecCalibrateCollection();
+    virtual ~HSpecCalibrateCollection();
 
 public:
-    virtual QString typeName() override;
+    QString typeName() override;
 
 public:
-    virtual IFileStream *fileStream() override;
+    IFileStream *fileStream() override;
 
 protected:
-    HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &p);
+    HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &);
 
 protected:
     void readContent(QDataStream &);

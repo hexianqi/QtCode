@@ -10,7 +10,7 @@
 class QReadWriteLock;
 
 HE_ALGORITHM_BEGIN_NAMESPACE
-class HSpectrumFacade;
+class HSpecFacade;
 HE_ALGORITHM_END_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
 
@@ -36,7 +36,7 @@ public:
 
 public:
     QReadWriteLock *lock;
-    HSpectrumFacade *spectrumFacade;
+    HSpecFacade *spectrumFacade;
     ISpecCalibrate *calibrate;
     bool fitting = true;
     double maxSample = 0;

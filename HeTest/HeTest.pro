@@ -31,18 +31,18 @@ SOURCES     += \
             main.cpp \
             MainWindow.cpp \
             HTestAlgorithm.cpp \
-    HTestPlugin.cpp \
-    HTestChart.cpp \
-    HTestGsl.cpp \
-    HChartView.cpp
+            HTestPlugin.cpp \
+            HTestChart.cpp \
+            HTestGsl.cpp \
+            HChartView.cpp
 
 HEADERS     += \
             MainWindow.h \
             HTestAlgorithm.h \
-    HTestPlugin.h \
-    HTestChart.h \
-    HTestGsl.h \
-    HChartView.h
+            HTestPlugin.h \
+            HTestChart.h \
+            HTestGsl.h \
+            HChartView.h
 
 FORMS       += \
             MainWindow.ui
@@ -50,7 +50,7 @@ FORMS       += \
 RESOURCES   += \
             HeTest.qrc
 
-INCLUDEPATH += .. D:/Qt/gsl/include
+INCLUDEPATH += .. D:/Qt/gsl64/include
 
 Debug {
     CONFIG  += console

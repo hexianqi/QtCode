@@ -5,31 +5,23 @@
 #ifndef HABSTRACTMOUSESTRATEGY_H
 #define HABSTRACTMOUSESTRATEGY_H
 
+#include "IMouseStrategy.h"
 #include <QObject>
 
-class QPaintEvent;
-class QMouseEvent;
 class HAbstractMouseStrategyPrivate;
 
-class HAbstractMouseStrategy : public QObject
+class HAbstractMouseStrategy : public QObject, public IMouseStrategy
 {
     Q_OBJECT
 
 public:
     explicit HAbstractMouseStrategy(QWidget *parent = nullptr);
-    ~HAbstractMouseStrategy();
+    ~HAbstractMouseStrategy() override;
 
 public:
-    virtual bool setValidRegion(QRectF value);
-    virtual bool setEnable(bool b);
-
-public:
-    bool isEnable();
-
-public:
-    virtual bool mousePressEvent(QMouseEvent *) = 0;
-    virtual bool mouseMoveEvent(QMouseEvent *) = 0;
-    virtual bool mouseReleaseEvent(QMouseEvent *) = 0;
+    bool setValidRegion(QRectF value) override;
+    bool setEnable(bool b) override;
+    bool isEnable() override;
 
 protected:
     HAbstractMouseStrategy(HAbstractMouseStrategyPrivate &p, QWidget *parent = nullptr);

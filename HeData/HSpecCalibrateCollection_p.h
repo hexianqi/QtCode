@@ -7,8 +7,6 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HSpecCalibrateCollectionPrivate
 {
-    Q_DECLARE_PUBLIC(HSpecCalibrateCollection)
-
 public:
     HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *, IDataFactory *);
 

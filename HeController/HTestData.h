@@ -15,16 +15,16 @@ class HTestData : virtual public ITestData
 {
 public:
     explicit HTestData();
-    ~HTestData();
+    virtual ~HTestData();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void setSuccessor(ITestData *) override;
-    virtual void setData(QString type, QVariant value) override;
-    virtual QVariant data(QString type) override;
+    void setSuccessor(ITestData *) override;
+    void setData(QString type, QVariant value) override;
+    QVariant data(QString type) override;
 
 protected:
     HTestData(HTestDataPrivate &p);

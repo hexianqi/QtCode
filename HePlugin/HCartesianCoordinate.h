@@ -19,9 +19,9 @@ public:
 
 public:
     // 位置转换
-    static QPointF map(QRectF target, QPointF data, QRectF source);
-    static QPolygonF map(QRectF target, QPolygonF data, QRectF source);
-    static QRectF map(QRectF target, QRectF data, QRectF source);
+    static QPointF map(QPointF data, QRectF target, QRectF source);
+    static QPolygonF map(QPolygonF data, QRectF target, QRectF source);
+    static QRectF map(QRectF data, QRectF target, QRectF source);
     // 计算合适的坐标轴
     static void adjustAxis(double &min, double &max, int &tick);
 

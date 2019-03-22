@@ -1,6 +1,7 @@
 HEADERS += \
-#    $$PWD/HMainWindow.h \
-#    $$PWD/HMainWindow_p.h
+    $$PWD/ITestWidget.h \
+    $$PWD/HAbstractTestWidget.h \
+    $$PWD/HAbstractTestWidget_p.h
 
 SOURCES += \
-#    $$PWD/HMainWindow.cpp
+    $$PWD/HAbstractTestWidget.cpp

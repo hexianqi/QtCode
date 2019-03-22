@@ -63,4 +63,4 @@ unix {
 }
 
 include(extend.pri)
-include(spectrum.pri)
+include(spec.pri)

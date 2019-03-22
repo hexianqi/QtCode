@@ -17,22 +17,22 @@ class HDeviceSL : public HAbstractDevice
 
 public:
     explicit HDeviceSL();
-    ~HDeviceSL();
+    ~HDeviceSL() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
+    HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
+    HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 public:
     virtual void setEncrypt(QVector<bool> value);
     virtual void setCheckCode(QVector<bool> value);
 
 protected:
-    HDeviceSL(HDeviceSLPrivate &p);
+    HDeviceSL(HDeviceSLPrivate &);
 
 protected:
     virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);

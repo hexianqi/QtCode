@@ -241,7 +241,7 @@ void HCartesianWidget::init()
     d->actionResetCoordinate = new QAction(this);
     d->actionResetCoordinate->setText(tr("还原(&R)"));
     connect(this, &HCartesianWidget::plotAreaChanged, d->zoom, &HCartesianZoom::setValidRegion);
-    connect(d->zoom, &HCartesianZoom::coordinateChanged, this, handleCoordinateChanged);
+    connect(d->zoom, &HCartesianZoom::coordinateChanged, this, &HCartesianWidget::handleCoordinateChanged);
     connect(d->actionResetCoordinate, &QAction::triggered, d->zoom, &HCartesianZoom::resetCoordinate);
     addAction(d->actionResetCoordinate);
     setCoordinate(new HCartesianCoordinate(this));

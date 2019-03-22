@@ -6,6 +6,7 @@
 #include "HProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
+#include <QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -23,6 +24,7 @@ HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject 
 
 HCommunicateFactory::~HCommunicateFactory()
 {
+    qDebug() << __func__;
 }
 
 void HCommunicateFactory::initialize(QVariantMap /*param*/)

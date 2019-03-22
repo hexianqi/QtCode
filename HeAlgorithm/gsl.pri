@@ -17,11 +17,11 @@ SOURCES += \
 DEFINES     += GSL_DLL  #此句不加将会遇到一些连接错误
 
 LIBS        += \
-            -LD:/Qt/gsl/lib/ -lgsl \
-            -LD:/Qt/gsl/lib/ -lgslcblas
+            -LD:/Qt/gsl64/lib/ -lgsl \
+            -LD:/Qt/gsl64/lib/ -lgslcblas
 
-INCLUDEPATH += D:/Qt/gsl/include
-DEPENDPATH  += D:/Qt/gsl/include
+INCLUDEPATH += D:/Qt/gsl64/include
+DEPENDPATH  += D:/Qt/gsl64/include
 
 include(gsl_sf.pri)
 include(gsl_interp.pri)

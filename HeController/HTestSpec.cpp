@@ -1,6 +1,6 @@
 #include "HTestSpec_p.h"
-#include "HeAlgorithm/HSpectrumData.h"
-#include "HeAlgorithm/HSpectrumFacade.h"
+#include "HeAlgorithm/HSpecData.h"
+#include "HeAlgorithm/HSpecFacade.h"
 #include "HeData/ISpecCalibrate.h"
 #include <QVector>
 #include <QQueue>
@@ -11,7 +11,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 HTestSpecPrivate::HTestSpecPrivate()
 {
     lock = new QReadWriteLock;
-    spectrumFacade = new HSpectrumFacade;
+    spectrumFacade = new HSpecFacade;
     samples.resize(2);
     addData("[光谱采样等待时间]", 0);
     addData("[积分时间]", 10);
@@ -69,7 +69,7 @@ bool HTestSpecPrivate::calcSpectrum()
     if (checkEnergyOverflow() != 0)
         return false;
 
-    HSpectrumData *sp = new HSpectrumData;
+    HSpecData *sp = new HSpecData;
     sp->Energy = calibrate->calcEnergy(samples[1]);
     if(sp->Energy.isEmpty())
         return false;

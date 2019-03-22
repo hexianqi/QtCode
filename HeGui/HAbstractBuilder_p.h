@@ -26,7 +26,6 @@ HE_DATA_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
 
 class IGuiFactory;
-class HMainWindow;
 
 class HAbstractBuilderPrivate
 {
@@ -37,7 +36,7 @@ public:
     IGuiFactory *guiFactory = nullptr;
     IConfigManage *configManage = nullptr;
     IModel *model = nullptr;
-    HMainWindow *window = nullptr;
+    QString configFileName;
 };
 
 HE_GUI_END_NAMESPACE

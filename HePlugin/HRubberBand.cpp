@@ -58,8 +58,7 @@ bool HRubberBand::mouseReleaseEvent(QMouseEvent *e)
         return false;
 
     d->rubberBand->hide();
-    auto rect = d->validRegion.intersected(d->rubberBand->geometry());
-    rect = rect.normalized();
+    auto rect = d->validRegion.intersected(d->rubberBand->geometry()).normalized();
     if (rect.width() < 4 || rect.height() < 4)
         return false;
     emit rubberBandChanged(rect);

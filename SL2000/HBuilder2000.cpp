@@ -31,7 +31,7 @@ HBuilder2000::~HBuilder2000()
     qDebug() << __func__;
 }
 
-HMainWindow *HBuilder2000::createMainWindow()
+QWidget *HBuilder2000::createWidget()
 {
     Q_D(HBuilder2000);
     buildFactory();
@@ -41,8 +41,8 @@ HMainWindow *HBuilder2000::createMainWindow()
     buildThread();
     buildModel();
     buildMainWindow();
-//    buildMenu();
-    initMainWindow();
+    buildMenu();
+ //   initMainWindow();
     return d->window;
 }
 
@@ -116,7 +116,7 @@ void HBuilder2000::buildThread()
 void HBuilder2000::buildModel()
 {
     Q_D(HBuilder2000);
-    d->model = new HModel2000;
+    d->model = new HModel2000(this);
     HAppContext::setContextPointer("IModel", d->model);
 }
 
@@ -124,17 +124,17 @@ void HBuilder2000::buildMainWindow()
 {
     Q_D(HBuilder2000);
     d->window = new HMainWindow2000;
-    connect(d->window, &HMainWindow::configManageChanged, this, syncData);
+    connect(d->window, &HAbstractMainWindow::configManageChanged, this, &HBuilder2000::syncData);
     HAppContext::setContextPointer("MainWindow", d->window);
 }
 
-//void HBuilder2000::buildMenu()
-//{
+void HBuilder2000::buildMenu()
+{
 //    Q_D(HBuilder2000);
 //    auto help = d->window->menuBar()->addMenu("帮助(&H)");
 //    help->addAction(d->guiFactory->createAction(tr("关于(&A)..."), "HAboutHandler"));
 //    help->addAction(d->guiFactory->createAction(tr("测试..."), "HTestHandler"));
-//}
+}
 
 void HBuilder2000::initMainWindow()
 {
@@ -175,8 +175,6 @@ void HBuilder2000::syncData(quint32 type)
     }
 }
 
-
-
 //void HBuilder2000::buildProtocol()
 //{
 //    Q_D(HBuilder2000);
@@ -187,5 +185,3 @@ void HBuilder2000::syncData(quint32 type)
 //    protocols->insert("Spec", protocol);
 //    HAppContext::setContextPointer("IProtocolCollection", protocols);
 //}
-
-

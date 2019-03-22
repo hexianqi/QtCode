@@ -129,5 +129,3 @@ void HCartesianZoom::init()
     connect(d->zoomIn, &QToolButton::clicked, this, zoomIn);
     connect(d->zoomOut, &QToolButton::clicked, this, zoomOut);
 }
-
-

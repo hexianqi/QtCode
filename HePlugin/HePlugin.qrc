@@ -6,5 +6,8 @@
         <file>image/CIE1931.png</file>
         <file>image/CIE1931_s.png</file>
         <file>image/7color.png</file>
+        <file>image/Copy.png</file>
+        <file>image/Paste.png</file>
+        <file>image/Table.png</file>
     </qresource>
 </RCC>

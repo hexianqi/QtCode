@@ -29,14 +29,14 @@ public:
     // 获取上下文数值
     static QVariant getContextValue(QString key);
     // 获取上下文数值
-    template<class T>
+    template<typename T>
     static T getContextValue(QString key);
     // 设置上下文指针
     static void setContextPointer(QString key, void *value);
     // 获取上下文指针
     static void *getContextPointer(QString key);
     // 获取上下文指针
-    template<class T>
+    template<typename T>
     static T *getContextPointer(QString key);
 
 protected:
@@ -44,13 +44,13 @@ protected:
     static QHash<QString, void *> __contextPointer;
 };
 
-template<class T>
+template<typename T>
 T HAppContext::getContextValue(QString key)
 {
     return getContextValue(key).value<T>();
 }
 
-template<class T>
+template<typename T>
 T *HAppContext::getContextPointer(QString key)
 {
     return static_cast<T *>(getContextPointer(key));

@@ -11,20 +11,20 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HSpecSettingPrivate;
 
-class HSpecSetting : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecSetting : public HAbstractCalibrateItem
 {
     Q_DECLARE_PRIVATE(HSpecSetting)
 
 public:
     explicit HSpecSetting();
-    ~HSpecSetting();
+    ~HSpecSetting() override;
 
 public:
-    virtual void restoreDefault() override;
+    void restoreDefault() override;
 
 public:
-    virtual void readContent(QDataStream &) override;
-    virtual void writeContent(QDataStream &) override;
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
 
 public:
     // 测量参数
@@ -41,8 +41,6 @@ public:
     QVector<double> smoothCurve(QVector<double> value);
     // 计算并插值光谱能量，value是波长和采样值与标准曲线比值的集合
     QPolygonF interpEnergy(QPolygonF value);
-    // 屏蔽能量
-    QPolygonF shieldEnergy(QPolygonF value);
 
 protected:
     HSpecSetting(HSpecSettingPrivate &p);

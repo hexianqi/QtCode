@@ -1,6 +1,6 @@
 HEADERS += \
-    $$PWD/HMainWindow.h \
-    $$PWD/HMainWindow_p.h
+    $$PWD/HAbstractMainWindow.h \
+    $$PWD/HAbstractMainWindow_p.h
 
 SOURCES += \
-    $$PWD/HMainWindow.cpp
+    $$PWD/HAbstractMainWindow.cpp

@@ -9,7 +9,6 @@
 
 class HCIE1931ViewPrivate;
 class HCIE1931Chart;
-class HPositionTracking;
 
 class QDESIGNER_WIDGET_EXPORT HCIE1931View : public HZoomChartView
 {
@@ -18,7 +17,7 @@ class QDESIGNER_WIDGET_EXPORT HCIE1931View : public HZoomChartView
 
 public:
     explicit HCIE1931View(QWidget *parent = nullptr);
-    ~HCIE1931View();
+    ~HCIE1931View() override;
 
 signals:
     void mouseDoubleClicked(QPointF point);
@@ -30,8 +29,8 @@ public:
     HCIE1931Chart *cieChart();
 
 protected:
-    virtual void mouseMoveEvent(QMouseEvent *) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 protected slots:
     void handlePlotAreaChanged(QRectF value);

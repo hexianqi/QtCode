@@ -47,11 +47,11 @@ public:
     double singleStep() const;
 
 public:
-    QDoubleValidator *toDoubleValidator(QObject * parent);
-    QIntValidator *toIntValidator(QObject * parent);
+    QDoubleValidator *toDoubleValidator(QObject *parent);
+    QIntValidator *toIntValidator(QObject *parent);
 
 protected:
-    HDataFormatInfo(HDataFormatInfoPrivate &p);
+    HDataFormatInfo(HDataFormatInfoPrivate &);
 
 protected:
     QSharedDataPointer<HDataFormatInfoPrivate> d_ptr;

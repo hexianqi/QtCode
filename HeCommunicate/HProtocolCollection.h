@@ -16,13 +16,13 @@ class HProtocolCollection : public HCollection<IProtocol>, public IProtocolColle
 {
 public:
     explicit HProtocolCollection();
-    ~HProtocolCollection();
+    virtual ~HProtocolCollection();
 
 public:
-    virtual QString typeName() override;
+    QString typeName() override;
 
 protected:
-    HProtocolCollection(HProtocolCollectionPrivate &p);
+    HProtocolCollection(HProtocolCollectionPrivate &);
 
 protected:
     QScopedPointer<HProtocolCollectionPrivate> d_ptr;

@@ -20,15 +20,15 @@ class HAbstractThread : public IThread
 
 public:
     explicit HAbstractThread(QObject *parent = nullptr);
-    ~HAbstractThread();
+    ~HAbstractThread() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param) override;
 
 public:
-    virtual void stop() override;
-    virtual void addAction(HActionType action) override;
-    virtual void clearAction() override;
+    void stop() override;
+    void addAction(HActionType action) override;
+    void clearAction() override;
 
 protected:
     HAbstractThread(HAbstractThreadPrivate &p, QObject *parent = nullptr);

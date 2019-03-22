@@ -18,20 +18,20 @@ public:
     virtual ~HAbstractDevice();
 
 public:
-    virtual void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param) override;
 
 public:
-    virtual bool isSupport(HActionType action) override;
-    virtual void setPort(IPort *port, int num = 0, bool scan = true) override;
-    virtual void setDeviceID(int id) override;
-    virtual void addActionParam(HActionType action, QList<uchar> value) override;
+    bool isSupport(HActionType action) override;
+    void setPort(IPort *port, int num = 0, bool scan = true) override;
+    void setDeviceID(int id) override;
+    void addActionParam(HActionType action, QList<uchar> value) override;
 
 public:
-    virtual HErrorType open() override;
-    virtual HErrorType close() override;
+    HErrorType open() override;
+    HErrorType close() override;
 
 protected:
-    HAbstractDevice(HAbstractDevicePrivate &p);
+    HAbstractDevice(HAbstractDevicePrivate &);
 
 protected:
     virtual HErrorType open(int num);

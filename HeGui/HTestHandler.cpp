@@ -9,6 +9,10 @@ HTestHandler::HTestHandler(QObject *parent)
 {
 }
 
+HTestHandler::~HTestHandler()
+{
+}
+
 QString HTestHandler::typeName()
 {
     return "HTestHandler";

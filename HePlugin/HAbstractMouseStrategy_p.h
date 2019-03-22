@@ -14,8 +14,8 @@ public:
 
 public:
     QWidget *parent;
-    bool enable = true;
     QRectF validRegion;
+    bool enable = true;
 };
 
 #endif // HABSTRACTMOUSESTRATEGY_P_H

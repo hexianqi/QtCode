@@ -10,13 +10,13 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HSpectrumData;
+class HSpecData;
 
 class HE_ALGORITHM_EXPORT IChromaticity
 {
 public:
     // 计算光谱参数
-    virtual void calcSpectrum(HSpectrumData *) = 0;
+    virtual void calcSpectrum(HSpecData *) = 0;
     // 计算等温线段
     virtual QLineF calcIsothermUv(double tc, double duv) = 0;
     virtual QLineF calcIsothermUv(double tc, double duvB, double duvE) = 0;

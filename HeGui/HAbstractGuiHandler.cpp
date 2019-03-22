@@ -1,5 +1,5 @@
 #include "HAbstractGuiHandler_p.h"
-#include "HMainWindow.h"
+#include "HAbstractMainWindow.h"
 #include "HeCore/HAppContext.h"
 #include <QDebug>
 

@@ -18,28 +18,28 @@ class HFileStream : public QObject, public IFileStream
 
 public:
     explicit HFileStream(QObject *parent = nullptr);
-    ~HFileStream();
+    ~HFileStream() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void setMagicNumber(quint32 value) override;
-    virtual void setFileVersion(quint32 value) override;
-    virtual void setFileFilter(QString value) override;
-    virtual void setReadContent(std::function<void(QDataStream &)> func) override;
-    virtual void setWriteContent(std::function<void(QDataStream &)> func) override;
-    virtual quint32 fileVersion() override;
-    virtual QString fileFilter() override;
+    void setMagicNumber(quint32 value) override;
+    void setFileVersion(quint32 value) override;
+    void setFileFilter(QString value) override;
+    void setReadContent(std::function<void(QDataStream &)> func) override;
+    void setWriteContent(std::function<void(QDataStream &)> func) override;
+    quint32 fileVersion() override;
+    QString fileFilter() override;
 
 public:
-    virtual bool openFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = 0) override;
-    virtual bool saveAsFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = 0) override;
-    virtual bool readFile(QString fileName) override;
-    virtual bool writeFile(QString fileName) override;
-    virtual bool readContent(QDataStream &) override;
-    virtual bool writeContent(QDataStream &) override;
+    bool openFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = nullptr) override;
+    bool saveAsFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = nullptr) override;
+    bool readFile(QString fileName) override;
+    bool writeFile(QString fileName) override;
+    bool readContent(QDataStream &) override;
+    bool writeContent(QDataStream &) override;
 
 protected:
     HFileStream(HFileStreamPrivate &p, QObject *parent = nullptr);

@@ -1,4 +1,4 @@
-#include "HSpectrumHelper.h"
+#include "HSpecHelper.h"
 #include <QPolygonF>
 #include <QtMath>
 
@@ -7,7 +7,7 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 const double C1 = 3.741844e-12;
 const double C2 = 1.438833;
 
-QPointF HSpectrumHelper::xy2uv(QPointF xy)
+QPointF HSpecHelper::xy2uv(QPointF xy)
 {
     auto x = xy.x();
     auto y = xy.y();
@@ -16,7 +16,7 @@ QPointF HSpectrumHelper::xy2uv(QPointF xy)
     return QPointF(u, v);
 }
 
-QPointF HSpectrumHelper::uv2xy(QPointF uv)
+QPointF HSpecHelper::uv2xy(QPointF uv)
 {
     auto u = uv.x();
     auto v = uv.y();
@@ -25,12 +25,12 @@ QPointF HSpectrumHelper::uv2xy(QPointF uv)
     return QPointF(x, y);
 }
 
-QPointF HSpectrumHelper::uv2uvp(QPointF uv)
+QPointF HSpecHelper::uv2uvp(QPointF uv)
 {
     return QPointF(uv.x(), 1.5 * uv.y());
 }
 
-QPointF HSpectrumHelper::uv2cd(QPointF uv)
+QPointF HSpecHelper::uv2cd(QPointF uv)
 {
     auto u = uv.x();
     auto v = uv.y();
@@ -47,13 +47,13 @@ QPointF HSpectrumHelper::uv2cd(QPointF uv)
 **      C1 = 2 * M_PI * h * c * c;
 **      C2 = h * c / k;
 ***************************************************************************************************/
-double HSpectrumHelper::planck(double wave, double tc)
+double HSpecHelper::planck(double wave, double tc)
 {
     wave *= 1e-7;
     return C1 / qPow(wave, 5) / (qExp(C2 / (wave * tc)) - 1);
 }
 
-double HSpectrumHelper::planckPrime(double wave, double tc)
+double HSpecHelper::planckPrime(double wave, double tc)
 {
     wave *= 1e-7;
     auto temp = qExp(C2 / wave / tc);

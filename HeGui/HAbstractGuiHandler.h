@@ -15,10 +15,10 @@ class HAbstractGuiHandler : public IGuiHandler
 {
 public:
     explicit HAbstractGuiHandler(QObject *parent = nullptr);
-    ~HAbstractGuiHandler();
+    ~HAbstractGuiHandler() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param) override;
 
 protected:
     HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject *parent = nullptr);

@@ -3,12 +3,17 @@
 #include "IThreadCollection.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IDeviceCollection.h"
+#include "HeData/IConfigManage.h"
+#include "HeData/IFileStream.h"
 #include <QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 HAbstractModelPrivate::HAbstractModelPrivate()
 {
+    initialized = false;
+    configFileName = HAppContext::getContextValue<QString>("ConfigFileName");
+    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     devices = HAppContext::getContextPointer<IDeviceCollection>("IDeviceCollection");
     threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
 }
@@ -26,13 +31,22 @@ HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent)
 HAbstractModel::~HAbstractModel()
 {
     qDebug() << __func__;
-    stopThread();
+    if (d_ptr->initialized)
+        stopThread();
+}
+
+void HAbstractModel::initialize(QVariantMap /*param*/)
+{
 }
 
 void HAbstractModel::start()
 {
+    if (d_ptr->initialized)
+        return;
+
     initThread();
     startThread();
+    d_ptr->initialized = true;
 }
 
 void HAbstractModel::addAction(HActionType action)
@@ -50,17 +64,54 @@ void HAbstractModel::addAction(HActionType action)
         t->addAction(action);
 }
 
+bool HAbstractModel::openFile()
+{
+    QString fileName;
+    if (!d_ptr->configManage->fileStream()->openFile("", ".", &fileName))
+        return false;
+    setConfigFile(fileName);
+    syncTestData(d_ptr->configManage->contain());
+    return true;
+}
+
+bool HAbstractModel::saveFile()
+{
+    return d_ptr->configManage->fileStream()->writeFile(d_ptr->configFileName);
+}
+
+bool HAbstractModel::saveAsFile()
+{
+    QString fileName;
+    if (!d_ptr->configManage->fileStream()->saveAsFile("", ".", &fileName))
+        return false;
+    setConfigFile(fileName);
+    return true;
+}
+
+bool HAbstractModel::importFile(quint32 type)
+{
+    if (!d_ptr->configManage->importPart(type))
+        return false;
+    syncTestData(type);
+    return true;
+}
+
+bool HAbstractModel::exportFile(quint32 type)
+{
+    return d_ptr->configManage->exportPart(type);
+}
+
 void HAbstractModel::initThread()
 {
     QStringList list;
     for (auto t : d_ptr->threads->values())
     {
         t->setParent(this);
-        connect(t, &IThread::startFailed, this, &IModel::threadStartFailed);
+        connect(t, &IThread::startFailed, this, &HAbstractModel::threadStartFailed);
         connect(t, &IThread::startFinished, [=]{ emit threadStateChanged(t->threadInfo(), 1); });
         connect(t, &IThread::stopFinished, [=]{ emit threadStateChanged(t->threadInfo(), 0); });
-        connect(t, &IThread::actionFailed, this, &IModel::actionFailed);
-        connect(t, &IThread::actionFinished, this, &IModel::actionFinished);
+        connect(t, &IThread::actionFailed, this, &HAbstractModel::actionFailed);
+        connect(t, &IThread::actionFinished, this, &HAbstractModel::actionFinished);
         list << t->threadInfo();
     }
     emit threadInitFinished(list);
@@ -76,6 +127,12 @@ void HAbstractModel::stopThread()
 {
     for (auto t : d_ptr->threads->values())
         t->stop();
+}
+
+void HAbstractModel::setConfigFile(QString fileName)
+{
+    d_ptr->configFileName = fileName;
+    HAppContext::setContextValue("ConfigFileName", fileName);
 }
 
 HE_CONTROLLER_END_NAMESPACE

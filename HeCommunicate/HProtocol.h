@@ -15,36 +15,36 @@ class HProtocol : public IProtocol
 {
 public:
     explicit HProtocol();
-    ~HProtocol();
+    virtual ~HProtocol();
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual void setDevice(IDevice *device) override;
-    virtual HErrorType open() override;
-    virtual HErrorType close() override;
+    void setDevice(IDevice *) override;
+    HErrorType open() override;
+    HErrorType close() override;
 
 public:
-    virtual HErrorType setData(HActionType action, int value, int delay = 0) override;
-    virtual HErrorType setData(HActionType action, uchar value, int delay = 0) override;
-    virtual HErrorType setData(HActionType action, uint value, int delay = 0) override;
-    virtual HErrorType setData(HActionType action, QVector<int> value, int delay = 0) override;
-    virtual HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
-    virtual HErrorType setData(HActionType action, QVector<uint> value, int delay = 0) override;
+    HErrorType setData(HActionType action, int value, int delay = 0) override;
+    HErrorType setData(HActionType action, uchar value, int delay = 0) override;
+    HErrorType setData(HActionType action, uint value, int delay = 0) override;
+    HErrorType setData(HActionType action, QVector<int> value, int delay = 0) override;
+    HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
+    HErrorType setData(HActionType action, QVector<uint> value, int delay = 0) override;
 
 public:
-    virtual HErrorType getData(HActionType action, int &value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, uchar &value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, uint &value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
-    virtual HErrorType getData(HActionType action, QVector<double> &value, int delay = 0) override;
+    HErrorType getData(HActionType action, int &value, int delay = 0) override;
+    HErrorType getData(HActionType action, uchar &value, int delay = 0) override;
+    HErrorType getData(HActionType action, uint &value, int delay = 0) override;
+    HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) override;
+    HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
+    HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
+    HErrorType getData(HActionType action, QVector<double> &value, int delay = 0) override;
 
 protected:
-    HProtocol(HProtocolPrivate &p);
+    HProtocol(HProtocolPrivate &);
 
 protected:
     QScopedPointer<HProtocolPrivate> d_ptr;

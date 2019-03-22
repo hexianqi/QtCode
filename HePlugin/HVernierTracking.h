@@ -7,6 +7,7 @@
 
 #include "HAbstractVernierTracking.h"
 
+class QPaintEvent;
 class HVernierTrackingPrivate;
 
 class HVernierTracking : public HAbstractVernierTracking

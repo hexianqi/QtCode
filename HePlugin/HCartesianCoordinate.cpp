@@ -18,7 +18,7 @@ HCartesianCoordinate::~HCartesianCoordinate()
 {
 }
 
-QPointF HCartesianCoordinate::map(QRectF target, QPointF data, QRectF source)
+QPointF HCartesianCoordinate::map(QPointF data, QRectF target, QRectF source)
 {
     auto dx = target.width() / source.width();
     auto dy = target.height() / source.height();
@@ -27,7 +27,7 @@ QPointF HCartesianCoordinate::map(QRectF target, QPointF data, QRectF source)
     return QPointF(x, y);
 }
 
-QPolygonF HCartesianCoordinate::map(QRectF target, QPolygonF data, QRectF source)
+QPolygonF HCartesianCoordinate::map(QPolygonF data, QRectF target, QRectF source)
 {
     QPolygonF poly;
     auto dx = target.width() / source.width();
@@ -41,7 +41,7 @@ QPolygonF HCartesianCoordinate::map(QRectF target, QPolygonF data, QRectF source
     return poly;
 }
 
-QRectF HCartesianCoordinate::map(QRectF target, QRectF data, QRectF source)
+QRectF HCartesianCoordinate::map(QRectF data, QRectF target, QRectF source)
 {
     auto dx = target.width() / source.width();
     auto dy = target.height() / source.height();
@@ -52,10 +52,10 @@ QRectF HCartesianCoordinate::map(QRectF target, QRectF data, QRectF source)
 
 void HCartesianCoordinate::adjustAxis(double &min, double &max, int &tick)
 {
-    const int MinTicks = 4;
+    const int minTicks = 4;
     double grossStep,step;
 
-    grossStep = (max - min) / MinTicks;
+    grossStep = (max - min) / minTicks;
     step = qPow(10.0, qFloor(log10(grossStep)));
 
     if ( 5 * step < grossStep)
@@ -64,8 +64,8 @@ void HCartesianCoordinate::adjustAxis(double &min, double &max, int &tick)
         step *= 2;
 
     tick = int(qCeil(max / step) - qFloor(min / step));
-    if (tick < MinTicks)
-        tick = MinTicks;
+    if (tick < minTicks)
+        tick = minTicks;
     min = qFloor(min / step) * step;
     max = qCeil(max / step) * step;
 }
@@ -140,30 +140,30 @@ QStringList HCartesianCoordinate::axisY()
 
 QPointF HCartesianCoordinate::mapToPosition(QPointF value, QRectF logic)
 {
-    return map(logic, value, d_ptr->axis);
+    return map(value, logic, d_ptr->axis);
 }
 
 QPolygonF HCartesianCoordinate::mapToPosition(QPolygonF value, QRectF logic)
 {
-    return map(logic, value, d_ptr->axis);
+    return map(value, logic, d_ptr->axis);
 }
 
 QPointF HCartesianCoordinate::mapToValue(QPointF position, QRectF logic)
 {
-    return map(d_ptr->axis, position, logic);
+    return map(position, d_ptr->axis, logic);
 }
 
 QPolygonF HCartesianCoordinate::mapToValue(QPolygonF position, QRectF logic)
 {
-    return map(d_ptr->axis, position, logic);
+    return map(position, d_ptr->axis, logic);
 }
 
 QRectF HCartesianCoordinate::mapToValue(QRectF rect, QRectF logic)
 {
-    return map(d_ptr->axis, rect, logic);
+    return map(rect, d_ptr->axis, logic);
 }
 
 QRectF HCartesianCoordinate::mapToAxis(QRectF data, QRectF axis)
 {
-    return map(data, d_ptr->axis, axis);
+    return map(d_ptr->axis, data, axis);
 }

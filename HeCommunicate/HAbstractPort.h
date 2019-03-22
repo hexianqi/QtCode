@@ -15,22 +15,22 @@ class HAbstractPort : public IPort
 {
 public:
     explicit HAbstractPort();
-    ~HAbstractPort();
+    virtual ~HAbstractPort();
 
 public:
-    virtual void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param) override;
 
 public:
-    virtual bool isConnected() override;
-    virtual HErrorType open(int portNum = 1) override;
-    virtual HErrorType close() override;
-    virtual HErrorType write(QVector<uchar> data) override;
-    virtual HErrorType read(QVector<uchar> &data) override;
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
-    virtual HErrorType clear() override;
+    bool isConnected() override;
+    HErrorType open(int portNum = 1) override;
+    HErrorType close() override;
+    HErrorType write(QVector<uchar> data) override;
+    HErrorType read(QVector<uchar> &data) override;
+    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
+    HErrorType clear() override;
 
 protected:
-    HAbstractPort(HAbstractPortPrivate &p);
+    HAbstractPort(HAbstractPortPrivate &);
 
 protected:
     virtual HErrorType openPort(int portNum) = 0;

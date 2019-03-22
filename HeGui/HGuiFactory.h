@@ -17,15 +17,15 @@ class HE_GUI_EXPORT HGuiFactory : public QObject, public IGuiFactory
 
 public:
     explicit HGuiFactory(QObject *parent = nullptr);
-    ~HGuiFactory();
+    ~HGuiFactory() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 public:
-    virtual IGuiHandler *createHandler(QString type, QVariantMap param = QVariantMap()) override;
-    virtual HAction *createAction(QString text, QString type, QVariantMap param = QVariantMap()) override;
+    IGuiHandler *createHandler(QString type, QVariantMap param = QVariantMap()) override;
+    HAction *createAction(QString text, QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HGuiFactory(HGuiFactoryPrivate &p, QObject *parent = nullptr);

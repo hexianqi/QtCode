@@ -18,16 +18,16 @@ class HChromaticityV2 : public HChromaticity
 
 public:
     explicit HChromaticityV2();
-    ~HChromaticityV2();
+    ~HChromaticityV2() override;
 
 public:
-    virtual void calcSpectrum(HSpectrumData *) override;
+    void calcSpectrum(HSpecData *) override;
 
 protected:
-    virtual QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc) override;
+    QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc) override;
 
 protected:
-    HChromaticityV2(HChromaticityV2Private &p);
+    HChromaticityV2(HChromaticityV2Private &);
 };
 
 HE_ALGORITHM_END_NAMESPACE

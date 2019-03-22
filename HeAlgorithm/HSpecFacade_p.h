@@ -1,16 +1,16 @@
-#ifndef HSPECTRUMFACADE_P_H
-#define HSPECTRUMFACADE_P_H
+#ifndef HSPECFACADE_P_H
+#define HSPECFACADE_P_H
 
-#include "HSpectrumFacade.h"
+#include "HSpecFacade.h"
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HPhotopicVision;
 
-class HSpectrumFacadePrivate
+class HSpecFacadePrivate
 {
 public:
-    HSpectrumFacadePrivate();
+    HSpecFacadePrivate();
 
 public:
     void setChromaticity(int type);
@@ -24,4 +24,4 @@ public:
 HE_ALGORITHM_END_NAMESPACE
 
 
-#endif // HSPECTRUMFACADE_P_H
+#endif // HSPECFACADE_P_H

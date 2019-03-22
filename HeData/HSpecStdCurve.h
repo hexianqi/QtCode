@@ -17,18 +17,18 @@ class HSpecStdCurve : public HAbstractCalibrateItem
 
 public:
     explicit HSpecStdCurve();
-    ~HSpecStdCurve();
+    ~HSpecStdCurve() override;
 
 public:
-    virtual void restoreDefault() override;
+    void restoreDefault() override;
 
 public:
-    virtual void readContent(QDataStream &) override;
-    virtual void writeContent(QDataStream &) override;
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
 
 public:
-    void setData(QVector<double> value);
-    QVector<double> data();
+    void setCurve(QVector<double> value);
+    QVector<double> curve();
 
 protected:
     HSpecStdCurve(HSpecStdCurvePrivate &p);

@@ -6,13 +6,13 @@
 HE_CORE_USE_NAMESPACE
 HE_FILE_BEGIN_NAMESPACE
 
-template<class T>
+template <typename T>
 T *HXmlBuilder::createObject(HXmlElement *xe)
 {
     return HTypeHelper::createObject<T>(xe->attribute("className"));
 }
 
-template<class T>
+template <typename T>
 T *HXmlBuilder::createObject(HXmlElement *xe, QVariantMap param)
 {
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");

@@ -22,7 +22,7 @@ class QDESIGNER_WIDGET_EXPORT HCartesianWidget : public HDiagramWidget
 
 public:
     explicit HCartesianWidget(QWidget *parent = nullptr);
-    ~HCartesianWidget();
+    ~HCartesianWidget() override ;
 
 public:
     void setCoordinate(HCartesianCoordinate *);

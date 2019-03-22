@@ -11,24 +11,24 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HSpecPelsWavePrivate;
 
-class HSpecPelsWave : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecPelsWave : public HAbstractCalibrateItem
 {
     Q_DECLARE_PRIVATE(HSpecPelsWave)
 
 public:
     explicit HSpecPelsWave();
-    ~HSpecPelsWave();
+    ~HSpecPelsWave() override;
 
 public:
-    virtual void restoreDefault() override;
+    void restoreDefault() override;
 
 public:
-    virtual void readContent(QDataStream &) override;
-    virtual void writeContent(QDataStream &) override;
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
 
 public:
-    void setData(QPolygonF value);
-    QPolygonF data();
+    void setPelsWave(QPolygonF value);
+    QPolygonF pelsWave();
 
 public:
     double toWave(double value);

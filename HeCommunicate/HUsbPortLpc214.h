@@ -17,19 +17,19 @@ class HUsbPortLpc214 : public HAbstractPort
 
 public:
     explicit HUsbPortLpc214();
-    ~HUsbPortLpc214();
+    ~HUsbPortLpc214() override;
 
 public:
-    virtual QString typeName() override;
+    QString typeName() override;
 
 protected:
-    HUsbPortLpc214(HUsbPortLpc214Private &p);
+    HUsbPortLpc214(HUsbPortLpc214Private &);
 
 protected:
-    virtual HErrorType openPort(int portNum) override;
-    virtual HErrorType closePort() override;
-    virtual HErrorType writeData(uchar *data, int maxSize) override;
-    virtual HErrorType readData(uchar *data, int maxSize) override;
+    HErrorType openPort(int portNum) override;
+    HErrorType closePort() override;
+    HErrorType writeData(uchar *data, int maxSize) override;
+    HErrorType readData(uchar *data, int maxSize) override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

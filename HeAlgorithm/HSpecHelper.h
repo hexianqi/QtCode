@@ -2,8 +2,8 @@
 **      2018-06-19  HSpectrum 常用的光谱计算公式类。
 ***************************************************************************************************/
 
-#ifndef HSPECTRUMHELPER_H
-#define HSPECTRUMHELPER_H
+#ifndef HSPECHELPER_H
+#define HSPECHELPER_H
 
 #include "HAlgorithmGlobal.h"
 
@@ -11,7 +11,7 @@ class QPointF;
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HSpectrumHelper
+class HE_ALGORITHM_EXPORT HSpecHelper
 {
 public:
     // 色坐标转换
@@ -27,4 +27,4 @@ public:
 
 HE_ALGORITHM_END_NAMESPACE
 
-#endif // HSPECTRUMHELPER_H
+#endif // HSPECHELPER_H

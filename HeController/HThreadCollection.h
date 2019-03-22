@@ -16,13 +16,13 @@ class HThreadCollection : public HCollection<IThread>, public IThreadCollection
 {
 public:
     explicit HThreadCollection();
-    ~HThreadCollection();
+    virtual ~HThreadCollection();
 
 public:
-    virtual QString typeName() override;
+    QString typeName() override;
 
 protected:
-    HThreadCollection(HThreadCollectionPrivate &p);
+    HThreadCollection(HThreadCollectionPrivate &);
 
 protected:
     QScopedPointer<HThreadCollectionPrivate> d_ptr;

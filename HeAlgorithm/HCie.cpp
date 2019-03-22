@@ -1,6 +1,6 @@
 #include "HCie.h"
 #include "HLinearFit.h"
-#include "HSpectrumHelper.h"
+#include "HSpecHelper.h"
 #include "HMath.h"
 #include <QFile>
 #include <QTextStream>
@@ -205,7 +205,7 @@ QPointF HCie1931::calcIsoCoordinateUv(double tc)
 QPointF HCie1931::calcIsoCoordinateXy(double tc)
 {
     auto uv = calcIsoCoordinateUv(tc);
-    return HSpectrumHelper::uv2xy(uv);
+    return HSpecHelper::uv2xy(uv);
 }
 
 ISOTHERM HCie1931::calcIsotherm(double tc)
@@ -226,11 +226,11 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
         ubar = _stdData[i].X * 2 / 3;
         vbar = _stdData[i].Y;
         wbar = -0.5 * _stdData[i].X + 1.5 * _stdData[i].Y + 0.5 * _stdData[i].Z;
-        P = HSpectrumHelper::planck(_stdData[i].wave, tc);
+        P = HSpecHelper::planck(_stdData[i].wave, tc);
         U += P * ubar;
         V += P * vbar;
         W += P * wbar;
-        Pprime = HSpectrumHelper::planckPrime(_stdData[i].wave, tc);
+        Pprime = HSpecHelper::planckPrime(_stdData[i].wave, tc);
         Uprime += Pprime * ubar;
         Vprime += Pprime * vbar;
         Wprime += Pprime * wbar;
@@ -281,7 +281,7 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
         return 0;
 
     if (tc <= 5000)
-        return HSpectrumHelper::planck(wave, tc);
+        return HSpecHelper::planck(wave, tc);
 
     int i;
     double xd;

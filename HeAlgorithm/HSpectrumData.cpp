@@ -1,13 +1,13 @@
-#include "HSpectrumData.h"
+#include "HSpecData.h"
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-HSpectrumData::HSpectrumData()
+HSpecData::HSpecData()
 {
     clear();
 }
 
-void HSpectrumData::clear()
+void HSpecData::clear()
 {
     Energy.clear();
     TotalEnergy = 0.0;

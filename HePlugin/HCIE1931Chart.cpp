@@ -6,29 +6,7 @@
 #include <QPainter>
 #include <QTextStream>
 
-HCIE1931ChartPrivate::HCIE1931ChartPrivate(HCIE1931Chart *q)
-    : HSingleAxisChartPrivate(q)
-{
-    cie.load(":/image/CIE1931.png");
-    horseshoe = new QAreaSeries;
-    horseshoe->setPen(QPen(Qt::black));
-    horseshoe->setBrush(Qt::NoBrush);
-    planckian = new QLineSeries;
-    pointFocus = new QScatterSeries;
-    pointFocus->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
-    pointFocus->setMarkerSize(11.0);
-    pointFocus->setBrush(getCrossImage(QPen(Qt::red, 2)));
-    pointFocus->setPen(QColor(Qt::transparent));
-    points = new QScatterSeries;
-    points->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
-    points->setMarkerSize(11.0);
-    points->setBrush(getCrossImage(QPen(Qt::black)));
-    points->setPen(QColor(Qt::transparent));
-    gradeFocus = new QLineSeries;
-    gradeFocus->setPen(QPen(Qt::red, 2));
-}
-
-QImage HCIE1931ChartPrivate::getCrossImage(QPen pen)
+QImage createCrossImage(QPen pen)
 {
     QPainterPath path;
     path.moveTo(0, 5);
@@ -46,14 +24,35 @@ QImage HCIE1931ChartPrivate::getCrossImage(QPen pen)
     return image;
 }
 
+HCIE1931ChartPrivate::HCIE1931ChartPrivate()
+{
+    cie.load(":/image/CIE1931.png");
+    horseshoe = new QAreaSeries;
+    horseshoe->setPen(QPen(Qt::black));
+    horseshoe->setBrush(Qt::NoBrush);
+    planckian = new QLineSeries;
+    pointFocus = new QScatterSeries;
+    pointFocus->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
+    pointFocus->setMarkerSize(11.0);
+    pointFocus->setBrush(createCrossImage(QPen(Qt::red, 2)));
+    pointFocus->setPen(QColor(Qt::transparent));
+    points = new QScatterSeries;
+    points->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
+    points->setMarkerSize(11.0);
+    points->setBrush(createCrossImage(QPen(Qt::black)));
+    points->setPen(QColor(Qt::transparent));
+    gradeFocus = new QLineSeries;
+    gradeFocus->setPen(QPen(Qt::red, 2));
+}
+
 HCIE1931Chart::HCIE1931Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
-    : HSingleAxisChart(*new HCIE1931ChartPrivate(this), parent, wFlags)
+    : HSingleAxisChart(*new HCIE1931ChartPrivate, parent, wFlags)
 {
     initAxes();
     readSeries();
     legend()->hide();
     setMinimumSize(300, 300);
-    connect(this, &HCIE1931Chart::plotAreaChanged, this, updateHorseshoeBrush);
+    connect(this, plotAreaChanged, this, updateHorseshoeBrush);
 }
 
 HCIE1931Chart::~HCIE1931Chart()
@@ -232,8 +231,8 @@ void HCIE1931Chart::readSeries()
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
 
-    auto series0 = new QLineSeries();
-    auto series1 = new QLineSeries();
+    auto series0 = new QLineSeries;
+    auto series1 = new QLineSeries;
     in >> str >> n;
     for (i = 0; i < n; i++)
     {
@@ -264,14 +263,14 @@ void HCIE1931Chart::updateHorseshoeBrush()
     if (!isEnableCIE())
         return;
 
-    QBrush br;
+    QBrush brush;
     QTransform tran;
     auto rect = plotArea();
     auto p1 = mapToValue(rect.bottomLeft());
     auto p2 = mapToValue(rect.topRight());
     tran.scale(rect.width() / d->cie.width() / (p2.x() - p1.x()), rect.height() / d->cie.height() / (p2.y() - p1.y()));
     tran.translate(-p1.x() * d->cie.width(), (p2.y() - 1) * d->cie.height());
-    br.setTexture(d->cie);
-    br.setTransform(tran);
-    d->horseshoe->setBrush(br);
+    brush.setTexture(d->cie);
+    brush.setTransform(tran);
+    d->horseshoe->setBrush(brush);
 }

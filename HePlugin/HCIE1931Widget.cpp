@@ -478,14 +478,14 @@ void HCIE1931Widget::init()
     addAction(d->actionPoint);
     addAction(d->actionClearPoint);
 
-    connect(this, &HCIE1931Widget::plotAreaChanged, this, handlePlotAreaChanged);
-    connect(d->tracking, &HPositionTracking::positionChanged, this, handlePositionChanged);
-    connect(d->actionCIE, &QAction::toggled, this, setDrawCIE);
-    connect(d->actionHorseshoe, &QAction::toggled, this, setDrawHorseshoe);
-    connect(d->actionPlanckian, &QAction::toggled, this, setDrawPlanckian);
-    connect(d->actionGrade, &QAction::toggled, this, setDrawGrade);
-    connect(d->actionPoint, &QAction::toggled, this, setDrawPoint);
-    connect(d->actionClearPoint, &QAction::triggered, this, clearPoint);
+    connect(this, &HCIE1931Widget::plotAreaChanged, this, &HCIE1931Widget::handlePlotAreaChanged);
+    connect(d->tracking, &HPositionTracking::positionChanged, this, &HCIE1931Widget::handlePositionChanged);
+    connect(d->actionCIE, &QAction::toggled, this, &HCIE1931Widget::setDrawCIE);
+    connect(d->actionHorseshoe, &QAction::toggled, this, &HCIE1931Widget::setDrawHorseshoe);
+    connect(d->actionPlanckian, &QAction::toggled, this, &HCIE1931Widget::setDrawPlanckian);
+    connect(d->actionGrade, &QAction::toggled, this, &HCIE1931Widget::setDrawGrade);
+    connect(d->actionPoint, &QAction::toggled, this, &HCIE1931Widget::setDrawPoint);
+    connect(d->actionClearPoint, &QAction::triggered, this, &HCIE1931Widget::clearPoint);
 
     auto coordinate = new HCartesianCoordinate(this);
     coordinate->setAxis(QRectF(0, 0, 0.75, 0.85), 5, 5);

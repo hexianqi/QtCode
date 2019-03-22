@@ -50,13 +50,13 @@ void HSpecPelsWave::writeContent(QDataStream &s)
     s << d->pelsWave;
 }
 
-void HSpecPelsWave::setData(QPolygonF value)
+void HSpecPelsWave::setPelsWave(QPolygonF value)
 {
     Q_D(HSpecPelsWave);
     d->pelsWave = value;
 }
 
-QPolygonF HSpecPelsWave::data()
+QPolygonF HSpecPelsWave::pelsWave()
 {
     Q_D(HSpecPelsWave);
     return d->pelsWave;
@@ -64,12 +64,12 @@ QPolygonF HSpecPelsWave::data()
 
 double HSpecPelsWave::toWave(double value)
 {
-    return HMath::interpolate(value, data());
+    return HMath::interpolate(value, pelsWave());
 }
 
 double HSpecPelsWave::toPels(double value)
 {
-    return HMath::interpolateY(value, data());
+    return HMath::interpolateY(value, pelsWave());
 }
 
 HE_DATA_END_NAMESPACE

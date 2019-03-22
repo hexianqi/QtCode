@@ -3,6 +3,7 @@
 #include "HThreadCollection.h"
 #include "HTestSpec.h"
 #include "HeCore/HObjectFactory.h"
+#include <QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -20,6 +21,7 @@ HControllerFactory::HControllerFactory(HControllerFactoryPrivate &p, QObject *pa
 
 HControllerFactory::~HControllerFactory()
 {
+    qDebug() << __func__;
 }
 
 void HControllerFactory::initialize(QVariantMap /*param*/)

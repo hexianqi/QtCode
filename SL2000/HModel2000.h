@@ -14,11 +14,11 @@ class HModel2000 : public HAbstractModel
 
 public:
     explicit HModel2000(QObject *parent = nullptr);
-    ~HModel2000();
+    ~HModel2000() override;
 
 public:
-    virtual void initialize(QVariantMap param) override;
-    virtual QString typeName() override;
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
 
 protected:
     HModel2000(HModel2000Private &p, QObject *parent = nullptr);

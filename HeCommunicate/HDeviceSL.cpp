@@ -74,6 +74,7 @@ HErrorType HDeviceSL::setData(HActionType action, QVector<uchar> value, int dela
     QVector<uchar> downData, upData;
     int size = value.size() + 3;
     downData << uchar(d->deviceID) << uchar(size % 256) << uchar(size / 256) << param[2] << param[3];
+    downData << value;
     upData.resize(6);
 
     auto error = transport(downData, upData, delay);
