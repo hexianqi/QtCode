@@ -9,8 +9,8 @@ HModelSpecPrivate::HModelSpecPrivate()
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
-HModelSpec::HModelSpec(QObject *parent)
-    : HAbstractModel(*new HModelSpecPrivate, parent)
+HModelSpec::HModelSpec(QObject *parent) :
+    HAbstractModel(*new HModelSpecPrivate, parent)
 {
 }
 

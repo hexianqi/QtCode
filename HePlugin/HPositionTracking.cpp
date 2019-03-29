@@ -27,8 +27,7 @@ bool HPositionTracking::mousePressEvent(QMouseEvent *)
 
 bool HPositionTracking::mouseMoveEvent(QMouseEvent *e)
 {
-    Q_D(HPositionTracking);
-    if (!d->isValid(e->localPos()))
+    if (!isValid(e->localPos()))
         return false;
     emit positionChanged(e->localPos());
     return true;

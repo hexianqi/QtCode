@@ -1,6 +1,7 @@
 #include "HRibbonDiagramWidget_p.h"
 #include "HCartesianCoordinate.h"
 #include "HeAlgorithm/HInterp.h"
+#include <QAction>
 #include <QPainter>
 
 HE_ALGORITHM_USE_NAMESPACE
@@ -14,22 +15,40 @@ HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate(HRibbonDiagramWidget *q
 HRibbonDiagramWidget::HRibbonDiagramWidget(QWidget *parent)
     : HCartesianWidget(*new HRibbonDiagramWidgetPrivate(this), parent)
 {
+    init();
 }
 
 HRibbonDiagramWidget::HRibbonDiagramWidget(HRibbonDiagramWidgetPrivate &p, QWidget *parent)
     : HCartesianWidget(p, parent)
 {
+    init();
 }
 
 HRibbonDiagramWidget::~HRibbonDiagramWidget()
 {
 }
 
-void HRibbonDiagramWidget::setPolygonRibbon(QPolygonF value)
+void HRibbonDiagramWidget::setDrawRibbon(bool b)
+{
+    Q_D(HRibbonDiagramWidget);
+    if (d->drawRibbon == b)
+        return;
+    d->drawRibbon = b;
+    refreshPixmap();
+}
+
+void HRibbonDiagramWidget::setPolygonRibbon(QPolygonF value, bool refresh)
 {
     Q_D(HRibbonDiagramWidget);
     d->polyRibbon = value;
-    refreshPixmap();
+    if (refresh)
+        refreshPixmap();
+}
+
+bool HRibbonDiagramWidget::isDrawRibbon()
+{
+    Q_D(HRibbonDiagramWidget);
+    return d->drawRibbon;
 }
 
 bool HRibbonDiagramWidget::drawElse(QPainter *painter)
@@ -41,7 +60,7 @@ bool HRibbonDiagramWidget::drawElse(QPainter *painter)
 bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
 {
     Q_D(HRibbonDiagramWidget);
-    if (!d->plotArea.isValid())
+    if (!isDrawRibbon() || !d->plotArea.isValid() || d->polyRibbon.count() < 1)
         return false;
 
     QColor color;
@@ -69,7 +88,11 @@ bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
 
 void HRibbonDiagramWidget::init()
 {
-    auto coordinate = new HCartesianCoordinate(this);
-    coordinate->setAxis(QRectF(380, 0, 400, 100), 5, 5);
-    setCoordinate(coordinate);
+    Q_D(HRibbonDiagramWidget);
+    d->actionRibbon = new QAction(tr("颜色图"));
+    d->actionRibbon->setCheckable(true);
+    d->actionRibbon->setChecked(isDrawRibbon());
+    addAction(d->actionRibbon);
+    connect(d->actionRibbon, &QAction::toggled, this, &HRibbonDiagramWidget::setDrawRibbon);
+    setCoordinate(QRectF(380, 0, 400, 100), 5, 5);
 }

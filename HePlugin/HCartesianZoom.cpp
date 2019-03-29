@@ -125,7 +125,7 @@ void HCartesianZoom::zoom()
 void HCartesianZoom::init()
 {
     Q_D(HCartesianZoom);
-    connect(d->rubberBand, &HRubberBand::rubberBandChanged, this, handleRubberBandChanged);
-    connect(d->zoomIn, &QToolButton::clicked, this, zoomIn);
-    connect(d->zoomOut, &QToolButton::clicked, this, zoomOut);
+    connect(d->rubberBand, &HRubberBand::rubberBandChanged, this, &HCartesianZoom::handleRubberBandChanged);
+    connect(d->zoomIn, &QToolButton::clicked, this, &HCartesianZoom::zoomIn);
+    connect(d->zoomOut, &QToolButton::clicked, this, &HCartesianZoom::zoomOut);
 }

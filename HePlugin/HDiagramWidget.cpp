@@ -61,6 +61,7 @@ void HDiagramWidget::setMargins(QMargins value)
     QResizeEvent event(size(), size());
     setMinimumSize(value.left() + value.right() + 200, value.top() + value.bottom() + 200);
     resizeEvent(&event);
+    emit marginChanged(d_ptr->margins);
 }
 
 void HDiagramWidget::setBrushBackground(QBrush value)

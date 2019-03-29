@@ -17,16 +17,27 @@ class HGraphicsVernierTracking : public HAbstractVernierTracking
 
 public:
     explicit HGraphicsVernierTracking(Qt::Orientation orientation, QGraphicsItem *gpatent = nullptr, QWidget *parent = nullptr);
-    ~HGraphicsVernierTracking();
+    ~HGraphicsVernierTracking() override;
 
 public:
-    virtual bool setEnable(bool b) override;
+    bool setEnable(bool b) override;
+    bool setValidRegion(QRectF value) override;
+    bool setOrientation(Qt::Orientation value) override;
+    bool setVernierColor(QColor value) override;
+    bool setVernier(int i, double percent) override;
+    void resizeVernier(int size) override;
 
 public:
-    virtual bool mouseMoveEvent(QMouseEvent *) override;
+    bool mouseMoveEvent(QMouseEvent *) override;
 
 protected:
     HGraphicsVernierTracking(HGraphicsVernierTrackingPrivate &p, QWidget *parent = nullptr);
+
+protected:
+    void setLinesVisible(bool b);
+    void setLinesColor(QColor color);
+    void setLine(int pos);
+    void setLines();
 };
 
 #endif // HGRAPHICSVERNIERTRACKING_H

@@ -12,9 +12,13 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
+class ICalibrateItem;
+
 class ISpecCalibrate : public IInitializeable
 {
 public:
+    // 校准子项
+    virtual ICalibrateItem *item(QString type) = 0;
     // 测量参数
     virtual QVariantMap testParam() = 0;
 
@@ -27,13 +31,21 @@ public:
     virtual double calcLuminous(double value) = 0;
     // 计算通讯等待时间
     virtual int calcCommWaitTime(double &value) = 0;
+    // 检查积分时间溢出
+    virtual int checkIntegralTime(double value) = 0;
     // 检查帧溢出
     virtual bool checkFrameOverflow(int size) = 0;
-    // 检查数据溢出
-    virtual int checkEnergyOverflow(double value) = 0;
+    // 检查采样溢出
+    virtual int checkSampleOverflow(double value) = 0;
+    // 像元转波长
+    virtual double pelsToWave(double value) = 0;
+    // 标准数据
+    virtual QVector<double> stdCurve() = 0;
 
 public:
+    // 读取内容
     virtual void readContent(QDataStream &) = 0;
+    // 写入内容
     virtual void writeContent(QDataStream &) = 0;
 };
 

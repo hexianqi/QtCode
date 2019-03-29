@@ -6,17 +6,21 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecStdCurve::HSpecStdCurve()
     : HAbstractCalibrateItem(*new HSpecStdCurvePrivate)
 {
+    restoreDefault();
 }
 
 HSpecStdCurve::HSpecStdCurve(HSpecStdCurvePrivate &p)
     : HAbstractCalibrateItem(p)
 {
-    restoreDefault();
 }
 
 HSpecStdCurve::~HSpecStdCurve()
 {
-    restoreDefault();
+}
+
+QString HSpecStdCurve::typeName()
+{
+    return "HSpecStdCurve";
 }
 
 void HSpecStdCurve::restoreDefault()

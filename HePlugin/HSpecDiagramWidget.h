@@ -5,11 +5,11 @@
 #ifndef HSPECDIAGRAMWIDGET_H
 #define HSPECDIAGRAMWIDGET_H
 
-#include "HCartesianWidget.h"
+#include "HRibbonDiagramWidget.h"
 
 class HSpecDiagramWidgetPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HSpecDiagramWidget : public HCartesianWidget
+class QDESIGNER_WIDGET_EXPORT HSpecDiagramWidget : public HRibbonDiagramWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecDiagramWidget)
@@ -25,9 +25,10 @@ class QDESIGNER_WIDGET_EXPORT HSpecDiagramWidget : public HCartesianWidget
 
 public:
     explicit HSpecDiagramWidget(QWidget *parent = nullptr);
-    ~HSpecDiagramWidget();
+    ~HSpecDiagramWidget() override;
 
 public:
+    void setWaveRange(QPointF value);
     void setDrawCenter(bool b);
     void setDrawTopLeft(bool b);
     void setTextCenter(QString text, bool show = true, bool refresh = true);
@@ -51,7 +52,7 @@ public:
     QBrush brushCenter();
 
 public:
-    virtual void setPolygon(int id, QPolygonF value, bool refresh = true) override;
+    void setPolygon(int id, QPolygonF value, bool refresh = true) override;
 
 protected:
     HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *parent = nullptr);
@@ -60,6 +61,9 @@ protected:
     virtual void refreshPixmap(bool refresh = true) override;
     virtual bool drawCenter(QPainter *);
     virtual bool drawLeftTop(QPainter *);
+
+private:
+    void init();
 };
 
 #endif // HSPECDIAGRAMWIDGET_H

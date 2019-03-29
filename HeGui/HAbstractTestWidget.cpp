@@ -1,4 +1,5 @@
 #include "HAbstractTestWidget_p.h"
+#include "ITestSetWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
 #include <QDebug>
@@ -7,8 +8,8 @@ HE_GUI_BEGIN_NAMESPACE
 
 HAbstractTestWidgetPrivate::HAbstractTestWidgetPrivate()
 {
-    testing = false;
     model = HAppContext::getContextPointer<IModel>("IModel");
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
 HAbstractTestWidget::HAbstractTestWidget(QWidget *parent)
@@ -42,31 +43,13 @@ QVector<QToolBar *> HAbstractTestWidget::toolBars()
 
 void HAbstractTestWidget::start()
 {
-    connect(d_ptr->model, &IModel::actionFinished, this, &HAbstractTestWidget::actionDone);
+    connect(d_ptr->model, &IModel::actionFinished, this, &HAbstractTestWidget::handleAction);
 }
 
 void HAbstractTestWidget::pause()
 {
-    setTesting(false);
+    setTest(false);
     d_ptr->model->disconnect(this);
-}
-
-bool HAbstractTestWidget::setTesting(bool b)
-{
-    if (d_ptr->testing == b)
-        return false;
-    d_ptr->testing = b;
-    return true;
-}
-
-void HAbstractTestWidget::startTest()
-{
-    setTesting(true);
-}
-
-void HAbstractTestWidget::stopTest()
-{
-    setTesting(false);
 }
 
 HE_GUI_END_NAMESPACE

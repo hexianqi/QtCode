@@ -43,7 +43,7 @@ protected:
 
 protected:
     virtual void setConfigFile(QString fileName);
-    virtual void syncTestData(quint32 type) = 0;
+
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

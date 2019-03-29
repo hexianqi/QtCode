@@ -20,17 +20,14 @@ public:
     ~HSpecPelsWave() override;
 
 public:
+    QString typeName() override;
     void restoreDefault() override;
-
-public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:
     void setPelsWave(QPolygonF value);
     QPolygonF pelsWave();
-
-public:
     double toWave(double value);
     double toPels(double value);
 

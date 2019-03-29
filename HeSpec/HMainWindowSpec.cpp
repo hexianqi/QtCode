@@ -6,8 +6,8 @@
 
 HE_DATA_USE_NAMESPACE
 
-HMainWindowSpecPrivate::HMainWindowSpecPrivate(HMainWindowSpec *q)
-    : HMainWindowPrivate(q)
+HMainWindowSpecPrivate::HMainWindowSpecPrivate(HMainWindowSpec *q) :
+    HMainWindowPrivate(q)
 {
 }
 

@@ -34,7 +34,7 @@ bool HRubberBand::setEnable(bool b)
 bool HRubberBand::mousePressEvent(QMouseEvent *e)
 {
     Q_D(HRubberBand);
-    if (!d->isValid(e->localPos()) || e->button() != Qt::LeftButton)
+    if (!isValid(e->localPos()) || e->button() != Qt::LeftButton)
         return false;
     d->origin = e->pos();
     d->rubberBand->setGeometry(QRect(e->pos(), QSize()));

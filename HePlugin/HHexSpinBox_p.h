@@ -3,7 +3,7 @@
 
 #include "HHexSpinBox.h"
 
-class QDESIGNER_WIDGET_EXPORT HHexSpinBoxPrivate
+class HHexSpinBoxPrivate
 {
 public:
     QRegExpValidator *validator;

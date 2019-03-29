@@ -16,11 +16,15 @@ HSpecSetting::HSpecSetting()
 HSpecSetting::HSpecSetting(HSpecSettingPrivate &p)
     : HAbstractCalibrateItem(p)
 {
-    restoreDefault();
 }
 
 HSpecSetting::~HSpecSetting()
 {
+}
+
+QString HSpecSetting::typeName()
+{
+    return "HSpecSetting";
 }
 
 void HSpecSetting::restoreDefault()
@@ -58,7 +62,7 @@ void HSpecSetting::writeContent(QDataStream &s)
 QVariantMap HSpecSetting::testParam()
 {
     QVariantMap param;
-    auto list = QStringList() << "[光谱平均次数]" << "[光谱采样延时]";
+    auto list = QStringList() << "[光谱平均次数]" << "[光谱采样延时]" << "[光谱波长范围]";
     for (auto s : list)
         param.insert(s, data(s));
     return param;
@@ -72,12 +76,26 @@ int HSpecSetting::calcCommWaitTime(double &value)
     return qCeil(value * times);
 }
 
+int HSpecSetting::checkIntegralTime(double value)
+{
+    auto range = data("[积分时间范围]").toPointF();
+    if (value < range.x())
+        return -2;
+    if (value > range.y())
+        return 2;
+    if (qFuzzyCompare(value, range.x()))
+        return -1;
+    if (qFuzzyCompare(value, range.y()))
+        return 1;
+    return 0;
+}
+
 bool HSpecSetting::checkFrameOverflow(int size)
 {
     return size >= data("[光谱平滑帧数]").toInt();
 }
 
-int HSpecSetting::checkEnergyOverflow(double value)
+int HSpecSetting::checkSampleOverflow(double value)
 {
     auto range = data("[光谱采样范围]").toPointF();
     if (value < range.x())

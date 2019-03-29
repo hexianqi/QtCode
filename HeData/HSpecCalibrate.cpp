@@ -1,6 +1,6 @@
 #include "HSpecCalibrate_p.h"
 #include "HSpecSetting.h"
-#include "HSpecFitting.h"
+#include "HSpecFittingLinear.h"
 #include "HSpecStdCurve.h"
 #include "HSpecPelsWave.h"
 #include "HSpecLuminous.h"
@@ -12,7 +12,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
     setting = new HSpecSetting;
-    fitting = new HSpecFitting;
+    fitting = new HSpecFittingLinear;
     stdCurve = new HSpecStdCurve;
     pelsWave = new HSpecPelsWave;
     luminous = new HSpecLuminous;
@@ -41,6 +41,21 @@ QString HSpecCalibrate::typeName()
     return "HSpecCalibrate";
 }
 
+ICalibrateItem *HSpecCalibrate::item(QString type)
+{
+    if (type == "HSpecSetting")
+        return d_ptr->setting;
+    if (type == "HSpecFitting")
+        return d_ptr->fitting;
+    if (type == "HSpecStdCurve")
+        return d_ptr->stdCurve;
+    if (type == "HSpecPelsWave")
+        return d_ptr->pelsWave;
+    if (type == "HSpecLuminous")
+        return d_ptr->luminous;
+    return nullptr;
+}
+
 QVariantMap HSpecCalibrate::testParam()
 {
     return d_ptr->setting->testParam();
@@ -61,7 +76,7 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
 {
     double x,y;
     QPolygonF poly;
-    auto curve = d_ptr->stdCurve->curve();
+    auto curve = stdCurve();
     auto size = qMin(curve.size(), value.size());
 
     if (size <= 0)
@@ -69,14 +84,14 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
 
     for (int i = 0; i < size; i++)
     {
-        x = d_ptr->pelsWave->toWave(i);
+        x = pelsToWave(i);
         if (value[i] < 50)
             y = 0;
         else if (curve[i] < 50)
             y = 1;
         else
             y = value[i] / curve[i];
-        poly.append(QPointF(x,y));
+        poly.append(QPointF(x, y));
     }
     return d_ptr->setting->interpEnergy(poly);
 }
@@ -91,14 +106,29 @@ int HSpecCalibrate::calcCommWaitTime(double &value)
     return d_ptr->setting->calcCommWaitTime(value);
 }
 
+int HSpecCalibrate::checkIntegralTime(double value)
+{
+    return d_ptr->setting->checkIntegralTime(value);
+}
+
 bool HSpecCalibrate::checkFrameOverflow(int size)
 {
     return d_ptr->setting->checkFrameOverflow(size);
 }
 
-int HSpecCalibrate::checkEnergyOverflow(double value)
+int HSpecCalibrate::checkSampleOverflow(double value)
 {
-    return d_ptr->setting->checkEnergyOverflow(value);
+    return d_ptr->setting->checkSampleOverflow(value);
+}
+
+double HSpecCalibrate::pelsToWave(double value)
+{
+    return d_ptr->pelsWave->toWave(value);
+}
+
+QVector<double> HSpecCalibrate::stdCurve()
+{
+    return d_ptr->stdCurve->curve();
 }
 
 void HSpecCalibrate::readContent(QDataStream &s)

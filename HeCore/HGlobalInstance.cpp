@@ -61,6 +61,13 @@ QString toString(QString type, QVariant value)
         str = value.toDate().toString("yyyy-MM-dd");
     if (value.type() == QVariant::Time)
         str = value.toTime().toString("hh:mm:ss");
+    if (value.type() == QVariant::List)
+    {
+        QStringList list;
+        for (auto v : value.toList())
+            list << toString(type, v);
+        str = list.join(" ");
+    }
     return str;
 }
 
@@ -321,13 +328,14 @@ void HGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱平滑帧数]",                 new HDataFormatInfo("[光谱平滑帧数]", 1, 100));
     hashDataFormatInfo.insert("[光谱平滑次数]",                 new HDataFormatInfo("[光谱平滑次数]", 0, 100));
     hashDataFormatInfo.insert("[光谱平滑范围]",                 new HDataFormatInfo("[光谱平滑范围]", 0, 100));
-    hashDataFormatInfo.insert("[光谱拟合范围]",                 new HDataFormatInfo("[光谱拟合范围]", 0, 65535));
+    hashDataFormatInfo.insert("[光谱拟合有效范围]",             new HDataFormatInfo("[光谱拟合有效范围]", 0, 65535));
+    hashDataFormatInfo.insert("[光谱拟合取样次数]",             new HDataFormatInfo("[光谱拟合取样次数]", 30, 500));
     //hashDataFormatInfo.insert("[光谱拟合系数]",                 new HDataFormatInfo("[光谱拟合系数]", 0, 65535));
 //    hashDataFormatInfo.insert("[拟合_多项式次数]"),                 FTypeInfo(tr("[拟合_多项式次数]"), 2, 20));
-//    hashDataFormatInfo.insert("[拟合_取样次数]"),                   FTypeInfo(tr("[拟合_取样次数]"), 2, 500));
     hashDataFormatInfo.insert("[标准光谱光通量]",               new HDataFormatInfo("[标准光谱光通量]", "lm", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
     // 光谱数据
+    hashDataFormatInfo.insert("[采样比率]",                     new HDataFormatInfo("[采样比率]",  "%", 0, 100, 1));
     hashDataFormatInfo.insert("[峰值波长]",                     new HDataFormatInfo("[峰值波长]", "nm", 300, 1100, 1));
     hashDataFormatInfo.insert("[峰值带宽]",                     new HDataFormatInfo("[峰值带宽]", "nm", 300, 1100, 1));
     hashDataFormatInfo.insert("[主波长]",                       new HDataFormatInfo("[主波长]", "nm", 360, 780, 1));

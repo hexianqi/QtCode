@@ -2,9 +2,9 @@
 #define HSPECDIAGRAMWIDGET_P_H
 
 #include "HSpecDiagramWidget.h"
-#include "HCartesianWidget_p.h"
+#include "HRibbonDiagramWidget_p.h"
 
-class HSpecDiagramWidgetPrivate : public HCartesianWidgetPrivate
+class HSpecDiagramWidgetPrivate : public HRibbonDiagramWidgetPrivate
 {
     Q_DECLARE_PUBLIC(HSpecDiagramWidget)
 
@@ -13,11 +13,11 @@ public:
 
 public:
     bool drawCenter = false;
-    bool drawTopLeft = false;
+    bool drawTopLeft = true;
     QString textCenter;
     QString textTopLeft;
     QColor colorCenter = Qt::red;
-    QColor colorTopLeft = Qt::red;
+    QColor colorTopLeft = Qt::blue;
     QFont fontCenter;
     QFont fontTopLeft;
     QBrush brushCenter;

@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2018-06-19  HSpecFitting 光谱拟合数据类。
+**      2019-03-27  HSpecFitting 光谱拟合数据类。
 ***************************************************************************************************/
 
 #ifndef HSPECFITTING_H
@@ -11,7 +11,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HSpecFittingPrivate;
 
-class HSpecFitting : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecFitting : public HAbstractCalibrateItem
 {
     Q_DECLARE_PRIVATE(HSpecFitting)
 
@@ -21,17 +21,20 @@ public:
 
 public:
     void restoreDefault() override;
-
-public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
+    virtual void setFittingPoints(QPolygonF value);
 
 public:
     double handle(double value, bool abovezero = true);
     QVector<double> handle(QVector<double> value, bool abovezero = true);
+    QPolygonF fittingPoints();
 
 protected:
     HSpecFitting(HSpecFittingPrivate &p);
+
+protected:
+    virtual double calcRate(double value) = 0;
 };
 
 HE_DATA_END_NAMESPACE

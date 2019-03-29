@@ -35,7 +35,7 @@ void HDoubleSpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &i
     if (!isRedefine(index))
         return QItemDelegate::setEditorData(editor, index);
 
-    auto spinBox = static_cast<QDoubleSpinBox *>(editor);
+    auto spinBox = qobject_cast<QDoubleSpinBox *>(editor);
     auto value = index.model()->data(index, Qt::EditRole).toDouble();
     spinBox->setValue(value);
 }
@@ -45,7 +45,7 @@ void HDoubleSpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
     if (!isRedefine(index))
         return QItemDelegate::setModelData(editor, model, index);
 
-    auto spinBox = static_cast<QDoubleSpinBox *>(editor);
+    auto spinBox = qobject_cast<QDoubleSpinBox *>(editor);
     spinBox->interpretText();
     model->setData(index, QString::number(spinBox->value(), 'f', spinBox->decimals()), Qt::EditRole);
 }

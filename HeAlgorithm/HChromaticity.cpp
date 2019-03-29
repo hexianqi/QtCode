@@ -28,19 +28,19 @@ HChromaticity::~HChromaticity()
 {
 }
 
-void HChromaticity::calcSpectrum(HSpecData *sp)
+void HChromaticity::calcSpectrum(HSpecData *data)
 {
-    if (sp->Energy.isEmpty())
+    if (data->Energy.isEmpty())
         return;
 
-    sp->CoordinateUv = d_ptr->cie1931->calcCoordinateUv(sp->Energy);
-    sp->CoordinateXy = HSpecHelper::uv2xy(sp->CoordinateUv);
-    sp->CoordinateUvp = HSpecHelper::uv2uvp(sp->CoordinateUv);
-    sp->ColorTemperature = d_ptr->isotherm->calcColorTemperature(sp->CoordinateUv);
-    sp->Duv = d_ptr->cie1931->calcDuv(sp->CoordinateUv, sp->ColorTemperature);
-    d_ptr->cie1931->calcDominantWave(sp->CoordinateXy, sp->DominantWave, sp->ColorPurity);
-    sp->RenderingIndex = calcColorRenderingIndex(sp->CoordinateUv, sp->Energy, sp->ColorTemperature);
-    sp->RenderingIndexAvg = calcColorRenderingIndexAvg(sp->RenderingIndex);
+    data->CoordinateUv = d_ptr->cie1931->calcCoordinateUv(data->Energy);
+    data->CoordinateXy = HSpecHelper::uv2xy(data->CoordinateUv);
+    data->CoordinateUvp = HSpecHelper::uv2uvp(data->CoordinateUv);
+    data->ColorTemperature = d_ptr->isotherm->calcColorTemperature(data->CoordinateUv);
+    data->Duv = d_ptr->cie1931->calcDuv(data->CoordinateUv, data->ColorTemperature);
+    d_ptr->cie1931->calcDominantWave(data->CoordinateXy, data->DominantWave, data->ColorPurity);
+    data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUv, data->Energy, data->ColorTemperature);
+    data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
 }
 
 QLineF HChromaticity::calcIsothermUv(double tc, double duv)

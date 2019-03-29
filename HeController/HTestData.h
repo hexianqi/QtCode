@@ -24,7 +24,10 @@ public:
 public:
     void setSuccessor(ITestData *) override;
     void setData(QString type, QVariant value) override;
+    void addData(QString type, QVariant value) override;
     QVariant data(QString type) override;
+    QString toString(QString type) override;
+    QString toHtmlTable(QStringList types, QColor bgcolor) override;
 
 protected:
     HTestData(HTestDataPrivate &p);

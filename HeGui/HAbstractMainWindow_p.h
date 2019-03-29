@@ -3,7 +3,6 @@
 
 #include "HAbstractMainWindow.h"
 #include "HeController/HControllerGlobal.h"
-#include "HeData/HDataGlobal.h"
 #include <QMap>
 
 class QLabel;

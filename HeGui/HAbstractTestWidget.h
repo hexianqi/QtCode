@@ -35,10 +35,8 @@ protected:
     HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected slots:
-    virtual void actionDone(HActionType action) = 0;
-    virtual bool setTesting(bool b);
-    virtual void startTest();
-    virtual void stopTest();
+    virtual bool setTest(bool b) = 0;
+    virtual void handleAction(HActionType action) = 0;
 
 protected:
     QScopedPointer<HAbstractTestWidgetPrivate> d_ptr;

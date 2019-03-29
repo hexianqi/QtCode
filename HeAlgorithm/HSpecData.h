@@ -21,16 +21,11 @@ public:
 public:
     // 能量参数
     QPolygonF Energy;
+    QPolygonF EnergyPercent;
     double TotalEnergy;
     double MaxEnergy;
     double PeakWave;
     double Bandwidth;
-    // 明视觉参数
-    double EnergyRatio;
-    double RedRatio;
-    double GreenRadio;
-    double BlueRatio;
-    double VisionEnergy;
     // 色度参数
     QPointF CoordinateUv;
     QPointF CoordinateXy;
@@ -41,6 +36,12 @@ public:
     double ColorPurity;
     QVector<double> RenderingIndex;
     double RenderingIndexAvg;
+    // 明视觉参数
+    double EnergyRatio;
+    double RedRatio;
+    double GreenRadio;
+    double BlueRatio;
+    double VisionEnergy;
     // 其他
     double Luminous;
     double SDCM;

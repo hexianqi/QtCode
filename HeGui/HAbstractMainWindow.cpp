@@ -15,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 HMainWindowPrivate::HMainWindowPrivate(HAbstractMainWindow *p)
     : q_ptr(p)
 {
-    logo.load(":/images/Logo.png");
+    logo.load(":/image/Logo.png");
 }
 
 HAbstractMainWindow::HAbstractMainWindow(QWidget *parent)
@@ -61,19 +61,19 @@ void HAbstractMainWindow::initImportExport()
 void HAbstractMainWindow::createAction()
 {
     d_ptr->actionOpen = new QAction(tr("打开(&O)..."), this);
-    d_ptr->actionOpen->setIcon(QIcon(":/images/Open.png"));
+    d_ptr->actionOpen->setIcon(QIcon(":/image/Open.png"));
     d_ptr->actionOpen->setIconText(tr("\n打开"));
     d_ptr->actionOpen->setShortcut(QKeySequence::Open);
     d_ptr->actionSave = new QAction(tr("保存(&S)"), this);
-    d_ptr->actionSave->setIcon(QIcon(":/images/Save.png"));
+    d_ptr->actionSave->setIcon(QIcon(":/image/Save.png"));
     d_ptr->actionSave->setIconText(tr("\n保存"));
     d_ptr->actionSave->setShortcut(QKeySequence::Save);
     d_ptr->actionSaveAs = new QAction(tr("另存为(&A)..."), this);
-    d_ptr->actionSaveAs->setIcon(QIcon(":/images/SaveAs.png"));
+    d_ptr->actionSaveAs->setIcon(QIcon(":/image/SaveAs.png"));
     d_ptr->actionSaveAs->setIconText(tr("\n另存为"));
     d_ptr->actionSaveAs->setShortcut(QKeySequence::SaveAs);
     d_ptr->actionExit = new QAction(tr("退出(&X)"), this);
-    d_ptr->actionExit->setIcon(QIcon(":/images/Exit.png"));
+    d_ptr->actionExit->setIcon(QIcon(":/image/Exit.png"));
     d_ptr->actionExit->setIconText(tr("\n退出"));
     d_ptr->actionExit->setShortcut(tr("Ctrl+Q"));
     d_ptr->actionAbout = new QAction(tr("关于(&A)..."), this);
@@ -169,7 +169,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-    d_ptr->model->start();
+ //   d_ptr->model->start();
 }
 
 void HAbstractMainWindow::initCentralWidget()

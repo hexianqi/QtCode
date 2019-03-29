@@ -38,6 +38,7 @@ HEADERS     += \
             HDataFactory_p.h \
             HConfigManage.h \
             HConfigManage_p.h \
+            ICalibrateItem.h \
             HAbstractCalibrateItem.h \
             HAbstractCalibrateItem_p.h
 

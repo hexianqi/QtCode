@@ -28,7 +28,9 @@ SOURCES += \
         HMainWindowSpec.cpp \
         HBuilderSpec.cpp \
         HModelSpec.cpp \
-        HTestWidgetSpec.cpp
+        HTestWidgetSpec.cpp \
+        HDetailWidgetSpec.cpp \
+        HTestSetWidgetSpec.cpp
 
 HEADERS += \
         HMainWindowSpec.h \
@@ -38,23 +40,30 @@ HEADERS += \
         HModelSpec.h \
         HModelSpec_p.h \
         HTestWidgetSpec.h \
-        HTestWidgetSpec_p.h
+        HTestWidgetSpec_p.h \
+        HDetailWidgetSpec.h \
+        HDetailWidgetSpec_p.h \
+        HTestSetWidgetSpec.h \
+        HTestSetWidgetSpec_p.h
 
 FORMS   += \
-        HTestWidgetSpec.ui
+        HTestWidgetSpec.ui \
+        HDetailWidgetSpec.ui \
+        HTestSetWidgetSpec.ui
 
 TARGET = HeSpec
 
 INCLUDEPATH += ..
 
 Debug {
-    CONFIG  += console
+#    CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeDatad \
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeControllerd \
-            -L$$DESTDIR -lHeGuid
+            -L$$DESTDIR -lHeGuid \
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
@@ -63,5 +72,6 @@ Release {
             -L$$DESTDIR -lHeData \
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeController \
-            -L$$DESTDIR -lHeGui
+            -L$$DESTDIR -lHeGui \
+            -L$$DESTDIR -lHePlugin
 }

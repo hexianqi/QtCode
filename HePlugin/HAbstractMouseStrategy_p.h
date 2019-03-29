@@ -10,9 +10,6 @@ public:
     HAbstractMouseStrategyPrivate(QWidget *p);
 
 public:
-    bool isValid(QPointF pos);
-
-public:
     QWidget *parent;
     QRectF validRegion;
     bool enable = true;

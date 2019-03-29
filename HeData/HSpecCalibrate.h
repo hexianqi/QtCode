@@ -22,6 +22,7 @@ public:
     QString typeName() override;
 
 public:
+    ICalibrateItem *item(QString type) override;
     QVariantMap testParam() override;
 
 public:
@@ -29,8 +30,11 @@ public:
     QPolygonF calcEnergy(QVector<double> value) override;
     double calcLuminous(double value) override;
     int calcCommWaitTime(double &value) override;
+    int checkIntegralTime(double value) override;
     bool checkFrameOverflow(int size) override;
-    int checkEnergyOverflow(double value) override;
+    int checkSampleOverflow(double value) override;
+    double pelsToWave(double value) override;
+    QVector<double> stdCurve() override;
 
 public:
     void readContent(QDataStream &) override;

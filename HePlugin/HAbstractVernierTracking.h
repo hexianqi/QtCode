@@ -10,7 +10,7 @@
 
 class HAbstractVernierTrackingPrivate;
 
-class HAbstractVernierTracking : public HAbstractMouseStrategy
+class QDESIGNER_WIDGET_EXPORT HAbstractVernierTracking : public HAbstractMouseStrategy
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HAbstractVernierTracking)
@@ -26,9 +26,9 @@ signals:
 
 public:
     virtual bool setValidRegion(QRectF value) override;
-    virtual void setOrientation(Qt::Orientation value);
-    virtual void setVernierColor(QColor value);
-    virtual void setVernier(int i, double percent);
+    virtual bool setOrientation(Qt::Orientation value);
+    virtual bool setVernierColor(QColor value);
+    virtual bool setVernier(int i, double percent);
     virtual void resizeVernier(int size);
 
 public:

@@ -11,6 +11,7 @@ class QReadWriteLock;
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 class HSpecFacade;
+class HSpecData;
 HE_ALGORITHM_END_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
 
@@ -24,20 +25,26 @@ public:
 public:
     void setCalibrate(ISpecCalibrate *);
     void setIntegralTime(double value);
+    bool adjustIntegralTime();
     bool setSample(QVector<double> value, bool avg = false);
-
-public:
-    QVector<double> average(QVector<double> value);
-    bool calcSpectrum();
-    void calcMaxSample();
-    bool checkFrameOverflow();
-    int checkEnergyOverflow();
+    void resetStdCurve();
     void clearCache();
 
 public:
+    QVector<double> sample(int type);
+
+public:
+    bool checkFrameOverflow();
+    int checkSampleOverflow();
+    QVector<double> average(QVector<double> value);
+    void calcMaxSample();
+    bool calcSpec();
+
+public:
     QReadWriteLock *lock;
-    HSpecFacade *spectrumFacade;
     ISpecCalibrate *calibrate;
+    HSpecFacade *specFacade;
+    HSpecData *specData;
     bool fitting = true;
     double maxSample = 0;
     QVector<QVector<double>> samples;

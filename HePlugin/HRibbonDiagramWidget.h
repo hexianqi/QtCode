@@ -15,7 +15,11 @@ public:
     ~HRibbonDiagramWidget();
 
 public:
-    virtual void setPolygonRibbon(QPolygonF value);
+    virtual void setDrawRibbon(bool b);
+    virtual void setPolygonRibbon(QPolygonF value, bool refresh = true);
+
+public:
+    bool isDrawRibbon();
 
 protected:
     HRibbonDiagramWidget(HRibbonDiagramWidgetPrivate &p, QWidget *parent = nullptr);

@@ -8,21 +8,6 @@ HVernierTrackingPrivate::HVernierTrackingPrivate(Qt::Orientation o, QWidget *p)
 {
 }
 
-void HVernierTrackingPrivate::paintVernier()
-{
-    QStylePainter painter(parent);
-    painter.save();
-    painter.setPen(color);
-    for (auto v : verniers)
-    {
-        if (orientation == Qt::Horizontal)
-            painter.drawLine(validRegion.left() + 2, v.y(), validRegion.right() - 2, v.y());
-        if (orientation == Qt::Vertical)
-            painter.drawLine(v.x(), validRegion.top() + 2, v.x(), validRegion.bottom() - 2);
-    }
-    painter.restore();
-}
-
 HVernierTracking::HVernierTracking(Qt::Orientation orientation, QWidget *parent)
     : HAbstractVernierTracking(*new HVernierTrackingPrivate(orientation, parent), parent)
 {
@@ -42,14 +27,24 @@ void HVernierTracking::paintEvent(QPaintEvent *)
     Q_D(HVernierTracking);
     if (!isEnable())
         return;
-    d->paintVernier();
+    QStylePainter painter(d->parent);
+    painter.save();
+    painter.setPen(d->color);
+    for (auto v : d->verniers)
+    {
+        if (d->orientation == Qt::Horizontal)
+            painter.drawLine(d->validRegion.left() + 2, v.y(), d->validRegion.right() - 2, v.y());
+        if (d->orientation == Qt::Vertical)
+            painter.drawLine(v.x(), d->validRegion.top() + 2, v.x(), d->validRegion.bottom() - 2);
+    }
+    painter.restore();
 }
 
 bool HVernierTracking::mouseMoveEvent(QMouseEvent *e)
 {
     Q_D(HVernierTracking);
     auto pos = d->pos;
-    if (!d->isValid(e->localPos()) || pos == -1)
+    if (!isValid(e->localPos()) || pos == -1)
         return false;
 
     emit vernierPosChanged(d->verniers[pos]);

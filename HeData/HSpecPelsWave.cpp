@@ -14,11 +14,15 @@ HSpecPelsWave::HSpecPelsWave()
 HSpecPelsWave::HSpecPelsWave(HSpecPelsWavePrivate &p)
     : HAbstractCalibrateItem(p)
 {
-    restoreDefault();
 }
 
 HSpecPelsWave::~HSpecPelsWave()
 {
+}
+
+QString HSpecPelsWave::typeName()
+{
+    return "HSpecPelsWave";
 }
 
 void HSpecPelsWave::restoreDefault()

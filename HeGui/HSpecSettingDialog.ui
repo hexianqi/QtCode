@@ -6,17 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
-    <height>406</height>
+    <width>408</width>
+    <height>248</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>光谱参数设置</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,0">
-   <property name="spacing">
-    <number>15</number>
-   </property>
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
@@ -39,13 +36,10 @@
      </widget>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_1">
        <layout class="QGridLayout" name="gridLayout_3">
-        <property name="spacing">
-         <number>9</number>
-        </property>
         <item row="3" column="4">
          <widget class="QLabel" name="label_1303">
           <property name="minimumSize">
@@ -82,7 +76,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
@@ -100,19 +94,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="4">
-         <widget class="QLabel" name="label_1302">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="3">
          <widget class="QLineEdit" name="lineEdit_1006">
           <property name="minimumSize">
@@ -127,7 +108,7 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLabel" name="label_1953">
+         <widget class="QLabel" name="label_1403">
           <property name="minimumSize">
            <size>
             <width>18</width>
@@ -168,12 +149,12 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string>光谱波长范围：</string>
+           <string>采样范围：</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -200,7 +181,7 @@
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLabel" name="label_1952">
+         <widget class="QLabel" name="label_1402">
           <property name="minimumSize">
            <size>
             <width>18</width>
@@ -241,12 +222,12 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string>光谱采样范围：</string>
+           <string>波长范围：</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -286,7 +267,7 @@
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QLabel" name="label_1951">
+         <widget class="QLabel" name="label_1401">
           <property name="minimumSize">
            <size>
             <width>18</width>
@@ -327,12 +308,12 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string>循环间隔：</string>
+           <string>平均次数：</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -355,15 +336,12 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
            <string>积分时间范围：</string>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -386,19 +364,6 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="4">
-         <widget class="QLabel" name="label_1304">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;font color=#000000&gt;ms&lt;/font&gt;</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="1" colspan="3">
          <widget class="QLineEdit" name="lineEdit_1009">
           <property name="minimumSize">
@@ -413,7 +378,7 @@
          </widget>
         </item>
         <item row="5" column="4">
-         <widget class="QLabel" name="label_1305">
+         <widget class="QLabel" name="label_1304">
           <property name="minimumSize">
            <size>
             <width>18</width>
@@ -435,7 +400,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
@@ -453,15 +418,8 @@
           </property>
          </widget>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_2">
-       <layout class="QGridLayout" name="gridLayout_2">
-        <property name="spacing">
-         <number>9</number>
-        </property>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_2951">
+        <item row="1" column="4">
+         <widget class="QLabel" name="label_1302">
           <property name="minimumSize">
            <size>
             <width>18</width>
@@ -469,48 +427,24 @@
            </size>
           </property>
           <property name="text">
-           <string>-</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2002</cstring>
+           <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_2001">
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="2" column="1" colspan="3">
+         <widget class="QLineEdit" name="lineEdit_2004">
           <property name="minimumSize">
            <size>
-            <width>72</width>
+            <width>0</width>
             <height>24</height>
            </size>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_2001">
-          <property name="minimumSize">
-           <size>
-            <width>96</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>扣低像元：</string>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2001</cstring>
           </property>
          </widget>
         </item>
@@ -527,16 +461,16 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2002">
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_2005">
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string>固定暗底：</string>
+           <string>平滑次数：</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -545,20 +479,7 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2003</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2003">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <cstring>lineEdit_2006</cstring>
           </property>
          </widget>
         </item>
@@ -566,7 +487,7 @@
          <widget class="QLabel" name="label_2003">
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
@@ -584,8 +505,8 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2004">
+        <item row="4" column="1" colspan="3">
+         <widget class="QLineEdit" name="lineEdit_2006">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -594,28 +515,6 @@
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_2004">
-          <property name="minimumSize">
-           <size>
-            <width>96</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>平滑次数：</string>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2005</cstring>
           </property>
          </widget>
         </item>
@@ -632,30 +531,8 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_2005">
-          <property name="minimumSize">
-           <size>
-            <width>96</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>平滑范围：</string>
-          </property>
-          <property name="scaledContents">
-           <bool>false</bool>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2006</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2006">
+        <item row="1" column="1" colspan="3">
+         <widget class="QLineEdit" name="lineEdit_2003">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -667,16 +544,16 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_2006">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2001">
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string>连续测试帧数：</string>
+           <string>保留像元：</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -685,7 +562,29 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2007</cstring>
+           <cstring>lineEdit_2001</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_2004">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>平滑帧数：</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>lineEdit_2005</cstring>
           </property>
          </widget>
         </item>
@@ -702,16 +601,29 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_2007">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_2001">
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>72</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2002">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string>快速测试帧数：</string>
+           <string>固定暗底：</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -720,20 +632,48 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2008</cstring>
+           <cstring>lineEdit_2003</cstring>
           </property>
          </widget>
         </item>
-        <item row="6" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2008">
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_2101">
           <property name="minimumSize">
            <size>
-            <width>0</width>
+            <width>18</width>
             <height>24</height>
            </size>
           </property>
+          <property name="text">
+           <string>-</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>lineEdit_2002</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_2006">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>平滑范围：</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>lineEdit_2007</cstring>
           </property>
          </widget>
         </item>
@@ -744,9 +684,6 @@
    </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>9</number>
-     </property>
      <item>
       <spacer name="horizontalSpacer_1">
        <property name="orientation">
@@ -851,6 +788,28 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>listWidget</tabstop>
+  <tabstop>lineEdit_1001</tabstop>
+  <tabstop>lineEdit_1002</tabstop>
+  <tabstop>lineEdit_1003</tabstop>
+  <tabstop>lineEdit_1004</tabstop>
+  <tabstop>lineEdit_1005</tabstop>
+  <tabstop>lineEdit_1006</tabstop>
+  <tabstop>lineEdit_1007</tabstop>
+  <tabstop>lineEdit_1008</tabstop>
+  <tabstop>lineEdit_1009</tabstop>
+  <tabstop>lineEdit_2001</tabstop>
+  <tabstop>lineEdit_2002</tabstop>
+  <tabstop>lineEdit_2003</tabstop>
+  <tabstop>lineEdit_2004</tabstop>
+  <tabstop>lineEdit_2005</tabstop>
+  <tabstop>lineEdit_2006</tabstop>
+  <tabstop>lineEdit_2007</tabstop>
+  <tabstop>pushButton_1</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

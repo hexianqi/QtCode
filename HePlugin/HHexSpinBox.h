@@ -16,7 +16,7 @@ class QDESIGNER_WIDGET_EXPORT HHexSpinBox : public QSpinBox
 
 public:
     explicit HHexSpinBox(QWidget *parent = nullptr);
-    ~HHexSpinBox();
+    ~HHexSpinBox() override;
 
 protected:
     HHexSpinBox(HHexSpinBoxPrivate &p, QWidget *parent = nullptr);

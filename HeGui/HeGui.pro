@@ -30,7 +30,6 @@ SOURCES     += \
             HGuiHelper.cpp \
             HGuiFactory.cpp \
 
-
 HEADERS     += \
             HGuiGlobal.h \
             HAction.h \
@@ -38,7 +37,7 @@ HEADERS     += \
             HGuiHelper.h \
             IGuiFactory.h \
             HGuiFactory.h \
-            HGuiFactory_p.h
+            HGuiFactory_p.h \
 
 RESOURCES   = HeGui.qrc
 
@@ -74,5 +73,3 @@ include(handler.pri)
 include(mainWindow.pri)
 include(spec.pri)
 include(testWidget.pri)
-
-

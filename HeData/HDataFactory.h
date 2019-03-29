@@ -34,6 +34,9 @@ protected:
 
 protected:
     QScopedPointer<HDataFactoryPrivate> d_ptr;
+
+private:
+    void registerClass();
 };
 
 HE_DATA_END_NAMESPACE

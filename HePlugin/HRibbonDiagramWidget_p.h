@@ -14,7 +14,8 @@ public:
 public:
      QPixmap pixmapRibbon;
      QPolygonF polyRibbon;
+     bool drawRibbon = true;
+     QAction *actionRibbon;
 };
-
 
 #endif // HRIBBONDIAGRAMWIDGET_P_H

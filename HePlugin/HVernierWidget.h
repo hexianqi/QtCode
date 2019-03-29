@@ -19,7 +19,7 @@ class QDESIGNER_WIDGET_EXPORT HVernierWidget : public HCartesianWidget
 
 public:
     explicit HVernierWidget(QWidget *parent = nullptr);
-    ~HVernierWidget();
+    ~HVernierWidget() override;
 
 signals:
     void vernierValueChanged(QVector<double> value);
@@ -39,17 +39,16 @@ protected:
     HVernierWidget(HVernierWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    virtual void setPlotArea(QRectF value) override;
-    virtual void paintEvent(QPaintEvent *) override;
-    virtual void mousePressEvent(QMouseEvent *) override;
-    virtual void mouseMoveEvent(QMouseEvent *) override;
-    virtual void mouseReleaseEvent(QMouseEvent *) override;
-    virtual void handleCoordinateChanged(HCartesianCoordinate *) override;
-    virtual void handleOrientationChanged();
-    virtual void handleVernierPosChanged(QPointF pos);
-    virtual void handleVernierSizeChanged();
-    void updateVernierValue();
-    QString toString(QVector<double> value);
+    void setPlotArea(QRectF value) override;
+    void paintEvent(QPaintEvent *) override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void handleCoordinateChanged(HCartesianCoordinate *) override;
+    void handleOrientationChanged();
+    void handleVernierPosChanged(QPointF pos);
+    void handleVernierSizeChanged();
+    void emitVernierValue();
 
 private:
     void init();

@@ -51,10 +51,10 @@ QTableWidgetItem *HTableWidget::item(int row, int column)
 void HTableWidget::init()
 {
     d_ptr->actionCopy = new QAction(tr("复制(&C)"), this);
-    d_ptr->actionCopy->setIcon(QIcon(":/images/Copy.png"));
+    d_ptr->actionCopy->setIcon(QIcon(":/image/Copy.png"));
     d_ptr->actionCopy->setShortcut(QKeySequence::Copy);
     d_ptr->actionPaste = new QAction(tr("粘贴(&V)"), this);
-    d_ptr->actionPaste->setIcon(QIcon(":/images/Paste.png"));
+    d_ptr->actionPaste->setIcon(QIcon(":/image/Paste.png"));
     d_ptr->actionPaste->setShortcut(QKeySequence::Paste);
     addAction(d_ptr->actionCopy);
     addAction(d_ptr->actionPaste);
@@ -68,5 +68,5 @@ void HTableWidget::init()
     verticalHeader()->setMinimumSectionSize(30);
     setAlternatingRowColors(true);
     setContextMenuPolicy(Qt::ActionsContextMenu);
-    setWindowIcon(QIcon(":/images/Table.png"));
+    setWindowIcon(QIcon(":/image/Table.png"));
 }

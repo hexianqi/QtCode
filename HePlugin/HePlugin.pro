@@ -11,7 +11,7 @@ DESTDIR     = "../Dest"
 SOURCES     += \
             class2Plugin.cpp \
             HCollectionInterface.cpp \
-            HePluginHelper.cpp
+    HPluginHelper.cpp
 
 HEADERS     += \
             class2Plugin.h \

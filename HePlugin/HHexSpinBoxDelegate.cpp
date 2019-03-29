@@ -35,7 +35,7 @@ void HHexSpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
     if (!isRedefine(index))
         return QItemDelegate::setEditorData(editor, index);
 
-    auto spinBox = static_cast<HHexSpinBox *>(editor);
+    auto spinBox = qobject_cast<HHexSpinBox *>(editor);
     auto value = index.model()->data(index, Qt::EditRole).toInt();
     spinBox->setValue(value);
 }
@@ -45,7 +45,7 @@ void HHexSpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
     if (!isRedefine(index))
         return QItemDelegate::setModelData(editor, model, index);
 
-    auto spinBox = static_cast<HHexSpinBox *>(editor);
+    auto spinBox = qobject_cast<HHexSpinBox *>(editor);
     spinBox->interpretText();
     model->setData(index, QString::number(spinBox->value(), 16).toUpper(), Qt::EditRole);
 }

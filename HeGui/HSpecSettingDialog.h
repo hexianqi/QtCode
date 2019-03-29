@@ -22,13 +22,16 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecSettingDialogPrivate;
 
-class HSpecSettingDialog : public QDialog
+class HE_GUI_EXPORT HSpecSettingDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     explicit HSpecSettingDialog(HSpecSetting *data, QWidget *parent = nullptr);
     ~HSpecSettingDialog() override;
+
+protected slots:
+    void on_pushButton_1_clicked();
 
 protected:
     void done(int result) override;

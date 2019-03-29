@@ -7,10 +7,11 @@
 
 #include "IMouseStrategy.h"
 #include <QObject>
+#include <QtUiPlugin/QDesignerExportWidget>
 
 class HAbstractMouseStrategyPrivate;
 
-class HAbstractMouseStrategy : public QObject, public IMouseStrategy
+class QDESIGNER_WIDGET_EXPORT HAbstractMouseStrategy : public QObject, public IMouseStrategy
 {
     Q_OBJECT
 
@@ -25,6 +26,9 @@ public:
 
 protected:
     HAbstractMouseStrategy(HAbstractMouseStrategyPrivate &p, QWidget *parent = nullptr);
+
+protected:
+    bool isValid(QPointF pos);
 
 protected:
     QScopedPointer<HAbstractMouseStrategyPrivate> d_ptr;

@@ -6,11 +6,6 @@ HAbstractMouseStrategyPrivate::HAbstractMouseStrategyPrivate(QWidget *p)
 {
 }
 
-bool HAbstractMouseStrategyPrivate::isValid(QPointF pos)
-{
-    return enable && validRegion.contains(pos);
-}
-
 HAbstractMouseStrategy::HAbstractMouseStrategy(QWidget *parent)
     : QObject(parent), d_ptr(new HAbstractMouseStrategyPrivate(parent))
 {
@@ -44,4 +39,9 @@ bool HAbstractMouseStrategy::setEnable(bool b)
 bool HAbstractMouseStrategy::isEnable()
 {
     return d_ptr->enable;
+}
+
+bool HAbstractMouseStrategy::isValid(QPointF pos)
+{
+    return isEnable() && d_ptr->validRegion.contains(pos);
 }

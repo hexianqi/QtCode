@@ -33,6 +33,13 @@ void HCartesianWidget::setCoordinate(HCartesianCoordinate *p)
     d->zoom->setCoordinate(p);
 }
 
+void HCartesianWidget::setCoordinate(QRectF rect, int tickX, int tickY)
+{
+    auto coordinate = new HCartesianCoordinate(this);
+    coordinate->setAxis(rect, tickX, tickY);
+    setCoordinate(coordinate);
+}
+
 void HCartesianWidget::setEnableZoom(bool b)
 {
     Q_D(HCartesianWidget);

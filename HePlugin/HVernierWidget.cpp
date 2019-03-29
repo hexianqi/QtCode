@@ -4,8 +4,8 @@
 #include <QLabel>
 #include <QGridLayout>
 
-HVernierWidgetPrivate::HVernierWidgetPrivate(HVernierWidget *q)
-    : HCartesianWidgetPrivate(q)
+HVernierWidgetPrivate::HVernierWidgetPrivate(HVernierWidget *q) :
+    HCartesianWidgetPrivate(q)
 {
     halfSide = true;
 }
@@ -32,7 +32,7 @@ void HVernierWidget::setDecimals(int value)
     if (d->decimals == value)
         return;
     d->decimals = value;
-    updateVernierValue();
+    emitVernierValue();
 }
 
 HVernierTracking *HVernierWidget::tracking()
@@ -69,7 +69,7 @@ void HVernierWidget::setPlotArea(QRectF value)
 {
     Q_D(HVernierWidget);
     auto h = fontMetrics().height();
-    d->layoutLabel->setGeometry(QRect(value.left() + 15, value.top() - h - 5, value.width() - 30, h));
+    d->layoutLabel->setGeometry(QRectF(value.left() + 15, value.top() - h - 5, value.width() - 30, h).toRect());
     HCartesianWidget::setPlotArea(value);
 }
 
@@ -107,32 +107,32 @@ void HVernierWidget::mouseReleaseEvent(QMouseEvent *e)
 void HVernierWidget::handleCoordinateChanged(HCartesianCoordinate *p)
 {
     HCartesianWidget::handleCoordinateChanged(p);
-    updateVernierValue();
+    emitVernierValue();
 }
 
 void HVernierWidget::handleOrientationChanged()
 {
     update();
-    updateVernierValue();
+    emitVernierValue();
 }
 
 void HVernierWidget::handleVernierPosChanged(QPointF pos)
 {
     Q_D(HVernierWidget);
     if (d->tracking->orientation() == Qt::Vertical)
-        update(pos.x(), d->plotArea.top(), 1, d->plotArea.height());
+        update(QRectF(pos.x(), d->plotArea.top(), 1, d->plotArea.height()).toRect());
     else
-        update(d->plotArea.left(), pos.y(), d->plotArea.width(), 1);
-    updateVernierValue();
+        update(QRectF(d->plotArea.left(), pos.y(), d->plotArea.width(), 1).toRect());
+    emitVernierValue();
 }
 
 void HVernierWidget::handleVernierSizeChanged()
 {
     update();
-    updateVernierValue();
+    emitVernierValue();
 }
 
-void HVernierWidget::updateVernierValue()
+void HVernierWidget::emitVernierValue()
 {
     Q_D(HVernierWidget);
     auto rect = (d->plotArea.width() < 0.1 || d->plotArea.height() < 0.1) ? QRectF(0, 0, 1, 1) : d->plotArea;
@@ -140,30 +140,17 @@ void HVernierWidget::updateVernierValue()
     if (verniers.size() < 1)
         return;
 
-    QVector<double> datas;
-    for (auto v : verniers)
-    {
-        if (d->tracking->orientation() == Qt::Vertical)
-            datas << v.x();
-        else
-            datas << v.y();
-    }
-    auto text = toString(datas);
-
-    emit vernierValueChanged(datas);
-    emit vernierTextChanged(text);
-}
-
-QString HVernierWidget::toString(QVector<double> value)
-{
-    Q_D(HVernierWidget);
-    if (value.size() <= 0)
-        return QString();
-
+    double value;
+    QVector<double> values;
     QStringList list;
-    for (auto v : value)
-        list << QString(" %1").arg(v, 0, 'f', d->decimals);
-    return QString("(%1)").arg(list.join(','));
+    for (auto p : verniers)
+    {
+        value = d->tracking->orientation() == Qt::Vertical ? p.x() : p.y();
+        values << value;
+        list << QString(" %1").arg(value, 0, 'f', d->decimals);
+    }
+    emit vernierValueChanged(values);
+    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
 }
 
 void HVernierWidget::init()
@@ -177,12 +164,12 @@ void HVernierWidget::init()
     d->labelCenter->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
     d->labelRight = new QLabel(this);
     d->labelRight->setAlignment(Qt::AlignRight | Qt::AlignBottom);
-    d->layoutLabel = new QGridLayout(this);
+    d->layoutLabel = new QGridLayout;
     d->layoutLabel->addWidget(d->labelLeft, 0, 0);
     d->layoutLabel->addWidget(d->labelCenter, 0, 1);
     d->layoutLabel->addWidget(d->labelRight, 0, 2);
     connect(this, &HVernierWidget::plotAreaChanged, d->tracking, &HVernierTracking::setValidRegion);
-    connect(d->tracking, &HVernierTracking::orientationChanged, this, handleOrientationChanged);
-    connect(d->tracking, &HVernierTracking::vernierPosChanged, this, handleVernierPosChanged);
-    connect(d->tracking, &HVernierTracking::vernierSizeChanged, this, handleVernierSizeChanged);
+    connect(d->tracking, &HVernierTracking::orientationChanged, this, &HVernierWidget::handleOrientationChanged);
+    connect(d->tracking, &HVernierTracking::vernierPosChanged, this, &HVernierWidget::handleVernierPosChanged);
+    connect(d->tracking, &HVernierTracking::vernierSizeChanged, this, &HVernierWidget::handleVernierSizeChanged);
 }

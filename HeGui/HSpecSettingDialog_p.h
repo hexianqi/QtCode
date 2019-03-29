@@ -8,6 +8,9 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecSettingDialogPrivate
 {
 public:
+    HSpecSettingDialogPrivate(HSpecSetting *);
+
+public:
     HSpecSetting *data;
 };
 

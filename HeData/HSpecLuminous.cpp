@@ -12,11 +12,15 @@ HSpecLuminous::HSpecLuminous()
 HSpecLuminous::HSpecLuminous(HSpecLuminousPrivate &p)
     : HAbstractCalibrateItem(p)
 {
-    restoreDefault();
 }
 
 HSpecLuminous::~HSpecLuminous()
 {
+}
+
+QString HSpecLuminous::typeName()
+{
+    return "HSpecLuminous";
 }
 
 void HSpecLuminous::restoreDefault()

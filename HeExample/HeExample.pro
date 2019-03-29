@@ -55,4 +55,7 @@ unix {
 include(Reflect.pri)
 include(Layout.pri)
 
+DISTFILES += \
+    Note
+
 

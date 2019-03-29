@@ -15,11 +15,10 @@
 #include "HeData/IFileStream.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeGui/HGuiFactory.h"
-#include <QMessageBox>
 #include <QDebug>
 
-HBuilderSpec::HBuilderSpec(QWidget *parent)
-    : HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
+HBuilderSpec::HBuilderSpec(QWidget *parent) :
+    HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
 {
     Q_D(HBuilderSpec);
     d->configFileName = "HeSpec.cfg";
@@ -57,7 +56,6 @@ void HBuilderSpec::buildConfigManage()
     d->configManage = d->dataFactory->createConfigManage("HConfigManage");
     if (!d->configManage->fileStream()->readFile(d->configFileName))
     {
-        // QMessageBox::warning(nullptr, "", tr("找不到配置文件，正在使用默认的配置。"));
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->fileStream()->readFile(":/Dat/Spectrum.hcs"))
         {
@@ -77,6 +75,7 @@ void HBuilderSpec::buildTestData()
     auto other = d->controllerFactory->createTestData("Other");
     auto spec = d->controllerFactory->createTestSpec("Spec");
     spec->setSuccessor(other);
+    spec->setCalibrate(d->configManage->specCalibrate("1"));
     data->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
     HAppContext::setContextPointer("ITestOther", other);

@@ -30,6 +30,7 @@ public:
     ~HDiagramWidget() override;
 
 signals:
+    void marginChanged(QMargins value);
     void plotAreaChanged(QRectF value);
 
 public:

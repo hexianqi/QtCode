@@ -6,6 +6,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 class IModel;
+class ITestData;
 HE_CONTROLLER_END_NAMESPACE
 HE_CONTROLLER_USE_NAMESPACE
 
@@ -18,7 +19,7 @@ public:
 
 public:
     IModel *model;
-    bool testing;
+    ITestData *testData;
     QVector<QMenu *> menus;
     QVector<QToolBar *> toolBars;
 };

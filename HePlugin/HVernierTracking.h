@@ -10,14 +10,14 @@
 class QPaintEvent;
 class HVernierTrackingPrivate;
 
-class HVernierTracking : public HAbstractVernierTracking
+class QDESIGNER_WIDGET_EXPORT HVernierTracking : public HAbstractVernierTracking
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HVernierTracking)
 
 public:
     explicit HVernierTracking(Qt::Orientation orientation, QWidget *parent = nullptr);
-    ~HVernierTracking();
+    ~HVernierTracking() override;
 
 public:
     virtual void paintEvent(QPaintEvent *);

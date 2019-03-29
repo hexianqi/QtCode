@@ -16,6 +16,11 @@ HAbstractCalibrateItem::~HAbstractCalibrateItem()
 {
 }
 
+void HAbstractCalibrateItem::initialize(QVariantMap /*param*/)
+{
+
+}
+
 void HAbstractCalibrateItem::setData(QString name, QVariant value)
 {
     d_ptr->datas.insert(name, value);

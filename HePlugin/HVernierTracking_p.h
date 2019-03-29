@@ -10,9 +10,6 @@ class HVernierTrackingPrivate : public HAbstractVernierTrackingPrivate
 {
 public:
     HVernierTrackingPrivate(Qt::Orientation o, QWidget *p);
-
-public:
-    void paintVernier();
 };
 
 #endif // HVERNIERTRACKING_P_H

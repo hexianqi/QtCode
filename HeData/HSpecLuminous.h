@@ -20,9 +20,8 @@ public:
     ~HSpecLuminous() override;
 
 public:
+    QString typeName() override;
     void restoreDefault() override;
-
-public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 

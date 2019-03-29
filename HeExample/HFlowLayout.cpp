@@ -139,8 +139,8 @@ int HFlowLayout::smartSpacing(QStyle::PixelMetric pm) const
     if (!parent)
         return -1;
     if (!parent->isWidgetType())
-        return static_cast<QLayout *>(parent)->spacing();
-    QWidget *widget = static_cast<QWidget *>(parent);
+        return qobject_cast<QLayout *>(parent)->spacing();
+    QWidget *widget = qobject_cast<QWidget *>(parent);
     return widget->style()->pixelMetric(pm, 0, widget);
 }
 

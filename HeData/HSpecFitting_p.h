@@ -3,13 +3,14 @@
 
 #include "HSpecFitting.h"
 #include "HAbstractCalibrateItem_p.h"
+#include <QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecFittingPrivate : public HAbstractCalibrateItemPrivate
 {
 public:
-    QList<double> coefficients;
+    QPolygonF fittingPoints;
 };
 
 HE_DATA_END_NAMESPACE

@@ -5,27 +5,22 @@
 #ifndef HABSTRACTCALIBRATEITEM_H
 #define HABSTRACTCALIBRATEITEM_H
 
-#include "HDataGlobal.h"
-#include <QVariant>
+#include "ICalibrateItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HAbstractCalibrateItemPrivate;
 
-class HAbstractCalibrateItem
+class HAbstractCalibrateItem : public ICalibrateItem
 {
 public:
     explicit HAbstractCalibrateItem();
     virtual ~HAbstractCalibrateItem();
 
 public:
-    virtual void restoreDefault() = 0;
-    virtual void setData(QString name, QVariant value);
-    virtual QVariant data(QString name);
-
-public:
-    virtual void readContent(QDataStream &) = 0;
-    virtual void writeContent(QDataStream &) = 0;
+    void initialize(QVariantMap param) override;
+    void setData(QString name, QVariant value) override;
+    QVariant data(QString name) override;
 
 protected:
     HAbstractCalibrateItem(HAbstractCalibrateItemPrivate &);

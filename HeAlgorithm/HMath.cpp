@@ -29,52 +29,6 @@ double HMath::interpolate(double x, QPolygonF poly)
     return interpolate(x, poly[i - 1], poly[i]);
 }
 
-//QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double interval)
-//{
-//    int i,j,n;
-//    double x, y;
-//    QPolygonF result;
-
-//    if (poly.size() < 2)
-//        return result;
-
-//    if (x2 < x1)
-//        qSwap(x1, x2);
-
-//    n = qCeil((x2 - x1) / interval + 1);
-//    for (i = 0, j = 1; i < n; i++)
-//    {
-//        x = x1 + i * interval;
-//        for (; x > poly[j].x() && j < poly.size() - 1; j++);
-//        y = interpolate(x, poly[j-1], poly[j]);
-//        result.append(QPointF(x, y));
-//    }
-//    return result;
-//}
-
-//QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double defaultValue, double interval)
-//{
-//    int i,j,n;
-//    double x, y;
-//    QPolygonF result;
-
-//    if (poly.size() < 2)
-//        return result;
-
-//    if (x2 < x1)
-//        qSwap(x1, x2);
-
-//    n = qCeil((x2 - x1) / interval + 1);
-//    for (i = 0, j = 0; i < n; i++)
-//    {
-//        x = x1 + i * interval;
-//        for (; x > poly[j].x() && j < poly.size(); j++);
-//        y = (j == 0 || j == poly.size()) ? defaultValue : interpolate(x, poly[j-1], poly[j]);
-//        result.append(QPointF(x, y));
-//    }
-//    return result;
-//}
-
 double HMath::interpolateY(double y, QPointF p1, QPointF p2)
 {
     return interpolate(y, p1.y(), p1.x(), p2.y(), p2.x());

@@ -7,49 +7,69 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-void calcSpectrumEnergy(QPolygonF poly, double &totalEnergy, double &maxEnergy, double &peakWave, double &bandwidth)
+void calcSpectrumEnergy(HSpecData *data)
 {
-    if(poly.isEmpty())
+    if (data->Energy.isEmpty())
         return;
 
-    int i,peak,size;
-    double x,y;
+    int i, n, size;
+    double x, y, max, total, wave;
 
-    peak = 0;
-    size = poly.size();
-    maxEnergy = 0;
-    totalEnergy = 0;
+    size = data->Energy.size();
+    max = 0;
+    total = 0;
+    n = 0;
+    wave = 0;
     for (i = 0; i < size; i++)
     {
-        x = poly[i].x();
-        y = poly[i].y();
-        totalEnergy += y;
-        if (y > maxEnergy)
+        x = data->Energy[i].x();
+        y = data->Energy[i].y();
+        total += y;
+        if (y > max)
         {
-            peak = i;
-            maxEnergy = y;
-            peakWave = x;
+            n = i;
+            max = y;
+            wave = x;
         }
     }
+
     x = 0;
+    for (i = n - 1; i > 1; i--)
+    {
+        if (data->Energy[i - 1].y() < max / 2 && data->Energy[i + 1].y() > max / 2)
+        {
+            x = data->Energy[i].x();
+            break;
+        }
+    }
     y = 0;
-    for (i = peak - 1; i > 1; i--)
+    for (i = n + 1; i < size - 1; i++)
     {
-        if (poly[i-1].y() < maxEnergy / 2 && poly[i+1].y() > maxEnergy / 2)
+        if (data->Energy[i - 1].y() > max / 2 && data->Energy[i+1].y() < max / 2)
         {
-            x = poly[i].x();
+            y = data->Energy[i].x();
             break;
         }
     }
-    for (i = peak + 1; i < size - 1; i++)
+    data->TotalEnergy = total;
+    data->MaxEnergy = max;
+    data->PeakWave = wave;
+    data->Bandwidth = qFabs(x - y);
+    for (auto p : data->Energy)
+        data->EnergyPercent.append(QPointF(p.x(), 100 * p.y() / max));
+}
+
+QPolygonF calcSpectrumEnergyPercent(QPolygonF poly, double maxEnergy)
+{
+    double x,y;
+    QPolygonF r;
+    for (auto p : poly)
     {
-        if (poly[i-1].y() > maxEnergy / 2 && poly[i+1].y() < maxEnergy / 2)
-        {
-            y = poly[i].x();
-            break;
-        }
+        x = p.x();
+        y = qBound(0.0, 100 * p.y() / maxEnergy, 100.0);
+        r.append(QPointF(x, y));
     }
-    bandwidth = qFabs(x - y);
+    return r;
 }
 
 HSpecFacadePrivate::HSpecFacadePrivate()
@@ -77,12 +97,12 @@ HSpecFacade::~HSpecFacade()
 {
 }
 
-void HSpecFacade::calcSpectrum(HSpecData *sp)
+void HSpecFacade::calcSpectrum(HSpecData *data)
 {
-    calcSpectrumEnergy(sp->Energy, sp->TotalEnergy, sp->MaxEnergy, sp->PeakWave, sp->Bandwidth);
-    d_ptr->chromaticity->calcSpectrum(sp);
-    d_ptr->photopicVision->calcVisionRatio(sp->Energy, sp->EnergyRatio, sp->RedRatio, sp->GreenRadio, sp->BlueRatio);
-    sp->VisionEnergy = d_ptr->photopicVision->calcVisionEnergy(sp->Energy);
+    calcSpectrumEnergy(data);
+    d_ptr->chromaticity->calcSpectrum(data);
+    d_ptr->photopicVision->calcVisionRatio(data->Energy, data->EnergyRatio, data->RedRatio, data->GreenRadio, data->BlueRatio);
+    data->VisionEnergy = d_ptr->photopicVision->calcVisionEnergy(data->Energy);
 }
 
 void HSpecFacade::setChromaticity(int type)

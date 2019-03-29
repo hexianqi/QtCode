@@ -20,9 +20,8 @@ public:
     ~HSpecSetting() override;
 
 public:
+    QString typeName() override;
     void restoreDefault() override;
-
-public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
@@ -31,10 +30,12 @@ public:
     QVariantMap testParam();
     // 计算通讯等待时间
     int calcCommWaitTime(double &value);
+    // 检查积分时间溢出
+    int checkIntegralTime(double value);
     // 检查帧溢出
     bool checkFrameOverflow(int size);
-    // 检查数据溢出
-    int checkEnergyOverflow(double value);
+    // 检查采样溢出
+    int checkSampleOverflow(double value);
     // 扣暗底
     QVector<double> dealBotton(QVector<double> value);
     // 平滑数据

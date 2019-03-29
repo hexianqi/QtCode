@@ -9,89 +9,6 @@ HAbstractVernierTrackingPrivate::HAbstractVernierTrackingPrivate(Qt::Orientation
     validRegion.setRect(0, 0, 1, 1);
 }
 
-bool HAbstractVernierTrackingPrivate::setValidRegion(QRectF value)
-{
-    if (validRegion == value)
-        return false;
-
-    auto dx = value.width() / validRegion.width();
-    auto dy = value.height() / validRegion.height();
-    for (int i = 0; i < verniers.count(); i++)
-    {
-        auto x = value.left() + (verniers[i].x() - validRegion.left()) * dx;
-        auto y = value.top() + (verniers[i].y() - validRegion.top()) * dy;
-        x = qBound(value.left(), x, value.right());
-        y = qBound(value.top(), y, value.bottom());
-        verniers[i] = QPointF(x, y);
-    }
-    validRegion = value;
-    return true;
-}
-
-bool HAbstractVernierTrackingPrivate::setOrientation(Qt::Orientation value)
-{
-    if (orientation == value)
-        return false;
-    orientation = value;
-    return true;
-}
-
-bool HAbstractVernierTrackingPrivate::setVernierColor(QColor value)
-{
-    if (color == value)
-        return false;
-    color = value;
-    return true;
-}
-
-bool HAbstractVernierTrackingPrivate::setVernier(int i, double percent)
-{
-    if (i < 0 || i >= verniers.size())
-        return false;
-
-    percent = qBound(0.0, percent, 1.0);
-    verniers[i].rx() = validRegion.left() + validRegion.width() * percent;
-    verniers[i].ry() = validRegion.top() + validRegion.height() * percent;
-    return true;
-}
-
-void HAbstractVernierTrackingPrivate::resizeVernier(int size)
-{
-    verniers.resize(size);
-    if (size < 1)
-        return;
-
-    verniers[0] = validRegion.topLeft();
-    for (int i = 1; i < size; i++)
-        setVernier(i, i / (size - 1));
-}
-
-bool HAbstractVernierTrackingPrivate::mousePress(QPointF point)
-{
-    for (int i = 0; i < verniers.size(); i++)
-    {
-        if (orientation == Qt::Horizontal && qAbs(point.y() - verniers[i].y()) < 5)
-        {
-            pos = i;
-            parent->setCursor(Qt::SizeVerCursor);
-            return true;
-        }
-        if (orientation == Qt::Vertical && qAbs(point.x() - verniers[i].x()) < 5)
-        {
-            pos = i;
-            parent->setCursor(Qt::SizeHorCursor);
-            return true;
-        }
-    }
-    return false;
-}
-
-void HAbstractVernierTrackingPrivate::mouseRelease()
-{
-    pos = -1;
-    parent->unsetCursor();
-}
-
 HAbstractVernierTracking::HAbstractVernierTracking(Qt::Orientation orientation, QWidget *parent)
     : HAbstractMouseStrategy(*new HAbstractVernierTrackingPrivate(orientation, parent), parent)
 {
@@ -109,33 +26,65 @@ HAbstractVernierTracking::~HAbstractVernierTracking()
 bool HAbstractVernierTracking::setValidRegion(QRectF value)
 {
     Q_D(HAbstractVernierTracking);
-    return d->setValidRegion(value);
+    if (d->validRegion == value)
+        return false;
+
+    auto dx = value.width() / d->validRegion.width();
+    auto dy = value.height() / d->validRegion.height();
+    for (int i = 0; i < d->verniers.count(); i++)
+    {
+        auto x = value.left() + (d->verniers[i].x() - d->validRegion.left()) * dx;
+        auto y = value.top() + (d->verniers[i].y() - d->validRegion.top()) * dy;
+        x = qBound(value.left(), x, value.right());
+        y = qBound(value.top(), y, value.bottom());
+        d->verniers[i] = QPointF(x, y);
+    }
+    d->validRegion = value;
+    return true;
 }
 
-void HAbstractVernierTracking::setOrientation(Qt::Orientation value)
+bool HAbstractVernierTracking::setOrientation(Qt::Orientation value)
 {
     Q_D(HAbstractVernierTracking);
-    if (d->setOrientation(value))
-        emit orientationChanged(value);
+    if (d->orientation == value)
+        return false;
+    d->orientation = value;
+    emit orientationChanged(value);
+    return true;
 }
 
-void HAbstractVernierTracking::setVernierColor(QColor value)
+bool HAbstractVernierTracking::setVernierColor(QColor value)
 {
     Q_D(HAbstractVernierTracking);
-    d->setVernierColor(value);
+    if (d->color == value)
+        return false;
+    d->color = value;
+    return true;
 }
 
-void HAbstractVernierTracking::setVernier(int i, double percent)
+bool HAbstractVernierTracking::setVernier(int i, double percent)
 {
     Q_D(HAbstractVernierTracking);
-    if (d->setVernier(i, percent))
-        emit vernierPosChanged(d->verniers[i]);
+    if (i < 0 || i >= d->verniers.size())
+        return false;
+
+    percent = qBound(0.0, percent, 1.0);
+    d->verniers[i].rx() = d->validRegion.left() + d->validRegion.width() * percent;
+    d->verniers[i].ry() = d->validRegion.top() + d->validRegion.height() * percent;
+    emit vernierPosChanged(d->verniers[i]);
+    return true;
 }
 
 void HAbstractVernierTracking::resizeVernier(int size)
 {
     Q_D(HAbstractVernierTracking);
-    d->resizeVernier(size);
+    d->verniers.resize(size);
+    if (size > 0)
+    {
+        d->verniers[0] = d->validRegion.topLeft();
+        for (int i = 1; i < size; i++)
+            setVernier(i, i / (size - 1));
+    }
     emit vernierSizeChanged(size);
 }
 
@@ -156,7 +105,22 @@ bool HAbstractVernierTracking::mousePressEvent(QMouseEvent *e)
     Q_D(HAbstractVernierTracking);
     if (!isEnable() || e->button() != Qt::LeftButton)
         return false;
-    return d->mousePress(e->localPos());
+    for (int i = 0; i < d->verniers.size(); i++)
+    {
+        if (d->orientation == Qt::Horizontal && qAbs(e->localPos().y() - d->verniers[i].y()) < 5)
+        {
+            d->pos = i;
+            d->parent->setCursor(Qt::SizeVerCursor);
+            return true;
+        }
+        if (d->orientation == Qt::Vertical && qAbs(e->localPos().x() - d->verniers[i].x()) < 5)
+        {
+            d->pos = i;
+            d->parent->setCursor(Qt::SizeHorCursor);
+            return true;
+        }
+    }
+    return false;
 }
 
 bool HAbstractVernierTracking::mouseReleaseEvent(QMouseEvent *e)
@@ -166,6 +130,7 @@ bool HAbstractVernierTracking::mouseReleaseEvent(QMouseEvent *e)
         return false;
 
     emit vernierPosChanged(d->verniers[d->pos]);
-    d->mouseRelease();
+    d->pos = -1;
+    d->parent->unsetCursor();
     return true;
 }

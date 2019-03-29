@@ -10,11 +10,13 @@ HE_DATA_BEGIN_NAMESPACE
 HDataFactory::HDataFactory(QObject *parent)
     : QObject(parent), d_ptr(new HDataFactoryPrivate)
 {
+    registerClass();
 }
 
 HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent)
     :  QObject(parent), d_ptr(&p)
 {
+    registerClass();
 }
 
 HDataFactory::~HDataFactory()
@@ -61,6 +63,13 @@ ISpecCalibrateCollection *HDataFactory::createSpecCalibrateCollection(QString ty
     ISpecCalibrateCollection *p = new HSpecCalibrateCollection(this);
     p->initialize(param);
     return p;
+}
+
+void HDataFactory::registerClass()
+{
+//    HFactory::registerClass<HSerialPort>("HSerialPort");
+//    HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
+//    HFactory::registerClass<HDeviceSL>("HDeviceSL");
 }
 
 HE_DATA_END_NAMESPACE

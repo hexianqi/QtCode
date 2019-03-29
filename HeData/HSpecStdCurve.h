@@ -11,7 +11,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HSpecStdCurvePrivate;
 
-class HSpecStdCurve : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecStdCurve : public HAbstractCalibrateItem
 {
     Q_DECLARE_PRIVATE(HSpecStdCurve)
 
@@ -20,9 +20,8 @@ public:
     ~HSpecStdCurve() override;
 
 public:
+    QString typeName() override;
     void restoreDefault() override;
-
-public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 

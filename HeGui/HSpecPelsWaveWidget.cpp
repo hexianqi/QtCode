@@ -7,11 +7,14 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecPelsWaveWidget::HSpecPelsWaveWidget(HSpecPelsWave *data, QWidget *parent)
-    : HEntireTableWidget(*new HSpecPelsWaveWidgetPrivate, parent)
+HSpecPelsWaveWidgetPrivate::HSpecPelsWaveWidgetPrivate(HSpecPelsWave *d)
 {
-    Q_D(HSpecPelsWaveWidget);
-    d->data = data;
+    data = d;
+}
+
+HSpecPelsWaveWidget::HSpecPelsWaveWidget(HSpecPelsWave *data, QWidget *parent)
+    : HEntireTableWidget(*new HSpecPelsWaveWidgetPrivate(data), parent)
+{
     init();
     showData();
 }

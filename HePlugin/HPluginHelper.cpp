@@ -7,7 +7,6 @@
 #include <QDoubleSpinBox>
 #include <QTableWidget>
 
-
 HE_CORE_USE_NAMESPACE
 
 QAction *HPluginHelper::addSeparator(QWidget *widget)
@@ -202,18 +201,22 @@ QString HPluginHelper::paste(QTableView *widget)
 void HPluginHelper::initWidget(QString type, QSpinBox *widget)
 {
     auto info = toFormatInfo(type);
+    auto unit = info->unit(false);
+    widget->setAlignment(Qt::AlignCenter);
     widget->setRange(static_cast<int>(info->min()), static_cast<int>(info->max()));
     widget->setSingleStep(static_cast<int>(info->singleStep()));
-    widget->setSuffix(QString(" %1 ").arg(info->unit(false)));
-    widget->setAlignment(Qt::AlignCenter);
+    if (!unit.isEmpty())
+        widget->setSuffix(QString(" %1").arg(unit));
 }
 
 void HPluginHelper::initWidget(QString type, QDoubleSpinBox *widget)
 {
     auto info = toFormatInfo(type);
-    widget->setDecimals(info->decimals());
+    auto unit = info->unit(false);
+    widget->setAlignment(Qt::AlignCenter);
     widget->setRange(info->min(), info->max());
     widget->setSingleStep(info->singleStep());
-    widget->setSuffix(QString(" %1 ").arg(info->unit(false)));
-    widget->setAlignment(Qt::AlignCenter);
+    widget->setDecimals(info->decimals());
+    if (!unit.isEmpty())
+        widget->setSuffix(QString(" %1").arg(unit));
 }

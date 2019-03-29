@@ -30,7 +30,7 @@ const gsl_multifit_robust_type *toGsl(HRobustType type)
 
 void fillAsPow(gsl_matrix *m, QVector<double> xa)
 {
-    uint i,j;
+    size_t i,j;
     for (i = 0; i < m->size1; i++)
     {
         for (j = 0; j < m->size2; j++)
@@ -42,7 +42,7 @@ void fillAsPow(gsl_matrix *m, QVector<double> xa)
 
 void fillAsPow(gsl_vector *v, double x)
 {
-    for (uint i = 0; i < v->size; i++)
+    for (size_t i = 0; i < v->size; i++)
         gsl_vector_set(v, i, pow(x, i));
 }
 

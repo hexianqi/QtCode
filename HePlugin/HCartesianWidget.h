@@ -26,6 +26,7 @@ public:
 
 public:
     void setCoordinate(HCartesianCoordinate *);
+    void setCoordinate(QRectF rect, int tickX, int tickY);
     void setEnableZoom(bool b);
     void setUnitInRuler(bool b);
     void setUnitX(QString value);

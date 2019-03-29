@@ -9,6 +9,9 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecPelsWaveWidgetPrivate : public HEntireTableWidgetPrivate
 {
 public:
+    HSpecPelsWaveWidgetPrivate(HSpecPelsWave *);
+
+public:
     HSpecPelsWave *data;
 };
 

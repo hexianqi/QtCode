@@ -20,8 +20,14 @@ public:
     virtual void setSuccessor(ITestData *) = 0;
     // 设置数据
     virtual void setData(QString type, QVariant value) = 0;
+    // 添加数据
+    virtual void addData(QString type, QVariant value) = 0;
     // 获取数据
     virtual QVariant data(QString type) = 0;
+    // 获取数据-按字符串格式
+    virtual QString toString(QString type) = 0;
+    // 获取数据-按Html表格方式
+    virtual QString toHtmlTable(QStringList types, QColor bgcolor) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

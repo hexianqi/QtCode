@@ -1,8 +1,10 @@
 #include "HSpecDiagramWidget_p.h"
+#include "HCartesianCoordinate.h"
+#include <QAction>
 #include <QPainter>
 
 HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q)
-    : HCartesianWidgetPrivate(q)
+    : HRibbonDiagramWidgetPrivate(q)
 {
     fontCenter.setPointSize(18);
     fontCenter.setWeight(QFont::Bold);
@@ -13,17 +15,24 @@ HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q)
 }
 
 HSpecDiagramWidget::HSpecDiagramWidget(QWidget *parent)
-    : HCartesianWidget(*new HSpecDiagramWidgetPrivate(this), parent)
+    : HRibbonDiagramWidget(*new HSpecDiagramWidgetPrivate(this), parent)
 {
+    init();
 }
 
 HSpecDiagramWidget::HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *parent)
-    : HCartesianWidget(p, parent)
+    : HRibbonDiagramWidget(p, parent)
 {
+    init();
 }
 
 HSpecDiagramWidget::~HSpecDiagramWidget()
 {
+}
+
+void HSpecDiagramWidget::setWaveRange(QPointF value)
+{
+    setCoordinate(QRectF(value.x(), 0, value.y() - value.x(), 100), 10, 5);
 }
 
 void HSpecDiagramWidget::setDrawCenter(bool b)
@@ -174,6 +183,8 @@ void HSpecDiagramWidget::setPolygon(int id, QPolygonF value, bool refresh)
 {
     Q_D(HSpecDiagramWidget);
     d->drawCenter = false;
+    if (id == 0)
+        setPolygonRibbon(value, refresh);
     HCartesianWidget::setPolygon(id, value, refresh);
 }
 
@@ -186,15 +197,18 @@ void HSpecDiagramWidget::refreshPixmap(bool refresh)
     d_ptr->pixmap.fill(Qt::transparent);
     QPainter painter(&d_ptr->pixmap);
 
-    initPainter(&painter);
+    initPixmap(&painter);
     drawFrame(&painter);
     drawRuler(&painter);
     if (!drawCenter(&painter))
     {
-        drawPolygon(&painter);
-        drawElse(&painter);
-        drawGrid(&painter);
-        drawLeftTop(&painter);
+        if (!drawRibbon(&painter))
+        {
+            drawPolygon(&painter);
+            drawElse(&painter);
+            drawGrid(&painter);
+            drawLeftTop(&painter);
+        }
     }
 
     if (refresh)
@@ -231,3 +245,16 @@ bool HSpecDiagramWidget::drawLeftTop(QPainter *painter)
     painter->restore();
     return true;
 }
+
+void HSpecDiagramWidget::init()
+{
+    Q_D(HSpecDiagramWidget);
+    d->margins.setRight(25);
+    setUnitX("nm");
+    setUnitY("%");
+    setMinimumSize(400, 300);
+    setWaveRange(QPointF(380, 780));
+    setWindowIcon(QIcon(":/image/Spectrum.png"));
+    setWindowTitle(tr("相对光谱能量分布"));
+}
+

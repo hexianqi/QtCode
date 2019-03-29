@@ -9,5 +9,6 @@
         <file>image/Copy.png</file>
         <file>image/Paste.png</file>
         <file>image/Table.png</file>
+        <file>image/Spectrum.png</file>
     </qresource>
 </RCC>

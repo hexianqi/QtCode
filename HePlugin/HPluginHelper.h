@@ -5,6 +5,8 @@
 #ifndef HPLUGINHELPER_H
 #define HPLUGINHELPER_H
 
+#include <QtUiPlugin/QDesignerExportWidget>
+
 class QString;
 class QAction;
 class QWidget;
@@ -13,15 +15,15 @@ class QTableWidget;
 class QSpinBox;
 class QDoubleSpinBox;
 
-class HPluginHelper
+class QDESIGNER_WIDGET_EXPORT HPluginHelper
 {
 public:
     static QAction *addSeparator(QWidget *widget);
 
 public:
-    static QString copy(QTableWidget *widget, bool withHeader = false);                                          //����
+    static QString copy(QTableWidget *widget, bool withHeader = false);
     static QString copy(QTableView *widget, bool withHeader = false);
-    static QString paste(QTableWidget *widget);                                                                  //ճ��
+    static QString paste(QTableWidget *widget);
     static QString paste(QTableView *widget);
 
 public:

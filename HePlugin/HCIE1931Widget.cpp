@@ -9,7 +9,6 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTextStream>
-#include <QDebug>
 
 HCIE1931WidgetPrivate::HCIE1931WidgetPrivate(HCIE1931Widget *q)
     : HCartesianWidgetPrivate(q)
@@ -416,8 +415,8 @@ bool HCIE1931Widget::drawPoint(QPainter *painter)
     for (auto p : d->point)
     {
         auto t = d->coordinate->mapToPosition(p, d->plotArea);
-        painter->drawLine(t.x(), t.y() - 3, t.x(), t.y() + 3);
-        painter->drawLine(t.x() - 3, t.y(), t.x() + 3, t.y());
+        painter->drawLine(QLineF(t.x(), t.y() - 3, t.x(), t.y() + 3));
+        painter->drawLine(QLineF(t.x() - 3, t.y(), t.x() + 3, t.y()));
     }
 
     if (!d->pointFocus.isNull())
@@ -425,8 +424,8 @@ bool HCIE1931Widget::drawPoint(QPainter *painter)
         auto text = QString("(%1, %2)").arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4);
         auto t = d->coordinate->mapToPosition(d->pointFocus, d->plotArea);
         painter->setPen(QPen(d->colorPointFocus, 2));
-        painter->drawLine(t.x(), t.y() - 3, t.x(), t.y() + 3);
-        painter->drawLine(t.x() - 3, t.y(), t.x() + 3, t.y());
+        painter->drawLine(QLineF(t.x(), t.y() - 3, t.x(), t.y() + 3));
+        painter->drawLine(QLineF(t.x() - 3, t.y(), t.x() + 3, t.y()));
         painter->setFont(d->fontPointFocus);
         painter->drawText(d->plotArea.adjusted(10, 10, -10, -10), Qt::AlignRight | Qt::AlignTop, text);
     }
@@ -487,10 +486,7 @@ void HCIE1931Widget::init()
     connect(d->actionPoint, &QAction::toggled, this, &HCIE1931Widget::setDrawPoint);
     connect(d->actionClearPoint, &QAction::triggered, this, &HCIE1931Widget::clearPoint);
 
-    auto coordinate = new HCartesianCoordinate(this);
-    coordinate->setAxis(QRectF(0, 0, 0.75, 0.85), 5, 5);
-    setCoordinate(coordinate);
+    setCoordinate(QRectF(0, 0, 0.75, 0.85), 5, 5);
     setWindowIcon(QIcon(":/image/CIE1931_s.png"));
     setWindowTitle(tr("色品图-CIE1931"));
 }
-

@@ -6,12 +6,12 @@
 
 class QGridLayout;
 
-class HVernierWidgetPrivate : public HCartesianWidgetPrivate
+class QDESIGNER_WIDGET_EXPORT HVernierWidgetPrivate : public HCartesianWidgetPrivate
 {
     Q_DECLARE_PUBLIC(HVernierWidget)
 
 public:
-    HVernierWidgetPrivate(HVernierWidget *q);
+    HVernierWidgetPrivate(HVernierWidget *);
 
 public:
     HVernierTracking *tracking;
