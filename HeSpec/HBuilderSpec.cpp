@@ -94,7 +94,7 @@ void HBuilderSpec::buildDevice()
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     device->setPort(port, 0, false);
     device->setDeviceID(0x81);
-    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x00);
+    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
     device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
     device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
     devices->insert("Spec", device);

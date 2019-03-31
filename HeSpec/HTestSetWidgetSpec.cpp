@@ -11,7 +11,7 @@ HTestSetWidgetSpecPrivate::HTestSetWidgetSpecPrivate()
 }
 
 HTestSetWidgetSpec::HTestSetWidgetSpec(QWidget *parent) :
-    HAbstractTestSetWidget(parent),
+    HAbstractTestSetWidget(*new HTestSetWidgetSpecPrivate, parent),
     ui(new Ui::HTestSetWidgetSpec)
 {
     ui->setupUi(this);

@@ -5,6 +5,7 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 #ifndef Q_CC_MSVC
 #include <QLibrary>
+#include <QFile>
 #define Open        d->open
 #define Close       d->close
 #define SetTimeout  d->setTimeout
