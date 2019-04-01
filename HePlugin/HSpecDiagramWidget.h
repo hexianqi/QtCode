@@ -52,7 +52,7 @@ public:
     QBrush brushCenter();
 
 public:
-    void setPolygon(int id, QPolygonF value, bool refresh = true) override;
+    void addPolygon(int id, QPolygonF value, bool refresh = true) override;
 
 protected:
     HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *parent = nullptr);

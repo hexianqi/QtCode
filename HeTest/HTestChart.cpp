@@ -1,6 +1,6 @@
 #include "HTestChart.h"
-#include "HChartView.h"
 #include "HePlugin/HMarkerChartExtend.h"
+#include "HePlugin/HZoomChartView.h"
 #include <QtMath>
 #include <QRandomGenerator>
 #include <QtCharts/QChartView>
@@ -35,7 +35,7 @@ QChartView *HTestChart::zoomChart()
 
 QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
 {
-    auto chartView = new HChartView;
+    auto chartView = new QChartView;
     auto chart = new QChart();
     auto marker = new HMarkerChartExtend(chart, chartView);
     if (polys.size() > 0)
@@ -63,7 +63,7 @@ QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
 QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
 {
     auto points = p1.toList();
-    auto chartView = new HChartView;
+    auto chartView = new HZoomChartView;
     auto chart = new QChart();
     auto marker = new HMarkerChartExtend(chart, chartView);
     auto line1 = new QLineSeries();

@@ -21,6 +21,8 @@ public:
 public:
     void connectMarkers();
     void disconnectMarkers();
+
+protected:
     void handleMarkerClicked();
 
 protected:

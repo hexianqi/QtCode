@@ -6,7 +6,7 @@
 class HAbstractChartExtendPrivate
 {
 public:
-    HAbstractChartExtendPrivate(QChart *c);
+    HAbstractChartExtendPrivate(QChart *);
 
 public:
     QChart *chart;

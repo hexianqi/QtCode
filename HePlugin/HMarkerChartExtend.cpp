@@ -28,8 +28,8 @@ void HMarkerChartExtend::connectMarkers()
     for (auto marker : markers)
     {
         // Disconnect possible existing connection to avoid multiple connections
-        disconnect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
-        connect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
+        disconnect(marker, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+        connect(marker, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
     }
 }
 
@@ -38,36 +38,34 @@ void HMarkerChartExtend::disconnectMarkers()
     Q_D(HMarkerChartExtend);
     auto markers = d->chart->legend()->markers();
     for (auto marker : markers)
-        disconnect(marker, &QLegendMarker::clicked, this, handleMarkerClicked);
+        disconnect(marker, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
 }
 
 void HMarkerChartExtend::handleMarkerClicked()
 {
     auto marker = qobject_cast<QLegendMarker*>(sender());
-    if (marker->type() == QLegendMarker::LegendMarkerTypeXY)
-    {
-        marker->series()->setVisible(!marker->series()->isVisible());
-        marker->setVisible(true);
-        auto alpha = marker->series()->isVisible() ? 1.0 : 0.5;
+    if (marker->type() != QLegendMarker::LegendMarkerTypeXY)
+        return;
 
-        auto brush = marker->labelBrush();
-        auto color = brush.color();
-        color.setAlphaF(alpha);
-        brush.setColor(color);
-        marker->setLabelBrush(brush);
+    marker->series()->setVisible(!marker->series()->isVisible());
+    marker->setVisible(true);
+    auto alpha = marker->series()->isVisible() ? 1.0 : 0.5;
 
-        brush = marker->brush();
-        color = brush.color();
-        color.setAlphaF(alpha);
-        brush.setColor(color);
-        marker->setBrush(brush);
+    auto brush = marker->labelBrush();
+    auto color = brush.color();
+    color.setAlphaF(alpha);
+    brush.setColor(color);
+    marker->setLabelBrush(brush);
 
-        auto pen = marker->pen();
-        color = pen.color();
-        color.setAlphaF(alpha);
-        pen.setColor(color);
-        marker->setPen(pen);
-    }
+    brush = marker->brush();
+    color = brush.color();
+    color.setAlphaF(alpha);
+    brush.setColor(color);
+    marker->setBrush(brush);
+
+    auto pen = marker->pen();
+    color = pen.color();
+    color.setAlphaF(alpha);
+    pen.setColor(color);
+    marker->setPen(pen);
 }
-
-

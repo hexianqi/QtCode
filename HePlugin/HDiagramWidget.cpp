@@ -6,6 +6,14 @@
 HDiagramWidgetPrivate::HDiagramWidgetPrivate(HDiagramWidget *q)
     : q_ptr(q)
 {
+    polygonColors.insert(0, QColor(255, 85, 0));
+    polygonColors.insert(1, QColor(255, 85, 255));
+    polygonColors.insert(2, Qt::red);
+    polygonColors.insert(3, Qt::green);
+    polygonColors.insert(4, Qt::blue);
+    polygonColors.insert(5, Qt::cyan);
+    polygonColors.insert(6, Qt::magenta);
+    polygonColors.insert(7, Qt::darkCyan);
 }
 
 QRectF HDiagramWidgetPrivate::calcPlotArea(QSize size)
@@ -199,23 +207,28 @@ QColor HDiagramWidget::colorGrid() const
     return d_ptr->colorGrid;
 }
 
-void HDiagramWidget::setPolygon(int id, QPolygonF value, bool refresh)
+void HDiagramWidget::addPolygon(int id, QPolygonF value, bool refresh)
 {
     d_ptr->polygons.insert(id, value);
     if (refresh)
         refreshPixmap();
 }
 
-void HDiagramWidget::addPolygon(int id, QPolygonF value, QColor color, bool refresh)
+void HDiagramWidget::removePolygon(int id)
 {
-    d_ptr->polygonColors.insert(id, color);
-    setPolygon(id, value, refresh);
+    d_ptr->polygons.remove(id);
+    refreshPixmap();
 }
 
-void HDiagramWidget::clearPolygon(int id)
+void HDiagramWidget::clearPolygon()
 {
-    d_ptr->polygonColors.remove(id);
-    d_ptr->polygons.remove(id);
+    d_ptr->polygons.clear();
+    refreshPixmap();
+}
+
+void HDiagramWidget::setPolygonColor(int id, QColor color)
+{
+    d_ptr->polygonColors.insert(id, color);
     refreshPixmap();
 }
 

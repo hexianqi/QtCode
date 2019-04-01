@@ -11,6 +11,8 @@ HEADERS += \
     $$PWD/HSpecFittingWidget.h \
     $$PWD/HSpecFittingLinearWidget.h \
     $$PWD/HSpecFittingLinearWidget_p.h \
+    $$PWD/HSpecFittingChartView.h \
+    $$PWD/HSpecFittingChartView_p.h
 
 SOURCES += \
     $$PWD/HSpecSampleWidget.cpp \
@@ -19,6 +21,7 @@ SOURCES += \
     $$PWD/HSpecSettingDialog.cpp \
     $$PWD/HSpecFittingWidget.cpp \
     $$PWD/HSpecFittingLinearWidget.cpp \
+    $$PWD/HSpecFittingChartView.cpp
 
 FORMS += \
     $$PWD/HSpecSettingDialog.ui \

@@ -5,13 +5,14 @@
 #ifndef HSINGLEAXISCHART_H
 #define HSINGLEAXISCHART_H
 
+#include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCharts/QChart>
 
 QT_CHARTS_USE_NAMESPACE
 
 class HSingleAxisChartPrivate;
 
-class HSingleAxisChart : public QChart
+class QDESIGNER_WIDGET_EXPORT HSingleAxisChart : public QChart
 {
     Q_OBJECT
 

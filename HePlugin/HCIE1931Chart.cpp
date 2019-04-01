@@ -48,11 +48,7 @@ HCIE1931ChartPrivate::HCIE1931ChartPrivate()
 HCIE1931Chart::HCIE1931Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
     : HSingleAxisChart(*new HCIE1931ChartPrivate, parent, wFlags)
 {
-    initAxes();
-    readSeries();
-    legend()->hide();
-    setMinimumSize(300, 300);
-    connect(this, plotAreaChanged, this, updateHorseshoeBrush);
+    init();
 }
 
 HCIE1931Chart::~HCIE1931Chart()
@@ -207,13 +203,21 @@ void HCIE1931Chart::clearPoint()
     d->points->clear();
 }
 
+void HCIE1931Chart::init()
+{
+    initAxes();
+    readSeries();
+    legend()->hide();
+    setMinimumSize(300, 300);
+    connect(this, &HCIE1931Chart::plotAreaChanged, this, &HCIE1931Chart::updateHorseshoeBrush);
+}
+
 void HCIE1931Chart::initAxes()
 {
     auto axisX = new QValueAxis;
     axisX->setRange(0.0, 0.75);
     axisX->setTickCount(6);
     setAxisX(axisX);
-
     auto axisY = new QValueAxis;
     axisY->setRange(0.0, 0.85);
     axisY->setTickCount(6);

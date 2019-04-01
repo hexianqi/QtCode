@@ -179,13 +179,13 @@ QBrush HSpecDiagramWidget::brushCenter()
     return d->brushCenter;
 }
 
-void HSpecDiagramWidget::setPolygon(int id, QPolygonF value, bool refresh)
+void HSpecDiagramWidget::addPolygon(int id, QPolygonF value, bool refresh)
 {
     Q_D(HSpecDiagramWidget);
     d->drawCenter = false;
     if (id == 0)
         setPolygonRibbon(value, refresh);
-    HCartesianWidget::setPolygon(id, value, refresh);
+    HCartesianWidget::addPolygon(id, value, refresh);
 }
 
 void HSpecDiagramWidget::refreshPixmap(bool refresh)

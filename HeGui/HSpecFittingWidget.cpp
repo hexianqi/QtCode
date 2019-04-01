@@ -72,6 +72,7 @@ void HSpecFittingWidget::handleAction(HActionType action)
     saveData();
     setTest(false);
     showData();
+    emit fittingFinished();
     QMessageBox::information(this, tr("提示"), tr("拟合完成！"), QMessageBox::Yes);
 }
 
@@ -97,8 +98,9 @@ bool HSpecFittingWidget::setTest(bool b)
 
 void HSpecFittingWidget::init()
 {
-    d_ptr->progressDialog = new QProgressDialog(this);
-    connect(d_ptr->progressDialog, &QProgressDialog::cancel, this, [=]{ setTest(false); });
+    d_ptr->progressDialog = new QProgressDialog(tr("正在采样...."), tr("取消"), 0, 100, this);
+    d_ptr->progressDialog->reset();
+    connect(d_ptr->progressDialog, &QProgressDialog::canceled, this, [=]{ setTest(false); });
 }
 
 HE_GUI_END_NAMESPACE

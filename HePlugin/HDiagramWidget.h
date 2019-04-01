@@ -64,9 +64,10 @@ public:
     QColor colorGrid() const;
 
 public:
-    virtual void setPolygon(int id, QPolygonF value, bool refresh = true);
-    virtual void addPolygon(int id, QPolygonF value, QColor color = Qt::black, bool refresh = true);
-    virtual void clearPolygon(int id);
+    virtual void addPolygon(int id, QPolygonF value, bool refresh = true);
+    virtual void removePolygon(int id);
+    virtual void clearPolygon();
+    virtual void setPolygonColor(int id, QColor color);
 
 protected:
     HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent = nullptr);

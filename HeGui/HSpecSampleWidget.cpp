@@ -39,9 +39,9 @@ void HSpecSampleWidget::refreshWidget()
     for (int i = 0; i < d->curveVisibles.size(); i++)
     {
         if (d->curveVisibles[i])
-            setPolygon(i, d->testSpec->samplePoly(i));
+            addPolygon(i, d->testSpec->samplePoly(i));
         else
-            clearPolygon(i);
+            removePolygon(i);
     }
     refreshLabelCenter();
 }

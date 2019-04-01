@@ -30,6 +30,7 @@ public:
 
 signals:
     void testStateChanged(bool b);
+    void fittingFinished();
 
 public:
     virtual void restoreDefault();

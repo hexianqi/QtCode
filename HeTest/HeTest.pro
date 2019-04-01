@@ -33,16 +33,14 @@ SOURCES     += \
             HTestAlgorithm.cpp \
             HTestPlugin.cpp \
             HTestChart.cpp \
-            HTestGsl.cpp \
-            HChartView.cpp
+            HTestGsl.cpp
 
 HEADERS     += \
             MainWindow.h \
             HTestAlgorithm.h \
             HTestPlugin.h \
             HTestChart.h \
-            HTestGsl.h \
-            HChartView.h
+            HTestGsl.h
 
 FORMS       += \
             MainWindow.ui

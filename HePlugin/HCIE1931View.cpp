@@ -4,8 +4,8 @@
 #include "HPluginHelper.h"
 #include <QAction>
 
-HCIE1931View::HCIE1931View(QWidget *parent)
-    : HZoomChartView(*new HCIE1931ViewPrivate, parent)
+HCIE1931View::HCIE1931View(QWidget *parent) :
+    HZoomChartView(*new HCIE1931ViewPrivate, parent)
 {
     init();
 }
@@ -98,9 +98,9 @@ void HCIE1931View::init()
     HPluginHelper::addSeparator(this);
     addAction(d->actionEnablePoint);
     addAction(d->actionClearPoint);
-    connect(d->chart, &QChart::plotAreaChanged, this, handlePlotAreaChanged);
-    connect(d->chart, &HCIE1931Chart::pointFocusChanged, this, handlePointFocusChanged);
-    connect(d->tracking, &HPositionTracking::positionChanged, this, handlePositionChanged);
+    connect(d->chart, &QChart::plotAreaChanged, this, &HCIE1931View::handlePlotAreaChanged);
+    connect(d->chart, &HCIE1931Chart::pointFocusChanged, this, &HCIE1931View::handlePointFocusChanged);
+    connect(d->tracking, &HPositionTracking::positionChanged, this, &HCIE1931View::handlePositionChanged);
     connect(d->actionEnableCIE, &QAction::toggled, d->chart, &HCIE1931Chart::setEnableCIE);
     connect(d->actionEnableHorseshoe, &QAction::toggled, d->chart, &HCIE1931Chart::setEnableHorseshoe);
     connect(d->actionEnablePlanckian, &QAction::toggled, d->chart, &HCIE1931Chart::setEnablePlanckian);

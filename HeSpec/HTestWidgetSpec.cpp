@@ -31,7 +31,7 @@ HTestWidgetSpec::HTestWidgetSpec(QWidget *parent) :
 {
     ui->setupUi(this);
     init();
-    refreshCcdWidget();
+    refreshCcdWidget(0);
 }
 
 HTestWidgetSpec::~HTestWidgetSpec()
@@ -75,8 +75,9 @@ void HTestWidgetSpec::on_pushButton_4_clicked()
 void HTestWidgetSpec::on_pushButton_5_clicked()
 {
     Q_D(HTestWidgetSpec);
+    d->fittingTimes = 0;
     d->fittingWidget->restoreDefault();
-    refreshCcdWidget();
+    d->ccdWidget->clearPolygon();
 }
 
 bool HTestWidgetSpec::setTest(bool b)
@@ -124,14 +125,12 @@ void HTestWidgetSpec::handleTestFitStateChanged(bool b)
     ui->pushButton_5->setEnabled(!b);
     ui->tabWidget_1->setCurrentIndex(b ? 0 : 2);
     ui->tabWidget_2->setTabEnabled(0, !b);
-    if (b)
-        refreshCcdWidget();
 }
 
-void HTestWidgetSpec::refreshCcdWidget()
+void HTestWidgetSpec::refreshCcdWidget(int i)
 {
     Q_D(HTestWidgetSpec);
-    d->ccdWidget->setPolygon(0, d->fittingWidget->fittingPoints());
+    d->ccdWidget->addPolygon(i, d->fittingWidget->fittingPoints());
 }
 
 void HTestWidgetSpec::refreshSpecWidget()
@@ -166,4 +165,5 @@ void HTestWidgetSpec::init()
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidgetSpec::handleTestStateChanged);
     connect(d->testSetWidget, &ITestSetWidget::testModeChanged, this, &HTestWidgetSpec::handleTestModeChanged);
     connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HTestWidgetSpec::handleTestFitStateChanged);
+    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [&]{ refreshCcdWidget(d->fittingTimes++); });
 }

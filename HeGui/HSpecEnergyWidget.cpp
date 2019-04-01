@@ -49,7 +49,7 @@ void HSpecEnergyWidget::refreshWidget()
 
     if (state == 0)
     {
-        d_ptr->specWidget->setPolygon(0, d_ptr->testSpec->energy());
+        d_ptr->specWidget->addPolygon(0, d_ptr->testSpec->energy());
         tip = d_ptr->testSpec->toHtmlTable(d_ptr->toolTipTypes, Qt::white);
     }
     else if (state < 0)

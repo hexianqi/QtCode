@@ -13,9 +13,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    HTestPlugin::testCIE1931View()->show();
+//    HTestPlugin::testCIE1931View()->show();
 
-//    HTestGsl gsl;
+    HTestGsl gsl;
+    gsl.interpEval()->show();
+
 //    QMainWindow window;
 //    window.setCentralWidget(gsl.interpEval());
 //    window.resize(800, 600);

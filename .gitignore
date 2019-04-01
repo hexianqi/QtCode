@@ -39,3 +39,4 @@ CMakeLists.txt.user*
 
 Dest/HeTest.exe
 *.exe
+*.ini

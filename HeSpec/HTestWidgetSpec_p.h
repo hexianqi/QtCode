@@ -44,6 +44,9 @@ public:
     HSpecFittingLinearWidget *fittingWidget;
     ITestSetWidget *testSetWidget;
     IDetailWidget *detailWidget;
+
+public:
+    int fittingTimes = 0;
 };
 
 #endif // HTESTWIDGETSPEC_P_H

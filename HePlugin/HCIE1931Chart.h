@@ -7,8 +7,6 @@
 
 #include "HSingleAxisChart.h"
 
-QT_CHARTS_USE_NAMESPACE
-
 class HCIE1931ChartPrivate;
 
 class HCIE1931Chart : public HSingleAxisChart
@@ -48,6 +46,7 @@ public:
     void clearPoint();
 
 private:
+    void init();
     void initAxes();
     void readSeries();
     void updateHorseshoeBrush();

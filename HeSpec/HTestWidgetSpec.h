@@ -36,7 +36,7 @@ protected slots:
     void handleTestFitStateChanged(bool b);
 
 protected:
-    void refreshCcdWidget();
+    void refreshCcdWidget(int i);
     void refreshSpecWidget();
 
 private:
