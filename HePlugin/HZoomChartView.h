@@ -5,16 +5,15 @@
 #ifndef HZOOMCHARTVIEW_H
 #define HZOOMCHARTVIEW_H
 
-#include <QtUiPlugin/QDesignerExportWidget>
-#include <QtCharts/QChartView>
 
-QT_CHARTS_USE_NAMESPACE
+#include "HChartView.h"
 
 class HZoomChartViewPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HZoomChartView : public QChartView
+class QDESIGNER_WIDGET_EXPORT HZoomChartView : public HChartView
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HZoomChartView)
 
 public:
     explicit HZoomChartView(QWidget *parent = nullptr);
@@ -22,15 +21,12 @@ public:
     ~HZoomChartView() override;
 
 protected:
-    HZoomChartView(HZoomChartViewPrivate &p, QWidget *parent = nullptr);
+    HZoomChartView(HZoomChartViewPrivate &p, QChart *chart = nullptr, QWidget *parent = nullptr);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *) override;
-    virtual void mouseReleaseEvent(QMouseEvent *) override;
-    virtual void keyPressEvent(QKeyEvent *) override;
-
-protected:
-    QScopedPointer<HZoomChartViewPrivate> d_ptr;
+    void resizeEvent(QResizeEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void keyPressEvent(QKeyEvent *) override;
 
 private:
     void init();

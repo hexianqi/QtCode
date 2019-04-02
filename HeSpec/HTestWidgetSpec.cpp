@@ -13,10 +13,10 @@
 #include "HeData/HSpecPelsWave.h"
 #include "HeGui/HSpecSampleWidget.h"
 #include "HeGui/HSpecEnergyWidget.h"
+#include "HeGui/HSpecFittingChartView.h"
 #include "HeGui/HSpecFittingLinearWidget.h"
 #include "HeGui/HSpecPelsWaveWidget.h"
 #include "HeGui/HSpecSettingDialog.h"
-#include "HePlugin/HCartesianWidget.h"
 #include <QDebug>
 
 HTestWidgetSpecPrivate::HTestWidgetSpecPrivate()
@@ -31,7 +31,7 @@ HTestWidgetSpec::HTestWidgetSpec(QWidget *parent) :
 {
     ui->setupUi(this);
     init();
-    refreshCcdWidget(0);
+    refreshCcdView(0);
 }
 
 HTestWidgetSpec::~HTestWidgetSpec()
@@ -77,7 +77,7 @@ void HTestWidgetSpec::on_pushButton_5_clicked()
     Q_D(HTestWidgetSpec);
     d->fittingTimes = 0;
     d->fittingWidget->restoreDefault();
-    d->ccdWidget->clearPolygon();
+    d->ccdView->clearSeries();
 }
 
 bool HTestWidgetSpec::setTest(bool b)
@@ -127,10 +127,10 @@ void HTestWidgetSpec::handleTestFitStateChanged(bool b)
     ui->tabWidget_2->setTabEnabled(0, !b);
 }
 
-void HTestWidgetSpec::refreshCcdWidget(int i)
+void HTestWidgetSpec::refreshCcdView(int i)
 {
     Q_D(HTestWidgetSpec);
-    d->ccdWidget->addPolygon(i, d->fittingWidget->fittingPoints());
+    d->ccdView->addSeries(i, d->fittingWidget->fittingPoints().toList());
 }
 
 void HTestWidgetSpec::refreshSpecWidget()
@@ -145,25 +145,23 @@ void HTestWidgetSpec::init()
 {
     Q_D(HTestWidgetSpec);
     d->sampleWidget = new HSpecSampleWidget;
-    d->ccdWidget = new HCartesianWidget;
-    d->ccdWidget->setCoordinate(QRectF(0, 0.8, 65535, 0.2), 5, 5);
-    d->ccdWidget->setHalfSide(true);
+    d->ccdView = new HSpecFittingChartView;
     d->energyWidget = new HSpecEnergyWidget;
     d->pelsWaveWidget = new HSpecPelsWaveWidget(static_cast<HSpecPelsWave *>(d->specCalibrate->item("HSpecPelsWave")));
     d->fittingWidget = new HSpecFittingLinearWidget(static_cast<HSpecFitting *>(d->specCalibrate->item("HSpecFitting")));
     d->testSetWidget = new HTestSetWidgetSpec;
     d->detailWidget = new HDetailWidgetSpec;
     ui->tabWidget_1->addTab(d->sampleWidget, d->sampleWidget->windowTitle());
-    ui->tabWidget_1->addTab(d->ccdWidget, tr("CCD曲线"));
+    ui->tabWidget_1->addTab(d->ccdView, d->ccdView->windowTitle());
     ui->tabWidget_1->addTab(d->energyWidget, d->energyWidget->windowTitle());
-    ui->tabWidget_2->addTab(d->pelsWaveWidget, tr("波长像元表"));
-    ui->tabWidget_2->addTab(d->fittingWidget, tr("光谱采样拟合"));
-    ui->tabWidget_2->addTab(d->detailWidget, tr("光谱数据"));
+    ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());
+    ui->tabWidget_2->addTab(d->fittingWidget, d->fittingWidget->windowTitle());
+    ui->tabWidget_2->addTab(d->detailWidget, d->detailWidget->windowTitle());
     ui->splitter_2->addWidget(d->testSetWidget);
     ui->splitter_2->setStretchFactor(0,1);
     ui->splitter_1->setStretchFactor(0,1);
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidgetSpec::handleTestStateChanged);
     connect(d->testSetWidget, &ITestSetWidget::testModeChanged, this, &HTestWidgetSpec::handleTestModeChanged);
     connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HTestWidgetSpec::handleTestFitStateChanged);
-    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [&]{ refreshCcdWidget(d->fittingTimes++); });
+    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [&]{ refreshCcdView(d->fittingTimes++); });
 }

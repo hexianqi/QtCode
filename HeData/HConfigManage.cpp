@@ -3,6 +3,7 @@
 #include "IFileStream.h"
 #include "ISpecCalibrateCollection.h"
 #include <QDataStream>
+#include <QtDebug>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -55,6 +56,7 @@ HConfigManage::HConfigManage(HConfigManagePrivate &p)
 
 HConfigManage::~HConfigManage()
 {
+    qDebug() << __func__;
 }
 
 void HConfigManage::initialize(QVariantMap /*param*/)

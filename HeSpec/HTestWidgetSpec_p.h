@@ -18,14 +18,13 @@ HE_DATA_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
 class HSpecSampleWidget;
 class HSpecEnergyWidget;
+class HSpecFittingChartView;
 class HSpecPelsWaveWidget;
 class HSpecFittingLinearWidget;
 class ITestSetWidget;
 class IDetailWidget;
 HE_GUI_END_NAMESPACE
 HE_GUI_USE_NAMESPACE
-
-class HCartesianWidget;
 
 class HTestWidgetSpecPrivate : public HAbstractTestWidgetPrivate
 {
@@ -38,7 +37,7 @@ public:
 
 public:
     HSpecSampleWidget *sampleWidget;
-    HCartesianWidget *ccdWidget;
+    HSpecFittingChartView *ccdView;
     HSpecEnergyWidget *energyWidget;
     HSpecPelsWaveWidget *pelsWaveWidget;
     HSpecFittingLinearWidget *fittingWidget;

@@ -52,6 +52,7 @@ void HSpecPelsWaveWidget::init()
     delegate->setType(QStringList() << "[光谱像元]" << "[光谱波长]");
     setItemDelegate(delegate);
     setHorizontalHeaderLabels(QStringList() << tr("像元") << tr("波长"));
+    setWindowTitle(tr("光谱像元波长"));
 }
 
 HE_GUI_END_NAMESPACE

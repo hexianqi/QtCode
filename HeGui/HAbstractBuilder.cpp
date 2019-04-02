@@ -7,13 +7,11 @@ HE_GUI_BEGIN_NAMESPACE
 HAbstractBuilder::HAbstractBuilder(QObject *parent)
     : QObject(parent), d_ptr(new HAbstractBuilderPrivate)
 {
-
 }
 
 HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent)
     : QObject(parent), d_ptr(&p)
 {
-
 }
 
 HAbstractBuilder::~HAbstractBuilder()

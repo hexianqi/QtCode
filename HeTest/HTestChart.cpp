@@ -1,6 +1,6 @@
 #include "HTestChart.h"
 #include "HePlugin/HMarkerChartExtend.h"
-#include "HePlugin/HZoomChartView.h"
+#include "HePlugin/HVernierChartView.h"
 #include <QtMath>
 #include <QRandomGenerator>
 #include <QtCharts/QChartView>
@@ -87,4 +87,29 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
     chartView->setChart(chart);
     marker->connectMarkers();
     return chartView;
+}
+
+QChartView *HTestChart::vernierChart(QPolygonF p1, QPolygonF p2)
+{
+    auto points = p1.toList();
+    auto chart = new QChart();
+    auto line1 = new QLineSeries();
+    auto spline1 = new QSplineSeries();
+    auto scatter1 = new QScatterSeries();
+    auto line2 = new QLineSeries();
+    line1->setName("Line1");
+    line1->append(points);
+    spline1->setName("Spline1");
+    spline1->append(points);
+    scatter1->setName("Scatter1");
+    scatter1->setMarkerSize(10);
+    scatter1->append(points);
+    line2->setName("Line2");
+    line2->append(p2.toList());
+    chart->addSeries(line1);
+    chart->addSeries(spline1);
+    chart->addSeries(scatter1);
+    chart->addSeries(line2);
+    chart->createDefaultAxes();
+    return new HVernierChartView(chart);
 }

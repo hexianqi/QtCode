@@ -36,7 +36,7 @@ protected slots:
 
 protected slots:
     void open();
-    void save();
+    void save(bool b = true);
     void saveAs();
     void importFile(QAction *);
     void exportFile(QAction *);

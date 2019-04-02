@@ -11,8 +11,7 @@ class HTestGsl
 public:
     void polyEval();
     void polySolve();
-
-    QWidget *interpEval();
+    QList<QPolygonF> interpEval();
 //    QWidget *linearFit();
 //    QWidget *multiFit();
 //    QWidget *multiFit2();

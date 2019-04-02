@@ -2,18 +2,18 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QLegendMarker>
 
-HMarkerChartExtendPrivate::HMarkerChartExtendPrivate(QChart *c)
-    : HAbstractChartExtendPrivate(c)
+HMarkerChartExtendPrivate::HMarkerChartExtendPrivate(QChart *c) :
+    HAbstractChartExtendPrivate(c)
 {
 }
 
-HMarkerChartExtend::HMarkerChartExtend(QChart *chart, QObject *parent)
-    : HAbstractChartExtend(*new HMarkerChartExtendPrivate(chart), parent)
+HMarkerChartExtend::HMarkerChartExtend(QChart *chart, QObject *parent) :
+    HAbstractChartExtend(*new HMarkerChartExtendPrivate(chart), parent)
 {
 }
 
-HMarkerChartExtend::HMarkerChartExtend(HMarkerChartExtendPrivate &p, QObject *parent)
-    : HAbstractChartExtend(p, parent)
+HMarkerChartExtend::HMarkerChartExtend(HMarkerChartExtendPrivate &p, QObject *parent) :
+    HAbstractChartExtend(p, parent)
 {
 }
 

@@ -8,6 +8,7 @@ HDetailWidgetSpec::HDetailWidgetSpec(QWidget *parent) :
 {
     ui->setupUi(this);
     refreshWidget();
+    setWindowTitle(tr("光谱数据"));
 }
 
 HDetailWidgetSpec::~HDetailWidgetSpec()

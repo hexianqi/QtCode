@@ -33,6 +33,7 @@ HAbstractMainWindow::HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHel
 HAbstractMainWindow::~HAbstractMainWindow()
 {
     qDebug() << __func__;
+    save(false);
 }
 
 void HAbstractMainWindow::initialize()
@@ -233,11 +234,12 @@ void HAbstractMainWindow::open()
     updatetWindowTitle();
 }
 
-void HAbstractMainWindow::save()
+void HAbstractMainWindow::save(bool b)
 {
     if (!d_ptr->model->saveFile())
         return;
-    QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
+    if (b)
+        QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
 }
 
 void HAbstractMainWindow::saveAs()

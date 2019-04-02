@@ -1,71 +1,71 @@
-#include "HCIE1931View_p.h"
+#include "HCIE1931ChartView_p.h"
 #include "HCIE1931Chart.h"
 #include "HPositionTracking.h"
 #include "HPluginHelper.h"
 #include <QAction>
 
-HCIE1931View::HCIE1931View(QWidget *parent) :
-    HZoomChartView(*new HCIE1931ViewPrivate, parent)
+HCIE1931ChartView::HCIE1931ChartView(QWidget *parent) :
+    HZoomChartView(*new HCIE1931ChartViewPrivate, nullptr, parent)
 {
     init();
 }
 
-HCIE1931View::~HCIE1931View()
+HCIE1931ChartView::~HCIE1931ChartView()
 {
 }
 
-void HCIE1931View::setEnableTracking(bool b)
+void HCIE1931ChartView::setEnableTracking(bool b)
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     d->tracking->setEnable(b);
     d->positionItem->setVisible(b);
 }
 
-HCIE1931Chart *HCIE1931View::cieChart()
+HCIE1931Chart *HCIE1931ChartView::cieChart()
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     return d->chart;
 }
 
-void HCIE1931View::mouseMoveEvent(QMouseEvent *e)
+void HCIE1931ChartView::mouseMoveEvent(QMouseEvent *e)
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     d->tracking->mouseMoveEvent(e);
     HZoomChartView::mouseMoveEvent(e);
 }
 
-void HCIE1931View::mouseDoubleClickEvent(QMouseEvent *e)
+void HCIE1931ChartView::mouseDoubleClickEvent(QMouseEvent *e)
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     if (d->tracking->isEnable())
         emit mouseDoubleClicked(chart()->mapToValue(e->pos()));
     HZoomChartView::mouseMoveEvent(e);
 }
 
-void HCIE1931View::handlePlotAreaChanged(QRectF value)
+void HCIE1931ChartView::handlePlotAreaChanged(QRectF value)
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     d->tracking->setValidRegion(value);
     d->positionItem->setPos(value.left() + 10, value.top() + 10);
     d->pointFocusItem->setPos(value.right() - d->pointFocusItem->boundingRect().width() - 10, value.top() + 10);
 }
 
-void HCIE1931View::handlePointFocusChanged(QPointF pos)
+void HCIE1931ChartView::handlePointFocusChanged(QPointF pos)
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     d->pointFocusItem->setText(QString("(%1, %2)").arg(pos.x(), 0, 'f', 4).arg(pos.y(), 0, 'f', 4));
 }
 
-void HCIE1931View::handlePositionChanged(QPointF pos)
+void HCIE1931ChartView::handlePositionChanged(QPointF pos)
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     auto p = chart()->mapToValue(pos);
     d->positionItem->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
 }
 
-void HCIE1931View::init()
+void HCIE1931ChartView::init()
 {
-    Q_D(HCIE1931View);
+    Q_D(HCIE1931ChartView);
     d->chart = new HCIE1931Chart;
     d->tracking = new HPositionTracking(this);
     d->positionItem = new QGraphicsSimpleTextItem(d->chart);
@@ -98,9 +98,9 @@ void HCIE1931View::init()
     HPluginHelper::addSeparator(this);
     addAction(d->actionEnablePoint);
     addAction(d->actionClearPoint);
-    connect(d->chart, &QChart::plotAreaChanged, this, &HCIE1931View::handlePlotAreaChanged);
-    connect(d->chart, &HCIE1931Chart::pointFocusChanged, this, &HCIE1931View::handlePointFocusChanged);
-    connect(d->tracking, &HPositionTracking::positionChanged, this, &HCIE1931View::handlePositionChanged);
+    connect(d->chart, &HCIE1931Chart::plotAreaChanged, this, &HCIE1931ChartView::handlePlotAreaChanged);
+    connect(d->chart, &HCIE1931Chart::pointFocusChanged, this, &HCIE1931ChartView::handlePointFocusChanged);
+    connect(d->tracking, &HPositionTracking::positionChanged, this, &HCIE1931ChartView::handlePositionChanged);
     connect(d->actionEnableCIE, &QAction::toggled, d->chart, &HCIE1931Chart::setEnableCIE);
     connect(d->actionEnableHorseshoe, &QAction::toggled, d->chart, &HCIE1931Chart::setEnableHorseshoe);
     connect(d->actionEnablePlanckian, &QAction::toggled, d->chart, &HCIE1931Chart::setEnablePlanckian);

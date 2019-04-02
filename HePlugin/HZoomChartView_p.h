@@ -2,8 +2,9 @@
 #define HZOOMCHARTVIEW_P_H
 
 #include "HZoomChartView.h"
+#include "HChartView_p.h"
 
-class HZoomChartViewPrivate
+class HZoomChartViewPrivate : public HChartViewPrivate
 {
 public:
     QAction *actionZoomIn;

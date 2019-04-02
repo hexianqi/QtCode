@@ -3,13 +3,11 @@
 #include "HeAlgorithm/HPolynomial.h"
 #include "HeAlgorithm/HLinearFit.h"
 #include "HeAlgorithm/HMultiFit.h"
-#include "HTestChart.h"
 #include <QFile>
 #include <QTextStream>
 #include <QtMath>
 #include <QRandomGenerator>
 #include <QDebug>
-#include <QtCharts/QChartView>
 
 HE_ALGORITHM_USE_NAMESPACE
 
@@ -62,11 +60,11 @@ void HTestGsl::polySolve()
         qDebug() << QString("z%1 = %2 + %3 * i").arg(i).arg(GSL_REAL(r[i])).arg(GSL_IMAG(r[i]));
 }
 
-QWidget *HTestGsl::interpEval()
+QList<QPolygonF> HTestGsl::interpEval()
 {
     auto p1 = readCieDay();
     auto p2 = HInterp::eval(p1, p1.first().x() - 10, p1.last().x() + 10, 0.1, HInterpType::Cspline);
-    return HTestChart::diffChart(p1, p2);
+    return QList<QPolygonF>() << p1 << p2;
 }
 
 //QWidget *HTestGsl::linearFit()

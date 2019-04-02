@@ -1,13 +1,13 @@
-#ifndef HCIE1931VIEW_P_H
-#define HCIE1931VIEW_P_H
+#ifndef HCIE1931CHARTVIEW_P_H
+#define HCIE1931CHARTVIEW_P_H
 
-#include "HCIE1931View.h"
+#include "HCIE1931ChartView.h"
 #include "HZoomChartView_p.h"
 
 class QGraphicsSimpleTextItem;
 class HPositionTracking;
 
-class HCIE1931ViewPrivate : public HZoomChartViewPrivate
+class HCIE1931ChartViewPrivate : public HZoomChartViewPrivate
 {
 public:
     HCIE1931Chart *chart;
@@ -22,4 +22,4 @@ public:
     QAction *actionClearPoint;
 };
 
-#endif // HCIE1931VIEW_P_H
+#endif // HCIE1931CHARTVIEW_P_H

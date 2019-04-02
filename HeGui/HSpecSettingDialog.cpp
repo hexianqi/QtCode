@@ -125,6 +125,7 @@ void HSpecSettingDialog::init()
     ui->lineEdit_2007->setValidator(v[11]);
     ui->splitter->setStretchFactor(1, 1);
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint);
+    setWindowTitle(tr("光谱参数设置"));
 }
 
 HE_GUI_END_NAMESPACE

@@ -1,20 +1,20 @@
 #include "HZoomChartView_p.h"
 #include <QAction>
 
-HZoomChartView::HZoomChartView(QWidget *parent)
-    : QChartView(parent), d_ptr(new HZoomChartViewPrivate)
+HZoomChartView::HZoomChartView(QWidget *parent) :
+    HChartView(*new HZoomChartViewPrivate, nullptr, parent)
 {
     init();
 }
 
-HZoomChartView::HZoomChartView(QChart *chart, QWidget *parent)
-    : QChartView(chart, parent), d_ptr(new HZoomChartViewPrivate)
+HZoomChartView::HZoomChartView(QChart *chart, QWidget *parent) :
+    HChartView(*new HZoomChartViewPrivate, chart, parent)
 {
     init();
 }
 
-HZoomChartView::HZoomChartView(HZoomChartViewPrivate &p, QWidget *parent)
-    : QChartView(parent), d_ptr(&p)
+HZoomChartView::HZoomChartView(HZoomChartViewPrivate &p, QChart *chart, QWidget *parent) :
+    HChartView(p, chart, parent)
 {
     init();
 }
@@ -63,15 +63,16 @@ void HZoomChartView::keyPressEvent(QKeyEvent *e)
 
 void HZoomChartView::init()
 {
-    d_ptr->actionZoomReset = new QAction(tr("还原(&R)"));
-    d_ptr->actionZoomIn = new QAction(QIcon(":/image/ZoomIn.png"), tr("放大(&I)"));
-    d_ptr->actionZoomOut = new QAction(QIcon(":/image/ZoomOut.png"), tr("缩小(&O)"));
-    connect(d_ptr->actionZoomReset, &QAction::triggered, this, [=] { chart()->zoomReset(); });
-    connect(d_ptr->actionZoomIn, &QAction::triggered, this, [=] { chart()->zoomIn(); });
-    connect(d_ptr->actionZoomOut, &QAction::triggered, this, [=] { chart()->zoomOut(); });
-    addAction(d_ptr->actionZoomReset);
-    addAction(d_ptr->actionZoomIn);
-    addAction(d_ptr->actionZoomOut);
+    Q_D(HZoomChartView);
+    d->actionZoomReset = new QAction(tr("还原(&R)"));
+    d->actionZoomIn = new QAction(QIcon(":/image/ZoomIn.png"), tr("放大(&I)"));
+    d->actionZoomOut = new QAction(QIcon(":/image/ZoomOut.png"), tr("缩小(&O)"));
+    connect(d->actionZoomReset, &QAction::triggered, this, [=] { chart()->zoomReset(); });
+    connect(d->actionZoomIn, &QAction::triggered, this, [=] { chart()->zoomIn(); });
+    connect(d->actionZoomOut, &QAction::triggered, this, [=] { chart()->zoomOut(); });
+    addAction(d->actionZoomReset);
+    addAction(d->actionZoomIn);
+    addAction(d->actionZoomOut);
     setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     setRubberBand(QChartView::RectangleRubberBand);

@@ -32,7 +32,7 @@ void HVernierWidget::setDecimals(int value)
     if (d->decimals == value)
         return;
     d->decimals = value;
-    emitVernierValue();
+    updataVernier();
 }
 
 HVernierTracking *HVernierWidget::tracking()
@@ -107,13 +107,13 @@ void HVernierWidget::mouseReleaseEvent(QMouseEvent *e)
 void HVernierWidget::handleCoordinateChanged(HCartesianCoordinate *p)
 {
     HCartesianWidget::handleCoordinateChanged(p);
-    emitVernierValue();
+    updataVernier();
 }
 
 void HVernierWidget::handleOrientationChanged()
 {
     update();
-    emitVernierValue();
+    updataVernier();
 }
 
 void HVernierWidget::handleVernierPosChanged(QPointF pos)
@@ -123,16 +123,16 @@ void HVernierWidget::handleVernierPosChanged(QPointF pos)
         update(QRectF(pos.x(), d->plotArea.top(), 1, d->plotArea.height()).toRect());
     else
         update(QRectF(d->plotArea.left(), pos.y(), d->plotArea.width(), 1).toRect());
-    emitVernierValue();
+    updataVernier();
 }
 
 void HVernierWidget::handleVernierSizeChanged()
 {
     update();
-    emitVernierValue();
+    updataVernier();
 }
 
-void HVernierWidget::emitVernierValue()
+void HVernierWidget::updataVernier()
 {
     Q_D(HVernierWidget);
     auto rect = (d->plotArea.width() < 0.1 || d->plotArea.height() < 0.1) ? QRectF(0, 0, 1, 1) : d->plotArea;

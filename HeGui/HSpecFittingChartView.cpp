@@ -19,6 +19,8 @@ HSpecFittingChartView::~HSpecFittingChartView()
 void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
 {
     Q_D(HSpecFittingChartView);
+    if (value.size() <= 0)
+        return;
     removeSeries(id);
     auto serie = new QLineSeries();
     serie->setName(QString("Line %1").arg(id));
@@ -30,8 +32,10 @@ void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
 void HSpecFittingChartView::removeSeries(int id)
 {
     Q_D(HSpecFittingChartView);
-    if (d->series.contains(id))
-        d->series.remove(id);
+    if (!d->series.contains(id))
+        return;
+    d->chart->removeSeries(d->series[id]);
+    d->series.remove(id);
 }
 
 void HSpecFittingChartView::clearSeries()
@@ -45,6 +49,7 @@ void HSpecFittingChartView::init()
 {
     Q_D(HSpecFittingChartView);
     auto axisX = new QValueAxis;
+    axisX->setLabelFormat("%d");
     axisX->setRange(0, 65535);
     axisX->setTickCount(6);
     auto axisY = new QValueAxis;
@@ -54,6 +59,7 @@ void HSpecFittingChartView::init()
     d->chart->setAxisX(axisX);
     d->chart->setAxisY(axisY);
     setChart(d->chart);
+    setWindowTitle(tr("CCD曲线"));
 }
 
 HE_GUI_END_NAMESPACE

@@ -48,7 +48,7 @@ protected:
     void handleOrientationChanged();
     void handleVernierPosChanged(QPointF pos);
     void handleVernierSizeChanged();
-    void emitVernierValue();
+    void updataVernier();
 
 private:
     void init();

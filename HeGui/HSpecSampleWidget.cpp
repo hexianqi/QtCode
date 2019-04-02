@@ -2,6 +2,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeController/ITestSpec.h"
+#include "HePlugin/HPluginHelper.h"
 #include <QAction>
 #include <QLabel>
 
@@ -110,6 +111,7 @@ void HSpecSampleWidget::init()
 
     setDecimals(0);
     setCoordinate(QRectF(0, 0, 2100, 65535), 5, 5);
+    HPluginHelper::addSeparator(this);
     addAction(d->actionCurve1);
     addAction(d->actionCurve2);
     connect(d->actionCurve1, &QAction::toggled, this, &HSpecSampleWidget::setCurve1Visible);

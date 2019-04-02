@@ -1,18 +1,20 @@
 #include "HAbstractMouseStrategy_p.h"
 #include <QWidget>
 
-HAbstractMouseStrategyPrivate::HAbstractMouseStrategyPrivate(QWidget *p)
-    : parent(p)
+HAbstractMouseStrategyPrivate::HAbstractMouseStrategyPrivate(QWidget *p) :
+    parent(p)
 {
 }
 
-HAbstractMouseStrategy::HAbstractMouseStrategy(QWidget *parent)
-    : QObject(parent), d_ptr(new HAbstractMouseStrategyPrivate(parent))
+HAbstractMouseStrategy::HAbstractMouseStrategy(QWidget *parent) :
+    QObject(parent),
+    d_ptr(new HAbstractMouseStrategyPrivate(parent))
 {
 }
 
-HAbstractMouseStrategy::HAbstractMouseStrategy(HAbstractMouseStrategyPrivate &p, QWidget *parent)
-    : QObject(parent), d_ptr(&p)
+HAbstractMouseStrategy::HAbstractMouseStrategy(HAbstractMouseStrategyPrivate &p, QWidget *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
 }
 

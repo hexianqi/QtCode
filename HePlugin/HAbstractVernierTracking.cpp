@@ -103,7 +103,7 @@ QVector<QPointF> HAbstractVernierTracking::verniers()
 bool HAbstractVernierTracking::mousePressEvent(QMouseEvent *e)
 {
     Q_D(HAbstractVernierTracking);
-    if (!isEnable() || e->button() != Qt::LeftButton)
+    if (!isEnable() || e->button() != Qt::LeftButton || !isValid(e->localPos()))
         return false;
     for (int i = 0; i < d->verniers.size(); i++)
     {

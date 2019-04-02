@@ -101,6 +101,7 @@ void HSpecFittingWidget::init()
     d_ptr->progressDialog = new QProgressDialog(tr("正在采样...."), tr("取消"), 0, 100, this);
     d_ptr->progressDialog->reset();
     connect(d_ptr->progressDialog, &QProgressDialog::canceled, this, [=]{ setTest(false); });
+    setWindowTitle(tr("光谱拟合"));
 }
 
 HE_GUI_END_NAMESPACE
