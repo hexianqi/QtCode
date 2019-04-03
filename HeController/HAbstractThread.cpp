@@ -36,14 +36,16 @@ void HAbstractThreadPrivate::clearAction()
     actionCache.clear();
 }
 
-HAbstractThread::HAbstractThread(QObject *parent)
-    : IThread(parent), d_ptr(new HAbstractThreadPrivate)
+HAbstractThread::HAbstractThread(QObject *parent) :
+    IThread(parent),
+    d_ptr(new HAbstractThreadPrivate)
 {
     readSettings();
 }
 
-HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent)
-    : IThread(parent), d_ptr(&p)
+HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent) :
+    IThread(parent),
+    d_ptr(&p)
 {
     readSettings();
 }
@@ -183,7 +185,7 @@ void HAbstractThread::normalMode()
         if (i >= d_ptr->retry)
         {
             actionFail(action, error);
-            break;
+//            break;
         }
     }
     closeProtocol();

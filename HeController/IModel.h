@@ -35,7 +35,7 @@ signals:
 
 public:
     virtual void start() = 0;
-    virtual void addAction(HActionType action) = 0;
+    virtual void addAction(HActionType action, ulong delay = 0) = 0;
     virtual void syncTestData(quint32 type) = 0;
 
 public:

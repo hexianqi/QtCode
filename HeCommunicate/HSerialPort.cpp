@@ -44,7 +44,7 @@ HErrorType HSerialPort::transport(QVector<uchar> &downData, QVector<uchar> &upDa
     if (error != E_OK)
         return error;
 
-    if (delay >= 10)
+    if (delay > 10)
         d->serial->waitForReadyRead(delay);
 
     return read(upData);

@@ -41,6 +41,7 @@ void HSpecPelsWave::readContent(QDataStream &s)
 {
     Q_D(HSpecPelsWave);
     quint32 version;
+    d->pelsWave.clear();
     s >> version;
     s >> d->datas;
     s >> d->pelsWave;

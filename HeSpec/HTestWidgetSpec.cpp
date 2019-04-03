@@ -123,8 +123,8 @@ void HTestWidgetSpec::handleTestFitStateChanged(bool b)
     ui->pushButton_3->setEnabled(!b);
     ui->pushButton_4->setEnabled(!b);
     ui->pushButton_5->setEnabled(!b);
-    ui->tabWidget_1->setCurrentIndex(b ? 0 : 2);
-    ui->tabWidget_2->setTabEnabled(0, !b);
+    ui->tabWidget_1->setCurrentIndex(b ? 0 : 1);
+    ui->tabWidget_2->setTabEnabled(1, !b);
 }
 
 void HTestWidgetSpec::refreshCcdView(int i)

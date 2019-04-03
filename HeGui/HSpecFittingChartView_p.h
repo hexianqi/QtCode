@@ -5,6 +5,7 @@
 #include "HePlugin/HZoomChartView_p.h"
 
 class HSingleAxisChart;
+class HMarkerChartExtend;
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QLineSeries;
@@ -17,6 +18,7 @@ class HSpecFittingChartViewPrivate : public HZoomChartViewPrivate
 {
 public:
     HSingleAxisChart *chart;
+    HMarkerChartExtend *marker;
     QHash<int, QLineSeries *> series;
 };
 

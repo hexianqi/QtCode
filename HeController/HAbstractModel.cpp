@@ -1,6 +1,7 @@
 #include "HAbstractModel_p.h"
 #include "IThread.h"
 #include "IThreadCollection.h"
+#include "HDelayThread.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IDeviceCollection.h"
 #include "HeData/IConfigManage.h"
@@ -9,28 +10,34 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractModelPrivate::HAbstractModelPrivate()
+HAbstractModelPrivate::HAbstractModelPrivate(HAbstractModel *q) :
+    q_ptr(q)
 {
     initialized = false;
     configFileName = HAppContext::getContextValue<QString>("ConfigFileName");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     devices = HAppContext::getContextPointer<IDeviceCollection>("IDeviceCollection");
     threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
+    delayThread = new HDelayThread(q);
+    delayThread->start();
 }
 
-HAbstractModel::HAbstractModel(QObject *parent)
-    : IModel(parent), d_ptr(new HAbstractModelPrivate)
+HAbstractModel::HAbstractModel(QObject *parent) :
+    IModel(parent),
+    d_ptr(new HAbstractModelPrivate(this))
 {
 }
 
-HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent)
-    : IModel(parent), d_ptr(&p)
+HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent) :
+    IModel(parent),
+    d_ptr(&p)
 {
 }
 
 HAbstractModel::~HAbstractModel()
 {
     qDebug() << __func__;
+    d_ptr->delayThread->stop();
     if (d_ptr->initialized)
         stopThread();
 }
@@ -49,7 +56,7 @@ void HAbstractModel::start()
     d_ptr->initialized = true;
 }
 
-void HAbstractModel::addAction(HActionType action)
+void HAbstractModel::addAction(HActionType action, ulong delay)
 {
     if (action >= 0x10000000)
     {
@@ -59,6 +66,12 @@ void HAbstractModel::addAction(HActionType action)
 
     if (!d_ptr->devices->isSupport(action))
         return;
+
+    if (delay > 30)
+    {
+        d_ptr->delayThread->addAction(action, delay);
+        return;
+    }
 
     for (auto t : d_ptr->threads->values())
         t->addAction(action);

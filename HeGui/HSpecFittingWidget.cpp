@@ -90,7 +90,7 @@ bool HSpecFittingWidget::setTest(bool b)
         d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());
         d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
     }
-    d_ptr->testSpec->setFitting(b);
+    d_ptr->testSpec->setFitting(!b);
     d_ptr->testState = b;
     emit testStateChanged(b);
     return true;

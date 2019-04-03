@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2019-04-02  HVernierChartView   游标视图。
+**      2019-04-02  HVernierChartView   带游标图表视图。
 ***************************************************************************************************/
 
 #ifndef HVERNIERCHARTVIEW_H
@@ -26,6 +26,7 @@ signals:
 
 public:
     void setDecimals(int value);
+    void updataVernier();
 
 public:
     HGraphicsVernierTracking *tracking();
@@ -39,7 +40,6 @@ protected:
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
     void handlePlotAreaChanged(QRectF value);
-    void updataVernier();
 
 private:
     void init();

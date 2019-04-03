@@ -1,19 +1,19 @@
 #include "HSpecFittingChartView_p.h"
 #include "HePlugin/HSingleAxisChart.h"
+#include "HePlugin/HMarkerChartExtend.h"
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecFittingChartView::HSpecFittingChartView(QWidget *parent) :
-    HZoomChartView(*new HSpecFittingChartViewPrivate, parent)
+    HZoomChartView(*new HSpecFittingChartViewPrivate, nullptr, parent)
 {
     init();
 }
 
 HSpecFittingChartView::~HSpecFittingChartView()
 {
-
 }
 
 void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
@@ -26,6 +26,7 @@ void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
     serie->setName(QString("Line %1").arg(id));
     serie->append(value);
     d->chart->addSeries(serie);
+    d->marker->connectMarkers();
     d->series.insert(id, serie);
 }
 
@@ -34,14 +35,17 @@ void HSpecFittingChartView::removeSeries(int id)
     Q_D(HSpecFittingChartView);
     if (!d->series.contains(id))
         return;
-    d->chart->removeSeries(d->series[id]);
+    auto series = d->series[id];
+    d->chart->removeSeries(series);
     d->series.remove(id);
+    delete series;
 }
 
 void HSpecFittingChartView::clearSeries()
 {
     Q_D(HSpecFittingChartView);
     d->chart->removeAllSeries();
+    d->marker->disconnectMarkers();
     d->series.clear();
 }
 
@@ -58,6 +62,7 @@ void HSpecFittingChartView::init()
     d->chart = new HSingleAxisChart;
     d->chart->setAxisX(axisX);
     d->chart->setAxisY(axisY);
+    d->marker = new HMarkerChartExtend(d->chart, this);
     setChart(d->chart);
     setWindowTitle(tr("CCD曲线"));
 }

@@ -29,7 +29,7 @@ public:
 public:
     QMutex *mutex;
     QWaitCondition *waitConditionAction;
-    volatile bool running;
+    volatile bool running = false;
     QQueue<HActionType> actionCache;
     QSet<HActionType> actionSupport;
     int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;

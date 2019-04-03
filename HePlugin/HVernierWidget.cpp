@@ -35,6 +35,28 @@ void HVernierWidget::setDecimals(int value)
     updataVernier();
 }
 
+void HVernierWidget::updataVernier()
+{
+    Q_D(HVernierWidget);
+    auto rect = (d->plotArea.width() < 0.1 || d->plotArea.height() < 0.1) ? QRectF(0, 0, 1, 1) : d->plotArea;
+    auto verniers = d->coordinate->mapToValue(d->tracking->verniers(), rect);
+    if (verniers.size() < 1)
+        return;
+
+    double value;
+    QVector<double> values;
+    QStringList list;
+    for (auto p : verniers)
+    {
+        value = d->tracking->orientation() == Qt::Vertical ? p.x() : p.y();
+        values << value;
+        list << QString("%1").arg(value, 0, 'f', d->decimals);
+    }
+    emit vernierValueChanged(values);
+    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
+}
+
+
 HVernierTracking *HVernierWidget::tracking()
 {
     Q_D(HVernierWidget);
@@ -130,27 +152,6 @@ void HVernierWidget::handleVernierSizeChanged()
 {
     update();
     updataVernier();
-}
-
-void HVernierWidget::updataVernier()
-{
-    Q_D(HVernierWidget);
-    auto rect = (d->plotArea.width() < 0.1 || d->plotArea.height() < 0.1) ? QRectF(0, 0, 1, 1) : d->plotArea;
-    auto verniers = d->coordinate->mapToValue(d->tracking->verniers(), rect);
-    if (verniers.size() < 1)
-        return;
-
-    double value;
-    QVector<double> values;
-    QStringList list;
-    for (auto p : verniers)
-    {
-        value = d->tracking->orientation() == Qt::Vertical ? p.x() : p.y();
-        values << value;
-        list << QString(" %1").arg(value, 0, 'f', d->decimals);
-    }
-    emit vernierValueChanged(values);
-    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
 }
 
 void HVernierWidget::init()

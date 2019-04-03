@@ -4,13 +4,14 @@
 #include "HeController/ITestSpec.h"
 #include <QDebug>
 
-HModelSpecPrivate::HModelSpecPrivate()
+HModelSpecPrivate::HModelSpecPrivate(HModelSpec *q) :
+    HAbstractModelPrivate(q)
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
 HModelSpec::HModelSpec(QObject *parent) :
-    HAbstractModel(*new HModelSpecPrivate, parent)
+    HAbstractModel(*new HModelSpecPrivate(this), parent)
 {
 }
 

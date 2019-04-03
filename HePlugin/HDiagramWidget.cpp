@@ -3,8 +3,8 @@
 #include <QResizeEvent>
 #include <QStyleOptionFocusRect>
 
-HDiagramWidgetPrivate::HDiagramWidgetPrivate(HDiagramWidget *q)
-    : q_ptr(q)
+HDiagramWidgetPrivate::HDiagramWidgetPrivate(HDiagramWidget *q) :
+    q_ptr(q)
 {
     polygonColors.insert(0, QColor(255, 85, 0));
     polygonColors.insert(1, QColor(255, 85, 255));
@@ -27,14 +27,16 @@ QRectF HDiagramWidgetPrivate::calcPlotArea(QSize size)
     return rect;
 }
 
-HDiagramWidget::HDiagramWidget(QWidget *parent)
-    : QWidget(parent), d_ptr(new HDiagramWidgetPrivate(this))
+HDiagramWidget::HDiagramWidget(QWidget *parent) :
+    QWidget(parent),
+    d_ptr(new HDiagramWidgetPrivate(this))
 {
     init();
 }
 
-HDiagramWidget::HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent)
-    : QWidget(parent), d_ptr(&p)
+HDiagramWidget::HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent) :
+    QWidget(parent),
+    d_ptr(&p)
 {
     init();
 }

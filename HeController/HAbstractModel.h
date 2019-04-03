@@ -24,7 +24,7 @@ public:
 
 public:
     void start() override;
-    void addAction(HActionType action) override;
+    void addAction(HActionType action, ulong delay = 0) override;
 
 public:
     bool openFile() override;
@@ -43,7 +43,6 @@ protected:
 
 protected:
     virtual void setConfigFile(QString fileName);
-
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

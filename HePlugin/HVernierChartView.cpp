@@ -33,6 +33,22 @@ void HVernierChartView::setDecimals(int value)
     updataVernier();
 }
 
+void HVernierChartView::updataVernier()
+{
+    Q_D(HVernierChartView);
+    QVector<double> values;
+    QStringList list;
+    for (auto vernier : d->tracking->verniers())
+    {
+        auto point = chart()->mapToValue(vernier);
+        auto value = d->tracking->orientation() == Qt::Vertical ? point.x() : point.y();
+        values << value;
+        list << QString("%1").arg(value, 0, 'f', d->decimals);
+    }
+    emit vernierValueChanged(values);
+    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
+}
+
 HGraphicsVernierTracking *HVernierChartView::tracking()
 {
     Q_D(HVernierChartView);
@@ -79,22 +95,6 @@ void HVernierChartView::handlePlotAreaChanged(QRectF value)
     d->textRight->setPos(value.right() - d->textRight->boundingRect().width() - 10, y);
 }
 
-void HVernierChartView::updataVernier()
-{
-    Q_D(HVernierChartView);
-    QVector<double> values;
-    QStringList list;
-    for (auto vernier : d->tracking->verniers())
-    {
-        auto point = chart()->mapToValue(vernier);
-        auto value = d->tracking->orientation() == Qt::Vertical ? point.x() : point.y();
-        values << value;
-        list << QString(" %1").arg(value, 0, 'f', d->decimals);
-    }
-    emit vernierValueChanged(values);
-    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
-}
-
 void HVernierChartView::init()
 {
     Q_D(HVernierChartView);
@@ -107,9 +107,4 @@ void HVernierChartView::init()
     connect(d->tracking, &HGraphicsVernierTracking::orientationChanged, this, &HVernierChartView::updataVernier);
     connect(d->tracking, &HGraphicsVernierTracking::vernierPosChanged, this, &HVernierChartView::updataVernier);
     connect(d->tracking, &HGraphicsVernierTracking::vernierSizeChanged, this, &HVernierChartView::updataVernier);
-    connect(this, &HVernierChartView::vernierTextChanged, this,
-            [=](QString value){
-        d->textLeft->setText(value);
-        d->textCenter->setText(value);
-        d->textRight->setText(value);});
 }

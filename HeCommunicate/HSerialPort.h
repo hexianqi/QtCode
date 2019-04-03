@@ -24,7 +24,7 @@ public:
     QString typeName() override;
 
 public:
-    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 10) override;
+    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
     HErrorType clear() override;
 
 protected:

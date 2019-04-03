@@ -27,6 +27,7 @@ signals:
 
 public:
     void setDecimals(int value);
+    void updataVernier();
 
 public:
     HVernierTracking *tracking();
@@ -48,7 +49,6 @@ protected:
     void handleOrientationChanged();
     void handleVernierPosChanged(QPointF pos);
     void handleVernierSizeChanged();
-    void updataVernier();
 
 private:
     void init();

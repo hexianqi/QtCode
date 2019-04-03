@@ -3,6 +3,7 @@
 #include "HeCore/HCore.h"
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
+#include "HePlugin/HVernierTracking.h"
 #include <QAction>
 #include <QLabel>
 
@@ -61,7 +62,7 @@ void HSpecSampleWidget::refreshLabelCenter()
         auto p = d->testSpec->sampleMax(i, d->verniers.first(), d->verniers.last());
         list << QString(" Max%1(%2, %3) ").arg(i).arg(p.x()).arg(p.y());
     }
-    d->labelCenter->setText(QString("(%1)").arg(list.join('\t')));
+    d->labelCenter->setText(QString("%1").arg(list.join('\t')));
 }
 
 void HSpecSampleWidget::refreshLabelRight()
@@ -72,7 +73,7 @@ void HSpecSampleWidget::refreshLabelRight()
 
     QStringList list;
     for (auto v : d->verniers)
-        list << QString(" %1").arg(d->testSpec->pelsToWave(v), 0, 'f', 1);
+        list << QString("%1").arg(d->testSpec->pelsToWave(v), 0, 'f', 1);
     d->labelRight->setText(QString("(%1)").arg(list.join(',')));
 }
 
@@ -118,6 +119,7 @@ void HSpecSampleWidget::init()
     connect(d->actionCurve2, &QAction::toggled, this, &HSpecSampleWidget::setCurve2Visible);
     connect(this, &HSpecSampleWidget::vernierTextChanged, d->labelLeft, &QLabel::setText);
     connect(this, &HSpecSampleWidget::vernierValueChanged, this, &HSpecSampleWidget::setVernier);
+    updataVernier();
     setWindowTitle(tr("光谱采样曲线"));
 }
 

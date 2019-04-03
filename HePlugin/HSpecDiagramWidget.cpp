@@ -6,6 +6,8 @@
 HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q)
     : HRibbonDiagramWidgetPrivate(q)
 {
+    halfSide = true;
+    unitInRuler = false;
     fontCenter.setPointSize(18);
     fontCenter.setWeight(QFont::Bold);
     fontTopLeft.setPointSize(30);

@@ -17,18 +17,21 @@ HE_DATA_USE_NAMESPACE
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 class IThreadCollection;
+class HDelayThread;
 
 class HE_CONTROLLER_EXPORT HAbstractModelPrivate
 {
 public:
-    HAbstractModelPrivate();
+    HAbstractModelPrivate(HAbstractModel *);
 
 public:
     bool initialized;
     QString configFileName;
+    HAbstractModel *q_ptr;
     IConfigManage *configManage = nullptr;
     IDeviceCollection *devices = nullptr;
     IThreadCollection *threads = nullptr;
+    HDelayThread *delayThread;
 };
 
 HE_CONTROLLER_END_NAMESPACE

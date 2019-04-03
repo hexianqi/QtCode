@@ -6,9 +6,12 @@ HEADERS += \
     $$PWD/HThreadSpec_p.h \
     $$PWD/IThreadCollection.h \
     $$PWD/HThreadCollection.h \
-    $$PWD/HThreadCollection_p.h
+    $$PWD/HThreadCollection_p.h \
+    $$PWD/HDelayThread.h \
+    $$PWD/HDelayThread_p.h
 
 SOURCES += \
     $$PWD/HAbstractThread.cpp \
     $$PWD/HThreadSpec.cpp \
-    $$PWD/HThreadCollection.cpp
+    $$PWD/HThreadCollection.cpp \
+    $$PWD/HDelayThread.cpp

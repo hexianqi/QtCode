@@ -71,7 +71,7 @@ HErrorType HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &up
     if (error != E_OK)
         return error;
 
-    if (delay >= 10)
+    if (delay > 10)
         QThread::msleep(delay);
 
     return read(upData);
