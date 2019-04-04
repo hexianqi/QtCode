@@ -7,11 +7,11 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HDelayThreadPrivate::HDelayThreadPrivate()
+HDelayThreadPrivate::HDelayThreadPrivate(IModel *p)
 {
     mutex = new QMutex;
     waitConditionAction = new QWaitCondition;
-    model = HAppContext::getContextPointer<IModel>("IModel");
+    model = p;
 }
 
 void HDelayThreadPrivate::enqueueAction(HActionType action, ulong delay)
@@ -43,9 +43,9 @@ void HDelayThreadPrivate::clearAction()
     actionCache.clear();
 }
 
-HDelayThread::HDelayThread(QObject *parent) :
+HDelayThread::HDelayThread(IModel *parent) :
     QThread(parent),
-    d_ptr(new HDelayThreadPrivate)
+    d_ptr(new HDelayThreadPrivate(parent))
 {
 }
 

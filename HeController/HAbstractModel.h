@@ -42,6 +42,9 @@ protected:
     virtual void stopThread();
 
 protected:
+    void initDelayThread();
+
+protected:
     virtual void setConfigFile(QString fileName);
 
 protected:

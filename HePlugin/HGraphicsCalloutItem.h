@@ -25,17 +25,19 @@ public:
     ~HGraphicsCalloutItem() override;
 
 public:
-//    void setText(QString value);
-//    void setAnchor(QPointF point);
-//    void updateGeometry();
+    void setFont(QFont value);
+    void setText(QString value);
+    void setAnchor(QPointF value);
+    void updateGeometry();
+    QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-//public:
-//    QRectF boundingRect() const override;
-//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+public:
+    QFont font();
 
-//protected:
-//    void mousePressEvent(QGraphicsSceneMouseEvent *) override;
-//    void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
 };
 
 #endif // HGRAPHICSCALLOUTITEM_H

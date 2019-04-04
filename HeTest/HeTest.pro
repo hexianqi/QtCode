@@ -48,7 +48,7 @@ FORMS       += \
 RESOURCES   += \
             HeTest.qrc
 
-INCLUDEPATH += .. D:/Qt/gsl64/include
+INCLUDEPATH += .. D:/Qt/gsl32/include
 
 Debug {
     CONFIG  += console

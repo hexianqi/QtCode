@@ -10,5 +10,8 @@
         <file>image/Paste.png</file>
         <file>image/Table.png</file>
         <file>image/Spectrum.png</file>
+        <file>image/Clear.png</file>
+        <file>image/restore.png</file>
+        <file>image/Zoom.png</file>
     </qresource>
 </RCC>

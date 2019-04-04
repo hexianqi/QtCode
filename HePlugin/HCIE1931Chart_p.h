@@ -17,11 +17,11 @@ public:
 
 public:
     QPixmap cie;
-    QAreaSeries *horseshoe;
-    QLineSeries *planckian;
-    QScatterSeries *pointFocus;
-    QScatterSeries *points;
-    QLineSeries *gradeFocus;
+    QAreaSeries *horseshoe = nullptr;
+    QLineSeries *planckian = nullptr;
+    QScatterSeries *pointFocus = nullptr;
+    QScatterSeries *points = nullptr;
+    QLineSeries *gradeFocus = nullptr;
     QList<QLineSeries *> grades;
     bool enableCIE = true;
     bool enableHorseshoe = true;

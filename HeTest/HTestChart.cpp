@@ -56,7 +56,7 @@ QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
     chart->createDefaultAxes();
     chart->legend()->setAlignment(Qt::AlignRight);
     chartView->setChart(chart);
-    marker->connectMarkers();
+    marker->connectExtend();
     return chartView;
 }
 
@@ -85,7 +85,7 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
     chart->addSeries(line2);
     chart->createDefaultAxes();
     chartView->setChart(chart);
-    marker->connectMarkers();
+    marker->connectExtend();
     return chartView;
 }
 

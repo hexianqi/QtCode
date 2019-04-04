@@ -24,6 +24,7 @@ public:
     QString typeName() override;
 
 protected slots:
+    void on_tabWidget_1_currentChanged(int index);
     void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();

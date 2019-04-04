@@ -3,6 +3,7 @@
 
 #include "HGraphicsCalloutItem.h"
 #include "HGraphicsItem_p.h"
+#include <QFont>
 
 class HGraphicsCalloutItemPrivate : public HGraphicsItemPrivate
 {
@@ -10,11 +11,9 @@ public:
     QChart *chart;
     QString text;
     QRectF textRect;
-/*    QRectF m_rect;
+    QFont font;
+    QRectF rect;
     QPointF anchor;
-    QFont m_font*/;
-
-
 };
 
 #endif // HGRAPHICSCALLOUTITEM_P_H

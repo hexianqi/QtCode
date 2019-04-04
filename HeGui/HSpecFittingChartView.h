@@ -26,6 +26,9 @@ public:
     void removeSeries(int id);
     void clearSeries();
 
+protected:
+    void resizeEvent(QResizeEvent *) override;
+
 private:
     void init();
 };

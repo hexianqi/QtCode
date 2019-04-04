@@ -5,24 +5,27 @@
 #ifndef HABSTRACTCHARTEXTEND_H
 #define HABSTRACTCHARTEXTEND_H
 
+#include "IChartExtend.h"
 #include <QObject>
-#include <QtUiPlugin/QDesignerExportWidget>
-#include <QtCharts/QChartGlobal>
-
-QT_CHARTS_BEGIN_NAMESPACE
-class QChart;
-QT_CHARTS_END_NAMESPACE
-QT_CHARTS_USE_NAMESPACE
 
 class HAbstractChartExtendPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HAbstractChartExtend : public QObject
+class QDESIGNER_WIDGET_EXPORT HAbstractChartExtend : public QObject, public IChartExtend
 {
     Q_OBJECT
 
 public:
+    explicit HAbstractChartExtend(QObject *parent = nullptr);
     explicit HAbstractChartExtend(QChart *chart, QObject *parent = nullptr);
     ~HAbstractChartExtend();
+
+public:
+    void setChart(QChart *) override;
+    bool connectExtend() override;
+    bool disconnectExtend() override;
+
+public:
+    QChart *chart();
 
 protected:
     HAbstractChartExtend(HAbstractChartExtendPrivate &p, QObject *parent = nullptr);

@@ -6,10 +6,10 @@
 class HAbstractChartExtendPrivate
 {
 public:
-    HAbstractChartExtendPrivate(QChart *);
+    HAbstractChartExtendPrivate(QChart *c = nullptr);
 
 public:
-    QChart *chart;
+    QChart *chart = nullptr;
 };
 
 #endif // HABSTRACTCHARTEXTEND_P_H

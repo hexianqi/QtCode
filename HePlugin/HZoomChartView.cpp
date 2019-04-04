@@ -64,7 +64,7 @@ void HZoomChartView::keyPressEvent(QKeyEvent *e)
 void HZoomChartView::init()
 {
     Q_D(HZoomChartView);
-    d->actionZoomReset = new QAction(tr("还原(&R)"));
+    d->actionZoomReset = new QAction(QIcon(":/image/Zoom.png"), tr("还原(&R)"));
     d->actionZoomIn = new QAction(QIcon(":/image/ZoomIn.png"), tr("放大(&I)"));
     d->actionZoomOut = new QAction(QIcon(":/image/ZoomOut.png"), tr("缩小(&O)"));
     connect(d->actionZoomReset, &QAction::triggered, this, [=] { chart()->zoomReset(); });

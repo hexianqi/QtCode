@@ -185,7 +185,7 @@ void HAbstractThread::normalMode()
         if (i >= d_ptr->retry)
         {
             actionFail(action, error);
-//            break;
+     //       break;
         }
     }
     closeProtocol();

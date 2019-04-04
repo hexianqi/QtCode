@@ -14,13 +14,14 @@ HE_CORE_USE_NAMESPACE
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HDelayThreadPrivate;
+class IModel;
 
 class HDelayThread : public QThread
 {
     Q_OBJECT
 
 public:
-    explicit HDelayThread(QObject *parent = nullptr);
+    explicit HDelayThread(IModel *parent);
     ~HDelayThread() override;
 
 public:

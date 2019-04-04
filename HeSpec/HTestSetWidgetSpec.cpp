@@ -41,7 +41,7 @@ void HTestSetWidgetSpec::handleAction(HActionType action)
             break;
         if (d->integralTimeAuto && d->testSpec->adjustIntegralTime())
             d->model->addAction(ACT_SET_INTEGRAL_TIME);
-        d->model->addAction(ACT_GET_SPECTRUM);
+        d->model->addAction(ACT_GET_SPECTRUM, 100);
         break;
     default:
         break;

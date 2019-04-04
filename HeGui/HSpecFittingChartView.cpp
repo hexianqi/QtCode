@@ -1,8 +1,12 @@
 #include "HSpecFittingChartView_p.h"
-#include "HePlugin/HSingleAxisChart.h"
+#include "HePlugin/HCalloutChartExtend.h"
 #include "HePlugin/HMarkerChartExtend.h"
-#include <QtCharts/QValueAxis>
-#include <QtCharts/QLineSeries>
+#include "HePlugin/HSingleAxisChart.h"
+#include "HePlugin/HPluginHelper.h"
+#include <QAction>
+#include <QValueAxis>
+#include <QLineSeries>
+
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -10,6 +14,7 @@ HSpecFittingChartView::HSpecFittingChartView(QWidget *parent) :
     HZoomChartView(*new HSpecFittingChartViewPrivate, nullptr, parent)
 {
     init();
+    addSeries(1, QList<QPointF>() << QPointF(1000, 0.85) << QPointF(2000, 0.87) << QPointF(10000, 0.83));
 }
 
 HSpecFittingChartView::~HSpecFittingChartView()
@@ -22,12 +27,13 @@ void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
     if (value.size() <= 0)
         return;
     removeSeries(id);
-    auto serie = new QLineSeries();
-    serie->setName(QString("Line %1").arg(id));
-    serie->append(value);
-    d->chart->addSeries(serie);
-    d->marker->connectMarkers();
-    d->series.insert(id, serie);
+    auto series = new QLineSeries();
+    series->setName(QString("Line %1").arg(id));
+    series->append(value);
+    d->chart->addSeries(series);
+    d->marker->connectExtend();
+    d->callout->connectExtend(series);
+    d->series.insert(id, series);
 }
 
 void HSpecFittingChartView::removeSeries(int id)
@@ -37,6 +43,7 @@ void HSpecFittingChartView::removeSeries(int id)
         return;
     auto series = d->series[id];
     d->chart->removeSeries(series);
+    d->callout->connectExtend(series);
     d->series.remove(id);
     delete series;
 }
@@ -45,8 +52,16 @@ void HSpecFittingChartView::clearSeries()
 {
     Q_D(HSpecFittingChartView);
     d->chart->removeAllSeries();
-    d->marker->disconnectMarkers();
+    d->marker->disconnectExtend();
     d->series.clear();
+}
+
+void HSpecFittingChartView::resizeEvent(QResizeEvent *e)
+{
+    Q_D(HSpecFittingChartView);
+    if (scene())
+        d->callout->updateGeometry();
+    HZoomChartView::resizeEvent(e);
 }
 
 void HSpecFittingChartView::init()
@@ -63,6 +78,14 @@ void HSpecFittingChartView::init()
     d->chart->setAxisX(axisX);
     d->chart->setAxisY(axisY);
     d->marker = new HMarkerChartExtend(d->chart, this);
+    d->callout = new HCalloutChartExtend(d->chart, this);
+    d->actionClearCallout = new QAction(tr("清除标注(&C)"));
+    d->actionClearSeries = new QAction(tr("清除曲线(&C)"));
+    connect(d->actionClearCallout, &QAction::triggered, d->callout, &HCalloutChartExtend::clear);
+    connect(d->actionClearSeries, &QAction::triggered, this, &HSpecFittingChartView::clearSeries);
+    HPluginHelper::addSeparator(this);
+    addAction(d->actionClearCallout);
+    addAction(d->actionClearSeries);
     setChart(d->chart);
     setWindowTitle(tr("CCD曲线"));
 }

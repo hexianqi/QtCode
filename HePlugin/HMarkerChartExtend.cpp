@@ -1,9 +1,14 @@
 #include "HMarkerChartExtend_p.h"
-#include <QtCharts/QChart>
-#include <QtCharts/QLegendMarker>
+#include <QChart>
+#include <QLegendMarker>
 
 HMarkerChartExtendPrivate::HMarkerChartExtendPrivate(QChart *c) :
     HAbstractChartExtendPrivate(c)
+{
+}
+
+HMarkerChartExtend::HMarkerChartExtend(QObject *parent) :
+    HAbstractChartExtend(*new HMarkerChartExtendPrivate, parent)
 {
 }
 
@@ -21,24 +26,32 @@ HMarkerChartExtend::~HMarkerChartExtend()
 {
 }
 
-void HMarkerChartExtend::connectMarkers()
+bool HMarkerChartExtend::connectExtend()
 {
     Q_D(HMarkerChartExtend);
+    if (!HAbstractChartExtend::connectExtend())
+        return false;
+
     auto markers = d->chart->legend()->markers();
-    for (auto marker : markers)
+    for (auto m : markers)
     {
         // Disconnect possible existing connection to avoid multiple connections
-        disconnect(marker, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
-        connect(marker, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+        disconnect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+        connect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
     }
+    return true;
 }
 
-void HMarkerChartExtend::disconnectMarkers()
+bool HMarkerChartExtend::disconnectExtend()
 {
     Q_D(HMarkerChartExtend);
+    if (!HAbstractChartExtend::disconnectExtend())
+        return false;
+
     auto markers = d->chart->legend()->markers();
-    for (auto marker : markers)
-        disconnect(marker, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+    for (auto m : markers)
+        disconnect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+    return true;
 }
 
 void HMarkerChartExtend::handleMarkerClicked()

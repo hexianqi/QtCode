@@ -6,8 +6,8 @@
 class HSingleAxisChartPrivate
 {
 public:
-    QAbstractAxis *axisX;
-    QAbstractAxis *axisY;
+    QAbstractAxis *axisX = nullptr;
+    QAbstractAxis *axisY = nullptr;
 };
 
 #endif // HSINGLEAXISCHART_P_H

@@ -1,6 +1,7 @@
 #include "HTestSpec_p.h"
 #include "HeAlgorithm/HSpecData.h"
 #include "HeAlgorithm/HSpecFacade.h"
+#include "HeCore/HCore.h"
 #include "HeData/ISpecCalibrate.h"
 #include <QVector>
 #include <QQueue>
@@ -148,7 +149,7 @@ bool HTestSpecPrivate::calcSpec()
     addData("[色纯度]", specData->ColorPurity);
     addData("[色温]", specData->ColorTemperature);
     addData("[显色指数]", specData->RenderingIndexAvg);
-    addData("[显色指数Rx]", QVariant::fromValue(specData->RenderingIndex.toList()));
+    addData("[显色指数Rx]", HeCore::toString("[显色指数Rx]", specData->RenderingIndex));
     addData("[色坐标]", specData->CoordinateUv);
     addData("[色坐标uv]", specData->CoordinateUv);
     addData("[色坐标uvp]", specData->CoordinateUvp);

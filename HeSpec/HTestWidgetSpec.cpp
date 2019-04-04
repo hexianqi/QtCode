@@ -44,6 +44,11 @@ QString HTestWidgetSpec::typeName()
     return "HTestWidgetSpec";
 }
 
+void HTestWidgetSpec::on_tabWidget_1_currentChanged(int index)
+{
+    refreshSpecWidget();
+}
+
 void HTestWidgetSpec::on_pushButton_1_clicked()
 {
     Q_D(HTestWidgetSpec);
@@ -136,8 +141,11 @@ void HTestWidgetSpec::refreshCcdView(int i)
 void HTestWidgetSpec::refreshSpecWidget()
 {
     Q_D(HTestWidgetSpec);
-    d->sampleWidget->refreshWidget();
-    d->energyWidget->refreshWidget();
+    int index = ui->tabWidget_1->currentIndex();
+    if (index == 0)
+        d->sampleWidget->refreshWidget();
+    if (index == 2)
+        d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
 }
 

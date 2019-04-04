@@ -6,6 +6,7 @@
 
 class HSingleAxisChart;
 class HMarkerChartExtend;
+class HCalloutChartExtend;
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QLineSeries;
@@ -19,7 +20,10 @@ class HSpecFittingChartViewPrivate : public HZoomChartViewPrivate
 public:
     HSingleAxisChart *chart;
     HMarkerChartExtend *marker;
+    HCalloutChartExtend *callout;
     QHash<int, QLineSeries *> series;
+    QAction *actionClearCallout;
+    QAction *actionClearSeries;
 };
 
 HE_GUI_END_NAMESPACE

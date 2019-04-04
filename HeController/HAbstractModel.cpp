@@ -18,20 +18,20 @@ HAbstractModelPrivate::HAbstractModelPrivate(HAbstractModel *q) :
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     devices = HAppContext::getContextPointer<IDeviceCollection>("IDeviceCollection");
     threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
-    delayThread = new HDelayThread(q);
-    delayThread->start();
 }
 
 HAbstractModel::HAbstractModel(QObject *parent) :
     IModel(parent),
     d_ptr(new HAbstractModelPrivate(this))
 {
+    initDelayThread();
 }
 
 HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent) :
     IModel(parent),
     d_ptr(&p)
 {
+    initDelayThread();
 }
 
 HAbstractModel::~HAbstractModel()
@@ -140,6 +140,12 @@ void HAbstractModel::stopThread()
 {
     for (auto t : d_ptr->threads->values())
         t->stop();
+}
+
+void HAbstractModel::initDelayThread()
+{
+    d_ptr->delayThread = new HDelayThread(this);
+    d_ptr->delayThread->start();
 }
 
 void HAbstractModel::setConfigFile(QString fileName)

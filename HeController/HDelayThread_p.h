@@ -9,12 +9,10 @@ class QWaitCondition;
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class IModel;
-
 class HDelayThreadPrivate
 {
 public:
-    HDelayThreadPrivate();
+    HDelayThreadPrivate(IModel *);
 
 public:
     void enqueueAction(HActionType action, ulong delay);

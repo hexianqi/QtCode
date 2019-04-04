@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2018-07-05  HMarkerChartExtend 图表扩展 - 标记可选。
+**      2018-07-05  HMarkerChartExtend 图表扩展 - 图例标记可选。
 ***************************************************************************************************/
 
 #ifndef HMARKERCHARTEXTEND_H
@@ -15,12 +15,13 @@ class QDESIGNER_WIDGET_EXPORT HMarkerChartExtend : public HAbstractChartExtend
     Q_DECLARE_PRIVATE(HMarkerChartExtend)
 
 public:
+    explicit HMarkerChartExtend(QObject *parent = nullptr);
     explicit HMarkerChartExtend(QChart *chart, QObject *parent = nullptr);
     ~HMarkerChartExtend();
 
 public:
-    void connectMarkers();
-    void disconnectMarkers();
+    bool connectExtend() override;
+    bool disconnectExtend() override;
 
 protected:
     void handleMarkerClicked();

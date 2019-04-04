@@ -8,6 +8,7 @@
 #include <QSet>
 #include <QTextStream>
 #include <QVariant>
+#include <QVector>
 
 HE_CORE_BEGIN_NAMESPACE
 
@@ -42,33 +43,45 @@ QString toString(QString type, double value, char f)
 
 QString toString(QString type, QVariant value)
 {
-    QString str;
-    if (value.type() == QVariant::PointF)
-        str = QString("(%1, %2)").arg(toString(type, value.toPointF().x())).arg(toString(type, value.toPointF().y()));
-    if (value.type() == QVariant::Point)
-        str = QString("(%1, %2)").arg(toString(type, value.toPoint().x())).arg(toString(type, value.toPoint().y()));
-    if (value.type() == QVariant::Double)
-        str = toString(type, value.toDouble());
-    if (value.type() == QVariant::Int)
-        str = toString(type, value.toInt());
-    if (value.type() == QVariant::LongLong)
-        str = toString(type, value.toLongLong());
-    if (value.type() == QVariant::String)
-        str = value.toString();
-    if (value.type() == QVariant::DateTime)
-        str = value.toDateTime().toString("yyyy-MM-dd hh:mm:ss");
-    if (value.type() == QVariant::Date)
-        str = value.toDate().toString("yyyy-MM-dd");
-    if (value.type() == QVariant::Time)
-        str = value.toTime().toString("hh:mm:ss");
-    if (value.type() == QVariant::List)
+
+    auto vt = value.type();
+    if (vt == QVariant::PointF)
+        return QString("(%1, %2)").arg(toString(type, value.toPointF().x())).arg(toString(type, value.toPointF().y()));
+    if (vt == QVariant::Point)
+        return QString("(%1, %2)").arg(toString(type, value.toPoint().x())).arg(toString(type, value.toPoint().y()));
+    if (vt == QVariant::Double)
+        return toString(type, value.toDouble());
+    if (vt == QVariant::Int)
+        return toString(type, value.toInt());
+    if (vt == QVariant::LongLong)
+        return toString(type, value.toLongLong());
+    if (vt == QVariant::String)
+        return value.toString();
+    if (vt == QVariant::DateTime)
+        return value.toDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    if (vt == QVariant::Date)
+        return value.toDate().toString("yyyy-MM-dd");
+    if (vt == QVariant::Time)
+        return value.toTime().toString("hh:mm:ss");
+    if (vt == QVariant::StringList)
+        return value.toStringList().join(' ');
+    if (vt == QVariant::List)
     {
         QStringList list;
         for (auto v : value.toList())
             list << toString(type, v);
-        str = list.join(" ");
+        return list.join(" ");
     }
-    return str;
+    return value.toString();
+}
+
+QStringList toString(QString type, QVector<double> value, char f)
+{
+    auto info = toFormatInfo(type);
+    QStringList list;
+    for (auto v : value)
+        list << QString().setNum(v, f, info->decimals());
+    return list;
 }
 
 QString toUnit(QString type)
@@ -81,11 +94,11 @@ QString toCaption(QString type)
     return hashDataCaption.value(type, type.mid(1, type.size()-2));
 }
 
-QStringList toCaption(QStringList types)
+QStringList toCaption(QStringList type)
 {
     QStringList list;
-    for (auto type : types)
-        list << toCaption(type);
+    for (auto t : type)
+        list << toCaption(t);
     return list;
 }
 
@@ -98,11 +111,11 @@ QString toCaptionUnit(QString type)
     return caption;
 }
 
-QStringList toCaptionUnit(QStringList types)
+QStringList toCaptionUnit(QStringList type)
 {
     QStringList list;
-    for (auto type : types)
-        list << toCaptionUnit(type);
+    for (auto t : type)
+        list << toCaptionUnit(t);
     return list;
 }
 
