@@ -11,7 +11,7 @@ DESTDIR     = "../Dest"
 SOURCES     += \
             class2Plugin.cpp \
             HCollectionInterface.cpp \
-            HPluginHelper.cpp
+            HPluginHelper.cpp \
 
 HEADERS     += \
             class2Plugin.h \
@@ -37,13 +37,17 @@ Release {
 }
 
 include(chart.pri)
+include(chartView.pri)
 include(delegate.pri)
 include(diagram.pri)
+include(dialog.pri)
 include(extend.pri)
 include(graphics.pri)
 include(promotion.pri)
 include(strategy.pri)
 include(table.pri)
-include(view.pri)
+include(widget.pri)
 
 include(class2.pri)
+
+

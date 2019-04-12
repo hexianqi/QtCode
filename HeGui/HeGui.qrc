@@ -5,5 +5,11 @@
         <file>image/Open.png</file>
         <file>image/Save.png</file>
         <file>image/SaveAs.png</file>
+        <file>image/DbComit.png</file>
+        <file>image/Excel.png</file>
+        <file>image/Start.png</file>
+        <file>image/Start02.png</file>
+        <file>image/Stop.png</file>
+        <file>image/Stop02.png</file>
     </qresource>
 </RCC>

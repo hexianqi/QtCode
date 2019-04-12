@@ -21,8 +21,11 @@ class HE_GUI_EXPORT HSpecFittingLinearWidget : public HSpecFittingWidget
     Q_DECLARE_PRIVATE(HSpecFittingLinearWidget)
 
 public:
-    explicit HSpecFittingLinearWidget(HSpecFitting *data, QWidget *parent = nullptr);
+    explicit HSpecFittingLinearWidget(QWidget *parent = nullptr);
     ~HSpecFittingLinearWidget() override;
+
+public:
+    bool setTest(bool b) override;
 
 protected:
     bool initParam() override;

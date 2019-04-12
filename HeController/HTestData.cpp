@@ -1,6 +1,7 @@
 #include "HTestData_p.h"
 #include "HeCore/HCore.h"
 #include <QColor>
+#include <QDateTime>
 
 HE_CORE_USE_NAMESPACE
 
@@ -29,6 +30,12 @@ QVariant HTestDataPrivate::data(QString type)
         return datas.value(type);
     if (successor != nullptr)
         return successor->data(type);
+    if (type == "[测量日期时间]")
+        return QDateTime::currentDateTime();
+    if (type == "[测量日期]")
+        return data("[测量日期时间]").toDate();
+    if (type == "[测量时间]")
+        return data("[测量日期时间]").toTime();
     return QVariant();
 }
 
@@ -89,6 +96,14 @@ QVariant HTestData::data(QString type)
 QString HTestData::toString(QString type)
 {
     return HeCore::toString(type, data(type));
+}
+
+QStringList HTestData::toString(QStringList types)
+{
+    QStringList list;
+    for (auto type : types)
+        list << toString(type);
+    return list;
 }
 
 QString HTestData::toHtmlTable(QStringList types, QColor bgcolor)

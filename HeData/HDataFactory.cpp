@@ -1,4 +1,5 @@
 #include "HDataFactory_p.h"
+#include "HExcelStream.h"
 #include "HFileStream.h"
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
@@ -7,14 +8,16 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-HDataFactory::HDataFactory(QObject *parent)
-    : QObject(parent), d_ptr(new HDataFactoryPrivate)
+HDataFactory::HDataFactory(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HDataFactoryPrivate)
 {
     registerClass();
 }
 
-HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent)
-    :  QObject(parent), d_ptr(&p)
+HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
     registerClass();
 }
@@ -37,6 +40,14 @@ IFileStream *HDataFactory::createFileStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     IFileStream *p = new HFileStream(this);
+    p->initialize(param);
+    return p;
+}
+
+IExcelStream *HDataFactory::createExcelStream(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IExcelStream *p = new HExcelStream(this);
     p->initialize(param);
     return p;
 }

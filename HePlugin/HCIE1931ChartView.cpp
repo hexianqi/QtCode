@@ -27,42 +27,6 @@ HCIE1931Chart *HCIE1931ChartView::cieChart()
     return d->chart;
 }
 
-void HCIE1931ChartView::mouseMoveEvent(QMouseEvent *e)
-{
-    Q_D(HCIE1931ChartView);
-    d->tracking->mouseMoveEvent(e);
-    HZoomChartView::mouseMoveEvent(e);
-}
-
-void HCIE1931ChartView::mouseDoubleClickEvent(QMouseEvent *e)
-{
-    Q_D(HCIE1931ChartView);
-    if (d->tracking->isEnable())
-        emit mouseDoubleClicked(chart()->mapToValue(e->pos()));
-    HZoomChartView::mouseMoveEvent(e);
-}
-
-void HCIE1931ChartView::handlePlotAreaChanged(QRectF value)
-{
-    Q_D(HCIE1931ChartView);
-    d->tracking->setValidRegion(value);
-    d->positionItem->setPos(value.left() + 10, value.top() + 10);
-    d->pointFocusItem->setPos(value.right() - d->pointFocusItem->boundingRect().width() - 10, value.top() + 10);
-}
-
-void HCIE1931ChartView::handlePointFocusChanged(QPointF pos)
-{
-    Q_D(HCIE1931ChartView);
-    d->pointFocusItem->setText(QString("(%1, %2)").arg(pos.x(), 0, 'f', 4).arg(pos.y(), 0, 'f', 4));
-}
-
-void HCIE1931ChartView::handlePositionChanged(QPointF pos)
-{
-    Q_D(HCIE1931ChartView);
-    auto p = chart()->mapToValue(pos);
-    d->positionItem->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
-}
-
 void HCIE1931ChartView::init()
 {
     Q_D(HCIE1931ChartView);
@@ -108,4 +72,41 @@ void HCIE1931ChartView::init()
     connect(d->actionEnablePoint, &QAction::toggled, d->chart, &HCIE1931Chart::setEnablePoint);
     connect(d->actionClearPoint, &QAction::triggered, d->chart, &HCIE1931Chart::clearPoint);
     setChart(d->chart);
+    HZoomChartView::init();
+}
+
+void HCIE1931ChartView::mouseMoveEvent(QMouseEvent *e)
+{
+    Q_D(HCIE1931ChartView);
+    d->tracking->mouseMoveEvent(e);
+    HZoomChartView::mouseMoveEvent(e);
+}
+
+void HCIE1931ChartView::mouseDoubleClickEvent(QMouseEvent *e)
+{
+    Q_D(HCIE1931ChartView);
+    if (d->tracking->isEnable())
+        emit mouseDoubleClicked(chart()->mapToValue(e->pos()));
+    HZoomChartView::mouseMoveEvent(e);
+}
+
+void HCIE1931ChartView::handlePlotAreaChanged(QRectF value)
+{
+    Q_D(HCIE1931ChartView);
+    d->tracking->setValidRegion(value);
+    d->positionItem->setPos(value.left() + 5, value.top() + 5);
+    d->pointFocusItem->setPos(value.right() - d->pointFocusItem->boundingRect().width() - 5, value.top() + 5);
+}
+
+void HCIE1931ChartView::handlePointFocusChanged(QPointF pos)
+{
+    Q_D(HCIE1931ChartView);
+    d->pointFocusItem->setText(QString("(%1, %2)").arg(pos.x(), 0, 'f', 4).arg(pos.y(), 0, 'f', 4));
+}
+
+void HCIE1931ChartView::handlePositionChanged(QPointF pos)
+{
+    Q_D(HCIE1931ChartView);
+    auto p = chart()->mapToValue(pos);
+    d->positionItem->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
 }

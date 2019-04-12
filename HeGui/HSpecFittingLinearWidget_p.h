@@ -8,8 +8,6 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecFittingLinearWidgetPrivate : public HSpecFittingWidgetPrivate
 {
-public:
-    HSpecFittingLinearWidgetPrivate(HSpecFitting *);
 };
 
 HE_GUI_END_NAMESPACE

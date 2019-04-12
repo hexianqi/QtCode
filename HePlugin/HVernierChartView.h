@@ -36,13 +36,11 @@ protected:
     HVernierChartView(HVernierChartViewPrivate &p, QChart *chart = nullptr, QWidget *parent = nullptr);
 
 protected:
+    void init() override;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
     void handlePlotAreaChanged(QRectF value);
-
-private:
-    void init();
 };
 
 #endif // HVERNIERCHARTVIEW_H

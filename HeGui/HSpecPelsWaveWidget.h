@@ -24,10 +24,11 @@ class HE_GUI_EXPORT HSpecPelsWaveWidget : public HEntireTableWidget
     Q_DECLARE_PRIVATE(HSpecPelsWaveWidget)
 
 public:
-    explicit HSpecPelsWaveWidget(HSpecPelsWave *data, QWidget *parent = nullptr);
+    explicit HSpecPelsWaveWidget(QWidget *parent = nullptr);
     ~HSpecPelsWaveWidget() override;
 
 public:
+    void setData(HSpecPelsWave *);
     void saveData();
     void showData();
 

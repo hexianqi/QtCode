@@ -24,17 +24,15 @@ public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
     virtual void setFittingPoints(QPolygonF value);
-
-public:
-    double handle(double value, bool abovezero = true);
-    QVector<double> handle(QVector<double> value, bool abovezero = true);
+    virtual QVector<double> handle(QVector<double> value, bool abovezero = true);
     QPolygonF fittingPoints();
 
 protected:
     HSpecFitting(HSpecFittingPrivate &p);
 
 protected:
-    virtual double calcRate(double value) = 0;
+    virtual double handle(double value, bool abovezero = true);
+    virtual double calcRate(double value);
 };
 
 HE_DATA_END_NAMESPACE

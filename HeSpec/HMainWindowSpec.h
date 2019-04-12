@@ -18,7 +18,7 @@ public:
 
 protected:
     void initImportExport() override;
-    void createBuilder() override;
+    void initBuilder() override;
 };
 
 #endif // HMAINWINDOWSPEC_H

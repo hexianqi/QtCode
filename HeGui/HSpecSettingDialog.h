@@ -27,8 +27,11 @@ class HE_GUI_EXPORT HSpecSettingDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit HSpecSettingDialog(HSpecSetting *data, QWidget *parent = nullptr);
+    explicit HSpecSettingDialog(QWidget *parent = nullptr);
     ~HSpecSettingDialog() override;
+
+public:
+    void setData(HSpecSetting *);
 
 protected slots:
     void on_pushButton_1_clicked();
@@ -38,12 +41,14 @@ protected:
     void showData();
     void saveData();
 
+protected:
+    QScopedPointer<HSpecSettingDialogPrivate> d_ptr;
+
 private:
     void init();
 
 private:
     Ui::HSpecSettingDialog *ui;
-    QScopedPointer<HSpecSettingDialogPrivate> d_ptr;
 };
 
 HE_GUI_END_NAMESPACE

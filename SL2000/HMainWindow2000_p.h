@@ -6,10 +6,8 @@
 
 class HMainWindow2000Private : public HMainWindowPrivate
 {
-    Q_DECLARE_PUBLIC(HMainWindow2000)
-
 public:
-    HMainWindow2000Private(HMainWindow2000 *q);
+    HMainWindow2000Private(HMainWindow2000 *);
 
 public:
     QAction *actionCalibrateSpectrum;

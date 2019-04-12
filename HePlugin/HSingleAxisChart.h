@@ -5,16 +5,14 @@
 #ifndef HSINGLEAXISCHART_H
 #define HSINGLEAXISCHART_H
 
-#include <QtUiPlugin/QDesignerExportWidget>
-#include <QtCharts/QChart>
-
-QT_CHARTS_USE_NAMESPACE
+#include "HChart.h"
 
 class HSingleAxisChartPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HSingleAxisChart : public QChart
+class QDESIGNER_WIDGET_EXPORT HSingleAxisChart : public HChart
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HSingleAxisChart)
 
 public:
     explicit HSingleAxisChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
@@ -29,9 +27,6 @@ public:
 
 protected:
     HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-
-protected:
-    QScopedPointer<HSingleAxisChartPrivate> d_ptr;
 };
 
 #endif // HSINGLEAXISCHART_H

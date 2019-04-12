@@ -37,15 +37,11 @@ protected:
     HAbstractModel(HAbstractModelPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual void initThread();
-    virtual void startThread();
-    virtual void stopThread();
-
-protected:
+    void initThread();
+    void startThread();
+    void stopThread();
     void initDelayThread();
-
-protected:
-    virtual void setConfigFile(QString fileName);
+    void setConfigFile(QString fileName);
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

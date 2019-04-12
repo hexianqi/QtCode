@@ -2,25 +2,28 @@
 #include "HeCore/HCore.h"
 #include "HeData/HSpecPelsWave.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
+#include <QDebug>
 
 HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecPelsWaveWidgetPrivate::HSpecPelsWaveWidgetPrivate(HSpecPelsWave *d)
-{
-    data = d;
-}
-
-HSpecPelsWaveWidget::HSpecPelsWaveWidget(HSpecPelsWave *data, QWidget *parent)
-    : HEntireTableWidget(*new HSpecPelsWaveWidgetPrivate(data), parent)
+HSpecPelsWaveWidget::HSpecPelsWaveWidget(QWidget *parent) :
+    HEntireTableWidget(*new HSpecPelsWaveWidgetPrivate, parent)
 {
     init();
-    showData();
 }
 
 HSpecPelsWaveWidget::~HSpecPelsWaveWidget()
 {
+    qDebug() << __func__;
+}
+
+void HSpecPelsWaveWidget::setData(HSpecPelsWave *p)
+{
+    Q_D(HSpecPelsWaveWidget);
+    d->data = p;
+    showData();
 }
 
 void HSpecPelsWaveWidget::saveData()

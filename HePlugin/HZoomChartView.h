@@ -5,7 +5,6 @@
 #ifndef HZOOMCHARTVIEW_H
 #define HZOOMCHARTVIEW_H
 
-
 #include "HChartView.h"
 
 class HZoomChartViewPrivate;
@@ -28,8 +27,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *) override;
     void keyPressEvent(QKeyEvent *) override;
 
-private:
-    void init();
+protected:
+    virtual void init();
 };
 
 #endif // HZOOMCHARTVIEW_H

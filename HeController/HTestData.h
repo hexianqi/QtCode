@@ -27,6 +27,7 @@ public:
     void addData(QString type, QVariant value) override;
     QVariant data(QString type) override;
     QString toString(QString type) override;
+    QStringList toString(QStringList types) override;
     QString toHtmlTable(QStringList types, QColor bgcolor) override;
 
 protected:

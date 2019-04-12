@@ -28,6 +28,7 @@ public:
     IThreadCollection *createThreadCollection(QString type, QVariantMap param = QVariantMap()) override;
     ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
     ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
+    IModel *createModel(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HControllerFactory(HControllerFactoryPrivate &p, QObject *parent = nullptr);

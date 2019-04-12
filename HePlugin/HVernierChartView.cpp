@@ -17,7 +17,6 @@ HVernierChartView::HVernierChartView(QChart *chart, QWidget *parent) :
 HVernierChartView::HVernierChartView(HVernierChartViewPrivate &p, QChart *chart, QWidget *parent) :
     HZoomChartView(p, chart, parent)
 {
-    init();
 }
 
 HVernierChartView::~HVernierChartView()
@@ -61,6 +60,24 @@ int HVernierChartView::decimals()
     return d->decimals;
 }
 
+void HVernierChartView::init()
+{
+    Q_D(HVernierChartView);
+    d->tracking = new HGraphicsVernierTracking(Qt::Vertical, chart(), this);
+    d->tracking->resizeVernier(2);
+    d->textLeft = new QGraphicsSimpleTextItem(chart());
+    d->textLeft->setZValue(100);
+    d->textCenter = new QGraphicsSimpleTextItem(chart());
+    d->textLeft->setZValue(100);
+    d->textRight = new QGraphicsSimpleTextItem(chart());
+    d->textLeft->setZValue(100);
+    connect(chart(), &QChart::plotAreaChanged, this, &HVernierChartView::handlePlotAreaChanged);
+    connect(d->tracking, &HGraphicsVernierTracking::orientationChanged, this, &HVernierChartView::updataVernier);
+    connect(d->tracking, &HGraphicsVernierTracking::vernierPosChanged, this, &HVernierChartView::updataVernier);
+    connect(d->tracking, &HGraphicsVernierTracking::vernierSizeChanged, this, &HVernierChartView::updataVernier);
+    HZoomChartView::init();
+}
+
 void HVernierChartView::mousePressEvent(QMouseEvent *e)
 {
     Q_D(HVernierChartView);
@@ -88,23 +105,10 @@ void HVernierChartView::mouseReleaseEvent(QMouseEvent *e)
 void HVernierChartView::handlePlotAreaChanged(QRectF value)
 {
     Q_D(HVernierChartView);
-    auto y = value.top() + 10;
+    auto y = value.top() + 5;
     d->tracking->setValidRegion(value);
-    d->textLeft->setPos(value.left() + 10, y);
+    d->textLeft->setPos(value.left() + 5, y);
     d->textCenter->setPos(value.center().x() - d->textCenter->boundingRect().width() / 2, y);
-    d->textRight->setPos(value.right() - d->textRight->boundingRect().width() - 10, y);
-}
-
-void HVernierChartView::init()
-{
-    Q_D(HVernierChartView);
-    d->tracking = new HGraphicsVernierTracking(Qt::Vertical, chart(), this);
-    d->tracking->resizeVernier(2);
-    d->textLeft = new QGraphicsSimpleTextItem(chart());
-    d->textCenter = new QGraphicsSimpleTextItem(chart());
-    d->textRight = new QGraphicsSimpleTextItem(chart());
-    connect(chart(), &QChart::plotAreaChanged, this, &HVernierChartView::handlePlotAreaChanged);
-    connect(d->tracking, &HGraphicsVernierTracking::orientationChanged, this, &HVernierChartView::updataVernier);
-    connect(d->tracking, &HGraphicsVernierTracking::vernierPosChanged, this, &HVernierChartView::updataVernier);
-    connect(d->tracking, &HGraphicsVernierTracking::vernierSizeChanged, this, &HVernierChartView::updataVernier);
+    d->textRight->setPos(value.right() - d->textRight->boundingRect().width() - 5, y);
+    updataVernier();
 }

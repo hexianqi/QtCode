@@ -21,7 +21,7 @@ class ITestWidget;
 class HE_GUI_EXPORT HMainWindowPrivate
 {
 public:
-    HMainWindowPrivate(HAbstractMainWindow *p);
+    HMainWindowPrivate(HAbstractMainWindow *);
 
 public:
     HAbstractMainWindow *q_ptr;

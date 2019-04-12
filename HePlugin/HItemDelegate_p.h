@@ -7,7 +7,7 @@ class QDESIGNER_WIDGET_EXPORT HItemDelegatePrivate
 {
 public:
     QPoint origin;
-    Qt::Orientation orientation;
+    Qt::Orientation orientation = Qt::Horizontal;
     QStringList typeList;
 };
 

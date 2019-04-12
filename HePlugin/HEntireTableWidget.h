@@ -30,8 +30,6 @@ protected:
 
 private:
     void init();
-
-
 };
 
 #endif // HENTIRETABLEWIDGET_H

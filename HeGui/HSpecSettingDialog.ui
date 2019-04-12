@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
-    <height>248</height>
+    <width>445</width>
+    <height>262</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,0">

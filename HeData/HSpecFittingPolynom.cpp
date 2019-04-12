@@ -7,14 +7,14 @@ HE_ALGORITHM_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecFittingPolynom::HSpecFittingPolynom()
-    : HSpecFitting(*new HSpecFittingPolynomPrivate)
+HSpecFittingPolynom::HSpecFittingPolynom() :
+    HSpecFitting(*new HSpecFittingPolynomPrivate)
 {
     restoreDefault();
 }
 
-HSpecFittingPolynom::HSpecFittingPolynom(HSpecFittingPolynomPrivate &p)
-    : HSpecFitting(p)
+HSpecFittingPolynom::HSpecFittingPolynom(HSpecFittingPolynomPrivate &p) :
+    HSpecFitting(p)
 {
 }
 

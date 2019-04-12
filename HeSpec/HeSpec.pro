@@ -27,24 +27,12 @@ SOURCES += \
         main.cpp \
         HMainWindowSpec.cpp \
         HBuilderSpec.cpp \
-        HModelSpec.cpp \
-        HTestWidgetSpec.cpp \
-        HDetailWidgetSpec.cpp \
-        HTestSetWidgetSpec.cpp
 
 HEADERS += \
         HMainWindowSpec.h \
         HMainWindowSpec_p.h \
         HBuilderSpec.h \
-        HBuilderSpec_p.h \
-        HModelSpec.h \
-        HModelSpec_p.h \
-        HTestWidgetSpec.h \
-        HTestWidgetSpec_p.h \
-        HDetailWidgetSpec.h \
-        HDetailWidgetSpec_p.h \
-        HTestSetWidgetSpec.h \
-        HTestSetWidgetSpec_p.h
+        HBuilderSpec_p.h
 
 FORMS   += \
         HTestWidgetSpec.ui \

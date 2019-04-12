@@ -7,14 +7,12 @@
 #include <QValueAxis>
 #include <QLineSeries>
 
-
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecFittingChartView::HSpecFittingChartView(QWidget *parent) :
     HZoomChartView(*new HSpecFittingChartViewPrivate, nullptr, parent)
 {
     init();
-    addSeries(1, QList<QPointF>() << QPointF(1000, 0.85) << QPointF(2000, 0.87) << QPointF(10000, 0.83));
 }
 
 HSpecFittingChartView::~HSpecFittingChartView()
@@ -56,14 +54,6 @@ void HSpecFittingChartView::clearSeries()
     d->series.clear();
 }
 
-void HSpecFittingChartView::resizeEvent(QResizeEvent *e)
-{
-    Q_D(HSpecFittingChartView);
-    if (scene())
-        d->callout->updateGeometry();
-    HZoomChartView::resizeEvent(e);
-}
-
 void HSpecFittingChartView::init()
 {
     Q_D(HSpecFittingChartView);
@@ -83,11 +73,20 @@ void HSpecFittingChartView::init()
     d->actionClearSeries = new QAction(tr("清除曲线(&C)"));
     connect(d->actionClearCallout, &QAction::triggered, d->callout, &HCalloutChartExtend::clear);
     connect(d->actionClearSeries, &QAction::triggered, this, &HSpecFittingChartView::clearSeries);
-    HPluginHelper::addSeparator(this);
     addAction(d->actionClearCallout);
     addAction(d->actionClearSeries);
+    HPluginHelper::addSeparator(this);
     setChart(d->chart);
     setWindowTitle(tr("CCD曲线"));
+    HZoomChartView::init();
+}
+
+void HSpecFittingChartView::resizeEvent(QResizeEvent *e)
+{
+    Q_D(HSpecFittingChartView);
+    if (scene())
+        d->callout->updateGeometry();
+    HZoomChartView::resizeEvent(e);
 }
 
 HE_GUI_END_NAMESPACE

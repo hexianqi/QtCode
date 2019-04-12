@@ -63,5 +63,5 @@ unix {
     INSTALLS += target
 }
 
-include(extend.pri)
 include(spec.pri)
+include(stream.pri)

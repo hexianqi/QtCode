@@ -1,12 +1,12 @@
 #include "HSingleAxisChart_p.h"
 
-HSingleAxisChart::HSingleAxisChart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
-    : QChart(parent, wFlags), d_ptr(new HSingleAxisChartPrivate)
+HSingleAxisChart::HSingleAxisChart(QGraphicsItem *parent, Qt::WindowFlags wFlags) :
+    HChart(*new HSingleAxisChartPrivate, parent, wFlags)
 {
 }
 
-HSingleAxisChart::HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *parent, Qt::WindowFlags wFlags)
-    : QChart(parent, wFlags), d_ptr(&p)
+HSingleAxisChart::HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *parent, Qt::WindowFlags wFlags) :
+    HChart(p, parent, wFlags)
 {
 }
 
@@ -16,29 +16,34 @@ HSingleAxisChart::~HSingleAxisChart()
 
 void HSingleAxisChart::addSeries(QAbstractSeries *series)
 {
+    Q_D(HSingleAxisChart);
     QChart::addSeries(series);
-    series->attachAxis(d_ptr->axisX);
-    series->attachAxis(d_ptr->axisY);
+    series->attachAxis(d->axisX);
+    series->attachAxis(d->axisY);
 }
 
 void HSingleAxisChart::setAxisX(QAbstractAxis *axis)
 {
-    d_ptr->axisX = axis;
+    Q_D(HSingleAxisChart);
+    d->axisX = axis;
     QChart::setAxisX(axis);
 }
 
 void HSingleAxisChart::setAxisY(QAbstractAxis *axis)
 {
-    d_ptr->axisY = axis;
+    Q_D(HSingleAxisChart);
+    d->axisY = axis;
     QChart::setAxisY(axis);
 }
 
 QAbstractAxis *HSingleAxisChart::axisX() const
 {
-    return d_ptr->axisX;
+    Q_D(const HSingleAxisChart);
+    return d->axisX;
 }
 
 QAbstractAxis *HSingleAxisChart::axisY() const
 {
-    return d_ptr->axisY;
+    Q_D(const HSingleAxisChart);
+    return d->axisY;
 }

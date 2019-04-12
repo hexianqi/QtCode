@@ -13,29 +13,19 @@ class HBuilder2000 : public HAbstractBuilder
     Q_DECLARE_PRIVATE(HBuilder2000)
 
 public:
-    explicit HBuilder2000(QObject *parent = nullptr);
+    explicit HBuilder2000(IMainWindow *parent = nullptr);
     ~HBuilder2000();
 
-signals:
-    void configManageChanged(quint32 type);
-
 public:
-    virtual QWidget *createWidget() override;
+    QString typeName() override;
 
 protected:
-    void buildFactory();
-    void buildConfigManage();
-    void buildTestData();
-    void buildDevice();
-    void buildThread();
-    void buildModel();
-    void buildMainWindow();
-    void buildMenu();
-
-protected:
-    void initMainWindow();
-    void initConfigManage();
-    void syncData(quint32 type);
+    void buildConfigManage() override;
+    void buildTestData() override;
+    void buildDevice() override;
+    void buildThread() override;
+    void buildModel() override;
+    void buildTestWidget() override;
 };
 
 #endif // HBUILDER2000_H

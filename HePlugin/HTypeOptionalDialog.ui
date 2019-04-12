@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HTypeOptionalDialog</class>
+ <widget class="QDialog" name="HTypeOptionalDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>557</width>
+    <height>384</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" rowspan="4" colspan="3">
+    <widget class="QListWidget" name="listWidget_1"/>
+   </item>
+   <item row="1" column="3">
+    <spacer name="verticalSpacer_1">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="4" rowspan="4" colspan="3">
+    <widget class="QListWidget" name="listWidget_2"/>
+   </item>
+   <item row="1" column="7">
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="3">
+    <widget class="QToolButton" name="toolButton_1">
+     <property name="icon">
+      <iconset resource="HePlugin.qrc">
+       <normaloff>:/image/Left.png</normaloff>:/image/Left.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="7">
+    <widget class="QToolButton" name="toolButton_3">
+     <property name="icon">
+      <iconset resource="HePlugin.qrc">
+       <normaloff>:/image/Up.png</normaloff>:/image/Up.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QToolButton" name="toolButton_2">
+     <property name="icon">
+      <iconset resource="HePlugin.qrc">
+       <normaloff>:/image/Right.png</normaloff>:/image/Right.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="7">
+    <widget class="QToolButton" name="toolButton_4">
+     <property name="icon">
+      <iconset resource="HePlugin.qrc">
+       <normaloff>:/image/Down.png</normaloff>:/image/Down.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="7">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="5" column="0">
+    <spacer name="horizontalSpacer_1">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="5" column="1">
+    <widget class="QPushButton" name="pushButton_1">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>确   定</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="5" column="4">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="5" column="5">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>取   消</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="6">
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label_001">
+     <property name="text">
+      <string>未选项目</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4" colspan="3">
+    <widget class="QLabel" name="label_002">
+     <property name="text">
+      <string>已选项目</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="HePlugin.qrc"/>
+ </resources>
+ <connections/>
+</ui>

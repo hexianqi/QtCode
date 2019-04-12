@@ -1,28 +1,26 @@
 #include "HBuilderSpec_p.h"
-#include "HModelSpec.h"
-#include "HTestWidgetSpec.h"
 #include "HeCore/HAppContext.h"
-#include "HeCommunicate/HCommunicateFactory.h"
+#include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IDevice.h"
 #include "HeCommunicate/IDeviceCollection.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include "HeController/HControllerFactory.h"
+#include "HeController/IControllerFactory.h"
 #include "HeController/ITestSpec.h"
 #include "HeController/IThreadCollection.h"
-#include "HeData/HDataFactory.h"
 #include "HeData/IConfigManage.h"
+#include "HeData/IDataFactory.h"
 #include "HeData/IFileStream.h"
 #include "HeData/ISpecCalibrateCollection.h"
-#include "HeGui/HGuiFactory.h"
+#include "HeGui/HSpecCalibrateWidget.h"
+#include "HeGui/HSpecCalibrateSetWidget.h"
 #include <QDebug>
 
-HBuilderSpec::HBuilderSpec(QWidget *parent) :
+HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
     HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
 {
     Q_D(HBuilderSpec);
     d->configFileName = "HeSpec.cfg";
-    HAppContext::setContextPointer("MainWindow", parent);
     HAppContext::setContextValue("Settings", "Ini\\HeSpec.ini");
     HAppContext::setContextValue("ConfigFileName", d->configFileName);
 }
@@ -35,19 +33,6 @@ HBuilderSpec::~HBuilderSpec()
 QString HBuilderSpec::typeName()
 {
     return "HBuilderSpec";
-}
-
-void HBuilderSpec::buildFactory()
-{
-    Q_D(HBuilderSpec);
-    d->communicateFactory = new HCommunicateFactory(this);
-    d->controllerFactory = new HControllerFactory(this);
-    d->dataFactory = new HDataFactory(this);
-    d->guiFactory = new HGuiFactory(this);
-    HAppContext::setContextPointer("ICommunicateFactory", d->communicateFactory);
-    HAppContext::setContextPointer("IControllerFactory", d->controllerFactory);
-    HAppContext::setContextPointer("IDataFactory", d->dataFactory);
-    HAppContext::setContextPointer("IGuiFactory", d->guiFactory);
 }
 
 void HBuilderSpec::buildConfigManage()
@@ -110,7 +95,7 @@ void HBuilderSpec::buildDevice()
 void HBuilderSpec::buildThread()
 {
     Q_D(HBuilderSpec);
-    auto thread = d->controllerFactory->createThread("HThreadSpec");
+    auto thread = d->controllerFactory->createThread("HSpecThread");
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
     threads->insert("Spec", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
@@ -119,12 +104,15 @@ void HBuilderSpec::buildThread()
 void HBuilderSpec::buildModel()
 {
     Q_D(HBuilderSpec);
-    d->model = new HModelSpec(this);
+    d->model = d->controllerFactory->createModel("HSpecModel");
     HAppContext::setContextPointer("IModel", d->model);
 }
 
 void HBuilderSpec::buildTestWidget()
 {
-    ITestWidget *widget = new HTestWidgetSpec;
+    Q_D(HBuilderSpec);
+    auto widget = new HSpecCalibrateWidget;
+    widget->setTestSetWidget(new HSpecCalibrateSetWidget);
+    widget->setSpecCalibrate(d->configManage->specCalibrate("1"));
     HAppContext::setContextPointer("ITestWidget", widget);
 }

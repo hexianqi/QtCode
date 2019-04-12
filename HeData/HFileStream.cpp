@@ -7,16 +7,18 @@ HFileStreamPrivate::HFileStreamPrivate()
 {
     magicNumber = 0x00000000;
     fileVersion = 0x01010101;
-    fileFilter = QObject::tr("All files (*.*)");
+    fileFilter = "All files (*.*)";
 }
 
-HFileStream::HFileStream(QObject *parent)
-    : QObject(parent), d_ptr(new HFileStreamPrivate)
+HFileStream::HFileStream(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HFileStreamPrivate)
 {
 }
 
-HFileStream::HFileStream(HFileStreamPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HFileStream::HFileStream(HFileStreamPrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
 }
 

@@ -5,10 +5,9 @@
 #ifndef HMAINWINDOW_H
 #define HMAINWINDOW_H
 
-#include "HGuiGlobal.h"
+#include "IMainWindow.h"
 #include "HeCore/HActionType.h"
 #include "HeCore/HCallorHelper.h"
-#include <QMainWindow>
 
 HE_CORE_USE_NAMESPACE
 
@@ -16,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HMainWindowPrivate;
 
-class HE_GUI_EXPORT HAbstractMainWindow : public QMainWindow, public IConstructorCall
+class HE_GUI_EXPORT HAbstractMainWindow : public IMainWindow, public IConstructorCall
 {
     Q_OBJECT
 
@@ -45,16 +44,15 @@ protected slots:
 protected:
     virtual void initialize() override;
     virtual void initImportExport();
-    virtual void createBuilder() = 0;
     virtual void createAction();
     virtual void createActionGroup();
     virtual void createMenu();
     virtual void createToolBar();
     virtual void createToolBarLogo();
-    virtual void createConnect();
     virtual void initMenu();
     virtual void initToolBar();
     virtual void initStatusBar();
+    virtual void initBuilder() = 0;
     virtual void initModel();
     virtual void initCentralWidget();
 

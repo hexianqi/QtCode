@@ -1,5 +1,4 @@
 #include "HAbstractGuiHandler_p.h"
-#include "HAbstractMainWindow.h"
 #include "HeCore/HAppContext.h"
 #include <QDebug>
 
@@ -7,7 +6,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 HAbstractGuiHandlerPrivate::HAbstractGuiHandlerPrivate()
 {
-    parent = HAppContext::getContextPointer<QWidget>("MainWindow");
+    parent = HAppContext::getContextPointer<QWidget>("IMainWindow");
 }
 
 HAbstractGuiHandler::HAbstractGuiHandler(QObject *parent)
@@ -25,10 +24,8 @@ HAbstractGuiHandler::~HAbstractGuiHandler()
     qDebug() << __func__;
 }
 
-void HAbstractGuiHandler::initialize(QVariantMap param)
+void HAbstractGuiHandler::initialize(QVariantMap /*param*/)
 {
-    if (param.contains("parent"))
-        setParent(FromVariant(QObject, param.value("parent")));
 }
 
 HE_GUI_END_NAMESPACE

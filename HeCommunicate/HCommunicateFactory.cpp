@@ -3,6 +3,7 @@
 #include "HUsbPortCy.h"
 #include "HDeviceCollection.h"
 #include "HDeviceSL.h"
+#include "HDeviceSLCodec.h"
 #include "HProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
@@ -75,6 +76,7 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HSerialPort>("HSerialPort");
     HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
     HFactory::registerClass<HDeviceSL>("HDeviceSL");
+    HFactory::registerClass<HDeviceSLCodec>("HDeviceSLCodec");
 }
 
 HE_COMMUNICATE_END_NAMESPACE

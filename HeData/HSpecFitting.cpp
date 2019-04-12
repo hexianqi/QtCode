@@ -74,6 +74,11 @@ double HSpecFitting::handle(double value, bool abovezero)
     return value;
 }
 
+double HSpecFitting::calcRate(double /*value*/)
+{
+    return 1.0;
+}
+
 QVector<double> HSpecFitting::handle(QVector<double> value, bool abovezero)
 {
     QVector<double> r;

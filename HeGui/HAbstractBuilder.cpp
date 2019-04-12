@@ -1,16 +1,24 @@
 #include "HAbstractBuilder_p.h"
-#include <QWidget>
+#include "IMainWindow.h"
+#include "HeCore/HAppContext.h"
+#include "HeCommunicate/HCommunicateFactory.h"
+#include "HeController/HControllerFactory.h"
+#include "HeData/HDataFactory.h"
+#include "HeGui/HGuiFactory.h"
 #include <QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
-HAbstractBuilder::HAbstractBuilder(QObject *parent)
-    : QObject(parent), d_ptr(new HAbstractBuilderPrivate)
+HAbstractBuilder::HAbstractBuilder(IMainWindow *parent) :
+    QObject(parent),
+    d_ptr(new HAbstractBuilderPrivate)
 {
+    HAppContext::setContextPointer("IMainWindow", parent);
 }
 
-HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
 }
 
@@ -32,6 +40,18 @@ void HAbstractBuilder::buildAll()
     buildThread();
     buildModel();
     buildTestWidget();
+}
+
+void HAbstractBuilder::buildFactory()
+{
+    d_ptr->communicateFactory = new HCommunicateFactory(this);
+    d_ptr->controllerFactory = new HControllerFactory(this);
+    d_ptr->dataFactory = new HDataFactory(this);
+    d_ptr->guiFactory = new HGuiFactory(this);
+    HAppContext::setContextPointer("ICommunicateFactory", d_ptr->communicateFactory);
+    HAppContext::setContextPointer("IControllerFactory", d_ptr->controllerFactory);
+    HAppContext::setContextPointer("IDataFactory", d_ptr->dataFactory);
+    HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
 }
 
 HE_GUI_END_NAMESPACE

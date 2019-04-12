@@ -40,12 +40,12 @@ protected:
     HVernierWidget(HVernierWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    void setPlotArea(QRectF value) override;
     void paintEvent(QPaintEvent *) override;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
     void handleCoordinateChanged(HCartesianCoordinate *) override;
+    void handlePlotAreaChanged(QRectF value);
     void handleOrientationChanged();
     void handleVernierPosChanged(QPointF pos);
     void handleVernierSizeChanged();

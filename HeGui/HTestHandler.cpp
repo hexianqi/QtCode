@@ -1,11 +1,10 @@
-#include "HTestHandler.h"
-#include "HAbstractGuiHandler_p.h"
+#include "HTestHandler_p.h"
 #include <QMessageBox>
 
 HE_GUI_BEGIN_NAMESPACE
 
-HTestHandler::HTestHandler(QObject *parent)
-    : HAbstractGuiHandler(parent)
+HTestHandler::HTestHandler(QObject *parent) :
+    HAbstractGuiHandler(*new HTestHandlerPrivate, parent)
 {
 }
 
@@ -22,7 +21,8 @@ void HTestHandler::execute(QObject *sender, QVariantMap param)
 {
     Q_UNUSED(sender)
     Q_UNUSED(param)
-    QMessageBox::information(d_ptr->parent, "" , tr("敬请期待"));
+    Q_D(HTestHandler);
+    QMessageBox::information(d->parent, "" , tr("敬请期待"));
 }
 
 HE_GUI_END_NAMESPACE

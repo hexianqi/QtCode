@@ -10,23 +10,28 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecFittingLinearWidgetPrivate::HSpecFittingLinearWidgetPrivate(HSpecFitting *d)
-    : HSpecFittingWidgetPrivate(d)
-{
-}
-
-HSpecFittingLinearWidget::HSpecFittingLinearWidget(HSpecFitting *data, QWidget *parent):
-    HSpecFittingWidget(*new HSpecFittingLinearWidgetPrivate(data), parent),
+HSpecFittingLinearWidget::HSpecFittingLinearWidget(QWidget *parent):
+    HSpecFittingWidget(*new HSpecFittingLinearWidgetPrivate, parent),
     ui(new Ui::HSpecFittingLinearWidget)
 {
     ui->setupUi(this);
     init();
-    showData();
 }
 
 HSpecFittingLinearWidget::~HSpecFittingLinearWidget()
 {
     delete ui;
+}
+
+bool HSpecFittingLinearWidget::setTest(bool b)
+{
+    if (!HSpecFittingWidget::setTest(b))
+        return false;
+    ui->spinBox_1->setEnabled(!b);
+    ui->spinBox_2->setEnabled(!b);
+    ui->doubleSpinBox_1->setEnabled(!b);
+    ui->doubleSpinBox_2->setEnabled(!b);
+    return true;
 }
 
 bool HSpecFittingLinearWidget::initParam()

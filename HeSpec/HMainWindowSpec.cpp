@@ -1,7 +1,6 @@
 #include "HMainWindowSpec_p.h"
 #include "HeData/IConfigManage.h"
 #include "HBuilderSpec.h"
-
 #include <QDebug>
 
 HE_DATA_USE_NAMESPACE
@@ -23,12 +22,12 @@ HMainWindowSpec::~HMainWindowSpec()
 
 void HMainWindowSpec::initImportExport()
 {
-    HAbstractMainWindow::initImportExport();
     Q_D(HMainWindowSpec);
+    HAbstractMainWindow::initImportExport();
     d->importExport.insert(tr("1.光谱定标数据(&S)..."),           ConfigContainType::CCT_Spec);
 }
 
-void HMainWindowSpec::createBuilder()
+void HMainWindowSpec::initBuilder()
 {
     Q_D(HMainWindowSpec);
     d->builder = new HBuilderSpec(this);

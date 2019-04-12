@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2019-04-01  HSpecFittingChartView   光谱拟合图表。
+**      2019-04-01  HSpecFittingChartView 光谱拟合图表。
 ***************************************************************************************************/
 
 #ifndef HSPECFITTINGCHARTVIEW_H
@@ -27,10 +27,8 @@ public:
     void clearSeries();
 
 protected:
+    void init() override;
     void resizeEvent(QResizeEvent *) override;
-
-private:
-    void init();
 };
 
 HE_GUI_END_NAMESPACE

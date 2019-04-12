@@ -76,7 +76,6 @@ void HSpecEnergyWidget::init()
     layout->setSpacing(9);
     layout->addLayout(d_ptr->progressLayout, 0, 0);
     layout->addWidget(d_ptr->specWidget, 0, 1);
-
     connect(d_ptr->specWidget, &HSpecDiagramWidget::marginChanged, this, [=](QMargins m){ d_ptr->progressLayout->setContentsMargins(5, m.top(), 5, m.bottom()); });
     initCoordinate();
     setAutoFillBackground(true);

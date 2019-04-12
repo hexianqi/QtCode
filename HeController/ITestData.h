@@ -26,6 +26,8 @@ public:
     virtual QVariant data(QString type) = 0;
     // 获取数据-按字符串格式
     virtual QString toString(QString type) = 0;
+    // 获取数据-按字符串格式
+    virtual QStringList toString(QStringList types) = 0;
     // 获取数据-按Html表格方式
     virtual QString toHtmlTable(QStringList types, QColor bgcolor) = 0;
 };

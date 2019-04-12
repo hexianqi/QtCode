@@ -8,24 +8,24 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecSettingDialogPrivate::HSpecSettingDialogPrivate(HSpecSetting *d)
-{
-    data = d;
-}
-
-HSpecSettingDialog::HSpecSettingDialog(HSpecSetting *data, QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::HSpecSettingDialog)
-    , d_ptr(new HSpecSettingDialogPrivate(data))
+HSpecSettingDialog::HSpecSettingDialog(QWidget *parent) :
+    QDialog(parent),
+    d_ptr(new HSpecSettingDialogPrivate),
+    ui(new Ui::HSpecSettingDialog)
 {
     ui->setupUi(this);
     init();
-    showData();
 }
 
 HSpecSettingDialog::~HSpecSettingDialog()
 {
     delete ui;
+}
+
+void HSpecSettingDialog::setData(HSpecSetting *p)
+{
+    d_ptr->data = p;
+    showData();
 }
 
 void HSpecSettingDialog::on_pushButton_1_clicked()
@@ -69,7 +69,6 @@ void HSpecSettingDialog::saveData()
 {
     QPoint p1;
     QPointF p2;
-
     p2.setX(ui->lineEdit_1001->text().toDouble());
     p2.setY(ui->lineEdit_1002->text().toDouble());
     d_ptr->data->setData("[积分时间范围]", p2);
@@ -124,7 +123,6 @@ void HSpecSettingDialog::init()
     ui->lineEdit_2006->setValidator(v[10]);
     ui->lineEdit_2007->setValidator(v[11]);
     ui->splitter->setStretchFactor(1, 1);
-    setWindowFlags(Qt::Dialog | Qt::WindowTitleHint);
     setWindowTitle(tr("光谱参数设置"));
 }
 

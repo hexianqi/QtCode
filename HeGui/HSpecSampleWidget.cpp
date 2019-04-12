@@ -3,7 +3,6 @@
 #include "HeCore/HCore.h"
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
-#include "HePlugin/HVernierTracking.h"
 #include <QAction>
 #include <QLabel>
 
@@ -13,6 +12,7 @@ HSpecSampleWidgetPrivate::HSpecSampleWidgetPrivate(HSpecSampleWidget *q) :
     HVernierWidgetPrivate(q)
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
+    decimals = 0;
     curveVisibles.append(true);
     curveVisibles.append(true);
 }
@@ -45,10 +45,10 @@ void HSpecSampleWidget::refreshWidget()
         else
             removePolygon(i);
     }
-    refreshLabelCenter();
+    refreshCenter();
 }
 
-void HSpecSampleWidget::refreshLabelCenter()
+void HSpecSampleWidget::refreshCenter()
 {
     Q_D(HSpecSampleWidget);
     if (d->verniers.isEmpty())
@@ -65,7 +65,7 @@ void HSpecSampleWidget::refreshLabelCenter()
     d->labelCenter->setText(QString("%1").arg(list.join('\t')));
 }
 
-void HSpecSampleWidget::refreshLabelRight()
+void HSpecSampleWidget::refreshRight()
 {
     Q_D(HSpecSampleWidget);
     if (d->verniers.isEmpty())
@@ -95,9 +95,9 @@ void HSpecSampleWidget::setVernier(QVector<double> value)
 {
     Q_D(HSpecSampleWidget);
     d->verniers = value;
-    refreshLabelRight();
+    refreshRight();
     if (d->enablePeak)
-        refreshLabelCenter();
+        refreshCenter();
 }
 
 void HSpecSampleWidget::init()
@@ -109,8 +109,6 @@ void HSpecSampleWidget::init()
     d->actionCurve2 = new QAction(tr("预处理曲线"), this);
     d->actionCurve2->setCheckable(true);
     d->actionCurve2->setChecked(d->curveVisibles[1]);
-
-    setDecimals(0);
     setCoordinate(QRectF(0, 0, 2100, 65535), 5, 5);
     HPluginHelper::addSeparator(this);
     addAction(d->actionCurve1);
@@ -119,7 +117,6 @@ void HSpecSampleWidget::init()
     connect(d->actionCurve2, &QAction::toggled, this, &HSpecSampleWidget::setCurve2Visible);
     connect(this, &HSpecSampleWidget::vernierTextChanged, d->labelLeft, &QLabel::setText);
     connect(this, &HSpecSampleWidget::vernierValueChanged, this, &HSpecSampleWidget::setVernier);
-    updataVernier();
     setWindowTitle(tr("光谱采样曲线"));
 }
 

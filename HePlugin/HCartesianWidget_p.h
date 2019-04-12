@@ -6,8 +6,6 @@
 
 class HCartesianWidgetPrivate : public HDiagramWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HCartesianWidget)
-
 public:
     HCartesianWidgetPrivate(HCartesianWidget *q);
 

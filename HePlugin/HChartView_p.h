@@ -3,7 +3,7 @@
 
 #include "HChartView.h"
 
-class HChartViewPrivate
+class QDESIGNER_WIDGET_EXPORT HChartViewPrivate
 {
 
 };

@@ -13,7 +13,7 @@ HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(HSpecCalibrateC
     fileStream = f->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00020001);
     fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter(QObject::tr("Spec calibrate files (*.hcs)"));
+    fileStream->setFileFilter("Spec calibrate files (*.hcs)");
     fileStream->setReadContent([=](QDataStream &s) { q_ptr->readContent(s); });
     fileStream->setWriteContent([=](QDataStream &s) { q_ptr->writeContent(s); });
 }

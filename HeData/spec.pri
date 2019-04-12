@@ -19,6 +19,8 @@ HEADERS += \
     $$PWD/HSpecFittingLinear_p.h \
     $$PWD/HSpecFittingPolynom.h \
     $$PWD/HSpecFittingPolynom_p.h \
+    $$PWD/HSpecFittingTest.h \
+    $$PWD/HSpecFittingTest_p.h
 
 
 SOURCES += \
@@ -31,4 +33,5 @@ SOURCES += \
     $$PWD/HSpecFitting.cpp \
     $$PWD/HSpecFittingLinear.cpp \
     $$PWD/HSpecFittingPolynom.cpp \
+    $$PWD/HSpecFittingTest.cpp
 

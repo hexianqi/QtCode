@@ -17,15 +17,12 @@ public:
     ~HMainWindow2000();
 
 protected:
-    HMainWindow2000(HMainWindow2000Private &p, const HCallorHelper &helper, QWidget *parent = nullptr);
-
-protected:
-    virtual void initImportExport() override;
-    virtual void createAction() override;
-    virtual void createMenu() override;
-    virtual void createConnect() override;
-    virtual void initMenu() override;
-    virtual bool openCalibrateDlg(QDialog *dlg, bool message = true);
+    void initImportExport() override;
+    void initBuilder() override;
+    void createAction() override;
+    void createMenu() override;
+    void initMenu() override;
+    virtual bool openCalibrateDlg(QDialog *dlg);
 
 protected slots:
     void openCalibrateSpectrumDialog();

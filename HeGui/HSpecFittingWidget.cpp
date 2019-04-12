@@ -8,16 +8,15 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecFittingWidgetPrivate::HSpecFittingWidgetPrivate(HSpecFitting *d)
+HSpecFittingWidgetPrivate::HSpecFittingWidgetPrivate()
 {
-    data = d;
     model = HAppContext::getContextPointer<IModel>("IModel");
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
-HSpecFittingWidget::HSpecFittingWidget(HSpecFitting *data, QWidget *parent)
+HSpecFittingWidget::HSpecFittingWidget(QWidget *parent)
     : QWidget(parent)
-    , d_ptr(new HSpecFittingWidgetPrivate(data))
+    , d_ptr(new HSpecFittingWidgetPrivate)
 {
     init();
 }
@@ -31,6 +30,12 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
 
 HSpecFittingWidget::~HSpecFittingWidget()
 {
+}
+
+void HSpecFittingWidget::setData(HSpecFitting *p)
+{
+    d_ptr->data = p;
+    showData();
 }
 
 void HSpecFittingWidget::restoreDefault()

@@ -2,8 +2,9 @@
 #define HSINGLEAXISCHART_P_H
 
 #include "HSingleAxisChart.h"
+#include "HChart_p.h"
 
-class HSingleAxisChartPrivate
+class HSingleAxisChartPrivate : public HChartPrivate
 {
 public:
     QAbstractAxis *axisX = nullptr;

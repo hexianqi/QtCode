@@ -23,34 +23,43 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES += \
         main.cpp \
         HBuilder2000.cpp \
-        HModel2000.cpp \
         HMainWindow2000.cpp \
-
+        HTestWidget2000.cpp \
+        HTestSetWidget2000.cpp \
+        HDetailWidget2000.cpp
 
 HEADERS += \
         HBuilder2000.h \
         HBuilder2000_p.h \
-        HModel2000.h \
-        HModel2000_p.h \
         HMainWindow2000.h \
         HMainWindow2000_p.h \
+        HTestWidget2000.h \
+        HTestWidget2000_p.h \
+        HTestSetWidget2000.h \
+        HTestSetWidget2000_p.h \
+        HDetailWidget2000.h \
+        HDetailWidget2000_p.h
+
+FORMS   += \
+        HTestSetWidget2000.ui \
+        HDetailWidget2000.ui
 
 TARGET = SL2000
 
 INCLUDEPATH += ..
 
 Debug {
-    CONFIG  += console
+#    CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeDatad \
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeControllerd \
-            -L$$DESTDIR -lHeGuid
+            -L$$DESTDIR -lHeGuid \
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
@@ -59,5 +68,8 @@ Release {
             -L$$DESTDIR -lHeData \
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeController \
-            -L$$DESTDIR -lHeGui
+            -L$$DESTDIR -lHeGui \
+            -L$$DESTDIR -lHePlugin
 }
+
+

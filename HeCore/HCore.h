@@ -27,7 +27,7 @@ HE_CORE_EXPORT QString toUnit(QString type);
 HE_CORE_EXPORT QString toCaption(QString type);
 HE_CORE_EXPORT QStringList toCaption(QStringList type);
 HE_CORE_EXPORT QString toCaptionUnit(QString type);
-HE_CORE_EXPORT QStringList toCaptionUnit(QStringList types);
+HE_CORE_EXPORT QStringList toCaptionUnit(QStringList type);
 
 HE_CORE_EXPORT QString filenameFilter(const QString &name, const QList<QByteArray> formats);
 HE_CORE_EXPORT QString filenameFilter(const QString &name, const QStringList &mimeTypes);

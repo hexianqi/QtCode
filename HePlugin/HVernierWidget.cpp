@@ -56,7 +56,6 @@ void HVernierWidget::updataVernier()
     emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
 }
 
-
 HVernierTracking *HVernierWidget::tracking()
 {
     Q_D(HVernierWidget);
@@ -85,14 +84,6 @@ int HVernierWidget::decimals()
 {
     Q_D(HVernierWidget);
     return d->decimals;
-}
-
-void HVernierWidget::setPlotArea(QRectF value)
-{
-    Q_D(HVernierWidget);
-    auto h = fontMetrics().height();
-    d->layoutLabel->setGeometry(QRectF(value.left() + 15, value.top() - h - 5, value.width() - 30, h).toRect());
-    HCartesianWidget::setPlotArea(value);
 }
 
 void HVernierWidget::paintEvent(QPaintEvent *e)
@@ -129,6 +120,15 @@ void HVernierWidget::mouseReleaseEvent(QMouseEvent *e)
 void HVernierWidget::handleCoordinateChanged(HCartesianCoordinate *p)
 {
     HCartesianWidget::handleCoordinateChanged(p);
+    updataVernier();
+}
+
+void HVernierWidget::handlePlotAreaChanged(QRectF value)
+{
+    Q_D(HVernierWidget);
+    auto h = fontMetrics().height();
+    d->tracking->setValidRegion(value);
+    d->layoutLabel->setGeometry(QRectF(value.left() + 15, value.top() - h - 5, value.width() - 30, h).toRect());
     updataVernier();
 }
 
@@ -169,7 +169,7 @@ void HVernierWidget::init()
     d->layoutLabel->addWidget(d->labelLeft, 0, 0);
     d->layoutLabel->addWidget(d->labelCenter, 0, 1);
     d->layoutLabel->addWidget(d->labelRight, 0, 2);
-    connect(this, &HVernierWidget::plotAreaChanged, d->tracking, &HVernierTracking::setValidRegion);
+    connect(this, &HVernierWidget::plotAreaChanged, this, &HVernierWidget::handlePlotAreaChanged);
     connect(d->tracking, &HVernierTracking::orientationChanged, this, &HVernierWidget::handleOrientationChanged);
     connect(d->tracking, &HVernierTracking::vernierPosChanged, this, &HVernierWidget::handleVernierPosChanged);
     connect(d->tracking, &HVernierTracking::vernierSizeChanged, this, &HVernierWidget::handleVernierSizeChanged);

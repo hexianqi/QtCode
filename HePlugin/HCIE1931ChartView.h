@@ -29,6 +29,7 @@ public:
     HCIE1931Chart *cieChart();
 
 protected:
+    void init() override;
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseDoubleClickEvent(QMouseEvent *event) override;
 
@@ -36,9 +37,6 @@ protected slots:
     void handlePlotAreaChanged(QRectF value);
     void handlePointFocusChanged(QPointF pos);
     void handlePositionChanged(QPointF pos);
-
-private:
-    void init();
 };
 
 #endif // HCIE1931CHARTVIEW_H

@@ -29,12 +29,12 @@ public:
 
 public:
     void start() override;
-    void pause() override;
+    void stop() override;
 
 protected:
     HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent = nullptr);
 
-protected slots:
+protected:
     virtual bool setTest(bool b) = 0;
     virtual void handleAction(HActionType action) = 0;
 

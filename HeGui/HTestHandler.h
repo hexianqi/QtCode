@@ -9,9 +9,12 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
+class HTestHandlerPrivate;
+
 class HTestHandler : public HAbstractGuiHandler
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HTestHandler)
 
 public:
     explicit HTestHandler(QObject *parent = nullptr);

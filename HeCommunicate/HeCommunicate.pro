@@ -53,6 +53,8 @@ unix {
     INSTALLS += target
 }
 
-include(port.pri)
+
+include(codec.pri)
 include(device.pri)
+include(port.pri)
 include(protocol.pri)

@@ -24,8 +24,8 @@ public:
 public:
     void setEnablePeak(bool b);
     void refreshWidget();
-    void refreshLabelCenter();
-    void refreshLabelRight();
+    void refreshCenter();
+    void refreshRight();
 
 protected slots:
     void setCurve1Visible(bool b);

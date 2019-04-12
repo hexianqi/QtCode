@@ -45,6 +45,9 @@ public:
     void addPoint(QPointF value, bool focus = true);
     void clearPoint();
 
+public:
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+
 private:
     void init();
     void initAxes();

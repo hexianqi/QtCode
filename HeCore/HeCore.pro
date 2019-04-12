@@ -23,24 +23,21 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES     += \
-            HCore.cpp \
-            HAppContext.cpp \
-            HDataFormatInfo.cpp \
-            HGlobalInstance.cpp \
-            HCallorHelper.cpp
-
 HEADERS     += \
             HCoreGlobal.h \
-            HErrorType.h \
-            HActionType.h \
             HCore.h \
+            HCoreGlobalInstance.h \
             HAppContext.h \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
-            HGlobalInstance.h \
-            HGlobalInstance_p.h \
-            HCallorHelper.h
+            HCallorHelper.h \
+
+SOURCES     += \
+            HCore.cpp \
+            HCoreGlobalInstance.cpp \
+            HAppContext.cpp \
+            HDataFormatInfo.cpp \
+            HCallorHelper.cpp \
 
 RESOURCES   += HeCore.qrc
 
@@ -59,7 +56,9 @@ unix {
     INSTALLS += target
 }
 
-include(Template.pri)
-include(Interface.pri)
-include(Reflect.pri)
+include(interface.pri)
+include(reflect.pri)
+include(type.pri)
+include(template.pri)
+
 

@@ -25,7 +25,7 @@ class HE_GUI_EXPORT HSpecFittingWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit HSpecFittingWidget(HSpecFitting *data, QWidget *parent = nullptr);
+    explicit HSpecFittingWidget(QWidget *parent = nullptr);
     ~HSpecFittingWidget() override;
 
 signals:
@@ -33,8 +33,9 @@ signals:
     void fittingFinished();
 
 public:
-    virtual void restoreDefault();
-    virtual QPolygonF fittingPoints();
+    void setData(HSpecFitting *);
+    void restoreDefault();
+    QPolygonF fittingPoints();
     virtual void handleAction(HActionType action);
     virtual bool setTest(bool b);
 

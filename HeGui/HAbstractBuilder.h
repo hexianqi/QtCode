@@ -10,6 +10,7 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
+class IMainWindow;
 class HAbstractBuilderPrivate;
 
 class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
@@ -17,7 +18,7 @@ class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
     Q_OBJECT
 
 public:
-    explicit HAbstractBuilder(QObject *parent = nullptr);
+    explicit HAbstractBuilder(IMainWindow *parent = nullptr);
     ~HAbstractBuilder() override;
 
 public:
@@ -27,10 +28,10 @@ public:
     void buildAll() override;
 
 protected:
-    HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent = nullptr);
+    HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *parent = nullptr);
 
 protected:
-    virtual void buildFactory() = 0;
+    virtual void buildFactory();
     virtual void buildConfigManage() = 0;
     virtual void buildTestData() = 0;
     virtual void buildDevice() = 0;

@@ -1,7 +1,8 @@
 #include "HControllerFactory_p.h"
-#include "HThreadSpec.h"
+#include "HSpecThread.h"
 #include "HThreadCollection.h"
 #include "HTestSpec.h"
+#include "HSpecModel.h"
 #include "HeCore/HObjectFactory.h"
 #include <QDebug>
 
@@ -62,9 +63,15 @@ ITestSpec *HControllerFactory::createTestSpec(QString type, QVariantMap param)
     return p;
 }
 
+IModel *HControllerFactory::createModel(QString type, QVariantMap param)
+{
+    return HObjectFactory::createObject<IModel>(type, param, this);
+}
+
 void HControllerFactory::registerClass()
 {
-    HObjectFactory::registerClass<HThreadSpec>("HThreadSpec");
+    HObjectFactory::registerClass<HSpecThread>("HSpecThread");
+    HObjectFactory::registerClass<HSpecModel>("HSpecModel");
 }
 
 HE_CONTROLLER_END_NAMESPACE

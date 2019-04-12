@@ -6,14 +6,16 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HGuiFactory::HGuiFactory(QObject *parent)
-    : QObject(parent), d_ptr(new HGuiFactoryPrivate)
+HGuiFactory::HGuiFactory(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HGuiFactoryPrivate)
 {
     registerClass();
 }
 
-HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
     registerClass();
 }

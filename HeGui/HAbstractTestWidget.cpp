@@ -12,13 +12,15 @@ HAbstractTestWidgetPrivate::HAbstractTestWidgetPrivate()
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
-HAbstractTestWidget::HAbstractTestWidget(QWidget *parent)
-    : ITestWidget(parent), d_ptr(new HAbstractTestWidgetPrivate)
+HAbstractTestWidget::HAbstractTestWidget(QWidget *parent) :
+    ITestWidget(parent),
+    d_ptr(new HAbstractTestWidgetPrivate)
 {
 }
 
-HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent)
-    : ITestWidget(parent), d_ptr(&p)
+HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent) :
+    ITestWidget(parent),
+    d_ptr(&p)
 {
 }
 
@@ -46,7 +48,7 @@ void HAbstractTestWidget::start()
     connect(d_ptr->model, &IModel::actionFinished, this, &HAbstractTestWidget::handleAction);
 }
 
-void HAbstractTestWidget::pause()
+void HAbstractTestWidget::stop()
 {
     setTest(false);
     d_ptr->model->disconnect(this);

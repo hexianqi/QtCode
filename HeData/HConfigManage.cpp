@@ -13,7 +13,7 @@ HConfigManagePrivate::HConfigManagePrivate(IDataFactory *f)
     fileStream = f->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00010001);
     fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter(QObject::tr("Config files (*.cfg)"));
+    fileStream->setFileFilter("Config files (*.cfg)");
     fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
     fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
 }

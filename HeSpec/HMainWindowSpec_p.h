@@ -6,8 +6,6 @@
 
 class HMainWindowSpecPrivate : public HMainWindowPrivate
 {
-    Q_DECLARE_PUBLIC(HMainWindowSpec)
-
 public:
     HMainWindowSpecPrivate(HMainWindowSpec *);
 };

@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
+        <file>dat/Chromaticity.dat</file>
         <file>image/ZoomIn.png</file>
         <file>image/ZoomOut.png</file>
-        <file>dat/Chromaticity.dat</file>
         <file>image/CIE1931.png</file>
         <file>image/CIE1931_s.png</file>
         <file>image/7color.png</file>
@@ -11,7 +11,12 @@
         <file>image/Table.png</file>
         <file>image/Spectrum.png</file>
         <file>image/Clear.png</file>
-        <file>image/restore.png</file>
+        <file>image/Restore.png</file>
         <file>image/Zoom.png</file>
+        <file>image/Options.png</file>
+        <file>image/Down.png</file>
+        <file>image/Left.png</file>
+        <file>image/Right.png</file>
+        <file>image/Up.png</file>
     </qresource>
 </RCC>

@@ -17,7 +17,7 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecFittingWidgetPrivate
 {
 public:
-    HSpecFittingWidgetPrivate(HSpecFitting *);
+    HSpecFittingWidgetPrivate();
 
 public:
     IModel *model;

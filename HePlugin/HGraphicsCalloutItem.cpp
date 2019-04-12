@@ -27,9 +27,8 @@ void HGraphicsCalloutItem::setFont(QFont value)
 void HGraphicsCalloutItem::setText(QString value)
 {
     Q_D(HGraphicsCalloutItem);
-    d->text = value;
     QFontMetrics metrics(font());
-
+    d->text = value;
     d->textRect = metrics.boundingRect(QRect(0, 0, 150, 150), Qt::AlignLeft, value).translated(5, 5);
     prepareGeometryChange();
     d->rect = d->textRect.adjusted(-5, -5, 5, 5);

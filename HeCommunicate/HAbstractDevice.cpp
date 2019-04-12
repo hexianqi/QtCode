@@ -4,13 +4,13 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HAbstractDevice::HAbstractDevice()
-    : d_ptr(new HAbstractDevicePrivate)
+HAbstractDevice::HAbstractDevice() :
+    d_ptr(new HAbstractDevicePrivate)
 {
 }
 
-HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p)
-    : d_ptr(&p)
+HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p) :
+    d_ptr(&p)
 {
 }
 

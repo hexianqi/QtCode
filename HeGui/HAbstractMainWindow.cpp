@@ -12,20 +12,22 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HMainWindowPrivate::HMainWindowPrivate(HAbstractMainWindow *p)
-    : q_ptr(p)
+HMainWindowPrivate::HMainWindowPrivate(HAbstractMainWindow *p) :
+    q_ptr(p)
 {
     logo.load(":/image/Logo.png");
 }
 
-HAbstractMainWindow::HAbstractMainWindow(QWidget *parent)
-    : QMainWindow(parent), d_ptr(new HMainWindowPrivate(this))
+HAbstractMainWindow::HAbstractMainWindow(QWidget *parent) :
+    IMainWindow(parent),
+    d_ptr(new HMainWindowPrivate(this))
 {
     initialize();
 }
 
-HAbstractMainWindow::HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent)
-    : QMainWindow(parent), d_ptr(&p)
+HAbstractMainWindow::HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent) :
+    IMainWindow(parent),
+    d_ptr(&p)
 {
     helper.initialize(this);
 }
@@ -39,16 +41,15 @@ HAbstractMainWindow::~HAbstractMainWindow()
 void HAbstractMainWindow::initialize()
 {
     initImportExport();
-    createBuilder();
     createAction();
     createActionGroup();
     createMenu();
     createToolBar();
     createToolBarLogo();
-    createConnect();
     initMenu();
     initToolBar();
     initStatusBar();
+    initBuilder();
     initModel();
     initCentralWidget();
     updatetWindowTitle();
@@ -78,6 +79,11 @@ void HAbstractMainWindow::createAction()
     d_ptr->actionExit->setIconText(tr("\n退出"));
     d_ptr->actionExit->setShortcut(tr("Ctrl+Q"));
     d_ptr->actionAbout = new QAction(tr("关于(&A)..."), this);
+    connect(d_ptr->actionOpen, &QAction::triggered, this, &HAbstractMainWindow::open);
+    connect(d_ptr->actionSave, &QAction::triggered, this, &HAbstractMainWindow::save);
+    connect(d_ptr->actionSaveAs, &QAction::triggered, this, &HAbstractMainWindow::saveAs);
+    connect(d_ptr->actionExit, &QAction::triggered, this, &HAbstractMainWindow::close);
+    connect(d_ptr->actionAbout, &QAction::triggered, this, &HAbstractMainWindow::about);
 }
 
 void HAbstractMainWindow::createActionGroup()
@@ -91,6 +97,8 @@ void HAbstractMainWindow::createActionGroup()
         d_ptr->actionGroupExport->addAction(it.key())->setData(it.value());
         it++;
     }
+    connect(d_ptr->actionGroupImport, &QActionGroup::triggered, this, &HAbstractMainWindow::importFile);
+    connect(d_ptr->actionGroupExport, &QActionGroup::triggered, this, &HAbstractMainWindow::exportFile);
 }
 
 void HAbstractMainWindow::createMenu()
@@ -132,22 +140,10 @@ void HAbstractMainWindow::createToolBarLogo()
 #endif
 }
 
-void HAbstractMainWindow::createConnect()
-{
-    connect(d_ptr->actionOpen, &QAction::triggered, this, &HAbstractMainWindow::open);
-    connect(d_ptr->actionSave, &QAction::triggered, this, &HAbstractMainWindow::save);
-    connect(d_ptr->actionSaveAs, &QAction::triggered, this, &HAbstractMainWindow::saveAs);
-    connect(d_ptr->actionExit, &QAction::triggered, this, &HAbstractMainWindow::close);
-    connect(d_ptr->actionAbout, &QAction::triggered, this, &HAbstractMainWindow::about);
-    connect(d_ptr->actionGroupImport, &QActionGroup::triggered, this, &HAbstractMainWindow::importFile);
-    connect(d_ptr->actionGroupExport, &QActionGroup::triggered, this, &HAbstractMainWindow::exportFile);
-}
-
 void HAbstractMainWindow::initMenu()
 {
     menuBar()->addMenu(d_ptr->menuFile);
     d_ptr->actionSeparator = menuBar()->addSeparator();
-
     menuBar()->addMenu(d_ptr->menuHelp);
 }
 
@@ -170,7 +166,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-    d_ptr->model->start();
+//    d_ptr->model->start();
 }
 
 void HAbstractMainWindow::initCentralWidget()

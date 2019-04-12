@@ -11,13 +11,15 @@ HAbstractTestSetWidgetPrivate::HAbstractTestSetWidgetPrivate()
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
-HAbstractTestSetWidget::HAbstractTestSetWidget(QWidget *parent)
-    : ITestSetWidget(parent), d_ptr(new HAbstractTestSetWidgetPrivate)
+HAbstractTestSetWidget::HAbstractTestSetWidget(QWidget *parent) :
+    ITestSetWidget(parent),
+    d_ptr(new HAbstractTestSetWidgetPrivate)
 {
 }
 
-HAbstractTestSetWidget::HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p, QWidget *parent)
-    : ITestSetWidget(parent), d_ptr(&p)
+HAbstractTestSetWidget::HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p, QWidget *parent) :
+    ITestSetWidget(parent),
+    d_ptr(&p)
 {
 }
 

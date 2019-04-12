@@ -13,14 +13,16 @@ using HActionType = long long;
 
 #define     ACT_IDLE                                0x00000000
 #define     ACT_EXIT                                0x00000001
-#define     ACT_UNLOCK_DEVICE                       0x00000011
-#define     ACT_CHECK_DEVICE                        0x00000080
+#define     ACT_CHECK_DEVICE                        0x00000011
+#define     ACT_UNLOCK_DEVICE                       0x00000012
 
 #define     ACT_SET_INTEGRAL_TIME                   0x00010101
 #define     ACT_SET_SPECTRUM_AVG_TIMES              0x00010102
 #define     ACT_SET_SPECTRUM_SAMPLE_DELAY           0x00010103
-#define     ACT_GET_INTEGRAL_TIME                   0x00010181
-#define     ACT_GET_SPECTRUM                        0x00010182
+#define     ACT_GET_INTEGRAL_TIME                   0x00010111
+#define     ACT_GET_SPECTRUM                        0x00010112
+
+#define     ACT_SINGLE_TEST                         0x10000001
 
 #define     ACT_RESET_SPECTRUM                      0xF0000001
 

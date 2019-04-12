@@ -158,6 +158,7 @@ bool HTestSpecPrivate::calcSpec()
     addData("[蓝色比]", specData->BlueRatio);
     addData("[绿色比]", specData->GreenRadio);
     addData("[光谱光通量]", specData->Luminous);
+    addData("[光功率]", specData->Luminous * specData->EnergyRatio);
 //    addData("[色容差]", sp->SDCM);
     return true;
 }

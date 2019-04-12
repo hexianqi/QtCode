@@ -45,8 +45,8 @@ HCIE1931ChartPrivate::HCIE1931ChartPrivate()
     gradeFocus->setPen(QPen(Qt::red, 2));
 }
 
-HCIE1931Chart::HCIE1931Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
-    : HSingleAxisChart(*new HCIE1931ChartPrivate, parent, wFlags)
+HCIE1931Chart::HCIE1931Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags) :
+    HSingleAxisChart(*new HCIE1931ChartPrivate, parent, wFlags)
 {
     init();
 }
@@ -203,13 +203,18 @@ void HCIE1931Chart::clearPoint()
     d->points->clear();
 }
 
+void HCIE1931Chart::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    updateHorseshoeBrush();
+    HSingleAxisChart::paint(painter, option, widget);
+}
+
 void HCIE1931Chart::init()
 {
     initAxes();
     readSeries();
     legend()->hide();
     setMinimumSize(300, 300);
-    connect(this, &HCIE1931Chart::plotAreaChanged, this, &HCIE1931Chart::updateHorseshoeBrush);
 }
 
 void HCIE1931Chart::initAxes()

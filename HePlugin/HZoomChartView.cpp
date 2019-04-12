@@ -16,7 +16,6 @@ HZoomChartView::HZoomChartView(QChart *chart, QWidget *parent) :
 HZoomChartView::HZoomChartView(HZoomChartViewPrivate &p, QChart *chart, QWidget *parent) :
     HChartView(p, chart, parent)
 {
-    init();
 }
 
 HZoomChartView::~HZoomChartView()
