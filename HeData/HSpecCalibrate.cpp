@@ -1,6 +1,7 @@
 #include "HSpecCalibrate_p.h"
 #include "HSpecSetting.h"
 #include "HSpecFittingLinear.h"
+#include "HSpecFittingTest.h"
 #include "HSpecStdCurve.h"
 #include "HSpecPelsWave.h"
 #include "HSpecLuminous.h"
@@ -12,7 +13,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
     setting = new HSpecSetting;
-    fitting = new HSpecFittingLinear;
+    fitting = new HSpecFittingTest;
     stdCurve = new HSpecStdCurve;
     pelsWave = new HSpecPelsWave;
     luminous = new HSpecLuminous;

@@ -16,7 +16,7 @@ public:
     void setChromaticity(int type);
 
 public:
-    int chromaticityType;
+    int chromaticityType = 1;
     std::shared_ptr<IChromaticity> chromaticity;
     std::shared_ptr<HPhotopicVision> photopicVision;
 };

@@ -73,6 +73,8 @@ double HSpecFittingTest::handle(int i, double value, bool abovezero)
 double HSpecFittingTest::calcRate(int i, double value)
 {
     Q_D(HSpecFittingTest);
+    if (d->allFittingPoints.size() == 0)
+        return 1.0;
     i = i % d->allFittingPoints.size();
     if (d->allFittingPoints[i].size() < 3)
         return 1.0;

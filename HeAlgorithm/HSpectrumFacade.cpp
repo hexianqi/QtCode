@@ -74,7 +74,7 @@ QPolygonF calcSpectrumEnergyPercent(QPolygonF poly, double maxEnergy)
 
 HSpecFacadePrivate::HSpecFacadePrivate()
 {
-    chromaticity = std::shared_ptr<HChromaticity>(new HChromaticity());
+    chromaticity = std::shared_ptr<HChromaticity>(new HChromaticityV2());
     photopicVision = std::make_shared<HPhotopicVision>();
 }
 

@@ -1,5 +1,6 @@
 #include "HSpecFitting_p.h"
 #include <QDataStream>
+#include <QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -67,7 +68,15 @@ void HSpecFitting::setFittingPoints(QPolygonF value)
 
 double HSpecFitting::handle(double value, bool abovezero)
 {
-    auto rate = calcRate(value);
+    double rate = 1.0;
+    try
+    {
+        rate = calcRate(value);
+    }
+    catch (QString e)
+    {
+        qDebug() << e;
+    }
     value = value / rate;
     if (abovezero)
         value = qMax(0.0, value);

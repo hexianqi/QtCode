@@ -4,6 +4,7 @@
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include <QVector>
+#include <QDateTime>
 #include <QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -56,6 +57,7 @@ HErrorType HSpecThread::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
+        qDebug() << "ACT_SET_INTEGRAL_TIME:" + QDateTime::currentDateTime().time().toString("HH:mm:ss.zzz");
         return d->protocolSpec->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
     case ACT_SET_SPECTRUM_AVG_TIMES:
         return d->protocolSpec->setData(action, d->testSpec->data("[光谱平均次数]").toInt());
@@ -69,7 +71,7 @@ HErrorType HSpecThread::handleAction(HActionType action)
     case ACT_GET_SPECTRUM:
         error = d->protocolSpec->getData(action, t, d->testSpec->data("[光谱采样等待时间]").toInt());
         if (error == E_OK)
-            d->testSpec->setSample(t, true);
+            d->testSpec->setSample(t, true);        
         return error;
     }
     return E_THREAD_NO_HANDLE;

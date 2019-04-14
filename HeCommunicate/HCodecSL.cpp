@@ -24,7 +24,6 @@ HCodecSL::~HCodecSL()
 
 void HCodecSL::initialize(QVariantMap param)
 {
-    Q_D(HCodecSL);
     if (param.contains("encrypt"))
         setEncrypt(param.value("encrypt").value<QVector<bool>>());
     if (param.contains("checkCode"))

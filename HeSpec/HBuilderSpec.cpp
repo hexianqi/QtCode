@@ -71,7 +71,7 @@ void HBuilderSpec::buildDevice()
 {
     Q_D(HBuilderSpec);
     QVariantMap param;
-    param.insert("timeOut", 1000);
+    param.insert("timeOut", 3000);
     auto port = d->communicateFactory->createPort("HUsbPortCy", param);
     auto device = d->communicateFactory->createDevice("HDeviceSL");
     auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");

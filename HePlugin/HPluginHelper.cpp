@@ -107,8 +107,7 @@ QString HPluginHelper::paste(QTableWidget *widget)
     if (ranges.isEmpty())
         return text;
 
-    rowText = text.split('\n');
-    rowText.removeLast();
+    rowText = text.split('\n', QString::SkipEmptyParts);
 
     auto range = ranges.first();
     if (range.rowCount() * range.columnCount() == 1)

@@ -58,8 +58,8 @@ void HTableWidget::init()
     d_ptr->actionPaste->setShortcut(QKeySequence::Paste);
     addAction(d_ptr->actionCopy);
     addAction(d_ptr->actionPaste);
-    connect(d_ptr->actionCopy, &QAction::toggled, this, [=] { HPluginHelper::copy(this); });
-    connect(d_ptr->actionPaste, &QAction::toggled, this, [=] { HPluginHelper::paste(this); });
+    connect(d_ptr->actionCopy, &QAction::triggered, this, [=] { HPluginHelper::copy(this); });
+    connect(d_ptr->actionPaste, &QAction::triggered, this, [=] { HPluginHelper::paste(this); });
     horizontalHeader()->setDefaultSectionSize(80);
     horizontalHeader()->setHighlightSections(false);
     horizontalHeader()->setMinimumSectionSize(60);
