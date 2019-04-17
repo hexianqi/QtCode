@@ -3,13 +3,13 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HDeviceCollection::HDeviceCollection()
-    :  d_ptr(new HDeviceCollectionPrivate)
+HDeviceCollection::HDeviceCollection() :
+    HCollection<IDevice>(*new HDeviceCollectionPrivate)
 {
 }
 
-HDeviceCollection::HDeviceCollection(HDeviceCollectionPrivate &p)
-    : d_ptr(&p)
+HDeviceCollection::HDeviceCollection(HDeviceCollectionPrivate &p) :
+    HCollection<IDevice>(p)
 {
 }
 
@@ -34,15 +34,17 @@ QString HDeviceCollection::typeName()
 
 void HDeviceCollection::addSupport(HActionType action)
 {
-    d_ptr->additionals.insert(action);
+    Q_D(HDeviceCollection);
+    d->additionals.insert(action);
 }
 
 bool HDeviceCollection::isSupport(HActionType action)
 {
-    if (d_ptr->additionals.contains(action))
+    Q_D(HDeviceCollection);
+    if (d->additionals.contains(action))
         return true;
 
-    for (auto v : _datas->values())
+    for (auto v : values())
     {
         if (v->isSupport(action))
             return true;

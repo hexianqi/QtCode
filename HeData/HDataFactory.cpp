@@ -81,7 +81,8 @@ IGradeCollection *HDataFactory::createGradeCollection(QString type, QVariantMap 
     Q_UNUSED(type)
 //    IGradeCollection *p = new HGradeCollection(this);
 //    p->initialize(param);
-    return p;
+//    return p;
+    return nullptr;
 }
 
 void HDataFactory::registerClass()

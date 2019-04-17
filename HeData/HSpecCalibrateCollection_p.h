@@ -5,13 +5,16 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecCalibrateCollectionPrivate
+class HSpecCalibrateCollectionPrivate : public HCollectionPrivate<ISpecCalibrate>
 {
 public:
-    HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *, IDataFactory *);
+    HSpecCalibrateCollectionPrivate(IDataFactory *);
 
 public:
-    HSpecCalibrateCollection *q_ptr;
+    void readContent(QDataStream &);
+    void writeContent(QDataStream &);
+
+public:
     IDataFactory *factory;
     IFileStream *fileStream;
 };

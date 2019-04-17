@@ -29,13 +29,6 @@ public:
 
 protected:
     HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &);
-
-protected:
-    void readContent(QDataStream &);
-    void writeContent(QDataStream &);
-
-protected:
-    QScopedPointer<HSpecCalibrateCollectionPrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE

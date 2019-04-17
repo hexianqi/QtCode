@@ -5,7 +5,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HThreadCollectionPrivate
+class HThreadCollectionPrivate : public HCollectionPrivate<IThread>
 {
 };
 

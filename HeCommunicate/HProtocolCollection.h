@@ -14,6 +14,8 @@ class HProtocolCollectionPrivate;
 
 class HProtocolCollection : public HCollection<IProtocol>, public IProtocolCollection
 {
+    Q_DECLARE_PRIVATE(HProtocolCollection)
+
 public:
     explicit HProtocolCollection();
     virtual ~HProtocolCollection();
@@ -23,9 +25,6 @@ public:
 
 protected:
     HProtocolCollection(HProtocolCollectionPrivate &);
-
-protected:
-    QScopedPointer<HProtocolCollectionPrivate> d_ptr;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

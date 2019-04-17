@@ -14,6 +14,8 @@ class HDeviceCollectionPrivate;
 
 class HDeviceCollection : public HCollection<IDevice>, public IDeviceCollection
 {
+    Q_DECLARE_PRIVATE(HDeviceCollection)
+
 public:
     explicit HDeviceCollection();
     virtual ~HDeviceCollection();
@@ -28,9 +30,6 @@ public:
 
 protected:
     HDeviceCollection(HDeviceCollectionPrivate &);
-
-protected:
-    QScopedPointer<HDeviceCollectionPrivate> d_ptr;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

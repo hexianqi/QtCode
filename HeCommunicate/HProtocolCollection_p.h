@@ -5,7 +5,7 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HProtocolCollectionPrivate
+class HProtocolCollectionPrivate : public HCollectionPrivate<IProtocol>
 {
 };
 

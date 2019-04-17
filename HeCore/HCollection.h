@@ -10,6 +10,13 @@
 HE_CORE_BEGIN_NAMESPACE
 
 template <typename T>
+class HCollectionPrivate
+{
+public:
+    QMap<QString, T *> datas;
+};
+
+template <typename T>
 class HCollection : virtual public ICollection<T>
 {
 public:
@@ -26,12 +33,21 @@ public:
     QList<T *> values() override;
 
 protected:
-    QScopedPointer<QMap<QString, T *>> _datas;
+    HCollection(HCollectionPrivate<T> &);
+
+protected:
+    QScopedPointer<HCollectionPrivate<T>> d_ptr;
 };
 
 template <typename T>
-HCollection<T>::HCollection()
-    : _datas(new QMap<QString, T *>)
+HCollection<T>::HCollection() :
+    d_ptr(new HCollectionPrivate<T>())
+{
+}
+
+template <typename T>
+HCollection<T>::HCollection(HCollectionPrivate<T> &p) :
+    d_ptr(&p)
 {
 }
 
@@ -57,37 +73,37 @@ void HCollection<T>::initialize(QVariantMap param)
 template <typename T>
 void HCollection<T>::clear()
 {
-    _datas->clear();
+    d_ptr->datas.clear();
 }
 
 template <typename T>
 bool HCollection<T>::contains(QString name)
 {
-    return _datas->contains(name);
+    return d_ptr->datas.contains(name);
 }
 
 template <typename T>
 void HCollection<T>::insert(QString name, T *value)
 {
-    _datas->insert(name, value);
+    d_ptr->datas.insert(name, value);
 }
 
 template <typename T>
 T *HCollection<T>::first()
 {
-    return _datas->first();
+    return d_ptr->datas.first();
 }
 
 template <typename T>
 T *HCollection<T>::value(QString name)
 {
-    return _datas->value(name);
+    return d_ptr->datas.value(name);
 }
 
 template <typename T>
 QList<T *> HCollection<T>::values()
 {
-    return _datas->values();
+    return d_ptr->datas.values();
 }
 
 HE_CORE_END_NAMESPACE

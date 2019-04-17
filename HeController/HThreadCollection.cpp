@@ -2,13 +2,13 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HThreadCollection::HThreadCollection()
-    :  d_ptr(new HThreadCollectionPrivate)
+HThreadCollection::HThreadCollection() :
+    HCollection<IThread>(*new HThreadCollectionPrivate)
 {
 }
 
-HThreadCollection::HThreadCollection(HThreadCollectionPrivate &p)
-    : d_ptr(&p)
+HThreadCollection::HThreadCollection(HThreadCollectionPrivate &p) :
+    HCollection<IThread>(p)
 {
 }
 

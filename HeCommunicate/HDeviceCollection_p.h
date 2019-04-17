@@ -6,7 +6,7 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HDeviceCollectionPrivate
+class HDeviceCollectionPrivate : public HCollectionPrivate<IDevice>
 {
 public:
     QSet<HActionType> additionals;

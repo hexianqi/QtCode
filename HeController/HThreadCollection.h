@@ -14,6 +14,8 @@ class HThreadCollectionPrivate;
 
 class HThreadCollection : public HCollection<IThread>, public IThreadCollection
 {
+    Q_DECLARE_PRIVATE(HThreadCollection)
+
 public:
     explicit HThreadCollection();
     virtual ~HThreadCollection();
@@ -23,9 +25,6 @@ public:
 
 protected:
     HThreadCollection(HThreadCollectionPrivate &);
-
-protected:
-    QScopedPointer<HThreadCollectionPrivate> d_ptr;
 };
 
 HE_CONTROLLER_END_NAMESPACE
