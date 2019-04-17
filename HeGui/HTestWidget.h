@@ -35,7 +35,7 @@ protected:
     virtual void initToolBar();
     virtual void initExcelStream();
     virtual void exportExcel();
-    virtual void exportDatabase() = 0;
+    virtual void exportDatabase();
     virtual void writeContent(QTextStream &) = 0;
 };
 

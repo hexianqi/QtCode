@@ -2,8 +2,9 @@
 #include "IDataFactory.h"
 #include "IFileStream.h"
 #include "ISpecCalibrateCollection.h"
-#include <QDataStream>
-#include <QtDebug>
+#include "IGradeCollection.h"
+#include <QtCore/QDataStream>
+#include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -31,6 +32,12 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         specCalibrates = factory->createSpecCalibrateCollection(type);
         specCalibrates->fileStream()->readContent(s);
     }
+    if (contain & ConfigContainType::CCT_Grade)
+    {
+        s >> type;
+        grades = factory->createGradeCollection(type);
+        grades->fileStream()->readContent(s);
+    }
 }
 
 void HConfigManagePrivate::writeContent(QDataStream &s)
@@ -41,6 +48,11 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     {
         s << specCalibrates->typeName();
         specCalibrates->fileStream()->writeContent(s);
+    }
+    if (contain & ConfigContainType::CCT_Grade)
+    {
+        s << grades->typeName();
+        grades->fileStream()->writeContent(s);
     }
 }
 
@@ -78,6 +90,11 @@ void HConfigManage::setSpecCalibrateCollection(ISpecCalibrateCollection *p)
     d_ptr->specCalibrates = p;
 }
 
+void HConfigManage::setGradeCollection(IGradeCollection *p)
+{
+    d_ptr->grades = p;
+}
+
 IFileStream *HConfigManage::fileStream()
 {
     return d_ptr->fileStream;
@@ -96,12 +113,19 @@ ISpecCalibrate *HConfigManage::specCalibrate(QString name)
     return d_ptr->specCalibrates->first();
 }
 
+IGradeCollection *HConfigManage::gradeCollection()
+{
+    return  d_ptr->grades;
+}
+
 bool HConfigManage::importPart(quint32 value)
 {
     if ((d_ptr->contain & value) == 0)
         return false;
     if (value & ConfigContainType::CCT_Spec)
         return d_ptr->specCalibrates->fileStream()->openFile();
+    if (value & ConfigContainType::CCT_Grade)
+        return d_ptr->grades->fileStream()->openFile();
     return false;
 }
 
@@ -111,6 +135,8 @@ bool HConfigManage::exportPart(quint32 value)
         return false;
     if (value & ConfigContainType::CCT_Spec)
         return d_ptr->specCalibrates->fileStream()->saveAsFile();
+    if (value & ConfigContainType::CCT_Grade)
+        return d_ptr->grades->fileStream()->saveAsFile();
     return false;
 }
 

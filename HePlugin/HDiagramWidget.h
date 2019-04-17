@@ -5,7 +5,7 @@
 #ifndef HDIAGRAMWIDGET_H
 #define HDIAGRAMWIDGET_H
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QtUiPlugin/QDesignerExportWidget>
 
 class HDiagramWidgetPrivate;

@@ -1,12 +1,12 @@
 #include "HUsbPortCy_p.h"
-#include <QtDebug>
-#include <QVector>
+#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_USE_NAMESPACE
 
 #ifndef Q_CC_MSVC
-#include <QLibrary>
-#include <QFile>
+#include <QtCore/QLibrary>
+#include <QtCore/QFile>
 #define Open        d->open
 #define Close       d->close
 #define SetTimeout  d->setTimeout

@@ -4,7 +4,7 @@
 #include "HTestSpec.h"
 #include "HSpecModel.h"
 #include "HeCore/HObjectFactory.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

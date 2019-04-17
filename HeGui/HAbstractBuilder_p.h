@@ -5,6 +5,7 @@
 #include "HeCommunicate/HCommunicateGlobal.h"
 #include "HeController/HControllerGlobal.h"
 #include "HeData/HDataGlobal.h"
+#include "HeSql/HSqlGlobal.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 class ICommunicateFactory;
@@ -23,6 +24,11 @@ class IConfigManage;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
+HE_SQL_BEGIN_NAMESPACE
+class ISqlFactory;
+HE_SQL_END_NAMESPACE
+HE_SQL_USE_NAMESPACE
+
 HE_GUI_BEGIN_NAMESPACE
 
 class IGuiFactory;
@@ -34,6 +40,7 @@ public:
     IControllerFactory *controllerFactory = nullptr;
     IDataFactory *dataFactory = nullptr;
     IGuiFactory *guiFactory = nullptr;
+    ISqlFactory *sqlFactory = nullptr;
     IConfigManage *configManage = nullptr;
     IModel *model = nullptr;
     QString configFileName;

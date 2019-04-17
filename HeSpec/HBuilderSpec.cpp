@@ -14,7 +14,7 @@
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeGui/HSpecCalibrateWidget.h"
 #include "HeGui/HSpecCalibrateSetWidget.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
     HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
@@ -83,9 +83,6 @@ void HBuilderSpec::buildDevice()
     device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
     device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
     devices->insert("Spec", device);
-//    devices->addSupport(ACT_PULSE_TEST);
-//    devices->addSupport(ACT_GET_LUMINOUS_SPECTRUM);
-//    devices->addSupport(ACT_GET_ELEC_LUMINOUS_SPECTRUM);
     protocol->setDevice(device);
     protocols->insert("Spec", protocol);
     HAppContext::setContextPointer("IDeviceCollection", devices);

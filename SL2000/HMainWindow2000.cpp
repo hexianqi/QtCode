@@ -4,8 +4,8 @@
 #include "HeController/IModel.h"
 #include "HeGui/ITestWidget.h"
 #include "HeGui/HSpecCalibrateDialog.h"
-#include <QMenuBar>
-#include <QDebug>
+#include <QtWidgets/QMenuBar>
+#include <QtCore/QDebug>
 
 HE_DATA_USE_NAMESPACE
 

@@ -5,8 +5,8 @@
 #ifndef HPROGRESSBAR_H
 #define HPROGRESSBAR_H
 
-#include <QProgressBar>
 #include <QtUiPlugin/QDesignerExportWidget>
+#include <QtWidgets/QProgressBar>
 
 class HProgressBarPrivate;
 

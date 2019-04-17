@@ -1,5 +1,5 @@
 #include "HSpecStdCurve_p.h"
-#include <QDataStream>
+#include <QtCore/QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
 

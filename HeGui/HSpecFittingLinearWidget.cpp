@@ -4,7 +4,7 @@
 #include "HeCore/HDataFormatInfo.h"
 #include "HeData/HSpecFitting.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QValidator>
+#include <QtGui/QValidator>
 
 HE_CORE_USE_NAMESPACE
 

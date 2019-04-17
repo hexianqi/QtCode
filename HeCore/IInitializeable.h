@@ -6,7 +6,7 @@
 #define IINITIALIZEABLE_H
 
 #include "HCoreGlobal.h"
-#include <QVariant>
+#include <QtCore/QVariant>
 
 HE_CORE_BEGIN_NAMESPACE
 

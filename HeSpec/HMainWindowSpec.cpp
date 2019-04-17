@@ -1,7 +1,7 @@
 #include "HMainWindowSpec_p.h"
 #include "HeData/IConfigManage.h"
 #include "HBuilderSpec.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_DATA_USE_NAMESPACE
 

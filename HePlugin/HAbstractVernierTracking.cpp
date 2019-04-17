@@ -1,6 +1,6 @@
 #include "HAbstractVernierTracking_p.h"
-#include <QMouseEvent>
-#include <QWidget>
+#include <QtGui/QMouseEvent>
+#include <QtWidgets/QWidget>
 
 HAbstractVernierTrackingPrivate::HAbstractVernierTrackingPrivate(Qt::Orientation o, QWidget *p)
     : HAbstractMouseStrategyPrivate(p)

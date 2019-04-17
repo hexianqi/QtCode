@@ -3,8 +3,8 @@
 
 #include "HVernierTracking.h"
 #include "HAbstractVernierTracking_p.h"
-#include <QColor>
-#include <QVector>
+#include <QtCore/QVector>
+#include <QtGui/QColor>
 
 class HVernierTrackingPrivate : public HAbstractVernierTrackingPrivate
 {

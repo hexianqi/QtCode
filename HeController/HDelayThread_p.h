@@ -2,7 +2,7 @@
 #define HDELAYTHREAD_P_H
 
 #include "HDelayThread.h"
-#include <QQueue>
+#include <QtCore/QQueue>
 
 class QMutex;
 class QWaitCondition;

@@ -3,11 +3,11 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
-#include <QApplication>
-#include <QDebug>
+#include <QtCore/QDebug>
+#include <QtGui/QPolygonF>
+#include <QtWidgets/QApplication>
+#include <QtCharts/QChartView>
 #include <functional>
-#include <QChartView>
-#include <QPolygonF>
 
 int main(int argc, char *argv[])
 {

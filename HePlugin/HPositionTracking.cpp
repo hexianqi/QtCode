@@ -1,5 +1,5 @@
 #include "HPositionTracking_p.h"
-#include <QMouseEvent>
+#include <QtGui/QMouseEvent>
 
 HPositionTrackingPrivate::HPositionTrackingPrivate(QWidget *p)
     : HAbstractMouseStrategyPrivate(p)

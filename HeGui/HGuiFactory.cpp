@@ -2,7 +2,7 @@
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HeCore/HObjectFactory.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 

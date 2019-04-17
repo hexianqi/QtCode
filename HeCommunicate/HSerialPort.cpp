@@ -1,5 +1,5 @@
 #include "HSerialPort_p.h"
-#include <QVector>
+#include <QtCore/QVector>
 #include <QtSerialPort/QSerialPort>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE

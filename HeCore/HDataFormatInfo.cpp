@@ -1,5 +1,5 @@
 #include "HDataFormatInfo_p.h"
-#include <QDoubleValidator>
+#include <QtGui/QDoubleValidator>
 
 HE_CORE_BEGIN_NAMESPACE
 

@@ -6,7 +6,7 @@
 #define HEXCELSTREAM_H
 
 #include "IExcelStream.h"
-#include <QObject>
+#include <QtCore/QObject>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -26,6 +26,10 @@ public:
 
 public:
     void setWriteContent(std::function<void(QTextStream &)> func) override;
+    void setWriteContent(QString value) override;
+    QString fileFilter() override;
+
+public:
     bool saveAsFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = nullptr) override;
     bool writeFile(QString fileName) override;
     bool writeContent(QTextStream &) override;

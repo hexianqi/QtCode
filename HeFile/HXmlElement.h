@@ -6,7 +6,7 @@
 #define HXMLELEMENT_H
 
 #include "HFileGlobal.h"
-#include <QScopedPointer>
+#include <QtCore/QScopedPointer>
 #include <functional>
 
 class QDomElement;

@@ -5,7 +5,7 @@
 #ifndef HCARTESIANCOORDINATE_H
 #define HCARTESIANCOORDINATE_H
 
-#include <QObject>
+#include <QtCore/QObject>
 
 class HCartesianCoordinatePrivate;
 

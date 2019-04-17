@@ -1,8 +1,8 @@
 #include "HSqlDatabase_p.h"
-#include <QSqlDatabase>
-#include <QSqlError>
-#include <QMessageBox>
-#include <QDebug>
+#include <QtWidgets/QMessageBox>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlError>
+#include <QtCore/QDebug>
 
 HE_SQL_BEGIN_NAMESPACE
 
@@ -23,13 +23,15 @@ HSqlDatabase::~HSqlDatabase()
     qDebug() << __func__;
 }
 
-void HSqlDatabase::initialize(QVariantMap /*param*/)
+void HSqlDatabase::initialize(QVariantMap param)
 {
+    if (param.contains("dbName"))
+        openDatabase(param.value("dbName").toString());
 }
 
 QString HSqlDatabase::typeName()
 {
-    return "HSqlFactory";
+    return "HSqlDatabase";
 }
 
 bool HSqlDatabase::openDatabase(QString dbName)
@@ -68,4 +70,3 @@ ISqlTableModel *HSqlDatabase::tableModel(QString name)
 }
 
 HE_SQL_END_NAMESPACE
-

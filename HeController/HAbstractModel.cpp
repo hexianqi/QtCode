@@ -6,7 +6,7 @@
 #include "HeCommunicate/IDeviceCollection.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IFileStream.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

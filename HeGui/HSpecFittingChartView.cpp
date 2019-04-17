@@ -3,9 +3,9 @@
 #include "HePlugin/HMarkerChartExtend.h"
 #include "HePlugin/HSingleAxisChart.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QAction>
-#include <QValueAxis>
-#include <QLineSeries>
+#include <QtWidgets/QAction>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QLineSeries>
 
 HE_GUI_BEGIN_NAMESPACE
 

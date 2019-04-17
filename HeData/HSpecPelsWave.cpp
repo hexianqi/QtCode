@@ -1,6 +1,6 @@
 #include "HSpecPelsWave_p.h"
 #include "HeAlgorithm/HMath.h"
-#include <QDataStream>
+#include <QtCore/QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE

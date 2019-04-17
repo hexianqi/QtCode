@@ -1,8 +1,8 @@
 #include "HTestChart.h"
 #include "HePlugin/HMarkerChartExtend.h"
 #include "HePlugin/HVernierChartView.h"
-#include <QtMath>
-#include <QRandomGenerator>
+#include <QtCore/QRandomGenerator>
+#include <QtCore/QtMath>
 #include <QtCharts/QChartView>
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>

@@ -2,7 +2,7 @@
 #include "HCIE1931Chart.h"
 #include "HPositionTracking.h"
 #include "HPluginHelper.h"
-#include <QAction>
+#include <QtWidgets/QAction>
 
 HCIE1931ChartView::HCIE1931ChartView(QWidget *parent) :
     HZoomChartView(*new HCIE1931ChartViewPrivate, nullptr, parent)

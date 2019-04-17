@@ -1,6 +1,6 @@
 #include "HAbstractGuiHandler_p.h"
 #include "HeCore/HAppContext.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 

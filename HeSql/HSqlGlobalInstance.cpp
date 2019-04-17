@@ -1,11 +1,24 @@
 #include "HSqlGlobalInstance.h"
 #include "HSql.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_SQL_BEGIN_NAMESPACE
 
 QHash<QString, QString>      hashFieldType;
 QHash<QString, QString>      hashFieldCreateStyle;
+
+QString toType(QString field)
+{
+    return hashFieldType.value(field, "[" + field + "]");
+}
+
+QStringList toType(QStringList field)
+{
+    QStringList list;
+    for (auto f : field)
+        list << toType(field);
+    return list;
+}
 
 QString toCreateStyle(QString field)
 {
@@ -38,120 +51,120 @@ HSqlGlobalInstance::~HSqlGlobalInstance()
 void HSqlGlobalInstance::initFieldType()
 {
     hashFieldType.clear();
-    hashFieldType.insert("ID",                           "[ID]");
-//    mapFieldType.insert(tr("Manufacturer"),                 tr("[制造厂商]"));
-//    mapFieldType.insert(tr("ProductName"),                  tr("[产品名称]"));
-//    mapFieldType.insert(tr("ProductModel"),                 tr("[产品型号]"));
-//    mapFieldType.insert(tr("SampleNumber"),                 tr("[样品编号]"));
-//    mapFieldType.insert(tr("Tester"),                       tr("[测试员]"));
-//    mapFieldType.insert(tr("TestInstitute"),                tr("[测试单位]"));
-//    mapFieldType.insert(tr("Note"),                         tr("[备注]"));
-//    mapFieldType.insert(tr("Temperature"),                  tr("[环境温度]"));
-//    mapFieldType.insert(tr("Humidity"),                     tr("[环境湿度]"));
-//    mapFieldType.insert(tr("TestDateTime"),                 tr("[测量日期时间]"));
-//    mapFieldType.insert(tr("TestDate"),                     tr("[测量日期]"));
-//    mapFieldType.insert(tr("TestTime"),                     tr("[测量时间]"));
-//    mapFieldType.insert(tr("ForwardCurrent"),               tr("[正向电流]"));
-//    mapFieldType.insert(tr("ForwardVoltage"),               tr("[正向电压]"));
-//    mapFieldType.insert(tr("ReverseVoltage"),               tr("[反向电压]"));
-//    mapFieldType.insert(tr("ReverseCurrent"),               tr("[反向漏流]"));
-//    mapFieldType.insert(tr("FeedbackCurrent"),              tr("[回溯电流]"));
-//    mapFieldType.insert(tr("ElecPower"),                    tr("[电功率]"));
-//    mapFieldType.insert(tr("ACCurrent"),                    tr("[交流电流]"));
-//    mapFieldType.insert(tr("ACVoltage"),                    tr("[交流电压]"));
-//    mapFieldType.insert(tr("ACPower"),                      tr("[交流电功率]"));
-//    mapFieldType.insert(tr("ACFactor"),                     tr("[功率因素]"));
-//    mapFieldType.insert(tr("LuminousFlux"),                 tr("[光通量]"));
-//    mapFieldType.insert(tr("LuminousPower"),                tr("[光功率]"));
-//    mapFieldType.insert(tr("LuminousEfficiency"),           tr("[光效]"));
-//    mapFieldType.insert(tr("PeakWave"),                     tr("[峰值波长]"));
-//    mapFieldType.insert(tr("PeakBandwidth"),                tr("[峰值带宽]"));
-//    mapFieldType.insert(tr("DominantWave"),                 tr("[主波长]"));
-//    mapFieldType.insert(tr("ColorTemperature"),             tr("[色温]"));
-//    mapFieldType.insert(tr("ColorPurity"),                  tr("[色纯度]"));
-//    mapFieldType.insert(tr("CC_xy"),                        tr("[色坐标]"));
-//    mapFieldType.insert(tr("CC_uv"),                        tr("[色坐标uv]"));
-//    mapFieldType.insert(tr("CC_uvp"),                       tr("[色坐标uvp]"));
-//    mapFieldType.insert(tr("CC_x"),                         tr("[色坐标x]"));
-//    mapFieldType.insert(tr("CC_y"),                         tr("[色坐标y]"));
-//    mapFieldType.insert(tr("CC_u"),                         tr("[色坐标u]"));
-//    mapFieldType.insert(tr("CC_v"),                         tr("[色坐标v]"));
-//    mapFieldType.insert(tr("CC_up"),                        tr("[色坐标up]"));
-//    mapFieldType.insert(tr("CC_vp"),                        tr("[色坐标vp]"));
-//    mapFieldType.insert(tr("Duv"),                          tr("[Duv]"));
-//    mapFieldType.insert(tr("RedRatio"),                     tr("[红色比]"));
-//    mapFieldType.insert(tr("GreenRadio"),                   tr("[绿色比]"));
-//    mapFieldType.insert(tr("BlueRatio"),                    tr("[蓝色比]"));
-//    mapFieldType.insert(tr("Ra"),                           tr("[显色指数]"));
-//    mapFieldType.insert(tr("Rx"),                           tr("[显色指数Rx]"));
-//    mapFieldType.insert(tr("EnergyGraph"),                  tr("[光谱能量数据]"));
+    hashFieldType.insert("ID",                  "[ID]");
+    hashFieldType.insert("Manufacturer",        "[制造厂商]");
+    hashFieldType.insert("ProductName",         "[产品名称]");
+    hashFieldType.insert("ProductModel",        "[产品型号]");
+    hashFieldType.insert("SampleNumber",        "[样品编号]");
+    hashFieldType.insert("Tester",              "[测试员]");
+    hashFieldType.insert("TestInstitute",       "[测试单位]");
+    hashFieldType.insert("Note",                "[备注]");
+    hashFieldType.insert("Temperature",         "[环境温度]");
+    hashFieldType.insert("Humidity",            "[环境湿度]");
+    hashFieldType.insert("TestDateTime",        "[测量日期时间]");
+    hashFieldType.insert("TestDate",            "[测量日期]");
+    hashFieldType.insert("TestTime",            "[测量时间]");
 
+    hashFieldType.insert("LuminousFluxSpec",    "[光谱光通量]");
+    hashFieldType.insert("LuminousFlux",        "[光通量]");
+    hashFieldType.insert("LuminousPower",       "[光功率]");
+    hashFieldType.insert("LuminousEfficiency",  "[光效]");
 
-//    mapFieldType.insert(tr("OutputCurrent"),                tr("[输出电流]"));
-//    mapFieldType.insert(tr("OutputVoltage"),                tr("[输出电压]"));
-//    mapFieldType.insert(tr("ActualCurrent"),                tr("[实测电流]"));
-//    mapFieldType.insert(tr("ActualVoltage"),                tr("[实测电压]"));
-//    mapFieldType.insert(tr("LuminousFluxSpec"),             tr("[光谱光通量]"));
+    hashFieldType.insert("PeakWave",            "[峰值波长]");
+    hashFieldType.insert("PeakBandwidth",       "[峰值带宽]");
+    hashFieldType.insert("DominantWave",        "[主波长]");
+    hashFieldType.insert("ColorTemperature",    "[色温]");
+    hashFieldType.insert("ColorPurity",         "[色纯度]");
+    hashFieldType.insert("CC_xy",               "[色坐标]");
+    hashFieldType.insert("CC_uv",               "[色坐标uv]");
+    hashFieldType.insert("CC_uvp",              "[色坐标uvp]");
+    hashFieldType.insert("CC_x",                "[色坐标x]");
+    hashFieldType.insert("CC_y",                "[色坐标y]");
+    hashFieldType.insert("CC_u",                "[色坐标u]");
+    hashFieldType.insert("CC_v",                "[色坐标v]");
+    hashFieldType.insert("CC_up",               "[色坐标up]");
+    hashFieldType.insert("CC_vp",               "[色坐标vp]");
+    hashFieldType.insert("Duv",                 "[Duv]");
+    hashFieldType.insert("RedRatio",            "[红色比]");
+    hashFieldType.insert("GreenRadio",          "[绿色比]");
+    hashFieldType.insert("BlueRatio",           "[蓝色比]");
+    hashFieldType.insert("Ra",                  "[显色指数]");
+    hashFieldType.insert("Rx",                  "[显色指数Rx]");
+    hashFieldType.insert("EnergyGraph",         "[光谱能量数据]");
+
+//    hashFieldType.insert("ForwardCurrent",               "[正向电流]");
+//    hashFieldType.insert("ForwardVoltage",               "[正向电压]");
+//    hashFieldType.insert("ReverseVoltage",               "[反向电压]");
+//    hashFieldType.insert("ReverseCurrent",               "[反向漏流]");
+//    hashFieldType.insert("FeedbackCurrent",              "[回溯电流]");
+//    hashFieldType.insert("ElecPower",                    "[电功率]");
+//    hashFieldType.insert("ACCurrent",                    "[交流电流]");
+//    hashFieldType.insert("ACVoltage",                    "[交流电压]");
+//    hashFieldType.insert("ACPower",                      "[交流电功率]");
+//    hashFieldType.insert("ACFactor",                     "[功率因素]");
+
+//    hashFieldType.insert("OutputCurrent",                "[输出电流]");
+//    hashFieldType.insert("OutputVoltage",                "[输出电压]");
+//    hashFieldType.insert("ActualCurrent",                "[实测电流]");
+//    hashFieldType.insert("ActualVoltage",                "[实测电压]");
+//
 
 }
 
 void HSqlGlobalInstance::initFieldCreateStyle()
 {
-//    mapFieldCreateStyle.clear();
-//    mapFieldCreateStyle.insert(tr("ID"),                    tr("ID integer PRIMARY KEY AUTOINCREMENT NOT NULL"));
+    hashFieldCreateStyle.clear();
+    hashFieldCreateStyle.insert("ID",                   "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL");
+    hashFieldCreateStyle.insert("Manufacturer",         "Manufacturer nchar(50)");
+    hashFieldCreateStyle.insert("ProductName",          "ProductName nchar(50)");
+    hashFieldCreateStyle.insert("ProductModel",         "ProductModel nchar(50)");
+    hashFieldCreateStyle.insert("SampleNumber",         "SampleNumber integer");
+    hashFieldCreateStyle.insert("Tester",               "Tester nchar(50)");
+    hashFieldCreateStyle.insert("TestInstitute",        "TestInstitute nchar(50)");
+    hashFieldCreateStyle.insert("Note",                 "Note nchar(500)");
+    hashFieldCreateStyle.insert("Temperature",          "Temperature numeric(18, 1)");
+    hashFieldCreateStyle.insert("Humidity",             "Humidity numeric(18, 1)");
+    hashFieldCreateStyle.insert("TestDateTime",         "TestDateTime datetime");
+    hashFieldCreateStyle.insert("TestDate",             "TestDate date");
+    hashFieldCreateStyle.insert("TestTime",             "TestTime time");
 
-//    mapFieldCreateStyle.insert(tr("Manufacturer"),          tr("Manufacturer nchar(50)"));
-//    mapFieldCreateStyle.insert(tr("ProductName"),           tr("ProductName nchar(50)"));
-//    mapFieldCreateStyle.insert(tr("ProductModel"),          tr("ProductModel nchar(50)"));
-//    mapFieldCreateStyle.insert(tr("SampleNumber"),          tr("SampleNumber integer"));
-//    mapFieldCreateStyle.insert(tr("Tester"),                tr("Tester nchar(50)"));
-//    mapFieldCreateStyle.insert(tr("TestInstitute"),         tr("TestInstitute nchar(50)"));
-//    mapFieldCreateStyle.insert(tr("Note"),                  tr("Note nchar(500)"));
-//    mapFieldCreateStyle.insert(tr("Temperature"),           tr("Temperature numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("Humidity"),              tr("Humidity numeric(18, 1)"));
+    hashFieldCreateStyle.insert("LuminousFluxSpec",     "LuminousFluxSpec numeric(18, 2)");
+    hashFieldCreateStyle.insert("LuminousFlux",         "LuminousFlux numeric(18, 2)");
+    hashFieldCreateStyle.insert("LuminousPower",        "LuminousPower numeric(18, 2)");
+    hashFieldCreateStyle.insert("LuminousEfficiency",   "LuminousEfficiency numeric(18, 2)");
 
-//    mapFieldCreateStyle.insert(tr("TestDateTime"),          tr("TestDateTime datetime"));
-//    mapFieldCreateStyle.insert(tr("TestDate"),              tr("TestDate date"));
-//    mapFieldCreateStyle.insert(tr("TestTime"),              tr("TestTime time"));
+    hashFieldCreateStyle.insert("PeakWave",             "PeakWave numeric(18, 1)");
+    hashFieldCreateStyle.insert("PeakBandwidth",        "PeakBandwidth numeric(18, 1)");
+    hashFieldCreateStyle.insert("DominantWave",         "DominantWave numeric(18, 1)");
+    hashFieldCreateStyle.insert("ColorTemperature",     "ColorTemperature numeric(18, 0)");
+    hashFieldCreateStyle.insert("ColorPurity",          "ColorPurity numeric(18, 3)");
+    hashFieldCreateStyle.insert("CC_x",                 "CC_x numeric(18, 4)");
+    hashFieldCreateStyle.insert("CC_y",                 "CC_y numeric(18, 4)");
+    hashFieldCreateStyle.insert("CC_u",                 "CC_u numeric(18, 4)");
+    hashFieldCreateStyle.insert("CC_v",                 "CC_v numeric(18, 4)");
+    hashFieldCreateStyle.insert("CC_up",                "CC_up numeric(18, 4)");
+    hashFieldCreateStyle.insert("CC_vp",                "CC_vp numeric(18, 4)");
+    hashFieldCreateStyle.insert("Duv",                  "Duv numeric(18, 3)");
+    hashFieldCreateStyle.insert("RedRatio",             "RedRatio numeric(18, 1)");
+    hashFieldCreateStyle.insert("GreenRadio",           "GreenRadio numeric(18, 1)");
+    hashFieldCreateStyle.insert("BlueRatio",            "BlueRatio numeric(18, 1)");
+    hashFieldCreateStyle.insert("Ra",                   "Ra numeric(18, 2)");
+    hashFieldCreateStyle.insert("Rx",                   "Rx nchar(200)");
+    hashFieldCreateStyle.insert("EnergyGraph",          "EnergyGraph ntext");
 
-//    mapFieldCreateStyle.insert(tr("ForwardCurrent"),        tr("ForwardCurrent numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ForwardVoltage"),        tr("ForwardVoltage numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ReverseVoltage"),        tr("ReverseVoltage numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ReverseCurrent"),        tr("ReverseCurrent numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ElecPower"),             tr("ElecPower numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ACCurrent"),             tr("ACCurrent numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ACVoltage"),             tr("ACVoltage numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ACPower"),               tr("ACPower numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ACFactor"),              tr("ACFactor numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("OutputCurrent"),         tr("OutputCurrent numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("OutputVoltage"),         tr("OutputVoltage numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ActualCurrent"),         tr("ActualCurrent numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("ActualVoltage"),         tr("ActualVoltage numeric(18, 2)"));
-
-//    mapFieldCreateStyle.insert(tr("LuminousFlux"),          tr("LuminousFlux numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("LuminousPower"),         tr("LuminousPower numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("LuminousEfficiency"),    tr("LuminousEfficiency numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("LuminousFluxSpec"),      tr("LuminousFluxSpec numeric(18, 2)"));
-
-//    mapFieldCreateStyle.insert(tr("PeakWave"),              tr("PeakWave numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("PeakBandwidth"),         tr("PeakBandwidth numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("DominantWave"),          tr("DominantWave numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("ColorTemperature"),      tr("ColorTemperature numeric(18, 0)"));
-//    mapFieldCreateStyle.insert(tr("ColorPurity"),           tr("ColorPurity numeric(18, 3)"));
-//    mapFieldCreateStyle.insert(tr("CC_x"),                  tr("CC_x numeric(18, 4)"));
-//    mapFieldCreateStyle.insert(tr("CC_y"),                  tr("CC_y numeric(18, 4)"));
-//    mapFieldCreateStyle.insert(tr("CC_u"),                  tr("CC_u numeric(18, 4)"));
-//    mapFieldCreateStyle.insert(tr("CC_v"),                  tr("CC_v numeric(18, 4)"));
-//    mapFieldCreateStyle.insert(tr("CC_up"),                 tr("CC_up numeric(18, 4)"));
-//    mapFieldCreateStyle.insert(tr("CC_vp"),                 tr("CC_vp numeric(18, 4)"));
-//    mapFieldCreateStyle.insert(tr("Duv"),                   tr("Duv numeric(18, 3)"));
-//    mapFieldCreateStyle.insert(tr("RedRatio"),              tr("RedRatio numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("GreenRadio"),            tr("GreenRadio numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("BlueRatio"),             tr("BlueRatio numeric(18, 1)"));
-//    mapFieldCreateStyle.insert(tr("Ra"),                    tr("Ra numeric(18, 2)"));
-//    mapFieldCreateStyle.insert(tr("Rx"),                    tr("Rx nchar(200)"));
-//    mapFieldCreateStyle.insert(tr("EnergyGraph"),           tr("EnergyGraph ntext"));
-
+//    hashFieldCreateStyle.insert("ForwardCurrent",        "ForwardCurrent numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ForwardVoltage",        "ForwardVoltage numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ReverseVoltage",        "ReverseVoltage numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ReverseCurrent",        "ReverseCurrent numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ElecPower",             "ElecPower numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ACCurrent",             "ACCurrent numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ACVoltage",             "ACVoltage numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ACPower",               "ACPower numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ACFactor",              "ACFactor numeric(18, 2)");
+//    hashFieldCreateStyle.insert("OutputCurrent",         "OutputCurrent numeric(18, 2)");
+//    hashFieldCreateStyle.insert("OutputVoltage",         "OutputVoltage numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ActualCurrent",         "ActualCurrent numeric(18, 2)");
+//    hashFieldCreateStyle.insert("ActualVoltage",         "ActualVoltage numeric(18, 2)");
 }
 
 HE_SQL_END_NAMESPACE

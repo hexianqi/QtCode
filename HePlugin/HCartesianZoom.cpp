@@ -1,7 +1,7 @@
 #include "HCartesianZoom_p.h"
 #include "HCartesianCoordinate.h"
 #include "HRubberBand.h"
-#include <QToolButton>
+#include <QtWidgets/QToolButton>
 
 HCartesianZoomPrivate::HCartesianZoomPrivate(QWidget *p)
     : HAbstractMouseStrategyPrivate(p)

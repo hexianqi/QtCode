@@ -3,7 +3,7 @@
 
 #include "HCartesianZoom.h"
 #include "HAbstractMouseStrategy_p.h"
-#include <QVector>
+#include <QtCore/QVector>
 
 class QToolButton;
 class HRubberBand;

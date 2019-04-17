@@ -7,7 +7,7 @@
 
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include <QVariant>
+#include <QtCore/QVariant>
 
 HE_CORE_USE_NAMESPACE
 

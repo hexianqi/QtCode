@@ -1,7 +1,7 @@
 #include "HXmlElement_p.h"
-#include <QDomElement>
-#include <QFile>
-#include <QTextStream>
+#include <QtCore/QFile>
+#include <QtCore/QTextStream>
+#include <QtXml/QDomElement>
 
 HE_FILE_BEGIN_NAMESPACE
 

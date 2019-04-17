@@ -6,7 +6,7 @@
 #define HSPECCALIBRATEDIALOG_H
 
 #include "HGuiGlobal.h"
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 HE_GUI_BEGIN_NAMESPACE
 

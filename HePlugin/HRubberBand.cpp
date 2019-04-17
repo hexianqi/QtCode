@@ -1,6 +1,6 @@
 #include "HRubberBand_p.h"
-#include <QRubberBand>
-#include <QMouseEvent>
+#include <QtGui/QMouseEvent>
+#include <QtWidgets/QRubberBand>
 
 HRubberBandPrivate::HRubberBandPrivate(QWidget *p)
     : HAbstractMouseStrategyPrivate(p)

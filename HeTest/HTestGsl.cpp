@@ -3,11 +3,11 @@
 #include "HeAlgorithm/HPolynomial.h"
 #include "HeAlgorithm/HLinearFit.h"
 #include "HeAlgorithm/HMultiFit.h"
-#include <QFile>
-#include <QTextStream>
-#include <QtMath>
-#include <QRandomGenerator>
-#include <QDebug>
+#include <QtCore/QFile>
+#include <QtCore/QTextStream>
+#include <QtCore/QtMath>
+#include <QtCore/QRandomGenerator>
+#include <QtCore/QDebug>
 
 HE_ALGORITHM_USE_NAMESPACE
 

@@ -6,7 +6,7 @@
 #define IMAINWINDOW_H
 
 #include "HGuiGlobal.h"
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 
 HE_GUI_BEGIN_NAMESPACE
 

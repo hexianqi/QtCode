@@ -1,10 +1,10 @@
 #include "HCIE1931Chart_p.h"
-#include <QValueAxis>
-#include <QLineSeries>
-#include <QAreaSeries>
-#include <QScatterSeries>
-#include <QPainter>
-#include <QTextStream>
+#include <QtCore/QTextStream>
+#include <QtGui/QPainter>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QAreaSeries>
+#include <QtCharts/QScatterSeries>
 
 QImage createCrossImage(QPen pen)
 {

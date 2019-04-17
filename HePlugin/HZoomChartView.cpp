@@ -1,5 +1,5 @@
 #include "HZoomChartView_p.h"
-#include <QAction>
+#include <QtWidgets/QAction>
 
 HZoomChartView::HZoomChartView(QWidget *parent) :
     HChartView(*new HZoomChartViewPrivate, nullptr, parent)

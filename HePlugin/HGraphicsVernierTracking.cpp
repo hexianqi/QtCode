@@ -1,7 +1,7 @@
 #include "HGraphicsVernierTracking_p.h"
-#include <QMouseEvent>
-#include <QGraphicsLineItem>
-#include <QPen>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPen>
+#include <QtWidgets/QGraphicsLineItem>
 
 HGraphicsVernierTrackingPrivate::HGraphicsVernierTrackingPrivate(Qt::Orientation o, QGraphicsItem *gp, QWidget *p)
     : HAbstractVernierTrackingPrivate(o, p)

@@ -1,6 +1,6 @@
 #include "HAbstractPort_p.h"
-#include <QThread>
-#include <QVector>
+#include <QtCore/QThread>
+#include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

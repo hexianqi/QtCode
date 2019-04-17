@@ -3,9 +3,9 @@
 #include "HeCore/HCore.h"
 #include "HeController/ITestData.h"
 #include "HePlugin/HTypeOptionalDialog.h"
-#include <QAction>
-#include <QHeaderView>
-#include <QDebug>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QHeaderView>
+#include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
 

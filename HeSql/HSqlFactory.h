@@ -11,7 +11,7 @@ HE_SQL_BEGIN_NAMESPACE
 
 class HSqlFactoryPrivate;
 
-class HSqlFactory : public QObject, public ISqlFactory
+class HE_SQL_EXPORT HSqlFactory : public QObject, public ISqlFactory
 {
     Q_OBJECT
 
@@ -22,6 +22,10 @@ public:
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
+    ISqlDatabase *createDatabase(QString type, QVariantMap param = QVariantMap()) override;
+    ISqlTableModel *createTableModel(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HSqlFactory(HSqlFactoryPrivate &p, QObject *parent = nullptr);

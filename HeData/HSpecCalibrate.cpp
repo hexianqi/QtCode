@@ -5,8 +5,8 @@
 #include "HSpecStdCurve.h"
 #include "HSpecPelsWave.h"
 #include "HSpecLuminous.h"
-#include <QPolygonF>
-#include <QDataStream>
+#include <QtCore/QDataStream>
+#include <QtGui/QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 

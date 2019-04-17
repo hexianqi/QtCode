@@ -6,7 +6,7 @@
 #define HSPECDATA_H
 
 #include "HAlgorithmGlobal.h"
-#include <QPolygonF>
+#include <QtGui/QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -43,7 +43,8 @@ public:
     double BlueRatio;
     double VisionEnergy;
     // 其他
-    double Luminous;
+    double LuminousFlux;
+    double LuminousPower;
     double SDCM;
 };
 

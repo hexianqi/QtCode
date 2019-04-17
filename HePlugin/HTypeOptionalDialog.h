@@ -6,7 +6,7 @@
 #define HTYPEOPTIONALDIALOG_H
 
 #include <QtUiPlugin/QDesignerExportWidget>
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 namespace Ui {
 class HTypeOptionalDialog;

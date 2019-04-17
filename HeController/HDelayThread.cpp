@@ -1,9 +1,9 @@
 #include "HDelayThread_p.h"
 #include "IModel.h"
 #include "HeCore/HAppContext.h"
-#include <QWaitCondition>
-#include <QMutexLocker>
-#include <QDebug>
+#include <QtCore/QWaitCondition>
+#include <QtCore/QMutexLocker>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

@@ -5,7 +5,8 @@
 #include "HeController/HControllerFactory.h"
 #include "HeData/HDataFactory.h"
 #include "HeGui/HGuiFactory.h"
-#include <QDebug>
+#include "HeSql/HSqlFactory.h"
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -39,6 +40,7 @@ void HAbstractBuilder::buildAll()
     buildDevice();
     buildThread();
     buildModel();
+    buildDatabase();
     buildTestWidget();
 }
 
@@ -48,10 +50,17 @@ void HAbstractBuilder::buildFactory()
     d_ptr->controllerFactory = new HControllerFactory(this);
     d_ptr->dataFactory = new HDataFactory(this);
     d_ptr->guiFactory = new HGuiFactory(this);
+    d_ptr->sqlFactory = new HSqlFactory(this);
     HAppContext::setContextPointer("ICommunicateFactory", d_ptr->communicateFactory);
     HAppContext::setContextPointer("IControllerFactory", d_ptr->controllerFactory);
     HAppContext::setContextPointer("IDataFactory", d_ptr->dataFactory);
     HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
+    HAppContext::setContextPointer("IGuiFactory", d_ptr->sqlFactory);
+}
+
+void HAbstractBuilder::buildDatabase()
+{
+
 }
 
 HE_GUI_END_NAMESPACE

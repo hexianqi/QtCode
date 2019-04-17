@@ -1,5 +1,4 @@
 #include "HReflectFun2.h"
-#include <QtCore>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 

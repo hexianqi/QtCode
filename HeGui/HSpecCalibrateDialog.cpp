@@ -3,7 +3,7 @@
 #include "HSpecCalibrateSetWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
-#include <QGridLayout>
+#include <QtWidgets/QGridLayout>
 
 HE_GUI_BEGIN_NAMESPACE
 

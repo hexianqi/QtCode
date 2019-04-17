@@ -2,7 +2,7 @@
 #define HREGISTER_P_H
 
 #include "HRegister.h"
-#include <QString>
+#include <QtCore/QString>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

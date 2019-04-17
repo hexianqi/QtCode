@@ -3,7 +3,7 @@
 HE_COMMUNICATE_USE_NAMESPACE
 
 #ifndef Q_CC_MSVC
-#include <QLibrary>
+#include <QtCore/QLibrary>
 #define ReadData214x    d->readData
 #define WriteData214x   d->writeData
 
@@ -27,7 +27,7 @@ void HUsbPortLpc214Private::unloadDLL()
 }
 #else
 #include "include/EasyUSB214x.h"
-#include <QFile>
+#include <QtCore/QFile>
 #pragma comment(lib, "EasyUSB214x.lib")
 
 void HUsbPortLpc214Private::loadDll()

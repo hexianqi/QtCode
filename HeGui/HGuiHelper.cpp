@@ -1,10 +1,10 @@
 #include "HGuiHelper.h"
 #include "HeCore/HCore.h"
-#include <QApplication>
-#include <QClipboard>
-#include <QTableWidget>
-#include <QInputDialog>
-#include <QAction>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QAction>
 
 HE_CORE_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE

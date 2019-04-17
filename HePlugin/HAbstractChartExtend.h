@@ -6,7 +6,7 @@
 #define HABSTRACTCHARTEXTEND_H
 
 #include "IChartExtend.h"
-#include <QObject>
+#include <QtCore/QObject>
 
 class HAbstractChartExtendPrivate;
 

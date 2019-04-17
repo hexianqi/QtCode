@@ -3,7 +3,7 @@
 
 #include "HAbstractCodec_p.h"
 #include "HCodecSL.h"
-#include <QVector>
+#include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

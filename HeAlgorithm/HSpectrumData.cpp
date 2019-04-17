@@ -29,7 +29,8 @@ void HSpecData::clear()
     GreenRadio = 0.0;
     BlueRatio = 0.0;
     VisionEnergy = 0.0;
-    Luminous = 0.0;
+    LuminousFlux = 0.0;
+    LuminousPower = 0.0;
     SDCM = 0;
 }
 

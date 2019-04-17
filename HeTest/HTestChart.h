@@ -1,8 +1,8 @@
 #ifndef HTESTCHART_H
 #define HTESTCHART_H
 
-#include <QPointF>
-#include <QPolygonF>
+#include <QtCore/QPointF>
+#include <QtGui/QPolygonF>
 #include <QtCharts/QChartGlobal>
 
 QT_CHARTS_BEGIN_NAMESPACE

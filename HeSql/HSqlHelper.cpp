@@ -1,7 +1,7 @@
 #include "HSqlHelper.h"
 #include "HSql.h"
-#include <QStringList>
-#include <QSqlQuery>
+#include <QtCore/QStringList>
+#include <QtSql/QSqlQuery>
 
 HE_SQL_BEGIN_NAMESPACE
 

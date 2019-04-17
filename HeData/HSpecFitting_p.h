@@ -3,7 +3,7 @@
 
 #include "HSpecFitting.h"
 #include "HAbstractCalibrateItem_p.h"
-#include <QPolygonF>
+#include <QtGui/QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 

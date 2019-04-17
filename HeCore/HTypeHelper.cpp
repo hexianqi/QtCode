@@ -28,7 +28,7 @@
 
 #include "HTypeHelper.h"
 #include "IInitializeable.h"
-#include <QMetaType>
+#include <QtCore/QMetaType>
 
 HE_CORE_BEGIN_NAMESPACE
 

@@ -5,8 +5,8 @@
 #ifndef HITEMDELEGATE_H
 #define HITEMDELEGATE_H
 
-#include <QItemDelegate>
 #include <QtUiPlugin/QDesignerExportWidget>
+#include <QtWidgets/QItemDelegate>
 
 class HItemDelegatePrivate;
 

@@ -7,7 +7,7 @@
 #define HINTERP_H
 
 #include "HAlgorithmGlobal.h"
-#include <QPolygonF>
+#include <QtGui/QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

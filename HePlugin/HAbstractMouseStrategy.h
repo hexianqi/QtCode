@@ -6,7 +6,7 @@
 #define HABSTRACTMOUSESTRATEGY_H
 
 #include "IMouseStrategy.h"
-#include <QObject>
+#include <QtCore/QObject>
 #include <QtUiPlugin/QDesignerExportWidget>
 
 class HAbstractMouseStrategyPrivate;

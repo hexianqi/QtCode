@@ -7,7 +7,7 @@
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInvoker.h"
-#include <QAction>
+#include <QtWidgets/QAction>
 
 HE_CORE_USE_NAMESPACE
 

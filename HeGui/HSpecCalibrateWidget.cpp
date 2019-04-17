@@ -6,7 +6,6 @@
 #include "HSpecFittingChartView.h"
 #include "HSpecFittingLinearWidget.h"
 #include "HSpecPelsWaveWidget.h"
-#include "HSpecSampleWidget.h"
 #include "HSpecSampleChartView.h"
 #include "HSpecSettingDialog.h"
 #include "HeCore/HAppContext.h"
@@ -18,7 +17,7 @@
 #include "HeData/HSpecPelsWave.h"
 #include "HeData/HSpecSetting.h"
 #include "HeData/HSpecStdCurve.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -88,7 +87,7 @@ void HSpecCalibrateWidget::handleAction(HActionType action)
 void HSpecCalibrateWidget::handleTestStateChanged(bool b)
 {
     Q_D(HSpecCalibrateWidget);
-    d->sampleWidget->setEnablePeak(!b);
+    d->sampleView->setEnablePeak(!b);
 }
 
 void HSpecCalibrateWidget::handleTestModeChanged(int value)
@@ -133,7 +132,7 @@ void HSpecCalibrateWidget::on_pushButton_2_clicked()
 {
     Q_D(HSpecCalibrateWidget);
     d->pelsWaveWidget->saveData();
-    d->sampleWidget->refreshRight();
+    d->sampleView->refreshRight();
 }
 
 void HSpecCalibrateWidget::on_pushButton_3_clicked()
@@ -168,7 +167,7 @@ void HSpecCalibrateWidget::refreshSpecWidget()
     Q_D(HSpecCalibrateWidget);
     int index = ui->tabWidget_1->currentIndex();
     if (index == 0)
-        d->sampleWidget->refreshWidget();
+        d->sampleView->refreshWidget();
     if (index == 2)
         d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
@@ -177,13 +176,13 @@ void HSpecCalibrateWidget::refreshSpecWidget()
 void HSpecCalibrateWidget::init()
 {
     Q_D(HSpecCalibrateWidget);
-    d->sampleWidget = new HSpecSampleWidget;
+    d->sampleView = new HSpecSampleChartView;
     d->ccdView = new HSpecFittingChartView;
     d->energyWidget = new HSpecEnergyWidget;
     d->pelsWaveWidget = new HSpecPelsWaveWidget;
     d->fittingWidget = new HSpecFittingLinearWidget;
     d->detailWidget = new HSpecDetailWidget;
-    ui->tabWidget_1->addTab(d->sampleWidget, d->sampleWidget->windowTitle());
+    ui->tabWidget_1->addTab(d->sampleView, d->sampleView->windowTitle());
     ui->tabWidget_1->addTab(d->ccdView, d->ccdView->windowTitle());
     ui->tabWidget_1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());

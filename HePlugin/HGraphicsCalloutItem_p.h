@@ -3,7 +3,7 @@
 
 #include "HGraphicsCalloutItem.h"
 #include "HGraphicsItem_p.h"
-#include <QFont>
+#include <QtGui/QFont>
 
 class HGraphicsCalloutItemPrivate : public HGraphicsItemPrivate
 {

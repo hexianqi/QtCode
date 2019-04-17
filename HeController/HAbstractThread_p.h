@@ -3,8 +3,8 @@
 
 #include "HAbstractThread.h"
 #include "HeCommunicate/HCommunicateGlobal.h"
-#include <QQueue>
-#include <QSet>
+#include <QtCore/QQueue>
+#include <QtCore/QSet>
 
 class QMutex;
 class QWaitCondition;

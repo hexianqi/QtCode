@@ -5,8 +5,8 @@
 #ifndef HHEXSPINBOX_H
 #define HHEXSPINBOX_H
 
-#include <QSpinBox>
 #include <QtUiPlugin/QDesignerExportWidget>
+#include <QtWidgets/QSpinBox>
 
 class HHexSpinBoxPrivate;
 

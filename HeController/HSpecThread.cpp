@@ -3,9 +3,9 @@
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include <QVector>
-#include <QDateTime>
-#include <QDebug>
+#include <QtCore/QVector>
+#include <QtCore/QDateTime>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -71,7 +71,7 @@ HErrorType HSpecThread::handleAction(HActionType action)
     case ACT_GET_SPECTRUM:
         error = d->protocolSpec->getData(action, t, d->testSpec->data("[光谱采样等待时间]").toInt());
         if (error == E_OK)
-            d->testSpec->setSample(t, true);        
+            d->testSpec->setSample(t, true);
         return error;
     }
     return E_THREAD_NO_HANDLE;

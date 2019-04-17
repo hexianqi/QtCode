@@ -6,8 +6,8 @@
 #define HDPOINTER_H
 
 #include "HExampleGlobal.h"
-#include <QObject>
-#include <QSharedDataPointer>
+#include <QtCore/QObject>
+#include <QtCore/QSharedDataPointer>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 

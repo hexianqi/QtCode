@@ -1,12 +1,12 @@
 #include "HCoreGlobalInstance.h"
 #include "HCore.h"
 #include "HDataFormatInfo.h"
-#include <QDateTime>
-#include <QFile>
-#include <QPointF>
-#include <QVariant>
-#include <QVector>
-#include <QDebug>
+#include <QtCore/QDateTime>
+#include <QtCore/QFile>
+#include <QtCore/QPointF>
+#include <QtCore/QVariant>
+#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_CORE_BEGIN_NAMESPACE
 
@@ -309,10 +309,10 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱平滑帧数]",                 new HDataFormatInfo("[光谱平滑帧数]", 1, 100));
     hashDataFormatInfo.insert("[光谱平滑次数]",                 new HDataFormatInfo("[光谱平滑次数]", 0, 100));
     hashDataFormatInfo.insert("[光谱平滑范围]",                 new HDataFormatInfo("[光谱平滑范围]", 0, 100));
-    hashDataFormatInfo.insert("[光谱拟合有效范围]",             new HDataFormatInfo("[光谱拟合有效范围]", 0, 65535));
     hashDataFormatInfo.insert("[光谱拟合取样次数]",             new HDataFormatInfo("[光谱拟合取样次数]", 30, 500));
+    hashDataFormatInfo.insert("[光谱拟合有效范围]",             new HDataFormatInfo("[光谱拟合有效范围]", 0, 65535));
+    hashDataFormatInfo.insert("[光谱拟合多项式项数]",           new HDataFormatInfo("[光谱拟合多项式项数]", 2, 20));
     //hashDataFormatInfo.insert("[光谱拟合系数]",                 new HDataFormatInfo("[光谱拟合系数]", 0, 65535));
-//    hashDataFormatInfo.insert("[拟合_多项式次数]"),                 FTypeInfo(tr("[拟合_多项式次数]"), 2, 20));
     hashDataFormatInfo.insert("[标准光谱光通量]",               new HDataFormatInfo("[标准光谱光通量]", "lm", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
     // 光谱数据
@@ -337,9 +337,13 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[红色比]",                       new HDataFormatInfo("[红色比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[蓝色比]",                       new HDataFormatInfo("[蓝色比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[绿色比]",                       new HDataFormatInfo("[绿色比]", "%", 0, 100, 1));
+    hashDataFormatInfo.insert("[光谱能量百分比]",               new HDataFormatInfo("[光谱能量百分比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱光通量]",                   new HDataFormatInfo("[光谱光通量]", "lm", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[色容差]",                       new HDataFormatInfo("[色容差]", "SDCM", 0, 100, 1, 1));
-
+    // 数据库参数
+    hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
+    hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
+    hashDataFormatInfo.insert("[环境湿度]",                     new HDataFormatInfo("[环境湿度]", "%", 0, 100, 1));
 
             //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
@@ -435,10 +439,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
 ////    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
 
 ////    hashFormatInfo.insert(tr("[温度]"),                  FTypeInfo(tr("[温度]"), tr("℃"), -100, 1000, 1));
-//    //数据库参数
-//    hashFormatInfo.insert(tr("[样品编号]"),                        FTypeInfo(tr("[样品编号]"), 0, 99999));
-//    hashFormatInfo.insert(tr("[环境温度]"),                        FTypeInfo(tr("[环境温度]"), tr("℃"), -100, 1000, 1));
-//    hashFormatInfo.insert(tr("[环境湿度]"),                        FTypeInfo(tr("[环境湿度]"), tr("%"), 0, 100, 1));
 //    //其他参数
 //    hashFormatInfo.insert(tr("[ID]"),                              FTypeInfo(tr("[ID]"), 0, 65536));
 //    hashFormatInfo.insert(tr("[总数]"),                            FTypeInfo(tr("[总数]"), 0, 65536));

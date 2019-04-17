@@ -3,10 +3,10 @@
 #include "HeAlgorithm/HSpecFacade.h"
 #include "HeCore/HCore.h"
 #include "HeData/ISpecCalibrate.h"
-#include <QVector>
-#include <QQueue>
-#include <QReadWriteLock>
-#include <QtMath>
+#include <QtCore/QVector>
+#include <QtCore/QQueue>
+#include <QtCore/QReadWriteLock>
+#include <QtCore/QtMath>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -141,26 +141,30 @@ bool HTestSpecPrivate::calcSpec()
     if(specData->Energy.isEmpty())
         return false;
     specFacade->calcSpectrum(specData);
-    specData->Luminous = calibrate->calcLuminous(specData->VisionEnergy / data("[积分时间]").toDouble());
+    specData->LuminousFlux = calibrate->calcLuminous(specData->VisionEnergy / data("[积分时间]").toDouble());
+    specData->LuminousPower = specData->LuminousFlux * specData->EnergyRatio;
 //    m_pSpectrum->SDCM = m_pChromatism->calcSdcm(m_pSpectrum->ColorTemperature, m_pSpectrum->CoordinateXy);
-    addData("[峰值波长]", specData->PeakWave);
-    addData("[峰值带宽]", specData->Bandwidth);
-    addData("[主波长]", specData->DominantWave);
-    addData("[色纯度]", specData->ColorPurity);
-    addData("[色温]", specData->ColorTemperature);
-    addData("[显色指数]", specData->RenderingIndexAvg);
-    addData("[显色指数Rx]", HeCore::toString("[显色指数Rx]", specData->RenderingIndex));
-    addData("[色坐标]", specData->CoordinateUv);
-    addData("[色坐标uv]", specData->CoordinateUv);
-    addData("[色坐标uvp]", specData->CoordinateUvp);
-    addData("[Duv]", specData->Duv);
-    addData("[红色比]", specData->RedRatio);
-    addData("[蓝色比]", specData->BlueRatio);
-    addData("[绿色比]", specData->GreenRadio);
-    addData("[光谱光通量]", specData->Luminous);
-    addData("[光功率]", specData->Luminous * specData->EnergyRatio);
-//    addData("[色容差]", sp->SDCM);
     return true;
+}
+
+QString HTestSpecPrivate::renderingIndexS()
+{
+    QStringList list;
+    for (int i = 0; i < specData->RenderingIndex.size(); i++)
+    {
+        if (i != 0 && i % 4 == 0)
+            list << " ";
+        list << toString("[显色指数Rx]", specData->RenderingIndex[i]);
+    }
+    return list.join(" ");
+}
+
+QString HTestSpecPrivate::energyS()
+{
+    QStringList list;
+    for (auto p : specData->EnergyPercent)
+        list << toString("[波长]", p.x()) + ":" +  toString("[光谱能量百分比]", p.x());
+    return list.join(",");
 }
 
 HTestSpec::HTestSpec()
@@ -185,6 +189,60 @@ void HTestSpec::initialize(QVariantMap param)
 QString HTestSpec::typeName()
 {
     return "HTestSpec";
+}
+
+QVariant HTestSpec::data(QString type)
+{
+    Q_D(HTestSpec);
+    if (type == "[峰值波长]")
+        return d->specData->PeakWave;
+    if (type == "[峰值带宽]")
+        return d->specData->Bandwidth;
+    if (type == "[主波长]")
+        return d->specData->DominantWave;
+    if (type == "[色纯度]")
+        return d->specData->ColorPurity;
+    if (type == "[色温]")
+        return d->specData->ColorTemperature;
+    if (type == "[色坐标]")
+        return d->specData->CoordinateXy;
+    if (type == "[色坐标x]")
+        return d->specData->CoordinateXy.x();
+    if (type == "[色坐标y]")
+        return d->specData->CoordinateXy.y();
+    if (type == "[色坐标uv]")
+        return d->specData->CoordinateUv;
+    if (type == "[色坐标u]")
+        return d->specData->CoordinateUv.x();
+    if (type == "[色坐标v]")
+        return d->specData->CoordinateUv.y();
+    if (type == "[色坐标uvp]")
+        return d->specData->CoordinateUvp;
+    if (type == "[色坐标up]")
+        return d->specData->CoordinateUvp.x();
+    if (type == "[色坐标vp]")
+        return d->specData->CoordinateUvp.y();
+    if (type == "[Duv]")
+        return d->specData->Duv;
+    if (type == "[红色比]")
+        return d->specData->RedRatio;
+    if (type == "[蓝色比]")
+        return d->specData->BlueRatio;
+    if (type == "[绿色比]")
+        return d->specData->GreenRadio;
+    if (type == "[显色指数]")
+        return d->specData->RenderingIndexAvg;
+    if (type == "[光谱光通量]")
+        return d->specData->LuminousFlux;
+    if (type == "[光功率]")
+        return d->specData->LuminousPower;
+    if (type == "[色容差]")
+        return d->specData->SDCM;
+    if (type == "[显色指数Rx]")
+        return d->renderingIndexS();
+    if (type == "[光谱能量数据]")
+        return d->energyS();
+    return HTestData::data(type);
 }
 
 void HTestSpec::setCalibrate(ISpecCalibrate *p)

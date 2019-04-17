@@ -2,13 +2,13 @@
 #include "HCartesianCoordinate.h"
 #include "HPluginHelper.h"
 #include "HPositionTracking.h"
-#include <QAction>
-#include <QLabel>
-#include <QFile>
-#include <QIcon>
-#include <QMouseEvent>
-#include <QPainter>
-#include <QTextStream>
+#include <QtCore/QFile>
+#include <QtCore/QTextStream>
+#include <QtGui/QIcon>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPainter>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QLabel>
 
 HCIE1931WidgetPrivate::HCIE1931WidgetPrivate(HCIE1931Widget *q)
     : HCartesianWidgetPrivate(q)

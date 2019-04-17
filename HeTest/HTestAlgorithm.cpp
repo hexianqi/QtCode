@@ -1,6 +1,6 @@
 #include "HTestAlgorithm.h"
 #include "HeAlgorithm/HRegister.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_ALGORITHM_USE_NAMESPACE
 

@@ -2,7 +2,7 @@
 #include "ITestSetWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 

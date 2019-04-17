@@ -1,7 +1,7 @@
 #include "HTestData_p.h"
 #include "HeCore/HCore.h"
-#include <QColor>
-#include <QDateTime>
+#include <QtGui/QColor>
+#include <QtCore/QDateTime>
 
 HE_CORE_USE_NAMESPACE
 

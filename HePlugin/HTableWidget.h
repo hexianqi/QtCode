@@ -5,8 +5,8 @@
 #ifndef HTABLEWIDGET_H
 #define HTABLEWIDGET_H
 
-#include <QTableWidget>
 #include <QtUiPlugin/QDesignerExportWidget>
+#include <QtWidgets/QTableWidget>
 
 class HTableWidgetPrivate;
 

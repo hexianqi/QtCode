@@ -1,8 +1,8 @@
 #include "HVernierWidget_p.h"
 #include "HCartesianCoordinate.h"
 #include "HVernierTracking.h"
-#include <QLabel>
-#include <QGridLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
 
 HVernierWidgetPrivate::HVernierWidgetPrivate(HVernierWidget *q) :
     HCartesianWidgetPrivate(q)

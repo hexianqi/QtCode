@@ -7,7 +7,7 @@
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 class QMenu;
 class QToolBar;

@@ -4,8 +4,8 @@
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HMarkerChartExtend.h"
 #include "HePlugin/HSingleAxisChart.h"
-#include <QAction>
-#include <QGraphicsSimpleTextItem>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QGraphicsSimpleTextItem>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
 
@@ -44,8 +44,7 @@ void HSpecSampleChartView::refreshWidget()
         auto s = qobject_cast<QXYSeries *>(series[i]);
         if (s == nullptr)
             continue;
-        s->clear();
-        s->append(d->testSpec->samplePoly(i).toList());
+        s->replace(d->testSpec->samplePoly(i));
     }
     refreshCenter();
 }

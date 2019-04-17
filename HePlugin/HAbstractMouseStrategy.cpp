@@ -1,5 +1,5 @@
 #include "HAbstractMouseStrategy_p.h"
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 HAbstractMouseStrategyPrivate::HAbstractMouseStrategyPrivate(QWidget *p) :
     parent(p)

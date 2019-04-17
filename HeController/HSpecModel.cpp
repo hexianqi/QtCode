@@ -2,7 +2,7 @@
 #include "ITestSpec.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

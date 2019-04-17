@@ -1,7 +1,8 @@
 #include "HSpecFittingPolynom_p.h"
 #include "HeAlgorithm/HMath.h"
-#include <QDataStream>
-#include <QtMath>
+#include "HeAlgorithm/HMultiFit.h"
+#include <QtCore/QDataStream>
+#include <QtCore/QtMath>
 
 HE_ALGORITHM_USE_NAMESPACE
 
@@ -31,7 +32,9 @@ void HSpecFittingPolynom::restoreDefault()
 {
     Q_D(HSpecFittingPolynom);
     HSpecFitting::restoreDefault();
-    d->polynom.clear();
+    setData("[光谱拟合多项式项数]", 7);
+    d->ca.clear();
+    d->cova.clear();
 }
 
 void HSpecFittingPolynom::readContent(QDataStream &s)
@@ -40,7 +43,8 @@ void HSpecFittingPolynom::readContent(QDataStream &s)
     quint32 version;
     s >> version;
     s >> d->datas;
-    s >> d->polynom;
+    s >> d->ca;
+    s >> d->cova;
 }
 
 void HSpecFittingPolynom::writeContent(QDataStream &s)
@@ -48,7 +52,20 @@ void HSpecFittingPolynom::writeContent(QDataStream &s)
     Q_D(HSpecFittingPolynom);
     s << quint32(1);
     s << d->datas;
-    s << d->polynom;
+    s << d->ca;
+    s << d->cova;
+}
+
+void HSpecFittingPolynom::setFittingPoints(QPolygonF value)
+{
+    Q_D(HSpecFittingPolynom);
+    HSpecFitting::setFittingPoints(value);
+
+    double chisq;
+    d->ca.clear();
+    d->cova.clear();
+    d->ca.resize(data("[光谱拟合多项式项数]").toInt());
+    HMultiFit::linear(d->fittingPoints, d->ca, d->cova, &chisq);
 }
 
 double HSpecFittingPolynom::calcRate(double value)
@@ -77,10 +94,16 @@ double HSpecFittingPolynom::calcRate(double value)
 double HSpecFittingPolynom::calcPolynom(double value)
 {
     Q_D(HSpecFittingPolynom);
-    double r = 1;
-    for (int i = 0; i < d->polynom.size(); i++)
-        r += d->polynom[i] * qPow(value, i);
-    return r - 1;
+    if (d->ca.size() < 2)
+        return 1.0;
+    double y, error;
+    HMultiFit::linear_est(value, d->ca, d->cova, &y, &error);
+    return  y;
+
+//    double r = 1;
+//    for (int i = 0; i < d->polynom.size(); i++)
+//        r += d->polynom[i] * qPow(value, i);
+//    return r - 1;
 }
 
 HE_DATA_END_NAMESPACE

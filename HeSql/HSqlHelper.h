@@ -6,7 +6,7 @@
 #define HSQLHELPER_H
 
 #include "HSqlGlobal.h"
-#include <QSqlDatabase>
+#include <QtSql/QSqlDatabase>
 
 HE_SQL_BEGIN_NAMESPACE
 

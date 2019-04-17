@@ -7,7 +7,7 @@
 #include "HProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

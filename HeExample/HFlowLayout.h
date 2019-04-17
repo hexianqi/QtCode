@@ -7,8 +7,8 @@
 #define HFLOWLAYOUT_H
 
 #include "HExampleGlobal.h"
-#include <QLayout>
-#include <QStyle>
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QStyle>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 

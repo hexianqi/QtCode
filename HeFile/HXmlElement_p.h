@@ -2,7 +2,7 @@
 #define HXMLELEMENT_P_H
 
 #include "HXmlElement.h"
-#include <QStringList>
+#include <QtCore/QStringList>
 
 HE_FILE_BEGIN_NAMESPACE
 

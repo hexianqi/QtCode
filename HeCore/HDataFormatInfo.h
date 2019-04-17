@@ -6,8 +6,8 @@
 #define HDATAFORMATINFO_H
 
 #include "HCoreGlobal.h"
-#include <QSharedDataPointer>
-#include <QColor>
+#include <QtCore/QSharedDataPointer>
+#include <QtGui/QColor>
 
 class QObject;
 class QDoubleValidator;

@@ -6,7 +6,7 @@
 #define ICHROMATICITY_H
 
 #include "HAlgorithmGlobal.h"
-#include <QLineF>
+#include <QtCore/QLineF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

@@ -7,7 +7,7 @@
 #define HBORDERLAYOUT_H
 
 #include "HExampleGlobal.h"
-#include <QLayout>
+#include <QtWidgets/QLayout>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 

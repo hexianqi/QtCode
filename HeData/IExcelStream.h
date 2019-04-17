@@ -20,6 +20,11 @@ class IExcelStream : public IInitializeable
 public:
     // 设置写入内容函数
     virtual void setWriteContent(std::function<void(QTextStream &)> func) = 0;
+    // 设置写入内容
+    virtual void setWriteContent(QString value) = 0;
+    // 获取文件过滤
+    virtual QString fileFilter() = 0;
+public:
     // 另存文件
     virtual bool saveAsFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = nullptr) = 0;
     // 写入文件

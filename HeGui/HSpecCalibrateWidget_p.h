@@ -10,7 +10,7 @@ HE_CONTROLLER_END_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HSpecSampleWidget;
+class HSpecSampleChartView;
 class HSpecFittingChartView;
 class HSpecEnergyWidget;
 class HSpecPelsWaveWidget;
@@ -27,7 +27,7 @@ public:
     ISpecCalibrate *specCalibrate;
 
 public:
-    HSpecSampleWidget *sampleWidget;
+    HSpecSampleChartView *sampleView;
     HSpecFittingChartView *ccdView;
     HSpecEnergyWidget *energyWidget;
     HSpecPelsWaveWidget *pelsWaveWidget;

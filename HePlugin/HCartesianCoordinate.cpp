@@ -1,6 +1,6 @@
 #include "HCartesianCoordinate_p.h"
-#include <QPolygonF>
-#include <QtMath>
+#include <QtCore/QtMath>
+#include <QtGui/QPolygonF>
 
 HCartesianCoordinate::HCartesianCoordinate(QObject *parent)
     : QObject(parent), d_ptr(new HCartesianCoordinatePrivate)

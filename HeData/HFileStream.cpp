@@ -1,5 +1,5 @@
 #include "HFileStream_p.h"
-#include <QFileDialog>
+#include <QtWidgets/QFileDialog>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -118,10 +118,9 @@ bool HFileStream::readFile(QString fileName)
         return false;
     s >> d_ptr->fileFilter;
     s >> d_ptr->fileVersion;
-    if (!readContent(s))
-        return false;
+    auto r = readContent(s);
     file.close();
-    return true;
+    return  r;
 }
 
 bool HFileStream::writeFile(QString fileName)
@@ -136,10 +135,9 @@ bool HFileStream::writeFile(QString fileName)
     s << d_ptr->magicNumber;
     s << d_ptr->fileFilter;
     s << d_ptr->fileVersion;
-    if (!writeContent(s))
-        return false;
+    auto r = writeContent(s);
     file.close();
-    return true;
+    return r;
 }
 
 bool HFileStream::readContent(QDataStream &s)

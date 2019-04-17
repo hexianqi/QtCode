@@ -7,7 +7,7 @@
 
 #include "HGuiGlobal.h"
 #include "HeData/HDataGlobal.h"
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 HE_DATA_BEGIN_NAMESPACE
 class HSpecSetting;

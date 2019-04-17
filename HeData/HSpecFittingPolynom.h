@@ -24,6 +24,7 @@ public:
     void restoreDefault() override;
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
+    void setFittingPoints(QPolygonF value) override;
 
 protected:
     HSpecFittingPolynom(HSpecFittingPolynomPrivate &p);

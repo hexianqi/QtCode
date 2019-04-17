@@ -1,11 +1,11 @@
 #include "HPluginHelper.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
-#include <QAction>
-#include <QApplication>
-#include <QClipboard>
-#include <QDoubleSpinBox>
-#include <QTableWidget>
+#include <QtGui/QClipboard>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QTableWidget>
 
 HE_CORE_USE_NAMESPACE
 

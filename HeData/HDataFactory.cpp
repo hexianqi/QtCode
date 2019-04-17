@@ -4,7 +4,7 @@
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -73,6 +73,14 @@ ISpecCalibrateCollection *HDataFactory::createSpecCalibrateCollection(QString ty
     Q_UNUSED(type)
     ISpecCalibrateCollection *p = new HSpecCalibrateCollection(this);
     p->initialize(param);
+    return p;
+}
+
+IGradeCollection *HDataFactory::createGradeCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+//    IGradeCollection *p = new HGradeCollection(this);
+//    p->initialize(param);
     return p;
 }
 

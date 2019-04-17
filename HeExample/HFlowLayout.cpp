@@ -1,5 +1,5 @@
 #include "HFlowLayout_p.h"
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 

@@ -6,7 +6,7 @@
 #define HCALLOUTCHARTEXTEND_H
 
 #include "HAbstractChartExtend.h"
-#include <QPointF>
+#include <QtCore/QPointF>
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QXYSeries;

@@ -63,5 +63,6 @@ unix {
     INSTALLS += target
 }
 
+include(grade.pri)
 include(spec.pri)
 include(stream.pri)

@@ -7,7 +7,7 @@
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 HE_CORE_USE_NAMESPACE
 

@@ -2,7 +2,7 @@
 #define HTESTGSL_H
 
 #include "HeExample/HExampleGlobal.h"
-#include <QPolygonF>
+#include <QtGui/QPolygonF>
 
 class QWidget;
 

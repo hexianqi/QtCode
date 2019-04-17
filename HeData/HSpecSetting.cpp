@@ -1,8 +1,8 @@
 #include "HSpecSetting_p.h"
 #include "HeAlgorithm/HInterp.h"
 #include "HeAlgorithm/HSpecHelper.h"
-#include <QDataStream>
-#include <QtMath>
+#include <QtCore/QDataStream>
+#include <QtCore/QtMath>
 
 HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE

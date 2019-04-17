@@ -6,8 +6,8 @@
 #define HOBJECTFACTORY_H
 
 #include "IInitializeable.h"
+#include <QtCore/QVariant>
 #include <functional>
-#include <QVariant>
 
 HE_CORE_BEGIN_NAMESPACE
 

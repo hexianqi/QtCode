@@ -6,7 +6,7 @@
 #define HSPECENERGYWIDGET_H
 
 #include "HGuiGlobal.h"
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 HE_GUI_BEGIN_NAMESPACE
 

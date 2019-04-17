@@ -1,7 +1,7 @@
 #ifndef CLASS2_H
 #define CLASS2_H
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 class class2 : public QWidget
 {

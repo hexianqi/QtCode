@@ -6,8 +6,8 @@
 #define HMESOPTICVISION_H
 
 #include "HAlgorithmGlobal.h"
-#include <QHash>
-#include <QPolygonF>
+#include <QtCore/QHash>
+#include <QtGui/QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

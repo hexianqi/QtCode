@@ -3,7 +3,7 @@
 #include "HChromaticity.h"
 #include "HChromaticityV2.h"
 #include "HPhotopicVision.h"
-#include <QtMath>
+#include <QtCore/QtMath>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

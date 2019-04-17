@@ -6,7 +6,7 @@
 #define HABSTRACTVERNIERTRACKING_H
 
 #include "HAbstractMouseStrategy.h"
-#include <QPointF>
+#include <QtCore/QPointF>
 
 class HAbstractVernierTrackingPrivate;
 

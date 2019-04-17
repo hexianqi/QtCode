@@ -6,7 +6,7 @@
 #define HRUBBERBAND_H
 
 #include "HAbstractMouseStrategy.h"
-#include <QRectF>
+#include <QtCore/QRectF>
 
 class HAbstractDomain;
 class HRubberBandPrivate;

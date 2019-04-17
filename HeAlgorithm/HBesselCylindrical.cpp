@@ -1,6 +1,6 @@
 #include "HBesselCylindrical.h"
 #include "gsl/gsl_sf_bessel.h"
-#include <QVector>
+#include <QtCore/QVector>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

@@ -3,8 +3,8 @@
 
 #include "HAbstractVernierTracking.h"
 #include "HAbstractMouseStrategy_p.h"
-#include <QColor>
-#include <QVector>
+#include <QtCore/QVector>
+#include <QtGui/QColor>
 
 class HAbstractVernierTrackingPrivate : public HAbstractMouseStrategyPrivate
 {

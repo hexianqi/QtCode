@@ -1,6 +1,6 @@
 #include "HMarkerChartExtend_p.h"
-#include <QChart>
-#include <QLegendMarker>
+#include <QtCharts/QChart>
+#include <QtCharts/QLegendMarker>
 
 HMarkerChartExtendPrivate::HMarkerChartExtendPrivate(QChart *c) :
     HAbstractChartExtendPrivate(c)

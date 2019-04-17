@@ -6,7 +6,7 @@
 #define HABSTRACTBUILDER_H
 
 #include "IBuilder.h"
-#include <QObject>
+#include <QtCore/QObject>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -37,6 +37,7 @@ protected:
     virtual void buildDevice() = 0;
     virtual void buildThread() = 0;
     virtual void buildModel() = 0;
+    virtual void buildDatabase();
     virtual void buildTestWidget() = 0;
 
 protected:

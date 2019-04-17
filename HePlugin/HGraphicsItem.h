@@ -6,7 +6,7 @@
 #define HGRAPHICSITEM_H
 
 #include <QtUiPlugin/QDesignerExportWidget>
-#include <QGraphicsItem>
+#include <QtWidgets/QGraphicsItem>
 
 class HGraphicsItemPrivate;
 

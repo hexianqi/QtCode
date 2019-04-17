@@ -4,8 +4,8 @@
 #include "HTestSpec.h"
 #include "HTestData_p.h"
 #include "HeAlgorithm/HAlgorithmGlobal.h"
-#include <QVector>
-#include <QQueue>
+#include <QtCore/QVector>
+#include <QtCore/QQueue>
 
 class QReadWriteLock;
 
@@ -39,6 +39,8 @@ public:
     QVector<double> average(QVector<double> value);
     void calcMaxSample();
     bool calcSpec();
+    QString renderingIndexS();
+    QString energyS();
 
 public:
     QReadWriteLock *lock;

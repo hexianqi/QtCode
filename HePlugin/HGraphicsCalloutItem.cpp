@@ -1,8 +1,8 @@
 #include "HGraphicsCalloutItem_p.h"
-#include <QChart>
-#include <QFontMetrics>
-#include <QGraphicsSceneMouseEvent>
-#include <QPainter>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QPainter>
+#include <QtWidgets/QGraphicsSceneMouseEvent>
+#include <QtCharts/QChart>
 
 HGraphicsCalloutItem::HGraphicsCalloutItem(QChart *parent) :
     HGraphicsItem(*new HGraphicsCalloutItemPrivate, parent)

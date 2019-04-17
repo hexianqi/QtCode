@@ -2,13 +2,13 @@
 #include "ITestWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include <QMenuBar>
-#include <QToolBar>
-#include <QStatusBar>
-#include <QLabel>
-#include <QMessageBox>
-#include <QApplication>
-#include <QDebug>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QStatusBar>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -166,7 +166,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-    d_ptr->model->start();
+//    d_ptr->model->start();
 }
 
 void HAbstractMainWindow::initCentralWidget()

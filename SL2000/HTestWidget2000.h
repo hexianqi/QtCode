@@ -29,7 +29,6 @@ protected:
     void createMenu() override;
     void createToolBar() override;
     void initMenu() override;
-    void exportDatabase() override;
     void writeContent(QTextStream &) override;
 
 protected:

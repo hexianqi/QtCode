@@ -7,7 +7,7 @@
 
 #include "HAlgorithmGlobal.h"
 #include "gsl/gsl_matrix.h"
-#include <QPolygonF>
+#include <QtGui/QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

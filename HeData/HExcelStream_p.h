@@ -14,7 +14,8 @@ public:
     QString fileFilter;
 
 public:
-    std::function<void(QTextStream &)> writeContent;
+    std::function<void(QTextStream &)> writeContentFunc;
+    QString writeContent;
 };
 
 HE_DATA_END_NAMESPACE

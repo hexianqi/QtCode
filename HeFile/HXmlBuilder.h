@@ -6,7 +6,7 @@
 #define HXMLBUILDER_H
 
 #include "HFileGlobal.h"
-#include <QVariantMap>
+#include <QtCore/QVariant>
 
 HE_FILE_BEGIN_NAMESPACE
 

@@ -1,7 +1,7 @@
 #include "HTableWidget_p.h"
 #include "HPluginHelper.h"
-#include <QAction>
-#include <QHeaderView>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QHeaderView>
 
 HTableWidget::HTableWidget(QWidget *parent)
     : QTableWidget(parent), d_ptr(new HTableWidgetPrivate)

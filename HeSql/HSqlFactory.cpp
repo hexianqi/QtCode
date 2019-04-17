@@ -1,5 +1,7 @@
 #include "HSqlFactory_p.h"
-#include <QDebug>
+#include "HSqlDatabase.h"
+#include "HSqlTableModel.h"
+#include <QtCore/QDebug>
 
 HE_SQL_BEGIN_NAMESPACE
 
@@ -29,6 +31,22 @@ void HSqlFactory::initialize(QVariantMap /*param*/)
 QString HSqlFactory::typeName()
 {
     return "HSqlFactory";
+}
+
+ISqlDatabase *HSqlFactory::createDatabase(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    ISqlDatabase *p = new HSqlDatabase(this);
+    p->initialize(param);
+    return p;
+}
+
+ISqlTableModel *HSqlFactory::createTableModel(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    ISqlTableModel *p = new HSqlTableModel(this);
+    p->initialize(param);
+    return p;
 }
 
 void HSqlFactory::registerClass()

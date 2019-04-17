@@ -1,9 +1,9 @@
 #include "HCartesianWidget_p.h"
 #include "HCartesianZoom.h"
 #include "HCartesianCoordinate.h"
-#include <QMouseEvent>
-#include <QPainter>
-#include <QAction>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QPainter>
+#include <QtWidgets/QAction>
 
 HCartesianWidgetPrivate::HCartesianWidgetPrivate(HCartesianWidget *q)
     : HDiagramWidgetPrivate(q)

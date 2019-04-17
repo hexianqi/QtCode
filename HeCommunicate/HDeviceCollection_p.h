@@ -2,7 +2,7 @@
 #define HDEVICECOLLECTION_P_H
 
 #include "HDeviceCollection.h"
-#include <QSet>
+#include <QtCore/QSet>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

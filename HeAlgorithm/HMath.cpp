@@ -1,7 +1,7 @@
 #include "HMath.h"
-#include <QPointF>
-#include <QPolygonF>
-#include <QtMath>
+#include <QtCore/QPointF>
+#include <QtCore/QtMath>
+#include <QtGui/QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

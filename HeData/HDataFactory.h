@@ -29,6 +29,7 @@ public:
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HDataFactory(HDataFactoryPrivate &p, QObject *parent = nullptr);

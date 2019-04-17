@@ -9,7 +9,8 @@ HE_DATA_BEGIN_NAMESPACE
 class HSpecFittingPolynomPrivate : public HSpecFittingPrivate
 {
 public:
-    QVector<double> polynom;
+    QVector<double> ca;
+    QVector<double> cova;
 };
 
 HE_DATA_END_NAMESPACE

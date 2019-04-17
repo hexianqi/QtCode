@@ -1,6 +1,6 @@
 #include "HRegister_p.h"
-#include <QSettings>
-#include <QDate>
+#include <QtCore/QSettings>
+#include <QtCore/QDate>
 #include <exception>
 #include <memory>
 #include <windows.h>

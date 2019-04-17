@@ -3,8 +3,8 @@
 #include "HeCore/HCore.h"
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QAction>
-#include <QLabel>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QLabel>
 
 HE_GUI_BEGIN_NAMESPACE
 

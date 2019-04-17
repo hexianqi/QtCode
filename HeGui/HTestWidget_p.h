@@ -4,11 +4,17 @@
 #include "HTestWidget.h"
 #include "HAbstractTestWidget_p.h"
 #include "HeData/HDataGlobal.h"
+#include "HeSql/ISqlTableModel.h"
 
 HE_DATA_BEGIN_NAMESPACE
 class IExcelStream;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
+
+HE_SQL_BEGIN_NAMESPACE
+class ISqlTableModel;
+HE_SQL_END_NAMESPACE
+HE_SQL_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -19,6 +25,7 @@ public:
 
 public:
     IExcelStream *excelStream;
+    ISqlTableModel *sqlTableModel;
 
 public:
     QAction *actionStart;

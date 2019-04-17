@@ -1,6 +1,6 @@
 #include "HDoubleSpinBoxDelegate_p.h"
 #include "HPluginHelper.h"
-#include <QDoubleSpinBox>
+#include <QtWidgets/QDoubleSpinBox>
 
 HDoubleSpinBoxDelegate::HDoubleSpinBoxDelegate(QObject *parent)
     : HItemDelegate(*new HDoubleSpinBoxDelegatePrivate, parent)

@@ -6,7 +6,7 @@
 #define HFILESTREAM_H
 
 #include "IFileStream.h"
-#include <QObject>
+#include <QtCore/QObject>
 
 HE_DATA_BEGIN_NAMESPACE
 

@@ -25,11 +25,13 @@ public:
 public:
     void setContain(quint32 value) override;
     void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
+    void setGradeCollection(IGradeCollection *) override;
 
 public:
     IFileStream *fileStream() override;
     quint32 contain() override;
     ISpecCalibrate *specCalibrate(QString name) override;
+    IGradeCollection *gradeCollection() override;
 
 public:
     bool importPart(quint32 value) override;

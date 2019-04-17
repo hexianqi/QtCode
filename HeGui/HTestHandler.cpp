@@ -1,5 +1,5 @@
 #include "HTestHandler_p.h"
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 
 HE_GUI_BEGIN_NAMESPACE
 

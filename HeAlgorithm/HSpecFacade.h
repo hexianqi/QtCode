@@ -6,7 +6,7 @@
 #define HSPECFACADE_H
 
 #include "HAlgorithmGlobal.h"
-#include <QScopedPointer>
+#include <QtCore/QScopedPointer>
 #include <memory>
 
 HE_ALGORITHM_BEGIN_NAMESPACE

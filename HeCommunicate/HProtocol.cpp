@@ -1,7 +1,7 @@
 #include "HProtocol_p.h"
 #include "IDevice.h"
-#include <QMutex>
-#include <QVector>
+#include <QtCore/QMutex>
+#include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

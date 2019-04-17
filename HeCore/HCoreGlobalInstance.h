@@ -6,7 +6,7 @@
 #define HCOREGLOBALINSTANCE_H
 
 #include "HSingleton.h"
-#include <QObject>
+#include <QtCore/QObject>
 
 HE_CORE_BEGIN_NAMESPACE
 

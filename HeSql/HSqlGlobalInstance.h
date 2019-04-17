@@ -7,7 +7,7 @@
 
 #include "HSqlGlobal.h"
 #include "HeCore/HSingleton.h"
-#include <QObject>
+#include <QtCore/QObject>
 
 HE_CORE_USE_NAMESPACE
 

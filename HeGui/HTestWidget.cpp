@@ -2,14 +2,18 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IExcelStream.h"
-#include <QAction>
-#include <QToolBar>
-#include <QDebug>
+#include "HeController/ITestData.h"
+#include "HeSql/ISqlTableModel.h"
+#include "HeSql/HSql.h"
+#include <QtWidgets/QAction>
+#include <QtWidgets/QToolBar>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
 HTestWidgetPrivate::HTestWidgetPrivate()
 {
+    sqlTableModel = HAppContext::getContextPointer<ISqlTableModel>("ISqlTableModel");
 }
 
 HTestWidget::HTestWidget(QWidget *parent) :
@@ -80,6 +84,15 @@ void HTestWidget::exportExcel()
 {
     Q_D(HTestWidget);
     d->excelStream->saveAsFile();
+}
+
+void HTestWidget::exportDatabase()
+{
+    Q_D(HTestWidget);
+    QMap<QString, QVariant> data;
+    for (auto f : d->sqlTableModel->fields())
+        data.insert(f, d->testData->data(toType(f)));
+    d->sqlTableModel->addRecord(data);
 }
 
 HE_GUI_END_NAMESPACE

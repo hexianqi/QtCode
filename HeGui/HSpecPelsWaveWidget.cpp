@@ -2,7 +2,7 @@
 #include "HeCore/HCore.h"
 #include "HeData/HSpecPelsWave.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
-#include <QDebug>
+#include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
 

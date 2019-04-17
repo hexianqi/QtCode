@@ -7,7 +7,7 @@
 
 #include "HControllerGlobal.h"
 #include "HeCore/HActionType.h"
-#include <QThread>
+#include <QtCore/QThread>
 
 HE_CORE_USE_NAMESPACE
 

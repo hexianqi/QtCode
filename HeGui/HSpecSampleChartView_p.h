@@ -27,5 +27,4 @@ public:
 
 HE_GUI_END_NAMESPACE
 
-
 #endif // HSPECSAMPLECHARTVIEW_P_H

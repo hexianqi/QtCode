@@ -1,9 +1,9 @@
 #include "HChromaticity_p.h"
 #include "HSpecData.h"
 #include "HSpecHelper.h"
-#include <QFile>
-#include <QTextStream>
-#include <QtMath>
+#include <QtCore/QFile>
+#include <QtCore/QTextStream>
+#include <QtCore/QtMath>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

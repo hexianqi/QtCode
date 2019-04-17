@@ -2,10 +2,10 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeCommunicate/IProtocol.h"
-#include <QSettings>
-#include <QWaitCondition>
-#include <QMutexLocker>
-#include <QDebug>
+#include <QtCore/QSettings>
+#include <QtCore/QWaitCondition>
+#include <QtCore/QMutexLocker>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

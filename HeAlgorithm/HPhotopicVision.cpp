@@ -1,7 +1,7 @@
 #include "HPhotopicVision.h"
 #include "HInterp.h"
-#include <QFile>
-#include <QTextStream>
+#include <QtCore/QFile>
+#include <QtCore/QTextStream>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

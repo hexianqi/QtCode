@@ -6,12 +6,12 @@
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HResultTableWidget.h"
 #include "HePlugin/HCIE1931Widget.h"
-#include <QAction>
-#include <QGridLayout>
-#include <QSplitter>
-#include <QTabWidget>
-#include <QToolBar>
-#include <QDebug>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QToolBar>
+#include <QtCore/QDebug>
 
 HTestWidget2000Private::HTestWidget2000Private()
 {
@@ -122,10 +122,6 @@ void HTestWidget2000::createToolBar()
 }
 
 void HTestWidget2000::initMenu()
-{
-}
-
-void HTestWidget2000::exportDatabase()
 {
 }
 

@@ -1,13 +1,13 @@
 #include "HSpecCalibrateCollection_p.h"
-#include "ISpecCalibrate.h"
 #include "IDataFactory.h"
+#include "ISpecCalibrate.h"
 #include "IFileStream.h"
-#include <QDataStream>
+#include <QtCore/QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *q, IDataFactory *f)
-    : q_ptr(q)
+HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(HSpecCalibrateCollection *q, IDataFactory *f) :
+    q_ptr(q)
 {
     factory = f;
     fileStream = f->createFileStream("HFileStream");
@@ -18,13 +18,13 @@ HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(HSpecCalibrateC
     fileStream->setWriteContent([=](QDataStream &s) { q_ptr->writeContent(s); });
 }
 
-HSpecCalibrateCollection::HSpecCalibrateCollection(IDataFactory *f)
-    : d_ptr(new HSpecCalibrateCollectionPrivate(this, f))
+HSpecCalibrateCollection::HSpecCalibrateCollection(IDataFactory *f) :
+    d_ptr(new HSpecCalibrateCollectionPrivate(this, f))
 {
 }
 
-HSpecCalibrateCollection::HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &p)
-    : d_ptr(&p)
+HSpecCalibrateCollection::HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &p) :
+    d_ptr(&p)
 {
 }
 

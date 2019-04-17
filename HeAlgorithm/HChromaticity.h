@@ -7,7 +7,7 @@
 
 #include "IChromaticity.h"
 #include "HCie.h"
-#include <QScopedPointer>
+#include <QtCore/QScopedPointer>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

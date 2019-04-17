@@ -1,6 +1,6 @@
 #include "HUsbPortCy7c68013_p.h"
 #include "include/ezusbsys.h"
-#include <QVariantMap>
+#include <QtCore/QVariant>
 #include <windows.h>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE

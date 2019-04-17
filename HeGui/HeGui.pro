@@ -50,7 +50,8 @@ Debug {
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeControllerd \
             -L$$DESTDIR -lHeDatad \
-            -L$$DESTDIR -lHePlugind
+            -L$$DESTDIR -lHePlugind \
+            -L$$DESTDIR -lHeSqld
 }
 
 Release {
@@ -60,7 +61,8 @@ Release {
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeController \
             -L$$DESTDIR -lHeData \
-            -L$$DESTDIR -lHePlugin
+            -L$$DESTDIR -lHePlugin \
+            -L$$DESTDIR -lHeSql
 }
 
 unix {

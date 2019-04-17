@@ -16,8 +16,9 @@ public:
 
 public:
     IDataFactory *factory;
-    ISpecCalibrateCollection *specCalibrates;
     IFileStream *fileStream;
+    ISpecCalibrateCollection *specCalibrates;
+    IGradeCollection *grades;
     quint32 contain;
 };
 

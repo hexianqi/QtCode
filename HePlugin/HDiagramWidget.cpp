@@ -1,7 +1,7 @@
 #include "HDiagramWidget_p.h"
-#include <QStylePainter>
-#include <QResizeEvent>
-#include <QStyleOptionFocusRect>
+#include <QtGui/QResizeEvent>
+#include <QtWidgets/QStylePainter>
+#include <QtWidgets/QStyleOptionFocusRect>
 
 HDiagramWidgetPrivate::HDiagramWidgetPrivate(HDiagramWidget *q) :
     q_ptr(q)

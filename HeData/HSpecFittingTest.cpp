@@ -1,6 +1,6 @@
 #include "HSpecFittingTest_p.h"
 #include "HeAlgorithm/HInterp.h"
-#include <QDataStream>
+#include <QtCore/QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
 

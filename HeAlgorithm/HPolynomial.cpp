@@ -1,7 +1,7 @@
 #include "HPolynomial.h"
 #include "gsl/gsl_poly.h"
 #include "gsl/gsl_complex_math.h"
-#include <QVector>
+#include <QtCore/QVector>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

@@ -25,6 +25,7 @@ protected:
     void buildDevice() override;
     void buildThread() override;
     void buildModel() override;
+    void buildDatabase() override;
     void buildTestWidget() override;
 };
 

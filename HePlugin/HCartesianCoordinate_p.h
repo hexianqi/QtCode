@@ -2,7 +2,7 @@
 #define HCARTESIANCOORDINATE_P_H
 
 #include "HCartesianCoordinate.h"
-#include <QRectF>
+#include <QtCore/QRectF>
 
 class HCartesianCoordinatePrivate
 {

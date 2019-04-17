@@ -4,10 +4,10 @@
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HProgressBar.h"
 #include "HePlugin/HSpecDiagramWidget.h"
-#include <QIcon>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QDebug>
+#include <QtGui/QIcon>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 

@@ -6,8 +6,8 @@
 #define HREFLECTFUN2_H
 
 #include "HExampleGlobal.h"
-#include <QObject>
-#include <QVariantMap>
+#include <QtCore/QObject>
+#include <QtCore/QVariant>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 

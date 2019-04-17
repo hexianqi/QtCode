@@ -30,28 +30,30 @@ HEADERS     += \
             HSql.h \
             HSqlGlobalInstance.h \
             HSqlHelper.h \
-    ISqlFactory.h \
-    HSqlFactory.h \
-    HSqlFactory_p.h \
-    ISqlDatabase.h \
-    HSqlDatabase.h \
-    HSqlDatabase_p.h \
-    ISqlTableModel.h
+            ISqlFactory.h \
+            ISqlDatabase.h \
+            ISqlTableModel.h \
+            HSqlFactory.h \
+            HSqlFactory_p.h \
+            HSqlDatabase.h \
+            HSqlDatabase_p.h \
+            HSqlTableModel.h \
+            HSqlTableModel_p.h
 
 
 SOURCES     += \
             HSql.cpp \
             HSqlGlobalInstance.cpp \
             HSqlHelper.cpp \
-    HSqlFactory.cpp \
-    HSqlDatabase.cpp
+            HSqlFactory.cpp \
+            HSqlDatabase.cpp \
+            HSqlTableModel.cpp
 
 INCLUDEPATH += ..
 
 Debug {
     TARGET = HeSqld
     LIBS    += -L$$DESTDIR -lHeCored
-
 }
 
 Release {

@@ -1,7 +1,7 @@
 #include "HVernierTracking_p.h"
-#include <QStyleOptionFocusRect>
-#include <QStylePainter>
-#include <QMouseEvent>
+#include <QtGui/QMouseEvent>
+#include <QtWidgets/QStyleOptionFocusRect>
+#include <QtWidgets/QStylePainter>
 
 HVernierTrackingPrivate::HVernierTrackingPrivate(Qt::Orientation o, QWidget *p)
     : HAbstractVernierTrackingPrivate(o, p)

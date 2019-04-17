@@ -1,8 +1,8 @@
 #include "HRibbonDiagramWidget_p.h"
 #include "HCartesianCoordinate.h"
 #include "HeAlgorithm/HInterp.h"
-#include <QAction>
-#include <QPainter>
+#include <QtGui/QPainter>
+#include <QtWidgets/QAction>
 
 HE_ALGORITHM_USE_NAMESPACE
 

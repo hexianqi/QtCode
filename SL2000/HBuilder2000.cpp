@@ -13,7 +13,10 @@
 #include "HeData/IDataFactory.h"
 #include "HeData/IFileStream.h"
 #include "HeData/ISpecCalibrateCollection.h"
-#include <QDebug>
+#include "HeSql/ISqlFactory.h"
+#include "HeSql/ISqlDatabase.h"
+#include "HeSql/ISqlTableModel.h"
+#include <QtCore/QDebug>
 
 HBuilder2000::HBuilder2000(HeGui::IMainWindow *parent) :
     HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
@@ -105,6 +108,26 @@ void HBuilder2000::buildModel()
     Q_D(HBuilder2000);
     d->model = d->controllerFactory->createModel("HSpecModel");
     HAppContext::setContextPointer("IModel", d->model);
+}
+
+void HBuilder2000::buildDatabase()
+{
+    Q_D(HBuilder2000);
+    auto field = QStringList() << tr("ID") << tr("Manufacturer") << tr("ProductName") << tr("ProductModel")  << tr("SampleNumber") << tr("Tester") << tr("TestInstitute")
+                               << tr("Temperature") << tr("Humidity") << tr("TestDate") << tr("TestTime")
+                               << tr("LuminousFluxSpec") << tr("LuminousPower")
+                               << tr("PeakWave") << tr("PeakBandwidth") << tr("DominantWave")
+                               << tr("ColorTemperature") << tr("ColorPurity")
+                               << tr("CC_x") << tr("CC_y") << tr("CC_up") << tr("CC_vp") << tr("Duv")
+                               << tr("RedRatio") << tr("GreenRadio") << tr("BlueRatio")
+                               << tr("Ra") << tr("Rx") << tr("EnergyGraph");
+    auto db = d->sqlFactory->createDatabase("HSqlDatabase");
+    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
+    db->openDatabase("SL2000.db");
+    db->insertTableModel("Spec", model);
+    model->setField(field);
+    model->setTable("Spec");
+    HAppContext::setContextPointer("ISqlTableModel", model);
 }
 
 void HBuilder2000::buildTestWidget()

@@ -59,7 +59,8 @@ Debug {
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeControllerd \
             -L$$DESTDIR -lHeGuid \
-            -L$$DESTDIR -lHePlugind
+            -L$$DESTDIR -lHePlugind \
+            -L$$DESTDIR -lHeSqld
 }
 
 Release {
@@ -69,7 +70,8 @@ Release {
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeController \
             -L$$DESTDIR -lHeGui \
-            -L$$DESTDIR -lHePlugin
+            -L$$DESTDIR -lHePlugin \
+            -L$$DESTDIR -lHeSql
 }
 
 

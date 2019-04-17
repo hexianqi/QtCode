@@ -1,6 +1,6 @@
 #include "HVernierChartView_p.h"
 #include "HGraphicsVernierTracking.h"
-#include <QGraphicsSimpleTextItem>
+#include <QtWidgets/QGraphicsSimpleTextItem>
 
 HVernierChartView::HVernierChartView(QWidget *parent) :
     HZoomChartView(*new HVernierChartViewPrivate, nullptr, parent)

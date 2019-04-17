@@ -3,8 +3,8 @@
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
 #include "HeController/ITestSpec.h"
-#include <QMessageBox>
-#include <QProgressDialog>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QProgressDialog>
 
 HE_GUI_BEGIN_NAMESPACE
 

@@ -2,7 +2,7 @@
 #define HABSTRACTMOUSESTRATEGY_P_H
 
 #include "HAbstractMouseStrategy.h"
-#include <QRectF>
+#include <QtCore/QRectF>
 
 class HAbstractMouseStrategyPrivate
 {

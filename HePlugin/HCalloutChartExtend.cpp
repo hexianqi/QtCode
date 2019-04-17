@@ -1,7 +1,7 @@
 #include "HCalloutChartExtend_p.h"
 #include "HGraphicsCalloutItem.h"
-#include <QChart>
-#include <QXYSeries>
+#include <QtCharts/QChart>
+#include <QtCharts/QXYSeries>
 
 HCalloutChartExtendPrivate::HCalloutChartExtendPrivate(QChart *c) :
     HAbstractChartExtendPrivate(c)

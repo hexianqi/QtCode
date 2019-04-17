@@ -6,7 +6,7 @@
 #define HREGISTER_H
 
 #include "HAlgorithmGlobal.h"
-#include <QScopedPointer>
+#include <QtCore/QScopedPointer>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

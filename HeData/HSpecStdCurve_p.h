@@ -3,7 +3,7 @@
 
 #include "HSpecStdCurve.h"
 #include "HAbstractCalibrateItem_p.h"
-#include <QVector>
+#include <QtCore/QVector>
 
 HE_DATA_BEGIN_NAMESPACE
 
