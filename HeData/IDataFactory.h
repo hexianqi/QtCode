@@ -17,7 +17,9 @@ class IExcelStream;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
+class IGrade;
 class IGradeCollection;
+class IGradeItem;
 
 class IDataFactory : public IInitializeable
 {
@@ -28,12 +30,16 @@ public:
     virtual IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建配置管理
     virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光谱校准时间
-    virtual ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准数据集
     virtual ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光谱校准数据
+    virtual ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建分级数据集
     virtual IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建分级数据
+    virtual IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建分级数据子项
+    virtual IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_DATA_END_NAMESPACE

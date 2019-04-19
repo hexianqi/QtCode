@@ -5,13 +5,13 @@
 #ifndef HSPECPELSWAVE_H
 #define HSPECPELSWAVE_H
 
-#include "HAbstractCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecPelsWavePrivate;
 
-class HE_DATA_EXPORT HSpecPelsWave : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecPelsWave : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecPelsWave)
 
@@ -21,11 +21,13 @@ public:
 
 public:
     QString typeName() override;
-    void restoreDefault() override;
+
+public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:
+    void restoreDefault();
     void setPelsWave(QPolygonF value);
     QPolygonF pelsWave();
     double toWave(double value);

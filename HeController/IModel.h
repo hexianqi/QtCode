@@ -8,14 +8,8 @@
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
-#include "HeCommunicate/HCommunicateGlobal.h"
 
 HE_CORE_USE_NAMESPACE
-
-HE_COMMUNICATE_BEGIN_NAMESPACE
-class IDevice;
-HE_COMMUNICATE_END_NAMESPACE
-HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

@@ -16,11 +16,10 @@ HDelayThreadPrivate::HDelayThreadPrivate(IModel *p)
 
 void HDelayThreadPrivate::enqueueAction(HActionType action, ulong delay)
 {
-    if(!running)
+    if (!running)
         return;
 
     QMutexLocker locker(mutex);
-
     ulong total = 0;
     for (auto action : actionCache)
         total += action.second;

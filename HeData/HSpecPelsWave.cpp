@@ -5,14 +5,14 @@
 HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecPelsWave::HSpecPelsWave()
-    : HAbstractCalibrateItem(*new HSpecPelsWavePrivate)
+HSpecPelsWave::HSpecPelsWave() :
+    HAbstractDataItem(*new HSpecPelsWavePrivate)
 {
     restoreDefault();
 }
 
-HSpecPelsWave::HSpecPelsWave(HSpecPelsWavePrivate &p)
-    : HAbstractCalibrateItem(p)
+HSpecPelsWave::HSpecPelsWave(HSpecPelsWavePrivate &p) :
+    HAbstractDataItem(p)
 {
 }
 
@@ -23,18 +23,6 @@ HSpecPelsWave::~HSpecPelsWave()
 QString HSpecPelsWave::typeName()
 {
     return "HSpecPelsWave";
-}
-
-void HSpecPelsWave::restoreDefault()
-{
-    Q_D(HSpecPelsWave);
-    d->pelsWave = QPolygonF() << QPointF(124, 404.7)
-                              << QPointF(300, 435.8)
-                              << QPointF(432, 546.1)
-                              << QPointF(900, 632.8)
-                              << QPointF(1275, 696.5)
-                              << QPointF(1540, 750.4)
-                              << QPointF(1760, 763.5);
 }
 
 void HSpecPelsWave::readContent(QDataStream &s)
@@ -53,6 +41,18 @@ void HSpecPelsWave::writeContent(QDataStream &s)
     s << quint32(1);
     s << d->datas;
     s << d->pelsWave;
+}
+
+void HSpecPelsWave::restoreDefault()
+{
+    Q_D(HSpecPelsWave);
+    d->pelsWave = QPolygonF() << QPointF(124, 404.7)
+                              << QPointF(300, 435.8)
+                              << QPointF(432, 546.1)
+                              << QPointF(900, 632.8)
+                              << QPointF(1275, 696.5)
+                              << QPointF(1540, 750.4)
+                              << QPointF(1760, 763.5);
 }
 
 void HSpecPelsWave::setPelsWave(QPolygonF value)

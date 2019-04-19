@@ -2,11 +2,11 @@
 #define HSPECSETTING_P_H
 
 #include "HSpecSetting.h"
-#include "HAbstractCalibrateItem_p.h"
+#include "HAbstractDataItem_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecSettingPrivate : public HAbstractCalibrateItemPrivate
+class HSpecSettingPrivate : public HAbstractDataItemPrivate
 {
 };
 

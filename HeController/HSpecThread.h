@@ -22,6 +22,8 @@ public:
 
 public:
     QString typeName() override;
+
+public:
     QString threadInfo() override;
 
 protected:

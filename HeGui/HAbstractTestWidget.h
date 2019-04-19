@@ -21,11 +21,8 @@ public:
     ~HAbstractTestWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
-
-public:
-    QVector<QMenu *> menus() override;
-    QVector<QToolBar *> toolBars() override;
+    QList<QMenu *> menus() override;
+    QList<QToolBar *> toolBars() override;
 
 public:
     void start() override;

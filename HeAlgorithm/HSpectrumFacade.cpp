@@ -55,26 +55,14 @@ void calcSpectrumEnergy(HSpecData *data)
     data->MaxEnergy = max;
     data->PeakWave = wave;
     data->Bandwidth = qFabs(x - y);
+    data->EnergyPercent.clear();
     for (auto p : data->Energy)
         data->EnergyPercent.append(QPointF(p.x(), 100 * p.y() / max));
 }
 
-QPolygonF calcSpectrumEnergyPercent(QPolygonF poly, double maxEnergy)
-{
-    double x,y;
-    QPolygonF r;
-    for (auto p : poly)
-    {
-        x = p.x();
-        y = qBound(0.0, 100 * p.y() / maxEnergy, 100.0);
-        r.append(QPointF(x, y));
-    }
-    return r;
-}
-
 HSpecFacadePrivate::HSpecFacadePrivate()
 {
-    chromaticity = std::shared_ptr<HChromaticity>(new HChromaticityV2());
+    chromaticity = std::shared_ptr<IChromaticity>(new HChromaticityV2());
     photopicVision = std::make_shared<HPhotopicVision>();
 }
 
@@ -101,8 +89,7 @@ void HSpecFacade::calcSpectrum(HSpecData *data)
 {
     calcSpectrumEnergy(data);
     d_ptr->chromaticity->calcSpectrum(data);
-    d_ptr->photopicVision->calcVisionRatio(data->Energy, data->EnergyRatio, data->RedRatio, data->GreenRadio, data->BlueRatio);
-    data->VisionEnergy = d_ptr->photopicVision->calcVisionEnergy(data->Energy);
+    d_ptr->photopicVision->calcSpectrum(data);
 }
 
 void HSpecFacade::setChromaticity(int type)
@@ -110,9 +97,9 @@ void HSpecFacade::setChromaticity(int type)
     d_ptr->setChromaticity(type);
 }
 
-std::shared_ptr<IChromaticity> HSpecFacade::getChromaticity()
+IChromaticity *HSpecFacade::chromaticity()
 {
-    return d_ptr->chromaticity;
+    return d_ptr->chromaticity.get();
 }
 
 HE_ALGORITHM_END_NAMESPACE

@@ -28,10 +28,6 @@ HAbstractBuilder::~HAbstractBuilder()
     qDebug() << __func__;
 }
 
-void HAbstractBuilder::initialize(QVariantMap /*param*/)
-{
-}
-
 void HAbstractBuilder::buildAll()
 {
     buildFactory();
@@ -55,7 +51,7 @@ void HAbstractBuilder::buildFactory()
     HAppContext::setContextPointer("IControllerFactory", d_ptr->controllerFactory);
     HAppContext::setContextPointer("IDataFactory", d_ptr->dataFactory);
     HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
-    HAppContext::setContextPointer("IGuiFactory", d_ptr->sqlFactory);
+    HAppContext::setContextPointer("ISqlFactory", d_ptr->sqlFactory);
 }
 
 void HAbstractBuilder::buildDatabase()

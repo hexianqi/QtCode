@@ -17,6 +17,9 @@
 #include "HeData/HSpecPelsWave.h"
 #include "HeData/HSpecSetting.h"
 #include "HeData/HSpecStdCurve.h"
+#include "HeData/HSpecLuminous.h"
+#include "HePlugin/HPluginHelper.h"
+#include <QtWidgets/QInputDialog>
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -40,6 +43,11 @@ HSpecCalibrateWidget::~HSpecCalibrateWidget()
     delete ui;
 }
 
+void HSpecCalibrateWidget::initialize(QVariantMap /*param*/)
+{
+
+}
+
 QString HSpecCalibrateWidget::typeName()
 {
     return "HSpecCalibrateWidget";
@@ -49,8 +57,8 @@ void HSpecCalibrateWidget::setSpecCalibrate(ISpecCalibrate *p)
 {
     Q_D(HSpecCalibrateWidget);
     d->specCalibrate = p;
-    d->fittingWidget->setData(static_cast<HSpecFitting *>(p->item("HSpecFitting")));
-    d->pelsWaveWidget->setData(static_cast<HSpecPelsWave *>(p->item("HSpecPelsWave")));
+    d->fittingWidget->setData(dynamic_cast<HSpecFitting *>(p->item("HSpecFitting")));
+    d->pelsWaveWidget->setData(dynamic_cast<HSpecPelsWave *>(p->item("HSpecPelsWave")));
     refreshCcdView(0);
 }
 
@@ -110,6 +118,7 @@ void HSpecCalibrateWidget::handleTestFitStateChanged(bool b)
     ui->pushButton_3->setEnabled(!b);
     ui->pushButton_4->setEnabled(!b);
     ui->pushButton_5->setEnabled(!b);
+    ui->pushButton_6->setEnabled(!b);
     ui->tabWidget_1->setCurrentIndex(b ? 0 : 1);
 }
 
@@ -123,7 +132,7 @@ void HSpecCalibrateWidget::on_pushButton_1_clicked()
 {
     Q_D(HSpecCalibrateWidget);
     HSpecSettingDialog dlg(this);
-    dlg.setData(static_cast<HSpecSetting *>(d->specCalibrate->item("HSpecSetting")));
+    dlg.setData(dynamic_cast<HSpecSetting *>(d->specCalibrate->item("HSpecSetting")));
     if (dlg.exec())
         d->model->syncTestData(ConfigContainType::CCT_Spec);
 }
@@ -145,10 +154,31 @@ void HSpecCalibrateWidget::on_pushButton_3_clicked()
 void HSpecCalibrateWidget::on_pushButton_4_clicked()
 {
     Q_D(HSpecCalibrateWidget);
-    static_cast<HSpecStdCurve *>(d->specCalibrate->item("HSpecStdCurve"))->setCurve(d->testSpec->sample(1));
+    auto energy = d->testSpec->data("[明视觉能量]").toDouble();
+    auto integral = d->testSpec->data("[积分时间]").toDouble();
+    if (energy < 0.01)
+        return;
+
+    auto item = dynamic_cast<HSpecLuminous *>(d->specCalibrate->item("HSpecLuminous"));
+
+    QInputDialog dlg(this);
+    HPluginHelper::initWidget("[标准光谱光通量]", &dlg);
+    dlg.setLabelText(tr("标准光通量："));
+    dlg.setDoubleValue(item->data("[标准光谱光通量]").toDouble());
+    if (dlg.exec())
+    {
+        item->setData("[标准光谱光通量]", dlg.doubleValue());
+        item->setData("[光谱光通量系数]", dlg.doubleValue() * integral / energy);
+    }
 }
 
 void HSpecCalibrateWidget::on_pushButton_5_clicked()
+{
+    Q_D(HSpecCalibrateWidget);
+    dynamic_cast<HSpecStdCurve *>(d->specCalibrate->item("HSpecStdCurve"))->setCurve(d->testSpec->sample(1));
+}
+
+void HSpecCalibrateWidget::on_pushButton_6_clicked()
 {
     Q_D(HSpecCalibrateWidget);
     d->fittingTimes = 0;
@@ -159,7 +189,7 @@ void HSpecCalibrateWidget::on_pushButton_5_clicked()
 void HSpecCalibrateWidget::refreshCcdView(int i)
 {
     Q_D(HSpecCalibrateWidget);
-    d->ccdView->addSeries(i, d->fittingWidget->fittingPoints().toList());
+    d->ccdView->addSeries(i, d->fittingWidget->fittingPoints());
 }
 
 void HSpecCalibrateWidget::refreshSpecWidget()

@@ -98,7 +98,7 @@ public:
     // 计算Duv
     double calcDuv(QPointF uv, double tc);
     // 计算主波长，色纯度
-    void calcDominantWave(QPointF xy, double &wave, double &purity);
+    QList<double> calcDominantWavePurity(QPointF xy);
     // 计算14种颜色样品的光谱反射数据
     void calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<double> &vi, QVector<double> &Yi);
     // 计算黑体轨迹色坐标

@@ -42,7 +42,7 @@ QString HSpecCalibrate::typeName()
     return "HSpecCalibrate";
 }
 
-ICalibrateItem *HSpecCalibrate::item(QString type)
+IDataItem *HSpecCalibrate::item(QString type)
 {
     if (type == "HSpecSetting")
         return d_ptr->setting;

@@ -5,13 +5,13 @@
 #ifndef HSPECLUMINOUS_H
 #define HSPECLUMINOUS_H
 
-#include "HAbstractCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecLuminousPrivate;
 
-class HSpecLuminous : public HAbstractCalibrateItem
+class HSpecLuminous : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecLuminous)
 
@@ -21,11 +21,13 @@ public:
 
 public:
     QString typeName() override;
-    void restoreDefault() override;
+
+public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:
+    void restoreDefault();
     double handle(double value);
 
 protected:

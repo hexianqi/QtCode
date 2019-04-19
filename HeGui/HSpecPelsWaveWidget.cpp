@@ -32,7 +32,7 @@ void HSpecPelsWaveWidget::saveData()
     QPolygonF poly;
 
     for (int i = 0; i < rowCount(); i++)
-        poly.append(QPointF(item(i, 0)->text().toDouble(), item(i, 1)->text().toDouble()));
+        poly << QPointF(item(i, 0)->text().toDouble(), item(i, 1)->text().toDouble());
     d->data->setPelsWave(poly);
     showData();
 }

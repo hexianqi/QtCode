@@ -24,26 +24,22 @@ HAbstractModel::HAbstractModel(QObject *parent) :
     IModel(parent),
     d_ptr(new HAbstractModelPrivate(this))
 {
-    initDelayThread();
 }
 
 HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent) :
     IModel(parent),
     d_ptr(&p)
 {
-    initDelayThread();
 }
 
 HAbstractModel::~HAbstractModel()
 {
     qDebug() << __func__;
-    d_ptr->delayThread->stop();
     if (d_ptr->initialized)
-        stopThread();
-}
-
-void HAbstractModel::initialize(QVariantMap /*param*/)
-{
+    {
+        stopDelayThread();
+        stopWorkThread();
+    }
 }
 
 void HAbstractModel::start()
@@ -51,8 +47,8 @@ void HAbstractModel::start()
     if (d_ptr->initialized)
         return;
 
-    initThread();
-    startThread();
+    initDelayThread();
+    initWorkThread();
     d_ptr->initialized = true;
 }
 
@@ -114,7 +110,24 @@ bool HAbstractModel::exportFile(quint32 type)
     return d_ptr->configManage->exportPart(type);
 }
 
-void HAbstractModel::initThread()
+void HAbstractModel::setConfigFile(QString fileName)
+{
+    d_ptr->configFileName = fileName;
+    HAppContext::setContextValue("ConfigFileName", fileName);
+}
+
+void HAbstractModel::initDelayThread()
+{
+    d_ptr->delayThread = new HDelayThread(this);
+    d_ptr->delayThread->start();
+}
+
+void HAbstractModel::stopDelayThread()
+{
+    d_ptr->delayThread->stop();
+}
+
+void HAbstractModel::initWorkThread()
 {
     QStringList list;
     for (auto t : d_ptr->threads->values())
@@ -128,30 +141,14 @@ void HAbstractModel::initThread()
         list << t->threadInfo();
     }
     emit threadInitFinished(list);
-}
-
-void HAbstractModel::startThread()
-{
     for (auto t : d_ptr->threads->values())
         t->start();
 }
 
-void HAbstractModel::stopThread()
+void HAbstractModel::stopWorkThread()
 {
     for (auto t : d_ptr->threads->values())
         t->stop();
-}
-
-void HAbstractModel::initDelayThread()
-{
-    d_ptr->delayThread = new HDelayThread(this);
-    d_ptr->delayThread->start();
-}
-
-void HAbstractModel::setConfigFile(QString fileName)
-{
-    d_ptr->configFileName = fileName;
-    HAppContext::setContextValue("ConfigFileName", fileName);
 }
 
 HE_CONTROLLER_END_NAMESPACE

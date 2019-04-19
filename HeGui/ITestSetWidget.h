@@ -29,8 +29,6 @@ public:
     virtual void handleAction(HActionType action) = 0;
     virtual bool setTestState(bool b) = 0;
     virtual bool setTestMode(int value) = 0;
-
-public:
     virtual bool testState() = 0;
     virtual int testMode() = 0;
 };

@@ -2,9 +2,9 @@
 #define HDETAILWIDGET2000_P_H
 
 #include "HDetailWidget2000.h"
-#include "HeGui/HAbstractDetailWidget_p.h"
+#include "HeGui/HAbstractTestDetailWidget_p.h"
 
-class HDetailWidget2000Private : public HAbstractDetailWidgetPrivate
+class HDetailWidget2000Private : public HAbstractTestDetailWidgetPrivate
 {
 };
 

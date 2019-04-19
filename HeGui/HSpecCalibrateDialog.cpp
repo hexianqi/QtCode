@@ -4,6 +4,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include <QtWidgets/QGridLayout>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -16,7 +17,7 @@ HSpecCalibrateDialog::HSpecCalibrateDialog(QWidget *parent) :
 
 HSpecCalibrateDialog::~HSpecCalibrateDialog()
 {
-
+    qDebug() << __func__;
 }
 
 void HSpecCalibrateDialog::done(int result)

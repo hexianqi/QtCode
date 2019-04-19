@@ -5,6 +5,7 @@
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QLabel>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -13,8 +14,7 @@ HSpecSampleWidgetPrivate::HSpecSampleWidgetPrivate(HSpecSampleWidget *q) :
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
     decimals = 0;
-    curveVisibles.append(true);
-    curveVisibles.append(true);
+    curveVisibles << true << true;
 }
 
 HSpecSampleWidget::HSpecSampleWidget(QWidget *parent) :
@@ -25,6 +25,7 @@ HSpecSampleWidget::HSpecSampleWidget(QWidget *parent) :
 
 HSpecSampleWidget::~HSpecSampleWidget()
 {
+    qDebug() << __func__;
 }
 
 void HSpecSampleWidget::setEnablePeak(bool b)
@@ -91,7 +92,7 @@ void HSpecSampleWidget::setCurve2Visible(bool b)
     refreshWidget();
 }
 
-void HSpecSampleWidget::setVernier(QVector<double> value)
+void HSpecSampleWidget::setVernier(QList<double> value)
 {
     Q_D(HSpecSampleWidget);
     d->verniers = value;

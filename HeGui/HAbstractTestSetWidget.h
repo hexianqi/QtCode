@@ -20,7 +20,6 @@ public:
     ~HAbstractTestSetWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
     bool setTestState(bool b) override;
     bool setTestMode(int value) override;
     bool testState() override;

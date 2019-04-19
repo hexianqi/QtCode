@@ -3,6 +3,7 @@
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
 #include "HeData/HSpecSetting.h"
+#include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
 
@@ -19,6 +20,7 @@ HSpecSettingDialog::HSpecSettingDialog(QWidget *parent) :
 
 HSpecSettingDialog::~HSpecSettingDialog()
 {
+    qDebug() << __func__;
     delete ui;
 }
 

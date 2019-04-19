@@ -28,7 +28,7 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 SOURCES     += \
             HAction.cpp \
             HGuiHelper.cpp \
-            HGuiFactory.cpp \
+            HGuiFactory.cpp
 
 HEADERS     += \
             HGuiGlobal.h \
@@ -37,7 +37,7 @@ HEADERS     += \
             HGuiHelper.h \
             IGuiFactory.h \
             HGuiFactory.h \
-            HGuiFactory_p.h \
+            HGuiFactory_p.h
 
 RESOURCES   = HeGui.qrc
 
@@ -71,6 +71,7 @@ unix {
 }
 
 include(builder.pri)
+include(collection.pri)
 include(handler.pri)
 include(mainWindow.pri)
 include(spec.pri)

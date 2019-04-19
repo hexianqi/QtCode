@@ -5,15 +5,19 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HGradeCollectionPrivate
+class HGradeCollectionPrivate : public HCollectionPrivate<IGrade>
 {
 public:
-    HGradeCollectionPrivate(HGradeCollection *, IDataFactory *);
+    HGradeCollectionPrivate(IDataFactory *);
 
 public:
-    HGradeCollection *q_ptr;
+    void readContent(QDataStream &);
+    void writeContent(QDataStream &);
+
+public:
     IDataFactory *factory;
     IFileStream *fileStream;
+    QString useIndex;
 };
 
 HE_DATA_END_NAMESPACE

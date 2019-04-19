@@ -8,14 +8,16 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HControllerFactory::HControllerFactory(QObject *parent)
-    : QObject(parent), d_ptr(new HControllerFactoryPrivate)
+HControllerFactory::HControllerFactory(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HControllerFactoryPrivate)
 {
     registerClass();
 }
 
-HControllerFactory::HControllerFactory(HControllerFactoryPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HControllerFactory::HControllerFactory(HControllerFactoryPrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
     registerClass();
 }

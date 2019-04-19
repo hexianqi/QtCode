@@ -7,14 +7,14 @@
 HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecSetting::HSpecSetting()
-    : HAbstractCalibrateItem(*new HSpecSettingPrivate)
+HSpecSetting::HSpecSetting() :
+    HAbstractDataItem(*new HSpecSettingPrivate)
 {
     restoreDefault();
 }
 
-HSpecSetting::HSpecSetting(HSpecSettingPrivate &p)
-    : HAbstractCalibrateItem(p)
+HSpecSetting::HSpecSetting(HSpecSettingPrivate &p) :
+    HAbstractDataItem(p)
 {
 }
 
@@ -25,6 +25,21 @@ HSpecSetting::~HSpecSetting()
 QString HSpecSetting::typeName()
 {
     return "HSpecSetting";
+}
+
+void HSpecSetting::readContent(QDataStream &s)
+{
+    Q_D(HSpecSetting);
+    quint32 version;
+    s >> version;
+    s >> d->datas;
+}
+
+void HSpecSetting::writeContent(QDataStream &s)
+{
+    Q_D(HSpecSetting);
+    s << quint32(1);
+    s << d->datas;
 }
 
 void HSpecSetting::restoreDefault()
@@ -42,21 +57,6 @@ void HSpecSetting::restoreDefault()
     setData("[光谱平滑帧数]", 1);
     setData("[光谱平滑次数]", 2);
     setData("[光谱平滑范围]", 2);
-}
-
-void HSpecSetting::readContent(QDataStream &s)
-{
-    Q_D(HSpecSetting);
-    quint32 version;
-    s >> version;
-    s >> d->datas;
-}
-
-void HSpecSetting::writeContent(QDataStream &s)
-{
-    Q_D(HSpecSetting);
-    s << quint32(1);
-    s << d->datas;
 }
 
 QVariantMap HSpecSetting::testParam()

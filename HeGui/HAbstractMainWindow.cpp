@@ -90,12 +90,10 @@ void HAbstractMainWindow::createActionGroup()
 {
     d_ptr->actionGroupImport = new QActionGroup(this);
     d_ptr->actionGroupExport = new QActionGroup(this);
-    auto it = d_ptr->importExport.constBegin();
-    while (it != d_ptr->importExport.constEnd())
+    for (auto i = d_ptr->importExport.constBegin(); i != d_ptr->importExport.constEnd(); i++)
     {
-        d_ptr->actionGroupImport->addAction(it.key())->setData(it.value());
-        d_ptr->actionGroupExport->addAction(it.key())->setData(it.value());
-        it++;
+        d_ptr->actionGroupImport->addAction(i.key())->setData(i.value());
+        d_ptr->actionGroupExport->addAction(i.key())->setData(i.value());
     }
     connect(d_ptr->actionGroupImport, &QActionGroup::triggered, this, &HAbstractMainWindow::importFile);
     connect(d_ptr->actionGroupExport, &QActionGroup::triggered, this, &HAbstractMainWindow::exportFile);

@@ -2,12 +2,12 @@
 #define HSPECFITTING_P_H
 
 #include "HSpecFitting.h"
-#include "HAbstractCalibrateItem_p.h"
+#include "HAbstractDataItem_p.h"
 #include <QtGui/QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HSpecFittingPrivate : public HAbstractCalibrateItemPrivate
+class HSpecFittingPrivate : public HAbstractDataItemPrivate
 {
 public:
     QPolygonF fittingPoints;

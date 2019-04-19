@@ -25,9 +25,9 @@ public:
 
 public:
     // 菜单
-    virtual QVector<QMenu *> menus() = 0;
+    virtual QList<QMenu *> menus() = 0;
     // 工具栏
-    virtual QVector<QToolBar *> toolBars() = 0;
+    virtual QList<QToolBar *> toolBars() = 0;
 
 public:
     // 启动

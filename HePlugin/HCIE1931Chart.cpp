@@ -138,9 +138,8 @@ bool HCIE1931Chart::isEnablePoint()
 void HCIE1931Chart::setGradeFocus(QPolygonF value)
 {
     Q_D(HCIE1931Chart);
-    d->gradeFocus->clear();
-    d->gradeFocus->append(value.toList());
-    d->gradeFocus->append(value.first());
+    auto p = value << value.first();
+    d->gradeFocus->replace(p);
 }
 
 void HCIE1931Chart::setGrades(QList<QPolygonF> value)
@@ -153,10 +152,10 @@ void HCIE1931Chart::setGrades(QList<QPolygonF> value)
 void HCIE1931Chart::addGrade(QPolygonF value, bool focus)
 {
     Q_D(HCIE1931Chart);
+    auto p = value << value.first();
     auto series = new QLineSeries;
     series->setPen(QPen(Qt::black));
-    series->append(value.toList());
-    series->append(value.first());
+    series->replace(p);
     addSeries(series);
     d->grades << series;
     if (focus)
@@ -176,16 +175,14 @@ void HCIE1931Chart::clearGrade()
 void HCIE1931Chart::setPointFocus(QPointF value)
 {
     Q_D(HCIE1931Chart);
-    d->pointFocus->clear();
-    d->pointFocus->append(value);
+    d->pointFocus->replace(0, value);
     emit pointFocusChanged(value);
 }
 
 void HCIE1931Chart::setPoints(QList<QPointF> value)
 {
     Q_D(HCIE1931Chart);
-    clearPoint();
-    d->points->append(value);
+    d->points->replace(value);
 }
 
 void HCIE1931Chart::addPoint(QPointF value, bool focus)
@@ -235,30 +232,33 @@ void HCIE1931Chart::readSeries()
     int i,n;
     double x,y;
     QString str;
+    QPolygonF horseshoeU, horseshoeL, planckian;
 
     QFile file(":/dat/Chromaticity.dat");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
 
+    in >> str >> n;
+    for (i = 0; i < n; i++)
+    {
+        in >> x >> y;
+        horseshoeU << QPointF(x,y);
+    }
+    horseshoeL << horseshoeU.first() << horseshoeU.last();
+    in >> str >> n;
+    for (i = 0; i < n; i++)
+    {
+        in >> x >> y;
+        planckian << QPointF(x,y);
+    }
+
     auto series0 = new QLineSeries;
     auto series1 = new QLineSeries;
-    in >> str >> n;
-    for (i = 0; i < n; i++)
-    {
-        in >> x >> y;
-        series0->append(x, y);
-    }
-    series1->append(series0->at(0));
-    series1->append(x, y);
+    series0->replace(horseshoeU);
+    series1->replace(horseshoeL);
     d->horseshoe->setUpperSeries(series0);
     d->horseshoe->setLowerSeries(series1);
-
-    in >> str >> n;
-    for (i = 0; i < n; i++)
-    {
-        in >> x >> y;
-        d->planckian->append(x, y);
-    }
+    d->planckian->replace(planckian);
     addSeries(d->horseshoe);
     addSeries(d->planckian);
     addSeries(d->pointFocus);
@@ -281,5 +281,6 @@ void HCIE1931Chart::updateHorseshoeBrush()
     tran.translate(-p1.x() * d->cie.width(), (p2.y() - 1) * d->cie.height());
     brush.setTexture(d->cie);
     brush.setTransform(tran);
-    d->horseshoe->setBrush(brush);
+    if (d->horseshoe->brush() != brush)
+        d->horseshoe->setBrush(brush);
 }

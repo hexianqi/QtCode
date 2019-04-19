@@ -88,10 +88,11 @@ double HCie1931::calcDuv(QPointF uv, double tc)
     return qSqrt(qPow(uvt.x() - uv.x(), 2) + qPow(uvt.y() - uv.y(), 2));
 }
 
-void HCie1931::calcDominantWave(QPointF xy, double &wave, double &purity)
+QList<double> HCie1931::calcDominantWavePurity(QPointF xy)
 {
     int i;
     double xd,lx,ly,ls,rx,ry,rs;
+    double wave,purity;
 
     auto slope = (xy.y() - 0.3333) / (xy.x() - 0.3333);
     auto left = xy.x() < 0.3333 ? slope <= _stdData.first().slope : slope < _stdData.last().slope;
@@ -138,6 +139,7 @@ void HCie1931::calcDominantWave(QPointF xy, double &wave, double &purity)
         wave = _stdData[i].wave + (xd - lx) / (rx - lx);
     }
     purity = (xy.x() - 0.3333) / (xd - 0.3333);
+    return QList<double>() << wave << purity;
 }
 
 void HCie1931::calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<double> &vi, QVector<double> &Yi)

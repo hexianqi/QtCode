@@ -38,7 +38,10 @@ IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 {
     auto p = HObjectFactory::createObject<IGuiHandler>(type, param, this);
     if (p == nullptr)
+    {
         p = new HTestHandler(this);
+        p->initialize(param);
+    }
     return p;
 }
 

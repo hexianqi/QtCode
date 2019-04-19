@@ -22,7 +22,7 @@ public:
     QString typeName() override;
 
 public:
-    ICalibrateItem *item(QString type) override;
+    IDataItem *item(QString type) override;
     QVariantMap testParam() override;
 
 public:

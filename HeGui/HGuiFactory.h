@@ -30,11 +30,11 @@ public:
 protected:
     HGuiFactory(HGuiFactoryPrivate &p, QObject *parent = nullptr);
 
-private:
-    void registerClass();
-
 protected:
     QScopedPointer<HGuiFactoryPrivate> d_ptr;
+
+private:
+    void registerClass();
 };
 
 HE_GUI_END_NAMESPACE

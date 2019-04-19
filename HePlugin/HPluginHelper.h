@@ -14,6 +14,7 @@ class QTableView;
 class QTableWidget;
 class QSpinBox;
 class QDoubleSpinBox;
+class QInputDialog;
 
 class QDESIGNER_WIDGET_EXPORT HPluginHelper
 {
@@ -29,6 +30,7 @@ public:
 public:
     static void initWidget(QString type, QSpinBox *widget);
     static void initWidget(QString type, QDoubleSpinBox *widget);
+    static void initWidget(QString type, QInputDialog *dlg);
 };
 
 #endif // HPLUGINHELPER_H

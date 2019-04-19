@@ -4,13 +4,13 @@
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecStdCurve::HSpecStdCurve()
-    : HAbstractCalibrateItem(*new HSpecStdCurvePrivate)
+    : HAbstractDataItem(*new HSpecStdCurvePrivate)
 {
     restoreDefault();
 }
 
 HSpecStdCurve::HSpecStdCurve(HSpecStdCurvePrivate &p)
-    : HAbstractCalibrateItem(p)
+    : HAbstractDataItem(p)
 {
 }
 
@@ -21,12 +21,6 @@ HSpecStdCurve::~HSpecStdCurve()
 QString HSpecStdCurve::typeName()
 {
     return "HSpecStdCurve";
-}
-
-void HSpecStdCurve::restoreDefault()
-{
-    Q_D(HSpecStdCurve);
-    d->curve.clear();
 }
 
 void HSpecStdCurve::readContent(QDataStream &s)
@@ -44,6 +38,12 @@ void HSpecStdCurve::writeContent(QDataStream &s)
     s << quint32(1);
     s << d->datas;
     s << d->curve;
+}
+
+void HSpecStdCurve::restoreDefault()
+{
+    Q_D(HSpecStdCurve);
+    d->curve.clear();
 }
 
 void HSpecStdCurve::setCurve(QVector<double> value)

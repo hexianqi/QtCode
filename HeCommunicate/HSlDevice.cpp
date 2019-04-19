@@ -1,31 +1,31 @@
-#include "HDeviceSL_p.h"
+#include "HSlDevice_p.h"
 #include "IPort.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HDeviceSL::HDeviceSL() :
-    HAbstractDevice(*new HDeviceSLPrivate)
+HSlDevice::HSlDevice() :
+    HAbstractDevice(*new HSlDevicePrivate)
 {
 }
 
-HDeviceSL::HDeviceSL(HDeviceSLPrivate &p) :
+HSlDevice::HSlDevice(HSlDevicePrivate &p) :
     HAbstractDevice(p)
 {
 }
 
-HDeviceSL::~HDeviceSL()
+HSlDevice::~HSlDevice()
 {
 }
 
-QString HDeviceSL::typeName()
+QString HSlDevice::typeName()
 {
-    return "HDeviceSL";
+    return "HSlDevice";
 }
 
-HErrorType HDeviceSL::setData(HActionType action, QVector<uchar> value, int delay)
+HErrorType HSlDevice::setData(HActionType action, QVector<uchar> value, int delay)
 {
-    Q_D(HDeviceSL);
-    auto param = d->actionParam.value(action);
+    Q_D(HSlDevice);
+    auto param = d->actionParams.value(action);
     if (param.size() < 4)
         return E_DEVICE_ACTION_ERROR;
 
@@ -46,10 +46,10 @@ HErrorType HDeviceSL::setData(HActionType action, QVector<uchar> value, int dela
     return E_OK;
 }
 
-HErrorType HDeviceSL::getData(HActionType action, QVector<uchar> &value, int delay)
+HErrorType HSlDevice::getData(HActionType action, QVector<uchar> &value, int delay)
 {
-    Q_D(HDeviceSL);
-    auto param = d->actionParam.value(action);
+    Q_D(HSlDevice);
+    auto param = d->actionParams.value(action);
     if (param.size() < 4)
         return E_DEVICE_ACTION_ERROR;
 
@@ -69,9 +69,9 @@ HErrorType HDeviceSL::getData(HActionType action, QVector<uchar> &value, int del
     return E_OK;
 }
 
-HErrorType HDeviceSL::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
+HErrorType HSlDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
-    Q_D(HDeviceSL);
+    Q_D(HSlDevice);
     return d->port->transport(downData, upData, delay);
 }
 

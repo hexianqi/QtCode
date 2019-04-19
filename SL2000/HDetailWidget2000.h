@@ -1,7 +1,7 @@
 #ifndef HDETAILWIDGET2000_H
 #define HDETAILWIDGET2000_H
 
-#include "HeGui/HAbstractDetailWidget.h"
+#include "HeGui/HAbstractTestDetailWidget.h"
 
 HE_GUI_USE_NAMESPACE
 
@@ -11,7 +11,7 @@ class HDetailWidget2000;
 
 class HDetailWidget2000Private;
 
-class HDetailWidget2000 : public HAbstractDetailWidget
+class HDetailWidget2000 : public HAbstractTestDetailWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HDetailWidget2000)
@@ -21,7 +21,10 @@ public:
     ~HDetailWidget2000() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
     void refreshWidget() override;
 
 private:

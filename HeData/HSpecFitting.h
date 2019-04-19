@@ -5,13 +5,13 @@
 #ifndef HSPECFITTING_H
 #define HSPECFITTING_H
 
-#include "HAbstractCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecFittingPrivate;
 
-class HE_DATA_EXPORT HSpecFitting : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecFitting : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecFitting)
 
@@ -20,12 +20,14 @@ public:
     ~HSpecFitting() override;
 
 public:
-    void restoreDefault() override;
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
+
+public:
+    virtual void restoreDefault();
     virtual void setFittingPoints(QPolygonF value);
     virtual QVector<double> handle(QVector<double> value, bool abovezero = true);
-    QPolygonF fittingPoints();
+    virtual QPolygonF fittingPoints();
 
 protected:
     HSpecFitting(HSpecFittingPrivate &p);

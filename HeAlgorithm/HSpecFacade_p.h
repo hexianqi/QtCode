@@ -2,6 +2,7 @@
 #define HSPECFACADE_P_H
 
 #include "HSpecFacade.h"
+#include <memory>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -22,6 +23,5 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
 
 #endif // HSPECFACADE_P_H

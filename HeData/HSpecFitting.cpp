@@ -4,28 +4,18 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecFitting::HSpecFitting()
-    : HAbstractCalibrateItem(*new HSpecFittingPrivate)
+HSpecFitting::HSpecFitting() :
+    HAbstractDataItem(*new HSpecFittingPrivate)
 {
 }
 
-HSpecFitting::HSpecFitting(HSpecFittingPrivate &p)
-    : HAbstractCalibrateItem(p)
+HSpecFitting::HSpecFitting(HSpecFittingPrivate &p) :
+    HAbstractDataItem(p)
 {
 }
 
 HSpecFitting::~HSpecFitting()
 {
-}
-
-void HSpecFitting::restoreDefault()
-{
-    Q_D(HSpecFitting);
-    setData("[光谱拟合基准像元]", 1000);
-    setData("[光谱拟合取样次数]", 100);
-    setData("[光谱拟合积分时间范围]", QPointF(10, 100));
-    setData("[光谱拟合有效范围]", QPointF(0, 65535));
-    d->fittingPoints.clear();
 }
 
 void HSpecFitting::readContent(QDataStream &s)
@@ -43,6 +33,16 @@ void HSpecFitting::writeContent(QDataStream &s)
     s << quint32(1);
     s << d->datas;
     s << d->fittingPoints;
+}
+
+void HSpecFitting::restoreDefault()
+{
+    Q_D(HSpecFitting);
+    setData("[光谱拟合基准像元]", 1000);
+    setData("[光谱拟合取样次数]", 100);
+    setData("[光谱拟合积分时间范围]", QPointF(10, 100));
+    setData("[光谱拟合有效范围]", QPointF(0, 65535));
+    d->fittingPoints.clear();
 }
 
 void HSpecFitting::setFittingPoints(QPolygonF value)

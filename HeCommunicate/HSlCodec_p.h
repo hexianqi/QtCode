@@ -1,16 +1,16 @@
-#ifndef HCODECSL_P_H
-#define HCODECSL_P_H
+#ifndef HSLCODEC_P_H
+#define HSLCODEC_P_H
 
 #include "HAbstractCodec_p.h"
-#include "HCodecSL.h"
+#include "HSlCodec.h"
 #include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HCodecSLPrivate : public HAbstractCodecPrivate
+class HSlCodecPrivate : public HAbstractCodecPrivate
 {
 public:
-    HCodecSLPrivate();
+    HSlCodecPrivate();
 
 public:
     QVector<bool> encrypts;
@@ -19,4 +19,4 @@ public:
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HCODECSL_P_H
+#endif // HSLCODEC_P_H

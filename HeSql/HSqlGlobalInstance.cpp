@@ -29,7 +29,7 @@ QStringList toCreateStyle(QStringList field)
 {
     QStringList list;
     for (auto f : field)
-        list << toCreateStyle(field);
+        list << toCreateStyle(f);
     return list;
 }
 

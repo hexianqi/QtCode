@@ -89,7 +89,7 @@ void HTestWidget::exportExcel()
 void HTestWidget::exportDatabase()
 {
     Q_D(HTestWidget);
-    QMap<QString, QVariant> data;
+    QVariantMap data;
     for (auto f : d->sqlTableModel->fields())
         data.insert(f, d->testData->data(toType(f)));
     d->sqlTableModel->addRecord(data);

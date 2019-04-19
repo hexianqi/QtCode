@@ -10,7 +10,7 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecEnergyWidget;
 class HResultTableWidget;
 class ITestSetWidget;
-class IDetailWidget;
+class ITestDetailWidget;
 HE_GUI_END_NAMESPACE
 
 class HTestWidget2000Private : public HTestWidgetPrivate
@@ -23,7 +23,7 @@ public:
     HCIE1931Widget *cieWidget;
     HResultTableWidget *resultWidget;
     ITestSetWidget *testSetWidget;
-    IDetailWidget *detailWidget;
+    ITestDetailWidget *detailWidget;
 
 public:
     QStringList resultOptionals;

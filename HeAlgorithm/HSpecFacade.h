@@ -7,12 +7,11 @@
 
 #include "HAlgorithmGlobal.h"
 #include <QtCore/QScopedPointer>
-#include <memory>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HSpecData;
 class IChromaticity;
+class HSpecData;
 class HSpecFacadePrivate;
 
 class HE_ALGORITHM_EXPORT HSpecFacade
@@ -27,7 +26,7 @@ public:
     // 设置色度参数计算方法
     void setChromaticity(int type);
     // 获取色度参数计算方法
-    std::shared_ptr<IChromaticity> getChromaticity();
+    IChromaticity *chromaticity();
 
 private:
     QScopedPointer<HSpecFacadePrivate> d_ptr;

@@ -25,7 +25,10 @@ public:
     ~HSpecCalibrateSetWidget() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
     void handleAction(HActionType action) override;
     bool setTestState(bool b) override;
     bool setTestMode(int value) override;

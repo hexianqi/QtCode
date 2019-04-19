@@ -1,23 +1,23 @@
 /***************************************************************************************************
-**      2019-04-08  HDeviceSL SL设备类。
+**      2019-04-08  HSlDevice SL设备类。
 ***************************************************************************************************/
 
-#ifndef HDEVICESL_H
-#define HDEVICESL_H
+#ifndef HSLDEVICE_H
+#define HSLDEVICE_H
 
 #include "HAbstractDevice.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HDeviceSLPrivate;
+class HSlDevicePrivate;
 
-class HDeviceSL : public HAbstractDevice
+class HSlDevice : public HAbstractDevice
 {
-    Q_DECLARE_PRIVATE(HDeviceSL)
+    Q_DECLARE_PRIVATE(HSlDevice)
 
 public:
-    explicit HDeviceSL();
-    ~HDeviceSL() override;
+    explicit HSlDevice();
+    ~HSlDevice() override;
 
 public:
     QString typeName() override;
@@ -27,7 +27,7 @@ public:
     HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HDeviceSL(HDeviceSLPrivate &);
+    HSlDevice(HSlDevicePrivate &);
 
 protected:
     virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
@@ -35,4 +35,4 @@ protected:
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HDEVICESL_H
+#endif // HSLDEVICE_H

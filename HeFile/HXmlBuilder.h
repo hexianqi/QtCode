@@ -15,9 +15,10 @@ class HXmlElement;
 class HE_FILE_EXPORT HXmlBuilder
 {
 public:
+    // 创建对象
     template <typename T>
     static T *createObject(HXmlElement *xe);
-
+    // 创建对象
     template <typename T>
     static T *createObject(HXmlElement *xe, QVariantMap param);
 };

@@ -41,7 +41,7 @@ protected:
 
 protected:
     CIE_UCS calcCieUcs(double tc);
-    bool exportIsotherm(QString fileName, QVector<ISOTHERM> data);
+    bool exportIsotherm(QString fileName, QList<ISOTHERM> data);
 
 protected:
     QScopedPointer<HChromaticityPrivate> d_ptr;

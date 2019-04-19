@@ -21,7 +21,10 @@ public:
     ~HTestSetWidget2000() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
     void handleAction(HActionType action) override;
     bool setTestState(bool b) override;
 

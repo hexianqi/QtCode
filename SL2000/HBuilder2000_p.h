@@ -4,11 +4,8 @@
 #include "HBuilder2000.h"
 #include "HeGui/HAbstractBuilder_p.h"
 
-
 class HBuilder2000Private : public HAbstractBuilderPrivate
 {
-public:
-    ISqlFactory *sqlFactory = nullptr;
 };
 
 #endif // HBUILDER2000_P_H

@@ -44,16 +44,16 @@ void HVernierWidget::updataVernier()
         return;
 
     double value;
-    QVector<double> values;
-    QStringList list;
+    QList<double> values;
+    QStringList texts;
     for (auto p : verniers)
     {
         value = d->tracking->orientation() == Qt::Vertical ? p.x() : p.y();
         values << value;
-        list << QString("%1").arg(value, 0, 'f', d->decimals);
+        texts << QString("%1").arg(value, 0, 'f', d->decimals);
     }
     emit vernierValueChanged(values);
-    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
+    emit vernierTextChanged(QString("(%1)").arg(texts.join(',')));
 }
 
 HVernierTracking *HVernierWidget::tracking()

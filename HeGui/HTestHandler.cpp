@@ -1,5 +1,6 @@
 #include "HTestHandler_p.h"
 #include <QtWidgets/QMessageBox>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -10,6 +11,12 @@ HTestHandler::HTestHandler(QObject *parent) :
 
 HTestHandler::~HTestHandler()
 {
+    qDebug() << __func__;
+}
+
+void HTestHandler::initialize(QVariantMap /*param*/)
+{
+
 }
 
 QString HTestHandler::typeName()

@@ -13,7 +13,7 @@ public:
 
 public:
     QGraphicsItem *gparent;
-    QVector<QGraphicsLineItem *> lines;
+    QList<QGraphicsLineItem *> lines;
 };
 
 #endif // HGRAPHICSVERNIERTRACKING_P_H

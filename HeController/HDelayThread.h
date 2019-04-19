@@ -13,8 +13,8 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HDelayThreadPrivate;
 class IModel;
+class HDelayThreadPrivate;
 
 class HDelayThread : public QThread
 {

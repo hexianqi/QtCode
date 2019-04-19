@@ -28,10 +28,6 @@ HAbstractTestSetWidget::~HAbstractTestSetWidget()
     qDebug() << __func__;
 }
 
-void HAbstractTestSetWidget::initialize(QVariantMap /*param*/)
-{
-}
-
 bool HAbstractTestSetWidget::setTestState(bool b)
 {
     if (d_ptr->testState == b)

@@ -5,7 +5,7 @@
 #ifndef HSPECDETAILWIDGET_H
 #define HSPECDETAILWIDGET_H
 
-#include "HAbstractDetailWidget.h"
+#include "HAbstractTestDetailWidget.h"
 
 namespace Ui {
 class HSpecDetailWidget;
@@ -15,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecDetailWidgetPrivate;
 
-class HSpecDetailWidget : public HAbstractDetailWidget
+class HSpecDetailWidget : public HAbstractTestDetailWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecDetailWidget)
@@ -25,7 +25,10 @@ public:
     ~HSpecDetailWidget() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
     void refreshWidget() override;
 
 private:

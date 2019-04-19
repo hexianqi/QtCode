@@ -21,7 +21,7 @@ public:
     ~HVernierChartView() override;
 
 signals:
-    void vernierValueChanged(QVector<double> value);
+    void vernierValueChanged(QList<double> value);
     void vernierTextChanged(QString value);
 
 public:

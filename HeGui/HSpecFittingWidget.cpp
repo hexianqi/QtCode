@@ -5,6 +5,7 @@
 #include "HeController/ITestSpec.h"
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -30,6 +31,7 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
 
 HSpecFittingWidget::~HSpecFittingWidget()
 {
+    qDebug() << __func__;
 }
 
 void HSpecFittingWidget::setData(HSpecFitting *p)

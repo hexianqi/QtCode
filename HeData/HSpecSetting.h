@@ -5,13 +5,13 @@
 #ifndef HSPECSETTING_H
 #define HSPECSETTING_H
 
-#include "HAbstractCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecSettingPrivate;
 
-class HE_DATA_EXPORT HSpecSetting : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecSetting : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecSetting)
 
@@ -21,11 +21,14 @@ public:
 
 public:
     QString typeName() override;
-    void restoreDefault() override;
+
+public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:
+    // 还原默认
+    void restoreDefault();
     // 测量参数
     QVariantMap testParam();
     // 计算通讯等待时间

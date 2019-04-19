@@ -2,11 +2,11 @@
 #define HSPECDETAILWIDGET_P_H
 
 #include "HSpecDetailWidget.h"
-#include "HAbstractDetailWidget_p.h"
+#include "HAbstractTestDetailWidget_p.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HSpecDetailWidgetPrivate : public HAbstractDetailWidgetPrivate
+class HSpecDetailWidgetPrivate : public HAbstractTestDetailWidgetPrivate
 {
 };
 

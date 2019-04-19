@@ -16,19 +16,18 @@ HSpecThreadPrivate::HSpecThreadPrivate()
                   << ACT_SET_SPECTRUM_SAMPLE_DELAY
                   << ACT_GET_INTEGRAL_TIME
                   << ACT_GET_SPECTRUM;
-
     protocolSpec = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
     protocols.insert("Spec", protocolSpec);
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
-HSpecThread::HSpecThread(QObject *parent)
-    : HAbstractThread(*new HSpecThreadPrivate, parent)
+HSpecThread::HSpecThread(QObject *parent) :
+    HAbstractThread(*new HSpecThreadPrivate, parent)
 {
 }
 
-HSpecThread::HSpecThread(HSpecThreadPrivate &p, QObject *parent)
-    : HAbstractThread(p, parent)
+HSpecThread::HSpecThread(HSpecThreadPrivate &p, QObject *parent) :
+    HAbstractThread(p, parent)
 {
 }
 
@@ -57,7 +56,6 @@ HErrorType HSpecThread::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
-        qDebug() << "ACT_SET_INTEGRAL_TIME:" + QDateTime::currentDateTime().time().toString("HH:mm:ss.zzz");
         return d->protocolSpec->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
     case ACT_SET_SPECTRUM_AVG_TIMES:
         return d->protocolSpec->setData(action, d->testSpec->data("[光谱平均次数]").toInt());

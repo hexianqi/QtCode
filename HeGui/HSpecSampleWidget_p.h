@@ -26,8 +26,8 @@ public:
 
 public:
     bool enablePeak = true;
-    QVector<bool> curveVisibles;
-    QVector<double> verniers;
+    QList<bool> curveVisibles;
+    QList<double> verniers;
 };
 
 HE_GUI_END_NAMESPACE

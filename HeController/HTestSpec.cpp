@@ -142,7 +142,7 @@ bool HTestSpecPrivate::calcSpec()
         return false;
     specFacade->calcSpectrum(specData);
     specData->LuminousFlux = calibrate->calcLuminous(specData->VisionEnergy / data("[积分时间]").toDouble());
-    specData->LuminousPower = specData->LuminousFlux * specData->EnergyRatio;
+    specData->LuminousPower = specData->LuminousFlux * specData->VisionEnergyRatio;
 //    m_pSpectrum->SDCM = m_pChromatism->calcSdcm(m_pSpectrum->ColorTemperature, m_pSpectrum->CoordinateXy);
     return true;
 }
@@ -179,11 +179,6 @@ HTestSpec::HTestSpec(HTestSpecPrivate &p)
 
 HTestSpec::~HTestSpec()
 {
-}
-
-void HTestSpec::initialize(QVariantMap param)
-{
-    HTestData::initialize(param);
 }
 
 QString HTestSpec::typeName()
@@ -224,12 +219,14 @@ QVariant HTestSpec::data(QString type)
         return d->specData->CoordinateUvp.y();
     if (type == "[Duv]")
         return d->specData->Duv;
+    if (type == "[明视觉能量]")
+        return d->specData->VisionEnergy;
     if (type == "[红色比]")
         return d->specData->RedRatio;
     if (type == "[蓝色比]")
         return d->specData->BlueRatio;
     if (type == "[绿色比]")
-        return d->specData->GreenRadio;
+        return d->specData->GreenRatio;
     if (type == "[显色指数]")
         return d->specData->RenderingIndexAvg;
     if (type == "[光谱光通量]")
@@ -308,15 +305,13 @@ QPointF HTestSpec::sampleMax(int type, double a, double b)
     auto s = sample(type);
     if (s.isEmpty())
         return QPointF();
-    int i, f, l;
-    double x,y;
     if (a > b)
         qSwap(a, b);
-    f = qBound(0, qFloor(a), s.size());
-    l = qBound(0, qCeil(b), s.size());
-    x = 0;
-    y = 0;
-    for (i = f; i < l; i++)
+    int f = qBound(0, qFloor(a), s.size());
+    int l = qBound(0, qCeil(b), s.size());
+    double x = 0.0;
+    double y = 0.0;
+    for (int i = f; i < l; i++)
     {
         if (y < s[i])
         {
@@ -333,10 +328,10 @@ QPolygonF HTestSpec::samplePoly(int type)
     if (s.isEmpty())
         return QPolygonF();
 
-    QPolygonF poly;
+    QPolygonF r;
     for (int i = 0; i < s.size(); i++)
-        poly.append(QPointF(i, s[i]));
-    return poly;
+        r << QPointF(i, s[i]);
+    return r;
 }
 
 QPolygonF HTestSpec::energy()

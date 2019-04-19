@@ -1,28 +1,28 @@
-#include "HCodecSL_p.h"
+#include "HSlCodec_p.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HCodecSLPrivate::HCodecSLPrivate()
+HSlCodecPrivate::HSlCodecPrivate()
 {
     encrypts << true << false;
     checkCodes << true << true;
 }
 
-HCodecSL::HCodecSL() :
-    HAbstractCodec(*new HCodecSLPrivate)
+HSlCodec::HSlCodec() :
+    HAbstractCodec(*new HSlCodecPrivate)
 {
 }
 
-HCodecSL::HCodecSL(HCodecSLPrivate &p) :
+HSlCodec::HSlCodec(HSlCodecPrivate &p) :
     HAbstractCodec(p)
 {
 }
 
-HCodecSL::~HCodecSL()
+HSlCodec::~HSlCodec()
 {
 }
 
-void HCodecSL::initialize(QVariantMap param)
+void HSlCodec::initialize(QVariantMap param)
 {
     if (param.contains("encrypt"))
         setEncrypt(param.value("encrypt").value<QVector<bool>>());
@@ -30,12 +30,12 @@ void HCodecSL::initialize(QVariantMap param)
         setCheckCode(param.value("checkCode").value<QVector<bool>>());
 }
 
-QString HCodecSL::typeName()
+QString HSlCodec::typeName()
 {
-    return "HCodecSL";
+    return "HSlCodec";
 }
 
-QVector<uchar> HCodecSL::preDecode(QVector<uchar> value)
+QVector<uchar> HSlCodec::preDecode(QVector<uchar> value)
 {
     int n = value.size();
     if (isEncrypt(1))
@@ -45,7 +45,7 @@ QVector<uchar> HCodecSL::preDecode(QVector<uchar> value)
     return QVector<uchar>(n);
 }
 
-QVector<uchar> HCodecSL::encode(QVector<uchar> value)
+QVector<uchar> HSlCodec::encode(QVector<uchar> value)
 {
     if (isEncrypt(0))
         value = encrypt(value);
@@ -54,7 +54,7 @@ QVector<uchar> HCodecSL::encode(QVector<uchar> value)
     return value;
 }
 
-QVector<uchar> HCodecSL::decode(QVector<uchar> value)
+QVector<uchar> HSlCodec::decode(QVector<uchar> value)
 {
     if (isCheckCode(1))
         value.takeLast();
@@ -63,50 +63,50 @@ QVector<uchar> HCodecSL::decode(QVector<uchar> value)
     return value;
 }
 
-bool HCodecSL::check(QVector<uchar> value)
+bool HSlCodec::check(QVector<uchar> value)
 {
     auto code = value.takeLast();
     return code == calcCheckCode(value);
 }
 
-void HCodecSL::setEncrypt(QVector<bool> value)
+void HSlCodec::setEncrypt(QVector<bool> value)
 {
-    Q_D(HCodecSL);
+    Q_D(HSlCodec);
     d->encrypts = value;
     if (d->encrypts.size() == 0)
         d->encrypts.append(false);
 }
 
-void HCodecSL::setCheckCode(QVector<bool> value)
+void HSlCodec::setCheckCode(QVector<bool> value)
 {
-    Q_D(HCodecSL);
+    Q_D(HSlCodec);
     d->checkCodes = value;
     if (d->checkCodes.size() == 0)
         d->checkCodes.append(false);
 }
 
-bool HCodecSL::isEncrypt(int n)
+bool HSlCodec::isEncrypt(int n)
 {
-    Q_D(HCodecSL);
+    Q_D(HSlCodec);
     n = qBound(0, n, d->encrypts.size() - 1);
     return d->encrypts[n];
 }
 
-bool HCodecSL::isCheckCode(int n)
+bool HSlCodec::isCheckCode(int n)
 {
-    Q_D(HCodecSL);
+    Q_D(HSlCodec);
     n = qBound(0, n, d->checkCodes.size() - 1);
     return d->checkCodes[n];
 }
 
-int HCodecSL::encryptSize(QVector<uchar> value)
+int HSlCodec::encryptSize(QVector<uchar> value)
 {
     Q_UNUSED(value)
     return 2;
     // return qCeil(value.size() / 7.0);
 }
 
-QVector<uchar> HCodecSL::encrypt(QVector<uchar> value)
+QVector<uchar> HSlCodec::encrypt(QVector<uchar> value)
 {
     int n = value.size();
     int m = encryptSize(value);
@@ -120,7 +120,7 @@ QVector<uchar> HCodecSL::encrypt(QVector<uchar> value)
     return result;
 }
 
-QVector<uchar> HCodecSL::decrypt(QVector<uchar> value)
+QVector<uchar> HSlCodec::decrypt(QVector<uchar> value)
 {
     int n = value.size() - encryptSize(value);
     QVector<uchar> result(n);
@@ -135,7 +135,7 @@ QVector<uchar> HCodecSL::decrypt(QVector<uchar> value)
     return result;
 }
 
-uchar HCodecSL::calcCheckCode(QVector<uchar> value)
+uchar HSlCodec::calcCheckCode(QVector<uchar> value)
 {
     uint sum = 0;
     for (auto i : value)

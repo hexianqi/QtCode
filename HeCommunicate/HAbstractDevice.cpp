@@ -33,7 +33,7 @@ void HAbstractDevice::initialize(QVariantMap param)
 
 bool HAbstractDevice::isSupport(HActionType action)
 {
-    return d_ptr->actionParam.contains(action);
+    return d_ptr->actionParams.contains(action);
 }
 
 void HAbstractDevice::setPort(IPort* port, int num, bool scan)
@@ -50,7 +50,7 @@ void HAbstractDevice::setDeviceID(int id)
 
 void HAbstractDevice::addActionParam(HActionType action, QList<uchar> value)
 {
-    d_ptr->actionParam.insert(action, value);
+    d_ptr->actionParams.insert(action, value);
 }
 
 HErrorType HAbstractDevice::open()

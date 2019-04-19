@@ -12,7 +12,7 @@ public:
     int portNum;
     bool portNumScan;
     int deviceID;
-    QMap<HActionType, QList<uchar>> actionParam;
+    QMap<HActionType, QList<uchar>> actionParams;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

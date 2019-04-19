@@ -8,6 +8,7 @@
 #include <QtWidgets/QGraphicsSimpleTextItem>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -25,6 +26,7 @@ HSpecSampleChartView::HSpecSampleChartView(QWidget *parent) :
 
 HSpecSampleChartView::~HSpecSampleChartView()
 {
+    qDebug() << __func__;
 }
 
 void HSpecSampleChartView::setEnablePeak(bool b)
@@ -79,7 +81,7 @@ void HSpecSampleChartView::refreshRight()
     d->textRight->setText(QString("(%1)").arg(list.join(',')));
 }
 
-void HSpecSampleChartView::setVernier(QVector<double> value)
+void HSpecSampleChartView::setVernier(QList<double> value)
 {
     Q_D(HSpecSampleChartView);
     d->verniers = value;

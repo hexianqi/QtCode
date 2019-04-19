@@ -24,8 +24,4 @@ HAbstractGuiHandler::~HAbstractGuiHandler()
     qDebug() << __func__;
 }
 
-void HAbstractGuiHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 HE_GUI_END_NAMESPACE

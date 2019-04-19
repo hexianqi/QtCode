@@ -6,6 +6,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QInputDialog>
 
 HE_CORE_USE_NAMESPACE
 
@@ -218,4 +219,12 @@ void HPluginHelper::initWidget(QString type, QDoubleSpinBox *widget)
     widget->setDecimals(info->decimals());
     if (!unit.isEmpty())
         widget->setSuffix(QString(" %1").arg(unit));
+}
+
+void HPluginHelper::initWidget(QString type, QInputDialog *dlg)
+{
+    auto info = toFormatInfo(type);
+    dlg->setInputMode(QInputDialog::DoubleInput);
+    dlg->setDoubleRange(info->min(), info->max());
+    dlg->setDoubleDecimals(info->decimals());
 }

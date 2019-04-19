@@ -1,23 +1,23 @@
 /***************************************************************************************************
-**      2019-04-08  HCodecSL    SL编码类。
+**      2019-04-08  HSlCodec Sl编码类。
 ***************************************************************************************************/
 
-#ifndef HCODECSL_H
-#define HCODECSL_H
+#ifndef HSLCODEC_H
+#define HSLCODEC_H
 
 #include "HAbstractCodec.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HCodecSLPrivate;
+class HSlCodecPrivate;
 
-class HCodecSL : public HAbstractCodec
+class HSlCodec : public HAbstractCodec
 {
-    Q_DECLARE_PRIVATE(HCodecSL)
+    Q_DECLARE_PRIVATE(HSlCodec)
 
 public:
-    explicit HCodecSL();
-    ~HCodecSL() override;
+    explicit HSlCodec();
+    ~HSlCodec() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -30,7 +30,7 @@ public:
     bool check(QVector<uchar> value) override;
 
 protected:
-    HCodecSL(HCodecSLPrivate &);
+    HSlCodec(HSlCodecPrivate &);
 
 protected:
     void setEncrypt(QVector<bool> value);
@@ -45,4 +45,4 @@ protected:
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HCODECSL_H
+#endif // HSLCODEC_H

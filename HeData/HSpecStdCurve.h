@@ -5,13 +5,13 @@
 #ifndef HSPECSTDCURVE_H
 #define HSPECSTDCURVE_H
 
-#include "HAbstractCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecStdCurvePrivate;
 
-class HE_DATA_EXPORT HSpecStdCurve : public HAbstractCalibrateItem
+class HE_DATA_EXPORT HSpecStdCurve : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecStdCurve)
 
@@ -21,11 +21,13 @@ public:
 
 public:
     QString typeName() override;
-    void restoreDefault() override;
+
+public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:
+    void restoreDefault();
     void setCurve(QVector<double> value);
     QVector<double> curve();
 

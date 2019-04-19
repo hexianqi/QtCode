@@ -21,13 +21,6 @@ QString HSpecFittingTest::typeName()
     return "HSpecFittingTest";
 }
 
-void HSpecFittingTest::restoreDefault()
-{
-    Q_D(HSpecFittingTest);
-    HSpecFitting::restoreDefault();
-    d->allFittingPoints.clear();
-}
-
 void HSpecFittingTest::readContent(QDataStream &s)
 {
     Q_D(HSpecFittingTest);
@@ -43,6 +36,13 @@ void HSpecFittingTest::writeContent(QDataStream &s)
     s << quint32(1);
     s << d->datas;
     s << d->allFittingPoints;
+}
+
+void HSpecFittingTest::restoreDefault()
+{
+    Q_D(HSpecFittingTest);
+    HSpecFitting::restoreDefault();
+    d->allFittingPoints.clear();
 }
 
 void HSpecFittingTest::setFittingPoints(QPolygonF value)

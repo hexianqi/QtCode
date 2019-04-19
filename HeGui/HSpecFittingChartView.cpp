@@ -6,6 +6,7 @@
 #include <QtWidgets/QAction>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -17,9 +18,10 @@ HSpecFittingChartView::HSpecFittingChartView(QWidget *parent) :
 
 HSpecFittingChartView::~HSpecFittingChartView()
 {
+    qDebug() << __func__;
 }
 
-void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
+void HSpecFittingChartView::addSeries(int id, QPolygonF value)
 {
     Q_D(HSpecFittingChartView);
     if (value.size() <= 0)
@@ -27,7 +29,7 @@ void HSpecFittingChartView::addSeries(int id, QList<QPointF> value)
     removeSeries(id);
     auto series = new QLineSeries();
     series->setName(QString("Line %1").arg(id));
-    series->append(value);
+    series->replace(value);
     d->chart->addSeries(series);
     d->marker->connectExtend();
     d->callout->connectExtend(series);

@@ -30,6 +30,11 @@ HBuilderSpec::~HBuilderSpec()
     qDebug() << __func__;
 }
 
+void HBuilderSpec::initialize(QVariantMap /*param*/)
+{
+
+}
+
 QString HBuilderSpec::typeName()
 {
     return "HBuilderSpec";
@@ -73,7 +78,7 @@ void HBuilderSpec::buildDevice()
     QVariantMap param;
     param.insert("timeOut", 3000);
     auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-    auto device = d->communicateFactory->createDevice("HDeviceSL");
+    auto device = d->communicateFactory->createDevice("HSlDevice");
     auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
     auto protocol = d->communicateFactory->createProtocol("HProtocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");

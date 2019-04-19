@@ -15,7 +15,7 @@ class HSpecFittingChartView;
 class HSpecEnergyWidget;
 class HSpecPelsWaveWidget;
 class HSpecFittingLinearWidget;
-class IDetailWidget;
+class ITestDetailWidget;
 
 class HSpecCalibrateWidgetPrivate : public HAbstractTestWidgetPrivate
 {
@@ -33,7 +33,7 @@ public:
     HSpecPelsWaveWidget *pelsWaveWidget;
     HSpecFittingLinearWidget *fittingWidget;
     ITestSetWidget *testSetWidget;
-    IDetailWidget *detailWidget;
+    ITestDetailWidget *detailWidget;
 
 public:
     int fittingTimes = 0;

@@ -334,16 +334,21 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[色坐标up]",                     new HDataFormatInfo("[色坐标up]", 0, 1, 4, 0.001));
     hashDataFormatInfo.insert("[色坐标vp]",                     new HDataFormatInfo("[色坐标vp]", 0, 1, 4, 0.001));
     hashDataFormatInfo.insert("[Duv]",                          new HDataFormatInfo("[Duv]", 0, 0.5, 3, 0.01));
+    hashDataFormatInfo.insert("[明视觉能量]",                   new HDataFormatInfo("[明视觉能量]", 0, 99999, 2, 1.0));
     hashDataFormatInfo.insert("[红色比]",                       new HDataFormatInfo("[红色比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[蓝色比]",                       new HDataFormatInfo("[蓝色比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[绿色比]",                       new HDataFormatInfo("[绿色比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱能量百分比]",               new HDataFormatInfo("[光谱能量百分比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱光通量]",                   new HDataFormatInfo("[光谱光通量]", "lm", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[光功率]",                       new HDataFormatInfo("[光功率]", "mW", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[光效率]",                       new HDataFormatInfo("[光效率]]", "lm/W", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[色容差]",                       new HDataFormatInfo("[色容差]", "SDCM", 0, 100, 1, 1));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
     hashDataFormatInfo.insert("[环境湿度]",                     new HDataFormatInfo("[环境湿度]", "%", 0, 100, 1));
+    // 其他参数
+    hashDataFormatInfo.insert("[优先级]",                       new HDataFormatInfo("[优先级]", 0, 99999));
 
             //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
@@ -413,8 +418,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[光通量]"),                          FTypeInfo(tr("[光通量]"), tr("lm"), 0, 99999, 2, 100));
 //    hashFormatInfo.insert(tr("[光亮度]"),                          FTypeInfo(tr("[光亮度]"), tr("cd/m<sup>2</sup>"), 0, 99999, 2, 100));
 //    hashFormatInfo.insert(tr("[光照度]"),                          FTypeInfo(tr("[光照度]"), tr("lx"), 0, 99999, 2, 100));
-//    hashFormatInfo.insert(tr("[光功率]"),                          FTypeInfo(tr("[光功率]"), tr("mW"), 0, 99999, 2, 100));
-//    hashFormatInfo.insert(tr("[光效]"),                            FTypeInfo(tr("[光效]]"), tr("lm/W"), 0, 99999, 2, 100));
 //    //光强角度分布参数
 //    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));
 //    hashFormatInfo.insert(tr("[最大光强度]"),                      FTypeInfo(tr("[最大光强度]"), tr("mcd"), 0, 99999, 2, 100));

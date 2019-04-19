@@ -5,6 +5,7 @@
 #include "HeData/HSpecFitting.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtGui/QValidator>
+#include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
 
@@ -20,6 +21,7 @@ HSpecFittingLinearWidget::HSpecFittingLinearWidget(QWidget *parent):
 
 HSpecFittingLinearWidget::~HSpecFittingLinearWidget()
 {
+    qDebug() << __func__;
     delete ui;
 }
 

@@ -17,9 +17,6 @@ public:
     explicit HAbstractGuiHandler(QObject *parent = nullptr);
     ~HAbstractGuiHandler() override;
 
-public:
-    void initialize(QVariantMap param) override;
-
 protected:
     HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject *parent = nullptr);
 

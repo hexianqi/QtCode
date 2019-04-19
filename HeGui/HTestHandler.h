@@ -21,7 +21,10 @@ public:
     ~HTestHandler() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
     void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) override;
 };
 

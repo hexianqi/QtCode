@@ -4,6 +4,7 @@
 #include "HeController/IModel.h"
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
+#include <QtCore/QDebug>
 
 HTestSetWidget2000Private::HTestSetWidget2000Private()
 {
@@ -20,7 +21,13 @@ HTestSetWidget2000::HTestSetWidget2000(QWidget *parent) :
 
 HTestSetWidget2000::~HTestSetWidget2000()
 {
+    qDebug() << __func__;
     delete ui;
+}
+
+void HTestSetWidget2000::initialize(QVariantMap /*param*/)
+{
+
 }
 
 QString HTestSetWidget2000::typeName()

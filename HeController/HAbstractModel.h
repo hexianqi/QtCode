@@ -14,13 +14,11 @@ class HAbstractModelPrivate;
 class HE_CONTROLLER_EXPORT HAbstractModel : public IModel
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HAbstractModel)
 
 public:
     explicit HAbstractModel(QObject *parent = nullptr);
     ~HAbstractModel() override;
-
-public:
-    void initialize(QVariantMap param) override;
 
 public:
     void start() override;
@@ -37,11 +35,12 @@ protected:
     HAbstractModel(HAbstractModelPrivate &p, QObject *parent = nullptr);
 
 protected:
-    void initThread();
-    void startThread();
-    void stopThread();
-    void initDelayThread();
     void setConfigFile(QString fileName);
+    void initDelayThread();
+    void stopDelayThread();
+    void initWorkThread();
+    void stopWorkThread();
+
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

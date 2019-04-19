@@ -1,9 +1,9 @@
 /***************************************************************************************************
-**      2019-03-26  IDetailWidget 详情窗体接口。
+**      2019-03-26  ITestDetailWidget 测试详情窗体接口。
 ***************************************************************************************************/
 
-#ifndef IDETAILWIDGET_H
-#define IDETAILWIDGET_H
+#ifndef ITESTDETAILWIDGET_H
+#define ITESTDETAILWIDGET_H
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -13,7 +13,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class IDetailWidget : public QWidget, public IInitializeable
+class ITestDetailWidget : public QWidget, public IInitializeable
 {
     Q_OBJECT
 
@@ -27,4 +27,4 @@ public:
 
 HE_GUI_END_NAMESPACE
 
-#endif // IDETAILWIDGET_H
+#endif // ITESTDETAILWIDGET_H

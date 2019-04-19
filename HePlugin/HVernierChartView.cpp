@@ -35,17 +35,17 @@ void HVernierChartView::setDecimals(int value)
 void HVernierChartView::updataVernier()
 {
     Q_D(HVernierChartView);
-    QVector<double> values;
-    QStringList list;
+    QList<double> values;
+    QStringList texts;
     for (auto vernier : d->tracking->verniers())
     {
         auto point = chart()->mapToValue(vernier);
         auto value = d->tracking->orientation() == Qt::Vertical ? point.x() : point.y();
         values << value;
-        list << QString("%1").arg(value, 0, 'f', d->decimals);
+        texts << QString("%1").arg(value, 0, 'f', d->decimals);
     }
     emit vernierValueChanged(values);
-    emit vernierTextChanged(QString("(%1)").arg(list.join(',')));
+    emit vernierTextChanged(QString("(%1)").arg(texts.join(',')));
 }
 
 HGraphicsVernierTracking *HVernierChartView::tracking()

@@ -1,5 +1,6 @@
 #include "HPhotopicVision.h"
 #include "HInterp.h"
+#include "HSpecData.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
@@ -10,11 +11,14 @@ HPhotopicVision::HPhotopicVision()
     readStandard();
 }
 
-void HPhotopicVision::calcVisionRatio(QPolygonF value, double &energy, double &red, double &green, double &blue)
+void HPhotopicVision::calcSpectrum(HSpecData *data)
 {
+    if (data->Energy.isEmpty())
+        return;
+
     int i,j;
     double r,g,b,t;
-    double rgb,sum1,sum2;
+    double sum1,sum2;
 
     i = 0;
     j = 0;
@@ -23,63 +27,44 @@ void HPhotopicVision::calcVisionRatio(QPolygonF value, double &energy, double &r
     b = 0;
     sum1 = 0.0;
     sum2 = 0.0;
-    while (i < value.size() && j < _stdData.size())
+    while (i < data->Energy.size() && j < _stdData.size())
     {
-        if (qAbs(value[i].x() - _stdData[j].x()) < 1e-6)
+        if (qAbs(data->Energy[i].x() - _stdData[j].x()) < 1e-6)
         {
-            t = value[i].y() * _stdData[j].y();
-            sum1 += value[i].y();
+            t = data->Energy[i].y() * _stdData[j].y();
+            sum1 += data->Energy[i].y();
             sum2 += t;
-            if (value[i].x() >= 380 && value[i].x() < 500)
+            if (data->Energy[i].x() >= 380 && data->Energy[i].x() < 500)
                 b += t;
-            if (value[i].x() >= 500 && value[i].x() < 600)
+            if (data->Energy[i].x() >= 500 && data->Energy[i].x() < 600)
                 g += t;
-            if (value[i].x() >= 600 && value[i].x() < 780)
+            if (data->Energy[i].x() >= 600 && data->Energy[i].x() < 780)
                 r += t;
             i++;
             j++;
         }
-        else if (value[i].x() < _stdData[j].x())
+        else if (data->Energy[i].x() < _stdData[j].x())
             i++;
         else
             j++;
     }
     if (qFuzzyIsNull(sum2))
     {
-        energy = 0;
-        red = 0;
-        green = 0;
-        blue = 0;
+        data->VisionEnergy = 0;
+        data->VisionEnergyRatio = 0;
+        data->RedRatio = 0;
+        data->GreenRatio = 0;
+        data->BlueRatio = 0;
     }
     else
     {
-        rgb = r + g + b;
-        energy = 1000 * sum1 / sum2 / 683;
-        red = 100 * r / rgb;
-        green = 100 * g / rgb;
-        blue = 100 * b / rgb;
+        auto rgb = r + g + b;
+        data->VisionEnergy = sum2;
+        data->VisionEnergyRatio = 1000 * sum1 / sum2 / 683;
+        data->RedRatio = 100 * r / rgb;
+        data->GreenRatio = 100 * g / rgb;
+        data->BlueRatio = 100 * b / rgb;
     }
-}
-
-double HPhotopicVision::calcVisionEnergy(QPolygonF value)
-{
-    int i = 0;
-    int j = 0;
-    double energy = 0;
-    while (i < value.size() && j < _stdData.size())
-    {
-        if (qAbs(value[i].x() - _stdData[j].x()) < 1e-6)
-        {
-            energy += value[i].y() * _stdData[j].y();
-            i++;
-            j++;
-        }
-        else if (value[i].x() < _stdData[j].x())
-            i++;
-        else
-            j++;
-    }
-    return energy;
 }
 
 void HPhotopicVision::readStandard()
@@ -87,7 +72,6 @@ void HPhotopicVision::readStandard()
     int i,n;
     double x,y;
     QString str;
-    QVector<double> X,Y;
     QPolygonF poly;
 
     QFile file(":/dat/PhotopicVision.dat");
@@ -95,8 +79,6 @@ void HPhotopicVision::readStandard()
     QTextStream in(&file);
 
     in >> str >> n;
-    X.resize(n);
-    Y.resize(n);
     in >> str >> str;
     for (i = 0; i < n; i++)
     {

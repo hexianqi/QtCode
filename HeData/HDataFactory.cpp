@@ -4,6 +4,12 @@
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
+#include "HGradeCollection.h"
+#include "HSequentialGrade.h"
+#include "HParallelGrade.h"
+#include "HGradeItem.h"
+#include "HGradeItem2D.h"
+#include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
@@ -60,14 +66,6 @@ IConfigManage *HDataFactory::createConfigManage(QString type, QVariantMap param)
     return p;
 }
 
-ISpecCalibrate *HDataFactory::createSpecCalibrate(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    ISpecCalibrate *p = new HSpecCalibrate;
-    p->initialize(param);
-    return p;
-}
-
 ISpecCalibrateCollection *HDataFactory::createSpecCalibrateCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
@@ -76,20 +74,39 @@ ISpecCalibrateCollection *HDataFactory::createSpecCalibrateCollection(QString ty
     return p;
 }
 
+ISpecCalibrate *HDataFactory::createSpecCalibrate(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    ISpecCalibrate *p = new HSpecCalibrate;
+    p->initialize(param);
+    return p;
+}
+
 IGradeCollection *HDataFactory::createGradeCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-//    IGradeCollection *p = new HGradeCollection(this);
-//    p->initialize(param);
-//    return p;
+    IGradeCollection *p = new HGradeCollection(this);
+    p->initialize(param);
+    return p;
     return nullptr;
+}
+
+IGrade *HDataFactory::createGrade(QString type, QVariantMap param)
+{
+    return HFactory::createObject<IGrade>(type, param);
+}
+
+IGradeItem *HDataFactory::createGradeItem(QString type, QVariantMap param)
+{
+    return HFactory::createObject<IGradeItem>(type, param);
 }
 
 void HDataFactory::registerClass()
 {
-//    HFactory::registerClass<HSerialPort>("HSerialPort");
-//    HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
-//    HFactory::registerClass<HDeviceSL>("HDeviceSL");
+    HFactory::registerClass<HParallelGrade>("HParallelGrade");
+    HFactory::registerClass<HSequentialGrade>("HSequentialGrade");
+    HFactory::registerClass<HGradeItem>("HGradeItem");
+    HFactory::registerClass<HGradeItem2D>("HGradeItem2D");
 }
 
 HE_DATA_END_NAMESPACE

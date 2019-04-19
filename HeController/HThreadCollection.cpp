@@ -1,4 +1,5 @@
 #include "HThreadCollection_p.h"
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -14,6 +15,7 @@ HThreadCollection::HThreadCollection(HThreadCollectionPrivate &p) :
 
 HThreadCollection::~HThreadCollection()
 {
+    qDebug() << __func__;
 }
 
 QString HThreadCollection::typeName()

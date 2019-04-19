@@ -4,6 +4,7 @@
 #include "HeController/IModel.h"
 #include "HeController/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -22,7 +23,13 @@ HSpecCalibrateSetWidget::HSpecCalibrateSetWidget(QWidget *parent) :
 
 HSpecCalibrateSetWidget::~HSpecCalibrateSetWidget()
 {
+    qDebug() << __func__;
     delete ui;
+}
+
+void HSpecCalibrateSetWidget::initialize(QVariantMap /*param*/)
+{
+
 }
 
 QString HSpecCalibrateSetWidget::typeName()

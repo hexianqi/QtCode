@@ -1,5 +1,6 @@
 #include "HAction_p.h"
 #include "HeCore/IHandler.h"
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -16,6 +17,7 @@ HAction::HAction(HActionPrivate &p, QObject *parent)
 
 HAction::~HAction()
 {
+    qDebug() << __func__;
 }
 
 void HAction::initialize(QVariantMap param)

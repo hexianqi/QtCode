@@ -1,41 +1,41 @@
-#include "HDeviceSLCodec_p.h"
-#include "HCodecSL.h"
+#include "HSlCodecDevice_p.h"
+#include "HSlCodec.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HDeviceSLCodecPrivate::HDeviceSLCodecPrivate()
+HSlCodecDevicePrivate::HSlCodecDevicePrivate()
 {
-    codec = new HCodecSL;
+    codec = QSharedPointer<ICodec>(new HSlCodec);
 }
 
-HDeviceSLCodec::HDeviceSLCodec() :
-    HDeviceSL(*new HDeviceSLCodecPrivate)
-{
-}
-
-HDeviceSLCodec::~HDeviceSLCodec()
+HSlCodecDevice::HSlCodecDevice() :
+    HSlDevice(*new HSlCodecDevicePrivate)
 {
 }
 
-void HDeviceSLCodec::initialize(QVariantMap param)
+HSlCodecDevice::~HSlCodecDevice()
 {
-    Q_D(HDeviceSLCodec);
-    HDeviceSL::initialize(param);
+}
+
+void HSlCodecDevice::initialize(QVariantMap param)
+{
+    Q_D(HSlCodecDevice);
+    HSlDevice::initialize(param);
     d->codec->initialize(param);
 }
 
-QString HDeviceSLCodec::typeName()
+QString HSlCodecDevice::typeName()
 {
-    return "HDeviceSLCodec";
+    return "HSlCodecDevice";
 }
 
-HErrorType HDeviceSLCodec::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
+HErrorType HSlCodecDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
-    Q_D(HDeviceSLCodec);
+    Q_D(HSlCodecDevice);
 
     auto upData2 = d->codec->preDecode(upData);
     auto downData2 = d->codec->encode(downData);
-    auto error = HDeviceSL::transport(downData2, upData2, delay);
+    auto error = HSlDevice::transport(downData2, upData2, delay);
     if (error != E_OK)
         return error;
     if (!d->codec->check(upData2))

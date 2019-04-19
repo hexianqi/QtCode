@@ -38,9 +38,9 @@ HEADERS     += \
             HDataFactory_p.h \
             HConfigManage.h \
             HConfigManage_p.h \
-            ICalibrateItem.h \
-            HAbstractCalibrateItem.h \
-            HAbstractCalibrateItem_p.h
+    IDataItem.h \
+    HAbstractDataItem.h \
+    HAbstractDataItem_p.h
 
 INCLUDEPATH += ..
 
@@ -63,6 +63,6 @@ unix {
     INSTALLS += target
 }
 
-#include(grade.pri)
+include(grade.pri)
 include(spec.pri)
 include(stream.pri)

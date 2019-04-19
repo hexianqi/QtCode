@@ -24,9 +24,9 @@ void HSpecData::clear()
     ColorPurity = 0.0;
     RenderingIndex.fill(0, 14);
     RenderingIndexAvg = 0.0;
-    EnergyRatio = 0.0;
+    VisionEnergyRatio = 0.0;
     RedRatio = 0.0;
-    GreenRadio = 0.0;
+    GreenRatio = 0.0;
     BlueRatio = 0.0;
     VisionEnergy = 0.0;
     LuminousFlux = 0.0;

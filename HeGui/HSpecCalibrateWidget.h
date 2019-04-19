@@ -32,6 +32,7 @@ public:
     ~HSpecCalibrateWidget();
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:
@@ -52,6 +53,7 @@ protected slots:
     void on_pushButton_3_clicked();
     void on_pushButton_4_clicked();
     void on_pushButton_5_clicked();
+    void on_pushButton_6_clicked();
 
 protected:
     void refreshCcdView(int i);

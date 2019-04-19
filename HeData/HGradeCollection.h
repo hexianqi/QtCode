@@ -26,16 +26,11 @@ public:
 
 public:
     IFileStream *fileStream() override;
+    void setUseIndex(QString value) override;
+    int calcLevel(QVariantMap value, QString &text) override;
 
 protected:
     HGradeCollection(HGradeCollectionPrivate &);
-
-protected:
-    void readContent(QDataStream &);
-    void writeContent(QDataStream &);
-
-protected:
-    QScopedPointer<HGradeCollectionPrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE

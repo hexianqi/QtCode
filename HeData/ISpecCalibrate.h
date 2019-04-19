@@ -12,13 +12,13 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class ICalibrateItem;
+class IDataItem;
 
 class ISpecCalibrate : public IInitializeable
 {
 public:
     // 校准子项
-    virtual ICalibrateItem *item(QString type) = 0;
+    virtual IDataItem *item(QString type) = 0;
     // 测量参数
     virtual QVariantMap testParam() = 0;
 

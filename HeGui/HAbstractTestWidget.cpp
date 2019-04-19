@@ -29,16 +29,12 @@ HAbstractTestWidget::~HAbstractTestWidget()
     qDebug() << __func__;
 }
 
-void HAbstractTestWidget::initialize(QVariantMap /*param*/)
-{
-}
-
-QVector<QMenu *> HAbstractTestWidget::menus()
+QList<QMenu *> HAbstractTestWidget::menus()
 {
     return d_ptr->menus;
 }
 
-QVector<QToolBar *> HAbstractTestWidget::toolBars()
+QList<QToolBar *> HAbstractTestWidget::toolBars()
 {
     return d_ptr->toolBars;
 }

@@ -14,13 +14,13 @@ HChromaticityPrivate::HChromaticityPrivate()
     isotherm = std::make_shared<HIsotherm>();
 }
 
-HChromaticity::HChromaticity()
-    : d_ptr(new HChromaticityPrivate)
+HChromaticity::HChromaticity() :
+    d_ptr(new HChromaticityPrivate)
 {
 }
 
-HChromaticity::HChromaticity(HChromaticityPrivate &p)
-    : d_ptr(&p)
+HChromaticity::HChromaticity(HChromaticityPrivate &p) :
+    d_ptr(&p)
 {
 }
 
@@ -32,13 +32,14 @@ void HChromaticity::calcSpectrum(HSpecData *data)
 {
     if (data->Energy.isEmpty())
         return;
-
     data->CoordinateUv = d_ptr->cie1931->calcCoordinateUv(data->Energy);
     data->CoordinateXy = HSpecHelper::uv2xy(data->CoordinateUv);
     data->CoordinateUvp = HSpecHelper::uv2uvp(data->CoordinateUv);
     data->ColorTemperature = d_ptr->isotherm->calcColorTemperature(data->CoordinateUv);
     data->Duv = d_ptr->cie1931->calcDuv(data->CoordinateUv, data->ColorTemperature);
-    d_ptr->cie1931->calcDominantWave(data->CoordinateXy, data->DominantWave, data->ColorPurity);
+    auto r = d_ptr->cie1931->calcDominantWavePurity(data->CoordinateXy);
+    data->DominantWave = r.first();
+    data->ColorPurity = r.last();
     data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUv, data->Energy, data->ColorTemperature);
     data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
 }
@@ -82,13 +83,13 @@ bool HChromaticity::exportIsotherm(QString fileName, QPointF tc, double interval
 {
     int i,n;
     double t;
-    QVector<ISOTHERM> isotherm;
+    QList<ISOTHERM> isotherm;
 
     n = qCeil((tc.y() - tc.x()) / interval + 1);
     for (i = 0; i < n; i++)
     {
         t = tc.x() + interval * i;
-        isotherm.append(d_ptr->cie1931->calcIsotherm(t));
+        isotherm << d_ptr->cie1931->calcIsotherm(t);
     }
     return exportIsotherm(fileName, isotherm);
 }
@@ -96,14 +97,14 @@ bool HChromaticity::exportIsotherm(QString fileName, QPointF tc, double interval
 bool HChromaticity::exportIsotherm(QString fileName)
 {
     int i;
-    QVector<double> mrecpK;
-    QVector<ISOTHERM> isotherm;
+    QList<double> mrecpK;
+    QList<ISOTHERM> isotherm;
 
-    mrecpK.append(0.01);
+    mrecpK << 0.01;
     for (i = 1; i < 601; i++)
-        mrecpK.append(i);
-    for (i = 0; i < mrecpK.size(); i++)
-        isotherm.append(d_ptr->cie1931->calcIsotherm(1000000.0 / mrecpK[i]));
+        mrecpK << i;
+    for (auto k : mrecpK)
+        isotherm << d_ptr->cie1931->calcIsotherm(1000000.0 / k);
     return exportIsotherm(fileName, isotherm);
 }
 
@@ -114,11 +115,11 @@ bool HChromaticity::exportCieUcs(QString fileName, QPointF tc, double interval)
         return false;
 
     int i,j,n;
-    QVector<CIE_UCS> ucs;
+    QList<CIE_UCS> ucs;
 
     n = qCeil((tc.y() - tc.x()) / interval + 1);
     for (i = 0; i < n; i++)
-        ucs.append(calcCieUcs(tc.x() + interval * i));
+        ucs << calcCieUcs(tc.x() + interval * i);
 
     QTextStream out(&file);
     out << "[CIE_UCS]" << "\t" << n << endl;
@@ -241,7 +242,7 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     return ucs;
 }
 
-bool HChromaticity::exportIsotherm(QString fileName, QVector<ISOTHERM> data)
+bool HChromaticity::exportIsotherm(QString fileName, QList<HeAlgorithm::ISOTHERM> data)
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))

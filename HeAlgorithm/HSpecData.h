@@ -37,11 +37,11 @@ public:
     QVector<double> RenderingIndex;
     double RenderingIndexAvg;
     // 明视觉参数
-    double EnergyRatio;
-    double RedRatio;
-    double GreenRadio;
-    double BlueRatio;
     double VisionEnergy;
+    double VisionEnergyRatio;
+    double RedRatio;
+    double GreenRatio;
+    double BlueRatio;
     // 其他
     double LuminousFlux;
     double LuminousPower;

@@ -44,12 +44,10 @@ void HSpecCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
     s << quint32(datas.size());
-    auto i = datas.constBegin();
-    while (i != datas.constEnd())
+    for (auto i = datas.constBegin(); i != datas.constEnd(); i++)
     {
         s << i.key() << i.value()->typeName();
         i.value()->writeContent(s);
-        i++;
     }
 }
 
@@ -77,7 +75,5 @@ IFileStream *HSpecCalibrateCollection::fileStream()
     Q_D(HSpecCalibrateCollection);
     return d->fileStream;
 }
-
-
 
 HE_DATA_END_NAMESPACE

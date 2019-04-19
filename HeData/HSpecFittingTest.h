@@ -21,9 +21,13 @@ public:
 
 public:
     QString typeName() override;
-    void restoreDefault() override;
+
+public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
+
+public:
+    void restoreDefault() override;
     void setFittingPoints(QPolygonF value) override;
     QVector<double> handle(QVector<double> value, bool abovezero = true) override;
 

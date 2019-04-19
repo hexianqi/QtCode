@@ -21,8 +21,9 @@ public:
     ~HTestSpec() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
     QVariant data(QString type) override;
 
 public:
@@ -37,9 +38,11 @@ public:
 public:
     double sample(int type, int pel) override;
     QVector<double> sample(int type) override;
-    QPointF sampleMax(int type, double a, double b) override;
     QPolygonF samplePoly(int type) override;
+    QPointF sampleMax(int type, double a, double b) override;
     QPolygonF energy() override;
+
+public:
     double pelsToWave(double value) override;
 
 protected:

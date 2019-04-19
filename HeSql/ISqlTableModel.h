@@ -26,7 +26,7 @@ public:
     // 设置表格
     virtual void setTable(QString tableName) = 0;
     // 添加记录
-    virtual bool addRecord(QMap<QString, QVariant> value) = 0;
+    virtual bool addRecord(QVariantMap value) = 0;
 
 public:
     // 字段

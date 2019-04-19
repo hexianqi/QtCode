@@ -27,9 +27,11 @@ public:
     IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) override;
     IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) override;
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
-    ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
+    ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
     IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) override;
+    IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HDataFactory(HDataFactoryPrivate &p, QObject *parent = nullptr);

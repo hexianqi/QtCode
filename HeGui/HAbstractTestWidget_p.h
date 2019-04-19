@@ -20,8 +20,8 @@ public:
 public:
     IModel *model;
     ITestData *testData;
-    QVector<QMenu *> menus;
-    QVector<QToolBar *> toolBars;
+    QList<QMenu *> menus;
+    QList<QToolBar *> toolBars;
 };
 
 HE_GUI_END_NAMESPACE

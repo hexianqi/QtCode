@@ -11,16 +11,15 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+class HSpecData;
+
 class HPhotopicVision
 {
 public:
     HPhotopicVision();
 
 public:
-    // 计算明视觉光谱能量比、红色比、蓝色比、绿色比
-    void calcVisionRatio(QPolygonF value, double &energy, double &red, double &green, double &blue);
-    // 计算明视觉光谱能量
-    double calcVisionEnergy(QPolygonF value);
+    void calcSpectrum(HSpecData *);
 
 protected:
     void readStandard();

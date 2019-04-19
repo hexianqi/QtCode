@@ -22,9 +22,6 @@ public:
     ~HAbstractBuilder() override;
 
 public:
-    void initialize(QVariantMap param) override;
-
-public:
     void buildAll() override;
 
 protected:

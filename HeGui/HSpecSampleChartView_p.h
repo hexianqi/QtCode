@@ -22,7 +22,7 @@ public:
 
 public:
     bool enablePeak = true;
-    QVector<double> verniers;
+    QList<double> verniers;
 };
 
 HE_GUI_END_NAMESPACE

@@ -26,7 +26,7 @@ public:
 public:
     void setField(QStringList value) override;
     void setTable(QString tableName) override;
-    bool addRecord(QMap<QString, QVariant> value) override;
+    bool addRecord(QVariantMap value) override;
 
 public:
     QStringList fields() override;

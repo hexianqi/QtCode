@@ -28,15 +28,6 @@ QString HSpecFittingPolynom::typeName()
     return "HSpecFittingPolynom";
 }
 
-void HSpecFittingPolynom::restoreDefault()
-{
-    Q_D(HSpecFittingPolynom);
-    HSpecFitting::restoreDefault();
-    setData("[光谱拟合多项式项数]", 7);
-    d->ca.clear();
-    d->cova.clear();
-}
-
 void HSpecFittingPolynom::readContent(QDataStream &s)
 {
     Q_D(HSpecFittingPolynom);
@@ -54,6 +45,15 @@ void HSpecFittingPolynom::writeContent(QDataStream &s)
     s << d->datas;
     s << d->ca;
     s << d->cova;
+}
+
+void HSpecFittingPolynom::restoreDefault()
+{
+    Q_D(HSpecFittingPolynom);
+    HSpecFitting::restoreDefault();
+    setData("[光谱拟合多项式项数]", 7);
+    d->ca.clear();
+    d->cova.clear();
 }
 
 void HSpecFittingPolynom::setFittingPoints(QPolygonF value)

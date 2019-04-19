@@ -22,7 +22,7 @@ public:
     ~HSpecFittingChartView() override;
 
 public:
-    void addSeries(int id, QList<QPointF> value);
+    void addSeries(int id, QPolygonF value);
     void removeSeries(int id);
     void clearSeries();
 

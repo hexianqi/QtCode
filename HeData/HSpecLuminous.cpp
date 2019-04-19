@@ -4,13 +4,13 @@
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecLuminous::HSpecLuminous()
-    : HAbstractCalibrateItem(*new HSpecLuminousPrivate)
+    : HAbstractDataItem(*new HSpecLuminousPrivate)
 {
     restoreDefault();
 }
 
 HSpecLuminous::HSpecLuminous(HSpecLuminousPrivate &p)
-    : HAbstractCalibrateItem(p)
+    : HAbstractDataItem(p)
 {
 }
 
@@ -21,12 +21,6 @@ HSpecLuminous::~HSpecLuminous()
 QString HSpecLuminous::typeName()
 {
     return "HSpecLuminous";
-}
-
-void HSpecLuminous::restoreDefault()
-{
-    setData("[标准光谱光通量]", 0);
-    setData("[光谱光通量系数]", 0);
 }
 
 void HSpecLuminous::readContent(QDataStream &s)
@@ -42,6 +36,12 @@ void HSpecLuminous::writeContent(QDataStream &s)
     Q_D(HSpecLuminous);
     s << quint32(1);
     s << d->datas;
+}
+
+void HSpecLuminous::restoreDefault()
+{
+    setData("[标准光谱光通量]", 0);
+    setData("[光谱光通量系数]", 0);
 }
 
 double HSpecLuminous::handle(double value)

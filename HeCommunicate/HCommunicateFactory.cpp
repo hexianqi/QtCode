@@ -2,8 +2,8 @@
 #include "HSerialPort.h"
 #include "HUsbPortCy.h"
 #include "HDeviceCollection.h"
-#include "HDeviceSL.h"
-#include "HDeviceSLCodec.h"
+#include "HSlDevice.h"
+#include "HSlCodecDevice.h"
 #include "HProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
@@ -11,14 +11,16 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HCommunicateFactory::HCommunicateFactory(QObject *parent)
-    : QObject(parent), d_ptr(new HCommunicateFactoryPrivate)
+HCommunicateFactory::HCommunicateFactory(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HCommunicateFactoryPrivate)
 {
     registerClass();
 }
 
-HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
     registerClass();
 }
@@ -75,8 +77,8 @@ void HCommunicateFactory::registerClass()
 {
     HFactory::registerClass<HSerialPort>("HSerialPort");
     HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
-    HFactory::registerClass<HDeviceSL>("HDeviceSL");
-    HFactory::registerClass<HDeviceSLCodec>("HDeviceSLCodec");
+    HFactory::registerClass<HSlDevice>("HSlDevice");
+    HFactory::registerClass<HSlCodecDevice>("HSlCodecDevice");
 }
 
 HE_COMMUNICATE_END_NAMESPACE

@@ -12,7 +12,7 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HSpecData;
 
-class HE_ALGORITHM_EXPORT IChromaticity
+class IChromaticity
 {
 public:
     // 计算光谱参数

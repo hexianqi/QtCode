@@ -1,32 +1,40 @@
-#include "HAbstractCalibrateItem_p.h"
+#include "HAbstractDataItem_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-HAbstractCalibrateItem::HAbstractCalibrateItem()
-    : d_ptr(new HAbstractCalibrateItemPrivate)
+HAbstractDataItem::HAbstractDataItem() :
+    d_ptr(new HAbstractDataItemPrivate)
 {
 }
 
-HAbstractCalibrateItem::HAbstractCalibrateItem(HAbstractCalibrateItemPrivate &p)
-    : d_ptr(&p)
+HAbstractDataItem::HAbstractDataItem(HAbstractDataItemPrivate &p) :
+    d_ptr(&p)
 {
 }
 
-HAbstractCalibrateItem::~HAbstractCalibrateItem()
+HAbstractDataItem::~HAbstractDataItem()
 {
 }
 
-void HAbstractCalibrateItem::initialize(QVariantMap /*param*/)
+void HAbstractDataItem::initialize(QVariantMap param)
 {
-
+    if (param.contains("datas"))
+    {
+        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
+        while (i.hasNext())
+        {
+            i.next();
+            setData(i.key(), i.value());
+        }
+    }
 }
 
-void HAbstractCalibrateItem::setData(QString name, QVariant value)
+void HAbstractDataItem::setData(QString name, QVariant value)
 {
     d_ptr->datas.insert(name, value);
 }
 
-QVariant HAbstractCalibrateItem::data(QString name)
+QVariant HAbstractDataItem::data(QString name)
 {
     return d_ptr->datas.value(name);
 }

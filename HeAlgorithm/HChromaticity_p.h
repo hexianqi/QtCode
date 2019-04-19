@@ -18,5 +18,4 @@ public:
 
 HE_ALGORITHM_END_NAMESPACE
 
-
 #endif // HCHROMATICITY_P_H

@@ -42,3 +42,4 @@ Dest/HeTest.exe
 *.ini
 *.cfg
 *.zip
+*.db

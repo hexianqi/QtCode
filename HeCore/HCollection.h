@@ -25,11 +25,16 @@ public:
 
 public:
     void initialize(QVariantMap param) override;
+    QString typeName() override;
+
+public:
     void clear() override;
-    bool contains(QString name) override;
-    void insert(QString name, T *value) override;
+    bool contains(QString key) override;
+    void insert(QString key, T *value) override;
     T *first() override;
-    T *value(QString name) override;
+    T *value(QString key) override;
+    T *item(QString key) override;
+    QStringList keys() override;
     QList<T *> values() override;
 
 protected:
@@ -71,21 +76,27 @@ void HCollection<T>::initialize(QVariantMap param)
 }
 
 template <typename T>
+QString HCollection<T>::typeName()
+{
+    return "HCollection<T>";
+}
+
+template <typename T>
 void HCollection<T>::clear()
 {
     d_ptr->datas.clear();
 }
 
 template <typename T>
-bool HCollection<T>::contains(QString name)
+bool HCollection<T>::contains(QString key)
 {
-    return d_ptr->datas.contains(name);
+    return d_ptr->datas.contains(key);
 }
 
 template <typename T>
-void HCollection<T>::insert(QString name, T *value)
+void HCollection<T>::insert(QString key, T *value)
 {
-    d_ptr->datas.insert(name, value);
+    d_ptr->datas.insert(key, value);
 }
 
 template <typename T>
@@ -95,9 +106,21 @@ T *HCollection<T>::first()
 }
 
 template <typename T>
-T *HCollection<T>::value(QString name)
+T *HCollection<T>::value(QString key)
 {
-    return d_ptr->datas.value(name);
+    return d_ptr->datas.value(key);
+}
+
+template <typename T>
+T *HCollection<T>::item(QString key)
+{
+    return value(key);
+}
+
+template <typename T>
+QStringList HCollection<T>::keys()
+{
+    return d_ptr->datas.keys();
 }
 
 template <typename T>

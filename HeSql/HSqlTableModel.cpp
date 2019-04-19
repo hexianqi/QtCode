@@ -54,7 +54,7 @@ void HSqlTableModel::setTable(QString tableName)
     select();
 }
 
-bool HSqlTableModel::addRecord(QMap<QString, QVariant> value)
+bool HSqlTableModel::addRecord(QVariantMap value)
 {
 //    QVariant v;
 //    auto r = record();
