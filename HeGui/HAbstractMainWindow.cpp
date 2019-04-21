@@ -164,7 +164,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-//    d_ptr->model->start();
+    d_ptr->model->start();
 }
 
 void HAbstractMainWindow::initCentralWidget()

@@ -199,8 +199,8 @@ double HChromaticity::calcColorRenderingIndexAvg(QVector<double> index)
         return 0;
 
     auto ra = 0.0;
-    for (auto d : index)
-        ra += d;
+    for (int i = 0; i < 8; i++)
+        ra += index[i];
     return qMax(0.0, ra / 8.0);
 }
 

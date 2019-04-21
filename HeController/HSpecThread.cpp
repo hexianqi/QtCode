@@ -67,7 +67,7 @@ HErrorType HSpecThread::handleAction(HActionType action)
             d->testSpec->setData("[积分时间]", i / 500.0);
         return error;
     case ACT_GET_SPECTRUM:
-        error = d->protocolSpec->getData(action, t, d->testSpec->data("[光谱采样等待时间]").toInt());
+        error = d->protocolSpec->getData(action, t);//d->testSpec->data("[光谱采样等待时间]").toInt());
         if (error == E_OK)
             d->testSpec->setSample(t, true);
         return error;

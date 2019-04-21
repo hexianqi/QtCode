@@ -66,7 +66,7 @@ void HSpecSampleChartView::refreshCenter()
         auto p = d->testSpec->sampleMax(i, d->verniers.first(), d->verniers.last());
         list << QString(" Max%1(%2, %3) ").arg(i).arg(p.x()).arg(p.y());
     }
-    d->textCenter->setText(QString("%1").arg(list.join('\t')));
+    d->textCenter->setText(QString("%1").arg(list.join(' ')));
 }
 
 void HSpecSampleChartView::refreshRight()
