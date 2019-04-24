@@ -4,12 +4,12 @@
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 HDeviceCollection::HDeviceCollection() :
-    HCollection<IDevice>(*new HDeviceCollectionPrivate)
+    IDeviceCollection(*new HDeviceCollectionPrivate)
 {
 }
 
 HDeviceCollection::HDeviceCollection(HDeviceCollectionPrivate &p) :
-    HCollection<IDevice>(p)
+    IDeviceCollection(p)
 {
 }
 

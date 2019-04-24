@@ -52,12 +52,12 @@ void HSpecCalibrateCollectionPrivate::writeContent(QDataStream &s)
 }
 
 HSpecCalibrateCollection::HSpecCalibrateCollection(IDataFactory *f) :
-    HCollection<ISpecCalibrate>(*new HSpecCalibrateCollectionPrivate(f))
+    ISpecCalibrateCollection(*new HSpecCalibrateCollectionPrivate(f))
 {
 }
 
 HSpecCalibrateCollection::HSpecCalibrateCollection(HSpecCalibrateCollectionPrivate &p) :
-    HCollection<ISpecCalibrate>(p)
+    ISpecCalibrateCollection(p)
 {
 }
 

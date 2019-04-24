@@ -1,4 +1,7 @@
 #include "HReflectFun2.h"
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
+#include <QtCore/QTextStream>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 
@@ -24,12 +27,13 @@ public:
 
 private:
     // disable public constructor
-    EventHandler(const QString &name, EventHandler<T>::HandlerFuncType function)
-        : _function(function)
+    EventHandler(const QString &name, EventHandler<T>::HandlerFuncType function) :
+        _function(function)
     {
         this->setObjectName(name);
     }
 
+private:
     EventHandler<T>::HandlerFuncType _function;
 };
 

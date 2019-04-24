@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>355</width>
+    <width>178</width>
     <height>132</height>
    </rect>
   </property>
@@ -51,7 +51,7 @@
       </size>
      </property>
      <property name="text">
-      <string>终止曝光时间：</string>
+      <string>终止积分时间：</string>
      </property>
      <property name="scaledContents">
       <bool>false</bool>
@@ -76,7 +76,7 @@
       </size>
      </property>
      <property name="text">
-      <string>起始曝光时间：</string>
+      <string>起始积分时间：</string>
      </property>
      <property name="scaledContents">
       <bool>false</bool>

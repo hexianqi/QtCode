@@ -11,7 +11,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HAbstractDataItemPrivate;
 
-class HAbstractDataItem : virtual public IDataItem
+class HAbstractDataItem : public IDataItem
 {
 public:
     explicit HAbstractDataItem();

@@ -4,12 +4,12 @@
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 HThreadCollection::HThreadCollection() :
-    HCollection<IThread>(*new HThreadCollectionPrivate)
+    IThreadCollection(*new HThreadCollectionPrivate)
 {
 }
 
 HThreadCollection::HThreadCollection(HThreadCollectionPrivate &p) :
-    HCollection<IThread>(p)
+    IThreadCollection(p)
 {
 }
 

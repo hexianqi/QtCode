@@ -12,7 +12,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HDeviceCollectionPrivate;
 
-class HDeviceCollection : public HCollection<IDevice>, public IDeviceCollection
+class HDeviceCollection : public IDeviceCollection
 {
     Q_DECLARE_PRIVATE(HDeviceCollection)
 

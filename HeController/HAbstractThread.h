@@ -37,8 +37,6 @@ protected:
     virtual void run() override;
     virtual bool checkAction(HActionType action);
     virtual HErrorType handleAction(HActionType action) = 0;
-    virtual void readSettings();
-    virtual void writeSettings();
 
 protected:
     virtual void debugMode();
@@ -52,6 +50,10 @@ protected:
 
 protected:
     QScopedPointer<HAbstractThreadPrivate> d_ptr;
+
+private:
+    void readSettings();
+    void writeSettings();
 };
 
 HE_CONTROLLER_END_NAMESPACE

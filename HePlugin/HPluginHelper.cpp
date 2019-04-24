@@ -228,3 +228,40 @@ void HPluginHelper::initWidget(QString type, QInputDialog *dlg)
     dlg->setDoubleRange(info->min(), info->max());
     dlg->setDoubleDecimals(info->decimals());
 }
+
+bool HPluginHelper::selectedParameter(QWidget *parent, QStringList optional, QString &selected)
+{
+    if (optional.isEmpty())
+        return false;
+
+    if (optional.size() == 1)
+    {
+        selected = optional.first();
+        return true;
+    }
+
+    auto list = toCaption(optional);
+    QInputDialog dlg(parent);
+    dlg.setLabelText(QObject::tr("请选择参数："));
+    dlg.setInputMode(QInputDialog::TextInput);
+    dlg.setComboBoxItems(list);
+    if (!dlg.exec())
+        return false;
+    auto index = list.indexOf(dlg.textValue());
+    if (index < 0)
+        return false;
+    selected = optional[index];
+    return true;
+}
+
+bool HPluginHelper::getInputText(QWidget *parent, QString label, QString &text)
+{
+    QInputDialog dlg(parent);
+
+    dlg.setLabelText(label);
+    dlg.setInputMode(QInputDialog::TextInput);
+    if (!dlg.exec() || dlg.textValue().isEmpty())
+        return false;
+    text = dlg.textValue();
+    return true;
+}

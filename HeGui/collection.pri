@@ -1,7 +1,7 @@
 HEADERS += \
+    $$PWD/IItemDetailWidget.h \
     $$PWD/HListCollectionDialog.h \
     $$PWD/HListCollectionDialog_p.h \
-    $$PWD/IItemDetailWidget.h
 
 SOURCES += \
     $$PWD/HListCollectionDialog.cpp
@@ -9,3 +9,4 @@ SOURCES += \
 FORMS += \
     $$PWD/HListCollectionDialog.ui
 
+include(grade.pri)

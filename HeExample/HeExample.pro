@@ -35,6 +35,9 @@ HEADERS     += \
 
 RESOURCES   += HeExample.qrc
 
+DISTFILES   += \
+            Note
+
 INCLUDEPATH += ..
 
 Debug {
@@ -52,10 +55,10 @@ unix {
     INSTALLS += target
 }
 
-include(Reflect.pri)
-include(Layout.pri)
+include(layout.pri)
+include(reflect.pri)
+include(table.pri)
 
-DISTFILES += \
-    Note
+
 
 

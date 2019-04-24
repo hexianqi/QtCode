@@ -3,14 +3,16 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QHeaderView>
 
-HTableWidget::HTableWidget(QWidget *parent)
-    : QTableWidget(parent), d_ptr(new HTableWidgetPrivate)
+HTableWidget::HTableWidget(QWidget *parent) :
+    QTableWidget(parent),
+    d_ptr(new HTableWidgetPrivate)
 {
     init();
 }
 
-HTableWidget::HTableWidget(HTableWidgetPrivate &p, QWidget *parent)
-    : QTableWidget(parent), d_ptr(&p)
+HTableWidget::HTableWidget(HTableWidgetPrivate &p, QWidget *parent) :
+    QTableWidget(parent),
+    d_ptr(&p)
 {
     init();
 }
@@ -38,7 +40,7 @@ void HTableWidget::setEditTriggers(EditTriggers triggers)
 
 QTableWidgetItem *HTableWidget::item(int row, int column)
 {
-    QTableWidgetItem *item = QTableWidget::item(row, column);
+    auto item = QTableWidget::item(row, column);
     if (!item)
     {
         item = new QTableWidgetItem;

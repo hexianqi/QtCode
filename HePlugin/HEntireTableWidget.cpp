@@ -1,13 +1,13 @@
 #include "HEntireTableWidget_p.h"
 
-HEntireTableWidget::HEntireTableWidget(QWidget *parent)
-    : HTableWidget(*new HEntireTableWidgetPrivate, parent)
+HEntireTableWidget::HEntireTableWidget(QWidget *parent) :
+    HTableWidget(*new HEntireTableWidgetPrivate, parent)
 {
     init();
 }
 
-HEntireTableWidget::HEntireTableWidget(HEntireTableWidgetPrivate &p, QWidget *parent)
-    : HTableWidget(p, parent)
+HEntireTableWidget::HEntireTableWidget(HEntireTableWidgetPrivate &p, QWidget *parent) :
+    HTableWidget(p, parent)
 {
     init();
 }

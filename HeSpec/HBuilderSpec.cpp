@@ -110,6 +110,11 @@ void HBuilderSpec::buildModel()
     HAppContext::setContextPointer("IModel", d->model);
 }
 
+void HBuilderSpec::buildDatabase()
+{
+
+}
+
 void HBuilderSpec::buildTestWidget()
 {
     Q_D(HBuilderSpec);

@@ -12,7 +12,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HTestSpecPrivate;
 
-class HTestSpec : public HTestData, public ITestSpec
+class HTestSpec : public ITestSpec
 {
     Q_DECLARE_PRIVATE(HTestSpec)
 

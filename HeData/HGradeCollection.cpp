@@ -54,12 +54,12 @@ void HGradeCollectionPrivate::writeContent(QDataStream &s)
 }
 
 HGradeCollection::HGradeCollection(IDataFactory *f) :
-    HCollection<IGrade>(*new HGradeCollectionPrivate(f))
+    IGradeCollection(*new HGradeCollectionPrivate(f))
 {
 }
 
 HGradeCollection::HGradeCollection(HGradeCollectionPrivate &p) :
-    HCollection<IGrade>(p)
+    IGradeCollection(p)
 {
 }
 
@@ -72,10 +72,22 @@ QString HGradeCollection::typeName()
     return "HGradeCollection";
 }
 
+IDataFactory *HGradeCollection::dataFactory()
+{
+    Q_D(HGradeCollection);
+    return d->factory;
+}
+
 IFileStream *HGradeCollection::fileStream()
 {
     Q_D(HGradeCollection);
     return d->fileStream;
+}
+
+QString HGradeCollection::useIndex()
+{
+    Q_D(HGradeCollection);
+    return d->useIndex;
 }
 
 void HGradeCollection::setUseIndex(QString value)

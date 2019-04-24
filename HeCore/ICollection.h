@@ -19,6 +19,8 @@ public:
     virtual bool contains(QString key) = 0;
     // 插入
     virtual void insert(QString key, T *value) = 0;
+    // 删除
+    virtual int remove(QString key) = 0;
     // 第一个值
     virtual T *first() = 0;
     // key值

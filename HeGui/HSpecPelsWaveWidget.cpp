@@ -2,6 +2,7 @@
 #include "HeCore/HCore.h"
 #include "HeData/HSpecPelsWave.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
+#include <QtWidgets/QHeaderView>
 #include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
@@ -55,6 +56,7 @@ void HSpecPelsWaveWidget::init()
     delegate->setType(QStringList() << "[光谱像元]" << "[光谱波长]");
     setItemDelegate(delegate);
     setHorizontalHeaderLabels(QStringList() << tr("像元") << tr("波长"));
+    horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     setWindowTitle(tr("光谱像元波长"));
 }
 

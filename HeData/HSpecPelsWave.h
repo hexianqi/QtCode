@@ -30,8 +30,7 @@ public:
     void restoreDefault();
     void setPelsWave(QPolygonF value);
     QPolygonF pelsWave();
-    double toWave(double value);
-    double toPels(double value);
+    double handle(double value);
 
 protected:
     HSpecPelsWave(HSpecPelsWavePrivate &p);

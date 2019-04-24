@@ -12,13 +12,17 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HAbstractGradePrivate;
 
-class HAbstractGrade : public HCollection<IGradeItem>, public IGrade
+class HAbstractGrade : public IGrade
 {
     Q_DECLARE_PRIVATE(HAbstractGrade)
 
 public:
     explicit HAbstractGrade();
     virtual ~HAbstractGrade();
+
+public:
+    void readContent(QDataStream &, IDataFactory *) override;
+    void writeContent(QDataStream &) override;
 
 protected:
     HAbstractGrade(HAbstractGradePrivate &);

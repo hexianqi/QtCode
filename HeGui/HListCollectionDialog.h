@@ -28,8 +28,11 @@ public:
 public:
     void setItemDetailWidget(IItemDetailWidget *);
 
-protected:
-    HListCollectionDialog(HListCollectionDialogPrivate &p, QWidget *parent = nullptr);
+protected slots:
+    void on_pushButton_1_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
 
 protected:
     void setCurrentIndex(QModelIndex index);

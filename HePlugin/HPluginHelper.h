@@ -8,6 +8,7 @@
 #include <QtUiPlugin/QDesignerExportWidget>
 
 class QString;
+class QStringList;
 class QAction;
 class QWidget;
 class QTableView;
@@ -31,6 +32,11 @@ public:
     static void initWidget(QString type, QSpinBox *widget);
     static void initWidget(QString type, QDoubleSpinBox *widget);
     static void initWidget(QString type, QInputDialog *dlg);
+
+public:
+    static bool selectedParameter(QWidget *parent, QStringList optional, QString &selected);                     //选择参数
+    static bool getInputText(QWidget *parent, QString label, QString &text);                                     //输入文本
+
 };
 
 #endif // HPLUGINHELPER_H

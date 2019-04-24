@@ -6,7 +6,7 @@
 #define IGRADE_H
 
 #include "HDataGlobal.h"
-#include "HeCore/ICollection.h"
+#include "HeCore/HCollection.h"
 
 HE_CORE_USE_NAMESPACE
 
@@ -15,8 +15,11 @@ HE_DATA_BEGIN_NAMESPACE
 class IGradeItem;
 class IDataFactory;
 
-class IGrade : virtual public ICollection<IGradeItem>
+class IGrade : public HCollection<IGradeItem>
 {
+public:
+    using HCollection::HCollection;
+
 public:
     // 计算级别
     virtual int calcLevel(QVariantMap value, QString &text) = 0;

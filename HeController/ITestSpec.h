@@ -5,7 +5,7 @@
 #ifndef ITESTSPEC_H
 #define ITESTSPEC_H
 
-#include "ITestData.h"
+#include "HTestData.h"
 #include "HeData/HDataGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -15,8 +15,11 @@ HE_DATA_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class ITestSpec : virtual public ITestData
+class ITestSpec : public HTestData
 {
+public:
+    using HTestData::HTestData;
+
 public:
     // 设置校准数据
     virtual void setCalibrate(ISpecCalibrate *) = 0;

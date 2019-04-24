@@ -67,14 +67,9 @@ QPolygonF HSpecPelsWave::pelsWave()
     return d->pelsWave;
 }
 
-double HSpecPelsWave::toWave(double value)
+double HSpecPelsWave::handle(double value)
 {
     return HMath::interpolate(value, pelsWave());
-}
-
-double HSpecPelsWave::toPels(double value)
-{
-    return HMath::interpolateY(value, pelsWave());
 }
 
 HE_DATA_END_NAMESPACE

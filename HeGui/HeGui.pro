@@ -46,6 +46,7 @@ INCLUDEPATH += ..
 Debug {
     TARGET = HeGuid
     LIBS    += \
+            -L$$DESTDIR -lHeAlgorithmd \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeControllerd \
@@ -57,6 +58,7 @@ Debug {
 Release {
     TARGET  = HeGui
     LIBS    += \
+            -L$$DESTDIR -lHeAlgorithm \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeController \

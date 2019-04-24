@@ -131,7 +131,7 @@ double HDataFormatInfo::singleStep() const
 
 QDoubleValidator *HDataFormatInfo::toDoubleValidator(QObject * parent)
 {
-    QDoubleValidator *v = new QDoubleValidator(min(), max(), decimals(), parent);
+    auto v = new QDoubleValidator(min(), max(), decimals(), parent);
     v->setNotation(QDoubleValidator::StandardNotation);
     return v;
 }

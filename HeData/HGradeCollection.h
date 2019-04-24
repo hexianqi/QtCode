@@ -10,10 +10,9 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
 class HGradeCollectionPrivate;
 
-class HGradeCollection : public HCollection<IGrade>, public IGradeCollection
+class HGradeCollection : public IGradeCollection
 {
     Q_DECLARE_PRIVATE(HGradeCollection)
 
@@ -25,7 +24,9 @@ public:
     QString typeName() override;
 
 public:
+    IDataFactory *dataFactory() override;
     IFileStream *fileStream() override;
+    QString useIndex() override;
     void setUseIndex(QString value) override;
     int calcLevel(QVariantMap value, QString &text) override;
 

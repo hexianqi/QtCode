@@ -5,7 +5,7 @@
 #define IDEVICECOLLECTION_H
 
 #include "HCommunicateGlobal.h"
-#include "HeCore/ICollection.h"
+#include "HeCore/HCollection.h"
 #include "HeCore/HActionType.h"
 
 HE_CORE_USE_NAMESPACE
@@ -14,8 +14,11 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class IDevice;
 
-class IDeviceCollection : virtual public ICollection<IDevice>
+class IDeviceCollection : public HCollection<IDevice>
 {
+public:
+    using HCollection::HCollection;
+
 public:
     // 添加支持动作
     virtual void addSupport(HActionType action) = 0;

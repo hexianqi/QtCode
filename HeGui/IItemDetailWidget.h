@@ -24,15 +24,16 @@ signals:
     void sourceChanged(QStringList names, QString name);
 
 public:
+    // 启用
     virtual void start() = 0;
     // 导入文件
     virtual void importFile() = 0;
     // 导出文件
     virtual void exportFile() = 0;
     // 添加项
-    virtual void addItem() = 0;
+    virtual void addItem(QString name) = 0;
     // 删除项
-    virtual void delItem() = 0;
+    virtual void delItem(QString name) = 0;
     // 设置当前项
     virtual void setCurrentItem(QString name) = 0;
 };

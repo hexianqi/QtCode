@@ -3,9 +3,12 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
+#include "HTestWidget.h"
+#include "HeExample/HTestTable.h"
 #include <QtCore/QDebug>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QTableWidget>
 #include <QtCharts/QChartView>
 #include <functional>
 
@@ -14,7 +17,12 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
 
-    HTestPlugin::testCIE1931View()->show();
+    auto widget = HTestTable::multHeaderTableWidget();
+    widget->show();
+
+//    HTestWidget::multHeaderTableWidget()->show();
+
+//    HTestPlugin::testCIE1931View()->show();
 
 //    HTestGsl gsl;
 //    auto p = gsl.interpEval();

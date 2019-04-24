@@ -167,13 +167,13 @@ QString HTestSpecPrivate::energyS()
     return list.join(",");
 }
 
-HTestSpec::HTestSpec()
-    : HTestData(*new HTestSpecPrivate)
+HTestSpec::HTestSpec() :
+    ITestSpec(*new HTestSpecPrivate)
 {
 }
 
-HTestSpec::HTestSpec(HTestSpecPrivate &p)
-    : HTestData(p)
+HTestSpec::HTestSpec(HTestSpecPrivate &p) :
+    ITestSpec(p)
 {
 }
 

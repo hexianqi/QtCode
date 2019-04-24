@@ -40,6 +40,8 @@ void HSpecModel::syncTestData(quint32 type)
         d->testSpec->setCalibrate(d->configManage->specCalibrate("1"));
         addAction(ACT_RESET_SPECTRUM);
     }
+    if (type & ConfigContainType::CCT_Grade)
+        addAction(ACT_RESET_GRADE);
 }
 
 HE_CONTROLLER_END_NAMESPACE

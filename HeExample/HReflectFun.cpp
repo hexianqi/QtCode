@@ -1,9 +1,12 @@
 #include "HReflectFun.h"
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
+#include <QtCore/QTextStream>
 
 HE_EXAMPLE_BEGIN_NAMESPACE
 
-HReflectFun::HReflectFun(QObject *parent)
-    : QObject(parent)
+HReflectFun::HReflectFun(QObject *parent) :
+    QObject(parent)
 {
 }
 
@@ -16,16 +19,11 @@ QVariantMap HReflectFun::process(const QVariantMap &request)
         reply["error"] = "invalid command";
         return reply;
     }
-
     QString methodName = QString("process_%1").arg(cmd);
-    bool bret = metaObject()->invokeMethod(this,
-                                           methodName.toLatin1(),
-                                           Q_RETURN_ARG(QVariantMap, reply),
-                                           Q_ARG(QVariantMap, request) );
+    bool bret = metaObject()->invokeMethod(this, methodName.toLatin1(), Q_RETURN_ARG(QVariantMap, reply), Q_ARG(QVariantMap, request));
     if (!bret)
         reply["error"] = "no available method";
     return reply;
-
 }
 
 QVariantMap HReflectFun::process_set_config(const QVariantMap &request)
@@ -39,7 +37,6 @@ QVariantMap HReflectFun::process_set_config(const QVariantMap &request)
         reply["error"] = "invalid keyname";
         return reply;
     }
-
     _settings[keyname] = request["value"];
     return reply;
 }
@@ -73,7 +70,6 @@ QVariantMap HReflectFun::process_get_json(const QVariantMap &)
 
     QJsonObject jObj = QJsonObject::fromVariantMap(_settings);
     QJsonDocument jDoc(jObj);
-
     reply["json"] = jDoc.toJson();
     return reply;
 }

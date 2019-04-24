@@ -181,6 +181,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
 
     hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱"));
+    hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级"));
 
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
@@ -253,7 +254,7 @@ void HCoreGlobalInstance::initActionComment()
 //    hashActionComment.insert(ACT_GET_ELEC_LUMINOUS_SPECTRUM,     QStringList() << tr("ACT_GET_ELEC_LUMINOUS_SPECTRUM") << tr("获取光色电数据"));
 //    hashActionComment.insert(ACT_GET_LUMINOUS_SPECTRUM,          QStringList() << tr("ACT_GET_LUMINOUS_SPECTRUM") << tr("获取光色数据"));
 
-//    hashActionComment.insert(ACT_RESET_GRADE,                    QStringList() << tr("ACT_RESET_GRADE") << tr("重新设置分级"));
+//
 //    hashActionComment.insert(ACT_RESET_JUDGMENT,                 QStringList() << tr("ACT_RESET_JUDGMENT") << tr("重新设置合格判定"));
 //    hashActionComment.insert(ACT_RESET_CIRCUIT,                  QStringList() << tr("ACT_RESET_CIRCUIT") << tr("重新设置线路配置"));
 }
@@ -347,8 +348,10 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
     hashDataFormatInfo.insert("[环境湿度]",                     new HDataFormatInfo("[环境湿度]", "%", 0, 100, 1));
-    // 其他参数
+    // 分级参数
     hashDataFormatInfo.insert("[优先级]",                       new HDataFormatInfo("[优先级]", 0, 99999));
+    hashDataFormatInfo.insert("[分级数]",                       new HDataFormatInfo("[优先级]", 0, 99999));
+    hashDataFormatInfo.insert("[偏移量]",                       new HDataFormatInfo("[偏移量]", -0.5, 0.5, 4, 0.001));
 
             //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
@@ -437,7 +440,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //
 //    hashFormatInfo.insert(tr("[循环采样间隔]"),                    FTypeInfo(tr("[循环采样间隔]"), 0, 20000));
 //
-//    hashFormatInfo.insert(tr("[偏移量]"),                          FTypeInfo(tr("[偏移量]"), -0.5, 0.5, 4, 0.001));
+//
 ////    //电机参数
 ////    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
 

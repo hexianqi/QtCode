@@ -12,7 +12,7 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-template <typename T, typename K = string>
+template <typename T, typename K = std::string>
 class HMultiton
 {
 public:
@@ -55,7 +55,7 @@ protected:
 };
 
 template <typename T, typename K>
-unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
+std::unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
 
 HE_CORE_END_NAMESPACE
 

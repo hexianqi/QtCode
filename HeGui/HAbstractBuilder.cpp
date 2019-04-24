@@ -54,9 +54,4 @@ void HAbstractBuilder::buildFactory()
     HAppContext::setContextPointer("ISqlFactory", d_ptr->sqlFactory);
 }
 
-void HAbstractBuilder::buildDatabase()
-{
-
-}
-
 HE_GUI_END_NAMESPACE

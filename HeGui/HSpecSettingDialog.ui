@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>445</width>
-    <height>262</height>
+    <width>408</width>
+    <height>241</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,0">
@@ -696,12 +696,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_1">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
        <property name="text">
         <string>恢复默认</string>
        </property>
@@ -725,12 +719,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
        <property name="text">
         <string>确 定</string>
        </property>
@@ -754,12 +742,6 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_3">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
        <property name="text">
         <string>取 消</string>
        </property>

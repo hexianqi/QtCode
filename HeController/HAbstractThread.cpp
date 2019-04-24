@@ -105,28 +105,6 @@ bool HAbstractThread::checkAction(HActionType action)
     return action < 0x00000100 || d_ptr->actionSupport.contains(action);
 }
 
-void HAbstractThread::readSettings()
-{
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup("Thread");
-    d_ptr->runMode = settings->value("iRunMode", 2).toInt();
-    d_ptr->retry = settings->value("iRetry", 3).toInt();
-    d_ptr->sleepTime = settings->value("iSleepTime", 1000).toUInt();
-    settings->endGroup();
-}
-
-void HAbstractThread::writeSettings()
-{
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup("Thread");
-    settings->setValue("iRunMode", d_ptr->runMode);
-    settings->setValue("iRetry", d_ptr->retry);
-    settings->setValue("iSleepTime", d_ptr->sleepTime);
-    settings->endGroup();
-}
-
 void HAbstractThread::debugMode()
 {
     HActionType action;
@@ -221,6 +199,28 @@ void HAbstractThread::closeProtocol()
 void HAbstractThread::actionFail(HActionType action, HErrorType error)
 {
     emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(toComment(action)).arg(toComment(error)));
+}
+
+void HAbstractThread::readSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("Thread");
+    d_ptr->runMode = settings->value("iRunMode", 2).toInt();
+    d_ptr->retry = settings->value("iRetry", 3).toInt();
+    d_ptr->sleepTime = settings->value("iSleepTime", 1000).toUInt();
+    settings->endGroup();
+}
+
+void HAbstractThread::writeSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("Thread");
+    settings->setValue("iRunMode", d_ptr->runMode);
+    settings->setValue("iRetry", d_ptr->retry);
+    settings->setValue("iSleepTime", d_ptr->sleepTime);
+    settings->endGroup();
 }
 
 HE_CONTROLLER_END_NAMESPACE

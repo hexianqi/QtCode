@@ -3,12 +3,12 @@
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 HProtocolCollection::HProtocolCollection() :
-    HCollection<IProtocol>(*new HProtocolCollectionPrivate)
+    IProtocolCollection(*new HProtocolCollectionPrivate)
 {
 }
 
 HProtocolCollection::HProtocolCollection(HProtocolCollectionPrivate &p) :
-    HCollection<IProtocol>(p)
+    IProtocolCollection(p)
 {
 }
 

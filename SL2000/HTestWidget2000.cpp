@@ -54,10 +54,16 @@ bool HTestWidget2000::setTest(bool b)
 void HTestWidget2000::handleAction(HActionType action)
 {
     Q_D(HTestWidget2000);
-    if (action == ACT_RESET_SPECTRUM)
+    if (action >= 0xF0000000)
     {
         setTest(false);
-        d->energyWidget->initCoordinate();
+        clearResult();
+        if (action == ACT_RESET_SPECTRUM)
+            d->energyWidget->initCoordinate();
+        if (action == ACT_RESET_GRADE)
+        {
+            // TODO:d->cieWidget->setGrade()
+        }
         return;
     }
     if (action == ACT_GET_SPECTRUM)

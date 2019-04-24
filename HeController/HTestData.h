@@ -11,7 +11,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HTestDataPrivate;
 
-class HTestData : virtual public ITestData
+class HTestData : public ITestData
 {
 public:
     explicit HTestData();

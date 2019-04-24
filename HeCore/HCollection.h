@@ -17,7 +17,7 @@ public:
 };
 
 template <typename T>
-class HCollection : virtual public ICollection<T>
+class HCollection : public ICollection<T>
 {
 public:
     HCollection();
@@ -31,6 +31,7 @@ public:
     void clear() override;
     bool contains(QString key) override;
     void insert(QString key, T *value) override;
+    int remove(QString key) override;
     T *first() override;
     T *value(QString key) override;
     T *item(QString key) override;
@@ -97,6 +98,12 @@ template <typename T>
 void HCollection<T>::insert(QString key, T *value)
 {
     d_ptr->datas.insert(key, value);
+}
+
+template <typename T>
+int HCollection<T>::remove(QString key)
+{
+    return d_ptr->datas.remove(key);
 }
 
 template <typename T>

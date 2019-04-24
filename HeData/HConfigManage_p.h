@@ -15,10 +15,10 @@ public:
     void writeContent(QDataStream &);
 
 public:
-    IDataFactory *factory;
-    IFileStream *fileStream;
-    ISpecCalibrateCollection *specCalibrates;
-    IGradeCollection *grades;
+    IDataFactory *factory = nullptr;
+    IFileStream *fileStream = nullptr;
+    ISpecCalibrateCollection *specCalibrates = nullptr;
+    IGradeCollection *grades = nullptr;
     quint32 contain;
 };
 

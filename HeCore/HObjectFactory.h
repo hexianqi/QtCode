@@ -1,5 +1,10 @@
 /***************************************************************************************************
 **      2018-06-19  HObjectFactory QObject类反射工厂类。
+**                  调用方法：
+**                  1.注册你的class（必须继承QObject）：
+**                      HObjectFactory::registerClass<MyObject>();
+**                  2.反射构建一个新对象：
+**                      MyObject* object = HObjectFactory::createObject<MyObject>("MyObject");
 ***************************************************************************************************/
 
 #ifndef HOBJECTFACTORY_H

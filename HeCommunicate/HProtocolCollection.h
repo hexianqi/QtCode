@@ -12,7 +12,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HProtocolCollectionPrivate;
 
-class HProtocolCollection : public HCollection<IProtocol>, public IProtocolCollection
+class HProtocolCollection : public IProtocolCollection
 {
     Q_DECLARE_PRIVATE(HProtocolCollection)
 

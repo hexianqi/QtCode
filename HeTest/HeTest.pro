@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core gui charts
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT          += core gui charts widgets
 
 TEMPLATE    = app
 
@@ -33,14 +31,18 @@ SOURCES     += \
             HTestAlgorithm.cpp \
             HTestPlugin.cpp \
             HTestChart.cpp \
-            HTestGsl.cpp
+            HTestGsl.cpp \
+            HTestWidget.cpp \
+    Twst.cpp
 
 HEADERS     += \
             MainWindow.h \
             HTestAlgorithm.h \
             HTestPlugin.h \
             HTestChart.h \
-            HTestGsl.h
+            HTestGsl.h \
+            HTestWidget.h \
+    Twst.h
 
 FORMS       += \
             MainWindow.ui
@@ -54,13 +56,15 @@ Debug {
     CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
-            -L$$DESTDIR -lHePlugind
+            -L$$DESTDIR -lHePlugind \
+            -L$$DESTDIR -lHeExampled
 }
 
 Release {
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithm \
-            -L$$DESTDIR -lHePlugin
+            -L$$DESTDIR -lHePlugin \
+            -L$$DESTDIR -lHeExample
 }
 
 #版本信息

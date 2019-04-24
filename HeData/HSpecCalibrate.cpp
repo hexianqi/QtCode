@@ -124,7 +124,7 @@ int HSpecCalibrate::checkSampleOverflow(double value)
 
 double HSpecCalibrate::pelsToWave(double value)
 {
-    return d_ptr->pelsWave->toWave(value);
+    return d_ptr->pelsWave->handle(value);
 }
 
 QVector<double> HSpecCalibrate::stdCurve()

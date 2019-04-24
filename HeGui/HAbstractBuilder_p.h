@@ -5,6 +5,7 @@
 #include "HeCommunicate/HCommunicateGlobal.h"
 #include "HeController/HControllerGlobal.h"
 #include "HeData/HDataGlobal.h"
+
 #include "HeSql/HSqlGlobal.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE

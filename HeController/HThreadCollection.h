@@ -12,7 +12,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HThreadCollectionPrivate;
 
-class HThreadCollection : public HCollection<IThread>, public IThreadCollection
+class HThreadCollection : public IThreadCollection
 {
     Q_DECLARE_PRIVATE(HThreadCollection)
 

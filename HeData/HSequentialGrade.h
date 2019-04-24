@@ -24,10 +24,6 @@ public:
 
 public:
     int calcLevel(QVariantMap value, QString &text) override;
-
-public:
-    void readContent(QDataStream &, IDataFactory *) override;
-    void writeContent(QDataStream &) override;
 };
 
 HE_DATA_END_NAMESPACE
