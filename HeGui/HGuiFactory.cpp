@@ -1,6 +1,9 @@
 #include "HGuiFactory_p.h"
 #include "HAction.h"
 #include "HTestHandler.h"
+#include "HGradeEditHandler.h"
+#include "HGradeSelectHandler.h"
+#include "HSpecCalibrateHandler.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -47,7 +50,7 @@ IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 
 HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param)
 {
-    auto action = new HAction;
+    auto action = new HAction(this);
     action->setText(text);
     action->setHandler(createHandler(type, param));
     return action;
@@ -56,6 +59,9 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 void HGuiFactory::registerClass()
 {
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
+    HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
+    HObjectFactory::registerClass<HGradeEditHandler>("HGradeEditHandler");
+    HObjectFactory::registerClass<HGradeSelectHandler>("HGradeSelectHandler");
 }
 
 HE_GUI_END_NAMESPACE

@@ -28,19 +28,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES     += \
             HDataFactory.cpp \
             HConfigManage.cpp \
-            HAbstractCalibrateItem.cpp
+    HAbstractDataItem.cpp
 
 HEADERS     += \
             IDataFactory.h \
             IConfigManage.h \
+            IDataItem.h \
             HDataGlobal.h \
             HDataFactory.h \
             HDataFactory_p.h \
             HConfigManage.h \
             HConfigManage_p.h \
-    IDataItem.h \
-    HAbstractDataItem.h \
-    HAbstractDataItem_p.h
+            HAbstractDataItem.h \
+            HAbstractDataItem_p.h \
+    IDataCollection.h
 
 INCLUDEPATH += ..
 
@@ -63,6 +64,7 @@ unix {
     INSTALLS += target
 }
 
+include(adjust.pri)
 include(grade.pri)
 include(spec.pri)
 include(stream.pri)

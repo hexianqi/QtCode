@@ -34,9 +34,13 @@ HE_GUI_BEGIN_NAMESPACE
 
 class IGuiFactory;
 
-class HAbstractBuilderPrivate
+class HE_GUI_EXPORT HAbstractBuilderPrivate
 {
 public:
+    HAbstractBuilderPrivate(IMainWindow *);
+
+public:
+    IMainWindow *mainWindow = nullptr;
     ICommunicateFactory *communicateFactory = nullptr;
     IControllerFactory *controllerFactory = nullptr;
     IDataFactory *dataFactory = nullptr;

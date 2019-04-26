@@ -1,5 +1,6 @@
 #include "HGradeItem_p.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HDataFormatInfo.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
 #include <QtCore/QSet>
@@ -47,6 +48,30 @@ void HGradeItem::setLevels(QVariant value)
     d->levels = value.value<QList<QPointF>>();
 }
 
+QVariant HGradeItem::levels()
+{
+    Q_D(HGradeItem);
+    return QVariant::fromValue(d->levels);
+}
+
+QStringList HGradeItem::level(int i)
+{
+    Q_D(HGradeItem);
+    if (i >= d->levels.size())
+        return QStringList() << "" << "";
+
+    QPointF p;
+    auto t = data("[项类型]").toString();
+    if (i < 0)
+    {
+        auto f = toFormatInfo(t);
+        p = QPointF(f->min(), f->max());
+    }
+    else
+        p = d->levels[i];
+    return QStringList() << toString(t, p.x()) << toString(t, p.y());
+}
+
 QSet<int> HGradeItem::indexOf(QVariant value)
 {
     Q_D(HGradeItem);
@@ -78,21 +103,6 @@ QStringList HGradeItem::types()
 {
     auto t = data("[项类型]").toString();
     return QStringList() << t << t;
-}
-
-QVariant HGradeItem::levels()
-{
-    Q_D(HGradeItem);
-    return QVariant::fromValue(d->levels);
-}
-
-QStringList HGradeItem::level(int i)
-{
-    Q_D(HGradeItem);
-    if (i < 0 || i >= d->levels.size())
-        return QStringList() << "" << "";
-    auto t = data("[项类型]").toString();
-    return QStringList() << toString(t, d->levels[i].x()) << toString(t, d->levels[i].y());
 }
 
 HE_DATA_END_NAMESPACE

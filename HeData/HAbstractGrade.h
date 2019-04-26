@@ -6,7 +6,6 @@
 #define HABSTRACTGRADE_H
 
 #include "IGrade.h"
-#include "HeCore/HCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -23,6 +22,9 @@ public:
 public:
     void readContent(QDataStream &, IDataFactory *) override;
     void writeContent(QDataStream &) override;
+
+public:
+    QVariant levels(QString type) override;
 
 protected:
     HAbstractGrade(HAbstractGradePrivate &);

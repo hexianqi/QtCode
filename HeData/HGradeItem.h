@@ -29,12 +29,12 @@ public:
 
 public:
     void setLevels(QVariant value) override;
+    QVariant levels() override;
+    QStringList level(int i) override;
     QSet<int> indexOf(QVariant value) override;
     int count() override;
     QStringList headers() override;
     QStringList types() override;
-    QVariant levels() override;
-    QStringList level(int i) override;
 };
 
 HE_DATA_END_NAMESPACE

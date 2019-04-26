@@ -41,11 +41,6 @@ public:
     QAction *actionSave;
     QAction *actionSaveAs;
     QAction *actionExit;
-//    QAction *actionStartThread;
-//    QAction *actionStopThread;
-//    QAction *actionProductInfoEdit;
-//    QAction *actionDatabaseDWidget;
-//    QAction *actionDatabaseTWidget;
     QAction *actionAbout;
     QAction *actionSeparator;
     QActionGroup *actionGroupImport;

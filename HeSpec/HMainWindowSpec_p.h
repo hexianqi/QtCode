@@ -7,7 +7,7 @@
 class HMainWindowSpecPrivate : public HMainWindowPrivate
 {
 public:
-    HMainWindowSpecPrivate(HMainWindowSpec *);
+    using HMainWindowPrivate::HMainWindowPrivate;
 };
 
 #endif // HMAINWINDOWSPEC_P_H

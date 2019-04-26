@@ -30,12 +30,14 @@ protected:
     void createMenu() override;
     void createToolBar() override;
     void initMenu() override;
-    void writeContent(QTextStream &) override;
 
 protected:
+    void handleTestStateChanged(bool b);
+    void resetGrade();
     void refreshWidget();
     void clearResult();
-    void handleTestStateChanged(bool b);
+    void postProcess();
+
 };
 
 #endif // HTESTWIDGET2000_H

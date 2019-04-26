@@ -1,7 +1,7 @@
 #include "HGradeCollection_p.h"
 #include "IDataFactory.h"
-#include "IGrade.h"
 #include "IFileStream.h"
+#include "IGrade.h"
 #include <QtCore/QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
@@ -84,12 +84,6 @@ IFileStream *HGradeCollection::fileStream()
     return d->fileStream;
 }
 
-QString HGradeCollection::useIndex()
-{
-    Q_D(HGradeCollection);
-    return d->useIndex;
-}
-
 void HGradeCollection::setUseIndex(QString value)
 {
     Q_D(HGradeCollection);
@@ -98,13 +92,22 @@ void HGradeCollection::setUseIndex(QString value)
     d->useIndex = value;
 }
 
-int HGradeCollection::calcLevel(QVariantMap value, QString &text)
+QString HGradeCollection::useIndex()
 {
     Q_D(HGradeCollection);
-    auto i = item(d->useIndex);
-    if (i == nullptr)
-        return -1;
-    return i->calcLevel(value, text);
+    return d->useIndex;
+}
+
+QVariant HGradeCollection::levels(QString type)
+{
+    auto i = item(useIndex());
+    return i == nullptr ? QVariant() : i->levels(type);
+}
+
+int HGradeCollection::calcLevel(QVariantMap value, QString &text)
+{
+    auto i = item(useIndex());
+    return i == nullptr ? -1 : i->calcLevel(value, text);
 }
 
 HE_DATA_END_NAMESPACE

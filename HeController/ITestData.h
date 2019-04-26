@@ -22,14 +22,18 @@ public:
     virtual void setData(QString type, QVariant value) = 0;
     // 添加数据
     virtual void addData(QString type, QVariant value) = 0;
+    // 添加数据
+    virtual void addData(QVariantMap value) = 0;
     // 获取数据
     virtual QVariant data(QString type) = 0;
+    // 挑选数据
+    virtual QVariantMap select(QStringList type) = 0;
     // 获取数据-按字符串格式
     virtual QString toString(QString type) = 0;
     // 获取数据-按字符串格式
-    virtual QStringList toString(QStringList types) = 0;
+    virtual QStringList toString(QStringList type) = 0;
     // 获取数据-按Html表格方式
-    virtual QString toHtmlTable(QStringList types, QColor bgcolor) = 0;
+    virtual QString toHtmlTable(QStringList type, QColor bgcolor) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

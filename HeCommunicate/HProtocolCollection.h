@@ -6,7 +6,6 @@
 #define HPROTOCOLCOLLECTION_H
 
 #include "IProtocolCollection.h"
-#include "HeCore/HCollection.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

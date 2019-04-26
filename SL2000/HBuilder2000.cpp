@@ -16,10 +16,14 @@
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
+#include "HeGui/IGuiFactory.h"
+#include "HeGui/IMainWindow.h"
+#include "HeGui/HAction.h"
+#include <QtWidgets/QMenuBar>
 #include <QtCore/QDebug>
 
-HBuilder2000::HBuilder2000(HeGui::IMainWindow *parent) :
-    HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
+HBuilder2000::HBuilder2000(IMainWindow *parent) :
+    HAbstractBuilder(*new HBuilder2000Private(parent), parent)
 {
     Q_D(HBuilder2000);
     d->configFileName = "SL2000.cfg";
@@ -35,7 +39,6 @@ HBuilder2000::~HBuilder2000()
 
 void HBuilder2000::initialize(QVariantMap /*param*/)
 {
-
 }
 
 QString HBuilder2000::typeName()
@@ -138,20 +141,27 @@ void HBuilder2000::buildDatabase()
     HAppContext::setContextPointer("ISqlTableModel", model);
 }
 
+void HBuilder2000::buildMenu()
+{
+    Q_D(HBuilder2000);
+
+    auto calibrate = new QMenu(tr("定标(&C)"));
+    calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
+
+    auto grade = new QMenu(tr("分级(&G)"));
+    grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
+    grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
+
+    d->mainWindow->insertMenu(calibrate);
+    d->mainWindow->insertMenu(grade);
+}
+
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
-
-//void HBuilder2000::buildMenu()
-//{
-//    Q_D(HBuilder2000);
-//    auto help = d->window->menuBar()->addMenu("帮助(&H)");
-//    help->addAction(d->guiFactory->createAction(tr("关于(&A)..."), "HAboutHandler"));
-//    help->addAction(d->guiFactory->createAction(tr("测试..."), "HTestHandler"));
-//}
 
 //void HBuilder2000::buildProtocol()
 //{

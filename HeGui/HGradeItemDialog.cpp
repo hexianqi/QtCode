@@ -25,8 +25,13 @@ HGradeItemDialog::~HGradeItemDialog()
 
 void HGradeItemDialog::on_spinBox_02_valueChanged(int value)
 {
-    if (!ui->checkBox_01->isChecked())
-        ui->tableWidget->setRowCount(value);
+    Q_D(HGradeItemDialog);
+    if (ui->checkBox_01->isChecked())
+        return;
+    auto previous = ui->tableWidget->rowCount();
+    ui->tableWidget->setRowCount(value);
+    for (int i = previous; i < value; i++)
+        ui->tableWidget->setRow(i, d->data->level(-1));
 }
 
 void HGradeItemDialog::on_checkBox_01_clicked(bool b)
@@ -42,14 +47,39 @@ void HGradeItemDialog::on_pushButton_01_clicked()
 
 bool HGradeItemDialog::setAverageMode(bool b)
 {
+    Q_D(HGradeItemDialog);
     if (!HAbstractGradeItemDialog::setAverageMode(b))
         return false;
 
     if (b)
-        ui->tableWidget->setRowCount(1);
+    {
+        if (ui->tableWidget->rowCount() == 0)
+            ui->tableWidget->insertRow(0, d->data->level(-1));
+        else
+            ui->tableWidget->setRowCount(1);
+    }
     ui->checkBox_01->setChecked(b);
     ui->pushButton_01->setEnabled(b);
     return true;
+}
+
+void HGradeItemDialog::averageLevels()
+{
+    Q_D(HGradeItemDialog);
+    auto count = ui->spinBox_02->value();
+    if (count == 0)
+        return;
+
+    auto min =  ui->tableWidget->item(0, 0)->text().toDouble();
+    auto max =  ui->tableWidget->item(0, 1)->text().toDouble();
+    auto gap = (max - min) / count;
+    ui->tableWidget->setRowCount(count);
+    for (int i = 0; i < count; i++)
+    {
+        auto x1 = min + i * gap;
+        auto x2 = min + (i + 1) * gap;
+        ui->tableWidget->setRow(i, QStringList() << toString(d->type, x1) << toString(d->type, x2));
+    }
 }
 
 void HGradeItemDialog::showData()
@@ -81,29 +111,11 @@ void HGradeItemDialog::saveData()
     d->data->setData("[优先级]", ui->spinBox_01->value());
 }
 
-void HGradeItemDialog::averageLevels()
-{
-    Q_D(HGradeItemDialog);
-    auto count = ui->spinBox_02->value();
-    if (count == 0)
-        return;
-
-    auto min =  ui->tableWidget->item(0, 0)->text().toDouble();
-    auto max =  ui->tableWidget->item(0, 1)->text().toDouble();
-    auto gap = (max - min) / count;
-    ui->tableWidget->setRowCount(count);
-    for (int i = 0; i < count; i++)
-    {
-        auto x1 = min + i * gap;
-        auto x2 = min + (i + 1) * gap;
-        ui->tableWidget->setRow(i, QStringList() << toString(d->type, x1) << toString(d->type, x2));
-    }
-}
-
 void HGradeItemDialog::init()
 {
     HPluginHelper::initWidget("[优先级]", ui->spinBox_01);
     HPluginHelper::initWidget("[分级数]", ui->spinBox_02);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 HE_GUI_END_NAMESPACE

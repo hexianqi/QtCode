@@ -10,11 +10,16 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
+HAbstractBuilderPrivate::HAbstractBuilderPrivate(IMainWindow *p)
+{
+    mainWindow = p;
+    HAppContext::setContextPointer("IMainWindow", mainWindow);
+}
+
 HAbstractBuilder::HAbstractBuilder(IMainWindow *parent) :
     QObject(parent),
-    d_ptr(new HAbstractBuilderPrivate)
+    d_ptr(new HAbstractBuilderPrivate(parent))
 {
-    HAppContext::setContextPointer("IMainWindow", parent);
 }
 
 HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *parent) :
@@ -37,6 +42,7 @@ void HAbstractBuilder::buildAll()
     buildThread();
     buildModel();
     buildDatabase();
+    buildMenu();
     buildTestWidget();
 }
 
@@ -53,5 +59,6 @@ void HAbstractBuilder::buildFactory()
     HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
     HAppContext::setContextPointer("ISqlFactory", d_ptr->sqlFactory);
 }
+
 
 HE_GUI_END_NAMESPACE

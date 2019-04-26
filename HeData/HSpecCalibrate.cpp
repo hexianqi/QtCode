@@ -42,6 +42,27 @@ QString HSpecCalibrate::typeName()
     return "HSpecCalibrate";
 }
 
+void HSpecCalibrate::readContent(QDataStream &s)
+{
+    quint32 version;
+    s >> version;
+    d_ptr->setting->readContent(s);
+    d_ptr->pelsWave->readContent(s);
+    d_ptr->stdCurve->readContent(s);
+    d_ptr->fitting->readContent(s);
+    d_ptr->luminous->readContent(s);
+}
+
+void HSpecCalibrate::writeContent(QDataStream &s)
+{
+    s << quint32(1);
+    d_ptr->setting->writeContent(s);
+    d_ptr->pelsWave->writeContent(s);
+    d_ptr->stdCurve->writeContent(s);
+    d_ptr->fitting->writeContent(s);
+    d_ptr->luminous->writeContent(s);
+}
+
 IDataItem *HSpecCalibrate::item(QString type)
 {
     if (type == "HSpecSetting")
@@ -130,27 +151,6 @@ double HSpecCalibrate::pelsToWave(double value)
 QVector<double> HSpecCalibrate::stdCurve()
 {
     return d_ptr->stdCurve->curve();
-}
-
-void HSpecCalibrate::readContent(QDataStream &s)
-{
-    quint32 version;
-    s >> version;
-    d_ptr->setting->readContent(s);
-    d_ptr->pelsWave->readContent(s);
-    d_ptr->stdCurve->readContent(s);
-    d_ptr->fitting->readContent(s);
-    d_ptr->luminous->readContent(s);
-}
-
-void HSpecCalibrate::writeContent(QDataStream &s)
-{
-    s << quint32(1);
-    d_ptr->setting->writeContent(s);
-    d_ptr->pelsWave->writeContent(s);
-    d_ptr->stdCurve->writeContent(s);
-    d_ptr->fitting->writeContent(s);
-    d_ptr->luminous->writeContent(s);
 }
 
 HE_DATA_END_NAMESPACE

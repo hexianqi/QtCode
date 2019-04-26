@@ -36,9 +36,9 @@ protected:
 protected:
     void done(int result) override;
     virtual bool setAverageMode(bool b);
+    virtual void averageLevels() = 0;
     virtual void showData() = 0;
     virtual void saveData() = 0;
-    virtual void averageLevels() = 0;
 
 protected:
     QScopedPointer<HAbstractGradeItemDialogPrivate> d_ptr;

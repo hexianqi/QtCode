@@ -6,6 +6,8 @@
 
 class HBuilder2000Private : public HAbstractBuilderPrivate
 {
+public:
+    using HAbstractBuilderPrivate::HAbstractBuilderPrivate;
 };
 
 #endif // HBUILDER2000_P_H

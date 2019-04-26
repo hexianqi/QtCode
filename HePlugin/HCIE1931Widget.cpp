@@ -277,6 +277,13 @@ void HCIE1931Widget::addGrade(QPolygonF value, bool focus, bool refresh)
         refreshPixmap();
 }
 
+void HCIE1931Widget::removeGrade(QPolygonF value, bool refresh)
+{
+    Q_D(HCIE1931Widget);
+    if (d->grade.removeAll(value) > 0 && refresh)
+        refreshPixmap();
+}
+
 void HCIE1931Widget::clearGrade()
 {
     Q_D(HCIE1931Widget);

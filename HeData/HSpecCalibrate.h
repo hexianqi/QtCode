@@ -22,6 +22,10 @@ public:
     QString typeName() override;
 
 public:
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
+
+public:
     IDataItem *item(QString type) override;
     QVariantMap testParam() override;
 
@@ -35,10 +39,6 @@ public:
     int checkSampleOverflow(double value) override;
     double pelsToWave(double value) override;
     QVector<double> stdCurve() override;
-
-public:
-    void readContent(QDataStream &) override;
-    void writeContent(QDataStream &) override;
 
 protected:
     HSpecCalibrate(HSpecCalibratePrivate &p);

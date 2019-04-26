@@ -26,12 +26,7 @@ HTestSpecPrivate::HTestSpecPrivate()
 void HTestSpecPrivate::setCalibrate(ISpecCalibrate *p)
 {
     calibrate = p;
-    QMapIterator<QString, QVariant> i(calibrate->testParam());
-    while (i.hasNext())
-    {
-        i.next();
-        addData(i.key(), i.value());
-    }
+    addData(p->testParam());
 }
 
 void HTestSpecPrivate::setIntegralTime(double value)
@@ -144,6 +139,30 @@ bool HTestSpecPrivate::calcSpec()
     specData->LuminousFlux = calibrate->calcLuminous(specData->VisionEnergy / data("[积分时间]").toDouble());
     specData->LuminousPower = specData->LuminousFlux * specData->VisionEnergyRatio;
 //    m_pSpectrum->SDCM = m_pChromatism->calcSdcm(m_pSpectrum->ColorTemperature, m_pSpectrum->CoordinateXy);
+    addData("[峰值波长]", specData->PeakWave);
+    addData("[峰值带宽]", specData->Bandwidth);
+    addData("[主波长]", specData->DominantWave);
+    addData("[色纯度]", specData->ColorPurity);
+    addData("[色温]", specData->ColorTemperature);
+    addData("[色坐标]", specData->CoordinateXy);
+    addData("[色坐标x]", specData->CoordinateXy.x());
+    addData("[色坐标y]", specData->CoordinateXy.y());
+    addData("[色坐标uv]", specData->CoordinateUv);
+    addData("[色坐标u]", specData->CoordinateUv.x());
+    addData("[色坐标v]", specData->CoordinateUv.y());
+    addData("[色坐标uvp]", specData->CoordinateUvp);
+    addData("[色坐标up]", specData->CoordinateUvp.x());
+    addData("[色坐标vp]", specData->CoordinateUvp.y());
+    addData("[Duv]", specData->Duv);
+    addData("[明视觉能量]", specData->VisionEnergy);
+    addData("[红色比]", specData->RedRatio);
+    addData("[蓝色比]", specData->BlueRatio);
+    addData("[绿色比]", specData->GreenRatio);
+    addData("[显色指数]", specData->RenderingIndexAvg);
+    addData("[显色指数Rx]", renderingIndexS());
+    addData("[光谱光通量]", specData->LuminousFlux);
+    addData("[光功率]", specData->LuminousPower);
+    addData("[色容差]", specData->SDCM);
     return true;
 }
 
@@ -189,54 +208,6 @@ QString HTestSpec::typeName()
 QVariant HTestSpec::data(QString type)
 {
     Q_D(HTestSpec);
-    if (type == "[峰值波长]")
-        return d->specData->PeakWave;
-    if (type == "[峰值带宽]")
-        return d->specData->Bandwidth;
-    if (type == "[主波长]")
-        return d->specData->DominantWave;
-    if (type == "[色纯度]")
-        return d->specData->ColorPurity;
-    if (type == "[色温]")
-        return d->specData->ColorTemperature;
-    if (type == "[色坐标]")
-        return d->specData->CoordinateXy;
-    if (type == "[色坐标x]")
-        return d->specData->CoordinateXy.x();
-    if (type == "[色坐标y]")
-        return d->specData->CoordinateXy.y();
-    if (type == "[色坐标uv]")
-        return d->specData->CoordinateUv;
-    if (type == "[色坐标u]")
-        return d->specData->CoordinateUv.x();
-    if (type == "[色坐标v]")
-        return d->specData->CoordinateUv.y();
-    if (type == "[色坐标uvp]")
-        return d->specData->CoordinateUvp;
-    if (type == "[色坐标up]")
-        return d->specData->CoordinateUvp.x();
-    if (type == "[色坐标vp]")
-        return d->specData->CoordinateUvp.y();
-    if (type == "[Duv]")
-        return d->specData->Duv;
-    if (type == "[明视觉能量]")
-        return d->specData->VisionEnergy;
-    if (type == "[红色比]")
-        return d->specData->RedRatio;
-    if (type == "[蓝色比]")
-        return d->specData->BlueRatio;
-    if (type == "[绿色比]")
-        return d->specData->GreenRatio;
-    if (type == "[显色指数]")
-        return d->specData->RenderingIndexAvg;
-    if (type == "[光谱光通量]")
-        return d->specData->LuminousFlux;
-    if (type == "[光功率]")
-        return d->specData->LuminousPower;
-    if (type == "[色容差]")
-        return d->specData->SDCM;
-    if (type == "[显色指数Rx]")
-        return d->renderingIndexS();
     if (type == "[光谱能量数据]")
         return d->energyS();
     return HTestData::data(type);

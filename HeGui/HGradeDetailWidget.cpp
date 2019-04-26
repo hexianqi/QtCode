@@ -102,15 +102,6 @@ void HGradeDetailWidget::on_pushButton_1_clicked()
     auto item = d_ptr->grades->dataFactory()->createGradeItem(className);
     item->setData("[项类型]", type);
     d_ptr->grade->insert(type, item);
-
-
-    qDebug() << item->typeName();
-    qDebug() << item->count();
-    qDebug() << item->headers();
-    qDebug() << item->types();
-
-
-
     editGradeItem(type);
     showData();
 }

@@ -17,6 +17,12 @@ class IDataItem;
 class ISpecCalibrate : public IInitializeable
 {
 public:
+    // 读取内容
+    virtual void readContent(QDataStream &) = 0;
+    // 写入内容
+    virtual void writeContent(QDataStream &) = 0;
+
+public:
     // 校准子项
     virtual IDataItem *item(QString type) = 0;
     // 测量参数
@@ -41,12 +47,6 @@ public:
     virtual double pelsToWave(double value) = 0;
     // 标准数据
     virtual QVector<double> stdCurve() = 0;
-
-public:
-    // 读取内容
-    virtual void readContent(QDataStream &) = 0;
-    // 写入内容
-    virtual void writeContent(QDataStream &) = 0;
 };
 
 HE_DATA_END_NAMESPACE

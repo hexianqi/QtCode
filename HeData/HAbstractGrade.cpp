@@ -54,4 +54,9 @@ void HAbstractGrade::writeContent(QDataStream &s)
     }
 }
 
+QVariant HAbstractGrade::levels(QString type)
+{
+    return contains(type) ? value(type)->levels() : QVariant();
+}
+
 HE_DATA_END_NAMESPACE

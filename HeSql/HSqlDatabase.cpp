@@ -49,7 +49,7 @@ bool HSqlDatabase::openDatabase(QString dbName)
     db.setDatabaseName(dbName);
     if (!db.open())
     {
-        QMessageBox::warning(0, tr("打开数据库失败"), db.lastError().text());
+        QMessageBox::warning(nullptr, tr("打开数据库失败"), db.lastError().text());
         return false;
     }
     return true;

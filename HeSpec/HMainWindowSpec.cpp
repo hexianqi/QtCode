@@ -5,11 +5,6 @@
 
 HE_DATA_USE_NAMESPACE
 
-HMainWindowSpecPrivate::HMainWindowSpecPrivate(HMainWindowSpec *q) :
-    HMainWindowPrivate(q)
-{
-}
-
 HMainWindowSpec::HMainWindowSpec(QWidget *parent, const HCallorHelper &helper)
     : HAbstractMainWindow(*new HMainWindowSpecPrivate(this), helper, parent)
 {

@@ -16,6 +16,12 @@ class IMainWindow : public QMainWindow
 
 public:
     using QMainWindow::QMainWindow;
+
+public:
+    // 插入菜单
+    virtual QAction *insertMenu(QMenu *) = 0;
+    // 打开定标对话框
+    virtual bool openCalibrateDlg(QDialog *) = 0;
 };
 
 HE_GUI_END_NAMESPACE

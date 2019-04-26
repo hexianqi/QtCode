@@ -6,6 +6,10 @@
 
 class HCIE1931Widget;
 
+HE_DATA_BEGIN_NAMESPACE
+class IConfigManage;
+HE_DATA_END_NAMESPACE
+
 HE_GUI_BEGIN_NAMESPACE
 class HSpecEnergyWidget;
 class HResultTableWidget;
@@ -19,14 +23,12 @@ public:
     HTestWidget2000Private();
 
 public:
+    IConfigManage *configManage;
     HSpecEnergyWidget *energyWidget;
     HCIE1931Widget *cieWidget;
     HResultTableWidget *resultWidget;
     ITestSetWidget *testSetWidget;
     ITestDetailWidget *detailWidget;
-
-public:
-    QStringList resultOptionals;
 
 public:
     QAction *actionClear;

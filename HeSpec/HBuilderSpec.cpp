@@ -17,7 +17,7 @@
 #include <QtCore/QDebug>
 
 HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
-    HAbstractBuilder(*new HAbstractBuilderPrivate, parent)
+    HAbstractBuilder(*new HAbstractBuilderPrivate(parent), parent)
 {
     Q_D(HBuilderSpec);
     d->configFileName = "HeSpec.cfg";
@@ -32,7 +32,6 @@ HBuilderSpec::~HBuilderSpec()
 
 void HBuilderSpec::initialize(QVariantMap /*param*/)
 {
-
 }
 
 QString HBuilderSpec::typeName()
@@ -112,7 +111,10 @@ void HBuilderSpec::buildModel()
 
 void HBuilderSpec::buildDatabase()
 {
+}
 
+void HBuilderSpec::buildMenu()
+{
 }
 
 void HBuilderSpec::buildTestWidget()

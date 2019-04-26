@@ -1,7 +1,7 @@
 #include "HTestData_p.h"
 #include "HeCore/HCore.h"
-#include <QtGui/QColor>
 #include <QtCore/QDateTime>
+#include <QtGui/QColor>
 
 HE_CORE_USE_NAMESPACE
 
@@ -24,6 +24,16 @@ void HTestDataPrivate::addData(QString type, QVariant value)
     datas.insert(type, value);
 }
 
+void HTestDataPrivate::addData(QVariantMap value)
+{
+    QMapIterator<QString, QVariant> i(value);
+    while (i.hasNext())
+    {
+        i.next();
+        addData(i.key(), i.value());
+    }
+}
+
 QVariant HTestDataPrivate::data(QString type)
 {
     if (datas.contains(type))
@@ -39,8 +49,8 @@ QVariant HTestDataPrivate::data(QString type)
     return QVariant();
 }
 
-HTestData::HTestData()
-    : d_ptr(new HTestDataPrivate)
+HTestData::HTestData() :
+    d_ptr(new HTestDataPrivate)
 {
 }
 
@@ -48,8 +58,8 @@ HTestData::~HTestData()
 {
 }
 
-HTestData::HTestData(HTestDataPrivate &p)
-    : d_ptr(&p)
+HTestData::HTestData(HTestDataPrivate &p) :
+    d_ptr(&p)
 {
 }
 
@@ -58,14 +68,7 @@ void HTestData::initialize(QVariantMap param)
     if (param.contains("successor"))
         setSuccessor(FromVariant(ITestData, param.value("successor")));
     if (param.contains("datas"))
-    {
-        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
-        while (i.hasNext())
-        {
-            i.next();
-            addData(i.key(), i.value());
-        }
-    }
+        addData(param.value("datas").toMap());
 }
 
 QString HTestData::typeName()
@@ -88,9 +91,22 @@ void HTestData::addData(QString type, QVariant value)
     d_ptr->addData(type, value);
 }
 
+void HTestData::addData(QVariantMap value)
+{
+    d_ptr->addData(value);
+}
+
 QVariant HTestData::data(QString type)
 {
     return d_ptr->data(type);
+}
+
+QVariantMap HTestData::select(QStringList type)
+{
+    QVariantMap r;
+    for (auto t : type)
+        r.insert(t, data(t));
+    return r;
 }
 
 QString HTestData::toString(QString type)
@@ -98,25 +114,25 @@ QString HTestData::toString(QString type)
     return HeCore::toString(type, data(type));
 }
 
-QStringList HTestData::toString(QStringList types)
+QStringList HTestData::toString(QStringList type)
 {
     QStringList list;
-    for (auto type : types)
+    for (auto t : type)
         list << toString(type);
     return list;
 }
 
-QString HTestData::toHtmlTable(QStringList types, QColor bgcolor)
+QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
 {
     QString text;
     QString caption,value,unit;
 
     text = QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>").arg(bgcolor.name());
-    for (auto type : types)
+    for (auto t : type)
     {
-        caption = toCaption(type);
-        value = toString(type);
-        unit = toUnit(type);
+        caption = toCaption(t);
+        value = toString(t);
+        unit = toUnit(t);
         text += QString("<tr>"
                         "<td><p align = right>%1</p></td>"
                         "<td><p align = center>%2</p></td>"

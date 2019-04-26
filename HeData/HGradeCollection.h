@@ -6,7 +6,6 @@
 #define HGRADECOLLECTION_H
 
 #include "IGradeCollection.h"
-#include "HeCore/HCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -26,8 +25,11 @@ public:
 public:
     IDataFactory *dataFactory() override;
     IFileStream *fileStream() override;
-    QString useIndex() override;
     void setUseIndex(QString value) override;
+    QString useIndex() override;
+
+public:
+    QVariant levels(QString type) override;
     int calcLevel(QVariantMap value, QString &text) override;
 
 protected:

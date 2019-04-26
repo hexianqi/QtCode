@@ -68,6 +68,7 @@ public:
     void setGradeFocus(QPolygonF value);
     void setGrade(QList<QPolygonF> value);
     void addGrade(QPolygonF value, bool focus = true, bool refresh = true);
+    void removeGrade(QPolygonF value, bool refresh = true);
     void clearGrade();
     void setPointFocus(QPointF value);
     void setPoint(QList<QPointF> value);

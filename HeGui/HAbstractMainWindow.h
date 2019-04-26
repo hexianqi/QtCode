@@ -23,6 +23,10 @@ public:
     explicit HAbstractMainWindow(QWidget *parent = nullptr);
     ~HAbstractMainWindow() override;
 
+public:
+    QAction *insertMenu(QMenu *) override;
+    bool openCalibrateDlg(QDialog *) override;
+
 protected:
     HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);
 

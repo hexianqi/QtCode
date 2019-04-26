@@ -57,8 +57,6 @@ void HListCollectionDialog::on_pushButton_4_clicked()
 
 void HListCollectionDialog::setCurrentIndex(QModelIndex index)
 {
-    if (d_ptr->currentIndex == index)
-        return;
     d_ptr->currentIndex = index;
     auto name = index.isValid() ? index.data().toString() : "";
     d_ptr->itemWidget->setCurrentItem(name);
@@ -68,7 +66,7 @@ void HListCollectionDialog::handleSourceChanged(QStringList names, QString name)
 {
     int row = names.indexOf(name);
     d_ptr->model->setStringList(names);
-    auto index = d_ptr->model->hasIndex(row, 0) ? d_ptr->model->index(row) : d_ptr->model->index(d_ptr->model->rowCount() - 1);
+    auto index = d_ptr->model->hasIndex(row, 0) ? d_ptr->model->index(row) : d_ptr->model->index(0);
     ui->listView->setCurrentIndex(index);
     ui->groupBox_2->setEnabled(index.isValid());
     ui->pushButton_2->setEnabled(index.isValid());

@@ -28,11 +28,11 @@ void HSpecCalibrateDialog::done(int result)
 
 void HSpecCalibrateDialog::init()
 {
-    auto config = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
+    auto calibrate = HAppContext::getContextPointer<IConfigManage>("IConfigManage")->specCalibrate("1");
     auto layout = new QGridLayout(this);
     d_ptr->widget = new HSpecCalibrateWidget;
     d_ptr->widget->setTestSetWidget(new HSpecCalibrateSetWidget);
-    d_ptr->widget->setSpecCalibrate(config->specCalibrate("1"));
+    d_ptr->widget->setSpecCalibrate(calibrate);
     layout->addWidget(d_ptr->widget);
     d_ptr->widget->start();
 }

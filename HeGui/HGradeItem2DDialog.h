@@ -34,9 +34,10 @@ protected slots:
 
 protected:
     bool setAverageMode(bool b) override;
+    void averageLevels() override;
     void showData() override;
     void saveData() override;
-    void averageLevels() override;
+    QPolygonF getLevel(int row);
     QList<QPolygonF> getLevels();
     void showLevels(QList<QPolygonF> value);
 

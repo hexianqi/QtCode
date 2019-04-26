@@ -13,5 +13,4 @@ class HTestHandlerPrivate : public HAbstractGuiHandlerPrivate
 
 HE_GUI_END_NAMESPACE
 
-
 #endif // HTESTHANDLER_P_H

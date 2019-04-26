@@ -10,6 +10,7 @@ class HTestDataPrivate
 public:
     void setData(QString type, QVariant value);
     void addData(QString type, QVariant value);
+    void addData(QVariantMap value);
     QVariant data(QString type);
 
 public:

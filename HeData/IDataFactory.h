@@ -20,6 +20,9 @@ class ISpecCalibrateCollection;
 class IGrade;
 class IGradeCollection;
 class IGradeItem;
+class IAdjust;
+class IAdjustCollection;
+class IAdjustItem;
 
 class IDataFactory : public IInitializeable
 {
@@ -40,6 +43,12 @@ public:
     virtual IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建分级数据子项
     virtual IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建校正数据集
+    virtual IAdjustCollection *createAdjustCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建校正数据
+    virtual IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建校正数据子项
+    virtual IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_DATA_END_NAMESPACE

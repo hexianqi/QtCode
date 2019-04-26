@@ -1,11 +1,14 @@
 #include "HTestWidget2000_p.h"
 #include "HTestSetWidget2000.h"
 #include "HDetailWidget2000.h"
-#include "HeCore/HCore.h"
+#include "HeCore/HAppContext.h"
 #include "HeController/ITestData.h"
+#include "HeData/IConfigManage.h"
+#include "HeData/IGradeCollection.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HResultTableWidget.h"
 #include "HePlugin/HCIE1931Widget.h"
+#include <QtCore/QDateTime>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QSplitter>
@@ -15,19 +18,21 @@
 
 HTestWidget2000Private::HTestWidget2000Private()
 {
-    resultOptionals = QStringList() << "[测量日期]" << "[测量时间]"
-                                    << "[光谱光通量]" << "[光功率]"
-                                    << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
-                                    << "[色温]" << "[色纯度]"
-                                    << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
-                                    << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                                    << "[显色指数]" <<"[显色指数Rx]";
+    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
+    displayOptionals = QStringList() << "[测量日期]" << "[测量时间]"
+                                     << "[光谱光通量]" << "[光功率]"
+                                     << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
+                                     << "[色温]" << "[色纯度]"
+                                     << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
+                                     << "[红色比]" << "[绿色比]" << "[蓝色比]"
+                                     << "[显色指数]" <<"[显色指数Rx]";
 }
 
 HTestWidget2000::HTestWidget2000(QWidget *parent) :
     HTestWidget(*new HTestWidget2000Private, parent)
 {
     init();
+    resetGrade();
 }
 
 HTestWidget2000::~HTestWidget2000()
@@ -61,20 +66,20 @@ void HTestWidget2000::handleAction(HActionType action)
         if (action == ACT_RESET_SPECTRUM)
             d->energyWidget->initCoordinate();
         if (action == ACT_RESET_GRADE)
-        {
-            // TODO:d->cieWidget->setGrade()
-        }
+            resetGrade();
         return;
     }
     if (action == ACT_GET_SPECTRUM)
+    {
+        postProcess();
         refreshWidget();
+    }
     d->testSetWidget->handleAction(action);
 }
 
 void HTestWidget2000::createWidget()
 {
     Q_D(HTestWidget2000);
-
     auto layout = new QGridLayout(this);
     auto tabWidget1 = new QTabWidget;
     auto tabWidget2 = new QTabWidget;
@@ -86,7 +91,7 @@ void HTestWidget2000::createWidget()
     d->cieWidget = new HCIE1931Widget;
     d->detailWidget = new HDetailWidget2000;
     d->resultWidget = new HResultTableWidget;
-    d->resultWidget->setOptionals(d->resultOptionals);
+    d->resultWidget->setOptionals(d->displayOptionals);
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
     tabWidget3->addTab(d->detailWidget, tr("当次结果"));
@@ -115,7 +120,6 @@ void HTestWidget2000::createAction()
 
 void HTestWidget2000::createMenu()
 {
-
 }
 
 void HTestWidget2000::createToolBar()
@@ -136,11 +140,22 @@ void HTestWidget2000::initMenu()
 {
 }
 
-void HTestWidget2000::writeContent(QTextStream &s)
+void HTestWidget2000::handleTestStateChanged(bool b)
 {
     Q_D(HTestWidget2000);
-    s << toCaptionUnit(d->resultOptionals).join("\t") + "\n";
-    s << d->testData->toString(d->resultOptionals).join("\t") + "\n";
+    d->actionStart->setEnabled(!b);
+    d->actionStop->setEnabled(b);
+    d->actionExportExcel->setEnabled(!b);
+    d->actionExportDatabase->setEnabled(!b);
+    d->actionClear->setEnabled(!b);
+}
+
+void HTestWidget2000::resetGrade()
+{
+    Q_D(HTestWidget2000);
+    auto v = d->configManage->gradeCollection()->levels("[色坐标]");
+    auto p = v.value<QList<QPolygonF>>();
+    d->cieWidget->setGrade(p);
 }
 
 void HTestWidget2000::refreshWidget()
@@ -159,12 +174,18 @@ void HTestWidget2000::clearResult()
     d->resultWidget->clearResult();
 }
 
-void HTestWidget2000::handleTestStateChanged(bool b)
+void HTestWidget2000::postProcess()
 {
     Q_D(HTestWidget2000);
-    d->actionStart->setEnabled(!b);
-    d->actionStop->setEnabled(b);
-    d->actionExportExcel->setEnabled(!b);
-    d->actionExportDatabase->setEnabled(!b);
-    d->actionClear->setEnabled(!b);
+    QString text;
+    auto r = d->testData->select(d->displayOptionals);
+    auto l = d->configManage->gradeCollection()->calcLevel(r, text);
+    d->testData->setData("[分级]", l);
+    d->testData->setData("[分级别名]", text);
+    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+ //   d->testData->select();
+//    QString text;
+//
+
+
 }

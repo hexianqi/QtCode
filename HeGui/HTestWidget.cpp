@@ -1,4 +1,5 @@
 #include "HTestWidget_p.h"
+#include "HeCore/HCore.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IExcelStream.h"
@@ -14,6 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 HTestWidgetPrivate::HTestWidgetPrivate()
 {
     sqlTableModel = HAppContext::getContextPointer<ISqlTableModel>("ISqlTableModel");
+    excelStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createExcelStream("HExcelStream");
 }
 
 HTestWidget::HTestWidget(QWidget *parent) :
@@ -39,7 +41,6 @@ void HTestWidget::init()
     createToolBar();
     initMenu();
     initToolBar();
-    initExcelStream();
 }
 
 void HTestWidget::createAction()
@@ -72,17 +73,13 @@ void HTestWidget::initToolBar()
         bar->setMovable(false);
 }
 
-void HTestWidget::initExcelStream()
-{
-    Q_D(HTestWidget);
-    auto factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    d->excelStream = factory->createExcelStream("HExcelStream");
-    d->excelStream->setWriteContent([=](QTextStream &s) { writeContent(s); });
-}
-
 void HTestWidget::exportExcel()
 {
     Q_D(HTestWidget);
+    QString text;
+    text += toCaptionUnit(d->displayOptionals).join("\t") + "\n";
+    text += d->testData->toString(d->displayOptionals).join("\t") + "\n";
+    d->excelStream->setWriteContent(text);
     d->excelStream->saveAsFile();
 }
 

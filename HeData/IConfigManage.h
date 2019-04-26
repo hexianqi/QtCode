@@ -16,6 +16,7 @@ class IFileStream;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
 class IGradeCollection;
+class IAdjustCollection;
 
 enum ConfigContainType
 {

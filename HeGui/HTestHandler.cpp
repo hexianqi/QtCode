@@ -1,4 +1,5 @@
 #include "HTestHandler_p.h"
+#include "IMainWindow.h"
 #include <QtWidgets/QMessageBox>
 #include <QtCore/QDebug>
 
@@ -29,7 +30,7 @@ void HTestHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(sender)
     Q_UNUSED(param)
     Q_D(HTestHandler);
-    QMessageBox::information(d->parent, "" , tr("敬请期待"));
+    QMessageBox::information(d->mainWindow, "" , tr("敬请期待"));
 }
 
 HE_GUI_END_NAMESPACE

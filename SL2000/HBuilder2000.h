@@ -27,6 +27,7 @@ protected:
     void buildThread() override;
     void buildModel() override;
     void buildDatabase() override;
+    void buildMenu() override;
     void buildTestWidget() override;
 };
 

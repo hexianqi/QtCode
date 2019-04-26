@@ -4,14 +4,15 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HAction::HAction(QObject* parent)
-    : QAction(parent), d_ptr(new HActionPrivate)
+HAction::HAction(QObject* parent) :
+    QAction(parent),
+    d_ptr(new HActionPrivate)
 {
-    connect(this, &HAction::triggered, this, call);
 }
 
-HAction::HAction(HActionPrivate &p, QObject *parent)
-    : QAction(parent), d_ptr(&p)
+HAction::HAction(HActionPrivate &p, QObject *parent) :
+    QAction(parent),
+    d_ptr(&p)
 {
 }
 
@@ -23,7 +24,7 @@ HAction::~HAction()
 void HAction::initialize(QVariantMap param)
 {
     if (param.contains("handler"))
-        d_ptr->handler = FromVariant(IHandler, param.value("handler"));
+        setHandler(FromVariant(IHandler, param.value("handler")));
     if (param.contains("data"))
         setData(param.value("data"));
 }
@@ -36,6 +37,7 @@ QString HAction::typeName()
 void HAction::setHandler(IHandler *p)
 {
     d_ptr->handler = p;
+    connect(this, &HAction::triggered, this, &HAction::call);
 }
 
 void HAction::call()

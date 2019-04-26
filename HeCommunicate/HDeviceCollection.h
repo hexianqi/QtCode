@@ -6,7 +6,6 @@
 #define HDEVICECOLLECTION_H
 
 #include "IDeviceCollection.h"
-#include "HeCore/HCollection.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

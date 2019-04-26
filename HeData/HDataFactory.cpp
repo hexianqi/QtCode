@@ -9,6 +9,7 @@
 #include "HParallelGrade.h"
 #include "HGradeItem.h"
 #include "HGradeItem2D.h"
+#include "HAdjustCollection.h"
 #include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
 
@@ -88,7 +89,6 @@ IGradeCollection *HDataFactory::createGradeCollection(QString type, QVariantMap 
     IGradeCollection *p = new HGradeCollection(this);
     p->initialize(param);
     return p;
-    return nullptr;
 }
 
 IGrade *HDataFactory::createGrade(QString type, QVariantMap param)
@@ -99,6 +99,24 @@ IGrade *HDataFactory::createGrade(QString type, QVariantMap param)
 IGradeItem *HDataFactory::createGradeItem(QString type, QVariantMap param)
 {
     return HFactory::createObject<IGradeItem>(type, param);
+}
+
+IAdjustCollection *HDataFactory::createAdjustCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IAdjustCollection *p = new HAdjustCollection(this);
+    p->initialize(param);
+    return p;
+}
+
+IAdjust *HDataFactory::createAdjust(QString type, QVariantMap param)
+{
+
+}
+
+IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
+{
+
 }
 
 void HDataFactory::registerClass()

@@ -28,6 +28,9 @@ public:
     ISqlTableModel *sqlTableModel;
 
 public:
+    QStringList displayOptionals;
+
+public:
     QAction *actionStart;
     QAction *actionStop;
     QAction *actionExportExcel;

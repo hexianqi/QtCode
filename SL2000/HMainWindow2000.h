@@ -19,17 +19,6 @@ public:
 protected:
     void initImportExport() override;
     void initBuilder() override;
-    void createAction() override;
-    void createMenu() override;
-    void initMenu() override;
-
-protected:
-    virtual bool openCalibrateDlg(QDialog *dlg);
-
-protected slots:
-    void openCalibrateSpectrumDialog();
-    void openGradeEditDialog();
-    void openGradeSelectDialog();
 };
 
 #endif // HMAINWINDOW2100_H

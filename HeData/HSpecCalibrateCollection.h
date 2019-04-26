@@ -6,7 +6,6 @@
 #define HSPECCALIBRATECOLLECTION_H
 
 #include "ISpecCalibrateCollection.h"
-#include "HeCore/HCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 

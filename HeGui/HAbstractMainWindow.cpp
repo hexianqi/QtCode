@@ -38,6 +38,19 @@ HAbstractMainWindow::~HAbstractMainWindow()
     save(false);
 }
 
+QAction *HAbstractMainWindow::insertMenu(QMenu *menu)
+{
+    return menuBar()->insertMenu(d_ptr->actionSeparator, menu);
+}
+
+bool HAbstractMainWindow::openCalibrateDlg(QDialog *dlg)
+{
+    d_ptr->testWidget->stop();
+    auto result = dlg->exec();
+    d_ptr->testWidget->start();
+    return result == QDialog::Accepted;
+}
+
 void HAbstractMainWindow::initialize()
 {
     initImportExport();
@@ -172,7 +185,7 @@ void HAbstractMainWindow::initCentralWidget()
     d_ptr->testWidget = HAppContext::getContextPointer<ITestWidget>("ITestWidget");
     setCentralWidget(d_ptr->testWidget);
     for (auto menu : d_ptr->testWidget->menus())
-        menuBar()->insertMenu(d_ptr->actionSeparator, menu);
+        insertMenu(menu);
     for (auto toolBar : d_ptr->testWidget->toolBars())
         insertToolBar(d_ptr->toolBarLogo, toolBar);
     d_ptr->testWidget->start();

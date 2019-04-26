@@ -33,10 +33,8 @@ protected:
     virtual void createToolBar() = 0;
     virtual void initMenu() = 0;
     virtual void initToolBar();
-    virtual void initExcelStream();
     virtual void exportExcel();
     virtual void exportDatabase();
-    virtual void writeContent(QTextStream &) = 0;
 };
 
 HE_GUI_END_NAMESPACE

@@ -6,7 +6,6 @@
 #define HTHREADCOLLECTION_H
 
 #include "IThreadCollection.h"
-#include "HeCore/HCollection.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 

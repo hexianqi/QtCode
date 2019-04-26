@@ -31,9 +31,9 @@ protected slots:
 
 protected:
     bool setAverageMode(bool b) override;
+    void averageLevels() override;
     void showData() override;
     void saveData() override;
-    void averageLevels() override;
 
 private:
     void init();

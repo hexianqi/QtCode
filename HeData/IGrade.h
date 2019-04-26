@@ -21,14 +21,16 @@ public:
     using HCollection::HCollection;
 
 public:
-    // 计算级别
-    virtual int calcLevel(QVariantMap value, QString &text) = 0;
-
-public:
     // 读取内容
     virtual void readContent(QDataStream &, IDataFactory *) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
+
+public:
+    // 获取某类型所有分级
+    virtual QVariant levels(QString type) = 0;
+    // 计算levels
+    virtual int calcLevel(QVariantMap value, QString &text) = 0;
 };
 
 HE_DATA_END_NAMESPACE

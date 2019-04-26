@@ -28,11 +28,13 @@ HGradeItem2DDialog::~HGradeItem2DDialog()
 void HGradeItem2DDialog::on_spinBox_02_valueChanged(int value)
 {
     Q_D(HGradeItem2DDialog);
-    if (!ui->checkBox_01->isChecked())
-    {
-        ui->tableWidget->setRowCount(value);
-        d->cieWidget->setGrade(getLevels());
-    }
+    if (ui->checkBox_01->isChecked())
+        return;
+    auto previous = ui->tableWidget->rowCount();
+    ui->tableWidget->setRowCount(value);
+    for (int i = previous; i < value; i++)
+        ui->tableWidget->setRow(i, d->data->level(-1));
+    d->cieWidget->setGrade(getLevels());
 }
 
 void HGradeItem2DDialog::on_checkBox_01_clicked(bool b)
@@ -56,17 +58,8 @@ void HGradeItem2DDialog::on_pushButton_13_clicked()
 void HGradeItem2DDialog::setGradeFocus()
 {
     Q_D(HGradeItem2DDialog);
-    QPolygonF poly;
     auto row = ui->tableWidget->currentRow();
-    if (row < 0)
-        return;
-
-    for (int i = 0; i < ui->tableWidget->columnCount(); i += 2)
-    {
-        auto x =  ui->tableWidget->item(row, i)->text().toDouble();
-        auto y =  ui->tableWidget->item(row, i + 1)->text().toDouble();
-        poly << QPointF(x, y);
-    }
+    auto poly = getLevel(row);
     d->cieWidget->setGradeFocus(poly);
 }
 
@@ -80,43 +73,32 @@ void HGradeItem2DDialog::replacePoint(QPointF point)
     auto range = ranges.first();
     auto row = range.topRow();
     auto column = range.leftColumn() / 2 * 2;
+    auto previous = getLevel(row);
     ui->tableWidget->item(row, column)->setText(toString(d->type, point.x()));
     ui->tableWidget->item(row, column + 1)->setText(toString(d->type, point.y()));
-    setGradeFocus();
+    auto current = getLevel(row);
+    d->cieWidget->removeGrade(previous, false);
+    d->cieWidget->addGrade(current);
 }
 
 bool HGradeItem2DDialog::setAverageMode(bool b)
 {
+    Q_D(HGradeItem2DDialog);
     if (!HAbstractGradeItemDialog::setAverageMode(b))
         return false;
 
     if (b)
-        ui->tableWidget->setRowCount(1);
+    {
+        if (ui->tableWidget->rowCount() == 0)
+            ui->tableWidget->insertRow(0, d->data->level(-1));
+        else
+            ui->tableWidget->setRowCount(1);
+    }
     ui->checkBox_01->setChecked(!b);
     ui->spinBox_03->setEnabled(b);
     ui->spinBox_04->setEnabled(b);
     ui->pushButton_01->setEnabled(b);
     return true;
-}
-
-void HGradeItem2DDialog::showData()
-{
-    Q_D(HGradeItem2DDialog);
-    auto levels = d->data->levels().value<QList<QPolygonF>>();
-    auto delegate = new HDoubleSpinBoxDelegate(this);
-    delegate->setType(d->data->types());
-    ui->spinBox_01->setValue(d->data->data("[优先级]").toInt());
-    ui->tableWidget->setHorizontalHeaderLabels(d->data->headers());
-    ui->tableWidget->setItemDelegate(delegate);
-    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HGradeItem2DDialog::setGradeFocus);
-    showLevels(levels);
-}
-
-void HGradeItem2DDialog::saveData()
-{
-    Q_D(HGradeItem2DDialog);
-    d->data->setLevels(QVariant::fromValue(getLevels()));
-    d->data->setData("[优先级]", ui->spinBox_01->value());
 }
 
 void HGradeItem2DDialog::averageLevels()
@@ -168,20 +150,46 @@ void HGradeItem2DDialog::averageLevels()
     showLevels(l);
 }
 
+void HGradeItem2DDialog::showData()
+{
+    Q_D(HGradeItem2DDialog);
+    auto levels = d->data->levels().value<QList<QPolygonF>>();
+    auto delegate = new HDoubleSpinBoxDelegate(this);
+    delegate->setType(d->data->types());
+    ui->spinBox_01->setValue(d->data->data("[优先级]").toInt());
+    ui->tableWidget->setHorizontalHeaderLabels(d->data->headers());
+    ui->tableWidget->setItemDelegate(delegate);
+    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HGradeItem2DDialog::setGradeFocus);
+    showLevels(levels);
+}
+
+void HGradeItem2DDialog::saveData()
+{
+    Q_D(HGradeItem2DDialog);
+    d->data->setLevels(QVariant::fromValue(getLevels()));
+    d->data->setData("[优先级]", ui->spinBox_01->value());
+}
+
+QPolygonF HGradeItem2DDialog::getLevel(int row)
+{
+    QPolygonF poly;
+    if (row < 0 || row >= ui->tableWidget->rowCount())
+        return poly;
+
+    for (int i = 0; i < ui->tableWidget->columnCount(); i += 2)
+    {
+        auto x =  ui->tableWidget->item(row, i)->text().toDouble();
+        auto y =  ui->tableWidget->item(row, i + 1)->text().toDouble();
+        poly << QPointF(x, y);
+    }
+    return poly;
+}
+
 QList<QPolygonF> HGradeItem2DDialog::getLevels()
 {
     QList<QPolygonF> l;
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
-    {
-        QPolygonF p;
-        for (int j = 0; j <ui->tableWidget->columnCount(); j += 2)
-        {
-            auto x =  ui->tableWidget->item(i, j)->text().toDouble();
-            auto y =  ui->tableWidget->item(i, j + 1)->text().toDouble();
-            p << QPointF(x, y);
-        }
-        l << p;
-    }
+        l << getLevel(i);
     return l;
 }
 
@@ -211,6 +219,7 @@ void HGradeItem2DDialog::init()
     d->cieWidget = new HCIE1931Widget;
     d->cieWidget->setMinimumSize(QSize(420, 420));
     ui->splitter->addWidget(d->cieWidget);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     connect(d->cieWidget, &HCIE1931Widget::mouseDoubleClicked, this, &HGradeItem2DDialog::replacePoint);
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, &HGradeItem2DDialog::setGradeFocus);
 }
