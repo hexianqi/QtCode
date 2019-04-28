@@ -5,14 +5,13 @@
 #ifndef IADJUSTITEM_H
 #define IADJUSTITEM_H
 
-#include "HDataGlobal.h"
-#include "HeCore/IInitializeable.h"
+#include "IDataItem.h"
 
 HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IAdjustItem : public IInitializeable
+class IAdjustItem : public IDataItem
 {
 //public:
 //    // 设置数据
@@ -33,12 +32,6 @@ class IAdjustItem : public IInitializeable
 //    virtual QStringList headers() = 0;
 //    // 数据类型
 //    virtual QStringList types() = 0;
-
-//public:
-//    // 读取内容
-//    virtual void readContent(QDataStream &) = 0;
-//    // 写入内容
-//    virtual void writeContent(QDataStream &) = 0;
 };
 
 HE_DATA_END_NAMESPACE

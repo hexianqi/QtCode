@@ -30,6 +30,7 @@ public:
 public:
     void clear() override;
     bool contains(QString key) override;
+    int size() override;
     void insert(QString key, T *value) override;
     int remove(QString key) override;
     T *first() override;
@@ -92,6 +93,12 @@ template <typename T>
 bool HCollection<T>::contains(QString key)
 {
     return d_ptr->datas.contains(key);
+}
+
+template <typename T>
+int HCollection<T>::size()
+{
+    return d_ptr->datas.size();
 }
 
 template <typename T>

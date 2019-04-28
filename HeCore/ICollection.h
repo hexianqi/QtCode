@@ -17,6 +17,8 @@ public:
     virtual void clear() = 0;
     // 是否包含
     virtual bool contains(QString key) = 0;
+    // 大小
+    virtual int size() = 0;
     // 插入
     virtual void insert(QString key, T *value) = 0;
     // 删除
@@ -25,7 +27,7 @@ public:
     virtual T *first() = 0;
     // key值
     virtual T *value(QString key) = 0;
-    // name项
+    // key项
     virtual T *item(QString key) = 0;
     // 所有键
     virtual QStringList keys() = 0;

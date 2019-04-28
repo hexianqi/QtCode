@@ -56,13 +56,13 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     }
 }
 
-HConfigManage::HConfigManage(IDataFactory *f)
-    : d_ptr(new HConfigManagePrivate(f))
+HConfigManage::HConfigManage(IDataFactory *f) :
+    d_ptr(new HConfigManagePrivate(f))
 {
 }
 
-HConfigManage::HConfigManage(HConfigManagePrivate &p)
-    : d_ptr(&p)
+HConfigManage::HConfigManage(HConfigManagePrivate &p) :
+    d_ptr(&p)
 {
 }
 

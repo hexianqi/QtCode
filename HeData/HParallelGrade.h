@@ -17,7 +17,7 @@ class HParallelGrade : public HAbstractGrade
 
 public:
     explicit HParallelGrade();
-    virtual ~HParallelGrade();
+    ~HParallelGrade() override;
 
 public:
     QString typeName() override;
