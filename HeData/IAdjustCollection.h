@@ -6,18 +6,15 @@
 #define IADJUSTCOLLECTION_H
 
 #include "IDataCollection.h"
-#include "HeCore/HCollection.h"
-
-HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IAdjust;
 
-class IAdjustCollection : public HCollection<IAdjust>, public IDataCollection
+class IAdjustCollection : public IDataCollection<IAdjust>
 {
 public:
-    using HCollection::HCollection;
+    using IDataCollection::IDataCollection;
 
 public:
     // 纠正

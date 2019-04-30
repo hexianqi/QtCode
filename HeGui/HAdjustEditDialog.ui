@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>调整数据编辑</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0" colspan="3">
@@ -39,93 +39,13 @@
        <number>15</number>
       </property>
       <widget class="QGroupBox" name="groupBox_2">
-       <property name="minimumSize">
-        <size>
-         <width>350</width>
-         <height>0</height>
-        </size>
-       </property>
        <property name="title">
-        <string>校正数据</string>
+        <string>调整数据</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="2" column="3">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>计 算</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="pushButton_1">
-          <property name="text">
-           <string>添 加</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="6">
-         <widget class="HEntireTableWidget" name="tableWidget"/>
-        </item>
-        <item row="1" column="3">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>删 除</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2" rowspan="2">
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButton_3">
-          <property name="text">
-           <string>恢复默认</string>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" rowspan="2">
-         <spacer name="horizontalSpacer_1">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="5" rowspan="2">
-         <spacer name="horizontalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
+       <layout class="QGridLayout" name="gridLayout_2"/>
       </widget>
       <widget class="QGroupBox" name="groupBox_3">
        <property name="title">
@@ -141,20 +61,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>HEntireTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>HePlugin/HEntireTableWidget.h</header>
-  </customwidget>
- </customwidgets>
- <tabstops>
-  <tabstop>tableWidget</tabstop>
-  <tabstop>pushButton_1</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_4</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

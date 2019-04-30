@@ -37,15 +37,6 @@ public:
 protected:
     void done(int result) override;
     void handleAction(HActionType action);
-    void initSelected();
-    void showData();
-    void saveData();
-
-protected slots:
-    void on_pushButton_1_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
-    void on_pushButton_4_clicked();
 
 protected:
     QScopedPointer<HAdjustEditDialogPrivate> d_ptr;

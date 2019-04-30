@@ -4,6 +4,7 @@
 #include "HGradeDetailWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
+#include "HeData/IGradeCollection.h"
 #include "HeController/IModel.h"
 #include <QtCore/QDebug>
 
@@ -42,7 +43,7 @@ void HGradeEditHandler::execute(QObject *sender, QVariantMap param)
     widget->setData(d->configManage->gradeCollection());
     HListCollectionDialog dlg;
     dlg.setWindowTitle(tr("分级数据配置"));
-    dlg.setItemDetailWidget(widget);
+    dlg.setDataDetailWidget(widget);
     dlg.exec();
     d->model->addAction(ACT_RESET_GRADE);
 }

@@ -12,11 +12,10 @@ class HListCollectionDialogPrivate
 {
 public:
     QStringListModel *model;
-    IItemDetailWidget *itemWidget;
+    IDataDetailWidget *widget;
 
 public:
     QModelIndex currentIndex;
-
 };
 
 HE_GUI_END_NAMESPACE

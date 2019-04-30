@@ -1,6 +1,6 @@
 #include "HListCollectionDialog_p.h"
 #include "ui_HListCollectionDialog.h"
-#include "IItemDetailWidget.h"
+#include "IDataDetailWidget.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QStringListModel>
 #include <QtCore/QDebug>
@@ -22,12 +22,18 @@ HListCollectionDialog::~HListCollectionDialog()
     delete ui;
 }
 
-void HListCollectionDialog::setItemDetailWidget(IItemDetailWidget *p)
+void HListCollectionDialog::setDataDetailWidget(IDataDetailWidget *p)
 {
-    d_ptr->itemWidget = p;
+    d_ptr->widget = p;
     ui->groupBox_2->layout()->addWidget(p);
-    connect(d_ptr->itemWidget, &IItemDetailWidget::sourceChanged, this, &HListCollectionDialog::handleSourceChanged);
-    d_ptr->itemWidget->start();
+    connect(d_ptr->widget, &IDataDetailWidget::sourceChanged, this, &HListCollectionDialog::handleSourceChanged);
+    d_ptr->widget->start();
+}
+
+void HListCollectionDialog::done(int result)
+{
+    d_ptr->widget->saveData();
+    QDialog::done(result);
 }
 
 void HListCollectionDialog::on_pushButton_1_clicked()
@@ -35,31 +41,30 @@ void HListCollectionDialog::on_pushButton_1_clicked()
     QString name;
     if (!HPluginHelper::getInputText(this, tr("请输入名称："), name))
         return;
-    d_ptr->itemWidget->addItem(name);
+    d_ptr->widget->addItem(name);
 }
 
 void HListCollectionDialog::on_pushButton_2_clicked()
 {
     if (!d_ptr->currentIndex.isValid())
         return;
-    d_ptr->itemWidget->delItem(d_ptr->currentIndex.data().toString());
+    d_ptr->widget->delItem(d_ptr->currentIndex.data().toString());
 }
 
 void HListCollectionDialog::on_pushButton_3_clicked()
 {
-    d_ptr->itemWidget->importFile();
+    d_ptr->widget->importFile();
 }
 
 void HListCollectionDialog::on_pushButton_4_clicked()
 {
-    d_ptr->itemWidget->exportFile();
+    d_ptr->widget->exportFile();
 }
 
 void HListCollectionDialog::setCurrentIndex(QModelIndex index)
 {
     d_ptr->currentIndex = index;
-    auto name = index.isValid() ? index.data().toString() : "";
-    d_ptr->itemWidget->setCurrentItem(name);
+    d_ptr->widget->setCurrentItem(index.data().toString());
 }
 
 void HListCollectionDialog::handleSourceChanged(QStringList names, QString name)

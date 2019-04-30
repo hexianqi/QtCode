@@ -3,25 +3,10 @@
 
 #include "HGradeDetailWidget.h"
 
-HE_DATA_BEGIN_NAMESPACE
-class IDataFactory;
-class IGrade;
-HE_DATA_END_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
-class HGradeDetailWidgetPrivate
+class HGradeDetailWidgetPrivate : public HAbstractDataDetailWidgetPrivate<IGrade>
 {
-public:
-    HGradeDetailWidgetPrivate();
-
-public:
-    IDataFactory *factory = nullptr;
-    IGradeCollection *grades = nullptr;
-    IGrade *grade = nullptr;
-    QStringList optionals;
-    QStringList selecteds;
-    QStringList unselecteds;
 };
 
 HE_GUI_END_NAMESPACE

@@ -4,6 +4,7 @@
 #include "HAdjustDetailWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
+#include "HeData/IAdjustCollection.h"
 #include "HeController/IModel.h"
 #include <QtCore/QDebug>
 
@@ -42,7 +43,7 @@ void HAdjustEditHandler::execute(QObject *sender, QVariantMap param)
     widget->setData(d->configManage->adjustCollection());
     HListCollectionDialog dlg;
     dlg.setWindowTitle(tr("调整数据配置"));
-    dlg.setItemDetailWidget(widget);
+    dlg.setDataDetailWidget(widget);
     d->mainWindow->openCalibrateDlg(&dlg);
     d->model->addAction(ACT_RESET_ADJUST);
 }

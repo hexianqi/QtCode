@@ -6,18 +6,15 @@
 #define IGRADECOLLECTION_H
 
 #include "IDataCollection.h"
-#include "HeCore/HCollection.h"
-
-HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IGrade;
 
-class IGradeCollection : public HCollection<IGrade>, public IDataCollection
+class IGradeCollection : public IDataCollection<IGrade>
 {
 public:
-    using HCollection::HCollection;
+    using IDataCollection::IDataCollection;
 
 public:
     // 获取某类型所有分级

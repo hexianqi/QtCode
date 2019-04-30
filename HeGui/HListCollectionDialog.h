@@ -14,7 +14,7 @@ class HListCollectionDialog;
 
 HE_GUI_BEGIN_NAMESPACE
 
-class IItemDetailWidget;
+class IDataDetailWidget;
 class HListCollectionDialogPrivate;
 
 class HE_GUI_EXPORT HListCollectionDialog : public QDialog
@@ -26,7 +26,10 @@ public:
     ~HListCollectionDialog();
 
 public:
-    void setItemDetailWidget(IItemDetailWidget *);
+    void setDataDetailWidget(IDataDetailWidget *);
+
+protected:
+    void done(int result) override;
 
 protected slots:
     void on_pushButton_1_clicked();

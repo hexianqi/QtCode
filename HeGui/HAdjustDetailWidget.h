@@ -5,11 +5,10 @@
 #ifndef HADJUSTDETAILWIDGET_H
 #define HADJUSTDETAILWIDGET_H
 
-#include "IItemDetailWidget.h"
-#include "HeData/HDataGlobal.h"
+#include "HAbstractDataDetailWidget.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class IAdjustCollection;
+class IAdjust;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -17,39 +16,22 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HAdjustDetailWidgetPrivate;
 
-class HAdjustDetailWidget : public IItemDetailWidget
+class HAdjustDetailWidget : public HAbstractDataDetailWidget<IAdjust>
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HAdjustDetailWidget)
 
 public:
     explicit HAdjustDetailWidget(QWidget *parent = nullptr);
-    ~HAdjustDetailWidget();
+    ~HAdjustDetailWidget() override;
 
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
 
-public:
-    void start() override;
-    void importFile() override;
-    void exportFile() override;
-    void addItem(QString name) override;
-    void delItem(QString name) override;
-    void setCurrentItem(QString name) override;
-
-public:
-    void setData(IAdjustCollection *);
-
-protected:
-    void clearData();
-    void showData();
-    void editData();
-
-protected:
-    QScopedPointer<HAdjustDetailWidgetPrivate> d_ptr;
-
 private:
     void init();
+    void editData();
 };
 
 HE_GUI_END_NAMESPACE

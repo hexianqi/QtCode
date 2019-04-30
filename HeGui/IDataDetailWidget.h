@@ -2,8 +2,8 @@
 **      2019-04-19  IItemDetailWidget 项详情窗体接口。
 ***************************************************************************************************/
 
-#ifndef IITEMDETAILWIDGET_H
-#define IITEMDETAILWIDGET_H
+#ifndef IDATADETAILWIDGET_H
+#define IDATADETAILWIDGET_H
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -13,7 +13,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class IItemDetailWidget : public QWidget, public IInitializeable
+class IDataDetailWidget : public QWidget, public IInitializeable
 {
     Q_OBJECT
 
@@ -36,8 +36,10 @@ public:
     virtual void delItem(QString name) = 0;
     // 设置当前项
     virtual void setCurrentItem(QString name) = 0;
+    // 保存数据
+    virtual void saveData() = 0;
 };
 
 HE_GUI_END_NAMESPACE
 
-#endif // IITEMDETAILWIDGET_H
+#endif // IDATADETAILWIDGET_H

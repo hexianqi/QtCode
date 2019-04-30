@@ -5,15 +5,10 @@
 #ifndef HGRADEDETAILWIDGET_H
 #define HGRADEDETAILWIDGET_H
 
-#include "IItemDetailWidget.h"
-#include "HeData/HDataGlobal.h"
-
-namespace Ui {
-class HGradeDetailWidget;
-}
+#include "HAbstractDataDetailWidget.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class IGradeCollection;
+class IGrade;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -21,9 +16,10 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HGradeDetailWidgetPrivate;
 
-class HGradeDetailWidget : public IItemDetailWidget
+class HGradeDetailWidget : public HAbstractDataDetailWidget<IGrade>
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HGradeDetailWidget)
 
 public:
     explicit HGradeDetailWidget(QWidget *parent = nullptr);
@@ -33,32 +29,8 @@ public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
 
-public:
-    void start() override;
-    void importFile() override;
-    void exportFile() override;
-    void addItem(QString name) override;
-    void delItem(QString name) override;
-    void setCurrentItem(QString name) override;
-
-public:
-    void setData(IGradeCollection *);
-
-protected slots:
-    void on_pushButton_1_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
-
-protected:
-    void clearData();
-    void showData();
-    bool editGradeItem(QString type);
-
-protected:
-    QScopedPointer<HGradeDetailWidgetPrivate> d_ptr;
-
 private:
-    Ui::HGradeDetailWidget *ui;
+    void init();
 };
 
 HE_GUI_END_NAMESPACE

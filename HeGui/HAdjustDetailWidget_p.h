@@ -3,25 +3,12 @@
 
 #include "HAdjustDetailWidget.h"
 
-class HEntireTableWidget;
-
-HE_DATA_BEGIN_NAMESPACE
-class IDataFactory;
-class IAdjust;
-HE_DATA_END_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
-class HAdjustDetailWidgetPrivate
+class HAdjustDetailWidgetPrivate : public HAbstractDataDetailWidgetPrivate<IAdjust>
 {
 public:
-    HAdjustDetailWidgetPrivate();
-
-public:
-    IDataFactory *factory = nullptr;
-    IAdjustCollection *adjusts = nullptr;
-    IAdjust *adjust = nullptr;
-    HEntireTableWidget *tableWidget = nullptr;
+    QAction *actionEdit;
 };
 
 HE_GUI_END_NAMESPACE

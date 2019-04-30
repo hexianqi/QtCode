@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>分级编辑</string>
+   <string>分级数据编辑</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

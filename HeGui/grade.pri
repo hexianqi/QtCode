@@ -8,18 +8,22 @@ HEADERS += \
     $$PWD/HGradeItem2DDialog.h \
     $$PWD/HGradeItem2DDialog_p.h \
     $$PWD/HGradeIsothermDialog.h \
-    $$PWD/HGradeIsothermDialog_p.h
+    $$PWD/HGradeIsothermDialog_p.h \
+    $$PWD/HGradeEditWidget.h \
+    $$PWD/HGradeEditWidget_p.h
 
 SOURCES += \
     $$PWD/HGradeDetailWidget.cpp \
     $$PWD/HAbstractGradeItemDialog.cpp \
     $$PWD/HGradeItemDialog.cpp \
     $$PWD/HGradeItem2DDialog.cpp \
-    $$PWD/HGradeIsothermDialog.cpp
+    $$PWD/HGradeIsothermDialog.cpp \
+    $$PWD/HGradeEditWidget.cpp
 
 FORMS += \
     $$PWD/HGradeDetailWidget.ui \
     $$PWD/HGradeItemDialog.ui \
     $$PWD/HGradeItem2DDialog.ui \
-    $$PWD/HGradeIsothermDialog.ui
+    $$PWD/HGradeIsothermDialog.ui \
+    $$PWD/HGradeEditWidget.ui
 

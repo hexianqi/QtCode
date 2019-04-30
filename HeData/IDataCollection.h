@@ -6,14 +6,21 @@
 #define IDATACOLLECTION_H
 
 #include "HDataGlobal.h"
+#include "HeCore/HCollection.h"
+
+HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IDataFactory;
 class IFileStream;
 
-class IDataCollection
+template <typename T>
+class IDataCollection : public HCollection<T>
 {
+public:
+    using HCollection<T>::HCollection;
+
 public:
     // 获取文件流
     virtual IFileStream *fileStream() = 0;
