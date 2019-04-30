@@ -16,10 +16,6 @@ HGradeItem::~HGradeItem()
 {
 }
 
-void HGradeItem::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HGradeItem::typeName()
 {
     return "HGradeItem";
@@ -54,24 +50,6 @@ QVariant HGradeItem::levels()
     return QVariant::fromValue(d->levels);
 }
 
-QStringList HGradeItem::level(int i)
-{
-    Q_D(HGradeItem);
-    if (i >= d->levels.size())
-        return QStringList() << "" << "";
-
-    QPointF p;
-    auto t = data("[项类型]").toString();
-    if (i < 0)
-    {
-        auto f = toFormatInfo(t);
-        p = QPointF(f->min(), f->max());
-    }
-    else
-        p = d->levels[i];
-    return QStringList() << toString(t, p.x()) << toString(t, p.y());
-}
-
 QSet<int> HGradeItem::indexOf(QVariant value)
 {
     Q_D(HGradeItem);
@@ -96,13 +74,31 @@ int HGradeItem::count()
 QStringList HGradeItem::headers()
 {
     auto c = toCaption(data("[项类型]").toString());
-    return QStringList() << c + " Min" << c + " Max";
+    return QStringList() << c + "Min" << c + "Max";
 }
 
 QStringList HGradeItem::types()
 {
     auto t = data("[项类型]").toString();
     return QStringList() << t << t;
+}
+
+QStringList HGradeItem::level(int i)
+{
+    Q_D(HGradeItem);
+    if (i >= d->levels.size())
+        return QStringList() << "" << "";
+
+    QPointF p;
+    auto t = data("[项类型]").toString();
+    if (i < 0)
+    {
+        auto f = toFormatInfo(t);
+        p = QPointF(f->min(), f->max());
+    }
+    else
+        p = d->levels[i];
+    return QStringList() << toString(t, p.x()) << toString(t, p.y());
 }
 
 HE_DATA_END_NAMESPACE

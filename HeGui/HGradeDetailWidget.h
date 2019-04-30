@@ -13,7 +13,6 @@ class HGradeDetailWidget;
 }
 
 HE_DATA_BEGIN_NAMESPACE
-class IGrade;
 class IGradeCollection;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
@@ -22,7 +21,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HGradeDetailWidgetPrivate;
 
-class HE_GUI_EXPORT HGradeDetailWidget : public IItemDetailWidget
+class HGradeDetailWidget : public IItemDetailWidget
 {
     Q_OBJECT
 
@@ -44,7 +43,6 @@ public:
 
 public:
     void setData(IGradeCollection *);
-    void setOptionals(QStringList value);
 
 protected slots:
     void on_pushButton_1_clicked();

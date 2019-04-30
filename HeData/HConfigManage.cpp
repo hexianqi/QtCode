@@ -3,6 +3,7 @@
 #include "IFileStream.h"
 #include "ISpecCalibrateCollection.h"
 #include "IGradeCollection.h"
+#include "IAdjustCollection.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QDebug>
 
@@ -38,6 +39,12 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         grades = factory->createGradeCollection(type);
         grades->fileStream()->readContent(s);
     }
+    if (contain & ConfigContainType::CCT_ADJUST)
+    {
+        s >> type;
+        adjusts = factory->createAdjustCollection(type);
+        adjusts->fileStream()->readContent(s);
+    }
 }
 
 void HConfigManagePrivate::writeContent(QDataStream &s)
@@ -53,6 +60,11 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     {
         s << grades->typeName();
         grades->fileStream()->writeContent(s);
+    }
+    if (contain & ConfigContainType::CCT_ADJUST)
+    {
+        s << adjusts->typeName();
+        adjusts->fileStream()->writeContent(s);
     }
 }
 
@@ -80,29 +92,26 @@ QString HConfigManage::typeName()
     return "HConfigManage";
 }
 
-void HConfigManage::setContain(quint32 value)
-{
-    d_ptr->contain = value;
-}
-
-void HConfigManage::setSpecCalibrateCollection(ISpecCalibrateCollection *p)
-{
-    d_ptr->specCalibrates = p;
-}
-
-void HConfigManage::setGradeCollection(IGradeCollection *p)
-{
-    d_ptr->grades = p;
-}
-
 IFileStream *HConfigManage::fileStream()
 {
     return d_ptr->fileStream;
 }
 
+void HConfigManage::setContain(quint32 value)
+{
+    if (d_ptr->contain == value)
+        return;
+    d_ptr->contain = value;
+}
+
 quint32 HConfigManage::contain()
 {
     return d_ptr->contain;
+}
+
+void HConfigManage::setSpecCalibrateCollection(ISpecCalibrateCollection *p)
+{
+    d_ptr->specCalibrates = p;
 }
 
 ISpecCalibrate *HConfigManage::specCalibrate(QString name)
@@ -113,9 +122,25 @@ ISpecCalibrate *HConfigManage::specCalibrate(QString name)
     return d_ptr->specCalibrates->first();
 }
 
+
+void HConfigManage::setGradeCollection(IGradeCollection *p)
+{
+    d_ptr->grades = p;
+}
+
 IGradeCollection *HConfigManage::gradeCollection()
 {
     return  d_ptr->grades;
+}
+
+void HConfigManage::setAdjustCollection(IAdjustCollection *p)
+{
+    d_ptr->adjusts = p;
+}
+
+IAdjustCollection *HConfigManage::adjustCollection()
+{
+    return  d_ptr->adjusts;
 }
 
 bool HConfigManage::importPart(quint32 value)
@@ -126,6 +151,8 @@ bool HConfigManage::importPart(quint32 value)
         return d_ptr->specCalibrates->fileStream()->openFile();
     if (value & ConfigContainType::CCT_Grade)
         return d_ptr->grades->fileStream()->openFile();
+    if (value & ConfigContainType::CCT_ADJUST)
+        return d_ptr->adjusts->fileStream()->openFile();
     return false;
 }
 
@@ -137,6 +164,8 @@ bool HConfigManage::exportPart(quint32 value)
         return d_ptr->specCalibrates->fileStream()->saveAsFile();
     if (value & ConfigContainType::CCT_Grade)
         return d_ptr->grades->fileStream()->saveAsFile();
+    if (value & ConfigContainType::CCT_ADJUST)
+        return d_ptr->adjusts->fileStream()->saveAsFile();
     return false;
 }
 

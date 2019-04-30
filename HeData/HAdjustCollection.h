@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2019-04-26  HAdjustCollection 校正数据集合类。
+**      2019-04-26  HAdjustCollection 调整数据集合类。
 ***************************************************************************************************/
 
 #ifndef HADJUSTCOLLECTION_H
@@ -23,7 +23,6 @@ public:
     QString typeName() override;
 
 public:
-    IDataFactory *dataFactory() override;
     IFileStream *fileStream() override;
     void setUseIndex(QString value) override;
     QString useIndex() override;

@@ -44,4 +44,12 @@ void HSpecModel::syncTestData(quint32 type)
         addAction(ACT_RESET_GRADE);
 }
 
+void HSpecModel::syncMachine(quint32 type)
+{
+    if (type & ConfigContainType::CCT_Spec)
+    {
+        addAction(ACT_SET_INTEGRAL_TIME);
+    }
+}
+
 HE_CONTROLLER_END_NAMESPACE

@@ -37,6 +37,11 @@ bool HAbstractTestSetWidget::setTestState(bool b)
     return true;
 }
 
+bool HAbstractTestSetWidget::testState()
+{
+    return d_ptr->testState;
+}
+
 bool HAbstractTestSetWidget::setTestMode(int value)
 {
     if (d_ptr->testMode == value)
@@ -44,11 +49,6 @@ bool HAbstractTestSetWidget::setTestMode(int value)
     d_ptr->testMode = value;
     emit testModeChanged(value);
     return true;
-}
-
-bool HAbstractTestSetWidget::testState()
-{
-    return d_ptr->testState;
 }
 
 int HAbstractTestSetWidget::testMode()

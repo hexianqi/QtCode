@@ -19,19 +19,18 @@ HAbstractDataItem::~HAbstractDataItem()
 void HAbstractDataItem::initialize(QVariantMap param)
 {
     if (param.contains("datas"))
-    {
-        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
-        while (i.hasNext())
-        {
-            i.next();
-            setData(i.key(), i.value());
-        }
-    }
+        setData(param.value("datas").toMap());
 }
 
 void HAbstractDataItem::setData(QString name, QVariant value)
 {
     d_ptr->datas.insert(name, value);
+}
+
+void HAbstractDataItem::setData(QVariantMap value)
+{
+    for (auto i = value.begin(); i != value.end(); i++)
+        setData(i.key(), i.value());
 }
 
 QVariant HAbstractDataItem::data(QString name)

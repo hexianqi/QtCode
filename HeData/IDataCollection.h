@@ -15,8 +15,6 @@ class IFileStream;
 class IDataCollection
 {
 public:
-    // 获取数据工厂
-    virtual IDataFactory *dataFactory() = 0;
     // 获取文件流
     virtual IFileStream *fileStream() = 0;
     // 设置使用索引

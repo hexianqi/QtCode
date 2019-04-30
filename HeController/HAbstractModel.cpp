@@ -49,6 +49,7 @@ void HAbstractModel::start()
 
     initDelayThread();
     initWorkThread();
+    syncMachine(d_ptr->configManage->contain());
     d_ptr->initialized = true;
 }
 

@@ -1,9 +1,13 @@
 #include "HGuiFactory_p.h"
+#include "HSimpleTestSetWidget.h"
 #include "HAction.h"
 #include "HTestHandler.h"
+#include "HSpecCalibrateHandler.h"
 #include "HGradeEditHandler.h"
 #include "HGradeSelectHandler.h"
-#include "HSpecCalibrateHandler.h"
+#include "HAdjustEditHandler.h"
+#include "HAdjustSelectHandler.h"
+#include "HeCore/HFactory.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -37,6 +41,11 @@ QString HGuiFactory::typeName()
     return "HGuiFactory";
 }
 
+ITestSetWidget *HGuiFactory::createTestSetWidget(QString type, QVariantMap param)
+{
+    return HFactory::createObject<ITestSetWidget>(type, param);
+}
+
 IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 {
     auto p = HObjectFactory::createObject<IGuiHandler>(type, param, this);
@@ -58,10 +67,13 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 
 void HGuiFactory::registerClass()
 {
+    HFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HGradeEditHandler>("HGradeEditHandler");
     HObjectFactory::registerClass<HGradeSelectHandler>("HGradeSelectHandler");
+    HObjectFactory::registerClass<HAdjustEditHandler>("HAdjustEditHandler");
+    HObjectFactory::registerClass<HAdjustSelectHandler>("HAdjustSelectHandler");
 }
 
 HE_GUI_END_NAMESPACE

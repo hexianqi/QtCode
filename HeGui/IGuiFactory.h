@@ -12,12 +12,15 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
+class ITestSetWidget;
 class IGuiHandler;
 class HAction;
 
 class IGuiFactory : public IInitializeable
 {
 public:
+    // 创建测试设置窗体
+    virtual ITestSetWidget *createTestSetWidget(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建处理者
     virtual IGuiHandler *createHandler(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建动作

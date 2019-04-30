@@ -10,3 +10,4 @@ FORMS += \
     $$PWD/HListCollectionDialog.ui
 
 include(grade.pri)
+include(adjust.pri)

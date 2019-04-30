@@ -23,7 +23,6 @@ public:
     QString typeName() override;
 
 public:
-    IDataFactory *dataFactory() override;
     IFileStream *fileStream() override;
     void setUseIndex(QString value) override;
     QString useIndex() override;

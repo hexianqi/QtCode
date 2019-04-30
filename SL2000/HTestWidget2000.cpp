@@ -19,7 +19,7 @@
 HTestWidget2000Private::HTestWidget2000Private()
 {
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-    displayOptionals = QStringList() << "[测量日期]" << "[测量时间]"
+    displayOptionals = QStringList() << "[分级]" << "[测量日期]" << "[测量时间]"
                                      << "[光谱光通量]" << "[光功率]"
                                      << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
                                      << "[色温]" << "[色纯度]"
@@ -183,9 +183,4 @@ void HTestWidget2000::postProcess()
     d->testData->setData("[分级]", l);
     d->testData->setData("[分级别名]", text);
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
- //   d->testData->select();
-//    QString text;
-//
-
-
 }

@@ -18,6 +18,8 @@ class IDataItem : public IInitializeable
 public:
     // 设置数据
     virtual void setData(QString name, QVariant value) = 0;
+    // 设置数据
+    virtual void setData(QVariantMap value) = 0;
     // 获取数据
     virtual QVariant data(QString name) = 0;
 

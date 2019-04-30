@@ -21,17 +21,16 @@ QString HSequentialGrade::typeName()
 
 int HSequentialGrade::calcLevel(QVariantMap value, QString &text)
 {
-    Q_D(HSequentialGrade);
     text = "";
-    if (value.isEmpty() || d->datas.isEmpty())
+    if (value.isEmpty() || isEmpty())
         return -1;
 
     QSet<int> set;
-    for (auto i = d->datas.constBegin(); i != d->datas.constEnd(); i++)
+    for (auto i : keys())
     {
-        if (!value.contains(i.key()))
+        if (!value.contains(i))
             return -1;
-        auto index = i.value()->indexOf(value.value(i.key()));
+        auto index = item(i)->indexOf(value.value(i));
         set = set.isEmpty() ? index : set.intersect(index);
         if (set.isEmpty())
             return 0;

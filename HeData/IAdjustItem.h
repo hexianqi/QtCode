@@ -13,25 +13,13 @@ HE_DATA_BEGIN_NAMESPACE
 
 class IAdjustItem : public IDataItem
 {
-//public:
-//    // 设置数据
-//    virtual void setData(QString name, QVariant value) = 0;
-//    // 获取数据
-//    virtual QVariant data(QString name) = 0;
-//    // 设置分级
-//    virtual void setLevels(QVariant value) = 0;
-//    // 分级
-//    virtual QVariant levels() = 0;
-//    // 分级
-//    virtual QStringList level(int i) = 0;
-//    // 索引
-//    virtual QSet<int> indexOf(QVariant value) = 0;
-//    // 总数
-//    virtual int count() = 0;
-//    // 表头
-//    virtual QStringList headers() = 0;
-//    // 数据类型
-//    virtual QStringList types() = 0;
+public:
+    // 还原默认
+    virtual void restoreDefault() = 0;
+    // 纠正
+    virtual QVariant correct(QVariant value) = 0;
+    // 获取数据
+    virtual QStringList toStringList() = 0;
 };
 
 HE_DATA_END_NAMESPACE

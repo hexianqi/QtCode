@@ -5,10 +5,10 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HE_GUI_EXPORT HAbstractGradeItemDialogPrivate
+class HAbstractGradeItemDialogPrivate
 {
 public:
-    IGradeItem *data;
+    IGradeItem *data = nullptr;
     QString type;
     bool averageMode = false;
 };

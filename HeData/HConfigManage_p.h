@@ -15,11 +15,12 @@ public:
     void writeContent(QDataStream &);
 
 public:
+    quint32 contain;
     IDataFactory *factory = nullptr;
     IFileStream *fileStream = nullptr;
     ISpecCalibrateCollection *specCalibrates = nullptr;
     IGradeCollection *grades = nullptr;
-    quint32 contain;
+    IAdjustCollection *adjusts = nullptr;
 };
 
 HE_DATA_END_NAMESPACE

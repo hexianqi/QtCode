@@ -47,9 +47,35 @@ void HAdjust::readContent(QDataStream &s, IDataFactory *f)
     }
 }
 
-void HAdjust::writeContent(QDataStream &)
+void HAdjust::writeContent(QDataStream &s)
 {
+    s << quint32(1);
+    s << quint32(size());
+    for (auto i : keys())
+    {
+        s << i << item(i)->typeName();
+        item(i)->writeContent(s);
+    }
+}
 
+void HAdjust::restoreDefault()
+{
+    for (auto i : values())
+        i->restoreDefault();
+}
+
+QVariantMap HAdjust::correct(QVariantMap value)
+{
+    QVariantMap map;
+    for (auto i : keys())
+    {
+        if (!value.contains(i))
+            continue;
+        auto v = item(i)->correct(value.value(i));
+        if (v.isValid())
+        map.insert(i, v);
+    }
+    return map;
 }
 
 HE_DATA_END_NAMESPACE

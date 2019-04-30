@@ -26,12 +26,8 @@ void HTestDataPrivate::addData(QString type, QVariant value)
 
 void HTestDataPrivate::addData(QVariantMap value)
 {
-    QMapIterator<QString, QVariant> i(value);
-    while (i.hasNext())
-    {
-        i.next();
+    for (auto i = value.begin(); i != value.end(); i++)
         addData(i.key(), i.value());
-    }
 }
 
 QVariant HTestDataPrivate::data(QString type)

@@ -26,6 +26,7 @@ public:
 
 protected:
     void syncTestData(quint32 type) override;
+    void syncMachine(quint32 type) override;
 };
 
 HE_CONTROLLER_END_NAMESPACE

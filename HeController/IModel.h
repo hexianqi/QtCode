@@ -31,6 +31,7 @@ public:
     virtual void start() = 0;
     virtual void addAction(HActionType action, ulong delay = 0) = 0;
     virtual void syncTestData(quint32 type) = 0;
+    virtual void syncMachine(quint32 type) = 0;
 
 public:
     virtual bool openFile() = 0;

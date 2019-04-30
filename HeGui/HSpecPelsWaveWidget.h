@@ -18,7 +18,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecPelsWaveWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecPelsWaveWidget : public HEntireTableWidget
+class HSpecPelsWaveWidget : public HEntireTableWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecPelsWaveWidget)

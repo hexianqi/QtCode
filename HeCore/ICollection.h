@@ -19,6 +19,8 @@ public:
     virtual bool contains(QString key) = 0;
     // 大小
     virtual int size() = 0;
+    // 是否为空
+    virtual bool isEmpty() = 0;
     // 插入
     virtual void insert(QString key, T *value) = 0;
     // 删除

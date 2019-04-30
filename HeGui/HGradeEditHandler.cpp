@@ -12,7 +12,6 @@ HE_GUI_BEGIN_NAMESPACE
 HGradeEditHandlerPrivate::HGradeEditHandlerPrivate()
 {
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-    gradeOptionals = HAppContext::getContextValue<QStringList>("GradeOptionals");
 }
 
 HGradeEditHandler::HGradeEditHandler(QObject *parent) :
@@ -41,7 +40,6 @@ void HGradeEditHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(param)
     auto widget = new HGradeDetailWidget();
     widget->setData(d->configManage->gradeCollection());
-    widget->setOptionals(d->gradeOptionals);
     HListCollectionDialog dlg;
     dlg.setWindowTitle(tr("分级数据配置"));
     dlg.setItemDetailWidget(widget);

@@ -103,7 +103,7 @@ void HAbstractMainWindow::createActionGroup()
 {
     d_ptr->actionGroupImport = new QActionGroup(this);
     d_ptr->actionGroupExport = new QActionGroup(this);
-    for (auto i = d_ptr->importExport.constBegin(); i != d_ptr->importExport.constEnd(); i++)
+    for (auto i = d_ptr->importExport.begin(); i != d_ptr->importExport.end(); i++)
     {
         d_ptr->actionGroupImport->addAction(i.key())->setData(i.value());
         d_ptr->actionGroupExport->addAction(i.key())->setData(i.value());

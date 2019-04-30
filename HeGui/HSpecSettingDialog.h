@@ -22,7 +22,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecSettingDialogPrivate;
 
-class HE_GUI_EXPORT HSpecSettingDialog : public QDialog
+class HSpecSettingDialog : public QDialog
 {
     Q_OBJECT
 

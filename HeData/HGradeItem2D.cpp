@@ -16,11 +16,6 @@ HGradeItem2D::~HGradeItem2D()
 {
 }
 
-void HGradeItem2D::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HGradeItem2D::typeName()
 {
     return "HGradeItem2D";
@@ -55,31 +50,6 @@ QVariant HGradeItem2D::levels()
     return QVariant::fromValue(d->levels);
 }
 
-QStringList HGradeItem2D::level(int i)
-{
-    Q_D(HGradeItem2D);
-    if (i >= d->levels.size())
-        return QStringList() << "" << "" << "" << "" << "" << "" << "" << "";
-
-    QPolygonF ploy;
-    QStringList r;
-    auto t = data("[项类型]").toString();
-    if (i < 0)
-    {
-        auto f = toFormatInfo(t);
-        ploy << QPointF(f->min(), f->max()) << QPointF(f->min(), f->min()) << QPointF(f->max(), f->min()) << QPointF(f->max(), f->max());
-    }
-    else
-        ploy = d->levels[i];
-
-    for (int j = 0; j < 4; j++)
-    {
-        auto p = j < ploy.size() ? ploy[j] : QPointF(0, 0);
-        r << toString(t, p.x()) << toString(t, p.y());
-    }
-    return r;
-}
-
 QSet<int> HGradeItem2D::indexOf(QVariant value)
 {
     Q_D(HGradeItem2D);
@@ -112,6 +82,31 @@ QStringList HGradeItem2D::types()
     auto t = data("[项类型]").toString();
     for (int i = 0; i < 8; i++)
         r << t;
+    return r;
+}
+
+QStringList HGradeItem2D::level(int i)
+{
+    Q_D(HGradeItem2D);
+    if (i >= d->levels.size())
+        return QStringList() << "" << "" << "" << "" << "" << "" << "" << "";
+
+    QPolygonF ploy;
+    QStringList r;
+    auto t = data("[项类型]").toString();
+    if (i < 0)
+    {
+        auto f = toFormatInfo(t);
+        ploy << QPointF(f->min(), f->max()) << QPointF(f->min(), f->min()) << QPointF(f->max(), f->min()) << QPointF(f->max(), f->max());
+    }
+    else
+        ploy = d->levels[i];
+
+    for (int j = 0; j < 4; j++)
+    {
+        auto p = j < ploy.size() ? ploy[j] : QPointF(0, 0);
+        r << toString(t, p.x()) << toString(t, p.y());
+    }
     return r;
 }
 

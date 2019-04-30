@@ -26,6 +26,7 @@ using HActionType = long long;
 
 #define     ACT_RESET_SPECTRUM                      0xF0000001
 #define     ACT_RESET_GRADE                         0xF0000002
+#define     ACT_RESET_ADJUST                        0xF0000003
 
 ////#define     ACT_REFRESH_USE_TIME                    0x00000012
 

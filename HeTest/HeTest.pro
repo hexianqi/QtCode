@@ -32,8 +32,7 @@ SOURCES     += \
             HTestPlugin.cpp \
             HTestChart.cpp \
             HTestGsl.cpp \
-            HTestWidget.cpp \
-    Twst.cpp
+            HTestWidget.cpp
 
 HEADERS     += \
             MainWindow.h \
@@ -41,8 +40,7 @@ HEADERS     += \
             HTestPlugin.h \
             HTestChart.h \
             HTestGsl.h \
-            HTestWidget.h \
-    Twst.h
+            HTestWidget.h
 
 FORMS       += \
             MainWindow.ui

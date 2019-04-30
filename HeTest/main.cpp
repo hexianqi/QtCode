@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
 
-    auto widget = HTestTable::multHeaderTableWidget();
-    widget->show();
+//    auto widget = HTestTable::multHeaderTableWidget();
+//    widget->show();
 
 //    HTestWidget::multHeaderTableWidget()->show();
 

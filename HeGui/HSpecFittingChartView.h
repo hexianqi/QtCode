@@ -12,7 +12,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecFittingChartViewPrivate;
 
-class HE_GUI_EXPORT HSpecFittingChartView : public HZoomChartView
+class HSpecFittingChartView : public HZoomChartView
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecFittingChartView)

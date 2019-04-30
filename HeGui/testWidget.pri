@@ -11,12 +11,18 @@ HEADERS += \
     $$PWD/HResultTableWidget_p.h \
     $$PWD/ITestDetailWidget.h \
     $$PWD/HAbstractTestDetailWidget.h \
-    $$PWD/HAbstractTestDetailWidget_p.h
+    $$PWD/HAbstractTestDetailWidget_p.h \
+    $$PWD/HSimpleTestSetWidget.h \
+    $$PWD/HSimpleTestSetWidget_p.h
 
 SOURCES += \
     $$PWD/HAbstractTestWidget.cpp \
     $$PWD/HAbstractTestSetWidget.cpp \
     $$PWD/HTestWidget.cpp \
     $$PWD/HResultTableWidget.cpp \
-    $$PWD/HAbstractTestDetailWidget.cpp
+    $$PWD/HAbstractTestDetailWidget.cpp \
+    $$PWD/HSimpleTestSetWidget.cpp
+
+FORMS += \
+    $$PWD/HSimpleTestSetWidget.ui
 

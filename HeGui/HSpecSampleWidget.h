@@ -12,7 +12,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecSampleWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecSampleWidget : public HVernierWidget
+class HSpecSampleWidget : public HVernierWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecSampleWidget)

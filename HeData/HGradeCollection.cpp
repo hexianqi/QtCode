@@ -45,7 +45,7 @@ void HGradeCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
     s << quint32(datas.size());
-    for (auto i = datas.constBegin(); i != datas.constEnd(); i++)
+    for (auto i = datas.begin(); i != datas.end(); i++)
     {
         s << i.key() << i.value()->typeName();
         i.value()->writeContent(s);
@@ -70,12 +70,6 @@ HGradeCollection::~HGradeCollection()
 QString HGradeCollection::typeName()
 {
     return "HGradeCollection";
-}
-
-IDataFactory *HGradeCollection::dataFactory()
-{
-    Q_D(HGradeCollection);
-    return d->factory;
 }
 
 IFileStream *HGradeCollection::fileStream()

@@ -2,6 +2,7 @@
 #include "ui_HGradeDetailWidget.h"
 #include "HGradeItemDialog.h"
 #include "HGradeItem2DDialog.h"
+#include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IFileStream.h"
 #include "HeData/IGrade.h"
@@ -12,6 +13,12 @@
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
+
+HGradeDetailWidgetPrivate::HGradeDetailWidgetPrivate()
+{
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+    optionals = HAppContext::getContextValue<QStringList>("GradeOptionals");
+}
 
 HGradeDetailWidget::HGradeDetailWidget(QWidget *parent) :
     IItemDetailWidget(parent),
@@ -38,7 +45,8 @@ QString HGradeDetailWidget::typeName()
 
 void HGradeDetailWidget::start()
 {
-    emit sourceChanged(d_ptr->grades->keys(), d_ptr->grades->useIndex());
+    if (d_ptr->grades != nullptr)
+        emit sourceChanged(d_ptr->grades->keys(), d_ptr->grades->useIndex());
 }
 
 void HGradeDetailWidget::importFile()
@@ -54,7 +62,7 @@ void HGradeDetailWidget::exportFile()
 
 void HGradeDetailWidget::addItem(QString name)
 {
-    auto item = d_ptr->grades->dataFactory()->createGrade("HParallelGrade");
+    auto item = d_ptr->factory->createGrade("HParallelGrade");
     d_ptr->grades->insert(name, item);
     emit sourceChanged(d_ptr->grades->keys(), name);
 }
@@ -85,13 +93,6 @@ void HGradeDetailWidget::setData(IGradeCollection *d)
     emit sourceChanged(d_ptr->grades->keys(), d_ptr->grades->useIndex());
 }
 
-void HGradeDetailWidget::setOptionals(QStringList value)
-{
-    if (d_ptr->optionals == value)
-        return;
-    d_ptr->optionals = value;
-}
-
 void HGradeDetailWidget::on_pushButton_1_clicked()
 {
     QString type;
@@ -99,7 +100,7 @@ void HGradeDetailWidget::on_pushButton_1_clicked()
         return;
 
     auto className = type == "[色坐标]" ? "HGradeItem2D" : "HGradeItem";
-    auto item = d_ptr->grades->dataFactory()->createGradeItem(className);
+    auto item = d_ptr->factory->createGradeItem(className);
     item->setData("[项类型]", type);
     d_ptr->grade->insert(type, item);
     editGradeItem(type);
@@ -183,17 +184,14 @@ void HGradeDetailWidget::showData()
 
 bool HGradeDetailWidget::editGradeItem(QString type)
 {
+    HAbstractGradeItemDialog *dlg;
     auto item = d_ptr->grade->value(type);
-    if (type == "[色坐标]")
-    {
-        HGradeItem2DDialog dlg(this);
-        dlg.setData(item);
-        return dlg.exec() == QDialog::Accepted;
-    }
-
-    HGradeItemDialog dlg(this);
-    dlg.setData(item);
-    return dlg.exec() == QDialog::Accepted;
+    if (item->typeName() == "HGradeItem2D")
+        dlg = new HGradeItem2DDialog(this);
+    else
+        dlg = new HGradeItemDialog(this);
+    dlg->setData(item);
+    return dlg->exec() == QDialog::Accepted;
 }
 
 HE_GUI_END_NAMESPACE

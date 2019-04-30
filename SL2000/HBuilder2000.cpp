@@ -19,7 +19,7 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
-#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
 HBuilder2000::HBuilder2000(IMainWindow *parent) :
@@ -30,6 +30,7 @@ HBuilder2000::HBuilder2000(IMainWindow *parent) :
     HAppContext::setContextValue("Settings", "Ini\\SL2000.ini");
     HAppContext::setContextValue("ConfigFileName", d->configFileName);
     HAppContext::setContextValue("GradeOptionals", QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
+    HAppContext::setContextValue("AdjustOptionals", QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
 }
 
 HBuilder2000::~HBuilder2000()
@@ -58,10 +59,10 @@ void HBuilder2000::buildConfigManage()
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             specs->insert("1", spec);
         }
-        auto grades = d->dataFactory->createGradeCollection("HGradeCollection");
-        d->configManage->setContain(ConfigContainType::CCT_Spec | ConfigContainType::CCT_Grade);
+        d->configManage->setContain(ConfigContainType::CCT_Spec | ConfigContainType::CCT_Grade| ConfigContainType::CCT_ADJUST);
         d->configManage->setSpecCalibrateCollection(specs);
-        d->configManage->setGradeCollection(grades);
+        d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
+        d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
@@ -152,14 +153,19 @@ void HBuilder2000::buildMenu()
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
 
+    auto adjust = new QMenu(tr("调整(&A)"));
+    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));
+    adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
+
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
+    d->mainWindow->insertMenu(adjust);
 }
 
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
 

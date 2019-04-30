@@ -9,7 +9,9 @@
 #include "HParallelGrade.h"
 #include "HGradeItem.h"
 #include "HGradeItem2D.h"
+#include "HAdjust.h"
 #include "HAdjustCollection.h"
+#include "HAdjustItem.h"
 #include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
 
@@ -111,12 +113,18 @@ IAdjustCollection *HDataFactory::createAdjustCollection(QString type, QVariantMa
 
 IAdjust *HDataFactory::createAdjust(QString type, QVariantMap param)
 {
-
+    Q_UNUSED(type)
+    IAdjust *p = new HAdjust;
+    p->initialize(param);
+    return p;
 }
 
 IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
 {
-
+    Q_UNUSED(type)
+    IAdjustItem *p = new HAdjustItem;
+    p->initialize(param);
+    return p;
 }
 
 void HDataFactory::registerClass()

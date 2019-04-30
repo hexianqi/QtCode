@@ -45,7 +45,7 @@ void HAdjustCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
     s << quint32(datas.size());
-    for (auto i = datas.constBegin(); i != datas.constEnd(); i++)
+    for (auto i = datas.begin(); i != datas.end(); i++)
     {
         s << i.key() << i.value()->typeName();
         i.value()->writeContent(s);
@@ -70,12 +70,6 @@ HAdjustCollection::~HAdjustCollection()
 QString HAdjustCollection::typeName()
 {
     return "HAdjustCollection";
-}
-
-IDataFactory *HAdjustCollection::dataFactory()
-{
-    Q_D(HAdjustCollection);
-    return d->factory;
 }
 
 IFileStream *HAdjustCollection::fileStream()

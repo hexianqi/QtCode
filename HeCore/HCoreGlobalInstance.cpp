@@ -180,8 +180,10 @@ void HCoreGlobalInstance::initActionComment()
 
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
 
-    hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱"));
-    hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级"));
+    hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱数据"));
+    hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级数据"));
+    hashActionComment.insert(ACT_RESET_ADJUST,                  tr("重新配置调整数据"));
+
 
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
@@ -353,6 +355,8 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[优先级]",                       new HDataFormatInfo("[优先级]", 0, 99999));
     hashDataFormatInfo.insert("[分级数]",                       new HDataFormatInfo("[分级数]", 0, 99999));
     hashDataFormatInfo.insert("[偏移量]",                       new HDataFormatInfo("[偏移量]", -0.5, 0.5, 4, 0.001));
+    // 调整参数
+    hashDataFormatInfo.insert("[调整比率]",                     new HDataFormatInfo("[调整比率]", "%", 10, 1000, 1));
 
             //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
@@ -453,7 +457,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[合格]"),                            FTypeInfo(tr("[合格]"), 0, 100));
 //    hashFormatInfo.insert(tr("[百分比]"),                          FTypeInfo(tr("[百分比]"), tr("%"), 0, 1000, 1));
 //    hashFormatInfo.insert(tr("[良品率]"),                          FTypeInfo(tr("[良品率]"), tr("%"), 0, 1000, 1));
-//    hashFormatInfo.insert(tr("[校正百分比]"),                      FTypeInfo(tr("[校正百分比]"), tr("%"), 10, 1000, 1));
+//
     //    hashFormatInfo.insert(tr("[线路地址]"),                        FTypeInfo(tr("[线路地址]"), 0, 0xFFFFFFFF));
 }
 

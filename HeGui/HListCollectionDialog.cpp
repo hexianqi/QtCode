@@ -69,7 +69,10 @@ void HListCollectionDialog::handleSourceChanged(QStringList names, QString name)
     auto index = d_ptr->model->hasIndex(row, 0) ? d_ptr->model->index(row) : d_ptr->model->index(0);
     ui->listView->setCurrentIndex(index);
     ui->groupBox_2->setEnabled(index.isValid());
+    ui->pushButton_1->setEnabled(true);
     ui->pushButton_2->setEnabled(index.isValid());
+    ui->pushButton_3->setEnabled(true);
+    ui->pushButton_4->setEnabled(true);
 }
 
 void HListCollectionDialog::init()

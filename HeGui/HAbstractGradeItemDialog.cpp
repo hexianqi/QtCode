@@ -18,6 +18,18 @@ HAbstractGradeItemDialog::HAbstractGradeItemDialog(HAbstractGradeItemDialogPriva
     setWindowFlags(windowFlags() | Qt::WindowMinMaxButtonsHint);
 }
 
+HAbstractGradeItemDialog::~HAbstractGradeItemDialog()
+{
+    qDebug() << __func__;
+}
+
+void HAbstractGradeItemDialog::setData(IGradeItem *p)
+{
+    d_ptr->data = p;
+    d_ptr->type = p->types().first();
+    showData();
+}
+
 void HAbstractGradeItemDialog::done(int result)
 {
     if (result == QDialog::Accepted)
@@ -35,18 +47,6 @@ bool HAbstractGradeItemDialog::setAverageMode(bool b)
         return false;
     d_ptr->averageMode = b;
     return true;
-}
-
-HAbstractGradeItemDialog::~HAbstractGradeItemDialog()
-{
-    qDebug() << __func__;
-}
-
-void HAbstractGradeItemDialog::setData(IGradeItem *p)
-{
-    d_ptr->data = p;
-    d_ptr->type = p->types().first();
-    showData();
 }
 
 HE_GUI_END_NAMESPACE

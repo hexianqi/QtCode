@@ -44,13 +44,12 @@ void HAbstractGrade::readContent(QDataStream &s, IDataFactory *f)
 
 void HAbstractGrade::writeContent(QDataStream &s)
 {
-    Q_D(HAbstractGrade);
     s << quint32(1);
-    s << quint32(d->datas.size());
-    for (auto i = d->datas.constBegin(); i != d->datas.constEnd(); i++)
+    s << quint32(size());
+    for (auto i : keys())
     {
-        s << i.key() << i.value()->typeName();
-        i.value()->writeContent(s);
+        s << i << item(i)->typeName();
+        item(i)->writeContent(s);
     }
 }
 

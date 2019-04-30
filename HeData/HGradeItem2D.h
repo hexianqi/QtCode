@@ -20,7 +20,6 @@ public:
     ~HGradeItem2D() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:
@@ -30,11 +29,11 @@ public:
 public:
     void setLevels(QVariant value) override;
     QVariant levels() override;
-    QStringList level(int i) override;
     QSet<int> indexOf(QVariant value) override;
     int count() override;
     QStringList headers() override;
     QStringList types() override;
+    QStringList level(int i) override;
 };
 
 HE_DATA_END_NAMESPACE

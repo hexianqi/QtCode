@@ -31,6 +31,7 @@ public:
     void clear() override;
     bool contains(QString key) override;
     int size() override;
+    bool isEmpty() override;
     void insert(QString key, T *value) override;
     int remove(QString key) override;
     T *first() override;
@@ -68,12 +69,9 @@ void HCollection<T>::initialize(QVariantMap param)
 {
     if (param.contains("datas"))
     {
-        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
-        while (i.hasNext())
-        {
-            i.next();
+        auto value = param.value("datas").toMap();
+        for (auto i = value.begin(); i != value.end(); i++)
             insert(i.key(), FromVariant(T, i.value()));
-        }
     }
 }
 
@@ -99,6 +97,12 @@ template <typename T>
 int HCollection<T>::size()
 {
     return d_ptr->datas.size();
+}
+
+template<typename T>
+bool HCollection<T>::isEmpty()
+{
+    return d_ptr->datas.isEmpty();
 }
 
 template <typename T>

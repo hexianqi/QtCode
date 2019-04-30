@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2019-03-28  HAbstractTestSetWidget   抽象测试设置窗体类。
+**      2019-03-28  HAbstractTestSetWidget 抽象测试设置窗体类。
 ***************************************************************************************************/
 
 #ifndef HABSTRACTTESTSETWIDGET_H
@@ -21,8 +21,8 @@ public:
 
 public:
     bool setTestState(bool b) override;
-    bool setTestMode(int value) override;
     bool testState() override;
+    bool setTestMode(int value) override;
     int testMode() override;
 
 protected:

@@ -12,7 +12,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecCalibrateDialogPrivate;
 
-class HE_GUI_EXPORT HSpecCalibrateDialog : public QDialog
+class HSpecCalibrateDialog : public QDialog
 {
     Q_OBJECT
 

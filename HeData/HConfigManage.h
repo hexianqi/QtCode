@@ -23,15 +23,15 @@ public:
     QString typeName() override;
 
 public:
-    void setContain(quint32 value) override;
-    void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
-    void setGradeCollection(IGradeCollection *) override;
-
-public:
     IFileStream *fileStream() override;
+    void setContain(quint32 value) override;
     quint32 contain() override;
+    void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
     ISpecCalibrate *specCalibrate(QString name) override;
+    void setGradeCollection(IGradeCollection *) override;
     IGradeCollection *gradeCollection() override;
+    void setAdjustCollection(IAdjustCollection *) override;
+    IAdjustCollection *adjustCollection() override;
 
 public:
     bool importPart(quint32 value) override;

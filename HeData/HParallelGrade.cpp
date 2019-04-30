@@ -23,11 +23,11 @@ int HParallelGrade::calcLevel(QVariantMap value, QString &text)
 {
     Q_D(HParallelGrade);
     text = "";
-    if (value.isEmpty() || d->datas.isEmpty())
+    if (value.isEmpty() || isEmpty())
         return -1;
 
     QMap<int, QPoint> map;
-    for (auto i = d->datas.constBegin(); i != d->datas.constEnd(); i++)
+    for (auto i = d->datas.begin(); i != d->datas.end(); i++)
     {
         if (!value.contains(i.key()))
             return -1;

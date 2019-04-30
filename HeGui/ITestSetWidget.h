@@ -26,10 +26,15 @@ signals:
     void testModeChanged(int value);
 
 public:
+    // 处理动作
     virtual void handleAction(HActionType action) = 0;
+    // 设置测试状态
     virtual bool setTestState(bool b) = 0;
-    virtual bool setTestMode(int value) = 0;
+    // 获取测试状态
     virtual bool testState() = 0;
+    // 设置测试模式
+    virtual bool setTestMode(int value) = 0;
+    // 获取测试模式
     virtual int testMode() = 0;
 };
 

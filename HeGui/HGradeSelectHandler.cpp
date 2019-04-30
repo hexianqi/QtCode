@@ -39,15 +39,15 @@ void HGradeSelectHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(sender)
     Q_UNUSED(param)
 
-    auto grade = d->configManage->gradeCollection();
-    if (grade->keys().size() < 2)
+    auto data = d->configManage->gradeCollection();
+    if (data == nullptr || data->keys().size() < 2)
         return;
     HSelectDialog dlg(d->mainWindow);
-    dlg.setOptionals(grade->keys());
-    dlg.setSelected(grade->useIndex());
+    dlg.setOptionals(data->keys());
+    dlg.setSelected(data->useIndex());
     if (!dlg.exec())
         return;
-    grade->setUseIndex(dlg.selected());
+    data->setUseIndex(dlg.selected());
     d->model->addAction(ACT_RESET_GRADE);
 }
 

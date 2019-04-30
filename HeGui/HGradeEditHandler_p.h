@@ -19,7 +19,6 @@ public:
 
 public:
     IConfigManage *configManage;
-    QStringList gradeOptionals;
 };
 
 HE_GUI_END_NAMESPACE

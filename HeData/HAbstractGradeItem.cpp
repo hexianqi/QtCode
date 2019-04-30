@@ -4,8 +4,8 @@ HE_DATA_BEGIN_NAMESPACE
 
 HAbstractGradeItemPrivate::HAbstractGradeItemPrivate()
 {
-    datas.insert("[优先级]", 1);
     datas.insert("[项类型]", "Undefined");
+    datas.insert("[优先级]", 1);
 }
 
 HAbstractGradeItem::HAbstractGradeItem() :
@@ -25,14 +25,7 @@ HAbstractGradeItem::~HAbstractGradeItem()
 void HAbstractGradeItem::initialize(QVariantMap param)
 {
     if (param.contains("datas"))
-    {
-        QMapIterator<QString, QVariant> i(param.value("datas").toMap());
-        while (i.hasNext())
-        {
-            i.next();
-            setData(i.key(), i.value());
-        }
-    }
+        setData(param.value("datas").toMap());
 }
 
 void HAbstractGradeItem::setData(QString name, QVariant value)
@@ -40,11 +33,15 @@ void HAbstractGradeItem::setData(QString name, QVariant value)
     d_ptr->datas.insert(name, value);
 }
 
+void HAbstractGradeItem::setData(QVariantMap value)
+{
+    for (auto i = value.begin(); i != value.end(); i++)
+        setData(i.key(), i.value());
+}
+
 QVariant HAbstractGradeItem::data(QString name)
 {
     return d_ptr->datas.value(name);
 }
-
-
 
 HE_DATA_END_NAMESPACE
