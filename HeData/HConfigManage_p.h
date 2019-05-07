@@ -21,6 +21,7 @@ public:
     ISpecCalibrateCollection *specCalibrates = nullptr;
     IGradeCollection *grades = nullptr;
     IAdjustCollection *adjusts = nullptr;
+    IQualityCollection *qualitys = nullptr;
 };
 
 HE_DATA_END_NAMESPACE

@@ -19,7 +19,7 @@ void HMainWindowSpec::initImportExport()
 {
     Q_D(HMainWindowSpec);
     HAbstractMainWindow::initImportExport();
-    d->importExport.insert(tr("1.光谱定标数据(&S)..."),           ConfigContainType::CCT_Spec);
+    d->importExport.insert(tr("1.光谱定标数据(&S)..."),           IConfigManage::ContainSpec);
 }
 
 void HMainWindowSpec::initBuilder()

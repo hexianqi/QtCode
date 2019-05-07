@@ -36,6 +36,7 @@ void HAdjustDetailWidget::init()
     d->widget->setContextMenuPolicy(Qt::ActionsContextMenu);
     d->widget->addAction(d->actionEdit);
     auto layout = new QGridLayout(this);
+    layout->setMargin(0);
     layout->addWidget(d->widget);
     connect(d->actionEdit, &QAction::triggered, this, &HAdjustDetailWidget::editData);
 }

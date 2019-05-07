@@ -26,7 +26,7 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    IDataItem *item(QString type) override;
+    IDataItem *item(SpecType type) override;
     QVariantMap testParam() override;
 
 public:

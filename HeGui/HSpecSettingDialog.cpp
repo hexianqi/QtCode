@@ -5,8 +5,6 @@
 #include "HeData/HSpecSetting.h"
 #include <QtCore/QDebug>
 
-HE_CORE_USE_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecSettingDialog::HSpecSettingDialog(QWidget *parent) :

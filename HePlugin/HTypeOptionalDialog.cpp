@@ -1,6 +1,7 @@
 #include "HTypeOptionalDialog_p.h"
 #include "ui_HTypeOptionalDialog.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HCoreHelper.h"
 
 HE_CORE_USE_NAMESPACE
 
@@ -12,9 +13,7 @@ HTypeOptionalDialog::HTypeOptionalDialog(QStringList selected, QStringList optio
     ui->setupUi(this);
     d_ptr->optionals = optional;
     d_ptr->selecteds = selected;
-    d_ptr->unselecteds = optional;
-    for (auto t : selected)
-        d_ptr->unselecteds.removeAll(t);
+    d_ptr->unselecteds = HCoreHelper::unselected(optional, selected);
     showData();
 }
 

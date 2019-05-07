@@ -17,19 +17,22 @@ class ISpecCalibrate;
 class ISpecCalibrateCollection;
 class IGradeCollection;
 class IAdjustCollection;
-
-enum ConfigContainType
-{
-    CCT_No              = 0x00000000,
-    CCT_Spec            = 0x00000001,
-    CCT_Grade           = 0x00010000,
-    CCT_ADJUST          = 0x01000000,
-    CCT_All             = 0xFFFFFFFF
-};
-Q_DECLARE_FLAGS(ConfigContainTypes, ConfigContainType)
+class IQualityCollection;
 
 class IConfigManage : public IInitializeable
 {
+public:
+    enum ContainType
+    {
+        ContainNone          = 0x00000000,
+        ContainSpec          = 0x00000001,
+        ContainGrade         = 0x00010000,
+        ContainQuality       = 0x00020000,
+        ContainAdjust        = 0x01000000,
+        ContainAll           = 0xFFFFFFFF
+    };
+    Q_DECLARE_FLAGS(ContainTypes, ContainType)
+
 public:
     // 获取文件流
     virtual IFileStream *fileStream() = 0;
@@ -49,6 +52,10 @@ public:
     virtual void setAdjustCollection(IAdjustCollection *) = 0;
     // 获取分级数据集
     virtual IAdjustCollection *adjustCollection() = 0;
+    // 设置品质数据集
+    virtual void setQualityCollection(IQualityCollection *) = 0;
+    // 获取品质数据集
+    virtual IQualityCollection *qualityCollection() = 0;
 
 public:
     // 导入部分数据

@@ -7,8 +7,6 @@
 #include <QtGui/QValidator>
 #include <QtCore/QDebug>
 
-HE_CORE_USE_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecFittingLinearWidget::HSpecFittingLinearWidget(QWidget *parent):

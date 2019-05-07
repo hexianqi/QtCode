@@ -30,6 +30,7 @@ void HGradeDetailWidget::init()
     Q_D(HGradeDetailWidget);
     d->widget = new HGradeEditWidget;
     auto layout = new QGridLayout(this);
+    layout->setMargin(0);
     layout->addWidget(d->widget);
 }
 

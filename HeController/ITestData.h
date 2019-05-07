@@ -20,6 +20,8 @@ public:
     virtual void setSuccessor(ITestData *) = 0;
     // 设置数据
     virtual void setData(QString type, QVariant value) = 0;
+    // 设置数据
+    virtual void setData(QVariantMap value) = 0;
     // 添加数据
     virtual void addData(QString type, QVariant value) = 0;
     // 添加数据

@@ -31,6 +31,7 @@ HEADERS     += \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HCallorHelper.h \
+    HCoreHelper.h
 
 SOURCES     += \
             HCore.cpp \
@@ -38,6 +39,7 @@ SOURCES     += \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
             HCallorHelper.cpp \
+    HCoreHelper.cpp
 
 RESOURCES   += HeCore.qrc
 

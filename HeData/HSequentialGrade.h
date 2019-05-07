@@ -23,7 +23,7 @@ public:
     QString typeName() override;
 
 public:
-    int calcLevel(QVariantMap value, QString &text) override;
+    int calcLevel(QVariantMap value, QString *text) override;
 };
 
 HE_DATA_END_NAMESPACE

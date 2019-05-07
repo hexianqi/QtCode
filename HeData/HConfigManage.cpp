@@ -4,6 +4,7 @@
 #include "ISpecCalibrateCollection.h"
 #include "IGradeCollection.h"
 #include "IAdjustCollection.h"
+#include "IQualityCollection.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QDebug>
 
@@ -27,23 +28,29 @@ void HConfigManagePrivate::readContent(QDataStream &s)
 
     s >> version;
     s >> contain;
-    if (contain & ConfigContainType::CCT_Spec)
+    if (contain & IConfigManage::ContainSpec)
     {
         s >> type;
         specCalibrates = factory->createSpecCalibrateCollection(type);
         specCalibrates->fileStream()->readContent(s);
     }
-    if (contain & ConfigContainType::CCT_Grade)
+    if (contain & IConfigManage::ContainGrade)
     {
         s >> type;
         grades = factory->createGradeCollection(type);
         grades->fileStream()->readContent(s);
     }
-    if (contain & ConfigContainType::CCT_ADJUST)
+    if (contain & IConfigManage::ContainAdjust)
     {
         s >> type;
         adjusts = factory->createAdjustCollection(type);
         adjusts->fileStream()->readContent(s);
+    }
+    if (contain & IConfigManage::ContainQuality)
+    {
+        s >> type;
+        qualitys = factory->createQualityCollection(type);
+        qualitys->fileStream()->readContent(s);
     }
 }
 
@@ -51,20 +58,25 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
     s << contain;
-    if (contain & ConfigContainType::CCT_Spec)
+    if (contain & IConfigManage::ContainSpec)
     {
         s << specCalibrates->typeName();
         specCalibrates->fileStream()->writeContent(s);
     }
-    if (contain & ConfigContainType::CCT_Grade)
+    if (contain & IConfigManage::ContainGrade)
     {
         s << grades->typeName();
         grades->fileStream()->writeContent(s);
     }
-    if (contain & ConfigContainType::CCT_ADJUST)
+    if (contain & IConfigManage::ContainAdjust)
     {
         s << adjusts->typeName();
         adjusts->fileStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainQuality)
+    {
+        s << adjusts->typeName();
+        qualitys->fileStream()->writeContent(s);
     }
 }
 
@@ -143,16 +155,28 @@ IAdjustCollection *HConfigManage::adjustCollection()
     return  d_ptr->adjusts;
 }
 
+void HConfigManage::setQualityCollection(IQualityCollection *p)
+{
+    d_ptr->qualitys = p;
+}
+
+IQualityCollection *HConfigManage::qualityCollection()
+{
+    return d_ptr->qualitys;
+}
+
 bool HConfigManage::importPart(quint32 value)
 {
     if ((d_ptr->contain & value) == 0)
         return false;
-    if (value & ConfigContainType::CCT_Spec)
+    if (value & ContainSpec)
         return d_ptr->specCalibrates->fileStream()->openFile();
-    if (value & ConfigContainType::CCT_Grade)
+    if (value & ContainGrade)
         return d_ptr->grades->fileStream()->openFile();
-    if (value & ConfigContainType::CCT_ADJUST)
+    if (value & ContainAdjust)
         return d_ptr->adjusts->fileStream()->openFile();
+    if (value & ContainQuality)
+        return d_ptr->qualitys->fileStream()->openFile();
     return false;
 }
 
@@ -160,12 +184,14 @@ bool HConfigManage::exportPart(quint32 value)
 {
     if ((d_ptr->contain & value) == 0)
         return false;
-    if (value & ConfigContainType::CCT_Spec)
+    if (value & ContainSpec)
         return d_ptr->specCalibrates->fileStream()->saveAsFile();
-    if (value & ConfigContainType::CCT_Grade)
+    if (value & ContainGrade)
         return d_ptr->grades->fileStream()->saveAsFile();
-    if (value & ConfigContainType::CCT_ADJUST)
+    if (value & ContainAdjust)
         return d_ptr->adjusts->fileStream()->saveAsFile();
+    if (value & ContainQuality)
+        return d_ptr->qualitys->fileStream()->saveAsFile();
     return false;
 }
 

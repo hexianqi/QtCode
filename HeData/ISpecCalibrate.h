@@ -17,6 +17,16 @@ class IDataItem;
 class ISpecCalibrate : public IInitializeable
 {
 public:
+    enum SpecType
+    {
+        SpecSetting,
+        SpecFitting,
+        SpecStdCurve,
+        SpecPelsWave,
+        SpecLuminous
+    };
+
+public:
     // 读取内容
     virtual void readContent(QDataStream &) = 0;
     // 写入内容
@@ -24,7 +34,7 @@ public:
 
 public:
     // 校准子项
-    virtual IDataItem *item(QString type) = 0;
+    virtual IDataItem *item(SpecType type) = 0;
     // 测量参数
     virtual QVariantMap testParam() = 0;
 

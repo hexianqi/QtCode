@@ -27,6 +27,9 @@ public:
     void clearResult();
     void refreshResult(int row, bool append);
 
+public:
+    QStringList selected();
+
 protected:
     HResultTableWidget(HResultTableWidgetPrivate &p, QWidget *parent = nullptr);
 

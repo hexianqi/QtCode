@@ -1,9 +1,9 @@
 HEADERS += \
+    $$PWD/IDataDetailWidget.h \
+    $$PWD/IDataEditWidget.h \
     $$PWD/HListCollectionDialog.h \
     $$PWD/HListCollectionDialog_p.h \
-    $$PWD/IDataDetailWidget.h \
-    $$PWD/HAbstractDataDetailWidget.h \
-    $$PWD/IDataEditWidget.h
+    $$PWD/HAbstractDataDetailWidget.h
 
 SOURCES += \
     $$PWD/HListCollectionDialog.cpp
@@ -11,5 +11,7 @@ SOURCES += \
 FORMS += \
     $$PWD/HListCollectionDialog.ui
 
-include(grade.pri)
+
 include(adjust.pri)
+include(grade.pri)
+include(quality.pri)

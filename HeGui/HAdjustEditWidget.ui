@@ -100,7 +100,7 @@
   <customwidget>
    <class>HEntireTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>HePlugin/HEntireTableWidget.h</header>
+   <header location="global">HePlugin/HEntireTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

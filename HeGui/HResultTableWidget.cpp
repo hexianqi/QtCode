@@ -7,8 +7,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtCore/QDebug>
 
-HE_CORE_USE_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 HResultTableWidgetPrivate::HResultTableWidgetPrivate()
@@ -67,6 +65,12 @@ void HResultTableWidget::refreshResult(int row, bool append)
         insertRow(row, value);
     else
         setRow(row, value);
+}
+
+QStringList HResultTableWidget::selected()
+{
+    Q_D(HResultTableWidget);
+    return d->selecteds;
 }
 
 void HResultTableWidget::openOptionalDialog()

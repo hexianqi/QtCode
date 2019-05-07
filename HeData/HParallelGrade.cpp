@@ -19,10 +19,9 @@ QString HParallelGrade::typeName()
     return "HParallelGrade";
 }
 
-int HParallelGrade::calcLevel(QVariantMap value, QString &text)
+int HParallelGrade::calcLevel(QVariantMap value, QString *text)
 {
     Q_D(HParallelGrade);
-    text = "";
     if (value.isEmpty() || isEmpty())
         return -1;
 
@@ -41,12 +40,14 @@ int HParallelGrade::calcLevel(QVariantMap value, QString &text)
     }
     int j = 0;
     int sum = 0;
+    QString str = "";
     for (auto p : map)
     {
         sum = p.x() + p.y() * sum;
-        text += QString("%1%2").arg(QChar('A' + j)).arg(p.x());
+        str += QString("%1%2").arg(QChar('A' + j)).arg(p.x());
         j++;
     }
+    *text = str;
     return sum + 1;
 }
 

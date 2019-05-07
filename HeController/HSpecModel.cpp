@@ -35,18 +35,18 @@ QString HSpecModel::typeName()
 void HSpecModel::syncTestData(quint32 type)
 {
     Q_D(HSpecModel);
-    if (type & ConfigContainType::CCT_Spec)
+    if (type & IConfigManage::ContainSpec)
     {
         d->testSpec->setCalibrate(d->configManage->specCalibrate("1"));
         addAction(ACT_RESET_SPECTRUM);
     }
-    if (type & ConfigContainType::CCT_Grade)
+    if (type & IConfigManage::ContainGrade)
         addAction(ACT_RESET_GRADE);
 }
 
 void HSpecModel::syncMachine(quint32 type)
 {
-    if (type & ConfigContainType::CCT_Spec)
+    if (type & IConfigManage::ContainSpec)
     {
         addAction(ACT_SET_INTEGRAL_TIME);
     }

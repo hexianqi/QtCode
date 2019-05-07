@@ -66,5 +66,6 @@ unix {
 
 include(adjust.pri)
 include(grade.pri)
+include(quality.pri)
 include(spec.pri)
 include(stream.pri)

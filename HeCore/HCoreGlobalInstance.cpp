@@ -183,7 +183,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱数据"));
     hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级数据"));
     hashActionComment.insert(ACT_RESET_ADJUST,                  tr("重新配置调整数据"));
-
+    hashActionComment.insert(ACT_RESET_QUALITY,                 tr("重新配置品质数据"));
 
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 

@@ -24,6 +24,7 @@ public:
 public:
     void setSuccessor(ITestData *) override;
     void setData(QString type, QVariant value) override;
+    void setData(QVariantMap value) override;
     void addData(QString type, QVariant value) override;
     void addData(QVariantMap value) override;
     QVariant data(QString type) override;

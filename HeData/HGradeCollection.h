@@ -29,7 +29,7 @@ public:
 
 public:
     QVariant levels(QString type) override;
-    int calcLevel(QVariantMap value, QString &text) override;
+    int calcLevel(QVariantMap value, QString *text = nullptr) override;
 
 protected:
     HGradeCollection(HGradeCollectionPrivate &);

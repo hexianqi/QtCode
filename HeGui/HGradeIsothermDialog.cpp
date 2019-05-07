@@ -8,9 +8,7 @@
 #include <QtCore/QDebug>
 
 HE_ALGORITHM_USE_NAMESPACE
-
 HE_CORE_USE_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 HGradeIsothermDialog::HGradeIsothermDialog(QWidget *parent) :

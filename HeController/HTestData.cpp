@@ -3,8 +3,6 @@
 #include <QtCore/QDateTime>
 #include <QtGui/QColor>
 
-HE_CORE_USE_NAMESPACE
-
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 void HTestDataPrivate::setData(QString type, QVariant value)
@@ -17,6 +15,12 @@ void HTestDataPrivate::setData(QString type, QVariant value)
     if (successor != nullptr)
         return successor->setData(type, value);
     addData(type, value);
+}
+
+void HTestDataPrivate::setData(QVariantMap value)
+{
+    for (auto i = value.begin(); i != value.end(); i++)
+        setData(i.key(), i.value());
 }
 
 void HTestDataPrivate::addData(QString type, QVariant value)
@@ -80,6 +84,11 @@ void HTestData::setSuccessor(ITestData *p)
 void HTestData::setData(QString type, QVariant value)
 {
     d_ptr->setData(type, value);
+}
+
+void HTestData::setData(QVariantMap value)
+{
+    d_ptr->setData(value);
 }
 
 void HTestData::addData(QString type, QVariant value)

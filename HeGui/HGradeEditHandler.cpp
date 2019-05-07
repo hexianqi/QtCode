@@ -44,6 +44,7 @@ void HGradeEditHandler::execute(QObject *sender, QVariantMap param)
     HListCollectionDialog dlg;
     dlg.setWindowTitle(tr("分级数据配置"));
     dlg.setDataDetailWidget(widget);
+    dlg.resize(1000, 600);
     dlg.exec();
     d->model->addAction(ACT_RESET_GRADE);
 }

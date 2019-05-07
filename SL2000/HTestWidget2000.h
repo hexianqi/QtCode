@@ -38,6 +38,9 @@ protected:
     void clearResult();
     void postProcess();
 
+private:
+    void readSettings();
+    void writeSettings();
 };
 
 #endif // HTESTWIDGET2000_H

@@ -29,6 +29,7 @@ public:
 
 public:
     QStringList displayOptionals;
+    QStringList tableSelecteds;
 
 public:
     QAction *actionStart;

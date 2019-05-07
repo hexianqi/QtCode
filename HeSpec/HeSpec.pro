@@ -34,11 +34,6 @@ HEADERS += \
         HBuilderSpec.h \
         HBuilderSpec_p.h
 
-FORMS   += \
-        HTestWidgetSpec.ui \
-        HDetailWidgetSpec.ui \
-        HTestSetWidgetSpec.ui
-
 TARGET = HeSpec
 
 INCLUDEPATH += ..

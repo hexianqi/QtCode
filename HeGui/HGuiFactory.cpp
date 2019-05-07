@@ -7,6 +7,8 @@
 #include "HGradeSelectHandler.h"
 #include "HAdjustEditHandler.h"
 #include "HAdjustSelectHandler.h"
+#include "HQualityEditHandler.h"
+#include "HQualitySelectHandler.h"
 #include "HeCore/HFactory.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
@@ -74,6 +76,8 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HGradeSelectHandler>("HGradeSelectHandler");
     HObjectFactory::registerClass<HAdjustEditHandler>("HAdjustEditHandler");
     HObjectFactory::registerClass<HAdjustSelectHandler>("HAdjustSelectHandler");
+    HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
+    HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
 }
 
 HE_GUI_END_NAMESPACE

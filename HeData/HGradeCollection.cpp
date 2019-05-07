@@ -98,8 +98,10 @@ QVariant HGradeCollection::levels(QString type)
     return i == nullptr ? QVariant() : i->levels(type);
 }
 
-int HGradeCollection::calcLevel(QVariantMap value, QString &text)
+int HGradeCollection::calcLevel(QVariantMap value, QString *text)
 {
+    if (text == nullptr)
+        text = new QString;
     auto i = item(useIndex());
     return i == nullptr ? -1 : i->calcLevel(value, text);
 }

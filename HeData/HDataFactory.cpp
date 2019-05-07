@@ -12,6 +12,9 @@
 #include "HAdjust.h"
 #include "HAdjustCollection.h"
 #include "HAdjustItem.h"
+#include "HQuality.h"
+#include "HQualityCollection.h"
+#include "HQualityItem.h"
 #include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
 
@@ -123,6 +126,30 @@ IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     IAdjustItem *p = new HAdjustItem;
+    p->initialize(param);
+    return p;
+}
+
+IQualityCollection *HDataFactory::createQualityCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IQualityCollection *p = new HQualityCollection(this);
+    p->initialize(param);
+    return p;
+}
+
+IQuality *HDataFactory::createQuality(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IQuality *p = new HQuality;
+    p->initialize(param);
+    return p;
+}
+
+IQualityItem *HDataFactory::createQualityItem(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IQualityItem *p = new HQualityItem;
     p->initialize(param);
     return p;
 }

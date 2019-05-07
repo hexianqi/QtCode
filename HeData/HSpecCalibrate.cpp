@@ -19,13 +19,13 @@ HSpecCalibratePrivate::HSpecCalibratePrivate()
     luminous = new HSpecLuminous;
 }
 
-HSpecCalibrate::HSpecCalibrate()
-    : d_ptr(new HSpecCalibratePrivate)
+HSpecCalibrate::HSpecCalibrate() :
+    d_ptr(new HSpecCalibratePrivate)
 {
 }
 
-HSpecCalibrate::HSpecCalibrate(HSpecCalibratePrivate &p)
-    : d_ptr(&p)
+HSpecCalibrate::HSpecCalibrate(HSpecCalibratePrivate &p) :
+    d_ptr(&p)
 {
 }
 
@@ -63,17 +63,17 @@ void HSpecCalibrate::writeContent(QDataStream &s)
     d_ptr->luminous->writeContent(s);
 }
 
-IDataItem *HSpecCalibrate::item(QString type)
+IDataItem *HSpecCalibrate::item(SpecType type)
 {
-    if (type == "HSpecSetting")
+    if (type == SpecSetting)
         return d_ptr->setting;
-    if (type == "HSpecFitting")
+    if (type == SpecFitting)
         return d_ptr->fitting;
-    if (type == "HSpecStdCurve")
+    if (type == SpecStdCurve)
         return d_ptr->stdCurve;
-    if (type == "HSpecPelsWave")
+    if (type == SpecPelsWave)
         return d_ptr->pelsWave;
-    if (type == "HSpecLuminous")
+    if (type == SpecLuminous)
         return d_ptr->luminous;
     return nullptr;
 }

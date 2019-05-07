@@ -2,6 +2,7 @@
 #include "ui_HGradeEditWidget.h"
 #include "HGradeItemDialog.h"
 #include "HGradeItem2DDialog.h"
+#include "HeCore/HCoreHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IGrade.h"
@@ -69,9 +70,7 @@ void HGradeEditWidget::saveData()
 void HGradeEditWidget::showData()
 {
     d_ptr->selecteds = d_ptr->data != nullptr ? d_ptr->data->keys() : QStringList();
-    d_ptr->unselecteds = d_ptr->optionals;
-    for (auto s : d_ptr->selecteds)
-        d_ptr->unselecteds.removeAll(s);
+    d_ptr->unselecteds = HCoreHelper::unselected(d_ptr->optionals, d_ptr->selecteds);
 
     int count = 0;
     int total = 1;

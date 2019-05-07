@@ -22,12 +22,6 @@
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="label_001">
-     <property name="minimumSize">
-      <size>
-       <width>72</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="text">
       <string>积分时间：</string>
      </property>
@@ -41,12 +35,6 @@
    </item>
    <item row="0" column="1">
     <widget class="QDoubleSpinBox" name="doubleSpinBox_01">
-     <property name="minimumSize">
-      <size>
-       <width>120</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>

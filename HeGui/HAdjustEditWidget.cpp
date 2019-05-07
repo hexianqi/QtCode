@@ -1,6 +1,7 @@
 #include "HAdjustEditWidget_p.h"
 #include "ui_HAdjustEditWidget.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HCoreHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IAdjust.h"
@@ -8,8 +9,6 @@
 #include "HePlugin/HPluginHelper.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtCore/QDebug>
-
-HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -64,6 +63,9 @@ void HAdjustEditWidget::clearData()
 
 void HAdjustEditWidget::saveData()
 {
+    if (d_ptr->data == nullptr)
+        return;
+
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
         auto key = ui->tableWidget->item(i, 0)->data(Qt::UserRole).toString();
@@ -100,9 +102,7 @@ QStringList HAdjustEditWidget::selecteds()
 void HAdjustEditWidget::initSelected()
 {
     d_ptr->selecteds = d_ptr->data->keys();
-    d_ptr->unselecteds = d_ptr->optionals;
-    for (auto s : d_ptr->selecteds)
-        d_ptr->unselecteds.removeAll(s);
+    d_ptr->unselecteds = HCoreHelper::unselected(d_ptr->optionals, d_ptr->selecteds);
 
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(d_ptr->selecteds);

@@ -19,9 +19,8 @@ QString HSequentialGrade::typeName()
     return "HSequentialGrade";
 }
 
-int HSequentialGrade::calcLevel(QVariantMap value, QString &text)
+int HSequentialGrade::calcLevel(QVariantMap value, QString *text)
 {
-    text = "";
     if (value.isEmpty() || isEmpty())
         return -1;
 

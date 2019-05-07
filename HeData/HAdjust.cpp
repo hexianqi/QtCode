@@ -1,6 +1,7 @@
 #include "HAdjust_p.h"
 #include "IDataFactory.h"
 #include "IAdjustItem.h"
+#include <QtCore/QPointF>
 #include <QtCore/QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
@@ -67,14 +68,42 @@ void HAdjust::restoreDefault()
 QVariantMap HAdjust::correct(QVariantMap value)
 {
     QVariantMap map;
+
+    if (value.contains("[色坐标]"))
+    {
+        auto p = value["[色坐标]"].toPointF();
+        value.insert("[色坐标x]", p.x());
+        value.insert("[色坐标y]", p.y());
+    }
+    if (value.contains("[色坐标uv]"))
+    {
+        auto p = value["[色坐标uv]"].toPointF();
+        value.insert("[色坐标u]", p.x());
+        value.insert("[色坐标v]", p.y());
+    }
+    if (value.contains("[色坐标uvp]"))
+    {
+        auto p = value["[色坐标uvp]"].toPointF();
+        value.insert("[色坐标up]", p.x());
+        value.insert("[色坐标vp]", p.y());
+    }
+
     for (auto i : keys())
     {
         if (!value.contains(i))
             continue;
         auto v = item(i)->correct(value.value(i));
         if (v.isValid())
-        map.insert(i, v);
+            map.insert(i, v);
     }
+
+    if (map.contains("[色坐标x]") && map.contains("[色坐标y]"))
+        map.insert("[色坐标]", QPointF(map["[色坐标x]"].toDouble(), map["[色坐标y]"].toDouble()));
+    if (map.contains("[色坐标u]") && map.contains("[色坐标v]"))
+        map.insert("[色坐标uv]", QPointF(map["[色坐标u]"].toDouble(), map["[色坐标v]"].toDouble()));
+    if (map.contains("[色坐标up]") && map.contains("[色坐标vp]"))
+        map.insert("[色坐标uvp]", QPointF(map["[色坐标up]"].toDouble(), map["[色坐标vp]"].toDouble()));
+
     return map;
 }
 

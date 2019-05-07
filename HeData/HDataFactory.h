@@ -35,6 +35,9 @@ public:
     IAdjustCollection *createAdjustCollection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) override;
+    IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) override;
+    IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HDataFactory(HDataFactoryPrivate &p, QObject *parent = nullptr);

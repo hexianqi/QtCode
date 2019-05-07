@@ -57,8 +57,8 @@ void HSpecCalibrateWidget::setSpecCalibrate(ISpecCalibrate *p)
 {
     Q_D(HSpecCalibrateWidget);
     d->specCalibrate = p;
-    d->fittingWidget->setData(dynamic_cast<HSpecFitting *>(p->item("HSpecFitting")));
-    d->pelsWaveWidget->setData(dynamic_cast<HSpecPelsWave *>(p->item("HSpecPelsWave")));
+    d->fittingWidget->setData(dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::SpecFitting)));
+    d->pelsWaveWidget->setData(dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::SpecPelsWave)));
     refreshCcdView(0);
 }
 
@@ -132,9 +132,9 @@ void HSpecCalibrateWidget::on_pushButton_1_clicked()
 {
     Q_D(HSpecCalibrateWidget);
     HSpecSettingDialog dlg(this);
-    dlg.setData(dynamic_cast<HSpecSetting *>(d->specCalibrate->item("HSpecSetting")));
+    dlg.setData(dynamic_cast<HSpecSetting *>(d->specCalibrate->item(ISpecCalibrate::SpecSetting)));
     if (dlg.exec())
-        d->model->syncTestData(ConfigContainType::CCT_Spec);
+        d->model->syncTestData(IConfigManage::ContainSpec);
 }
 
 void HSpecCalibrateWidget::on_pushButton_2_clicked()
@@ -159,7 +159,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
     if (energy < 0.01)
         return;
 
-    auto item = dynamic_cast<HSpecLuminous *>(d->specCalibrate->item("HSpecLuminous"));
+    auto item = dynamic_cast<HSpecLuminous *>(d->specCalibrate->item(ISpecCalibrate::SpecLuminous));
 
     QInputDialog dlg(this);
     HPluginHelper::initWidget("[标准光谱光通量]", &dlg);
@@ -175,7 +175,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
 void HSpecCalibrateWidget::on_pushButton_5_clicked()
 {
     Q_D(HSpecCalibrateWidget);
-    dynamic_cast<HSpecStdCurve *>(d->specCalibrate->item("HSpecStdCurve"))->setCurve(d->testSpec->sample(1));
+    dynamic_cast<HSpecStdCurve *>(d->specCalibrate->item(ISpecCalibrate::SpecStdCurve))->setCurve(d->testSpec->sample(1));
 }
 
 void HSpecCalibrateWidget::on_pushButton_6_clicked()

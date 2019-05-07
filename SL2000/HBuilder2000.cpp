@@ -29,8 +29,9 @@ HBuilder2000::HBuilder2000(IMainWindow *parent) :
     d->configFileName = "SL2000.cfg";
     HAppContext::setContextValue("Settings", "Ini\\SL2000.ini");
     HAppContext::setContextValue("ConfigFileName", d->configFileName);
-    HAppContext::setContextValue("GradeOptionals", QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
-    HAppContext::setContextValue("AdjustOptionals", QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
+    HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
 }
 
 HBuilder2000::~HBuilder2000()
@@ -59,10 +60,11 @@ void HBuilder2000::buildConfigManage()
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             specs->insert("1", spec);
         }
-        d->configManage->setContain(ConfigContainType::CCT_Spec | ConfigContainType::CCT_Grade| ConfigContainType::CCT_ADJUST);
+        d->configManage->setContain(IConfigManage::ContainSpec | IConfigManage::ContainGrade | IConfigManage::ContainAdjust | IConfigManage::ContainQuality);
         d->configManage->setSpecCalibrateCollection(specs);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
+        d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
@@ -148,18 +150,20 @@ void HBuilder2000::buildMenu()
 
     auto calibrate = new QMenu(tr("定标(&C)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
-
     auto grade = new QMenu(tr("分级(&G)"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
-
     auto adjust = new QMenu(tr("调整(&A)"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
+    auto quality = new QMenu(tr("品质(&A)"));
+    quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
+    quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
 
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
+    d->mainWindow->insertMenu(quality);
 }
 
 void HBuilder2000::buildTestWidget()

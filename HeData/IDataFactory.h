@@ -23,6 +23,9 @@ class IGradeItem;
 class IAdjust;
 class IAdjustCollection;
 class IAdjustItem;
+class IQuality;
+class IQualityCollection;
+class IQualityItem;
 
 class IDataFactory : public IInitializeable
 {
@@ -49,6 +52,12 @@ public:
     virtual IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建校正数据子项
     virtual IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建品质数据集
+    virtual IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建品质数据
+    virtual IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建品质数据子项
+    virtual IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_DATA_END_NAMESPACE

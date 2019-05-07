@@ -8,8 +8,6 @@
 #include "IThread.h"
 #include "HeCore/HErrorType.h"
 
-HE_CORE_USE_NAMESPACE
-
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HAbstractThreadPrivate;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>249</width>
-    <height>360</height>
+    <width>265</width>
+    <height>268</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,7 +37,7 @@
     <widget class="QLineEdit" name="lineEdit_001">
      <property name="minimumSize">
       <size>
-       <width>102</width>
+       <width>90</width>
        <height>24</height>
       </size>
      </property>
@@ -88,7 +88,7 @@
     <widget class="QLineEdit" name="lineEdit_002">
      <property name="minimumSize">
       <size>
-       <width>102</width>
+       <width>90</width>
        <height>24</height>
       </size>
      </property>
@@ -139,7 +139,7 @@
     <widget class="QLineEdit" name="lineEdit_003">
      <property name="minimumSize">
       <size>
-       <width>102</width>
+       <width>90</width>
        <height>24</height>
       </size>
      </property>
@@ -190,7 +190,7 @@
     <widget class="QLineEdit" name="lineEdit_004">
      <property name="minimumSize">
       <size>
-       <width>102</width>
+       <width>90</width>
        <height>24</height>
       </size>
      </property>
@@ -225,7 +225,7 @@
     <widget class="QLineEdit" name="lineEdit_005">
      <property name="minimumSize">
       <size>
-       <width>102</width>
+       <width>90</width>
        <height>24</height>
       </size>
      </property>
@@ -239,12 +239,6 @@
    </item>
    <item row="5" column="0">
     <widget class="QLabel" name="label_006">
-     <property name="minimumSize">
-      <size>
-       <width>90</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="text">
       <string>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数Rx：&lt;/span&gt;</string>
      </property>

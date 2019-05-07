@@ -51,7 +51,7 @@ void HBuilderSpec::buildConfigManage()
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             specs->insert("1", spec);
         }
-        d->configManage->setContain(ConfigContainType::CCT_Spec);
+        d->configManage->setContain(IConfigManage::ContainSpec);
         d->configManage->setSpecCalibrateCollection(specs);
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);

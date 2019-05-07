@@ -32,6 +32,8 @@ public:
     IGradeCollection *gradeCollection() override;
     void setAdjustCollection(IAdjustCollection *) override;
     IAdjustCollection *adjustCollection() override;
+    void setQualityCollection(IQualityCollection *) override;
+    IQualityCollection *qualityCollection() override;
 
 public:
     bool importPart(quint32 value) override;

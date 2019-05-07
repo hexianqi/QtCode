@@ -13,7 +13,11 @@ HEADERS += \
     $$PWD/HAdjustEditHandler.h \
     $$PWD/HAdjustEditHandler_p.h \
     $$PWD/HAdjustSelectHandler.h \
-    $$PWD/HAdjustSelectHandler_p.h
+    $$PWD/HAdjustSelectHandler_p.h \
+    $$PWD/HQualityEditHandler.h \
+    $$PWD/HQualityEditHandler_p.h \
+    $$PWD/HQualitySelectHandler.h \
+    $$PWD/HQualitySelectHandler_p.h
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
@@ -22,4 +26,6 @@ SOURCES += \
     $$PWD/HSpecCalibrateHandler.cpp \
     $$PWD/HGradeSelectHandler.cpp \
     $$PWD/HAdjustEditHandler.cpp \
-    $$PWD/HAdjustSelectHandler.cpp
+    $$PWD/HAdjustSelectHandler.cpp \
+    $$PWD/HQualityEditHandler.cpp \
+    $$PWD/HQualitySelectHandler.cpp

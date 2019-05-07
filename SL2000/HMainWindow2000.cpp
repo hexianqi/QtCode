@@ -19,8 +19,9 @@ void HMainWindow2000::initImportExport()
 {
     Q_D(HMainWindow2000);
     HAbstractMainWindow::initImportExport();
-    d->importExport.insert(tr("1.光谱定标数据(&S)..."),   ConfigContainType::CCT_Spec);
-    d->importExport.insert(tr("2.分级数据(&G)..."),       ConfigContainType::CCT_Grade);
+    d->importExport.insert(tr("1.光谱定标数据(&S)..."),   IConfigManage::ContainSpec);
+    d->importExport.insert(tr("2.分级数据(&G)..."),       IConfigManage::ContainGrade);
+    d->importExport.insert(tr("3.调整数据(&G)..."),       IConfigManage::ContainAdjust);
 }
 
 void HMainWindow2000::initBuilder()
