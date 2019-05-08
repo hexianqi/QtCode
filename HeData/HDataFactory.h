@@ -26,6 +26,8 @@ public:
 public:
     IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) override;
     IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) override;
+    ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
+    ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;

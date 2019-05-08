@@ -8,7 +8,7 @@
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QtMath>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 
 HTestSpecPrivate::HTestSpecPrivate()
 {
@@ -317,4 +317,4 @@ double HTestSpec::pelsToWave(double value)
     return d->calibrate->pelsToWave(value);
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_DATA_END_NAMESPACE

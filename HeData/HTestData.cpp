@@ -3,7 +3,7 @@
 #include <QtCore/QDateTime>
 #include <QtGui/QColor>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 
 void HTestDataPrivate::setData(QString type, QVariant value)
 {
@@ -148,4 +148,4 @@ QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
     return text;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_DATA_END_NAMESPACE

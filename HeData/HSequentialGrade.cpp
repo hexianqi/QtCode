@@ -21,6 +21,7 @@ QString HSequentialGrade::typeName()
 
 int HSequentialGrade::calcLevel(QVariantMap value, QString *text)
 {
+    Q_UNUSED(text);
     if (value.isEmpty() || isEmpty())
         return -1;
 

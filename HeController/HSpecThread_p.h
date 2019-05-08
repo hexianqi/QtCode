@@ -3,10 +3,14 @@
 
 #include "HSpecThread.h"
 #include "HAbstractThread_p.h"
+#include "HeData/HDataGlobal.h"
+
+HE_DATA_BEGIN_NAMESPACE
+class ITestSpec;
+HE_DATA_END_NAMESPACE
+HE_DATA_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
-
-class ITestSpec;
 
 class HSpecThreadPrivate : public HAbstractThreadPrivate
 {

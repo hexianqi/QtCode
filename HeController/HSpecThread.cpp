@@ -1,8 +1,8 @@
 #include "HSpecThread_p.h"
-#include "ITestSpec.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
+#include "HeData/ITestSpec.h"
 #include <QtCore/QVector>
 #include <QtCore/QDateTime>
 #include <QtCore/QDebug>

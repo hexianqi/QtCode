@@ -44,6 +44,7 @@ protected:
     void saveTable(IQuality::QualityType type);
     void addItem(IQuality::QualityType type);
     void removeItem(IQuality::QualityType type);
+    void editColor(IQuality::QualityType type, int row, int column);
 
 protected slots:
     void on_pushButton_01_clicked();
@@ -54,6 +55,8 @@ protected slots:
     void on_pushButton_12_clicked();
     void on_pushButton_21_clicked();
     void on_pushButton_22_clicked();
+    void on_tableWidget_11_cellDoubleClicked(int row, int column);
+    void on_tableWidget_21_cellDoubleClicked(int row, int column);
 
 private:
     void init();

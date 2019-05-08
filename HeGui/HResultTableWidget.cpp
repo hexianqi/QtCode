@@ -1,7 +1,7 @@
 #include "HResultTableWidget_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
-#include "HeController/ITestData.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HTypeOptionalDialog.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QHeaderView>

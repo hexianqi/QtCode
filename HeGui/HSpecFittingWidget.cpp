@@ -2,7 +2,7 @@
 #include "HeData/HSpecFitting.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include "HeController/ITestSpec.h"
+#include "HeData/ITestSpec.h"
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
 #include <QtCore/QDebug>

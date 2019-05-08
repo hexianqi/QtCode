@@ -6,14 +6,10 @@
 #define ITESTSPEC_H
 
 #include "HTestData.h"
-#include "HeData/HDataGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class ISpecCalibrate;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+class ISpecCalibrate;
 
 class ITestSpec : public HTestData
 {
@@ -53,6 +49,6 @@ public:
     virtual double pelsToWave(double value) = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_DATA_END_NAMESPACE
 
 #endif // ITESTSPECTRUM_H

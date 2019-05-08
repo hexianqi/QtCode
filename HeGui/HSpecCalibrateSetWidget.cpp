@@ -2,7 +2,7 @@
 #include "ui_HSpecCalibrateSetWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include "HeController/ITestSpec.h"
+#include "HeData/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QDebug>
 

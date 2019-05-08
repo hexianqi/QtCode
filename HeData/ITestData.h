@@ -5,13 +5,13 @@
 #ifndef ITESTDATA_H
 #define ITESTDATA_H
 
-#include "HControllerGlobal.h"
+#include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include <QtCore/QVariant>
 
 HE_CORE_USE_NAMESPACE
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 
 class ITestData : public IInitializeable
 {
@@ -38,6 +38,6 @@ public:
     virtual QString toHtmlTable(QStringList type, QColor bgcolor) = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_DATA_END_NAMESPACE
 
 #endif // ITESTDATA_H

@@ -1,7 +1,7 @@
 #include "HSpecModel_p.h"
-#include "ITestSpec.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
+#include "HeData/ITestSpec.h"
 #include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE

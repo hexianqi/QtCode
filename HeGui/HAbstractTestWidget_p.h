@@ -3,10 +3,15 @@
 
 #include "HAbstractTestWidget.h"
 #include "HeController/HControllerGlobal.h"
+#include "HeData/HDataGlobal.h"
+
+HE_DATA_BEGIN_NAMESPACE
+class ITestData;
+HE_DATA_END_NAMESPACE
+HE_DATA_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 class IModel;
-class ITestData;
 HE_CONTROLLER_END_NAMESPACE
 HE_CONTROLLER_USE_NAMESPACE
 

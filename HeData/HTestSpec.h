@@ -8,7 +8,7 @@
 #include "HTestData.h"
 #include "ITestSpec.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 
 class HTestSpecPrivate;
 
@@ -49,6 +49,6 @@ protected:
     HTestSpec(HTestSpecPrivate &p);
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_DATA_END_NAMESPACE
 
 #endif // HTESTSPEC_H

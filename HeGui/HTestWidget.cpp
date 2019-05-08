@@ -3,7 +3,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IExcelStream.h"
-#include "HeController/ITestData.h"
+#include "HeData/ITestData.h"
 #include "HeSql/ISqlTableModel.h"
 #include "HeSql/HSql.h"
 #include <QtWidgets/QAction>

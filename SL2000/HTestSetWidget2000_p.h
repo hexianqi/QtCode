@@ -4,9 +4,9 @@
 #include "HTestSetWidget2000.h"
 #include "HeGui/HAbstractTestSetWidget_p.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 class ITestSpec;
-HE_CONTROLLER_END_NAMESPACE
+HE_DATA_END_NAMESPACE
 
 class HTestSetWidget2000Private : public HAbstractTestSetWidgetPrivate
 {

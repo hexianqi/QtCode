@@ -3,7 +3,7 @@
 
 #include "HTestData.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 
 class HTestDataPrivate
 {
@@ -19,7 +19,6 @@ public:
     QVariantMap datas;
 };
 
-HE_CONTROLLER_END_NAMESPACE
-
+HE_DATA_END_NAMESPACE
 
 #endif // HTESTDATA_P_H

@@ -181,6 +181,19 @@ void HQualityEditWidget::removeItem(IQuality::QualityType type)
     showTable(type);
 }
 
+void HQualityEditWidget::editColor(IQuality::QualityType type, int row, int column)
+{
+    if (d_ptr->data == nullptr || column < 2)
+        return;
+    auto item = d_ptr->tableWidgets.value(type)->item(row, column);
+    QColorDialog dlg(item->backgroundColor(), this);
+    if (dlg.exec())
+    {
+        item->setBackgroundColor(dlg.currentColor());
+        item->setText(dlg.currentColor().name().toUpper());
+    }
+}
+
 void HQualityEditWidget::on_pushButton_01_clicked()
 {
     QColorDialog dlg(d_ptr->colorInvalidData, this);
@@ -239,6 +252,16 @@ void HQualityEditWidget::on_pushButton_21_clicked()
 void HQualityEditWidget::on_pushButton_22_clicked()
 {
     removeItem(IQuality::QualityCriterion);
+}
+
+void HQualityEditWidget::on_tableWidget_11_cellDoubleClicked(int row, int column)
+{
+    editColor(IQuality::QualityDamage, row, column);
+}
+
+void HQualityEditWidget::on_tableWidget_21_cellDoubleClicked(int row, int column)
+{
+    editColor(IQuality::QualityCriterion, row, column);
 }
 
 void HQualityEditWidget::init()

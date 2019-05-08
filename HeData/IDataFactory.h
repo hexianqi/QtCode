@@ -14,6 +14,8 @@ HE_DATA_BEGIN_NAMESPACE
 
 class IFileStream;
 class IExcelStream;
+class ITestData;
+class ITestSpec;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
@@ -34,6 +36,10 @@ public:
     virtual IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建Excel文件流
     virtual IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建测试数据
+    virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光谱测试数据
+    virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建配置管理
     virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准数据集

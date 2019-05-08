@@ -1,6 +1,7 @@
 #include "HDataFactory_p.h"
 #include "HExcelStream.h"
 #include "HFileStream.h"
+#include "HTestSpec.h"
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
@@ -60,6 +61,22 @@ IExcelStream *HDataFactory::createExcelStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     IExcelStream *p = new HExcelStream(this);
+    p->initialize(param);
+    return p;
+}
+
+ITestData *HDataFactory::createTestData(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    ITestData *p = new HTestData;
+    p->initialize(param);
+    return p;
+}
+
+ITestSpec *HDataFactory::createTestSpec(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    ITestSpec *p = new HTestSpec;
     p->initialize(param);
     return p;
 }

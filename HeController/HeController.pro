@@ -62,4 +62,3 @@ unix {
 
 include(thread.pri)
 include(model.pri)
-include(test.pri)

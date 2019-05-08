@@ -4,13 +4,16 @@
 #include "HSpecFittingWidget.h"
 #include "HeController/HControllerGlobal.h"
 
+class QProgressDialog;
+
+HE_DATA_BEGIN_NAMESPACE
+class ITestSpec;
+HE_DATA_END_NAMESPACE
+
 HE_CONTROLLER_BEGIN_NAMESPACE
 class IModel;
-class ITestSpec;
 HE_CONTROLLER_END_NAMESPACE
 HE_CONTROLLER_USE_NAMESPACE
-
-class QProgressDialog;
 
 HE_GUI_BEGIN_NAMESPACE
 

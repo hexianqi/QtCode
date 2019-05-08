@@ -7,11 +7,11 @@
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
-#include "HeController/ITestSpec.h"
 #include "HeController/IThreadCollection.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IFileStream.h"
+#include "HeData/ITestSpec.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
@@ -72,9 +72,9 @@ void HBuilder2000::buildConfigManage()
 void HBuilder2000::buildTestData()
 {
     Q_D(HBuilder2000);
-    auto data = d->controllerFactory->createTestData("Data");
-    auto other = d->controllerFactory->createTestData("Other");
-    auto spec = d->controllerFactory->createTestSpec("Spec");
+    auto data = d->dataFactory->createTestData("HTestData");
+    auto other = d->dataFactory->createTestData("HTestData");
+    auto spec = d->dataFactory->createTestSpec("HTestSpec");
     spec->setSuccessor(other);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
     data->setSuccessor(spec);

@@ -1,6 +1,6 @@
 #include "HDetailWidget2000_p.h"
 #include "ui_HDetailWidget2000.h"
-#include "HeController/ITestData.h"
+#include "HeData/ITestData.h"
 #include <QtCore/QDebug>
 
 HDetailWidget2000::HDetailWidget2000(QWidget *parent) :

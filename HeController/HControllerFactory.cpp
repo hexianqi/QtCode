@@ -1,7 +1,6 @@
 #include "HControllerFactory_p.h"
 #include "HSpecThread.h"
 #include "HThreadCollection.h"
-#include "HTestSpec.h"
 #include "HSpecModel.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
@@ -45,22 +44,6 @@ IThreadCollection *HControllerFactory::createThreadCollection(QString type, QVar
 {
     Q_UNUSED(type)
     IThreadCollection *p = new HThreadCollection;
-    p->initialize(param);
-    return p;
-}
-
-ITestData *HControllerFactory::createTestData(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    ITestData *p = new HTestData;
-    p->initialize(param);
-    return p;
-}
-
-ITestSpec *HControllerFactory::createTestSpec(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    ITestSpec *p = new HTestSpec;
     p->initialize(param);
     return p;
 }

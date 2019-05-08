@@ -2,17 +2,16 @@
 #define HSPECENERGYWIDGET_P_H
 
 #include "HSpecEnergyWidget.h"
-#include "HeController/HControllerGlobal.h"
 #include "HeData/HDataGlobal.h"
 
 class HSpecDiagramWidget;
 class HProgressBar;
 class QHBoxLayout;
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_DATA_BEGIN_NAMESPACE
 class ITestSpec;
-HE_CONTROLLER_END_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
+HE_DATA_END_NAMESPACE
+HE_DATA_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
