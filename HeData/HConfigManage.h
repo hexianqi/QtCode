@@ -39,6 +39,9 @@ public:
     bool importPart(quint32 value) override;
     bool exportPart(quint32 value) override;
 
+public:
+    void postProcess(ITestData *, QStringList optional) override;
+
 protected:
     HConfigManage(HConfigManagePrivate &);
 

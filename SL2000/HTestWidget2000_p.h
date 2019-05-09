@@ -33,9 +33,6 @@ public:
 public:
     QAction *actionClear;
     QAction *actionAdjust;
-
-public:
-    bool useAdjust = false;
 };
 
 #endif // HTESTWIDGET2000_P_H

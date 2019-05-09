@@ -53,15 +53,21 @@ INCLUDEPATH += ..
 
 Debug {
     TARGET = HeSqld
-    LIBS    += -L$$DESTDIR -lHeCored
+    LIBS    += \
+            -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
     TARGET  = HeSql
-    LIBS    += -L$$DESTDIR -lHeCore
+    LIBS    += \
+            -L$$DESTDIR -lHeCore \
+            -L$$DESTDIR -lHePlugin
 }
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+include(widget.pri)

@@ -5,8 +5,6 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestData.h"
 #include "HeData/IGradeCollection.h"
-#include "HeData/IAdjustCollection.h"
-#include "HeData/IQualityCollection.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HResultTableWidget.h"
 #include "HePlugin/HCIE1931Widget.h"
@@ -22,14 +20,16 @@
 
 HTestWidget2000Private::HTestWidget2000Private()
 {
+    testData->setData("[使用调整]", false);
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-    displayOptionals = QStringList() << "[测量日期]" << "[测量时间]" << "[分级]"
-                                     << "[光谱光通量]" << "[光功率]"
-                                     << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
-                                     << "[色温]" << "[色纯度]"
-                                     << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
-                                     << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                                     << "[显色指数]" <<"[显色指数Rx]";
+    displays = QStringList() << "[测量日期]" << "[测量时间]"
+                             << "[分级]"
+                             << "[光谱光通量]" << "[光功率]"
+                             << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
+                             << "[色温]" << "[色纯度]"
+                             << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
+                             << "[红色比]" << "[绿色比]" << "[蓝色比]"
+                             << "[显色指数]" <<"[显色指数Rx]";
 }
 
 HTestWidget2000::HTestWidget2000(QWidget *parent) :
@@ -97,8 +97,8 @@ void HTestWidget2000::createWidget()
     d->cieWidget = new HCIE1931Widget;
     d->detailWidget = new HDetailWidget2000;
     d->resultWidget = new HResultTableWidget;
-    d->resultWidget->setOptionals(d->displayOptionals);
-    d->resultWidget->setSelecteds(d->tableSelecteds);
+    d->resultWidget->setDisplay(d->displays);
+    d->resultWidget->setSelected(d->tableSelecteds);
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
     tabWidget3->addTab(d->detailWidget, tr("当次结果"));
@@ -124,9 +124,9 @@ void HTestWidget2000::createAction()
     d->actionClear->setIconText(tr("清除结果"));
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
-    d->actionAdjust->setChecked(d->useAdjust);
+    d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
     connect(d->actionClear, &QAction::triggered, this, &HTestWidget2000::clearResult);
-    connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->useAdjust = b; });
+    connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
 }
 
 void HTestWidget2000::createMenu()
@@ -192,23 +192,8 @@ void HTestWidget2000::clearResult()
 void HTestWidget2000::postProcess()
 {
     Q_D(HTestWidget2000);
-    QString text;
-    QVariantMap colors;
-    auto data = d->testData->select(d->displayOptionals);
-    if (d->useAdjust)
-    {
-        data = d->configManage->adjustCollection()->correct(data);
-        d->testData->setData(data);
-    }
-    auto level = d->configManage->gradeCollection()->calcLevel(data, &text);
-    auto report = d->configManage->qualityCollection()->check(data, &colors);
-    auto color = d->configManage->qualityCollection()->color(report);
+    d->configManage->postProcess(d->testData, d->displays);
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
-    d->testData->setData("[分级]", level);
-    d->testData->setData("[分级别名]", text);
-    d->testData->setData("[品质]", report);
-    d->testData->setData("[品质颜色]", color);
-    d->testData->setData("[品质不符合颜色]", colors);
 }
 
 void HTestWidget2000::readSettings()
@@ -217,8 +202,8 @@ void HTestWidget2000::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
-    d->useAdjust = settings->value("bAdjust", false).toBool();
-    d->tableSelecteds = settings->value("sTableSelected", d->displayOptionals).toStringList();
+    d->tableSelecteds = settings->value("sTableSelected", d->displays).toStringList();
+    d->testData->setData("[使用调整]", settings->value("bAdjust", false));
     settings->endGroup();
 }
 
@@ -228,7 +213,7 @@ void HTestWidget2000::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
-    settings->setValue("bAdjust", d->useAdjust);
-    settings->setValue("sTableSelected", d->tableSelecteds);
+    settings->setValue("sTableSelected", d->resultWidget->selected());
+    settings->setValue("bAdjust", d->testData->data("[使用调整]"));
     settings->endGroup();
 }

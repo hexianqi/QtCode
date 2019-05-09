@@ -77,8 +77,8 @@ void HTestWidget::exportExcel()
 {
     Q_D(HTestWidget);
     QString text;
-    text += toCaptionUnit(d->displayOptionals).join("\t") + "\n";
-    text += d->testData->toString(d->displayOptionals).join("\t") + "\n";
+    text += toCaptionUnit(d->displays).join("\t") + "\n";
+    text += d->testData->toString(d->displays).join("\t") + "\n";
     d->excelStream->setWriteContent(text);
     d->excelStream->saveAsFile();
 }

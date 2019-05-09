@@ -7,8 +7,7 @@
 class HMarkerChartExtendPrivate : public HAbstractChartExtendPrivate
 {
 public:
-    HMarkerChartExtendPrivate(QChart *c = nullptr);
-
+    using HAbstractChartExtendPrivate::HAbstractChartExtendPrivate;
 };
 
 #endif // HMARKERCHARTEXTEND_P_H

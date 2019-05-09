@@ -9,7 +9,6 @@ HAbstractChartExtend::HAbstractChartExtend(QObject *parent) :
     QObject(parent),
     d_ptr(new HAbstractChartExtendPrivate)
 {
-
 }
 
 HAbstractChartExtend::HAbstractChartExtend(QChart *chart, QObject *parent) :
@@ -37,6 +36,11 @@ void HAbstractChartExtend::setChart(QChart *c)
     connectExtend();
 }
 
+QChart *HAbstractChartExtend::chart()
+{
+    return d_ptr->chart;
+}
+
 bool HAbstractChartExtend::connectExtend()
 {
     return chart() != nullptr;
@@ -46,12 +50,3 @@ bool HAbstractChartExtend::disconnectExtend()
 {
     return chart() != nullptr;
 }
-
-QChart *HAbstractChartExtend::chart()
-{
-    return d_ptr->chart;
-}
-
-
-
-

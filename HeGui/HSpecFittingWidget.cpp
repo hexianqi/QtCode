@@ -29,6 +29,13 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
     init();
 }
 
+void HSpecFittingWidget::cancel(QString text)
+{
+    d_ptr->progressDialog->cancel();
+    setTest(false);
+    QMessageBox::warning(this, tr("提示"), text, QMessageBox::Yes);
+}
+
 HSpecFittingWidget::~HSpecFittingWidget()
 {
     qDebug() << __func__;
@@ -58,16 +65,22 @@ void HSpecFittingWidget::handleAction(HActionType action)
 
     if (d_ptr->testSpec->data("[采样溢出状态]").toInt() != 0)
     {
-        d_ptr->progressDialog->cancel();
-        setTest(false);
-        QMessageBox::warning(this, tr("提示"), tr("采样溢出!"), QMessageBox::Yes);
+        cancel(tr("采样数据溢出!"));
         return;
     }
 
     if (!d_ptr->testSpec->data("[采样帧溢出状态]").toBool())
         return;
 
-    d_ptr->points[d_ptr->curTimes++].setX(d_ptr->testSpec->sample(1, d_ptr->pel));
+    auto sample = d_ptr->testSpec->sample(1, d_ptr->pel);
+    if (sample < d_ptr->lastSample)
+    {
+        cancel(tr("采样数据不对（积分时间：%1ms）!").arg(d_ptr->points[d_ptr->curTimes].y()));
+        return;
+    }
+
+    d_ptr->lastSample = sample;
+    d_ptr->points[d_ptr->curTimes++].setX(sample);
     d_ptr->progressDialog->setValue(d_ptr->curTimes);
     if (d_ptr->curTimes < d_ptr->points.size())
     {
@@ -92,6 +105,7 @@ bool HSpecFittingWidget::setTest(bool b)
         if (!initParam())
             return false;
         d_ptr->curTimes = 0;
+        d_ptr->lastSample = 0.0;
         d_ptr->progressDialog->setRange(0, d_ptr->points.size());
         d_ptr->progressDialog->setValue(0);
         d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());

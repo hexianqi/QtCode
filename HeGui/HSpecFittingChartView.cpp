@@ -43,7 +43,7 @@ void HSpecFittingChartView::removeSeries(int id)
         return;
     auto series = d->series[id];
     d->chart->removeSeries(series);
-    d->callout->connectExtend(series);
+    d->callout->disconnectExtend(series);
     d->series.remove(id);
     delete series;
 }

@@ -3,11 +3,6 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QXYSeries>
 
-HCalloutChartExtendPrivate::HCalloutChartExtendPrivate(QChart *c) :
-    HAbstractChartExtendPrivate(c)
-{
-}
-
 HCalloutChartExtend::HCalloutChartExtend(QObject *parent) :
     HAbstractChartExtend(*new HCalloutChartExtendPrivate, parent)
 {
@@ -29,11 +24,10 @@ HCalloutChartExtend::~HCalloutChartExtend()
 
 bool HCalloutChartExtend::connectExtend()
 {
-    Q_D(HCalloutChartExtend);
     if (!HAbstractChartExtend::connectExtend())
         return false;
 
-    auto series = d->chart->series();
+    auto series = chart()->series();
     for (auto s : series)
     {
         auto ss = qobject_cast<QXYSeries *>(s);
@@ -59,7 +53,7 @@ bool HCalloutChartExtend::disconnectExtend()
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 
-    auto series = d->chart->series();
+    auto series = chart()->series();
     for (auto s : series)
     {
         auto ss = qobject_cast<QXYSeries *>(s);
@@ -115,4 +109,3 @@ void HCalloutChartExtend::handleSeriesHovered(QPointF point, bool state)
     else
         d->tooltip->hide();
 }
-

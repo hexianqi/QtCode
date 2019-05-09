@@ -2,7 +2,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/ITestData.h"
-#include "HePlugin/HTypeOptionalDialog.h"
+#include "HePlugin/HOptionalTableExtend.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QHeaderView>
 #include <QtCore/QDebug>
@@ -31,24 +31,21 @@ HResultTableWidget::~HResultTableWidget()
     qDebug() << __func__;
 }
 
-void HResultTableWidget::setOptionals(QStringList value)
+void HResultTableWidget::setDisplay(QStringList value)
 {
     Q_D(HResultTableWidget);
-    if (d->optionals == value)
+    if (d->displays == value)
         return;
-    d->optionals = value;
-    clear();
+    d->displays = value;
+    d->optional->setDisplay(value);
+    d->optional->setOptional(value);
     setHorizontalHeaderLabels(toCaptionUnit(value));
 }
 
-void HResultTableWidget::setSelecteds(QStringList value)
+void HResultTableWidget::setSelected(QStringList value)
 {
     Q_D(HResultTableWidget);
-    if (d->selecteds == value)
-        return;
-    d->selecteds = value;
-    for (int i = 0; i < d->optionals.size(); i++)
-        setColumnHidden(i, value.contains(d->optionals[i]));
+    d->optional->setSelected(value);
 }
 
 void HResultTableWidget::clearResult()
@@ -60,36 +57,35 @@ void HResultTableWidget::clearResult()
 void HResultTableWidget::refreshResult(int row, bool append)
 {
     Q_D(HResultTableWidget);
-    auto value = d->testData->toString(d->optionals);
+    auto value = d->testData->toString(d->displays);
     if (append || row >= rowCount())
         insertRow(row, value);
     else
         setRow(row, value);
+
+    auto map = d->testData->data("[品质不符合颜色]").toMap();
+    for (auto i = map.begin(); i != map.end(); i++)
+    {
+        auto column = d->displays.indexOf(i.key());
+        if (column != -1)
+            item(row, column)->setBackgroundColor(i.value().value<QColor>());
+    }
 }
 
 QStringList HResultTableWidget::selected()
 {
     Q_D(HResultTableWidget);
-    return d->selecteds;
-}
-
-void HResultTableWidget::openOptionalDialog()
-{
-    Q_D(HResultTableWidget);
-    HTypeOptionalDialog dlg(d->selecteds, d->optionals, this);
-    if (dlg.exec())
-        setSelecteds(dlg.selected());
+    return d->optional->selected();
 }
 
 void HResultTableWidget::init()
 {
     Q_D(HResultTableWidget);
+    d->optional = new HOptionalTableExtend(this);
+    d->optional->setTableView(this);
     d->actionClear = new QAction(QIcon(":/image/Clear.png"), tr("清除结果(&R)"));
-    d->actionOptional = new QAction(QIcon(":/image/Options.png"), tr("显示选项(&O)..."));
     addAction(d->actionClear);
-    addAction(d->actionOptional);
     connect(d->actionClear, &QAction::triggered, this, &HResultTableWidget::clearResult);
-    connect(d->actionOptional, &QAction::triggered, this, &HResultTableWidget::openOptionalDialog);
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     horizontalHeader()->setDefaultSectionSize(100);

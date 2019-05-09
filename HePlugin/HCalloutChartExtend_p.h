@@ -9,7 +9,7 @@ class HGraphicsCalloutItem;
 class HCalloutChartExtendPrivate : public HAbstractChartExtendPrivate
 {
 public:
-    HCalloutChartExtendPrivate(QChart *c = nullptr);
+    using HAbstractChartExtendPrivate::HAbstractChartExtendPrivate;
 
 public:
     HGraphicsCalloutItem *tooltip = nullptr;

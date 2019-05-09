@@ -2,11 +2,6 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QLegendMarker>
 
-HMarkerChartExtendPrivate::HMarkerChartExtendPrivate(QChart *c) :
-    HAbstractChartExtendPrivate(c)
-{
-}
-
 HMarkerChartExtend::HMarkerChartExtend(QObject *parent) :
     HAbstractChartExtend(*new HMarkerChartExtendPrivate, parent)
 {
@@ -28,11 +23,10 @@ HMarkerChartExtend::~HMarkerChartExtend()
 
 bool HMarkerChartExtend::connectExtend()
 {
-    Q_D(HMarkerChartExtend);
     if (!HAbstractChartExtend::connectExtend())
         return false;
 
-    auto markers = d->chart->legend()->markers();
+    auto markers = chart()->legend()->markers();
     for (auto m : markers)
     {
         // Disconnect possible existing connection to avoid multiple connections
@@ -44,11 +38,10 @@ bool HMarkerChartExtend::connectExtend()
 
 bool HMarkerChartExtend::disconnectExtend()
 {
-    Q_D(HMarkerChartExtend);
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 
-    auto markers = d->chart->legend()->markers();
+    auto markers = chart()->legend()->markers();
     for (auto m : markers)
         disconnect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
     return true;

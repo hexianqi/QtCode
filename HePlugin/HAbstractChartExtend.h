@@ -6,6 +6,7 @@
 #define HABSTRACTCHARTEXTEND_H
 
 #include "IChartExtend.h"
+#include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCore/QObject>
 
 class HAbstractChartExtendPrivate;
@@ -21,11 +22,9 @@ public:
 
 public:
     void setChart(QChart *) override;
+    QChart *chart() override;
     bool connectExtend() override;
     bool disconnectExtend() override;
-
-public:
-    QChart *chart();
 
 protected:
     HAbstractChartExtend(HAbstractChartExtendPrivate &p, QObject *parent = nullptr);

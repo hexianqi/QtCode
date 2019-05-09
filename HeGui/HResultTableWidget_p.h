@@ -5,6 +5,8 @@
 #include "HeData/HDataGlobal.h"
 #include "HePlugin/HEntireTableWidget_p.h"
 
+class HOptionalTableExtend;
+
 HE_DATA_BEGIN_NAMESPACE
 class ITestData;
 HE_DATA_END_NAMESPACE
@@ -19,12 +21,9 @@ public:
 
 public:
     ITestData *testData;
-    QStringList optionals;
-    QStringList selecteds;
-
-public:
+    HOptionalTableExtend *optional;
     QAction *actionClear;
-    QAction *actionOptional;
+    QStringList displays;
 };
 
 HE_GUI_END_NAMESPACE

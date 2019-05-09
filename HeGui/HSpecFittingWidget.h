@@ -43,6 +43,7 @@ protected:
     HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    void cancel(QString text);
     virtual bool initParam() = 0;
     virtual void saveData() = 0;
     virtual void showData() = 0;

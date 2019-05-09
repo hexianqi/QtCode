@@ -23,14 +23,12 @@ public:
 public:
     // 设置字段
     virtual void setField(QStringList value) = 0;
+    // 字段
+    virtual QStringList fields() = 0;
     // 设置表格
     virtual void setTable(QString tableName) = 0;
     // 添加记录
     virtual bool addRecord(QVariantMap value) = 0;
-
-public:
-    // 字段
-    virtual QStringList fields() = 0;
 };
 
 HE_SQL_END_NAMESPACE

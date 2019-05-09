@@ -32,6 +32,7 @@ public:
     bool testState = false;
     int pel;
     int curTimes;
+    double lastSample;
     QPolygonF points;
 };
 

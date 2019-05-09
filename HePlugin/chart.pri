@@ -10,3 +10,6 @@ SOURCES += \
     $$PWD/HChart.cpp \
     $$PWD/HSingleAxisChart.cpp \
     $$PWD/HCIE1931Chart.cpp
+
+include(chartView.pri)
+include(chartExtend.pri)

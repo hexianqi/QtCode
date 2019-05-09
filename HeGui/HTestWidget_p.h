@@ -28,7 +28,7 @@ public:
     ISqlTableModel *sqlTableModel;
 
 public:
-    QStringList displayOptionals;
+    QStringList displays;
     QStringList tableSelecteds;
 
 public:

@@ -1,14 +1,26 @@
 #include "HConfigManage_p.h"
 #include "IDataFactory.h"
 #include "IFileStream.h"
+#include "ITestData.h"
 #include "ISpecCalibrateCollection.h"
 #include "IGradeCollection.h"
 #include "IAdjustCollection.h"
 #include "IQualityCollection.h"
 #include <QtCore/QDataStream>
+#include <QtGui/QColor>
 #include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
+
+QSet<QString> supplement(QSet<QString> set, QSet<QString> other)
+{
+    bool b = false;
+    for (auto s : other)
+        b = b | set.contains(s);
+    if (b)
+        set.unite(other);
+    return set;
+}
 
 HConfigManagePrivate::HConfigManagePrivate(IDataFactory *f)
 {
@@ -193,6 +205,36 @@ bool HConfigManage::exportPart(quint32 value)
     if (value & ContainQuality)
         return d_ptr->qualitys->fileStream()->saveAsFile();
     return false;
+}
+
+void HConfigManage::postProcess(ITestData *test, QStringList optional)
+{
+    auto set = optional.toSet();
+    set = supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
+    set = supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
+    set = supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
+    auto data = test->select(set.toList());
+    if (d_ptr->adjusts != nullptr && test->data("[使用调整]").toBool())
+    {
+        data = d_ptr->adjusts->correct(data);
+        test->setData(data);
+    }
+    if (d_ptr->grades != nullptr)
+    {
+        QString text;
+        auto level = d_ptr->grades->calcLevel(data, &text);
+        test->setData("[分级]", level);
+        test->setData("[分级别名]", text);
+    }
+    if (d_ptr->qualitys != nullptr)
+    {
+        QVariantMap colors;
+        auto report = d_ptr->qualitys->check(data, &colors);
+        auto color = d_ptr->qualitys->color(report);
+        test->setData("[品质]", report);
+        test->setData("[品质颜色]", color);
+        test->setData("[品质不符合颜色]", colors);
+    }
 }
 
 HE_DATA_END_NAMESPACE

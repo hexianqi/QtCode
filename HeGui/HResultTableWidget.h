@@ -22,8 +22,8 @@ public:
     ~HResultTableWidget() override;
 
 public:
-    void setOptionals(QStringList value);
-    void setSelecteds(QStringList value);
+    void setDisplay(QStringList value);
+    void setSelected(QStringList value);
     void clearResult();
     void refreshResult(int row, bool append);
 
@@ -32,9 +32,6 @@ public:
 
 protected:
     HResultTableWidget(HResultTableWidgetPrivate &p, QWidget *parent = nullptr);
-
-protected:
-    void openOptionalDialog();
 
 private:
     void init();

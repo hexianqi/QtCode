@@ -13,6 +13,7 @@ HE_CORE_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
 class IFileStream;
+class ITestData;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
 class IGradeCollection;
@@ -62,6 +63,10 @@ public:
     virtual bool importPart(quint32 value) = 0;
     // 导出部分数据
     virtual bool exportPart(quint32 value) = 0;
+
+public:
+    // 测试数据后续处理
+    virtual void postProcess(ITestData *, QStringList optional) = 0;
 };
 
 HE_DATA_END_NAMESPACE

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>选项</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" rowspan="4" colspan="3">
@@ -237,5 +237,38 @@
  <resources>
   <include location="HePlugin.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_1</sender>
+   <signal>clicked()</signal>
+   <receiver>HTypeOptionalDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>132</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>198</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>HTypeOptionalDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>361</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

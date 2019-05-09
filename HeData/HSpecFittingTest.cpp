@@ -1,5 +1,6 @@
 #include "HSpecFittingTest_p.h"
 #include "HeAlgorithm/HInterp.h"
+#include "HeAlgorithm/HMath.h"
 #include <QtCore/QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
@@ -58,7 +59,6 @@ QVector<double> HSpecFittingTest::handle(QVector<double> value, bool abovezero)
     for (int i = 0; i < value.size(); i++)
         r << handle(i, value[i], abovezero);
     return value;
-
 }
 
 double HSpecFittingTest::handle(int i, double value, bool abovezero)
@@ -81,7 +81,8 @@ double HSpecFittingTest::calcRate(int i, double value)
 
     auto range = data("[光谱拟合有效范围]").toPointF();
     value = qBound(range.x(), value, range.y());
-    return HInterp::eval(d->allFittingPoints[i], value, HInterpType::Cspline);
+    return HMath::interpolate(value, d->allFittingPoints[i]);
+//    return HInterp::eval(d->allFittingPoints[i], value, HInterpType::Cspline);
 }
 
 HE_DATA_END_NAMESPACE

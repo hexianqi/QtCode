@@ -127,20 +127,20 @@ void HBuilder2000::buildModel()
 void HBuilder2000::buildDatabase()
 {
     Q_D(HBuilder2000);
-    auto field = QStringList() << tr("ID") << tr("Manufacturer") << tr("ProductName") << tr("ProductModel")  << tr("SampleNumber") << tr("Tester") << tr("TestInstitute")
-                               << tr("Temperature") << tr("Humidity") << tr("TestDate") << tr("TestTime")
-                               << tr("LuminousFluxSpec") << tr("LuminousPower")
-                               << tr("PeakWave") << tr("PeakBandwidth") << tr("DominantWave")
-                               << tr("ColorTemperature") << tr("ColorPurity")
-                               << tr("CC_x") << tr("CC_y") << tr("CC_up") << tr("CC_vp") << tr("Duv")
-                               << tr("RedRatio") << tr("GreenRadio") << tr("BlueRatio")
-                               << tr("Ra") << tr("Rx") << tr("EnergyGraph");
+    auto field = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+                               << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+                               << "LuminousFluxSpec" << "LuminousPower"
+                               << "PeakWave" << "PeakBandwidth" << "DominantWave"
+                               << "ColorTemperature" << "ColorPurity"
+                               << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+                               << "RedRatio" << "GreenRadio" << "BlueRatio"
+                               << "Ra" << "Rx" << "EnergyGraph";
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     db->openDatabase("SL2000.db");
-    db->insertTableModel("Spec", model);
+    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     model->setField(field);
     model->setTable("Spec");
+    db->insertTableModel("Spec", model);
     HAppContext::setContextPointer("ISqlTableModel", model);
 }
 
