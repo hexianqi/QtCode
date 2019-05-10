@@ -88,11 +88,10 @@ bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
 
 void HRibbonDiagramWidget::init()
 {
-    Q_D(HRibbonDiagramWidget);
-    d->actionRibbon = new QAction(tr("颜色图"));
-    d->actionRibbon->setCheckable(true);
-    d->actionRibbon->setChecked(isDrawRibbon());
-    addAction(d->actionRibbon);
-    connect(d->actionRibbon, &QAction::toggled, this, &HRibbonDiagramWidget::setDrawRibbon);
+    auto color = new QAction(tr("颜色图"));
+    color->setCheckable(true);
+    color->setChecked(isDrawRibbon());
+    addAction(color);
+    connect(color, &QAction::toggled, this, &HRibbonDiagramWidget::setDrawRibbon);
     setCoordinate(QRectF(380, 0, 400, 100), 5, 5);
 }

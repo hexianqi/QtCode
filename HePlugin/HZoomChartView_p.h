@@ -6,10 +6,6 @@
 
 class HZoomChartViewPrivate : public HChartViewPrivate
 {
-public:
-    QAction *actionZoomIn;
-    QAction *actionZoomOut;
-    QAction *actionZoomReset;
 };
 
 #endif // HZOOMCHARTVIEW_P_H

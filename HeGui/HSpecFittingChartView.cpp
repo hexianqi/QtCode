@@ -71,12 +71,12 @@ void HSpecFittingChartView::init()
     d->chart->setAxisY(axisY);
     d->marker = new HMarkerChartExtend(d->chart, this);
     d->callout = new HCalloutChartExtend(d->chart, this);
-    d->actionClearCallout = new QAction(tr("清除标注(&C)"));
-    d->actionClearSeries = new QAction(tr("清除曲线(&C)"));
-    connect(d->actionClearCallout, &QAction::triggered, d->callout, &HCalloutChartExtend::clear);
-    connect(d->actionClearSeries, &QAction::triggered, this, &HSpecFittingChartView::clearSeries);
-    addAction(d->actionClearCallout);
-    addAction(d->actionClearSeries);
+    auto clearCallout = new QAction(tr("清除标注(&C)"));
+    auto clearSeries = new QAction(tr("清除曲线(&C)"));
+    connect(clearCallout, &QAction::triggered, d->callout, &HCalloutChartExtend::clear);
+    connect(clearSeries, &QAction::triggered, this, &HSpecFittingChartView::clearSeries);
+    addAction(clearCallout);
+    addAction(clearSeries);
     HPluginHelper::addSeparator(this);
     setChart(d->chart);
     setWindowTitle(tr("CCD曲线"));

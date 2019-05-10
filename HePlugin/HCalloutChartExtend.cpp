@@ -49,7 +49,6 @@ void HCalloutChartExtend::connectExtend(QXYSeries *s)
 
 bool HCalloutChartExtend::disconnectExtend()
 {
-    Q_D(HCalloutChartExtend);
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 

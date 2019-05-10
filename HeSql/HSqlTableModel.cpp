@@ -59,50 +59,10 @@ void HSqlTableModel::setTable(QString tableName)
     select();
 }
 
-bool HSqlTableModel::addRecord(QVariantMap value)
+void HSqlTableModel::setCurrentRow(int row)
 {
-//    QVariant v;
-//    auto r = record();
-//    for (auto f : d_ptr->fields)
-//    {
-//        if (f == "ID")
-//            continue;
-//        v = value.value(f);
-//        r.setValue(f, v);
-//    }
-    return false;
 
-//    QVariant v;
-//    QSqlRecord r;
-
-//    if (m_pProductInfo->hasEdit())
-//        openProductInfoEditDialog();
-
-//    r = record();
-//    foreach (QString filed, m_strFieldList)
-//    {
-//        if (filed == tr("ID"))
-//            continue;
-//        if (filed == tr("TestDateTime"))
-//            v = QDateTime::currentDateTime();
-//        else if (filed == tr("TestDate"))
-//            v = QDate::currentDate();
-//        else if (filed == tr("TestTime"))
-//            v = QTime::currentTime();
-//        else if (m_pProductInfo->contains(filed))
-//            v = m_pProductInfo->data(filed);
-//        else
-//            v = value.value(FtSql::toType(filed));
-//        r.setValue(filed, v);
-//    }
-//    if (!insertRecord(-1, r))
-//        return false;
-//    m_pProductInfo->saveOnce();
-//    resetCurrentRecord(recordCount() - 1);
-//    return true;
 }
-
-
 
 QVariant HSqlTableModel::data(const QModelIndex &index, int role) const
 {

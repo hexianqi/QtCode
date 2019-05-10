@@ -22,7 +22,6 @@ public:
 public:
     ITestData *testData;
     HOptionalTableExtend *optional;
-    QAction *actionClear;
     QStringList displays;
 };
 

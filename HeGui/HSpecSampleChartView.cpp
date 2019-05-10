@@ -4,7 +4,6 @@
 #include "HeData/ITestSpec.h"
 #include "HePlugin/HMarkerChartExtend.h"
 #include "HePlugin/HSingleAxisChart.h"
-#include <QtWidgets/QAction>
 #include <QtWidgets/QGraphicsSimpleTextItem>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>

@@ -29,6 +29,8 @@ void HSqlTableView::setModel(ISqlTableModel *model)
     auto optional = toType(field);
     d->optionalExtend->setDisplay(display);
     d->optionalExtend->setOptional(optional);
+    connect(model, &ISqlTableModel::currentRowChanged, this, &HSqlTableView::selectRow);
+    connect(selectionModel(), &QItemSelectionModel::currentRowChanged, this, [&](QModelIndex index){ model->setCurrentRow(index.row()); });
 }
 
 void HSqlTableView::init()

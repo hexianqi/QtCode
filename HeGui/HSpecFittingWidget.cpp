@@ -29,13 +29,6 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
     init();
 }
 
-void HSpecFittingWidget::cancel(QString text)
-{
-    d_ptr->progressDialog->cancel();
-    setTest(false);
-    QMessageBox::warning(this, tr("提示"), text, QMessageBox::Yes);
-}
-
 HSpecFittingWidget::~HSpecFittingWidget()
 {
     qDebug() << __func__;
@@ -115,6 +108,13 @@ bool HSpecFittingWidget::setTest(bool b)
     d_ptr->testState = b;
     emit testStateChanged(b);
     return true;
+}
+
+void HSpecFittingWidget::cancel(QString text)
+{
+    d_ptr->progressDialog->cancel();
+    setTest(false);
+    QMessageBox::warning(this, tr("提示"), text, QMessageBox::Yes);
 }
 
 void HSpecFittingWidget::init()

@@ -21,10 +21,6 @@ public:
     ITestSpec *testSpec;
 
 public:
-    QAction *actionCurve1;
-    QAction *actionCurve2;
-
-public:
     bool enablePeak = true;
     QList<bool> curveVisibles;
     QList<double> verniers;

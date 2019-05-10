@@ -7,8 +7,6 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HAdjustDetailWidgetPrivate : public HAbstractDataDetailWidgetPrivate<IAdjust>
 {
-public:
-    QAction *actionEdit;
 };
 
 HE_GUI_END_NAMESPACE

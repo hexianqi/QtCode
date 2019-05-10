@@ -26,20 +26,20 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 HEADERS     += \
             HCoreGlobal.h \
             HCore.h \
+            HCoreHelper.h \
             HCoreGlobalInstance.h \
             HAppContext.h \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HCallorHelper.h \
-    HCoreHelper.h
 
 SOURCES     += \
             HCore.cpp \
+            HCoreHelper.cpp \
             HCoreGlobalInstance.cpp \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
-            HCallorHelper.cpp \
-    HCoreHelper.cpp
+            HCallorHelper.cpp
 
 RESOURCES   += HeCore.qrc
 

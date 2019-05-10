@@ -13,7 +13,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
     setting = new HSpecSetting;
-    fitting = new HSpecFittingTest;
+    fitting = new HSpecFittingLinear;
     stdCurve = new HSpecStdCurve;
     pelsWave = new HSpecPelsWave;
     luminous = new HSpecLuminous;
@@ -89,9 +89,10 @@ QVector<double> HSpecCalibrate::preprocess(QVector<double> value, bool fitting)
         return value;
 
     value = d_ptr->setting->dealBotton(value);
+    value = d_ptr->setting->smoothCurve(value);
     if (fitting)
         value = d_ptr->fitting->handle(value);
-    return d_ptr->setting->smoothCurve(value);
+    return value;
 }
 
 QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)

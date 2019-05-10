@@ -15,9 +15,9 @@ HOptionalTableExtend::~HOptionalTableExtend()
 void HOptionalTableExtend::setTableView(QTableView *v)
 {
     HAbstractTableExtend::setTableView(v);
-    auto actionOptional = new QAction(QIcon(":/image/Options.png"), tr("显示选项(&O)..."));
-    connect(actionOptional, &QAction::triggered, this, &HOptionalTableExtend::editSelected);
-    v->addAction(actionOptional);
+    auto optional = new QAction(QIcon(":/image/Options.png"), tr("显示选项(&O)..."));
+    connect(optional, &QAction::triggered, this, &HOptionalTableExtend::editSelected);
+    v->addAction(optional);
 }
 
 void HOptionalTableExtend::setDisplay(QStringList value)

@@ -245,11 +245,11 @@ void HCartesianWidget::init()
 {
     Q_D(HCartesianWidget);
     d->zoom = new HCartesianZoom(this);
-    d->actionResetCoordinate = new QAction(QIcon(":/image/Zoom.png"), tr("还原(&R)"));
+    auto reset = new QAction(QIcon(":/image/Zoom.png"), tr("还原(&R)"));
     connect(this, &HCartesianWidget::plotAreaChanged, d->zoom, &HCartesianZoom::setValidRegion);
     connect(d->zoom, &HCartesianZoom::coordinateChanged, this, &HCartesianWidget::handleCoordinateChanged);
-    connect(d->actionResetCoordinate, &QAction::triggered, d->zoom, &HCartesianZoom::resetCoordinate);
-    addAction(d->actionResetCoordinate);
+    connect(reset, &QAction::triggered, d->zoom, &HCartesianZoom::resetCoordinate);
+    addAction(reset);
     setCoordinate(new HCartesianCoordinate(this));
 }
 

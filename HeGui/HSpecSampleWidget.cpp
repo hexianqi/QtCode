@@ -104,20 +104,20 @@ void HSpecSampleWidget::setVernier(QList<double> value)
 void HSpecSampleWidget::init()
 {
     Q_D(HSpecSampleWidget);
-    d->actionCurve1 = new QAction(tr("原始曲线"), this);
-    d->actionCurve1->setCheckable(true);
-    d->actionCurve1->setChecked(d->curveVisibles[0]);
-    d->actionCurve2 = new QAction(tr("预处理曲线"), this);
-    d->actionCurve2->setCheckable(true);
-    d->actionCurve2->setChecked(d->curveVisibles[1]);
-    setCoordinate(QRectF(0, 0, 2100, 65535), 5, 5);
+    auto curve1 = new QAction(tr("原始曲线"), this);
+    curve1->setCheckable(true);
+    curve1->setChecked(d->curveVisibles[0]);
+    auto curve2 = new QAction(tr("预处理曲线"), this);
+    curve2->setCheckable(true);
+    curve2->setChecked(d->curveVisibles[1]);
     HPluginHelper::addSeparator(this);
-    addAction(d->actionCurve1);
-    addAction(d->actionCurve2);
-    connect(d->actionCurve1, &QAction::toggled, this, &HSpecSampleWidget::setCurve1Visible);
-    connect(d->actionCurve2, &QAction::toggled, this, &HSpecSampleWidget::setCurve2Visible);
+    addAction(curve1);
+    addAction(curve2);
+    connect(curve1, &QAction::triggered, this, &HSpecSampleWidget::setCurve1Visible);
+    connect(curve2, &QAction::triggered, this, &HSpecSampleWidget::setCurve2Visible);
     connect(this, &HSpecSampleWidget::vernierTextChanged, d->labelLeft, &QLabel::setText);
     connect(this, &HSpecSampleWidget::vernierValueChanged, this, &HSpecSampleWidget::setVernier);
+    setCoordinate(QRectF(0, 0, 2100, 65535), 5, 5);
     setWindowTitle(tr("光谱采样曲线"));
 }
 

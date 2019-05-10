@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/Excel.png</file>
+        <file>image/Find.png</file>
+        <file>image/Pdf.png</file>
+        <file>image/Printer.png</file>
+        <file>image/PrintPreview.png</file>
+        <file>image/Remove.png</file>
+        <file>image/Reset.png</file>
+    </qresource>
+</RCC>

@@ -68,7 +68,7 @@ HSpecFacadePrivate::HSpecFacadePrivate()
 
 void HSpecFacadePrivate::setChromaticity(int type)
 {
-    if (type == chromaticityType || type < 0 || type > 2)
+    if (type == chromaticityType || type < 0 || type > 1)
         return;
     if (type == 0)
         chromaticity.reset(new HChromaticity);

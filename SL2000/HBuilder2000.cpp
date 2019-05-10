@@ -22,6 +22,8 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
+#include "HeSql/HSqlBrowser.h"
+
 HBuilder2000::HBuilder2000(IMainWindow *parent) :
     HAbstractBuilder(*new HBuilder2000Private(parent), parent)
 {
@@ -156,14 +158,20 @@ void HBuilder2000::buildMenu()
     auto adjust = new QMenu(tr("调整(&A)"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
-    auto quality = new QMenu(tr("品质(&A)"));
+    auto quality = new QMenu(tr("品质(&Q)"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
+
+    auto test = new QMenu(tr("测试(&T)"));
+    auto testSql = new QAction(tr("测试数据库"));
+    connect(testSql, &QAction::triggered, this, &HBuilder2000::test);
+    test->addAction(testSql);
 
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
+    d->mainWindow->insertMenu(test);
 }
 
 void HBuilder2000::buildTestWidget()
@@ -171,6 +179,13 @@ void HBuilder2000::buildTestWidget()
     ITestWidget *widget = new HTestWidget2000;
     widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
+}
+
+void HBuilder2000::test()
+{
+    Q_D(HBuilder2000);
+    auto browser = new HSqlBrowser;
+    browser->show();
 }
 
 //void HBuilder2000::buildProtocol()

@@ -28,26 +28,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 HEADERS     += \
             HSqlGlobal.h \
             HSql.h \
-            HSqlGlobalInstance.h \
             HSqlHelper.h \
+            HSqlGlobalInstance.h \
             ISqlFactory.h \
-            ISqlDatabase.h \
-            ISqlTableModel.h \
             HSqlFactory.h \
             HSqlFactory_p.h \
-            HSqlDatabase.h \
-            HSqlDatabase_p.h \
-            HSqlTableModel.h \
-            HSqlTableModel_p.h
-
 
 SOURCES     += \
             HSql.cpp \
-            HSqlGlobalInstance.cpp \
             HSqlHelper.cpp \
-            HSqlFactory.cpp \
-            HSqlDatabase.cpp \
-            HSqlTableModel.cpp
+            HSqlGlobalInstance.cpp \
+            HSqlFactory.cpp
+
+RESOURCES   = HeSql.qrc
 
 INCLUDEPATH += ..
 
@@ -70,4 +63,7 @@ unix {
     INSTALLS += target
 }
 
+include(kernel.pri)
 include(widget.pri)
+
+

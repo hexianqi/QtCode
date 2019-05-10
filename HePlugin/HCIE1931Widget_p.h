@@ -39,12 +39,6 @@ public:
     QPolygonF gradeFocus;
     QList<QPointF> point;
     QPointF pointFocus;
-    QAction *actionCIE;
-    QAction *actionHorseshoe;
-    QAction *actionPlanckian;
-    QAction *actionGrade;
-    QAction *actionPoint;
-    QAction *actionClearPoint;
 };
 
 #endif // HCIE1931WIDGET_P_H

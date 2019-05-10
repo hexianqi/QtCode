@@ -1,7 +1,7 @@
 #include "HSpecDiagramWidget_p.h"
 #include "HCartesianCoordinate.h"
+#include <QtGui/QIcon>
 #include <QtGui/QPainter>
-#include <QtWidgets/QAction>
 
 HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q)
     : HRibbonDiagramWidgetPrivate(q)

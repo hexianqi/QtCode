@@ -83,9 +83,9 @@ void HResultTableWidget::init()
     Q_D(HResultTableWidget);
     d->optional = new HOptionalTableExtend(this);
     d->optional->setTableView(this);
-    d->actionClear = new QAction(QIcon(":/image/Clear.png"), tr("清除结果(&R)"));
-    addAction(d->actionClear);
-    connect(d->actionClear, &QAction::triggered, this, &HResultTableWidget::clearResult);
+    auto clear = new QAction(QIcon(":/image/Clear.png"), tr("清除结果(&R)"));
+    addAction(clear);
+    connect(clear, &QAction::triggered, this, &HResultTableWidget::clearResult);
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     horizontalHeader()->setDefaultSectionSize(100);

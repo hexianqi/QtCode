@@ -22,8 +22,6 @@ public:
     HMarkerChartExtend *marker;
     HCalloutChartExtend *callout;
     QHash<int, QLineSeries *> series;
-    QAction *actionClearCallout;
-    QAction *actionClearSeries;
 };
 
 HE_GUI_END_NAMESPACE

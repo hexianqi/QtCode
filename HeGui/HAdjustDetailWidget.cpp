@@ -31,14 +31,14 @@ QString HAdjustDetailWidget::typeName()
 void HAdjustDetailWidget::init()
 {
     Q_D(HAdjustDetailWidget);
-    d->actionEdit = new QAction(tr("编辑(&E)..."), this);
+    auto edit = new QAction(tr("编辑(&E)..."), this);
     d->widget = new HAdjustEditWidget;
     d->widget->setContextMenuPolicy(Qt::ActionsContextMenu);
-    d->widget->addAction(d->actionEdit);
+    d->widget->addAction(edit);
     auto layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(d->widget);
-    connect(d->actionEdit, &QAction::triggered, this, &HAdjustDetailWidget::editData);
+    connect(edit, &QAction::triggered, this, &HAdjustDetailWidget::editData);
 }
 
 void HAdjustDetailWidget::editData()

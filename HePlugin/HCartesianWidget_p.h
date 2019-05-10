@@ -12,7 +12,6 @@ public:
 public:
     HCartesianZoom *zoom;
     HCartesianCoordinate *coordinate;
-    QAction *actionResetCoordinate;
     bool unitInRuler = true;
     QString unitX;
     QString unitY;

@@ -11,7 +11,7 @@ HE_SQL_BEGIN_NAMESPACE
 
 class HSqlBrowserPrivate;
 
-class HSqlBrowser : public ISqlBrowser
+class HE_SQL_EXPORT HSqlBrowser : public ISqlBrowser
 {
     Q_OBJECT
 
@@ -22,6 +22,10 @@ public:
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
+
+public:
+    void setModel(ISqlTableModel *) override;
+    void setRecordHandle(ISqlRecordHandle *) override;
 
 protected:
     HSqlBrowser(HSqlBrowserPrivate &p, QWidget *parent = nullptr);
