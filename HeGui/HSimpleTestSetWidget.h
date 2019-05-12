@@ -29,7 +29,7 @@ public:
     bool setTestState(bool b) override;
 
 protected slots:
-    void on_doubleSpinBox_01_editingFinished();
+    void on_doubleSpinBox_01_valueChanged(double value);
     void on_checkBox_01_clicked(bool b);
     void on_checkBox_02_clicked(bool b);
 

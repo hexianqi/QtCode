@@ -71,10 +71,11 @@ bool HSimpleTestSetWidget::setTestState(bool b)
     return true;
 }
 
-void HSimpleTestSetWidget::on_doubleSpinBox_01_editingFinished()
+void HSimpleTestSetWidget::on_doubleSpinBox_01_valueChanged(double value)
 {
     Q_D(HSimpleTestSetWidget);
-    auto value = ui->doubleSpinBox_01->value();
+    if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
+        return;
     d->testSpec->setIntegralTime(value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }

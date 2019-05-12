@@ -84,7 +84,7 @@ QVector<double> HSpecFitting::handle(QVector<double> value, bool abovezero)
     QVector<double> r;
     for (auto v : value)
         r << handle(v, abovezero);
-    return value;
+    return r;
 }
 
 QPolygonF HSpecFitting::fittingPoints()

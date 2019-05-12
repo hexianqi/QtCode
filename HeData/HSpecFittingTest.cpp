@@ -58,7 +58,7 @@ QVector<double> HSpecFittingTest::handle(QVector<double> value, bool abovezero)
     QVector<double> r;
     for (int i = 0; i < value.size(); i++)
         r << handle(i, value[i], abovezero);
-    return value;
+    return r;
 }
 
 double HSpecFittingTest::handle(int i, double value, bool abovezero)

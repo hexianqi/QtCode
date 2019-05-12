@@ -98,10 +98,11 @@ void HSpecCalibrateSetWidget::setIntegralTimeAuto(bool b)
     ui->doubleSpinBox_01->setEnabled(!b);
 }
 
-void HSpecCalibrateSetWidget::on_doubleSpinBox_01_editingFinished()
+void HSpecCalibrateSetWidget::on_doubleSpinBox_01_valueChanged(double value)
 {
     Q_D(HSpecCalibrateSetWidget);
-    auto value = ui->doubleSpinBox_01->value();
+    if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
+        return;
     d->testSpec->setIntegralTime(value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
