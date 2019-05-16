@@ -1,6 +1,5 @@
 #include "HSpecSampleWidget_p.h"
 #include "HeCore/HAppContext.h"
-#include "HeCore/HCore.h"
 #include "HeData/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QAction>

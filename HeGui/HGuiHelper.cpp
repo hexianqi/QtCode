@@ -167,7 +167,7 @@ QString HGuiHelper::selectedParameter(QWidget *parent, QStringList optional)
         return optional.first();
 
     bool ok;
-    auto items = toCaption(optional);
+    auto items = HCore::toCaption(optional);
     auto item = QInputDialog::getItem(parent, "", QObject::tr("请选择参数："), items, 0, false, &ok);
     if (!ok || item.isEmpty())
         return QString();

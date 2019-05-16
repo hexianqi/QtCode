@@ -62,8 +62,9 @@ void HTestGsl::polySolve()
 
 QList<QPolygonF> HTestGsl::interpEval()
 {
-    auto p1 = readCieDay();
-    auto p2 = HInterp::eval(p1, p1.first().x() - 10, p1.last().x() + 10, 0.1, HInterpType::Cspline);
+//    auto p1 = readCieDay();
+    auto p1 = QPolygonF() << QPointF(10, 10) << QPointF(8, 7) << QPointF(7, 11) << QPointF(5.3, 10) << QPointF(1.2, 2) ;
+    auto p2 = HInterp::eval(p1, p1.first().x(), p1.last().x(), 0.1, HInterpType::Cspline);
     return QList<QPolygonF>() << p1 << p2;
 }
 

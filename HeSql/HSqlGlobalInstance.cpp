@@ -7,25 +7,25 @@ HE_SQL_BEGIN_NAMESPACE
 QHash<QString, QString>      hashFieldType;
 QHash<QString, QString>      hashFieldCreateStyle;
 
-QString toType(QString field)
+QString HSql::toType(QString field)
 {
     return hashFieldType.value(field, "[" + field + "]");
 }
 
-QStringList toType(QStringList field)
+QStringList HSql::toType(QStringList field)
 {
     QStringList list;
     for (auto f : field)
-        list << toType(field);
+        list << toType(f);
     return list;
 }
 
-QString toCreateStyle(QString field)
+QString HSql::toCreateStyle(QString field)
 {
     return hashFieldCreateStyle.value(field, field + " [ntext]");
 }
 
-QStringList toCreateStyle(QStringList field)
+QStringList HSql::toCreateStyle(QStringList field)
 {
     QStringList list;
     for (auto f : field)

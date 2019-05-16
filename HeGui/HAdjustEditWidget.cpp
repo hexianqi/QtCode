@@ -154,7 +154,7 @@ void HAdjustEditWidget::on_pushButton_4_clicked()
         auto d1 = ui->tableWidget->item(i, 2)->text().toDouble();
         auto d2 = ui->tableWidget->item(i, 3)->text().toDouble();
         auto r = qFuzzyIsNull(d1) ? 100 : 100 * d2 / d1;
-        ui->tableWidget->item(i, 1)->setText(toString("[调整比率]", r));
+        ui->tableWidget->item(i, 1)->setText(HCore::toString("[调整比率]", r));
     }
 }
 

@@ -9,8 +9,10 @@
 #include "HAdjustSelectHandler.h"
 #include "HQualityEditHandler.h"
 #include "HQualitySelectHandler.h"
-#include "HeCore/HFactory.h"
+#include "HSqlBrowserHandler.h"
+#include "HProductInfoEditHandler.h"
 #include "HeCore/HObjectFactory.h"
+#include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -43,9 +45,9 @@ QString HGuiFactory::typeName()
     return "HGuiFactory";
 }
 
-ITestSetWidget *HGuiFactory::createTestSetWidget(QString type, QVariantMap param)
+ITestSetWidget *HGuiFactory::createTestSetWidget(QString type, QWidget *parent, QVariantMap param)
 {
-    return HFactory::createObject<ITestSetWidget>(type, param);
+    return HWidgetFactory::createWidget<ITestSetWidget>(type, param, parent);
 }
 
 IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
@@ -69,7 +71,7 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 
 void HGuiFactory::registerClass()
 {
-    HFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
+    HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HGradeEditHandler>("HGradeEditHandler");
@@ -78,6 +80,8 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HAdjustSelectHandler>("HAdjustSelectHandler");
     HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
     HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
+    HObjectFactory::registerClass<HProductInfoEditHandler>("HProductInfoEditHandler");
+    HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
 }
 
 HE_GUI_END_NAMESPACE

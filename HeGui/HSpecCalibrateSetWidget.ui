@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>218</width>
-    <height>98</height>
+    <height>100</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -20,13 +20,13 @@
    <string>Form</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
+   <property name="verticalSpacing">
+    <number>9</number>
+   </property>
    <item row="0" column="0">
     <widget class="QLabel" name="label_001">
      <property name="text">
       <string>积分时间：</string>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

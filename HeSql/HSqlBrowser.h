@@ -25,16 +25,25 @@ public:
 
 public:
     void setModel(ISqlTableModel *) override;
-    void setRecordHandle(ISqlRecordHandle *) override;
+    void setRecordHandle(ISqlHandle *) override;
+    void setRecordPrint(ISqlPrint *) override;
 
 protected:
     HSqlBrowser(HSqlBrowserPrivate &p, QWidget *parent = nullptr);
+
+protected:
+    void removeRecord();
+    void exportExcel();
 
 protected:
     QScopedPointer<HSqlBrowserPrivate> d_ptr;
 
 private:
     void init();
+    void createAction();
+    void createToolBar();
+    void createTableView();
+    void createLayout();
 };
 
 HE_SQL_END_NAMESPACE

@@ -1,6 +1,5 @@
 #include "HSpecSampleChartView_p.h"
 #include "HeCore/HAppContext.h"
-#include "HeCore/HCore.h"
 #include "HeData/ITestSpec.h"
 #include "HePlugin/HMarkerChartExtend.h"
 #include "HePlugin/HSingleAxisChart.h"

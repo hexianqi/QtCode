@@ -41,7 +41,7 @@ void HSqlTableModel::setField(QStringList value)
     d_ptr->fields = value;
 }
 
-QStringList HSqlTableModel::fields()
+QStringList HSqlTableModel::field()
 {
     return d_ptr->fields;
 }
@@ -59,9 +59,31 @@ void HSqlTableModel::setTable(QString tableName)
     select();
 }
 
-void HSqlTableModel::setCurrentRow(int row)
+bool HSqlTableModel::isValid(int row)
 {
+    while (canFetchMore())
+        fetchMore();
+    return row >= 0 && row < rowCount();
+}
 
+bool HSqlTableModel::setCurrentRow(int row)
+{
+    if (!isValid(row) || d_ptr->currentRow == row)
+        return false;
+    d_ptr->currentRow = row;
+    emit currentRowChanged(row);
+    return true;
+}
+
+void HSqlTableModel::resetCurrentRow(int index)
+{
+    d_ptr->currentRow = qMin(index, rowCount() -1);
+    emit currentRowChanged(d_ptr->currentRow);
+}
+
+int HSqlTableModel::currentRow()
+{
+    return d_ptr->currentRow;
 }
 
 QVariant HSqlTableModel::data(const QModelIndex &index, int role) const
@@ -73,7 +95,7 @@ QVariant HSqlTableModel::data(const QModelIndex &index, int role) const
         int n;
         n = index.column();
         if (n >= 0 && n < d_ptr->fields.size())
-            return toString(d_ptr->fields[n], QSqlTableModel::data(index, Qt::EditRole));
+            return HSql::toString(d_ptr->fields[n], QSqlTableModel::data(index, Qt::EditRole));
     }
     return QSqlTableModel::data(index, role);
 }
@@ -83,7 +105,7 @@ QVariant HSqlTableModel::headerData(int section, Qt::Orientation orientation, in
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
     {
         if (section >= 0 && section < d_ptr->fields.size())
-            return toCaptionUnit(d_ptr->fields[section]);
+            return HSql::toCaptionUnit(d_ptr->fields[section]);
     }
     return QSqlTableModel::headerData(section, orientation, role);
 }

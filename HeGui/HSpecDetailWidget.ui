@@ -6,20 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>265</width>
-    <height>268</height>
+    <width>267</width>
+    <height>355</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="verticalSpacing">
+    <number>9</number>
+   </property>
    <item row="0" column="0">
     <widget class="QLabel" name="label_001">
      <property name="minimumSize">
       <size>
        <width>90</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -35,12 +38,6 @@
    </item>
    <item row="0" column="1">
     <widget class="QLineEdit" name="lineEdit_001">
-     <property name="minimumSize">
-      <size>
-       <width>90</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
@@ -54,7 +51,7 @@
      <property name="minimumSize">
       <size>
        <width>24</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -70,7 +67,7 @@
      <property name="minimumSize">
       <size>
        <width>90</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -86,12 +83,6 @@
    </item>
    <item row="1" column="1">
     <widget class="QLineEdit" name="lineEdit_002">
-     <property name="minimumSize">
-      <size>
-       <width>90</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
@@ -105,7 +96,7 @@
      <property name="minimumSize">
       <size>
        <width>24</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -121,7 +112,7 @@
      <property name="minimumSize">
       <size>
        <width>90</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -137,12 +128,6 @@
    </item>
    <item row="2" column="1">
     <widget class="QLineEdit" name="lineEdit_003">
-     <property name="minimumSize">
-      <size>
-       <width>90</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
@@ -156,7 +141,7 @@
      <property name="minimumSize">
       <size>
        <width>24</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -172,7 +157,7 @@
      <property name="minimumSize">
       <size>
        <width>90</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -188,12 +173,6 @@
    </item>
    <item row="3" column="1">
     <widget class="QLineEdit" name="lineEdit_004">
-     <property name="minimumSize">
-      <size>
-       <width>90</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
@@ -207,7 +186,7 @@
      <property name="minimumSize">
       <size>
        <width>90</width>
-       <height>24</height>
+       <height>0</height>
       </size>
      </property>
      <property name="text">
@@ -223,12 +202,6 @@
    </item>
    <item row="4" column="1">
     <widget class="QLineEdit" name="lineEdit_005">
-     <property name="minimumSize">
-      <size>
-       <width>90</width>
-       <height>24</height>
-      </size>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>

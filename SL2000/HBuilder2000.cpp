@@ -16,13 +16,16 @@
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
+#include "HeSql/ISqlBrowser.h"
+#include "HeSql/ISqlHandle.h"
+#include "HeSql/ISqlPrint.h"
+#include "HeSql/IProductInfo.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-#include "HeSql/HSqlBrowser.h"
 
 HBuilder2000::HBuilder2000(IMainWindow *parent) :
     HAbstractBuilder(*new HBuilder2000Private(parent), parent)
@@ -137,41 +140,56 @@ void HBuilder2000::buildDatabase()
                                << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                                << "RedRatio" << "GreenRadio" << "BlueRatio"
                                << "Ra" << "Rx" << "EnergyGraph";
+    auto find = field;
+    auto exportExcel = field;
+    find.removeFirst();
+    find.removeLast();
+    find.removeLast();
+    exportExcel.removeLast();
+
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    db->openDatabase("SL2000.db");
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
+    auto info = d->sqlFactory->createProductInfo("HProductInfo");
+    auto handle = d->sqlFactory->createHandle("HSqlHandle");
+    auto print = d->sqlFactory->createPrint("HSpecSqlPrint");
+    auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
+    db->openDatabase("SL2000.db");
     model->setField(field);
     model->setTable("Spec");
+    info->setRelationTableName("Spec");
+    handle->setProductInfo(info);
+    handle->setFieldFind(find);
+    print->setFieldExportExcel(exportExcel);
+    browser->setRecordHandle(handle);
+    browser->setRecordPrint(print);
+    browser->setModel(model);
     db->insertTableModel("Spec", model);
-    HAppContext::setContextPointer("ISqlTableModel", model);
+    HAppContext::setContextPointer("ISqlHandle", handle);
+    HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 
 void HBuilder2000::buildMenu()
 {
     Q_D(HBuilder2000);
-
     auto calibrate = new QMenu(tr("定标(&C)"));
-    calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     auto grade = new QMenu(tr("分级(&G)"));
+    auto adjust = new QMenu(tr("调整(&A)"));
+    auto quality = new QMenu(tr("品质(&Q)"));
+    auto database = new QMenu(tr("数据库(&D)"));
+    calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
-    auto adjust = new QMenu(tr("调整(&A)"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
-    auto quality = new QMenu(tr("品质(&Q)"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
-
-    auto test = new QMenu(tr("测试(&T)"));
-    auto testSql = new QAction(tr("测试数据库"));
-    connect(testSql, &QAction::triggered, this, &HBuilder2000::test);
-    test->addAction(testSql);
-
+    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
-    d->mainWindow->insertMenu(test);
+    d->mainWindow->insertMenu(database);
 }
 
 void HBuilder2000::buildTestWidget()
@@ -179,13 +197,6 @@ void HBuilder2000::buildTestWidget()
     ITestWidget *widget = new HTestWidget2000;
     widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
-}
-
-void HBuilder2000::test()
-{
-    Q_D(HBuilder2000);
-    auto browser = new HSqlBrowser;
-    browser->show();
 }
 
 //void HBuilder2000::buildProtocol()

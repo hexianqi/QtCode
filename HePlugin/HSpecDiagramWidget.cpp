@@ -259,4 +259,3 @@ void HSpecDiagramWidget::init()
     setWindowIcon(QIcon(":/image/Spectrum.png"));
     setWindowTitle(tr("相对光谱能量分布"));
 }
-

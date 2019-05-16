@@ -21,7 +21,6 @@ SOURCES += \
     $$PWD/HGradeEditWidget.cpp
 
 FORMS += \
-    $$PWD/HGradeDetailWidget.ui \
     $$PWD/HGradeItemDialog.ui \
     $$PWD/HGradeItem2DDialog.ui \
     $$PWD/HGradeIsothermDialog.ui \

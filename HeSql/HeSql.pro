@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets sql
+QT          += widgets sql printsupport
 
 TEMPLATE    = lib
 
@@ -33,12 +33,14 @@ HEADERS     += \
             ISqlFactory.h \
             HSqlFactory.h \
             HSqlFactory_p.h \
+    HSqlPainterHelper.h
 
 SOURCES     += \
             HSql.cpp \
             HSqlHelper.cpp \
             HSqlGlobalInstance.cpp \
-            HSqlFactory.cpp
+            HSqlFactory.cpp \
+    HSqlPainterHelper.cpp
 
 RESOURCES   = HeSql.qrc
 
@@ -63,7 +65,6 @@ unix {
     INSTALLS += target
 }
 
+include(data.pri)
 include(kernel.pri)
 include(widget.pri)
-
-

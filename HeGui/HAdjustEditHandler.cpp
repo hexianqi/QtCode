@@ -41,7 +41,7 @@ void HAdjustEditHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(param)
     auto widget = new HAdjustDetailWidget();
     widget->setData(d->configManage->adjustCollection());
-    HListCollectionDialog dlg;
+    HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("调整数据配置"));
     dlg.setDataDetailWidget(widget);
     d->mainWindow->openCalibrateDlg(&dlg);

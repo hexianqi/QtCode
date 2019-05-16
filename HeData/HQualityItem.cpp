@@ -68,7 +68,7 @@ void HQualityItem::writeContent(QDataStream &s)
 
 void HQualityItem::restoreDefault()
 {
-    auto f = toFormatInfo(data("[项类型]").toString());
+    auto f = HCore::toFormatInfo(data("[项类型]").toString());
     setData("[有效范围]", QPointF(f->min(), f->max()));
     setData("[不足颜色]", QColor(Qt::red));
     setData("[超出颜色]", QColor(Qt::red));
@@ -108,7 +108,7 @@ QStringList HQualityItem::toStringList()
 {
     auto t = data("[项类型]").toString();
     auto p = data("[有效范围]").toPointF();
-    return QStringList() << toCaption(t) << toString(t, p.x()) << toString(t, p.y()) << data("[不足颜色]").value<QColor>().name() << data("[超出颜色]").value<QColor>().name();
+    return QStringList() << HCore::toCaption(t) << HCore::toString(t, p.x()) << HCore::toString(t, p.y()) << data("[不足颜色]").value<QColor>().name() << data("[超出颜色]").value<QColor>().name();
 }
 
 HE_DATA_END_NAMESPACE

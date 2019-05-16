@@ -4,7 +4,7 @@
 #include "HeData/IDataFactory.h"
 #include "HeData/IExcelStream.h"
 #include "HeData/ITestData.h"
-#include "HeSql/ISqlTableModel.h"
+#include "HeSql/ISqlHandle.h"
 #include "HeSql/HSql.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QToolBar>
@@ -14,7 +14,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 HTestWidgetPrivate::HTestWidgetPrivate()
 {
-    sqlTableModel = HAppContext::getContextPointer<ISqlTableModel>("ISqlTableModel");
+    sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
     excelStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createExcelStream("HExcelStream");
 }
 
@@ -77,7 +77,7 @@ void HTestWidget::exportExcel()
 {
     Q_D(HTestWidget);
     QString text;
-    text += toCaptionUnit(d->displays).join("\t") + "\n";
+    text += HCore::toCaptionUnit(d->displays).join("\t") + "\n";
     text += d->testData->toString(d->displays).join("\t") + "\n";
     d->excelStream->setWriteContent(text);
     d->excelStream->saveAsFile();
@@ -85,11 +85,11 @@ void HTestWidget::exportExcel()
 
 void HTestWidget::exportDatabase()
 {
-//    Q_D(HTestWidget);
-//    QVariantMap data;
-//    for (auto f : d->sqlTableModel->fields())
-//        data.insert(f, d->testData->data(toType(f)));
-//    d->sqlTableModel->addRecord(data);
+    Q_D(HTestWidget);
+    QVariantMap data;
+    for (auto f : d->sqlHandle->field())
+        data.insert(f, d->testData->data(HSql::toType(f)));
+    d->sqlHandle->addRecord(data);
 }
 
 HE_GUI_END_NAMESPACE

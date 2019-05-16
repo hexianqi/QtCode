@@ -200,7 +200,7 @@ QString HPluginHelper::paste(QTableView *widget)
 
 void HPluginHelper::initWidget(QString type, QSpinBox *widget)
 {
-    auto info = toFormatInfo(type);
+    auto info = HCore::toFormatInfo(type);
     auto unit = info->unit(false);
     widget->setAlignment(Qt::AlignCenter);
     widget->setRange(static_cast<int>(info->min()), static_cast<int>(info->max()));
@@ -211,7 +211,7 @@ void HPluginHelper::initWidget(QString type, QSpinBox *widget)
 
 void HPluginHelper::initWidget(QString type, QDoubleSpinBox *widget)
 {
-    auto info = toFormatInfo(type);
+    auto info = HCore::toFormatInfo(type);
     auto unit = info->unit(false);
     widget->setAlignment(Qt::AlignCenter);
     widget->setRange(info->min(), info->max());
@@ -223,7 +223,7 @@ void HPluginHelper::initWidget(QString type, QDoubleSpinBox *widget)
 
 void HPluginHelper::initWidget(QString type, QInputDialog *dlg)
 {
-    auto info = toFormatInfo(type);
+    auto info = HCore::toFormatInfo(type);
     dlg->setInputMode(QInputDialog::DoubleInput);
     dlg->setDoubleRange(info->min(), info->max());
     dlg->setDoubleDecimals(info->decimals());
@@ -240,7 +240,7 @@ bool HPluginHelper::selectedParameter(QWidget *parent, QStringList optional, QSt
         return true;
     }
 
-    auto list = toCaption(optional);
+    auto list = HCore::toCaption(optional);
     QInputDialog dlg(parent);
     dlg.setLabelText(QObject::tr("请选择参数："));
     dlg.setInputMode(QInputDialog::TextInput);

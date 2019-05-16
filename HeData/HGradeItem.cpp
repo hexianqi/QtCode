@@ -73,7 +73,7 @@ int HGradeItem::count()
 
 QStringList HGradeItem::headers()
 {
-    auto c = toCaption(data("[项类型]").toString());
+    auto c = HCore::toCaption(data("[项类型]").toString());
     return QStringList() << c + "Min" << c + "Max";
 }
 
@@ -93,12 +93,12 @@ QStringList HGradeItem::level(int i)
     auto t = data("[项类型]").toString();
     if (i < 0)
     {
-        auto f = toFormatInfo(t);
+        auto f = HCore::toFormatInfo(t);
         p = QPointF(f->min(), f->max());
     }
     else
         p = d->levels[i];
-    return QStringList() << toString(t, p.x()) << toString(t, p.y());
+    return QStringList() << HCore::toString(t, p.x()) << HCore::toString(t, p.y());
 }
 
 HE_DATA_END_NAMESPACE

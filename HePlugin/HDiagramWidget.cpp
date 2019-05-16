@@ -57,19 +57,28 @@ QSize HDiagramWidget::minimumSizeHint() const
 
 void HDiagramWidget::setMargins(QMargins value)
 {
-    if (value.left() < 15)
-        value.setLeft(15);
-    if (value.right() < 15)
-        value.setRight(15);
-    if (value.top() < 15)
-        value.setTop(15);
-    if (value.bottom() < 15)
-        value.setBottom(15);
     if (d_ptr->margins == value)
         return;
-    d_ptr->margins = value;
+    setMargins(value.left(), value.top(), value.right(), value.bottom());
+}
+
+void HDiagramWidget::setMargins(int left, int top, int right, int bottom)
+{
+    if (left < 15)
+        left = 15;
+    if (right < 15)
+        right = 15;
+    if (top < 15)
+        top = 15;
+    if (bottom < 15)
+        bottom = 15;
+
+    auto m = QMargins(left, top, right, bottom);
+    if (d_ptr->margins == m)
+        return;
+    d_ptr->margins = m;
     QResizeEvent event(size(), size());
-    setMinimumSize(value.left() + value.right() + 200, value.top() + value.bottom() + 200);
+    setMinimumSize(left + right + 200, top + bottom + 200);
     resizeEvent(&event);
     emit marginChanged(d_ptr->margins);
 }

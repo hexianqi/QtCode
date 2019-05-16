@@ -54,12 +54,12 @@ HTestData::HTestData() :
 {
 }
 
-HTestData::~HTestData()
+HTestData::HTestData(HTestDataPrivate &p) :
+    d_ptr(&p)
 {
 }
 
-HTestData::HTestData(HTestDataPrivate &p) :
-    d_ptr(&p)
+HTestData::~HTestData()
 {
 }
 
@@ -116,7 +116,7 @@ QVariantMap HTestData::select(QStringList type)
 
 QString HTestData::toString(QString type)
 {
-    return HeCore::toString(type, data(type));
+    return HCore::toString(type, data(type));
 }
 
 QStringList HTestData::toString(QStringList type)
@@ -135,9 +135,9 @@ QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
     text = QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>").arg(bgcolor.name());
     for (auto t : type)
     {
-        caption = toCaption(t);
+        caption = HCore::toCaption(t);
         value = toString(t);
-        unit = toUnit(t);
+        unit = HCore::toUnit(t);
         text += QString("<tr>"
                         "<td><p align = right>%1</p></td>"
                         "<td><p align = center>%2</p></td>"

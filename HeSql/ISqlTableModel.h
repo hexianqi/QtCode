@@ -27,13 +27,19 @@ public:
     // 设置字段
     virtual void setField(QStringList value) = 0;
     // 字段
-    virtual QStringList fields() = 0;
+    virtual QStringList field() = 0;
     // 设置表格
     virtual void setTable(QString tableName) = 0;
 
 public:
+    // 是否有效
+    virtual bool isValid(int row) = 0;
     // 设置行
-    virtual void setCurrentRow(int row) = 0;
+    virtual bool setCurrentRow(int row) = 0;
+    // 重置行
+    virtual void resetCurrentRow(int index) = 0;
+    // 当前行
+    virtual int currentRow() = 0;
 };
 
 HE_SQL_END_NAMESPACE

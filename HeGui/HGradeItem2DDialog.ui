@@ -48,17 +48,8 @@
          </item>
          <item>
           <widget class="QLabel" name="label_01">
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>24</height>
-            </size>
-           </property>
            <property name="text">
             <string>优先级：</string>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -86,17 +77,8 @@
          </item>
          <item>
           <widget class="QLabel" name="label_02">
-           <property name="minimumSize">
-            <size>
-             <width>60</width>
-             <height>24</height>
-            </size>
-           </property>
            <property name="text">
             <string>分级数：</string>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -269,7 +251,7 @@
   <customwidget>
    <class>HEntireTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>HePlugin/HEntireTableWidget.h</header>
+   <header location="global">HePlugin/HEntireTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

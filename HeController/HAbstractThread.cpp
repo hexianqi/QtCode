@@ -40,14 +40,12 @@ HAbstractThread::HAbstractThread(QObject *parent) :
     IThread(parent),
     d_ptr(new HAbstractThreadPrivate)
 {
-    readSettings();
 }
 
 HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent) :
     IThread(parent),
     d_ptr(&p)
 {
-    readSettings();
 }
 
 HAbstractThread::~HAbstractThread()
@@ -57,14 +55,9 @@ HAbstractThread::~HAbstractThread()
     stop();
 }
 
-void HAbstractThread::initialize(QVariantMap param)
+void HAbstractThread::initialize(QVariantMap /*param*/)
 {
-    if (param.contains("runMode"))
-        d_ptr->runMode = param.value("iRunMode", 2).toInt();
-    if (param.contains("retry"))
-        d_ptr->retry = param.value("retry", 3).toInt();
-    if (param.contains("sleepTime"))
-        d_ptr->sleepTime = param.value("sleepTime", 1000).toUInt();
+    readSettings();
 }
 
 void HAbstractThread::stop()
@@ -180,7 +173,7 @@ bool HAbstractThread::openProtocol()
         {
             for (auto item : list)
                 item->close();
-            emit startFailed(tr("\n设备“%1”连接失败！错误原因“%2”。\n").arg(key).arg(toComment(error)));
+            emit startFailed(tr("\n设备“%1”连接失败！错误原因“%2”。\n").arg(key).arg(HCore::toComment(error)));
             return false;
         }
         list.append(p);
@@ -198,7 +191,7 @@ void HAbstractThread::closeProtocol()
 
 void HAbstractThread::actionFail(HActionType action, HErrorType error)
 {
-    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(toComment(action)).arg(toComment(error)));
+    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action)).arg(HCore::toComment(error)));
 }
 
 void HAbstractThread::readSettings()

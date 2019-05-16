@@ -2,6 +2,7 @@
 #include "ui_HTypeOptionalDialog.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HCoreHelper.h"
+#include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
 
@@ -19,6 +20,7 @@ HTypeOptionalDialog::HTypeOptionalDialog(QStringList selected, QStringList optio
 
 HTypeOptionalDialog::~HTypeOptionalDialog()
 {
+    qDebug() << __func__;
     delete ui;
 }
 
@@ -84,14 +86,14 @@ void HTypeOptionalDialog::showData()
     {
         auto item = new QListWidgetItem;
         item->setData(Qt::UserRole, t);
-        item->setData(Qt::DisplayRole, toCaption(t));
+        item->setData(Qt::DisplayRole, HCore::toCaption(t));
         ui->listWidget_1->addItem(item);
     }
     for (auto t : d_ptr->selecteds)
     {
         auto item = new QListWidgetItem;
         item->setData(Qt::UserRole, t);
-        item->setData(Qt::DisplayRole, toCaption(t));
+        item->setData(Qt::DisplayRole, HCore::toCaption(t));
         ui->listWidget_2->addItem(item);
     }
 }

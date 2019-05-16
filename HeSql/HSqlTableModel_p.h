@@ -9,6 +9,7 @@ class HSqlTableModelPrivate
 {
 public:
     QStringList fields;
+    int currentRow = -1;
 };
 
 HE_SQL_END_NAMESPACE

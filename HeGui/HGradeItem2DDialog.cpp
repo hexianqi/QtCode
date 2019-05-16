@@ -74,8 +74,8 @@ void HGradeItem2DDialog::replacePoint(QPointF point)
     auto row = range.topRow();
     auto column = range.leftColumn() / 2 * 2;
     auto previous = getLevel(row);
-    ui->tableWidget->item(row, column)->setText(toString(d->type, point.x()));
-    ui->tableWidget->item(row, column + 1)->setText(toString(d->type, point.y()));
+    ui->tableWidget->item(row, column)->setText(HCore::toString(d->type, point.x()));
+    ui->tableWidget->item(row, column + 1)->setText(HCore::toString(d->type, point.y()));
     auto current = getLevel(row);
     d->cieWidget->removeGrade(previous, false);
     d->cieWidget->addGrade(current);
@@ -202,7 +202,7 @@ void HGradeItem2DDialog::showLevels(QList<QPolygonF> value)
     {
         QStringList text;
         for (int j = 0; j < value[i].size(); j++)
-            text << toString(d->type, value[i][j].x()) << toString(d->type, value[i][j].y());
+            text << HCore::toString(d->type, value[i][j].x()) << HCore::toString(d->type, value[i][j].y());
         ui->tableWidget->setRow(i, text);
     }
     d->cieWidget->setGrade(value);

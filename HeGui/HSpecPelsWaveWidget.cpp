@@ -45,7 +45,7 @@ void HSpecPelsWaveWidget::showData()
     clearContents();
     setRowCount(size);
     for (int i = 0; i < size; i++)
-        setRow(i, QStringList() << toString("[光谱像元]", poly[i].x()) << toString("[光谱波长]", poly[i].y()));
+        setRow(i, QStringList() << HCore::toString("[光谱像元]", poly[i].x()) << HCore::toString("[光谱波长]", poly[i].y()));
 }
 
 void HSpecPelsWaveWidget::init()

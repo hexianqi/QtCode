@@ -1,5 +1,6 @@
 #include "HSqlBrowser_p.h"
-#include "ISqlRecordHandle.h"
+#include "ISqlHandle.h"
+#include "ISqlPrint.h"
 #include "HSqlTableView.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QGridLayout>
@@ -29,7 +30,6 @@ HSqlBrowser::~HSqlBrowser()
 
 void HSqlBrowser::initialize(QVariantMap /*param*/)
 {
-
 }
 
 QString HSqlBrowser::typeName()
@@ -37,18 +37,64 @@ QString HSqlBrowser::typeName()
     return "HSqlBrowser";
 }
 
-void HSqlBrowser::setModel(ISqlTableModel *p)
+void HSqlBrowser::setRecordHandle(ISqlHandle *p)
 {
-    d_ptr->view->setModel(p);
+    d_ptr->handle = p;
+    if (d_ptr->handle != nullptr && d_ptr->model != nullptr)
+        d_ptr->handle->setModel(d_ptr->model);
 }
 
-void HSqlBrowser::setRecordHandle(ISqlRecordHandle *p)
+void HSqlBrowser::setRecordPrint(ISqlPrint *p)
 {
-    d_ptr->recordHandle = p;
+    d_ptr->print = p;
+    if (d_ptr->print != nullptr && d_ptr->model != nullptr)
+        d_ptr->print->setModel(d_ptr->model);
+}
 
+void HSqlBrowser::setModel(ISqlTableModel *p)
+{
+    if (d_ptr->model == p)
+        return;
+    d_ptr->model = p;
+    d_ptr->view->setModel(p);
+    if (d_ptr->handle != nullptr)
+        d_ptr->handle->setModel(p);
+    if (d_ptr->print != nullptr)
+        d_ptr->print->setModel(p);
+}
+
+void HSqlBrowser::removeRecord()
+{
+    auto s = d_ptr->view->selectionModel()->selection();
+    if (s.isEmpty())
+        return;
+    d_ptr->handle->removeRecord(s.first().top(), s.first().height());
+}
+
+void HSqlBrowser::exportExcel()
+{
+    auto s = d_ptr->view->selectionModel()->selection();
+    if (s.isEmpty())
+        return;
+    if (s.first().height() == 1)
+        d_ptr->print->exportExcel();
+    else
+        d_ptr->print->exportExcel(s.first().top(), s.first().height());
 }
 
 void HSqlBrowser::init()
+{
+    createAction();
+    createToolBar();
+    createTableView();
+    createLayout();
+    resize(1000, 700);
+    setWindowFlags(Qt::Window);
+    setWindowState(Qt::WindowMaximized);
+    setWindowTitle(tr("数据库浏览"));
+}
+
+void HSqlBrowser::createAction()
 {
     d_ptr->actionRevert = new QAction(tr("所有记录(&R)"), this);
     d_ptr->actionRevert->setIcon(QIcon(":/image/Reset.png"));
@@ -71,17 +117,32 @@ void HSqlBrowser::init()
     d_ptr->actionPrintPreview = new QAction(tr("打印预览(&V)"), this);
     d_ptr->actionPrintPreview->setIcon(QIcon(":/image/PrintPreview.png"));
     d_ptr->actionPrintPreview->setIconText(tr("打印预览"));
-    auto toolBar = new QToolBar(tr("数据操作(&S)"));
-    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    toolBar->setMovable(false);
-    toolBar->setIconSize(QSize(40,40));
-    toolBar->addAction(d_ptr->actionRevert);
-    toolBar->addAction(d_ptr->actionFind);
-    toolBar->addAction(d_ptr->actionRemove);
-    toolBar->addAction(d_ptr->actionExportExcel);
-    toolBar->addAction(d_ptr->actionExportPdf);
-    toolBar->addAction(d_ptr->actionPrint);
-    toolBar->addAction(d_ptr->actionPrintPreview);
+    connect(d_ptr->actionRevert, &QAction::triggered, this, [=]{ if (d_ptr->handle != nullptr) d_ptr->handle->revertRecord(); });
+    connect(d_ptr->actionFind, &QAction::triggered, this, [=]{ if (d_ptr->handle != nullptr) d_ptr->handle->findRecord(); });
+    connect(d_ptr->actionRemove, &QAction::triggered, this, &HSqlBrowser::removeRecord);
+    connect(d_ptr->actionExportExcel, &QAction::triggered, this, &HSqlBrowser::exportExcel);
+    connect(d_ptr->actionExportPdf, &QAction::triggered, this, [=]{ if (d_ptr->print != nullptr) d_ptr->print->exportPdf(); });
+    connect(d_ptr->actionPrint, &QAction::triggered, this, [=]{ if (d_ptr->print != nullptr) d_ptr->print->print(); });
+    connect(d_ptr->actionPrintPreview, &QAction::triggered, [=]{ if (d_ptr->print != nullptr) d_ptr->print->printPreview(); });
+}
+
+void HSqlBrowser::createToolBar()
+{
+    d_ptr->toolBar = new QToolBar(tr("数据操作(&S)"));
+    d_ptr->toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    d_ptr->toolBar->setMovable(false);
+    d_ptr->toolBar->setIconSize(QSize(40,40));
+    d_ptr->toolBar->addAction(d_ptr->actionRevert);
+    d_ptr->toolBar->addAction(d_ptr->actionFind);
+    d_ptr->toolBar->addAction(d_ptr->actionRemove);
+    d_ptr->toolBar->addAction(d_ptr->actionExportExcel);
+    d_ptr->toolBar->addAction(d_ptr->actionExportPdf);
+    d_ptr->toolBar->addAction(d_ptr->actionPrint);
+    d_ptr->toolBar->addAction(d_ptr->actionPrintPreview);
+}
+
+void HSqlBrowser::createTableView()
+{
     d_ptr->view = new HSqlTableView;
     HPluginHelper::addSeparator(d_ptr->view);
     d_ptr->view->addAction(d_ptr->actionRemove);
@@ -89,24 +150,14 @@ void HSqlBrowser::init()
     d_ptr->view->addAction(d_ptr->actionExportPdf);
     d_ptr->view->addAction(d_ptr->actionPrint);
     d_ptr->view->addAction(d_ptr->actionPrintPreview);
+}
+
+void HSqlBrowser::createLayout()
+{
     auto layout = new QGridLayout(this);
-    layout->setContentsMargins(15, 15, 15, 15);
-    layout->setSpacing(20);
-    layout->addWidget(toolBar, 0, 0);
+    layout->setSpacing(9);
+    layout->addWidget(d_ptr->toolBar, 0, 0);
     layout->addWidget(d_ptr->view, 1, 0);
-
-    connect(d_ptr->actionRevert, &QAction::triggered, this, [=]{ d_ptr->recordHandle->revertRecord(); });
-    connect(d_ptr->actionFind, &QAction::triggered , this, [=]{ d_ptr->recordHandle->findRecord(); });
-//    connect(m_pActionRemove, SIGNAL(triggered()), this, SLOT(recordRemove()));
-//    connect(m_pActionExportExcel, SIGNAL(triggered()), this, SLOT(exportExcel()));
-//    connect(m_pActionExportPdf, SIGNAL(triggered()), m_pTableModel, SLOT(exportPdf()));
-//    connect(m_pActionPrint, SIGNAL(triggered()), m_pTableModel, SLOT(recordPrint()));
-//    connect(m_pActionPrintPreview, SIGNAL(triggered()), m_pTableModel, SLOT(recordPrintPreview()));
-
-    resize(1000, 700);
-    setWindowFlags(Qt::Window);
-    setWindowState(Qt::WindowMaximized);
-    setWindowTitle(tr("数据库浏览"));
 }
 
 HE_SQL_END_NAMESPACE

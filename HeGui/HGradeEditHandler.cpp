@@ -41,7 +41,7 @@ void HGradeEditHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(param)
     auto widget = new HGradeDetailWidget();
     widget->setData(d->configManage->gradeCollection());
-    HListCollectionDialog dlg;
+    HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("分级数据配置"));
     dlg.setDataDetailWidget(widget);
     dlg.resize(1000, 600);

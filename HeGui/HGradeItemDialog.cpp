@@ -78,7 +78,7 @@ void HGradeItemDialog::averageLevels()
     {
         auto x1 = min + i * gap;
         auto x2 = min + (i + 1) * gap;
-        ui->tableWidget->setRow(i, QStringList() << toString(d->type, x1) << toString(d->type, x2));
+        ui->tableWidget->setRow(i, QStringList() << HCore::toString(d->type, x1) << HCore::toString(d->type, x2));
     }
 }
 

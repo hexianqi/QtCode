@@ -24,7 +24,7 @@ public:
     QString typeName() override;
 
 public:
-    ITestSetWidget *createTestSetWidget(QString type, QVariantMap param = QVariantMap()) override;
+    ITestSetWidget *createTestSetWidget(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IGuiHandler *createHandler(QString type, QVariantMap param = QVariantMap()) override;
     HAction *createAction(QString text, QString type, QVariantMap param = QVariantMap()) override;
 

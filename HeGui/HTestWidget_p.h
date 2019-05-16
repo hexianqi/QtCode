@@ -12,7 +12,7 @@ HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
 HE_SQL_BEGIN_NAMESPACE
-class ISqlTableModel;
+class ISqlHandle;
 HE_SQL_END_NAMESPACE
 HE_SQL_USE_NAMESPACE
 
@@ -25,7 +25,7 @@ public:
 
 public:
     IExcelStream *excelStream;
-    ISqlTableModel *sqlTableModel;
+    ISqlHandle *sqlHandle;
 
 public:
     QStringList displays;

@@ -24,9 +24,9 @@ int main(int argc, char *argv[])
 
 //    HTestPlugin::testCIE1931View()->show();
 
-//    HTestGsl gsl;
-//    auto p = gsl.interpEval();
-////    HTestChart::diffChart(p[0], p[1])->show();
+    HTestGsl gsl;
+    auto p = gsl.interpEval();
+    HTestChart::diffChart(p[0], p[1])->show();
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 
 //    QMainWindow window;

@@ -29,8 +29,6 @@ protected:
     void buildDatabase() override;
     void buildMenu() override;
     void buildTestWidget() override;
-
-    void test();
 };
 
 #endif // HBUILDER2000_H

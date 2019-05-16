@@ -39,7 +39,7 @@ void HResultTableWidget::setDisplay(QStringList value)
     d->displays = value;
     d->optional->setDisplay(value);
     d->optional->setOptional(value);
-    setHorizontalHeaderLabels(toCaptionUnit(value));
+    setHorizontalHeaderLabels(HCore::toCaptionUnit(value));
 }
 
 void HResultTableWidget::setSelected(QStringList value)

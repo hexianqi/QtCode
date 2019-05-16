@@ -143,12 +143,6 @@
    </item>
    <item row="5" column="1">
     <widget class="QPushButton" name="pushButton_1">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
      <property name="text">
       <string>确   定</string>
      </property>
@@ -185,12 +179,6 @@
    </item>
    <item row="5" column="5">
     <widget class="QPushButton" name="pushButton_2">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
      <property name="text">
       <string>取   消</string>
      </property>

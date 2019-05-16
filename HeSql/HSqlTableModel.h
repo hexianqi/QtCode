@@ -25,11 +25,14 @@ public:
 
 public:
     void setField(QStringList value) override;
-    QStringList fields() override;
+    QStringList field() override;
     void setTable(QString tableName) override;
 
 public:
-    void setCurrentRow(int row) override;
+    bool isValid(int row) override;
+    bool setCurrentRow(int row) override;
+    void resetCurrentRow(int index) override;
+    int currentRow() override;
 
 public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;

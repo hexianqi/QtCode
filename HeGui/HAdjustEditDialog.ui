@@ -54,7 +54,7 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
-       <layout class="QGridLayout" name="gridLayout_3" columnstretch="0"/>
+       <layout class="QGridLayout" name="gridLayout_3"/>
       </widget>
      </widget>
     </widget>

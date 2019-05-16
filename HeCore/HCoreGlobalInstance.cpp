@@ -16,30 +16,30 @@ QHash<QString, HDataFormatInfo *>   hashDataFormatInfo;
 QHash<QString, QString>             hashDataCaption;
 QHash<QString, QSet<QString>>       hashMimeType;
 
-QString toComment(HActionType type)
+QString HCore::toComment(HActionType type)
 {
     return hashActionComment.value(type);
 }
 
-QString toComment(HErrorType type)
+QString HCore::toComment(HErrorType type)
 {
     return hashErrorComment.value(type);
 }
 
-HDataFormatInfo *toFormatInfo(QString type)
+HDataFormatInfo *HCore::toFormatInfo(QString type)
 {
     if (!hashDataFormatInfo.contains(type))
         return new HDataFormatInfo();
     return hashDataFormatInfo.value(type);
 }
 
-QString toString(QString type, double value, char f)
+QString HCore::toString(QString type, double value, char f)
 {
     auto info = toFormatInfo(type);
     return QString().setNum(value, f, info->decimals());
 }
 
-QString toString(QString type, QVariant value)
+QString HCore::toString(QString type, QVariant value)
 {
     auto vt = value.type();
     if (vt == QVariant::PointF)
@@ -72,7 +72,7 @@ QString toString(QString type, QVariant value)
     return value.toString();
 }
 
-QStringList toString(QString type, QVector<double> value, char f)
+QStringList HCore::toString(QString type, QVector<double> value, char f)
 {
     auto info = toFormatInfo(type);
     QStringList list;
@@ -81,17 +81,17 @@ QStringList toString(QString type, QVector<double> value, char f)
     return list;
 }
 
-QString toUnit(QString type)
+QString HCore::toUnit(QString type)
 {
     return toFormatInfo(type)->unit(false);
 }
 
-QString toCaption(QString type)
+QString HCore::toCaption(QString type)
 {
-    return hashDataCaption.value(type, type.mid(1, type.size()-2));
+    return hashDataCaption.value(type, type.mid(1, type.size() - 2));
 }
 
-QStringList toCaption(QStringList type)
+QStringList HCore::toCaption(QStringList type)
 {
     QStringList list;
     for (auto t : type)
@@ -99,7 +99,7 @@ QStringList toCaption(QStringList type)
     return list;
 }
 
-QString toCaptionUnit(QString type)
+QString HCore::toCaptionUnit(QString type)
 {
     auto caption = toCaption(type);
     auto unit = toUnit(type);
@@ -108,7 +108,7 @@ QString toCaptionUnit(QString type)
     return caption;
 }
 
-QStringList toCaptionUnit(QStringList type)
+QStringList HCore::toCaptionUnit(QStringList type)
 {
     QStringList list;
     for (auto t : type)
@@ -116,7 +116,7 @@ QStringList toCaptionUnit(QStringList type)
     return list;
 }
 
-QString filenameFilter(const QString &name, const QList<QByteArray> formats)
+QString HCore::filenameFilter(const QString &name, const QList<QByteArray> formats)
 {
     QStringList list;
 
@@ -129,7 +129,7 @@ QString filenameFilter(const QString &name, const QList<QByteArray> formats)
     return QString("%1 (*.").arg(name) + list.join(" *.") + ")";
 }
 
-QString filenameFilter(const QString &name, const QStringList &mimeTypes)
+QString HCore::filenameFilter(const QString &name, const QStringList &mimeTypes)
 {
     QSet<QString> formats;
     QStringList list;

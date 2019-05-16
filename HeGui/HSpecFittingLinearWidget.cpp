@@ -1,7 +1,5 @@
 #include "HSpecFittingLinearWidget_p.h"
 #include "ui_HSpecFittingLinearWidget.h"
-#include "HeCore/HCore.h"
-#include "HeCore/HDataFormatInfo.h"
 #include "HeData/HSpecFitting.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtGui/QValidator>

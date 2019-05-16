@@ -39,6 +39,7 @@ public:
 
 public:
     void setMargins(QMargins value);
+    void setMargins(int left, int top, int right, int bottom);
     void setBrushBackground(QBrush value);
     void setBrushPlotArea(QBrush value);
     void setSquare(bool b);

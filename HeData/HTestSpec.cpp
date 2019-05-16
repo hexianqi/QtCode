@@ -173,7 +173,7 @@ QString HTestSpecPrivate::renderingIndexS()
     {
         if (i != 0 && i % 4 == 0)
             list << " ";
-        list << toString("[显色指数Rx]", specData->RenderingIndex[i]);
+        list << HCore::toString("[显色指数Rx]", specData->RenderingIndex[i]);
     }
     return list.join(" ");
 }
@@ -182,7 +182,7 @@ QString HTestSpecPrivate::energyS()
 {
     QStringList list;
     for (auto p : specData->EnergyPercent)
-        list << toString("[波长]", p.x()) + ":" +  toString("[光谱能量百分比]", p.x());
+        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.x());
     return list.join(",");
 }
 

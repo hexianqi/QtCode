@@ -22,13 +22,14 @@ void HSqlTableView::setModel(ISqlTableModel *model)
 {
     Q_D(HSqlTableView);
     HTableView::setModel(model);
-    auto field = model->fields();
-    auto display = toType(field);
+    auto field = model->field();
+    auto display = HSql::toType(field);
     field.removeAll("ID");
     field.removeAll("EnergyGraph");
-    auto optional = toType(field);
+    auto optional = HSql::toType(field);
     d->optionalExtend->setDisplay(display);
     d->optionalExtend->setOptional(optional);
+    d->optionalExtend->setSelected(optional);
     connect(model, &ISqlTableModel::currentRowChanged, this, &HSqlTableView::selectRow);
     connect(selectionModel(), &QItemSelectionModel::currentRowChanged, this, [&](QModelIndex index){ model->setCurrentRow(index.row()); });
 }

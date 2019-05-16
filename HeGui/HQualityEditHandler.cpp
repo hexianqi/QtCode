@@ -41,7 +41,7 @@ void HQualityEditHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(param)
     auto widget = new HQualityDetailWidget();
     widget->setData(d->configManage->qualityCollection());
-    HListCollectionDialog dlg;
+    HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("品质数据配置"));
     dlg.setDataDetailWidget(widget);
     dlg.resize(1200, 600);

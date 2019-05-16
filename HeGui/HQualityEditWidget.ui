@@ -14,6 +14,9 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,0">
+   <property name="verticalSpacing">
+    <number>9</number>
+   </property>
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
@@ -75,12 +78,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_11">
-           <property name="minimumSize">
-            <size>
-             <width>75</width>
-             <height>23</height>
-            </size>
-           </property>
            <property name="text">
             <string>添 加</string>
            </property>
@@ -101,12 +98,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_12">
-           <property name="minimumSize">
-            <size>
-             <width>75</width>
-             <height>23</height>
-            </size>
-           </property>
            <property name="text">
             <string>删 除</string>
            </property>
@@ -185,12 +176,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_21">
-           <property name="minimumSize">
-            <size>
-             <width>75</width>
-             <height>23</height>
-            </size>
-           </property>
            <property name="text">
             <string>添 加</string>
            </property>
@@ -211,12 +196,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_22">
-           <property name="minimumSize">
-            <size>
-             <width>75</width>
-             <height>23</height>
-            </size>
-           </property>
            <property name="text">
             <string>删 除</string>
            </property>
@@ -260,15 +239,12 @@
       <widget class="QLabel" name="label_001">
        <property name="minimumSize">
         <size>
-         <width>72</width>
-         <height>24</height>
+         <width>60</width>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
         <string>无效数据：</string>
-       </property>
-       <property name="scaledContents">
-        <bool>false</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -283,7 +259,7 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>23</height>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
@@ -308,15 +284,12 @@
       <widget class="QLabel" name="label_002">
        <property name="minimumSize">
         <size>
-         <width>72</width>
-         <height>24</height>
+         <width>60</width>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
         <string>死灯：</string>
-       </property>
-       <property name="scaledContents">
-        <bool>false</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -331,7 +304,7 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>23</height>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
@@ -356,15 +329,12 @@
       <widget class="QLabel" name="label_003">
        <property name="minimumSize">
         <size>
-         <width>72</width>
-         <height>24</height>
+         <width>60</width>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
         <string>不合格：</string>
-       </property>
-       <property name="scaledContents">
-        <bool>false</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -379,7 +349,7 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>23</height>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
@@ -404,15 +374,12 @@
       <widget class="QLabel" name="label_004">
        <property name="minimumSize">
         <size>
-         <width>72</width>
-         <height>24</height>
+         <width>60</width>
+         <height>0</height>
         </size>
        </property>
        <property name="text">
         <string>合格：</string>
-       </property>
-       <property name="scaledContents">
-        <bool>false</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -427,7 +394,7 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>23</height>
+         <height>0</height>
         </size>
        </property>
        <property name="text">

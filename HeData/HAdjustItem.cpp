@@ -67,7 +67,7 @@ void HAdjustItem::writeContent(QDataStream &s)
 
 void HAdjustItem::restoreDefault()
 {
-    auto min = toFormatInfo(data("[项类型]").toString())->min();
+    auto min = HCore::toFormatInfo(data("[项类型]").toString())->min();
     setData("[测试值]", min);
     setData("[标准值]", min);
     setData("[调整比率]", 100);
@@ -84,7 +84,7 @@ QVariant HAdjustItem::correct(QVariant value)
 QStringList HAdjustItem::toStringList()
 {
     auto t = data("[项类型]").toString();
-    return QStringList() << toCaption(t) << toString("[调整比率]", data("[调整比率]")) << toString(t, data("[测试值]")) << toString(t, data("[标准值]"));
+    return QStringList() << HCore::toCaption(t) << HCore::toString("[调整比率]", data("[调整比率]")) << HCore::toString(t, data("[测试值]")) << HCore::toString(t, data("[标准值]"));
 }
 
 HE_DATA_END_NAMESPACE

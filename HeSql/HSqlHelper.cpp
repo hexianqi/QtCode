@@ -11,7 +11,7 @@ bool HSqlHelper::createTable(QString tableName, QStringList field, QSqlDatabase 
         return false;
 
     QSqlQuery query(db);
-    auto text = QString("CREATE TABLE %1 (%2)").arg(tableName).arg(toCreateStyle(field).join(','));
+    auto text = QString("CREATE TABLE %1 (%2)").arg(tableName).arg(HSql::toCreateStyle(field).join(','));
     query.exec("DROP TABLE " + tableName);
     return query.exec(text);
 }

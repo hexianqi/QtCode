@@ -96,7 +96,7 @@ QStringList HGradeItem2D::level(int i)
     auto t = data("[项类型]").toString();
     if (i < 0)
     {
-        auto f = toFormatInfo(t);
+        auto f = HCore::toFormatInfo(t);
         ploy << QPointF(f->min(), f->max()) << QPointF(f->min(), f->min()) << QPointF(f->max(), f->min()) << QPointF(f->max(), f->max());
     }
     else
@@ -105,7 +105,7 @@ QStringList HGradeItem2D::level(int i)
     for (int j = 0; j < 4; j++)
     {
         auto p = j < ploy.size() ? ploy[j] : QPointF(0, 0);
-        r << toString(t, p.x()) << toString(t, p.y());
+        r << HCore::toString(t, p.x()) << HCore::toString(t, p.y());
     }
     return r;
 }

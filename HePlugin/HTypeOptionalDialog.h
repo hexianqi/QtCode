@@ -36,10 +36,8 @@ protected slots:
     void on_toolButton_3_clicked();
     void on_toolButton_4_clicked();
 
-protected:
-    QScopedPointer<HTypeOptionalDialogPrivate> d_ptr;
-
 private:
+    QScopedPointer<HTypeOptionalDialogPrivate> d_ptr;
     Ui::HTypeOptionalDialog *ui;
 };
 
