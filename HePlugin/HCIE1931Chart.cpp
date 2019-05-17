@@ -36,11 +36,11 @@ HCIE1931ChartPrivate::HCIE1931ChartPrivate()
     pointFocus->setMarkerSize(11.0);
     pointFocus->setBrush(createCrossImage(QPen(Qt::red, 2)));
     pointFocus->setPen(QColor(Qt::transparent));
-    points = new QScatterSeries;
-    points->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
-    points->setMarkerSize(11.0);
-    points->setBrush(createCrossImage(QPen(Qt::black)));
-    points->setPen(QColor(Qt::transparent));
+    point = new QScatterSeries;
+    point->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
+    point->setMarkerSize(11.0);
+    point->setBrush(createCrossImage(QPen(Qt::black)));
+    point->setPen(QColor(Qt::transparent));
     gradeFocus = new QLineSeries;
     gradeFocus->setPen(QPen(Qt::red, 2));
 }
@@ -102,7 +102,7 @@ void HCIE1931Chart::setEnablePoint(bool b)
         return;
     d->enablePoint = b;
     d->pointFocus->setVisible(b);
-    d->points->setVisible(b);
+    d->point->setVisible(b);
 }
 
 bool HCIE1931Chart::isEnableCIE()
@@ -182,13 +182,13 @@ void HCIE1931Chart::setPointFocus(QPointF value)
 void HCIE1931Chart::setPoints(QList<QPointF> value)
 {
     Q_D(HCIE1931Chart);
-    d->points->replace(value);
+    d->point->replace(value);
 }
 
 void HCIE1931Chart::addPoint(QPointF value, bool focus)
 {
     Q_D(HCIE1931Chart);
-    d->points->append(value);
+    d->point->append(value);
     if (focus)
         setPointFocus(value);
 }
@@ -197,7 +197,7 @@ void HCIE1931Chart::clearPoint()
 {
     Q_D(HCIE1931Chart);
     d->pointFocus->clear();
-    d->points->clear();
+    d->point->clear();
 }
 
 void HCIE1931Chart::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -262,7 +262,7 @@ void HCIE1931Chart::readSeries()
     addSeries(d->horseshoe);
     addSeries(d->planckian);
     addSeries(d->pointFocus);
-    addSeries(d->points);
+    addSeries(d->point);
     addSeries(d->gradeFocus);
 }
 

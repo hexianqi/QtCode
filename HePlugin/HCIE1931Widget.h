@@ -76,21 +76,18 @@ public:
     void clearPoint();
 
 protected:
-    virtual void mouseMoveEvent(QMouseEvent *) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *) override;
-    virtual bool drawElse(QPainter *) override;
-    virtual bool drawCIE(QPainter *);
-    virtual bool drawHorseshoe(QPainter *);
-    virtual bool drawPlanckian(QPainter *);
-    virtual bool drawGradeBlock(QPainter *);
-    virtual bool drawPoint(QPainter *);
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseDoubleClickEvent(QMouseEvent *) override;
+    bool drawElse(QPainter *) override;
+    bool drawCIE(QPainter *);
+    bool drawHorseshoe(QPainter *);
+    bool drawPlanckian(QPainter *);
+    bool drawGradeBlock(QPainter *);
+    bool drawPoint(QPainter *);
 
 protected slots:
     void handlePlotAreaChanged(QRectF value);
     void handlePositionChanged(QPointF pos);
-
-protected:
-    HCIE1931Widget(HCIE1931WidgetPrivate &p, QWidget *parent = nullptr);
 
 private:
     void init();

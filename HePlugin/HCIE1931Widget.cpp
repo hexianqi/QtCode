@@ -10,8 +10,8 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QLabel>
 
-HCIE1931WidgetPrivate::HCIE1931WidgetPrivate(HCIE1931Widget *q)
-    : HCartesianWidgetPrivate(q)
+HCIE1931WidgetPrivate::HCIE1931WidgetPrivate(HCIE1931Widget *q) :
+    HCartesianWidgetPrivate(q)
 {
     square = true;
     fontPointFocus.setPointSize(12);
@@ -44,14 +44,8 @@ void HCIE1931WidgetPrivate::readStandard()
     }
 }
 
-HCIE1931Widget::HCIE1931Widget(QWidget *parent)
-    : HCartesianWidget(*new HCIE1931WidgetPrivate(this), parent)
-{
-    init();
-}
-
-HCIE1931Widget::HCIE1931Widget(HCIE1931WidgetPrivate &p, QWidget *parent)
-    : HCartesianWidget(p, parent)
+HCIE1931Widget::HCIE1931Widget(QWidget *parent) :
+    HCartesianWidget(*new HCIE1931WidgetPrivate(this), parent)
 {
     init();
 }
@@ -263,14 +257,14 @@ void HCIE1931Widget::setGradeFocus(QPolygonF value)
 void HCIE1931Widget::setGrade(QList<QPolygonF> value)
 {
     Q_D(HCIE1931Widget);
-    d->grade = value;
+    d->grades = value;
     refreshPixmap();
 }
 
 void HCIE1931Widget::addGrade(QPolygonF value, bool focus, bool refresh)
 {
     Q_D(HCIE1931Widget);
-    d->grade << value;
+    d->grades << value;
     if (focus)
         d->gradeFocus = value;
     if (refresh)
@@ -280,14 +274,14 @@ void HCIE1931Widget::addGrade(QPolygonF value, bool focus, bool refresh)
 void HCIE1931Widget::removeGrade(QPolygonF value, bool refresh)
 {
     Q_D(HCIE1931Widget);
-    if (d->grade.removeAll(value) > 0 && refresh)
+    if (d->grades.removeAll(value) > 0 && refresh)
         refreshPixmap();
 }
 
 void HCIE1931Widget::clearGrade()
 {
     Q_D(HCIE1931Widget);
-    d->grade.clear();
+    d->grades.clear();
     d->gradeFocus.clear();
     refreshPixmap();
 }
@@ -302,14 +296,14 @@ void HCIE1931Widget::setPointFocus(QPointF value)
 void HCIE1931Widget::setPoint(QList<QPointF> value)
 {
     Q_D(HCIE1931Widget);
-    d->point = value;
+    d->points = value;
     refreshPixmap();
 }
 
 void HCIE1931Widget::addPoint(QPointF value, bool focus, bool refresh)
 {
     Q_D(HCIE1931Widget);
-    d->point << value;
+    d->points << value;
     if (focus)
         d->pointFocus = value;
     if (refresh)
@@ -319,7 +313,7 @@ void HCIE1931Widget::addPoint(QPointF value, bool focus, bool refresh)
 void HCIE1931Widget::clearPoint()
 {
     Q_D(HCIE1931Widget);
-    d->point.clear();
+    d->points.clear();
     d->pointFocus = QPointF();
     refreshPixmap();
 }
@@ -353,7 +347,7 @@ bool HCIE1931Widget::drawElse(QPainter *painter)
 bool HCIE1931Widget::drawCIE(QPainter *painter)
 {
     Q_D(HCIE1931Widget);
-    if (!isDrawCIE() || !d->plotArea.isValid())
+    if (!isDrawCIE() || !isValid())
         return false;
 
     auto target = d->plotArea.adjusted(1, 1, -1, -1);
@@ -365,7 +359,7 @@ bool HCIE1931Widget::drawCIE(QPainter *painter)
 bool HCIE1931Widget::drawHorseshoe(QPainter *painter)
 {
     Q_D(HCIE1931Widget);
-    if (!isDrawHorseshoe() || !d->plotArea.isValid())
+    if (!isDrawHorseshoe() || !isValid())
         return false;
 
     painter->save();
@@ -380,7 +374,7 @@ bool HCIE1931Widget::drawHorseshoe(QPainter *painter)
 bool HCIE1931Widget::drawPlanckian(QPainter *painter)
 {
     Q_D(HCIE1931Widget);
-    if (!isDrawPlanckian() || !d->plotArea.isValid())
+    if (!isDrawPlanckian() || !isValid())
         return false;
 
     painter->save();
@@ -395,13 +389,13 @@ bool HCIE1931Widget::drawPlanckian(QPainter *painter)
 bool HCIE1931Widget::drawGradeBlock(QPainter *painter)
 {
     Q_D(HCIE1931Widget);
-    if (!isDrawGrade() || !d->plotArea.isValid())
+    if (!isDrawGrade() || !isValid())
         return false;
 
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(d->colorGrade);
-    for (auto p : d->grade)
+    for (auto p : d->grades)
         painter->drawPolygon(d->coordinate->mapToPosition(p, d->plotArea));
 
     painter->setPen(QPen(d->colorGradeFocus, 2));
@@ -413,13 +407,13 @@ bool HCIE1931Widget::drawGradeBlock(QPainter *painter)
 bool HCIE1931Widget::drawPoint(QPainter *painter)
 {
     Q_D(HCIE1931Widget);
-    if (!isDrawPoint() || !d->plotArea.isValid())
+    if (!isDrawPoint() || !isValid())
         return false;
 
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(d->colorPoint);
-    for (auto p : d->point)
+    for (auto p : d->points)
     {
         auto t = d->coordinate->mapToPosition(p, d->plotArea);
         painter->drawLine(QLineF(t.x(), t.y() - 3, t.x(), t.y() + 3));

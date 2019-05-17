@@ -21,7 +21,7 @@ void HCIE1931ChartView::setEnableTracking(bool b)
     d->positionItem->setVisible(b);
 }
 
-HCIE1931Chart *HCIE1931ChartView::cieChart()
+HCIE1931Chart *HCIE1931ChartView::chart()
 {
     Q_D(HCIE1931ChartView);
     return d->chart;

@@ -53,7 +53,7 @@ void HSpecSetting::restoreDefault()
     setData("[光谱采样延时]", 0);
     setData("[光谱保留像元]", QPoint(15, 32));
     setData("[光谱固定暗底]", 0.0);
-    setData("[光谱左右暗底差]", 0.0);
+    setData("[光谱左右暗底]", 0.0);
     setData("[光谱平滑帧数]", 1);
     setData("[光谱平滑次数]", 2);
     setData("[光谱平滑范围]", 2);
@@ -111,7 +111,7 @@ QVector<double> HSpecSetting::dealBotton(QVector<double> value)
     auto size = value.size();
     auto pels = data("[光谱保留像元]").toPoint();
     auto fixup = data("[光谱固定暗底]").toDouble();
-    auto diff = data("[光谱左右暗底差]").toDouble();
+    auto diff = data("[光谱左右暗底]").toDouble();
     auto avgbase = 0.0;
 
     for (i = pels.x(); i <= pels.y() && i < size; i++)

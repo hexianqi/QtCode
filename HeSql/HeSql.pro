@@ -33,14 +33,14 @@ HEADERS     += \
             ISqlFactory.h \
             HSqlFactory.h \
             HSqlFactory_p.h \
-    HSqlPainterHelper.h
+            HSqlPainterHelper.h
 
 SOURCES     += \
             HSql.cpp \
             HSqlHelper.cpp \
             HSqlGlobalInstance.cpp \
             HSqlFactory.cpp \
-    HSqlPainterHelper.cpp
+            HSqlPainterHelper.cpp
 
 RESOURCES   = HeSql.qrc
 

@@ -25,23 +25,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES     += \
-            HDataFactory.cpp \
-            HConfigManage.cpp \
-    HAbstractDataItem.cpp
-
 HEADERS     += \
             IDataFactory.h \
             IConfigManage.h \
             IDataItem.h \
+            IDataCollection.h \
             HDataGlobal.h \
             HDataFactory.h \
             HDataFactory_p.h \
             HConfigManage.h \
             HConfigManage_p.h \
             HAbstractDataItem.h \
-            HAbstractDataItem_p.h \
-    IDataCollection.h
+            HAbstractDataItem_p.h
+
+SOURCES     += \
+            HDataFactory.cpp \
+            HConfigManage.cpp \
+            HAbstractDataItem.cpp
 
 INCLUDEPATH += ..
 
@@ -65,6 +65,7 @@ unix {
 }
 
 include(adjust.pri)
+include(chromatism.pri)
 include(grade.pri)
 include(quality.pri)
 include(spec.pri)

@@ -84,6 +84,7 @@ protected:
     virtual bool drawElse(QPainter *);
     virtual void resizeEvent(QResizeEvent *) override;
     virtual void paintEvent(QPaintEvent *) override;
+    virtual bool isValid();
 
 protected:
     QScopedPointer<HDiagramWidgetPrivate> d_ptr;

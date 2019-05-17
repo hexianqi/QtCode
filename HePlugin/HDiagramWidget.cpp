@@ -281,7 +281,7 @@ void HDiagramWidget::initPixmap(QPainter *painter)
 
 bool HDiagramWidget::drawFrame(QPainter *painter)
 {
-    if (!isDrawFrame() || !d_ptr->plotArea.isValid())
+    if (!isDrawFrame() || !isValid())
         return false;
 
     QPen pen;
@@ -308,21 +308,21 @@ bool HDiagramWidget::drawFrame(QPainter *painter)
 
 bool HDiagramWidget::drawRuler(QPainter *)
 {
-    if (!isDrawRuler() || !d_ptr->plotArea.isValid())
+    if (!isDrawRuler() || !isValid())
         return false;
     return true;
 }
 
 bool HDiagramWidget::drawGrid(QPainter *)
 {
-    if (!isDrawGrid() || !d_ptr->plotArea.isValid())
+    if (!isDrawGrid() || !isValid())
         return false;
     return true;
 }
 
 bool HDiagramWidget::drawPolygon(QPainter *)
 {
-    if (!d_ptr->plotArea.isValid())
+    if (!isValid())
         return false;
     return true;
 }
@@ -350,6 +350,11 @@ void HDiagramWidget::paintEvent(QPaintEvent *)
         option.backgroundColor = palette().dark().color();
         style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, &painter, this);
     }
+}
+
+bool HDiagramWidget::isValid()
+{
+    return d_ptr->plotArea.isValid();
 }
 
 void HDiagramWidget::init()

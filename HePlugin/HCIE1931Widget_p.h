@@ -12,7 +12,7 @@ class HCIE1931WidgetPrivate : public HCartesianWidgetPrivate
     Q_DECLARE_PUBLIC(HCIE1931Widget)
 
 public:
-    HCIE1931WidgetPrivate(HCIE1931Widget *q);
+    HCIE1931WidgetPrivate(HCIE1931Widget *);
 
 public:
     void readStandard();
@@ -35,9 +35,9 @@ public:
     QPixmap cie1931;
     QPolygonF horseshoe;
     QPolygonF planckian;
-    QList<QPolygonF> grade;
+    QList<QPolygonF> grades;
     QPolygonF gradeFocus;
-    QList<QPointF> point;
+    QList<QPointF> points;
     QPointF pointFocus;
 };
 

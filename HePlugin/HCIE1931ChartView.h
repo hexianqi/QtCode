@@ -26,7 +26,7 @@ public:
     void setEnableTracking(bool b);
 
 public:
-    HCIE1931Chart *cieChart();
+    HCIE1931Chart *chart();
 
 protected:
     void init() override;

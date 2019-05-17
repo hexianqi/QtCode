@@ -12,7 +12,9 @@ HEADERS += \
     $$PWD/HSpecDiagramWidget.h \
     $$PWD/HSpecDiagramWidget_p.h \
     $$PWD/HRibbonDiagramWidget.h \
-    $$PWD/HRibbonDiagramWidget_p.h
+    $$PWD/HRibbonDiagramWidget_p.h \
+    $$PWD/HChromatismWidget.h \
+    $$PWD/HChromatismWidget_p.h
 
 SOURCES += \
     $$PWD/HDiagramWidget.cpp \
@@ -21,4 +23,5 @@ SOURCES += \
     $$PWD/HCIE1931Widget.cpp \
     $$PWD/HVernierWidget.cpp \
     $$PWD/HSpecDiagramWidget.cpp \
-    $$PWD/HRibbonDiagramWidget.cpp
+    $$PWD/HRibbonDiagramWidget.cpp \
+    $$PWD/HChromatismWidget.cpp

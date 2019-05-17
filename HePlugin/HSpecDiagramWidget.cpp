@@ -220,7 +220,7 @@ void HSpecDiagramWidget::refreshPixmap(bool refresh)
 bool HSpecDiagramWidget::drawCenter(QPainter *painter)
 {
     Q_D(HSpecDiagramWidget);
-    if (!isDrawCenter() || !d->plotArea.isValid())
+    if (!isDrawCenter() || !isValid())
         return false;
 
     painter->save();
@@ -237,7 +237,7 @@ bool HSpecDiagramWidget::drawCenter(QPainter *painter)
 bool HSpecDiagramWidget::drawLeftTop(QPainter *painter)
 {
     Q_D(HSpecDiagramWidget);
-    if (!isDrawTopLeft() || !d->plotArea.isValid())
+    if (!isDrawTopLeft() || !isValid())
         return false;
 
     painter->save();

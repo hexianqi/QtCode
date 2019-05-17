@@ -20,7 +20,7 @@ public:
     QAreaSeries *horseshoe = nullptr;
     QLineSeries *planckian = nullptr;
     QScatterSeries *pointFocus = nullptr;
-    QScatterSeries *points = nullptr;
+    QScatterSeries *point = nullptr;
     QLineSeries *gradeFocus = nullptr;
     QList<QLineSeries *> grades;
     bool enableCIE = true;

@@ -6,11 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>342</width>
-    <height>241</height>
+    <width>404</width>
+    <height>296</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,0">
+   <property name="verticalSpacing">
+    <number>9</number>
+   </property>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -102,9 +105,6 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="opaqueResize">
-      <bool>true</bool>
-     </property>
      <widget class="QListWidget" name="listWidget">
       <item>
        <property name="text">
@@ -119,247 +119,15 @@
      </widget>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_1">
        <layout class="QGridLayout" name="gridLayout_3">
         <property name="verticalSpacing">
          <number>9</number>
         </property>
-        <item row="3" column="4">
-         <widget class="QLabel" name="label_1303">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;font color=#000000&gt;ms&lt;/font&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_1007">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_1004">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>采样延时：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1007</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QLineEdit" name="lineEdit_1006">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="label_1403">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>-</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1006</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_1005">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_1003">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>采样范围：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1005</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QLineEdit" name="lineEdit_1004">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="label_1402">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>-</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1004</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_1003">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_1002">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>波长范围：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1003</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <widget class="QLabel" name="label_1301">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;font color=#000000&gt;ms&lt;/font&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QLineEdit" name="lineEdit_1002">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_1401">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>-</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1002</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_1001">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_1005">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>平均次数：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_1008</cstring>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
-         <widget class="QLabel" name="label_1001">
+         <widget class="QLabel" name="label_101">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -379,39 +147,187 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_1001</cstring>
+           <cstring>doubleSpinBox_101</cstring>
           </property>
          </widget>
         </item>
-        <item row="4" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_1008">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_101"/>
         </item>
-        <item row="5" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_1009">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="4">
-         <widget class="QLabel" name="label_1304">
-          <property name="minimumSize">
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_111">
+          <property name="maximumSize">
            <size>
             <width>18</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>doubleSpinBox_102</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_102"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_102">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
             <height>0</height>
            </size>
           </property>
           <property name="text">
-           <string>&lt;font color=#000000&gt;K&lt;/font&gt;</string>
+           <string>波长范围：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>doubleSpinBox_103</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_103"/>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_112">
+          <property name="maximumSize">
+           <size>
+            <width>18</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>doubleSpinBox_104</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_104"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_103">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>采样范围：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>doubleSpinBox_105</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_105"/>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="label_113">
+          <property name="maximumSize">
+           <size>
+            <width>18</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>doubleSpinBox_106</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_106"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_104">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>采样延时：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>spinBox_101</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_105">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>平均次数：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>spinBox_102</cstring>
           </property>
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="label_1006">
+         <widget class="QLabel" name="label_106">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -431,22 +347,18 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_1009</cstring>
+           <cstring>doubleSpinBox_107</cstring>
           </property>
          </widget>
         </item>
-        <item row="1" column="4">
-         <widget class="QLabel" name="label_1302">
-          <property name="minimumSize">
-           <size>
-            <width>18</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
-          </property>
-         </widget>
+        <item row="3" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_101"/>
+        </item>
+        <item row="4" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_102"/>
+        </item>
+        <item row="5" column="1" colspan="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_107"/>
         </item>
        </layout>
       </widget>
@@ -455,81 +367,8 @@
         <property name="verticalSpacing">
          <number>9</number>
         </property>
-        <item row="2" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2004">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QLineEdit" name="lineEdit_2002">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_2005">
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>平滑次数：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2006</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_2003">
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>左右暗底差：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2004</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2006">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2005">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2003">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
-         <widget class="QLabel" name="label_2001">
+         <widget class="QLabel" name="label_201">
           <property name="minimumSize">
            <size>
             <width>90</width>
@@ -543,45 +382,37 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2001</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_2004">
-          <property name="minimumSize">
-           <size>
-            <width>90</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>平滑帧数：</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="buddy">
-           <cstring>lineEdit_2005</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1" colspan="3">
-         <widget class="QLineEdit" name="lineEdit_2007">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <cstring>spinBox_201</cstring>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_2001">
+         <widget class="QSpinBox" name="spinBox_201"/>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_211">
+          <property name="maximumSize">
+           <size>
+            <width>18</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <property name="buddy">
+           <cstring>spinBox_202</cstring>
+          </property>
          </widget>
         </item>
+        <item row="0" column="3">
+         <widget class="QSpinBox" name="spinBox_202"/>
+        </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="label_2002">
+         <widget class="QLabel" name="label_202">
           <property name="minimumSize">
            <size>
             <width>90</width>
@@ -595,31 +426,81 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2003</cstring>
+           <cstring>doubleSpinBox_201</cstring>
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_2101">
+        <item row="1" column="1" colspan="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_201"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_203">
           <property name="minimumSize">
            <size>
-            <width>18</width>
+            <width>90</width>
             <height>0</height>
            </size>
           </property>
           <property name="text">
-           <string>-</string>
+           <string>左右暗底：</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2002</cstring>
+           <cstring>doubleSpinBox_202</cstring>
           </property>
          </widget>
         </item>
+        <item row="2" column="1" colspan="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_202"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_204">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>平滑帧数：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>spinBox_203</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_203"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_205">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>平滑次数：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="buddy">
+           <cstring>spinBox_204</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_204"/>
+        </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="label_2006">
+         <widget class="QLabel" name="label_206">
           <property name="minimumSize">
            <size>
             <width>90</width>
@@ -633,9 +514,12 @@
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_2007</cstring>
+           <cstring>spinBox_205</cstring>
           </property>
          </widget>
+        </item>
+        <item row="5" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_205"/>
         </item>
        </layout>
       </widget>
@@ -646,22 +530,6 @@
  </widget>
  <tabstops>
   <tabstop>listWidget</tabstop>
-  <tabstop>lineEdit_1001</tabstop>
-  <tabstop>lineEdit_1002</tabstop>
-  <tabstop>lineEdit_1003</tabstop>
-  <tabstop>lineEdit_1004</tabstop>
-  <tabstop>lineEdit_1005</tabstop>
-  <tabstop>lineEdit_1006</tabstop>
-  <tabstop>lineEdit_1007</tabstop>
-  <tabstop>lineEdit_1008</tabstop>
-  <tabstop>lineEdit_1009</tabstop>
-  <tabstop>lineEdit_2001</tabstop>
-  <tabstop>lineEdit_2002</tabstop>
-  <tabstop>lineEdit_2003</tabstop>
-  <tabstop>lineEdit_2004</tabstop>
-  <tabstop>lineEdit_2005</tabstop>
-  <tabstop>lineEdit_2006</tabstop>
-  <tabstop>lineEdit_2007</tabstop>
   <tabstop>pushButton_1</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton_3</tabstop>
@@ -675,8 +543,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>232</x>
-     <y>380</y>
+     <x>239</x>
+     <y>285</y>
     </hint>
     <hint type="destinationlabel">
      <x>319</x>
@@ -691,8 +559,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>367</x>
-     <y>380</y>
+     <x>366</x>
+     <y>285</y>
     </hint>
     <hint type="destinationlabel">
      <x>319</x>
