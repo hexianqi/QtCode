@@ -22,16 +22,20 @@ void testJson()
     auto json = QJsonObject::fromVariantMap(map);
     auto doc = QJsonDocument(json);
     auto text = QString(doc.toJson());
+    auto byte = doc.toBinaryData();
     qDebug() << map;
     qDebug() << json;
     qDebug() << doc;
     qDebug() << text;
+    qDebug() << byte;
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
+
+    testJson();
 
 //    auto widget = HTestTable::multHeaderTableWidget();
 //    widget->show();

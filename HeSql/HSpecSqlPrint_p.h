@@ -5,7 +5,7 @@
 #include "HAbstractSqlPrint_p.h"
 
 class HSpecDiagramWidget;
-class HCIE1931Widget;
+class HCie1931Widget;
 
 HE_SQL_BEGIN_NAMESPACE
 
@@ -13,7 +13,7 @@ class HSpecSqlPrintPrivate : public HAbstractSqlPrintPrivate
 {
 public:
     HSpecDiagramWidget *specWidget = nullptr;
-    HCIE1931Widget *cieWidget = nullptr;
+    HCie1931Widget *cieWidget = nullptr;
 };
 
 HE_SQL_END_NAMESPACE

@@ -45,7 +45,6 @@ public:
     // 其他
     double LuminousFlux;
     double LuminousPower;
-    double SDCM;
 };
 
 HE_ALGORITHM_END_NAMESPACE

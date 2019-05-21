@@ -19,6 +19,9 @@ class ITestSpec;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
+class IChromatism;
+class IChromatismCollection;
+class IChromatismItem;
 class IGrade;
 class IGradeCollection;
 class IGradeItem;
@@ -46,6 +49,12 @@ public:
     virtual ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准数据
     virtual ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建色容差数据集
+    virtual IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建色容差数据
+    virtual IChromatism *createChromatism(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建色容差数据子项
+    virtual IChromatismItem *createChromatismItem(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建分级数据集
     virtual IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建分级数据

@@ -4,7 +4,7 @@
 #include "HTestWidget2000.h"
 #include "HeGui/HTestWidget_p.h"
 
-class HCIE1931Widget;
+class HCie1931Widget;
 
 HE_DATA_BEGIN_NAMESPACE
 class IConfigManage;
@@ -12,6 +12,7 @@ HE_DATA_END_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 class HSpecEnergyWidget;
+class HSpecChromatismChartView;
 class HResultTableWidget;
 class ITestSetWidget;
 class ITestDetailWidget;
@@ -25,7 +26,8 @@ public:
 public:
     IConfigManage *configManage;
     HSpecEnergyWidget *energyWidget;
-    HCIE1931Widget *cieWidget;
+    HSpecChromatismChartView *chromatismWidget;
+    HCie1931Widget *cieWidget;
     HResultTableWidget *resultWidget;
     ITestSetWidget *testSetWidget;
     ITestDetailWidget *detailWidget;

@@ -31,6 +31,9 @@ public:
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
+    IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IChromatism *createChromatism(QString type, QVariantMap param = QVariantMap()) override;
+    IChromatismItem *createChromatismItem(QString type, QVariantMap param = QVariantMap()) override;
     IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) override;
     IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) override;
     IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) override;

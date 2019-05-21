@@ -1,5 +1,12 @@
 /***************************************************************************************************
 **      2018-06-19  IConfigManage 配置管理接口。
+**                      class                   MagicNumber     Filter
+**                  IConfigManage               0x00010001      *.cfg
+**                  ISpecCalibrateCollection    0x00020001      *.hcs
+**                  IChromatismCollection       0x00020101      *.hcc
+**                  IGradeCollection            0x00030001      *.hcg
+**                  IQualityCollection          0x00030101      *.hcq
+**                  IAdjustCollection           0x00040001      *.hca
 ***************************************************************************************************/
 
 #ifndef ICONFIGMANAGE_H
@@ -16,6 +23,7 @@ class IFileStream;
 class ITestData;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
+class IChromatismCollection;
 class IGradeCollection;
 class IAdjustCollection;
 class IQualityCollection;
@@ -27,6 +35,7 @@ public:
     {
         ContainNone          = 0x00000000,
         ContainSpec          = 0x00000001,
+        ContainChromatism    = 0x00000100,
         ContainGrade         = 0x00010000,
         ContainQuality       = 0x00020000,
         ContainAdjust        = 0x01000000,
@@ -45,13 +54,17 @@ public:
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) = 0;
     // 获取光谱校准数据
     virtual ISpecCalibrate *specCalibrate(QString name) = 0;
+    // 设置色容差数据集
+    virtual void setChromatismCollection(IChromatismCollection *) = 0;
+    // 获取色容差数据集
+    virtual IChromatismCollection *chromatismCollection() = 0;
     // 设置分级数据集
     virtual void setGradeCollection(IGradeCollection *) = 0;
     // 获取分级数据集
     virtual IGradeCollection *gradeCollection() = 0;
-    // 设置分级数据集
+    // 设置调整数据集
     virtual void setAdjustCollection(IAdjustCollection *) = 0;
-    // 获取分级数据集
+    // 获取调整数据集
     virtual IAdjustCollection *adjustCollection() = 0;
     // 设置品质数据集
     virtual void setQualityCollection(IQualityCollection *) = 0;

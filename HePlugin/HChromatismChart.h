@@ -1,0 +1,31 @@
+/***************************************************************************************************
+**      2019-05-21  HChromatismChart 色容差图表。
+***************************************************************************************************/
+
+#ifndef HCHROMATISMCHART_H
+#define HCHROMATISMCHART_H
+
+#include "HChart.h"
+
+class HChromatismChartPrivate;
+
+class HChromatismChart : public HChart
+{
+    Q_OBJECT
+    Q_DECLARE_PRIVATE(HChromatismChart)
+
+public:
+    explicit HChromatismChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
+    ~HChromatismChart();
+
+public:
+    void setEllipse(QPolygonF);
+    void setPointFocus(QPointF);
+    void setPointCenter(QPointF);
+    void setAxesXTitle(QString);
+
+private:
+    void init();
+};
+
+#endif // HCHROMATISMCHART_H

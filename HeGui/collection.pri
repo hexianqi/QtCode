@@ -11,7 +11,7 @@ SOURCES += \
 FORMS += \
     $$PWD/HListCollectionDialog.ui
 
-
 include(adjust.pri)
+include(chromatism.pri)
 include(grade.pri)
 include(quality.pri)

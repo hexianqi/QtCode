@@ -1,7 +1,7 @@
 HEADERS += \
+    $$PWD/IAdjustCollection.h \
     $$PWD/IAdjust.h \
     $$PWD/IAdjustItem.h \
-    $$PWD/IAdjustCollection.h \
     $$PWD/HAdjustCollection.h \
     $$PWD/HAdjustCollection_p.h \
     $$PWD/HAdjust.h \

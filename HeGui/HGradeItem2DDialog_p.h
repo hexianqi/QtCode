@@ -4,14 +4,14 @@
 #include "HGradeItem2DDialog.h"
 #include "HAbstractGradeItemDialog_p.h"
 
-class HCIE1931Widget;
+class HCie1931Widget;
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HGradeItem2DDialogPrivate : public HAbstractGradeItemDialogPrivate
 {
 public:
-    HCIE1931Widget *cieWidget;
+    HCie1931Widget *cieWidget;
 
 };
 

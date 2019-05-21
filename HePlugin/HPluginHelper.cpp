@@ -1,7 +1,9 @@
 #include "HPluginHelper.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
+#include <QtCore/QtMath>
 #include <QtGui/QClipboard>
+#include <QtGui/QPainter>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
@@ -264,4 +266,38 @@ bool HPluginHelper::getInputText(QWidget *parent, QString label, QString &text)
         return false;
     text = dlg.textValue();
     return true;
+}
+
+QImage HPluginHelper::createCrossImage(QSize size, QPen pen)
+{
+    QPainterPath path;
+    path.moveTo(0, size.height() / 2);
+    path.lineTo(size.width(), size.height() / 2);
+    path.moveTo(size.width() / 2, 0);
+    path.lineTo(size.width() / 2, size.height());
+
+    QImage image(size, QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+
+    QPainter painter(&image);
+    painter.setPen(pen);
+    painter.setBrush(Qt::NoBrush);
+    painter.drawPath(path);
+    return image;
+}
+
+QPolygonF HPluginHelper::calcEllipse(QPointF center, double r, double theta, double a, double b)
+{
+    QPolygonF poly;
+    auto theta1 = qDegreesToRadians(theta);
+    for (int i = 0; i < 3600; i++)
+    {
+        auto theta2 = qDegreesToRadians(i * 0.1);
+        auto x1 = r * a * qCos(theta2);
+        auto y1 = r * b * qSin(theta2);
+        auto x2 = x1 * qCos(theta1) - y1 * qSin(theta1) + center.x();
+        auto y2 = x1 * qSin(theta1) + y1 * qCos(theta1) + center.y();
+        poly << QPointF(x2, y2);
+    }
+    return poly;
 }

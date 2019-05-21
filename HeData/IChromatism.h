@@ -28,9 +28,9 @@ public:
 
 public:
     // 计算色容差
-    double calcSdcm(double tc, QPointF xy);
+    virtual double calcSdcm(double tc, QPointF xy) = 0;
     // 转成Json
-    QJsonObject toJson();
+    virtual QJsonObject toJson() = 0;
 };
 
 HE_DATA_END_NAMESPACE

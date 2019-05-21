@@ -2,7 +2,7 @@
 #include "HSqlPainterHelper.h"
 #include "HeCore/HCore.h"
 #include "HePlugin/HSpecDiagramWidget.h"
-#include "HePlugin/HCIE1931Widget.h"
+#include "HePlugin/HCie1931Widget.h"
 #include <QtGui/QPolygonF>
 #include <QtGui/QPainter>
 #include <QtCore/QDebug>
@@ -184,7 +184,7 @@ QPointF HSpecSqlPrint::drawChartCie(QPainter *painter, QRectF rect, QPointF poin
     Q_D(HSpecSqlPrint);
     if (d->cieWidget == nullptr)
     {
-        d->cieWidget = new HCIE1931Widget;
+        d->cieWidget = new HCie1931Widget;
         d->cieWidget->setMargins(40, 25, 25, 35);
         d->cieWidget->setBrushBackground(Qt::white);
     }

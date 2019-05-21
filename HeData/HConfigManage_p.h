@@ -19,6 +19,7 @@ public:
     IDataFactory *factory = nullptr;
     IFileStream *fileStream = nullptr;
     ISpecCalibrateCollection *specCalibrates = nullptr;
+    IChromatismCollection *chromatisms = nullptr;
     IGradeCollection *grades = nullptr;
     IAdjustCollection *adjusts = nullptr;
     IQualityCollection *qualitys = nullptr;

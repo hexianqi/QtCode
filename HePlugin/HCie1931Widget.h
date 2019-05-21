@@ -7,12 +7,12 @@
 
 #include "HCartesianWidget.h"
 
-class HCIE1931WidgetPrivate;
+class HCie1931WidgetPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HCIE1931Widget : public HCartesianWidget
+class QDESIGNER_WIDGET_EXPORT HCie1931Widget : public HCartesianWidget
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HCIE1931Widget)
+    Q_DECLARE_PRIVATE(HCie1931Widget)
     Q_PROPERTY(bool enableTracking READ isEnableTracking WRITE setEnableTracking)
     Q_PROPERTY(bool drawCIE READ isDrawCIE WRITE setDrawCIE)
     Q_PROPERTY(bool drawHorseshoe READ isDrawHorseshoe WRITE setDrawHorseshoe)
@@ -28,8 +28,8 @@ class QDESIGNER_WIDGET_EXPORT HCIE1931Widget : public HCartesianWidget
     Q_PROPERTY(QFont fontPointFocus READ fontPointFocus WRITE setFontPointFocus)
 
 public:
-    explicit HCIE1931Widget(QWidget *parent = nullptr);
-    ~HCIE1931Widget();
+    explicit HCie1931Widget(QWidget *parent = nullptr);
+    ~HCie1931Widget();
 
 signals:
     void mouseDoubleClicked(QPointF point);

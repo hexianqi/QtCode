@@ -1,7 +1,7 @@
 #ifndef HCIE1931CHART_P_H
 #define HCIE1931CHART_P_H
 
-#include "HCIE1931Chart.h"
+#include "HCie1931Chart.h"
 #include "HSingleAxisChart_p.h"
 
 QT_CHARTS_BEGIN_NAMESPACE
@@ -10,10 +10,10 @@ class QAreaSeries;
 class QScatterSeries;
 QT_CHARTS_END_NAMESPACE
 
-class HCIE1931ChartPrivate : public HSingleAxisChartPrivate
+class HCie1931ChartPrivate : public HSingleAxisChartPrivate
 {
 public:
-    HCIE1931ChartPrivate();
+    HCie1931ChartPrivate();
 
 public:
     QPixmap cie;

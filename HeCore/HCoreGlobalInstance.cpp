@@ -184,6 +184,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级数据"));
     hashActionComment.insert(ACT_RESET_ADJUST,                  tr("重新配置调整数据"));
     hashActionComment.insert(ACT_RESET_QUALITY,                 tr("重新配置品质数据"));
+    hashActionComment.insert(ACT_RESET_CHROMATISM,              tr("重新配置色容差数据"));
 
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
@@ -345,7 +346,12 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱光通量]",                   new HDataFormatInfo("[光谱光通量]", "lm", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光功率]",                       new HDataFormatInfo("[光功率]", "mW", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光效率]",                       new HDataFormatInfo("[光效率]]", "lm/W", 0, 99999, 2, 100));
+    // 色容差参数
     hashDataFormatInfo.insert("[色容差]",                       new HDataFormatInfo("[色容差]", "SDCM", 0, 100, 1, 1));
+    hashDataFormatInfo.insert("[参数G]",                        new HDataFormatInfo("[参数G]", 0, 1000000, 1));
+    hashDataFormatInfo.insert("[旋转角]",                       new HDataFormatInfo("[旋转角]", "°", 0, 180, 1, 1));
+    hashDataFormatInfo.insert("[轴A]",                          new HDataFormatInfo("[轴A]", 0, 1000000, 1));
+    hashDataFormatInfo.insert("[轴B]",                          new HDataFormatInfo("[轴B]", 0, 1000000, 1));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));

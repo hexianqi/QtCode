@@ -13,6 +13,7 @@
 #include "HeData/IFileStream.h"
 #include "HeData/ITestSpec.h"
 #include "HeData/ISpecCalibrateCollection.h"
+#include "HeData/IChromatismCollection.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
@@ -65,8 +66,15 @@ void HBuilder2000::buildConfigManage()
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             specs->insert("1", spec);
         }
-        d->configManage->setContain(IConfigManage::ContainSpec | IConfigManage::ContainGrade | IConfigManage::ContainAdjust | IConfigManage::ContainQuality);
+        auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
+        chromatisms->fileStream()->readFile(":/Dat/Chromatism.hcc");
+        d->configManage->setContain(IConfigManage::ContainSpec
+                                    | IConfigManage::ContainChromatism
+                                    | IConfigManage::ContainGrade
+                                    | IConfigManage::ContainAdjust
+                                    | IConfigManage::ContainQuality);
         d->configManage->setSpecCalibrateCollection(specs);
+        d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
         d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
@@ -195,7 +203,7 @@ void HBuilder2000::buildMenu()
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
 

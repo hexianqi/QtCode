@@ -21,7 +21,11 @@ HEADERS += \
     $$PWD/HSqlBrowserHandler.h \
     $$PWD/HSqlBrowserHandler_p.h \
     $$PWD/HProductInfoEditHandler.h \
-    $$PWD/HProductInfoEditHandler_p.h
+    $$PWD/HProductInfoEditHandler_p.h \
+    $$PWD/HChromatismEditHandler.h \
+    $$PWD/HChromatismEditHandler_p.h \
+    $$PWD/HChromatismSelectHandler.h \
+    $$PWD/HChromatismSelectHandler_p.h
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
@@ -34,4 +38,6 @@ SOURCES += \
     $$PWD/HQualityEditHandler.cpp \
     $$PWD/HQualitySelectHandler.cpp \
     $$PWD/HSqlBrowserHandler.cpp \
-    $$PWD/HProductInfoEditHandler.cpp
+    $$PWD/HProductInfoEditHandler.cpp \
+    $$PWD/HChromatismEditHandler.cpp \
+    $$PWD/HChromatismSelectHandler.cpp

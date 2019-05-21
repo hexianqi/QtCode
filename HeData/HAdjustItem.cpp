@@ -84,7 +84,10 @@ QVariant HAdjustItem::correct(QVariant value)
 QStringList HAdjustItem::toStringList()
 {
     auto t = data("[项类型]").toString();
-    return QStringList() << HCore::toCaption(t) << HCore::toString("[调整比率]", data("[调整比率]")) << HCore::toString(t, data("[测试值]")) << HCore::toString(t, data("[标准值]"));
+    return QStringList() << HCore::toCaption(t)
+                         << HCore::toString("[调整比率]", data("[调整比率]"))
+                         << HCore::toString(t, data("[测试值]"))
+                         << HCore::toString(t, data("[标准值]"));
 }
 
 HE_DATA_END_NAMESPACE

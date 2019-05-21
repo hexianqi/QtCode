@@ -7,17 +7,17 @@
 
 #include "HZoomChartView.h"
 
-class HCIE1931ChartViewPrivate;
-class HCIE1931Chart;
+class HCie1931ChartViewPrivate;
+class HCie1931Chart;
 
-class QDESIGNER_WIDGET_EXPORT HCIE1931ChartView : public HZoomChartView
+class QDESIGNER_WIDGET_EXPORT HCie1931ChartView : public HZoomChartView
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HCIE1931ChartView)
+    Q_DECLARE_PRIVATE(HCie1931ChartView)
 
 public:
-    explicit HCIE1931ChartView(QWidget *parent = nullptr);
-    ~HCIE1931ChartView() override;
+    explicit HCie1931ChartView(QWidget *parent = nullptr);
+    ~HCie1931ChartView() override;
 
 signals:
     void mouseDoubleClicked(QPointF point);
@@ -26,7 +26,7 @@ public:
     void setEnableTracking(bool b);
 
 public:
-    HCIE1931Chart *chart();
+    HCie1931Chart *chart();
 
 protected:
     void init() override;

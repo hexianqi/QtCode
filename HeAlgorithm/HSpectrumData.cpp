@@ -31,7 +31,6 @@ void HSpecData::clear()
     VisionEnergy = 0.0;
     LuminousFlux = 0.0;
     LuminousPower = 0.0;
-    SDCM = 0;
 }
 
 HE_ALGORITHM_END_NAMESPACE

@@ -17,9 +17,9 @@ HSpecEnergyWidgetPrivate::HSpecEnergyWidgetPrivate()
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
-HSpecEnergyWidget::HSpecEnergyWidget(QWidget *parent)
-    : QWidget(parent)
-    , d_ptr(new HSpecEnergyWidgetPrivate)
+HSpecEnergyWidget::HSpecEnergyWidget(QWidget *parent):
+    QWidget(parent),
+    d_ptr(new HSpecEnergyWidgetPrivate)
 {
     init();
 }

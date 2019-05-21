@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2018-07-03  HCIE1931Chart CIE1931图表。
+**      2018-07-03  HCie1931Chart CIE1931图表。
 ***************************************************************************************************/
 
 #ifndef HCIE1931CHART_H
@@ -7,16 +7,16 @@
 
 #include "HSingleAxisChart.h"
 
-class HCIE1931ChartPrivate;
+class HCie1931ChartPrivate;
 
-class HCIE1931Chart : public HSingleAxisChart
+class HCie1931Chart : public HSingleAxisChart
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HCIE1931Chart)
+    Q_DECLARE_PRIVATE(HCie1931Chart)
 
 public:
-    explicit HCIE1931Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-    ~HCIE1931Chart();
+    explicit HCie1931Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
+    ~HCie1931Chart();
 
 signals:
     void pointFocusChanged(QPointF value);

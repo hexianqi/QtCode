@@ -4,7 +4,7 @@
 #include "HeCore/HCore.h"
 #include "HeData/IGradeItem.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
-#include "HePlugin/HCIE1931Widget.h"
+#include "HePlugin/HCie1931Widget.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QMessageBox>
 #include <QtCore/QDebug>
@@ -216,11 +216,11 @@ void HGradeItem2DDialog::init()
     HPluginHelper::initWidget("[分级数]", ui->spinBox_02);
     HPluginHelper::initWidget("[分级数]", ui->spinBox_03);
     HPluginHelper::initWidget("[分级数]", ui->spinBox_04);
-    d->cieWidget = new HCIE1931Widget;
+    d->cieWidget = new HCie1931Widget;
     d->cieWidget->setMinimumSize(QSize(420, 420));
     ui->splitter->addWidget(d->cieWidget);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    connect(d->cieWidget, &HCIE1931Widget::mouseDoubleClicked, this, &HGradeItem2DDialog::replacePoint);
+    connect(d->cieWidget, &HCie1931Widget::mouseDoubleClicked, this, &HGradeItem2DDialog::replacePoint);
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, &HGradeItem2DDialog::setGradeFocus);
 }
 

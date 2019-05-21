@@ -23,6 +23,9 @@ public:
     static double planck(double wave, double tc);
     // 普朗克公式关于色温导数。波长单位为nm
     static double planckPrime(double wave, double tc);
+    // 色容差转换
+    static QVector<double> abt2g(QVector<double> value);
+    static QVector<double> g2abt(QVector<double> value);
 };
 
 HE_ALGORITHM_END_NAMESPACE

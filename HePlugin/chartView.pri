@@ -5,11 +5,14 @@ HEADERS += \
     $$PWD/HZoomChartView_p.h \
     $$PWD/HVernierChartView.h \
     $$PWD/HVernierChartView_p.h \
-    $$PWD/HCIE1931ChartView.h \
-    $$PWD/HCIE1931ChartView_p.h
+    $$PWD/HCie1931ChartView.h \
+    $$PWD/HCie1931ChartView_p.h \
+    $$PWD/HChromatismChartView.h \
+    $$PWD/HChromatismChartView_p.h
 
 SOURCES += \
     $$PWD/HChartView.cpp \
     $$PWD/HZoomChartView.cpp \
     $$PWD/HVernierChartView.cpp \
-    $$PWD/HCIE1931ChartView.cpp
+    $$PWD/HCie1931ChartView.cpp \
+    $$PWD/HChromatismChartView.cpp

@@ -3,10 +3,13 @@
 #include "IFileStream.h"
 #include "ITestData.h"
 #include "ISpecCalibrateCollection.h"
+#include "IChromatismCollection.h"
 #include "IGradeCollection.h"
 #include "IAdjustCollection.h"
 #include "IQualityCollection.h"
 #include <QtCore/QDataStream>
+#include <QtCore/QPointF>
+#include <QtCore/QJsonObject>
 #include <QtGui/QColor>
 #include <QtCore/QDebug>
 
@@ -46,6 +49,12 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         specCalibrates = factory->createSpecCalibrateCollection(type);
         specCalibrates->fileStream()->readContent(s);
     }
+    if (contain & IConfigManage::ContainChromatism)
+    {
+        s >> type;
+        chromatisms = factory->createChromatismCollection(type);
+        chromatisms->fileStream()->readContent(s);
+    }
     if (contain & IConfigManage::ContainGrade)
     {
         s >> type;
@@ -74,6 +83,11 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     {
         s << specCalibrates->typeName();
         specCalibrates->fileStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainChromatism)
+    {
+        s << chromatisms->typeName();
+        chromatisms->fileStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainGrade)
     {
@@ -146,6 +160,15 @@ ISpecCalibrate *HConfigManage::specCalibrate(QString name)
     return d_ptr->specCalibrates->first();
 }
 
+void HConfigManage::setChromatismCollection(IChromatismCollection *p)
+{
+    d_ptr->chromatisms = p;
+}
+
+IChromatismCollection *HConfigManage::chromatismCollection()
+{
+    return d_ptr->chromatisms;
+}
 
 void HConfigManage::setGradeCollection(IGradeCollection *p)
 {
@@ -183,6 +206,8 @@ bool HConfigManage::importPart(quint32 value)
         return false;
     if (value & ContainSpec)
         return d_ptr->specCalibrates->fileStream()->openFile();
+    if (value & ContainChromatism)
+        return d_ptr->chromatisms->fileStream()->openFile();
     if (value & ContainGrade)
         return d_ptr->grades->fileStream()->openFile();
     if (value & ContainAdjust)
@@ -198,6 +223,8 @@ bool HConfigManage::exportPart(quint32 value)
         return false;
     if (value & ContainSpec)
         return d_ptr->specCalibrates->fileStream()->saveAsFile();
+    if (value & ContainChromatism)
+        return d_ptr->chromatisms->fileStream()->saveAsFile();
     if (value & ContainGrade)
         return d_ptr->grades->fileStream()->saveAsFile();
     if (value & ContainAdjust)
@@ -218,6 +245,11 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     {
         data = d_ptr->adjusts->correct(data);
         test->setData(data);
+    }
+    if (d_ptr->chromatisms != nullptr)
+    {
+        test->setData("[色容差]", d_ptr->chromatisms->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
+        test->setData("[色容差Json]", d_ptr->chromatisms->toJson());
     }
     if (d_ptr->grades != nullptr)
     {

@@ -28,6 +28,8 @@ public:
     quint32 contain() override;
     void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
     ISpecCalibrate *specCalibrate(QString name) override;
+    void setChromatismCollection(IChromatismCollection *) override;
+    IChromatismCollection *chromatismCollection() override;
     void setGradeCollection(IGradeCollection *) override;
     IGradeCollection *gradeCollection() override;
     void setAdjustCollection(IAdjustCollection *) override;

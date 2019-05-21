@@ -1,7 +1,7 @@
 #include "HTestPlugin.h"
-#include "HePlugin/HCIE1931ChartView.h"
+#include "HePlugin/HCie1931ChartView.h"
 
 QWidget *HTestPlugin::testCIE1931View()
 {
-    return new HCIE1931ChartView();
+    return new HCie1931ChartView();
 }

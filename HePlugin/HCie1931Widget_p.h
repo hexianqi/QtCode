@@ -1,18 +1,18 @@
 #ifndef HCIE1931WIDGET_P_H
 #define HCIE1931WIDGET_P_H
 
-#include "HCIE1931Widget.h"
+#include "HCie1931Widget.h"
 #include "HCartesianWidget_p.h"
 
 class QLabel;
 class HPositionTracking;
 
-class HCIE1931WidgetPrivate : public HCartesianWidgetPrivate
+class HCie1931WidgetPrivate : public HCartesianWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HCIE1931Widget)
+    Q_DECLARE_PUBLIC(HCie1931Widget)
 
 public:
-    HCIE1931WidgetPrivate(HCIE1931Widget *);
+    HCie1931WidgetPrivate(HCie1931Widget *);
 
 public:
     void readStandard();

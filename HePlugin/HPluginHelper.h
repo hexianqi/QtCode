@@ -16,6 +16,11 @@ class QTableWidget;
 class QSpinBox;
 class QDoubleSpinBox;
 class QInputDialog;
+class QImage;
+class QSize;
+class QPen;
+class QPolygonF;
+class QPointF;
 
 class QDESIGNER_WIDGET_EXPORT HPluginHelper
 {
@@ -35,7 +40,11 @@ public:
 
 public:
     static bool selectedParameter(QWidget *parent, QStringList optional, QString &selected);                     //选择参数
-    static bool getInputText(QWidget *parent, QString label, QString &text);                                     //输入文本
+    static bool getInputText(QWidget *parent, QString label, QString &text);
+
+public:
+    static QImage createCrossImage(QSize size, QPen pen);
+    static QPolygonF calcEllipse(QPointF center, double r, double theta, double a, double b);
 
 };
 

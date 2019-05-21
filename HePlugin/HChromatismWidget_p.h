@@ -13,9 +13,6 @@ public:
     HChromatismWidgetPrivate(HChromatismWidget *);
 
 public:
-    QPolygonF toEllipse();
-
-public:
     QColor colorPointFocus = Qt::red;
     QColor colorTitle = Qt::black;
     QColor colorBody = Qt::red;

@@ -1,6 +1,6 @@
 #include "HChromatismWidget_p.h"
 #include "HCartesianCoordinate.h"
-#include <QtCore/QtMath>
+#include "HPluginHelper.h"
 #include <QtCore/QJsonObject>
 #include <QtGui/QPainter>
 
@@ -13,22 +13,6 @@ HChromatismWidgetPrivate::HChromatismWidgetPrivate(HChromatismWidget *q) :
     fontBody.setWeight(QFont::Bold);
     pointFocus = QPointF(0.0, 0.0);
     pointCenter = QPointF(0.5, 0.5);
-}
-
-QPolygonF HChromatismWidgetPrivate::toEllipse()
-{
-    QPolygonF poly;
-    auto theta1 = qDegreesToRadians(stdTheta);
-    for (int i = 0; i < 3600; i++)
-    {
-        auto theta2 = qDegreesToRadians(i * 0.1);
-        auto x1 = stdSdcm * stdA * qCos(theta2);
-        auto y1 = stdSdcm * stdB * qSin(theta2);
-        auto x2 = x1 * qCos(theta1) - y1 * qSin(theta1) + pointCenter.x();
-        auto y2 = x1 * qSin(theta1) + y1 * qCos(theta1) + pointCenter.y();
-        poly << QPointF(x2, y2);
-    }
-    return poly;
 }
 
 HChromatismWidget::HChromatismWidget(QWidget *parent) :
@@ -46,26 +30,25 @@ void HChromatismWidget::setData(QJsonObject json)
     Q_D(HChromatismWidget);
     if (json.contains("title"))
         d->title = json.value("title").toString();
-    if (json.contains("pointFocusX"))
-        d->pointFocus.setX(json.value("pointFocusX").toDouble());
-    if (json.contains("pointFocusY"))
-        d->pointFocus.setY(json.value("pointFocusY").toDouble());
+    if (json.contains("stdSdcm"))
+        d->stdSdcm = json.value("stdSdcm").toDouble();
     if (json.contains("pointCenterX"))
         d->pointCenter.setX(json.value("pointCenterX").toDouble());
     if (json.contains("pointCenterY"))
         d->pointCenter.setY(json.value("pointCenterY").toDouble());
-    if (json.contains("stdSdcm"))
-        d->stdSdcm = json.value("stdSdcm").toDouble();
     if (json.contains("stdTheta"))
         d->stdTheta = json.value("stdTheta").toDouble();
     if (json.contains("stdA"))
         d->stdA = json.value("stdA").toDouble();
     if (json.contains("stdB"))
         d->stdB = json.value("stdB").toDouble();
+    if (json.contains("pointFocusX"))
+        d->pointFocus.setX(json.value("pointFocusX").toDouble());
+    if (json.contains("pointFocusY"))
+        d->pointFocus.setY(json.value("pointFocusY").toDouble());
     if (json.contains("sdcm"))
         d->sdcm = json.value("sdcm").toDouble();
-
-    auto poly = d->toEllipse();
+    auto poly = HPluginHelper::calcEllipse(d->pointCenter, d->stdSdcm, d->stdTheta, d->stdA, d->stdB);
     fixCoordinate(d->pointCenter, poly);
     addPolygon(0, poly, true);
 }
@@ -181,7 +164,7 @@ bool HChromatismWidget::drawPointCenter(QPainter *painter)
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(Qt::black);
     painter->setBrush(Qt::black);
-    painter->drawEllipse(p, 1.0, 1.0);
+    painter->drawEllipse(p, 2.0, 2.0);
     painter->restore();
     return true;
 }
@@ -202,13 +185,16 @@ bool HChromatismWidget::drawDescription(QPainter *painter)
     painter->setPen(d->colorTitle);
     painter->setFont(d->fontTitle);
     painter->drawText(d->plotArea.left(), 5, d->plotArea.width(), d->plotArea.top() - 15, Qt::AlignBottom | Qt::AlignHCenter, d->title);
-    painter->drawText(d->plotArea.left(), d->plotArea.bottom() + 20, d->plotArea.width(), 30, Qt::AlignTop | Qt::AlignHCenter, footer);
+    painter->drawText(d->plotArea.left(), d->plotArea.bottom() + 20, d->plotArea.width(), 50, Qt::AlignTop | Qt::AlignHCenter, footer);
     painter->restore();
     return true;
 }
 
 void HChromatismWidget::init()
 {
+    Q_D(HChromatismWidget);
+    d->margins.setBottom(80);
+    d->margins.setTop(60);
     setCoordinate(QRectF(0, 0, 1, 1), 5, 5);
 }
 

@@ -13,7 +13,7 @@ HQualityCollectionPrivate::HQualityCollectionPrivate(IDataFactory *f)
     fileStream = f->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00030101);
     fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Adjust files (*.hca)");
+    fileStream->setFileFilter("Quality files (*.hcq)");
     fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
     fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
 }

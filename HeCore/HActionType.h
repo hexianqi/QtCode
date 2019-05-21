@@ -28,6 +28,7 @@ using HActionType = long long;
 #define     ACT_RESET_GRADE                         0xF0000002
 #define     ACT_RESET_ADJUST                        0xF0000003
 #define     ACT_RESET_QUALITY                       0xF0000004
+#define     ACT_RESET_CHROMATISM                    0xF0000005
 
 ////#define     ACT_REFRESH_USE_TIME                    0x00000012
 

@@ -6,8 +6,9 @@
 #include "HeData/ITestData.h"
 #include "HeData/IGradeCollection.h"
 #include "HeGui/HSpecEnergyWidget.h"
+#include "HeGui/HSpecChromatismChartView.h"
 #include "HeGui/HResultTableWidget.h"
-#include "HePlugin/HCIE1931Widget.h"
+#include "HePlugin/HCie1931Widget.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QSettings>
 #include <QtWidgets/QAction>
@@ -23,7 +24,7 @@ HTestWidget2000Private::HTestWidget2000Private()
     testData->setData("[使用调整]", false);
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     displays = QStringList() << "[测量日期]" << "[测量时间]"
-                             << "[分级]"
+                             << "[分级]" << "[色容差]"
                              << "[光谱光通量]" << "[光功率]"
                              << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
                              << "[色温]" << "[色纯度]"
@@ -71,6 +72,8 @@ void HTestWidget2000::handleAction(HActionType action)
         clearResult();
         if (action == ACT_RESET_SPECTRUM)
             d->energyWidget->initCoordinate();
+        if (action == ACT_RESET_CHROMATISM)
+            d->chromatismWidget->initMenuShow();
         if (action == ACT_RESET_GRADE)
             resetGrade();
         return;
@@ -94,13 +97,15 @@ void HTestWidget2000::createWidget()
     auto splitter2 = new QSplitter(Qt::Vertical);
     d->testSetWidget = new HTestSetWidget2000;
     d->energyWidget = new HSpecEnergyWidget;
-    d->cieWidget = new HCIE1931Widget;
+    d->chromatismWidget = new HSpecChromatismChartView;
+    d->cieWidget = new HCie1931Widget;
     d->detailWidget = new HDetailWidget2000;
     d->resultWidget = new HResultTableWidget;
     d->resultWidget->setDisplay(d->displays);
     d->resultWidget->setSelected(d->tableSelecteds);
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
+    tabWidget2->addTab(d->chromatismWidget, d->chromatismWidget->windowTitle());
     tabWidget3->addTab(d->detailWidget, tr("当次结果"));
     tabWidget3->addTab(d->resultWidget, tr("结果列表"));
     splitter1->addWidget(tabWidget1);

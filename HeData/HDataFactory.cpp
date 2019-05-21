@@ -5,6 +5,9 @@
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
+#include "HChromatism.h"
+#include "HChromatismCollection.h"
+#include "HChromatismItem.h"
 #include "HGradeCollection.h"
 #include "HSequentialGrade.h"
 #include "HParallelGrade.h"
@@ -101,6 +104,30 @@ ISpecCalibrate *HDataFactory::createSpecCalibrate(QString type, QVariantMap para
 {
     Q_UNUSED(type)
     ISpecCalibrate *p = new HSpecCalibrate;
+    p->initialize(param);
+    return p;
+}
+
+IChromatismCollection *HDataFactory::createChromatismCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IChromatismCollection *p = new HChromatismCollection(this);
+    p->initialize(param);
+    return p;
+}
+
+IChromatism *HDataFactory::createChromatism(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IChromatism *p = new HChromatism;
+    p->initialize(param);
+    return p;
+}
+
+IChromatismItem *HDataFactory::createChromatismItem(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    IChromatismItem *p = new HChromatismItem;
     p->initialize(param);
     return p;
 }

@@ -1,8 +1,6 @@
 HEADERS += \
     $$PWD/HSpecSampleWidget.h \
     $$PWD/HSpecSampleWidget_p.h \
-    $$PWD/HSpecSampleChartView.h \
-    $$PWD/HSpecSampleChartView_p.h \
     $$PWD/HSpecEnergyWidget.h \
     $$PWD/HSpecEnergyWidget_p.h \
     $$PWD/HSpecSettingDialog.h \
@@ -13,8 +11,6 @@ HEADERS += \
     $$PWD/HSpecFittingWidget.h \
     $$PWD/HSpecFittingLinearWidget.h \
     $$PWD/HSpecFittingLinearWidget_p.h \
-    $$PWD/HSpecFittingChartView.h \
-    $$PWD/HSpecFittingChartView_p.h \
     $$PWD/HSpecDetailWidget.h \
     $$PWD/HSpecDetailWidget_p.h \
     $$PWD/HSpecCalibrateWidget.h \
@@ -22,21 +18,22 @@ HEADERS += \
     $$PWD/HSpecCalibrateSetWidget.h \
     $$PWD/HSpecCalibrateSetWidget_p.h \
     $$PWD/HSpecCalibrateDialog.h \
-    $$PWD/HSpecCalibrateDialog_p.h
+    $$PWD/HSpecCalibrateDialog_p.h \
+    $$PWD/HSpecChromatismWidget.h \
+    $$PWD/HSpecChromatismWidget_p.h
 
 SOURCES += \
     $$PWD/HSpecSampleWidget.cpp \
-    $$PWD/HSpecSampleChartView.cpp \
     $$PWD/HSpecEnergyWidget.cpp \
     $$PWD/HSpecSettingDialog.cpp \
     $$PWD/HSpecPelsWaveWidget.cpp \
     $$PWD/HSpecFittingWidget.cpp \
     $$PWD/HSpecFittingLinearWidget.cpp \
-    $$PWD/HSpecFittingChartView.cpp \
     $$PWD/HSpecDetailWidget.cpp \
     $$PWD/HSpecCalibrateWidget.cpp \
     $$PWD/HSpecCalibrateSetWidget.cpp \
     $$PWD/HSpecCalibrateDialog.cpp \
+    $$PWD/HSpecChromatismWidget.cpp
 
 FORMS += \
     $$PWD/HSpecSettingDialog.ui \

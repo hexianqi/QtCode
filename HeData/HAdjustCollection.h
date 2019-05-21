@@ -16,7 +16,7 @@ class HAdjustCollection : public IAdjustCollection
     Q_DECLARE_PRIVATE(HAdjustCollection)
 
 public:
-    HAdjustCollection(IDataFactory *);
+    explicit HAdjustCollection(IDataFactory *);
     virtual ~HAdjustCollection();
 
 public:

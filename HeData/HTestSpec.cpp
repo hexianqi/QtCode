@@ -138,7 +138,6 @@ bool HTestSpecPrivate::calcSpec()
     specFacade->calcSpectrum(specData);
     specData->LuminousFlux = calibrate->calcLuminous(specData->VisionEnergy / data("[积分时间]").toDouble());
     specData->LuminousPower = specData->LuminousFlux * specData->VisionEnergyRatio;
-//    m_pSpectrum->SDCM = m_pChromatism->calcSdcm(m_pSpectrum->ColorTemperature, m_pSpectrum->CoordinateXy);
     addData("[峰值波长]", specData->PeakWave);
     addData("[峰值带宽]", specData->Bandwidth);
     addData("[主波长]", specData->DominantWave);
@@ -162,7 +161,6 @@ bool HTestSpecPrivate::calcSpec()
     addData("[显色指数Rx]", renderingIndexS());
     addData("[光谱光通量]", specData->LuminousFlux);
     addData("[光功率]", specData->LuminousPower);
-    addData("[色容差]", specData->SDCM);
     return true;
 }
 

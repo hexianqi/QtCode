@@ -60,4 +60,32 @@ double HSpecHelper::planckPrime(double wave, double tc)
     return C1 * C2 * qPow(tc, -2) * qPow(wave, -6) * temp * qPow(temp - 1, -2);
 }
 
+QVector<double> HSpecHelper::abt2g(QVector<double> value)
+{
+    if (value.size() < 3)
+        return QVector<double>(3);
+
+    auto a = value[0];
+    auto b = value[1];
+    auto theta = qDegreesToRadians(value[2]);
+    return QVector<double>() << qCos(theta) * qCos(theta) / a / a + qSin(theta) * qSin(theta) / b / b
+                             << qSin(theta) * qCos(theta) * (1 / a / a - 1 / b / b)
+                             << qSin(theta) * qSin(theta) / a / a + qCos(theta) * qCos(theta) / b / b;
+}
+
+QVector<double> HSpecHelper::g2abt(QVector<double> value)
+{
+    if (value.size() < 3)
+        return QVector<double>(3);
+
+    auto theta = qAtan(2 * value[1] / (value[0] - value[2]));
+    if (theta < 0)
+        theta += M_PI;
+    auto a = value[0] + value[2] + (value[0] - value[2]) / qCos(theta);
+    auto b = value[0] + value[2] - (value[0] - value[2]) / qCos(theta);
+    return QVector<double>() << qSqrt(2 / a)
+                             << qSqrt(2 / b)
+                             << qRadiansToDegrees(theta/2);
+}
+
 HE_ALGORITHM_END_NAMESPACE
