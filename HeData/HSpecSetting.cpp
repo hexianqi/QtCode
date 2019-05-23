@@ -1,4 +1,5 @@
 #include "HSpecSetting_p.h"
+#include "HDataHelper.h"
 #include "HeAlgorithm/HInterp.h"
 #include "HeAlgorithm/HSpecHelper.h"
 #include <QtCore/QDataStream>
@@ -40,6 +41,40 @@ void HSpecSetting::writeContent(QDataStream &s)
     Q_D(HSpecSetting);
     s << quint32(1);
     s << d->datas;
+}
+
+QVector<uchar> HSpecSetting::toBinaryData()
+{
+    auto pels = data("[光谱保留像元]").toPoint();
+    auto times = data("[光谱平滑次数]").toInt();
+    auto range = data("[光谱平滑范围]").toInt();
+    auto frame = data("[光谱平滑帧数]").toInt();
+    auto tc = int(data("[标准色温]").toDouble() * 10);
+    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
+                               << HDataHelper::writeUInt16(1)  // 版本
+                               << HDataHelper::writeUInt16(pels.x())
+                               << HDataHelper::writeUInt16(pels.y())
+                               << HDataHelper::writeUInt16(times)
+                               << HDataHelper::writeUInt16(range)
+                               << HDataHelper::writeUInt16(frame)
+                               << HDataHelper::writeUInt16(tc);
+    r[0] = r.size() / 256;
+    r[1] = r.size() % 256;
+    return r;
+}
+
+bool HSpecSetting::fromBinaryData(QVector<uchar> data, int &pos)
+{
+    int version = 0;
+    if (!HDataHelper::checkHead(data, pos, version))
+        return false;
+
+    setData("[光谱保留像元]", QPoint(HDataHelper::readUInt16(data, pos), HDataHelper::readUInt16(data, pos)));
+    setData("[光谱平滑次数]", HDataHelper::readUInt16(data, pos));
+    setData("[光谱平滑范围]", HDataHelper::readUInt16(data, pos));
+    setData("[光谱平滑帧数]", HDataHelper::readUInt16(data, pos));
+    setData("[标准色温]", HDataHelper::readUInt16(data, pos) / 10.0);
+    return true;
 }
 
 void HSpecSetting::restoreDefault()

@@ -175,8 +175,10 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_SET_INTEGRAL_TIME,             tr("设置积分时间"));
     hashActionComment.insert(ACT_SET_SPECTRUM_AVG_TIMES,        tr("设置光谱平均次数"));
     hashActionComment.insert(ACT_SET_SPECTRUM_SAMPLE_DELAY,     tr("设置光谱采样延时"));
+    hashActionComment.insert(ACT_SET_RAM,                       tr("设置RAM数据"));
     hashActionComment.insert(ACT_GET_INTEGRAL_TIME,             tr("获取积分时间"));
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
+    hashActionComment.insert(ACT_GET_RAM,                       tr("获取RAM数据"));
 
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
 
@@ -276,10 +278,12 @@ void HCoreGlobalInstance::initErrorComment()
     hashErrorComment.insert(E_PORT_READ_DATA_LESS,              tr("接收数据太少"));
     hashErrorComment.insert(E_PORT_READ_FAILED,                 tr("接收数据失败"));
     hashErrorComment.insert(E_DEVICE_INVALID,                   tr("设备无效"));
-    hashErrorComment.insert(E_DEVICE_NO_FOUND,                  tr("找不到设备"));
-    hashErrorComment.insert(E_DEVICE_ACTION_ERROR,              tr("设备命令错误"));
+    hashErrorComment.insert(E_DEVICE_NOT_FOUND,                 tr("设备找不到"));
+    hashErrorComment.insert(E_DEVICE_ACTION_NOT_SUPPORT,        tr("设备命令不支持"));
+    hashErrorComment.insert(E_DEVICE_ACTION_PARAM_ERROR,        tr("设备命令参数错误"));
     hashErrorComment.insert(E_DEVICE_CHECKCODE_ERROR,           tr("设备校验码错误"));
-    hashErrorComment.insert(E_DEVICE_RETURN_DATA_ERROR,         tr("设备返回数据错误"));
+    hashErrorComment.insert(E_DEVICE_DATA_SEND_ERROR,           tr("设备发送数据错误"));
+    hashErrorComment.insert(E_DEVICE_DATA_RETURN_ERROR,         tr("设备返回数据错误"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_OK,               tr("设备反馈 - 成功"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_FORMAT_ERROR,     tr("设备反馈 - 格式错误"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_MODULE_NORESPONSE,tr("设备反馈 - 模块无应答"));
@@ -446,9 +450,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[理论光通量]"),                      FTypeInfo(tr("[理论光通量]"), tr("lm"), 0, 99999, 2, 100));
 //    //光谱能量参数
 
-//    ;
-//
-//
 //    hashFormatInfo.insert(tr("[循环采样间隔]"),                    FTypeInfo(tr("[循环采样间隔]"), 0, 20000));
 //
 //

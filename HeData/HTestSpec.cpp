@@ -315,4 +315,16 @@ double HTestSpec::pelsToWave(double value)
     return d->calibrate->pelsToWave(value);
 }
 
+bool HTestSpec::setRam(QVector<uchar> value)
+{
+    Q_D(HTestSpec);
+    return d->calibrate->fromBinaryData(value);
+}
+
+QVector<uchar> HTestSpec::getRam()
+{
+    Q_D(HTestSpec);
+    return d->calibrate->toBinaryData();
+}
+
 HE_DATA_END_NAMESPACE

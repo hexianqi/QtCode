@@ -1,4 +1,5 @@
 #include "HSpecPelsWave_p.h"
+#include "HDataHelper.h"
 #include "HeAlgorithm/HMath.h"
 #include <QtCore/QDataStream>
 
@@ -41,6 +42,33 @@ void HSpecPelsWave::writeContent(QDataStream &s)
     s << quint32(1);
     s << d->datas;
     s << d->pelsWave;
+}
+
+QVector<uchar> HSpecPelsWave::toBinaryData()
+{
+    Q_D(HSpecPelsWave);
+    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
+                               << HDataHelper::writeUInt16(1)  // 版本
+                               << HDataHelper::writeUInt16(d->pelsWave.size());
+    for (auto p : d->pelsWave)
+        r << HDataHelper::writeUInt16(p.x()) << HDataHelper::writeUInt16(p.y() * 10);
+    r[0] = r.size() / 256;
+    r[1] = r.size() % 256;
+    return r;
+}
+
+bool HSpecPelsWave::fromBinaryData(QVector<uchar> data, int &pos)
+{
+    Q_D(HSpecPelsWave);
+    int version = 0;
+    if (!HDataHelper::checkHead(data, pos, version))
+        return false;
+
+    d->pelsWave.clear();
+    auto size = HDataHelper::readUInt16(data, pos);
+    for (int i = 0; i < size; i++)
+        d->pelsWave << QPointF(HDataHelper::readUInt16(data, pos), HDataHelper::readUInt16(data, pos) / 10.0);
+    return true;
 }
 
 void HSpecPelsWave::restoreDefault()

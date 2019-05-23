@@ -34,6 +34,16 @@ void HSpecFitting::writeContent(QDataStream &s)
     s << d->fittingPoints;
 }
 
+QVector<uchar> HSpecFitting::toBinaryData()
+{
+    return QVector<uchar>();
+}
+
+bool HSpecFitting::fromBinaryData(QVector<uchar> data, int &pos)
+{
+    return true;
+}
+
 void HSpecFitting::restoreDefault()
 {
     Q_D(HSpecFitting);

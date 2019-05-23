@@ -44,7 +44,6 @@ protected:
 protected:
     virtual bool openProtocol();
     virtual void closeProtocol();
-    virtual void actionFail(HActionType action, HErrorType error);
 
 protected:
     QScopedPointer<HAbstractThreadPrivate> d_ptr;

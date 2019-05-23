@@ -35,7 +35,16 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
 
-    testJson();
+    QVector<int> v;
+    for (int i = 0; i < 10; i++)
+        v << i+1;
+
+    int pos = 0;
+    qDebug() << v[pos++] * 100 + v[pos++] << pos;
+    qDebug() << v[pos++] * 100 + v[pos++] << pos;
+    qDebug() << v[pos++] * 100 + v[pos++] << pos;
+    qDebug() << v[pos++] * 100 + v[pos++] << pos;
+    qDebug() << v[pos++] * 100 + v[pos++] << pos;
 
 //    auto widget = HTestTable::multHeaderTableWidget();
 //    widget->show();

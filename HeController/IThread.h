@@ -8,6 +8,7 @@
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
+#include "HeCore/HErrorType.h"
 #include <QtCore/QThread>
 
 HE_CORE_USE_NAMESPACE
@@ -25,7 +26,7 @@ signals:
     void startFailed(QString text);
     void startFinished();
     void stopFinished();
-    void actionFailed(HActionType action, QString text);
+    void actionFailed(HActionType action, HErrorType error);
     void actionFinished(HActionType action);
 
 public:

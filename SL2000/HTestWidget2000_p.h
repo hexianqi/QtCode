@@ -35,6 +35,8 @@ public:
 public:
     QAction *actionClear;
     QAction *actionAdjust;
+    QAction *actionSetRam;
+    QAction *actionGetRam;
 };
 
 #endif // HTESTWIDGET2000_P_H

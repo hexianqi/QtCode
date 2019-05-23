@@ -6,6 +6,7 @@
 #define HABSTRACTMODEL_H
 
 #include "IModel.h"
+#include "HeCore/HErrorType.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -40,7 +41,7 @@ protected:
     void stopDelayThread();
     void initWorkThread();
     void stopWorkThread();
-
+    void handleActionFailed(HActionType action, HErrorType error);
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

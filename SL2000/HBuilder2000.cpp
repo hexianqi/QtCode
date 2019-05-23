@@ -96,6 +96,7 @@ void HBuilder2000::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
+// 第一版设备
 void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
@@ -120,6 +121,30 @@ void HBuilder2000::buildDevice()
     HAppContext::setContextPointer("IDeviceCollection", devices);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
+
+//// 第二版设备
+//void HBuilder2000::buildDevice()
+//{
+//    Q_D(HBuilder2000);
+//    QVariantMap param;
+//    param.insert("timeOut", 1000);
+//    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
+//    auto device = d->communicateFactory->createDevice("HSlDevice2");
+//    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
+//    auto protocol = d->communicateFactory->createProtocol("HProtocol");
+//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
+//    device->setPort(port, 0, false);
+//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x00);
+//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x01);
+//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x10 << 0x50 << 0x02);
+//    device->addActionParam(ACT_SET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x03);
+//    device->addActionParam(ACT_GET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x04);
+//    devices->insert("Spec", device);
+//    protocol->setDevice(device);
+//    protocols->insert("Spec", protocol);
+//    HAppContext::setContextPointer("IDeviceCollection", devices);
+//    HAppContext::setContextPointer("IProtocolCollection", protocols);
+//}
 
 void HBuilder2000::buildThread()
 {
@@ -203,7 +228,7 @@ void HBuilder2000::buildMenu()
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
 

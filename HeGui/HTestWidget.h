@@ -31,7 +31,6 @@ protected:
     virtual void createAction();
     virtual void createMenu() = 0;
     virtual void createToolBar() = 0;
-    virtual void initMenu() = 0;
     virtual void initToolBar();
     virtual void exportExcel();
     virtual void exportDatabase();

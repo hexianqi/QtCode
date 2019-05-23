@@ -3,6 +3,7 @@
 #include "HUsbPortCy.h"
 #include "HDeviceCollection.h"
 #include "HSlDevice.h"
+#include "HSlDevice2.h"
 #include "HSlCodecDevice.h"
 #include "HProtocol.h"
 #include "HProtocolCollection.h"
@@ -78,6 +79,7 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HSerialPort>("HSerialPort");
     HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
     HFactory::registerClass<HSlDevice>("HSlDevice");
+    HFactory::registerClass<HSlDevice2>("HSlDevice2");
     HFactory::registerClass<HSlCodecDevice>("HSlCodecDevice");
 }
 

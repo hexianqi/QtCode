@@ -36,12 +36,14 @@ HEADERS     += \
             HConfigManage.h \
             HConfigManage_p.h \
             HAbstractDataItem.h \
-            HAbstractDataItem_p.h
+            HAbstractDataItem_p.h \
+    HDataHelper.h
 
 SOURCES     += \
             HDataFactory.cpp \
             HConfigManage.cpp \
-            HAbstractDataItem.cpp
+            HAbstractDataItem.cpp \
+    HDataHelper.cpp
 
 INCLUDEPATH += ..
 

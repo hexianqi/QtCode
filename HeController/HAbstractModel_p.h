@@ -32,7 +32,7 @@ public:
     IConfigManage *configManage = nullptr;
     IDeviceCollection *devices = nullptr;
     IThreadCollection *threads = nullptr;
-    HDelayThread *delayThread;
+    HDelayThread *delayThread = nullptr;
 };
 
 HE_CONTROLLER_END_NAMESPACE

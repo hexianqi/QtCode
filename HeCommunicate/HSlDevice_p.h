@@ -3,7 +3,6 @@
 
 #include "HSlDevice.h"
 #include "HAbstractDevice_p.h"
-#include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

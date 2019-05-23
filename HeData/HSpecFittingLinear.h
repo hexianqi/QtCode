@@ -22,6 +22,10 @@ public:
 public:
     QString typeName() override;
 
+public:
+    QVector<uchar> toBinaryData() override;
+    bool fromBinaryData(QVector<uchar> data, int &pos) override;
+
 protected:
     HSpecFittingLinear(HSpecFittingLinearPrivate &p);
 

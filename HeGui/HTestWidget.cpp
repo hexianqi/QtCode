@@ -39,7 +39,6 @@ void HTestWidget::init()
     createAction();
     createMenu();
     createToolBar();
-    initMenu();
     initToolBar();
 }
 

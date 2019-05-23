@@ -29,7 +29,6 @@ protected:
     void createAction() override;
     void createMenu() override;
     void createToolBar() override;
-    void initMenu() override;
 
 protected:
     void handleTestStateChanged(bool b);

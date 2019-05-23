@@ -1,4 +1,5 @@
 #include "HSpecCalibrate_p.h"
+#include "HDataHelper.h"
 #include "HSpecSetting.h"
 #include "HSpecFittingLinear.h"
 #include "HSpecFittingTest.h"
@@ -61,6 +62,36 @@ void HSpecCalibrate::writeContent(QDataStream &s)
     d_ptr->stdCurve->writeContent(s);
     d_ptr->fitting->writeContent(s);
     d_ptr->luminous->writeContent(s);
+}
+
+QVector<uchar> HSpecCalibrate::toBinaryData()
+{
+    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)       // 大小
+                               << HDataHelper::writeUInt16(1)       // 版本
+                               << d_ptr->setting->toBinaryData()
+                               << d_ptr->pelsWave->toBinaryData()
+                               << d_ptr->stdCurve->toBinaryData()
+                               << d_ptr->fitting->toBinaryData();
+    r[0] = r.size() / 256;
+    r[1] = r.size() % 256;
+    return r;
+}
+
+bool HSpecCalibrate::fromBinaryData(QVector<uchar> data)
+{
+    int pos = 0;
+    int version = 0;
+    if (!HDataHelper::checkHead(data, pos, version))
+        return false;
+    if (!d_ptr->setting->fromBinaryData(data, pos))
+        return false;
+    if (!d_ptr->pelsWave->fromBinaryData(data, pos))
+        return false;
+    if (!d_ptr->stdCurve->fromBinaryData(data, pos))
+        return false;
+    if (!d_ptr->fitting->fromBinaryData(data, pos))
+        return false;
+    return true;
 }
 
 IDataItem *HSpecCalibrate::item(SpecType type)

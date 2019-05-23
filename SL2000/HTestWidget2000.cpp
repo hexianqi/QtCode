@@ -5,10 +5,11 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestData.h"
 #include "HeData/IGradeCollection.h"
+#include "HeController/IModel.h"
+#include "HePlugin/HCie1931Widget.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HSpecChromatismChartView.h"
 #include "HeGui/HResultTableWidget.h"
-#include "HePlugin/HCie1931Widget.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QSettings>
 #include <QtWidgets/QAction>
@@ -130,16 +131,23 @@ void HTestWidget2000::createAction()
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
+    d->actionSetRam = new QAction(tr("写入数据到设备(&A)"), this);
+    d->actionGetRam = new QAction(tr("从设备读取数据(&A)"), this);
     connect(d->actionClear, &QAction::triggered, this, &HTestWidget2000::clearResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
+    connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
+    connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
 }
 
 void HTestWidget2000::createMenu()
 {
     Q_D(HTestWidget2000);
-    auto menu = new QMenu(tr("测试配置(&T)"));
-    menu->addAction(d->actionAdjust);
-    d->menus << menu;
+    auto menu1 = new QMenu(tr("测试配置(&T)"));
+    auto menu2 = new QMenu(tr("设备配置(&T)"));
+    menu1->addAction(d->actionAdjust);
+    menu2->addAction(d->actionSetRam);
+    menu2->addAction(d->actionGetRam);
+    d->menus << menu1 << menu2;
 }
 
 void HTestWidget2000::createToolBar()
@@ -154,10 +162,6 @@ void HTestWidget2000::createToolBar()
     toolBar2->addAction(d->actionExportExcel);
     toolBar2->addAction(d->actionExportDatabase);
     d->toolBars << toolBar1 << toolBar2;
-}
-
-void HTestWidget2000::initMenu()
-{
 }
 
 void HTestWidget2000::handleTestStateChanged(bool b)

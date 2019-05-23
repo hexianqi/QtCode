@@ -1,5 +1,6 @@
 #include "HSlCodecDevice_p.h"
 #include "HSlCodec.h"
+#include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 

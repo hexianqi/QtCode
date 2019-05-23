@@ -8,10 +8,13 @@ HEADERS += \
     $$PWD/HSlDevice.h \
     $$PWD/HSlDevice_p.h \
     $$PWD/HSlCodecDevice.h \
-    $$PWD/HSlCodecDevice_p.h
+    $$PWD/HSlCodecDevice_p.h \
+    $$PWD/HSlDevice2.h \
+    $$PWD/HSlDevice2_p.h
 
 SOURCES += \
     $$PWD/HAbstractDevice.cpp \
     $$PWD/HDeviceCollection.cpp \
     $$PWD/HDeviceSLCodec.cpp \
-    $$PWD/HSlDevice.cpp
+    $$PWD/HSlDevice.cpp \
+    $$PWD/HSlDevice2.cpp

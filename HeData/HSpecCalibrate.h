@@ -24,6 +24,8 @@ public:
 public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
+    QVector<uchar> toBinaryData() override;
+    bool fromBinaryData(QVector<uchar> data) override;
 
 public:
     IDataItem *item(SpecType type) override;

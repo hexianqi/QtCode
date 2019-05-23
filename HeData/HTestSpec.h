@@ -44,6 +44,8 @@ public:
 
 public:
     double pelsToWave(double value) override;
+    bool setRam(QVector<uchar> value) override;
+    QVector<uchar> getRam() override;
 
 protected:
     HTestSpec(HTestSpecPrivate &p);

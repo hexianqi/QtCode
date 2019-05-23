@@ -111,7 +111,7 @@ void HAbstractThread::debugMode()
             break;
         error = handleAction(action);
         if (error != E_OK)
-            actionFail(action, error);
+            emit actionFailed(action, error);
         emit actionFinished(action);
     }
     closeProtocol();
@@ -155,8 +155,8 @@ void HAbstractThread::normalMode()
         }
         if (i >= d_ptr->retry)
         {
-            actionFail(action, error);
-     //       break;
+            emit actionFailed(action, error);
+            break;
         }
     }
     closeProtocol();
@@ -187,11 +187,6 @@ void HAbstractThread::closeProtocol()
     for (auto p : d_ptr->protocols)
         p->close();
     emit stopFinished();
-}
-
-void HAbstractThread::actionFail(HActionType action, HErrorType error)
-{
-    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action)).arg(HCore::toComment(error)));
 }
 
 void HAbstractThread::readSettings()

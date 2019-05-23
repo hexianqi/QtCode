@@ -47,6 +47,10 @@ public:
 public:
     // 像元转波长
     virtual double pelsToWave(double value) = 0;
+    // 设置Ram
+    virtual bool setRam(QVector<uchar> value) = 0;
+    // 获取Ram
+    virtual QVector<uchar> getRam() = 0;
 };
 
 HE_DATA_END_NAMESPACE

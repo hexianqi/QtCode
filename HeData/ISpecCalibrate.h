@@ -31,6 +31,9 @@ public:
     virtual void readContent(QDataStream &) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
+    // 转换
+    virtual QVector<uchar> toBinaryData() = 0;
+    virtual bool fromBinaryData(QVector<uchar> data) = 0;
 
 public:
     // 校准子项

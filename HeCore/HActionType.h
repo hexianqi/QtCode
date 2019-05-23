@@ -19,8 +19,10 @@ using HActionType = long long;
 #define     ACT_SET_INTEGRAL_TIME                   0x00010101
 #define     ACT_SET_SPECTRUM_AVG_TIMES              0x00010102
 #define     ACT_SET_SPECTRUM_SAMPLE_DELAY           0x00010103
+#define     ACT_SET_RAM                             0x00010104
 #define     ACT_GET_INTEGRAL_TIME                   0x00010111
 #define     ACT_GET_SPECTRUM                        0x00010112
+#define     ACT_GET_RAM                             0x00010114
 
 #define     ACT_SINGLE_TEST                         0x10000001
 

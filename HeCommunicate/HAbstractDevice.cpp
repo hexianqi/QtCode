@@ -72,7 +72,7 @@ HErrorType HAbstractDevice::open()
             return E_OK;
         }
     }
-    return E_DEVICE_NO_FOUND;
+    return E_DEVICE_NOT_FOUND;
 }
 
 HErrorType HAbstractDevice::close()
