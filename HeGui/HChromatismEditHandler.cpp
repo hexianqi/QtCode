@@ -1,7 +1,8 @@
 #include "HChromatismEditHandler_p.h"
 #include "IMainWindow.h"
 #include "HListCollectionDialog.h"
-#include "HChromatismDetailWidget.h"
+#include "HDataDetail.h"
+#include "HChromatismEditWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IChromatismCollection.h"
@@ -39,11 +40,12 @@ void HChromatismEditHandler::execute(QObject *sender, QVariantMap param)
     Q_D(HChromatismEditHandler);
     Q_UNUSED(sender)
     Q_UNUSED(param)
-    auto widget = new HChromatismDetailWidget();
-    widget->setData(d->configManage->chromatismCollection());
+    auto detail = new HDataDetail<IChromatism>();
+    detail->setEditWidget(new HChromatismEditWidget);
+    detail->setData(d->configManage->chromatismCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("色容差数据配置"));
-    dlg.setDataDetailWidget(widget);
+    dlg.setDataDetail(detail);
     dlg.resize(1000, 600);
     dlg.exec();
     d->model->addAction(ACT_RESET_CHROMATISM);

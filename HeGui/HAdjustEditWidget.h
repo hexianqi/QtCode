@@ -39,6 +39,7 @@ public:
     void clearData() override;
     void saveData() override;
     void showData() override;
+    void setEnableEdit(bool b);
     void setTestData(QStringList value);
 
 public:
@@ -55,6 +56,7 @@ protected slots:
 
 private:
     void init();
+    void openEditDialog();
 
 private:
     QScopedPointer<HAdjustEditWidgetPrivate> d_ptr;

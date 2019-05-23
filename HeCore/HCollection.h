@@ -25,7 +25,6 @@ public:
 
 public:
     void initialize(QVariantMap param) override;
-    QString typeName() override;
 
 public:
     void clear() override;
@@ -73,12 +72,6 @@ void HCollection<T>::initialize(QVariantMap param)
         for (auto i = value.begin(); i != value.end(); i++)
             insert(i.key(), FromVariant(T, i.value()));
     }
-}
-
-template <typename T>
-QString HCollection<T>::typeName()
-{
-    return "HCollection<T>";
 }
 
 template <typename T>

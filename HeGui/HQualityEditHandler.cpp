@@ -1,7 +1,8 @@
 #include "HQualityEditHandler_p.h"
 #include "IMainWindow.h"
 #include "HListCollectionDialog.h"
-#include "HQualityDetailWidget.h"
+#include "HDataDetail.h"
+#include "HQualityEditWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IQualityCollection.h"
@@ -39,11 +40,12 @@ void HQualityEditHandler::execute(QObject *sender, QVariantMap param)
     Q_D(HQualityEditHandler);
     Q_UNUSED(sender)
     Q_UNUSED(param)
-    auto widget = new HQualityDetailWidget();
-    widget->setData(d->configManage->qualityCollection());
+    auto detail = new HDataDetail<IQuality>();
+    detail->setEditWidget(new HQualityEditWidget);
+    detail->setData(d->configManage->qualityCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("品质数据配置"));
-    dlg.setDataDetailWidget(widget);
+    dlg.setDataDetail(detail);
     dlg.resize(1200, 600);
     dlg.exec();
     d->model->addAction(ACT_RESET_QUALITY);

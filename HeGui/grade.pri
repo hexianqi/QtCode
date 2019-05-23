@@ -1,6 +1,4 @@
 HEADERS += \
-    $$PWD/HGradeDetailWidget.h \
-    $$PWD/HGradeDetailWidget_p.h \
     $$PWD/HAbstractGradeItemDialog.h \
     $$PWD/HAbstractGradeItemDialog_p.h \
     $$PWD/HGradeItemDialog.h \
@@ -13,7 +11,6 @@ HEADERS += \
     $$PWD/HGradeEditWidget_p.h
 
 SOURCES += \
-    $$PWD/HGradeDetailWidget.cpp \
     $$PWD/HAbstractGradeItemDialog.cpp \
     $$PWD/HGradeItemDialog.cpp \
     $$PWD/HGradeItem2DDialog.cpp \

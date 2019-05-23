@@ -1,11 +1,11 @@
 /***************************************************************************************************
-**      2019-04-28  HAdjustDetailWidget 抽象项详情窗体接口。
+**      2019-04-28  HAdjustDetail 数据详情模板。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTDATADETAILWIDGET_H
-#define HABSTRACTDATADETAILWIDGET_H
+#ifndef HDATADETAIL_H
+#define HDATADETAIL_H
 
-#include "IDataDetailWidget.h"
+#include "IDataDetail.h"
 #include "IDataEditWidget.h"
 #include "HeData/IDataCollection.h"
 #include "HeData/IFileStream.h"
@@ -15,7 +15,7 @@ HE_DATA_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
 
 template <typename T>
-class HAbstractDataDetailWidgetPrivate
+class HDataDetailPrivate
 {
 public:
     IDataEditWidget<T> *widget = nullptr;
@@ -24,13 +24,16 @@ public:
 };
 
 template <typename T>
-class HAbstractDataDetailWidget : public IDataDetailWidget
+class HDataDetail : public IDataDetail
 {
 public:
-    explicit HAbstractDataDetailWidget(QWidget *parent = nullptr);
-    ~HAbstractDataDetailWidget();
+    explicit HDataDetail(QWidget *parent = nullptr);
+    ~HDataDetail();
 
 public:
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
+    QWidget *editWidget() override;
     void start() override;
     void importFile() override;
     void exportFile() override;
@@ -38,57 +41,76 @@ public:
     void delItem(QString name) override;
     void setCurrentItem(QString name) override;
     void saveData() override;
+    virtual void setEditWidget(IDataEditWidget<T> *);
     virtual void setData(IDataCollection<T> *);
 
 protected:
-    HAbstractDataDetailWidget(HAbstractDataDetailWidgetPrivate<T> &p, QWidget *parent = nullptr);
+    HDataDetail(HDataDetailPrivate<T> &p, QWidget *parent = nullptr);
 
 protected:
-    QScopedPointer<HAbstractDataDetailWidgetPrivate<T>> d_ptr;
+    QScopedPointer<HDataDetailPrivate<T>> d_ptr;
 };
 
 template <typename T>
-HAbstractDataDetailWidget<T>::HAbstractDataDetailWidget(QWidget *parent) :
-    IDataDetailWidget(parent),
-    d_ptr(new HAbstractDataDetailWidgetPrivate<T>)
+HDataDetail<T>::HDataDetail(QWidget *parent) :
+    IDataDetail(parent),
+    d_ptr(new HDataDetailPrivate<T>)
 {
 }
 
 template<typename T>
-HAbstractDataDetailWidget<T>::HAbstractDataDetailWidget(HAbstractDataDetailWidgetPrivate<T> &p, QWidget *parent) :
-    IDataDetailWidget(parent),
+HDataDetail<T>::HDataDetail(HDataDetailPrivate<T> &p, QWidget *parent) :
+    IDataDetail(parent),
     d_ptr(&p)
 {
 }
 
 template <typename T>
-HAbstractDataDetailWidget<T>::~HAbstractDataDetailWidget()
+HDataDetail<T>::~HDataDetail()
 {
 }
 
+template<typename T>
+void HDataDetail<T>::initialize(QVariantMap /*param*/)
+{
+
+}
+
+template<typename T>
+QString HDataDetail<T>::typeName()
+{
+    return QString("HDataDetail<T>");
+}
+
+template<typename T>
+QWidget *HDataDetail<T>::editWidget()
+{
+    return d_ptr->widget;
+}
+
 template <typename T>
-void HAbstractDataDetailWidget<T>::start()
+void HDataDetail<T>::start()
 {
     if (d_ptr->datas != nullptr)
         emit sourceChanged(d_ptr->datas->keys(), d_ptr->datas->useIndex());
 }
 
 template <typename T>
-void HAbstractDataDetailWidget<T>::importFile()
+void HDataDetail<T>::importFile()
 {
     if (d_ptr->datas->fileStream()->openFile())
         emit sourceChanged(d_ptr->datas->keys(), d_ptr->datas->useIndex());
 }
 
 template <typename T>
-void HAbstractDataDetailWidget<T>::exportFile()
+void HDataDetail<T>::exportFile()
 {
     saveData();
     d_ptr->datas->fileStream()->saveAsFile();
 }
 
 template <typename T>
-void HAbstractDataDetailWidget<T>::addItem(QString name)
+void HDataDetail<T>::addItem(QString name)
 {
     auto data = d_ptr->widget->createData();
     d_ptr->datas->insert(name, data);
@@ -96,7 +118,7 @@ void HAbstractDataDetailWidget<T>::addItem(QString name)
 }
 
 template <typename T>
-void HAbstractDataDetailWidget<T>::delItem(QString name)
+void HDataDetail<T>::delItem(QString name)
 {
     d_ptr->widget->clearData();
     if (d_ptr->datas->remove(name) > 0)
@@ -104,7 +126,7 @@ void HAbstractDataDetailWidget<T>::delItem(QString name)
 }
 
 template <typename T>
-void HAbstractDataDetailWidget<T>::setCurrentItem(QString name)
+void HDataDetail<T>::setCurrentItem(QString name)
 {
     saveData();
     d_ptr->datas->setUseIndex(name);
@@ -113,13 +135,21 @@ void HAbstractDataDetailWidget<T>::setCurrentItem(QString name)
 }
 
 template<typename T>
-void HAbstractDataDetailWidget<T>::saveData()
+void HDataDetail<T>::saveData()
 {
     d_ptr->widget->saveData();
 }
 
 template<typename T>
-void HAbstractDataDetailWidget<T>::setData(IDataCollection<T> *p)
+void HDataDetail<T>::setEditWidget(IDataEditWidget<T> *p)
+{
+    if (d_ptr->widget == p)
+        return;
+    d_ptr->widget = p;
+}
+
+template<typename T>
+void HDataDetail<T>::setData(IDataCollection<T> *p)
 {
     if (d_ptr->datas == p)
         return;
@@ -129,4 +159,4 @@ void HAbstractDataDetailWidget<T>::setData(IDataCollection<T> *p)
 
 HE_GUI_END_NAMESPACE
 
-#endif // HABSTRACTDATADETAILWIDGET_H
+#endif // HDATADETAIL_H

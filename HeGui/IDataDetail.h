@@ -1,29 +1,30 @@
 /***************************************************************************************************
-**      2019-04-19  IItemDetailWidget 项详情窗体接口。
+**      2019-04-19  IItemDetail 数据详情接口。
 ***************************************************************************************************/
 
-#ifndef IDATADETAILWIDGET_H
-#define IDATADETAILWIDGET_H
+#ifndef IDATADETAIL_H
+#define IDATADETAIL_H
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include <QtWidgets/QWidget>
 
 HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class IDataDetailWidget : public QWidget, public IInitializeable
+class IDataDetail : public QObject, public IInitializeable
 {
     Q_OBJECT
 
 public:
-    using QWidget::QWidget;
+    using QObject::QObject;
 
 signals:
     void sourceChanged(QStringList names, QString name);
 
 public:
+    // 编辑窗体
+    virtual QWidget *editWidget() = 0;
     // 启用
     virtual void start() = 0;
     // 导入文件
@@ -42,4 +43,4 @@ public:
 
 HE_GUI_END_NAMESPACE
 
-#endif // IDATADETAILWIDGET_H
+#endif // IDATADETAIL_H

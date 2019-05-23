@@ -20,6 +20,7 @@ public:
     QStringList optionals;
     QStringList selecteds;
     QStringList unselecteds;
+    QAction *actionEdit;
 };
 
 HE_GUI_END_NAMESPACE

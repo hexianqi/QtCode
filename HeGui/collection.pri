@@ -1,9 +1,9 @@
 HEADERS += \
-    $$PWD/IDataDetailWidget.h \
     $$PWD/IDataEditWidget.h \
     $$PWD/HListCollectionDialog.h \
     $$PWD/HListCollectionDialog_p.h \
-    $$PWD/HAbstractDataDetailWidget.h
+    $$PWD/IDataDetail.h \
+    $$PWD/HDataDetail.h
 
 SOURCES += \
     $$PWD/HListCollectionDialog.cpp

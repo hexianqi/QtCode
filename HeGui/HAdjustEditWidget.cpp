@@ -8,7 +8,11 @@
 #include "HeData/IAdjustItem.h"
 #include "HePlugin/HPluginHelper.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
+#include <QtWidgets/QAction>
 #include <QtCore/QDebug>
+
+#include "HAdjustEditDialog.h"
+#include "HSimpleTestSetWidget.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -89,6 +93,11 @@ void HAdjustEditWidget::showData()
     }
 }
 
+void HAdjustEditWidget::setEnableEdit(bool b)
+{
+    d_ptr->actionEdit->setVisible(b);
+}
+
 void HAdjustEditWidget::setTestData(QStringList value)
 {
     ui->tableWidget->setColumn(2, value);
@@ -160,11 +169,26 @@ void HAdjustEditWidget::on_pushButton_4_clicked()
 
 void HAdjustEditWidget::init()
 {
+    d_ptr->actionEdit = new QAction(tr("编辑(&E)..."), this);
+    setContextMenuPolicy(Qt::ActionsContextMenu);
+    addAction(d_ptr->actionEdit);
+    connect(d_ptr->actionEdit, &QAction::triggered, this, &HAdjustEditWidget::openEditDialog);
+
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType("[调整比率]");
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("项类型") << tr("调整比率") << tr("测试值") << tr("标准值"));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->tableWidget->setItemDelegateForColumn(1, delegate);
+}
+
+void HAdjustEditWidget::openEditDialog()
+{
+    if (d_ptr->data == nullptr)
+        return;
+    HAdjustEditDialog dlg;
+    dlg.setTestSetWidget(new HSimpleTestSetWidget);
+    dlg.setData(d_ptr->data);
+    dlg.exec();
 }
 
 HE_GUI_END_NAMESPACE

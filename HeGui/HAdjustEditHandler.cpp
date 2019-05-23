@@ -1,7 +1,8 @@
 #include "HAdjustEditHandler_p.h"
 #include "IMainWindow.h"
 #include "HListCollectionDialog.h"
-#include "HAdjustDetailWidget.h"
+#include "HDataDetail.h"
+#include "HAdjustEditWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IAdjustCollection.h"
@@ -39,11 +40,12 @@ void HAdjustEditHandler::execute(QObject *sender, QVariantMap param)
     Q_D(HAdjustEditHandler);
     Q_UNUSED(sender)
     Q_UNUSED(param)
-    auto widget = new HAdjustDetailWidget();
-    widget->setData(d->configManage->adjustCollection());
+    auto detail = new HDataDetail<IAdjust>();
+    detail->setEditWidget(new HAdjustEditWidget);
+    detail->setData(d->configManage->adjustCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("调整数据配置"));
-    dlg.setDataDetailWidget(widget);
+    dlg.setDataDetail(detail);
     d->mainWindow->openCalibrateDlg(&dlg);
     d->model->addAction(ACT_RESET_ADJUST);
 }

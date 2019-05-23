@@ -63,6 +63,7 @@ void HAdjustEditDialog::init()
 {
     d_ptr->energyWidget = new HSpecEnergyWidget;
     d_ptr->editWidget = new HAdjustEditWidget;
+    d_ptr->editWidget->setEnableEdit(false);
     ui->groupBox_1->layout()->addWidget(d_ptr->energyWidget);
     ui->groupBox_2->layout()->addWidget(d_ptr->editWidget);
     ui->splitter_1->setStretchFactor(0,1);

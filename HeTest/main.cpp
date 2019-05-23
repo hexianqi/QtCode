@@ -13,6 +13,7 @@
 #include <QtWidgets/QTableWidget>
 #include <QtCharts/QChartView>
 #include <functional>
+#include <cxxabi.h>
 
 void testJson()
 {
@@ -30,11 +31,8 @@ void testJson()
     qDebug() << byte;
 }
 
-int main(int argc, char *argv[])
+void testVector()
 {
-    QApplication a(argc, argv);
-    a.addLibraryPath("./plugins");
-
     QVector<int> v;
     for (int i = 0; i < 10; i++)
         v << i+1;
@@ -45,6 +43,55 @@ int main(int argc, char *argv[])
     qDebug() << v[pos++] * 100 + v[pos++] << pos;
     qDebug() << v[pos++] * 100 + v[pos++] << pos;
     qDebug() << v[pos++] * 100 + v[pos++] << pos;
+}
+
+template <typename T>
+class NameTemplate
+{
+public:
+    QString name()
+    {
+        return abi::__cxa_demangle(typeid(T).name(), nullptr, nullptr, nullptr);
+//        return typeid(T).name();
+    }
+};
+
+template <typename T>
+QString name()
+{
+    return abi::__cxa_demangle(typeid(T).name(), nullptr, nullptr, nullptr);
+}
+
+void testTemplateName()
+{
+    NameTemplate<int> i;
+    NameTemplate<double> d;
+    NameTemplate<QString> s;
+    NameTemplate<QPoint> p;
+    NameTemplate<HTestGsl> c;
+    qDebug() << i.name();
+    qDebug() << d.name();
+    qDebug() << s.name();
+    qDebug() << p.name();
+    qDebug() << c.name();
+    qDebug() << name<int>();
+    qDebug() << name<QString>();
+    qDebug() << name<HTestGsl>();
+}
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    a.addLibraryPath("./plugins");
+
+
+
+
+
+
+
+
+
 
 //    auto widget = HTestTable::multHeaderTableWidget();
 //    widget->show();

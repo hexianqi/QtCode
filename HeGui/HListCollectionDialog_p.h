@@ -12,7 +12,7 @@ class HListCollectionDialogPrivate
 {
 public:
     QStringListModel *model;
-    IDataDetailWidget *widget;
+    IDataDetail *detail;
 
 public:
     QModelIndex currentIndex;

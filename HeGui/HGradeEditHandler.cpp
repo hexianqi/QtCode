@@ -1,7 +1,8 @@
 #include "HGradeEditHandler_p.h"
 #include "IMainWindow.h"
 #include "HListCollectionDialog.h"
-#include "HGradeDetailWidget.h"
+#include "HDataDetail.h"
+#include "HGradeEditWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
@@ -39,11 +40,12 @@ void HGradeEditHandler::execute(QObject *sender, QVariantMap param)
     Q_D(HGradeEditHandler);
     Q_UNUSED(sender)
     Q_UNUSED(param)
-    auto widget = new HGradeDetailWidget();
-    widget->setData(d->configManage->gradeCollection());
+    auto detail = new HDataDetail<IGrade>();
+    detail->setEditWidget(new HGradeEditWidget);
+    detail->setData(d->configManage->gradeCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("分级数据配置"));
-    dlg.setDataDetailWidget(widget);
+    dlg.setDataDetail(detail);
     dlg.resize(1000, 600);
     dlg.exec();
     d->model->addAction(ACT_RESET_GRADE);
