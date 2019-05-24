@@ -10,6 +10,7 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
+// 获取类名称
 template <typename T>
 char *className()
 {

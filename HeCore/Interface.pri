@@ -4,7 +4,8 @@ HEADERS += \
     $$PWD/IHandler.h \
     $$PWD/IInvoker.h \
     $$PWD/ICollection.h \
-    $$PWD/IConstructorCall.h
+    $$PWD/IConstructorCall.h \
+    $$PWD/IBatch.h
 
 SOURCES += \
     $$PWD/Interface.cpp

@@ -6,20 +6,20 @@
 
 HE_ALGORITHM_USE_NAMESPACE
 
-HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate(HRibbonDiagramWidget *q)
-    : HCartesianWidgetPrivate(q)
+HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate(HRibbonDiagramWidget *q) :
+    HCartesianWidgetPrivate(q)
 {
     pixmapRibbon.load(":/image/7color.png");
 }
 
-HRibbonDiagramWidget::HRibbonDiagramWidget(QWidget *parent)
-    : HCartesianWidget(*new HRibbonDiagramWidgetPrivate(this), parent)
+HRibbonDiagramWidget::HRibbonDiagramWidget(QWidget *parent) :
+    HCartesianWidget(*new HRibbonDiagramWidgetPrivate(this), parent)
 {
     init();
 }
 
-HRibbonDiagramWidget::HRibbonDiagramWidget(HRibbonDiagramWidgetPrivate &p, QWidget *parent)
-    : HCartesianWidget(p, parent)
+HRibbonDiagramWidget::HRibbonDiagramWidget(HRibbonDiagramWidgetPrivate &p, QWidget *parent) :
+    HCartesianWidget(p, parent)
 {
     init();
 }
