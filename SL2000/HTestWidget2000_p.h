@@ -12,7 +12,7 @@ HE_DATA_END_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 class HSpecEnergyWidget;
-class HSpecChromatismChartView;
+class HSpecChromatismWidget;
 class HResultTableWidget;
 class ITestSetWidget;
 class ITestDetailWidget;
@@ -26,7 +26,7 @@ public:
 public:
     IConfigManage *configManage;
     HSpecEnergyWidget *energyWidget;
-    HSpecChromatismChartView *chromatismWidget;
+    HSpecChromatismWidget *chromatismWidget;
     HCie1931Widget *cieWidget;
     HResultTableWidget *resultWidget;
     ITestSetWidget *testSetWidget;

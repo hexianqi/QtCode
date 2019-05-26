@@ -37,13 +37,15 @@ HEADERS     += \
             HConfigManage_p.h \
             HAbstractDataItem.h \
             HAbstractDataItem_p.h \
-    HDataHelper.h
+            HDataHelper.h
 
 SOURCES     += \
             HDataFactory.cpp \
             HConfigManage.cpp \
             HAbstractDataItem.cpp \
-    HDataHelper.cpp
+            HDataHelper.cpp
+
+RESOURCES   = HeData.qrc
 
 INCLUDEPATH += ..
 

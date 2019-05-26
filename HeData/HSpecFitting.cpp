@@ -39,7 +39,7 @@ QVector<uchar> HSpecFitting::toBinaryData()
     return QVector<uchar>();
 }
 
-bool HSpecFitting::fromBinaryData(QVector<uchar> data, int &pos)
+bool HSpecFitting::fromBinaryData(QVector<uchar> /*data*/, int &/*pos*/)
 {
     return true;
 }

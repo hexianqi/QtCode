@@ -82,6 +82,8 @@ void HChromatismEditWidget::saveData()
         item->setData("[轴A]", ui->tableWidget->item(i, 8)->text().toDouble() * 0.0001);
         item->setData("[轴B]", ui->tableWidget->item(i, 9)->text().toDouble() * 0.0001);
         item->setData("[旋转角]", ui->tableWidget->item(i, 10)->text().toDouble());
+        item->setData("[测试点]", item->data("[中心点]"));
+        item->setData("[测试Sdcm]", 0);
     }
 }
 

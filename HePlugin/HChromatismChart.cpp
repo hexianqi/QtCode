@@ -11,7 +11,7 @@ HChromatismChartPrivate::HChromatismChartPrivate()
     focus->setMarkerSize(11.0);
     focus->setPen(QColor(Qt::transparent));
     focus->setBrush(HPluginHelper::createCrossImage(QSize(9, 9), QPen(Qt::red, 2)));
-    focus->append(0.0, 0.0);
+    focus->append(0.5, 0.5);
     center = new QScatterSeries();
     center->setMarkerShape(QScatterSeries::MarkerShapeCircle);
     center->setMarkerSize(10.0);
