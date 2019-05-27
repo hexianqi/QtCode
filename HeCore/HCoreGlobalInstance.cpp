@@ -180,6 +180,19 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
     hashActionComment.insert(ACT_GET_RAM,                       tr("获取RAM数据"));
 
+    hashActionComment.insert(ACT_SET_OUTPUT_VOLTAGE,            tr("设置输出电压"));
+    hashActionComment.insert(ACT_SET_OUTPUT_CURRENT,            tr("设置输出电流"));
+    hashActionComment.insert(ACT_SET_OVER_VOLTAGE,              tr("设置过电压"));
+    hashActionComment.insert(ACT_SET_OVER_CURRENT,              tr("设置过电流"));
+    hashActionComment.insert(ACT_SET_SOURCE_MODE,               tr("设置电源模式"));
+    hashActionComment.insert(ACT_SET_SOURCE_ADDR,               tr("设置电源地址"));
+    hashActionComment.insert(ACT_SET_SOURCE_OPERATION,          tr("设置电源操作"));
+    hashActionComment.insert(ACT_SET_SOURCE_FORWARD,            tr("设置电源正向"));
+    hashActionComment.insert(ACT_SET_SOURCE_REVERSE,            tr("设置电源反向"));
+    hashActionComment.insert(ACT_SET_SOURCE_IO,                 tr("设置电源输入输出"));
+    hashActionComment.insert(ACT_GET_SOURCE_STATE,              tr("获取电源状态"));
+    hashActionComment.insert(ACT_GET_ELEC_PARAM,                tr("获取电参数"));
+
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
 
     hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱数据"));
@@ -258,10 +271,6 @@ void HCoreGlobalInstance::initActionComment()
 //
 //    hashActionComment.insert(ACT_GET_ELEC_LUMINOUS_SPECTRUM,     QStringList() << tr("ACT_GET_ELEC_LUMINOUS_SPECTRUM") << tr("获取光色电数据"));
 //    hashActionComment.insert(ACT_GET_LUMINOUS_SPECTRUM,          QStringList() << tr("ACT_GET_LUMINOUS_SPECTRUM") << tr("获取光色数据"));
-
-//
-//    hashActionComment.insert(ACT_RESET_JUDGMENT,                 QStringList() << tr("ACT_RESET_JUDGMENT") << tr("重新设置合格判定"));
-//    hashActionComment.insert(ACT_RESET_CIRCUIT,                  QStringList() << tr("ACT_RESET_CIRCUIT") << tr("重新设置线路配置"));
 }
 
 void HCoreGlobalInstance::initErrorComment()

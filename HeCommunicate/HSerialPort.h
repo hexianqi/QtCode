@@ -27,6 +27,9 @@ public:
     HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
     HErrorType clear() override;
 
+public:
+    void setBaudRate(int value);
+
 protected:
     HSerialPort(HSerialPortPrivate &);
 

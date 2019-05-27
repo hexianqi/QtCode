@@ -16,6 +16,8 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 class IPort : public IInitializeable
 {
 public:
+    // 设置超时
+    virtual void setTimeOut(int value) = 0;
     // 是否连接
     virtual bool isConnected() = 0;
     // 打开

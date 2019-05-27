@@ -5,18 +5,18 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HProtocolPrivate::HProtocolPrivate()
-    : mutex(new QMutex)
+HProtocolPrivate::HProtocolPrivate() :
+    mutex(new QMutex)
 {
 }
 
-HProtocol::HProtocol()
-    : d_ptr(new HProtocolPrivate)
+HProtocol::HProtocol() :
+    d_ptr(new HProtocolPrivate)
 {
 }
 
-HProtocol::HProtocol(HProtocolPrivate &p)
-    : d_ptr(&p)
+HProtocol::HProtocol(HProtocolPrivate &p) :
+    d_ptr(&p)
 {
 }
 

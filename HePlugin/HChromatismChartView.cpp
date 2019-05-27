@@ -51,7 +51,7 @@ void HChromatismChartView::setData(QJsonObject json)
     d->chart->setEllipse(HPluginHelper::calcEllipse(d->pointCenter, d->stdSdcm, d->stdTheta, d->stdA, d->stdB));
     d->chart->setPointCenter(d->pointCenter);
     d->chart->setPointFocus(d->pointFocus);
-    d->chart->createDefaultAxes();
+    d->chart->createFixAxes();
     d->chart->setAxesXTitle(tr("标准 %1SDCM - 目标值x=%2,y=%3").arg(d->stdSdcm, 0, 'f', 1).arg(d->pointCenter.x(), 0, 'f', 3).arg(d->pointCenter.y(), 0, 'f', 3));
     d->pointFocusItem->setText(tr("(%2, %3)\n      %1SDCM").arg(d->sdcm, 0, 'f', 1).arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4));
 }

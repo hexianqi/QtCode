@@ -21,6 +21,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
+    void setTimeOut(int value) override;
     bool isConnected() override;
     HErrorType open(int portNum = 1) override;
     HErrorType close() override;

@@ -4,13 +4,13 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HAbstractPort::HAbstractPort()
-    : d_ptr(new HAbstractPortPrivate)
+HAbstractPort::HAbstractPort() :
+    d_ptr(new HAbstractPortPrivate)
 {
 }
 
-HAbstractPort::HAbstractPort(HAbstractPortPrivate &p)
-    : d_ptr(&p)
+HAbstractPort::HAbstractPort(HAbstractPortPrivate &p) :
+    d_ptr(&p)
 {
 }
 
@@ -22,7 +22,12 @@ HAbstractPort::~HAbstractPort()
 void HAbstractPort::initialize(QVariantMap param)
 {
     if (param.contains("timeOut"))
-        d_ptr->timeOut = param.value("timeOut").toInt();
+        setTimeOut(param.value("timeOut").toInt());
+}
+
+void HAbstractPort::setTimeOut(int value)
+{
+    d_ptr->timeOut = value;
 }
 
 bool HAbstractPort::isConnected()

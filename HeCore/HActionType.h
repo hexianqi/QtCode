@@ -24,6 +24,19 @@ using HActionType = long long;
 #define     ACT_GET_SPECTRUM                        0x00010112
 #define     ACT_GET_RAM                             0x00010114
 
+#define     ACT_SET_OUTPUT_VOLTAGE                  0x00020101
+#define     ACT_SET_OUTPUT_CURRENT                  0x00020102
+#define     ACT_SET_OVER_VOLTAGE                    0x00020103
+#define     ACT_SET_OVER_CURRENT                    0x00020104
+#define     ACT_SET_SOURCE_MODE                     0x00020105
+#define     ACT_SET_SOURCE_ADDR                     0x00020106
+#define     ACT_SET_SOURCE_OPERATION                0x00020107
+#define     ACT_SET_SOURCE_FORWARD                  0x00020108
+#define     ACT_SET_SOURCE_REVERSE                  0x00020109
+#define     ACT_SET_SOURCE_IO                       0x0002010A
+#define     ACT_GET_SOURCE_STATE                    0x00020111
+#define     ACT_GET_ELEC_PARAM                      0x00020112
+
 #define     ACT_SINGLE_TEST                         0x10000001
 
 #define     ACT_RESET_SPECTRUM                      0xF0000001

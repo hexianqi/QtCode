@@ -30,7 +30,7 @@ HErrorType HSlDevice::setData(HActionType action, QVector<uchar> value, int dela
     if (param.size() < 4)
         return E_DEVICE_ACTION_PARAM_ERROR;
 
-    int size = value.size() + 3;
+    auto size = value.size() + 3;
     auto downData = QVector<uchar>() << uchar(d->deviceID) << uchar(size % 256) << uchar(size / 256) << param[2] << param[3] << value;
     auto upData = QVector<uchar>(6);
 
@@ -38,7 +38,10 @@ HErrorType HSlDevice::setData(HActionType action, QVector<uchar> value, int dela
     if (error != E_OK)
         return error;
 
-    if (upData.size() < 6 || upData[0] != d->deviceID || upData[3] != param[2] || upData[4] != param[3])
+    if (upData.size() < 6
+            || upData[0] != d->deviceID
+            || upData[3] != param[2]
+            || upData[4] != param[3])
         return E_DEVICE_DATA_RETURN_ERROR;
     if (upData[5] != 0x00)
         return HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]);
@@ -59,7 +62,10 @@ HErrorType HSlDevice::getData(HActionType action, QVector<uchar> &value, int del
     if (error != E_OK)
         return error;
 
-    if (upData.size() < 6 || upData[0] != d->deviceID || upData[3] != param[2] || upData[4] != param[3])
+    if (upData.size() < 6
+            || upData[0] != d->deviceID
+            || upData[3] != param[2]
+            || upData[4] != param[3])
         return E_DEVICE_DATA_RETURN_ERROR;
     if (upData[5] != 0x00)
         return HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]);

@@ -9,9 +9,9 @@ class HAbstractDevicePrivate
 {
 public:
     IPort* port = nullptr;
-    int portNum;
-    bool portNumScan;
-    int deviceID;
+    int portNum = 1;
+    bool portNumScan = true;
+    int deviceID = 0x00;
     QMap<HActionType, QList<uchar>> actionParams;
 };
 

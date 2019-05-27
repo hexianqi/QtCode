@@ -52,8 +52,8 @@ HErrorType HSpecThread::handleAction(HActionType action)
 {
     Q_D(HSpecThread);
     uint i;
-    QVector<uchar> buff;
-    QVector<double> t;
+    QVector<uchar> uBuff;
+    QVector<double> dBuff;
     HErrorType error;
 
     switch(action)
@@ -70,17 +70,17 @@ HErrorType HSpecThread::handleAction(HActionType action)
             d->testSpec->setData("[积分时间]", i / 500.0);
         return error;
     case ACT_GET_SPECTRUM:
-        error = d->protocolSpec->getData(action, t);//d->testSpec->data("[光谱采样等待时间]").toInt());
+        error = d->protocolSpec->getData(action, dBuff);//d->testSpec->data("[光谱采样等待时间]").toInt());
         if (error == E_OK)
-            d->testSpec->setSample(t, true);
+            d->testSpec->setSample(dBuff, true);
         return error;
     case ACT_SET_RAM:
         return d->protocolSpec->setData(action, d->testSpec->getRam());
     case ACT_GET_RAM:
-        error = d->protocolSpec->getData(action, buff);
+        error = d->protocolSpec->getData(action, uBuff);
         if (error == E_OK)
         {
-            if (!d->testSpec->setRam(buff))
+            if (!d->testSpec->setRam(uBuff))
                 error = E_DEVICE_DATA_RETURN_ERROR;
         }
         return error;

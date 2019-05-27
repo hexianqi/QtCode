@@ -21,7 +21,8 @@ void HMainWindow2000::initImportExport()
     HAbstractMainWindow::initImportExport();
     d->importExport.insert(tr("1.光谱定标数据(&S)..."),   IConfigManage::ContainSpec);
     d->importExport.insert(tr("2.分级数据(&G)..."),       IConfigManage::ContainGrade);
-    d->importExport.insert(tr("3.调整数据(&G)..."),       IConfigManage::ContainAdjust);
+    d->importExport.insert(tr("3.调整数据(&A)..."),       IConfigManage::ContainAdjust);
+    d->importExport.insert(tr("4.色容差数据(&C)..."),     IConfigManage::ContainChromatism);
 }
 
 void HMainWindow2000::initBuilder()

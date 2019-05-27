@@ -8,7 +8,7 @@
 #include "HeController/IModel.h"
 #include "HePlugin/HCie1931Widget.h"
 #include "HeGui/HSpecEnergyWidget.h"
-#include "HeGui/HSpecChromatismWidget.h"
+#include "HeGui/HSpecChromatismChartView.h"
 #include "HeGui/HResultTableWidget.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QSettings>
@@ -98,7 +98,7 @@ void HTestWidget2000::createWidget()
     auto splitter2 = new QSplitter(Qt::Vertical);
     d->testSetWidget = new HTestSetWidget2000;
     d->energyWidget = new HSpecEnergyWidget;
-    d->chromatismWidget = new HSpecChromatismWidget;
+    d->chromatismWidget = new HSpecChromatismChartView;
     d->cieWidget = new HCie1931Widget;
     d->detailWidget = new HDetailWidget2000;
     d->resultWidget = new HResultTableWidget;

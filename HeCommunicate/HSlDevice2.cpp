@@ -56,7 +56,10 @@ HErrorType HSlDevice2::setData(uchar cmd, QVector<uchar> value, int delay)
     auto error = transport(downData, upData, delay);
     if (error != E_OK)
         return error;
-    if (upData.size() < 4 || upData[0] != 0x00 || upData[1] != 0x04 || upData[2] != cmd)
+    if (upData.size() < 4
+            || upData[0] != 0x00
+            || upData[1] != 0x04
+            || upData[2] != cmd)
         return E_DEVICE_DATA_RETURN_ERROR;
     return E_OK;
 }
@@ -68,7 +71,10 @@ HErrorType HSlDevice2::getData(int size, uchar cmd, uchar block, QVector<uchar> 
     auto error = transport(downData, upData, delay);
     if (error != E_OK)
         return error;
-    if (upData.size() < 4 || upData[0] != size / 256 || upData[1] != size % 256 || upData[2] != cmd)
+    if (upData.size() < 4
+            || upData[0] != size / 256
+            || upData[1] != size % 256
+            || upData[2] != cmd)
         return E_DEVICE_DATA_RETURN_ERROR;
     value = upData.mid(4);
     return E_OK;

@@ -52,7 +52,6 @@ TARGET = SL2000
 INCLUDEPATH += ..
 
 Debug {
-#    CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeDatad \
@@ -73,5 +72,3 @@ Release {
             -L$$DESTDIR -lHePlugin \
             -L$$DESTDIR -lHeSql
 }
-
-

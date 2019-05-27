@@ -5,7 +5,11 @@
 #include "HSlDevice.h"
 #include "HSlDevice2.h"
 #include "HSlCodecDevice.h"
+#include "HDaXinDevice.h"
+#include "HPowerFactorDevice.h"
 #include "HProtocol.h"
+#include "HUi2008Protocol.h"
+#include "HUi2010Protocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
@@ -60,10 +64,7 @@ IDeviceCollection *HCommunicateFactory::createDeviceCollection(QString type, QVa
 
 IProtocol *HCommunicateFactory::createProtocol(QString type, QVariantMap param)
 {
-    Q_UNUSED(type)
-    IProtocol *p = new HProtocol;
-    p->initialize(param);
-    return p;
+    return HFactory::createObject<IProtocol>(type, param);
 }
 
 IProtocolCollection *HCommunicateFactory::createProtocolCollection(QString type, QVariantMap param)
@@ -81,6 +82,11 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HSlDevice>("HSlDevice");
     HFactory::registerClass<HSlDevice2>("HSlDevice2");
     HFactory::registerClass<HSlCodecDevice>("HSlCodecDevice");
+    HFactory::registerClass<HDaXinDevice>("HDaXinDevice");
+    HFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
+    HFactory::registerClass<HProtocol>("HProtocol");
+    HFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
+    HFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");
 }
 
 HE_COMMUNICATE_END_NAMESPACE

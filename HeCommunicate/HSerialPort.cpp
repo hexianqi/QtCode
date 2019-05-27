@@ -26,10 +26,9 @@ HSerialPort::~HSerialPort()
 
 void HSerialPort::initialize(QVariantMap param)
 {
-    Q_D(HSerialPort);
     HAbstractPort::initialize(param);
     if (param.contains("baudRate"))
-        d->baudRate = param.value("baudRate").toInt();
+        setBaudRate(param.value("baudRate").toInt());
 }
 
 QString HSerialPort::typeName()
@@ -58,6 +57,12 @@ HErrorType HSerialPort::clear()
     Q_D(HSerialPort);
     d->serial->clear();
     return E_OK;
+}
+
+void HSerialPort::setBaudRate(int value)
+{
+    Q_D(HSerialPort);
+    d->baudRate = value;
 }
 
 HErrorType HSerialPort::openPort(int portNum)

@@ -23,6 +23,7 @@ public:
     void setPointFocus(QPointF);
     void setPointCenter(QPointF);
     void setAxesXTitle(QString);
+    void createFixAxes();
 
 private:
     void init();
