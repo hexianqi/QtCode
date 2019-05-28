@@ -5,13 +5,13 @@
 #ifndef HUI2008PROTOCOL_H
 #define HUI2008PROTOCOL_H
 
-#include "HProtocol.h"
+#include "HLittleProtocol.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HUi2008ProtocolPrivate;
 
-class HUi2008Protocol : HProtocol
+class HUi2008Protocol : public HLittleProtocol
 {
     Q_DECLARE_PRIVATE(HUi2008Protocol)
 

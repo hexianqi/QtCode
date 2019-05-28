@@ -106,6 +106,7 @@ HErrorType HSlDevice2::getDataBatch(QList<uchar> param, QVector<uchar> &value, i
     auto error = getData(size, param[2], 1, buff, delay);
     if (error != E_OK)
         return error;
+    value.clear();
     value << buff;
 
     int n = qCeil(value[0] * 256.0 + value[1] / param[1]);

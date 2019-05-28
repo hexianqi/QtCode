@@ -5,13 +5,13 @@
 #ifndef HUI2010PROTOCOL_H
 #define HUI2010PROTOCOL_H
 
-#include "HProtocol.h"
+#include "HLittleProtocol.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HUi2010ProtocolPrivate;
 
-class HUi2010Protocol : HProtocol
+class HUi2010Protocol : HLittleProtocol
 {
     Q_DECLARE_PRIVATE(HUi2010Protocol)
 

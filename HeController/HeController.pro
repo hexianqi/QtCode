@@ -62,3 +62,4 @@ unix {
 
 include(thread.pri)
 include(model.pri)
+include(memento.pri)

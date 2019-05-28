@@ -20,7 +20,7 @@ HUi2008ProtocolPrivate::HUi2008ProtocolPrivate()
 }
 
 HUi2008Protocol::HUi2008Protocol() :
-    HProtocol(*new HUi2008ProtocolPrivate)
+    HLittleProtocol(*new HUi2008ProtocolPrivate)
 {
 }
 
@@ -39,7 +39,7 @@ HErrorType HUi2008Protocol::getData(HActionType action, QVector<double> &value, 
     int i,j,n,d;
     double t;
     QVector<uchar> data;
-    auto error = HProtocol::getData(action, data, delay);
+    auto error = HLittleProtocol::getData(action, data, delay);
     if (error != E_OK)
         return error;
     if (value.size() == 0)

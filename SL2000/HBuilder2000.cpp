@@ -105,7 +105,7 @@ void HBuilder2000::buildTestData()
 //    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
 //    auto device = d->communicateFactory->createDevice("HSlDevice");
 //    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-//    auto protocol = d->communicateFactory->createProtocol("HProtocol");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
 //    device->setPort(port, 0, false);
 //    device->setDeviceID(0x81);
@@ -131,7 +131,7 @@ void HBuilder2000::buildDevice()
     auto port = d->communicateFactory->createPort("HUsbPortCy", param);
     auto device = d->communicateFactory->createDevice("HSlDevice2");
     auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-    auto protocol = d->communicateFactory->createProtocol("HProtocol");
+    auto protocol = d->communicateFactory->createProtocol("HBigProtocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     device->setPort(port, 0, false);
     device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x00);
@@ -237,7 +237,7 @@ void HBuilder2000::buildTestWidget()
 //    Q_D(HBuilder2000);
 //    QVariantMap param;
 //    param.insert("device", ToVariant(d->devices->value("Spec")));
-//    auto protocol = d->communicateFactory->createProtocol("HProtocol", param);
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol", param);
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
 //    protocols->insert("Spec", protocol);
 //    HAppContext::setContextPointer("IProtocolCollection", protocols);

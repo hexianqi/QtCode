@@ -1,55 +1,48 @@
 /***************************************************************************************************
-**      2018-06-19  HProtocol 协议类。
+**      2018-06-19  HLittleProtocol 低位编址协议类（低字节在前）。
 ***************************************************************************************************/
 
-#ifndef HPROTOCOL_H
-#define HPROTOCOL_H
+#ifndef HLITTLEPROTOCOL_H
+#define HLITTLEPROTOCOL_H
 
-#include "IProtocol.h"
+#include "HAbstractProtocol.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HProtocolPrivate;
+class HLittleProtocolPrivate;
 
-class HProtocol : public IProtocol
+class HLittleProtocol : public HAbstractProtocol
 {
-public:
-    explicit HProtocol();
-    virtual ~HProtocol();
+    Q_DECLARE_PRIVATE(HLittleProtocol)
 
 public:
-    void initialize(QVariantMap param) override;
+    explicit HLittleProtocol();
+    ~HLittleProtocol() override;
+
+public:
     QString typeName() override;
-
-public:
-    void setDevice(IDevice *) override;
-    HErrorType open() override;
-    HErrorType close() override;
 
 public:
     HErrorType setData(HActionType action, int value, int delay = 0) override;
     HErrorType setData(HActionType action, uchar value, int delay = 0) override;
     HErrorType setData(HActionType action, uint value, int delay = 0) override;
-    HErrorType setData(HActionType action, QVector<int> value, int delay = 0) override;
     HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
+    HErrorType setData(HActionType action, QVector<int> value, int delay = 0) override;
     HErrorType setData(HActionType action, QVector<uint> value, int delay = 0) override;
 
 public:
     HErrorType getData(HActionType action, int &value, int delay = 0) override;
     HErrorType getData(HActionType action, uchar &value, int delay = 0) override;
     HErrorType getData(HActionType action, uint &value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
+    HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<double> &value, int delay = 0) override;
 
 protected:
-    HProtocol(HProtocolPrivate &);
-
-protected:
-    QScopedPointer<HProtocolPrivate> d_ptr;
+    HLittleProtocol(HLittleProtocolPrivate &);
 };
 
 HE_COMMUNICATE_END_NAMESPACE
 
-#endif // HPROTOCOL_H
+#endif // HLITTLEPROTOCOL_H

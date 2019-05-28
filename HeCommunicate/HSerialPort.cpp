@@ -10,13 +10,13 @@ bool HSerialPortPrivate::openSerialPort(int portNum)
     return serial->setBaudRate(baudRate) && serial->open(QIODevice::ReadWrite);
 }
 
-HSerialPort::HSerialPort()
-    : HAbstractPort(*new HSerialPortPrivate)
+HSerialPort::HSerialPort() :
+    HAbstractPort(*new HSerialPortPrivate)
 {
 }
 
-HSerialPort::HSerialPort(HSerialPortPrivate &p)
-    : HAbstractPort(p)
+HSerialPort::HSerialPort(HSerialPortPrivate &p) :
+    HAbstractPort(p)
 {
 }
 

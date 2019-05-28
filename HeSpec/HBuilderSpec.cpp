@@ -79,7 +79,7 @@ void HBuilderSpec::buildDevice()
     auto port = d->communicateFactory->createPort("HUsbPortCy", param);
     auto device = d->communicateFactory->createDevice("HSlDevice");
     auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-    auto protocol = d->communicateFactory->createProtocol("HProtocol");
+    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     device->setPort(port, 0, false);
     device->setDeviceID(0x81);

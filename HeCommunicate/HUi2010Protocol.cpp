@@ -26,7 +26,7 @@ HUi2010ProtocolPrivate::HUi2010ProtocolPrivate()
 }
 
 HUi2010Protocol::HUi2010Protocol() :
-    HProtocol(*new HUi2010ProtocolPrivate)
+    HLittleProtocol(*new HUi2010ProtocolPrivate)
 {
 }
 
@@ -43,7 +43,7 @@ QString HUi2010Protocol::typeName()
 HErrorType HUi2010Protocol::getData(HActionType action, QVector<double> &value, int delay)
 {
     QVector<uchar> data;
-    auto error = HProtocol::getData(action, data, delay);
+    auto error = HLittleProtocol::getData(action, data, delay);
     if (error != E_OK)
         return error;
     if (value.size() == 0)

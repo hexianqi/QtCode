@@ -2,11 +2,11 @@
 #define HUI2010PROTOCOL_P_H
 
 #include "HUi2010Protocol.h"
-#include "HProtocol_p.h"
+#include "HLittleProtocol_p.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HUi2010ProtocolPrivate : public HProtocolPrivate
+class HUi2010ProtocolPrivate : public HLittleProtocolPrivate
 {
 public:
     HUi2010ProtocolPrivate();
