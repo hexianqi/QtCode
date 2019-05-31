@@ -58,7 +58,7 @@ unix {
 include(layout.pri)
 include(reflect.pri)
 include(table.pri)
-
-
+include(tools.pri)
+include(DesignPattern.pri)
 
 

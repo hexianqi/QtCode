@@ -21,5 +21,4 @@
 #  define HE_EXAMPLE_USE_NAMESPACE
 #endif
 
-
 #endif // HEEXAMPLE_GLOBAL_H

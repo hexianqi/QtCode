@@ -5,12 +5,14 @@
 #include "HTestGsl.h"
 #include "HTestWidget.h"
 #include "HeExample/HTestTable.h"
+#include "HeExample/HColorPickerWidget.h"
 #include <QtCore/QDebug>
 #include <QtCore/QJsonObject>
 #include <QtCore/QJsonDocument>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 #include <functional>
 #include <cxxabi.h>
@@ -79,24 +81,21 @@ void testTemplateName()
     qDebug() << name<HTestGsl>();
 }
 
+void testTable()
+{
+    HTestTable::multHeaderTableView()->show();
+//    HTestTable::multHeaderTableWidget()->show();
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
 
+    QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-
-
-
-
-
-
-
-
-//    auto widget = HTestTable::multHeaderTableWidget();
-//    widget->show();
-
-//    HTestWidget::multHeaderTableWidget()->show();
+    HColorPickerWidget w;
+    w.show();
 
 //    HTestPlugin::testCIE1931View()->show();
 

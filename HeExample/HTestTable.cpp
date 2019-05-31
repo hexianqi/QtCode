@@ -1,11 +1,11 @@
 #include "HTestTable.h"
-#include "RbTableHeaderView.h"
+#include "HRbTableHeaderView.h"
 #include <QtGui/QStandardItemModel>
 #include <QtWidgets/QTableWidget>
 
 QTableView *HTestTable::multHeaderTableView()
 {
-    auto hHead = new RbTableHeaderView(Qt::Horizontal, 2, 4);
+    auto hHead = new HRbTableHeaderView(Qt::Horizontal, 2, 4);
     auto hModel = hHead->model();
     hHead->setSectionsClickable(true);
     hHead->setSpan(0, 0, 2, 1);
@@ -19,7 +19,7 @@ QTableView *HTestTable::multHeaderTableView()
     hModel->setData(hModel->index(1, 2), QString("cell4"), Qt::DisplayRole);
     hModel->setData(hModel->index(1, 3), QString("cell5"), Qt::DisplayRole);
 
-    auto vHead = new RbTableHeaderView(Qt::Vertical, 3, 2);
+    auto vHead = new HRbTableHeaderView(Qt::Vertical, 3, 2);
     auto vModel = vHead->model();
     vHead->setSectionsClickable(true);
     vHead->setSpan(0, 0, 1, 2);
@@ -34,11 +34,9 @@ QTableView *HTestTable::multHeaderTableView()
     auto dataModel = new QStandardItemModel;
     for (int i = 0; i < 3; i++)
     {
-        QList<QStandardItem*> items;
+        QList<QStandardItem *> items;
         for (int j = 0; j < 3; j++)
-        {
             items.append(new QStandardItem(QString("item(%1,%2)").arg(i).arg(j)));
-        }
         dataModel->appendRow(items);
     }
 
@@ -81,8 +79,8 @@ QTableWidget *HTestTable::multHeaderTableWidget()
     rootWidget->verticalHeader()->setVisible(false);
     rootWidget->verticalHeader()->setStretchLastSection(true);
     rootWidget->setHorizontalHeaderLabels(QStringList() << "过球" << "主管泄漏" << "全车泄漏");
-    rootWidget->setCellWidget(0,0,widget1);
-    rootWidget->setCellWidget(0,1,widget2);
-    rootWidget->setCellWidget(0,2,widget3);
+    rootWidget->setCellWidget(0, 0, widget1);
+    rootWidget->setCellWidget(0, 1, widget2);
+    rootWidget->setCellWidget(0, 2, widget3);
     return rootWidget;
 }
