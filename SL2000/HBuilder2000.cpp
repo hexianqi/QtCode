@@ -228,7 +228,7 @@ void HBuilder2000::buildMenu()
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
 

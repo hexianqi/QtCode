@@ -123,7 +123,7 @@ QStringList HTestData::toString(QStringList type)
 {
     QStringList list;
     for (auto t : type)
-        list << toString(type);
+        list << toString(t);
     return list;
 }
 
