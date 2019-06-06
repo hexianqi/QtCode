@@ -32,7 +32,7 @@ SOURCES     += \
             HTestPlugin.cpp \
             HTestChart.cpp \
             HTestGsl.cpp \
-            HTestWidget.cpp
+            HTestData.cpp
 
 HEADERS     += \
             MainWindow.h \
@@ -40,7 +40,7 @@ HEADERS     += \
             HTestPlugin.h \
             HTestChart.h \
             HTestGsl.h \
-            HTestWidget.h
+            HTestData.h
 
 FORMS       += \
             MainWindow.ui
@@ -48,21 +48,25 @@ FORMS       += \
 RESOURCES   += \
             HeTest.qrc
 
-INCLUDEPATH += .. D:/Qt/gsl32/include
+INCLUDEPATH += \
+            .. \
+            ../HeExample \
+            D:/Qt/gsl32/include \
+
 
 Debug {
     CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
             -L$$DESTDIR -lHePlugind \
-            -L$$DESTDIR -lHeExampled
+            -L$$DESTDIR -lHeControld
 }
 
 Release {
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithm \
             -L$$DESTDIR -lHePlugin \
-            -L$$DESTDIR -lHeExample
+            -L$$DESTDIR -lHeControl
 }
 
 #版本信息

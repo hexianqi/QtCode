@@ -22,7 +22,7 @@ void HSpecData::clear()
     Duv = 0.0;
     DominantWave = 0.0;
     ColorPurity = 0.0;
-    RenderingIndex.fill(0, 14);
+    RenderingIndex.fill(0, 15);
     RenderingIndexAvg = 0.0;
     VisionEnergyRatio = 0.0;
     RedRatio = 0.0;

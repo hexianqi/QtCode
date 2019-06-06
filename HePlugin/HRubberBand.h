@@ -24,12 +24,12 @@ signals:
     void rubberBandChanged(QRectF value);
 
 public:
-    virtual bool setEnable(bool b) override;
+    bool setEnable(bool b) override;
 
 public:
-    virtual bool mousePressEvent(QMouseEvent *) override;
-    virtual bool mouseMoveEvent(QMouseEvent *) override;
-    virtual bool mouseReleaseEvent(QMouseEvent *) override;
+    bool mousePressEvent(QMouseEvent *) override;
+    bool mouseMoveEvent(QMouseEvent *) override;
+    bool mouseReleaseEvent(QMouseEvent *) override;
 
 protected:
     HRubberBand(HRubberBandPrivate &p, QWidget *parent = nullptr);

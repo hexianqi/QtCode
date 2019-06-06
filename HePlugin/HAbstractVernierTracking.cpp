@@ -9,13 +9,13 @@ HAbstractVernierTrackingPrivate::HAbstractVernierTrackingPrivate(Qt::Orientation
     validRegion.setRect(0, 0, 1, 1);
 }
 
-HAbstractVernierTracking::HAbstractVernierTracking(Qt::Orientation orientation, QWidget *parent)
-    : HAbstractMouseStrategy(*new HAbstractVernierTrackingPrivate(orientation, parent), parent)
+HAbstractVernierTracking::HAbstractVernierTracking(Qt::Orientation orientation, QWidget *parent) :
+    HAbstractMouseStrategy(*new HAbstractVernierTrackingPrivate(orientation, parent), parent)
 {
 }
 
-HAbstractVernierTracking::HAbstractVernierTracking(HAbstractVernierTrackingPrivate &p, QWidget *parent)
-    : HAbstractMouseStrategy(p, parent)
+HAbstractVernierTracking::HAbstractVernierTracking(HAbstractVernierTrackingPrivate &p, QWidget *parent) :
+    HAbstractMouseStrategy(p, parent)
 {
 }
 

@@ -169,7 +169,7 @@ QString HTestSpecPrivate::renderingIndexS()
     QStringList list;
     for (int i = 0; i < specData->RenderingIndex.size(); i++)
     {
-        if (i != 0 && i % 4 == 0)
+        if (i != 0 && i % 5 == 0)
             list << " ";
         list << HCore::toString("[显色指数Rx]", specData->RenderingIndex[i]);
     }

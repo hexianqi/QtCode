@@ -72,3 +72,5 @@ Release {
             -L$$DESTDIR -lHePlugin \
             -L$$DESTDIR -lHeSql
 }
+
+DISTFILES +=
