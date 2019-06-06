@@ -123,7 +123,7 @@ bool HChromaticity::exportCieUcs(QString fileName, QPointF tc, double interval)
 
     QTextStream out(&file);
     out << "[CIE_UCS]" << "\t" << n << endl;
-    out << " Tc	      urt	      vrt	   xt	   yt	   ur	   vr	  cr	  dr	 Ur1	 Ur2	 Ur3	 Ur4	 Ur5	 Ur6	 Ur7	 Ur8	 Ur9	Ur10	 Ur11	 Ur12	Ur13	 Ur14	Vr1	Vr2	Vr3	Vr4	 Vr5	 Vr6	 Vr7	 Vr8	 Vr9	Vr10	Vr11	 Vr12	Vr13	Vr14	 Wr1	 Wr2	 Wr3	 Wr4	 Wr5	 Wr6	 Wr7	 Wr8	 Wr9	Wr10	Wr11	Wr12	Wr13	Wr14" << endl;
+    out << " Tc	      urt	      vrt	   xt	   yt	   ur	   vr	  cr	  dr	 Ur1	 Ur2	 Ur3	 Ur4	 Ur5	 Ur6	 Ur7	 Ur8	 Ur9	Ur10	 Ur11	 Ur12	Ur13	 Ur14   Ur15    Vr1 Vr2 Vr3 Vr4	 Vr5	 Vr6	 Vr7	 Vr8	 Vr9	Vr10	Vr11	 Vr12	Vr13	Vr14    Vr15    Wr1	 Wr2	 Wr3	 Wr4	 Wr5	 Wr6	 Wr7	 Wr8	 Wr9	Wr10	Wr11	Wr12	Wr13	Wr14    Wr15" << endl;
     for (i = 0; i < n; i++)
     {
         out << QString::number(ucs[i].Tc, 'f', 0) << "\t"
@@ -135,11 +135,11 @@ bool HChromaticity::exportCieUcs(QString fileName, QPointF tc, double interval)
             << QString::number(ucs[i].vr, 'f', 4) << "\t"
             << QString::number(ucs[i].cr, 'f', 4) << "\t"
             << QString::number(ucs[i].dr, 'f', 4);
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             out << "\t" << QString::number(ucs[i].Ur[j], 'f', 2);
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             out << "\t" << QString::number(ucs[i].Vr[j], 'f', 2);
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             out << "\t" << QString::number(ucs[i].Wr[j], 'f', 2);
         out << endl;
     }
@@ -157,16 +157,16 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF sp
 {
     int i;
     double ur,vr,cr,dr,ck,dk,cki,dki;
-    QVector<double> Uri(14),Vri(14),Wri(14);
-    QVector<double> Yki(14),uki(14),vki(14),Uki(14),Vki(14),Wki(14),ukip(14),vkip(14);
-    QVector<double> E(14);
-    QVector<double> R(14);
+    QVector<double> Uri(15),Vri(15),Wri(15);
+    QVector<double> Yki(15),uki(15),vki(15),Uki(15),Vki(15),Wki(15),ukip(15),vkip(15);
+    QVector<double> E(15);
+    QVector<double> R(15);
 
     ur = refer.ur;
     vr = refer.vr;
     cr = refer.cr;
     dr = refer.dr;
-    for (i = 0; i < 14; i++)
+    for (i = 0; i < 15; i++)
     {
         Uri[i] = refer.Ur[i];
         Vri[i] = refer.Vr[i];
@@ -178,7 +178,7 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF sp
     dk = cdk.y();
     d_ptr->cie1931->calcColorReflectance(spdk, uki, vki, Yki);
 
-    for (i = 0; i < 14; i++)
+    for (i = 0; i < 15; i++)
     {
         cki = (4 - uki[i] - 10 * vki[i]) / vki[i];
         dki = (1.708 * vki[i] + 0.404 - 1.481 * uki[i]) / vki[i];
@@ -207,7 +207,7 @@ double HChromaticity::calcColorRenderingIndexAvg(QVector<double> index)
 CIE_UCS HChromaticity::calcCieUcs(double tc)
 {
     int i;
-    QVector<double> Yri(14),uri(14),vri(14),Uri(14),Vri(14),Wri(14);
+    QVector<double> Yri(15),uri(15),vri(15),Uri(15),Vri(15),Wri(15);
     QPointF uvt,uv,xyt,cd;
     QPolygonF spd;
     CIE_UCS ucs;
@@ -218,7 +218,7 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     uv = d_ptr->cie1931->calcCoordinateUv(spd);
     cd = HSpecHelper::uv2cd(uv);
     d_ptr->cie1931->calcColorReflectance(spd, uri, vri, Yri);
-    for (i = 0; i < 14; i++)
+    for (i = 0; i < 15; i++)
     {
         Wri[i] = 25 * pow(Yri[i], 1.0/3) - 17;
         Uri[i] = 13 * Wri[i] * (uri[i] - uv.x());
@@ -233,7 +233,7 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     ucs.vr = uv.y();
     ucs.cr = cd.x();
     ucs.dr = cd.y();
-    for (i = 0; i < 14; i++)
+    for (i = 0; i < 15; i++)
     {
         ucs.Ur[i] = Uri[i];
         ucs.Vr[i] = Vri[i];

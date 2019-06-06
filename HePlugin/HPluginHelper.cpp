@@ -4,11 +4,13 @@
 #include <QtCore/QtMath>
 #include <QtGui/QClipboard>
 #include <QtGui/QPainter>
+#include <QtGui/QScreen>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QInputDialog>
+//#include <QtWidgets/QDesktopWidget>
 
 HE_CORE_USE_NAMESPACE
 
@@ -229,6 +231,13 @@ void HPluginHelper::initWidget(QString type, QInputDialog *dlg)
     dlg->setInputMode(QInputDialog::DoubleInput);
     dlg->setDoubleRange(info->min(), info->max());
     dlg->setDoubleDecimals(info->decimals());
+}
+
+void HPluginHelper::centerWidget(QWidget *widget)
+{
+    auto size = QApplication::primaryScreen()->availableSize();
+    widget->move((size.width() - widget->width()) / 2, (size.height() - widget->height()) / 2);
+    widget->setFixedSize(widget->width(), widget->height());
 }
 
 bool HPluginHelper::selectedParameter(QWidget *parent, QStringList optional, QString &selected)

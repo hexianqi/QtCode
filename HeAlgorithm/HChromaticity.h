@@ -13,7 +13,7 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HChromaticityPrivate;
 
-class HChromaticity : public IChromaticity
+class HE_ALGORITHM_EXPORT HChromaticity : public IChromaticity
 {
 public:
     explicit HChromaticity();

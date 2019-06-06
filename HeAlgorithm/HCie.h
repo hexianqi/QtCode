@@ -37,7 +37,7 @@ struct CIE_DAY
 struct CIE_TC_32
 {
     double wave;
-    double S[14];
+    double S[15];
 };
 
 struct ISOTHERM
@@ -59,9 +59,9 @@ struct CIE_UCS
     double vr;
     double cr;
     double dr;
-    double Ur[14];
-    double Vr[14];
-    double Wr[14];
+    double Ur[15];
+    double Vr[15];
+    double Wr[15];
 };
 
 struct CIE_UCS_P
@@ -99,7 +99,7 @@ public:
     double calcDuv(QPointF uv, double tc);
     // 计算主波长，色纯度
     QList<double> calcDominantWavePurity(QPointF xy);
-    // 计算14种颜色样品的光谱反射数据
+    // 计算15种颜色样品的光谱反射数据
     void calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<double> &vi, QVector<double> &Yi);
     // 计算黑体轨迹色坐标
     QPointF calcIsoCoordinateUv(double tc);

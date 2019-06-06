@@ -25,25 +25,34 @@ class QPointF;
 class QDESIGNER_WIDGET_EXPORT HPluginHelper
 {
 public:
-    static QAction *addSeparator(QWidget *widget);
+    // 添加分隔符
+    static QAction *addSeparator(QWidget *);
 
 public:
-    static QString copy(QTableWidget *widget, bool withHeader = false);
-    static QString copy(QTableView *widget, bool withHeader = false);
-    static QString paste(QTableWidget *widget);
-    static QString paste(QTableView *widget);
+    // 复制
+    static QString copy(QTableWidget *, bool withHeader = false);
+    static QString copy(QTableView *, bool withHeader = false);
+    // 粘贴
+    static QString paste(QTableWidget *);
+    static QString paste(QTableView *);
 
 public:
-    static void initWidget(QString type, QSpinBox *widget);
-    static void initWidget(QString type, QDoubleSpinBox *widget);
-    static void initWidget(QString type, QInputDialog *dlg);
+    static void initWidget(QString type, QSpinBox *);
+    static void initWidget(QString type, QDoubleSpinBox *);
+    static void initWidget(QString type, QInputDialog *);
+    // 窗体居中桌面
+    static void centerWidget(QWidget *);
 
 public:
-    static bool selectedParameter(QWidget *parent, QStringList optional, QString &selected);                     //选择参数
+    // 选择参数
+    static bool selectedParameter(QWidget *parent, QStringList optional, QString &selected);
+    // 获取输入文本
     static bool getInputText(QWidget *parent, QString label, QString &text);
 
 public:
+    // 创建十字图片
     static QImage createCrossImage(QSize size, QPen pen);
+    // 计算椭圆
     static QPolygonF calcEllipse(QPointF center, double r, double theta, double a, double b);
 
 };

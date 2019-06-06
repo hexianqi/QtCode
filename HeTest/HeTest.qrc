@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>dat/testTc.dat</file>
+    </qresource>
+</RCC>

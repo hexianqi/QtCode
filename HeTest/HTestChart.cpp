@@ -1,5 +1,6 @@
 #include "HTestChart.h"
 #include "HePlugin/HMarkerChartExtend.h"
+#include "HePlugin/HCalloutChartExtend.h"
 #include "HePlugin/HVernierChartView.h"
 #include <QtCore/QRandomGenerator>
 #include <QtCore/QtMath>
@@ -66,6 +67,7 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
     auto chartView = new HZoomChartView;
     auto chart = new QChart();
     auto marker = new HMarkerChartExtend(chart, chartView);
+    auto callout = new HCalloutChartExtend(chart, chartView);
     auto line1 = new QLineSeries();
     auto spline1 = new QSplineSeries();
     auto scatter1 = new QScatterSeries();
@@ -86,6 +88,7 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
     chart->createDefaultAxes();
     chartView->setChart(chart);
     marker->connectExtend();
+    callout->connectExtend();
     return chartView;
 }
 

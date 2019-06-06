@@ -27,7 +27,6 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-
 HBuilder2000::HBuilder2000(IMainWindow *parent) :
     HAbstractBuilder(*new HBuilder2000Private(parent), parent)
 {

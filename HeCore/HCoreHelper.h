@@ -14,8 +14,11 @@ HE_CORE_BEGIN_NAMESPACE
 class HE_CORE_EXPORT HCoreHelper
 {
 public:
+    // 选择
     static QStringList unselected(QStringList optional, QStringList selected);
-    static void msleep(ulong msecs);
+    // 延时
+    static void msleep(int msecs);
+    static void msleep2(int msecs);
 };
 
 HE_CORE_END_NAMESPACE

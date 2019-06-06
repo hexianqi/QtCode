@@ -2,8 +2,8 @@
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QRubberBand>
 
-HRubberBandPrivate::HRubberBandPrivate(QWidget *p)
-    : HAbstractMouseStrategyPrivate(p)
+HRubberBandPrivate::HRubberBandPrivate(QWidget *p) :
+    HAbstractMouseStrategyPrivate(p)
 {
     rubberBand = new QRubberBand(QRubberBand::Rectangle, p);
 }

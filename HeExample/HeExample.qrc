@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>image/CardLayout.png</file>
-        <file>image/FlowLayout.gif</file>
-        <file>image/BorderLayout.png</file>
-        <file>image/RbTableHeader.png</file>
-        <file>image/ColorPicker.ico</file>
-    </qresource>
-</RCC>

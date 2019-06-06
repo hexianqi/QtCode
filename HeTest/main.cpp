@@ -3,106 +3,34 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
-#include "HTestWidget.h"
-#include "HeExample/HTestTable.h"
-#include "HeExample/HColorPickerWidget.h"
+#include "HeExample/HeControl/HControlTester.h"
 #include <QtCore/QDebug>
-#include <QtCore/QJsonObject>
-#include <QtCore/QJsonDocument>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 #include <functional>
-#include <cxxabi.h>
 
-void testJson()
+HE_CONTROL_USE_NAMESPACE
+
+void testGslChart()
 {
-    QVariantMap map;
-    map.insert("px", 0.1);
-    map.insert("py", 5.1);
-    auto json = QJsonObject::fromVariantMap(map);
-    auto doc = QJsonDocument(json);
-    auto text = QString(doc.toJson());
-    auto byte = doc.toBinaryData();
-    qDebug() << map;
-    qDebug() << json;
-    qDebug() << doc;
-    qDebug() << text;
-    qDebug() << byte;
-}
-
-void testVector()
-{
-    QVector<int> v;
-    for (int i = 0; i < 10; i++)
-        v << i+1;
-
-    int pos = 0;
-    qDebug() << v[pos++] * 100 + v[pos++] << pos;
-    qDebug() << v[pos++] * 100 + v[pos++] << pos;
-    qDebug() << v[pos++] * 100 + v[pos++] << pos;
-    qDebug() << v[pos++] * 100 + v[pos++] << pos;
-    qDebug() << v[pos++] * 100 + v[pos++] << pos;
-}
-
-template <typename T>
-class NameTemplate
-{
-public:
-    QString name()
-    {
-        return abi::__cxa_demangle(typeid(T).name(), nullptr, nullptr, nullptr);
-//        return typeid(T).name();
-    }
-};
-
-template <typename T>
-QString name()
-{
-    return abi::__cxa_demangle(typeid(T).name(), nullptr, nullptr, nullptr);
-}
-
-void testTemplateName()
-{
-    NameTemplate<int> i;
-    NameTemplate<double> d;
-    NameTemplate<QString> s;
-    NameTemplate<QPoint> p;
-    NameTemplate<HTestGsl> c;
-    qDebug() << i.name();
-    qDebug() << d.name();
-    qDebug() << s.name();
-    qDebug() << p.name();
-    qDebug() << c.name();
-    qDebug() << name<int>();
-    qDebug() << name<QString>();
-    qDebug() << name<HTestGsl>();
-}
-
-void testTable()
-{
-    HTestTable::multHeaderTableView()->show();
-//    HTestTable::multHeaderTableWidget()->show();
+    HTestGsl gsl;
+    auto p = gsl.interpEval();
+    HTestChart::diffChart(p[0], p[1])->show();
+//    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
-
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HColorPickerWidget w;
-    w.show();
+    HControlTester tester;
+    tester.createWidget("HGifWidget")->show();
 
 //    HTestPlugin::testCIE1931View()->show();
-
-//    HTestGsl gsl;
-//    auto p = gsl.interpEval();
-//    HTestChart::diffChart(p[0], p[1])->show();
-//    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 
 //    QMainWindow window;
 //    window.setCentralWidget(gsl.interpEval());

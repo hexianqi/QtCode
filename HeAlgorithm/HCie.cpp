@@ -40,7 +40,7 @@ void HCieTc32::readStandard()
     for (i = 0; i < n; i++)
     {
         in >> _stdData[i].wave;
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             in >> _stdData[i].S[j];
     }
     file.close();
@@ -146,26 +146,26 @@ void HCie1931::calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<
 {
     int i,j,k,l;
     double sum;
-    QVector<double> X(14);
-    QVector<double> Y(14);
-    QVector<double> Z(14);
+    QVector<double> X(15);
+    QVector<double> Y(15);
+    QVector<double> Z(15);
 
-    ui.resize(14);
-    vi.resize(14);
-    Yi.resize(14);
+    ui.resize(15);
+    vi.resize(15);
+    Yi.resize(15);
 
     i = 0;
     j = 0;
     k = 0;
     sum = 0;
-    X.fill(0, 14);
-    Y.fill(0, 14);
-    Z.fill(0, 14);
+    X.fill(0, 15);
+    Y.fill(0, 15);
+    Z.fill(0, 15);
     while (i < spd.size() && j < _stdData.size() && k < _cieTc32->size())
     {
         if (qFabs(spd[i].x() - _stdData[j].wave) < 1e-6 && qFabs(spd[i].x() - _cieTc32->data(k).wave) < 1e-6)
         {
-            for (l = 0; l < 14; l++)
+            for (l = 0; l < 15; l++)
             {
                 X[l] += spd[i].y() * _stdData[j].X * _cieTc32->data(k).S[l];
                 Y[l] += spd[i].y() * _stdData[j].Y * _cieTc32->data(k).S[l];
@@ -190,7 +190,7 @@ void HCie1931::calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<
         k++;
     }
     sum = 100 / sum;
-    for (i = 0; i < 14; i++)
+    for (i = 0; i < 15; i++)
     {
         Yi[i] = Y[i] * sum;
         ui[i] = 4 * X[i] / (X[i] + 15 * Y[i] + 3 * Z[i]);
@@ -473,11 +473,11 @@ void HCieUcs::readStandard()
     for (i = 0; i < n; i++)
     {
         in >> _cieUcs[i].Tc >> _cieUcs[i].urt >> _cieUcs[i].vrt >> _cieUcs[i].xt >> _cieUcs[i].yt >> _cieUcs[i].ur >> _cieUcs[i].vr >> _cieUcs[i].cr >> _cieUcs[i].dr;
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             in >> _cieUcs[i].Ur[j];
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             in >> _cieUcs[i].Vr[j];
-        for (j = 0; j < 14; j++)
+        for (j = 0; j < 15; j++)
             in >> _cieUcs[i].Wr[j];
     }
     file.close();
