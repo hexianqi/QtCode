@@ -56,7 +56,7 @@ protected slots:
     void on_pushButton_6_clicked();
 
 protected:
-    void refreshCcdView(int i);
+    void refreshCcdView();
     void refreshSpecWidget();
 
 private:

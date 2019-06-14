@@ -1,5 +1,4 @@
 HEADERS += \
-    $$PWD/HTestTable.h \
     $$PWD/HRbTableHeaderItem.h \
     $$PWD/HRbTableHeaderItem_p.h \
     $$PWD/HRbTableHeaderModel.h \
@@ -8,7 +7,6 @@ HEADERS += \
     $$PWD/HRbTableHeaderView_p.h
 
 SOURCES += \
-    $$PWD/HTestTable.cpp \
     $$PWD/HRbTableHeaderItem.cpp \
     $$PWD/HRbTableHeaderModel.cpp \
     $$PWD/HRbTableHeaderView.cpp

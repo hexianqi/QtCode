@@ -18,6 +18,8 @@ HColorPickerWidget::HColorPickerWidget(QWidget *parent) :
 
 HColorPickerWidget::~HColorPickerWidget()
 {
+    if (_timer->isActive())
+        _timer->stop();
     delete ui;
 }
 
@@ -45,8 +47,8 @@ void HColorPickerWidget::init()
     connect(_timer, &QTimer::timeout, this, &HColorPickerWidget::showColorValue);
     _timer->start(200);
 
-    setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::WindowStaysOnTopHint);
-    setWindowIcon(QIcon(":/image/ColorPicker.ico"));
+    setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
+    setWindowIcon(QIcon(":/image/tools/ColorPicker.ico"));
     HControlHelper::centerWidget(this);
 }
 

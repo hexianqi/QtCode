@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <file>image/BorderLayout.png</file>
-        <file>image/CardLayout.png</file>
-        <file>image/ColorPicker.ico</file>
-        <file>image/FlowLayout.gif</file>
         <file>image/RbTableHeader.png</file>
-        <file>image/gifwidget.ico</file>
-        <file>image/gifwidget.png</file>
+        <file>image/beautify/BarRuler.gif</file>
+        <file>image/Layout/BorderLayout.png</file>
+        <file>image/Layout/CardLayout.png</file>
+        <file>image/Layout/FlowLayout.gif</file>
+        <file>image/tools/ColorPicker.ico</file>
+        <file>image/tools/gifwidget.ico</file>
+        <file>image/tools/gifwidget.png</file>
     </qresource>
 </RCC>

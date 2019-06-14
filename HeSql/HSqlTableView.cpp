@@ -31,7 +31,7 @@ void HSqlTableView::setModel(ISqlTableModel *model)
     d->optionalExtend->setOptional(optional);
     d->optionalExtend->setSelected(optional);
     connect(model, &ISqlTableModel::currentRowChanged, this, &HSqlTableView::selectRow);
-    connect(selectionModel(), &QItemSelectionModel::currentRowChanged, this, [&](QModelIndex index){ model->setCurrentRow(index.row()); });
+    connect(selectionModel(), &QItemSelectionModel::currentRowChanged, this, [=](QModelIndex index){ model->setCurrentRow(index.row()); });
 }
 
 void HSqlTableView::init()

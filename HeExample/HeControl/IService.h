@@ -1,24 +1,23 @@
 /***************************************************************************************************
-**      2019-04-22  HTestTable 表格测试。
+**      2019-06-10  IService 服务接口。
 ***************************************************************************************************/
 
-#ifndef HTESTTABLE_H
-#define HTESTTABLE_H
+#ifndef ISERVICE_H
+#define ISERVICE_H
 
 #include "HControlGlobal.h"
 
-class QTableView;
-class QTableWidget;
-
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HE_CONTROL_EXPORT HTestTable
+class IService
 {
 public:
-    static QTableView *multHeaderTableView();
-    static QTableWidget *multHeaderTableWidget();
+    // 启动服务
+    virtual void start() = 0;
+    // 停止服务
+    virtual void stop() = 0;
 };
 
 HE_CONTROL_END_NAMESPACE
 
-#endif // HTESTTABLE_H
+#endif // ISERVICE_H

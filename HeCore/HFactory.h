@@ -23,6 +23,8 @@ public:
     // 创建对象
     template <typename T>
     static T *createObject(QString className, QVariantMap param);
+    // 所有对象名称
+    static QStringList keys();
 
 protected:
     template <typename T>

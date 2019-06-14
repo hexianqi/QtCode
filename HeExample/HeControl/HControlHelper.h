@@ -8,6 +8,7 @@
 #include "HControlGlobal.h"
 
 class QWidget;
+class QDateTime;
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -16,6 +17,8 @@ class HControlHelper
 public:
     // 窗体居中桌面
     static void centerWidget(QWidget *);
+    // 运行时间
+    static QString runTime(QDateTime start, QDateTime end);
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -1,11 +1,11 @@
 /***************************************************************************************************
 **      2019-06-06  HGifWidget GIF录屏控件
 **                  http://www.qtcn.org/bbs/read-htm-tid-85462.html
-**                  1:可设置要录制屏幕的宽高,支持右下角直接拉动改变
-**                  2:可设置变宽的宽度
-**                  3:可设置录屏控件的背景颜色
-**                  4:可设置录制的帧数
-**                  5:录制区域可自由拖动选择
+**                  1：可设置要录制屏幕的宽高,支持右下角直接拉动改变
+**                  2：可设置变宽的宽度
+**                  3：可设置录屏控件的背景颜色
+**                  4：可设置录制的帧数
+**                  5：录制区域可自由拖动选择
 ***************************************************************************************************/
 
 #ifndef HGIFWIDGET_H
@@ -26,7 +26,7 @@ class HGifWidget : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(int borderWidth READ borderWidth WRITE setBorderWidth)
-    Q_PROPERTY(QColor colorBackground READ colorBackground WRITE setColorBackground)
+    Q_PROPERTY(QColor background READ background WRITE setBackground)
 
 public:
     explicit HGifWidget(QWidget *parent = nullptr);
@@ -34,11 +34,11 @@ public:
 
 public slots:
     void setBorderWidth(int);
-    void setColorBackground(QColor);
+    void setBackground(QColor);
 
 public:
     int borderWidth() const;
-    QColor colorBackground() const;
+    QColor background() const;
 
 protected:
     bool eventFilter(QObject *, QEvent *) override;

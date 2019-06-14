@@ -21,6 +21,8 @@ HSerialPortWidget::HSerialPortWidget(QWidget *parent) :
 
 HSerialPortWidget::~HSerialPortWidget()
 {
+    if (d_ptr->isConnected)
+        closePort();
     delete ui;
 }
 

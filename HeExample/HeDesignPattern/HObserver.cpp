@@ -8,7 +8,7 @@ ConcreteObserver::ConcreteObserver(string name)
 
 void ConcreteObserver::update(float price)
 {
-    cout << _name << " - price: " << price << "\n";
+    cout << _name << " - price: " << price << endl;
 }
 
 ConcreteSubject::ConcreteSubject()

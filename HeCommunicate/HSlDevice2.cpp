@@ -2,7 +2,6 @@
 #include "IPort.h"
 #include <QtCore/QVector>
 #include <QtCore/QtMath>
-#include <QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -55,9 +54,6 @@ HErrorType HSlDevice2::setData(uchar cmd, QVector<uchar> value, int delay)
     auto downData = QVector<uchar>() << uchar(size / 256) << uchar(size % 256) << cmd << value;
     auto upData = QVector<uchar>(4);
     auto error = transport(downData, upData, delay);
-    qDebug() << "setData:" << cmd;
-    qDebug() << downData;
-    qDebug() << upData;
     if (error != E_OK)
         return error;
     if (upData.size() < 4
@@ -73,16 +69,6 @@ HErrorType HSlDevice2::getData(int size, uchar cmd, uchar block, QVector<uchar> 
     auto downData = QVector<uchar>() << 0x00 << 0x04 << cmd << block;
     auto upData = QVector<uchar>(size);
     auto error = transport(downData, upData, delay);
-    qDebug() << "getData:" << cmd;
-    qDebug() << downData;
-    if (upData.size() > 100)
-    {
-        qDebug() << "size:" << upData.size();
-        qDebug() << upData.mid(0, 10);
-    }
-    else
-        qDebug() << upData;
-
     if (error != E_OK)
         return error;
 
@@ -124,7 +110,7 @@ HErrorType HSlDevice2::getDataBatch(QList<uchar> param, QVector<uchar> &value, i
     value.clear();
     value << buff;
 
-    int n = qCeil(value[0] * 256.0 + value[1] / param[1]);
+    int n = qCeil((value[0] * 256.0 + value[1]) / param[1]);
     for (int i = 1; i < n; i++)
     {
         error = getData(size, param[2], i + 1, buff, delay);

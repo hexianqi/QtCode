@@ -60,7 +60,7 @@ bool HRibbonDiagramWidget::drawElse(QPainter *painter)
 bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
 {
     Q_D(HRibbonDiagramWidget);
-    if (!isDrawRibbon() || isValid() || d->polyRibbon.count() < 1)
+    if (!isDrawRibbon() || !isValid() || d->polyRibbon.count() < 1)
         return false;
 
     QColor color;

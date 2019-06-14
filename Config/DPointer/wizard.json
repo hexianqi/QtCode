@@ -1,0 +1,189 @@
+{
+    "version": 1,
+    "supportedProjectTypes": [ ],
+    "id": "D.Class",
+    "category": "O.C++",
+    "trDescription": "Creates a C++ header and a source file for a new class that you can add to a C++ project.",
+    "trDisplayName": "C++ Class with D Pointer",
+    "trDisplayCategory": "C++",
+    "iconText": "h/cpp",
+    "enabled": "%{JS: [ %{Plugins} ].indexOf('CppEditor') >= 0}",
+
+    "options":
+    [
+        { "key": "TargetPath",          "value": "%{Path}" },
+        { "key": "HdrPath",             "value": "%{Path}/%{HdrFileName}" },
+        { "key": "PriPath",             "value": "%{Path}/%{PriFileName}" },
+        { "key": "SrcPath",             "value": "%{Path}/%{SrcFileName}" },
+        { "key": "GUARD",               "value": "%{JS: Cpp.headerGuard('%{HdrFileName}')}" },
+        { "key": "GUARDP",              "value": "%{JS: Cpp.headerGuard('%{PriFileName}')}" },
+        { "key": "CN",                  "value": "%{JS: Cpp.className('%{Class}')}" },
+        { "key": "Base",                "value": "%{JS: ( '%{BaseCB}' === '' ) ? '%{BaseEdit}' : '%{BaseCB}'}" },
+        { "key": "CNP",                 "value": "%{CN}Private" },
+        { "key": "BN",                  "value": "%{JS: ( '%{Namespace}') ? '%{Namespace}_BEGIN_NAMESPACE' : ''}"  },
+        { "key": "EN",                  "value": "%{JS: ( '%{Namespace}') ? '%{Namespace}_END_NAMESPACE' : ''}" },
+        { "key": "InheritObject",       "value": "%{JS: ('%{InheritQWidget}') ? '%{InheritQWidget}' : '%{InheritQObject}' }" },
+        { "key": "isQObject",           "value": "%{JS: [ 'QObject', 'QWidget', 'QMainWindow', 'QDeclarativeItem', 'QQuickItem' ].indexOf('%{Base}') >= 0 || ('%{InheritObject}' !== '') }" },
+        { "key": "isInheritDPointer",   "value": "%{JS: ('%{BaseEdit}' !== '' && %{InheritDPointer}) }" }
+    ],
+
+    "pages":
+    [
+        {
+            "trDisplayName": "Define Class",
+            "trShortTitle": "Details",
+            "typeId": "Fields",
+            "data" :
+            [
+                {
+                    "name": "Class",
+                    "trDisplayName": "Class name:",
+                    "mandatory": true,
+                    "type": "LineEdit",
+                    "data": { "validator": "(?:(?:[a-zA-Z_][a-zA-Z_0-9]*::)*[a-zA-Z_][a-zA-Z_0-9]*|)" }
+                },
+                {
+                    "name": "BaseCB",
+                    "trDisplayName": "Base class:",
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items": [ { "trKey": "<Custom>", "value": "" },
+                                   "QObject", "QWidget", "QMainWindow", "QDeclarativeItem", "QQuickItem" ]
+                    }
+                },
+                {
+                    "name": "BaseEdit",
+                    "type": "LineEdit",
+                    "enabled": "%{JS: '%{BaseCB}' === ''}",
+                    "mandatory": false,
+                    "data":
+                    {
+                        "trText": "%{BaseCB}",
+                        "trDisabledText": "%{BaseCB}"
+                    }
+                },
+                {
+                    "name": "Namespace",
+                    "trDisplayName": "Namespace:",
+                    "type": "LineEdit",
+                    "enabled": true,
+                    "mandatory": false,
+                    "data": { "trText": "" }
+                },
+                {
+                    "name": "Sp1",
+                    "type": "Spacer",
+                    "data": { "factor": 2 }
+                },
+                {
+                    "name": "InheritQObject",
+                    "trDisplayName": "Inherit QObject",
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "QObject",
+                        "uncheckedValue": "",
+                        "checked": "%{JS: '%{BaseCB}' === 'QObject'}"
+                    }
+                },
+                {
+                    "name": "InheritQWidget",
+                    "trDisplayName": "Inherit QWidget",
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "QWidget",
+                        "uncheckedValue": "",
+                        "checked": "%{JS: '%{BaseCB}' === 'QWidget'}"
+                    }
+                },
+                {
+                    "name": "InheritDPointer",
+                    "trDisplayName": "Inherit DPointer",
+                    "type": "CheckBox",
+                    "data": { "checked": "%{JS: '%{BaseEdit}'}" }
+                },
+                {
+                    "name": "Sp2",
+                    "type": "Spacer"
+                },
+                {
+                    "name": "HdrFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Header file:",
+                    "mandatory": true,
+                    "data": { "trText": "%{JS: Cpp.classToFileName('%{Class}', '%{JS: Util.preferredSuffix('text/x-c++hdr')}')}" }
+                },
+                {
+                    "name": "PriFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Privte file:",
+                    "mandatory": true,
+                    "data": { "trText": "%{JS: Cpp.classToFileName('%{Class}_p', '%{JS: Util.preferredSuffix('text/x-c++hdr')}')}" }
+                },
+                {
+                    "name": "SrcFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Source file:",
+                    "mandatory": true,
+                    "data": { "trText": "%{JS: Cpp.classToFileName('%{Class}', '%{JS: Util.preferredSuffix('text/x-c++src')}')}" }
+                },
+                {
+                    "name": "Path",
+                    "type": "PathChooser",
+                    "trDisplayName": "Path:",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "existingDirectory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Project Management",
+            "trShortTitle": "Summary",
+            "typeId": "Summary"
+        }
+    ],
+
+    "generators":
+    [
+        {
+            "typeId": "File",
+            "data":
+            [
+                {
+                    "source": "file.h",
+                    "target": "%{HdrPath}",
+                    "openInEditor": true,
+                    "options": [
+                        { "key": "Cpp:License:FileName", "value": "%{HdrFileName}" },
+                        { "key": "Cpp:License:ClassName", "value": "%{CN}" }
+                    ]
+                },
+                {
+                    "source": "file_p.h",
+                    "target": "%{PriPath}",
+                    "openInEditor": true,
+                    "options": [
+                        { "key": "Cpp:License:FileName", "value": "%{PriFileName}" },
+                        { "key": "Cpp:License:ClassName", "value": "%{CN}" }
+                    ]
+                },
+                {
+                    "source": "file.cpp",
+                    "target": "%{SrcPath}",
+                    "openInEditor": true,
+                    "options": [
+                        { "key": "Cpp:License:FileName", "value": "%{SrcFileName}" },
+                        { "key": "Cpp:License:ClassName", "value": "%{CN}" }
+                    ]
+                }
+            ]
+        }
+    ]
+}

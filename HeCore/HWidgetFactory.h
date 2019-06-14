@@ -28,6 +28,8 @@ public:
     // 创建对象
     template <typename T>
     static T *createWidget(QString className, QVariantMap param, QWidget *parent = nullptr);
+    // 所有窗体名称
+    static QStringList keys();
 
 protected:
     template <typename T>

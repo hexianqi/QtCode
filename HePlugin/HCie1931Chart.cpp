@@ -257,11 +257,12 @@ void HCie1931Chart::updateHorseshoeBrush()
 
     QBrush brush;
     QTransform tran;
-    auto rect = plotArea();
-    auto p1 = mapToValue(rect.bottomLeft());
-    auto p2 = mapToValue(rect.topRight());
-    tran.scale(rect.width() / d->cie.width() / (p2.x() - p1.x()), rect.height() / d->cie.height() / (p2.y() - p1.y()));
-    tran.translate(-p1.x() * d->cie.width(), (p2.y() - 1) * d->cie.height());
+    auto rect1 = plotArea();
+    auto rect2 = d->cie.rect();
+    auto p1 = mapToValue(rect1.bottomLeft());
+    auto p2 = mapToValue(rect1.topRight());
+    tran.scale(rect1.width() / rect2.width() / (p2.x() - p1.x()), rect1.height() / rect2.height() / (p2.y() - p1.y()));
+    tran.translate(-p1.x() * rect2.width(), (p2.y() - 1) * rect2.height());
     brush.setTexture(d->cie);
     brush.setTransform(tran);
     if (d->horseshoe->brush() != brush)

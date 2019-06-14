@@ -23,6 +23,8 @@ HGifWidget::HGifWidget(QWidget *parent) :
 
 HGifWidget::~HGifWidget()
 {
+    if (d_ptr->timer->isActive())
+        d_ptr->timer->stop();
     delete ui;
 }
 
@@ -34,11 +36,11 @@ void HGifWidget::setBorderWidth(int value)
     update();
 }
 
-void HGifWidget::setColorBackground(QColor value)
+void HGifWidget::setBackground(QColor value)
 {
-    if (d_ptr->colorBackground == value)
+    if (d_ptr->background == value)
         return;
-    d_ptr->colorBackground = value;
+    d_ptr->background = value;
     update();
 }
 
@@ -47,9 +49,9 @@ int HGifWidget::borderWidth() const
     return d_ptr->borderWidth;
 }
 
-QColor HGifWidget::colorBackground() const
+QColor HGifWidget::background() const
 {
-    return d_ptr->colorBackground;
+    return d_ptr->background;
 }
 
 bool HGifWidget::eventFilter(QObject *watched, QEvent *event)
@@ -74,7 +76,7 @@ void HGifWidget::paintEvent(QPaintEvent *)
 
     QPainter painter(this);
     painter.setPen(Qt::NoPen);
-    painter.setBrush(d_ptr->colorBackground);
+    painter.setBrush(d_ptr->background);
     painter.drawRoundedRect(rect(), 5, 5);
     painter.setCompositionMode(QPainter::CompositionMode_Clear);
     painter.fillRect(d_ptr->screen, Qt::SolidPattern);
@@ -168,7 +170,7 @@ void HGifWidget::init()
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint | Qt::WindowStaysOnTopHint);
-    setWindowIcon(QIcon(":/image/gifWidget.ico"));
+    setWindowIcon(QIcon(":/image/tools/gifWidget.ico"));
     installEventFilter(this);
     setStyleSheet(qss.join(""));
 }

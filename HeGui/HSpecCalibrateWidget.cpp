@@ -22,6 +22,8 @@
 #include <QtWidgets/QInputDialog>
 #include <QtCore/QDebug>
 
+#include <QtWidgets/QAction>
+
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecCalibrateWidgetPrivate::HSpecCalibrateWidgetPrivate()
@@ -59,7 +61,7 @@ void HSpecCalibrateWidget::setSpecCalibrate(ISpecCalibrate *p)
     d->specCalibrate = p;
     d->fittingWidget->setData(dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::SpecFitting)));
     d->pelsWaveWidget->setData(dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::SpecPelsWave)));
-    refreshCcdView(0);
+    refreshCcdView();
 }
 
 void HSpecCalibrateWidget::setTestSetWidget(ITestSetWidget *p)
@@ -186,10 +188,11 @@ void HSpecCalibrateWidget::on_pushButton_6_clicked()
     d->ccdView->clearSeries();
 }
 
-void HSpecCalibrateWidget::refreshCcdView(int i)
+void HSpecCalibrateWidget::refreshCcdView()
 {
     Q_D(HSpecCalibrateWidget);
-    d->ccdView->addSeries(i, d->fittingWidget->fittingPoints());
+    d->ccdView->addSeries(d->fittingTimes++, QPolygonF() << QPointF(5000 + d->fittingTimes * 1000, 0.8) << QPointF(50000 + d->fittingTimes * 1000, 0.9));
+                          //d->fittingWidget->fittingPoints());
 }
 
 void HSpecCalibrateWidget::refreshSpecWidget()
@@ -221,7 +224,13 @@ void HSpecCalibrateWidget::init()
     ui->splitter_2->setStretchFactor(0,1);
     ui->splitter_1->setStretchFactor(0,1);
     connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HSpecCalibrateWidget::handleTestFitStateChanged);
-    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [&]{ refreshCcdView(d->fittingTimes++); });
+    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [=]{ refreshCcdView(); });
+
+    auto test = new QAction("测试");
+    connect(test, &QAction::triggered, this, [=]{ qDebug() << d->fittingTimes;  refreshCcdView(); });
+    d->ccdView->addAction(test);
+
+
 }
 
 HE_GUI_END_NAMESPACE

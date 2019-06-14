@@ -24,13 +24,11 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-            HControlHelper.cpp \
-            HControlTester.cpp
+            HControlHelper.cpp
 
 HEADERS     += \
             HControlGlobal.h \
-            HControlHelper.h \
-            HControlTester.h
+            HControlHelper.h
 
 RESOURCES   = HeControl.qrc
 
@@ -58,3 +56,8 @@ include(event.pri)
 include(table.pri)
 include(tools.pri)
 include(layout.pri)
+include(service.pri)
+include(beautify.pri)
+include(style.pri)
+
+include(test.pri)

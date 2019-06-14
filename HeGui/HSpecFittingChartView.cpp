@@ -51,6 +51,7 @@ void HSpecFittingChartView::removeSeries(int id)
 void HSpecFittingChartView::clearSeries()
 {
     Q_D(HSpecFittingChartView);
+    d->chart->zoomReset();
     d->chart->removeAllSeries();
     d->marker->disconnectExtend();
     d->series.clear();

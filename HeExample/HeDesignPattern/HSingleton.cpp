@@ -1,7 +1,7 @@
 #include "HSingleton.h"
 #include<mutex>
 
-HLazySingleton* HLazySingleton::__instance = nullptr;
+HLazySingleton *HLazySingleton::__instance = nullptr;
 HLazySingleton::GC HLazySingleton::GC::gc;
 static std::once_flag __oc; // 用于call_once的局部静态变量
 

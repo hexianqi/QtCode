@@ -3,7 +3,8 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
-#include "HeExample/HeControl/HControlTester.h"
+#include "HeExample/HeControl/HControlWidget.h"
+#include "HePlugin/HRibbonDiagramWidget.h"
 #include <QtCore/QDebug>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
@@ -27,8 +28,8 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HControlTester tester;
-    tester.createWidget("HGifWidget")->show();
+    HControlWidget w;
+    w.show();
 
 //    HTestPlugin::testCIE1931View()->show();
 

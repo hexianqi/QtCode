@@ -1,11 +1,34 @@
-#include "HTestTable.h"
+#include "HControlFactory_p.h"
 #include "HRbTableHeaderView.h"
+#include "HColorPickerWidget.h"
+#include "HSerialPortWidget.h"
+#include "HGifWidget.h"
+#include "HStyleWidget.h"
+#include "HFlatStyleWidget.h"
+#include "HBarRuler.h"
+#include "HBattery.h"
+#include "HeCore/HWidgetFactory.h"
 #include <QtGui/QStandardItemModel>
 #include <QtWidgets/QTableWidget>
+#include <QtCore/QDebug>
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-QTableView *HTestTable::multHeaderTableView()
+HControlFactory::HControlFactory(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HControlFactoryPrivate)
+{
+    registerClass();
+}
+
+HControlFactory::~HControlFactory()
+{
+    qDebug() << __func__;
+}
+
+QTableView *HControlFactory::multHeaderTableView()
 {
     auto hHead = new HRbTableHeaderView(Qt::Horizontal, 3, 4);
     auto hModel = hHead->model();
@@ -64,7 +87,7 @@ QTableView *HTestTable::multHeaderTableView()
     return view;
 }
 
-QTableWidget *HTestTable::multHeaderTableWidget()
+QTableWidget *HControlFactory::multHeaderTableWidget()
 {
     auto widget1 = new QTableWidget;
     widget1->setColumnCount(2);
@@ -99,6 +122,40 @@ QTableWidget *HTestTable::multHeaderTableWidget()
     rootWidget->setCellWidget(0, 1, widget2);
     rootWidget->setCellWidget(0, 2, widget3);
     return rootWidget;
+}
+
+void HControlFactory::initialize(QVariantMap /*param*/)
+{
+
+}
+
+QString HControlFactory::typeName()
+{
+    return "HControlFactory";
+}
+
+QStringList HControlFactory::keys()
+{
+    return d_ptr->keys;
+}
+
+QWidget *HControlFactory::createWidget(QString type, QWidget *parent)
+{
+    return HWidgetFactory::createWidget<QWidget>(type, parent);
+}
+
+void HControlFactory::registerClass()
+{
+    auto b = HWidgetFactory::keys().toSet();
+    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
+    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
+    HWidgetFactory::registerClass<HColorPickerWidget>("HColorPickerWidget");
+    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
+    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
+    HWidgetFactory::registerClass<HBarRuler>("HBarRuler");
+    HWidgetFactory::registerClass<HBattery>("HBattery");
+    auto e = HWidgetFactory::keys().toSet();
+    d_ptr->keys = e.subtract(b).toList();
 }
 
 HE_CONTROL_END_NAMESPACE
