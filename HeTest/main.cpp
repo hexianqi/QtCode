@@ -12,6 +12,8 @@
 #include <QtCharts/QChartView>
 #include <functional>
 
+#include <QProgressDialog>
+
 HE_CONTROL_USE_NAMESPACE
 
 void testGslChart()
@@ -31,14 +33,14 @@ int main(int argc, char *argv[])
     HControlWidget w;
     w.show();
 
+
 //    HTestPlugin::testCIE1931View()->show();
 
-//    QMainWindow window;
-//    window.setCentralWidget(gsl.interpEval());
+//    MainWindow window;
+//    window.setCentralWidget(new HControlWidget);
 //    window.resize(800, 600);
 //    window.grabGesture(Qt::PanGesture);
 //    window.grabGesture(Qt::PinchGesture);
 //    window.show();
-
     return a.exec();
 }

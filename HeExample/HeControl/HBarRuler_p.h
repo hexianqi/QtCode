@@ -11,10 +11,10 @@ public:
     void updateValue();
 
 public:
-    double minValue = 0;
-    double maxValue = 100;
+    double minimum = 0;
+    double maximum = 100;
     double value = 20;
-    int precision = 0;
+    int decimal = 0;
     int longStep = 10;
     int shortStep = 1;
     int space = 20;

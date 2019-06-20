@@ -68,9 +68,9 @@ void HVernierChartView::init()
     d->textLeft = new QGraphicsSimpleTextItem(chart());
     d->textLeft->setZValue(100);
     d->textCenter = new QGraphicsSimpleTextItem(chart());
-    d->textLeft->setZValue(100);
+    d->textCenter->setZValue(100);
     d->textRight = new QGraphicsSimpleTextItem(chart());
-    d->textLeft->setZValue(100);
+    d->textRight->setZValue(100);
     connect(chart(), &QChart::plotAreaChanged, this, &HVernierChartView::handlePlotAreaChanged);
     connect(d->tracking, &HGraphicsVernierTracking::orientationChanged, this, &HVernierChartView::updataVernier);
     connect(d->tracking, &HGraphicsVernierTracking::vernierPosChanged, this, &HVernierChartView::updataVernier);
@@ -108,7 +108,7 @@ void HVernierChartView::handlePlotAreaChanged(QRectF value)
     auto y = value.top() + 5;
     d->tracking->setValidRegion(value);
     d->textLeft->setPos(value.left() + 5, y);
-    d->textCenter->setPos(value.center().x() - d->textCenter->boundingRect().width() / 2, y);
+    d->textCenter->setPos(value.center().x() - d->textCenter->boundingRect().width() / 2 - 30, y);
     d->textRight->setPos(value.right() - d->textRight->boundingRect().width() - 5, y);
     updataVernier();
 }

@@ -21,8 +21,8 @@ class HBatteryPrivate;
 class HBattery : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(double minValue READ minValue WRITE setMinValue)
-    Q_PROPERTY(double maxValue READ maxValue WRITE setMaxValue)
+    Q_PROPERTY(double minimum READ minimum WRITE setMinimum)
+    Q_PROPERTY(double maximum READ maximum WRITE setMaximum)
     Q_PROPERTY(double value READ value WRITE setValue)
     Q_PROPERTY(double alarmValue READ alarmValue WRITE setAlarmValue)
     Q_PROPERTY(double currentValue READ currentValue WRITE setCurrentValue)
@@ -42,25 +42,25 @@ signals:
     void valueChanged(double value);
 
 public:
-    void setRange(double minValue, double maxValue);
-    void setMinValue(double value);
-    void setMaxValue(double value);
+    void setRange(double minimum, double maximum);
+    void setMinimum(double value);
+    void setMaximum(double value);
     void setValue(double value);
     void setAlarmValue(double value);
     void setCurrentValue(double value);
     void setDuration(int value);
-    void setBorderColorStart(QColor value);
-    void setBorderColorEnd(QColor value);
-    void setAlarmColorStart(QColor value);
-    void setAlarmColorEnd(QColor value);
-    void setNormalColorStart(QColor value);
-    void setNormalColorEnd(QColor value);
+    void setBorderColorStart(const QColor &value);
+    void setBorderColorEnd(const QColor &value);
+    void setAlarmColorStart(const QColor &value);
+    void setAlarmColorEnd(const QColor &value);
+    void setNormalColorStart(const QColor &value);
+    void setNormalColorEnd(const QColor &value);
 
 public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-    double minValue() const;
-    double maxValue() const;
+    double minimum() const;
+    double maximum() const;
     double value() const;
     double alarmValue() const;
     double currentValue() const;

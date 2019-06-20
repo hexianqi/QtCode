@@ -62,7 +62,7 @@ void calcSpectrumEnergy(HSpecData *data)
 
 HSpecFacadePrivate::HSpecFacadePrivate()
 {
-    chromaticity = std::shared_ptr<IChromaticity>(new HChromaticity());
+    chromaticity = std::shared_ptr<IChromaticity>(new HChromaticityV2());
     photopicVision = std::make_shared<HPhotopicVision>();
 }
 

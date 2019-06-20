@@ -20,6 +20,7 @@ bool HMoveEventFilter::mousePressEvent(QMouseEvent *e)
         return false;
     d->isPressed = true;
     d->pos = e->pos();
+    d->parent->setCursor(Qt::OpenHandCursor);
     return true;
 }
 
@@ -29,6 +30,7 @@ bool HMoveEventFilter::mouseReleaseEvent(QMouseEvent *e)
     if (e->button() != Qt::LeftButton)
         return false;
     d->isPressed = false;
+    d->parent->setCursor(Qt::ArrowCursor);
     return true;
 }
 

@@ -7,6 +7,10 @@
 #include "HFlatStyleWidget.h"
 #include "HBarRuler.h"
 #include "HBattery.h"
+#include "HLightButton.h"
+#include "HLedNumber.h"
+#include "HColorProgressBar.h"
+#include "HCircularProgress.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtGui/QStandardItemModel>
 #include <QtWidgets/QTableWidget>
@@ -154,6 +158,10 @@ void HControlFactory::registerClass()
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
     HWidgetFactory::registerClass<HBarRuler>("HBarRuler");
     HWidgetFactory::registerClass<HBattery>("HBattery");
+    HWidgetFactory::registerClass<HLightButton>("HLightButton");
+    HWidgetFactory::registerClass<HLedNumber>("HLedNumber");
+    HWidgetFactory::registerClass<HColorProgressBar>("HColorProgressBar");
+    HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->keys = e.subtract(b).toList();
 }

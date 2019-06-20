@@ -10,8 +10,8 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HBatteryPrivate
 {
 public:
-    double minValue = 0;
-    double maxValue = 100;
+    double minimum = 0;
+    double maximum = 100;
     double value = 25;
     double alarmValue = 20;
     double currentValue = 25;

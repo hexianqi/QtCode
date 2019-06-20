@@ -22,10 +22,10 @@ class HBarRulerPrivate;
 class HBarRuler : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(double minValue READ minValue WRITE setMinValue)
-    Q_PROPERTY(double maxValue READ maxValue WRITE setMaxValue)
+    Q_PROPERTY(double minimum READ minimum WRITE setMinimum)
+    Q_PROPERTY(double maximum READ maximum WRITE setMaximum)
     Q_PROPERTY(double value READ value WRITE setValue)
-    Q_PROPERTY(int precision READ precision WRITE setPrecision)
+    Q_PROPERTY(int decimal READ decimal WRITE setDecimal)
     Q_PROPERTY(int longStep READ longStep WRITE setLongStep)
     Q_PROPERTY(int shortStep READ shortStep WRITE setShortStep)
     Q_PROPERTY(int space READ space WRITE setSpace)
@@ -45,29 +45,29 @@ signals:
     void valueChanged(double value);
 
 public:
-    void setRange(double minValue, double maxValue);
-    void setMinValue(double value);
-    void setMaxValue(double value);
+    void setRange(double minimum, double maximum);
+    void setMinimum(double value);
+    void setMaximum(double value);
     void setValue(double value);
-    void setPrecision(int value);
+    void setDecimal(int value);
     void setLongStep(int value);
     void setShortStep(int value);
     void setSpace(int value);
     void setAnimation(bool b);
     void setAnimationStep(double value);
-    void setBackgroundStart(QColor value);
-    void setBackgroundEnd(QColor value);
-    void setLineColor(QColor value);
-    void setBarBackground(QColor value);
-    void setBarColor(QColor value);
+    void setBackgroundStart(const QColor &value);
+    void setBackgroundEnd(const QColor &value);
+    void setLineColor(const QColor &value);
+    void setBarBackground(const QColor &value);
+    void setBarColor(const QColor &value);
 
 public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-    double minValue() const;
-    double maxValue() const;
+    double minimum() const;
+    double maximum() const;
     double value() const;
-    int precision() const;
+    int decimal() const;
     int longStep() const;
     int shortStep() const;
     int space() const;

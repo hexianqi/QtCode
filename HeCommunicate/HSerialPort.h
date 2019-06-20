@@ -17,7 +17,7 @@ class HSerialPort : public HAbstractPort
 
 public:
     explicit HSerialPort();
-    ~HSerialPort();
+    ~HSerialPort() override;
 
 public:
     void initialize(QVariantMap param) override;

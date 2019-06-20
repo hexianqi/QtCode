@@ -1,6 +1,7 @@
 #include "HSpecSetting_p.h"
 #include "HDataHelper.h"
 #include "HeAlgorithm/HInterp.h"
+#include "HeAlgorithm/HMath.h"
 #include "HeAlgorithm/HSpecHelper.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QtMath>
@@ -190,7 +191,8 @@ QPolygonF HSpecSetting::interpEnergy(QPolygonF value)
     auto interval = data("[光谱波长间隔]").toDouble();
     for (int i = 0; i < value.size(); i++)
         value[i].ry() *= calcEnergy(value[i].x());
-    return HInterp::eval(value, range.x(), range.y(), interval, HInterpType::Cspline);
+    return HMath::interpolate(value, range.x(), range.y(), interval);
+//    return HInterp::eval(value, range.x(), range.y(), interval, HInterpType::Cspline);
 }
 
 double HSpecSetting::calcEnergy(double wave)

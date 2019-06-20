@@ -3,4 +3,4 @@ TEMPLATE    = subdirs
 SUBDIRS     += \
             HeDesignPattern \
             HeControl \
-    HeReference
+            HeReference

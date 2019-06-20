@@ -46,37 +46,37 @@ HBarRuler::~HBarRuler()
         d_ptr->timer->stop();
 }
 
-void HBarRuler::setRange(double minValue, double maxValue)
+void HBarRuler::setRange(double minimum, double maximum)
 {
-    if (minValue >= maxValue)
-        qSwap(minValue, maxValue);
+    if (minimum >= maximum)
+        qSwap(minimum, maximum);
 
-    d_ptr->minValue = minValue;
-    d_ptr->maxValue = maxValue;
-    if (d_ptr->value < minValue || d_ptr->value > maxValue)
-        setValue(qBound(minValue, d_ptr->value, maxValue));
+    d_ptr->minimum = minimum;
+    d_ptr->maximum = maximum;
+    if (d_ptr->value < minimum || d_ptr->value > maximum)
+        setValue(qBound(minimum, d_ptr->value, maximum));
     else
         update();
 }
 
-void HBarRuler::setMinValue(double value)
+void HBarRuler::setMinimum(double value)
 {
-    setRange(value, d_ptr->maxValue);
+    setRange(value, d_ptr->maximum);
 }
 
-void HBarRuler::setMaxValue(double value)
+void HBarRuler::setMaximum(double value)
 {
-    setRange(d_ptr->minValue, value);
+    setRange(d_ptr->minimum, value);
 }
 
 void HBarRuler::setValue(double value)
 {
-    if (value < d_ptr->minValue || value >d_ptr-> maxValue)
+    if (value < d_ptr->minimum || value > d_ptr-> maximum)
         return;
     d_ptr->reverse = value < d_ptr->value;
     d_ptr->value = value;
     emit valueChanged(value);
-    if (!isAnimation())
+    if (!d_ptr->animation)
     {
         d_ptr->currentValue = value;
         update();
@@ -86,11 +86,11 @@ void HBarRuler::setValue(double value)
 }
 
 // 最大精确度为 3
-void HBarRuler::setPrecision(int value)
+void HBarRuler::setDecimal(int value)
 {
-    if (value > 3 || d_ptr->precision == value)
+    if (value > 3 || d_ptr->decimal == value)
         return;
-    d_ptr->precision = value;
+    d_ptr->decimal = value;
     update();
 }
 
@@ -128,13 +128,13 @@ void HBarRuler::setAnimation(bool b)
 
 void HBarRuler::setAnimationStep(double value)
 {
-    if (d_ptr->animationStep == value)
+    if (qFuzzyCompare(d_ptr->animationStep, value))
         return;
     d_ptr->animationStep = value;
     update();
 }
 
-void HBarRuler::setBackgroundStart(QColor value)
+void HBarRuler::setBackgroundStart(const QColor &value)
 {
     if (d_ptr->backgroundStart == value)
         return;
@@ -142,7 +142,7 @@ void HBarRuler::setBackgroundStart(QColor value)
     update();
 }
 
-void HBarRuler::setBackgroundEnd(QColor value)
+void HBarRuler::setBackgroundEnd(const QColor &value)
 {
     if (d_ptr->backgroundEnd == value)
         return;
@@ -150,7 +150,7 @@ void HBarRuler::setBackgroundEnd(QColor value)
     update();
 }
 
-void HBarRuler::setLineColor(QColor value)
+void HBarRuler::setLineColor(const QColor &value)
 {
     if (d_ptr->lineColor == value)
         return;
@@ -158,7 +158,7 @@ void HBarRuler::setLineColor(QColor value)
     update();
 }
 
-void HBarRuler::setBarBackground(QColor value)
+void HBarRuler::setBarBackground(const QColor &value)
 {
     if (d_ptr->barBackground == value)
         return;
@@ -166,7 +166,7 @@ void HBarRuler::setBarBackground(QColor value)
     update();
 }
 
-void HBarRuler::setBarColor(QColor value)
+void HBarRuler::setBarColor(const QColor &value)
 {
     if (d_ptr->barColor == value)
         return;
@@ -184,14 +184,14 @@ QSize HBarRuler::minimumSizeHint() const
     return QSize(20, 50);
 }
 
-double HBarRuler::minValue() const
+double HBarRuler::minimum() const
 {
-    return d_ptr->minValue;
+    return d_ptr->minimum;
 }
 
-double HBarRuler::maxValue() const
+double HBarRuler::maximum() const
 {
-    return d_ptr->maxValue;
+    return d_ptr->maximum;
 }
 
 double HBarRuler::value() const
@@ -199,9 +199,9 @@ double HBarRuler::value() const
     return d_ptr->value;
 }
 
-int HBarRuler::precision() const
+int HBarRuler::decimal() const
 {
-    return d_ptr->precision;
+    return d_ptr->decimal;
 }
 
 int HBarRuler::longStep() const
@@ -265,11 +265,11 @@ void HBarRuler::paintEvent(QPaintEvent *)
 
 void HBarRuler::drawBackground(QPainter *painter)
 {
-    painter->save();
-    painter->setPen(Qt::NoPen);
     auto gradient = QLinearGradient(QPointF(0, 0), QPointF(0, height()));
     gradient.setColorAt(0.0, backgroundStart());
     gradient.setColorAt(1.0, backgroundEnd());
+    painter->save();
+    painter->setPen(Qt::NoPen);
     painter->setBrush(gradient);
     painter->drawRect(rect());
     painter->restore();
@@ -287,17 +287,17 @@ void HBarRuler::drawRuler(QPainter *painter)
     auto x = space() + 20 + longLine;
     auto y = space();
     // 每一格移动多少
-    auto increment = (height() - 2 * space()) / (maxValue() - minValue());
+    auto increment = (height() - 2 * space()) / (maximum() - minimum());
 
     // 根据范围值绘制刻度值及刻度值
     painter->drawLine(QLineF(x, y, x, height() - space()));
-    for (int i = maxValue(); i >= minValue(); i = i - shortStep())
+    for (int i = maximum(); i >= minimum(); i = i - shortStep())
     {
         if (i % longStep() == 0)
         {
-            QString text = QString("%1").arg((double)i, 0, 'f', precision());
-            double fontWidth = painter->fontMetrics().width(text);
-            double fontHeight = painter->fontMetrics().height();
+            auto text = QString("%1").arg((double)i, 0, 'f', decimal());
+            auto fontWidth = painter->fontMetrics().width(text);
+            auto fontHeight = painter->fontMetrics().height();
             painter->drawText(x - fontWidth - 15, y + fontHeight / 3, text);
             painter->drawLine(QLineF(x - longLine, y, x, y));
         }
@@ -313,14 +313,13 @@ void HBarRuler::drawRuler(QPainter *painter)
 
 void HBarRuler::drawBar(QPainter *painter)
 {
-    painter->save();
-    painter->setPen(Qt::NoPen);
-
     // 20的长度为刻度尺文字的宽度 15为刻度尺到柱状图的宽度
     auto x = space() + 20.0 + 15.0;
     auto barRect = QRectF(QPointF(x, space()), QPointF(width() - space(), height() - space()));
-    auto y = barRect.bottom() - barRect.height() * (d_ptr->currentValue - minValue())  / (maxValue() - minValue());
+    auto y = barRect.bottom() - barRect.height() * (d_ptr->currentValue - minimum())  / (maximum() - minimum());
     auto currentRect = QRectF(QPointF(x, y), barRect.bottomRight());
+    painter->save();
+    painter->setPen(Qt::NoPen);
     painter->setBrush(barBackground());
     painter->drawRect(barRect);
     painter->setBrush(barColor());

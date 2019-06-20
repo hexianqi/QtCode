@@ -66,14 +66,14 @@ void HSpecFittingWidget::handleAction(HActionType action)
         return;
 
     auto sample = d_ptr->testSpec->sample(1, d_ptr->pel);
-    if (sample < d_ptr->lastSample)
-    {
-        cancel(tr("采样数据不对（积分时间：%1ms）!").arg(d_ptr->points[d_ptr->curTimes].y()));
-        return;
-    }
-
-    d_ptr->lastSample = sample;
-    d_ptr->points[d_ptr->curTimes++].setX(sample);
+//    if (sample < d_ptr->lastSample)
+//    {
+//        cancel(tr("采样数据不对（积分时间：%1ms）!").arg(d_ptr->points[d_ptr->curTimes].y()));
+//        return;
+//    }
+//    d_ptr->lastSample = sample;
+    d_ptr->points[d_ptr->curTimes].setX(sample);
+    d_ptr->curTimes += 1;
     d_ptr->progressDialog->setValue(d_ptr->curTimes);
     if (d_ptr->curTimes < d_ptr->points.size())
     {
@@ -97,8 +97,8 @@ bool HSpecFittingWidget::setTest(bool b)
     {
         if (!initParam())
             return false;
-        d_ptr->curTimes = 0;
         d_ptr->lastSample = 0.0;
+        d_ptr->curTimes = 0;        
         d_ptr->progressDialog->setRange(0, d_ptr->points.size());
         d_ptr->progressDialog->setValue(0);
         d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());

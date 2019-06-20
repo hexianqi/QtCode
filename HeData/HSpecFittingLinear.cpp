@@ -1,6 +1,7 @@
 #include "HSpecFittingLinear_p.h"
 #include "HDataHelper.h"
 #include "HeAlgorithm/HInterp.h"
+#include "HeAlgorithm/HMath.h"
 
 HE_ALGORITHM_USE_NAMESPACE
 
@@ -62,7 +63,8 @@ double HSpecFittingLinear::calcRate(double value)
 
     auto range = data("[光谱拟合有效范围]").toPointF();
     value = qBound(range.x(), value, range.y());
-    return HInterp::eval(d->fittingPoints, value, HInterpType::Cspline);
+    return HMath::interpolate(value, d->fittingPoints);
+//    return HInterp::eval(d->fittingPoints, value, HInterpType::Cspline);
 }
 
 HE_DATA_END_NAMESPACE
