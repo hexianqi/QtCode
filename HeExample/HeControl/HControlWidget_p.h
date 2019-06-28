@@ -15,6 +15,4 @@ public:
 
 HE_CONTROL_END_NAMESPACE
 
-
-
 #endif // HCONTROLWIDGET_P_H

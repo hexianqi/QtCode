@@ -12,20 +12,16 @@
 #ifndef HBARRULER_H
 #define HBARRULER_H
 
-#include "HControlGlobal.h"
-#include <QtWidgets/QWidget>
+#include "HAbstractProgress.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HBarRulerPrivate;
 
-class HBarRuler : public QWidget
+class HBarRuler : public HAbstractProgress
 {
     Q_OBJECT
-    Q_PROPERTY(double minimum READ minimum WRITE setMinimum)
-    Q_PROPERTY(double maximum READ maximum WRITE setMaximum)
-    Q_PROPERTY(double value READ value WRITE setValue)
-    Q_PROPERTY(int decimal READ decimal WRITE setDecimal)
+    Q_DECLARE_PRIVATE(HBarRuler)
     Q_PROPERTY(int longStep READ longStep WRITE setLongStep)
     Q_PROPERTY(int shortStep READ shortStep WRITE setShortStep)
     Q_PROPERTY(int space READ space WRITE setSpace)
@@ -41,33 +37,9 @@ public:
     explicit HBarRuler(QWidget *parent = nullptr);
     ~HBarRuler() override;
 
-signals:
-    void valueChanged(double value);
-
-public:
-    void setRange(double minimum, double maximum);
-    void setMinimum(double value);
-    void setMaximum(double value);
-    void setValue(double value);
-    void setDecimal(int value);
-    void setLongStep(int value);
-    void setShortStep(int value);
-    void setSpace(int value);
-    void setAnimation(bool b);
-    void setAnimationStep(double value);
-    void setBackgroundStart(const QColor &value);
-    void setBackgroundEnd(const QColor &value);
-    void setLineColor(const QColor &value);
-    void setBarBackground(const QColor &value);
-    void setBarColor(const QColor &value);
-
 public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-    double minimum() const;
-    double maximum() const;
-    double value() const;
-    int decimal() const;
     int longStep() const;
     int shortStep() const;
     int space() const;
@@ -79,6 +51,20 @@ public:
     QColor barBackground() const;
     QColor barColor() const;
 
+public:
+    void setValue(double value) override;
+    void setDecimal(int value) override;
+    void setLongStep(int value);
+    void setShortStep(int value);
+    void setSpace(int value);
+    void setAnimation(bool b);
+    void setAnimationStep(double value);
+    void setBackgroundStart(const QColor &value);
+    void setBackgroundEnd(const QColor &value);
+    void setLineColor(const QColor &value);
+    void setBarBackground(const QColor &value);
+    void setBarColor(const QColor &value);
+
 protected:
     HBarRuler(HBarRulerPrivate &p, QWidget *parent = nullptr);
 
@@ -88,12 +74,9 @@ protected:
     void drawRuler(QPainter *);
     void drawBar(QPainter *);
 
-protected:
-    QScopedPointer<HBarRulerPrivate> d_ptr;
-
 private:
     void init();
-    void animationUpdate();
+    void updateValue();
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -5,126 +5,17 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HBattery::HBattery(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new HBatteryPrivate)
+    HAnimationProgress(*new HBatteryPrivate, parent)
 {
-    init();
 }
 
 HBattery::HBattery(HBatteryPrivate &p, QWidget *parent) :
-    QWidget(parent),
-    d_ptr(&p)
+    HAnimationProgress(p, parent)
 {
-    init();
 }
 
 HBattery::~HBattery()
 {
-}
-
-void HBattery::setRange(double minValue, double maxValue)
-{
-    if (minValue >= maxValue)
-        qSwap(minValue, maxValue);
-
-    d_ptr->minimum = minValue;
-    d_ptr->maximum = maxValue;
-    if (d_ptr->value < minValue || d_ptr->value > maxValue)
-        setValue(qBound(minValue, d_ptr->value, maxValue));
-    else
-        update();
-}
-
-void HBattery::setMinimum(double value)
-{
-    setRange(value, d_ptr->maximum);
-}
-
-void HBattery::setMaximum(double value)
-{
-    setRange(d_ptr->minimum, value);
-}
-
-void HBattery::setValue(double value)
-{
-    if (value < d_ptr->minimum || value >d_ptr-> maximum)
-        return;
-    d_ptr->value = value;
-    emit valueChanged(value);
-    d_ptr->animation->stop();
-    d_ptr->animation->setEndValue(value);
-    d_ptr->animation->start();
-}
-
-void HBattery::setAlarmValue(double value)
-{
-    if (qFuzzyCompare(d_ptr->alarmValue, value))
-        return;
-    d_ptr->alarmValue = value;
-    update();
-}
-
-void HBattery::setCurrentValue(double value)
-{
-    if (qFuzzyCompare(d_ptr->currentValue, value))
-        return;
-    d_ptr->currentValue = value;
-    update();
-}
-
-void HBattery::setDuration(int value)
-{
-    if (d_ptr->animation->duration() == value)
-        return;
-    d_ptr->animation->setDuration(value);
-}
-
-void HBattery::setBorderColorStart(const QColor &value)
-{
-    if (d_ptr->borderColorStart == value)
-        return;
-    d_ptr->borderColorStart = value;
-    update();
-}
-
-void HBattery::setBorderColorEnd(const QColor &value)
-{
-    if (d_ptr->borderColorEnd == value)
-        return;
-    d_ptr->borderColorEnd = value;
-    update();
-}
-
-void HBattery::setAlarmColorStart(const QColor &value)
-{
-    if (d_ptr->alarmColorStart == value)
-        return;
-    d_ptr->alarmColorStart = value;
-    update();
-}
-
-void HBattery::setAlarmColorEnd(const QColor &value)
-{
-    if (d_ptr->alarmColorEnd == value)
-        return;
-    d_ptr->alarmColorEnd = value;
-    update();
-}
-
-void HBattery::setNormalColorStart(const QColor &value)
-{
-    if (d_ptr->normalColorStart == value)
-        return;
-    d_ptr->normalColorStart = value;
-    update();
-}
-
-void HBattery::setNormalColorEnd(const QColor &value)
-{
-    if (d_ptr->normalColorEnd == value)
-        return;
-    d_ptr->normalColorEnd = value;
-    update();
 }
 
 QSize HBattery::sizeHint() const
@@ -137,64 +28,109 @@ QSize HBattery::minimumSizeHint() const
     return QSize(30, 10);
 }
 
-double HBattery::minimum() const
-{
-    return d_ptr->minimum;
-}
-
-double HBattery::maximum() const
-{
-    return d_ptr->maximum;
-}
-
-double HBattery::value() const
-{
-    return d_ptr->value;
-}
-
 double HBattery::alarmValue() const
 {
-    return d_ptr->alarmValue;
-}
-
-double HBattery::currentValue() const
-{
-    return d_ptr->currentValue;
-}
-
-double HBattery::duration() const
-{
-    return d_ptr->animation->duration();
+    Q_D(const HBattery);
+    return d->alarmValue;
 }
 
 QColor HBattery::borderColorStart() const
 {
-    return d_ptr->borderColorStart;
+    Q_D(const HBattery);
+    return d->borderColorStart;
 }
 
 QColor HBattery::borderColorEnd() const
 {
-    return d_ptr->borderColorEnd;
+    Q_D(const HBattery);
+    return d->borderColorEnd;
 }
 
 QColor HBattery::alarmColorStart() const
 {
-    return d_ptr->alarmColorStart;
+    Q_D(const HBattery);
+    return d->alarmColorStart;
 }
 
 QColor HBattery::alarmColorEnd() const
 {
-    return d_ptr->alarmColorEnd;
+    Q_D(const HBattery);
+    return d->alarmColorEnd;
 }
 
 QColor HBattery::normalColorStart() const
 {
-    return d_ptr->normalColorStart;
+    Q_D(const HBattery);
+    return d->normalColorStart;
 }
 
 QColor HBattery::normalColorEnd() const
 {
-    return d_ptr->normalColorEnd;
+    Q_D(const HBattery);
+    return d->normalColorEnd;
+}
+
+void HBattery::setAlarmValue(double value)
+{
+    Q_D(HBattery);
+    if (qFuzzyCompare(d->alarmValue, value))
+        return;
+    d->alarmValue = value;
+    update();
+}
+
+void HBattery::setBorderColorStart(const QColor &value)
+{
+    Q_D(HBattery);
+    if (d->borderColorStart == value)
+        return;
+    d->borderColorStart = value;
+    update();
+}
+
+void HBattery::setBorderColorEnd(const QColor &value)
+{
+    Q_D(HBattery);
+    if (d->borderColorEnd == value)
+        return;
+    d->borderColorEnd = value;
+    update();
+}
+
+void HBattery::setAlarmColorStart(const QColor &value)
+{
+    Q_D(HBattery);
+    if (d->alarmColorStart == value)
+        return;
+    d->alarmColorStart = value;
+    update();
+}
+
+void HBattery::setAlarmColorEnd(const QColor &value)
+{
+    Q_D(HBattery);
+    if (d->alarmColorEnd == value)
+        return;
+    d->alarmColorEnd = value;
+    update();
+}
+
+void HBattery::setNormalColorStart(const QColor &value)
+{
+    Q_D(HBattery);
+    if (d->normalColorStart == value)
+        return;
+    d->normalColorStart = value;
+    update();
+}
+
+void HBattery::setNormalColorEnd(const QColor &value)
+{
+    Q_D(HBattery);
+    if (d->normalColorEnd == value)
+        return;
+    d->normalColorEnd = value;
+    update();
 }
 
 void HBattery::paintEvent(QPaintEvent *)
@@ -217,22 +153,14 @@ void HBattery::paintEvent(QPaintEvent *)
     // 绘制电量
     auto margin = qMin(width(), height()) / 20;
     auto rect3 = rect1.adjusted(margin, margin, -margin, -margin);
-    rect3.setWidth(rect3.width() * value() / 100);
+    rect3.setWidth(rect3.width() * currentValue() / 100);
     auto gradient3 = QLinearGradient(QPointF(0, 0), QPointF(0, height()));
-    gradient3.setColorAt(0.0, value() <= alarmValue() ? alarmColorStart() : normalColorStart());
-    gradient3.setColorAt(1.0, value() <= alarmValue() ? alarmColorEnd() : normalColorEnd());
+    gradient3.setColorAt(0.0, currentValue() <= alarmValue() ? alarmColorStart() : normalColorStart());
+    gradient3.setColorAt(1.0, currentValue() <= alarmValue() ? alarmColorEnd() : normalColorEnd());
     painter.setPen(Qt::NoPen);
     painter.setBrush(gradient3);
     painter.drawRoundRect(rect3, 10, 20);
     painter.restore();
-}
-
-void HBattery::init()
-{
-    d_ptr->animation = new QPropertyAnimation(this, "currentValue", this);
-    d_ptr->animation->setEasingCurve(QEasingCurve::Linear);
-    d_ptr->animation->setDuration(2000);
-    d_ptr->animation->setStartValue(d_ptr->currentValue);
 }
 
 HE_CONTROL_END_NAMESPACE

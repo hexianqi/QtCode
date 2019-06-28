@@ -1,12 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>image/RbTableHeader.png</file>
-        <file>image/beautify/BarRuler.gif</file>
         <file>image/Layout/BorderLayout.png</file>
         <file>image/Layout/CardLayout.png</file>
         <file>image/Layout/FlowLayout.gif</file>
         <file>image/tools/ColorPicker.ico</file>
         <file>image/tools/gifwidget.ico</file>
         <file>image/tools/gifwidget.png</file>
+        <file>image/beautify/Calendar_blue.png</file>
+        <file>image/beautify/Calendar_brown.png</file>
+        <file>image/beautify/Calendar_gray.png</file>
+        <file>image/beautify/Calendar_purple.png</file>
+        <file>image/beautify/Calendar_red.png</file>
+        <file>image/beautify/Calendar_yellow.png</file>
     </qresource>
 </RCC>

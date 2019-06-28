@@ -243,6 +243,26 @@ void HDiagramWidget::setPolygonColor(int id, QColor color)
     refreshPixmap();
 }
 
+void HDiagramWidget::resizeEvent(QResizeEvent *e)
+{
+    setPlotArea(d_ptr->calcPlotArea(e->size()));
+    refreshPixmap();
+}
+
+void HDiagramWidget::paintEvent(QPaintEvent *)
+{
+    QStylePainter painter(this);
+    painter.drawPixmap(0, 0, d_ptr->pixmap);
+
+    if (hasFocus())
+    {
+        QStyleOptionFocusRect option;
+        option.initFrom(this);
+        option.backgroundColor = palette().dark().color();
+        style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, &painter, this);
+    }
+}
+
 void HDiagramWidget::setPlotArea(QRectF value)
 {
     if (d_ptr->plotArea == value)
@@ -330,26 +350,6 @@ bool HDiagramWidget::drawPolygon(QPainter *)
 bool HDiagramWidget::drawElse(QPainter *)
 {
     return true;
-}
-
-void HDiagramWidget::resizeEvent(QResizeEvent *e)
-{
-    setPlotArea(d_ptr->calcPlotArea(e->size()));
-    refreshPixmap();
-}
-
-void HDiagramWidget::paintEvent(QPaintEvent *)
-{
-    QStylePainter painter(this);
-    painter.drawPixmap(0, 0, d_ptr->pixmap);
-
-    if (hasFocus())
-    {
-        QStyleOptionFocusRect option;
-        option.initFrom(this);
-        option.backgroundColor = palette().dark().color();
-        style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, &painter, this);
-    }
 }
 
 bool HDiagramWidget::isValid()

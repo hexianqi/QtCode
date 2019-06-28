@@ -60,7 +60,7 @@ void HBuilder2000::buildConfigManage()
     if (!d->configManage->fileStream()->readFile(d->configFileName))
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
-        if (!specs->fileStream()->readFile("://Dat/Spectrum.hcs"))
+        if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
         {
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             specs->insert("1", spec);

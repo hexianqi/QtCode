@@ -2,19 +2,13 @@
 #define HBARRULER_P_H
 
 #include "HBarRuler.h"
+#include "HAbstractProgress_p.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HBarRulerPrivate
+class HBarRulerPrivate : public HAbstractProgressPrivate
 {
 public:
-    void updateValue();
-
-public:
-    double minimum = 0;
-    double maximum = 100;
-    double value = 20;
-    int decimal = 0;
     int longStep = 10;
     int shortStep = 1;
     int space = 20;

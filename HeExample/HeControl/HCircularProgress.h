@@ -10,7 +10,7 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IWait;
+class ICircular;
 class HCircularProgressPrivate;
 
 class HCircularProgress : public QWidget
@@ -36,15 +36,15 @@ public slots:
     void setDuration(int value);
 
 public:
-    void setWaitStrategy(IWait *);
+    void setCircular(ICircular *);
 
 protected:
     HCircularProgress(HCircularProgressPrivate &p, QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *) override;
-    virtual void changeValue();
-    virtual void changeWait(QAction *);
+    virtual void updateValue();
+    virtual void changeCircular(QAction *);
 
 protected:
     QScopedPointer<HCircularProgressPrivate> d_ptr;

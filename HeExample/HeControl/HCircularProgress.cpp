@@ -1,6 +1,6 @@
 #include "HCircularProgress_p.h"
-#include "HWaitFactory.h"
-#include "IWait.h"
+#include "HCircularFactory.h"
+#include "ICircular.h"
 #include <QtCore/QTimer>
 #include <QtGui/QPainter>
 #include <QtWidgets/QActionGroup>
@@ -53,12 +53,12 @@ void HCircularProgress::setDuration(int value)
     d_ptr->timer->setInterval(value);
 }
 
-void HCircularProgress::setWaitStrategy(IWait *p)
+void HCircularProgress::setCircular(ICircular *p)
 {
-    if (d_ptr->wait != nullptr)
-        disconnect(d_ptr->wait, SIGNAL(dataChanged()), this, SLOT(update()));
-    d_ptr->wait = p;
-    connect(d_ptr->wait, SIGNAL(dataChanged()), this, SLOT(update()));
+    if (d_ptr->circular != nullptr)
+        disconnect(d_ptr->circular, SIGNAL(dataChanged()), this, SLOT(update()));
+    d_ptr->circular = p;
+    connect(d_ptr->circular, SIGNAL(dataChanged()), this, SLOT(update()));
 }
 
 bool HCircularProgress::isReverse() const
@@ -78,7 +78,7 @@ int HCircularProgress::duration() const
 
 void HCircularProgress::paintEvent(QPaintEvent *)
 {
-    if (d_ptr->wait == nullptr)
+    if (d_ptr->circular == nullptr)
         return;
 
     QVariantMap param;
@@ -90,29 +90,29 @@ void HCircularProgress::paintEvent(QPaintEvent *)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    d_ptr->wait->draw(&painter, param);
+    d_ptr->circular->draw(&painter, param);
 }
 
-void HCircularProgress::changeValue()
+void HCircularProgress::updateValue()
 {
     d_ptr->value += d_ptr->reverse ? -d_ptr->step : d_ptr->step;
     d_ptr->value %= 360;
     update();
 }
 
-void HCircularProgress::changeWait(QAction *p)
+void HCircularProgress::changeCircular(QAction *p)
 {
     if (p == nullptr)
         return;
     auto k = p->data().toString();
-    if (!d_ptr->waitCache.contains(k))
-        d_ptr->waitCache.insert(k, d_ptr->factory->create(k));
-    setWaitStrategy(d_ptr->waitCache.value(k));
+    if (!d_ptr->circularCache.contains(k))
+        d_ptr->circularCache.insert(k, d_ptr->factory->create(k));
+    setCircular(d_ptr->circularCache.value(k));
 }
 
 void HCircularProgress::init()
 {
-    d_ptr->factory = new HWaitFactory(this);
+    d_ptr->factory = new HCircularFactory(this);
     auto group = new QActionGroup(this);
     for (auto k : d_ptr->factory->keys())
     {
@@ -121,13 +121,13 @@ void HCircularProgress::init()
         action->setData(k);
     }
     addActions(group->actions());
-    connect(group, &QActionGroup::triggered, this, &HCircularProgress::changeWait);
+    connect(group, &QActionGroup::triggered, this, &HCircularProgress::changeCircular);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     group->actions().first()->setChecked(true);
-    changeWait(group->actions().first());
+    changeCircular(group->actions().first());
     d_ptr->timer = new QTimer(this);
-    d_ptr->timer->setInterval(150);
-    connect(d_ptr->timer, &QTimer::timeout, this, &HCircularProgress::changeValue);
+    d_ptr->timer->setInterval(100);
+    connect(d_ptr->timer, &QTimer::timeout, this, &HCircularProgress::updateValue);
     d_ptr->timer->start();
 }
 

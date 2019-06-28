@@ -1,32 +1,27 @@
 /***************************************************************************************************
 **      2019-06-12  HBattery 电池电量控件。
 **                  http://www.qtcn.org/bbs/read-htm-tid-63464.html
-**                  1：可设置电池电量，动态切换电池电量变化
-**                  2：可设置电池电量警戒值
-**                  3：可设置电池电量正常颜色和报警颜色
-**                  4：可设置边框渐变颜色
-**                  5：可设置电量变化时每次移动的步长
+**                  1:可设置电池电量,动态切换电池电量变化
+**                  2:可设置电池电量警戒值
+**                  3:可设置电池电量正常颜色和报警颜色
+**                  4:可设置边框渐变颜色
+**                  5:可设置电量变化时每次移动的步长
 ***************************************************************************************************/
 
 #ifndef HBATTERY_H
 #define HBATTERY_H
 
-#include "HControlGlobal.h"
-#include <QtWidgets/QWidget>
+#include "HAnimationProgress.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HBatteryPrivate;
 
-class HBattery : public QWidget
+class HBattery : public HAnimationProgress
 {
     Q_OBJECT
-    Q_PROPERTY(double minimum READ minimum WRITE setMinimum)
-    Q_PROPERTY(double maximum READ maximum WRITE setMaximum)
-    Q_PROPERTY(double value READ value WRITE setValue)
+    Q_DECLARE_PRIVATE(HBattery)
     Q_PROPERTY(double alarmValue READ alarmValue WRITE setAlarmValue)
-    Q_PROPERTY(double currentValue READ currentValue WRITE setCurrentValue)
-    Q_PROPERTY(int duration READ duration WRITE setDuration)
     Q_PROPERTY(QColor borderColorStart READ borderColorStart WRITE setBorderColorStart)
     Q_PROPERTY(QColor borderColorEnd READ borderColorEnd WRITE setBorderColorEnd)
     Q_PROPERTY(QColor alarmColorStart READ alarmColorStart WRITE setAlarmColorStart)
@@ -35,36 +30,13 @@ class HBattery : public QWidget
     Q_PROPERTY(QColor normalColorEnd READ normalColorEnd WRITE setNormalColorEnd)
 
 public:
-    explicit HBattery(QWidget *parent = 0);
+    explicit HBattery(QWidget *parent = nullptr);
     ~HBattery() override;
-
-signals:
-    void valueChanged(double value);
-
-public:
-    void setRange(double minimum, double maximum);
-    void setMinimum(double value);
-    void setMaximum(double value);
-    void setValue(double value);
-    void setAlarmValue(double value);
-    void setCurrentValue(double value);
-    void setDuration(int value);
-    void setBorderColorStart(const QColor &value);
-    void setBorderColorEnd(const QColor &value);
-    void setAlarmColorStart(const QColor &value);
-    void setAlarmColorEnd(const QColor &value);
-    void setNormalColorStart(const QColor &value);
-    void setNormalColorEnd(const QColor &value);
 
 public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-    double minimum() const;
-    double maximum() const;
-    double value() const;
     double alarmValue() const;
-    double currentValue() const;
-    double duration() const;
     QColor borderColorStart() const;
     QColor borderColorEnd() const;
     QColor alarmColorStart() const;
@@ -72,17 +44,20 @@ public:
     QColor normalColorStart() const;
     QColor normalColorEnd() const;
 
+public:
+    void setAlarmValue(double value);
+    void setBorderColorStart(const QColor &value);
+    void setBorderColorEnd(const QColor &value);
+    void setAlarmColorStart(const QColor &value);
+    void setAlarmColorEnd(const QColor &value);
+    void setNormalColorStart(const QColor &value);
+    void setNormalColorEnd(const QColor &value);
+
 protected:
     HBattery(HBatteryPrivate &, QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *) override;
-
-protected:
-    QScopedPointer<HBatteryPrivate> d_ptr;
-
-private:
-    void init();
 };
 
 HE_CONTROL_END_NAMESPACE

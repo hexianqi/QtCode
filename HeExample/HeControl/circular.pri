@@ -1,32 +1,35 @@
 HEADERS += \
     $$PWD/HCircularProgress.h \
     $$PWD/HCircularProgress_p.h \
-    $$PWD/HTaichiWait.h \
-    $$PWD/HTaichiWait_p.h \
-    $$PWD/IWait.h \
-    $$PWD/HCircleWait.h \
-    $$PWD/HCircleWait_p.h \
-    $$PWD/HAbstractWait.h \
-    $$PWD/HAbstractWait_p.h \
-    $$PWD/IWaitFactory.h \
-    $$PWD/HWaitFactory.h \
-    $$PWD/HWaitFactory_p.h \
-    $$PWD/HPieWait.h \
-    $$PWD/HPieWait_p.h \
-    $$PWD/HLineWait.h \
-    $$PWD/HLineWait_p.h \
-    $$PWD/HDonutWait.h \
-    $$PWD/HDonutWait_p.h \
-    $$PWD/HZoomCircleWait.h \
-    $$PWD/HZoomCircleWait_p.h
+    $$PWD/ICircular.h \
+    $$PWD/ICircularFactory.h \
+    $$PWD/HAbstractCircular.h \
+    $$PWD/HAbstractCircular_p.h \
+    $$PWD/HCircleCircular.h \
+    $$PWD/HCircleCircular_p.h \
+    $$PWD/HDonutCircular.h \
+    $$PWD/HDonutCircular_p.h \
+    $$PWD/HLineCircular.h \
+    $$PWD/HLineCircular_p.h \
+    $$PWD/HPieCircular.h \
+    $$PWD/HPieCircular_p.h \
+    $$PWD/HTaichiCircular.h \
+    $$PWD/HTaichiCircular_p.h \
+    $$PWD/HCircularFactory.h \
+    $$PWD/HCircularFactory_p.h \
+    $$PWD/HWheelCircular.h \
+    $$PWD/HWheelCircular_p.h \
+    $$PWD/HCircleZoomCircular.h \
+    $$PWD/HCircleZoomCircular_p.h
 
 SOURCES += \
     $$PWD/HCircularProgress.cpp \
-    $$PWD/HTaichiWait.cpp \
-    $$PWD/HCircleWait.cpp \
-    $$PWD/HAbstractWait.cpp \
-    $$PWD/HWaitFactory.cpp \
-    $$PWD/HPieWait.cpp \
-    $$PWD/HLineWait.cpp \
-    $$PWD/HDonutWait.cpp \
-    $$PWD/HZoomCircleWait.cpp
+    $$PWD/HAbstractCircular.cpp \
+    $$PWD/HCircleCircular.cpp \
+    $$PWD/HDonutCircular.cpp \
+    $$PWD/HLineCircular.cpp \
+    $$PWD/HPieCircular.cpp \
+    $$PWD/HTaichiCircular.cpp \
+    $$PWD/HCircularFactory.cpp \
+    $$PWD/HWheelCircular.cpp \
+    $$PWD/HCircleZoomCircular.cpp

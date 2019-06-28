@@ -30,7 +30,7 @@ class HLightButton : public QWidget
     Q_PROPERTY(QColor borderInColorEnd READ borderInColorEnd WRITE setBorderInColorEnd)
     Q_PROPERTY(QColor background READ background WRITE setBackground)
     Q_PROPERTY(QColor overlayColor READ overlayColor WRITE setOverlayColor)
-    Q_PROPERTY(bool enableMove READ isEnableMove WRITE setEnableMove)
+    Q_PROPERTY(bool moveEnable READ isMoveEnable WRITE setMoveEnable)
     Q_PROPERTY(bool showOverlay READ isShowOverlay WRITE setShowOverlay)
 
 
@@ -47,9 +47,8 @@ public:
     void setBorderInColorEnd(const QColor &value);
     void setBackground(const QColor &value);
     void setOverlayColor(const QColor &value);
-    void setEnableMove(bool b);
+    void setMoveEnable(bool b);
     void setShowOverlay(bool b);
-
 
 public:
     QSize sizeHint() const override;
@@ -62,7 +61,7 @@ public:
     QColor borderInColorEnd() const;
     QColor background() const;
     QColor overlayColor() const;
-    bool isEnableMove() const;
+    bool isMoveEnable() const;
     bool isShowOverlay() const;
 
 

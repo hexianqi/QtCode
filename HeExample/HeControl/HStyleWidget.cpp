@@ -31,7 +31,6 @@ void HStyleWidget::init()
          << style->radioButton()
          << style->checkBox()
          << style->scrollBar();
-
     this->setStyleSheet(list.join("\n"));
 }
 

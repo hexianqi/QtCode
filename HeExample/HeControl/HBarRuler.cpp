@@ -4,174 +4,23 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-void HBarRulerPrivate::updateValue()
-{
-    if (!reverse)
-    {
-        currentValue += animationStep;
-        if (currentValue >= value)
-        {
-            currentValue = value;
-            timer->stop();
-        }
-    }
-    else
-    {
-        currentValue -= animationStep;
-        if (currentValue <= value)
-        {
-            currentValue = value;
-            timer->stop();
-        }
-    }
-}
-
 HBarRuler::HBarRuler(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new HBarRulerPrivate)
+    HAbstractProgress(*new HBarRulerPrivate, parent)
 {
     init();
 }
 
 HBarRuler::HBarRuler(HBarRulerPrivate &p, QWidget *parent) :
-    QWidget(parent),
-    d_ptr(&p)
+    HAbstractProgress(p, parent)
 {
     init();
 }
 
 HBarRuler::~HBarRuler()
 {
-    if (d_ptr->timer->isActive())
-        d_ptr->timer->stop();
-}
-
-void HBarRuler::setRange(double minimum, double maximum)
-{
-    if (minimum >= maximum)
-        qSwap(minimum, maximum);
-
-    d_ptr->minimum = minimum;
-    d_ptr->maximum = maximum;
-    if (d_ptr->value < minimum || d_ptr->value > maximum)
-        setValue(qBound(minimum, d_ptr->value, maximum));
-    else
-        update();
-}
-
-void HBarRuler::setMinimum(double value)
-{
-    setRange(value, d_ptr->maximum);
-}
-
-void HBarRuler::setMaximum(double value)
-{
-    setRange(d_ptr->minimum, value);
-}
-
-void HBarRuler::setValue(double value)
-{
-    if (value < d_ptr->minimum || value > d_ptr-> maximum)
-        return;
-    d_ptr->reverse = value < d_ptr->value;
-    d_ptr->value = value;
-    emit valueChanged(value);
-    if (!d_ptr->animation)
-    {
-        d_ptr->currentValue = value;
-        update();
-    }
-    else
-        d_ptr->timer->start();
-}
-
-// 最大精确度为 3
-void HBarRuler::setDecimal(int value)
-{
-    if (value > 3 || d_ptr->decimal == value)
-        return;
-    d_ptr->decimal = value;
-    update();
-}
-
-void HBarRuler::setLongStep(int value)
-{
-    if (value < d_ptr->shortStep || d_ptr->longStep == value)
-        return;
-    d_ptr->longStep = value;
-    update();
-}
-
-void HBarRuler::setShortStep(int value)
-{
-    if (value > d_ptr->longStep || d_ptr->shortStep == value)
-        return;
-    d_ptr->shortStep = value;
-    update();
-}
-
-void HBarRuler::setSpace(int value)
-{
-    if (d_ptr->space == value)
-        return;
-    d_ptr->space = value;
-    update();
-}
-
-void HBarRuler::setAnimation(bool b)
-{
-    if (d_ptr->animation == b)
-        return;
-    d_ptr->animation = b;
-    update();
-}
-
-void HBarRuler::setAnimationStep(double value)
-{
-    if (qFuzzyCompare(d_ptr->animationStep, value))
-        return;
-    d_ptr->animationStep = value;
-    update();
-}
-
-void HBarRuler::setBackgroundStart(const QColor &value)
-{
-    if (d_ptr->backgroundStart == value)
-        return;
-    d_ptr->backgroundStart = value;
-    update();
-}
-
-void HBarRuler::setBackgroundEnd(const QColor &value)
-{
-    if (d_ptr->backgroundEnd == value)
-        return;
-    d_ptr->backgroundEnd = value;
-    update();
-}
-
-void HBarRuler::setLineColor(const QColor &value)
-{
-    if (d_ptr->lineColor == value)
-        return;
-    d_ptr->lineColor = value;
-    update();
-}
-
-void HBarRuler::setBarBackground(const QColor &value)
-{
-    if (d_ptr->barBackground == value)
-        return;
-    d_ptr->barBackground = value;
-    update();
-}
-
-void HBarRuler::setBarColor(const QColor &value)
-{
-    if (d_ptr->barColor == value)
-        return;
-    d_ptr->barColor = value;
-    update();
+    Q_D(HBarRuler);
+    if (d->timer->isActive())
+        d->timer->stop();
 }
 
 QSize HBarRuler::sizeHint() const
@@ -184,74 +33,179 @@ QSize HBarRuler::minimumSizeHint() const
     return QSize(20, 50);
 }
 
-double HBarRuler::minimum() const
-{
-    return d_ptr->minimum;
-}
-
-double HBarRuler::maximum() const
-{
-    return d_ptr->maximum;
-}
-
-double HBarRuler::value() const
-{
-    return d_ptr->value;
-}
-
-int HBarRuler::decimal() const
-{
-    return d_ptr->decimal;
-}
-
 int HBarRuler::longStep() const
 {
-    return d_ptr->longStep;
+    Q_D(const HBarRuler);
+    return d->longStep;
 }
 
 int HBarRuler::shortStep() const
 {
-    return d_ptr->shortStep;
+    Q_D(const HBarRuler);
+    return d->shortStep;
 }
 
 int HBarRuler::space() const
 {
-    return  d_ptr->space;
+    Q_D(const HBarRuler);
+    return  d->space;
 }
 
 bool HBarRuler::isAnimation() const
 {
-    return d_ptr->animation;
+    Q_D(const HBarRuler);
+    return d->animation;
 }
 
 double HBarRuler::animationStep() const
 {
-    return d_ptr->animationStep;
+    Q_D(const HBarRuler);
+    return d->animationStep;
 }
 
 QColor HBarRuler::backgroundStart() const
 {
-    return d_ptr->backgroundStart;
+    Q_D(const HBarRuler);
+    return d->backgroundStart;
 }
 
 QColor HBarRuler::backgroundEnd() const
 {
-    return d_ptr->backgroundEnd;
+    Q_D(const HBarRuler);
+    return d->backgroundEnd;
 }
 
 QColor HBarRuler::lineColor() const
 {
-    return d_ptr->lineColor;
+    Q_D(const HBarRuler);
+    return d->lineColor;
 }
 
 QColor HBarRuler::barBackground() const
 {
-    return d_ptr->barBackground;
+    Q_D(const HBarRuler);
+    return d->barBackground;
 }
 
 QColor HBarRuler::barColor() const
 {
-    return  d_ptr->barColor;
+    Q_D(const HBarRuler);
+    return  d->barColor;
+}
+
+void HBarRuler::setValue(double value)
+{
+    Q_D(HBarRuler);
+    if (value < d->minimum || value > d-> maximum || qFuzzyCompare(value, d->value))
+        return;
+    d->reverse = value < d_ptr->value;
+    d->value = value;
+    emit valueChanged(value);
+    if (!d->animation)
+    {
+        d->currentValue = value;
+        update();
+    }
+    else
+        d->timer->start();
+}
+
+// 最大精确度为 3
+void HBarRuler::setDecimal(int value)
+{
+    if (value > 3)
+        return;
+    HAbstractProgress::setDecimal(value);
+}
+
+void HBarRuler::setLongStep(int value)
+{
+    Q_D(HBarRuler);
+    if (value < d->shortStep || d->longStep == value)
+        return;
+    d->longStep = value;
+    update();
+}
+
+void HBarRuler::setShortStep(int value)
+{
+    Q_D(HBarRuler);
+    if (value > d->longStep || d->shortStep == value)
+        return;
+    d->shortStep = value;
+    update();
+}
+
+void HBarRuler::setSpace(int value)
+{
+    Q_D(HBarRuler);
+    if (d->space == value)
+        return;
+    d->space = value;
+    update();
+}
+
+void HBarRuler::setAnimation(bool b)
+{
+    Q_D(HBarRuler);
+    if (d->animation == b)
+        return;
+    d->animation = b;
+    update();
+}
+
+void HBarRuler::setAnimationStep(double value)
+{
+    Q_D(HBarRuler);
+    if (qFuzzyCompare(d->animationStep, value))
+        return;
+    d->animationStep = value;
+    update();
+}
+
+void HBarRuler::setBackgroundStart(const QColor &value)
+{
+    Q_D(HBarRuler);
+    if (d->backgroundStart == value)
+        return;
+    d->backgroundStart = value;
+    update();
+}
+
+void HBarRuler::setBackgroundEnd(const QColor &value)
+{
+    Q_D(HBarRuler);
+    if (d->backgroundEnd == value)
+        return;
+    d->backgroundEnd = value;
+    update();
+}
+
+void HBarRuler::setLineColor(const QColor &value)
+{
+    Q_D(HBarRuler);
+    if (d->lineColor == value)
+        return;
+    d->lineColor = value;
+    update();
+}
+
+void HBarRuler::setBarBackground(const QColor &value)
+{
+    Q_D(HBarRuler);
+    if (d->barBackground == value)
+        return;
+    d->barBackground = value;
+    update();
+}
+
+void HBarRuler::setBarColor(const QColor &value)
+{
+    Q_D(HBarRuler);
+    if (d->barColor == value)
+        return;
+    d->barColor = value;
+    update();
 }
 
 void HBarRuler::paintEvent(QPaintEvent *)
@@ -277,28 +231,25 @@ void HBarRuler::drawBackground(QPainter *painter)
 
 void HBarRuler::drawRuler(QPainter *painter)
 {
-    painter->save();
-    painter->setPen(lineColor());
-
     // 长线条短线条长度
     int longLine = 10;
     int shortLine = 7;
     // 绘制纵向标尺线（20的长度为刻度尺文字的宽度）
-    auto x = space() + 20 + longLine;
-    auto y = space();
-    // 每一格移动多少
-    auto increment = (height() - 2 * space()) / (maximum() - minimum());
-
+    double x = space() + 20 + longLine;
+    double y = space();
+    double increment = (height() - 2 * space()) / (maximum() - minimum());
     // 根据范围值绘制刻度值及刻度值
+    painter->save();
+    painter->setPen(lineColor());
     painter->drawLine(QLineF(x, y, x, height() - space()));
-    for (int i = maximum(); i >= minimum(); i = i - shortStep())
+    for (int i = maximum(); i >= minimum(); i -= shortStep())
     {
         if (i % longStep() == 0)
         {
-            auto text = QString("%1").arg((double)i, 0, 'f', decimal());
+            auto text = QString::number(i, 'f', decimal());
             auto fontWidth = painter->fontMetrics().width(text);
             auto fontHeight = painter->fontMetrics().height();
-            painter->drawText(x - fontWidth - 15, y + fontHeight / 3, text);
+            painter->drawText(QPointF(x - fontWidth - 15, y + fontHeight / 3), text);
             painter->drawLine(QLineF(x - longLine, y, x, y));
         }
         else
@@ -313,10 +264,11 @@ void HBarRuler::drawRuler(QPainter *painter)
 
 void HBarRuler::drawBar(QPainter *painter)
 {
+    Q_D(HBarRuler);
     // 20的长度为刻度尺文字的宽度 15为刻度尺到柱状图的宽度
     auto x = space() + 20.0 + 15.0;
     auto barRect = QRectF(QPointF(x, space()), QPointF(width() - space(), height() - space()));
-    auto y = barRect.bottom() - barRect.height() * (d_ptr->currentValue - minimum())  / (maximum() - minimum());
+    auto y = barRect.bottom() - barRect.height() * toRatio(d->currentValue);
     auto currentRect = QRectF(QPointF(x, y), barRect.bottomRight());
     painter->save();
     painter->setPen(Qt::NoPen);
@@ -329,15 +281,22 @@ void HBarRuler::drawBar(QPainter *painter)
 
 void HBarRuler::init()
 {
-    d_ptr->timer = new QTimer(this);
-    d_ptr->timer->setInterval(10);
-    connect(d_ptr->timer, &QTimer::timeout, this, &HBarRuler::animationUpdate);
+    Q_D(HBarRuler);
+    d->timer = new QTimer(this);
+    d->timer->setInterval(10);
+    connect(d->timer, &QTimer::timeout, this, &HBarRuler::updateValue);
     setFont(QFont("Arial", 8));
 }
 
-void HBarRuler::animationUpdate()
+void HBarRuler::updateValue()
 {
-    d_ptr->updateValue();
+    Q_D(HBarRuler);
+    d->currentValue += d->reverse ? -d->animationStep : d->animationStep;
+    if ((d->reverse && d->currentValue <= d->value) || (!d->reverse && d->currentValue >= d->value))
+    {
+        d->currentValue = d->value;
+        d->timer->stop();
+    }
     update();
 }
 

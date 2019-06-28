@@ -5,7 +5,6 @@
 #ifndef HCONTROLWIDGET_H
 #define HCONTROLWIDGET_H
 
-
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
 

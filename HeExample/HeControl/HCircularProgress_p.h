@@ -6,7 +6,7 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IWaitFactory;
+class ICircularFactory;
 
 class HCircularProgressPrivate
 {
@@ -15,9 +15,9 @@ public:
     int step = 36;
     int value = 0;
     QTimer *timer = nullptr;
-    IWait *wait = nullptr;
-    IWaitFactory *factory = nullptr;
-    QMap<QString, IWait *> waitCache;
+    ICircular *circular = nullptr;
+    ICircularFactory *factory = nullptr;
+    QMap<QString, ICircular *> circularCache;
 };
 
 HE_CONTROL_END_NAMESPACE

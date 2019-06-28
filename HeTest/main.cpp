@@ -3,16 +3,13 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
-#include "HeExample/HeControl/HControlWidget.h"
-#include "HePlugin/HRibbonDiagramWidget.h"
+#include "HeExample/HeControl/HDemoWidget.h"
 #include <QtCore/QDebug>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 #include <functional>
-
-#include <QProgressDialog>
 
 HE_CONTROL_USE_NAMESPACE
 
@@ -30,7 +27,7 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HControlWidget w;
+    HDemoWidget w;
     w.show();
 
 

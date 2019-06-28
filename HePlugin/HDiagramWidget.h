@@ -74,6 +74,8 @@ protected:
     HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    virtual void resizeEvent(QResizeEvent *) override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual void setPlotArea(QRectF value);
     virtual void refreshPixmap(bool refresh = true);
     virtual void initPixmap(QPainter *);
@@ -81,9 +83,7 @@ protected:
     virtual bool drawRuler(QPainter *);
     virtual bool drawGrid(QPainter *);
     virtual bool drawPolygon(QPainter *);
-    virtual bool drawElse(QPainter *);
-    virtual void resizeEvent(QResizeEvent *) override;
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual bool drawElse(QPainter *);    
     virtual bool isValid();
 
 protected:

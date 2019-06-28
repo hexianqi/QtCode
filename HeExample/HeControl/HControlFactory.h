@@ -7,9 +7,6 @@
 
 #include "IControlFactory.h"
 
-class QTableView;
-class QTableWidget;
-
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HControlFactoryPrivate;
@@ -21,11 +18,6 @@ class HE_CONTROL_EXPORT HControlFactory : public QObject, public IControlFactory
 public:
     explicit HControlFactory(QObject *parent = nullptr);
     ~HControlFactory() override;
-
-public:
-    // 多标题表格
-    static QTableView *multHeaderTableView();
-    static QTableWidget *multHeaderTableWidget();
 
 public:
     void initialize(QVariantMap param) override;

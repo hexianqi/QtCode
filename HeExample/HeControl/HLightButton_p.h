@@ -18,7 +18,7 @@ public:
     QColor borderInColorEnd = QColor(255, 255, 255);
     QColor background = QColor(100, 184, 255);
     QColor overlayColor = QColor(255, 255, 255);
-    bool enableMove = false;
+    bool moveEnable = false;
     bool showOverlay = true;
     IEventFilter *filter = nullptr;
 };

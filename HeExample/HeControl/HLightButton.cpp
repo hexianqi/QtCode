@@ -86,11 +86,11 @@ void HLightButton::setOverlayColor(const QColor &value)
     update();
 }
 
-void HLightButton::setEnableMove(bool b)
+void HLightButton::setMoveEnable(bool b)
 {
-    if (d_ptr->enableMove == b)
+    if (d_ptr->moveEnable == b)
         return;
-    d_ptr->enableMove = b;
+    d_ptr->moveEnable = b;
 }
 
 void HLightButton::setShowOverlay(bool b)
@@ -151,9 +151,9 @@ QColor HLightButton::overlayColor() const
     return d_ptr->overlayColor;
 }
 
-bool HLightButton::isEnableMove() const
+bool HLightButton::isMoveEnable() const
 {
-    return d_ptr->enableMove;
+    return d_ptr->moveEnable;
 }
 
 bool HLightButton::isShowOverlay() const
@@ -163,7 +163,7 @@ bool HLightButton::isShowOverlay() const
 
 bool HLightButton::eventFilter(QObject *watched, QEvent *event)
 {
-    if (isEnableMove())
+    if (isMoveEnable())
         d_ptr->filter->eventFilter(watched, event);
     return QWidget::eventFilter(watched, event);
 }
