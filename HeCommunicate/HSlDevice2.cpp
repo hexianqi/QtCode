@@ -2,6 +2,7 @@
 #include "IPort.h"
 #include <QtCore/QVector>
 #include <QtCore/QtMath>
+#include <QtDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -54,6 +55,7 @@ HErrorType HSlDevice2::setData(uchar cmd, QVector<uchar> value, int delay)
     auto downData = QVector<uchar>() << uchar(size / 256) << uchar(size % 256) << cmd << value;
     auto upData = QVector<uchar>(4);
     auto error = transport(downData, upData, delay);
+
     if (error != E_OK)
         return error;
     if (upData.size() < 4
@@ -93,7 +95,7 @@ HErrorType HSlDevice2::setDataBatch(QList<uchar> param, QVector<uchar> value, in
     for (i = 0; i < n; i++)
     {
         auto buff = QVector<uchar>() << uchar(i + 1) << value.mid(i * param[1], param[1]);
-        auto error = setData(param[2], buff, delay);
+        auto error = setData(param[2], buff, 300);
         if (error != E_OK)
             return error;
     }
@@ -113,7 +115,7 @@ HErrorType HSlDevice2::getDataBatch(QList<uchar> param, QVector<uchar> &value, i
     int n = qCeil((value[0] * 256.0 + value[1]) / param[1]);
     for (int i = 1; i < n; i++)
     {
-        error = getData(size, param[2], i + 1, buff, delay);
+        error = getData(size, param[2], i + 1, buff, 300);
         if (error != E_OK)
             return error;
         value << buff;

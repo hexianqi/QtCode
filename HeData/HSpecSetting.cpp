@@ -70,7 +70,9 @@ bool HSpecSetting::fromBinaryData(QVector<uchar> data, int &pos)
     if (!HDataHelper::checkHead(data, pos, version))
         return false;
 
-    setData("[光谱保留像元]", QPoint(HDataHelper::readUInt16(data, pos), HDataHelper::readUInt16(data, pos)));
+    auto x = HDataHelper::readUInt16(data, pos);
+    auto y = HDataHelper::readUInt16(data, pos);
+    setData("[光谱保留像元]", QPoint(x, y));
     setData("[光谱平滑次数]", HDataHelper::readUInt16(data, pos));
     setData("[光谱平滑范围]", HDataHelper::readUInt16(data, pos));
     setData("[光谱平滑帧数]", HDataHelper::readUInt16(data, pos));

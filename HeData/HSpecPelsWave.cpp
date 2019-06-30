@@ -67,7 +67,11 @@ bool HSpecPelsWave::fromBinaryData(QVector<uchar> data, int &pos)
     d->pelsWave.clear();
     auto size = HDataHelper::readUInt16(data, pos);
     for (int i = 0; i < size; i++)
-        d->pelsWave << QPointF(HDataHelper::readUInt16(data, pos), HDataHelper::readUInt16(data, pos) / 10.0);
+    {
+        auto x = HDataHelper::readUInt16(data, pos);
+        auto y = HDataHelper::readUInt16(data, pos) / 10.0;
+        d->pelsWave << QPointF(x, y);
+    }
     return true;
 }
 

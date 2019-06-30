@@ -191,8 +191,7 @@ void HSpecCalibrateWidget::on_pushButton_6_clicked()
 void HSpecCalibrateWidget::refreshCcdView()
 {
     Q_D(HSpecCalibrateWidget);
-    d->ccdView->addSeries(d->fittingTimes++, QPolygonF() << QPointF(5000 + d->fittingTimes * 1000, 0.8) << QPointF(50000 + d->fittingTimes * 1000, 0.9));
-                          //d->fittingWidget->fittingPoints());
+    d->ccdView->addSeries(d->fittingTimes++, d->fittingWidget->fittingPoints());
 }
 
 void HSpecCalibrateWidget::refreshSpecWidget()

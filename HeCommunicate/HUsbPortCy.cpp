@@ -1,5 +1,6 @@
 #include "HUsbPortCy_p.h"
 #include <QtCore/QVector>
+#include <QtDebug>
 
 HE_COMMUNICATE_USE_NAMESPACE
 

@@ -50,7 +50,11 @@ bool HSpecFittingLinear::fromBinaryData(QVector<uchar> data, int &pos)
     d->fittingPoints.clear();
     auto size = HDataHelper::readUInt16(data, pos);
     for (int i = 0; i < size; i++)
-        d->fittingPoints << QPointF(HDataHelper::readUInt16(data, pos), HDataHelper::readUInt16(data, pos) / 10000.0);
+    {
+        auto x = HDataHelper::readUInt16(data, pos);
+        auto y = HDataHelper::readUInt16(data, pos) / 10000.0;
+        d->fittingPoints << QPointF(x, y);
+    }
     setData("[光谱拟合有效范围]", QPointF(d->fittingPoints.first().x(), d->fittingPoints.last().x()));
     return true;
 }
