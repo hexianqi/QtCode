@@ -60,6 +60,8 @@ public:
     virtual double pelsToWave(double value) = 0;
     // 标准数据
     virtual QVector<double> stdCurve() = 0;
+    // 设置标准数据
+    virtual void setStdCurve(QVector<double> value) = 0;
 };
 
 HE_DATA_END_NAMESPACE

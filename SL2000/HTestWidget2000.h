@@ -36,6 +36,8 @@ protected:
     void refreshWidget();
     void clearResult();
     void postProcess();
+    void importCurve();
+    void exportCurve();
 
 private:
     void readSettings();

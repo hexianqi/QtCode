@@ -124,7 +124,7 @@ void HAbstractMainWindow::createMenu()
         d_ptr->menuImport = d_ptr->menuFile->addMenu(tr("导入(&I)"));
         d_ptr->menuExport = d_ptr->menuFile->addMenu(tr("导出(&E)"));
         d_ptr->menuImport->addActions(d_ptr->actionGroupImport->actions());
-        d_ptr->menuExport->addActions(d_ptr->actionGroupImport->actions());
+        d_ptr->menuExport->addActions(d_ptr->actionGroupExport->actions());
     }
     d_ptr->menuFile->addSeparator();
     d_ptr->menuFile->addAction(d_ptr->actionExit);
@@ -177,7 +177,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-    d_ptr->model->start();
+//    d_ptr->model->start();
 }
 
 void HAbstractMainWindow::initCentralWidget()

@@ -21,9 +21,69 @@ HLedNumber::~HLedNumber()
 {
 }
 
+QSize HLedNumber::sizeHint() const
+{
+    return QSize(150, 160);
+}
+
+QSize HLedNumber::minimumSizeHint() const
+{
+    return QSize(10, 10);
+}
+
+int HLedNumber::number() const
+{
+    return d_ptr->number;
+}
+
+int HLedNumber::space() const
+{
+    return d_ptr->space;
+}
+
+int HLedNumber::padding() const
+{
+    return d_ptr->padding;
+}
+
+int HLedNumber::radius() const
+{
+    return d_ptr->radius;
+}
+
+QColor HLedNumber::backgroundStart() const
+{
+    return d_ptr->backgroundStart;
+}
+
+QColor HLedNumber::backgroundEnd() const
+{
+    return d_ptr->backgroundEnd;
+}
+
+QColor HLedNumber::numberBackgroundStart() const
+{
+    return d_ptr->numberBackgroundStart;
+}
+
+QColor HLedNumber::numberBackgroundEnd() const
+{
+    return d_ptr->numberBackgroundEnd;
+}
+
+QColor HLedNumber::numberColorStart() const
+{
+    return d_ptr->numberColorStart;
+}
+
+QColor HLedNumber::numberColorEnd() const
+{
+    return d_ptr->numberColorEnd;
+}
+
 void HLedNumber::setNumber(int value)
 {
-    if (d_ptr->number == value)
+    if (d_ptr->number == value || value < 0 || value > 9)
         return;
     d_ptr->number = value;
     update();
@@ -99,66 +159,6 @@ void HLedNumber::setNumberColorEnd(const QColor &value)
         return;
     d_ptr->numberColorEnd = value;
     update();
-}
-
-QSize HLedNumber::sizeHint() const
-{
-    return QSize(150, 160);
-}
-
-QSize HLedNumber::minimumSizeHint() const
-{
-    return QSize(10, 10);
-}
-
-int HLedNumber::number() const
-{
-    return d_ptr->number;
-}
-
-int HLedNumber::space() const
-{
-    return d_ptr->space;
-}
-
-int HLedNumber::padding() const
-{
-    return d_ptr->padding;
-}
-
-int HLedNumber::radius() const
-{
-    return d_ptr->radius;
-}
-
-QColor HLedNumber::backgroundStart() const
-{
-    return d_ptr->backgroundStart;
-}
-
-QColor HLedNumber::backgroundEnd() const
-{
-    return d_ptr->backgroundEnd;
-}
-
-QColor HLedNumber::numberBackgroundStart() const
-{
-    return d_ptr->numberBackgroundStart;
-}
-
-QColor HLedNumber::numberBackgroundEnd() const
-{
-    return d_ptr->numberBackgroundEnd;
-}
-
-QColor HLedNumber::numberColorStart() const
-{
-    return d_ptr->numberColorStart;
-}
-
-QColor HLedNumber::numberColorEnd() const
-{
-    return d_ptr->numberColorEnd;
 }
 
 void HLedNumber::paintEvent(QPaintEvent *)

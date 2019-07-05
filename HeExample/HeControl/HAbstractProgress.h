@@ -27,6 +27,12 @@ public:
 signals:
     void valueChanged(double value);
 
+public:
+    double minimum() const;
+    double maximum() const;
+    double value() const;
+    int decimal() const;
+
 public slots:
     virtual void setRange(double minimum, double maximum);
     virtual void setMinimum(double value);
@@ -34,17 +40,13 @@ public slots:
     virtual void setValue(double value);
     virtual void setDecimal(int value);
 
-public:
-    double minimum() const;
-    double maximum() const;
-    double value() const;
-    int decimal() const;
-
 protected:
     HAbstractProgress(HAbstractProgressPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    double range();
     double toRatio(double value);
+    double fromRatio(double value);
 
 protected:
     QScopedPointer<HAbstractProgressPrivate> d_ptr;

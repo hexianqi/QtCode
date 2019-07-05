@@ -85,8 +85,12 @@ void HAnimationProgress::setCurrentValue(double value)
 void HAnimationProgress::init()
 {
     Q_D(HAnimationProgress);
-    d->animation = new QPropertyAnimation(this, "currentValue", this);
+//    d->animation = new QPropertyAnimation(this, "currentValue", this);
+//    d->animation->setEasingCurve(QEasingCurve::Linear);
+    d->animation = new QPropertyAnimation(this);
+    d->animation->setTargetObject(this);
     d->animation->setEasingCurve(QEasingCurve::Linear);
+    connect(d->animation, &QPropertyAnimation::valueChanged, this, [=](QVariant value) { setCurrentValue(value.toDouble()); });
 }
 
 HE_CONTROL_END_NAMESPACE

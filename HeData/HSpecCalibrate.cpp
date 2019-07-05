@@ -70,7 +70,7 @@ QVector<uchar> HSpecCalibrate::toBinaryData()
                                << HDataHelper::writeUInt16(1)       // 版本
                                << d_ptr->setting->toBinaryData()
                                << d_ptr->pelsWave->toBinaryData()
-                               << d_ptr->stdCurve->toBinaryData()
+//                               << d_ptr->stdCurve->toBinaryData()
                                << d_ptr->fitting->toBinaryData();
     r[0] = r.size() / 256;
     r[1] = r.size() % 256;
@@ -87,8 +87,8 @@ bool HSpecCalibrate::fromBinaryData(QVector<uchar> data)
         return false;
     if (!d_ptr->pelsWave->fromBinaryData(data, pos))
         return false;
-    if (!d_ptr->stdCurve->fromBinaryData(data, pos))
-        return false;
+//    if (!d_ptr->stdCurve->fromBinaryData(data, pos))
+//        return false;
     if (!d_ptr->fitting->fromBinaryData(data, pos))
         return false;
     return true;
@@ -183,6 +183,11 @@ double HSpecCalibrate::pelsToWave(double value)
 QVector<double> HSpecCalibrate::stdCurve()
 {
     return d_ptr->stdCurve->curve();
+}
+
+void HSpecCalibrate::setStdCurve(QVector<double> value)
+{
+    d_ptr->stdCurve->setCurve(value);
 }
 
 HE_DATA_END_NAMESPACE

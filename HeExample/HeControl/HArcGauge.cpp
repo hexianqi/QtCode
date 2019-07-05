@@ -1,190 +1,188 @@
-#include "HGaugeArc_p.h"
+#include "HArcGauge_p.h"
 #include <QtGui/QPainter>
 #include <QtCore/QtMath>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HGaugeArc::HGaugeArc(QWidget *parent) :
-    HAnimationProgress(*new HGaugeArcPrivate, parent)
+HArcGauge::HArcGauge(QWidget *parent) :
+    HAnimationProgress(*new HArcGaugePrivate, parent)
 {
 }
 
-HGaugeArc::HGaugeArc(HGaugeArcPrivate &p, QWidget *parent) :
+HArcGauge::HArcGauge(HArcGaugePrivate &p, QWidget *parent) :
     HAnimationProgress(p, parent)
 {
 }
 
-HGaugeArc::~HGaugeArc()
+HArcGauge::~HArcGauge()
 {
 }
 
-QSize HGaugeArc::sizeHint() const
+QSize HArcGauge::sizeHint() const
 {
     return QSize(200, 200);
 }
 
-QSize HGaugeArc::minimumSizeHint() const
+QSize HArcGauge::minimumSizeHint() const
 {
     return QSize(40, 40);
 }
 
-int HGaugeArc::scaleMajor() const
+int HArcGauge::scaleMajor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->scaleMajor;
 }
 
-int HGaugeArc::scaleMinor() const
+int HArcGauge::scaleMinor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->scaleMinor;
 }
 
-int HGaugeArc::angleStart() const
+int HArcGauge::angleStart() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->angleStart;
 }
 
-int HGaugeArc::angleEnd() const
+int HArcGauge::angleEnd() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->angleEnd;
 }
 
-QColor HGaugeArc::arcColor() const
+QColor HArcGauge::arcColor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->arcColor;
 }
 
-QColor HGaugeArc::scaleColor() const
+QColor HArcGauge::scaleColor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->scaleColor;
 }
 
-QColor HGaugeArc::scaleLabelColor() const
+QColor HArcGauge::scaleLabelColor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->scaleLabelColor;
 }
 
-QColor HGaugeArc::textColor() const
+QColor HArcGauge::textColor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->textColor;
 }
 
-QColor HGaugeArc::pointerColor() const
+QColor HArcGauge::pointerColor() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->pointerColor;
 }
 
-HGaugeArc::PointerStyle HGaugeArc::pointerStyle() const
+HArcGauge::PointerStyle HArcGauge::pointerStyle() const
 {
-    Q_D(const HGaugeArc);
+    Q_D(const HArcGauge);
     return d->pointerStyle;
 }
 
-void HGaugeArc::setScaleMajor(int value)
+void HArcGauge::setScaleMajor(int value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->scaleMajor == value)
         return;
     d->scaleMajor = value;
     update();
 }
 
-void HGaugeArc::setScaleMinor(int value)
+void HArcGauge::setScaleMinor(int value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->scaleMinor == value)
         return;
     d->scaleMinor = value;
     update();
 }
 
-void HGaugeArc::setAngleStart(int value)
+void HArcGauge::setAngleStart(int value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->angleStart == value)
         return;
     d->angleStart = value;
-    d->angleRange = 360 - value - d->angleEnd;
     update();
 }
 
-void HGaugeArc::setAngleEnd(int value)
+void HArcGauge::setAngleEnd(int value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->angleEnd == value)
         return;
     d->angleEnd = value;
-    d->angleRange = 360 - value - d->angleStart;
     update();
 }
 
-void HGaugeArc::setArcColor(const QColor &value)
+void HArcGauge::setArcColor(const QColor &value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->arcColor == value)
         return;
     d->arcColor = value;
     update();
 }
 
-void HGaugeArc::setScaleColor(const QColor &value)
+void HArcGauge::setScaleColor(const QColor &value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->scaleColor == value)
         return;
     d->scaleColor = value;
     update();
 }
 
-void HGaugeArc::setScaleLabelColor(const QColor &value)
+void HArcGauge::setScaleLabelColor(const QColor &value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->scaleLabelColor == value)
         return;
     d->scaleLabelColor = value;
     update();
 }
 
-void HGaugeArc::setTextColor(const QColor &value)
+void HArcGauge::setTextColor(const QColor &value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->textColor == value)
         return;
     d->textColor = value;
     update();
 }
 
-void HGaugeArc::setPointerColor(const QColor &value)
+void HArcGauge::setPointerColor(const QColor &value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->pointerColor == value)
         return;
     d->pointerColor = value;
     update();
 }
 
-void HGaugeArc::setPointerStyle(PointerStyle value)
+void HArcGauge::setPointerStyle(PointerStyle value)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     if (d->pointerStyle == value)
         return;
     d->pointerStyle = value;
     update();
 }
 
-void HGaugeArc::paintEvent(QPaintEvent *)
-{
-    // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
+void HArcGauge::paintEvent(QPaintEvent *)
+{    
     auto side = qMin(width(), height());
     QPainter painter(this);
+    // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.translate(width() / 2, height() / 2);
     painter.scale(side / 200.0, side / 200.0);
@@ -204,9 +202,9 @@ void HGaugeArc::paintEvent(QPaintEvent *)
     drawValue(&painter);
 }
 
-void HGaugeArc::drawArc(QPainter *painter)
+void HArcGauge::drawArc(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius1 = 98;
     auto radius2 = 90;
     auto rect1 = QRectF(-radius1, -radius1, radius1 * 2, radius1 * 2);
@@ -221,29 +219,26 @@ void HGaugeArc::drawArc(QPainter *painter)
     painter->restore();
 }
 
-void HGaugeArc::drawScale(QPainter *painter)
+void HArcGauge::drawScale(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius = 97;
     auto steps = d->scaleMajor * d->scaleMinor;
-    auto angle = 1.0 * d->angleRange / steps;
-    auto pen = QPen();
-    pen.setColor(d->scaleColor);
-    pen.setCapStyle(Qt::RoundCap);
+    auto angle = angleSpan() / steps;
+    auto pen1 = QPen(d->scaleColor, 1.5, Qt::SolidLine, Qt::RoundCap);
+    auto pen2 = QPen(d->scaleColor, 1, Qt::SolidLine, Qt::RoundCap);
     painter->save();
     painter->rotate(d->angleStart);
     for (int i = 0; i <= steps; i++)
     {
         if (i % d->scaleMinor == 0)
         {
-            pen.setWidthF(1.5);
-            painter->setPen(pen);
+            painter->setPen(pen1);
             painter->drawLine(0, radius - 12, 0, radius);
         }
         else
         {
-            pen.setWidthF(1.0);
-            painter->setPen(pen);
+            painter->setPen(pen2);
             painter->drawLine(0, radius - 5, 0, radius);
         }
         painter->rotate(angle);
@@ -251,18 +246,18 @@ void HGaugeArc::drawScale(QPainter *painter)
     painter->restore();
 }
 
-void HGaugeArc::drawScaleLabel(QPainter *painter)
+void HArcGauge::drawScaleLabel(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius = 75;
     auto start = qDegreesToRadians(270.0 - d->angleStart);
-    auto delta = qDegreesToRadians(1.0 * d->angleRange) / d->scaleMajor;
+    auto delta = qDegreesToRadians(angleSpan()) / d->scaleMajor;
     painter->save();
     painter->setPen(d->scaleLabelColor);
     for (int i = 0; i <= d->scaleMajor; i++)
     {
         auto angle = start - i * delta;
-        auto value = 1.0 * i * (d->maximum - d->minimum) / d->scaleMajor + d->minimum;
+        auto value = fromRatio(1.0 * i / d->scaleMajor);
         auto text = QString::number(value, 'f', d->decimal);
         auto textWidth = fontMetrics().width(text);
         auto textHeight = fontMetrics().height();
@@ -273,9 +268,14 @@ void HGaugeArc::drawScaleLabel(QPainter *painter)
     painter->restore();
 }
 
-void HGaugeArc::drawPointer(QPainter *painter)
+void HArcGauge::drawPointer(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
+    painter->save();
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(d->pointerColor);
+    painter->rotate(d->angleStart);
+    painter->rotate(toAngle(d->currentValue));
     if (d->pointerStyle == Circle)
         drawPointerCircle(painter);
     if (d->pointerStyle == Indicator)
@@ -284,77 +284,47 @@ void HGaugeArc::drawPointer(QPainter *painter)
         drawPointerIndicatorR(painter);
     if (d->pointerStyle == Triangle)
         drawPointerTriangle(painter);
+    painter->restore();
 }
 
-void HGaugeArc::drawPointerCircle(QPainter *painter)
+void HArcGauge::drawPointerCircle(QPainter *painter)
 {
-    Q_D(HGaugeArc);
     auto radius = 8;
-    auto offset = 30;
-    painter->save();
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(d->pointerColor);
-    painter->rotate(d->angleStart);
-    painter->rotate(toAngle(d->currentValue));
+    auto offset = 30;    
     painter->drawEllipse(-radius, radius + offset, radius * 2, radius * 2);
-    painter->restore();
 }
 
-void HGaugeArc::drawPointerIndicator(QPainter *painter)
+void HArcGauge::drawPointerIndicator(QPainter *painter)
 {
-    Q_D(HGaugeArc);
     auto radius = 75;
     auto poly = QPolygon() << QPoint(-5, 0) << QPoint(5, 0) << QPoint(0, radius);
-    painter->save();
     painter->setOpacity(0.8);
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(d->pointerColor);
-    painter->rotate(d->angleStart);
-    painter->rotate(toAngle(d->currentValue));
     painter->drawConvexPolygon(poly);
-    painter->restore();
 }
 
-void HGaugeArc::drawPointerIndicatorR(QPainter *painter)
+void HArcGauge::drawPointerIndicatorR(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius = 75;
     auto poly = QPolygon() << QPoint(-5, 0) << QPoint(5, 0) << QPoint(0, radius);
-    auto pen = QPen();
-    pen.setWidthF(1);
-    pen.setColor(d->pointerColor);
-    painter->save();
-    painter->setPen(pen);
-    painter->setBrush(d->pointerColor);
-    painter->rotate(d->angleStart);
-    painter->rotate(toAngle(d->currentValue));
+    painter->setPen(QPen(d->pointerColor, 1));
     painter->drawConvexPolygon(poly);
     // 增加绘制圆角直线,与之前三角形重叠,形成圆角指针
-    pen.setCapStyle(Qt::RoundCap);
-    pen.setWidthF(4);
-    painter->setPen(pen);
+    painter->setPen(QPen(d->pointerColor, 4, Qt::SolidLine, Qt::RoundCap));
     painter->drawLine(0, 0, 0, radius);
-    painter->restore();
 }
 
-void HGaugeArc::drawPointerTriangle(QPainter *painter)
+void HArcGauge::drawPointerTriangle(QPainter *painter)
 {
-    Q_D(HGaugeArc);
     auto radius = 10;
     auto offset = 55;
     auto poly = QPolygon() << QPoint(-5, offset) << QPoint(5, offset) << QPoint(0, radius + offset);
-    painter->save();
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(d->pointerColor);
-    painter->rotate(d->angleStart);
-    painter->rotate(toAngle(d->currentValue));
     painter->drawConvexPolygon(poly);
-    painter->restore();
 }
 
-void HGaugeArc::drawRoundCircle(QPainter *painter)
+void HArcGauge::drawRoundCircle(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius = 12;
     painter->save();
     painter->setOpacity(0.5);
@@ -363,9 +333,9 @@ void HGaugeArc::drawRoundCircle(QPainter *painter)
     painter->drawEllipse(-radius, -radius, radius * 2, radius * 2);
     painter->restore();
 }
-void HGaugeArc::drawCenterCircle(QPainter *painter)
+void HArcGauge::drawCenterCircle(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius = 8;
     painter->save();
     painter->setPen(Qt::NoPen);
@@ -374,9 +344,9 @@ void HGaugeArc::drawCenterCircle(QPainter *painter)
     painter->restore();
 }
 
-void HGaugeArc::drawValue(QPainter *painter)
+void HArcGauge::drawValue(QPainter *painter)
 {
-    Q_D(HGaugeArc);
+    Q_D(HArcGauge);
     auto radius = 100;
     auto f = font();
     f.setPixelSize(30);
@@ -389,16 +359,15 @@ void HGaugeArc::drawValue(QPainter *painter)
     painter->restore();
 }
 
-double HGaugeArc::angleRange()
+double HArcGauge::angleSpan()
 {
-    Q_D(HGaugeArc);
-    return d->angleRange;
+    Q_D(HArcGauge);
+    return 360.0 - d->angleStart - d->angleEnd;
 }
 
-double HGaugeArc::toAngle(double value)
+double HArcGauge::toAngle(double value)
 {
-    Q_D(HGaugeArc);
-    return d->angleRange * toRatio(value);
+    return angleSpan() * toRatio(value);
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -52,8 +52,7 @@ QString HExcelStream::fileFilter()
 
 bool HExcelStream::saveAsFile(QString caption, QString dir, QString *selectedFileName)
 {
-    QString fileName;
-    fileName = QFileDialog::getSaveFileName(nullptr, caption, dir, fileFilter());
+    auto fileName = QFileDialog::getSaveFileName(nullptr, caption, dir, fileFilter());
     if (fileName.isEmpty())
         return false;
     if (!writeFile(fileName))

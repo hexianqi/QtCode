@@ -55,7 +55,7 @@ INCLUDEPATH += \
 
 
 Debug {
-    CONFIG  += console
+#    CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
             -L$$DESTDIR -lHePlugind \

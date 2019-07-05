@@ -18,6 +18,26 @@ HAbstractProgress::~HAbstractProgress()
 {
 }
 
+double HAbstractProgress::minimum() const
+{
+    return d_ptr->minimum;
+}
+
+double HAbstractProgress::maximum() const
+{
+    return d_ptr->maximum;
+}
+
+double HAbstractProgress::value() const
+{
+    return d_ptr->value;
+}
+
+int HAbstractProgress::decimal() const
+{
+    return d_ptr->decimal;
+}
+
 void HAbstractProgress::setRange(double minimum, double maximum)
 {
     if (minimum >= maximum)
@@ -58,29 +78,19 @@ void HAbstractProgress::setDecimal(int value)
     update();
 }
 
-double HAbstractProgress::minimum() const
+double HAbstractProgress::range()
 {
-    return d_ptr->minimum;
-}
-
-double HAbstractProgress::maximum() const
-{
-    return d_ptr->maximum;
-}
-
-double HAbstractProgress::value() const
-{
-    return d_ptr->value;
-}
-
-int HAbstractProgress::decimal() const
-{
-    return d_ptr->decimal;
+    return d_ptr->maximum - d_ptr->minimum;
 }
 
 double HAbstractProgress::toRatio(double value)
 {
-    return (value- d_ptr->minimum) / (d_ptr->maximum - d_ptr->minimum);
+    return (value- d_ptr->minimum) / range();
+}
+
+double HAbstractProgress::fromRatio(double value)
+{
+    return value * range() + d_ptr->minimum;
 }
 
 HE_CONTROL_END_NAMESPACE

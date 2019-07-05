@@ -34,18 +34,6 @@ public:
     ~HLedNumber() override;
 
 public:
-    void setNumber(int value);
-    void setSpace(int value);
-    void setPadding(int value);
-    void setRadius(int value);
-    void setBackgroundStart(const QColor &value);
-    void setBackgroundEnd(const QColor &value);
-    void setNumberBackgroundStart(const QColor &value);
-    void setNumberBackgroundEnd(const QColor &value);
-    void setNumberColorStart(const QColor &value);
-    void setNumberColorEnd(const QColor &value);
-
-public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
     int number() const;
@@ -58,6 +46,18 @@ public:
     QColor numberBackgroundEnd() const;
     QColor numberColorStart() const;
     QColor numberColorEnd() const;
+
+public:
+    void setNumber(int value);
+    void setSpace(int value);
+    void setPadding(int value);
+    void setRadius(int value);
+    void setBackgroundStart(const QColor &value);
+    void setBackgroundEnd(const QColor &value);
+    void setNumberBackgroundStart(const QColor &value);
+    void setNumberBackgroundEnd(const QColor &value);
+    void setNumberColorStart(const QColor &value);
+    void setNumberColorEnd(const QColor &value);
 
 protected:
     HLedNumber(HLedNumberPrivate &p, QWidget *parent = nullptr);

@@ -22,6 +22,66 @@ HLightButton::~HLightButton()
 {
 }
 
+QSize HLightButton::sizeHint() const
+{
+    return QSize(100, 100);
+}
+
+QSize HLightButton::minimumSizeHint() const
+{
+    return QSize(10, 10);
+}
+
+QString HLightButton::text() const
+{
+    return d_ptr->text;
+}
+
+QColor HLightButton::textColor() const
+{
+    return d_ptr->textColor;
+}
+
+QColor HLightButton::borderOutColorStart() const
+{
+    return d_ptr->borderOutColorStart;
+}
+
+QColor HLightButton::borderOutColorEnd() const
+{
+    return d_ptr->borderOutColorEnd;
+}
+
+QColor HLightButton::borderInColorStart() const
+{
+    return d_ptr->borderInColorStart;
+}
+
+QColor HLightButton::borderInColorEnd() const
+{
+    return d_ptr->borderInColorEnd;
+}
+
+QColor HLightButton::background() const
+{
+    return d_ptr->background;
+}
+
+QColor HLightButton::overlayColor() const
+{
+    return d_ptr->overlayColor;
+}
+
+bool HLightButton::isMoveEnable() const
+{
+    return d_ptr->moveEnable;
+}
+
+bool HLightButton::isShowOverlay() const
+{
+    return d_ptr->showOverlay;
+}
+
 void HLightButton::setText(const QString &value)
 {
     if (d_ptr->text == value)
@@ -99,66 +159,6 @@ void HLightButton::setShowOverlay(bool b)
         return;
     d_ptr->showOverlay = b;
     update();
-}
-
-QSize HLightButton::sizeHint() const
-{
-    return QSize(100, 100);
-}
-
-QSize HLightButton::minimumSizeHint() const
-{
-    return QSize(10, 10);
-}
-
-QString HLightButton::text() const
-{
-    return d_ptr->text;
-}
-
-QColor HLightButton::textColor() const
-{
-    return d_ptr->textColor;
-}
-
-QColor HLightButton::borderOutColorStart() const
-{
-    return d_ptr->borderOutColorStart;
-}
-
-QColor HLightButton::borderOutColorEnd() const
-{
-    return d_ptr->borderOutColorEnd;
-}
-
-QColor HLightButton::borderInColorStart() const
-{
-    return d_ptr->borderInColorStart;
-}
-
-QColor HLightButton::borderInColorEnd() const
-{
-    return d_ptr->borderInColorEnd;
-}
-
-QColor HLightButton::background() const
-{
-    return d_ptr->background;
-}
-
-QColor HLightButton::overlayColor() const
-{
-    return d_ptr->overlayColor;
-}
-
-bool HLightButton::isMoveEnable() const
-{
-    return d_ptr->moveEnable;
-}
-
-bool HLightButton::isShowOverlay() const
-{
-    return d_ptr->showOverlay;
 }
 
 bool HLightButton::eventFilter(QObject *watched, QEvent *event)

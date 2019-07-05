@@ -41,6 +41,7 @@ public:
     int checkSampleOverflow(double value) override;
     double pelsToWave(double value) override;
     QVector<double> stdCurve() override;
+    void setStdCurve(QVector<double> value) override;
 
 protected:
     HSpecCalibrate(HSpecCalibratePrivate &p);

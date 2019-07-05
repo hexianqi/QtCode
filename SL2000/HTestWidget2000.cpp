@@ -5,6 +5,7 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestData.h"
 #include "HeData/IGradeCollection.h"
+#include "HeData/ISpecCalibrate.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HCie1931Widget.h"
 #include "HeGui/HSpecEnergyWidget.h"
@@ -18,6 +19,8 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QMenu>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QMessageBox>
 #include <QtCore/QDebug>
 
 HTestWidget2000Private::HTestWidget2000Private()
@@ -131,12 +134,16 @@ void HTestWidget2000::createAction()
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
-    d->actionSetRam = new QAction(tr("写入数据到设备(&A)"), this);
-    d->actionGetRam = new QAction(tr("从设备读取数据(&A)"), this);
+    d->actionSetRam = new QAction(tr("写入数据到设备(&S)"), this);
+    d->actionGetRam = new QAction(tr("从设备读取数据(&G)"), this);
+    d->actionImportCurve = new QAction(tr("导入标准曲线(&I)"), this);
+    d->actionExportCurve = new QAction(tr("导出标准曲线(&E)"), this);
     connect(d->actionClear, &QAction::triggered, this, &HTestWidget2000::clearResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
     connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
     connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
+    connect(d->actionImportCurve, &QAction::triggered, this, &HTestWidget2000::importCurve);
+    connect(d->actionExportCurve, &QAction::triggered, this, &HTestWidget2000::exportCurve);
 }
 
 void HTestWidget2000::createMenu()
@@ -147,6 +154,8 @@ void HTestWidget2000::createMenu()
     menu1->addAction(d->actionAdjust);
     menu2->addAction(d->actionSetRam);
     menu2->addAction(d->actionGetRam);
+    menu2->addAction(d->actionImportCurve);
+    menu2->addAction(d->actionExportCurve);
     d->menus << menu1 << menu2;
 }
 
@@ -203,6 +212,62 @@ void HTestWidget2000::postProcess()
     Q_D(HTestWidget2000);
     d->configManage->postProcess(d->testData, d->displays);
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+}
+
+void HTestWidget2000::importCurve()
+{
+    Q_D(HTestWidget2000);
+    auto fileName = QFileDialog::getOpenFileName(this, tr("导入"), ".", "*.dat");
+    if (fileName.isEmpty())
+        return;
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    int i,n;
+    double t;
+    QString str;
+    QVector<double> curve;
+    QTextStream s(&file);
+    s >> n >> str;
+    if (n < 2000)
+    {
+        QMessageBox::warning(this, "", tr("\n无效标准曲线数据！\n"));
+        file.close();
+        return;
+    }
+    for (i = 0; i < n; i++)
+    {
+        s >> t;
+        curve << t;
+    }
+    file.close();
+    d->configManage->specCalibrate("1")->setStdCurve(curve);
+    QMessageBox::information(this, "", tr("\n导入成功！\n"));
+}
+
+void HTestWidget2000::exportCurve()
+{
+    Q_D(HTestWidget2000);
+    auto fileName = QFileDialog::getSaveFileName(this, tr("导出"), ".", "*.dat");
+    if (fileName.isEmpty())
+        return;
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    auto curve = d->configManage->specCalibrate("1")->stdCurve();
+    if (curve.size() < 2000)
+    {
+        QMessageBox::warning(this, "", tr("\n无效标准曲线数据！\n"));
+        return;
+    }
+    QTextStream s(&file);
+    s << curve.size() << "\t1" << endl;
+    for (auto v : curve)
+        s << QString::number(v, 'f', 1) << endl;
+    file.close();
+    QMessageBox::information(this, "", tr("\n导出成功！\n"));
 }
 
 void HTestWidget2000::readSettings()

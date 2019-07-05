@@ -12,7 +12,7 @@ public:
     using HAbstractMouseEventFilterPrivate::HAbstractMouseEventFilterPrivate;
 
 public:
-    bool isPressed = false;
+    bool pressed = false;
     QPoint pos;
 };
 

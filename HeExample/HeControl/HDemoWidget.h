@@ -31,7 +31,10 @@ private:
     void addBarRuler();
     void addAntLine();
     void addBattery();
-    void addGaugeArc();
+    void addGauge();
+    void addImageCalendar();
+    void addMagic();
+    void addProgressBar();
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
 

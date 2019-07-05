@@ -315,7 +315,7 @@ QString HRoundProgressBar::valueToText(double value)
     QString text = d->format;
     text.replace("%v", QString::number(value, 'f', d->decimal));
     text.replace("%p", QString::number(100 * toRatio(value), 'f', d->decimal));
-    text.replace("%m", QString::number(d->maximum - d->minimum + 1, 'f', d->decimal));
+    text.replace("%m", QString::number(range() + 1, 'f', d->decimal));
     return text;
 }
 

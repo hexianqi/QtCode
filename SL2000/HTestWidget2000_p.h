@@ -37,6 +37,8 @@ public:
     QAction *actionAdjust;
     QAction *actionSetRam;
     QAction *actionGetRam;
+    QAction *actionImportCurve;
+    QAction *actionExportCurve;
 };
 
 #endif // HTESTWIDGET2000_P_H

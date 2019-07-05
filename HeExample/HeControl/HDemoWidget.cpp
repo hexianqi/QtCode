@@ -5,7 +5,15 @@
 #include "HBattery.h"
 #include "HBarRuler.h"
 #include "HCpuMemoryLabel.h"
-#include "HGaugeArc.h"
+#include "HArcGauge.h"
+#include "HKnobGauge.h"
+#include "HPercentGauge.h"
+#include "HImageCalendar.h"
+#include "HMagicFish.h"
+#include "HMagicMouse.h"
+#include "HButtonProgressBar.h"
+#include "HRingProgressBar.h"
+#include "HTristateProgressBar.h"
 #include "HSlideNavigation.h"
 #include "HRbTableHeaderView.h"
 #include <QtCore/QTimer>
@@ -32,13 +40,17 @@ void HDemoWidget::init()
 {
     d_ptr->style = new HFaltStyle(this);
 //    addSlideNavigation();
-    addCpuMemoryLabel();
-    addBarRuler();
+
     addAntLine();
+    addBarRuler();    
     addBattery();
-    addGaugeArc();
+    addCpuMemoryLabel();
+    addGauge();
+    addImageCalendar();
+    addMagic();
     addMultHeaderTableView();
     addMultHeaderTableWidget();
+    addProgressBar();
 }
 
 void HDemoWidget::addCpuMemoryLabel()
@@ -114,25 +126,71 @@ void HDemoWidget::addBattery()
     d_ptr->style->setStyle(s, 8, "#505050", "#1ABC9C", "#1ABC9C");
 }
 
-void HDemoWidget::addGaugeArc()
+void HDemoWidget::addGauge()
 {
     auto l = new QGridLayout;
-    auto g = new HGaugeArc;
     auto c = new QComboBox;
     auto s = new QSlider;
-    c->addItem(tr("圆形指示器"), HGaugeArc::Circle);
-    c->addItem(tr("指针指示器"), HGaugeArc::Indicator);
-    c->addItem(tr("圆角指针指示器"), HGaugeArc::IndicatorR);
-    c->addItem(tr("三角形指示器"), HGaugeArc::Triangle);
+    auto a = new HArcGauge;
+    auto p = new HPercentGauge;
+    auto k = new HKnobGauge;
+    c->addItems(QStringList() << tr("圆形指示器") << tr("指针指示器") << tr("圆角指针指示器") << tr("三角形指示器"));
     s->setOrientation(Qt::Horizontal);
     s->setSingleStep(10);
-    connect(c, &QComboBox::currentTextChanged, this, [=](QString /*index*/) { g->setPointerStyle((HGaugeArc::PointerStyle)c->currentIndex()); });
-    connect(s, &QSlider::valueChanged, g, &HGaugeArc::setValue);
+    connect(c, &QComboBox::currentTextChanged, this, [=](QString /*index*/) {
+        a->setPointerStyle(static_cast<HArcGauge::PointerStyle>(c->currentIndex()));
+        k->setPointerStyle(static_cast<HKnobGauge::PointerStyle>(c->currentIndex())); });
+    connect(s, &QSlider::valueChanged, a, &HArcGauge::setValue);
+    connect(s, &QSlider::valueChanged, p, &HPercentGauge::setValue);
+    connect(s, &QSlider::valueChanged, k, &HKnobGauge::setValue);
 
-    l->addWidget(g, 0, 0, 1, 2);
-    l->addWidget(c, 1, 0);
-    l->addWidget(s, 1, 1);
-    addTab(l, tr("圆弧仪表盘"));
+    l->addWidget(a, 0, 0);
+    l->addWidget(p, 0, 1);
+    l->addWidget(k, 1, 1);
+    l->addWidget(c, 2, 0);
+    l->addWidget(s, 3, 0, 1, 2);
+    addTab(l, tr("仪表盘"));
+}
+
+void HDemoWidget::addImageCalendar()
+{
+    ui->tabWidget->addTab(new HImageCalendar, tr("日历"));
+}
+
+void HDemoWidget::addMagic()
+{
+    auto l = new QGridLayout;
+    auto f = new HMagicFish;
+    auto m = new HMagicMouse;
+    auto s = new QSlider;
+    s->setOrientation(Qt::Horizontal);
+    s->setSingleStep(10);
+    s->setRange(0, 360);
+    connect(s, &QSlider::valueChanged, f, &HMagicFish::setAngle);
+    connect(s, &QSlider::valueChanged, m, &HMagicMouse::setAngle);
+    l->addWidget(f, 0, 0);
+    l->addWidget(m, 0, 1);
+    l->addWidget(s, 1, 0, 1, 2);
+    addTab(l, tr("魔法"));
+}
+
+void HDemoWidget::addProgressBar()
+{
+    auto l = new QGridLayout;
+    auto s = new QSlider;
+    auto b = new HButtonProgressBar;
+    auto r = new HRingProgressBar;
+    auto t = new HTristateProgressBar;
+    s->setOrientation(Qt::Horizontal);
+    s->setSingleStep(10);
+    r->setAlarmMode(2);
+    connect(s, &QSlider::valueChanged, r, &HRingProgressBar::setValue);
+    connect(s, &QSlider::valueChanged, this, [=](int value) { t->setValue1(value); t->setValue2(value + 10); t->setValue3(value + 20); });
+    l->addWidget(b, 0, 0);
+    l->addWidget(r, 0, 1);
+    l->addWidget(t, 1, 0, 1, 2);
+    l->addWidget(s, 2, 0, 1, 2);
+    addTab(l, tr("进度条"));
 }
 
 void HDemoWidget::addMultHeaderTableView()

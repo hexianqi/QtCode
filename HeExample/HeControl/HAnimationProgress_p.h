@@ -13,8 +13,6 @@ class HAnimationProgressPrivate : public HAbstractProgressPrivate
 public:
     bool animationEnable = true;
     double currentValue = 0;
-
-public:
     QPropertyAnimation *animation = nullptr;
 };
 

@@ -161,8 +161,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
     if (energy < 0.01)
         return;
 
-    auto item = dynamic_cast<HSpecLuminous *>(d->specCalibrate->item(ISpecCalibrate::SpecLuminous));
-
+    auto item = d->specCalibrate->item(ISpecCalibrate::SpecLuminous);
     QInputDialog dlg(this);
     HPluginHelper::initWidget("[标准光谱光通量]", &dlg);
     dlg.setLabelText(tr("标准光通量："));
@@ -177,7 +176,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
 void HSpecCalibrateWidget::on_pushButton_5_clicked()
 {
     Q_D(HSpecCalibrateWidget);
-    dynamic_cast<HSpecStdCurve *>(d->specCalibrate->item(ISpecCalibrate::SpecStdCurve))->setCurve(d->testSpec->sample(1));
+    d->specCalibrate->setStdCurve(d->testSpec->sample(1));
 }
 
 void HSpecCalibrateWidget::on_pushButton_6_clicked()
@@ -224,12 +223,6 @@ void HSpecCalibrateWidget::init()
     ui->splitter_1->setStretchFactor(0,1);
     connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HSpecCalibrateWidget::handleTestFitStateChanged);
     connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [=]{ refreshCcdView(); });
-
-    auto test = new QAction("测试");
-    connect(test, &QAction::triggered, this, [=]{ qDebug() << d->fittingTimes;  refreshCcdView(); });
-    d->ccdView->addAction(test);
-
-
 }
 
 HE_GUI_END_NAMESPACE

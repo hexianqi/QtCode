@@ -39,18 +39,6 @@ public:
     ~HLightButton() override;
 
 public:
-    void setText(const QString &value);
-    void setTextColor(const QColor &value);
-    void setBorderOutColorStart(const QColor &value);
-    void setBorderOutColorEnd(const QColor &value);
-    void setBorderInColorStart(const QColor &value);
-    void setBorderInColorEnd(const QColor &value);
-    void setBackground(const QColor &value);
-    void setOverlayColor(const QColor &value);
-    void setMoveEnable(bool b);
-    void setShowOverlay(bool b);
-
-public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
     QString text() const;
@@ -64,6 +52,17 @@ public:
     bool isMoveEnable() const;
     bool isShowOverlay() const;
 
+public:
+    void setText(const QString &value);
+    void setTextColor(const QColor &value);
+    void setBorderOutColorStart(const QColor &value);
+    void setBorderOutColorEnd(const QColor &value);
+    void setBorderInColorStart(const QColor &value);
+    void setBorderInColorEnd(const QColor &value);
+    void setBackground(const QColor &value);
+    void setOverlayColor(const QColor &value);
+    void setMoveEnable(bool b);
+    void setShowOverlay(bool b);
 
 protected:
     HLightButton(HLightButtonPrivate &p, QWidget *parent = nullptr);

@@ -41,7 +41,7 @@ public:
     QSize minimumSizeHint() const override;
     CalendarStyle calendarStyle()const;
 
-public slots:
+public:
     void setCalendarStyle(CalendarStyle value);
 
 protected:

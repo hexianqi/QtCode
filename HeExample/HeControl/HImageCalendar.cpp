@@ -86,7 +86,7 @@ void HImageCalendar::changeStyle(QAction *p)
 {
     if (p == nullptr)
         return;
-    setCalendarStyle(p->data().value<CalendarStyle>());
+    setCalendarStyle(static_cast<CalendarStyle>(p->data().toInt()));
 }
 
 void HImageCalendar::init()

@@ -143,7 +143,7 @@ void HColorProgressBar::drawBackground(QPainter *painter)
 void HColorProgressBar::drawBar(QPainter *painter)
 {
     Q_D(HColorProgressBar);
-    auto x = (1 - (value() - minimum()) / (maximum() - minimum())) * d->barRect.width();
+    auto x = (1 - toRatio(d->value)) * d->barRect.width();
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(barColor());
@@ -167,7 +167,7 @@ void HColorProgressBar::drarBarSplitLine(QPainter *painter)
 void HColorProgressBar::drawText(QPainter *painter)
 {
     Q_D(HColorProgressBar);
-    auto p = 100.0 * (value() - minimum()) / (maximum() - minimum());
+    auto p = 100.0 * toRatio(d->value);
     auto t = QString("%1%").arg(QString::number(p, 'f', decimal()));
     painter->save();
     painter->setPen(palette().text().color());

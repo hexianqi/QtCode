@@ -4,14 +4,14 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecStdCurve::HSpecStdCurve()
-    : HAbstractDataItem(*new HSpecStdCurvePrivate)
+HSpecStdCurve::HSpecStdCurve() :
+    HAbstractDataItem(*new HSpecStdCurvePrivate)
 {
     restoreDefault();
 }
 
-HSpecStdCurve::HSpecStdCurve(HSpecStdCurvePrivate &p)
-    : HAbstractDataItem(p)
+HSpecStdCurve::HSpecStdCurve(HSpecStdCurvePrivate &p) :
+    HAbstractDataItem(p)
 {
 }
 

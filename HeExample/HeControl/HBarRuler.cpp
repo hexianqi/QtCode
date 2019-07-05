@@ -237,7 +237,7 @@ void HBarRuler::drawRuler(QPainter *painter)
     // 绘制纵向标尺线（20的长度为刻度尺文字的宽度）
     double x = space() + 20 + longLine;
     double y = space();
-    double increment = (height() - 2 * space()) / (maximum() - minimum());
+    double increment = (height() - 2 * space()) / range();
     // 根据范围值绘制刻度值及刻度值
     painter->save();
     painter->setPen(lineColor());

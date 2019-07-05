@@ -126,7 +126,7 @@ void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
     QVariantMap param;
-    param.insert("timeOut", 1000);
+    param.insert("timeOut", 3000);
     auto port = d->communicateFactory->createPort("HUsbPortCy", param);
     auto device = d->communicateFactory->createDevice("HSlDevice2");
     auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
@@ -227,7 +227,7 @@ void HBuilder2000::buildMenu()
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
 
