@@ -33,10 +33,10 @@ class HAntLine : public QWidget
 public:
     enum LineStyle
     {
-        Rect = 0,         // 矩形
-        RoundedRect = 1,  // 圆角矩形
-        Ellipse = 2,      // 椭圆
-        Circle = 3        // 圆形
+        LineStyle_Rect = 0,         // 矩形
+        LineStyle_RoundedRect = 1,  // 圆角矩形
+        LineStyle_Ellipse = 2,      // 椭圆
+        LineStyle_Circle = 3        // 圆形
     };
 
 public:

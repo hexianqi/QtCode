@@ -25,12 +25,12 @@ HBarRuler::~HBarRuler()
 
 QSize HBarRuler::sizeHint() const
 {
-    return QSize(100, 350);
+    return QSize(130, 350);
 }
 
 QSize HBarRuler::minimumSizeHint() const
 {
-    return QSize(20, 50);
+    return QSize(26, 70);
 }
 
 int HBarRuler::longStep() const

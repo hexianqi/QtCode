@@ -338,13 +338,13 @@ void HKnobGauge::drawPointer(QPainter *painter)
     painter->setBrush(d->progressColor);
     painter->rotate(d->angleStart);
     painter->rotate(toAngle(d->currentValue));
-    if (d->pointerStyle == Circle)
+    if (d->pointerStyle == PointerStyle_Circle)
         drawPointerCircle(painter);
-    if (d->pointerStyle == Indicator)
+    if (d->pointerStyle == PointerStyle_Indicator)
         drawPointerIndicator(painter);
-    if (d->pointerStyle == IndicatorR)
+    if (d->pointerStyle == PointerStyle_IndicatorR)
         drawPointerIndicatorR(painter);
-    if (d->pointerStyle == Triangle)
+    if (d->pointerStyle == PointerStyle_Triangle)
         drawPointerTriangle(painter);
     painter->restore();
 }

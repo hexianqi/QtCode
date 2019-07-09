@@ -28,9 +28,10 @@ private:
     void init();
 //    void addSlideNavigation();
     void addCpuMemoryLabel();
-    void addBarRuler();
+    void addRuler();
     void addAntLine();
     void addBattery();
+    void addCustomGraphics();
     void addGauge();
     void addImageCalendar();
     void addMagic();

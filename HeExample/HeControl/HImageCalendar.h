@@ -24,12 +24,12 @@ class HImageCalendar : public QWidget
 public:
     enum CalendarStyle
     {
-        Yellow = 0,   //黄色风格
-        Blue = 1,     //蓝色风格
-        Brown = 2,    //褐色风格
-        Gray = 3,     //灰色风格
-        Purple = 4,   //紫色风格
-        Red = 5       //红色风格
+        CalendarStyle_Yellow = 0,   //黄色风格
+        CalendarStyle_Blue = 1,     //蓝色风格
+        CalendarStyle_Brown = 2,    //褐色风格
+        CalendarStyle_Gray = 3,     //灰色风格
+        CalendarStyle_Purple = 4,   //紫色风格
+        CalendarStyle_Red = 5       //红色风格
     };
 
 public:

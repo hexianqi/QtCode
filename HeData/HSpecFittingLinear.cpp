@@ -65,8 +65,8 @@ double HSpecFittingLinear::calcRate(double value)
     if (d->fittingPoints.size() < 3)
         return 1.0;
 
-    auto range = data("[光谱拟合有效范围]").toPointF();
-    value = qBound(range.x(), value, range.y());
+//    auto range = data("[光谱拟合有效范围]").toPointF();
+//    value = qBound(range.x(), value, range.y());
     return HMath::interpolate(value, d->fittingPoints);
 //    return HInterp::eval(d->fittingPoints, value, HInterpType::Cspline);
 }

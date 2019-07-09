@@ -92,19 +92,19 @@ void HImageCalendar::changeStyle(QAction *p)
 void HImageCalendar::init()
 {
     d_ptr->lunar = new HLunarCalendarInfo(this);
-    d_ptr->images.insert(Yellow,    ":/image/beautify/Calendar_yellow.png");
-    d_ptr->images.insert(Blue,      ":/image/beautify/Calendar_blue.png");
-    d_ptr->images.insert(Brown,     ":/image/beautify/Calendar_brown.png");
-    d_ptr->images.insert(Gray,      ":/image/beautify/Calendar_gray.png");
-    d_ptr->images.insert(Purple,    ":/image/beautify/Calendar_purple.png");
-    d_ptr->images.insert(Red,       ":/image/beautify/Calendar_red.png");
+    d_ptr->images.insert(CalendarStyle_Yellow,    ":/image/beautify/Calendar_yellow.png");
+    d_ptr->images.insert(CalendarStyle_Blue,      ":/image/beautify/Calendar_blue.png");
+    d_ptr->images.insert(CalendarStyle_Brown,     ":/image/beautify/Calendar_brown.png");
+    d_ptr->images.insert(CalendarStyle_Gray,      ":/image/beautify/Calendar_gray.png");
+    d_ptr->images.insert(CalendarStyle_Purple,    ":/image/beautify/Calendar_purple.png");
+    d_ptr->images.insert(CalendarStyle_Red,       ":/image/beautify/Calendar_red.png");
     QMap<CalendarStyle, QString> alias;
-    alias.insert(Yellow,    tr("黄色风格"));
-    alias.insert(Blue,      tr("蓝色风格"));
-    alias.insert(Brown,     tr("褐色风格"));
-    alias.insert(Gray,      tr("灰色风格"));
-    alias.insert(Purple,    tr("紫色风格"));
-    alias.insert(Red,       tr("红色风格"));
+    alias.insert(CalendarStyle_Yellow,    tr("黄色风格"));
+    alias.insert(CalendarStyle_Blue,      tr("蓝色风格"));
+    alias.insert(CalendarStyle_Brown,     tr("褐色风格"));
+    alias.insert(CalendarStyle_Gray,      tr("灰色风格"));
+    alias.insert(CalendarStyle_Purple,    tr("紫色风格"));
+    alias.insert(CalendarStyle_Red,       tr("红色风格"));
     auto group = new QActionGroup(this);
     for (auto it = alias.begin(); it != alias.end(); it++)
     {

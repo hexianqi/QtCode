@@ -19,7 +19,7 @@ public:
     QColor textColor = QColor(200, 200, 200);
     bool showPointer = true;
     bool showValue = false;
-    HKnobGauge::PointerStyle pointerStyle = HKnobGauge::Circle;
+    HKnobGauge::PointerStyle pointerStyle = HKnobGauge::PointerStyle_Circle;
 
     bool pressed = false;
     bool hover = false;

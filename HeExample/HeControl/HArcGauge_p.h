@@ -18,7 +18,7 @@ public:
     QColor scaleLabelColor = QColor(20, 20, 20);
     QColor textColor = QColor(100, 184, 255);
     QColor pointerColor = QColor(255, 107, 107);
-    HArcGauge::PointerStyle pointerStyle = HArcGauge::Circle;
+    HArcGauge::PointerStyle pointerStyle = HArcGauge::PointerStyle_Circle;
 };
 
 HE_CONTROL_END_NAMESPACE

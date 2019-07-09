@@ -42,10 +42,10 @@ class HKnobGauge : public HAnimationProgress
 public:
     enum PointerStyle
     {
-        Circle = 0,        // 圆形指示器
-        Indicator = 1,     // 指针指示器
-        IndicatorR = 2,    // 圆角指针指示器
-        Triangle = 3       // 三角形指示器
+        PointerStyle_Circle = 0,        // 圆形指示器
+        PointerStyle_Indicator = 1,     // 指针指示器
+        PointerStyle_IndicatorR = 2,    // 圆角指针指示器
+        PointerStyle_Triangle = 3       // 三角形指示器
     };
 
 public:

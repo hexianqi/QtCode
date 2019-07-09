@@ -29,9 +29,9 @@ class HRoundProgressBar : public HAbstractProgress
 public:
     enum BarStyle
     {
-        Donut, // 圆环
-        Pie,   // 饼状
-        Line,  // 线条
+        BarStyle_Donut, // 圆环
+        BarStyle_Pie,   // 饼状
+        BarStyle_Line,  // 线条
     };
 
 public:

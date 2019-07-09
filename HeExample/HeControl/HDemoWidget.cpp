@@ -4,10 +4,14 @@
 #include "HAntLine.h"
 #include "HBattery.h"
 #include "HBarRuler.h"
+#include "HThermometerRuler.h"
 #include "HCpuMemoryLabel.h"
+#include "HCustomGraphics.h"
 #include "HArcGauge.h"
+#include "HCompassGauge.h"
 #include "HKnobGauge.h"
 #include "HPercentGauge.h"
+#include "HSpeedGauge.h"
 #include "HImageCalendar.h"
 #include "HMagicFish.h"
 #include "HMagicMouse.h"
@@ -42,9 +46,10 @@ void HDemoWidget::init()
 //    addSlideNavigation();
 
     addAntLine();
-    addBarRuler();    
+    addRuler();
     addBattery();
     addCpuMemoryLabel();
+    addCustomGraphics();
     addGauge();
     addImageCalendar();
     addMagic();
@@ -62,15 +67,20 @@ void HDemoWidget::addCpuMemoryLabel()
     ui->tabWidget->addTab(w, tr("资源管理器"));
 }
 
-void HDemoWidget::addBarRuler()
+void HDemoWidget::addRuler()
 {
-    auto w = new HBarRuler();
-    w->setValue(30);    
+    auto l = new QGridLayout;
+    auto b = new HBarRuler();
+    auto t = new HThermometerRuler();
     auto timer = new QTimer(this);
     timer->setInterval(2000);
-    connect(timer, &QTimer::timeout, this, [=] { w->setValue(qrand() % 100); });
-    timer->start();
-    ui->tabWidget->addTab(w, tr("柱状标尺"));
+    connect(timer, &QTimer::timeout, this, [=] {
+        b->setValue(qrand() % 100);
+        t->setValue(qrand() % 100); });
+    timer->start();    
+    l->addWidget(b, 0, 0);
+    l->addWidget(t, 0, 1);
+    addTab(l, tr("标尺"));
 }
 
 //void HDemoWidget::addSlideNavigation()
@@ -97,13 +107,13 @@ void HDemoWidget::addAntLine()
     auto w1 = new HAntLine;
     w1->setLineSpeed(500);
     auto w2 = new HAntLine;
-    w2->setLineStyle(HAntLine::RoundedRect);
+    w2->setLineStyle(HAntLine::LineStyle_RoundedRect);
     w2->setLength(10);
     auto w3 = new HAntLine;
-    w3->setLineStyle(HAntLine::Ellipse);
+    w3->setLineStyle(HAntLine::LineStyle_Ellipse);
     w3->setLineColor(Qt::red);
     auto w4 = new HAntLine;
-    w4->setLineStyle(HAntLine::Circle);
+    w4->setLineStyle(HAntLine::LineStyle_Circle);
     w4->setLineWidth(5);
     l->addWidget(w1, 0, 0);
     l->addWidget(w2, 0, 1);
@@ -126,29 +136,41 @@ void HDemoWidget::addBattery()
     d_ptr->style->setStyle(s, 8, "#505050", "#1ABC9C", "#1ABC9C");
 }
 
+void HDemoWidget::addCustomGraphics()
+{
+    ui->tabWidget->addTab(new HCustomGraphics, tr("自定义多边形"));
+}
+
 void HDemoWidget::addGauge()
 {
     auto l = new QGridLayout;
     auto c = new QComboBox;
     auto s = new QSlider;
-    auto a = new HArcGauge;
-    auto p = new HPercentGauge;
-    auto k = new HKnobGauge;
+    auto ag = new HArcGauge;
+    auto og = new HCompassGauge;
+    auto pg = new HPercentGauge;
+    auto kg = new HKnobGauge;
+    auto sg = new HSpeedGauge;
     c->addItems(QStringList() << tr("圆形指示器") << tr("指针指示器") << tr("圆角指针指示器") << tr("三角形指示器"));
     s->setOrientation(Qt::Horizontal);
     s->setSingleStep(10);
     connect(c, &QComboBox::currentTextChanged, this, [=](QString /*index*/) {
-        a->setPointerStyle(static_cast<HArcGauge::PointerStyle>(c->currentIndex()));
-        k->setPointerStyle(static_cast<HKnobGauge::PointerStyle>(c->currentIndex())); });
-    connect(s, &QSlider::valueChanged, a, &HArcGauge::setValue);
-    connect(s, &QSlider::valueChanged, p, &HPercentGauge::setValue);
-    connect(s, &QSlider::valueChanged, k, &HKnobGauge::setValue);
+        ag->setPointerStyle(static_cast<HArcGauge::PointerStyle>(c->currentIndex()));
+        kg->setPointerStyle(static_cast<HKnobGauge::PointerStyle>(c->currentIndex())); });
+    connect(s, &QSlider::valueChanged, this, [=](int value) {
+        ag->setValue(value);
+        pg->setValue(value);
+        og->setValue(value * 3.6);
+        kg->setValue(value);
+        sg->setValue(value); });
 
-    l->addWidget(a, 0, 0);
-    l->addWidget(p, 0, 1);
-    l->addWidget(k, 1, 1);
+    l->addWidget(ag, 0, 0);
+    l->addWidget(pg, 0, 1);
+    l->addWidget(kg, 0, 2);
+    l->addWidget(og, 1, 0);
+    l->addWidget(sg, 1, 1);
     l->addWidget(c, 2, 0);
-    l->addWidget(s, 3, 0, 1, 2);
+    l->addWidget(s, 3, 0, 1, 3);
     addTab(l, tr("仪表盘"));
 }
 

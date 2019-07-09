@@ -434,13 +434,13 @@ void HNavButton::drawBackground(QPainter *painter)
     QRect rect;
     QBrush brush;
     QColor color;
-    if (d_ptr->linePosition == Left)
+    if (d_ptr->linePosition == Position_Left)
         rect = this->rect().adjusted(d_ptr->lineSpace, 0, 0, 0);
-    else if (d_ptr->linePosition == Right)
+    else if (d_ptr->linePosition == Position_Right)
         rect = this->rect().adjusted(0, 0, -d_ptr->lineSpace, 0);
-    else if (d_ptr->linePosition == Top)
+    else if (d_ptr->linePosition == Position_Top)
         rect = this->rect().adjusted(0, d_ptr->lineSpace, 0, 0);
-    else if (d_ptr->linePosition == Bottom)
+    else if (d_ptr->linePosition == Position_Bottom)
         rect = this->rect().adjusted(0, 0, 0, -d_ptr->lineSpace);
     if (isChecked())
     {
@@ -507,20 +507,20 @@ void HNavButton::drawLine(QPainter *painter)
         return;
 
     QPoint start, end;
-    if (d_ptr->linePosition == Left)
+    if (d_ptr->linePosition == Position_Left)
     {
         start = QPoint(0, 0);
         end = QPoint(0, height());
     }
-    else if (d_ptr->linePosition == Right)
+    else if (d_ptr->linePosition == Position_Right)
     {
         start = QPoint(width(), 0);
         end = QPoint(width(), height());
-    } else if (d_ptr->linePosition == Top)
+    } else if (d_ptr->linePosition == Position_Top)
     {
         start = QPoint(0, 0);
         end = QPoint(width(), 0);
-    } else if (d_ptr->linePosition == Bottom)
+    } else if (d_ptr->linePosition == Position_Bottom)
     {
         start = QPoint(0, height());
         end = QPoint(width(), height());
@@ -540,13 +540,13 @@ void HNavButton::drawTriangle(QPainter *painter)
     int x = width() / 2;
     int y = height() / 2;
     QPolygon poly;
-    if (d_ptr->trianglePosition == Left)
+    if (d_ptr->trianglePosition == Position_Left)
         poly.setPoints(3, d_ptr->triangleLen, y, 0, y - d_ptr->triangleLen, 0, y + d_ptr->triangleLen);
-    else if (d_ptr->trianglePosition == Right)
+    else if (d_ptr->trianglePosition == Position_Right)
         poly.setPoints(3, width() - d_ptr->triangleLen, y, width(), y - d_ptr->triangleLen, width(), y + d_ptr->triangleLen);
-    else if (d_ptr->trianglePosition == Top)
+    else if (d_ptr->trianglePosition == Position_Top)
         poly.setPoints(3, x, d_ptr->triangleLen, x - d_ptr->triangleLen, 0, x + d_ptr->triangleLen, 0);
-    else if (d_ptr->trianglePosition == Bottom)
+    else if (d_ptr->trianglePosition == Position_Bottom)
         poly.setPoints(3, x, height() - d_ptr->triangleLen, x - d_ptr->triangleLen, height(), x + d_ptr->triangleLen, height());
 
     painter->save();

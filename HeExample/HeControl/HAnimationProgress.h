@@ -29,10 +29,10 @@ public:
     double currentValue() const;
 
 public slots:
-    void setValue(double value) override;
-    void setAnimationEnable(bool b);
-    void setDuration(int value);
-    void setCurrentValue(double value);
+    virtual void setValue(double value) override;
+    virtual void setAnimationEnable(bool b);
+    virtual void setDuration(int value);
+    virtual void setCurrentValue(double value);
 
 protected:
     HAnimationProgress(HAnimationProgressPrivate &p, QWidget *parent = nullptr);

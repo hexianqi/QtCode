@@ -194,7 +194,7 @@ QImage HRoundProgressBar::createImage()
     rebuildDataBrushIfNeeded();
     auto image = QImage(d->outerRadius, d->outerRadius, QImage::Format_ARGB32_Premultiplied);
     d->outerRect = QRectF(1, 1, d->outerRadius - 2, d->outerRadius - 2);
-    d->innerRadius = d->barStyle == Line ? d->outerRadius - d->excircleWidth : d->outerRadius * 0.75;
+    d->innerRadius = d->barStyle == BarStyle_Line ? d->outerRadius - d->excircleWidth : d->outerRadius * 0.75;
     d->innerRect = QRectF((d->outerRadius - d->innerRadius) / 2, (d->outerRadius - d->innerRadius) / 2, d->innerRadius, d->innerRadius);
 
     QPainter painter(&image);
@@ -213,9 +213,9 @@ void HRoundProgressBar::drawExcircle(QPainter *painter)
     if (!d->drawExcircle)
         return;
 
-    auto pen = QPen(d->barStyle == Donut ? palette().shadow().color() : palette().base().color(), d->excircleWidth);
-    auto brush = QBrush(d->barStyle == Line ? Qt::NoBrush : palette().base());
-    auto rect = d->barStyle == Line ? d->outerRect.adjusted(d->excircleWidth / 2, d->excircleWidth / 2, -d->excircleWidth / 2, -d->excircleWidth / 2) : d->outerRect;
+    auto pen = QPen(d->barStyle == BarStyle_Donut ? palette().shadow().color() : palette().base().color(), d->excircleWidth);
+    auto brush = QBrush(d->barStyle == BarStyle_Line ? Qt::NoBrush : palette().base());
+    auto rect = d->barStyle == BarStyle_Line ? d->outerRect.adjusted(d->excircleWidth / 2, d->excircleWidth / 2, -d->excircleWidth / 2, -d->excircleWidth / 2) : d->outerRect;
 
     painter->save();
     painter->setPen(pen);
@@ -232,7 +232,7 @@ void HRoundProgressBar::drawDataCircle(QPainter *painter)
 
     auto span = (d->reverse ? -1 : 1) * 360 * toRatio(d->value);
     painter->save();
-    if (d->barStyle == Line)
+    if (d->barStyle == BarStyle_Line)
     {
         auto rect = d->outerRect.adjusted(d->excircleWidth / 2, d->excircleWidth / 2, -d->excircleWidth / 2, -d->excircleWidth / 2);
         painter->setPen(QPen(palette().highlight().color(), d->dataCircleWidth));
@@ -266,7 +266,7 @@ void HRoundProgressBar::drawDataCircle(QPainter *painter)
 void HRoundProgressBar::drawInnerCircle(QPainter *painter)
 {
     Q_D(HRoundProgressBar);
-    if (!d->drawInnerCircle || d->barStyle != Donut)
+    if (!d->drawInnerCircle || d->barStyle != BarStyle_Donut)
         return;
     painter->save();
     painter->setBrush(palette().alternateBase());
@@ -281,10 +281,10 @@ void HRoundProgressBar::drawText(QPainter *painter)
         return;
 
     auto f = font();
-    f.setPixelSize(10);
+    f.setPointSize(10);
     auto fm = QFontMetricsF(f);
     auto width = fm.width(valueToText(d->maximum));
-    f.setPixelSize(int(f.pixelSize() * 0.75 * d->innerRadius / width));
+    f.setPointSizeF(f.pointSize() * 0.75 * d->innerRadius / width);
 
     painter->save();
     painter->setFont(f);
@@ -296,7 +296,7 @@ void HRoundProgressBar::drawText(QPainter *painter)
 void HRoundProgressBar::rebuildDataBrushIfNeeded()
 {
     Q_D(HRoundProgressBar);
-    if (!d->rebuildBrush || d->gradientData.isEmpty() || d->barStyle == Line)
+    if (!d->rebuildBrush || d->gradientData.isEmpty() || d->barStyle == BarStyle_Line)
         return;
     d->rebuildBrush = false;
 

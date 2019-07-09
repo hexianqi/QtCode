@@ -9,7 +9,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HRoundProgressBarPrivate : public HAbstractProgressPrivate
 {
 public:
-    HRoundProgressBar::BarStyle barStyle = HRoundProgressBar::Donut;
+    HRoundProgressBar::BarStyle barStyle = HRoundProgressBar::BarStyle_Donut;
     bool reverse = false;
     int angleStart = 0;
     bool drawExcircle = true;

@@ -59,10 +59,10 @@ class HNavButton : public QPushButton
 public:
     enum Position
     {
-        Left = 0,      //左侧
-        Right = 1,     //右侧
-        Top = 2,       //顶部
-        Bottom = 3     //底部
+        Position_Left = 0,      //左侧
+        Position_Right = 1,     //右侧
+        Position_Top = 2,       //顶部
+        Position_Bottom = 3     //底部
     };
 
 public:

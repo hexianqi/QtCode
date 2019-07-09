@@ -273,7 +273,7 @@ void HTristateProgressBar::drawValue(QPainter *painter)
         if (d_ptr->autoFont)
         {
             auto f = font();
-            f.setPixelSize(qMin(width() * 0.15, height() * 0.9));
+            f.setPointSizeF(qMin(width() * 0.15, height() * 0.9));
             painter->setFont(f);
         }
 

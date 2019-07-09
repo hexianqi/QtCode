@@ -126,13 +126,13 @@ void HAntLine::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing);
     painter.setPen(pen);
-    if (d_ptr->lineStyle == Rect)
+    if (d_ptr->lineStyle == LineStyle_Rect)
         painter.drawRect(rect());
-    if (d_ptr->lineStyle == RoundedRect)
+    if (d_ptr->lineStyle == LineStyle_RoundedRect)
         painter.drawRoundedRect(rect(), 5, 5);
-    if (d_ptr->lineStyle == Ellipse)
+    if (d_ptr->lineStyle == LineStyle_Ellipse)
         painter.drawEllipse(rect());
-    if (d_ptr->lineStyle == Circle)
+    if (d_ptr->lineStyle == LineStyle_Circle)
         painter.drawEllipse(width() / 2 - side / 2, 0, side, side);
 }
 

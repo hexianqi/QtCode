@@ -13,7 +13,7 @@ public:
     int lineStep = 1;
     int lineSpeed = 100;
     QColor lineColor = Qt::black;
-    HAntLine::LineStyle lineStyle = HAntLine::Rect;
+    HAntLine::LineStyle lineStyle = HAntLine::LineStyle_Rect;
 
 public:
     int dash = 6;                   // 线条长度
