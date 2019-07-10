@@ -34,7 +34,7 @@ signals:
 
 public:
     void setData(HSpecFitting *);
-    void restoreDefault();
+    void clearData();
     QPolygonF fittingPoints();
     virtual void handleAction(HActionType action);
     virtual bool setTest(bool b);

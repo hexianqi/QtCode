@@ -40,9 +40,9 @@ void HSpecFittingWidget::setData(HSpecFitting *p)
     showData();
 }
 
-void HSpecFittingWidget::restoreDefault()
+void HSpecFittingWidget::clearData()
 {
-    d_ptr->data->restoreDefault();
+    d_ptr->data->clear();
     showData();
 }
 
@@ -62,7 +62,7 @@ void HSpecFittingWidget::handleAction(HActionType action)
         return;
     }
 
-    if (!d_ptr->testSpec->data("[采样帧溢出状态]").toBool())
+    if (d_ptr->testSpec->data("[采样帧溢出状态]").toInt() < 0)
         return;
 
     auto sample = d_ptr->testSpec->sample(1, d_ptr->pel);
@@ -103,6 +103,7 @@ bool HSpecFittingWidget::setTest(bool b)
         d_ptr->progressDialog->setValue(0);
         d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());
         d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
+        qDebug() << "HSpecFittingWidget";
     }
     d_ptr->testSpec->setFitting(!b);
     d_ptr->testState = b;

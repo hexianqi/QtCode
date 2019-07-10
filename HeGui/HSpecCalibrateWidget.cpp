@@ -8,6 +8,7 @@
 #include "HSpecPelsWaveWidget.h"
 #include "HSpecSampleChartView.h"
 #include "HSpecSettingDialog.h"
+#include "HeCore/HCoreHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
 #include "HeData/IConfigManage.h"
@@ -105,6 +106,7 @@ void HSpecCalibrateWidget::handleTestModeChanged(int value)
     Q_D(HSpecCalibrateWidget);
     if (value == 1)
     {
+        ui->tabWidget_1->setCurrentIndex(0);
         d->testSpec->resetStdCurve();
         refreshSpecWidget();
     }
@@ -150,6 +152,7 @@ void HSpecCalibrateWidget::on_pushButton_3_clicked()
 {
     Q_D(HSpecCalibrateWidget);
     d->testSetWidget->setTestState(false);
+    HCoreHelper::msleep(100);
     d->fittingWidget->setTest(true);
 }
 
@@ -183,7 +186,7 @@ void HSpecCalibrateWidget::on_pushButton_6_clicked()
 {
     Q_D(HSpecCalibrateWidget);
     d->fittingTimes = 0;
-    d->fittingWidget->restoreDefault();
+    d->fittingWidget->clearData();
     d->ccdView->clearSeries();
 }
 

@@ -10,7 +10,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecFittingTest::HSpecFittingTest() :
     HSpecFitting(*new HSpecFittingTestPrivate)
 {
-    restoreDefault();
+    init();
 }
 
 HSpecFittingTest::~HSpecFittingTest()
@@ -39,10 +39,10 @@ void HSpecFittingTest::writeContent(QDataStream &s)
     s << d->allFittingPoints;
 }
 
-void HSpecFittingTest::restoreDefault()
+void HSpecFittingTest::clear()
 {
     Q_D(HSpecFittingTest);
-    HSpecFitting::restoreDefault();
+    HSpecFitting::clear();
     d->allFittingPoints.clear();
 }
 
@@ -59,6 +59,13 @@ QVector<double> HSpecFittingTest::handle(QVector<double> value, bool abovezero)
     for (int i = 0; i < value.size(); i++)
         r << handle(i, value[i], abovezero);
     return r;
+}
+
+void HSpecFittingTest::init()
+{
+    Q_D(HSpecFittingTest);
+    HSpecFitting::init();
+    d->allFittingPoints.clear();
 }
 
 double HSpecFittingTest::handle(int i, double value, bool abovezero)

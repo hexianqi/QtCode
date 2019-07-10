@@ -37,7 +37,7 @@ public:
     double calcLuminous(double value) override;
     int calcCommWaitTime(double &value) override;
     int checkIntegralTime(double value) override;
-    bool checkFrameOverflow(int size) override;
+    int checkFrameOverflow(int size) override;
     int checkSampleOverflow(double value) override;
     double pelsToWave(double value) override;
     QVector<double> stdCurve() override;

@@ -42,8 +42,8 @@ bool HSpecFittingLinearWidget::initParam()
         qSwap(t1, t2);
     d->pel = ui->spinBox_2->value();
     d->points.clear();
-    for (int i = 0; i < times; i++)
-        d->points << QPointF(0.0, t1 + (t2 - t1) * i / (times - 1));
+    for (int i = 1; i <= times; i++)
+        d->points << QPointF(0.0, t1 + (t2 - t1) * i / times);
     return true;
 }
 

@@ -165,7 +165,7 @@ int HSpecCalibrate::checkIntegralTime(double value)
     return d_ptr->setting->checkIntegralTime(value);
 }
 
-bool HSpecCalibrate::checkFrameOverflow(int size)
+int HSpecCalibrate::checkFrameOverflow(int size)
 {
     return d_ptr->setting->checkFrameOverflow(size);
 }

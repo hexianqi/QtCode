@@ -11,7 +11,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecFittingPolynom::HSpecFittingPolynom() :
     HSpecFitting(*new HSpecFittingPolynomPrivate)
 {
-    restoreDefault();
+    init();
 }
 
 HSpecFittingPolynom::HSpecFittingPolynom(HSpecFittingPolynomPrivate &p) :
@@ -47,11 +47,10 @@ void HSpecFittingPolynom::writeContent(QDataStream &s)
     s << d->cova;
 }
 
-void HSpecFittingPolynom::restoreDefault()
+void HSpecFittingPolynom::clear()
 {
     Q_D(HSpecFittingPolynom);
-    HSpecFitting::restoreDefault();
-    setData("[光谱拟合多项式项数]", 7);
+    HSpecFitting::clear();
     d->ca.clear();
     d->cova.clear();
 }
@@ -66,6 +65,15 @@ void HSpecFittingPolynom::setFittingPoints(QPolygonF value)
     d->cova.clear();
     d->ca.resize(data("[光谱拟合多项式项数]").toInt());
     HMultiFit::linear(d->fittingPoints, d->ca, d->cova, &chisq);
+}
+
+void HSpecFittingPolynom::init()
+{
+    Q_D(HSpecFittingPolynom);
+    HSpecFitting::init();
+    setData("[光谱拟合多项式项数]", 7);
+    d->ca.clear();
+    d->cova.clear();
 }
 
 double HSpecFittingPolynom::calcRate(double value)

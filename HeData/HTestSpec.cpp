@@ -18,7 +18,7 @@ HTestSpecPrivate::HTestSpecPrivate()
     samples.resize(2);
     addData("[光谱采样等待时间]", 0);
     addData("[积分时间]", 10.0);
-    addData("[采样帧溢出状态]", false);
+    addData("[采样帧溢出状态]", -1);
     addData("[采样溢出状态]", 0);
     addData("[采样比率]", 0.0);
 }
@@ -84,11 +84,11 @@ QVector<double> HTestSpecPrivate::sample(int type)
     return samples[type];
 }
 
-bool HTestSpecPrivate::checkFrameOverflow()
+int HTestSpecPrivate::checkFrameOverflow()
 {
-    bool b = calibrate->checkFrameOverflow(sampleCache.size());
-    setData("[采样帧溢出状态]", b);
-    return b;
+    int i = calibrate->checkFrameOverflow(sampleCache.size());
+    setData("[采样帧溢出状态]", i);
+    return i;
 }
 
 int HTestSpecPrivate::checkSampleOverflow()
@@ -101,9 +101,10 @@ int HTestSpecPrivate::checkSampleOverflow()
 QVector<double> HTestSpecPrivate::average(QVector<double> value)
 {
     int i,j;
-    if (checkFrameOverflow())
+    if (checkFrameOverflow() >= 0)
         sampleCache.dequeue();
     sampleCache.enqueue(value);
+    checkFrameOverflow();
 
     for (i = 0; i < value.size(); i++)
     {

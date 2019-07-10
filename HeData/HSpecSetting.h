@@ -38,7 +38,7 @@ public:
     // 检查积分时间溢出
     int checkIntegralTime(double value);
     // 检查帧溢出
-    bool checkFrameOverflow(int size);
+    int checkFrameOverflow(int size);
     // 检查采样溢出
     int checkSampleOverflow(double value);
     // 扣暗底

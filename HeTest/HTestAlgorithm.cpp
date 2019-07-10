@@ -1,7 +1,6 @@
 #include "HTestAlgorithm.h"
 #include "HeAlgorithm/HRegister.h"
 #include "HeAlgorithm/HChromaticity.h"
-#include <QtCore/QDebug>
 
 HE_ALGORITHM_USE_NAMESPACE
 
@@ -14,8 +13,6 @@ void HTestAlgorithm::testRegister()
     // 注册
     auto id = reg.getRegisterId();
     auto code = reg.encrypt(id);
-    qDebug() << id;
-    qDebug() << code;
     reg.setRegisterCode(code);
 
     if (!reg.isExpires())

@@ -27,13 +27,14 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    void restoreDefault() override;
+    void clear() override;
     void setFittingPoints(QPolygonF value) override;
 
 protected:
     HSpecFittingPolynom(HSpecFittingPolynomPrivate &p);
 
 protected:
+    void init() override;
     double calcRate(double value) override;
     double calcPolynom(double value);
 };

@@ -26,7 +26,7 @@ public:
     virtual bool fromBinaryData(QVector<uchar> data, int &pos);
 
 public:
-    virtual void restoreDefault();
+    virtual void clear();
     virtual void setFittingPoints(QPolygonF value);
     virtual QVector<double> handle(QVector<double> value, bool abovezero = true);
     virtual QPolygonF fittingPoints();
@@ -35,6 +35,7 @@ protected:
     HSpecFitting(HSpecFittingPrivate &p);
 
 protected:
+    virtual void init();
     virtual double handle(double value, bool abovezero = true);
     virtual double calcRate(double value);
 };

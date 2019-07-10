@@ -10,7 +10,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecFittingLinear::HSpecFittingLinear() :
     HSpecFitting(*new HSpecFittingLinearPrivate)
 {
-    restoreDefault();
+    init();
 }
 
 HSpecFittingLinear::HSpecFittingLinear(HSpecFittingLinearPrivate &p) :
@@ -32,11 +32,11 @@ QVector<uchar> HSpecFittingLinear::toBinaryData()
     Q_D(HSpecFittingLinear);
     auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
                                << HDataHelper::writeUInt16(1)  // 版本
-                               << HDataHelper::writeUInt16(d->fittingPoints.size());
+                               << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
     for (auto p : d->fittingPoints)
-        r << HDataHelper::writeUInt16(p.x()) << HDataHelper::writeUInt16(p.y() * 10000);
-    r[0] = r.size() / 256;
-    r[1] = r.size() % 256;
+        r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
+    r[0] = static_cast<uchar>(r.size() / 256);
+    r[1] = static_cast<uchar>(r.size() % 256);
     return r;
 }
 
@@ -65,8 +65,8 @@ double HSpecFittingLinear::calcRate(double value)
     if (d->fittingPoints.size() < 3)
         return 1.0;
 
-//    auto range = data("[光谱拟合有效范围]").toPointF();
-//    value = qBound(range.x(), value, range.y());
+    auto range = data("[光谱拟合有效范围]").toPointF();
+    value = qBound(range.x(), value, range.y());
     return HMath::interpolate(value, d->fittingPoints);
 //    return HInterp::eval(d->fittingPoints, value, HInterpType::Cspline);
 }

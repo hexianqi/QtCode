@@ -34,7 +34,7 @@ public:
     QVector<double> sample(int type);
 
 public:
-    bool checkFrameOverflow();
+    int checkFrameOverflow();
     int checkSampleOverflow();
     QVector<double> average(QVector<double> value);
     void calcMaxSample();

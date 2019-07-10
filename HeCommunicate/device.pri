@@ -14,7 +14,9 @@ HEADERS += \
     $$PWD/HDaXinDevice.h \
     $$PWD/HDaXinDevice_p.h \
     $$PWD/HPowerFactorDevice.h \
-    $$PWD/HPowerFactorDevice_p.h
+    $$PWD/HPowerFactorDevice_p.h \
+    $$PWD/HSlSimulation.h \
+    $$PWD/HSlSimulation_p.h
 
 SOURCES += \
     $$PWD/HAbstractDevice.cpp \
@@ -23,4 +25,5 @@ SOURCES += \
     $$PWD/HSlDevice.cpp \
     $$PWD/HSlDevice2.cpp \
     $$PWD/HDaXinDevice.cpp \
-    $$PWD/HPowerFactorDevice.cpp
+    $$PWD/HPowerFactorDevice.cpp \
+    $$PWD/HSlSimulation.cpp

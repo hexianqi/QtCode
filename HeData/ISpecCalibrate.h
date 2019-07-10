@@ -53,7 +53,7 @@ public:
     // 检查积分时间溢出
     virtual int checkIntegralTime(double value) = 0;
     // 检查帧溢出
-    virtual bool checkFrameOverflow(int size) = 0;
+    virtual int checkFrameOverflow(int size) = 0;
     // 检查采样溢出
     virtual int checkSampleOverflow(double value) = 0;
     // 像元转波长

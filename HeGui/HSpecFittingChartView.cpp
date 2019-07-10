@@ -6,6 +6,7 @@
 #include <QtWidgets/QAction>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
+#include <QtCharts/QScatterSeries>
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -27,25 +28,39 @@ void HSpecFittingChartView::addSeries(int id, QPolygonF value)
     if (value.size() <= 0)
         return;
     removeSeries(id);
-    auto series = new QLineSeries();
-    series->setName(QString("Line %1").arg(id));
-    series->replace(value);
-    d->chart->addSeries(series);
+    auto line = new QLineSeries();
+    line->setName(QString("Line %1").arg(id));
+    line->replace(value);
+    auto scatter = new QScatterSeries();
+    scatter->setName(QString("Scatter %1").arg(id));
+    scatter->setMarkerSize(8);
+    scatter->replace(value);
+    d->chart->addSeries(line);
+    d->chart->addSeries(scatter);
     d->marker->connectExtend();
-    d->callout->connectExtend(series);
-    d->series.insert(id, series);
+    d->callout->connectExtend(line);
+    d->lineSeries.insert(id, line);
+    d->scatterSeries.insert(id, scatter);
 }
 
 void HSpecFittingChartView::removeSeries(int id)
 {
     Q_D(HSpecFittingChartView);
-    if (!d->series.contains(id))
-        return;
-    auto series = d->series[id];
-    d->chart->removeSeries(series);
-    d->callout->disconnectExtend(series);
-    d->series.remove(id);
-    delete series;
+    if (d->lineSeries.contains(id))
+    {
+        auto series = d->lineSeries[id];
+        d->chart->removeSeries(series);
+        d->callout->disconnectExtend(series);
+        d->lineSeries.remove(id);
+        delete series;
+    }
+    if (d->scatterSeries.contains(id))
+    {
+        auto series = d->scatterSeries[id];
+        d->chart->removeSeries(series);
+        d->scatterSeries.remove(id);
+        delete series;
+    }
 }
 
 void HSpecFittingChartView::clearSeries()
@@ -54,7 +69,8 @@ void HSpecFittingChartView::clearSeries()
     d->chart->zoomReset();
     d->chart->removeAllSeries();
     d->marker->disconnectExtend();
-    d->series.clear();
+    d->lineSeries.clear();
+    d->scatterSeries.clear();
 }
 
 void HSpecFittingChartView::init()

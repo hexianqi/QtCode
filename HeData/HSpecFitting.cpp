@@ -6,6 +6,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecFitting::HSpecFitting() :
     HAbstractDataItem(*new HSpecFittingPrivate)
 {
+    init();
 }
 
 HSpecFitting::HSpecFitting(HSpecFittingPrivate &p) :
@@ -44,13 +45,9 @@ bool HSpecFitting::fromBinaryData(QVector<uchar> /*data*/, int &/*pos*/)
     return true;
 }
 
-void HSpecFitting::restoreDefault()
+void HSpecFitting::clear()
 {
     Q_D(HSpecFitting);
-    setData("[光谱拟合基准像元]", 1000);
-    setData("[光谱拟合取样次数]", 100);
-    setData("[光谱拟合积分时间范围]", QPointF(10, 100));
-    setData("[光谱拟合有效范围]", QPointF(0, 65535));
     d->fittingPoints.clear();
 }
 
@@ -84,6 +81,22 @@ double HSpecFitting::handle(double value, bool abovezero)
     return value;
 }
 
+QPolygonF HSpecFitting::fittingPoints()
+{
+    Q_D(HSpecFitting);
+    return d->fittingPoints;
+}
+
+void HSpecFitting::init()
+{
+    Q_D(HSpecFitting);
+    setData("[光谱拟合基准像元]", 1000);
+    setData("[光谱拟合取样次数]", 100);
+    setData("[光谱拟合积分时间范围]", QPointF(10, 100));
+    setData("[光谱拟合有效范围]", QPointF(0, 65535));
+    d->fittingPoints.clear();
+}
+
 double HSpecFitting::calcRate(double /*value*/)
 {
     return 1.0;
@@ -95,12 +108,6 @@ QVector<double> HSpecFitting::handle(QVector<double> value, bool abovezero)
     for (auto v : value)
         r << handle(v, abovezero);
     return r;
-}
-
-QPolygonF HSpecFitting::fittingPoints()
-{
-    Q_D(HSpecFitting);
-    return d->fittingPoints;
 }
 
 HE_DATA_END_NAMESPACE

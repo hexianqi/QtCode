@@ -27,11 +27,12 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    void restoreDefault() override;
+    void clear() override;
     void setFittingPoints(QPolygonF value) override;
     QVector<double> handle(QVector<double> value, bool abovezero = true) override;
 
 protected:
+    void init() override;
     double handle(int i, double value, bool abovezero = true);
     double calcRate(int i, double value);
 };

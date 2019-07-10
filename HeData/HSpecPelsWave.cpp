@@ -78,13 +78,13 @@ bool HSpecPelsWave::fromBinaryData(QVector<uchar> data, int &pos)
 void HSpecPelsWave::restoreDefault()
 {
     Q_D(HSpecPelsWave);
-    d->pelsWave = QPolygonF() << QPointF(124, 404.7)
-                              << QPointF(300, 435.8)
-                              << QPointF(432, 546.1)
-                              << QPointF(900, 632.8)
-                              << QPointF(1275, 696.5)
-                              << QPointF(1540, 750.4)
-                              << QPointF(1760, 763.5);
+    d->pelsWave = QPolygonF() << QPointF(460, 404.7)
+                              << QPointF(585, 435.8)
+                              << QPointF(1030, 546.1)
+                              << QPointF(1388, 632.8)
+                              << QPointF(1653, 696.5)
+                              << QPointF(1878, 750.4)
+                              << QPointF(1933, 763.5);
 }
 
 void HSpecPelsWave::setPelsWave(QPolygonF value)

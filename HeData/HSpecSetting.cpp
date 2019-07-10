@@ -128,9 +128,14 @@ int HSpecSetting::checkIntegralTime(double value)
     return 0;
 }
 
-bool HSpecSetting::checkFrameOverflow(int size)
+int HSpecSetting::checkFrameOverflow(int size)
 {
-    return size >= data("[光谱平滑帧数]").toInt();
+    auto n = data("[光谱平滑帧数]").toInt();
+    if (size < n)
+        return -1;
+    if (size > n)
+        return 1;
+    return 0;
 }
 
 int HSpecSetting::checkSampleOverflow(double value)

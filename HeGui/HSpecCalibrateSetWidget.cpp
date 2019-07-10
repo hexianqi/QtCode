@@ -1,6 +1,7 @@
 #include "HSpecCalibrateSetWidget_p.h"
 #include "ui_HSpecCalibrateSetWidget.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCoreHelper.h"
 #include "HeController/IModel.h"
 #include "HeData/ITestSpec.h"
 #include "HePlugin/HPluginHelper.h"
@@ -50,7 +51,7 @@ void HSpecCalibrateSetWidget::handleAction(HActionType action)
             break;
         if (d->integralTimeAuto && d->testSpec->adjustIntegralTime())
             d->model->addAction(ACT_SET_INTEGRAL_TIME);
-        d->model->addAction(ACT_GET_SPECTRUM, 100);
+        d->model->addAction(ACT_GET_SPECTRUM, 50);
         break;
     default:
         break;
@@ -125,6 +126,7 @@ void HSpecCalibrateSetWidget::on_radioButton_01_clicked()
 void HSpecCalibrateSetWidget::on_radioButton_02_clicked()
 {
     setTestState(false);
+    HCoreHelper::msleep(100);
     setTestMode(1);
 }
 

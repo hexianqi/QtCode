@@ -59,7 +59,7 @@ HErrorType HSpecThread::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
-        return d->protocolSpec->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 1000));
+        return d->protocolSpec->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
     case ACT_SET_SPECTRUM_AVG_TIMES:
         return d->protocolSpec->setData(action, d->testSpec->data("[光谱平均次数]").toInt());
     case ACT_SET_SPECTRUM_SAMPLE_DELAY:
