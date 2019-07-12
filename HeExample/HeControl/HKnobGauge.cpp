@@ -1,8 +1,8 @@
 #include "HKnobGauge_p.h"
 #include <QtCore/QPropertyAnimation>
+#include <QtCore/QtMath>
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
-#include <QtCore/QtMath>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -92,7 +92,7 @@ bool HKnobGauge::isShowValue() const
     return d->showValue;
 }
 
-HKnobGauge::PointerStyle HKnobGauge::pointerStyle() const
+PointerStyle HKnobGauge::pointerStyle() const
 {
     Q_D(const HKnobGauge);
     return d->pointerStyle;
@@ -346,6 +346,7 @@ void HKnobGauge::drawPointer(QPainter *painter)
         drawPointerIndicatorR(painter);
     if (d->pointerStyle == PointerStyle_Triangle)
         drawPointerTriangle(painter);
+    drawPointerCenter(painter);
     painter->restore();
 }
 
@@ -363,9 +364,6 @@ void HKnobGauge::drawPointerIndicator(QPainter *painter)
     auto radius = d->radiusCircle - 15;
     auto poly = QPolygon() << QPoint(-8, 0) << QPoint(8, 0) << QPoint(0, radius);
     painter->drawConvexPolygon(poly);
-    // 绘制中心圆点
-    radius = radius / 4;
-    painter->drawEllipse(-radius, -radius, radius * 2, radius * 2);
 }
 
 void HKnobGauge::drawPointerIndicatorR(QPainter *painter)
@@ -378,9 +376,6 @@ void HKnobGauge::drawPointerIndicatorR(QPainter *painter)
     // 增加绘制圆角直线,与之前三角形重叠,形成圆角指针
     painter->setPen(QPen(d->progressColor, 4, Qt::SolidLine, Qt::RoundCap));
     painter->drawLine(0, 0, 0, radius);
-    // 绘制中心圆点
-    radius = radius / 4;
-    painter->drawEllipse(-radius, -radius, radius * 2, radius * 2);
 }
 
 void HKnobGauge::drawPointerTriangle(QPainter *painter)
@@ -390,6 +385,15 @@ void HKnobGauge::drawPointerTriangle(QPainter *painter)
     auto offset = d->radiusCircle - 25;
     auto poly = QPolygon() << QPoint(-radius / 2, offset) << QPoint(radius / 2, offset) << QPoint(0, radius + offset);
     painter->drawConvexPolygon(poly);
+}
+
+void HKnobGauge::drawPointerCenter(QPainter *painter)
+{
+    Q_D(HKnobGauge);
+    if (d->pointerStyle != PointerStyle_Indicator && d->pointerStyle != PointerStyle_IndicatorR)
+        return;
+    auto radius = (d->radiusCircle - 15) / 4;
+    painter->drawEllipse(-radius, -radius, radius * 2, radius * 2);
 }
 
 void HKnobGauge::drawValue(QPainter *painter)
@@ -403,7 +407,6 @@ void HKnobGauge::drawValue(QPainter *painter)
     auto f = font();
     f.setPixelSize(d->showPointer ? radius - 50 : radius - 15);
     f.setBold(true);
-
     painter->save();
     painter->setPen(d->textColor);
     painter->setFont(f);

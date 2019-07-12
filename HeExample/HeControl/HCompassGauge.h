@@ -107,16 +107,3 @@ private:
 HE_CONTROL_END_NAMESPACE
 
 #endif // HCOMPASSGAUGE_H
-
-//    bool reverse;                   //是否倒退
-//    double currentValue;            //当前值
-//    QTimer *timer;                  //定时器绘制动画
-
-//private slots:
-//    void updateValue();
-
-//Q_SIGNALS:
-//    void valueChanged(int value);
-//};
-
-//#endif // GAUGECOMPASS_H

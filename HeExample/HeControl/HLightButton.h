@@ -74,7 +74,6 @@ protected:
     void drawBorderIn(QPainter *);
     void drawBackground(QPainter *);
     void drawText(QPainter *);
-    void drawOverlay(QPainter *);
 
 protected:
     QScopedPointer<HLightButtonPrivate> d_ptr;

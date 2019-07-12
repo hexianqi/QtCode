@@ -4,6 +4,7 @@
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
 #include "HeExample/HeControl/HDemoWidget.h"
+#include "HeExample/HeControl/HControlWidget.h"
 #include <QtCore/QDebug>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
@@ -27,8 +28,13 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HDemoWidget w;
+    auto list = qApp->applicationFilePath().split("/");
+    qDebug() << list;
+
+    HControlWidget w;
     w.show();
+//    HDemoWidget w;
+//    w.show();
 
 
 //    HTestPlugin::testCIE1931View()->show();

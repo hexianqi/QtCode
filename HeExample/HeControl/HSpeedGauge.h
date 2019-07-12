@@ -13,20 +13,16 @@
 #ifndef HSPEEDGAUGE_H
 #define HSPEEDGAUGE_H
 
-#include "HAnimationProgress.h"
+#include "HCircleGauge.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HSpeedGaugePrivate;
 
-class HSpeedGauge : public HAnimationProgress
+class HSpeedGauge : public HCircleGauge
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpeedGauge)
-    Q_PROPERTY(int scaleMajor READ scaleMajor WRITE setScaleMajor)
-    Q_PROPERTY(int scaleMinor READ scaleMinor WRITE setScaleMinor)
-    Q_PROPERTY(int angleStart READ angleStart WRITE setAngleStart)
-    Q_PROPERTY(int angleEnd READ angleEnd WRITE setAngleEnd)
     Q_PROPERTY(int ringWidth READ ringWidth WRITE setRingWidth)
     Q_PROPERTY(int ringPercentStart READ ringPercentStart WRITE setRingPercentStart)
     Q_PROPERTY(int ringPercentMid READ ringPercentMid WRITE setRingPercentMid)
@@ -34,20 +30,12 @@ class HSpeedGauge : public HAnimationProgress
     Q_PROPERTY(QColor ringColorStart READ ringColorStart WRITE setRingColorStart)
     Q_PROPERTY(QColor ringColorMid READ ringColorMid WRITE setRingColorMid)
     Q_PROPERTY(QColor ringColorEnd READ ringColorEnd WRITE setRingColorEnd)
-    Q_PROPERTY(QColor pointerColor READ pointerColor WRITE setPointerColor)
-    Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
 
 public:
     explicit HSpeedGauge(QWidget *parent = nullptr);
     ~HSpeedGauge() override;
 
 public:
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
-    int scaleMajor() const;
-    int scaleMinor() const;
-    int angleStart() const;
-    int angleEnd() const;
     int ringWidth() const;
     int ringPercentStart() const;
     int ringPercentMid() const;
@@ -55,15 +43,8 @@ public:
     QColor ringColorStart() const;
     QColor ringColorMid() const;
     QColor ringColorEnd() const;
-    QColor pointerColor() const;
-    QColor textColor() const;
 
 public slots:
-    void setDecimal(int value) override;
-    void setScaleMajor(int value);
-    void setScaleMinor(int value);
-    void setAngleStart(int value);
-    void setAngleEnd(int value);
     void setRingWidth(int value);
     void setRingPercentStart(int value);
     void setRingPercentMid(int value);
@@ -71,55 +52,20 @@ public slots:
     void setRingColorStart(const QColor &value);
     void setRingColorMid(const QColor &value);
     void setRingColorEnd(const QColor &value);
-    void setPointerColor(const QColor &value);
-    void setTextColor(const QColor &value);
 
 protected:
     HSpeedGauge(HSpeedGaugePrivate &p, QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *) override;
-    void drawRing(QPainter *);
-    void drawScale(QPainter *);
-    void drawScaleLabel(QPainter *);
-    void drawPointer(QPainter *);
-    void drawValue(QPainter *);
+    void drawProgress(QPainter *, int radius) override;
+    void drawScale(QPainter *, int radius) override;
+    void drawPointer(QPainter *, int radius) override;
 
 private:
     void init();
-    double angleSpan();
-    double toAngle(double value);
-
 };
 
 HE_CONTROL_END_NAMESPACE
 
 #endif // HSPEEDGAUGE_H
-
-//    QLCDNumber *lcd;                //数码管
-//    //设置动画显示的步长
-//    void setAnimationStep(double animationStep);
-
-//    //设置饼圆宽度
-//    void setRingWidth(int ringWidth);
-
-//    //设置三个圆环所占比例
-//    void setRingStartPercent(int ringStartPercent);
-//    void setRingMidPercent(int ringMidPercent);
-//    void setRingEndPercent(int ringEndPercent);
-
-//    //设置三个圆环颜色
-//    void setRingColorStart(const QColor &ringColorStart);
-//    void setRingColorMid(const QColor &ringColorMid);
-//    void setRingColorEnd(const QColor &ringColorEnd);
-
-//    //设置指针颜色
-//    void setPointerColor(const QColor &pointerColor);
-//    //设置文本颜色
-//    void setTextColor(const QColor &textColor);
-
-//Q_SIGNALS:
-//    void valueChanged(int value);
-//};
-
-//#endif //GAUGESPEED_H

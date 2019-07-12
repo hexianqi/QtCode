@@ -1,5 +1,6 @@
 #include "HLightButton_p.h"
 #include "HMoveEventFilter.h"
+#include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -181,7 +182,8 @@ void HLightButton::paintEvent(QPaintEvent *)
     drawBorderIn(&painter);
     drawBackground(&painter);
     drawText(&painter);
-    drawOverlay(&painter);
+    if (d_ptr->showOverlay)
+        HDrawHelper::drawOverlay(&painter, 80, d_ptr->overlayColor);
 }
 
 void HLightButton::drawBorderOut(QPainter *painter)
@@ -230,32 +232,6 @@ void HLightButton::drawText(QPainter *painter)
     painter->setFont(QFont("Arial", 50, QFont::Bold, false));
     painter->setPen(textColor());
     painter->drawText(QRect(-radius, -radius, radius * 2, radius * 2), Qt::AlignCenter, text());
-    painter->restore();
-}
-
-void HLightButton::drawOverlay(QPainter *painter)
-{
-    if (!isShowOverlay())
-        return;
-
-    int radius = 80;
-    QPainterPath smallCircle;
-    QPainterPath bigCircle;
-    radius -= 1;
-    smallCircle.addEllipse(-radius, -radius, radius * 2, radius * 2);
-    radius *= 2;
-    bigCircle.addEllipse(-radius, -radius + 140, radius * 2, radius * 2);
-    auto gradient = QLinearGradient(0, -radius / 2, 0, 0);
-    d_ptr->overlayColor.setAlpha(100);
-    gradient.setColorAt(0.0, d_ptr->overlayColor);
-    d_ptr->overlayColor.setAlpha(30);
-    gradient.setColorAt(1.0, d_ptr->overlayColor);
-
-    painter->save();
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(gradient);
-    painter->rotate(-20);
-    painter->drawPath(smallCircle - bigCircle);
     painter->restore();
 }
 

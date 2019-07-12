@@ -14,62 +14,37 @@
 #ifndef HPERCENTGAUGE_H
 #define HPERCENTGAUGE_H
 
-#include "HAnimationProgress.h"
+#include "HCircleGauge.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HPercentGaugePrivate;
 
-class HPercentGauge : public HAnimationProgress
+class HPercentGauge : public HCircleGauge
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HPercentGauge)
-    Q_PROPERTY(int scaleMajor READ scaleMajor WRITE setScaleMajor)
-    Q_PROPERTY(int scaleMinor READ scaleMinor WRITE setScaleMinor)
-    Q_PROPERTY(int angleStart READ angleStart WRITE setAngleStart)
-    Q_PROPERTY(int angleEnd READ angleEnd WRITE setAngleEnd)
     Q_PROPERTY(QColor background READ background WRITE setBackground)
     Q_PROPERTY(QColor baseColor READ baseColor WRITE setBaseColor)
     Q_PROPERTY(QColor arcColor READ arcColor WRITE setArcColor)
-    Q_PROPERTY(QColor scaleColor READ scaleColor WRITE setScaleColor)
-    Q_PROPERTY(QColor scaleLabelColor READ scaleLabelColor WRITE setScaleLabelColor)
-    Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
     Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
     Q_PROPERTY(QString title READ title WRITE setTitle)
-
 
 public:
     explicit HPercentGauge(QWidget *parent = nullptr);
     ~HPercentGauge() override;
 
 public:
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
-    int scaleMajor() const;
-    int scaleMinor() const;
-    int angleStart() const;
-    int angleEnd() const;
     QColor background() const;
     QColor baseColor() const;
     QColor arcColor() const;
-    QColor scaleColor() const;
-    QColor scaleLabelColor() const;
-    QColor textColor() const;
     QColor titleColor() const;
     QString title() const;
 
-public slots:
-    void setDecimal(int value) override;
-    void setScaleMajor(int value);
-    void setScaleMinor(int value);
-    void setAngleStart(int value);
-    void setAngleEnd(int value);
+public slots:    
     void setBackground(const QColor &value);
     void setBaseColor(const QColor &value);
     void setArcColor(const QColor &value);
-    void setScaleColor(const QColor &value);
-    void setScaleLabelColor(const QColor &value);
-    void setTextColor(const QColor &value);
     void setTitleColor(const QColor &value);
     void setTitle(const QString &value);
 
@@ -79,16 +54,9 @@ protected:
 protected:
     void paintEvent(QPaintEvent *) override;
     void drawBackground(QPainter *);
-    void drawArc(QPainter *);
-    void drawCircle(QPainter *);
-    void drawScale(QPainter *);
-    void drawScaleLabel(QPainter *);
-    void drawValue(QPainter *);
+    void drawProgress(QPainter *, int radius) override;
+    void drawPointer(QPainter *, int radius) override;
     void drawTitle(QPainter *);
-
-protected:
-    double angleSpan();
-    double toAngle(double value);
 };
 
 HE_CONTROL_END_NAMESPACE

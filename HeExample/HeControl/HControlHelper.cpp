@@ -40,7 +40,7 @@ QString HControlHelper::runTime(QDateTime start, QDateTime end)
         }
         sec--;
     }
-    return QString("%1 天 %2 时 %3 分 %4 秒").arg(day).arg(hour).arg(minute).arg(second);
+    return QString("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
 }
 
 HE_CONTROL_END_NAMESPACE

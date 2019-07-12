@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>HGifWidget</class>
- <widget class="QWidget" name="HGifWidget">
+ <widget class="QDialog" name="HGifWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,6 +9,9 @@
     <width>626</width>
     <height>364</height>
    </rect>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="0,1,0">
    <property name="leftMargin">

@@ -8,6 +8,7 @@
 #include "HCpuMemoryLabel.h"
 #include "HCustomGraphics.h"
 #include "HArcGauge.h"
+#include "HCarGauge.h"
 #include "HCompassGauge.h"
 #include "HKnobGauge.h"
 #include "HPercentGauge.h"
@@ -147,28 +148,33 @@ void HDemoWidget::addGauge()
     auto c = new QComboBox;
     auto s = new QSlider;
     auto ag = new HArcGauge;
-    auto og = new HCompassGauge;
-    auto pg = new HPercentGauge;
+    auto cg = new HCarGauge;
     auto kg = new HKnobGauge;
+    auto pg = new HPercentGauge;
     auto sg = new HSpeedGauge;
+    auto og = new HCompassGauge;
+
     c->addItems(QStringList() << tr("圆形指示器") << tr("指针指示器") << tr("圆角指针指示器") << tr("三角形指示器"));
     s->setOrientation(Qt::Horizontal);
     s->setSingleStep(10);
     connect(c, &QComboBox::currentTextChanged, this, [=](QString /*index*/) {
-        ag->setPointerStyle(static_cast<HArcGauge::PointerStyle>(c->currentIndex()));
-        kg->setPointerStyle(static_cast<HKnobGauge::PointerStyle>(c->currentIndex())); });
+        ag->setPointerStyle(static_cast<PointerStyle>(c->currentIndex()));
+        cg->setPointerStyle(static_cast<PointerStyle>(c->currentIndex()));
+        kg->setPointerStyle(static_cast<PointerStyle>(c->currentIndex())); });
     connect(s, &QSlider::valueChanged, this, [=](int value) {
         ag->setValue(value);
-        pg->setValue(value);
-        og->setValue(value * 3.6);
+        cg->setValue(value);
         kg->setValue(value);
-        sg->setValue(value); });
+        pg->setValue(value);
+        sg->setValue(value);
+        og->setValue(value * 3.6); });
 
     l->addWidget(ag, 0, 0);
-    l->addWidget(pg, 0, 1);
+    l->addWidget(cg, 0, 1);
     l->addWidget(kg, 0, 2);
-    l->addWidget(og, 1, 0);
+    l->addWidget(pg, 1, 0);
     l->addWidget(sg, 1, 1);
+    l->addWidget(og, 1, 2);
     l->addWidget(c, 2, 0);
     l->addWidget(s, 3, 0, 1, 3);
     addTab(l, tr("仪表盘"));

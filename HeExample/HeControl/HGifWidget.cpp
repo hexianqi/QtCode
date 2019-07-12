@@ -13,7 +13,7 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HGifWidget::HGifWidget(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::HGifWidget),
     d_ptr(new HGifWidgetPrivate)
 {
@@ -58,14 +58,14 @@ bool HGifWidget::eventFilter(QObject *watched, QEvent *event)
 {
     if (d_ptr->filter->eventFilter(watched, event))
         return true;
-    return QWidget::eventFilter(watched, event);
+    return QDialog::eventFilter(watched, event);
 }
 
 void HGifWidget::resizeEvent(QResizeEvent *e)
 {
     ui->spinBox_32->setValue(ui->widget_2->width());
     ui->spinBox_33->setValue(ui->widget_2->height());
-    QWidget::resizeEvent(e);
+    QDialog::resizeEvent(e);
 }
 
 void HGifWidget::paintEvent(QPaintEvent *)

@@ -12,7 +12,7 @@
 #define HGIFWIDGET_H
 
 #include "HControlGlobal.h"
-#include <QtWidgets/QWidget>
+#include <QtWidgets/QDialog>
 
 namespace Ui {
 class HGifWidget;
@@ -22,7 +22,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HGifWidgetPrivate;
 
-class HGifWidget : public QWidget
+class HGifWidget : public QDialog
 {
     Q_OBJECT
     Q_PROPERTY(int borderWidth READ borderWidth WRITE setBorderWidth)
@@ -30,7 +30,7 @@ class HGifWidget : public QWidget
 
 public:
     explicit HGifWidget(QWidget *parent = nullptr);
-    ~HGifWidget();
+    ~HGifWidget() override;
 
 public slots:
     void setBorderWidth(int);

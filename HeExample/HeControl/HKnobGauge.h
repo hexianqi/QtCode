@@ -16,6 +16,7 @@
 #ifndef HKNOBGAUGE_H
 #define HKNOBGAUGE_H
 
+#include "HControlType.h"
 #include "HAnimationProgress.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -38,15 +39,6 @@ class HKnobGauge : public HAnimationProgress
     Q_PROPERTY(bool showPointer READ isShowPointer WRITE setShowPointer)
     Q_PROPERTY(bool showValue READ isShowValue WRITE setShowValue)
     Q_PROPERTY(PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
-
-public:
-    enum PointerStyle
-    {
-        PointerStyle_Circle = 0,        // 圆形指示器
-        PointerStyle_Indicator = 1,     // 指针指示器
-        PointerStyle_IndicatorR = 2,    // 圆角指针指示器
-        PointerStyle_Triangle = 3       // 三角形指示器
-    };
 
 public:
     explicit HKnobGauge(QWidget *parent = nullptr);
@@ -90,15 +82,16 @@ protected:
     void mouseReleaseEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void paintEvent(QPaintEvent *) override;
-    void drawBackground(QPainter *painter);
-    void drawColorPie(QPainter *painter);
-    void drawCoverCircle(QPainter *painter);
-    void drawCircle(QPainter *painter);
+    void drawBackground(QPainter *);
+    void drawColorPie(QPainter *);
+    void drawCoverCircle(QPainter *);
+    void drawCircle(QPainter *);
     void drawPointer(QPainter *);
-    void drawPointerCircle(QPainter *painter);
-    void drawPointerIndicator(QPainter *painter);
-    void drawPointerIndicatorR(QPainter *painter);
-    void drawPointerTriangle(QPainter *painter);
+    void drawPointerCircle(QPainter *);
+    void drawPointerIndicator(QPainter *);
+    void drawPointerIndicatorR(QPainter *);
+    void drawPointerTriangle(QPainter *);
+    void drawPointerCenter(QPainter *);
     void drawValue(QPainter *painter);
 
 protected:
@@ -115,10 +108,3 @@ private:
 HE_CONTROL_END_NAMESPACE
 
 #endif // HKNOBGAUGE_H
-
-//private:
-//    //鼠标是否按下
-//
-//    //根据鼠标按下的坐标设置当前按下坐标处的值
-//    void setPressedValue(QPointF pressedPoint);
-

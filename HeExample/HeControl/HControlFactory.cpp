@@ -5,13 +5,6 @@
 #include "HGifWidget.h"
 #include "HStyleWidget.h"
 #include "HFlatStyleWidget.h"
-#include "HBarRuler.h"
-#include "HBattery.h"
-#include "HLightButton.h"
-#include "HLedNumber.h"
-#include "HColorProgressBar.h"
-#include "HRoundProgressBar.h"
-#include "HCircularProgress.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
 
@@ -55,18 +48,11 @@ void HControlFactory::registerClass()
 {
     auto b = HWidgetFactory::keys().toSet();
     HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
-    HWidgetFactory::registerClass<HRoundProgressBar>("HRoundProgressBar");
-//    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
-//    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
-//    HWidgetFactory::registerClass<HColorPickerWidget>("HColorPickerWidget");
-//    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
-//    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
-//    HWidgetFactory::registerClass<HBarRuler>("HBarRuler");
-//    HWidgetFactory::registerClass<HBattery>("HBattery");
-//    HWidgetFactory::registerClass<HLightButton>("HLightButton");
-//    HWidgetFactory::registerClass<HLedNumber>("HLedNumber");
-//    HWidgetFactory::registerClass<HColorProgressBar>("HColorProgressBar");
-//    HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
+    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
+    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
+    HWidgetFactory::registerClass<HColorPickerWidget>("HColorPickerWidget");
+    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
+    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->keys = e.subtract(b).toList();
 }

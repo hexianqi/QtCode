@@ -15,65 +15,31 @@
 #ifndef HARCGAUGE_H
 #define HARCGAUGE_H
 
-#include "HAnimationProgress.h"
+#include "HControlType.h"
+#include "HCircleGauge.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HArcGaugePrivate;
 
-class HArcGauge : public HAnimationProgress
+class HArcGauge : public HCircleGauge
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HArcGauge)
     Q_ENUMS(PointerStyle)
-    Q_PROPERTY(int scaleMajor READ scaleMajor WRITE setScaleMajor)
-    Q_PROPERTY(int scaleMinor READ scaleMinor WRITE setScaleMinor)
-    Q_PROPERTY(int angleStart READ angleStart WRITE setAngleStart)
-    Q_PROPERTY(int angleEnd READ angleEnd WRITE setAngleEnd)
     Q_PROPERTY(QColor arcColor READ arcColor WRITE setArcColor)
-    Q_PROPERTY(QColor scaleColor READ scaleColor WRITE setScaleColor)
-    Q_PROPERTY(QColor scaleLabelColor READ scaleLabelColor WRITE setScaleLabelColor)
-    Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
-    Q_PROPERTY(QColor pointerColor READ pointerColor WRITE setPointerColor)
     Q_PROPERTY(PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
-
-public:
-    enum PointerStyle
-    {
-        PointerStyle_Circle = 0,        // 圆形指示器
-        PointerStyle_Indicator = 1,     // 指针指示器
-        PointerStyle_IndicatorR = 2,    // 圆角指针指示器
-        PointerStyle_Triangle = 3       // 三角形指示器
-    };
 
 public:
     explicit HArcGauge(QWidget *parent = nullptr);
     ~HArcGauge() override;
 
 public:
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
-    int scaleMajor() const;
-    int scaleMinor() const;
-    int angleStart() const;
-    int angleEnd() const;
-    QColor arcColor() const;
-    QColor scaleColor() const;
-    QColor scaleLabelColor() const;
-    QColor textColor() const;
-    QColor pointerColor() const;
+    QColor arcColor() const;    
     PointerStyle pointerStyle() const;
 
-public slots:
-    void setScaleMajor(int value);
-    void setScaleMinor(int value);
-    void setAngleStart(int value);
-    void setAngleEnd(int value);
+public slots:    
     void setArcColor(const QColor &value);
-    void setScaleColor(const QColor &value);
-    void setScaleLabelColor(const QColor &value);
-    void setTextColor(const QColor &value);
-    void setPointerColor(const QColor &value);
     void setPointerStyle(PointerStyle value);
 
 protected:
@@ -81,21 +47,13 @@ protected:
 
 protected:
     void paintEvent(QPaintEvent *) override;
-    void drawArc(QPainter *);
-    void drawScale(QPainter *);
-    void drawScaleLabel(QPainter *);
-    void drawPointer(QPainter *);
+    void drawProgress(QPainter *, int radius) override;
+    void drawPointer(QPainter *, int radius) override;
     void drawPointerCircle(QPainter *);
     void drawPointerIndicator(QPainter *);
     void drawPointerIndicatorR(QPainter *);
     void drawPointerTriangle(QPainter *);
-    void drawRoundCircle(QPainter *);
-    void drawCenterCircle(QPainter *);
-    void drawValue(QPainter *);
-
-protected:
-    double angleSpan();
-    double toAngle(double value);
+    void drawPointerCenter(QPainter *);
 };
 
 HE_CONTROL_END_NAMESPACE

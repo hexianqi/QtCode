@@ -1,55 +1,30 @@
 #include "HSpeedGauge_p.h"
-#include <QtCore/QtMath>
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
+HSpeedGaugePrivate::HSpeedGaugePrivate()
+{
+    scaleMajor = 8;
+    scaleMinor = 1;
+    angleStart = 50;
+    angleEnd = 50;
+    pointerColor = QColor(178, 221, 253);
+    textColor = QColor(50, 50, 50);
+}
+
 HSpeedGauge::HSpeedGauge(QWidget *parent) :
-    HAnimationProgress(*new HSpeedGaugePrivate, parent)
+    HCircleGauge(*new HSpeedGaugePrivate, parent)
 {
 }
 
 HSpeedGauge::HSpeedGauge(HSpeedGaugePrivate &p, QWidget *parent) :
-    HAnimationProgress(p, parent)
+    HCircleGauge(p, parent)
 {
 }
 
 HSpeedGauge::~HSpeedGauge()
 {
-}
-
-QSize HSpeedGauge::sizeHint() const
-{
-    return QSize(200, 200);
-}
-
-QSize HSpeedGauge::minimumSizeHint() const
-{
-    return QSize(40, 40);
-}
-
-int HSpeedGauge::scaleMajor() const
-{
-    Q_D(const HSpeedGauge);
-    return d->scaleMajor;
-}
-
-int HSpeedGauge::scaleMinor() const
-{
-    Q_D(const HSpeedGauge);
-    return d->scaleMinor;
-}
-
-int HSpeedGauge::angleStart() const
-{
-    Q_D(const HSpeedGauge);
-    return d->angleStart;
-}
-
-int HSpeedGauge::angleEnd() const
-{
-    Q_D(const HSpeedGauge);
-    return d->angleEnd;
 }
 
 int HSpeedGauge::ringWidth() const
@@ -92,61 +67,6 @@ QColor HSpeedGauge::ringColorEnd() const
 {
     Q_D(const HSpeedGauge);
     return d->ringColorEnd;
-}
-
-QColor HSpeedGauge::pointerColor() const
-{
-    Q_D(const HSpeedGauge);
-    return d->pointerColor;
-}
-
-QColor HSpeedGauge::textColor() const
-{
-    Q_D(const HSpeedGauge);
-    return d->textColor;
-}
-
-void HSpeedGauge::setDecimal(int value)
-{
-    if (value > 2)
-        return;
-    HAnimationProgress::setDecimal(value);
-}
-
-void HSpeedGauge::setScaleMajor(int value)
-{
-    Q_D(HSpeedGauge);
-    if (d->scaleMajor == value)
-        return;
-    d->scaleMajor = value;
-    update();
-}
-
-void HSpeedGauge::setScaleMinor(int value)
-{
-    Q_D(HSpeedGauge);
-    if (d->scaleMinor == value)
-        return;
-    d->scaleMinor = value;
-    update();
-}
-
-void HSpeedGauge::setAngleStart(int value)
-{
-    Q_D(HSpeedGauge);
-    if (d->angleStart == value)
-        return;
-    d->angleStart = value;
-    update();
-}
-
-void HSpeedGauge::setAngleEnd(int value)
-{
-    Q_D(HSpeedGauge);
-    if (d->angleEnd == value)
-        return;
-    d->angleEnd = value;
-    update();
 }
 
 void HSpeedGauge::setRingWidth(int value)
@@ -212,47 +132,26 @@ void HSpeedGauge::setRingColorEnd(const QColor &value)
     update();
 }
 
-void HSpeedGauge::setPointerColor(const QColor &value)
-{
-    Q_D(HSpeedGauge);
-    if (d->pointerColor == value)
-        return;
-    d->pointerColor = value;
-    update();
-}
-
-void HSpeedGauge::setTextColor(const QColor &value)
-{
-    Q_D(HSpeedGauge);
-    if (d->textColor == value)
-        return;
-    d->textColor = value;
-    update();
-}
-
 void HSpeedGauge::paintEvent(QPaintEvent *)
 {
-    auto side = qMin(width(), height());
+    Q_D(HSpeedGauge);
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.translate(width() / 2, height() / 2);
-    painter.scale(side / 200.0, side / 200.0);
-    drawRing(&painter);
-    drawScale(&painter);
-    drawScaleLabel(&painter);
-    drawPointer(&painter);
-    drawValue(&painter);
+    preDraw(&painter);
+    drawProgress(&painter, 100 - d->ringWidth);
+    drawScale(&painter, 94);
+    drawScaleLabel(&painter, 70);
+    drawPointer(&painter, 100);
+    drawValue(&painter, 100);
 }
 
-void HSpeedGauge::drawRing(QPainter *painter)
+void HSpeedGauge::drawProgress(QPainter *painter, int radius)
 {
     Q_D(HSpeedGauge);
-    auto radius = 100 - d->ringWidth;
     auto rect = QRectF(-radius, -radius, radius * 2, radius * 2);
     auto sum = d->ringStart + d->ringMid + d->ringEnd;
-    auto angleStart = angleSpan() * d->ringStart / sum;
-    auto angleMid = angleSpan() * d->ringMid / sum;
-    auto angleEnd = angleSpan() * d->ringEnd / sum;
+    auto start = static_cast<int>(angleSpan() * d->ringStart / sum);
+    auto mid = static_cast<int>(angleSpan() * d->ringMid / sum);
+    auto end = static_cast<int>(angleSpan() * d->ringEnd / sum);
 
     QPen pen;
     pen.setCapStyle(Qt::FlatCap);
@@ -260,20 +159,19 @@ void HSpeedGauge::drawRing(QPainter *painter)
     painter->save();
     pen.setColor(d->ringColorStart);
     painter->setPen(pen);
-    painter->drawArc(rect, (270 - d->angleStart - angleStart) * 16, angleStart * 16);
+    painter->drawArc(rect, (270 - d->angleStart - start) * 16, start * 16);
     pen.setColor(d->ringColorMid);
     painter->setPen(pen);
-    painter->drawArc(rect, (270 - d->angleStart - angleStart - angleMid) * 16, angleMid * 16);
+    painter->drawArc(rect, (270 - d->angleStart - start - mid) * 16, mid * 16);
     pen.setColor(d->ringColorEnd);
     painter->setPen(pen);
-    painter->drawArc(rect, (270 - d->angleStart - angleStart - angleMid - angleEnd) * 16, angleEnd * 16);
+    painter->drawArc(rect, (270 - d->angleStart - start - mid - end) * 16, end * 16);
     painter->restore();
 }
 
-void HSpeedGauge::drawScale(QPainter *painter)
+void HSpeedGauge::drawScale(QPainter *painter, int radius)
 {
     Q_D(HSpeedGauge);
-    auto radius = 94;
     auto sum = d->ringStart + d->ringMid + d->ringEnd;
     auto steps = d->scaleMajor * d->scaleMinor;
     auto angle = angleSpan() / steps;
@@ -314,29 +212,7 @@ void HSpeedGauge::drawScale(QPainter *painter)
     painter->restore();
 }
 
-void HSpeedGauge::drawScaleLabel(QPainter *painter)
-{
-    Q_D(HSpeedGauge);
-    auto radius = 70;
-    auto start = qDegreesToRadians(270.0 - d->angleStart);
-    auto delta = qDegreesToRadians(angleSpan()) / d->scaleMajor;
-    painter->save();
-    painter->setPen(d->textColor);
-    for (int i = 0; i <= d->scaleMajor; i++)
-    {
-        auto angle = start - i * delta;
-        auto value = fromRatio(1.0 * i / d->scaleMajor);
-        auto text = QString::number(value, 'f', d->decimal);
-        auto textWidth = fontMetrics().width(text);
-        auto textHeight = fontMetrics().height();
-        auto x = radius * qCos(angle) - textWidth / 2;
-        auto y = -radius * qSin(angle) + textHeight / 4;
-        painter->drawText(QPointF(x, y), text);
-    }
-    painter->restore();
-}
-
-void HSpeedGauge::drawPointer(QPainter *painter)
+void HSpeedGauge::drawPointer(QPainter *painter, int /*radius*/)
 {
     Q_D(HSpeedGauge);
     auto radius = 62;
@@ -349,34 +225,6 @@ void HSpeedGauge::drawPointer(QPainter *painter)
     painter->rotate(toAngle(d->currentValue));
     painter->drawConvexPolygon(pts);
     painter->restore();
-}
-
-void HSpeedGauge::drawValue(QPainter *painter)
-{
-    Q_D(HSpeedGauge);
-    auto radius = 100;
-    auto rect = QRectF(-radius, radius / 3, radius * 2, radius / 2);
-    auto text = QString::number(d->currentValue, 'f', d->decimal);
-    auto f = font();
-    f.setPixelSize(qMin(width() * 0.1, height() * 0.1));
-    f.setBold(true);
-
-    painter->save();
-    painter->setPen(d->textColor);
-    painter->setFont(f);
-    painter->drawText(rect, Qt::AlignCenter, text);
-    painter->restore();
-}
-
-double HSpeedGauge::angleSpan()
-{
-    Q_D(HSpeedGauge);
-    return 360.0 - d->angleStart - d->angleEnd;
-}
-
-double HSpeedGauge::toAngle(double value)
-{
-    return angleSpan() * toRatio(value);
 }
 
 HE_CONTROL_END_NAMESPACE

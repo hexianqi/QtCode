@@ -8,16 +8,13 @@ class QTimer;
 
 HE_CONTROL_BEGIN_NAMESPACE
 
+class HFileLog;
+
 class HRunTimeServicePrivate
 {
 public:
-    HRunTimeServicePrivate();
-
-public:
+    HFileLog *log;
     QTimer *timer;
-    QString path;
-    QString fileName;
-    int interval;
     int lastId;
     QDateTime startTime;
 };
