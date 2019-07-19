@@ -1,10 +1,14 @@
 #include "HControlFactory_p.h"
-#include "HDemoWidget.h"
+#include "HCircularProgress.h"
 #include "HColorPickerWidget.h"
-#include "HSerialPortWidget.h"
-#include "HGifWidget.h"
-#include "HStyleWidget.h"
+#include "HDemoWidget.h"
 #include "HFlatStyleWidget.h"
+#include "HGifWidget.h"
+#include "HNetworkWidget.h"
+#include "HQssCreator.h"
+#include "HSerialPortWidget.h"
+#include "HSpliteWidget.h"
+#include "HStyleWidget.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
 
@@ -47,12 +51,16 @@ QWidget *HControlFactory::createWidget(QString type, QWidget *parent)
 void HControlFactory::registerClass()
 {
     auto b = HWidgetFactory::keys().toSet();
-    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
-    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
-    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
+    HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     HWidgetFactory::registerClass<HColorPickerWidget>("HColorPickerWidget");
-    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
+    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");    
+    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
+    HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
+    HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
+    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
+    HWidgetFactory::registerClass<HSpliteWidget>("HSpliteWidget");
+    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->keys = e.subtract(b).toList();
 }

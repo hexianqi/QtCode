@@ -5,7 +5,7 @@
 #ifndef HFALTSTYLE_H
 #define HFALTSTYLE_H
 
-#include "HAbstractStyle.h"
+#include "HAbstractCustomStyle.h"
 
 class QPushButton;
 class QLineEdit;
@@ -19,7 +19,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HFaltStylePrivate;
 
-class HFaltStyle : public HAbstractStyle
+class HFaltStyle : public HAbstractCustomStyle
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HFaltStyle)

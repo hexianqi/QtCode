@@ -27,17 +27,21 @@ public:
 private:
     void init();
 //    void addSlideNavigation();
-    void addCpuMemoryLabel();
-    void addRuler();
     void addAntLine();
+    void addBackground();
     void addBattery();
+    void addButton();
+    void addColorPanel();
+    void addCpuMemoryLabel();
     void addCustomGraphics();
     void addGauge();
     void addImageCalendar();
+    void addLedNumber();
     void addMagic();
-    void addProgressBar();
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
+    void addProgressBar();
+    void addRuler();
 
 private:
     void addTab(QLayout *, QString title);

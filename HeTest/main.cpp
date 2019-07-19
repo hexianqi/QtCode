@@ -28,9 +28,6 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    auto list = qApp->applicationFilePath().split("/");
-    qDebug() << list;
-
     HControlWidget w;
     w.show();
 //    HDemoWidget w;

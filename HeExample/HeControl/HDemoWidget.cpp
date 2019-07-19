@@ -2,9 +2,12 @@
 #include "ui_HDemoWidget.h"
 #include "HFaltStyle.h"
 #include "HAntLine.h"
+#include "HTiledBackground.h"
 #include "HBattery.h"
-#include "HBarRuler.h"
-#include "HThermometerRuler.h"
+#include "HColorButton.h"
+#include "HLightButton.h"
+#include "HNavButton.h"
+#include "HButtonColorPanel.h"
 #include "HCpuMemoryLabel.h"
 #include "HCustomGraphics.h"
 #include "HArcGauge.h"
@@ -14,13 +17,18 @@
 #include "HPercentGauge.h"
 #include "HSpeedGauge.h"
 #include "HImageCalendar.h"
+#include "HLedNumber.h"
 #include "HMagicFish.h"
 #include "HMagicMouse.h"
 #include "HButtonProgressBar.h"
+#include "HColorProgressBar.h"
 #include "HRingProgressBar.h"
+#include "HRoundProgressBar.h"
 #include "HTristateProgressBar.h"
-#include "HSlideNavigation.h"
 #include "HRbTableHeaderView.h"
+#include "HBarRuler.h"
+#include "HThermometerRuler.h"
+#include "HSlideNavigation.h"
 #include <QtCore/QTimer>
 #include <QtWidgets/QTableWidget>
 #include <QtGui/QStandardItemModel>
@@ -47,60 +55,21 @@ void HDemoWidget::init()
 //    addSlideNavigation();
 
     addAntLine();
-    addRuler();
+    addBackground();
     addBattery();
+    addButton();
+    addColorPanel();
     addCpuMemoryLabel();
     addCustomGraphics();
     addGauge();
     addImageCalendar();
+    addLedNumber();
     addMagic();
-    addMultHeaderTableView();
-    addMultHeaderTableWidget();
+//    addMultHeaderTableView();
+//    addMultHeaderTableWidget();
     addProgressBar();
+    addRuler();
 }
-
-void HDemoWidget::addCpuMemoryLabel()
-{
-    auto w = new HCpuMemoryLabel();
-    w->setFont(QFont("Microsoft Yahei", 13));
-    w->setStyleSheet("QLabel{ background-color: #000000; color: #64B8FF; }");
-    w->start(1500);
-    ui->tabWidget->addTab(w, tr("资源管理器"));
-}
-
-void HDemoWidget::addRuler()
-{
-    auto l = new QGridLayout;
-    auto b = new HBarRuler();
-    auto t = new HThermometerRuler();
-    auto timer = new QTimer(this);
-    timer->setInterval(2000);
-    connect(timer, &QTimer::timeout, this, [=] {
-        b->setValue(qrand() % 100);
-        t->setValue(qrand() % 100); });
-    timer->start();    
-    l->addWidget(b, 0, 0);
-    l->addWidget(t, 0, 1);
-    addTab(l, tr("标尺"));
-}
-
-//void HDemoWidget::addSlideNavigation()
-//{
-//    auto widget = new HSlideNavigation;
-//    widget->setBarRadious(10);
-//    widget->setItemRadious(10);
-//    widget->setItemBackgroundStart(QColor(255, 0, 0));
-//    widget->setItemBackgroundEnd(QColor(225, 20, 10));
-//    widget->addItem("第一名");
-//    widget->addItem("第二名");
-//    widget->addItem("第三名");
-//    widget->addItem("第四名");
-//    widget->addItem("第五名");
-//    widget->addItem("第六名");
-//    widget->addItem("第七名");
-//    widget->addItem("第八名");
-//    ui->tabWidget->addTab(widget, tr("导航"));
-//}
 
 void HDemoWidget::addAntLine()
 {
@@ -123,6 +92,11 @@ void HDemoWidget::addAntLine()
     addTab(l, tr("蚂蚁线"));
 }
 
+void HDemoWidget::addBackground()
+{
+    ui->tabWidget->addTab(new HTiledBackground, tr("背景"));
+}
+
 void HDemoWidget::addBattery()
 {
     auto l = new QGridLayout;
@@ -136,6 +110,57 @@ void HDemoWidget::addBattery()
     addTab(l, tr("电池电量"));
     d_ptr->style->setStyle(s, 8, "#505050", "#1ABC9C", "#1ABC9C");
 }
+
+void HDemoWidget::addButton()
+{
+    auto l = new QGridLayout;
+    auto cb = new HColorButton;
+    auto lb = new HLightButton;
+    auto nb = new HNavButton;
+    l->addWidget(cb, 0, 0);
+    l->addWidget(lb, 0, 1);
+    l->addWidget(nb, 1, 0);
+    addTab(l, tr("按钮"));
+}
+
+void HDemoWidget::addColorPanel()
+{
+    auto l = new QGridLayout;
+    auto cp = new HButtonColorPanel;
+    auto la = new QLabel;
+    la->setMinimumWidth(30);
+    l->addWidget(cp, 0, 0);
+    l->addWidget(la, 0, 1);
+    connect(cp, &HButtonColorPanel::currentColorChanged, this, [=](QColor color) { la->setStyleSheet(QString("background:%1;").arg(color.name())); });
+    addTab(l, tr("颜色面板"));
+}
+
+void HDemoWidget::addCpuMemoryLabel()
+{
+    auto w = new HCpuMemoryLabel();
+    w->setFont(QFont("Microsoft Yahei", 13));
+    w->setStyleSheet("QLabel{ background-color: #000000; color: #64B8FF; }");
+    w->start(1500);
+    ui->tabWidget->addTab(w, tr("资源管理器"));
+}
+
+//void HDemoWidget::addSlideNavigation()
+//{
+//    auto widget = new HSlideNavigation;
+//    widget->setBarRadious(10);
+//    widget->setItemRadious(10);
+//    widget->setItemBackgroundStart(QColor(255, 0, 0));
+//    widget->setItemBackgroundEnd(QColor(225, 20, 10));
+//    widget->addItem("第一名");
+//    widget->addItem("第二名");
+//    widget->addItem("第三名");
+//    widget->addItem("第四名");
+//    widget->addItem("第五名");
+//    widget->addItem("第六名");
+//    widget->addItem("第七名");
+//    widget->addItem("第八名");
+//    ui->tabWidget->addTab(widget, tr("导航"));
+//}
 
 void HDemoWidget::addCustomGraphics()
 {
@@ -185,6 +210,11 @@ void HDemoWidget::addImageCalendar()
     ui->tabWidget->addTab(new HImageCalendar, tr("日历"));
 }
 
+void HDemoWidget::addLedNumber()
+{
+    ui->tabWidget->addTab(new HLedNumber, tr("LED"));
+}
+
 void HDemoWidget::addMagic()
 {
     auto l = new QGridLayout;
@@ -206,18 +236,27 @@ void HDemoWidget::addProgressBar()
 {
     auto l = new QGridLayout;
     auto s = new QSlider;
-    auto b = new HButtonProgressBar;
-    auto r = new HRingProgressBar;
-    auto t = new HTristateProgressBar;
+    auto bpb = new HButtonProgressBar;
+    auto cpb = new HColorProgressBar;
+    auto rpb = new HRingProgressBar;
+    auto opb = new HRoundProgressBar;
+    auto tpb = new HTristateProgressBar;
     s->setOrientation(Qt::Horizontal);
     s->setSingleStep(10);
-    r->setAlarmMode(2);
-    connect(s, &QSlider::valueChanged, r, &HRingProgressBar::setValue);
-    connect(s, &QSlider::valueChanged, this, [=](int value) { t->setValue1(value); t->setValue2(value + 10); t->setValue3(value + 20); });
-    l->addWidget(b, 0, 0);
-    l->addWidget(r, 0, 1);
-    l->addWidget(t, 1, 0, 1, 2);
-    l->addWidget(s, 2, 0, 1, 2);
+    rpb->setAlarmMode(2);
+    connect(s, &QSlider::valueChanged, this, [=](int value) {
+        cpb->setValue(value);
+        rpb->setValue(value);
+        opb->setValue(value);
+        tpb->setValue1(value);
+        tpb->setValue2(value + 10);
+        tpb->setValue3(value + 20); });
+    l->addWidget(bpb, 0, 0);
+    l->addWidget(cpb, 0, 1);
+    l->addWidget(rpb, 0, 2);
+    l->addWidget(opb, 1, 0);
+    l->addWidget(tpb, 1, 1, 1, 2);
+    l->addWidget(s, 2, 0, 1, 3);
     addTab(l, tr("进度条"));
 }
 
@@ -316,6 +355,22 @@ void HDemoWidget::addMultHeaderTableWidget()
     rootWidget->setCellWidget(0, 2, widget3);
 
     ui->tabWidget->addTab(rootWidget, tr("多标题表格2"));
+}
+
+void HDemoWidget::addRuler()
+{
+    auto l = new QGridLayout;
+    auto b = new HBarRuler();
+    auto t = new HThermometerRuler();
+    auto timer = new QTimer(this);
+    timer->setInterval(2000);
+    connect(timer, &QTimer::timeout, this, [=] {
+        b->setValue(qrand() % 100);
+        t->setValue(qrand() % 100); });
+    timer->start();
+    l->addWidget(b, 0, 0);
+    l->addWidget(t, 0, 1);
+    addTab(l, tr("标尺"));
 }
 
 void HDemoWidget::addTab(QLayout *layout, QString title)

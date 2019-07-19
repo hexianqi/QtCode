@@ -33,7 +33,8 @@ HEADERS     += \
             HDrawHelper.h \
             HControlType.h
 
-RESOURCES   = HeControl.qrc
+RESOURCES   = HeControl.qrc \
+              qss.qrc
 
 INCLUDEPATH += \
             ../..

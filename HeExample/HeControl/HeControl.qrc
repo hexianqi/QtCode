@@ -13,5 +13,7 @@
         <file>image/beautify/Calendar_purple.png</file>
         <file>image/beautify/Calendar_red.png</file>
         <file>image/beautify/Calendar_yellow.png</file>
+        <file>translator/qt_zh_CN.qm</file>
+        <file>translator/textEdit.qm</file>
     </qresource>
 </RCC>

@@ -11,12 +11,12 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HFaltStyle::HFaltStyle(QObject *parent) :
-    HAbstractStyle(*new HFaltStylePrivate, parent)
+    HAbstractCustomStyle(*new HFaltStylePrivate, parent)
 {
 }
 
 HFaltStyle::HFaltStyle(HFaltStylePrivate &p, QObject *parent) :
-    HAbstractStyle(p, parent)
+    HAbstractCustomStyle(p, parent)
 {
 }
 
@@ -233,7 +233,6 @@ void HFaltStyle::setStyle(QRadioButton *obj, int radius, QString uncheckColor, Q
     param["indicator_border-radius"] = radius;
     param["indicator_unchecked_background"] = uncheckColor;
     param["indicator_checked_background"] = checkColor;
-
     obj->setStyleSheet(radioButton(param));
 }
 

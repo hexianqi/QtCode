@@ -29,7 +29,7 @@ class HNavButton : public QPushButton
     Q_PROPERTY(int paddingRight READ paddingRight WRITE setPaddingRight)
     Q_PROPERTY(int paddingTop READ paddingTop WRITE setPaddingTop)
     Q_PROPERTY(int paddingBottom READ paddingBottom WRITE setPaddingBottom)
-    Q_PROPERTY(Qt::AlignmentFlag textAlign READ textAlign WRITE setTextAlign)
+    Q_PROPERTY(Qt::Alignment textAlign READ textAlign WRITE setTextAlign)
 
     Q_PROPERTY(bool showTriangle READ isShowTriangle WRITE setShowTriangle)
     Q_PROPERTY(int triangleLen READ triangleLen WRITE setTriangleLen)
@@ -74,7 +74,7 @@ public:
     int paddingRight() const;
     int paddingTop() const;
     int paddingBottom() const;
-    Qt::AlignmentFlag textAlign() const;
+    Qt::Alignment textAlign() const;
     bool isShowTriangle() const;
     int triangleLen() const;
     Position trianglePosition() const;
@@ -104,7 +104,7 @@ public slots:
     void setPaddingRight(int value);
     void setPaddingTop(int value);
     void setPaddingBottom(int value);
-    void setTextAlign(Qt::AlignmentFlag value);
+    void setTextAlign(Qt::Alignment value);
     void setShowTriangle(bool b);
     void setTriangleLen(int value);
     void setTrianglePosition(Position value);
@@ -145,15 +145,8 @@ protected:
 
 protected:
     QScopedPointer<HNavButtonPrivate> d_ptr;
-
-private:
 };
-
-
 
 HE_CONTROL_END_NAMESPACE
 
 #endif // HNAVBUTTON_H
-
-
-//    bool hover;                         //悬停标志位
