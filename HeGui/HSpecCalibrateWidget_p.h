@@ -14,7 +14,7 @@ class HSpecSampleChartView;
 class HSpecFittingChartView;
 class HSpecEnergyWidget;
 class HSpecPelsWaveWidget;
-class HSpecFittingLinearWidget;
+class HSpecFittingWidget;
 class ITestDetailWidget;
 
 class HSpecCalibrateWidgetPrivate : public HAbstractTestWidgetPrivate
@@ -31,7 +31,7 @@ public:
     HSpecFittingChartView *ccdView;
     HSpecEnergyWidget *energyWidget;
     HSpecPelsWaveWidget *pelsWaveWidget;
-    HSpecFittingLinearWidget *fittingWidget;
+    HSpecFittingWidget *fittingWidget;
     ITestSetWidget *testSetWidget;
     ITestDetailWidget *detailWidget;
 

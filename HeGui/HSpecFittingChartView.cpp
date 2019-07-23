@@ -22,45 +22,57 @@ HSpecFittingChartView::~HSpecFittingChartView()
     qDebug() << __func__;
 }
 
-void HSpecFittingChartView::addSeries(int id, QPolygonF value)
+void HSpecFittingChartView::addLineSeries(int id, QPolygonF value)
 {
     Q_D(HSpecFittingChartView);
     if (value.size() <= 0)
         return;
-    removeSeries(id);
-    auto line = new QLineSeries();
-    line->setName(QString("Line %1").arg(id));
-    line->replace(value);
-    auto scatter = new QScatterSeries();
-    scatter->setName(QString("Scatter %1").arg(id));
-    scatter->setMarkerSize(8);
-    scatter->replace(value);
-    d->chart->addSeries(line);
-    d->chart->addSeries(scatter);
+    removeLineSeries(id);
+    auto series = new QLineSeries();
+    series->setName(tr("线%1").arg(id));
+    series->replace(value);
+    d->chart->addSeries(series);
     d->marker->connectExtend();
-    d->callout->connectExtend(line);
-    d->lineSeries.insert(id, line);
-    d->scatterSeries.insert(id, scatter);
+    d->callout->connectExtend(series);
+    d->lineSeries.insert(id, series);
 }
 
-void HSpecFittingChartView::removeSeries(int id)
+void HSpecFittingChartView::removeLineSeries(int id)
 {
     Q_D(HSpecFittingChartView);
-    if (d->lineSeries.contains(id))
-    {
-        auto series = d->lineSeries[id];
-        d->chart->removeSeries(series);
-        d->callout->disconnectExtend(series);
-        d->lineSeries.remove(id);
-        delete series;
-    }
-    if (d->scatterSeries.contains(id))
-    {
-        auto series = d->scatterSeries[id];
-        d->chart->removeSeries(series);
-        d->scatterSeries.remove(id);
-        delete series;
-    }
+    if (!d->lineSeries.contains(id))
+        return;
+    auto series = d->lineSeries[id];
+    d->chart->removeSeries(series);
+    d->callout->disconnectExtend(series);
+    d->lineSeries.remove(id);
+    delete series;
+}
+
+void HSpecFittingChartView::addScatterSeries(int id, QPolygonF value)
+{
+    Q_D(HSpecFittingChartView);
+    if (value.size() <= 0)
+        return;
+    removeScatterSeries(id);
+    auto series = new QScatterSeries();
+    series->setName(tr("点%1").arg(id));
+    series->setMarkerSize(8);
+    series->replace(value);
+    d->chart->addSeries(series);
+    d->marker->connectExtend();
+    d->scatterSeries.insert(id, series);
+}
+
+void HSpecFittingChartView::removeScatterSeries(int id)
+{
+    Q_D(HSpecFittingChartView);
+    if (!d->scatterSeries.contains(id))
+        return;
+    auto series = d->scatterSeries[id];
+    d->chart->removeSeries(series);
+    d->scatterSeries.remove(id);
+    delete series;
 }
 
 void HSpecFittingChartView::clearSeries()

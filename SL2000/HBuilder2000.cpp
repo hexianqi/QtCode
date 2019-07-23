@@ -12,6 +12,7 @@
 #include "HeData/IDataFactory.h"
 #include "HeData/IFileStream.h"
 #include "HeData/ITestSpec.h"
+#include "HeData/ISpecCalibrate.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/IChromatismCollection.h"
 #include "HeSql/ISqlFactory.h"
@@ -62,7 +63,12 @@ void HBuilder2000::buildConfigManage()
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
         {
+            // 554b用多项式
+            auto fit = d->dataFactory->createSpecFitting("HSpecFittingPolynom");
+            // 1305用插值（默认）
+            // auto fit = d->dataFactory->createSpecFitting("HSpecFittingLinear");
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
+            spec->setFitting(fit);
             specs->insert("1", spec);
         }
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
@@ -95,55 +101,55 @@ void HBuilder2000::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
-// 第一版设备
-void HBuilder2000::buildDevice()
-{
-    Q_D(HBuilder2000);
-    QVariantMap param;
-    param.insert("timeOut", 1000);
-    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-    auto device = d->communicateFactory->createDevice("HSlDevice");
-    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-    device->setPort(port, 0, false);
-    device->setDeviceID(0x81);
-    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
-    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
-    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
-    devices->insert("Spec", device);
-//    devices->addSupport(ACT_PULSE_TEST);
-//    devices->addSupport(ACT_GET_LUMINOUS_SPECTRUM);
-//    devices->addSupport(ACT_GET_ELEC_LUMINOUS_SPECTRUM);
-    protocol->setDevice(device);
-    protocols->insert("Spec", protocol);
-    HAppContext::setContextPointer("IDeviceCollection", devices);
-    HAppContext::setContextPointer("IProtocolCollection", protocols);
-}
-
-//// 第二版设备
+//// 第一版设备
 //void HBuilder2000::buildDevice()
 //{
 //    Q_D(HBuilder2000);
 //    QVariantMap param;
-//    param.insert("timeOut", 3000);
+//    param.insert("timeOut", 1000);
 //    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-//    auto device = d->communicateFactory->createDevice("HSlDevice2");
+//    auto device = d->communicateFactory->createDevice("HSlDevice");
 //    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-//    auto protocol = d->communicateFactory->createProtocol("HBigProtocol");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
 //    device->setPort(port, 0, false);
-//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x00);
-//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x01);
-//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x10 << 0x50 << 0x02);
-//    device->addActionParam(ACT_SET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x03);
-//    device->addActionParam(ACT_GET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x04);
+//    device->setDeviceID(0x81);
+//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
+//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
+//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
 //    devices->insert("Spec", device);
+////    devices->addSupport(ACT_PULSE_TEST);
+////    devices->addSupport(ACT_GET_LUMINOUS_SPECTRUM);
+////    devices->addSupport(ACT_GET_ELEC_LUMINOUS_SPECTRUM);
 //    protocol->setDevice(device);
 //    protocols->insert("Spec", protocol);
 //    HAppContext::setContextPointer("IDeviceCollection", devices);
 //    HAppContext::setContextPointer("IProtocolCollection", protocols);
 //}
+
+// 第二版设备
+void HBuilder2000::buildDevice()
+{
+    Q_D(HBuilder2000);
+    QVariantMap param;
+    param.insert("timeOut", 3000);
+    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
+    auto device = d->communicateFactory->createDevice("HSlDevice2");
+    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
+    auto protocol = d->communicateFactory->createProtocol("HBigProtocol");
+    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
+    device->setPort(port, 0, false);
+    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x00);
+    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x01);
+    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x10 << 0x50 << 0x02);
+    device->addActionParam(ACT_SET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x03);
+    device->addActionParam(ACT_GET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x04);
+    devices->insert("Spec", device);
+    protocol->setDevice(device);
+    protocols->insert("Spec", protocol);
+    HAppContext::setContextPointer("IDeviceCollection", devices);
+    HAppContext::setContextPointer("IProtocolCollection", protocols);
+}
 
 //// 第一版设备模拟
 //void HBuilder2000::buildDevice()

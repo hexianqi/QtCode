@@ -36,6 +36,7 @@ public:
     void setData(HSpecFitting *);
     void clearData();
     QPolygonF fittingPoints();
+    QPolygonF fittingCurve();
     virtual void handleAction(HActionType action);
     virtual bool setTest(bool b);
 

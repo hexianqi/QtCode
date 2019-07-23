@@ -19,6 +19,8 @@
 #include "HQuality.h"
 #include "HQualityCollection.h"
 #include "HQualityItem.h"
+#include "HSpecFittingLinear.h"
+#include "HSpecFittingPolynom.h"
 #include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
 
@@ -198,12 +200,19 @@ IQualityItem *HDataFactory::createQualityItem(QString type, QVariantMap param)
     return p;
 }
 
+HSpecFitting *HDataFactory::createSpecFitting(QString type, QVariantMap param)
+{
+    return HFactory::createObject<HSpecFitting>(type, param);
+}
+
 void HDataFactory::registerClass()
 {
     HFactory::registerClass<HParallelGrade>("HParallelGrade");
     HFactory::registerClass<HSequentialGrade>("HSequentialGrade");
     HFactory::registerClass<HGradeItem>("HGradeItem");
     HFactory::registerClass<HGradeItem2D>("HGradeItem2D");
+    HFactory::registerClass<HSpecFittingLinear>("HSpecFittingLinear");
+    HFactory::registerClass<HSpecFittingPolynom>("HSpecFittingPolynom");
 }
 
 HE_DATA_END_NAMESPACE

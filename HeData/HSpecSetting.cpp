@@ -192,19 +192,19 @@ QVector<double> HSpecSetting::smoothCurve(QVector<double> value)
     return value;
 }
 
-QPolygonF HSpecSetting::interpEnergy(QPolygonF value)
+QPolygonF HSpecSetting::interpEnergy(QPolygonF value, double offset)
 {
     auto range = data("[光谱波长范围]").toPointF();
     auto interval = data("[光谱波长间隔]").toDouble();
     for (int i = 0; i < value.size(); i++)
-        value[i].ry() *= calcEnergy(value[i].x());
+        value[i].ry() *= calcEnergy(value[i].x(), offset);
     return HMath::interpolate(value, range.x(), range.y(), interval);
 //    return HInterp::eval(value, range.x(), range.y(), interval, HInterpType::Cspline);
 }
 
-double HSpecSetting::calcEnergy(double wave)
+double HSpecSetting::calcEnergy(double wave, double offset)
 {
-    auto tc = data("[标准色温]").toDouble();
+    auto tc = data("[标准色温]").toDouble() + offset;
     return HSpecHelper::planck(wave, tc);
 }
 

@@ -278,6 +278,8 @@ void HTestWidget2000::readSettings()
     settings->beginGroup("TestWidget");
     d->tableSelecteds = settings->value("sTableSelected", d->displays).toStringList();
     d->testData->setData("[使用调整]", settings->value("bAdjust", false));
+    d->testData->setData("[CCD类型]", settings->value("sCCD", "1305"));
+    d->testData->setData("[CCD偏差]", settings->value("fOffset", 55.0));
     settings->endGroup();
 }
 
@@ -289,5 +291,7 @@ void HTestWidget2000::writeSettings()
     settings->beginGroup("TestWidget");
     settings->setValue("sTableSelected", d->resultWidget->selected());
     settings->setValue("bAdjust", d->testData->data("[使用调整]"));
+    settings->setValue("sCCD", d->testData->data("[CCD类型]"));
+    settings->setValue("fOffset", d->testData->data("[CCD偏差]"));
     settings->endGroup();
 }

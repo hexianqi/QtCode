@@ -12,7 +12,9 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IDataFactory;
 class IDataItem;
+class HSpecFitting;
 
 class ISpecCalibrate : public IInitializeable
 {
@@ -28,12 +30,16 @@ public:
 
 public:
     // 读取内容
-    virtual void readContent(QDataStream &) = 0;
+    virtual void readContent(QDataStream &, IDataFactory *) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
     // 转换
     virtual QVector<uchar> toBinaryData() = 0;
     virtual bool fromBinaryData(QVector<uchar> data) = 0;
+
+public:
+    // 设置拟合
+    virtual void setFitting(HSpecFitting *) = 0;
 
 public:
     // 校准子项
@@ -45,7 +51,7 @@ public:
     // 预处理
     virtual QVector<double> preprocess(QVector<double> value, bool fitting = true) = 0;
     // 计算光谱能量
-    virtual QPolygonF calcEnergy(QVector<double> value) = 0;
+    virtual QPolygonF calcEnergy(QVector<double> value, double offset) = 0;
     // 计算光通量
     virtual double calcLuminous(double value) = 0;
     // 计算通讯等待时间

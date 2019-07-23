@@ -5,6 +5,7 @@
 #include "HSpecEnergyWidget.h"
 #include "HSpecFittingChartView.h"
 #include "HSpecFittingLinearWidget.h"
+#include "HSpecFittingPolynomWidget.h"
 #include "HSpecPelsWaveWidget.h"
 #include "HSpecSampleChartView.h"
 #include "HSpecSettingDialog.h"
@@ -59,9 +60,19 @@ QString HSpecCalibrateWidget::typeName()
 void HSpecCalibrateWidget::setSpecCalibrate(ISpecCalibrate *p)
 {
     Q_D(HSpecCalibrateWidget);
+    auto f = dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::SpecFitting));
+    auto w = dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::SpecPelsWave));
+
     d->specCalibrate = p;
-    d->fittingWidget->setData(dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::SpecFitting)));
-    d->pelsWaveWidget->setData(dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::SpecPelsWave)));
+    if (f->typeName() == "HSpecFittingPolynom")
+        d->fittingWidget = new HSpecFittingPolynomWidget;
+    else
+        d->fittingWidget = new HSpecFittingLinearWidget;
+    d->fittingWidget->setData(f);
+    d->pelsWaveWidget->setData(w);
+    ui->tabWidget_2->addTab(d->fittingWidget, d->fittingWidget->windowTitle());
+    connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HSpecCalibrateWidget::handleTestFitStateChanged);
+    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [=]{ refreshCcdView(); });
     refreshCcdView();
 }
 
@@ -123,7 +134,7 @@ void HSpecCalibrateWidget::handleTestFitStateChanged(bool b)
     ui->pushButton_4->setEnabled(!b);
     ui->pushButton_5->setEnabled(!b);
     ui->pushButton_6->setEnabled(!b);
-    ui->tabWidget_1->setCurrentIndex(b ? 0 : 1);
+    ui->tabWidget_1->setCurrentIndex(b ? 0 : 2);
 }
 
 void HSpecCalibrateWidget::on_tabWidget_1_currentChanged(int index)
@@ -193,7 +204,9 @@ void HSpecCalibrateWidget::on_pushButton_6_clicked()
 void HSpecCalibrateWidget::refreshCcdView()
 {
     Q_D(HSpecCalibrateWidget);
-    d->ccdView->addSeries(d->fittingTimes++, d->fittingWidget->fittingPoints());
+    d->fittingTimes++;
+    d->ccdView->addLineSeries(d->fittingTimes, d->fittingWidget->fittingCurve());
+    d->ccdView->addScatterSeries(d->fittingTimes, d->fittingWidget->fittingPoints());
 }
 
 void HSpecCalibrateWidget::refreshSpecWidget()
@@ -202,7 +215,7 @@ void HSpecCalibrateWidget::refreshSpecWidget()
     int index = ui->tabWidget_1->currentIndex();
     if (index == 0)
         d->sampleView->refreshWidget();
-    if (index == 2)
+    if (index == 1)
         d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
 }
@@ -214,18 +227,14 @@ void HSpecCalibrateWidget::init()
     d->ccdView = new HSpecFittingChartView;
     d->energyWidget = new HSpecEnergyWidget;
     d->pelsWaveWidget = new HSpecPelsWaveWidget;
-    d->fittingWidget = new HSpecFittingLinearWidget;
     d->detailWidget = new HSpecDetailWidget;
-    ui->tabWidget_1->addTab(d->sampleView, d->sampleView->windowTitle());
-    ui->tabWidget_1->addTab(d->ccdView, d->ccdView->windowTitle());
+    ui->tabWidget_1->addTab(d->sampleView, d->sampleView->windowTitle());    
     ui->tabWidget_1->addTab(d->energyWidget, d->energyWidget->windowTitle());
-    ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());
-    ui->tabWidget_2->addTab(d->fittingWidget, d->fittingWidget->windowTitle());
+    ui->tabWidget_1->addTab(d->ccdView, d->ccdView->windowTitle());
+    ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());    
     ui->tabWidget_2->addTab(d->detailWidget, d->detailWidget->windowTitle());
     ui->splitter_2->setStretchFactor(0,1);
     ui->splitter_1->setStretchFactor(0,1);
-    connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HSpecCalibrateWidget::handleTestFitStateChanged);
-    connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [=]{ refreshCcdView(); });
 }
 
 HE_GUI_END_NAMESPACE

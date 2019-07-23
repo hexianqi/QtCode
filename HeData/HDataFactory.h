@@ -43,6 +43,7 @@ public:
     IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) override;
     IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) override;
     IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) override;
+    HSpecFitting *createSpecFitting(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HDataFactory(HDataFactoryPrivate &p, QObject *parent = nullptr);

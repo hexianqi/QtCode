@@ -22,8 +22,10 @@ public:
     ~HSpecFittingChartView() override;
 
 public:
-    void addSeries(int id, QPolygonF value);
-    void removeSeries(int id);
+    void addLineSeries(int id, QPolygonF value);
+    void removeLineSeries(int id);
+    void addScatterSeries(int id, QPolygonF value);
+    void removeScatterSeries(int id);
     void clearSeries();
 
 protected:

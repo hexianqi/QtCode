@@ -1,4 +1,5 @@
 #include "HSpecFittingPolynom_p.h"
+#include "HDataHelper.h"
 #include "HeAlgorithm/HMath.h"
 #include "HeAlgorithm/HMultiFit.h"
 #include <QtCore/QDataStream>
@@ -34,6 +35,7 @@ void HSpecFittingPolynom::readContent(QDataStream &s)
     quint32 version;
     s >> version;
     s >> d->datas;
+    s >> d->fittingPoints;
     s >> d->ca;
     s >> d->cova;
 }
@@ -43,8 +45,45 @@ void HSpecFittingPolynom::writeContent(QDataStream &s)
     Q_D(HSpecFittingPolynom);
     s << quint32(1);
     s << d->datas;
+    s << d->fittingPoints;
     s << d->ca;
     s << d->cova;
+}
+
+QVector<uchar> HSpecFittingPolynom::toBinaryData()
+{
+    Q_D(HSpecFittingPolynom);
+    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
+                               << HDataHelper::writeUInt16(1)  // 版本
+                               << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
+    for (auto p : d->fittingPoints)
+        r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
+    r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
+    r[0] = static_cast<uchar>(r.size() / 256);
+    r[1] = static_cast<uchar>(r.size() % 256);
+    return r;
+}
+
+bool HSpecFittingPolynom::fromBinaryData(QVector<uchar> data, int &pos)
+{
+    Q_D(HSpecFittingPolynom);
+    int version = 0;
+    if (!HDataHelper::checkHead(data, pos, version))
+        return false;
+
+    d->fittingPoints.clear();
+    auto size = HDataHelper::readUInt16(data, pos);
+    for (int i = 0; i < size; i++)
+    {
+        auto x = HDataHelper::readUInt16(data, pos);
+        auto y = HDataHelper::readUInt16(data, pos) / 10000.0;
+        d->fittingPoints << QPointF(x, y);
+    }
+    setData("[光谱拟合多项式项数]", HDataHelper::readUInt16(data, pos));
+    setData("[光谱拟合取样次数]", size);
+    setData("[光谱拟合有效范围]", QPointF(d->fittingPoints.first().x(), d->fittingPoints.last().x()));
+    calcLinear();
+    return true;
 }
 
 void HSpecFittingPolynom::clear()
@@ -57,14 +96,8 @@ void HSpecFittingPolynom::clear()
 
 void HSpecFittingPolynom::setFittingPoints(QPolygonF value)
 {
-    Q_D(HSpecFittingPolynom);
     HSpecFitting::setFittingPoints(value);
-
-    double chisq;
-    d->ca.clear();
-    d->cova.clear();
-    d->ca.resize(data("[光谱拟合多项式项数]").toInt());
-    HMultiFit::linear(d->fittingPoints, d->ca, d->cova, &chisq);
+    calcLinear();
 }
 
 void HSpecFittingPolynom::init()
@@ -111,7 +144,17 @@ double HSpecFittingPolynom::calcPolynom(double value)
 //    double r = 1;
 //    for (int i = 0; i < d->polynom.size(); i++)
 //        r += d->polynom[i] * qPow(value, i);
-//    return r - 1;
+    //    return r - 1;
+}
+
+void HSpecFittingPolynom::calcLinear()
+{
+    Q_D(HSpecFittingPolynom);
+    double chisq;
+    d->ca.clear();
+    d->cova.clear();
+    d->ca.resize(data("[光谱拟合多项式项数]").toInt());
+    HMultiFit::linear(d->fittingPoints, d->ca, d->cova, &chisq);
 }
 
 HE_DATA_END_NAMESPACE

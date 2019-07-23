@@ -30,7 +30,7 @@ void HSpecCalibrateCollectionPrivate::readContent(QDataStream &s)
     {
         s >> key >> type;
         auto item = factory->createSpecCalibrate(type);
-        item->readContent(s);
+        item->readContent(s, factory);
         if (s.status() != QDataStream::Ok)
         {
             datas.clear();

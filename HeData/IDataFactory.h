@@ -31,6 +31,7 @@ class IAdjustItem;
 class IQuality;
 class IQualityCollection;
 class IQualityItem;
+class HSpecFitting;
 
 class IDataFactory : public IInitializeable
 {
@@ -73,6 +74,8 @@ public:
     virtual IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建品质数据子项
     virtual IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光谱拟合
+    virtual HSpecFitting *createSpecFitting(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_DATA_END_NAMESPACE

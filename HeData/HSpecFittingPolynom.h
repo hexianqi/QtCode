@@ -25,6 +25,8 @@ public:
 public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
+    QVector<uchar> toBinaryData() override;
+    bool fromBinaryData(QVector<uchar> data, int &pos) override;
 
 public:
     void clear() override;
@@ -37,6 +39,7 @@ protected:
     void init() override;
     double calcRate(double value) override;
     double calcPolynom(double value);
+    void calcLinear();
 };
 
 HE_DATA_END_NAMESPACE

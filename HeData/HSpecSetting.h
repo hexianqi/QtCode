@@ -46,13 +46,13 @@ public:
     // 平滑数据
     QVector<double> smoothCurve(QVector<double> value);
     // 计算并插值光谱能量，value是波长和采样值与标准曲线比值的集合
-    QPolygonF interpEnergy(QPolygonF value);
+    QPolygonF interpEnergy(QPolygonF value, double offset);
 
 protected:
     HSpecSetting(HSpecSettingPrivate &p);
 
 protected:
-    double calcEnergy(double wave);
+    double calcEnergy(double wave, double offset);
 };
 
 HE_DATA_END_NAMESPACE

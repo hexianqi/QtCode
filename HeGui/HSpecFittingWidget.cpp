@@ -51,6 +51,11 @@ QPolygonF HSpecFittingWidget::fittingPoints()
     return d_ptr->data->fittingPoints();
 }
 
+QPolygonF HSpecFittingWidget::fittingCurve()
+{
+    return d_ptr->data->fittingCurve(1);
+}
+
 void HSpecFittingWidget::handleAction(HActionType action)
 {
     if (!d_ptr->testState || action != ACT_GET_SPECTRUM)

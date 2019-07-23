@@ -69,8 +69,8 @@ double HSlSimulation::simulate(double v)
     auto t = k * qSin(r);
 //    auto p = 1 + ((qrand() % 2000) - 1000) / 100000.0;                    // 1%误差
 //    auto p = (qrand() % 2000) - 1000;                                     // [-1000, 1000]误差
-    auto p = 0.9 + qSin(qDegreesToRadians(d->intergalTime * 1.8)) * 0.1;    // 和积分时间成sin曲线关系
-//    auto p = 0.9 + qSin(qDegreesToRadians(t * 180 / 60000)) * 0.1;          // 和采样值成sin曲线关系
+//    auto p = 0.9 + qSin(qDegreesToRadians(d->intergalTime * 1.8)) * 0.1;    // 和积分时间成sin曲线关系
+    auto p = 0.9 + qSin(qDegreesToRadians(t * 180 / 60000)) * 0.1;          // 和采样值成sin曲线关系
     return t * p + 1000;
 }
 

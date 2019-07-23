@@ -25,8 +25,6 @@ public:
 public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
-    QVector<uchar> toBinaryData();
-    bool fromBinaryData(QVector<uchar> data, int &pos);
 
 public:
     void restoreDefault();

@@ -23,9 +23,8 @@ const gsl_multifit_robust_type *toGsl(HRobustType type)
         return gsl_multifit_robust_ols;
     case Welsch:
         return gsl_multifit_robust_welsch;
-    default:
-        return gsl_multifit_robust_default;
     }
+    return gsl_multifit_robust_default;
 }
 
 void fillAsPow(gsl_matrix *m, QVector<double> xa)
@@ -78,17 +77,14 @@ void doEst(double x, QVector<double> ca, QVector<double> cova, std::function<voi
 
     fillAsPow(xt, x);   // 可替换
     func(xt, &c.vector, &cov.matrix);
-
     gsl_vector_free(xt);
 }
 
 void HMultiFit::linear(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, double *chisq)
 {
     auto work = gsl_multifit_linear_alloc(basis.size(), ca.size());
-    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov)
-    {
-        gsl_multifit_linear(x, y, c, cov, chisq, work);
-    };
+    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov) {
+        gsl_multifit_linear(x, y, c, cov, chisq, work); };
     doFit(basis, ca, cova, func);
     gsl_multifit_linear_free(work);
 }
@@ -97,40 +93,32 @@ void HMultiFit::linear(QPolygonF basis, QVector<double> wa, QVector<double> &ca,
 {
     auto w = gsl_vector_view_array(wa.data(), wa.size());
     auto work = gsl_multifit_linear_alloc(basis.size(), ca.size());
-    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov)
-    {
-        gsl_multifit_wlinear(x, &w.vector, y, c, cov, chisq, work);
-    };
+    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov) {
+        gsl_multifit_wlinear(x, &w.vector, y, c, cov, chisq, work); };
     doFit(basis, ca, cova, func);
     gsl_multifit_linear_free(work);
 }
 
 void HMultiFit::linear_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err)
 {
-    auto func = [&](gsl_vector *xt, gsl_vector *c, gsl_matrix *cov)
-    {
-        gsl_multifit_linear_est(xt, c, cov, y, y_err);
-    };
+    auto func = [&](gsl_vector *xt, gsl_vector *c, gsl_matrix *cov) {
+        gsl_multifit_linear_est(xt, c, cov, y, y_err); };
     doEst(x, ca, cova, func);
 }
 
 void HMultiFit::robust(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, HRobustType type)
 {
     auto work = gsl_multifit_robust_alloc(toGsl(type), basis.size(), ca.size());
-    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov)
-    {
-        gsl_multifit_robust(x, y, c, cov, work);
-    };
+    auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov) {
+        gsl_multifit_robust(x, y, c, cov, work); };
     doFit(basis, ca, cova, func);
     gsl_multifit_robust_free(work);
 }
 
 void HMultiFit::robust_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err)
 {
-    auto func = [&](gsl_vector *xt, gsl_vector *c, gsl_matrix *cov)
-    {
-        gsl_multifit_robust_est(xt, c, cov, y, y_err);
-    };
+    auto func = [&](gsl_vector *xt, gsl_vector *c, gsl_matrix *cov) {
+        gsl_multifit_robust_est(xt, c, cov, y, y_err); };
     doEst(x, ca, cova, func);
 }
 

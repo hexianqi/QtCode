@@ -39,6 +39,16 @@ void HSpecFittingTest::writeContent(QDataStream &s)
     s << d->allFittingPoints;
 }
 
+QVector<uchar> HSpecFittingTest::toBinaryData()
+{
+    return QVector<uchar>();
+}
+
+bool HSpecFittingTest::fromBinaryData(QVector<uchar> /*data*/, int &/*pos*/)
+{
+    return true;
+}
+
 void HSpecFittingTest::clear()
 {
     Q_D(HSpecFittingTest);

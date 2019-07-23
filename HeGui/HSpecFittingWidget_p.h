@@ -33,6 +33,7 @@ public:
     int pel;
     int curTimes;
     double lastSample;
+    QPointF integralTime;
     QPolygonF points;
 };
 

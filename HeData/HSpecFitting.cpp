@@ -35,16 +35,6 @@ void HSpecFitting::writeContent(QDataStream &s)
     s << d->fittingPoints;
 }
 
-QVector<uchar> HSpecFitting::toBinaryData()
-{
-    return QVector<uchar>();
-}
-
-bool HSpecFitting::fromBinaryData(QVector<uchar> /*data*/, int &/*pos*/)
-{
-    return true;
-}
-
 void HSpecFitting::clear()
 {
     Q_D(HSpecFitting);
@@ -55,7 +45,6 @@ void HSpecFitting::setFittingPoints(QPolygonF value)
 {
     Q_D(HSpecFitting);
     setData("[光谱拟合取样次数]", value.size());
-    setData("[光谱拟合积分时间范围]", QPointF(value.first().y(), value.last().y()));
     setData("[光谱拟合有效范围]", QPointF(value.first().x(), value.last().x()));
 
     int i;
@@ -85,6 +74,15 @@ QPolygonF HSpecFitting::fittingPoints()
 {
     Q_D(HSpecFitting);
     return d->fittingPoints;
+}
+
+QPolygonF HSpecFitting::fittingCurve(double interval)
+{
+    auto r = data("[光谱拟合有效范围]").toPointF();
+    QPolygonF p;
+    for (double d = r.x() - 100; d < r.y() + 100; d += interval)
+        p << QPointF(d, calcRate(d));
+    return p;
 }
 
 void HSpecFitting::init()

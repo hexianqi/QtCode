@@ -6,7 +6,6 @@
 HE_DATA_BEGIN_NAMESPACE
 
 class HSpecSetting;
-class HSpecFitting;
 class HSpecStdCurve;
 class HSpecPelsWave;
 class HSpecLuminous;

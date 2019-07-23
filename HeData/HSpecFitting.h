@@ -22,14 +22,15 @@ public:
 public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
-    virtual QVector<uchar> toBinaryData();
-    virtual bool fromBinaryData(QVector<uchar> data, int &pos);
+    virtual QVector<uchar> toBinaryData() = 0;
+    virtual bool fromBinaryData(QVector<uchar> data, int &pos) = 0;
 
 public:
     virtual void clear();
     virtual void setFittingPoints(QPolygonF value);
     virtual QVector<double> handle(QVector<double> value, bool abovezero = true);
     virtual QPolygonF fittingPoints();
+    virtual QPolygonF fittingCurve(double interval);
 
 protected:
     HSpecFitting(HSpecFittingPrivate &p);

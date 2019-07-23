@@ -1,7 +1,9 @@
 #include "HSpecCalibrate_p.h"
+#include "IDataFactory.h"
 #include "HDataHelper.h"
 #include "HSpecSetting.h"
 #include "HSpecFittingLinear.h"
+#include "HSpecFittingPolynom.h"
 #include "HSpecFittingTest.h"
 #include "HSpecStdCurve.h"
 #include "HSpecPelsWave.h"
@@ -43,15 +45,18 @@ QString HSpecCalibrate::typeName()
     return "HSpecCalibrate";
 }
 
-void HSpecCalibrate::readContent(QDataStream &s)
+void HSpecCalibrate::readContent(QDataStream &s, IDataFactory *f)
 {
     quint32 version;
+    QString type;
     s >> version;
     d_ptr->setting->readContent(s);
     d_ptr->pelsWave->readContent(s);
     d_ptr->stdCurve->readContent(s);
-    d_ptr->fitting->readContent(s);
     d_ptr->luminous->readContent(s);
+    s >> type;
+    d_ptr->fitting = f->createSpecFitting(type);
+    d_ptr->fitting->readContent(s);
 }
 
 void HSpecCalibrate::writeContent(QDataStream &s)
@@ -59,9 +64,10 @@ void HSpecCalibrate::writeContent(QDataStream &s)
     s << quint32(1);
     d_ptr->setting->writeContent(s);
     d_ptr->pelsWave->writeContent(s);
-    d_ptr->stdCurve->writeContent(s);
-    d_ptr->fitting->writeContent(s);
+    d_ptr->stdCurve->writeContent(s);    
     d_ptr->luminous->writeContent(s);
+    s << d_ptr->fitting->typeName();
+    d_ptr->fitting->writeContent(s);
 }
 
 QVector<uchar> HSpecCalibrate::toBinaryData()
@@ -70,7 +76,6 @@ QVector<uchar> HSpecCalibrate::toBinaryData()
                                << HDataHelper::writeUInt16(1)       // 版本
                                << d_ptr->setting->toBinaryData()
                                << d_ptr->pelsWave->toBinaryData()
-//                               << d_ptr->stdCurve->toBinaryData()
                                << d_ptr->fitting->toBinaryData();
     r[0] = r.size() / 256;
     r[1] = r.size() % 256;
@@ -87,11 +92,14 @@ bool HSpecCalibrate::fromBinaryData(QVector<uchar> data)
         return false;
     if (!d_ptr->pelsWave->fromBinaryData(data, pos))
         return false;
-//    if (!d_ptr->stdCurve->fromBinaryData(data, pos))
-//        return false;
     if (!d_ptr->fitting->fromBinaryData(data, pos))
         return false;
     return true;
+}
+
+void HSpecCalibrate::setFitting(HSpecFitting *p)
+{
+    d_ptr->fitting = p;
 }
 
 IDataItem *HSpecCalibrate::item(SpecType type)
@@ -126,7 +134,7 @@ QVector<double> HSpecCalibrate::preprocess(QVector<double> value, bool fitting)
     return value;
 }
 
-QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
+QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value, double offset)
 {
     double x,y;
     QPolygonF poly;
@@ -147,7 +155,7 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value)
             y = value[i] / curve[i];
         poly.append(QPointF(x, y));
     }
-    return d_ptr->setting->interpEnergy(poly);
+    return d_ptr->setting->interpEnergy(poly, offset);
 }
 
 double HSpecCalibrate::calcLuminous(double value)
