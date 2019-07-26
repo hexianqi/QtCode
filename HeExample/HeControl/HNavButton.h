@@ -24,7 +24,6 @@ class HNavButtonPrivate;
 class HNavButton : public QPushButton
 {
     Q_OBJECT
-    Q_ENUMS(Position)
     Q_PROPERTY(int paddingLeft READ paddingLeft WRITE setPaddingLeft)
     Q_PROPERTY(int paddingRight READ paddingRight WRITE setPaddingRight)
     Q_PROPERTY(int paddingTop READ paddingTop WRITE setPaddingTop)
@@ -64,6 +63,7 @@ public:
         Position_Top = 2,       //顶部
         Position_Bottom = 3     //底部
     };
+    Q_ENUM(Position)
 
 public:
     explicit HNavButton(QWidget *parent = nullptr);

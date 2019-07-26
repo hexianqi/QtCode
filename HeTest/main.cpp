@@ -12,6 +12,8 @@
 #include <QtCharts/QChartView>
 #include <functional>
 
+#include <QImageReader>
+
 HE_CONTROL_USE_NAMESPACE
 
 void testGslChart()

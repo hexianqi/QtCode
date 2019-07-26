@@ -4,6 +4,8 @@
 #include "HDemoWidget.h"
 #include "HFlatStyleWidget.h"
 #include "HGifWidget.h"
+#include "HImageEffectWidget.h"
+#include "HImageBrowser.h"
 #include "HNetworkWidget.h"
 #include "HQssCreator.h"
 #include "HSerialPortWidget.h"
@@ -56,6 +58,8 @@ void HControlFactory::registerClass()
     HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");    
     HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
+    HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
+    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
     HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
     HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
     HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");

@@ -8,11 +8,14 @@ HEADERS += \
     $$PWD/HLedNumber.h \
     $$PWD/HLedNumber_p.h \
     $$PWD/HSpliteWidget.h \
-    $$PWD/HSpliteWidget_p.h
+    $$PWD/HSpliteWidget_p.h \
+    $$PWD/HDiskSizeTable.h \
+    $$PWD/HDiskSizeTable_p.h
 
 SOURCES += \
     $$PWD/HAntLine.cpp \
     $$PWD/HBattery.cpp \
     $$PWD/HCpuMemoryLabel.cpp \
     $$PWD/HLedNumber.cpp \
-    $$PWD/HSpliteWidget.cpp
+    $$PWD/HSpliteWidget.cpp \
+    $$PWD/HDiskSizeTable.cpp

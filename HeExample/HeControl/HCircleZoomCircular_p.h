@@ -11,7 +11,7 @@ class HZoomCircleCircularPrivate : public HAbstractCircularPrivate
 public:
     QColor foreground = QColor(46, 194, 163);
     int minimum = 10;
-    bool bounce = false;
+    bool bounce = true;
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -13,6 +13,8 @@ HEADERS += \
     $$PWD/HSpeedGauge_p.h \
     $$PWD/HCarGauge.h \
     $$PWD/HCarGauge_p.h \
+    $$PWD/HPanelGauge.h \
+    $$PWD/HPanelGauge_p.h
 
 SOURCES += \
     $$PWD/HCircleGauge.cpp \
@@ -22,4 +24,5 @@ SOURCES += \
     $$PWD/HCompassGauge.cpp \
     $$PWD/HSpeedGauge.cpp \
     $$PWD/HCarGauge.cpp \
+    $$PWD/HPanelGauge.cpp
 

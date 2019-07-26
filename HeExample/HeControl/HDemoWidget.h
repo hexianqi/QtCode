@@ -37,6 +37,7 @@ private:
     void addGauge();
     void addImageCalendar();
     void addLedNumber();
+    void addLightPoint();
     void addMagic();
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();

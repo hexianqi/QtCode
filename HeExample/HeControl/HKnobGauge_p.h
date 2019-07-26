@@ -19,7 +19,7 @@ public:
     QColor textColor = QColor(200, 200, 200);
     bool showPointer = true;
     bool showValue = false;
-    PointerStyle pointerStyle = PointerStyle_Circle;
+    HControlType::PointerStyle pointerStyle = HControlType::PointerStyle_Circle;
 
     bool pressed = false;
     bool hover = false;

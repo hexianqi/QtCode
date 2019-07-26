@@ -21,7 +21,6 @@ class HColorButtonPrivate;
 class HColorButton : public QWidget
 {
     Q_OBJECT
-    Q_ENUMS(ColorMode)
     Q_PROPERTY(QPixmap background READ background WRITE setBackground)
     Q_PROPERTY(int borderRadius READ borderRadius WRITE setBorderRadius)
     Q_PROPERTY(int borderWidth READ borderWidth WRITE setBorderWidth)
@@ -51,6 +50,7 @@ public:
         ColorMode_Replace = 1,      // 按下松开颜色上下交替
         ColorMode_Shade = 2         // 按下松开颜色渐变交替
     };
+    Q_ENUM(ColorMode)
 
 public:
     explicit HColorButton(QWidget *parent = nullptr);

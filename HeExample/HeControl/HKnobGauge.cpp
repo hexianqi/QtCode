@@ -92,7 +92,7 @@ bool HKnobGauge::isShowValue() const
     return d->showValue;
 }
 
-PointerStyle HKnobGauge::pointerStyle() const
+HControlType::PointerStyle HKnobGauge::pointerStyle() const
 {
     Q_D(const HKnobGauge);
     return d->pointerStyle;
@@ -188,7 +188,7 @@ void HKnobGauge::setShowValue(bool b)
     update();
 }
 
-void HKnobGauge::setPointerStyle(PointerStyle value)
+void HKnobGauge::setPointerStyle(HControlType::PointerStyle value)
 {
     Q_D(HKnobGauge);
     if (d->pointerStyle == value)
@@ -338,13 +338,13 @@ void HKnobGauge::drawPointer(QPainter *painter)
     painter->setBrush(d->progressColor);
     painter->rotate(d->angleStart);
     painter->rotate(toAngle(d->currentValue));
-    if (d->pointerStyle == PointerStyle_Circle)
+    if (d->pointerStyle == HControlType::PointerStyle_Circle)
         drawPointerCircle(painter);
-    if (d->pointerStyle == PointerStyle_Indicator)
+    if (d->pointerStyle == HControlType::PointerStyle_Indicator)
         drawPointerIndicator(painter);
-    if (d->pointerStyle == PointerStyle_IndicatorR)
+    if (d->pointerStyle == HControlType::PointerStyle_IndicatorR)
         drawPointerIndicatorR(painter);
-    if (d->pointerStyle == PointerStyle_Triangle)
+    if (d->pointerStyle == HControlType::PointerStyle_Triangle)
         drawPointerTriangle(painter);
     drawPointerCenter(painter);
     painter->restore();
@@ -390,7 +390,7 @@ void HKnobGauge::drawPointerTriangle(QPainter *painter)
 void HKnobGauge::drawPointerCenter(QPainter *painter)
 {
     Q_D(HKnobGauge);
-    if (d->pointerStyle != PointerStyle_Indicator && d->pointerStyle != PointerStyle_IndicatorR)
+    if (d->pointerStyle != HControlType::PointerStyle_Indicator && d->pointerStyle != HControlType::PointerStyle_IndicatorR)
         return;
     auto radius = (d->radiusCircle - 15) / 4;
     painter->drawEllipse(-radius, -radius, radius * 2, radius * 2);

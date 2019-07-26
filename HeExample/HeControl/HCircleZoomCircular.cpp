@@ -28,12 +28,11 @@ QString HZoomCircleCircular::typeName()
     return "HZoomCircleCircular";
 }
 
-void HZoomCircleCircular::draw(QPainter *painter, QVariantMap param)
+void HZoomCircleCircular::draw(QPainter *painter, double factor, QVariantMap param)
 {
     Q_D(HZoomCircleCircular);
-    HAbstractCircular::draw(painter, param);
-    auto value = param.value("value", 0).toInt();
-    auto radious = calcRaidous(value);
+    HAbstractCircular::draw(painter, factor, param);
+    auto radious = calcRaidous(factor);
 
     painter->save();
     painter->setPen(Qt::NoPen);
@@ -88,13 +87,13 @@ void HZoomCircleCircular::setBounce(bool b)
     emit dataChanged();
 }
 
-double HZoomCircleCircular::calcRaidous(int value)
+double HZoomCircleCircular::calcRaidous(double value)
 {
     Q_D(HZoomCircleCircular);
-    auto span = (50 - d->minimum) / 360.0;
+    auto span = 50 - d->minimum;
     if (d->bounce)
     {
-        value = qAbs(qAbs(value) - 180);
+        value = qAbs(qAbs(value) - 0.5);
         return d->minimum + 2 * span * value;
     }
     return value >= 0 ? d->minimum + span * value : 50 + span * value;

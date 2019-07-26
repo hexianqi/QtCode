@@ -25,8 +25,8 @@ public:
 
 public:
     QStringList keys() override;
-    QString alias(QString type) override;
     ICircular *create(QString type, QVariantMap param = QVariantMap()) override;
+    QActionGroup *toActionGroup() override;
 
 protected:
     HCircularFactory(HCircularFactoryPrivate &p, QObject *parent = nullptr);

@@ -14,7 +14,9 @@ HEADERS += \
     $$PWD/HAbstractNetworkWidget.h \
     $$PWD/HAbstractNetworkWidget_p.h \
     $$PWD/HNetworkWidget.h \
-    $$PWD/HNetworkWidget_p.h
+    $$PWD/HNetworkWidget_p.h\
+    $$PWD/HImageBrowser.h \
+    $$PWD/HImageBrowser_p.h
 
 SOURCES += \
     $$PWD/HColorPickerWidget.cpp \
@@ -25,7 +27,8 @@ SOURCES += \
     $$PWD/HTcpServerWidget.cpp \
     $$PWD/HUdpServerWidget.cpp \
     $$PWD/HAbstractNetworkWidget.cpp \
-    $$PWD/HNetworkWidget.cpp
+    $$PWD/HNetworkWidget.cpp \
+    $$PWD/HImageBrowser.cpp
 
 FORMS += \
     $$PWD/HColorPickerWidget.ui \

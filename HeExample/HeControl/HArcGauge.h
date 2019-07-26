@@ -26,9 +26,8 @@ class HArcGauge : public HCircleGauge
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HArcGauge)
-    Q_ENUMS(PointerStyle)
     Q_PROPERTY(QColor arcColor READ arcColor WRITE setArcColor)
-    Q_PROPERTY(PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
+    Q_PROPERTY(HControlType::PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
 
 public:
     explicit HArcGauge(QWidget *parent = nullptr);
@@ -36,11 +35,11 @@ public:
 
 public:
     QColor arcColor() const;    
-    PointerStyle pointerStyle() const;
+    HControlType::PointerStyle pointerStyle() const;
 
 public slots:    
     void setArcColor(const QColor &value);
-    void setPointerStyle(PointerStyle value);
+    void setPointerStyle(HControlType::PointerStyle value);
 
 protected:
     HArcGauge(HArcGaugePrivate &p, QWidget *parent = nullptr);
