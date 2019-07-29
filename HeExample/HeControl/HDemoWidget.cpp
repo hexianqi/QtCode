@@ -6,7 +6,6 @@
 #include "HBattery.h"
 #include "HColorButton.h"
 #include "HLightButton.h"
-#include "HNavButton.h"
 #include "HButtonColorPanel.h"
 #include "HCpuMemoryLabel.h"
 #include "HDiskSizeTable.h"
@@ -23,6 +22,8 @@
 #include "HLightPoint.h"
 #include "HMagicFish.h"
 #include "HMagicMouse.h"
+#include "HNavButton.h"
+#include "HNavLabel.h"
 #include "HButtonProgressBar.h"
 #include "HColorProgressBar.h"
 #include "HRingProgressBar.h"
@@ -71,6 +72,7 @@ void HDemoWidget::init()
     addMagic();
 //    addMultHeaderTableView();
 //    addMultHeaderTableWidget();
+    addNav();
     addProgressBar();
     addRuler();
 }
@@ -120,10 +122,8 @@ void HDemoWidget::addButton()
     auto l = new QGridLayout;
     auto cb = new HColorButton;
     auto lb = new HLightButton;
-    auto nb = new HNavButton;
     l->addWidget(cb, 0, 0);
     l->addWidget(lb, 0, 1);
-    l->addWidget(nb, 1, 0);
     addTab(l, tr("按钮"));
 }
 
@@ -371,6 +371,18 @@ void HDemoWidget::addMultHeaderTableWidget()
     rootWidget->setCellWidget(0, 2, widget3);
 
     ui->tabWidget->addTab(rootWidget, tr("多标题表格2"));
+}
+
+void HDemoWidget::addNav()
+{
+    auto l = new QGridLayout;
+    auto nb = new HNavButton;
+    auto nl = new HNavLabel;
+    nb->setText(tr("导航按钮"));
+    nl->setText(tr("导航标签"));
+    l->addWidget(nb, 0, 0);
+    l->addWidget(nl, 0, 1);
+    addTab(l, tr("导航"));
 }
 
 void HDemoWidget::addRuler()

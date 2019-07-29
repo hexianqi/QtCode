@@ -41,6 +41,7 @@ private:
     void addMagic();
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
+    void addNav();
     void addProgressBar();
     void addRuler();
 

@@ -74,6 +74,7 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 void HGuiFactory::registerClass()
 {
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
+
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HChromatismEditHandler>("HChromatismEditHandler");
