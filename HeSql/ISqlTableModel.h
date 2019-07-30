@@ -29,7 +29,7 @@ public:
     // 字段
     virtual QStringList field() = 0;
     // 设置表格
-    virtual void setTable(QString tableName) = 0;
+    virtual void setTable(const QString &tableName) = 0;
 
 public:
     // 是否有效

@@ -18,7 +18,7 @@ class HSimpleTestSetWidget : public HAbstractTestSetWidget
 
 public:
     explicit HSimpleTestSetWidget(QWidget *parent = nullptr);
-    ~HSimpleTestSetWidget();
+    ~HSimpleTestSetWidget() override;
 
 public:
     void initialize(QVariantMap param) override;

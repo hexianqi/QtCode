@@ -25,27 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        HBuilder2000.cpp \
-        HMainWindow2000.cpp \
-        HTestWidget2000.cpp \
-        HTestSetWidget2000.cpp \
-        HDetailWidget2000.cpp
-
-HEADERS += \
-        HBuilder2000.h \
-        HBuilder2000_p.h \
-        HMainWindow2000.h \
-        HMainWindow2000_p.h \
-        HTestWidget2000.h \
-        HTestWidget2000_p.h \
-        HTestSetWidget2000.h \
-        HTestSetWidget2000_p.h \
-        HDetailWidget2000.h \
-        HDetailWidget2000_p.h
-
-FORMS   += \
-        HTestSetWidget2000.ui \
-        HDetailWidget2000.ui
 
 TARGET = SL2000
 
@@ -73,4 +52,19 @@ Release {
             -L$$DESTDIR -lHeSql
 }
 
-DISTFILES +=
+include(sl2000.pri)
+
+#版本信息
+VERSION = 1.0.0.1
+# 图标
+RC_ICONS = Image/Icon.ico
+# 公司名称
+QMAKE_TARGET_COMPANY = "SongLang"
+# 产品名称
+QMAKE_TARGET_PRODUCT = "SL2000"
+# 文件说明
+QMAKE_TARGET_DESCRIPTION = "Qt Creator based on Qt 5.7.0 (MSVC 2013, 32 bit)"
+# 版权信息
+QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2019 保留所有权利。"
+# 中文（简体）
+RC_LANG = 0x0004

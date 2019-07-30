@@ -24,6 +24,9 @@ public:
     HMainWindowPrivate(HAbstractMainWindow *);
 
 public:
+    bool showLogo = false;
+
+public:
     HAbstractMainWindow *q_ptr;
     IBuilder *builder;
     IModel *model;

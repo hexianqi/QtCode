@@ -14,7 +14,7 @@ class HBuilder2000 : public HAbstractBuilder
 
 public:
     explicit HBuilder2000(IMainWindow *parent = nullptr);
-    ~HBuilder2000();
+    ~HBuilder2000() override;
 
 public:
     void initialize(QVariantMap param) override;

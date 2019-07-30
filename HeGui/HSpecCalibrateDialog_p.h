@@ -5,12 +5,18 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
+class IGuiFactory;
 class HSpecCalibrateWidget;
 
 class HSpecCalibrateDialogPrivate
 {
 public:
+    HSpecCalibrateDialogPrivate();
+
+public:
+    IGuiFactory *factory;
     HSpecCalibrateWidget *widget;
+    QString type;
 };
 
 HE_GUI_END_NAMESPACE

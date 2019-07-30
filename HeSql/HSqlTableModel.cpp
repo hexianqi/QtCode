@@ -46,7 +46,7 @@ QStringList HSqlTableModel::field()
     return d_ptr->fields;
 }
 
-void HSqlTableModel::setTable(QString tableName)
+void HSqlTableModel::setTable(const QString &tableName)
 {
     auto db = database();
     if (!db.tables().contains(tableName))

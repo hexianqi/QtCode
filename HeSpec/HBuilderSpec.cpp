@@ -19,10 +19,6 @@
 HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
     HAbstractBuilder(*new HAbstractBuilderPrivate(parent), parent)
 {
-    Q_D(HBuilderSpec);
-    d->configFileName = "HeSpec.cfg";
-    HAppContext::setContextValue("Settings", "Ini\\HeSpec.ini");
-    HAppContext::setContextValue("ConfigFileName", d->configFileName);
 }
 
 HBuilderSpec::~HBuilderSpec()

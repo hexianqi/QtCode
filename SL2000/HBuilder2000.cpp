@@ -25,6 +25,7 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
@@ -32,9 +33,14 @@ HBuilder2000::HBuilder2000(IMainWindow *parent) :
     HAbstractBuilder(*new HBuilder2000Private(parent), parent)
 {
     Q_D(HBuilder2000);
-    d->configFileName = "SL2000.cfg";
-    HAppContext::setContextValue("Settings", "Ini\\SL2000.ini");
-    HAppContext::setContextValue("ConfigFileName", d->configFileName);
+    d->sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+                                << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+                                << "LuminousFluxSpec" << "LuminousPower"
+                                << "PeakWave" << "PeakBandwidth" << "DominantWave"
+                                << "ColorTemperature" << "ColorPurity"
+                                << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+                                << "RedRatio" << "GreenRadio" << "BlueRatio"
+                                << "Ra" << "Rx" << "EnergyGraph";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
@@ -193,16 +199,8 @@ void HBuilder2000::buildModel()
 void HBuilder2000::buildDatabase()
 {
     Q_D(HBuilder2000);
-    auto field = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-                               << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-                               << "LuminousFluxSpec" << "LuminousPower"
-                               << "PeakWave" << "PeakBandwidth" << "DominantWave"
-                               << "ColorTemperature" << "ColorPurity"
-                               << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-                               << "RedRatio" << "GreenRadio" << "BlueRatio"
-                               << "Ra" << "Rx" << "EnergyGraph";
-    auto find = field;
-    auto exportExcel = field;
+    auto find = d->sqlField;
+    auto exportExcel = d->sqlField;
     find.removeFirst();
     find.removeLast();
     find.removeLast();
@@ -214,8 +212,8 @@ void HBuilder2000::buildDatabase()
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
     auto print = d->sqlFactory->createPrint("HSpecSqlPrint");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    db->openDatabase("SL2000.db");
-    model->setField(field);
+    db->openDatabase(QString("%1.db").arg(qApp->applicationName()));
+    model->setField(d->sqlField);
     model->setTable("Spec");
     info->setRelationTableName("Spec");
     handle->setProductInfo(info);

@@ -1,5 +1,6 @@
 #include "HGuiFactory_p.h"
 #include "HSimpleTestSetWidget.h"
+#include "HSpecCalibrateSetWidget.h"
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HSpecCalibrateHandler.h"
@@ -74,6 +75,8 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 void HGuiFactory::registerClass()
 {
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
+    HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
+
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HChromatismEditHandler>("HChromatismEditHandler");

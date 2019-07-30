@@ -6,6 +6,7 @@
 #include "HeData/HDataFactory.h"
 #include "HeGui/HGuiFactory.h"
 #include "HeSql/HSqlFactory.h"
+#include <QtWidgets/QApplication>
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -13,6 +14,9 @@ HE_GUI_BEGIN_NAMESPACE
 HAbstractBuilderPrivate::HAbstractBuilderPrivate(IMainWindow *p)
 {
     mainWindow = p;
+    configFileName = QString("%1.cfg").arg(qApp->applicationName());
+    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(qApp->applicationName()));
+    HAppContext::setContextValue("ConfigFileName", configFileName);
     HAppContext::setContextPointer("IMainWindow", mainWindow);
 }
 
@@ -59,6 +63,5 @@ void HAbstractBuilder::buildFactory()
     HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
     HAppContext::setContextPointer("ISqlFactory", d_ptr->sqlFactory);
 }
-
 
 HE_GUI_END_NAMESPACE

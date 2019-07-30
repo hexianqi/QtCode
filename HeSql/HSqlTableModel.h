@@ -26,7 +26,7 @@ public:
 public:
     void setField(QStringList value) override;
     QStringList field() override;
-    void setTable(QString tableName) override;
+    void setTable(const QString &tableName) override;
 
 public:
     bool isValid(int row) override;

@@ -14,7 +14,7 @@ class HMainWindow2000 : public HAbstractMainWindow
 
 public:
     explicit HMainWindow2000(QWidget *parent = 0, const HCallorHelper &helper = HCallorHelper());
-    ~HMainWindow2000();
+    ~HMainWindow2000() override;
 
 protected:
     void initImportExport() override;

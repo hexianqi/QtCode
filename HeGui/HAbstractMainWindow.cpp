@@ -66,6 +66,7 @@ void HAbstractMainWindow::initialize()
     initModel();
     initCentralWidget();
     updatetWindowTitle();
+    setWindowIcon(QIcon(":/image/Icon.ico"));
 }
 
 void HAbstractMainWindow::initImportExport()
@@ -140,15 +141,16 @@ void HAbstractMainWindow::createToolBarLogo()
 {
     d_ptr->toolBarLogo = new QToolBar(tr("商标(&L)"));
     d_ptr->toolBarLogo->setMovable(false);
-#ifdef HAVE_LOGO
-    auto label = new QLabel;
-    label->setPixmap(d_ptr->logo);
-    label->setScaledContents(true);
-    label->setMaximumSize(400, 80);
-    d_ptr->toolBarLogo->addWidget(label);
-#else
-    d_ptr->toolBarLogo->setVisible(false);
-#endif
+    if (d_ptr->showLogo)
+    {
+        auto label = new QLabel;
+        label->setPixmap(d_ptr->logo);
+        label->setScaledContents(true);
+        label->setMaximumSize(400, 80);
+        d_ptr->toolBarLogo->addWidget(label);
+    }
+    else
+        d_ptr->toolBarLogo->setVisible(false);
 }
 
 void HAbstractMainWindow::initMenu()
@@ -279,7 +281,7 @@ void HAbstractMainWindow::about()
     text = tr("<h2>%1</h2><p>").arg(abbreviation)
             + tr("<p>版本 %1<p>").arg(QApplication::applicationVersion())
             + tr("<p>%1<p>").arg(QApplication::applicationName())
-            + tr("<p>版权 2017-2019 %1. 保留所有权利. <p>").arg(QApplication::organizationName())
+            + tr("<p>版权所有：2017-2019 %1 保留所有权利。<p>").arg(QApplication::organizationName())
             + tr("<p>%1<p>").arg(summary());
     QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
 }

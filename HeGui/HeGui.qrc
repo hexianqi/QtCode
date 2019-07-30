@@ -12,5 +12,6 @@
         <file>image/Stop.png</file>
         <file>image/Stop02.png</file>
         <file>image/Choose.png</file>
+        <file>image/Icon.ico</file>
     </qresource>
 </RCC>
