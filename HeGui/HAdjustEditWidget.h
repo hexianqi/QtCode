@@ -27,7 +27,7 @@ class HAdjustEditWidget : public IDataEditWidget<IAdjust>
 
 public:
     explicit HAdjustEditWidget(QWidget *parent = nullptr);
-    ~HAdjustEditWidget();
+    ~HAdjustEditWidget() override;
 
 public:
     void initialize(QVariantMap param) override;

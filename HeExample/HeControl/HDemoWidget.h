@@ -44,6 +44,7 @@ private:
     void addNav();
     void addProgressBar();
     void addRuler();
+    void addww();
 
 private:
     void addTab(QLayout *, QString title);

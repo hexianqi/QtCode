@@ -4,7 +4,7 @@
 #include "HAntLine.h"
 #include "HTiledBackground.h"
 #include "HBattery.h"
-#include "HColorButton.h"
+#include "HMultiStyleButton.h"
 #include "HLightButton.h"
 #include "HButtonColorPanel.h"
 #include "HCpuMemoryLabel.h"
@@ -33,9 +33,18 @@
 #include "HBarRuler.h"
 #include "HThermometerRuler.h"
 #include "HSlideNavigation.h"
+
+#include "HButtonLineEdit.h"
+#include "HClearLineEdit.h"
+#include "HFileChooser.h"
+#include "HColorButton.h"
+#include "HColorComboBox.h"
+#include "HConfigWidget.h"
+
 #include <QtCore/QTimer>
 #include <QtWidgets/QTableWidget>
 #include <QtGui/QStandardItemModel>
+#include <QtCore/QDebug>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -50,6 +59,7 @@ HDemoWidget::HDemoWidget(QWidget *parent) :
 
 HDemoWidget::~HDemoWidget()
 {
+    qDebug() << __func__;
     delete ui;
 }
 
@@ -75,6 +85,8 @@ void HDemoWidget::init()
     addNav();
     addProgressBar();
     addRuler();
+    addww();
+    setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
 void HDemoWidget::addAntLine()
@@ -120,7 +132,7 @@ void HDemoWidget::addBattery()
 void HDemoWidget::addButton()
 {
     auto l = new QGridLayout;
-    auto cb = new HColorButton;
+    auto cb = new HMultiStyleButton;
     auto lb = new HLightButton;
     l->addWidget(cb, 0, 0);
     l->addWidget(lb, 0, 1);
@@ -388,8 +400,8 @@ void HDemoWidget::addNav()
 void HDemoWidget::addRuler()
 {
     auto l = new QGridLayout;
-    auto b = new HBarRuler();
-    auto t = new HThermometerRuler();
+    auto b = new HBarRuler;
+    auto t = new HThermometerRuler;
     auto timer = new QTimer(this);
     timer->setInterval(2000);
     connect(timer, &QTimer::timeout, this, [=] {
@@ -399,6 +411,24 @@ void HDemoWidget::addRuler()
     l->addWidget(b, 0, 0);
     l->addWidget(t, 0, 1);
     addTab(l, tr("标尺"));
+}
+
+void HDemoWidget::addww()
+{
+    auto l = new QGridLayout;
+    auto bl = new HButtonLineEdit;
+    auto cl = new HClearLineEdit;
+    auto fl = new HFileChooser;
+    auto cb = new HColorButton;
+    auto cc = new HColorComboBox;
+    auto cw = new HConfigWidget;
+    l->addWidget(bl, 0, 0);
+    l->addWidget(cl, 0, 1);
+    l->addWidget(fl, 0, 2);
+    l->addWidget(cb, 1, 0);
+    l->addWidget(cc, 1, 1);
+    l->addWidget(cw, 2, 0, 1, 3);
+    addTab(l, tr("ww"));
 }
 
 void HDemoWidget::addTab(QLayout *layout, QString title)

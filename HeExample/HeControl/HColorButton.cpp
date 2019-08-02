@@ -1,19 +1,25 @@
 #include "HColorButton_p.h"
-#include "HMoveEventFilter.h"
+#include "HColorDrag.h"
+#include "HColorModel.h"
+#include "HColorPopup.h"
+#include <QtCore/QMimeData>
+#include <QtGui/QDragEnterEvent>
 #include <QtGui/QPainter>
-#include <QtGui/QMouseEvent>
+#include <QtGui/QScreen>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QListView>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 HColorButton::HColorButton(QWidget *parent) :
-    QWidget(parent),
+    QPushButton(parent),
     d_ptr(new HColorButtonPrivate)
 {
     init();
 }
 
 HColorButton::HColorButton(HColorButtonPrivate &p, QWidget *parent) :
-    QWidget(parent),
+    QPushButton(parent),
     d_ptr(&p)
 {
     init();
@@ -23,339 +29,192 @@ HColorButton::~HColorButton()
 {
 }
 
-QSize HColorButton::sizeHint() const
+QStringList HColorButton::colors() const
 {
-    return QSize(100, 50);
+    return d_ptr->model->colors();
 }
 
-QSize HColorButton::minimumSizeHint() const
+QColor HColorButton::currentColor() const
 {
-    return QSize(20, 10);
+    return d_ptr->currentColor;
 }
 
-QPixmap HColorButton::background() const
+bool HColorButton::isDragEnabled() const
 {
-    return d_ptr->background;
+    return d_ptr->dragEnabled;
 }
 
-int HColorButton::borderRadius() const
+bool HColorButton::isShowName() const
 {
-    return d_ptr->borderRadius;
+    return d_ptr->showName;
 }
 
-int HColorButton::borderWidth() const
+void HColorButton::setStandardColors()
 {
-    return d_ptr->borderWidth;
+    d_ptr->model->setStandardColors();
 }
 
-QColor HColorButton::borderColor() const
+void HColorButton::addColor(const QColor &color, const QString &name)
 {
-    return d_ptr->borderColor;
+    d_ptr->model->addColor(color, name);
 }
 
-QString HColorButton::text() const
+void HColorButton::clear()
 {
-    return d_ptr->text;
+    d_ptr->model->clear();
 }
 
-QFont HColorButton::textFont() const
+void HColorButton::setColors(const QStringList &value)
 {
-    return d_ptr->textFont;
-}
-
-Qt::Alignment HColorButton::textAlign() const
-{
-    return d_ptr->textAlign;
-}
-
-QColor HColorButton::textColor() const
-{
-    return d_ptr->textColor;
-}
-
-bool HColorButton::isShowSuperText() const
-{
-    return d_ptr->showSuperText;
-}
-
-QString HColorButton::superText() const
-{
-    return d_ptr->superText;
-}
-
-QFont HColorButton::superTextFont() const
-{
-    return d_ptr->superTextFont;
-}
-
-Qt::Alignment HColorButton::superTextAlign() const
-{
-    return d_ptr->superTextAlign;
-}
-
-QColor HColorButton::superTextColor() const
-{
-    return d_ptr->superTextColor;
-}
-
-QColor HColorButton::normalColor() const
-{
-    return d_ptr->normalColor;
-}
-
-QColor HColorButton::pressedColor() const
-{
-    return d_ptr->pressedColor;
-}
-
-HColorButton::ColorMode HColorButton::colorMode() const
-{
-    return d_ptr->colorMode;
-}
-
-bool HColorButton::isMoveEnable() const
-{
-    return d_ptr->moveEnable;
-}
-
-void HColorButton::setBackground(const QPixmap &value)
-{
-    if (d_ptr->background == value)
-        return;
-    d_ptr->background = value;
+    for (auto v : value)
+    {
+        auto s = v.split(",");
+        addColor(QColor(s[0]), s[1]);
+    }
+    setCurrentIndex(d_ptr->model->index(0, 0));
     update();
 }
 
-void HColorButton::setBorderRadius(int value)
+void HColorButton::setCurrentColor(const QColor &value)
 {
-    if (d_ptr->borderRadius == value)
+    if (d_ptr->currentColor == value)
         return;
-    d_ptr->borderRadius = value;
-    update();
+
+    auto index = d_ptr->model->contains(value);
+    if (!index.isValid())
+        index = d_ptr->model->addColor(value, findStandardColorName(value));
+    setCurrentIndex(index);
 }
 
-void HColorButton::setBorderWidth(int value)
+void HColorButton::setDragEnabled(bool b)
 {
-    if (d_ptr->borderWidth == value)
-        return;
-    d_ptr->borderWidth = value;
-    update();
+    d_ptr->dragEnabled = b;
 }
 
-void HColorButton::setBorderColor(const QColor &value)
+void HColorButton::setShowName(bool b)
 {
-    if (d_ptr->borderColor == value)
+    if (d_ptr->showName == b)
         return;
-    d_ptr->borderColor = value;
-    update();
-}
-
-void HColorButton::setText(const QString &value)
-{
-    if (d_ptr->text == value)
-        return;
-    d_ptr->text = value;
-    update();
-}
-
-void HColorButton::setTextFont(const QFont &value)
-{
-    if (d_ptr->textFont == value)
-        return;
-    d_ptr->textFont = value;
-    update();
-}
-
-void HColorButton::setTextAlign(Qt::Alignment value)
-{
-    if (d_ptr->textAlign == value)
-        return;
-    d_ptr->textAlign = value;
-    update();
-}
-
-void HColorButton::setTextColor(const QColor &value)
-{
-    if (d_ptr->textColor == value)
-        return;
-    d_ptr->textColor = value;
-    update();
-}
-
-void HColorButton::setShowSuperText(bool b)
-{
-    if (d_ptr->showSuperText == b)
-        return;
-    d_ptr->showSuperText = b;
-    update();
-}
-
-void HColorButton::setSuperText(const QString &value)
-{
-    if (d_ptr->superText == value)
-        return;
-    d_ptr->superText = value;
-    update();
-}
-
-void HColorButton::setSuperTextFont(const QFont &value)
-{
-    if (d_ptr->superTextFont == value)
-        return;
-    d_ptr->superTextFont = value;
-    update();
-}
-
-void HColorButton::setSuperTextAlign(Qt::Alignment value)
-{
-    if (d_ptr->superTextAlign == value)
-        return;
-    d_ptr->superTextAlign = value;
-    update();
-}
-
-void HColorButton::setSuperTextColor(const QColor & value)
-{
-    if (d_ptr->superTextColor == value)
-        return;
-    d_ptr->superTextColor = value;
-    update();
-}
-
-void HColorButton::setNormalColor(const QColor & value)
-{
-    if (d_ptr->normalColor == value)
-        return;
-    d_ptr->normalColor = value;
-    update();
-}
-
-void HColorButton::setPressedColor(const QColor &value)
-{
-    if (d_ptr->pressedColor == value)
-        return;
-    d_ptr->pressedColor = value;
-    update();
-}
-
-void HColorButton::setColorMode(ColorMode value)
-{
-    if (d_ptr->colorMode == value)
-        return;
-    d_ptr->colorMode = value;
-    update();
-}
-
-void HColorButton::setMoveEnable(bool b)
-{
-    if (d_ptr->moveEnable == b)
-        return;
-    d_ptr->moveEnable = b;
-    update();
-}
-
-bool HColorButton::eventFilter(QObject *watched, QEvent *event)
-{
-    if (isMoveEnable())
-        d_ptr->filter->eventFilter(watched, event);
-    return QWidget::eventFilter(watched, event);
+    setText(b ? d_ptr->currentName : "");
+    d_ptr->showName = b;
 }
 
 void HColorButton::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton)
-    {
-        d_ptr->pressed = true;
-        update();
-        emit pressed();
-    }
-    QWidget::mousePressEvent(e);
+    if (d_ptr->dragEnabled && e->button() & Qt::LeftButton)
+        d_ptr->pressPos = e->pos();
+    QPushButton::mousePressEvent(e);
 }
 
-void HColorButton::mouseReleaseEvent(QMouseEvent *e)
+void HColorButton::mouseMoveEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton && d_ptr->pressed)
+    if ((e->buttons() & Qt::LeftButton) && d_ptr->dragEnabled && (e->pos() - d_ptr->pressPos).manhattanLength() >= QApplication::startDragDistance())
     {
-        d_ptr->pressed = false;
-        update();
-        emit released();
-        emit clicked();
+        auto drag = new HColorDrag(this, currentColor(), currentColor().name());
+        drag->exec();
+        setDown(false);
     }
-    QWidget::mouseReleaseEvent(e);
+    QPushButton::mouseMoveEvent(e);
 }
 
-void HColorButton::paintEvent(QPaintEvent *)
+void HColorButton::dragEnterEvent(QDragEnterEvent *e)
 {
-    QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    drawBackground(&painter);
-    drawText(&painter);
+    QColor c;
+    if (e->mimeData()->hasColor())
+        c = qvariant_cast<QColor>(e->mimeData()->colorData());
+    else if (e->mimeData()->hasText())
+        c = QColor(e->mimeData()->text());
+    if (c.isValid())
+        e->acceptProposedAction();
 }
 
-void HColorButton::drawBackground(QPainter *painter)
+void HColorButton::dropEvent(QDropEvent *e)
 {
-    auto rect = QRect(d_ptr->borderWidth, d_ptr->borderWidth, width() - d_ptr->borderWidth * 2, height() - d_ptr->borderWidth * 2);
-    painter->save();
-    painter->setPen(QPen(d_ptr->borderColor, d_ptr->borderWidth));
-    if (d_ptr->background.isNull())
-    {
-        if (d_ptr->colorMode == ColorMode_Normal)
-            painter->setBrush(d_ptr->pressed ? d_ptr->pressedColor : d_ptr->normalColor);
-        else if (d_ptr->colorMode == ColorMode_Replace)
-        {
-            auto gradient = QLinearGradient(QPoint(0, 0), QPoint(0, height()));
-            gradient.setColorAt(0.0, d_ptr->pressed ? d_ptr->pressedColor : d_ptr->normalColor);
-            gradient.setColorAt(0.49, d_ptr->pressed ? d_ptr->pressedColor : d_ptr->normalColor);
-            gradient.setColorAt(0.50, d_ptr->pressed ? d_ptr->normalColor : d_ptr->pressedColor);
-            gradient.setColorAt(1.0, d_ptr->pressed ? d_ptr->normalColor : d_ptr->pressedColor);
-            painter->setBrush(gradient);
-        }
-        else if (d_ptr->colorMode == ColorMode_Shade)
-        {
-            auto gradient = QLinearGradient(QPoint(0, 0), QPoint(0, height()));
-            gradient.setColorAt(0.0, d_ptr->pressed ? d_ptr->pressedColor : d_ptr->normalColor);
-            gradient.setColorAt(1.0, d_ptr->pressed ? d_ptr->normalColor : d_ptr->pressedColor);
-            painter->setBrush(gradient);
-        }
-        painter->drawRoundedRect(rect, d_ptr->borderRadius, d_ptr->borderRadius);
-    }
-    else
-    {
-        auto pixmap = d_ptr->background.scaled(rect.width(), rect.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        painter->drawPixmap((this->rect().width() - pixmap.width()) / 2, (this->rect().height() - pixmap.height()) / 2, pixmap);
-    }
-    painter->restore();
-}
-
-void HColorButton::drawText(QPainter *painter)
-{
-    if (!d_ptr->background.isNull())
+    if (e->source() == this)
         return;
+    if (e->mimeData()->hasColor())
+        setCurrentColor(qvariant_cast<QColor>(e->mimeData()->colorData()));
+    else
+        setCurrentColor(e->mimeData()->text());
+}
 
-    painter->save();
-    if (d_ptr->showSuperText)
+void HColorButton::setCurrentIndex(const QModelIndex &index)
+{
+    if (d_ptr->popup)
     {
-        auto offset = 3;
-        auto rect = QRect(d_ptr->borderWidth * offset, d_ptr->borderWidth, width() - d_ptr->borderWidth * offset * 2, height() - d_ptr->borderWidth * 2);
-        painter->setPen(d_ptr->superTextColor);
-        painter->setFont(d_ptr->superTextFont);
-        painter->drawText(rect, QFlag(d_ptr->superTextAlign), d_ptr->superText);
+        d_ptr->popup->hide();
+        d_ptr->popup->setCurrentIndex(index);
     }
 
-    auto offset = 5;
-    auto rect = QRect(d_ptr->borderWidth * offset, d_ptr->borderWidth, width() - d_ptr->borderWidth * offset * 2, height() - d_ptr->borderWidth * 2);
-    painter->setPen(d_ptr->textColor);
-    painter->setFont(d_ptr->textFont);
-    painter->drawText(rect, QFlag(d_ptr->textAlign), d_ptr->text);
-    painter->restore();
+    d_ptr->currentColor = qvariant_cast<QColor>(index.data(Qt::DecorationRole));
+    d_ptr->currentName = index.data(Qt::ToolTipRole).toString();
+
+    QPixmap pm(64, 64);
+    QPainter pt(&pm);
+    pt.setBrush(d_ptr->currentColor);
+    pt.drawRect(0, 0, pm.width() - 1, pm.height() - 1);
+
+    setIcon(d_ptr->currentColor.isValid() ? pm : QIcon());
+    if (d_ptr->showName)
+        setText(d_ptr->currentName);
+    if (d_ptr->currentColor.isValid())
+        emit colorPicked(d_ptr->currentColor);
+}
+
+QString HColorButton::findStandardColorName(const QColor &color)
+{
+    for (auto name : QColor::colorNames())
+    {
+        auto t = QColor(name);
+        if (t == color)
+            return name;
+    }
+    return QString("Custom color");
+}
+
+QSize HColorButton::calcSize()
+{
+    if (!d_ptr->model)
+        return QSize(80, 100);
+
+    int margin = 2 * style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, this) + 1;
+    int cols = d_ptr->model->rowCount();
+    int fit = qMax(3, (width() - margin) / 16);
+    int fitRows = cols % fit == 0 ? cols / fit : (1 + cols / fit);
+    int scExt = style()->pixelMetric(QStyle::PM_ScrollBarExtent, nullptr, this);
+    if (fitRows <= 12)
+        return QSize(fit * 16 + margin, fitRows * 16 + margin + 27);
+    fit = qMax(3, (width() - margin - scExt) / 16);
+    fitRows = cols / fit;
+    return QSize(fit * 16 + margin + scExt + 1, 16 * 12 + margin + 30);
+}
+
+void HColorButton::showPopup()
+{
+    if (!d_ptr->popup)
+    {
+        d_ptr->popup = new HColorPopup(d_ptr->model, this);
+        connect(d_ptr->popup, &HColorPopup::selectIndex, this, &HColorButton::setCurrentIndex);
+        connect(d_ptr->popup, &HColorPopup::selectColor, this, &HColorButton::setCurrentColor);
+    }
+    auto point = mapToGlobal(rect().bottomLeft());
+    auto avail = QApplication::primaryScreen()->availableGeometry();
+    int height = avail.height() - point.y();
+    auto size = calcSize();
+    if (size.height() > height)
+        size.setHeight(height);
+    d_ptr->popup->move(point);
+    d_ptr->popup->setFixedSize(size);
+    d_ptr->popup->show();
 }
 
 void HColorButton::init()
-{
-    d_ptr->textFont = font();
-    d_ptr->superTextFont = font();
-    d_ptr->filter = new HMoveEventFilter(this);
-    installEventFilter(this);
+{    
+    d_ptr->model = new HColorModel(this);
+    connect(this, &HColorButton::clicked, this, &HColorButton::showPopup);
+    setStandardColors();
+    setAcceptDrops(true);
+    setCurrentIndex(d_ptr->model->index(0, 0));
 }
 
 HE_CONTROL_END_NAMESPACE

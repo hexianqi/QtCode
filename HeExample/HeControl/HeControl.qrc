@@ -17,5 +17,8 @@
         <file>translator/textEdit.qm</file>
         <file>image/beautify/back.png</file>
         <file>image/beautify/next.png</file>
+        <file>image/ww/closetab.png</file>
+        <file>image/ww/fileopen.png</file>
+        <file>image/ww/filesave.png</file>
     </qresource>
 </RCC>
