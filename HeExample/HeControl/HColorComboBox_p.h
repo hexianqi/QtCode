@@ -12,10 +12,6 @@ class HColorComboBoxPrivate
 public:
     HColorModel *model = nullptr;
     bool colorDialogEnabled = false;
-//    int m_colorCount;
-//    QColor m_currentColor;
-//    QStringList m_colors;
-
 };
 
 HE_CONTROL_END_NAMESPACE

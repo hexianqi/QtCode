@@ -199,6 +199,7 @@ void HFileChooser::init()
     connect(this, &HFileChooser::buttonClicked, this, &HFileChooser::chooseFile);
     connect(this, &HFileChooser::textChanged, this, &HFileChooser::handleTextChanged);
     connect(sc, &QShortcut::activated, this, [=] { d->completer->complete(); });
+    setWindowIcon(QIcon(":/image/ww/filechooser.png"));
 }
 
 HE_CONTROL_END_NAMESPACE

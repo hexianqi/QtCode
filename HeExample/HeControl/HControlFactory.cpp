@@ -1,6 +1,6 @@
 #include "HControlFactory_p.h"
 #include "HCircularProgress.h"
-#include "HColorPickerWidget.h"
+#include "HColorPicker.h"
 #include "HDemoWidget.h"
 #include "HFlatStyleWidget.h"
 #include "HGifWidget.h"
@@ -54,7 +54,7 @@ void HControlFactory::registerClass()
 {
     auto b = HWidgetFactory::keys().toSet();
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
-    HWidgetFactory::registerClass<HColorPickerWidget>("HColorPickerWidget");
+    HWidgetFactory::registerClass<HColorPicker>("HColorPickerWidget");
     HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");    
     HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");

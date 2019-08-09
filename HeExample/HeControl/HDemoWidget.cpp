@@ -36,10 +36,21 @@
 
 #include "HButtonLineEdit.h"
 #include "HClearLineEdit.h"
+#include "HResetLineEdit.h"
 #include "HFileChooser.h"
 #include "HColorButton.h"
+#include "HRichTextButton.h"
 #include "HColorComboBox.h"
+#include "HHueSatPicker.h"
+#include "HHueSatRadialPicker.h"
+#include "HLedWidget.h"
+#include "HListNavigator.h"
+#include "HLongSpinBox.h"
+#include "HNumPad.h"
+#include "HRichTextEdit.h"
 #include "HConfigWidget.h"
+#include "HTaskPanel.h"
+#include "HNavigationBar.h"
 
 #include <QtCore/QTimer>
 #include <QtWidgets/QTableWidget>
@@ -66,6 +77,7 @@ HDemoWidget::~HDemoWidget()
 void HDemoWidget::init()
 {
     d_ptr->style = new HFaltStyle(this);
+    addww();
 //    addSlideNavigation();
 
     addAntLine();
@@ -85,8 +97,7 @@ void HDemoWidget::init()
     addNav();
     addProgressBar();
     addRuler();
-    addww();
-    setAttribute(Qt::WA_DeleteOnClose, true);
+
 }
 
 void HDemoWidget::addAntLine()
@@ -416,18 +427,44 @@ void HDemoWidget::addRuler()
 void HDemoWidget::addww()
 {
     auto l = new QGridLayout;
-    auto bl = new HButtonLineEdit;
-    auto cl = new HClearLineEdit;
+    auto ble = new HButtonLineEdit;
+    auto cle = new HClearLineEdit;
+    auto rle = new HResetLineEdit;
     auto fl = new HFileChooser;
     auto cb = new HColorButton;
-    auto cc = new HColorComboBox;
-    auto cw = new HConfigWidget;
-    l->addWidget(bl, 0, 0);
-    l->addWidget(cl, 0, 1);
-    l->addWidget(fl, 0, 2);
-    l->addWidget(cb, 1, 0);
-    l->addWidget(cc, 1, 1);
-    l->addWidget(cw, 2, 0, 1, 3);
+    auto rb = new HRichTextButton;
+    auto ccb = new HColorComboBox;
+    auto hsp = new HHueSatPicker;
+    auto hsr = new HHueSatRadialPicker;
+    auto led = new HLedWidget;
+    auto ln = new HListNavigator;
+    auto np = new HNumPad;
+    auto rte = new HRichTextEdit;
+    auto lsp = new HLongSpinBox;
+
+//    auto mw = new HConfigWidget;
+//    auto mw = new HNavigationBar;
+    auto mw = new HTaskPanel;
+
+    mw->addWidget(hsp, hsp->windowIcon(), tr("颜色拾取器"));
+    mw->addWidget(hsr, hsr->windowIcon(), tr("颜色拾取器2"));
+    mw->addWidget(np, np->windowIcon(), tr("数字面板"));
+    mw->addWidget(rte, rte->windowIcon(), tr("富文本编辑器"));
+    connect(cb, &HColorButton::colorPicked, this, [=](const QColor &value) {
+        hsp->setColor(value);
+        hsr->setColor(value); });
+
+    l->addWidget(ble, 0, 0);
+    l->addWidget(cle, 0, 1);
+    l->addWidget(rle, 1, 0);
+    l->addWidget(fl, 1, 1);
+    l->addWidget(cb, 2, 0);
+    l->addWidget(rb, 2, 1);
+    l->addWidget(ccb, 2, 2);
+    l->addWidget(led, 3, 0);
+    l->addWidget(lsp, 3, 1);
+    l->addWidget(ln, 4, 0, 1, 3);
+    l->addWidget(mw, 5, 0, 1, 3);
     addTab(l, tr("ww"));
 }
 

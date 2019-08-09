@@ -21,12 +21,12 @@ void HConfigWidgetDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     auto ds = option.decorationSize;
     auto decorationRect = QRect(option.rect.x() + 4, option.rect.top() + 4, option.rect.width() - 8, ds.height());
     auto icon = qvariant_cast<QIcon>(index.data(Qt::DecorationRole));
-    icon.paint(painter, decorationRect, Qt::AlignHCenter|Qt::AlignTop, option.state & QStyle::State_Enabled ? ((option.state & QStyle::State_Selected) && option.showDecorationSelected ? QIcon::Selected : QIcon::Normal) : QIcon::Disabled);
+    icon.paint(painter, decorationRect, Qt::AlignHCenter | Qt::AlignTop, option.state & QStyle::State_Enabled ? ((option.state & QStyle::State_Selected) && option.showDecorationSelected ? QIcon::Selected : QIcon::Normal) : QIcon::Disabled);
 
     auto displayText = index.data(Qt::DisplayRole).toString();
     auto displayRect = option.rect.adjusted(2, ds.height() + 2, -2, -2);
     painter->setPen(option.palette.color(option.state & QStyle::State_Selected ? QPalette::HighlightedText : QPalette::Text));
-    painter->drawText(displayRect, Qt::AlignHCenter|Qt::AlignBottom|Qt::TextWordWrap, option.fontMetrics.elidedText(displayText, option.textElideMode, displayRect.width()));
+    painter->drawText(displayRect, Qt::AlignHCenter | Qt::AlignBottom | Qt::TextWordWrap, option.fontMetrics.elidedText(displayText, option.textElideMode, displayRect.width()));
 }
 
 QSize HConfigWidgetDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -38,231 +38,202 @@ QSize HConfigWidgetDelegate::sizeHint(const QStyleOptionViewItem &option, const 
 }
 
 HConfigWidget::HConfigWidget(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new HConfigWidgetPrivate)
+    HAbstractMultiWidget(*new HConfigWidgetPrivate, parent)
 {
     init();
 }
 
 HConfigWidget::HConfigWidget(HConfigWidgetPrivate &p, QWidget *parent) :
-    QWidget(parent),
-    d_ptr(&p)
+     HAbstractMultiWidget(p, parent)
 {
     init();
-}
-
-bool HConfigWidget::eventFilter(QObject *object, QEvent *event)
-{
-    if (event->type() == QEvent::WindowTitleChange)
-    {
-        auto w = qobject_cast<QWidget *>(object);
-        for (int i = 0; i < count(); i++)
-        {
-            if (group(i) == w)
-                setGroupLabel(i, w->windowTitle());
-        }
-        return false;
-    }
-    return QWidget::eventFilter(object, event);
 }
 
 HConfigWidget::~HConfigWidget()
 {
 }
 
-int HConfigWidget::currentIndex() const
+int HConfigWidget::count() const
 {
-    return d_ptr->stack->currentIndex();
+    Q_D(const HConfigWidget);
+    return d->stack->count();
+}
+
+int HConfigWidget::indexOf(QWidget *p) const
+{
+    Q_D(const HConfigWidget);
+    return d->stack->indexOf(p);
+}
+
+QWidget *HConfigWidget::widget(int index) const
+{
+    Q_D(const HConfigWidget);
+    return d->stack->widget(index);
+}
+
+QWidget *HConfigWidget::currentWidget() const
+{
+    Q_D(const HConfigWidget);
+    return d->stack->currentWidget();
 }
 
 QSize HConfigWidget::iconSize() const
 {
-    return d_ptr->view->iconSize();
+    Q_D(const HConfigWidget);
+    return d->view->iconSize();
 }
 
-int HConfigWidget::count() const
+void HConfigWidget::insertWidget(int index, QWidget *widget, const QIcon &icon, const QString &label)
 {
-    return d_ptr->stack->count();
-}
-
-QWidget *HConfigWidget::group(int index) const
-{
-    return d_ptr->stack->widget(index);
-}
-
-QWidget *HConfigWidget::currentGroup() const
-{
-    return d_ptr->stack->currentWidget();
-}
-
-void HConfigWidget::addGroup(QWidget *group, const QIcon &icon, const QString &name)
-{
-    insertGroup(d_ptr->stack->count(), group, icon, name);
-}
-
-void HConfigWidget::insertGroup(int index, QWidget *group, const QIcon &icon, const QString &name)
-{
-    d_ptr->stack->insertWidget(index, group);
+    Q_D(HConfigWidget);
+    HAbstractMultiWidget::insertWidget(index, widget, icon, label);
+    widget->installEventFilter(this);
 
     auto item = new QListWidgetItem;
-    if (name.isNull())
-    {
-        item->setText(group->windowTitle());
-    }
-    else
-    {
-        item->setText(name);
-        group->setWindowTitle(name);
-    }
-    if (icon.isNull())
-    {
-        item->setIcon(group->windowIcon());
-    }
-    else
-    {
-        item->setIcon(icon);
-        group->setWindowIcon(icon);
-    }
-    d_ptr->view->insertItem(index, item);
+    item->setText(widget->windowTitle());
+    item->setIcon(widget->windowIcon());
 
-    if (d_ptr->stack->count() == 1)
-    {
-        d_ptr->titleLabel->setText(d_ptr->view->item(index)->text());
+    d->stack->insertWidget(index, widget);
+    d->view->insertItem(index, item);
+    if (count() == 1)
         setCurrentIndex(0);
-    }
-    group->installEventFilter(this);
 }
 
-void HConfigWidget::removeGroup(QWidget *group)
+void HConfigWidget::removeWidget(int index)
 {
-    int index = d_ptr->stack->indexOf(group);
-    if (index < 0)
-        return;
-    auto item = d_ptr->view->takeItem(index);
-    d_ptr->stack->removeWidget(group);
-    group->removeEventFilter(this);
-    delete item;
-    delete group;
-}
-
-void HConfigWidget::removeGroup(int index)
-{
-    removeGroup(d_ptr->stack->widget(index));
-}
-
-void HConfigWidget::setCurrentIndex(int value)
-{
-    if (value == currentIndex() || value < 0 || value >= d_ptr->view->count())
+    Q_D(HConfigWidget);
+    if (index < 0 || index >= count())
         return;
 
-    d_ptr->stack->setCurrentIndex(value);
-    d_ptr->view->setCurrentRow(value);
-    d_ptr->titleLabel->setText(d_ptr->view->item(value)->text());
-    emit currentIndexChanged(value);
+    auto w = widget(index);
+    w->removeEventFilter(this);
+    d->stack->removeWidget(w);
+    d->currentIndex = d->stack->currentIndex();
+    delete w;
+    delete d->view->takeItem(index);
+
+    if (d->currentIndex > -1)
+        d->title->setText(d->view->item(d->currentIndex)->text());
+    else
+        d->title->setText("");
+}
+
+bool HConfigWidget::setCurrentIndex(int value)
+{
+    Q_D(HConfigWidget);
+    if (!HAbstractMultiWidget::setCurrentIndex(value))
+        return false;
+    d->stack->setCurrentIndex(value);
+    d->view->setCurrentRow(value);
+    d->title->setText(d->view->item(value)->text());
+    return true;
+}
+
+bool HConfigWidget::setWidgetIcon(int index, const QIcon &icon)
+{
+    Q_D(HConfigWidget);
+    if (!HAbstractMultiWidget::setWidgetIcon(index, icon))
+        return false;
+    d->view->item(index)->setIcon(icon);
+    return true;
+}
+
+bool HConfigWidget::setWidgetTitle(int index, const QString &title)
+{
+    Q_D(HConfigWidget);
+    if (!HAbstractMultiWidget::setWidgetTitle(index, title))
+        return false;
+    d->view->item(index)->setText(title);
+    if (index == currentIndex())
+        d->title->setText(title);
+    return true;
 }
 
 void HConfigWidget::setIconSize(const QSize &value)
 {
-    d_ptr->view->setIconSize(value);
-}
-
-void HConfigWidget::setCurrentGroup(QWidget *group)
-{
-    setCurrentIndex(d_ptr->stack->indexOf(group));
-}
-
-void HConfigWidget::setGroupIcon(int index, const QIcon &icon)
-{
-    auto w = group(index);
-    w->setWindowIcon(icon);
-    d_ptr->view->item(index)->setIcon(icon);
-}
-
-void HConfigWidget::setGroupLabel(int index, const QString &title)
-{
-    auto w = group(index);
-    w->setWindowTitle(title);
-    d_ptr->view->item(index)->setText(title);
-    if (index == currentIndex())
-        d_ptr->titleLabel->setText(title);
+    Q_D(HConfigWidget);
+    d->view->setIconSize(value);
 }
 
 void HConfigWidget::save()
 {
-    if (d_ptr->saving)
+    Q_D(HConfigWidget);
+    if (d->saving)
         return;
-    d_ptr->saving = true;
+    d->saving = true;
     emit saving();
-    d_ptr->saving = false;
+    d->saving = false;
 }
 
 void HConfigWidget::apply()
 {
-    if (d_ptr->applying)
+    Q_D(HConfigWidget);
+    if (d->applying)
         return;
-    d_ptr->applying = true;
+    d->applying = true;
     emit applying(currentIndex());
-    QMetaObject::invokeMethod(currentGroup(), "apply");
-    d_ptr->applying = false;
+    QMetaObject::invokeMethod(currentWidget(), "apply");
+    d->applying = false;
 }
 
 void HConfigWidget::discard()
 {
-    if (d_ptr->discarding)
+    Q_D(HConfigWidget);
+    if (d->discarding)
         return;
-    d_ptr->discarding = true;
+    d->discarding = true;
     emit discarding(currentIndex());
-    QMetaObject::invokeMethod(currentGroup(), "discard");
-    d_ptr->discarding = false;
+    QMetaObject::invokeMethod(currentWidget(), "discard");
+    d->discarding = false;
+}
+
+bool HConfigWidget::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::WindowTitleChange || event->type() == QEvent::WindowIconChange)
+    {
+        auto w = qobject_cast<QWidget *>(object);
+        auto i = indexOf(w);
+        if (event->type() == QEvent::WindowTitleChange)
+            setWidgetTitle(i, w->windowTitle());
+        if (event->type() == QEvent::WindowIconChange)
+            setWidgetIcon(i, w->windowIcon());
+    }
+    return QWidget::eventFilter(object, event);
 }
 
 void HConfigWidget::init()
 {
-    d_ptr->titleLabel = new QLabel;
-    auto f = d_ptr->titleLabel->font();
+    Q_D(HConfigWidget);
+    d->title = new QLabel;
+    auto f = d->title->font();
     f.setBold(true);
-    d_ptr->titleLabel->setFont(f);
+    d->title->setFont(f);
     auto line = new QFrame;
     line->setFrameShape(QFrame::HLine);
-    d_ptr->stack = new QStackedWidget;
-    d_ptr->view = new QListWidget;
-    d_ptr->view->setSelectionMode(QAbstractItemView::SingleSelection);
-    d_ptr->view->setIconSize(QSize(48, 48));
-    d_ptr->view->setMaximumWidth(150);
-    d_ptr->view->setItemDelegate(new HConfigWidgetDelegate(this));
-    auto pol = d_ptr->view->sizePolicy();
-    pol.setHorizontalStretch(1);
-    d_ptr->view->setSizePolicy(pol);
-    pol = d_ptr->stack->sizePolicy();
-    pol.setHorizontalStretch(5);
-    d_ptr->stack->setSizePolicy(pol);
-    pol = d_ptr->titleLabel->sizePolicy();
-    pol.setHorizontalStretch(5);
-    d_ptr->titleLabel->setSizePolicy(pol);
-    pol = line->sizePolicy();
-    pol.setHorizontalStretch(5);
-    line->setSizePolicy(pol);
+    d->stack = new QStackedWidget;
+    d->view = new QListWidget;
+    d->view->setSelectionMode(QAbstractItemView::SingleSelection);
+    d->view->setIconSize(QSize(48, 48));
+    d->view->setMaximumWidth(150);
+    d->view->setItemDelegate(new HConfigWidgetDelegate(this));
+    auto policy = d->view->sizePolicy();
+    policy.setHorizontalStretch(1);
+    d->view->setSizePolicy(policy);
+    policy = d->stack->sizePolicy();
+    policy.setHorizontalStretch(5);
+    d->stack->setSizePolicy(policy);
+    policy = d->title->sizePolicy();
+    policy.setHorizontalStretch(5);
+    d->title->setSizePolicy(policy);
+    policy = line->sizePolicy();
+    policy.setHorizontalStretch(5);
+    line->setSizePolicy(policy);
     auto l = new QGridLayout(this);
-    l->addWidget(d_ptr->view, 0, 0, 3, 1);
-    l->addWidget(d_ptr->titleLabel, 0, 1);
+    l->addWidget(d->view, 0, 0, 3, 1);
+    l->addWidget(d->title, 0, 1);
     l->addWidget(line, 1, 1);
-    l->addWidget(d_ptr->stack, 2, 1);/*
-
-
-
-
-
-    auto vl = new QVBoxLayout;
-    vl->setMargin(0);
-    vl->setSpacing(2);
-    vl->addWidget(d_ptr->titleLabel);
-    vl->addWidget(line);
-    vl->addWidget(d_ptr->stack);
-    d_ptr->layout = new QHBoxLayout(this);
-    d_ptr->layout->addWidget(d_ptr->view);
-    d_ptr->layout->setMargin(0);
-    d_ptr->layout->addLayout(vl);*/
-    connect(d_ptr->view, &QListWidget::currentRowChanged, this, &HConfigWidget::setCurrentIndex);
+    l->addWidget(d->stack, 2, 1);
+    connect(d->view, &QListWidget::currentRowChanged, this, &HConfigWidget::setCurrentIndex);
 }
 
 HE_CONTROL_END_NAMESPACE

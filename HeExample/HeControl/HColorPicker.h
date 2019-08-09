@@ -12,18 +12,18 @@
 class QTimer;
 
 namespace Ui {
-class HColorPickerWidget;
+class HColorPicker;
 }
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HE_CONTROL_EXPORT HColorPickerWidget : public QWidget
+class HE_CONTROL_EXPORT HColorPicker : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit HColorPickerWidget(QWidget *parent = nullptr);
-    ~HColorPickerWidget();
+    explicit HColorPicker(QWidget *parent = nullptr);
+    ~HColorPicker();
 
 public slots:
     void showColorValue();
@@ -32,7 +32,7 @@ private:
     void init();
 
 private:
-    Ui::HColorPickerWidget *ui;
+    Ui::HColorPicker *ui;
     QTimer *_timer;
 };
 

@@ -2,6 +2,7 @@
 #define HCONFIGWIDGET_P_H
 
 #include "HConfigWidget.h"
+#include "HAbstractMultiWidget_p.h"
 #include <QtWidgets/QAbstractItemDelegate>
 
 class QListWidget;
@@ -10,14 +11,14 @@ class QStackedWidget;
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HConfigWidgetPrivate
+class HConfigWidgetPrivate : public HAbstractMultiWidgetPrivate
 {
 public:
     bool discarding = false;
     bool saving = false;
     bool applying = false;
     QListWidget *view;
-    QLabel *titleLabel;
+    QLabel *title;
     QStackedWidget *stack;
 };
 

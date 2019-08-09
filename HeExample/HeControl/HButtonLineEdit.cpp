@@ -180,6 +180,7 @@ void HButtonLineEdit::init()
     d_ptr->button->setCursor(Qt::ArrowCursor);
     connect(d_ptr->button, &QToolButton::clicked, this, &HButtonLineEdit::buttonClicked);
     setButtonPosition(RightOutside);
+    setWindowIcon(QIcon(":/image/ww/buttonlineedit.png"));
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -20,5 +20,32 @@
         <file>image/ww/closetab.png</file>
         <file>image/ww/fileopen.png</file>
         <file>image/ww/filesave.png</file>
+        <file>image/ww/huesatpicker.png</file>
+        <file>image/ww/filechooser.png</file>
+        <file>image/ww/colorbutton.png</file>
+        <file>image/ww/huesatradialpicker.png</file>
+        <file>image/ww/led.png</file>
+        <file>image/ww/listnavigator.png</file>
+        <file>image/ww/go-bottom.png</file>
+        <file>image/ww/go-down.png</file>
+        <file>image/ww/go-first.png</file>
+        <file>image/ww/go-last.png</file>
+        <file>image/ww/go-next.png</file>
+        <file>image/ww/go-previous.png</file>
+        <file>image/ww/go-top.png</file>
+        <file>image/ww/go-up.png</file>
+        <file>image/ww/buttonlineedit.png</file>
+        <file>image/ww/longspinbox.png</file>
+        <file>image/ww/navigationbar.png</file>
+        <file>image/ww/numpad.png</file>
+        <file>image/ww/wrap.png</file>
+        <file>image/ww/simplifyrichtext.png</file>
+        <file>image/ww/textbold.png</file>
+        <file>image/ww/textcenter.png</file>
+        <file>image/ww/textitalic.png</file>
+        <file>image/ww/textjustify.png</file>
+        <file>image/ww/textleft.png</file>
+        <file>image/ww/textright.png</file>
+        <file>image/ww/textunder.png</file>
     </qresource>
 </RCC>

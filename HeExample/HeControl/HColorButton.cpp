@@ -215,6 +215,7 @@ void HColorButton::init()
     setStandardColors();
     setAcceptDrops(true);
     setCurrentIndex(d_ptr->model->index(0, 0));
+    setWindowIcon(QIcon(":/image/ww/colorbutton.png"));
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HColorPickerWidget</class>
- <widget class="QWidget" name="HColorPickerWidget">
+ <class>HColorPicker</class>
+ <widget class="QWidget" name="HColorPicker">
   <property name="geometry">
    <rect>
     <x>0</x>

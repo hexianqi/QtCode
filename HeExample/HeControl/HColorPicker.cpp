@@ -1,5 +1,5 @@
-#include "HColorPickerWidget.h"
-#include "ui_HColorPickerWidget.h"
+#include "HColorPicker.h"
+#include "ui_HColorPicker.h"
 #include "HControlHelper.h"
 #include <QtCore/QTimer>
 #include <QtWidgets/QDesktopWidget>
@@ -8,22 +8,22 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HColorPickerWidget::HColorPickerWidget(QWidget *parent) :
+HColorPicker::HColorPicker(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::HColorPickerWidget)
+    ui(new Ui::HColorPicker)
 {
     ui->setupUi(this);
     init();
 }
 
-HColorPickerWidget::~HColorPickerWidget()
+HColorPicker::~HColorPicker()
 {
     if (_timer->isActive())
         _timer->stop();
     delete ui;
 }
 
-void HColorPickerWidget::showColorValue()
+void HColorPicker::showColorValue()
 {
     int x = QCursor::pos().x();
     int y = QCursor::pos().y();
@@ -41,10 +41,10 @@ void HColorPickerWidget::showColorValue()
     ui->lable_4->setStyleSheet(QString("background-color: %1;").arg(color.name()));
 }
 
-void HColorPickerWidget::init()
+void HColorPicker::init()
 {
     _timer = new QTimer(this);
-    connect(_timer, &QTimer::timeout, this, &HColorPickerWidget::showColorValue);
+    connect(_timer, &QTimer::timeout, this, &HColorPicker::showColorValue);
     _timer->start(200);
 
     setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);

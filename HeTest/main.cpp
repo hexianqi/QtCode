@@ -30,13 +30,10 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HControlWidget w;
-    w.show();
-//    HDemoWidget w;
-//    w.show();
-
-
-//    HTestPlugin::testCIE1931View()->show();
+//    HControlWidget cw;
+//    cw.show();
+    HDemoWidget dw;
+    dw.show();
 
 //    MainWindow window;
 //    window.setCentralWidget(new HControlWidget);

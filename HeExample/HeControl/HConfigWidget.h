@@ -5,50 +5,43 @@
 #ifndef HCONFIGWIDGET_H
 #define HCONFIGWIDGET_H
 
-#include "HControlGlobal.h"
-#include <QtGui/QIcon>
-#include <QtWidgets/QWidget>
+#include "HAbstractMultiWidget.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HConfigWidgetPrivate;
 
-class HConfigWidget : public QWidget
+class HConfigWidget : public HAbstractMultiWidget
 {
     Q_OBJECT
-    Q_PROPERTY(int currentIndex READ currentIndex WRITE setCurrentIndex STORED true)
+    Q_DECLARE_PRIVATE(HConfigWidget)
     Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize)
-    Q_PROPERTY(int count READ count)
 
 public:
     explicit HConfigWidget(QWidget *parent = nullptr);
     ~HConfigWidget() override;
 
 signals:
-    void currentIndexChanged(int);
     void saving();
     void applying(int);
     void discarding(int);
 
-public:
-    int currentIndex() const;
+public:    
+    int count() const override;
+    int indexOf(QWidget *) const override;
+    QWidget *widget(int index) const override;
+    QWidget *currentWidget() const override;
     QSize iconSize() const;
-    int count() const;
-    QWidget *group(int) const;
-    QWidget *currentGroup() const;
 
 public:
-    void addGroup(QWidget *, const QIcon &icon = QIcon(), const QString &name = QString());
-    void insertGroup(int index, QWidget *, const QIcon &icon = QIcon(), const QString &name = QString());
-    void removeGroup(QWidget *);
-    void removeGroup(int);
+    void insertWidget(int index, QWidget *widget, const QIcon &icon = QIcon(), const QString &label = QString()) override;
+    void removeWidget(int index) override;
 
 public slots:
-    void setCurrentIndex(int value);
+    bool setCurrentIndex(int value) override;
+    bool setWidgetIcon(int index, const QIcon &icon) override;
+    bool setWidgetTitle(int index, const QString &title) override;
     void setIconSize(const QSize &);
-    void setCurrentGroup(QWidget *);
-    void setGroupIcon(int, const QIcon &);
-    void setGroupLabel(int, const QString &);
     void save();
     void apply();
     void discard();
@@ -58,9 +51,6 @@ protected:
 
 protected:
     bool eventFilter(QObject *, QEvent *) override;
-
-protected:
-    QScopedPointer<HConfigWidgetPrivate> d_ptr;
 
 private:
     void init();
