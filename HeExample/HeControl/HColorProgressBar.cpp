@@ -116,13 +116,18 @@ void HColorProgressBar::setShowBarSplitLine(bool value)
 void HColorProgressBar::paintEvent(QPaintEvent *)
 {
     Q_D(HColorProgressBar);
+    auto side = qMin(width(), height());
+    auto f = font();
+    f.setPixelSize(side / 2);
     auto text = QString("%1%").arg(QString::number(maximum(), 'f', decimal()));
-    auto w = QFontMetrics(font()).width(text);
+    auto w = QFontMetrics(f).width(text);
+
     d->textRect = QRectF(width() - w - space(), 0, w + space(), height());
     d->barRect = QRectF(0, 0, width() - w - 2 * space(), height());
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
+    painter.setFont(f);
     drawBackground(&painter);
     drawBar(&painter);
     drarBarSplitLine(&painter);

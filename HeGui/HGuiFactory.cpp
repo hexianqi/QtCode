@@ -76,7 +76,6 @@ void HGuiFactory::registerClass()
 {
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
-
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HChromatismEditHandler>("HChromatismEditHandler");

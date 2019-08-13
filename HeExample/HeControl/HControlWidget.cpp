@@ -1,6 +1,7 @@
 #include "HControlWidget_p.h"
 #include "ui_HControlWidget.h"
 #include "HControlFactory.h"
+#include <QtWidgets/QListView>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -26,8 +27,13 @@ void HControlWidget::on_pushButton_clicked()
 
 void HControlWidget::init()
 {
+    QStringList qss;
+    qss << "QComboBox { min-height: 25px; min-width: 60px; }"
+        << "QComboBox QAbstractItemView::item { min-height: 25px; min-width: 60px; }";
     d_ptr->factory = new HControlFactory(this);
+    ui->comboBox->setView(new QListView());
     ui->comboBox->addItems(d_ptr->factory->keys());
+    setStyleSheet(qss.join("\n"));
 }
 
 HE_CONTROL_END_NAMESPACE

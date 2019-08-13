@@ -27,7 +27,7 @@ public:
     QString typeName() override;
 
 public:
-    void draw(QPainter *, QVariantMap param = QVariantMap()) override;
+    void draw(QPainter *, double factor, QVariantMap param = QVariantMap()) override;
 
 public:
     QColor foreground() const;

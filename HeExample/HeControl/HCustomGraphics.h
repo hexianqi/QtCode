@@ -83,9 +83,3 @@ private:
 HE_CONTROL_END_NAMESPACE
 
 #endif // HCUSTOMGRAPHICS_H
-
-
-
-//};
-
-//#endif // CUSTOMGRAPHICS_H

@@ -33,19 +33,18 @@ QString HDonutCircular::typeName()
     return "HDonutCircular";
 }
 
-void HDonutCircular::draw(QPainter *painter, QVariantMap param)
+void HDonutCircular::draw(QPainter *painter, double factor, QVariantMap param)
 {
     Q_D(HDonutCircular);
-    HAbstractCircular::draw(painter, param);
-    auto value = param.value("value", 0).toInt();
+    HAbstractCircular::draw(painter, factor, param);
     auto palette = param.value("palette").value<QPalette>();
     auto rectOut = QRectF(-50, -50, 100, 100);
     auto rectIn = QRectF(-30, -30, 60, 60);
-    auto text = QString("%1%").arg(qAbs(value / 3.6), 0, 'f', 0);
+    auto text = QString("%1%").arg(qAbs(factor * 100), 0, 'f', 0);
     auto font = painter->font();
     font.setBold(true);
 
-    painter->rotate(value);
+    painter->rotate(factor * 360);
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(d->background);
@@ -54,7 +53,7 @@ void HDonutCircular::draw(QPainter *painter, QVariantMap param)
     painter->drawPie(rectOut, 0, d->spanAngle * 16);
     painter->setBrush(palette.window().color());
     painter->drawEllipse(rectIn);
-    painter->rotate(-value);
+    painter->rotate(-factor * 360);
     painter->setFont(font);
     painter->setPen(d->foreground);
     painter->drawText(rectIn, Qt::AlignCenter, text);

@@ -28,8 +28,6 @@ class HCarGauge : public HCircleGauge
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HCarGauge)
-    Q_ENUMS(PieStyle)
-    Q_ENUMS(PointerStyle)
     Q_PROPERTY(QColor outerCircleColor READ outerCircleColor WRITE setOuterCircleColor)
     Q_PROPERTY(QColor innerCircleColor READ innerCircleColor WRITE setInnerCircleColor)
     Q_PROPERTY(QColor coverCircleColor READ coverCircleColor WRITE setCoverCircleColor)
@@ -40,7 +38,7 @@ class HCarGauge : public HCircleGauge
     Q_PROPERTY(bool showOverlay READ isShowOverlay WRITE setShowOverlay)
     Q_PROPERTY(QColor overlayColor READ overlayColor WRITE setOverlayColor)
     Q_PROPERTY(PieStyle pieStyle READ pieStyle WRITE setPieStyle)
-    Q_PROPERTY(PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
+    Q_PROPERTY(HControlType::PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
 
 public:
     enum PieStyle
@@ -48,6 +46,7 @@ public:
         PieStyle_Three = 0,             // 三色圆环
         PieStyle_Current = 1            // 当前圆环
     };
+    Q_ENUM(PieStyle)
 
 public:
     explicit HCarGauge(QWidget *parent = nullptr);
@@ -64,7 +63,7 @@ public:
     bool isShowOverlay() const;
     QColor overlayColor() const;
     PieStyle pieStyle() const;
-    PointerStyle pointerStyle() const;
+    HControlType::PointerStyle pointerStyle() const;
 
 public slots:
     void setOuterCircleColor(const QColor &value);
@@ -77,7 +76,7 @@ public slots:
     void setShowOverlay(bool b);
     void setOverlayColor(const QColor &value);
     void setPieStyle(PieStyle value);
-    void setPointerStyle(PointerStyle value);
+    void setPointerStyle(HControlType::PointerStyle value);
 
 protected:
     HCarGauge(HCarGaugePrivate &p, QWidget *parent = nullptr);

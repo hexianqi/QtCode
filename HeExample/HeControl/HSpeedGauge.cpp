@@ -140,7 +140,7 @@ void HSpeedGauge::paintEvent(QPaintEvent *)
     drawProgress(&painter, 100 - d->ringWidth);
     drawScale(&painter, 94);
     drawScaleLabel(&painter, 70);
-    drawPointer(&painter, 100);
+    drawPointer(&painter, 62);
     drawValue(&painter, 100);
 }
 
@@ -199,31 +199,16 @@ void HSpeedGauge::drawScale(QPainter *painter, int radius)
             index++;
             pen.setWidthF(1.5);
             painter->setPen(pen);
-            painter->drawLine(0, radius - 13, 0, radius);
+            painter->drawLine(0, radius, 0, radius - 13);
         }
         else
         {
             pen.setWidthF(0.5);
             painter->setPen(pen);
-            painter->drawLine(0, radius - 5, 0, radius);
+            painter->drawLine(0, radius, 0, radius - 5);
         }
         painter->rotate(angle);
     }
-    painter->restore();
-}
-
-void HSpeedGauge::drawPointer(QPainter *painter, int /*radius*/)
-{
-    Q_D(HSpeedGauge);
-    auto radius = 62;
-    QPolygon pts;
-    pts.setPoints(4, -5, 0, 0, -8, 5, 0, 0, radius);
-    painter->save();
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(d->pointerColor);
-    painter->rotate(d->angleStart);
-    painter->rotate(toAngle(d->currentValue));
-    painter->drawConvexPolygon(pts);
     painter->restore();
 }
 

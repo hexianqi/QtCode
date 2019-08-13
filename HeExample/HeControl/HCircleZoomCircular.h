@@ -29,7 +29,7 @@ public:
     QString typeName() override;
 
 public:
-    void draw(QPainter *, QVariantMap param = QVariantMap()) override;
+    void draw(QPainter *, double factor, QVariantMap param = QVariantMap()) override;
 
 public:
     QColor foreground() const;
@@ -45,7 +45,7 @@ protected:
     HZoomCircleCircular(HZoomCircleCircularPrivate &p, QObject *parent = nullptr);
 
 protected:
-    double calcRaidous(int value);
+    double calcRaidous(double value);
 };
 
 HE_CONTROL_END_NAMESPACE

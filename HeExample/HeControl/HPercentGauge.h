@@ -24,7 +24,6 @@ class HPercentGauge : public HCircleGauge
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HPercentGauge)
-    Q_PROPERTY(QColor background READ background WRITE setBackground)
     Q_PROPERTY(QColor baseColor READ baseColor WRITE setBaseColor)
     Q_PROPERTY(QColor arcColor READ arcColor WRITE setArcColor)
     Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
@@ -35,14 +34,12 @@ public:
     ~HPercentGauge() override;
 
 public:
-    QColor background() const;
     QColor baseColor() const;
     QColor arcColor() const;
     QColor titleColor() const;
     QString title() const;
 
 public slots:    
-    void setBackground(const QColor &value);
     void setBaseColor(const QColor &value);
     void setArcColor(const QColor &value);
     void setTitleColor(const QColor &value);
@@ -53,7 +50,6 @@ protected:
 
 protected:
     void paintEvent(QPaintEvent *) override;
-    void drawBackground(QPainter *);
     void drawProgress(QPainter *, int radius) override;
     void drawPointer(QPainter *, int radius) override;
     void drawTitle(QPainter *);

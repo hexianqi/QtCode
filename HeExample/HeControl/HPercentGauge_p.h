@@ -12,7 +12,6 @@ public:
     HPercentGaugePrivate();
 
 public:    
-    QColor background = QColor(0, 0, 0, 0);
     QColor baseColor = QColor(34, 163, 169, 255);
     QColor arcColor = QColor(34, 163, 169, 255);
     QColor titleColor = QColor(34, 163, 169, 255);

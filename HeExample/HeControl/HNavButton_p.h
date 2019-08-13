@@ -12,7 +12,7 @@ public:
     int paddingRight = 5;
     int paddingTop = 5;
     int paddingBottom = 5;
-    Qt::AlignmentFlag textAlign = Qt::AlignCenter;
+    Qt::Alignment textAlign = Qt::AlignCenter;
     bool showTriangle = false;
     int triangleLen = 5;
     HNavButton::Position trianglePosition = HNavButton::Position_Right;

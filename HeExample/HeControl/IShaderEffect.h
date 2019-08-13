@@ -1,0 +1,31 @@
+/***************************************************************************************************
+**      2019-07-24  IShaderEffect 特效
+***************************************************************************************************/
+
+#ifndef ISHADEREFFECT_H
+#define ISHADEREFFECT_H
+
+#include "HControlGlobal.h"
+#include "HeCore/IInitializeable.h"
+
+class QPainter;
+
+HE_CORE_USE_NAMESPACE
+
+HE_CONTROL_BEGIN_NAMESPACE
+
+class IShaderEffect : public QObject, public IInitializeable
+{
+    Q_OBJECT
+
+public:
+    using QObject::QObject;
+
+public:
+    // 绘制
+    virtual void draw(QPainter *, double factor, const QRect &rect, const QPixmap &pixmap) = 0;
+};
+
+HE_CONTROL_END_NAMESPACE
+
+#endif // ISHADEREFFECT_H

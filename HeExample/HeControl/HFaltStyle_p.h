@@ -2,11 +2,11 @@
 #define HFALTSTYLE_P_H
 
 #include "HFaltStyle.h"
-#include "HAbstractStyle_p.h"
+#include "HAbstractCustomStyle_p.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HFaltStylePrivate : public HAbstractStylePrivate
+class HFaltStylePrivate : public HAbstractCustomStylePrivate
 {
 
 };

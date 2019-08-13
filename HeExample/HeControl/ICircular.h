@@ -26,7 +26,7 @@ signals:
 
 public:
     // 绘制
-    virtual void draw(QPainter *, QVariantMap param = QVariantMap()) = 0;
+    virtual void draw(QPainter *, double factor, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -28,14 +28,12 @@ QString HLineCircular::typeName()
     return "HLineCircular";
 }
 
-void HLineCircular::draw(QPainter *painter, QVariantMap param)
+void HLineCircular::draw(QPainter *painter, double factor, QVariantMap param)
 {
     Q_D(HLineCircular);
-    HAbstractCircular::draw(painter, param);
-    auto value = param.value("value", 0).toInt();
+    HAbstractCircular::draw(painter, factor, param);
     auto c = d->foreground;
-
-    painter->rotate(value);
+    painter->rotate(factor * 360);
     painter->save();
     painter->setPen(Qt::NoPen);
     for(int i = 0; i <= 10; i++)

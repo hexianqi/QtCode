@@ -86,11 +86,10 @@ void HCircularProgress::paintEvent(QPaintEvent *)
     param.insert("height", height());
     param.insert("palette", palette());
     param.insert("reverse", d_ptr->reverse);
-    param.insert("value", d_ptr->value);
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    d_ptr->circular->draw(&painter, param);
+    d_ptr->circular->draw(&painter, d_ptr->value / 360.0, param);
 }
 
 void HCircularProgress::updateValue()
@@ -104,6 +103,7 @@ void HCircularProgress::changeCircular(QAction *p)
 {
     if (p == nullptr)
         return;
+    p->setChecked(true);
     auto k = p->data().toString();
     if (!d_ptr->circularCache.contains(k))
         d_ptr->circularCache.insert(k, d_ptr->factory->create(k));
@@ -113,18 +113,11 @@ void HCircularProgress::changeCircular(QAction *p)
 void HCircularProgress::init()
 {
     d_ptr->factory = new HCircularFactory(this);
-    auto group = new QActionGroup(this);
-    for (auto k : d_ptr->factory->keys())
-    {
-        auto action = group->addAction(d_ptr->factory->alias(k));
-        action->setCheckable(true);
-        action->setData(k);
-    }
-    addActions(group->actions());
-    connect(group, &QActionGroup::triggered, this, &HCircularProgress::changeCircular);
+    auto group = d_ptr->factory->toActionGroup();
     setContextMenuPolicy(Qt::ActionsContextMenu);
-    group->actions().first()->setChecked(true);
+    addActions(group->actions());
     changeCircular(group->actions().first());
+    connect(group, &QActionGroup::triggered, this, &HCircularProgress::changeCircular);
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(100);
     connect(d_ptr->timer, &QTimer::timeout, this, &HCircularProgress::updateValue);

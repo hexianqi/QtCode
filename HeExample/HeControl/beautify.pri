@@ -12,9 +12,10 @@ SOURCES += \
     $$PWD/HAnimationProgress.cpp
 
 include(circular.pri)
-
-
+include(button.pri)
+include(color.pri)
 include(draw.pri)
+include(effect.pri)
 include(else.pri)
 include(gauge.pri)
 include(nav.pri)

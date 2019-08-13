@@ -15,6 +15,8 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HControlHelper
 {
 public:
+    // 初始化翻译
+    static void initTranslator();
     // 窗体居中桌面
     static void centerWidget(QWidget *);
     // 运行时间

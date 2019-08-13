@@ -1,7 +1,7 @@
 #include "HStyleWidget_p.h"
 #include "ui_HStyleWidget.h"
 #include "HStyleFactory.h"
-#include "IStyle.h"
+#include "ICustomStyle.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -23,15 +23,7 @@ void HStyleWidget::init()
 {
     d_ptr->factory = new HStyleFactory(this);
     auto style = d_ptr->factory->create("HFaltStyle");
-    QStringList list;
-    list << style->pushButton()
-         << style->lineEdit()
-         << style->progressBar()
-         << style->slider()
-         << style->radioButton()
-         << style->checkBox()
-         << style->scrollBar();
-    this->setStyleSheet(list.join("\n"));
+    this->setStyleSheet(style->toStyleSheet());
 }
 
 HE_CONTROL_END_NAMESPACE

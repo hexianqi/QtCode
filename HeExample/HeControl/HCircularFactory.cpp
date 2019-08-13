@@ -7,6 +7,7 @@
 #include "HWheelCircular.h"
 #include "HCircleZoomCircular.h"
 #include "HeCore/HObjectFactory.h"
+#include <QtWidgets/QActionGroup>
 #include <QtCore/QDebug>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -45,11 +46,6 @@ QStringList HCircularFactory::keys()
     return d_ptr->aliass.keys();
 }
 
-QString HCircularFactory::alias(QString type)
-{
-    return d_ptr->aliass.value(type, type);
-}
-
 ICircular *HCircularFactory::create(QString type, QVariantMap param)
 {
     auto p = HObjectFactory::createObject<ICircular>(type, param, this);
@@ -61,6 +57,20 @@ ICircular *HCircularFactory::create(QString type, QVariantMap param)
     return p;
 }
 
+QActionGroup *HCircularFactory::toActionGroup()
+{
+    auto group = new QActionGroup(this);
+    for (auto it = d_ptr->aliass.begin(); it != d_ptr->aliass.end(); it++)
+    {
+        auto action = group->addAction(it.value());
+        action->setCheckable(true);
+        action->setData(it.key());
+    }
+    if (group->actions().size() > 0)
+        group->actions().first()->setChecked(true);
+    return group;
+}
+
 void HCircularFactory::registerClass()
 {
     HObjectFactory::registerClass<HCircleCircular>("HCircleCircular");
@@ -68,7 +78,7 @@ void HCircularFactory::registerClass()
     HObjectFactory::registerClass<HTaichiCircular>("HTaichiCircular");
     HObjectFactory::registerClass<HPieCircular>("HPieCircular");
     HObjectFactory::registerClass<HDonutCircular>("HDonutCircular");
-    HObjectFactory::registerClass<HZoomCircleCircular>("HCircleZoomCircular");
+    HObjectFactory::registerClass<HZoomCircleCircular>("HZoomCircleCircular");
     HObjectFactory::registerClass<HWheelCircular>("HWheelCircular");
     d_ptr->aliass.insert("HCircleCircular", tr("圈状"));
     d_ptr->aliass.insert("HLineCircular", tr("线状"));
