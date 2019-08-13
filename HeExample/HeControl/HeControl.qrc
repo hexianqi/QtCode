@@ -47,5 +47,6 @@
         <file>image/ww/textleft.png</file>
         <file>image/ww/textright.png</file>
         <file>image/ww/textunder.png</file>
+        <file>image/ww/twocolorindicator.png</file>
     </qresource>
 </RCC>

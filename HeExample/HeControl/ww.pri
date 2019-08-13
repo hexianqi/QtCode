@@ -45,7 +45,11 @@ HEADERS += \
     $$PWD/HTaskWidget.h \
     $$PWD/HTaskWidget_p.h \
     $$PWD/HAbstractMultiWidget.h \
-    $$PWD/HAbstractMultiWidget_p.h
+    $$PWD/HAbstractMultiWidget_p.h \
+    $$PWD/HTextSpinBox.h \
+    $$PWD/HTextSpinBox_p.h \
+    $$PWD/HTwoColorIndicator.h \
+    $$PWD/HTwoColorIndicator_p.h
 
 SOURCES += \
     $$PWD/HButtonLineEdit.cpp \
@@ -71,7 +75,9 @@ SOURCES += \
     $$PWD/HTaskPanel.cpp \
     $$PWD/HTaskHeader.cpp \
     $$PWD/HTaskWidget.cpp \
-    $$PWD/HAbstractMultiWidget.cpp
+    $$PWD/HAbstractMultiWidget.cpp \
+    $$PWD/HTextSpinBox.cpp \
+    $$PWD/HTwoColorIndicator.cpp
 
 FORMS +=
 

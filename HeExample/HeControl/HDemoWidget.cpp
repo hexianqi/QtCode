@@ -41,11 +41,13 @@
 #include "HColorButton.h"
 #include "HRichTextButton.h"
 #include "HColorComboBox.h"
+#include "HTwoColorIndicator.h"
 #include "HHueSatPicker.h"
 #include "HHueSatRadialPicker.h"
 #include "HLedWidget.h"
 #include "HListNavigator.h"
 #include "HLongSpinBox.h"
+#include "HTextSpinBox.h"
 #include "HNumPad.h"
 #include "HRichTextEdit.h"
 #include "HConfigWidget.h"
@@ -437,11 +439,13 @@ void HDemoWidget::addww()
     auto hsp = new HHueSatPicker;
     auto hsr = new HHueSatRadialPicker;
     auto led = new HLedWidget;
+    auto tci = new HTwoColorIndicator;
     auto ln = new HListNavigator;
     auto np = new HNumPad;
     auto rte = new HRichTextEdit;
-    auto lsp = new HLongSpinBox;
-
+    auto lsb = new HLongSpinBox;
+    auto tsb = new HTextSpinBox;
+    tsb->setStringList(QStringList() << "a" << "d" << "b" << "dsad" << "csss");
 //    auto mw = new HConfigWidget;
 //    auto mw = new HNavigationBar;
     auto mw = new HTaskPanel;
@@ -462,9 +466,11 @@ void HDemoWidget::addww()
     l->addWidget(rb, 2, 1);
     l->addWidget(ccb, 2, 2);
     l->addWidget(led, 3, 0);
-    l->addWidget(lsp, 3, 1);
-    l->addWidget(ln, 4, 0, 1, 3);
-    l->addWidget(mw, 5, 0, 1, 3);
+    l->addWidget(tci, 3, 1);
+    l->addWidget(lsb, 4, 1);
+    l->addWidget(tsb, 4, 2);
+    l->addWidget(ln, 5, 0, 1, 3);
+    l->addWidget(mw, 6, 0, 1, 3);
     addTab(l, tr("ww"));
 }
 
