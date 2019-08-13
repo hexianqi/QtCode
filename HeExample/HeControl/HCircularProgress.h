@@ -42,7 +42,7 @@ protected:
     HCircularProgress(HCircularProgressPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual void updateValue();
     virtual void changeCircular(QAction *);
 

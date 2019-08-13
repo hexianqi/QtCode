@@ -1,10 +1,24 @@
 #include "HControlHelper.h"
+#include <QtCore/QTranslator>
 #include <QtCore/QTime>
 #include <QtGui/QScreen>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
 
 HE_CONTROL_BEGIN_NAMESPACE
+
+void HControlHelper::initTranslator()
+{
+    // 加载鼠标右键菜单翻译文件
+    auto *t1 = new QTranslator(qApp);
+    t1->load(":/translator/qt_zh_CN.qm");
+    qApp->installTranslator(t1);
+
+    // 加载富文本框鼠标右键菜单翻译文件
+    auto *t2 = new QTranslator(qApp);
+    t2->load(":/translator/textEdit.qm");
+    qApp->installTranslator(t2);
+}
 
 void HControlHelper::centerWidget(QWidget *widget)
 {

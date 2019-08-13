@@ -35,7 +35,7 @@ QColor HArcGauge::arcColor() const
     return d->arcColor;
 }
 
-PointerStyle HArcGauge::pointerStyle() const
+HControlType::PointerStyle HArcGauge::pointerStyle() const
 {
     Q_D(const HArcGauge);
     return d->pointerStyle;
@@ -50,7 +50,7 @@ void HArcGauge::setArcColor(const QColor &value)
     update();
 }
 
-void HArcGauge::setPointerStyle(PointerStyle value)
+void HArcGauge::setPointerStyle(HControlType::PointerStyle value)
 {
     Q_D(HArcGauge);
     if (d->pointerStyle == value)
@@ -101,13 +101,13 @@ void HArcGauge::drawPointer(QPainter *painter, int /*radius*/)
     painter->setOpacity(0.8);
     painter->rotate(d->angleStart);
     painter->rotate(toAngle(d->currentValue));
-    if (d->pointerStyle == PointerStyle_Circle)
+    if (d->pointerStyle == HControlType::PointerStyle_Circle)
         drawPointerCircle(painter);
-    if (d->pointerStyle == PointerStyle_Indicator)
+    if (d->pointerStyle == HControlType::PointerStyle_Indicator)
         drawPointerIndicator(painter);
-    if (d->pointerStyle == PointerStyle_IndicatorR)
+    if (d->pointerStyle == HControlType::PointerStyle_IndicatorR)
         drawPointerIndicatorR(painter);
-    if (d->pointerStyle == PointerStyle_Triangle)
+    if (d->pointerStyle == HControlType::PointerStyle_Triangle)
         drawPointerTriangle(painter);
     drawPointerCenter(painter);
     painter->restore();

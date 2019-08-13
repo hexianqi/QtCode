@@ -1,0 +1,15 @@
+#ifndef HABSTRACTSHADEREFFECT_P_H
+#define HABSTRACTSHADEREFFECT_P_H
+
+#include "HAbstractShaderEffect.h"
+
+HE_CONTROL_BEGIN_NAMESPACE
+
+class HAbstractShaderEffectPrivate
+{
+
+};
+
+HE_CONTROL_END_NAMESPACE
+
+#endif // HABSTRACTSHADEREFFECT_P_H

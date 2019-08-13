@@ -1,5 +1,4 @@
 #include "HBattery_p.h"
-#include <QtCore/QPropertyAnimation>
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE

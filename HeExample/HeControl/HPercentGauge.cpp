@@ -26,12 +26,6 @@ HPercentGauge::~HPercentGauge()
 {
 }
 
-QColor HPercentGauge::background() const
-{
-    Q_D(const HPercentGauge);
-    return d->background;
-}
-
 QColor HPercentGauge::baseColor() const
 {
     Q_D(const HPercentGauge);
@@ -54,15 +48,6 @@ QString HPercentGauge::title() const
 {
     Q_D(const HPercentGauge);
     return d->title;
-}
-
-void HPercentGauge::setBackground(const QColor &value)
-{
-    Q_D(HPercentGauge);
-    if (d->background == value)
-        return;
-    d->background = value;
-    update();
 }
 
 void HPercentGauge::setBaseColor(const QColor &value)
@@ -127,18 +112,6 @@ void HPercentGauge::paintEvent(QPaintEvent *)
     drawValue(&painter, 100);
     // 绘制标题
     drawTitle(&painter);
-}
-
-void HPercentGauge::drawBackground(QPainter *painter)
-{
-    Q_D(HPercentGauge);
-    if (d->background == Qt::transparent)
-        return;
-    auto radius = 99;
-    painter->save();
-    painter->setPen(Qt::NoPen);
-    painter->fillRect(-radius, -radius, radius * 2, radius * 2, d->background);
-    painter->restore();
 }
 
 void HPercentGauge::drawProgress(QPainter *painter, int radius)

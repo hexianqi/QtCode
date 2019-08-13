@@ -22,7 +22,6 @@ class HAntLinePrivate;
 class HAntLine : public QWidget
 {
     Q_OBJECT
-    Q_ENUMS(LineStyle)
     Q_PROPERTY(int lineLength READ lineLength WRITE setLength)
     Q_PROPERTY(int lineWidth READ lineWidth WRITE setLineWidth)
     Q_PROPERTY(int lineStep READ lineStep WRITE setLineStep)
@@ -38,6 +37,7 @@ public:
         LineStyle_Ellipse = 2,      // 椭圆
         LineStyle_Circle = 3        // 圆形
     };
+    Q_ENUM(LineStyle)
 
 public:
     explicit HAntLine(QWidget *parent = nullptr);

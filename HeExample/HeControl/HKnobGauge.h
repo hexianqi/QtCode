@@ -27,7 +27,6 @@ class HKnobGauge : public HAnimationProgress
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HKnobGauge)
-    Q_ENUMS(PointerStyle)
     Q_PROPERTY(int angleStart READ angleStart WRITE setAngleStart)
     Q_PROPERTY(int angleEnd READ angleEnd WRITE setAngleEnd)
     Q_PROPERTY(QColor background READ background WRITE setBackground)
@@ -38,7 +37,7 @@ class HKnobGauge : public HAnimationProgress
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
     Q_PROPERTY(bool showPointer READ isShowPointer WRITE setShowPointer)
     Q_PROPERTY(bool showValue READ isShowValue WRITE setShowValue)
-    Q_PROPERTY(PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
+    Q_PROPERTY(HControlType::PointerStyle pointerStyle READ pointerStyle WRITE setPointerStyle)
 
 public:
     explicit HKnobGauge(QWidget *parent = nullptr);
@@ -57,7 +56,7 @@ public:
     QColor textColor() const;
     bool isShowPointer() const;
     bool isShowValue() const;
-    PointerStyle pointerStyle() const;
+    HControlType::PointerStyle pointerStyle() const;
 
 public slots:
     void setAngleStart(int value);
@@ -70,7 +69,7 @@ public slots:
     void setTextColor(const QColor &value);
     void setShowPointer(bool b);
     void setShowValue(bool b);
-    void setPointerStyle(PointerStyle pointerStyle);
+    void setPointerStyle(HControlType::PointerStyle pointerStyle);
 
 protected:
     HKnobGauge(HKnobGaugePrivate &p, QWidget *parent = nullptr);

@@ -32,14 +32,13 @@ QString HPieCircular::typeName()
     return "HPieCircular";
 }
 
-void HPieCircular::draw(QPainter *painter, QVariantMap param)
+void HPieCircular::draw(QPainter *painter, double factor, QVariantMap param)
 {
     Q_D(HPieCircular);
-    HAbstractCircular::draw(painter, param);
-    auto value = param.value("value", 0).toInt();
+    HAbstractCircular::draw(painter, factor, param);
     auto rect = QRectF(-50, -50, 100, 100);
 
-    painter->rotate(value);
+    painter->rotate(factor * 360);
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(d->background);

@@ -17,8 +17,7 @@ class HImageCalendarPrivate;
 
 class HImageCalendar : public QWidget
 {
-    Q_OBJECT
-    Q_ENUMS(CalendarStyle)
+    Q_OBJECT    
     Q_PROPERTY(CalendarStyle calendarStyle READ calendarStyle WRITE setCalendarStyle)
 
 public:
@@ -31,6 +30,7 @@ public:
         CalendarStyle_Purple = 4,   //紫色风格
         CalendarStyle_Red = 5       //红色风格
     };
+    Q_ENUM(CalendarStyle)
 
 public:
     explicit HImageCalendar(QWidget *parent = nullptr);

@@ -30,12 +30,11 @@ QString HTaichiCircular::typeName()
     return "HTaichiCircular";
 }
 
-void HTaichiCircular::draw(QPainter *painter, QVariantMap param)
+void HTaichiCircular::draw(QPainter *painter, double factor, QVariantMap param)
 {
     Q_D(HTaichiCircular);
-    HAbstractCircular::draw(painter, param);
+    HAbstractCircular::draw(painter, factor, param);
     auto reverse = param.value("reverse", false).toBool();
-    auto value = param.value("value", 0).toInt();
     auto rect = QRectF(-50, -50, 100, 100);
     auto rectb1 = QRectF(-25, 0, 50, 50);
     auto rectb2 = QRectF(-50 / 8, -50 * 5 / 8, 50 / 4, 50 / 4);
@@ -47,7 +46,7 @@ void HTaichiCircular::draw(QPainter *painter, QVariantMap param)
         qSwap(rectb2, rectf2);
     }
 
-    painter->rotate(value);
+    painter->rotate(factor * 360);
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(d->foreground);

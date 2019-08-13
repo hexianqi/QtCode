@@ -4,8 +4,6 @@
 #include "HBattery.h"
 #include "HAnimationProgress_p.h"
 
-class QPropertyAnimation;
-
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HBatteryPrivate : public HAnimationProgressPrivate

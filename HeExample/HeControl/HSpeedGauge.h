@@ -60,7 +60,6 @@ protected:
     void paintEvent(QPaintEvent *) override;
     void drawProgress(QPainter *, int radius) override;
     void drawScale(QPainter *, int radius) override;
-    void drawPointer(QPainter *, int radius) override;
 
 private:
     void init();

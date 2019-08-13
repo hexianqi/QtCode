@@ -29,7 +29,7 @@ void HFlatStyleWidget::init()
     style->setStyle(ui->lineEdit_3, 8, 3, 1, "#DCE4EC", "#3498DB");
     style->setStyle(ui->lineEdit_4, 8, 3, 1, "#DCE4EC", "#E74C3C");
     style->setStyle(ui->progressBar_1, 9, 8, 5, "#E8EDF2", "#E74C3C");
-    style->setStyle(ui->progressBar_1, 9, 8, 5, "#E8EDF2", "#1ABC9C");
+    style->setStyle(ui->progressBar_2, 9, 8, 5, "#E8EDF2", "#1ABC9C");
     style->setStyle(ui->horizontalSlider_1, 8, "#E8EDF2", "#1ABC9C", "#1ABC9C");
     style->setStyle(ui->horizontalSlider_2, 10, "#E8EDF2", "#E74C3C", "#E74C3C");
     style->setStyle(ui->verticalSlider_1, 10, "#E8EDF2", "#34495E", "#34495E");

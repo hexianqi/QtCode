@@ -38,11 +38,10 @@ QString HWheelCircular::typeName()
     return "HWheelCircular";
 }
 
-void HWheelCircular::draw(QPainter *painter, QVariantMap param)
+void HWheelCircular::draw(QPainter *painter, double factor, QVariantMap param)
 {
-    HAbstractCircular::draw(painter, param);
-    auto value = param.value("value", 0).toInt();
-    painter->rotate(value);
+    HAbstractCircular::draw(painter, factor, param);
+    painter->rotate(factor * 360);
     drawBackground(painter);
     drawCircle(painter);
 }

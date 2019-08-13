@@ -90,7 +90,7 @@ HCarGauge::PieStyle HCarGauge::pieStyle() const
     return d->pieStyle;
 }
 
-PointerStyle HCarGauge::pointerStyle() const
+HControlType::PointerStyle HCarGauge::pointerStyle() const
 {
     Q_D(const HCarGauge);
     return d->pointerStyle;
@@ -186,7 +186,7 @@ void HCarGauge::setPieStyle(PieStyle value)
     update();
 }
 
-void HCarGauge::setPointerStyle(PointerStyle value)
+void HCarGauge::setPointerStyle(HControlType::PointerStyle value)
 {
     Q_D(HCarGauge);
     if (d->pointerStyle == value)
@@ -236,13 +236,13 @@ void HCarGauge::drawPointer(QPainter *painter, int /*radius*/)
     painter->setBrush(d->pointerColor);
     painter->rotate(d->angleStart);
     painter->rotate(toAngle(d->currentValue));
-    if (d->pointerStyle == PointerStyle_Circle)
+    if (d->pointerStyle == HControlType::PointerStyle_Circle)
         drawPointerCircle(painter);
-    if (d->pointerStyle == PointerStyle_Indicator)
+    if (d->pointerStyle == HControlType::PointerStyle_Indicator)
         drawPointerIndicator(painter);
-    if (d->pointerStyle == PointerStyle_IndicatorR)
+    if (d->pointerStyle == HControlType::PointerStyle_IndicatorR)
         drawPointerIndicatorR(painter);
-    if (d->pointerStyle == PointerStyle_Triangle)
+    if (d->pointerStyle == HControlType::PointerStyle_Triangle)
         drawPointerTriangle(painter);
     drawPointerCenter(painter);
     painter->restore();

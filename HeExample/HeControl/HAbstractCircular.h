@@ -20,7 +20,7 @@ public:
     ~HAbstractCircular() override;
 
 public:
-    void draw(QPainter *, QVariantMap param = QVariantMap()) override;
+    void draw(QPainter *, double factor, QVariantMap param = QVariantMap()) override;
 
 protected:
     HAbstractCircular(HAbstractCircularPrivate &p, QObject *parent = nullptr);

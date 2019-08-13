@@ -26,8 +26,6 @@ class HThermometerRuler : public HAnimationProgress
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HThermometerRuler)
-    Q_ENUMS(BarPosition)
-    Q_ENUMS(TickPosition)
     Q_PROPERTY(int longStep READ longStep WRITE setLongStep)
     Q_PROPERTY(int shortStep READ shortStep WRITE setShortStep)
     Q_PROPERTY(int space READ space WRITE setSpace)
@@ -49,6 +47,7 @@ public:
         BarPosition_Right = 1,      //右侧显示
         BarPosition_Center = 2      //居中显示
     };
+    Q_ENUM(BarPosition)
 
     enum TickPosition
     {
@@ -57,6 +56,7 @@ public:
         TickPosition_Right = 2,     //右侧显示
         TickPosition_Both = 3       //两侧显示
     };
+    Q_ENUM(TickPosition)
 
 public:
     explicit HThermometerRuler(QWidget *parent = nullptr);

@@ -13,7 +13,7 @@ public:
 
 public:
     QColor arcColor = QColor(50, 50, 50);    
-    PointerStyle pointerStyle = PointerStyle_Circle;
+    HControlType::PointerStyle pointerStyle = HControlType::PointerStyle_Circle;
 };
 
 HE_CONTROL_END_NAMESPACE

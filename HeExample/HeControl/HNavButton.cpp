@@ -39,7 +39,7 @@ int HNavButton::paddingBottom() const
     return d_ptr->paddingBottom;
 }
 
-Qt::AlignmentFlag HNavButton::textAlign() const
+Qt::Alignment HNavButton::textAlign() const
 {
     return d_ptr->textAlign;
 }
@@ -199,7 +199,7 @@ void HNavButton::setPaddingBottom(int value)
     update();
 }
 
-void HNavButton::setTextAlign(Qt::AlignmentFlag value)
+void HNavButton::setTextAlign(Qt::Alignment value)
 {
     if (d_ptr->textAlign == value)
         return;
@@ -478,7 +478,7 @@ void HNavButton::drawText(QPainter *painter)
     painter->save();
     painter->setBrush(Qt::NoBrush);
     painter->setPen(color);
-    painter->drawText(d_ptr->paddingLeft, d_ptr->paddingTop, width() - d_ptr->paddingLeft - d_ptr->paddingRight, height() - d_ptr->paddingTop - d_ptr->paddingBottom, d_ptr->textAlign, text());
+    painter->drawText(d_ptr->paddingLeft, d_ptr->paddingTop, width() - d_ptr->paddingLeft - d_ptr->paddingRight, height() - d_ptr->paddingTop - d_ptr->paddingBottom, QFlag(d_ptr->textAlign), text());
     painter->restore();
 }
 
@@ -516,11 +516,13 @@ void HNavButton::drawLine(QPainter *painter)
     {
         start = QPoint(width(), 0);
         end = QPoint(width(), height());
-    } else if (d_ptr->linePosition == Position_Top)
+    }
+    else if (d_ptr->linePosition == Position_Top)
     {
         start = QPoint(0, 0);
         end = QPoint(width(), 0);
-    } else if (d_ptr->linePosition == Position_Bottom)
+    }
+    else if (d_ptr->linePosition == Position_Bottom)
     {
         start = QPoint(0, height());
         end = QPoint(width(), height());
