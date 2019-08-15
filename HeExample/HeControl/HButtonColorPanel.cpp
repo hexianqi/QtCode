@@ -167,7 +167,7 @@ void HButtonColorPanel::initStyle()
 
 void HButtonColorPanel::handleButtonPressed()
 {
-    setCurrentColor(QColor(sender()->objectName().right(7)));
+    setColor(QColor(sender()->objectName().right(7)));
 }
 
 HE_CONTROL_END_NAMESPACE

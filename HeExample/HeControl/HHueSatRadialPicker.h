@@ -45,7 +45,6 @@ protected:
     void mouseMoveEvent(QMouseEvent *) override;
     void resizeEvent(QResizeEvent *) override;
     void paintEvent(QPaintEvent *) override;
-    void drawCrosshair(QPainter *, const QPointF &);
 
 protected:
     QScopedPointer<HHueSatRadialPickerPrivate> d_ptr;

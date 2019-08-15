@@ -160,7 +160,7 @@ void HDemoWidget::addColorPanel()
     la->setMinimumWidth(30);
     l->addWidget(cp, 0, 0);
     l->addWidget(la, 0, 1);
-    connect(cp, &HButtonColorPanel::currentColorChanged, this, [=](QColor color) { la->setStyleSheet(QString("background:%1;").arg(color.name())); });
+    connect(cp, &HButtonColorPanel::colorPicked, this, [=](QColor color) { la->setStyleSheet(QString("background:%1;").arg(color.name())); });
     addTab(l, tr("颜色面板"));
 }
 

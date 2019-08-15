@@ -35,7 +35,6 @@ public:
     int size() const;
     QPixmap pixmap() const;
 
-
 public slots:
     void setColor1(const QColor &value);
     void setColor2(const QColor &value);

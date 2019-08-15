@@ -1,12 +1,15 @@
 /***************************************************************************************************
-**      2019-06-17  HLightButton 高亮发光按钮控件。
+**      2016-10-16  HLightButton 高亮发光按钮控件。
 **                  http://www.qtcn.org/bbs/read-htm-tid-63464.html
-**                  1：可设置文本,居中显示
-**                  2：可设置文本颜色
-**                  3：可设置外边框渐变颜色
-**                  4：可设置里边框渐变颜色
-**                  5：可设置背景色
-**                  6：可设置是否在容器中可移动,当成一个对象使用
+**                  1:可设置文本,居中显示
+**                  2:可设置文本颜色
+**                  3:可设置外边框渐变颜色
+**                  4:可设置里边框渐变颜色
+**                  5:可设置背景色
+**                  6:可设置是否在容器中可移动,当成一个对象使用
+**                  7:可设置是否显示矩形
+**                  8:可设置报警颜色+非报警颜色
+**                  9:可控制启动报警和停止报警,报警时闪烁
 ***************************************************************************************************/
 
 #ifndef HLIGHTBUTTON_H
@@ -24,6 +27,8 @@ class HLightButton : public QWidget
     Q_OBJECT
     Q_PROPERTY(QString text READ text WRITE setText)
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
+    Q_PROPERTY(QColor alarmColor READ alarmColor WRITE setAlarmColor)
+    Q_PROPERTY(QColor normalColor READ normalColor WRITE setNormalColor)
     Q_PROPERTY(QColor borderOutColorStart READ borderOutColorStart WRITE setBorderOutColorStart)
     Q_PROPERTY(QColor borderOutColorEnd READ borderOutColorEnd WRITE setBorderOutColorEnd)
     Q_PROPERTY(QColor borderInColorStart READ borderInColorStart WRITE setBorderInColorStart)
@@ -31,6 +36,7 @@ class HLightButton : public QWidget
     Q_PROPERTY(QColor background READ background WRITE setBackground)
     Q_PROPERTY(QColor overlayColor READ overlayColor WRITE setOverlayColor)
     Q_PROPERTY(bool moveEnable READ isMoveEnable WRITE setMoveEnable)
+    Q_PROPERTY(bool showRect READ isShowRect WRITE setShowRect)
     Q_PROPERTY(bool showOverlay READ isShowOverlay WRITE setShowOverlay)
 
 
@@ -43,6 +49,8 @@ public:
     QSize minimumSizeHint() const override;
     QString text() const;
     QColor textColor() const;
+    QColor alarmColor() const;
+    QColor normalColor() const;
     QColor borderOutColorStart() const;
     QColor borderOutColorEnd() const;
     QColor borderInColorStart() const;
@@ -50,11 +58,14 @@ public:
     QColor background() const;
     QColor overlayColor() const;
     bool isMoveEnable() const;
+    bool isShowRect() const;
     bool isShowOverlay() const;
 
-public:
+public slots:
     void setText(const QString &value);
     void setTextColor(const QColor &value);
+    void setAlarmColor(const QColor &value);
+    void setNormalColor(const QColor &value);
     void setBorderOutColorStart(const QColor &value);
     void setBorderOutColorEnd(const QColor &value);
     void setBorderInColorStart(const QColor &value);
@@ -62,7 +73,11 @@ public:
     void setBackground(const QColor &value);
     void setOverlayColor(const QColor &value);
     void setMoveEnable(bool b);
+    void setShowRect(bool b);
     void setShowOverlay(bool b);
+    void startAlarm();
+    void stopAlarm();
+    void alarm();
 
 protected:
     HLightButton(HLightButtonPrivate &p, QWidget *parent = nullptr);
@@ -70,6 +85,7 @@ protected:
 protected:
     bool eventFilter(QObject *, QEvent *) override;
     void paintEvent(QPaintEvent *) override;
+    void drawRect(QPainter *);
     void drawBorderOut(QPainter *);
     void drawBorderIn(QPainter *);
     void drawBackground(QPainter *);

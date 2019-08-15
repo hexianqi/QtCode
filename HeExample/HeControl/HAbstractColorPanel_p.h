@@ -8,7 +8,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HAbstractColorPanelPrivate
 {
 public:
-    QColor currentColor;
+    QColor color;
 };
 
 HE_CONTROL_END_NAMESPACE

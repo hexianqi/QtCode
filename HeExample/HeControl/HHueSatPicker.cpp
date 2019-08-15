@@ -1,4 +1,5 @@
 #include "HHueSatPicker_p.h"
+#include "HDrawHelper.h"
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QStyleOptionFrame>
@@ -181,24 +182,13 @@ void HHueSatPicker::paintEvent(QPaintEvent *)
     if (option.state & QStyle::State_Enabled)
     {
         painter.drawPixmap(contentsRect().topLeft(), d_ptr->pixmap);
-        drawCrosshair(&painter, d_ptr->point);
+        HDrawHelper::drawCrosshair(&painter, d_ptr->point, 3, Qt::black);
     }
     else
     {
         QIcon icon(d_ptr->pixmap);
         icon.paint(&painter, contentsRect(), Qt::AlignCenter, QIcon::Disabled);
     }
-}
-
-void HHueSatPicker::drawCrosshair(QPainter *painter, const QPointF &point)
-{
-    painter->save();
-    painter->setPen(QPen(Qt::black, 3));
-    painter->drawLine(point - QPointF(0, -9), point - QPointF(0, -3));
-    painter->drawLine(point - QPointF(0, 3),  point - QPointF(0, 9));
-    painter->drawLine(point - QPointF(-9, 0), point - QPointF(-3, 0));
-    painter->drawLine(point - QPointF(3, 0),  point - QPointF(9, 0));
-    painter->restore();
 }
 
 void HHueSatPicker::init()

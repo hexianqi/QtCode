@@ -25,6 +25,33 @@ void HDrawHelper::drawOverlay(QPainter *painter, double radius, QColor color)
     painter->restore();
 }
 
+void HDrawHelper::drawCrosshair(QPainter *painter, QPointF point, int width, QColor color)
+{
+    painter->save();
+    painter->setPen(QPen(color, width));
+    painter->drawLine(point - QPointF(0, -width * 3),  point - QPointF(0, -width));
+    painter->drawLine(point - QPointF(0,  width * 3),  point - QPointF(0,  width));
+    painter->drawLine(point - QPointF(-width * 3, 0),  point - QPointF(-width, 0));
+    painter->drawLine(point - QPointF( width * 3, 0),  point - QPointF( width, 0));
+    painter->restore();
+}
+
+void HDrawHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, QColor color)
+{
+    QString text = "+";
+    auto f = painter->font();
+    f.setPixelSize(size);
+    auto fm = QFontMetrics(f);
+    auto p = point - QPointF(fm.width(text) / 2, -(fm.height() / 4));
+    QPainterPath path;
+    path.addText(p, f, text);
+
+    painter->save();
+    painter->setPen(color);
+    painter->drawPath(path);
+    painter->restore();
+}
+
 QImage HDrawHelper::createTiledImage(QColor color1, QColor color2, int size)
 {
     auto image = QImage(size * 2, size * 2, QImage::Format_ARGB32);
