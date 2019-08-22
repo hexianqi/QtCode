@@ -33,6 +33,24 @@ double HBattery::alarmValue() const
     return d->alarmValue;
 }
 
+int HBattery::borderRadius() const
+{
+    Q_D(const HBattery);
+    return d->borderRadius;
+}
+
+int HBattery::backgroundRadius() const
+{
+    Q_D(const HBattery);
+    return d->backgroundRadius;
+}
+
+int HBattery::headRadius() const
+{
+    Q_D(const HBattery);
+    return d->headRadius;
+}
+
 QColor HBattery::borderColorStart() const
 {
     Q_D(const HBattery);
@@ -75,6 +93,33 @@ void HBattery::setAlarmValue(double value)
     if (qFuzzyCompare(d->alarmValue, value))
         return;
     d->alarmValue = value;
+    update();
+}
+
+void HBattery::setBorderRadius(int value)
+{
+    Q_D(HBattery);
+    if (d->borderRadius == value)
+        return;
+    d->borderRadius = value;
+    update();
+}
+
+void HBattery::setBackgroundRadius(int value)
+{
+    Q_D(HBattery);
+    if (d->backgroundRadius == value)
+        return;
+    d->backgroundRadius = value;
+    update();
+}
+
+void HBattery::setHeadRadius(int value)
+{
+    Q_D(HBattery);
+    if (d->headRadius == value)
+        return;
+    d->headRadius = value;
     update();
 }
 
@@ -141,14 +186,14 @@ void HBattery::paintEvent(QPaintEvent *)
     auto rect1 = QRectF(QPointF(5, 5), QPointF(width() * 9 / 10, height() - 5));
     painter.setPen(QPen(borderColorStart(), 5));
     painter.setBrush(Qt::NoBrush);
-    painter.drawRoundRect(rect1, 10, 20);
+    painter.drawRoundRect(rect1, borderRadius(), borderRadius());
     // 绘制电池头部
     auto rect2 = QRectF(QPointF(rect1.right(), height() / 3), QPointF(width() - 5, height() * 2 / 3));
     auto gradient2 = QLinearGradient(rect2.topLeft(), rect2.bottomLeft());
     gradient2.setColorAt(0.0, borderColorStart());
     gradient2.setColorAt(1.0, borderColorEnd());
     painter.setBrush(gradient2);
-    painter.drawRoundRect(rect2, 15, 25);
+    painter.drawRoundRect(rect2, headRadius(), headRadius());
     // 绘制电量
     auto margin = qMin(width(), height()) / 20;
     auto rect3 = rect1.adjusted(margin, margin, -margin, -margin);
@@ -158,7 +203,7 @@ void HBattery::paintEvent(QPaintEvent *)
     gradient3.setColorAt(1.0, currentValue() <= alarmValue() ? alarmColorEnd() : normalColorEnd());
     painter.setPen(Qt::NoPen);
     painter.setBrush(gradient3);
-    painter.drawRoundRect(rect3, 10, 20);
+    painter.drawRoundRect(rect3, backgroundRadius(), backgroundRadius());
     painter.restore();
 }
 

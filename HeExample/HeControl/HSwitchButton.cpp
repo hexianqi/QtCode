@@ -1,5 +1,8 @@
 #include "HSwitchButton_p.h"
+#include "HDrawHelper.h"
+#include <QtCore/QPropertyAnimation>
 #include <QtGui/QPainter>
+#include <QtGui/QMouseEvent>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -7,12 +10,14 @@ HSwitchButton::HSwitchButton(QWidget *parent) :
     QWidget(parent),
     d_ptr(new HSwitchButtonPrivate)
 {
+    init();
 }
 
 HSwitchButton::HSwitchButton(HSwitchButtonPrivate &p, QWidget *parent) :
     QWidget(parent),
     d_ptr(&p)
 {
+    init();
 }
 
 HSwitchButton::~HSwitchButton()
@@ -21,157 +26,220 @@ HSwitchButton::~HSwitchButton()
 
 QSize HSwitchButton::sizeHint() const
 {
+    return QSize(60, 30);
+}
 
+QSize HSwitchButton::minimumSizeHint() const
+{
+    return QSize(20, 20);
 }
 
 int HSwitchButton::space() const
 {
-    return m_space;
+    return d_ptr->space;
 }
 
 int HSwitchButton::rectRadius() const
 {
-    return m_rectRadius;
+    return d_ptr->rectRadius;
 }
 
 bool HSwitchButton::isChecked() const
 {
-    return m_checked;
+    return d_ptr->checked;
 }
 
 bool HSwitchButton::isShowText() const
 {
-    return m_showText;
+    return d_ptr->showText;
 }
 
 bool HSwitchButton::isShowCircle() const
 {
-    return m_showCircle;
+    return d_ptr->showCircle;
 }
 
-bool HSwitchButton::isAnimation() const
+bool HSwitchButton::isAnimationEnable() const
 {
-    return m_animation;
+    return d_ptr->animationEnable;
 }
 
 HSwitchButton::ButtonStyle HSwitchButton::buttonStyle() const
 {
-    return m_buttonStyle;
+    return d_ptr->buttonStyle;
 }
 
 QColor HSwitchButton::backgroundOff() const
 {
-    return m_backgroundOff;
+    return d_ptr->backgroundOff;
 }
 
 QColor HSwitchButton::backgroundOn() const
 {
-    return m_backgroundOn;
+    return d_ptr->backgroundOn;
 }
 
 QColor HSwitchButton::sliderColorOff() const
 {
-    return m_sliderColorOff;
+    return d_ptr->sliderColorOff;
 }
 
 QColor HSwitchButton::sliderColorOn() const
 {
-    return m_sliderColorOn;
+    return d_ptr->sliderColorOn;
 }
 
 QColor HSwitchButton::textColorOff() const
 {
-    return m_textColorOff;
+    return d_ptr->textColorOff;
 }
 
 QColor HSwitchButton::textColorOn() const
 {
-    return m_textColorOn;
+    return d_ptr->textColorOn;
 }
 
 QString HSwitchButton::textOff() const
 {
-    return m_textOff;
+    return d_ptr->textOff;
 }
 
 QString HSwitchButton::textOn() const
 {
-    return m_textOn;
+    return d_ptr->textOn;
 }
 
 void HSwitchButton::setSpace(int value)
 {
-    m_space = value;
+    if (d_ptr->space == value)
+        return;
+    d_ptr->space = value;
+    d_ptr->pos = isChecked() ? calcPos() : 0;
+    update();
 }
 
 void HSwitchButton::setRectRadius(int value)
 {
-    m_rectRadius = rectRadius;
+    if (d_ptr->rectRadius == value)
+        return;
+    d_ptr->rectRadius = value;
+    update();
 }
 
 void HSwitchButton::setChecked(bool b)
 {
-    m_checked = b;
+    if (d_ptr->checked == b)
+        return;
+    d_ptr->checked = b;
+    startAnimation();
 }
 
 void HSwitchButton::setShowText(bool b)
 {
-    m_showText = showText;
+    if (d_ptr->showText == b)
+        return;
+    d_ptr->showText = b;
+    update();
 }
 
 void HSwitchButton::setShowCircle(bool b)
 {
-    m_showCircle = b;
+    if (d_ptr->showCircle == b)
+        return;
+    d_ptr->showCircle = b;
+    update();
 }
 
-void HSwitchButton::setAnimation(bool b)
+void HSwitchButton::setAnimationEnable(bool b)
 {
-    m_animation = animation;
+    if (d_ptr->animationEnable == b)
+        return;
+    d_ptr->animationEnable = b;
 }
 
 void HSwitchButton::setButtonStyle(ButtonStyle value)
 {
-    m_buttonStyle = value;
+    if (d_ptr->buttonStyle == value)
+        return;
+    d_ptr->buttonStyle = value;
+    update();
 }
 
 void HSwitchButton::setBackgroundOff(const QColor &value)
 {
-    m_backgroundOff = backgroundOff;
+    if (d_ptr->backgroundOff == value)
+        return;
+    d_ptr->backgroundOff = value;
+    update();
 }
 
 void HSwitchButton::setBackgroundOn(const QColor &value)
 {
-    m_backgroundOn = value;
+    if (d_ptr->backgroundOn == value)
+        return;
+    d_ptr->backgroundOn = value;
+    update();
 }
 
 void HSwitchButton::setSliderColorOff(const QColor &value)
 {
-    m_sliderColorOff = sliderColorOff;
+    if (d_ptr->sliderColorOff == value)
+        return;
+    d_ptr->sliderColorOff = value;
+    update();
 }
 
 void HSwitchButton::setSliderColorOn(const QColor &value)
 {
-    m_sliderColorOn = sliderColorOn;
+    if (d_ptr->sliderColorOn == value)
+        return;
+    d_ptr->sliderColorOn = value;
+    update();
 }
 
 void HSwitchButton::setTextColorOff(const QColor &value)
 {
-    m_textColorOff = value;
+    if (d_ptr->textColorOff == value)
+        return;
+    d_ptr->textColorOff = value;
+    update();
 }
 
 void HSwitchButton::setTextColorOn(const QColor &value)
 {
-    m_textColorOn = textColorOn;
+    if (d_ptr->textColorOn == value)
+        return;
+    d_ptr->textColorOn = value;
+    update();
 }
 
 void HSwitchButton::setTextOff(const QString &value)
 {
-    m_textOff = textOff;
+    if (d_ptr->textOff == value)
+        return;
+    d_ptr->textOff = value;
+    update();
 }
 
 void HSwitchButton::setTextOn(const QString &value)
 {
-    m_textOn = value;
+    if (d_ptr->textOn == value)
+        return;
+    d_ptr->textOn = value;
+    update();
+}
+
+void HSwitchButton::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::LeftButton)
+        setChecked(!isChecked());
+    QWidget::mousePressEvent(e);
+}
+
+void HSwitchButton::resizeEvent(QResizeEvent *e)
+{
+    d_ptr->pos = isChecked() ? calcPos() : 0;
+    return QWidget::resizeEvent(e);
 }
 
 void HSwitchButton::paintEvent(QPaintEvent *)
@@ -179,6 +247,8 @@ void HSwitchButton::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     drawBackground(&painter);
+    drawText(&painter);
+    drawCircle(&painter);
     drawSlider(&painter);
 }
 
@@ -192,191 +262,140 @@ void HSwitchButton::drawBackground(QPainter *painter)
     painter->setPen(Qt::NoPen);
     painter->setBrush(color);
 
-
+    auto side = qMin(width() / 2, height());
+    auto y = rect().center().y() - side / 2;
     if (buttonStyle() == ButtonStyle_CircleIn)
     {
-        auto rect = QRect(0, 0, width(), height());
-        auto side = qMin(rect.width(), rect.height());
         QPainterPath path1, path2, path3;
-        path1.addEllipse(rect.x(), rect.y(), side, side);
-        path2.addEllipse(rect.width() - side, rect.y(), side, side);
-        path3.addRect(rect.x() + side / 2, rect.y(), rect.width() - side, rect.height());
+        path1.addEllipse(0, y, side, side);
+        path2.addEllipse(width() - side, y, side, side);
+        path3.addRect(side / 2, y, width() - side, side);
         painter->drawPath(path3 + path1 + path2);
     }
     else if (buttonStyle() == ButtonStyle_CircleOut)
-        painter->drawRoundedRect(height() / 2, space(), width() - height(), height() - space() * 2, rectRadius(), rectRadius());
+        painter->drawRoundedRect(side / 2, y + space(), width() - side, side - space() * 2, rectRadius(), rectRadius());
     else if (buttonStyle() == ButtonStyle_Rect)
         painter->drawRoundedRect(rect(), rectRadius(), rectRadius());
 
-
-
-
     painter->restore();
+}
 
+void HSwitchButton::drawText(QPainter *painter)
+{
+    if (!isShowText())
+        return;
+    if (buttonStyle() != ButtonStyle_Rect && buttonStyle() != ButtonStyle_CircleIn)
+        return;
 
+    auto x = buttonStyle() == ButtonStyle_Rect ? width() / 2 : qMin(width() / 2, height()) - space() * 2 ;
+    auto text = textOn().length() > textOff().length() ? textOn() : textOff();
+    auto f = HDrawHelper::adjustFontSize(painter, text, x);
+    painter->save();
+    painter->setFont(f);
+    if (isChecked())
+    {
+        painter->setPen(textColorOn());
+        painter->drawText(QRect(0, 0, width() - x, height()), Qt::AlignCenter, textOn());
+    }
+    else
+    {
+        painter->setPen(textColorOff());
+        painter->drawText(QRect(x, 0, width() - x, height()), Qt::AlignCenter, textOff());
+    }
+    painter->restore();
+}
 
-    //    if (buttonStyle == ButtonStyle_Rect || buttonStyle == ButtonStyle_CircleIn) {
-    //        //绘制文本和小圆,互斥
-    //        if (showText) {
-    //            int sliderWidth = qMin(width(), height()) - space * 2;
-    //            if (buttonStyle == ButtonStyle_Rect) {
-    //                sliderWidth = width() / 2 - 5;
-    //            } else if (buttonStyle == ButtonStyle_CircleIn) {
-    //                sliderWidth -= 5;
-    //            }
+void HSwitchButton::drawCircle(QPainter *painter)
+{
+    if (!isShowCircle())
+        return;
+    if (buttonStyle() != ButtonStyle_Rect && buttonStyle() != ButtonStyle_CircleIn)
+        return;
 
-    //            if (checked) {
-    //                QRect textRect(0, 0, width() - sliderWidth, height());
-    //                painter->setPen(textColorOn);
-    //                painter->drawText(textRect, Qt::AlignCenter, textOn);
-    //            } else {
-    //                QRect textRect(sliderWidth, 0, width() - sliderWidth, height());
-    //                painter->setPen(textColorOff);
-    //                painter->drawText(textRect, Qt::AlignCenter, textOff);
-    //            }
-    //        } else if (showCircle) {
-    //            int side = qMin(width(), height()) / 2;
-    //            int y = (height() - side) / 2;
+    auto side = qMin(width() / 2, height()) / 2;
+    auto y = rect().center().y() - side / 2;
+    painter->save();
+    if (isChecked())
+    {
+        painter->setPen(QPen(textColorOn(), 2));
+        painter->setBrush(Qt::NoBrush);
+        painter->drawEllipse(QRectF(side * 0.5, y, side, side));
+    }
+    else
+    {
+        painter->setPen(QPen(textColorOff(), 2));
+        painter->setBrush(Qt::NoBrush);
+        painter->drawEllipse(QRectF(width() - side * 1.5, y, side, side));
+    }
+    painter->restore();
+}
 
-    //            if (checked) {
-    //                QRect circleRect(side / 2, y, side, side);
-    //                QPen pen(textColorOn, 2);
-    //                painter->setPen(pen);
-    //                painter->setBrush(Qt::NoBrush);
-    //                painter->drawEllipse(circleRect);
-    //            } else {
-    //                QRect circleRect(width() - (side * 1.5), y, side, side);
-    //                QPen pen(textColorOff, 2);
-    //                painter->setPen(pen);
-    //                painter->setBrush(Qt::NoBrush);
-    //                painter->drawEllipse(circleRect);
-    //            }
-    //        }
-    //    }
+void HSwitchButton::drawSlider(QPainter *painter)
+{
+    painter->save();
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(isChecked() ? sliderColorOn() : sliderColorOff());
+    if (buttonStyle() == ButtonStyle_CircleIn)
+    {
+        auto side = qMin(width() / 2, height()) - space() * 2;
+        auto y = rect().center().y() - side / 2;
+        painter->drawEllipse(d_ptr->pos + space(), y, side, side);
+    }
+    else if (buttonStyle() == ButtonStyle_CircleOut)
+    {
+        auto side = qMin(width() / 2, height());
+        auto y = rect().center().y() - side / 2;
+        auto rect = QRect(d_ptr->pos, y, side, side);
+        auto color1 = (isChecked() ? Qt::white : backgroundOff());
+        auto color2 = (isChecked() ? sliderColorOn() : sliderColorOff());
+        auto gradient = QRadialGradient(rect.center(), side / 2);
+        gradient.setColorAt(0.0, isChecked() ? color1 : color2);
+        gradient.setColorAt(0.5, isChecked() ? color1 : color2);
+        gradient.setColorAt(0.6, isChecked() ? color2 : color1);
+        gradient.setColorAt(1.0, isChecked() ? color2 : color1);
+        painter->setBrush(gradient);
+        painter->drawEllipse(rect);
+    }
+    else if (buttonStyle() == ButtonStyle_Rect)
+    {
+        painter->drawRoundedRect(d_ptr->pos + space(), space(), width() / 2 - space() * 2 , height() - space() * 2, rectRadius(), rectRadius());
+    }
+    painter->restore();
+}
 
+void HSwitchButton::init()
+{
+    d_ptr->animation = new QPropertyAnimation(this);
+    d_ptr->animation->setTargetObject(this);
+    d_ptr->animation->setEasingCurve(QEasingCurve::Linear);
+    connect(d_ptr->animation, &QPropertyAnimation::valueChanged, this, [=](QVariant value) { d_ptr->pos = value.toInt();  update();});
+}
 
+void HSwitchButton::startAnimation()
+{
+    auto pos = calcPos();
+    auto start = isChecked() ? 0 : pos;
+    auto end = isChecked() ? pos : 0;
+    if (isAnimationEnable())
+    {
+        d_ptr->animation->setStartValue(start);
+        d_ptr->animation->setEndValue(end);
+        d_ptr->animation->start();
+    }
+    else
+    {
+        d_ptr->pos = end;
+        update();
+    }
+}
 
+int HSwitchButton::calcPos()
+{
+    if (buttonStyle() == ButtonStyle_Rect)
+        return width() / 2;
+    if (buttonStyle() == ButtonStyle_CircleIn || buttonStyle() == ButtonStyle_CircleOut)
+        return width() - qMin(width() / 2, height());
+    return 0;
 }
 
 HE_CONTROL_END_NAMESPACE
-
-
-//void SwitchButton::drawBg(QPainter *painter)
-//{
-//    painter->save();
-//    painter->setPen(Qt::NoPen);
-
-//    QColor bgColor = checked ? bgColorOn : bgColorOff;
-//    if (!isEnabled()) {
-//        bgColor.setAlpha(60);
-//    }
-
-//    painter->setBrush(bgColor);
-
-//    if (buttonStyle == ButtonStyle_Rect) {
-//        painter->drawRoundedRect(rect(), rectRadius, rectRadius);
-//    } else if (buttonStyle == ButtonStyle_CircleIn) {
-//        QRect rect(0, 0, width(), height());
-//        //半径为高度的一半
-//        int side = qMin(rect.width(), rect.height());
-
-//        //左侧圆
-//        QPainterPath path1;
-//        path1.addEllipse(rect.x(), rect.y(), side, side);
-//        //右侧圆
-//        QPainterPath path2;
-//        path2.addEllipse(rect.width() - side, rect.y(), side, side);
-//        //中间矩形
-//        QPainterPath path3;
-//        path3.addRect(rect.x() + side / 2, rect.y(), rect.width() - side, rect.height());
-
-//        QPainterPath path;
-//        path = path3 + path1 + path2;
-//        painter->drawPath(path);
-//    } else if (buttonStyle == ButtonStyle_CircleOut) {
-//        QRect rect(height() / 2, space, width() - height(), height() - space * 2);
-//        painter->drawRoundedRect(rect, rectRadius, rectRadius);
-//    }
-
-//    if (buttonStyle == ButtonStyle_Rect || buttonStyle == ButtonStyle_CircleIn) {
-//        //绘制文本和小圆,互斥
-//        if (showText) {
-//            int sliderWidth = qMin(width(), height()) - space * 2;
-//            if (buttonStyle == ButtonStyle_Rect) {
-//                sliderWidth = width() / 2 - 5;
-//            } else if (buttonStyle == ButtonStyle_CircleIn) {
-//                sliderWidth -= 5;
-//            }
-
-//            if (checked) {
-//                QRect textRect(0, 0, width() - sliderWidth, height());
-//                painter->setPen(textColorOn);
-//                painter->drawText(textRect, Qt::AlignCenter, textOn);
-//            } else {
-//                QRect textRect(sliderWidth, 0, width() - sliderWidth, height());
-//                painter->setPen(textColorOff);
-//                painter->drawText(textRect, Qt::AlignCenter, textOff);
-//            }
-//        } else if (showCircle) {
-//            int side = qMin(width(), height()) / 2;
-//            int y = (height() - side) / 2;
-
-//            if (checked) {
-//                QRect circleRect(side / 2, y, side, side);
-//                QPen pen(textColorOn, 2);
-//                painter->setPen(pen);
-//                painter->setBrush(Qt::NoBrush);
-//                painter->drawEllipse(circleRect);
-//            } else {
-//                QRect circleRect(width() - (side * 1.5), y, side, side);
-//                QPen pen(textColorOff, 2);
-//                painter->setPen(pen);
-//                painter->setBrush(Qt::NoBrush);
-//                painter->drawEllipse(circleRect);
-//            }
-//        }
-//    }
-
-//    painter->restore();
-//}
-
-//void SwitchButton::drawSlider(QPainter *painter)
-//{
-//    painter->save();
-//    painter->setPen(Qt::NoPen);
-
-//    if (!checked) {
-//        painter->setBrush(sliderColorOff);
-//    } else {
-//        painter->setBrush(sliderColorOn);
-//    }
-
-//    if (buttonStyle == ButtonStyle_Rect) {
-//        int sliderWidth = width() / 2 - space * 2;
-//        int sliderHeight = height() - space * 2;
-//        QRect sliderRect(startX + space, space, sliderWidth , sliderHeight);
-//        painter->drawRoundedRect(sliderRect, rectRadius, rectRadius);
-//    } else if (buttonStyle == ButtonStyle_CircleIn) {
-//        QRect rect(0, 0, width(), height());
-//        int sliderWidth = qMin(rect.width(), rect.height()) - space * 2;
-//        QRect sliderRect(startX + space, space, sliderWidth, sliderWidth);
-//        painter->drawEllipse(sliderRect);
-//    } else if (buttonStyle == ButtonStyle_CircleOut) {
-//        int sliderWidth = this->height();
-//        QRect sliderRect(startX, 0, sliderWidth, sliderWidth);
-
-//        QColor color1 = (checked ? Qt::white : bgColorOff);
-//        QColor color2 = (checked ? sliderColorOn : sliderColorOff);
-
-//        QRadialGradient radialGradient(sliderRect.center(), sliderWidth / 2);
-//        radialGradient.setColorAt(0, checked ? color1 : color2);
-//        radialGradient.setColorAt(0.5, checked ? color1 : color2);
-//        radialGradient.setColorAt(0.6, checked ? color2 : color1);
-//        radialGradient.setColorAt(1.0, checked ? color2 : color1);
-//        painter->setBrush(radialGradient);
-
-//        painter->drawEllipse(sliderRect);
-//    }
-
-//    painter->restore();
-//}

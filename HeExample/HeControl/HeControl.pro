@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets serialport network
+QT          += widgets serialport network xml svg
 
 TEMPLATE    = lib
 
@@ -25,13 +25,15 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 
 SOURCES     += \
             HControlHelper.cpp \
-            HDrawHelper.cpp
+            HDrawHelper.cpp \
+    HXmlHelper.cpp
 
 HEADERS     += \
             HControlGlobal.h \
             HControlHelper.h \
             HDrawHelper.h \
-            HControlType.h
+            HControlType.h \
+    HXmlHelper.h
 
 RESOURCES   = HeControl.qrc \
               qss.qrc

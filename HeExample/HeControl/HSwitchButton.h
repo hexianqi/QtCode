@@ -28,7 +28,7 @@ class HSwitchButton : public QWidget
     Q_PROPERTY(bool checked READ isChecked WRITE setChecked)
     Q_PROPERTY(bool showText READ isShowText WRITE setShowText)
     Q_PROPERTY(bool showCircle READ isShowCircle WRITE setShowCircle)
-    Q_PROPERTY(bool animation READ isAnimation WRITE setAnimation)
+    Q_PROPERTY(bool animationEnable READ isAnimationEnable WRITE setAnimationEnable)
     Q_PROPERTY(ButtonStyle buttonStyle READ buttonStyle WRITE setButtonStyle)
 
     Q_PROPERTY(QColor backgroundOff READ backgroundOff WRITE setBackgroundOff)
@@ -65,7 +65,7 @@ public:
     bool isChecked() const;
     bool isShowText() const;
     bool isShowCircle() const;
-    bool isAnimation() const;
+    bool isAnimationEnable() const;
     ButtonStyle buttonStyle() const;
     QColor backgroundOff() const;
     QColor backgroundOn() const;
@@ -82,7 +82,7 @@ public slots:
     void setChecked(bool b);
     void setShowText(bool b);
     void setShowCircle(bool b);
-    void setAnimation(bool b);
+    void setAnimationEnable(bool b);
     void setButtonStyle(ButtonStyle value);
     void setBackgroundOff(const QColor &value);
     void setBackgroundOn(const QColor &value);
@@ -101,6 +101,8 @@ protected:
     void resizeEvent(QResizeEvent *) override;
     void paintEvent(QPaintEvent *) override;
     void drawBackground(QPainter *);
+    void drawText(QPainter *);
+    void drawCircle(QPainter *);
     void drawSlider(QPainter *);
 
 protected:
@@ -108,21 +110,10 @@ protected:
 
 private:
     void init();
-    void updateValue();
+    void startAnimation();
+    int calcPos();
 };
 
 HE_CONTROL_END_NAMESPACE
 
 #endif // HSWITCHBUTTON_H
-
-//    int step;                       //每次移动的步长
-//    int startX;                     //滑块开始X轴坐标
-//    int endX;                       //滑块结束X轴坐标
-//    QTimer *timer;                  //定时器绘制
-
-//private slots:
-//    void change();
-//    void updateValue();
-//};
-
-//#endif // SWITCHBUTTON_H

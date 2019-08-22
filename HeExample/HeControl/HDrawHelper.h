@@ -7,13 +7,14 @@
 
 #include "HControlGlobal.h"
 
-class QPainter;
+class QSize;
+class QPointF;
 class QColor;
+class QPen;
+class QPainter;
 class QPixmap;
 class QImage;
-class QSize;
-class QPen;
-class QPointF;
+class QFont;
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -30,7 +31,8 @@ public:
     static QImage createTiledImage(QColor color1, QColor color2, int size);
     // 创建十字图片
     static QImage createCrossImage(QSize size, QPen pen);
-
+    // 自动调节文字大小
+    static QFont adjustFontSize(QPainter *, QString text, double width);
 };
 
 HE_CONTROL_END_NAMESPACE

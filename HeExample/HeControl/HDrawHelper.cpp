@@ -81,4 +81,14 @@ QImage HDrawHelper::createCrossImage(QSize size, QPen pen)
     return image;
 }
 
+QFont HDrawHelper::adjustFontSize(QPainter *painter, QString text, double width)
+{
+    auto f = painter->font();
+    f.setPointSize(10);
+    auto fm = QFontMetricsF(f);
+    auto textWidth = fm.width(text);
+    f.setPointSizeF(f.pointSize() * width / textWidth);
+    return f;
+}
+
 HE_CONTROL_END_NAMESPACE

@@ -42,6 +42,7 @@ private:
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
     void addNav();
+    void addPanel();
     void addProgressBar();
     void addRuler();
     void addww();
