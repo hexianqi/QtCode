@@ -8,6 +8,7 @@
 #include "HAlgorithmGlobal.h"
 
 class QPointF;
+class QColor;
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -26,6 +27,8 @@ public:
     // 色容差转换
     static QVector<double> abt2g(QVector<double> value);
     static QVector<double> g2abt(QVector<double> value);
+    // 波长转颜色
+    static QColor wave2color(double wave, double gamma = 0.8, double intensityMax = 255.0);
 };
 
 HE_ALGORITHM_END_NAMESPACE
