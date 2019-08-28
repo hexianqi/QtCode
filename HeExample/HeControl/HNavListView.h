@@ -23,243 +23,161 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HNavListViewPrivate;
 
-class HNavListView : public QWidget
+class HNavListView : public QListView
 {
     Q_OBJECT
+    Q_PROPERTY(QString items READ items WRITE setItems)
+    Q_PROPERTY(bool rightIconVisible READ isRightIconVisible WRITE setRightIconVisible)
+    Q_PROPERTY(bool tipVisible READ isTipVisible WRITE setTipVisible)
+    Q_PROPERTY(int tipWidth READ tipWidth WRITE setTipWidth)
+
+    Q_PROPERTY(bool separateVisible READ isSeparateVisible WRITE setSeparateVisible)
+    Q_PROPERTY(int separateHeight READ separateHeight WRITE setSeparateHeight)
+    Q_PROPERTY(QColor separateColor READ separateColor WRITE setSeparateColor)
+
+    Q_PROPERTY(bool lineVisible READ isLineVisible WRITE setLineVisible)
+    Q_PROPERTY(bool lineLeft READ isLineLeft WRITE setLineLeft)
+    Q_PROPERTY(int lineWidth READ lineWidth WRITE setLineWidth)
+    Q_PROPERTY(QColor lineColor READ lineColor WRITE setLineColor)
+
+    Q_PROPERTY(bool triangleVisible READ isTriangleVisible WRITE setTriangleVisible)
+    Q_PROPERTY(bool triangleLeft READ isTriangleLeft WRITE setTriangleLeft)
+    Q_PROPERTY(int triangleWidth READ triangleWidth WRITE setTriangleWidth)
+    Q_PROPERTY(QColor triangleColor READ triangleColor WRITE setTriangleColor)
+
+    Q_PROPERTY(int parentMargin READ parentMargin WRITE setParentMargin)
+    Q_PROPERTY(int parentIconMargin READ parentIconMargin WRITE setParentIconMargin)
+    Q_PROPERTY(int parentFontSize READ parentFontSize WRITE setParentFontSize)
+    Q_PROPERTY(int parentHeight READ parentHeight WRITE setParentHeight)
+    Q_PROPERTY(QColor parentNormalColor READ parentNormalColor WRITE setParentNormalColor)
+    Q_PROPERTY(QColor parentSelectedColor READ parentSelectedColor WRITE setParentSelectedColor)
+    Q_PROPERTY(QColor parentHoverColor READ parentHoverColor WRITE setParentHoverColor)
+    Q_PROPERTY(QColor parentTextNormalColor READ parentTextNormalColor WRITE setParentTextNormalColor)
+    Q_PROPERTY(QColor parentTextSelectedColor READ parentTextSelectedColor WRITE setParentTextSelectedColor)
+    Q_PROPERTY(QColor parentTextHoverColor READ parentTextHoverColor WRITE setParentTextHoverColor)
+
+    Q_PROPERTY(int childMargin READ childMargin WRITE setChildMargin)
+    Q_PROPERTY(int childIconMargin READ childIconMargin WRITE setChildIconMargin)
+    Q_PROPERTY(int childFontSize READ childFontSize WRITE setChildFontSize)
+    Q_PROPERTY(int childHeight READ childHeight WRITE setChildHeight)
+    Q_PROPERTY(QColor childNormalColor READ childNormalColor WRITE setChildNormalColor)
+    Q_PROPERTY(QColor childSelectedColor READ childSelectedColor WRITE setChildSelectedColor)
+    Q_PROPERTY(QColor childHoverColor READ childHoverColor WRITE setChildHoverColor)
+    Q_PROPERTY(QColor childTextNormalColor READ childTextNormalColor WRITE setChildTextNormalColor)
+    Q_PROPERTY(QColor childTextSelectedColor READ childTextSelectedColor WRITE setChildTextSelectedColor)
+    Q_PROPERTY(QColor childTextHoverColor READ childTextHoverColor WRITE setChildTextHoverColor)
+
+    Q_PROPERTY(ExpendMode expendMode READ expendMode WRITE setExpendMode)
+
+public:
+    enum ExpendMode
+    {
+        ExpendMode_SingleClick = 0, //单击模式
+        ExpendMode_DoubleClick = 1, //双击模式
+        ExpendMode_NoClick = 2,     //不可单击双击
+    };
+    Q_ENUM(ExpendMode)
+
 
 public:
     explicit HNavListView(QWidget *parent = nullptr);
     ~HNavListView() override;
+
+signals:
+    void pressed(const QString &text, const QString &parentText);
+
+public:
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
+    QString items() const;
+    bool isRightIconVisible() const;
+    bool isTipVisible() const;
+    int tipWidth() const;
+    bool isSeparateVisible() const;
+    int separateHeight() const;
+    QColor separateColor() const;
+    bool isLineVisible() const;
+    bool isLineLeft() const;
+    int lineWidth() const;
+    QColor lineColor() const;
+    bool isTriangleVisible() const;
+    bool isTriangleLeft() const;    
+    int triangleWidth() const;
+    QColor triangleColor() const;
+    int parentMargin() const;
+    int parentIconMargin() const;
+    int parentFontSize() const;
+    int parentHeight() const;
+    QColor parentNormalColor() const;
+    QColor parentSelectedColor() const;
+    QColor parentHoverColor() const;
+    QColor parentTextNormalColor() const;
+    QColor parentTextSelectedColor() const;
+    QColor parentTextHoverColor() const;
+    int childMargin() const;
+    int childIconMargin() const;
+    int childFontSize() const;
+    int childHeight() const;
+    QColor childNormalColor() const;
+    QColor childSelectedColor() const;
+    QColor childHoverColor() const;
+    QColor childTextNormalColor() const;
+    QColor childTextSelectedColor() const;
+    QColor childTextHoverColor() const;
+    ExpendMode expendMode() const;
+
+public slots:
+    void readData(const QString &fileName);
+    void setCurrentRow(int value);
+    void setItems(const QString &value);
+    void setRightIconVisible(bool b);
+    void setTipVisible(bool b);
+    void setTipWidth(int value);
+    void setSeparateVisible(bool b);
+    void setSeparateHeight(int value);
+    void setSeparateColor(const QColor &value);
+    void setLineVisible(bool b);
+    void setLineLeft(bool b);
+    void setLineWidth(int value);
+    void setLineColor(const QColor &value);
+    void setTriangleVisible(bool b);
+    void setTriangleLeft(bool b);   
+    void setTriangleWidth(int value);
+    void setTriangleColor(const QColor &value);
+    void setParentMargin(int value);
+    void setParentIconMargin(int value);
+    void setParentFontSize(int value);
+    void setParentHeight(int value);
+    void setParentNormalColor(const QColor &value);
+    void setParentSelectedColor(const QColor &value);
+    void setParentHoverColor(const QColor &value);
+    void setParentTextNormalColor(const QColor &value);
+    void setParentTextSelectedColor(const QColor &value);
+    void setParentTextHoverColor(const QColor &value);
+    void setChildMargin(int value);
+    void setChildIconMargin(int value);
+    void setChildFontSize(int value);
+    void setChildHeight(int value);
+    void setChildNormalColor(const QColor &value);
+    void setChildSelectedColor(const QColor &value);
+    void setChildHoverColor(const QColor &value);
+    void setChildTextNormalColor(const QColor &value);
+    void setChildTextSelectedColor(const QColor &value);
+    void setChildTextHoverColor(const QColor &value);
+    void setExpendMode(ExpendMode value);
 
 protected:
     HNavListView(HNavListViewPrivate &p, QWidget *parent = nullptr);
 
 protected:
     QScopedPointer<HNavListViewPrivate> d_ptr;
+
+private:
+    void init();
+    void handleClicked(const QModelIndex &index);
+    void refreshItems();
 };
 
 HE_CONTROL_END_NAMESPACE
 
 #endif // HNAVLISTVIEW_H
-
-//{
-//    Q_OBJECT
-//    Q_ENUMS(ExpendMode)
-
-//    Q_PROPERTY(QString items READ getItems WRITE setItems)
-//    Q_PROPERTY(bool rightIconVisible READ getRightIconVisible WRITE setRightIconVisible)
-//    Q_PROPERTY(bool tipVisible READ getTipVisible WRITE setTipVisible)
-//    Q_PROPERTY(int tipWidth READ getTipWidth WRITE setTipWidth)
-
-//    Q_PROPERTY(bool separateVisible READ getSeparateVisible WRITE setSeparateVisible)
-//    Q_PROPERTY(int separateHeight READ getSeparateHeight WRITE setSeparateHeight)
-//    Q_PROPERTY(QColor separateColor READ getSeparateColor WRITE setSeparateColor)
-
-//    Q_PROPERTY(bool lineLeft READ getLineLeft WRITE setLineLeft)
-//    Q_PROPERTY(bool lineVisible READ getLineVisible WRITE setLineVisible)
-//    Q_PROPERTY(int lineWidth READ getLineWidth WRITE setLineWidth)
-//    Q_PROPERTY(QColor lineColor READ getLineColor WRITE setLineColor)
-
-//    Q_PROPERTY(bool triangleLeft READ getTriangleLeft WRITE setTriangleLeft)
-//    Q_PROPERTY(bool triangleVisible READ getTriangleVisible WRITE setTriangleVisible)
-//    Q_PROPERTY(int triangleWidth READ getTriangleWidth WRITE setTriangleWidth)
-//    Q_PROPERTY(QColor triangleColor READ getTriangleColor WRITE setTriangleColor)
-
-//    Q_PROPERTY(int parentIconMargin READ getParentIconMargin WRITE setParentIconMargin)
-//    Q_PROPERTY(int parentMargin READ getParentMargin WRITE setParentMargin)
-//    Q_PROPERTY(int parentFontSize READ getParentFontSize WRITE setParentFontSize)
-//    Q_PROPERTY(int parentHeight READ getParentHeight WRITE setParentHeight)
-//    Q_PROPERTY(QColor parentBgNormalColor READ getParentBgNormalColor WRITE setParentBgNormalColor)
-//    Q_PROPERTY(QColor parentBgSelectedColor READ getParentBgSelectedColor WRITE setParentBgSelectedColor)
-//    Q_PROPERTY(QColor parentBgHoverColor READ getParentBgHoverColor WRITE setParentBgHoverColor)
-//    Q_PROPERTY(QColor parentTextNormalColor READ getParentTextNormalColor WRITE setParentTextNormalColor)
-//    Q_PROPERTY(QColor parentTextSelectedColor READ getParentTextSelectedColor WRITE setParentTextSelectedColor)
-//    Q_PROPERTY(QColor parentTextHoverColor READ getParentTextHoverColor WRITE setParentTextHoverColor)
-
-//    Q_PROPERTY(int childIconMargin READ getChildIconMargin WRITE setChildIconMargin)
-//    Q_PROPERTY(int childMargin READ getChildMargin WRITE setChildMargin)
-//    Q_PROPERTY(int childFontSize READ getChildFontSize WRITE setChildFontSize)
-//    Q_PROPERTY(int childHeight READ getChildHeight WRITE setChildHeight)
-//    Q_PROPERTY(QColor childBgNormalColor READ getChildBgNormalColor WRITE setChildBgNormalColor)
-//    Q_PROPERTY(QColor childBgSelectedColor READ getChildBgSelectedColor WRITE setChildBgSelectedColor)
-//    Q_PROPERTY(QColor childBgHoverColor READ getChildBgHoverColor WRITE setChildBgHoverColor)
-//    Q_PROPERTY(QColor childTextNormalColor READ getChildTextNormalColor WRITE setChildTextNormalColor)
-//    Q_PROPERTY(QColor childTextSelectedColor READ getChildTextSelectedColor WRITE setChildTextSelectedColor)
-//    Q_PROPERTY(QColor childTextHoverColor READ getChildTextHoverColor WRITE setChildTextHoverColor)
-
-//    Q_PROPERTY(ExpendMode expendMode READ getExpendMode WRITE setExpendMode)
-
-//public:
-//    //节点展开模式
-//    enum ExpendMode {
-//        ExpendMode_SingleClick = 0, //单击模式
-//        ExpendMode_DoubleClick = 1, //双击模式
-//        ExpendMode_NoClick = 2,     //不可单击双击
-//    };
-
-//    NavListView(QWidget *parent = 0);
-//    ~NavListView();
-
-//private:
-//    NavModel *model;                //数据模型
-//    NavDelegate *delegate;          //数据委托
-//    QStringList parentItem;         //父节点数据集合
-//    QList<QStringList> childItem;   //子节点数据
-
-//    QString items;                  //节点集合
-//    bool rightIconVisible;          //右侧图标是否显示
-//    bool tipVisible;                //是否显示提示信息
-//    int tipWidth;                   //提示信息宽度
-
-//    bool separateVisible;           //是否显示行分隔符
-//    int separateHeight;             //行分隔符高度
-//    QColor separateColor;           //行分隔符颜色
-
-//    bool lineLeft;                  //是否显示在左侧
-//    bool lineVisible;               //是否显示线条
-//    int lineWidth;                  //线条宽度
-//    QColor lineColor;               //线条颜色
-
-//    bool triangleLeft;              //是否显示在左侧
-//    bool triangleVisible;           //是否显示三角形
-//    int triangleWidth;              //三角形宽度
-//    QColor triangleColor;           //三角形颜色
-
-//    int parentIconMargin;           //父节点图标边距
-//    int parentMargin;               //父节点边距
-//    int parentFontSize;             //父节点字体大小
-//    int parentHeight;               //父节点高度
-//    QColor parentBgNormalColor;     //父节点正常背景色
-//    QColor parentBgSelectedColor;   //父节点选中背景色
-//    QColor parentBgHoverColor;      //父节点悬停背景色
-//    QColor parentTextNormalColor;   //父节点正常文字颜色
-//    QColor parentTextSelectedColor; //父节点选中文字颜色
-//    QColor parentTextHoverColor;    //父节点悬停文字颜色
-
-//    int childIconMargin;            //子节点图标边距
-//    int childMargin;                //子节点边距
-//    int childFontSize;              //子节点字体大小
-//    int childHeight;                //子节点高度
-//    QColor childBgNormalColor;      //子节点正常背景色
-//    QColor childBgSelectedColor;    //子节点选中背景色
-//    QColor childBgHoverColor;       //子节点悬停背景色
-//    QColor childTextNormalColor;    //子节点正常文字颜色
-//    QColor childTextSelectedColor;  //子节点选中文字颜色
-//    QColor childTextHoverColor;     //子节点悬停文字颜色
-
-//    ExpendMode expendMode;          //节点展开模式 单击/双击/禁用
-
-//private slots:
-//    void pressed(const QModelIndex &data);
-//    void setData(const QStringList &listItems);
-
-//public:
-//    QString getItems()              const;
-//    bool getRightIconVisible()      const;
-//    bool getTipVisible()            const;
-//    int getTipWidth()               const;
-
-//    bool getSeparateVisible()       const;
-//    int getSeparateHeight()         const;
-//    QColor getSeparateColor()       const;
-
-//    bool getLineLeft()              const;
-//    bool getLineVisible()           const;
-//    int getLineWidth()              const;
-//    QColor getLineColor()           const;
-
-//    bool getTriangleLeft()          const;
-//    bool getTriangleVisible()       const;
-//    int getTriangleWidth()          const;
-//    QColor getTriangleColor()       const;
-
-//    int getParentIconMargin()       const;
-//    int getParentMargin()           const;
-//    int getParentFontSize()         const;
-//    int getParentHeight()           const;
-//    QColor getParentBgNormalColor() const;
-//    QColor getParentBgSelectedColor()const;
-//    QColor getParentBgHoverColor()  const;
-//    QColor getParentTextNormalColor()const;
-//    QColor getParentTextSelectedColor()const;
-//    QColor getParentTextHoverColor()const;
-
-//    int getChildIconMargin()        const;
-//    int getChildMargin()            const;
-//    int getChildFontSize()          const;
-//    int getChildHeight()            const;
-//    QColor getChildBgNormalColor()  const;
-//    QColor getChildBgSelectedColor()const;
-//    QColor getChildBgHoverColor()   const;
-//    QColor getChildTextNormalColor()const;
-//    QColor getChildTextSelectedColor()const;
-//    QColor getChildTextHoverColor() const;
-
-//    ExpendMode getExpendMode()      const;
-
-//    QSize sizeHint()                const;
-//    QSize minimumSizeHint()         const;
-
-//public Q_SLOTS:
-//    //设置节点数据
-//    void setItems(const QString &items);
-//    //设置选中指定行
-//    void setCurrentRow(int row);
-//    //设置父节点右侧图标是否显示
-//    void setRightIconVisible(bool rightIconVisible);
-
-//    //设置提示信息 是否显示+宽度
-//    void setTipVisible(bool tipVisible);
-//    void setTipWidth(int tipWidth);
-
-//    //设置行分隔符 是否显示+高度+颜色
-//    void setSeparateVisible(bool separateVisible);
-//    void setSeparateHeight(int separateHeight);
-//    void setSeparateColor(const QColor &separateColor);
-
-//    //设置线条 位置+可见+宽度+颜色
-//    void setLineLeft(bool lineLeft);
-//    void setLineVisible(bool lineVisible);
-//    void setLineWidth(int lineWidth);
-//    void setLineColor(const QColor &lineColor);
-
-//    //设置三角形 位置+可见+宽度+颜色
-//    void setTriangleLeft(bool triangleLeft);
-//    void setTriangleVisible(bool triangleVisible);
-//    void setTriangleWidth(int triangleWidth);
-//    void setTriangleColor(const QColor &triangleColor);
-
-//    //设置父节点 图标边距+左侧边距+字体大小+节点高度+颜色集合
-//    void setParentIconMargin(int parentIconMargin);
-//    void setParentMargin(int parentMargin);
-//    void setParentFontSize(int parentFontSize);
-//    void setParentHeight(int parentHeight);
-//    void setParentBgNormalColor(const QColor &parentBgNormalColor);
-//    void setParentBgSelectedColor(const QColor &parentBgSelectedColor);
-//    void setParentBgHoverColor(const QColor &parentBgHoverColor);
-//    void setParentTextNormalColor(const QColor &parentTextNormalColor);
-//    void setParentTextSelectedColor(const QColor &parentTextSelectedColor);
-//    void setParentTextHoverColor(const QColor &parentTextHoverColor);
-
-//    //设置子节点 图标边距+左侧边距+字体大小+节点高度+颜色集合
-//    void setChildIconMargin(int childIconMargin);
-//    void setChildMargin(int childMargin);
-//    void setChildFontSize(int childFontSize);
-//    void setChildHeight(int childHeight);
-//    void setChildBgNormalColor(const QColor &childBgNormalColor);
-//    void setChildBgSelectedColor(const QColor &childBgSelectedColor);
-//    void setChildBgHoverColor(const QColor &childBgHoverColor);
-//    void setChildTextNormalColor(const QColor &childTextNormalColor);
-//    void setChildTextSelectedColor(const QColor &childTextSelectedColor);
-//    void setChildTextHoverColor(const QColor &childTextHoverColor);
-
-//    //设置节点展开模式
-//    void setExpendMode(const ExpendMode &expendMode);
-
-//Q_SIGNALS:
-//    void pressed(const QString &text, const QString &parentText);
-//    void pressed(int index, int parentIndex);
-//    void pressed(int childIndex);
-//};
-
-//#endif // NAVLISTVIEW_H
