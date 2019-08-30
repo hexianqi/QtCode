@@ -26,8 +26,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
 
-TARGET = SL2000
-
 INCLUDEPATH += ..
 
 Debug {
@@ -54,6 +52,16 @@ Release {
 
 include(sl2000.pri)
 
+DEFINES += SL2000
+
+if(contains(DEFINES,SL2000)) {
+    TARGET_NAME = SL2000
+}else{
+    TARGET_NAME = Test
+}
+
+TARGET = $$TARGET_NAME
+
 #版本信息
 VERSION = 1.0.0.1
 # 图标
@@ -61,9 +69,9 @@ RC_ICONS = Image/Icon.ico
 # 公司名称
 QMAKE_TARGET_COMPANY = "SongLang"
 # 产品名称
-QMAKE_TARGET_PRODUCT = "SL2000"
+QMAKE_TARGET_PRODUCT = $$TARGET_NAME
 # 文件说明
-QMAKE_TARGET_DESCRIPTION = "Qt Creator based on Qt 5.7.0 (MSVC 2013, 32 bit)"
+QMAKE_TARGET_DESCRIPTION = $$TARGET_NAME
 # 版权信息
 QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2019 保留所有权利。"
 # 中文（简体）

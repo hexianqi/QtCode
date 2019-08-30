@@ -18,7 +18,7 @@ class HSqlHandle : public ISqlHandle
 
 public:
     explicit HSqlHandle(QObject *parent = nullptr);
-    ~HSqlHandle();
+    ~HSqlHandle() override;
 
 public:
     void initialize(QVariantMap param) override;
