@@ -1,4 +1,4 @@
-#include "HCircleZoomCircular_p.h"
+#include "HZoomCircleCircular_p.h"
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE

@@ -33,6 +33,7 @@
 #include "HRingProgressBar.h"
 #include "HRoundProgressBar.h"
 #include "HTristateProgressBar.h"
+#include "HStateProgressBar.h"
 #include "HRbTableHeaderView.h"
 #include "HBarRuler.h"
 #include "HThermometerRuler.h"
@@ -305,22 +306,40 @@ void HDemoWidget::addProgressBar()
     auto rpb = new HRingProgressBar;
     auto opb = new HRoundProgressBar;
     auto tpb = new HTristateProgressBar;
+    auto spb = new HStateProgressBar;
+
     s->setOrientation(Qt::Horizontal);
     s->setSingleStep(10);
+
+    cpb->setTextPosition(HColorProgressBar::TextOnBar);
+    cpb->setBarStyle(HColorProgressBar::BarStyle_Gradual);
+    cpb->setDecimal(1);
+    cpb->setBarBackColor(QColor(250, 250, 250));
+    cpb->setTextForeColor(Qt::white);
+    cpb->setTextBackColor(QColor(24, 189, 155));
+    cpb->setBarForeDataColors(QGradientStops() << QGradientStop(0, Qt::green) << QGradientStop(0.5, Qt::yellow) << QGradientStop(1, Qt::red));
+    cpb->setFixedHeight(60);
+
     rpb->setAlarmMode(2);
+
+    spb->setNotes(QStringList() << "a" << "b" << "c" << "d" << "e");
+    spb->setStates(QStringList() << "A" << "B" << "C" << "D" << "E");
+
     connect(s, &QSlider::valueChanged, this, [=](int value) {
         cpb->setValue(value);
         rpb->setValue(value);
         opb->setValue(value);
         tpb->setValue1(value);
         tpb->setValue2(value + 10);
-        tpb->setValue3(value + 20); });
+        tpb->setValue3(value + 20);
+        spb->setValue(value / 10);  });
     l->addWidget(bpb, 0, 0);
     l->addWidget(cpb, 0, 1);
     l->addWidget(rpb, 0, 2);
     l->addWidget(opb, 1, 0);
     l->addWidget(tpb, 1, 1, 1, 2);
-    l->addWidget(s, 2, 0, 1, 3);
+    l->addWidget(spb, 2, 0, 1, 3);
+    l->addWidget(s, 3, 0, 1, 3);
     addTab(l, tr("进度条"));
 }
 

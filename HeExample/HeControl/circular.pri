@@ -19,8 +19,16 @@ HEADERS += \
     $$PWD/HCircularFactory_p.h \
     $$PWD/HWheelCircular.h \
     $$PWD/HWheelCircular_p.h \
-    $$PWD/HCircleZoomCircular.h \
-    $$PWD/HCircleZoomCircular_p.h
+    $$PWD/HPetalCircular.h \
+    $$PWD/HPetalCircular_p.h \
+    $$PWD/HZoomCircleCircular.h \
+    $$PWD/HZoomCircleCircular_p.h \
+    $$PWD/HBubbleCircular.h \
+    $$PWD/HBubbleCircular_p.h \
+    $$PWD/HBearingCircular.h \
+    $$PWD/HBearingCircular_p.h \
+    $$PWD/HInfiniteCircular.h \
+    $$PWD/HInfiniteCircular_p.h
 
 SOURCES += \
     $$PWD/HCircularProgress.cpp \
@@ -32,4 +40,8 @@ SOURCES += \
     $$PWD/HTaichiCircular.cpp \
     $$PWD/HCircularFactory.cpp \
     $$PWD/HWheelCircular.cpp \
-    $$PWD/HCircleZoomCircular.cpp
+    $$PWD/HPetalCircular.cpp \
+    $$PWD/HZoomCircleCircular.cpp \
+    $$PWD/HBubbleCircular.cpp \
+    $$PWD/HBearingCircular.cpp \
+    $$PWD/HInfiniteCircular.cpp

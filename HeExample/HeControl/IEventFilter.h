@@ -6,9 +6,10 @@
 #define IEVENTFILTER_H
 
 #include "HControlGlobal.h"
+#include <QtCore/QEvent>
+#include <functional>
 
 class QObject;
-class QEvent;
 class QRectF;
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -22,6 +23,8 @@ public:
     virtual bool setEnable(bool b) = 0;
     // 是否启用
     virtual bool isEnable() = 0;
+    // 设置处理函数
+    virtual void setHandleFunc(QMap<QEvent::Type, std::function<bool(QEvent *)>> value) = 0;
 
 public:
     // 事件过滤器
