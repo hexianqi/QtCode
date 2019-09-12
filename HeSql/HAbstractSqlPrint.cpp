@@ -80,7 +80,7 @@ void HAbstractSqlPrint::exportPdf()
         return;
 
     QString fileName;
-    fileName = QFileDialog::getSaveFileName(0, QString(), ".", tr("PDF files (*.pdf)"));
+    fileName = QFileDialog::getSaveFileName(nullptr, QString(), ".", tr("PDF files (*.pdf)"));
     if (fileName.isEmpty())
         return;
 

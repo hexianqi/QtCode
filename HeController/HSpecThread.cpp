@@ -3,8 +3,6 @@
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeData/ITestSpec.h"
-#include <QtCore/QVector>
-#include <QtCore/QDateTime>
 #include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -18,8 +16,8 @@ HSpecThreadPrivate::HSpecThreadPrivate()
                   << ACT_GET_INTEGRAL_TIME
                   << ACT_GET_SPECTRUM
                   << ACT_GET_RAM;
-    protocolSpec = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
-    protocols.insert("Spec", protocolSpec);
+    protocol = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
+    protocols.insert("Spec", protocol);
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
@@ -52,35 +50,35 @@ HErrorType HSpecThread::handleAction(HActionType action)
 {
     Q_D(HSpecThread);
     uint i;
-    QVector<uchar> uBuff;
-    QVector<double> dBuff;
+    QVector<uchar> ubuff;
+    QVector<double> dbuff;
     HErrorType error;
 
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
-        return d->protocolSpec->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
+        return d->protocol->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
     case ACT_SET_SPECTRUM_AVG_TIMES:
-        return d->protocolSpec->setData(action, d->testSpec->data("[光谱平均次数]").toInt());
+        return d->protocol->setData(action, d->testSpec->data("[光谱平均次数]").toInt());
     case ACT_SET_SPECTRUM_SAMPLE_DELAY:
-        return d->protocolSpec->setData(action, d->testSpec->data("[光谱采样延时]").toInt());
+        return d->protocol->setData(action, d->testSpec->data("[光谱采样延时]").toInt());
     case ACT_GET_INTEGRAL_TIME:
-        error = d->protocolSpec->getData(action, i);
+        error = d->protocol->getData(action, i);
         if (error == E_OK)
             d->testSpec->setData("[积分时间]", i / 500.0);
         return error;
     case ACT_GET_SPECTRUM:
-        error = d->protocolSpec->getData(action, dBuff);//d->testSpec->data("[光谱采样等待时间]").toInt());
+        error = d->protocol->getData(action, dbuff);//d->testSpec->data("[光谱采样等待时间]").toInt());
         if (error == E_OK)
-            d->testSpec->setSample(dBuff, true);
+            d->testSpec->setSample(dbuff, true);
         return error;
     case ACT_SET_RAM:
-        return d->protocolSpec->setData(action, d->testSpec->getRam());
+        return d->protocol->setData(action, d->testSpec->getRam());
     case ACT_GET_RAM:
-        error = d->protocolSpec->getData(action, uBuff);
+        error = d->protocol->getData(action, ubuff);
         if (error == E_OK)
         {
-            if (!d->testSpec->setRam(uBuff))
+            if (!d->testSpec->setRam(ubuff))
                 error = E_DEVICE_DATA_RETURN_ERROR;
         }
         return error;

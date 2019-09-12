@@ -146,7 +146,8 @@ QColor wave2color(double wave, double gamma, double intensityMax)
         alpha = 0.0;
 
     // 1953年在引入NTSC电视时,计算具有荧光体的监视器的亮度公式如下
-    int Y = static_cast<int>(0.212671*r + 0.715160*g + 0.072169*b);
+    // int Y = static_cast<int>(0.212671*r + 0.715160*g + 0.072169*b);
+
     // 伽马射线 gamma
     // 照明强度 intensityMax
     int R = qFuzzyIsNull(r) ? 0 : static_cast<int>(std::round(intensityMax * std::pow(r * alpha, gamma)));

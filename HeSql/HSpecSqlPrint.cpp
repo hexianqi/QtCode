@@ -85,21 +85,21 @@ double HSpecSqlPrint::paintFooter(QPainter *painter, QString /*text*/)
     auto y2 = y1;
 
     painter->setFont(font);
-    painter->drawLine(0, y1, painter->viewport().width(), y1);
+    painter->drawLine(QLineF(0, y1, painter->viewport().width(), y1));
     y2 += 5;
-    painter->drawText(x1, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("ProductModel"));
-    painter->drawText(x2, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("ProductName"));
+    painter->drawText(QRectF(x1, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("ProductModel"));
+    painter->drawText(QRectF(x2, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("ProductName"));
     y2 += h;
-    painter->drawText(x1, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("TestInstitute"));
-    painter->drawText(x2, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("Tester"));
+    painter->drawText(QRectF(x1, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("TestInstitute"));
+    painter->drawText(QRectF(x2, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("Tester"));
     y2 += h;
-    painter->drawText(x1, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("SampleNumber"));
-    painter->drawText(x2, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("TestDateTime"));
+    painter->drawText(QRectF(x1, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("SampleNumber"));
+    painter->drawText(QRectF(x2, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("TestDateTime"));
     y2 += h;
-    painter->drawText(x1, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("Temperature"));
-    painter->drawText(x2, y2 , w, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("Humidity"));
+    painter->drawText(QRectF(x1, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("Temperature"));
+    painter->drawText(QRectF(x2, y2 , w, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("Humidity"));
     y2 += h;
-    painter->drawText(x1, y2 , w * 2, h, Qt::AlignLeft | Qt::AlignVCenter, toWhole("Manufacturer"));
+    painter->drawText(QRectF(x1, y2 , w * 2, h), Qt::AlignLeft | Qt::AlignVCenter, toWhole("Manufacturer"));
     return y1;
 }
 
@@ -117,42 +117,42 @@ void HSpecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /*pag
     auto rx = toString("Rx").split(" ", QString::SkipEmptyParts);
 
     painter->setFont(font1);
-    painter->drawText(x, y , w, h1, Qt::AlignLeft | Qt::AlignVCenter, tr("颜色参数："));
+    painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("颜色参数："));
     y += h1;
     painter->setFont(font2);
     text = tr(" 色品坐标：x = %1    y = %2    u' = %3    v' = %4    duv = %5")
             .arg(toString("CC_x")).arg(toString("CC_y")).arg(toString("CC_up")).arg(toString("CC_vp")).arg(toString("Duv"));
-    painter->drawText(x, y , w, h2, Qt::AlignLeft |  Qt::AlignVCenter, text);
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft |  Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3")
             .arg(toString("ColorTemperature")).arg(toString("DominantWave")).arg(toString("ColorPurity"));
-    painter->drawText(x, y , w, h2, Qt::AlignLeft | Qt::AlignVCenter, text);
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr("色比：R = %1 ％  G = %2 ％  B = %3 ％ 峰值波长：λp = %4 nm   峰值带宽：Δλd = %5 nm")
             .arg(toString("RedRatio")).arg(toString("GreenRadio")).arg(toString("BlueRatio"))
             .arg(toString("PeakWave")).arg(toString("PeakBandwidth"));
-    painter->drawText(x, y , w, h2, Qt::AlignLeft | Qt::AlignVCenter, text);
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 显色指数：Ra = %1").arg(toString("Ra"));
-    painter->drawText(x, y , w, h2, Qt::AlignLeft | Qt::AlignVCenter, text);
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     if (rx.size() > 13)
     {
         text = tr("  R1 = %1    R2 = %2    R3 = %3    R4 = %4    R5 = %5    R6 = %6    R7 = %7")
                 .arg(rx[0]).arg(rx[1]).arg(rx[2]).arg(rx[3]).arg(rx[4]).arg(rx[5]).arg(rx[6]);
-        painter->drawText(x, y , w, h2, Qt::AlignLeft | Qt::AlignVCenter, text);
+        painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
         text = tr("  R8 = %1    R9 = %2    R10 = %3   R11 = %4   R12 = %5   R13 = %6   R14 = %7")
                 .arg(rx[7]).arg(rx[8]).arg(rx[9]).arg(rx[10]).arg(rx[11]).arg(rx[12]).arg(rx[13]);
-        painter->drawText(x, y , w, h2, Qt::AlignLeft | Qt::AlignVCenter, text);
+        painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }
     painter->setFont(font1);
-    painter->drawText(x, y , w, h1, Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
+    painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
     y += h1;
     painter->setFont(font2);
     text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2").arg(toString("LuminousFluxSpec")).arg(toString("LuminousPower"));
-    painter->drawText(x, y , w, h2, Qt::AlignLeft | Qt::AlignVCenter, text);
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
 
     y += 20;

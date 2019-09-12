@@ -18,7 +18,7 @@ public:
     HSpecThreadPrivate();
 
 public:
-    IProtocol *protocolSpec;
+    IProtocol *protocol;
     ITestSpec *testSpec;
 };
 

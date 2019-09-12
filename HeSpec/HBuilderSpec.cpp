@@ -17,7 +17,7 @@
 #include <QtCore/QDebug>
 
 HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
-    HAbstractBuilder(*new HAbstractBuilderPrivate(parent), parent)
+    HAbstractBuilder(*new HBuilderSpecPrivate(parent), parent)
 {
 }
 

@@ -6,6 +6,8 @@
 
 class HBuilderSpecPrivate : public HAbstractBuilderPrivate
 {
+public:
+    using HAbstractBuilderPrivate::HAbstractBuilderPrivate;
 };
 
 #endif // HBUILDERSPEC_P_H
