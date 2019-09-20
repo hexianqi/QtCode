@@ -16,7 +16,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 class IModel;
 class HDelayThreadPrivate;
 
-class HDelayThread : public QThread
+class HE_CONTROLLER_EXPORT HDelayThread : public QThread
 {
     Q_OBJECT
 

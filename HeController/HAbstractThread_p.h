@@ -16,7 +16,7 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HAbstractThreadPrivate
+class HE_CONTROLLER_EXPORT HAbstractThreadPrivate
 {
 public:
     HAbstractThreadPrivate();

@@ -25,6 +25,11 @@ public:
     void setDevice(IDevice *) override;
     HErrorType open() override;
     HErrorType close() override;
+    HErrorType setIntegralTime(double value);
+    HErrorType setSmooth(int times, int range);
+    HErrorType setStdCurve(QVector<double> value);
+    HErrorType getSpectrumSample(QVector<double> &value);
+    HErrorType getSpectrumEnergy(QPolygonF &value);
 
 public:
     HErrorType setData(HActionType action, int value, int delay = 0) override;

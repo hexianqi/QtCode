@@ -15,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecFittingLinearWidgetPrivate;
 
-class HSpecFittingLinearWidget : public HSpecFittingWidget
+class HE_GUI_EXPORT HSpecFittingLinearWidget : public HSpecFittingWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecFittingLinearWidget)

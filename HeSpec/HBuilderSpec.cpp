@@ -1,4 +1,5 @@
 #include "HBuilderSpec_p.h"
+#include "HModelSpec.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IDevice.h"
@@ -101,7 +102,7 @@ void HBuilderSpec::buildThread()
 void HBuilderSpec::buildModel()
 {
     Q_D(HBuilderSpec);
-    d->model = d->controllerFactory->createModel("HSpecModel");
+    d->model = new HModelSpec(this);
     HAppContext::setContextPointer("IModel", d->model);
 }
 

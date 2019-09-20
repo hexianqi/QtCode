@@ -22,6 +22,7 @@ using HActionType = long long;
 #define     ACT_SET_RAM                             0x00010104
 #define     ACT_GET_INTEGRAL_TIME                   0x00010111
 #define     ACT_GET_SPECTRUM                        0x00010112
+#define     ACT_GET_SPECTRUM_ENERGY                 0x00010113
 #define     ACT_GET_RAM                             0x00010114
 
 #define     ACT_SET_OUTPUT_VOLTAGE                  0x00020101

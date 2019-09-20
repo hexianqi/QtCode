@@ -30,7 +30,10 @@ SOURCES += \
         HMainWindowDemo.cpp \
     HBuilderDemo.cpp \
     HProtocolDemo.cpp \
-    HThreadDemo.cpp
+    HThreadDemo.cpp \
+    HModelDemo.cpp \
+    HTestWidgetDemo.cpp \
+    HTestSetWidgetDemo.cpp
 
 HEADERS += \
         HMainWindowDemo.h \
@@ -40,7 +43,13 @@ HEADERS += \
     HProtocolDemo.h \
     HProtocolDemo_p.h \
     HThreadDemo.h \
-    HThreadDemo_p.h
+    HThreadDemo_p.h \
+    HModelDemo.h \
+    HModelDemo_p.h \
+    HTestWidgetDemo.h \
+    HTestWidgetDemo_p.h \
+    HTestSetWidgetDemo.h \
+    HTestSetWidgetDemo_p.h
 
 TARGET  = SlProtocolDemo
 
@@ -65,3 +74,6 @@ Release {
             -L$$DESTDIR -lHeGui \
             -L$$DESTDIR -lHePlugin
 }
+
+FORMS += \
+    HTestSetWidgetDemo.ui

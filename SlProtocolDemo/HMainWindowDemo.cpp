@@ -25,6 +25,6 @@ void HMainWindowDemo::initImportExport()
 void HMainWindowDemo::initBuilder()
 {
     Q_D(HMainWindowDemo);
-    d->builder = new HBuilderSpec(this);
+    d->builder = new HBuilderDemo(this);
     d->builder->buildAll();
 }

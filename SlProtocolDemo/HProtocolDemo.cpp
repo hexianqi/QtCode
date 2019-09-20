@@ -10,16 +10,13 @@ HProtocolDemoPrivate::HProtocolDemoPrivate() :
 
 void HProtocolDemoPrivate::loadDll()
 {
-    lib.reset(new QLibrary("CYUSB.dll"));
-    if (!lib->load())
-        return;
+//    lib.reset(new QLibrary("CYUSB.dll"));
+//    if (!lib->load())
+//        return;
 
-    open = FunOpen(lib->resolve("OpenProtocol"));
-    close = FunClose(lib->resolve("CloseProtocol"));
-//    setTimeout = FunSetTimeout(lib->resolve("SetTimeout"));
-//    readData = FunReadData(lib->resolve("ReadData"));
-//    writeData = FunWriteData(lib->resolve("WriteData"));
-    isLoaded = true;
+//    open = FunOpen(lib->resolve("OpenProtocol"));
+//    close = FunClose(lib->resolve("CloseProtocol"));
+//    isLoaded = true;
 }
 
 void HProtocolDemoPrivate::unloadDLL()
@@ -68,6 +65,31 @@ HErrorType HProtocolDemo::close()
 {
     if (d_ptr->isLoaded)
         d_ptr->close();
+    return E_OK;
+}
+
+HErrorType HProtocolDemo::setIntegralTime(double value)
+{
+    return E_OK;
+}
+
+HErrorType HProtocolDemo::setSmooth(int times, int range)
+{
+    return E_OK;
+}
+
+HErrorType HProtocolDemo::setStdCurve(QVector<double> value)
+{
+    return E_OK;
+}
+
+HErrorType HProtocolDemo::getSpectrumSample(QVector<double> &value)
+{
+    return E_OK;
+}
+
+HErrorType HProtocolDemo::getSpectrumEnergy(QPolygonF &value)
+{
     return E_OK;
 }
 

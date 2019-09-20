@@ -104,4 +104,3 @@ void HTestSetWidget2000::init()
     ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
     ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  "));
 }
-

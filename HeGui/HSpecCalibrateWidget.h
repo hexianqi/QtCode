@@ -29,7 +29,7 @@ class HE_GUI_EXPORT HSpecCalibrateWidget : public HAbstractTestWidget
 
 public:
     explicit HSpecCalibrateWidget(QWidget *parent = nullptr);
-    ~HSpecCalibrateWidget();
+    ~HSpecCalibrateWidget() override;
 
 public:
     void initialize(QVariantMap param) override;

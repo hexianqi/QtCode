@@ -23,12 +23,12 @@ class HDelayThread;
 class HE_CONTROLLER_EXPORT HAbstractModelPrivate
 {
 public:
-    HAbstractModelPrivate(HAbstractModel *);
+    HAbstractModelPrivate(IModel *);
 
 public:
     bool initialized;
     QString configFileName;
-    HAbstractModel *q_ptr;
+    IModel *q_ptr;
     IConfigManage *configManage = nullptr;
     IDeviceCollection *devices = nullptr;
     IThreadCollection *threads = nullptr;

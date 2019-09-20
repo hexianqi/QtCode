@@ -140,11 +140,6 @@ double HSpecFittingPolynom::calcPolynom(double value)
     double y, error;
     HMultiFit::linear_est(value, d->ca, d->cova, &y, &error);
     return  y;
-
-//    double r = 1;
-//    for (int i = 0; i < d->polynom.size(); i++)
-//        r += d->polynom[i] * qPow(value, i);
-    //    return r - 1;
 }
 
 void HSpecFittingPolynom::calcLinear()

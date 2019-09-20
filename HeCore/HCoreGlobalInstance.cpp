@@ -178,6 +178,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_SET_RAM,                       tr("设置RAM数据"));
     hashActionComment.insert(ACT_GET_INTEGRAL_TIME,             tr("获取积分时间"));
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
+    hashActionComment.insert(ACT_GET_SPECTRUM_ENERGY,           tr("获取光谱能量数据"));
     hashActionComment.insert(ACT_GET_RAM,                       tr("获取RAM数据"));
 
     hashActionComment.insert(ACT_SET_OUTPUT_VOLTAGE,            tr("设置输出电压"));

@@ -1,5 +1,7 @@
 #include "HBuilderDemo_p.h"
 #include "HThreadDemo.h"
+#include "HModelDemo.h"
+#include "HTestWidgetDemo.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeController/IControllerFactory.h"
@@ -20,6 +22,11 @@ HBuilderDemo::HBuilderDemo(IMainWindow *parent) :
 HBuilderDemo::~HBuilderDemo()
 {
     qDebug() << __func__;
+}
+
+void HBuilderDemo::initialize(QVariantMap /*param*/)
+{
+
 }
 
 QString HBuilderDemo::typeName()
@@ -66,18 +73,18 @@ void HBuilderDemo::buildDevice()
 void HBuilderDemo::buildThread()
 {
     Q_D(HBuilderDemo);
-    auto thread = new HThreadDemo;
+    auto thread = new HThreadDemo(this);
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
     threads->insert("Spec", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
 }
 
-//void HBuilderDemo::buildModel()
-//{
-//    Q_D(HBuilderDemo);
-//    d->model = d->controllerFactory->createModel("HSpecModel");
-//    HAppContext::setContextPointer("IModel", d->model);
-//}
+void HBuilderDemo::buildModel()
+{
+    Q_D(HBuilderDemo);
+    d->model = new HModelDemo(this);
+    HAppContext::setContextPointer("IModel", d->model);
+}
 
 void HBuilderDemo::buildDatabase()
 {
@@ -87,13 +94,10 @@ void HBuilderDemo::buildMenu()
 {
 }
 
-//void HBuilderDemo::buildTestWidget()
-//{
-//    Q_D(HBuilderDemo);
-//    auto widget = new HSpecCalibrateWidget;
-//    widget->setTestSetWidget(new HSpecCalibrateSetWidget);
-//    widget->setSpecCalibrate(d->configManage->specCalibrate("1"));
-//    HAppContext::setContextPointer("ITestWidget", widget);
-//}
-
-
+void HBuilderDemo::buildTestWidget()
+{
+    Q_D(HBuilderDemo);
+    auto widget = new HTestWidgetDemo;
+    widget->setSpecCalibrate(d->configManage->specCalibrate("1"));
+    HAppContext::setContextPointer("ITestWidget", widget);
+}
