@@ -38,6 +38,7 @@ protected:
     void handleAction(HActionType action) override;
 
 protected:
+    void createAction() override;
     void createWidget() override;
     void createMenu() override;
     void createToolBar() override;

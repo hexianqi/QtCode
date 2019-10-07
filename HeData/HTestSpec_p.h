@@ -17,7 +17,7 @@ HE_ALGORITHM_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HTestSpecPrivate : public HTestDataPrivate
+class HE_DATA_EXPORT HTestSpecPrivate : public HTestDataPrivate
 {
 public:
     HTestSpecPrivate();

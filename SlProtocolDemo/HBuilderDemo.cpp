@@ -2,6 +2,7 @@
 #include "HThreadDemo.h"
 #include "HModelDemo.h"
 #include "HTestWidgetDemo.h"
+#include "HTestSpecDemo.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeController/IControllerFactory.h"
@@ -43,7 +44,9 @@ void HBuilderDemo::buildConfigManage()
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->fileStream()->readFile(":/Dat/Spectrum.hcs"))
         {
+            auto fit = d->dataFactory->createSpecFitting("HSpecFittingLinear");
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
+            spec->setFitting(fit);
             specs->insert("1", spec);
         }
         d->configManage->setContain(IConfigManage::ContainSpec);
@@ -57,7 +60,7 @@ void HBuilderDemo::buildTestData()
     Q_D(HBuilderDemo);
     auto data = d->dataFactory->createTestData("HTestData");
     auto other = d->dataFactory->createTestData("HTestData");
-    auto spec = d->dataFactory->createTestSpec("HTestSpec");
+    auto spec = new HTestSpecDemo;
     spec->setSuccessor(other);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
     data->setSuccessor(spec);

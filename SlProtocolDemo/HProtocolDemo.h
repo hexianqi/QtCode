@@ -29,7 +29,7 @@ public:
     HErrorType setSmooth(int times, int range);
     HErrorType setStdCurve(QVector<double> value);
     HErrorType getSpectrumSample(QVector<double> &value);
-    HErrorType getSpectrumEnergy(QPolygonF &value);
+    HErrorType getSpectrumEnergy(QPolygonF &value, double *percent);
 
 public:
     HErrorType setData(HActionType action, int value, int delay = 0) override;

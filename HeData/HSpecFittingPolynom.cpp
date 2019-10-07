@@ -58,7 +58,7 @@ QVector<uchar> HSpecFittingPolynom::toBinaryData()
                                << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
     for (auto p : d->fittingPoints)
         r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
-    r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
+//    r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
     r[0] = static_cast<uchar>(r.size() / 256);
     r[1] = static_cast<uchar>(r.size() % 256);
     return r;
@@ -79,7 +79,7 @@ bool HSpecFittingPolynom::fromBinaryData(QVector<uchar> data, int &pos)
         auto y = HDataHelper::readUInt16(data, pos) / 10000.0;
         d->fittingPoints << QPointF(x, y);
     }
-    setData("[光谱拟合多项式项数]", HDataHelper::readUInt16(data, pos));
+//    setData("[光谱拟合多项式项数]", HDataHelper::readUInt16(data, pos));
     setData("[光谱拟合取样次数]", size);
     setData("[光谱拟合有效范围]", QPointF(d->fittingPoints.first().x(), d->fittingPoints.last().x()));
     calcLinear();

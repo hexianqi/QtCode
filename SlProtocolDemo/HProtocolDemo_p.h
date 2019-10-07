@@ -18,14 +18,21 @@ public:
 public:
     using FunOpen = bool(*)();
     using FunClose = bool(*)();
-//    using FunSetTimeout = bool(*)(int);
-//    using FunReadData = int(*)(uchar *, int);
-//    using FunWriteData = int(*)(uchar *, int);
+    using FunSetIntegralTime = bool(*)(double);
+    using FunSetSmooth = bool(*)(int, int);
+    using FunGetSpectrumSample = bool(*)(int[], int *, double *, bool);
+    using FunGetSpectrumEnergy = bool(*)(double[], int *, double *);
+    using FunPelsToWave = double(*)(int);
+    using FunSetStdCurve = bool(*)(double[], int);
+
     FunOpen open;
     FunClose close;
-//    FunSetTimeout setTimeout;
-//    FunReadData readData;
-//    FunWriteData writeData;
+    FunSetIntegralTime setIntegralTime;
+    FunSetSmooth setSmooth;
+    FunGetSpectrumSample getSpectrumSample;
+    FunGetSpectrumEnergy getSpectrumEnergy;
+    FunPelsToWave pelsToWave;
+    FunSetStdCurve setStdCurve;
     QScopedPointer<QLibrary> lib;
 
 public:

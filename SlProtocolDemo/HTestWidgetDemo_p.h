@@ -22,6 +22,7 @@ public:
     ISpecCalibrate *specCalibrate;
 
 public:
+    QAction *actionImport;
     QTabWidget *tabWidget;
     HSpecSampleChartView *sampleView;
     HSpecFittingChartView *ccdView;

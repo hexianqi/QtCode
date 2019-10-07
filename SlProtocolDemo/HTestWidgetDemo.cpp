@@ -5,6 +5,7 @@
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/HSpecFitting.h"
 #include "HeData/HSpecPelsWave.h"
+#include "HeController/IModel.h"
 #include "HeGui/HSpecSampleChartView.h"
 #include "HeGui/HSpecFittingChartView.h"
 #include "HeGui/HSpecEnergyWidget.h"
@@ -74,6 +75,16 @@ void HTestWidgetDemo::handleAction(HActionType action)
     d->testSetWidget->handleAction(action);
 }
 
+void HTestWidgetDemo::createAction()
+{
+    Q_D(HTestWidgetDemo);
+    HTestWidget::createAction();
+    d->actionImport = new QAction(tr("导入标准(&I)"), this);
+    d->actionImport->setIcon(QIcon(":/image/Import.png"));
+    d->actionImport->setIconText(tr("导入标准"));
+    connect(d->actionImport, &QAction::triggered, this, [=] { d->model->addAction(ACT_SET_DATA); });
+}
+
 void HTestWidgetDemo::createWidget()
 {
     Q_D(HTestWidgetDemo);
@@ -113,6 +124,7 @@ void HTestWidgetDemo::createToolBar()
     toolBar1->addWidget(d->testSetWidget);
     toolBar2->addAction(d->actionStart);
     toolBar2->addAction(d->actionStop);
+    toolBar2->addAction(d->actionImport);
     d->toolBars << toolBar1 << toolBar2;
 }
 
