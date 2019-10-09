@@ -19,11 +19,12 @@ bool CProtocolFacade::openProtocol()
 {
     if (!_protocol->open())
         return false;
+    return true;
 
-    vector<unsigned char> buff;
-    if (!_protocol->getRam(buff))
-        return false;
-    return _calibrate->setData(buff);
+//    vector<unsigned char> buff;
+//    if (!_protocol->getRam(buff))
+//        return false;
+//    return _calibrate->setData(buff);
 }
 
 bool CProtocolFacade::closeProtocol()

@@ -1,6 +1,7 @@
 #include "HSpecHelper.h"
-#include <QPolygonF>
-#include <QtMath>
+#include <QtCore/QtMath>
+#include <QtGui/QColor>
+#include <QtGui/QPolygonF>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -86,6 +87,75 @@ QVector<double> HSpecHelper::g2abt(QVector<double> value)
     return QVector<double>() << qSqrt(2 / a)
                              << qSqrt(2 / b)
                              << qRadiansToDegrees(theta/2);
+}
+
+QColor wave2color(double wave, double gamma, double intensityMax)
+{
+    double r, g, b, alpha;
+    if (wave >= 380.0 && wave < 440.0)
+    {
+        r = -1.0 * (wave - 440.0) / (440.0 - 380.0);
+        g = 0.0;
+        b = 1.0;
+    }
+    else if (wave >= 440.0 && wave < 490.0)
+    {
+        r = 0.0;
+        g = (wave - 440.0) / (490.0 - 440.0);
+        b = 1.0;
+    }
+    else if (wave >= 490.0 && wave < 510.0)
+    {
+        r = 0.0;
+        g = 1.0;
+        b = -1.0 * (wave - 510.0) / (510.0 - 490.0);
+    }
+    else if (wave >= 510.0 && wave < 580.0)
+    {
+        r = (wave - 510.0) / (580.0 - 510.0);
+        g = 1.0;
+        b = 0.0;
+    }
+    else if (wave >= 580.0 && wave < 645.0)
+    {
+        r = 1.0;
+        g = -1.0 * (wave - 645.0) / (645.0 - 580.0);
+        b = 0.0;
+    }
+    else if (wave >= 645.0 && wave <= 780.0)
+    {
+        r = 1.0;
+        g = 0.0;
+        b = 0.0;
+    }
+    else
+    {
+        r = 0.0;
+        g = 0.0;
+        b = 0.0;
+    }
+
+    // 在可见光谱的边缘处强度较低。
+    if (wave >= 380.0 && wave < 420.0)
+        alpha = 0.30 + 0.70 * (wave - 380.0) / (420.0 - 380.0);
+    else if (wave >= 420.0 && wave < 701.0)
+        alpha = 1.0;
+    else if (wave >= 701.0 && wave < 780.0)
+        alpha = 0.30 + 0.70 * (780.0 - wave) / (780.0 - 700.0);
+    else
+        alpha = 0.0;
+
+    // 1953年在引入NTSC电视时,计算具有荧光体的监视器的亮度公式如下
+    // int Y = static_cast<int>(0.212671*r + 0.715160*g + 0.072169*b);
+
+    // 伽马射线 gamma
+    // 照明强度 intensityMax
+    int R = qFuzzyIsNull(r) ? 0 : static_cast<int>(std::round(intensityMax * std::pow(r * alpha, gamma)));
+    int G = qFuzzyIsNull(g) ? 0 : static_cast<int>(std::round(intensityMax * std::pow(g * alpha, gamma)));
+    int B = qFuzzyIsNull(b) ? 0 : static_cast<int>(std::round(intensityMax * std::pow(b * alpha, gamma)));
+    int A = static_cast<int>(alpha);
+
+    return QColor(R, G, B, A);
 }
 
 HE_ALGORITHM_END_NAMESPACE

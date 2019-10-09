@@ -24,8 +24,6 @@
 #include <QtWidgets/QInputDialog>
 #include <QtCore/QDebug>
 
-#include <QtWidgets/QAction>
-
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecCalibrateWidgetPrivate::HSpecCalibrateWidgetPrivate()
@@ -60,6 +58,10 @@ QString HSpecCalibrateWidget::typeName()
 void HSpecCalibrateWidget::setSpecCalibrate(ISpecCalibrate *p)
 {
     Q_D(HSpecCalibrateWidget);
+
+    if (d->specCalibrate != nullptr)
+        ui->tabWidget_2->removeTab(ui->tabWidget_2->indexOf(d->fittingWidget));
+
     auto f = dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::SpecFitting));
     auto w = dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::SpecPelsWave));
 
@@ -94,12 +96,6 @@ bool HSpecCalibrateWidget::setTest(bool b)
 void HSpecCalibrateWidget::handleAction(HActionType action)
 {
     Q_D(HSpecCalibrateWidget);
-    if (action == ACT_RESET_SPECTRUM)
-    {
-        setTest(false);
-        d->energyWidget->initCoordinate();
-        return;
-    }
     if (action == ACT_GET_SPECTRUM)
         refreshSpecWidget();
     d->fittingWidget->handleAction(action);
@@ -146,10 +142,14 @@ void HSpecCalibrateWidget::on_tabWidget_1_currentChanged(int index)
 void HSpecCalibrateWidget::on_pushButton_1_clicked()
 {
     Q_D(HSpecCalibrateWidget);
+    setTest(false);
     HSpecSettingDialog dlg(this);
     dlg.setData(dynamic_cast<HSpecSetting *>(d->specCalibrate->item(ISpecCalibrate::SpecSetting)));
     if (dlg.exec())
-        d->model->syncTestData(IConfigManage::ContainSpec);
+    {
+        d->testSpec->setData(d->specCalibrate->testParam());
+        d->energyWidget->initCoordinate();
+    }
 }
 
 void HSpecCalibrateWidget::on_pushButton_2_clicked()

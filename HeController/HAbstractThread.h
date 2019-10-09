@@ -12,7 +12,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HAbstractThreadPrivate;
 
-class HAbstractThread : public IThread
+class HE_CONTROLLER_EXPORT HAbstractThread : public IThread
 {
     Q_OBJECT
 

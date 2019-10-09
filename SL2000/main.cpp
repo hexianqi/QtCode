@@ -4,14 +4,17 @@
 
 #include "HMainWindow2000.h"
 #include <QtWidgets/QApplication>
+#include <QtDebug>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
-//    a.setApplicationName("SL2000");
-//    a.setOrganizationName("杭州");
+
+#ifdef SL2000
+    a.setApplicationName("SL2000");
     HMainWindow2000 w;
     w.show();
+#endif
     return a.exec();
 }

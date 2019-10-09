@@ -69,9 +69,9 @@ void HBuilder2000::buildConfigManage()
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
         {
-            // 554b用多项式
+            // 多项式拟合（默认）
             auto fit = d->dataFactory->createSpecFitting("HSpecFittingPolynom");
-            // 1305用插值（默认）
+            // 插值拟合
             // auto fit = d->dataFactory->createSpecFitting("HSpecFittingLinear");
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             spec->setFitting(fit);
@@ -107,7 +107,7 @@ void HBuilder2000::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
-//// 第一版设备
+//// 第一版设备554b
 //void HBuilder2000::buildDevice()
 //{
 //    Q_D(HBuilder2000);
@@ -133,7 +133,7 @@ void HBuilder2000::buildTestData()
 //    HAppContext::setContextPointer("IProtocolCollection", protocols);
 //}
 
-// 第二版设备
+// 第二版设备1305
 void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
@@ -157,7 +157,7 @@ void HBuilder2000::buildDevice()
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
-//// 第一版设备模拟
+//// 设备模拟
 //void HBuilder2000::buildDevice()
 //{
 //    Q_D(HBuilder2000);
@@ -169,7 +169,6 @@ void HBuilder2000::buildDevice()
 //    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
 //    device->setPort(port, 0, false);
-//    device->setDeviceID(0x81);
 //    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
 //    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
 //    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);

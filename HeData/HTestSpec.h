@@ -12,7 +12,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HTestSpecPrivate;
 
-class HTestSpec : public ITestSpec
+class HE_DATA_EXPORT HTestSpec : public ITestSpec
 {
     Q_DECLARE_PRIVATE(HTestSpec)
 

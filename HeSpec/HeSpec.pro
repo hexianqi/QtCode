@@ -27,12 +27,15 @@ SOURCES += \
         main.cpp \
         HMainWindowSpec.cpp \
         HBuilderSpec.cpp \
+    HModelSpec.cpp
 
 HEADERS += \
         HMainWindowSpec.h \
         HMainWindowSpec_p.h \
         HBuilderSpec.h \
-        HBuilderSpec_p.h
+        HBuilderSpec_p.h \
+    HModelSpec.h \
+    HModelSpec_p.h
 
 TARGET = HeSpec
 

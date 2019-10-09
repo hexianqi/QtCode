@@ -15,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecFittingPolynomWidgetPrivate;
 
-class HSpecFittingPolynomWidget : public HSpecFittingWidget
+class HE_GUI_EXPORT HSpecFittingPolynomWidget : public HSpecFittingWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecFittingPolynomWidget)

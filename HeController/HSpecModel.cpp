@@ -6,7 +6,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HSpecModelPrivate::HSpecModelPrivate(HSpecModel *q) :
+HSpecModelPrivate::HSpecModelPrivate(IModel *q) :
     HAbstractModelPrivate(q)
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");

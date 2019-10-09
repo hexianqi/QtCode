@@ -11,7 +11,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractModelPrivate::HAbstractModelPrivate(HAbstractModel *q) :
+HAbstractModelPrivate::HAbstractModelPrivate(IModel *q) :
     q_ptr(q)
 {
     initialized = false;

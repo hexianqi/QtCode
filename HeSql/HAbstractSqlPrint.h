@@ -20,7 +20,7 @@ class HE_SQL_EXPORT HAbstractSqlPrint : public ISqlPrint
 
 public:
     explicit HAbstractSqlPrint(QObject *parent = nullptr);
-    virtual ~HAbstractSqlPrint();
+    ~HAbstractSqlPrint() override;
 
 public:
     void setModel(ISqlTableModel *) override;

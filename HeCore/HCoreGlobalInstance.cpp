@@ -176,8 +176,10 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_SET_SPECTRUM_AVG_TIMES,        tr("设置光谱平均次数"));
     hashActionComment.insert(ACT_SET_SPECTRUM_SAMPLE_DELAY,     tr("设置光谱采样延时"));
     hashActionComment.insert(ACT_SET_RAM,                       tr("设置RAM数据"));
+    hashActionComment.insert(ACT_SET_DATA,                      tr("设置数据"));
     hashActionComment.insert(ACT_GET_INTEGRAL_TIME,             tr("获取积分时间"));
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
+    hashActionComment.insert(ACT_GET_SPECTRUM_ENERGY,           tr("获取光谱能量数据"));
     hashActionComment.insert(ACT_GET_RAM,                       tr("获取RAM数据"));
 
     hashActionComment.insert(ACT_SET_OUTPUT_VOLTAGE,            tr("设置输出电压"));

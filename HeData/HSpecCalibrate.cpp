@@ -16,7 +16,7 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
     setting = new HSpecSetting;
-    fitting = new HSpecFittingLinear;
+    fitting = new HSpecFittingPolynom;
     stdCurve = new HSpecStdCurve;
     pelsWave = new HSpecPelsWave;
     luminous = new HSpecLuminous;

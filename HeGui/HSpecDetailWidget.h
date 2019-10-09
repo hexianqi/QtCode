@@ -15,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecDetailWidgetPrivate;
 
-class HSpecDetailWidget : public HAbstractTestDetailWidget
+class HE_GUI_EXPORT HSpecDetailWidget : public HAbstractTestDetailWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecDetailWidget)

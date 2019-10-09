@@ -38,12 +38,12 @@ protected slots:
     void updatetWindowTitle();
 
 protected slots:
-    void open();
-    void save(bool b = true);
-    void saveAs();
-    void importFile(QAction *);
-    void exportFile(QAction *);
-    void about();
+    virtual void open();
+    virtual void save(bool b = true);
+    virtual void saveAs();
+    virtual void importFile(QAction *);
+    virtual void exportFile(QAction *);
+    virtual void about();
 
 protected:
     virtual void initialize() override;

@@ -6,7 +6,7 @@ HE_SQL_BEGIN_NAMESPACE
 
 QPointF HSqlPainterHelper::drawText(QPainter *painter, double x, double y, QString text, int flags)
 {
-    auto rect = painter->boundingRect(x, y, painter->viewport().width() - x, painter->viewport().height() - y, flags, text);
+    auto rect = painter->boundingRect(QRectF(x, y, painter->viewport().width() - x, painter->viewport().height() - y), flags, text);
     painter->drawText(rect, flags, text);
     return rect.bottomRight();
 }

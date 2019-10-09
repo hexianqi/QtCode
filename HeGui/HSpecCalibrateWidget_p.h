@@ -24,7 +24,7 @@ public:
 
 public:
     ITestSpec *testSpec;
-    ISpecCalibrate *specCalibrate;
+    ISpecCalibrate *specCalibrate = nullptr;
 
 public:
     HSpecSampleChartView *sampleView;

@@ -168,7 +168,7 @@ bool CProtocolSpec::getData(int size, unsigned char cmd, unsigned char block, ve
 
 bool CProtocolSpec::transport(vector<unsigned char> downData, vector<unsigned char> &upData, int sleepTime)
 {
-    if (_port->write(downData))
+    if (!_port->write(downData))
         return false;
 
     if (sleepTime > 10)

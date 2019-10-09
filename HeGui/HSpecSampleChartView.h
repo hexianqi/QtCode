@@ -12,7 +12,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecSampleChartViewPrivate;
 
-class HSpecSampleChartView : public HVernierChartView
+class HE_GUI_EXPORT HSpecSampleChartView : public HVernierChartView
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecSampleChartView)

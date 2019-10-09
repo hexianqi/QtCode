@@ -97,7 +97,7 @@ HErrorType HLittleProtocol::getData(HActionType action, uint &value, int delay)
     auto error = getData(action, data, delay);
     if (error != E_OK)
         return error;
-    value = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
+    value = static_cast<uint>(data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24));
     return E_OK;
 }
 
@@ -131,7 +131,7 @@ HErrorType HLittleProtocol::getData(HActionType action, QVector<uint> &value, in
         value.resize(data.size() / 4);
     auto size = qMin(value.size(), data.size() / 4);
     for (int i = 0; i < size; i++)
-        value[i] = data[4 * i] + (data[4 * i + 1] << 8) + (data[4 * i + 2] << 16) + (data[4 * i + 3] << 24);
+        value[i] = static_cast<uint>(data[4 * i] + (data[4 * i + 1] << 8) + (data[4 * i + 2] << 16) + (data[4 * i + 3] << 24));
     return E_OK;
 }
 

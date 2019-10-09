@@ -6,7 +6,6 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 #ifndef Q_CC_MSVC
 #include <QtCore/QLibrary>
-#include <QtCore/QFile>
 #define Open        d->open
 #define Close       d->close
 #define SetTimeout  d->setTimeout
@@ -35,7 +34,7 @@ void HUsbPortCyPrivate::unloadDLL()
 }
 #else
 #include "include/CYUSB.h"
-#include <QFile>
+#include <QtCore/QFile>
 #pragma comment(lib, "CYUSB.lib")
 
 void HUsbPortCyPrivate::loadDll()

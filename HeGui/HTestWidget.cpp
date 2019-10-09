@@ -45,19 +45,19 @@ void HTestWidget::init()
 void HTestWidget::createAction()
 {
     Q_D(HTestWidget);
-    d->actionStart = new QAction(tr("测量(&S)..."), this);
+    d->actionStart = new QAction(tr("测量(&S)"), this);
     d->actionStart->setIcon(QIcon(":/image/Start02.png"));
     d->actionStart->setIconText(tr("测量"));
     d->actionStart->setShortcut(Qt::Key_F3);
-    d->actionStop = new QAction(tr("停止(&T)..."), this);
+    d->actionStop = new QAction(tr("停止(&T)"), this);
     d->actionStop->setIcon(QIcon(":/image/Stop02.png"));
     d->actionStop->setIconText(tr("停止"));
     d->actionStop->setShortcut(Qt::Key_F4);
     d->actionStop->setEnabled(false);
-    d->actionExportExcel = new QAction(tr("导出结果(&E)..."), this);
+    d->actionExportExcel = new QAction(tr("导出结果(&E)"), this);
     d->actionExportExcel->setIcon(QIcon(":/image/Excel.png"));
     d->actionExportExcel->setIconText(tr("导出结果"));
-    d->actionExportDatabase = new QAction(tr("保存数据库(&D)..."), this);
+    d->actionExportDatabase = new QAction(tr("保存数据库(&D)"), this);
     d->actionExportDatabase->setIcon(QIcon(":/image/DbComit.png"));
     d->actionExportDatabase->setIconText(tr("保存数据库"));
     connect(d->actionStart, &QAction::triggered, this, [=] { setTest(true); });

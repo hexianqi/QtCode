@@ -21,7 +21,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HSpecFittingWidgetPrivate;
 
-class HSpecFittingWidget : public QWidget
+class HE_GUI_EXPORT HSpecFittingWidget : public QWidget
 {
     Q_OBJECT
 public:
