@@ -18,7 +18,7 @@ HTextSpinBox::~HTextSpinBox()
 {
 }
 
-QValidator::State HTextSpinBox::validate(QString &input, int &pos) const
+QValidator::State HTextSpinBox::validate(QString &input, int &/*pos*/) const
 {
     for (auto s : d_ptr->strings)
     {

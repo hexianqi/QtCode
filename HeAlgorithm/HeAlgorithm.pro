@@ -45,6 +45,3 @@ unix {
 
 include(gsl.pri)
 include(spec.pri)
-
-DISTFILES += \
-    r

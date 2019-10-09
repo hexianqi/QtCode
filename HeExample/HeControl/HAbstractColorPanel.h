@@ -15,20 +15,20 @@ class HAbstractColorPanelPrivate;
 class HAbstractColorPanel : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(QColor currentColor READ currentColor WRITE setCurrentColor)
+    Q_PROPERTY(QColor color READ color WRITE setColor)
 
 public:
     explicit HAbstractColorPanel(QWidget *parent = nullptr);
     ~HAbstractColorPanel() override;
 
 signals:
-    void currentColorChanged(const QColor &value);
+    void colorPicked(const QColor &value);
 
 public:
-    QColor currentColor() const;
+    QColor color() const;
 
 public slots:
-    void setCurrentColor(const QColor &value);
+    virtual void setColor(const QColor &value);
 
 protected:
     HAbstractColorPanel(HAbstractColorPanelPrivate &p, QWidget *parent = nullptr);

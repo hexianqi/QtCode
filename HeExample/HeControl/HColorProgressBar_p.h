@@ -9,17 +9,18 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HColorProgressBarPrivate : public HAbstractProgressPrivate
 {
 public:
-    QColor barBackground = Qt::white;
-    QColor barSplitLineColor = Qt::white;
-    QColor barColor = QColor(255, 107, 107);
-    int space = 5;
-    int barSplitLineStep = 0;
-    bool showBarSplitLine = false;
-
-    int radiusX = 5;
-    int radiusY = 5;
-    QRectF textRect;
-    QRectF barRect;
+    int radius = 10;
+    HColorProgressBar::TextPosition textPosition = HColorProgressBar::TextOutBar;
+    QColor textForeColor = Qt::black;
+    QColor textBackColor = Qt::white;
+    HColorProgressBar::BarStyle barStyle = HColorProgressBar::BarStyle_Solid;
+    QColor barForeColor = QColor(255, 107, 107);
+    QColor barForeAlternateColor = QColor(255, 107, 10);
+    QColor barBackColor = Qt::white;
+    QGradientStops gradientData;
+    int barStepSpace = 5;
+    int barStepDelta = 0;
+    int barStepSize = 2;
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -1,4 +1,5 @@
 #include "HHueSatRadialPicker_p.h"
+#include "HDrawHelper.h"
 #include <QtCore/QtMath>
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
@@ -128,18 +129,7 @@ void HHueSatRadialPicker::paintEvent(QPaintEvent *)
         buildPixmap();
     QPainter painter(this);
     painter.drawPixmap(0, 0, d_ptr->pixmap);
-    drawCrosshair(&painter, d_ptr->point);
-}
-
-void HHueSatRadialPicker::drawCrosshair(QPainter *painter, const QPointF &point)
-{
-    painter->save();
-    painter->setPen(QPen(Qt::black, 3));
-    painter->drawLine(point - QPointF(0, -9), point - QPointF(0, -3));
-    painter->drawLine(point - QPointF(0, 3),  point - QPointF(0, 9));
-    painter->drawLine(point - QPointF(-9, 0), point - QPointF(-3, 0));
-    painter->drawLine(point - QPointF(3, 0),  point - QPointF(9, 0));
-    painter->restore();
+    HDrawHelper::drawCrosshair(&painter, d_ptr->point, 3, Qt::black);
 }
 
 void HHueSatRadialPicker::init()

@@ -210,6 +210,8 @@ void HCircleGauge::drawScale(QPainter *painter, int radius)
 {
     Q_D(HCircleGauge);
     auto steps = d->scaleMajor * d->scaleMinor;
+    if (steps == 0)
+        return;
     auto angle = angleSpan() / steps;
     auto pen1 = QPen(d->scaleColor, 1.5, Qt::SolidLine, Qt::RoundCap);
     auto pen2 = QPen(d->scaleColor, 1.0, Qt::SolidLine, Qt::RoundCap);
@@ -290,6 +292,13 @@ double HCircleGauge::angleSpan()
 double HCircleGauge::toAngle(double value)
 {
     return angleSpan() * toRatio(value);
+}
+
+double HCircleGauge::fromAngle(double value)
+{
+    Q_D(HCircleGauge);
+    value = qBound(d->angleStart * 1.0, value, 360.0 - d->angleEnd);
+    return fromRatio((value - d->angleStart) / angleSpan());
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -1,11 +1,15 @@
 #include "HCircularFactory_p.h"
+#include "HBearingCircular.h"
+#include "HBubbleCircular.h"
 #include "HCircleCircular.h"
-#include "HLineCircular.h"
-#include "HTaichiCircular.h"
-#include "HPieCircular.h"
+#include "HZoomCircleCircular.h"
 #include "HDonutCircular.h"
+#include "HInfiniteCircular.h"
+#include "HLineCircular.h"
+#include "HPetalCircular.h"
+#include "HPieCircular.h"
+#include "HTaichiCircular.h"
 #include "HWheelCircular.h"
-#include "HCircleZoomCircular.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtWidgets/QActionGroup>
 #include <QtCore/QDebug>
@@ -73,20 +77,28 @@ QActionGroup *HCircularFactory::toActionGroup()
 
 void HCircularFactory::registerClass()
 {
+    HObjectFactory::registerClass<HBearingCircular>("HBearingCircular");
+    HObjectFactory::registerClass<HBubbleCircular>("HBubbleCircular");
     HObjectFactory::registerClass<HCircleCircular>("HCircleCircular");
-    HObjectFactory::registerClass<HLineCircular>("HLineCircular");
-    HObjectFactory::registerClass<HTaichiCircular>("HTaichiCircular");
-    HObjectFactory::registerClass<HPieCircular>("HPieCircular");
     HObjectFactory::registerClass<HDonutCircular>("HDonutCircular");
-    HObjectFactory::registerClass<HZoomCircleCircular>("HZoomCircleCircular");
+    HObjectFactory::registerClass<HInfiniteCircular>("HInfiniteCircular");
+    HObjectFactory::registerClass<HLineCircular>("HLineCircular");
+    HObjectFactory::registerClass<HPetalCircular>("HPetalCircular");
+    HObjectFactory::registerClass<HPieCircular>("HPieCircular");
+    HObjectFactory::registerClass<HTaichiCircular>("HTaichiCircular");
     HObjectFactory::registerClass<HWheelCircular>("HWheelCircular");
+    HObjectFactory::registerClass<HZoomCircleCircular>("HZoomCircleCircular");
+    d_ptr->aliass.insert("HBearingCircular", tr("轴承状"));
+    d_ptr->aliass.insert("HBubbleCircular", tr("气泡状"));
     d_ptr->aliass.insert("HCircleCircular", tr("圈状"));
-    d_ptr->aliass.insert("HLineCircular", tr("线状"));
-    d_ptr->aliass.insert("HTaichiCircular", tr("太极图"));
-    d_ptr->aliass.insert("HPieCircular", tr("饼状"));
     d_ptr->aliass.insert("HDonutCircular", tr("环状"));
-    d_ptr->aliass.insert("HZoomCircleCircular", tr("缩放"));
+    d_ptr->aliass.insert("HInfiniteCircular", tr("无限状"));
+    d_ptr->aliass.insert("HLineCircular", tr("线状"));
+    d_ptr->aliass.insert("HPetalCircular", tr("花瓣状"));
+    d_ptr->aliass.insert("HPieCircular", tr("饼状"));
+    d_ptr->aliass.insert("HTaichiCircular", tr("太极图"));
     d_ptr->aliass.insert("HWheelCircular", tr("轮子"));
+    d_ptr->aliass.insert("HZoomCircleCircular", tr("缩放"));    
 }
 
 HE_CONTROL_END_NAMESPACE

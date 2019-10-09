@@ -2,8 +2,8 @@
 **      2019-06-20  HCircleZoomCircular 圆缩放
 ***************************************************************************************************/
 
-#ifndef HCIRCLEZOOMCIRCULAR_H
-#define HCIRCLEZOOMCIRCULAR_H
+#ifndef HZOOMCIRCLECIRCULAR_H
+#define HZOOMCIRCLECIRCULAR_H
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -50,4 +50,4 @@ protected:
 
 HE_CONTROL_END_NAMESPACE
 
-#endif // HCIRCLEZOOMCIRCULAR_H
+#endif // HZOOMCIRCLECIRCULAR_H

@@ -1,7 +1,7 @@
-#ifndef HCIRCLEZOOMCIRCULAR_P_H
-#define HCIRCLEZOOMCIRCULAR_P_H
+#ifndef HZOOMCIRCLECIRCULAR_P_H
+#define HZOOMCIRCLECIRCULAR_P_H
 
-#include "HCircleZoomCircular.h"
+#include "HZoomCircleCircular.h"
 #include "HAbstractCircular_p.h"
 
 HE_CONTROL_BEGIN_NAMESPACE

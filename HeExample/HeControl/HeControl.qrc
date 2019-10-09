@@ -48,5 +48,17 @@
         <file>image/ww/textright.png</file>
         <file>image/ww/textunder.png</file>
         <file>image/ww/twocolorindicator.png</file>
+        <file>image/fonts/pe-icon-set-weather.ttf</file>
+        <file>image/fonts/fontawesome-webfont.ttf</file>
+        <file>image/beautify/sun.svg</file>
+        <file>image/beautify/rain.svg</file>
+        <file>image/beautify/snow.svg</file>
+        <file>image/beautify/cloud.svg</file>
+        <file>image/beautify/rain_snow.svg</file>
+        <file>image/beautify/hail.svg</file>
+        <file>image/beautify/thunderstorm.svg</file>
+        <file>image/beautify/fog.svg</file>
+        <file>image/beautify/wind.svg</file>
+        <file>image/beautify/partly_cloud.svg</file>
     </qresource>
 </RCC>

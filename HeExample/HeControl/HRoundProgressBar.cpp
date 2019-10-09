@@ -1,4 +1,5 @@
 #include "HRoundProgressBar_p.h"
+#include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -192,14 +193,14 @@ QImage HRoundProgressBar::createImage()
 {
     Q_D(HRoundProgressBar);
     rebuildDataBrushIfNeeded();
-    auto image = QImage(d->outerRadius, d->outerRadius, QImage::Format_ARGB32_Premultiplied);
+    auto image = QImage(d->outerRadius, d->outerRadius, QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
     d->outerRect = QRectF(1, 1, d->outerRadius - 2, d->outerRadius - 2);
     d->innerRadius = d->barStyle == BarStyle_Line ? d->outerRadius - d->excircleWidth : d->outerRadius * 0.75;
     d->innerRect = QRectF((d->outerRadius - d->innerRadius) / 2, (d->outerRadius - d->innerRadius) / 2, d->innerRadius, d->innerRadius);
 
     QPainter painter(&image);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.fillRect(image.rect(), palette().background());
     drawExcircle(&painter);
     drawDataCircle(&painter);
     drawInnerCircle(&painter);
@@ -280,12 +281,7 @@ void HRoundProgressBar::drawText(QPainter *painter)
     if (!d->drawText || d->format.isEmpty())
         return;
 
-    auto f = font();
-    f.setPointSize(10);
-    auto fm = QFontMetricsF(f);
-    auto width = fm.width(valueToText(d->maximum));
-    f.setPointSizeF(f.pointSize() * 0.75 * d->innerRadius / width);
-
+    auto f = HDrawHelper::adjustFontSize(painter, valueToText(d->maximum), 0.75 * d->innerRadius);
     painter->save();
     painter->setFont(f);
     painter->setPen(palette().text().color());

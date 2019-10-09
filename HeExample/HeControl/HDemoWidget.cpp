@@ -6,6 +6,7 @@
 #include "HBattery.h"
 #include "HMultiStyleButton.h"
 #include "HLightButton.h"
+#include "HSwitchButton.h"
 #include "HButtonColorPanel.h"
 #include "HCpuMemoryLabel.h"
 #include "HDiskSizeTable.h"
@@ -13,10 +14,12 @@
 #include "HArcGauge.h"
 #include "HCarGauge.h"
 #include "HCompassGauge.h"
+#include "HMiniGauge.h"
 #include "HKnobGauge.h"
 #include "HPanelGauge.h"
 #include "HPercentGauge.h"
 #include "HSpeedGauge.h"
+#include "HWeatherGauge.h"
 #include "HImageCalendar.h"
 #include "HLedNumber.h"
 #include "HLightPoint.h"
@@ -24,11 +27,13 @@
 #include "HMagicMouse.h"
 #include "HNavButton.h"
 #include "HNavLabel.h"
+#include "HPanelItem.h"
 #include "HButtonProgressBar.h"
 #include "HColorProgressBar.h"
 #include "HRingProgressBar.h"
 #include "HRoundProgressBar.h"
 #include "HTristateProgressBar.h"
+#include "HStateProgressBar.h"
 #include "HRbTableHeaderView.h"
 #include "HBarRuler.h"
 #include "HThermometerRuler.h"
@@ -79,9 +84,8 @@ HDemoWidget::~HDemoWidget()
 void HDemoWidget::init()
 {
     d_ptr->style = new HFaltStyle(this);
-    addww();
-//    addSlideNavigation();
 
+//    addSlideNavigation();
     addAntLine();
     addBackground();
     addBattery();
@@ -94,12 +98,15 @@ void HDemoWidget::init()
     addLedNumber();
     addLightPoint();
     addMagic();
-//    addMultHeaderTableView();
-//    addMultHeaderTableWidget();
+
     addNav();
+    addPanel();
     addProgressBar();
     addRuler();
 
+    addww();
+    //    addMultHeaderTableView();
+    //    addMultHeaderTableWidget();
 }
 
 void HDemoWidget::addAntLine()
@@ -147,8 +154,17 @@ void HDemoWidget::addButton()
     auto l = new QGridLayout;
     auto cb = new HMultiStyleButton;
     auto lb = new HLightButton;
+    auto sb1 = new HSwitchButton;
+    auto sb2 = new HSwitchButton;
+    auto sb3 = new HSwitchButton;
+    sb1->setButtonStyle(HSwitchButton::ButtonStyle_Rect);
+    sb2->setButtonStyle(HSwitchButton::ButtonStyle_CircleIn);
+    sb3->setButtonStyle(HSwitchButton::ButtonStyle_CircleOut);
     l->addWidget(cb, 0, 0);
     l->addWidget(lb, 0, 1);
+    l->addWidget(sb1, 1, 0);
+    l->addWidget(sb2, 1, 1);
+    l->addWidget(sb3, 1, 2);
     addTab(l, tr("按钮"));
 }
 
@@ -160,7 +176,7 @@ void HDemoWidget::addColorPanel()
     la->setMinimumWidth(30);
     l->addWidget(cp, 0, 0);
     l->addWidget(la, 0, 1);
-    connect(cp, &HButtonColorPanel::currentColorChanged, this, [=](QColor color) { la->setStyleSheet(QString("background:%1;").arg(color.name())); });
+    connect(cp, &HButtonColorPanel::colorPicked, this, [=](QColor color) { la->setStyleSheet(QString("background:%1;").arg(color.name())); });
     addTab(l, tr("颜色面板"));
 }
 
@@ -208,10 +224,12 @@ void HDemoWidget::addGauge()
     auto arc = new HArcGauge;
     auto car = new HCarGauge;
     auto knob = new HKnobGauge;
+    auto mini = new HMiniGauge;
     auto panel = new HPanelGauge;
     auto percent = new HPercentGauge;
     auto speed = new HSpeedGauge;
     auto compass = new HCompassGauge;
+    auto weather = new HWeatherGauge;
 
     c->addItems(QStringList() << tr("圆形指示器") << tr("指针指示器") << tr("圆角指针指示器") << tr("三角形指示器"));
     s->setOrientation(Qt::Horizontal);
@@ -219,25 +237,31 @@ void HDemoWidget::addGauge()
     connect(c, &QComboBox::currentTextChanged, this, [=](QString /*index*/) {
         arc->setPointerStyle(static_cast<HControlType::PointerStyle>(c->currentIndex()));
         car->setPointerStyle(static_cast<HControlType::PointerStyle>(c->currentIndex()));
-        knob->setPointerStyle(static_cast<HControlType::PointerStyle>(c->currentIndex())); });
+        knob->setPointerStyle(static_cast<HControlType::PointerStyle>(c->currentIndex()));
+        mini->setPointerStyle(static_cast<HControlType::PointerStyle>(c->currentIndex()));
+    });
     connect(s, &QSlider::valueChanged, this, [=](int value) {
         arc->setValue(value);
         car->setValue(value);
         knob->setValue(value);
+        mini->setValue(value);
         panel->setValue(value);
         percent->setValue(value);
         speed->setValue(value);
-        compass->setValue(value * 3.6); });
+        compass->setValue(value * 3.6);
+        weather->setValue(value - 50);});
 
     l->addWidget(arc, 0, 0);
     l->addWidget(car, 0, 1);
     l->addWidget(knob, 0, 2);
-    l->addWidget(panel, 0, 3);
-    l->addWidget(percent, 1, 0);
-    l->addWidget(speed, 1, 1);
-    l->addWidget(compass, 1, 2);
-    l->addWidget(c, 2, 0, 1, 2);
-    l->addWidget(s, 3, 0, 1, 4);
+    l->addWidget(mini, 0, 3);
+    l->addWidget(panel, 1, 0);
+    l->addWidget(percent, 1, 1);
+    l->addWidget(speed, 1, 2);
+    l->addWidget(weather, 1, 3);
+    l->addWidget(compass, 2, 1);
+    l->addWidget(c, 3, 0, 1, 2);
+    l->addWidget(s, 4, 0, 1, 4);
     addTab(l, tr("仪表盘"));
 }
 
@@ -282,22 +306,40 @@ void HDemoWidget::addProgressBar()
     auto rpb = new HRingProgressBar;
     auto opb = new HRoundProgressBar;
     auto tpb = new HTristateProgressBar;
+    auto spb = new HStateProgressBar;
+
     s->setOrientation(Qt::Horizontal);
     s->setSingleStep(10);
+
+    cpb->setTextPosition(HColorProgressBar::TextOnBar);
+    cpb->setBarStyle(HColorProgressBar::BarStyle_Gradual);
+    cpb->setDecimal(1);
+    cpb->setBarBackColor(QColor(250, 250, 250));
+    cpb->setTextForeColor(Qt::white);
+    cpb->setTextBackColor(QColor(24, 189, 155));
+    cpb->setBarForeDataColors(QGradientStops() << QGradientStop(0, Qt::green) << QGradientStop(0.5, Qt::yellow) << QGradientStop(1, Qt::red));
+    cpb->setFixedHeight(60);
+
     rpb->setAlarmMode(2);
+
+    spb->setNotes(QStringList() << "a" << "b" << "c" << "d" << "e");
+    spb->setStates(QStringList() << "A" << "B" << "C" << "D" << "E");
+
     connect(s, &QSlider::valueChanged, this, [=](int value) {
         cpb->setValue(value);
         rpb->setValue(value);
         opb->setValue(value);
         tpb->setValue1(value);
         tpb->setValue2(value + 10);
-        tpb->setValue3(value + 20); });
+        tpb->setValue3(value + 20);
+        spb->setValue(value / 10);  });
     l->addWidget(bpb, 0, 0);
     l->addWidget(cpb, 0, 1);
     l->addWidget(rpb, 0, 2);
     l->addWidget(opb, 1, 0);
     l->addWidget(tpb, 1, 1, 1, 2);
-    l->addWidget(s, 2, 0, 1, 3);
+    l->addWidget(spb, 2, 0, 1, 3);
+    l->addWidget(s, 3, 0, 1, 3);
     addTab(l, tr("进度条"));
 }
 
@@ -408,6 +450,11 @@ void HDemoWidget::addNav()
     l->addWidget(nb, 0, 0);
     l->addWidget(nl, 0, 1);
     addTab(l, tr("导航"));
+}
+
+void HDemoWidget::addPanel()
+{
+    ui->tabWidget->addTab(new HPanelItem, tr("面板"));
 }
 
 void HDemoWidget::addRuler()

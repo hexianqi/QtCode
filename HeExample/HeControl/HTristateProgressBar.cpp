@@ -1,4 +1,5 @@
 #include "HTristateProgressBar_p.h"
+#include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -272,8 +273,8 @@ void HTristateProgressBar::drawValue(QPainter *painter)
     {
         if (d_ptr->autoFont)
         {
-            auto f = font();
-            f.setPointSizeF(qMin(width() * 0.15, height() * 0.9));
+            auto w = qMin(width() * 0.3, height() * 0.9);
+            auto f = HDrawHelper::adjustFontSize(painter, "100%", w);
             painter->setFont(f);
         }
 

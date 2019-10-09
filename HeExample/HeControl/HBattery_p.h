@@ -10,6 +10,9 @@ class HBatteryPrivate : public HAnimationProgressPrivate
 {
 public:
     double alarmValue = 20;
+    int borderRadius = 8;
+    int backgroundRadius = 5;
+    int headRadius = 3;
     QColor borderColorStart = QColor(100, 100, 100);
     QColor borderColorEnd = QColor(80, 80, 80);
     QColor alarmColorStart = QColor(250, 118, 113);

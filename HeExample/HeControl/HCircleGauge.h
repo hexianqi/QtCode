@@ -70,6 +70,7 @@ protected:
     virtual void drawValue(QPainter *, int radius);
     double angleSpan();
     double toAngle(double value);
+    double fromAngle(double value);
 };
 
 HE_CONTROL_END_NAMESPACE

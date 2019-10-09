@@ -18,17 +18,17 @@ HAbstractColorPanel::~HAbstractColorPanel()
 {
 }
 
-QColor HAbstractColorPanel::currentColor() const
+QColor HAbstractColorPanel::color() const
 {
-    return d_ptr->currentColor;
+    return d_ptr->color;
 }
 
-void HAbstractColorPanel::setCurrentColor(const QColor &value)
+void HAbstractColorPanel::setColor(const QColor &value)
 {
-    if (d_ptr->currentColor == value)
+    if (d_ptr->color == value)
         return;
-    d_ptr->currentColor = value;
-    emit currentColorChanged(value);
+    d_ptr->color = value;
+    emit colorPicked(value);
 }
 
 HE_CONTROL_END_NAMESPACE

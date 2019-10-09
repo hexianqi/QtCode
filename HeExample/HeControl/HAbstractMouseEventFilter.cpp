@@ -10,14 +10,12 @@ HAbstractMouseEventFilterPrivate::HAbstractMouseEventFilterPrivate(QWidget *p)
 }
 
 HAbstractMouseEventFilter::HAbstractMouseEventFilter(QWidget *parent) :
-    QObject(parent),
-    d_ptr(new HAbstractMouseEventFilterPrivate(parent))
+    HAbstractEventFilter(*new HAbstractMouseEventFilterPrivate(parent), parent)
 {
 }
 
 HAbstractMouseEventFilter::HAbstractMouseEventFilter(HAbstractMouseEventFilterPrivate &p, QWidget *parent) :
-    QObject(parent),
-    d_ptr(&p)
+    HAbstractEventFilter(p, parent)
 {
 }
 
@@ -25,28 +23,7 @@ HAbstractMouseEventFilter::~HAbstractMouseEventFilter()
 {
 }
 
-bool HAbstractMouseEventFilter::setValidRegion(QRectF value)
-{
-    if (d_ptr->validRegion == value)
-        return false;
-    d_ptr->validRegion = value;
-    return true;
-}
-
-bool HAbstractMouseEventFilter::setEnable(bool b)
-{
-    if (d_ptr->enable == b)
-        return false;
-    d_ptr->enable = b;
-    return true;
-}
-
-bool HAbstractMouseEventFilter::isEnable()
-{
-    return d_ptr->enable;
-}
-
-bool HAbstractMouseEventFilter::eventFilter(QObject */*watched*/, QEvent *event)
+bool HAbstractMouseEventFilter::eventFilter(QObject *watched, QEvent *event)
 {
     if (!isEnable())
         return false;
@@ -59,7 +36,7 @@ bool HAbstractMouseEventFilter::eventFilter(QObject */*watched*/, QEvent *event)
         return mouseReleaseEvent(e);
     if (e->type() == QEvent::MouseMove)
         return mouseMoveEvent(e);
-    return false;
+    return HAbstractEventFilter::eventFilter(watched, event);
 }
 
 bool HAbstractMouseEventFilter::isValid(QPointF pos)

@@ -40,7 +40,7 @@ double HAnimationProgress::currentValue() const
 void HAnimationProgress::setValue(double value)
 {
     Q_D(HAnimationProgress);
-    if (value < d_ptr->minimum || value > d_ptr-> maximum || qFuzzyCompare(value, d_ptr->value))
+    if (value < d_ptr->minimum || value > d_ptr->maximum || qFuzzyCompare(value, d_ptr->value))
         return;
     d_ptr->value = value;
     emit valueChanged(value);
