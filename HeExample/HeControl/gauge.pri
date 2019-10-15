@@ -18,7 +18,9 @@ HEADERS += \
     $$PWD/HWeatherGauge.h \
     $$PWD/HWeatherGauge_p.h \
     $$PWD/HMiniGauge.h \
-    $$PWD/HMiniGauge_p.h
+    $$PWD/HMiniGauge_p.h \
+    $$PWD/HClockGauge.h \
+    $$PWD/HClockGauge_p.h
 
 SOURCES += \
     $$PWD/HCircleGauge.cpp \
@@ -30,5 +32,6 @@ SOURCES += \
     $$PWD/HCarGauge.cpp \
     $$PWD/HPanelGauge.cpp \
     $$PWD/HWeatherGauge.cpp \
-    $$PWD/HMiniGauge.cpp
+    $$PWD/HMiniGauge.cpp \
+    $$PWD/HClockGauge.cpp
 

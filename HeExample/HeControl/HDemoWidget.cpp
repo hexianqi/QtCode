@@ -13,6 +13,7 @@
 #include "HCustomGraphics.h"
 #include "HArcGauge.h"
 #include "HCarGauge.h"
+#include "HClockGauge.h"
 #include "HCompassGauge.h"
 #include "HMiniGauge.h"
 #include "HKnobGauge.h"
@@ -223,6 +224,7 @@ void HDemoWidget::addGauge()
     auto s = new QSlider;
     auto arc = new HArcGauge;
     auto car = new HCarGauge;
+    auto clock = new HClockGauge;
     auto knob = new HKnobGauge;
     auto mini = new HMiniGauge;
     auto panel = new HPanelGauge;
@@ -260,6 +262,7 @@ void HDemoWidget::addGauge()
     l->addWidget(speed, 1, 2);
     l->addWidget(weather, 1, 3);
     l->addWidget(compass, 2, 1);
+    l->addWidget(clock, 2, 2);
     l->addWidget(c, 3, 0, 1, 2);
     l->addWidget(s, 4, 0, 1, 4);
     addTab(l, tr("仪表盘"));

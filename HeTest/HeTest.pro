@@ -58,6 +58,7 @@ Debug {
 #    CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
+            -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHePlugind \
             -L$$DESTDIR -lHeControld
 }
@@ -65,6 +66,7 @@ Debug {
 Release {
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithm \
+            -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHePlugin \
             -L$$DESTDIR -lHeControl
 }

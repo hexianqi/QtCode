@@ -11,9 +11,10 @@ SOURCES += \
     $$PWD/HAbstractProgress.cpp \
     $$PWD/HAnimationProgress.cpp
 
-include(circular.pri)
 include(button.pri)
+include(circular.pri)
 include(color.pri)
+include(combobox.pri)
 include(draw.pri)
 include(effect.pri)
 include(else.pri)
@@ -22,4 +23,3 @@ include(nav.pri)
 include(progressBar.pri)
 include(ruler.pri)
 include(texture.pri)
-

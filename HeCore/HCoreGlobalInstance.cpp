@@ -10,11 +10,17 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
+QHash<HLogType, QString>            hashLogCommand;
 QHash<HActionType, QString>         hashActionComment;
 QHash<HErrorType, QString>          hashErrorComment;
 QHash<QString, HDataFormatInfo *>   hashDataFormatInfo;
 QHash<QString, QString>             hashDataCaption;
 QHash<QString, QSet<QString>>       hashMimeType;
+
+char *HCore::toCommand(HLogType type)
+{
+    return hashLogCommand.value(type).toLatin1().data();
+}
 
 QString HCore::toComment(HActionType type)
 {
@@ -150,8 +156,10 @@ HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
     QObject(parent)
 {
     qDebug() << __func__;
+    qRegisterMetaType<HLogType>("HLogType");
     qRegisterMetaType<HErrorType>("HErrorType");
     qRegisterMetaType<HActionType>("HActionType");
+    initLogCommand();
     initActionComment();
     initErrorComment();
     initDataFormatInfo();
@@ -162,6 +170,30 @@ HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
 HCoreGlobalInstance::~HCoreGlobalInstance()
 {
     qDebug() << __func__;
+}
+
+void HCoreGlobalInstance::initLogCommand()
+{
+    hashLogCommand.clear();
+    hashLogCommand.insert(Reset,        "\033[0m");
+    hashLogCommand.insert(Bold,         "\033[1m");
+    hashLogCommand.insert(Unbold,       "\033[2m");
+    hashLogCommand.insert(ForeBlack,    "\033[30m");
+    hashLogCommand.insert(ForeRed,      "\033[31m");
+    hashLogCommand.insert(ForeGreen,    "\033[32m");
+    hashLogCommand.insert(ForeYellow,   "\033[33m");
+    hashLogCommand.insert(ForeBlue,     "\033[34m");
+    hashLogCommand.insert(ForePurple,   "\033[35m");
+    hashLogCommand.insert(ForeCyan,     "\033[36m");
+    hashLogCommand.insert(ForeWhite,    "\033[37m");
+    hashLogCommand.insert(BackBlack,    "\033[40m");
+    hashLogCommand.insert(BackRed,      "\033[41m");
+    hashLogCommand.insert(BackGreen,    "\033[42m");
+    hashLogCommand.insert(BackYellow,   "\033[43m");
+    hashLogCommand.insert(BackBlue,     "\033[44m");
+    hashLogCommand.insert(BackPurple,   "\033[45m");
+    hashLogCommand.insert(BackCyan,     "\033[46m");
+    hashLogCommand.insert(BackWhite,    "\033[47m");
 }
 
 void HCoreGlobalInstance::initActionComment()

@@ -3,6 +3,7 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
+#include "HeCore/HCore.h"
 #include "HeExample/HeControl/HDemoWidget.h"
 #include "HeExample/HeControl/HControlWidget.h"
 #include <QtCore/QDebug>
@@ -11,9 +12,9 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 #include <functional>
-
 #include <QImageReader>
 
+HE_CORE_USE_NAMESPACE
 HE_CONTROL_USE_NAMESPACE
 
 void testGslChart()
@@ -26,14 +27,15 @@ void testGslChart()
 
 int main(int argc, char *argv[])
 {
+    qDebug() << HCore::toCommand(HLogType::ForePurple);
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HControlWidget cw;
-    cw.show();
-//    HDemoWidget dw;
-//    dw.show();
+//    HControlWidget cw;
+//    cw.show();
+    HDemoWidget dw;
+    dw.show();
 
 //    MainWindow window;
 //    window.setCentralWidget(new HControlWidget);

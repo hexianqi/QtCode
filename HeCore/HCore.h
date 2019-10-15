@@ -5,6 +5,7 @@
 #ifndef HCORE_H
 #define HCORE_H
 
+#include "HLogType.h"
 #include "HActionType.h"
 #include "HErrorType.h"
 
@@ -18,8 +19,9 @@ class HDataFormatInfo;
 class HE_CORE_EXPORT HCore
 {
 public:
+    static char *toCommand(HLogType type);
     static QString toComment(HActionType type);
-    static QString toComment(HErrorType type);
+    static QString toComment(HErrorType type);    
 
 public:
     static HDataFormatInfo *toFormatInfo(QString type);

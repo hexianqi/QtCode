@@ -20,6 +20,7 @@ protected:
     ~HCoreGlobalInstance();
 
 protected:
+    void initLogCommand();
     void initActionComment();
     void initErrorComment();
     void initDataFormatInfo();

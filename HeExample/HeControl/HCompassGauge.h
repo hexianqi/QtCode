@@ -101,7 +101,6 @@ protected:
 
 private:
     void init();
-
 };
 
 HE_CONTROL_END_NAMESPACE
