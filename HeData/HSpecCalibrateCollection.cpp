@@ -2,14 +2,15 @@
 #include "IDataFactory.h"
 #include "ISpecCalibrate.h"
 #include "IFileStream.h"
-#include <QtCore/QDataStream>
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(IDataFactory *f)
+HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate()
 {
-    factory = f;
-    fileStream = f->createFileStream("HFileStream");
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+    fileStream = factory->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00020001);
     fileStream->setFileVersion(0x01010101);
     fileStream->setFileFilter("Spec calibrate files (*.hcs)");
@@ -20,39 +21,19 @@ HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate(IDataFactory *f
 void HSpecCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    datas.clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = factory->createSpecCalibrate(type);
-        item->readContent(s, factory);
-        if (s.status() != QDataStream::Ok)
-        {
-            datas.clear();
-            break;
-        }
-        datas.insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::ISpecCalibrate>(s, datas, [=](QString type) { return factory->createSpecCalibrate(type); });
 }
 
 void HSpecCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    s << quint32(datas.size());
-    for (auto i = datas.begin(); i != datas.end(); i++)
-    {
-        s << i.key() << i.value()->typeName();
-        i.value()->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::ISpecCalibrate>(s, datas);
 }
 
-HSpecCalibrateCollection::HSpecCalibrateCollection(IDataFactory *f) :
-    ISpecCalibrateCollection(*new HSpecCalibrateCollectionPrivate(f))
+HSpecCalibrateCollection::HSpecCalibrateCollection() :
+    ISpecCalibrateCollection(*new HSpecCalibrateCollectionPrivate)
 {
 }
 

@@ -59,7 +59,7 @@ IDevice *HCommunicateFactory::createDevice(QString type, QVariantMap param)
 IDeviceCollection *HCommunicateFactory::createDeviceCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IDeviceCollection *p = new HDeviceCollection;
+    auto p = new HDeviceCollection;
     p->initialize(param);
     return p;
 }
@@ -72,7 +72,7 @@ IProtocol *HCommunicateFactory::createProtocol(QString type, QVariantMap param)
 IProtocolCollection *HCommunicateFactory::createProtocolCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    HProtocolCollection *p = new HProtocolCollection;
+    auto p = new HProtocolCollection;
     p->initialize(param);
     return p;
 }

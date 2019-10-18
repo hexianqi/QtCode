@@ -5,16 +5,16 @@
 #ifndef IGRADECOLLECTION_H
 #define IGRADECOLLECTION_H
 
-#include "IDataCollection.h"
+#include "HDataCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IGrade;
 
-class IGradeCollection : public IDataCollection<IGrade>
+class IGradeCollection : public HDataCollection<IGrade>
 {
 public:
-    using IDataCollection::IDataCollection;
+    using HDataCollection::HDataCollection;
 
 public:
     // 获取某类型所有分级

@@ -11,13 +11,13 @@ HAdjustItemPrivate::HAdjustItemPrivate()
 }
 
 HAdjustItem::HAdjustItem() :
-    d_ptr(new HAdjustItemPrivate)
+    IAdjustItem(*new HAdjustItemPrivate)
 {
     restoreDefault();
 }
 
 HAdjustItem::HAdjustItem(HAdjustItemPrivate &p) :
-    d_ptr(&p)
+    IAdjustItem(p)
 {
 }
 
@@ -25,44 +25,24 @@ HAdjustItem::~HAdjustItem()
 {
 }
 
-void HAdjustItem::initialize(QVariantMap param)
-{
-    if (param.contains("datas"))
-        setData(param.value("datas").toMap());
-}
-
 QString HAdjustItem::typeName()
 {
     return "HAdjustItem";
 }
 
-void HAdjustItem::setData(QString name, QVariant value)
-{
-    d_ptr->datas.insert(name, value);
-}
-
-void HAdjustItem::setData(QVariantMap value)
-{
-    for (auto i = value.begin(); i != value.end(); i++)
-        setData(i.key(), i.value());
-}
-
-QVariant HAdjustItem::data(QString name)
-{
-    return d_ptr->datas.value(name);
-}
-
 void HAdjustItem::readContent(QDataStream &s)
 {
+    Q_D(HAdjustItem);
     quint32 version;
     s >> version;
-    s >> d_ptr->datas;
+    s >> d->datas;
 }
 
 void HAdjustItem::writeContent(QDataStream &s)
 {
+    Q_D(HAdjustItem);
     s << quint32(1);
-    s << d_ptr->datas;
+    s << d->datas;
 }
 
 void HAdjustItem::restoreDefault()

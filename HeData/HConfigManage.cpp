@@ -3,10 +3,12 @@
 #include "IFileStream.h"
 #include "ITestData.h"
 #include "ISpecCalibrateCollection.h"
+#include "IElecCalibrateCollection.h"
 #include "IChromatismCollection.h"
 #include "IGradeCollection.h"
 #include "IAdjustCollection.h"
 #include "IQualityCollection.h"
+#include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
 #include <QtCore/QJsonObject>
@@ -25,10 +27,10 @@ QSet<QString> supplement(QSet<QString> set, QSet<QString> other)
     return set;
 }
 
-HConfigManagePrivate::HConfigManagePrivate(IDataFactory *f)
+HConfigManagePrivate::HConfigManagePrivate()
 {
-    factory = f;
-    fileStream = f->createFileStream("HFileStream");
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+    fileStream = factory->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00010001);
     fileStream->setFileVersion(0x01010101);
     fileStream->setFileFilter("Config files (*.cfg)");
@@ -48,6 +50,12 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         s >> type;
         specCalibrates = factory->createSpecCalibrateCollection(type);
         specCalibrates->fileStream()->readContent(s);
+    }
+    if (contain & IConfigManage::ContainElec)
+    {
+        s >> type;
+        elecCalibrates = factory->createElecCalibrateCollection(type);
+        elecCalibrates->fileStream()->readContent(s);
     }
     if (contain & IConfigManage::ContainChromatism)
     {
@@ -84,6 +92,11 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
         s << specCalibrates->typeName();
         specCalibrates->fileStream()->writeContent(s);
     }
+    if (contain & IConfigManage::ContainElec)
+    {
+        s << elecCalibrates->typeName();
+        elecCalibrates->fileStream()->writeContent(s);
+    }
     if (contain & IConfigManage::ContainChromatism)
     {
         s << chromatisms->typeName();
@@ -106,8 +119,8 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     }
 }
 
-HConfigManage::HConfigManage(IDataFactory *f) :
-    d_ptr(new HConfigManagePrivate(f))
+HConfigManage::HConfigManage() :
+    d_ptr(new HConfigManagePrivate)
 {
 }
 
@@ -160,6 +173,24 @@ ISpecCalibrate *HConfigManage::specCalibrate(QString name)
     return d_ptr->specCalibrates->first();
 }
 
+void HConfigManage::setElecCalibrateCollection(IElecCalibrateCollection *p)
+{
+    d_ptr->elecCalibrates = p;
+}
+
+IElecCalibrateCollection *HConfigManage::elecCalibrateCollection()
+{
+    return d_ptr->elecCalibrates;
+}
+
+IElecCalibrate *HConfigManage::elecCalibrate(QString name)
+{
+    Q_ASSERT(d_ptr->elecCalibrates != nullptr);
+    if (d_ptr->elecCalibrates->contains(name))
+        return d_ptr->elecCalibrates->value(name);
+    return d_ptr->elecCalibrates->first();
+}
+
 void HConfigManage::setChromatismCollection(IChromatismCollection *p)
 {
     d_ptr->chromatisms = p;
@@ -206,6 +237,8 @@ bool HConfigManage::importPart(quint32 value)
         return false;
     if (value & ContainSpec)
         return d_ptr->specCalibrates->fileStream()->openFile();
+    if (value & ContainElec)
+        return d_ptr->elecCalibrates->fileStream()->openFile();
     if (value & ContainChromatism)
         return d_ptr->chromatisms->fileStream()->openFile();
     if (value & ContainGrade)
@@ -223,6 +256,8 @@ bool HConfigManage::exportPart(quint32 value)
         return false;
     if (value & ContainSpec)
         return d_ptr->specCalibrates->fileStream()->saveAsFile();
+    if (value & ContainElec)
+        return d_ptr->elecCalibrates->fileStream()->saveAsFile();
     if (value & ContainChromatism)
         return d_ptr->chromatisms->fileStream()->saveAsFile();
     if (value & ContainGrade)

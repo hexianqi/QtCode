@@ -2,14 +2,15 @@
 #include "IDataFactory.h"
 #include "IAdjust.h"
 #include "IFileStream.h"
-#include <QtCore/QDataStream>
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-HAdjustCollectionPrivate::HAdjustCollectionPrivate(IDataFactory *f)
+HAdjustCollectionPrivate::HAdjustCollectionPrivate()
 {
-    factory = f;
-    fileStream = f->createFileStream("HFileStream");
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+    fileStream = factory->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00040001);
     fileStream->setFileVersion(0x01010101);
     fileStream->setFileFilter("Adjust files (*.hca)");
@@ -20,41 +21,21 @@ HAdjustCollectionPrivate::HAdjustCollectionPrivate(IDataFactory *f)
 void HAdjustCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    datas.clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = factory->createAdjust(type);
-        item->readContent(s, factory);
-        if (s.status() != QDataStream::Ok)
-        {
-            datas.clear();
-            break;
-        }
-        datas.insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::IAdjust>(s, datas, [=](QString type) { return factory->createAdjust(type); });
     s >> useIndex;
 }
 
 void HAdjustCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    s << quint32(datas.size());
-    for (auto i = datas.begin(); i != datas.end(); i++)
-    {
-        s << i.key() << i.value()->typeName();
-        i.value()->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::IAdjust>(s, datas);
     s << useIndex;
 }
 
-HAdjustCollection::HAdjustCollection(IDataFactory *f) :
-    IAdjustCollection(*new HAdjustCollectionPrivate(f))
+HAdjustCollection::HAdjustCollection() :
+    IAdjustCollection(*new HAdjustCollectionPrivate)
 {
 }
 
@@ -72,26 +53,6 @@ QString HAdjustCollection::typeName()
     return "HAdjustCollection";
 }
 
-IFileStream *HAdjustCollection::fileStream()
-{
-    Q_D(HAdjustCollection);
-    return d->fileStream;
-}
-
-void HAdjustCollection::setUseIndex(QString value)
-{
-    Q_D(HAdjustCollection);
-    if (d->useIndex == value || !contains(value))
-        return;
-    d->useIndex = value;
-}
-
-QString HAdjustCollection::useIndex()
-{
-    Q_D(HAdjustCollection);
-    return d->useIndex;
-}
-
 QVariantMap HAdjustCollection::correct(QVariantMap value)
 {
     auto i = item(useIndex());
@@ -99,4 +60,3 @@ QVariantMap HAdjustCollection::correct(QVariantMap value)
 }
 
 HE_DATA_END_NAMESPACE
-

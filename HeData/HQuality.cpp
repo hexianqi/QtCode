@@ -38,13 +38,13 @@ QString HQuality::typeName()
     return "HQuality";
 }
 
-void HQuality::readContent(QDataStream &s, HeData::IDataFactory *f)
+void HQuality::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
     s >> d_ptr->colors;
-    d_ptr->damages->readContent(s, f);
-    d_ptr->criterions->readContent(s, f);
+    d_ptr->damages->readContent(s);
+    d_ptr->criterions->readContent(s);
 }
 
 void HQuality::writeContent(QDataStream &s)
@@ -57,9 +57,9 @@ void HQuality::writeContent(QDataStream &s)
 
 IQualityItemCollection *HQuality::itemCollection(QualityType type)
 {
-    if (type == QualityDamage)
+    if (type == Damage)
         return d_ptr->damages;
-    if (type == QualityCriterion)
+    if (type == Criterion)
         return d_ptr->criterions;
     return nullptr;
 }

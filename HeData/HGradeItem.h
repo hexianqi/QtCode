@@ -5,13 +5,13 @@
 #ifndef HGRADEITEM_H
 #define HGRADEITEM_H
 
-#include "HAbstractGradeItem.h"
+#include "IGradeItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HGradeItemPrivate;
 
-class HGradeItem : public HAbstractGradeItem
+class HGradeItem : public IGradeItem
 {
     Q_DECLARE_PRIVATE(HGradeItem)
 
@@ -34,6 +34,9 @@ public:
     QStringList headers() override;
     QStringList types() override;
     QStringList level(int i) override;
+
+protected:
+    HGradeItem(HGradeItemPrivate &);
 };
 
 HE_DATA_END_NAMESPACE

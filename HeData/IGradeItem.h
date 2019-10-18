@@ -5,12 +5,15 @@
 #ifndef IGRADEITEM_H
 #define IGRADEITEM_H
 
-#include "IDataItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IGradeItem : public IDataItem
+class IGradeItem : public HAbstractDataItem
 {
+public:
+    using HAbstractDataItem::HAbstractDataItem;
+
 public:
     // 设置分级
     virtual void setLevels(QVariant value) = 0;

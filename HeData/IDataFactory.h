@@ -19,6 +19,10 @@ class ITestSpec;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
+class IElecCalibrate;
+class IElecCalibrateCollection;
+class IElecCalibrateItem;
+class IElecCalibrateItemCollection;
 class IChromatism;
 class IChromatismCollection;
 class IChromatismItem;
@@ -40,16 +44,26 @@ public:
     virtual IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建Excel文件流
     virtual IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) = 0;
+public:
     // 创建测试数据
     virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱测试数据
     virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) = 0;
+public:
     // 创建配置管理
     virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准数据集
     virtual ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准数据
     virtual ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建电校准数据集
+    virtual IElecCalibrateCollection *createElecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建电校准数据
+    virtual IElecCalibrate *createElecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建电校准数据子项集
+    virtual IElecCalibrateItemCollection *createElecCalibrateItemCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建电校准数据子项
+    virtual IElecCalibrateItem *createElecCalibrateItem(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建色容差数据集
     virtual IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建色容差数据

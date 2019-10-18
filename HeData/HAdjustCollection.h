@@ -16,16 +16,11 @@ class HAdjustCollection : public IAdjustCollection
     Q_DECLARE_PRIVATE(HAdjustCollection)
 
 public:
-    explicit HAdjustCollection(IDataFactory *);
+    explicit HAdjustCollection();
     virtual ~HAdjustCollection();
 
 public:
     QString typeName() override;
-
-public:
-    IFileStream *fileStream() override;
-    void setUseIndex(QString value) override;
-    QString useIndex() override;
 
 public:
     QVariantMap correct(QVariantMap value) override;

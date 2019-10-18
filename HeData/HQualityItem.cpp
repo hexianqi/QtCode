@@ -12,13 +12,13 @@ HQualityItemPrivate::HQualityItemPrivate()
 }
 
 HQualityItem::HQualityItem() :
-    d_ptr(new HQualityItemPrivate)
+    IQualityItem(*new HQualityItemPrivate)
 {
     restoreDefault();
 }
 
 HQualityItem::HQualityItem(HQualityItemPrivate &p) :
-    d_ptr(&p)
+    IQualityItem(p)
 {
 }
 
@@ -26,44 +26,24 @@ HQualityItem::~HQualityItem()
 {
 }
 
-void HQualityItem::initialize(QVariantMap param)
-{
-    if (param.contains("datas"))
-        setData(param.value("datas").toMap());
-}
-
 QString HQualityItem::typeName()
 {
     return "HQualityItem";
 }
 
-void HQualityItem::setData(QString name, QVariant value)
-{
-    d_ptr->datas.insert(name, value);
-}
-
-void HQualityItem::setData(QVariantMap value)
-{
-    for (auto i = value.begin(); i != value.end(); i++)
-        setData(i.key(), i.value());
-}
-
-QVariant HQualityItem::data(QString name)
-{
-    return d_ptr->datas.value(name);
-}
-
 void HQualityItem::readContent(QDataStream &s)
 {
+    Q_D(HQualityItem);
     quint32 version;
     s >> version;
-    s >> d_ptr->datas;
+    s >> d->datas;
 }
 
 void HQualityItem::writeContent(QDataStream &s)
 {
+    Q_D(HQualityItem);
     s << quint32(1);
-    s << d_ptr->datas;
+    s << d->datas;
 }
 
 void HQualityItem::restoreDefault()

@@ -5,10 +5,12 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IDataFactory;
+
 class HConfigManagePrivate
 {
 public:
-    HConfigManagePrivate(IDataFactory *);
+    HConfigManagePrivate();
 
 public:
     void readContent(QDataStream &);
@@ -19,6 +21,7 @@ public:
     IDataFactory *factory = nullptr;
     IFileStream *fileStream = nullptr;
     ISpecCalibrateCollection *specCalibrates = nullptr;
+    IElecCalibrateCollection *elecCalibrates = nullptr;
     IChromatismCollection *chromatisms = nullptr;
     IGradeCollection *grades = nullptr;
     IAdjustCollection *adjusts = nullptr;

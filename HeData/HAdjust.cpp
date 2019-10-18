@@ -1,10 +1,16 @@
 #include "HAdjust_p.h"
 #include "IDataFactory.h"
 #include "IAdjustItem.h"
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
-#include <QtCore/QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
+
+HAdjustPrivate::HAdjustPrivate()
+{
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+}
 
 HAdjust::HAdjust() :
     IAdjust(*new HAdjustPrivate)
@@ -25,38 +31,20 @@ QString HAdjust::typeName()
     return "HAdjust";
 }
 
-void HAdjust::readContent(QDataStream &s, IDataFactory *f)
+void HAdjust::readContent(QDataStream &s)
 {
+    Q_D(HAdjust);
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = f->createAdjustItem(type);
-        item->readContent(s);
-        if (s.status() != QDataStream::Ok)
-        {
-            clear();
-            break;
-        }
-        insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::IAdjustItem>(s, d->datas, [=](QString type) { return d->factory->createAdjustItem(type); });
 }
 
 void HAdjust::writeContent(QDataStream &s)
 {
+    Q_D(HAdjust);
     s << quint32(1);
-    s << quint32(size());
-    for (auto i : keys())
-    {
-        s << i << item(i)->typeName();
-        item(i)->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::IAdjustItem>(s, d->datas);
 }
 
 void HAdjust::restoreDefault()

@@ -42,7 +42,7 @@ void HSpecCalibrateDialog::init()
     auto set = d_ptr->factory->createTestSetWidget(d_ptr->type);
     d_ptr->widget = new HSpecCalibrateWidget;
     d_ptr->widget->setTestSetWidget(set);
-    d_ptr->widget->setSpecCalibrate(calibrate);
+    d_ptr->widget->setCalibrate(calibrate);
     d_ptr->widget->start();
     layout->addWidget(d_ptr->widget);
 }

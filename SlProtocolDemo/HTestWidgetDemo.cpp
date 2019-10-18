@@ -47,8 +47,8 @@ void HTestWidgetDemo::setSpecCalibrate(ISpecCalibrate *p)
     if (d->specCalibrate != nullptr)
         d->tabWidget->removeTab(d->tabWidget->indexOf(d->fittingWidget));
 
-    auto f = dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::SpecFitting));
-    auto w = dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::SpecPelsWave));
+    auto f = dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::Fitting));
+    auto w = dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::PelsWave));
 
     d->specCalibrate = p;
     if (f->typeName() == "HSpecFittingPolynom")

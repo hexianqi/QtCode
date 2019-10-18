@@ -37,7 +37,8 @@ HEADERS     += \
             HConfigManage_p.h \
             HAbstractDataItem.h \
             HAbstractDataItem_p.h \
-            HDataHelper.h
+            HDataHelper.h \
+    HDataCollection.h
 
 SOURCES     += \
             HDataFactory.cpp \
@@ -70,6 +71,7 @@ unix {
 
 include(adjust.pri)
 include(chromatism.pri)
+include(elec.pri)
 include(grade.pri)
 include(quality.pri)
 include(spec.pri)

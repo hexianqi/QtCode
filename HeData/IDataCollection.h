@@ -12,7 +12,6 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
 class IFileStream;
 
 template <typename T>

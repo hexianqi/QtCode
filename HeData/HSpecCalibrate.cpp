@@ -8,13 +8,14 @@
 #include "HSpecStdCurve.h"
 #include "HSpecPelsWave.h"
 #include "HSpecLuminous.h"
-#include <QtCore/QDataStream>
+#include "HeCore/HAppContext.h"
 #include <QtGui/QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
 
 HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
     setting = new HSpecSetting;
     fitting = new HSpecFittingPolynom;
     stdCurve = new HSpecStdCurve;
@@ -45,7 +46,7 @@ QString HSpecCalibrate::typeName()
     return "HSpecCalibrate";
 }
 
-void HSpecCalibrate::readContent(QDataStream &s, IDataFactory *f)
+void HSpecCalibrate::readContent(QDataStream &s)
 {
     quint32 version;
     QString type;
@@ -55,7 +56,7 @@ void HSpecCalibrate::readContent(QDataStream &s, IDataFactory *f)
     d_ptr->stdCurve->readContent(s);
     d_ptr->luminous->readContent(s);
     s >> type;
-    d_ptr->fitting = f->createSpecFitting(type);
+    d_ptr->fitting = d_ptr->factory->createSpecFitting(type);
     d_ptr->fitting->readContent(s);
 }
 
@@ -104,15 +105,15 @@ void HSpecCalibrate::setFitting(HSpecFitting *p)
 
 IDataItem *HSpecCalibrate::item(SpecType type)
 {
-    if (type == SpecSetting)
+    if (type == Setting)
         return d_ptr->setting;
-    if (type == SpecFitting)
+    if (type == Fitting)
         return d_ptr->fitting;
-    if (type == SpecStdCurve)
+    if (type == StdCurve)
         return d_ptr->stdCurve;
-    if (type == SpecPelsWave)
+    if (type == PelsWave)
         return d_ptr->pelsWave;
-    if (type == SpecLuminous)
+    if (type == Luminous)
         return d_ptr->luminous;
     return nullptr;
 }

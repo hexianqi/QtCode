@@ -13,18 +13,14 @@ class HChromatismItemPrivate;
 
 class HChromatismItem : public IChromatismItem
 {
+    Q_DECLARE_PRIVATE(HChromatismItem)
+
 public:
     explicit HChromatismItem();
-    virtual ~HChromatismItem();
+     ~HChromatismItem() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
-
-public:
-    void setData(QString name, QVariant value) override;
-    void setData(QVariantMap value) override;
-    QVariant data(QString name) override;
 
 public:
     void readContent(QDataStream &) override;
@@ -36,9 +32,6 @@ public:
 
 protected:
     HChromatismItem(HChromatismItemPrivate &);
-
-protected:
-    QScopedPointer<HChromatismItemPrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE

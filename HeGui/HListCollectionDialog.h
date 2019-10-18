@@ -23,7 +23,7 @@ class HE_GUI_EXPORT HListCollectionDialog : public QDialog
 
 public:
     explicit HListCollectionDialog(QWidget *parent = nullptr);
-    ~HListCollectionDialog();
+    ~HListCollectionDialog() override;
 
 public:
     void setDataDetail(IDataDetail *);

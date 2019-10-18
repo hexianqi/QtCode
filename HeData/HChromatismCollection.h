@@ -16,16 +16,11 @@ class HChromatismCollection : public IChromatismCollection
     Q_DECLARE_PRIVATE(HChromatismCollection)
 
 public:
-    explicit HChromatismCollection(IDataFactory *);
+    explicit HChromatismCollection();
     virtual ~HChromatismCollection();
 
 public:
     QString typeName() override;
-
-public:
-    IFileStream *fileStream() override;
-    void setUseIndex(QString value) override;
-    QString useIndex() override;
 
 public:
     double calcSdcm(double tc, QPointF xy) override;

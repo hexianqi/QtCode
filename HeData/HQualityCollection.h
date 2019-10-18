@@ -16,16 +16,11 @@ class HQualityCollection : public IQualityCollection
     Q_DECLARE_PRIVATE(HQualityCollection)
 
 public:
-    explicit HQualityCollection(IDataFactory *);
+    explicit HQualityCollection();
     virtual ~HQualityCollection();
 
 public:
     QString typeName() override;
-
-public:
-    IFileStream *fileStream() override;
-    void setUseIndex(QString value) override;
-    QString useIndex() override;
 
 public:
     HQualityReport check(QVariantMap value, QVariantMap *color = nullptr) override;

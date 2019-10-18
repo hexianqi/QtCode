@@ -5,12 +5,15 @@
 #ifndef ICHROMATISMITEM_H
 #define ICHROMATISMITEM_H
 
-#include "IDataItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IChromatismItem : public IDataItem
+class IChromatismItem : public HAbstractDataItem
 {
+public:
+    using HAbstractDataItem::HAbstractDataItem;
+
 public:
     // 计算色容差
     virtual double calcSdcm(QPointF xy) = 0;

@@ -1,5 +1,7 @@
 #include "HAdjustEditWidget_p.h"
 #include "ui_HAdjustEditWidget.h"
+#include "HAdjustEditDialog.h"
+#include "HSimpleTestSetWidget.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeCore/HAppContext.h"
@@ -10,9 +12,6 @@
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtWidgets/QAction>
 #include <QtCore/QDebug>
-
-#include "HAdjustEditDialog.h"
-#include "HSimpleTestSetWidget.h"
 
 HE_GUI_BEGIN_NAMESPACE
 

@@ -2,14 +2,15 @@
 #include "IDataFactory.h"
 #include "IFileStream.h"
 #include "IGrade.h"
-#include <QtCore/QDataStream>
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-HGradeCollectionPrivate::HGradeCollectionPrivate(IDataFactory *f)
+HGradeCollectionPrivate::HGradeCollectionPrivate()
 {
-    factory = f;
-    fileStream = f->createFileStream("HFileStream");
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+    fileStream = factory->createFileStream("HFileStream");
     fileStream->setMagicNumber(0x00030001);
     fileStream->setFileVersion(0x01010101);
     fileStream->setFileFilter("Grade files (*.hcg)");
@@ -20,41 +21,21 @@ HGradeCollectionPrivate::HGradeCollectionPrivate(IDataFactory *f)
 void HGradeCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    datas.clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = factory->createGrade(type);
-        item->readContent(s, factory);
-        if (s.status() != QDataStream::Ok)
-        {
-            datas.clear();
-            break;
-        }
-        datas.insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::IGrade>(s, datas, [=](QString type) { return factory->createGrade(type); });
     s >> useIndex;
 }
 
 void HGradeCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    s << quint32(datas.size());
-    for (auto i = datas.begin(); i != datas.end(); i++)
-    {
-        s << i.key() << i.value()->typeName();
-        i.value()->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::IGrade>(s, datas);
     s << useIndex;
 }
 
-HGradeCollection::HGradeCollection(IDataFactory *f) :
-    IGradeCollection(*new HGradeCollectionPrivate(f))
+HGradeCollection::HGradeCollection() :
+    IGradeCollection(*new HGradeCollectionPrivate)
 {
 }
 
@@ -70,26 +51,6 @@ HGradeCollection::~HGradeCollection()
 QString HGradeCollection::typeName()
 {
     return "HGradeCollection";
-}
-
-IFileStream *HGradeCollection::fileStream()
-{
-    Q_D(HGradeCollection);
-    return d->fileStream;
-}
-
-void HGradeCollection::setUseIndex(QString value)
-{
-    Q_D(HGradeCollection);
-    if (d->useIndex == value || !contains(value))
-        return;
-    d->useIndex = value;
-}
-
-QString HGradeCollection::useIndex()
-{
-    Q_D(HGradeCollection);
-    return d->useIndex;
 }
 
 QVariant HGradeCollection::levels(QString type)

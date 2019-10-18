@@ -5,16 +5,16 @@
 #ifndef IADJUSTCOLLECTION_H
 #define IADJUSTCOLLECTION_H
 
-#include "IDataCollection.h"
+#include "HDataCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IAdjust;
 
-class IAdjustCollection : public IDataCollection<IAdjust>
+class IAdjustCollection : public HDataCollection<IAdjust>
 {
 public:
-    using IDataCollection::IDataCollection;
+    using HDataCollection::HDataCollection;
 
 public:
     // 纠正

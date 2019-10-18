@@ -20,7 +20,7 @@ public:
     virtual ~HAbstractGrade();
 
 public:
-    void readContent(QDataStream &, IDataFactory *) override;
+    void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:

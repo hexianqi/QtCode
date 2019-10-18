@@ -9,7 +9,6 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
 class HSpecCalibrateCollectionPrivate;
 
 class HSpecCalibrateCollection : public ISpecCalibrateCollection
@@ -17,7 +16,7 @@ class HSpecCalibrateCollection : public ISpecCalibrateCollection
     Q_DECLARE_PRIVATE(HSpecCalibrateCollection)
 
 public:
-    explicit HSpecCalibrateCollection(IDataFactory *);
+    explicit HSpecCalibrateCollection();
     virtual ~HSpecCalibrateCollection();
 
 public:

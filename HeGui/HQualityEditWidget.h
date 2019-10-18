@@ -24,7 +24,7 @@ class HQualityEditWidget : public IDataEditWidget<IQuality>
 
 public:
     explicit HQualityEditWidget(QWidget *parent = nullptr);
-    ~HQualityEditWidget();
+    ~HQualityEditWidget() override;
 
 public:
     void initialize(QVariantMap param) override;

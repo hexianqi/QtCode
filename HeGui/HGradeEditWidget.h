@@ -27,7 +27,7 @@ class HGradeEditWidget : public IDataEditWidget<IGrade>
 
 public:
     explicit HGradeEditWidget(QWidget *parent = nullptr);
-    ~HGradeEditWidget();
+    ~HGradeEditWidget() override;
 
 public:
     void initialize(QVariantMap param) override;

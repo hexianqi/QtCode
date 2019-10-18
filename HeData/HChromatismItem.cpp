@@ -24,12 +24,12 @@ HChromatismItemPrivate::HChromatismItemPrivate()
 }
 
 HChromatismItem::HChromatismItem() :
-    d_ptr(new HChromatismItemPrivate)
+    IChromatismItem(*new HChromatismItemPrivate)
 {
 }
 
 HChromatismItem::HChromatismItem(HChromatismItemPrivate &p) :
-    d_ptr(&p)
+    IChromatismItem(p)
 {
 }
 
@@ -37,44 +37,24 @@ HChromatismItem::~HChromatismItem()
 {
 }
 
-void HChromatismItem::initialize(QVariantMap param)
-{
-    if (param.contains("datas"))
-        setData(param.value("datas").toMap());
-}
-
 QString HChromatismItem::typeName()
 {
     return "HChromatismItem";
 }
 
-void HChromatismItem::setData(QString name, QVariant value)
-{
-    d_ptr->datas.insert(name, value);
-}
-
-void HChromatismItem::setData(QVariantMap value)
-{
-    for (auto i = value.begin(); i != value.end(); i++)
-        setData(i.key(), i.value());
-}
-
-QVariant HChromatismItem::data(QString name)
-{
-    return d_ptr->datas.value(name);
-}
-
 void HChromatismItem::readContent(QDataStream &s)
 {
+    Q_D(HChromatismItem);
     quint32 version;
     s >> version;
-    s >> d_ptr->datas;
+    s >> d->datas;
 }
 
 void HChromatismItem::writeContent(QDataStream &s)
 {
+    Q_D(HChromatismItem);
     s << quint32(1);
-    s << d_ptr->datas;
+    s << d->datas;
 }
 
 double HChromatismItem::calcSdcm(QPointF xy)

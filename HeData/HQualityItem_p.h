@@ -2,16 +2,14 @@
 #define HQUALITYITEM_P_H
 
 #include "HQualityItem.h"
+#include "HAbstractDataItem_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HQualityItemPrivate
+class HQualityItemPrivate : public HAbstractDataItemPrivate
 {
 public:
     HQualityItemPrivate();
-
-public:
-    QVariantMap datas;
 };
 
 HE_DATA_END_NAMESPACE

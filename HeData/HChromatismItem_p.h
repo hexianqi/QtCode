@@ -2,16 +2,14 @@
 #define HCHROMATISMITEM_P_H
 
 #include "HChromatismItem.h"
+#include "HAbstractDataItem_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HChromatismItemPrivate
+class HChromatismItemPrivate : public HAbstractDataItemPrivate
 {
 public:
     HChromatismItemPrivate();
-
-public:
-    QVariantMap datas;
 };
 
 HE_DATA_END_NAMESPACE

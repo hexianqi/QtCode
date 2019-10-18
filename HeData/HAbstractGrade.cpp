@@ -1,9 +1,15 @@
 #include "HAbstractGrade_p.h"
 #include "IDataFactory.h"
 #include "IGradeItem.h"
-#include <QtCore/QDataStream>
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
+
+HAbstractGradePrivate::HAbstractGradePrivate()
+{
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+}
 
 HAbstractGrade::HAbstractGrade() :
     IGrade(*new HAbstractGradePrivate)
@@ -19,38 +25,20 @@ HAbstractGrade::~HAbstractGrade()
 {
 }
 
-void HAbstractGrade::readContent(QDataStream &s, IDataFactory *f)
+void HAbstractGrade::readContent(QDataStream &s)
 {
+    Q_D(HAbstractGrade);
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = f->createGradeItem(type);
-        item->readContent(s);
-        if (s.status() != QDataStream::Ok)
-        {
-            clear();
-            break;
-        }
-        insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::IGradeItem>(s, d->datas, [=](QString type) { return d->factory->createGradeItem(type); });
 }
 
 void HAbstractGrade::writeContent(QDataStream &s)
 {
+    Q_D(HAbstractGrade);
     s << quint32(1);
-    s << quint32(size());
-    for (auto i : keys())
-    {
-        s << i << item(i)->typeName();
-        item(i)->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::IGradeItem>(s, d->datas);
 }
 
 QVariant HAbstractGrade::levels(QString type)

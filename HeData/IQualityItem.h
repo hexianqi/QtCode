@@ -5,12 +5,15 @@
 #ifndef IQUALITYITEM_H
 #define IQUALITYITEM_H
 
-#include "IDataItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IQualityItem : public IDataItem
+class IQualityItem : public HAbstractDataItem
 {
+public:
+    using HAbstractDataItem::HAbstractDataItem;
+
 public:
     // 还原默认
     virtual void restoreDefault() = 0;

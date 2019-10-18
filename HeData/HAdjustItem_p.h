@@ -2,16 +2,14 @@
 #define HADJUSTITEM_P_H
 
 #include "HAdjustItem.h"
+#include "HAbstractDataItem_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HAdjustItemPrivate
+class HAdjustItemPrivate : public HAbstractDataItemPrivate
 {
 public:
     HAdjustItemPrivate();
-
-public:
-    QVariantMap datas;
 };
 
 HE_DATA_END_NAMESPACE

@@ -23,7 +23,7 @@ public:
     QString typeName() override;
 
 public:
-    void readContent(QDataStream &, IDataFactory *) override;
+    void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
 public:

@@ -9,13 +9,12 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
 class HConfigManagePrivate;
 
 class HConfigManage : public IConfigManage
 {
 public:
-    explicit HConfigManage(IDataFactory *);
+    explicit HConfigManage();
     virtual ~HConfigManage();
 
 public:
@@ -28,6 +27,9 @@ public:
     quint32 contain() override;
     void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;
     ISpecCalibrate *specCalibrate(QString name) override;
+    void setElecCalibrateCollection(IElecCalibrateCollection *) override;
+    IElecCalibrateCollection *elecCalibrateCollection() override;
+    IElecCalibrate *elecCalibrate(QString name) override;
     void setChromatismCollection(IChromatismCollection *) override;
     IChromatismCollection *chromatismCollection() override;
     void setGradeCollection(IGradeCollection *) override;

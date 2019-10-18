@@ -5,6 +5,10 @@
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
+#include "HElecCalibrate.h"
+#include "HElecCalibrateCollection.h"
+#include "HElecCalibrateItem.h"
+#include "HElecCalibrateItemCollection.h"
 #include "HChromatism.h"
 #include "HChromatismCollection.h"
 #include "HChromatismItem.h"
@@ -57,7 +61,7 @@ QString HDataFactory::typeName()
 IFileStream *HDataFactory::createFileStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IFileStream *p = new HFileStream(this);
+    auto p = new HFileStream(this);
     p->initialize(param);
     return p;
 }
@@ -65,7 +69,7 @@ IFileStream *HDataFactory::createFileStream(QString type, QVariantMap param)
 IExcelStream *HDataFactory::createExcelStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IExcelStream *p = new HExcelStream(this);
+    auto p = new HExcelStream(this);
     p->initialize(param);
     return p;
 }
@@ -73,7 +77,7 @@ IExcelStream *HDataFactory::createExcelStream(QString type, QVariantMap param)
 ITestData *HDataFactory::createTestData(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ITestData *p = new HTestData;
+    auto p = new HTestData;
     p->initialize(param);
     return p;
 }
@@ -81,7 +85,7 @@ ITestData *HDataFactory::createTestData(QString type, QVariantMap param)
 ITestSpec *HDataFactory::createTestSpec(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ITestSpec *p = new HTestSpec;
+    auto p = new HTestSpec;
     p->initialize(param);
     return p;
 }
@@ -89,7 +93,7 @@ ITestSpec *HDataFactory::createTestSpec(QString type, QVariantMap param)
 IConfigManage *HDataFactory::createConfigManage(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IConfigManage *p = new HConfigManage(this);
+    auto p = new HConfigManage;
     p->initialize(param);
     return p;
 }
@@ -97,7 +101,7 @@ IConfigManage *HDataFactory::createConfigManage(QString type, QVariantMap param)
 ISpecCalibrateCollection *HDataFactory::createSpecCalibrateCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ISpecCalibrateCollection *p = new HSpecCalibrateCollection(this);
+    auto p = new HSpecCalibrateCollection;
     p->initialize(param);
     return p;
 }
@@ -105,7 +109,39 @@ ISpecCalibrateCollection *HDataFactory::createSpecCalibrateCollection(QString ty
 ISpecCalibrate *HDataFactory::createSpecCalibrate(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ISpecCalibrate *p = new HSpecCalibrate;
+    auto p = new HSpecCalibrate;
+    p->initialize(param);
+    return p;
+}
+
+IElecCalibrateCollection *HDataFactory::createElecCalibrateCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HElecCalibrateCollection;
+    p->initialize(param);
+    return p;
+}
+
+IElecCalibrate *HDataFactory::createElecCalibrate(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HElecCalibrate;
+    p->initialize(param);
+    return p;
+}
+
+IElecCalibrateItemCollection *HDataFactory::createElecCalibrateItemCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HElecCalibrateItemCollection;
+    p->initialize(param);
+    return p;
+}
+
+IElecCalibrateItem *HDataFactory::createElecCalibrateItem(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HElecCalibrateItem;
     p->initialize(param);
     return p;
 }
@@ -113,7 +149,7 @@ ISpecCalibrate *HDataFactory::createSpecCalibrate(QString type, QVariantMap para
 IChromatismCollection *HDataFactory::createChromatismCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IChromatismCollection *p = new HChromatismCollection(this);
+    auto p = new HChromatismCollection;
     p->initialize(param);
     return p;
 }
@@ -121,7 +157,7 @@ IChromatismCollection *HDataFactory::createChromatismCollection(QString type, QV
 IChromatism *HDataFactory::createChromatism(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IChromatism *p = new HChromatism;
+    auto p = new HChromatism;
     p->initialize(param);
     return p;
 }
@@ -129,7 +165,7 @@ IChromatism *HDataFactory::createChromatism(QString type, QVariantMap param)
 IChromatismItem *HDataFactory::createChromatismItem(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IChromatismItem *p = new HChromatismItem;
+    auto p = new HChromatismItem;
     p->initialize(param);
     return p;
 }
@@ -137,7 +173,7 @@ IChromatismItem *HDataFactory::createChromatismItem(QString type, QVariantMap pa
 IGradeCollection *HDataFactory::createGradeCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IGradeCollection *p = new HGradeCollection(this);
+    auto p = new HGradeCollection;
     p->initialize(param);
     return p;
 }
@@ -155,7 +191,7 @@ IGradeItem *HDataFactory::createGradeItem(QString type, QVariantMap param)
 IAdjustCollection *HDataFactory::createAdjustCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IAdjustCollection *p = new HAdjustCollection(this);
+    auto p = new HAdjustCollection;
     p->initialize(param);
     return p;
 }
@@ -163,7 +199,7 @@ IAdjustCollection *HDataFactory::createAdjustCollection(QString type, QVariantMa
 IAdjust *HDataFactory::createAdjust(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IAdjust *p = new HAdjust;
+    auto p = new HAdjust;
     p->initialize(param);
     return p;
 }
@@ -171,7 +207,7 @@ IAdjust *HDataFactory::createAdjust(QString type, QVariantMap param)
 IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IAdjustItem *p = new HAdjustItem;
+    auto p = new HAdjustItem;
     p->initialize(param);
     return p;
 }
@@ -179,7 +215,7 @@ IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
 IQualityCollection *HDataFactory::createQualityCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IQualityCollection *p = new HQualityCollection(this);
+    auto p = new HQualityCollection;
     p->initialize(param);
     return p;
 }
@@ -187,7 +223,7 @@ IQualityCollection *HDataFactory::createQualityCollection(QString type, QVariant
 IQuality *HDataFactory::createQuality(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IQuality *p = new HQuality;
+    auto p = new HQuality;
     p->initialize(param);
     return p;
 }
@@ -195,7 +231,7 @@ IQuality *HDataFactory::createQuality(QString type, QVariantMap param)
 IQualityItem *HDataFactory::createQualityItem(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IQualityItem *p = new HQualityItem;
+    auto p = new HQualityItem;
     p->initialize(param);
     return p;
 }

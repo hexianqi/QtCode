@@ -13,7 +13,6 @@ HE_CORE_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
 class IGradeItem;
-class IDataFactory;
 
 class IGrade : public HCollection<IGradeItem>
 {
@@ -22,7 +21,7 @@ public:
 
 public:
     // 读取内容
-    virtual void readContent(QDataStream &, IDataFactory *) = 0;
+    virtual void readContent(QDataStream &) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
 

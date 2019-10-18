@@ -1,11 +1,17 @@
 #include "HChromatism_p.h"
 #include "IDataFactory.h"
 #include "IChromatismItem.h"
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 #include <QtCore/QJsonObject>
-#include <QtCore/QDataStream>
 
 HE_DATA_BEGIN_NAMESPACE
+
+HChromatismPrivate::HChromatismPrivate()
+{
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+}
 
 HChromatism::HChromatism() :
     IChromatism(*new HChromatismPrivate)
@@ -26,38 +32,20 @@ QString HChromatism::typeName()
     return "HChromatism";
 }
 
-void HChromatism::readContent(QDataStream &s, IDataFactory *f)
+void HChromatism::readContent(QDataStream &s)
 {
+    Q_D(HChromatism);
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = f->createChromatismItem(type);
-        item->readContent(s);
-        if (s.status() != QDataStream::Ok)
-        {
-            clear();
-            break;
-        }
-        insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::IChromatismItem>(s, d->datas, [=](QString type) { return d->factory->createChromatismItem(type); });
 }
 
 void HChromatism::writeContent(QDataStream &s)
 {
+    Q_D(HChromatism);
     s << quint32(1);
-    s << quint32(size());
-    for (auto i : keys())
-    {
-        s << i << item(i)->typeName();
-        item(i)->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::IChromatismItem>(s, d->datas);
 }
 
 double HChromatism::calcSdcm(double tc, QPointF xy)
@@ -94,5 +82,3 @@ bool HChromatism::matching(double tc)
 }
 
 HE_DATA_END_NAMESPACE
-
-

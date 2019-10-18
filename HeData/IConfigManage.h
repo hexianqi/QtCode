@@ -3,6 +3,7 @@
 **                      class                   MagicNumber     Filter
 **                  IConfigManage               0x00010001      *.cfg
 **                  ISpecCalibrateCollection    0x00020001      *.hcs
+**                  IElecCalibrateCollection    0x00020002      *.hce
 **                  IChromatismCollection       0x00020101      *.hcc
 **                  IGradeCollection            0x00030001      *.hcg
 **                  IQualityCollection          0x00030101      *.hcq
@@ -23,6 +24,8 @@ class IFileStream;
 class ITestData;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
+class IElecCalibrate;
+class IElecCalibrateCollection;
 class IChromatismCollection;
 class IGradeCollection;
 class IAdjustCollection;
@@ -35,6 +38,7 @@ public:
     {
         ContainNone          = 0x00000000,
         ContainSpec          = 0x00000001,
+        ContainElec          = 0x00000002,
         ContainChromatism    = 0x00000100,
         ContainGrade         = 0x00010000,
         ContainQuality       = 0x00020000,
@@ -53,7 +57,13 @@ public:
     // 设置光谱校准数据集
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) = 0;
     // 获取光谱校准数据
-    virtual ISpecCalibrate *specCalibrate(QString name) = 0;
+    virtual ISpecCalibrate *specCalibrate(QString name) = 0;    
+    // 设置电校准数据集
+    virtual void setElecCalibrateCollection(IElecCalibrateCollection *) = 0;
+    // 获取电校准数据集
+    virtual IElecCalibrateCollection *elecCalibrateCollection() = 0;
+    // 获取电校准数据
+    virtual IElecCalibrate *elecCalibrate(QString name) = 0;
     // 设置色容差数据集
     virtual void setChromatismCollection(IChromatismCollection *) = 0;
     // 获取色容差数据集

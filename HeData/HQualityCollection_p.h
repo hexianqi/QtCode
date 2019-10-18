@@ -5,19 +5,14 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HQualityCollectionPrivate : public HCollectionPrivate<IQuality>
+class HQualityCollectionPrivate : public HDataCollectionPrivate<IQuality>
 {
 public:
-    HQualityCollectionPrivate(IDataFactory *);
+    HQualityCollectionPrivate();
 
 public:
     void readContent(QDataStream &);
     void writeContent(QDataStream &);
-
-public:
-    IDataFactory *factory;
-    IFileStream *fileStream;
-    QString useIndex;
 };
 
 HE_DATA_END_NAMESPACE

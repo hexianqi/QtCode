@@ -55,8 +55,8 @@ void HQualityEditWidget::setData(IQuality *p)
     d_ptr->colorDamage = d_ptr->data->color(HQualityReport::Damage);
     d_ptr->colorNoPass = d_ptr->data->color(HQualityReport::NoPass);
     d_ptr->colorPassing = d_ptr->data->color(HQualityReport::Passing);
-    initSelected(IQuality::QualityDamage);
-    initSelected(IQuality::QualityCriterion);
+    initSelected(IQuality::Damage);
+    initSelected(IQuality::Criterion);
     showData();
 }
 
@@ -82,15 +82,15 @@ void HQualityEditWidget::saveData()
     d_ptr->data->setColor(HQualityReport::Damage, d_ptr->colorDamage);
     d_ptr->data->setColor(HQualityReport::NoPass, d_ptr->colorNoPass);
     d_ptr->data->setColor(HQualityReport::Passing, d_ptr->colorPassing);
-    saveTable(IQuality::QualityDamage);
-    saveTable(IQuality::QualityCriterion);
+    saveTable(IQuality::Damage);
+    saveTable(IQuality::Criterion);
 }
 
 void HQualityEditWidget::showData()
 {
     showPushButton();
-    showTable(IQuality::QualityDamage);
-    showTable(IQuality::QualityCriterion);
+    showTable(IQuality::Damage);
+    showTable(IQuality::Criterion);
 }
 
 void HQualityEditWidget::showPushButton()
@@ -112,7 +112,7 @@ void HQualityEditWidget::initSelected(IQuality::QualityType type)
     widget->setItemDelegateForColumn(1, delegate);
     widget->setItemDelegateForColumn(2, delegate);
     widget->setRowCount(d_ptr->selecteds[type].size());
-    if (type == IQuality::QualityDamage)
+    if (type == IQuality::Damage)
         ui->pushButton_12->setEnabled(!d_ptr->selecteds[type].isEmpty());
     else
         ui->pushButton_22->setEnabled(!d_ptr->selecteds[type].isEmpty());
@@ -236,42 +236,42 @@ void HQualityEditWidget::on_pushButton_04_clicked()
 
 void HQualityEditWidget::on_pushButton_11_clicked()
 {
-    addItem(IQuality::QualityDamage);
+    addItem(IQuality::Damage);
 }
 
 void HQualityEditWidget::on_pushButton_12_clicked()
 {
-    removeItem(IQuality::QualityDamage);
+    removeItem(IQuality::Damage);
 }
 
 void HQualityEditWidget::on_pushButton_21_clicked()
 {
-    addItem(IQuality::QualityCriterion);
+    addItem(IQuality::Criterion);
 }
 
 void HQualityEditWidget::on_pushButton_22_clicked()
 {
-    removeItem(IQuality::QualityCriterion);
+    removeItem(IQuality::Criterion);
 }
 
 void HQualityEditWidget::on_tableWidget_11_cellDoubleClicked(int row, int column)
 {
-    editColor(IQuality::QualityDamage, row, column);
+    editColor(IQuality::Damage, row, column);
 }
 
 void HQualityEditWidget::on_tableWidget_21_cellDoubleClicked(int row, int column)
 {
-    editColor(IQuality::QualityCriterion, row, column);
+    editColor(IQuality::Criterion, row, column);
 }
 
 void HQualityEditWidget::init()
 {
-    d_ptr->selecteds.insert(IQuality::QualityDamage, QStringList());
-    d_ptr->selecteds.insert(IQuality::QualityCriterion, QStringList());
-    d_ptr->unselecteds.insert(IQuality::QualityDamage, QStringList());
-    d_ptr->unselecteds.insert(IQuality::QualityCriterion, QStringList());
-    d_ptr->tableWidgets.insert(IQuality::QualityDamage, ui->tableWidget_11);
-    d_ptr->tableWidgets.insert(IQuality::QualityCriterion, ui->tableWidget_21);
+    d_ptr->selecteds.insert(IQuality::Damage, QStringList());
+    d_ptr->selecteds.insert(IQuality::Criterion, QStringList());
+    d_ptr->unselecteds.insert(IQuality::Damage, QStringList());
+    d_ptr->unselecteds.insert(IQuality::Criterion, QStringList());
+    d_ptr->tableWidgets.insert(IQuality::Damage, ui->tableWidget_11);
+    d_ptr->tableWidgets.insert(IQuality::Criterion, ui->tableWidget_21);
     ui->tableWidget_11->setHorizontalHeaderLabels(QStringList() << tr("项类型") << tr("MIN") << tr("MAX") << tr("不足颜色") << tr("超出颜色")) ;
     ui->tableWidget_11->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->tableWidget_21->setHorizontalHeaderLabels(QStringList() << tr("项类型") << tr("MIN") << tr("MAX") << tr("不足颜色") << tr("超出颜色")) ;

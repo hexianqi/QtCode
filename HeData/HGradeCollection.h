@@ -16,16 +16,11 @@ class HGradeCollection : public IGradeCollection
     Q_DECLARE_PRIVATE(HGradeCollection)
 
 public:
-    explicit HGradeCollection(IDataFactory *);
+    explicit HGradeCollection();
     virtual ~HGradeCollection();
 
 public:
     QString typeName() override;
-
-public:
-    IFileStream *fileStream() override;
-    void setUseIndex(QString value) override;
-    QString useIndex() override;
 
 public:
     QVariant levels(QString type) override;

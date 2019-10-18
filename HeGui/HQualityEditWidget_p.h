@@ -31,7 +31,4 @@ public:
 
 HE_GUI_END_NAMESPACE
 
-
-
-
 #endif // HQUALITYEDITWIDGET_P_H

@@ -26,11 +26,19 @@ public:
 public:
     IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) override;
     IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) override;
+
+public:
     ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
     ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
+
+public:
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
     ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
+    IElecCalibrateCollection *createElecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IElecCalibrate *createElecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
+    IElecCalibrateItemCollection *createElecCalibrateItemCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IElecCalibrateItem *createElecCalibrateItem(QString type, QVariantMap param = QVariantMap()) override;
     IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) override;
     IChromatism *createChromatism(QString type, QVariantMap param = QVariantMap()) override;
     IChromatismItem *createChromatismItem(QString type, QVariantMap param = QVariantMap()) override;

@@ -7,9 +7,21 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-HGradeItem::HGradeItem() :
-    HAbstractGradeItem(*new HGradeItemPrivate)
+HGradeItemPrivate::HGradeItemPrivate()
 {
+    datas.insert("[项类型]", "Undefined");
+    datas.insert("[优先级]", 1);
+}
+
+HGradeItem::HGradeItem() :
+    IGradeItem(*new HGradeItemPrivate)
+{
+}
+
+HGradeItem::HGradeItem(HGradeItemPrivate &p) :
+    IGradeItem(p)
+{
+
 }
 
 HGradeItem::~HGradeItem()

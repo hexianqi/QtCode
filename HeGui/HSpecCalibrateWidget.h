@@ -36,7 +36,7 @@ public:
     QString typeName() override;
 
 public:
-    void setSpecCalibrate(ISpecCalibrate *);
+    void setCalibrate(ISpecCalibrate *);
     void setTestSetWidget(ITestSetWidget *);
 
 protected:

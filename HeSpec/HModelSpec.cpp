@@ -45,7 +45,7 @@ void HModelSpec::syncTestData(quint32 type)
     {
         auto c = d->configManage->specCalibrate("1");
         d->testSpec->setCalibrate(c);
-        d->widget()->setSpecCalibrate(c);
+        d->widget()->setCalibrate(c);
         addAction(ACT_RESET_SPECTRUM);
     }
 }

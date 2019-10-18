@@ -1,10 +1,16 @@
 #include "HQualityItemCollection_p.h"
 #include "IDataFactory.h"
 #include "IQualityItem.h"
-#include <QtCore/QDataStream>
+#include "HDataHelper.h"
+#include "HeCore/HAppContext.h"
 #include <QtGui/QColor>
 
 HE_DATA_BEGIN_NAMESPACE
+
+HQualityItemCollectionPrivate::HQualityItemCollectionPrivate()
+{
+    factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
+}
 
 HQualityItemCollection::HQualityItemCollection() :
     IQualityItemCollection(*new HQualityItemCollectionPrivate)
@@ -25,38 +31,20 @@ QString HQualityItemCollection::typeName()
     return "HQualityItemCollection";
 }
 
-void HQualityItemCollection::readContent(QDataStream &s, IDataFactory *f)
+void HQualityItemCollection::readContent(QDataStream &s)
 {
+    Q_D(HQualityItemCollection);
     quint32 version;
-    quint32 size;
-    QString key, type;
 
-    clear();
     s >> version;
-    s >> size;
-    for (quint32 i = 0; i < size; i++)
-    {
-        s >> key >> type;
-        auto item = f->createQualityItem(type);
-        item->readContent(s);
-        if (s.status() != QDataStream::Ok)
-        {
-            clear();
-            break;
-        }
-        insert(key, item);
-    }
+    HDataHelper::read<QString, HeData::IQualityItem>(s, d->datas, [=](QString type) { return d->factory->createQualityItem(type); });
 }
 
 void HQualityItemCollection::writeContent(QDataStream &s)
 {
+    Q_D(HQualityItemCollection);
     s << quint32(1);
-    s << quint32(size());
-    for (auto i : keys())
-    {
-        s << i << item(i)->typeName();
-        item(i)->writeContent(s);
-    }
+    HDataHelper::write<QString, HeData::IQualityItem>(s, d->datas);
 }
 
 int HQualityItemCollection::check(QVariantMap value, QVariantMap *color)

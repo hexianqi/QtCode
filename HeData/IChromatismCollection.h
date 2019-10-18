@@ -5,16 +5,16 @@
 #ifndef ICHROMATISMCOLLECTION_H
 #define ICHROMATISMCOLLECTION_H
 
-#include "IDataCollection.h"
+#include "HDataCollection.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IChromatism;
 
-class IChromatismCollection : public IDataCollection<IChromatism>
+class IChromatismCollection : public HDataCollection<IChromatism>
 {
 public:
-    using IDataCollection::IDataCollection;
+    using HDataCollection::HDataCollection;
 
 public:
     // 计算色容差

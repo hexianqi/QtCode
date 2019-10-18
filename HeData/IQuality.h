@@ -12,7 +12,6 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataFactory;
 class IQualityItemCollection;
 
 class IQuality : public IInitializeable
@@ -20,13 +19,13 @@ class IQuality : public IInitializeable
 public:
     enum QualityType
     {
-        QualityDamage,
-        QualityCriterion
+        Damage,
+        Criterion
     };
 
 public:
     // 读取内容
-    virtual void readContent(QDataStream &, IDataFactory *) = 0;
+    virtual void readContent(QDataStream &) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
 

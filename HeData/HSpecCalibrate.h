@@ -22,7 +22,7 @@ public:
     QString typeName() override;
 
 public:
-    void readContent(QDataStream &, IDataFactory *) override;
+    void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
     QVector<uchar> toBinaryData() override;
     bool fromBinaryData(QVector<uchar> data) override;

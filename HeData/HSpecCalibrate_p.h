@@ -5,6 +5,7 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IDataFactory;
 class HSpecSetting;
 class HSpecStdCurve;
 class HSpecPelsWave;
@@ -16,6 +17,7 @@ public:
     HSpecCalibratePrivate();
 
 public:
+    IDataFactory *factory = nullptr;
     HSpecSetting *setting;
     HSpecFitting *fitting;
     HSpecStdCurve *stdCurve;

@@ -13,18 +13,14 @@ class HQualityItemPrivate;
 
 class HQualityItem : public IQualityItem
 {
+    Q_DECLARE_PRIVATE(HQualityItem)
+
 public:
     explicit HQualityItem();
-    virtual ~HQualityItem();
+    ~HQualityItem() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
-
-public:
-    void setData(QString name, QVariant value) override;
-    void setData(QVariantMap value) override;
-    QVariant data(QString name) override;
 
 public:
     void readContent(QDataStream &) override;
@@ -38,9 +34,6 @@ public:
 
 protected:
     HQualityItem(HQualityItemPrivate &);
-
-protected:
-    QScopedPointer<HQualityItemPrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE

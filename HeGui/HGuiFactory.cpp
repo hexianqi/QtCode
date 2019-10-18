@@ -66,17 +66,16 @@ IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 
 HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param)
 {
-    auto action = new HAction(this);
-    action->setText(text);
-    action->setHandler(createHandler(type, param));
-    return action;
+    auto p = new HAction(this);
+    p->setText(text);
+    p->setHandler(createHandler(type, param));
+    return p;
 }
 
 void HGuiFactory::registerClass()
 {
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
-
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HChromatismEditHandler>("HChromatismEditHandler");

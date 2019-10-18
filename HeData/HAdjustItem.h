@@ -13,18 +13,14 @@ class HAdjustItemPrivate;
 
 class HAdjustItem : public IAdjustItem
 {
+    Q_DECLARE_PRIVATE(HAdjustItem)
+
 public:
     explicit HAdjustItem();
-    virtual ~HAdjustItem();
+    ~HAdjustItem() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
-
-public:
-    void setData(QString name, QVariant value) override;
-    void setData(QVariantMap value) override;
-    QVariant data(QString name) override;
 
 public:
     void readContent(QDataStream &) override;
@@ -37,9 +33,6 @@ public:
 
 protected:
     HAdjustItem(HAdjustItemPrivate &);
-
-protected:
-    QScopedPointer<HAdjustItemPrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE

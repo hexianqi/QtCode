@@ -41,7 +41,7 @@ QString HSqlFactory::typeName()
 ISqlDatabase *HSqlFactory::createDatabase(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ISqlDatabase *p = new HSqlDatabase(this);
+    auto p = new HSqlDatabase(this);
     p->initialize(param);
     return p;
 }
@@ -49,7 +49,7 @@ ISqlDatabase *HSqlFactory::createDatabase(QString type, QVariantMap param)
 ISqlTableModel *HSqlFactory::createTableModel(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ISqlTableModel *p = new HSqlTableModel(this);
+    auto p = new HSqlTableModel(this);
     p->initialize(param);
     return p;
 }
@@ -57,7 +57,7 @@ ISqlTableModel *HSqlFactory::createTableModel(QString type, QVariantMap param)
 ISqlHandle *HSqlFactory::createHandle(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    ISqlHandle *p = new HSqlHandle(this);
+    auto p = new HSqlHandle(this);
     p->initialize(param);
     return p;
 }
@@ -70,7 +70,7 @@ ISqlPrint *HSqlFactory::createPrint(QString type, QVariantMap param)
 ISqlBrowser *HSqlFactory::createBrowser(QString type, QWidget *parent, QVariantMap param)
 {
     Q_UNUSED(type)
-    ISqlBrowser *p = new HSqlBrowser(parent);
+    auto p = new HSqlBrowser(parent);
     p->initialize(param);
     return p;
 }
@@ -78,7 +78,7 @@ ISqlBrowser *HSqlFactory::createBrowser(QString type, QWidget *parent, QVariantM
 IProductInfo *HSqlFactory::createProductInfo(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IProductInfo *p = new HProductInfo(this);
+    auto p = new HProductInfo(this);
     p->initialize(param);
     return p;
 }

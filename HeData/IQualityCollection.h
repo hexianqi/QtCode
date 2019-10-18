@@ -5,17 +5,17 @@
 #ifndef IQUALITYCOLLECTION_H
 #define IQUALITYCOLLECTION_H
 
-#include "IDataCollection.h"
+#include "HDataCollection.h"
 #include "HQualityType.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class IQuality;
 
-class IQualityCollection : public IDataCollection<IQuality>
+class IQualityCollection : public HDataCollection<IQuality>
 {
 public:
-    using IDataCollection::IDataCollection;
+    using HDataCollection::HDataCollection;
 
 public:
     // 检验

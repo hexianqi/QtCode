@@ -5,18 +5,20 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IDataFactory;
+
 class HSpecCalibrateCollectionPrivate : public HCollectionPrivate<ISpecCalibrate>
 {
 public:
-    HSpecCalibrateCollectionPrivate(IDataFactory *);
+    HSpecCalibrateCollectionPrivate();
 
 public:
     void readContent(QDataStream &);
     void writeContent(QDataStream &);
 
 public:
-    IDataFactory *factory;
-    IFileStream *fileStream;
+    IDataFactory *factory = nullptr;
+    IFileStream *fileStream = nullptr;
 };
 
 HE_DATA_END_NAMESPACE

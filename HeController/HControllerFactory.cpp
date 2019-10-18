@@ -43,7 +43,7 @@ IThread *HControllerFactory::createThread(QString type, QVariantMap param)
 IThreadCollection *HControllerFactory::createThreadCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    IThreadCollection *p = new HThreadCollection;
+    auto p = new HThreadCollection;
     p->initialize(param);
     return p;
 }
