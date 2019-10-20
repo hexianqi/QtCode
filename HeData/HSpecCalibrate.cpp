@@ -135,6 +135,11 @@ QVector<double> HSpecCalibrate::preprocess(QVector<double> value, bool fitting)
     return value;
 }
 
+QVector<double> HSpecCalibrate::handleFitting(QVector<double> value)
+{
+    return d_ptr->fitting->handle(value);
+}
+
 QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value, double offset)
 {
     double x,y;

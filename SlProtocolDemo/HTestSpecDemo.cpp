@@ -24,9 +24,10 @@ HTestSpecDemo::~HTestSpecDemo()
 bool HTestSpecDemo::setSample(QVector<double> value, bool /*avg*/)
 {
     Q_D(HTestSpecDemo);
-    d->samples[0] = value;
-    d->samples[1] = value;
-    return d->calcSpec();
+    return d->setSample(value);
+//    d->samples[0] = value;
+//    d->samples[1] = d->calibrate->handleFitting(value);
+//    return d->calcSpec();
 }
 
 bool HTestSpecDemo::setEnergy(QPolygonF value, double percent)
