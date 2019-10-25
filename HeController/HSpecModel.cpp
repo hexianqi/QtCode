@@ -17,6 +17,11 @@ HSpecModel::HSpecModel(QObject *parent) :
 {
 }
 
+HSpecModel::HSpecModel(HSpecModelPrivate &p, QObject *parent) :
+    HAbstractModel(p, parent)
+{
+}
+
 HSpecModel::~HSpecModel()
 {
     qDebug() << __func__;

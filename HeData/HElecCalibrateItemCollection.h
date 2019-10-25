@@ -20,14 +20,12 @@ public:
     virtual ~HElecCalibrateItemCollection();
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
-
-public:
-    IElecCalibrateItem *itemAt(int index) override;
 
 protected:
     HElecCalibrateItemCollection(HElecCalibrateItemCollectionPrivate &);

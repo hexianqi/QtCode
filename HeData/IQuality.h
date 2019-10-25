@@ -5,7 +5,7 @@
 #ifndef IQUALITY_H
 #define IQUALITY_H
 
-#include "HQualityType.h"
+#include "HDataType.h"
 #include "HeCore/IInitializeable.h"
 
 HE_CORE_USE_NAMESPACE
@@ -17,13 +17,6 @@ class IQualityItemCollection;
 class IQuality : public IInitializeable
 {
 public:
-    enum QualityType
-    {
-        Damage,
-        Criterion
-    };
-
-public:
     // 读取内容
     virtual void readContent(QDataStream &) = 0;
     // 写入内容
@@ -31,7 +24,7 @@ public:
 
 public:
     // 品质数据子项集
-    virtual IQualityItemCollection *itemCollection(QualityType type) = 0;
+    virtual IQualityItemCollection *itemCollection(HQualityType type) = 0;
     // 设置颜色
     virtual void setColor(HQualityReport type, QColor color) = 0;
     // 颜色

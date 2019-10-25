@@ -32,6 +32,9 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
+    auto str = QString("[abcdefg]");
+    qDebug() << str.left(str.size() - 1);
+
 //    HControlWidget cw;
 //    cw.show();
     HDemoWidget dw;

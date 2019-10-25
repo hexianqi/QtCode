@@ -24,9 +24,6 @@ public:
     virtual void readContent(QDataStream &) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
-
-public:
-    virtual IElecCalibrateItem *itemAt(int index) = 0;
 };
 
 HE_DATA_END_NAMESPACE

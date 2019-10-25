@@ -37,6 +37,9 @@ public:
 public:
     static QString filenameFilter(const QString &name, const QList<QByteArray> formats);
     static QString filenameFilter(const QString &name, const QStringList &mimeTypes);
+
+public:
+    static QString typeAddition(QString type, QString addition);
 };
 
 HE_CORE_END_NAMESPACE

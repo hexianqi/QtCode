@@ -5,8 +5,8 @@
 #ifndef IQUALITYCOLLECTION_H
 #define IQUALITYCOLLECTION_H
 
+#include "HDataType.h"
 #include "HDataCollection.h"
-#include "HQualityType.h"
 
 HE_DATA_BEGIN_NAMESPACE
 

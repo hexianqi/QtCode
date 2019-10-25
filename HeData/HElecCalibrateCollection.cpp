@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IElecCalibrate.h"
 #include "IFileStream.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -23,13 +23,13 @@ void HElecCalibrateCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IElecCalibrate>(s, datas, [=](QString type) { return factory->createElecCalibrate(type); });
+    HStreamHelper::read<QString, HeData::IElecCalibrate>(s, datas, [=](QString type) { return factory->createElecCalibrate(type); });
 }
 
 void HElecCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IElecCalibrate>(s, datas);
+    HStreamHelper::write<QString, HeData::IElecCalibrate>(s, datas);
 }
 
 HElecCalibrateCollection::HElecCalibrateCollection() :

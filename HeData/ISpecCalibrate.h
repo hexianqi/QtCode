@@ -5,7 +5,7 @@
 #ifndef ISPECCALIBRATE_H
 #define ISPECCALIBRATE_H
 
-#include "HDataGlobal.h"
+#include "HDataType.h"
 #include "HeCore/IInitializeable.h"
 
 HE_CORE_USE_NAMESPACE
@@ -17,16 +17,6 @@ class HSpecFitting;
 
 class ISpecCalibrate : public IInitializeable
 {
-public:
-    enum SpecType
-    {
-        Setting,
-        Fitting,
-        StdCurve,
-        PelsWave,
-        Luminous
-    };
-
 public:
     // 读取内容
     virtual void readContent(QDataStream &) = 0;
@@ -42,15 +32,13 @@ public:
 
 public:
     // 校准子项
-    virtual IDataItem *item(SpecType type) = 0;
+    virtual IDataItem *item(HSpecType type) = 0;
     // 测量参数
     virtual QVariantMap testParam() = 0;
 
 public:
     // 预处理
     virtual QVector<double> preprocess(QVector<double> value, bool fitting = true) = 0;
-    // 预处理
-    virtual QVector<double> handleFitting(QVector<double> value) = 0;
     // 计算光谱能量
     virtual QPolygonF calcEnergy(QVector<double> value, double offset) = 0;
     // 计算光通量

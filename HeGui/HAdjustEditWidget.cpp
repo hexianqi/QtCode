@@ -81,6 +81,9 @@ void HAdjustEditWidget::saveData()
 
 void HAdjustEditWidget::showData()
 {
+    if (d_ptr->data == nullptr)
+        return;
+
     int r = 0;
     for (auto key : d_ptr->data->keys())
     {

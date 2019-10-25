@@ -59,13 +59,13 @@ void HSpecCalibrateWidget::setCalibrate(ISpecCalibrate *p)
 {
     Q_D(HSpecCalibrateWidget);
 
-    if (d->specCalibrate != nullptr)
+    if (d->calibrate != nullptr)
         ui->tabWidget_2->removeTab(ui->tabWidget_2->indexOf(d->fittingWidget));
 
-    auto f = dynamic_cast<HSpecFitting *>(p->item(ISpecCalibrate::Fitting));
-    auto w = dynamic_cast<HSpecPelsWave *>(p->item(ISpecCalibrate::PelsWave));
+    auto f = dynamic_cast<HSpecFitting *>(p->item(Fitting));
+    auto w = dynamic_cast<HSpecPelsWave *>(p->item(PelsWave));
 
-    d->specCalibrate = p;
+    d->calibrate = p;
     if (f->typeName() == "HSpecFittingPolynom")
         d->fittingWidget = new HSpecFittingPolynomWidget;
     else
@@ -144,10 +144,10 @@ void HSpecCalibrateWidget::on_pushButton_1_clicked()
     Q_D(HSpecCalibrateWidget);
     setTest(false);
     HSpecSettingDialog dlg(this);
-    dlg.setData(dynamic_cast<HSpecSetting *>(d->specCalibrate->item(ISpecCalibrate::Setting)));
+    dlg.setData(dynamic_cast<HSpecSetting *>(d->calibrate->item(Setting)));
     if (dlg.exec())
     {
-        d->testSpec->setData(d->specCalibrate->testParam());
+        d->testSpec->setData(d->calibrate->testParam());
         d->energyWidget->initCoordinate();
     }
 }
@@ -175,7 +175,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
     if (energy < 0.01)
         return;
 
-    auto item = d->specCalibrate->item(ISpecCalibrate::Luminous);
+    auto item = d->calibrate->item(Luminous);
     QInputDialog dlg(this);
     HPluginHelper::initWidget("[标准光谱光通量]", &dlg);
     dlg.setLabelText(tr("标准光通量："));
@@ -190,7 +190,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
 void HSpecCalibrateWidget::on_pushButton_5_clicked()
 {
     Q_D(HSpecCalibrateWidget);
-    d->specCalibrate->setStdCurve(d->testSpec->sample(1));
+    d->calibrate->setStdCurve(d->testSpec->sample(1));
 }
 
 void HSpecCalibrateWidget::on_pushButton_6_clicked()

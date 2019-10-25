@@ -36,6 +36,7 @@ public:
     T *first() override;
     T *value(QString key) override;
     T *item(QString key) override;
+    T *itemAt(int index) override;
     QStringList keys() override;
     QList<T *> values() override;
 
@@ -126,6 +127,14 @@ template <typename T>
 T *HCollection<T>::item(QString key)
 {
     return value(key);
+}
+
+template <typename T>
+T *HCollection<T>::itemAt(int index)
+{
+    if (index < 0 || index >= size())
+        return nullptr;
+    return values().at(index);
 }
 
 template <typename T>

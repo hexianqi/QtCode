@@ -1,7 +1,7 @@
 #include "HChromatism_p.h"
 #include "IDataFactory.h"
 #include "IChromatismItem.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 #include <QtCore/QJsonObject>
@@ -38,14 +38,14 @@ void HChromatism::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IChromatismItem>(s, d->datas, [=](QString type) { return d->factory->createChromatismItem(type); });
+    HStreamHelper::read<QString, HeData::IChromatismItem>(s, d->datas, [=](QString type) { return d->factory->createChromatismItem(type); });
 }
 
 void HChromatism::writeContent(QDataStream &s)
 {
     Q_D(HChromatism);
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IChromatismItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IChromatismItem>(s, d->datas);
 }
 
 double HChromatism::calcSdcm(double tc, QPointF xy)

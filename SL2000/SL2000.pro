@@ -50,13 +50,16 @@ Release {
             -L$$DESTDIR -lHeSql
 }
 
-include(sl2000.pri)
+include(SL2000.pri)
+include(SL2000DC.pri)
 
 DEFINES += SL2000
 
-if(contains(DEFINES, SL2000)) {
+if (contains(DEFINES, SL2000)) {
     TARGET_NAME = SL2000
-}else{
+} else : if (contains(DEFINES, SL2000DC)) {
+    TARGET_NAME = SL2000DC
+} else {
     TARGET_NAME = Test
 }
 

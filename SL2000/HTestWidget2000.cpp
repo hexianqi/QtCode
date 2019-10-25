@@ -26,15 +26,23 @@
 HTestWidget2000Private::HTestWidget2000Private()
 {
     testData->setData("[使用调整]", false);
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     displays = QStringList() << "[测量日期]" << "[测量时间]"
-                             << "[分级]" << "[色容差]"
+                             << "[分级]"
+                             << "[色容差]"
                              << "[光谱光通量]" << "[光功率]"
                              << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
                              << "[色温]" << "[色纯度]"
                              << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
                              << "[显色指数]" <<"[显色指数Rx]";
+
+    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
+    energyWidget = new HSpecEnergyWidget;
+    chromatismWidget = new HSpecChromatismChartView;
+    cieWidget = new HCie1931Widget;
+    resultWidget = new HResultTableWidget;
+    testSetWidget = new HTestSetWidget2000;
+    detailWidget = new HDetailWidget2000;
 }
 
 HTestWidget2000::HTestWidget2000(QWidget *parent) :
@@ -43,6 +51,12 @@ HTestWidget2000::HTestWidget2000(QWidget *parent) :
     readSettings();
     init();
     resetGrade();
+}
+
+HTestWidget2000::HTestWidget2000(HTestWidget2000Private &p, QWidget *parent) :
+    HTestWidget(p, parent)
+{
+
 }
 
 HTestWidget2000::~HTestWidget2000()
@@ -99,14 +113,9 @@ void HTestWidget2000::createWidget()
     auto tabWidget3 = new QTabWidget;
     auto splitter1 = new QSplitter(Qt::Horizontal);
     auto splitter2 = new QSplitter(Qt::Vertical);
-    d->testSetWidget = new HTestSetWidget2000;
-    d->energyWidget = new HSpecEnergyWidget;
-    d->chromatismWidget = new HSpecChromatismChartView;
-    d->cieWidget = new HCie1931Widget;
-    d->detailWidget = new HDetailWidget2000;
-    d->resultWidget = new HResultTableWidget;
     d->resultWidget->setDisplay(d->displays);
     d->resultWidget->setSelected(d->tableSelecteds);
+    tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
     tabWidget2->addTab(d->chromatismWidget, d->chromatismWidget->windowTitle());
@@ -115,7 +124,8 @@ void HTestWidget2000::createWidget()
     splitter1->addWidget(tabWidget1);
     splitter1->addWidget(tabWidget2);
     splitter1->setHandleWidth(15);
-    splitter1->setStretchFactor(0, 1);
+    splitter1->setStretchFactor(0, 2);
+    splitter1->setStretchFactor(1, 1);
     splitter2->addWidget(splitter1);
     splitter2->addWidget(tabWidget3);
     splitter2->setHandleWidth(15);
@@ -127,10 +137,7 @@ void HTestWidget2000::createWidget()
 void HTestWidget2000::createAction()
 {
     Q_D(HTestWidget2000);
-    HTestWidget::createAction();
-    d->actionClear = new QAction(tr("清除结果(&R)..."), this);
-    d->actionClear->setIcon(QIcon(":/image/Clear.png"));
-    d->actionClear->setIconText(tr("清除结果"));
+    HTestWidget::createAction();    
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
@@ -138,7 +145,6 @@ void HTestWidget2000::createAction()
     d->actionGetRam = new QAction(tr("从设备读取数据(&G)"), this);
     d->actionImportCurve = new QAction(tr("导入标准曲线(&I)"), this);
     d->actionExportCurve = new QAction(tr("导出标准曲线(&E)"), this);
-    connect(d->actionClear, &QAction::triggered, this, &HTestWidget2000::clearResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
     connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
     connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
@@ -173,6 +179,13 @@ void HTestWidget2000::createToolBar()
     d->toolBars << toolBar1 << toolBar2;
 }
 
+void HTestWidget2000::clearResult()
+{
+    Q_D(HTestWidget2000);
+    d->cieWidget->clearPoint();
+    d->resultWidget->clearResult();
+}
+
 void HTestWidget2000::handleTestStateChanged(bool b)
 {
     Q_D(HTestWidget2000);
@@ -198,13 +211,6 @@ void HTestWidget2000::refreshWidget()
     d->detailWidget->refreshWidget();
     d->cieWidget->addPoint(d->testData->data("[色坐标]").toPointF());
     d->resultWidget->refreshResult(0, d->testSetWidget->testMode() == 0);
-}
-
-void HTestWidget2000::clearResult()
-{
-    Q_D(HTestWidget2000);
-    d->cieWidget->clearPoint();
-    d->resultWidget->clearResult();
 }
 
 void HTestWidget2000::postProcess()

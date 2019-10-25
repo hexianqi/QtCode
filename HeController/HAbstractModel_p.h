@@ -10,11 +10,6 @@ class IConfigManage;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
-class IDeviceCollection;
-HE_COMMUNICATE_END_NAMESPACE
-HE_COMMUNICATE_USE_NAMESPACE
-
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 class IThreadCollection;
@@ -30,7 +25,6 @@ public:
     QString configFileName;
     IModel *q_ptr;
     IConfigManage *configManage = nullptr;
-    IDeviceCollection *devices = nullptr;
     IThreadCollection *threads = nullptr;
     HDelayThread *delayThread = nullptr;
 };

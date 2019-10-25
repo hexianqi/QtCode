@@ -1,7 +1,11 @@
 #include "HControllerFactory_p.h"
-#include "HSpecThread.h"
 #include "HThreadCollection.h"
+#include "HSpecThread.h"
+#include "HSpecElecThread.h"
 #include "HSpecModel.h"
+#include "HSpecElecModel.h"
+#include "HSpecStrategy.h"
+#include "HElecStrategy.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -53,10 +57,19 @@ IModel *HControllerFactory::createModel(QString type, QVariantMap param)
     return HObjectFactory::createObject<IModel>(type, param, this);
 }
 
+IActionStrategy *HControllerFactory::createStrategy(QString type, QVariantMap param)
+{
+    return HObjectFactory::createObject<IActionStrategy>(type, param, this);
+}
+
 void HControllerFactory::registerClass()
 {
     HObjectFactory::registerClass<HSpecThread>("HSpecThread");
+    HObjectFactory::registerClass<HSpecElecThread>("HSpecElecThread");
     HObjectFactory::registerClass<HSpecModel>("HSpecModel");
+    HObjectFactory::registerClass<HSpecElecModel>("HSpecElecModel");
+    HObjectFactory::registerClass<HSpecStrategy>("HSpecStrategy");
+    HObjectFactory::registerClass<HSpecStrategy>("HElecStrategy");
 }
 
 HE_CONTROLLER_END_NAMESPACE

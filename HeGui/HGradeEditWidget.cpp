@@ -69,6 +69,9 @@ void HGradeEditWidget::saveData()
 
 void HGradeEditWidget::showData()
 {
+    if (d_ptr->data == nullptr)
+        return;
+
     d_ptr->selecteds = d_ptr->data != nullptr ? d_ptr->data->keys() : QStringList();
     d_ptr->unselecteds = HCoreHelper::unselected(d_ptr->optionals, d_ptr->selecteds);
 

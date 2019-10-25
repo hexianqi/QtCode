@@ -16,6 +16,9 @@ public:
     explicit HTestWidget2000(QWidget *parent = nullptr);
     ~HTestWidget2000() override;
 
+protected:
+    HTestWidget2000(HTestWidget2000Private &p, QWidget *parent = nullptr);
+
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
@@ -29,17 +32,15 @@ protected:
     void createAction() override;
     void createMenu() override;
     void createToolBar() override;
+    void clearResult() override;
 
 protected:
     void handleTestStateChanged(bool b);
     void resetGrade();
-    void refreshWidget();
-    void clearResult();
+    void refreshWidget();    
     void postProcess();
     void importCurve();
     void exportCurve();
-
-private:
     void readSettings();
     void writeSettings();
 };

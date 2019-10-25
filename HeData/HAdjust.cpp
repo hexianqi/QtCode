@@ -1,7 +1,7 @@
 #include "HAdjust_p.h"
 #include "IDataFactory.h"
 #include "IAdjustItem.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 
@@ -37,14 +37,14 @@ void HAdjust::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IAdjustItem>(s, d->datas, [=](QString type) { return d->factory->createAdjustItem(type); });
+    HStreamHelper::read<QString, HeData::IAdjustItem>(s, d->datas, [=](QString type) { return d->factory->createAdjustItem(type); });
 }
 
 void HAdjust::writeContent(QDataStream &s)
 {
     Q_D(HAdjust);
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IAdjustItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IAdjustItem>(s, d->datas);
 }
 
 void HAdjust::restoreDefault()

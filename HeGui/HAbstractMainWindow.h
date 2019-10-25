@@ -13,7 +13,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HMainWindowPrivate;
+class HAbstractMainWindowPrivate;
 
 class HE_GUI_EXPORT HAbstractMainWindow : public IMainWindow, public IConstructorCall
 {
@@ -28,7 +28,7 @@ public:
     bool openCalibrateDlg(QDialog *) override;
 
 protected:
-    HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);
+    HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);
 
 protected slots:
     void showDeviceFailed(QString text);
@@ -64,7 +64,7 @@ protected:
     virtual QString summary();
 
 protected:
-    QScopedPointer<HMainWindowPrivate> d_ptr;
+    QScopedPointer<HAbstractMainWindowPrivate> d_ptr;
 };
 
 HE_GUI_END_NAMESPACE

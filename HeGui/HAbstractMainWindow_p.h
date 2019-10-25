@@ -18,13 +18,13 @@ HE_GUI_BEGIN_NAMESPACE
 class IBuilder;
 class ITestWidget;
 
-class HE_GUI_EXPORT HMainWindowPrivate
+class HE_GUI_EXPORT HAbstractMainWindowPrivate
 {
 public:
-    HMainWindowPrivate(HAbstractMainWindow *);
+    HAbstractMainWindowPrivate(HAbstractMainWindow *);
 
 public:
-    bool showLogo = false;
+    bool showLogo = true;
 
 public:
     HAbstractMainWindow *q_ptr;

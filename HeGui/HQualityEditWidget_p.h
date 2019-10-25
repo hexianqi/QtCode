@@ -11,6 +11,8 @@ HE_DATA_END_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
+class HQualityItemCollectionWidget;
+
 class HQualityEditWidgetPrivate
 {
 public:
@@ -23,10 +25,9 @@ public:
     QColor colorDamage = Qt::white;
     QColor colorNoPass = Qt::white;
     QColor colorPassing = Qt::white;
-    QStringList optionals;
-    QMap<IQuality::QualityType, QStringList> selecteds;
-    QMap<IQuality::QualityType, QStringList> unselecteds;
-    QMap<IQuality::QualityType, HEntireTableWidget *> tableWidgets;
+    HQualityItemCollectionWidget *widget1;
+    HQualityItemCollectionWidget *widget2;
+    QString css;
 };
 
 HE_GUI_END_NAMESPACE

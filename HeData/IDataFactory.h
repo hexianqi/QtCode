@@ -16,6 +16,7 @@ class IFileStream;
 class IExcelStream;
 class ITestData;
 class ITestSpec;
+class ITestElec;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
@@ -49,6 +50,9 @@ public:
     virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱测试数据
     virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建电测试数据
+    virtual ITestElec *createTestElec(QString type, QVariantMap param = QVariantMap()) = 0;
+
 public:
     // 创建配置管理
     virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) = 0;

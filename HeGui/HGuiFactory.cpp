@@ -3,6 +3,7 @@
 #include "HSpecCalibrateSetWidget.h"
 #include "HAction.h"
 #include "HTestHandler.h"
+#include "HElecCalibrateHandler.h"
 #include "HSpecCalibrateHandler.h"
 #include "HChromatismEditHandler.h"
 #include "HChromatismSelectHandler.h"
@@ -78,6 +79,7 @@ void HGuiFactory::registerClass()
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
+    HObjectFactory::registerClass<HElecCalibrateHandler>("HElecCalibrateHandler");
     HObjectFactory::registerClass<HChromatismEditHandler>("HChromatismEditHandler");
     HObjectFactory::registerClass<HChromatismSelectHandler>("HChromatismSelectHandler");
     HObjectFactory::registerClass<HGradeEditHandler>("HGradeEditHandler");

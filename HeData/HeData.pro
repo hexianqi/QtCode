@@ -38,7 +38,8 @@ HEADERS     += \
             HAbstractDataItem.h \
             HAbstractDataItem_p.h \
             HDataHelper.h \
-    HDataCollection.h
+    HDataCollection.h \
+    HDataType.h
 
 SOURCES     += \
             HDataFactory.cpp \

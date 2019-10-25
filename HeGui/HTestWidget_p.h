@@ -36,6 +36,7 @@ public:
     QAction *actionStop;
     QAction *actionExportExcel;
     QAction *actionExportDatabase;
+    QAction *actionClear;
 };
 
 HE_GUI_END_NAMESPACE

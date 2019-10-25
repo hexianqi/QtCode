@@ -68,7 +68,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("LuminousFluxSpec",    "[光谱光通量]");
     hashFieldType.insert("LuminousFlux",        "[光通量]");
     hashFieldType.insert("LuminousPower",       "[光功率]");
-    hashFieldType.insert("LuminousEfficiency",  "[光效]");
+    hashFieldType.insert("LuminousEfficiency",  "[光效率]");
 
     hashFieldType.insert("PeakWave",            "[峰值波长]");
     hashFieldType.insert("PeakBandwidth",       "[峰值带宽]");
@@ -92,22 +92,18 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("Rx",                  "[显色指数Rx]");
     hashFieldType.insert("EnergyGraph",         "[光谱能量数据]");
 
-//    hashFieldType.insert("ForwardCurrent",               "[正向电流]");
-//    hashFieldType.insert("ForwardVoltage",               "[正向电压]");
-//    hashFieldType.insert("ReverseVoltage",               "[反向电压]");
-//    hashFieldType.insert("ReverseCurrent",               "[反向漏流]");
-//    hashFieldType.insert("FeedbackCurrent",              "[回溯电流]");
-//    hashFieldType.insert("ElecPower",                    "[电功率]");
+    hashFieldType.insert("OutputVoltage",       "[输出电压]");
+    hashFieldType.insert("OutputCurrent",       "[输出电流]");
+    hashFieldType.insert("MeasuredVoltage",     "[实测电压]");
+    hashFieldType.insert("MeasuredCurrent",     "[实测电流]");
+    hashFieldType.insert("ReverseVoltage",      "[反向电压]");
+    hashFieldType.insert("ReverseCurrent",      "[反向漏流]");
+    hashFieldType.insert("ElecPower",           "[电功率]");
+
 //    hashFieldType.insert("ACCurrent",                    "[交流电流]");
 //    hashFieldType.insert("ACVoltage",                    "[交流电压]");
 //    hashFieldType.insert("ACPower",                      "[交流电功率]");
 //    hashFieldType.insert("ACFactor",                     "[功率因素]");
-
-//    hashFieldType.insert("OutputCurrent",                "[输出电流]");
-//    hashFieldType.insert("OutputVoltage",                "[输出电压]");
-//    hashFieldType.insert("ActualCurrent",                "[实测电流]");
-//    hashFieldType.insert("ActualVoltage",                "[实测电压]");
-//
 
 }
 
@@ -152,19 +148,17 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("Rx",                   "Rx nchar(200)");
     hashFieldCreateStyle.insert("EnergyGraph",          "EnergyGraph ntext");
 
-//    hashFieldCreateStyle.insert("ForwardCurrent",        "ForwardCurrent numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ForwardVoltage",        "ForwardVoltage numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ReverseVoltage",        "ReverseVoltage numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ReverseCurrent",        "ReverseCurrent numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ElecPower",             "ElecPower numeric(18, 2)");
+    hashFieldCreateStyle.insert("OutputVoltage",        "OutputVoltage numeric(18, 2)");
+    hashFieldCreateStyle.insert("OutputCurrent",        "OutputCurrent numeric(18, 2)");
+    hashFieldCreateStyle.insert("MeasuredVoltage",      "MeasuredVoltage numeric(18, 2)");
+    hashFieldCreateStyle.insert("MeasuredCurrent",      "MeasuredCurrent numeric(18, 2)");
+    hashFieldCreateStyle.insert("ReverseVoltage",       "ReverseVoltage numeric(18, 2)");
+    hashFieldCreateStyle.insert("ReverseCurrent",       "ReverseCurrent numeric(18, 2)");
+    hashFieldCreateStyle.insert("ElecPower",            "ElecPower numeric(18, 2)");
 //    hashFieldCreateStyle.insert("ACCurrent",             "ACCurrent numeric(18, 2)");
 //    hashFieldCreateStyle.insert("ACVoltage",             "ACVoltage numeric(18, 2)");
 //    hashFieldCreateStyle.insert("ACPower",               "ACPower numeric(18, 2)");
 //    hashFieldCreateStyle.insert("ACFactor",              "ACFactor numeric(18, 2)");
-//    hashFieldCreateStyle.insert("OutputCurrent",         "OutputCurrent numeric(18, 2)");
-//    hashFieldCreateStyle.insert("OutputVoltage",         "OutputVoltage numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ActualCurrent",         "ActualCurrent numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ActualVoltage",         "ActualVoltage numeric(18, 2)");
 }
 
 HE_SQL_END_NAMESPACE

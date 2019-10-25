@@ -89,6 +89,9 @@ void HChromatismEditWidget::saveData()
 
 void HChromatismEditWidget::showData()
 {
+    if (d_ptr->data == nullptr)
+        return;
+
     ui->pushButton_2->setEnabled(!d_ptr->data->isEmpty());
     ui->pushButton_3->setEnabled(!d_ptr->data->isEmpty());
     ui->pushButton_4->setEnabled(!d_ptr->data->isEmpty());

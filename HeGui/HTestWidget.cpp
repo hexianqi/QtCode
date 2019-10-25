@@ -60,10 +60,15 @@ void HTestWidget::createAction()
     d->actionExportDatabase = new QAction(tr("保存数据库(&D)"), this);
     d->actionExportDatabase->setIcon(QIcon(":/image/DbComit.png"));
     d->actionExportDatabase->setIconText(tr("保存数据库"));
+    d->actionClear = new QAction(tr("清除结果(&R)..."), this);
+    d->actionClear->setIcon(QIcon(":/image/Clear.png"));
+    d->actionClear->setIconText(tr("清除结果"));
     connect(d->actionStart, &QAction::triggered, this, [=] { setTest(true); });
     connect(d->actionStop, &QAction::triggered, this, [=] { setTest(false); });
     connect(d->actionExportExcel, &QAction::triggered, this, &HTestWidget::exportExcel);
     connect(d->actionExportDatabase, &QAction::triggered, this, &HTestWidget::exportDatabase);
+    connect(d->actionClear, &QAction::triggered, this, &HTestWidget::clearResult);
+
 }
 
 void HTestWidget::initToolBar()

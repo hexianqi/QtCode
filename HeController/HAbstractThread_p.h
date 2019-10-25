@@ -16,6 +16,8 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
+class IActionStrategy;
+
 class HE_CONTROLLER_EXPORT HAbstractThreadPrivate
 {
 public:
@@ -35,7 +37,8 @@ public:
     int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
-    QMap<QString, IProtocol*> protocols;
+    QMap<QString, IProtocol *> protocols;
+    QMap<QString, IActionStrategy *> strategys;
 };
 
 HE_CONTROLLER_END_NAMESPACE

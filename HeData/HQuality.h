@@ -27,7 +27,7 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    IQualityItemCollection *itemCollection(QualityType type) override;
+    IQualityItemCollection *itemCollection(HQualityType type) override;
     void setColor(HQualityReport type, QColor color) override;
     QColor color(HQualityReport value) override;
     HQualityReport check(QVariantMap value, QVariantMap *color) override;

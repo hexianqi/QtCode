@@ -60,6 +60,7 @@ unix {
     INSTALLS += target
 }
 
-include(thread.pri)
-include(model.pri)
 include(memento.pri)
+include(model.pri)
+include(thread.pri)
+include(strategy.pri)

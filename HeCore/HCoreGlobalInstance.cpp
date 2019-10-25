@@ -203,7 +203,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_EXIT,                          tr("退出"));
     hashActionComment.insert(ACT_CHECK_DEVICE,                  tr("检查设备"));
     hashActionComment.insert(ACT_UNLOCK_DEVICE,                 tr("设备解锁"));
-
+    // 光谱相关操作
     hashActionComment.insert(ACT_SET_INTEGRAL_TIME,             tr("设置积分时间"));
     hashActionComment.insert(ACT_SET_SPECTRUM_AVG_TIMES,        tr("设置光谱平均次数"));
     hashActionComment.insert(ACT_SET_SPECTRUM_SAMPLE_DELAY,     tr("设置光谱采样延时"));
@@ -213,7 +213,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
     hashActionComment.insert(ACT_GET_SPECTRUM_ENERGY,           tr("获取光谱能量数据"));
     hashActionComment.insert(ACT_GET_RAM,                       tr("获取RAM数据"));
-
+    // 电相关操作
     hashActionComment.insert(ACT_SET_OUTPUT_VOLTAGE,            tr("设置输出电压"));
     hashActionComment.insert(ACT_SET_OUTPUT_CURRENT,            tr("设置输出电流"));
     hashActionComment.insert(ACT_SET_OVER_VOLTAGE,              tr("设置过电压"));
@@ -227,9 +227,25 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_GET_SOURCE_STATE,              tr("获取电源状态"));
     hashActionComment.insert(ACT_GET_ELEC_PARAM,                tr("获取电参数"));
 
-    hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
+    hashActionComment.insert(ACT_SET_ELEC_MODULE,               tr("设置电模块"));
+    hashActionComment.insert(ACT_SET_GEARS_OUTPUT_VOLTAGE,      tr("设置输出电压档位"));
+    hashActionComment.insert(ACT_SET_GEARS_OUTPUT_CURRENT,      tr("设置输出电流档位"));
+    hashActionComment.insert(ACT_SET_GEARS_MEASURED_VOLTAGE,    tr("设置实测电压档位"));
+    hashActionComment.insert(ACT_SET_GEARS_MEASURED_CURRENT,    tr("设置实测电流档位"));
+    hashActionComment.insert(ACT_SET_GEARS_REVERSE_VOLTAGE,     tr("设置反向电压档位"));
+    hashActionComment.insert(ACT_SET_GEARS_REVERSE_CURRENT,     tr("设置反向漏流档位"));
+    hashActionComment.insert(ACT_SET_REVERSE_VOLTAGE,           tr("设置反向电压"));
+    hashActionComment.insert(ACT_GET_MEASURED_VOLTAGE,          tr("获取实测电压"));
+    hashActionComment.insert(ACT_GET_MEASURED_CURRENT,          tr("获取实测电流"));
+    hashActionComment.insert(ACT_GET_REVERSE_CURRENT,           tr("获取反向漏流"));
 
+    // 测试操作
+    hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
+    hashActionComment.insert(ACT_GET_SPECTRUM_ELEC,             tr("获取光谱&电数据"));
+
+    // 重置操作
     hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱数据"));
+    hashActionComment.insert(ACT_RESET_ELEC,                    tr("重新配置电数据"));
     hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级数据"));
     hashActionComment.insert(ACT_RESET_ADJUST,                  tr("重新配置调整数据"));
     hashActionComment.insert(ACT_RESET_QUALITY,                 tr("重新配置品质数据"));
@@ -322,7 +338,7 @@ void HCoreGlobalInstance::initErrorComment()
     hashErrorComment.insert(E_PORT_READ_FAILED,                 tr("接收数据失败"));
     hashErrorComment.insert(E_DEVICE_INVALID,                   tr("设备无效"));
     hashErrorComment.insert(E_DEVICE_NOT_FOUND,                 tr("设备找不到"));
-    hashErrorComment.insert(E_DEVICE_ACTION_NOT_SUPPORT,        tr("设备命令不支持"));
+    hashErrorComment.insert(E_DEVICE_ACTION_NOT_SUPPORT,        tr("设备不支持此命令"));
     hashErrorComment.insert(E_DEVICE_ACTION_PARAM_ERROR,        tr("设备命令参数错误"));
     hashErrorComment.insert(E_DEVICE_CHECKCODE_ERROR,           tr("设备校验码错误"));
     hashErrorComment.insert(E_DEVICE_DATA_SEND_ERROR,           tr("设备发送数据错误"));
@@ -335,6 +351,7 @@ void HCoreGlobalInstance::initErrorComment()
     hashErrorComment.insert(E_DEVICE_FEEDBACK_CHIP_NORESPONSE,  tr("设备反馈 - 芯片无响应"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_COMMAND_ERROR,    tr("设备反馈 - 命令错误"));
     hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
+    hashErrorComment.insert(E_STRATEGY_ACTION_NOT_SUPPORT,      tr("策略不支持此命令"));
     hashErrorComment.insert(E_THREAD_NO_HANDLE,                 tr("线程无法处理"));
 }
 
@@ -343,7 +360,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.clear();
     hashDataFormatInfo.insert("",                               new HDataFormatInfo());
     hashDataFormatInfo.insert("[]",                             new HDataFormatInfo("[]"));
-    hashDataFormatInfo.insert("[_Fi]",                          new HDataFormatInfo("[_Fi]", 0, 65535));
+    hashDataFormatInfo.insert("[_F]",                           new HDataFormatInfo("[_F]", 0, 65535));
     // 光谱参数
     hashDataFormatInfo.insert("[标准色温]",                     new HDataFormatInfo("[标准色温]", "K", 2300, 4000, 2));
     hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 500, 1));
@@ -399,6 +416,29 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[旋转角]",                       new HDataFormatInfo("[旋转角]", "°", 0, 180, 1, 1));
     hashDataFormatInfo.insert("[轴A]",                          new HDataFormatInfo("[轴A]", 0, 1000000, 1));
     hashDataFormatInfo.insert("[轴B]",                          new HDataFormatInfo("[轴B]", 0, 1000000, 1));
+    // 电参数
+    hashDataFormatInfo.insert("[电模块]",                       new HDataFormatInfo("[电模块]", 0, 100, 1));
+    hashDataFormatInfo.insert("[输出电压]",                     new HDataFormatInfo("[输出电压]", "V", 0, 400, 2));
+    hashDataFormatInfo.insert("[输出电流]",                     new HDataFormatInfo("[输出电流]", "mA", 0, 5000, 2));
+    hashDataFormatInfo.insert("[反向电压]",                     new HDataFormatInfo("[反向电压]", "V", 0, 400, 2));
+    hashDataFormatInfo.insert("[实测电压]",                     new HDataFormatInfo("[实测电压]", "V", 0, 400, 2));
+    hashDataFormatInfo.insert("[实测电流]",                     new HDataFormatInfo("[实测电流]", "mA", 0, 5000, 2));
+    hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 2));
+    hashDataFormatInfo.insert("[电功率]",                       new HDataFormatInfo("[电功率]", "W", 0, 500, 2));
+    hashDataFormatInfo.insert("[电阻]",                         new HDataFormatInfo("[电阻]", "Ω", 0, 10, 3));
+    hashDataFormatInfo.insert("[功率因数]",                     new HDataFormatInfo("[功率因数]", 0, 1, 3));
+    hashDataFormatInfo.insert("[输出电压_F]",                   new HDataFormatInfo("[输出电压_F]"));
+    hashDataFormatInfo.insert("[输出电流_F]",                   new HDataFormatInfo("[输出电流_F]"));
+    hashDataFormatInfo.insert("[反向电压_F]",                   new HDataFormatInfo("[反向电压_F]"));
+    hashDataFormatInfo.insert("[实测电压_F]",                   new HDataFormatInfo("[实测电压_F]"));
+    hashDataFormatInfo.insert("[实测电流_F]",                   new HDataFormatInfo("[实测电流_F]"));
+    hashDataFormatInfo.insert("[反向漏流_F]",                   new HDataFormatInfo("[反向漏流_F]"));
+    hashDataFormatInfo.insert("[输出电压_R]",                   new HDataFormatInfo("[输出电压_R]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[输出电流_R]",                   new HDataFormatInfo("[输出电流_R]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[反向电压_R]",                   new HDataFormatInfo("[反向电压_R]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[实测电压_R]",                   new HDataFormatInfo("[实测电压_R]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[实测电流_R]",                   new HDataFormatInfo("[实测电流_R]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[反向漏流_R]",                   new HDataFormatInfo("[反向漏流_R]", "uA",0, 500, 3));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
@@ -444,9 +484,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[回溯电流_1_Re]"),                   FTypeInfo(tr("[回溯电流_1_Re]"), tr("uA"), 0, 5000, 3));
 //    hashFormatInfo.insert(tr("[回溯电流_2_Re]"),                   FTypeInfo(tr("[回溯电流_2_Re]"), tr("mA"), 0, 5000, 3));
 //    hashFormatInfo.insert(tr("[回溯电流_3_Re]"),                   FTypeInfo(tr("[回溯电流_3_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[电源电压]"),                        FTypeInfo(tr("[电源电压]"), tr("V"), 0, 400, 2));
-//    hashFormatInfo.insert(tr("[反向电压]"),                        FTypeInfo(tr("[反向电压]"), tr("V"), 0, 400, 2));
-//    hashFormatInfo.insert(tr("[正向电流]"),                        FTypeInfo(tr("[正向电流]"), tr("mA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[正向电流_1]"),                      FTypeInfo(tr("[正向电流_1]"), tr("uA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[正向电流_2]"),                      FTypeInfo(tr("[正向电流_2]"), tr("mA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[正向电流_3]"),                      FTypeInfo(tr("[正向电流_3]"), tr("mA"), 0, 5000, 2));
@@ -454,18 +491,13 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[正向电流_L2_2]"),                   FTypeInfo(tr("[正向电流_L2_2]"), tr("mA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[正向电流_L2_3]"),                   FTypeInfo(tr("[正向电流_L2_3]"), tr("mA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[正向电流_L2_4]"),                   FTypeInfo(tr("[正向电流_L2_4]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电压]"),                        FTypeInfo(tr("[正向电压]"), tr("V"), 0, 400, 2));
-//    hashFormatInfo.insert(tr("[反向漏流]"),                        FTypeInfo(tr("[反向漏流]"), tr("uA"),0, 500, 2));
-//    hashFormatInfo.insert(tr("[回溯电流]"),                        FTypeInfo(tr("[回溯电流]"), tr("mA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[回溯电流_1]"),                      FTypeInfo(tr("[回溯电流_1]"), tr("uA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[回溯电流_2]"),                      FTypeInfo(tr("[回溯电流_2]"), tr("mA"), 0, 5000, 2));
 //    hashFormatInfo.insert(tr("[回溯电流_3]"),                      FTypeInfo(tr("[回溯电流_3]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[电功率]"),                          FTypeInfo(tr("[电功率]"), tr("W"), 0, 500, 2));
-//    hashFormatInfo.insert(tr("[电阻]"),                            FTypeInfo(tr("[电阻]"), tr("Ω"), 0, 10, 3));
 //    //交流电参数
 //    hashFormatInfo.insert(tr("[交流电压]"),                        FTypeInfo(tr("[交流电压]"), tr("V"), 0, 500, 2));
 //    hashFormatInfo.insert(tr("[交流电流]"),                        FTypeInfo(tr("[交流电流]"), tr("A"), 0, 50, 3));
-//    hashFormatInfo.insert(tr("[功率因数]"),                        FTypeInfo(tr("[功率因数]"), tr(""), 0, 1, 3));
+//
 //    //光度参数
 //    hashFormatInfo.insert(tr("[光强度_Fi]"),                       FTypeInfo(tr("[光强度_Fi]"), 0, 65535));
 //    hashFormatInfo.insert(tr("[光通量_Fi]"),                       FTypeInfo(tr("[光通量_Fi]"), 0, 65535));
@@ -498,8 +530,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //
 ////    //电机参数
 ////    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
-
-////    hashFormatInfo.insert(tr("[温度]"),                  FTypeInfo(tr("[温度]"), tr("℃"), -100, 1000, 1));
 //    //其他参数
 //    hashFormatInfo.insert(tr("[ID]"),                              FTypeInfo(tr("[ID]"), 0, 65536));
 //    hashFormatInfo.insert(tr("[总数]"),                            FTypeInfo(tr("[总数]"), 0, 65536));
@@ -507,8 +537,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[合格]"),                            FTypeInfo(tr("[合格]"), 0, 100));
 //    hashFormatInfo.insert(tr("[百分比]"),                          FTypeInfo(tr("[百分比]"), tr("%"), 0, 1000, 1));
 //    hashFormatInfo.insert(tr("[良品率]"),                          FTypeInfo(tr("[良品率]"), tr("%"), 0, 1000, 1));
-//
-    //    hashFormatInfo.insert(tr("[线路地址]"),                        FTypeInfo(tr("[线路地址]"), 0, 0xFFFFFFFF));
+//    hashFormatInfo.insert(tr("[线路地址]"),                        FTypeInfo(tr("[线路地址]"), 0, 0xFFFFFFFF));
 }
 
 void HCoreGlobalInstance::initDataCaption()
@@ -524,6 +553,7 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[色坐标vp]",                        tr("色坐标v'"));
     hashDataCaption.insert("[色坐标uvp]",                       tr("色坐标u'v'"));
     hashDataCaption.insert("[光谱光通量]",                      tr("光通量"));
+    hashDataCaption.insert("[测试日期时间]",                    tr("测试时间"));
 
 //    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
 //    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));
@@ -535,7 +565,7 @@ void HCoreGlobalInstance::initDataCaption()
 //    hashDataCaption.insert("[正向电流_L2_2]",                   tr("正向电流(2路)"));
 //    hashDataCaption.insert("[正向电流_L2_3]",                   tr("正向电流(3路)"));
 //    hashDataCaption.insert("[正向电流_L2_4]",                   tr("正向电流(4路)"));
-//    hashDataCaption.insert("[测试日期时间]",                    tr("测试时间"));
+
 //    hashDataCaption.insert("[分级_别名]",                       tr("分级"));
 }
 

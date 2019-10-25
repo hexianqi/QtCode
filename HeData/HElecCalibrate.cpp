@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IElecCalibrateItem.h"
 #include "IElecCalibrateItemCollection.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -40,23 +40,23 @@ void HElecCalibrate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HDataHelper::read<QString, HeData::IElecCalibrateItemCollection>(s, d_ptr->datas, [=](QString type) { return d_ptr->factory->createElecCalibrateItemCollection(type); });
+    HStreamHelper::read<QString, HeData::IElecCalibrateItemCollection>(s, d_ptr->datas, [=](QString type) { return d_ptr->factory->createElecCalibrateItemCollection(type); });
 }
 
 void HElecCalibrate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IElecCalibrateItemCollection>(s, d_ptr->datas);
+    HStreamHelper::write<QString, HeData::IElecCalibrateItemCollection>(s, d_ptr->datas);
 }
 
-void HElecCalibrate::setItemCollection(ElecType type, IElecCalibrateItemCollection *p)
+void HElecCalibrate::setItemCollection(HElecType type, IElecCalibrateItemCollection *p)
 {
     auto key = toString(type);
     if (!key.isEmpty())
         d_ptr->datas[key] = p;
 }
 
-IElecCalibrateItemCollection *HElecCalibrate::itemCollection(IElecCalibrate::ElecType type)
+IElecCalibrateItemCollection *HElecCalibrate::itemCollection(HElecType type)
 {
     auto key = toString(type);
     if (key.isEmpty() || !d_ptr->datas.contains(key))
@@ -64,40 +64,40 @@ IElecCalibrateItemCollection *HElecCalibrate::itemCollection(IElecCalibrate::Ele
     return d_ptr->datas.value(key);
 }
 
-IElecCalibrateItem *HElecCalibrate::item(ElecType type, int index)
+IElecCalibrateItem *HElecCalibrate::item(HElecType type, int index)
 {
     auto i = itemCollection(type);
     return i == nullptr ? nullptr : i->itemAt(index);
 }
 
-double HElecCalibrate::toFiction(double value, ElecType type, int index)
+double HElecCalibrate::toFiction(double value, HElecType type, int index)
 {
     auto i = item(type, index);
     return i == nullptr ? 0.0 : i->toFiction(value);
 }
 
-double HElecCalibrate::toReal(double value, ElecType type, int index)
+double HElecCalibrate::toReal(double value, HElecType type, int index)
 {
     auto i = item(type, index);
     return i == nullptr ? 0.0 : i->toReal(value);
 }
 
-QString HElecCalibrate::toString(ElecType type)
+QString HElecCalibrate::toString(HElecType type)
 {
     switch (type)
     {
-    case SourceVoltage:
-        return "[电源电压]";
+    case OutputVoltage:
+        return "[输出电压]";
+    case OutputCurrent:
+        return "[输出电流]";
+    case MeasuredVoltage:
+        return "[实测电压]";
+    case MeasuredCurrent:
+        return "[实测电流]";
     case ReverseVoltage:
         return "[反向电压]";
-    case ForwardCurrent:
-        return "[正向电流]";
-    case ForwardVoltage:
-        return "[正向电压]";
     case ReverseCurrent:
         return "[反向漏流]";
-    case FeedbackCurrent:
-        return "[回溯电流]";
     }
     return QString();
 }

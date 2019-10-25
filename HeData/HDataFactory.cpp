@@ -2,6 +2,7 @@
 #include "HExcelStream.h"
 #include "HFileStream.h"
 #include "HTestSpec.h"
+#include "HTestElec.h"
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
@@ -86,6 +87,14 @@ ITestSpec *HDataFactory::createTestSpec(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     auto p = new HTestSpec;
+    p->initialize(param);
+    return p;
+}
+
+ITestElec *HDataFactory::createTestElec(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HTestElec;
     p->initialize(param);
     return p;
 }

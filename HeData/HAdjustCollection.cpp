@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IAdjust.h"
 #include "IFileStream.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -23,14 +23,14 @@ void HAdjustCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IAdjust>(s, datas, [=](QString type) { return factory->createAdjust(type); });
+    HStreamHelper::read<QString, HeData::IAdjust>(s, datas, [=](QString type) { return factory->createAdjust(type); });
     s >> useIndex;
 }
 
 void HAdjustCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IAdjust>(s, datas);
+    HStreamHelper::write<QString, HeData::IAdjust>(s, datas);
     s << useIndex;
 }
 

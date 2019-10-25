@@ -31,6 +31,8 @@ public:
     virtual T *value(QString key) = 0;
     // key项
     virtual T *item(QString key) = 0;
+    // 第N个值
+    virtual T *itemAt(int index) = 0;
     // 所有键
     virtual QStringList keys() = 0;
     // 所有值

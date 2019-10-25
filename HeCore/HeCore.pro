@@ -62,5 +62,3 @@ include(interface.pri)
 include(reflect.pri)
 include(type.pri)
 include(template.pri)
-
-

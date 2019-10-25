@@ -3,6 +3,7 @@
 #include "HeAlgorithm/HMath.h"
 #include "HeAlgorithm/HMultiFit.h"
 #include <QtCore/QtMath>
+#include <QtCore/QDataStream>
 
 HE_ALGORITHM_USE_NAMESPACE
 

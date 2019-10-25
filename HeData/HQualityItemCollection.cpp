@@ -1,7 +1,7 @@
 #include "HQualityItemCollection_p.h"
 #include "IDataFactory.h"
 #include "IQualityItem.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtGui/QColor>
 
@@ -37,14 +37,14 @@ void HQualityItemCollection::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IQualityItem>(s, d->datas, [=](QString type) { return d->factory->createQualityItem(type); });
+    HStreamHelper::read<QString, HeData::IQualityItem>(s, d->datas, [=](QString type) { return d->factory->createQualityItem(type); });
 }
 
 void HQualityItemCollection::writeContent(QDataStream &s)
 {
     Q_D(HQualityItemCollection);
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IQualityItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IQualityItem>(s, d->datas);
 }
 
 int HQualityItemCollection::check(QVariantMap value, QVariantMap *color)

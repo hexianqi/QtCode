@@ -8,7 +8,7 @@ HE_DATA_BEGIN_NAMESPACE
 HQualityPrivate::HQualityPrivate()
 {
     colors.insert(HQualityReport::InvalidData, Qt::yellow);
-    colors.insert(HQualityReport::Damage, Qt::gray);
+    colors.insert(HQualityReport::Broken, Qt::gray);
     colors.insert(HQualityReport::NoPass, Qt::red);
     colors.insert(HQualityReport::Passing, Qt::green);
     damages = new HQualityItemCollection;
@@ -55,7 +55,7 @@ void HQuality::writeContent(QDataStream &s)
     d_ptr->criterions->writeContent(s);
 }
 
-IQualityItemCollection *HQuality::itemCollection(QualityType type)
+IQualityItemCollection *HQuality::itemCollection(HQualityType type)
 {
     if (type == Damage)
         return d_ptr->damages;
@@ -83,7 +83,7 @@ HQualityReport HQuality::check(QVariantMap value, QVariantMap *color)
     if (state < 0)
         return HQualityReport::InvalidData;
     if (state == 0)
-        return HQualityReport::Damage;
+        return HQualityReport::Broken;
 
     state = d_ptr->criterions->check(value, color);
     if (state < 0)

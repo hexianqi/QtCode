@@ -1,6 +1,13 @@
 #include "HBuilder2000_p.h"
 #include "HTestWidget2000.h"
 #include "HeCore/HAppContext.h"
+#include "HeData/IConfigManage.h"
+#include "HeData/IDataFactory.h"
+#include "HeData/IFileStream.h"
+#include "HeData/ISpecCalibrateCollection.h"
+#include "HeData/ISpecCalibrate.h"
+#include "HeData/IChromatismCollection.h"
+#include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IDevice.h"
 #include "HeCommunicate/IDeviceCollection.h"
@@ -8,13 +15,6 @@
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
-#include "HeData/IConfigManage.h"
-#include "HeData/IDataFactory.h"
-#include "HeData/IFileStream.h"
-#include "HeData/ITestSpec.h"
-#include "HeData/ISpecCalibrate.h"
-#include "HeData/ISpecCalibrateCollection.h"
-#include "HeData/IChromatismCollection.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
@@ -153,7 +153,6 @@ void HBuilder2000::buildDevice()
     devices->insert("Spec", device);
     protocol->setDevice(device);
     protocols->insert("Spec", protocol);
-    HAppContext::setContextPointer("IDeviceCollection", devices);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
@@ -175,7 +174,6 @@ void HBuilder2000::buildDevice()
 //    devices->insert("Spec", device);
 //    protocol->setDevice(device);
 //    protocols->insert("Spec", protocol);
-//    HAppContext::setContextPointer("IDeviceCollection", devices);
 //    HAppContext::setContextPointer("IProtocolCollection", protocols);
 //}
 
@@ -184,7 +182,7 @@ void HBuilder2000::buildThread()
     Q_D(HBuilder2000);
     auto thread = d->controllerFactory->createThread("HSpecThread");
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
-    threads->insert("Spec", thread);
+    threads->insert("1", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
 }
 

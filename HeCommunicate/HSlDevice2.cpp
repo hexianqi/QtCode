@@ -83,7 +83,7 @@ HErrorType HSlDevice2::getData(int size, uchar cmd, uchar block, QVector<uchar> 
     return E_OK;
 }
 
-HErrorType HSlDevice2::setDataBatch(QList<uchar> param, QVector<uchar> value, int delay)
+HErrorType HSlDevice2::setDataBatch(QList<uchar> param, QVector<uchar> value, int /*delay*/)
 {
     if (value.size() < 2)
         return E_DEVICE_DATA_SEND_ERROR;

@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IFileStream.h"
 #include "IGrade.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -23,14 +23,14 @@ void HGradeCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IGrade>(s, datas, [=](QString type) { return factory->createGrade(type); });
+    HStreamHelper::read<QString, HeData::IGrade>(s, datas, [=](QString type) { return factory->createGrade(type); });
     s >> useIndex;
 }
 
 void HGradeCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IGrade>(s, datas);
+    HStreamHelper::write<QString, HeData::IGrade>(s, datas);
     s << useIndex;
 }
 

@@ -1,7 +1,7 @@
 #include "HAbstractGrade_p.h"
 #include "IDataFactory.h"
 #include "IGradeItem.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -31,14 +31,14 @@ void HAbstractGrade::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IGradeItem>(s, d->datas, [=](QString type) { return d->factory->createGradeItem(type); });
+    HStreamHelper::read<QString, HeData::IGradeItem>(s, d->datas, [=](QString type) { return d->factory->createGradeItem(type); });
 }
 
 void HAbstractGrade::writeContent(QDataStream &s)
 {
     Q_D(HAbstractGrade);
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IGradeItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IGradeItem>(s, d->datas);
 }
 
 QVariant HAbstractGrade::levels(QString type)

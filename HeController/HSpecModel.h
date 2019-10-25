@@ -25,6 +25,9 @@ public:
     QString typeName() override;
 
 protected:
+    HSpecModel(HSpecModelPrivate &p, QObject *parent = nullptr);
+
+protected:
     void syncTestData(quint32 type) override;
     void syncMachine(quint32 type) override;
 };

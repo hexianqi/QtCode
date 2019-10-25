@@ -1,4 +1,5 @@
 #include "HAbstractThread_p.h"
+#include "IActionStrategy.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeCommunicate/IProtocol.h"
@@ -95,7 +96,32 @@ void HAbstractThread::run()
 
 bool HAbstractThread::checkAction(HActionType action)
 {
-    return action < 0x00000100 || d_ptr->actionSupport.contains(action);
+    return action < 0x00000100 || isSupport(action);
+}
+
+HErrorType HAbstractThread::handleAction(HActionType action)
+{
+    for (auto v : d_ptr->strategys)
+    {
+        if (!v->isSupport(action))
+            continue;
+        auto error = v->handle(action);
+        if (error != E_OK)
+            return error;
+    }
+    return E_THREAD_NO_HANDLE;
+}
+
+bool HAbstractThread::isSupport(HActionType action)
+{
+    if (d_ptr->actionSupport.contains(action))
+        return true;
+    for (auto v : d_ptr->strategys)
+    {
+        if (v->isSupport(action))
+            return true;
+    }
+    return false;
 }
 
 void HAbstractThread::debugMode()

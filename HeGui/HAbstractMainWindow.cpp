@@ -12,7 +12,7 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HMainWindowPrivate::HMainWindowPrivate(HAbstractMainWindow *p) :
+HAbstractMainWindowPrivate::HAbstractMainWindowPrivate(HAbstractMainWindow *p) :
     q_ptr(p)
 {
     logo.load(":/image/Logo.png");
@@ -20,12 +20,12 @@ HMainWindowPrivate::HMainWindowPrivate(HAbstractMainWindow *p) :
 
 HAbstractMainWindow::HAbstractMainWindow(QWidget *parent) :
     IMainWindow(parent),
-    d_ptr(new HMainWindowPrivate(this))
+    d_ptr(new HAbstractMainWindowPrivate(this))
 {
     initialize();
 }
 
-HAbstractMainWindow::HAbstractMainWindow(HMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent) :
+HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent) :
     IMainWindow(parent),
     d_ptr(&p)
 {

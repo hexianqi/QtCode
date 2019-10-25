@@ -33,7 +33,6 @@ public:
     ITestDetailWidget *detailWidget;
 
 public:
-    QAction *actionClear;
     QAction *actionAdjust;
     QAction *actionSetRam;
     QAction *actionGetRam;

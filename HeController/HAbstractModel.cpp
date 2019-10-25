@@ -4,7 +4,6 @@
 #include "HDelayThread.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
-#include "HeCommunicate/IDeviceCollection.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IFileStream.h"
 #include <QtCore/QDebug>
@@ -17,7 +16,6 @@ HAbstractModelPrivate::HAbstractModelPrivate(IModel *q) :
     initialized = false;
     configFileName = HAppContext::getContextValue<QString>("ConfigFileName");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-    devices = HAppContext::getContextPointer<IDeviceCollection>("IDeviceCollection");
     threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
 }
 
@@ -59,12 +57,6 @@ void HAbstractModel::addAction(HActionType action, ulong delay)
     if (action >= 0x10000000)
     {
         emit actionFinished(action);
-        return;
-    }
-
-    if (!d_ptr->devices->isSupport(action))
-    {
-        handleActionFailed(action, E_DEVICE_ACTION_NOT_SUPPORT);
         return;
     }
 

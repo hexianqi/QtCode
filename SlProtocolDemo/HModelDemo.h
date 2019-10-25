@@ -24,9 +24,6 @@ public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
 
-public:
-    void addAction(HActionType action, ulong delay = 0) override;
-
 protected:
     void syncTestData(quint32 type) override;
     void syncMachine(quint32 type) override;

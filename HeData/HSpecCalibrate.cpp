@@ -9,6 +9,7 @@
 #include "HSpecPelsWave.h"
 #include "HSpecLuminous.h"
 #include "HeCore/HAppContext.h"
+#include <QtCore/QDataStream>
 #include <QtGui/QPolygonF>
 
 HE_DATA_BEGIN_NAMESPACE
@@ -103,7 +104,7 @@ void HSpecCalibrate::setFitting(HSpecFitting *p)
     d_ptr->fitting = p;
 }
 
-IDataItem *HSpecCalibrate::item(SpecType type)
+IDataItem *HSpecCalibrate::item(HSpecType type)
 {
     if (type == Setting)
         return d_ptr->setting;
@@ -133,11 +134,6 @@ QVector<double> HSpecCalibrate::preprocess(QVector<double> value, bool fitting)
     if (fitting)
         value = d_ptr->fitting->handle(value);
     return value;
-}
-
-QVector<double> HSpecCalibrate::handleFitting(QVector<double> value)
-{
-    return d_ptr->fitting->handle(value);
 }
 
 QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value, double offset)

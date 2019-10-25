@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IQuality.h"
 #include "IFileStream.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtGui/QColor>
 
@@ -24,14 +24,14 @@ void HQualityCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IQuality>(s, datas, [=](QString type) { return factory->createQuality(type); });
+    HStreamHelper::read<QString, HeData::IQuality>(s, datas, [=](QString type) { return factory->createQuality(type); });
     s >> useIndex;
 }
 
 void HQualityCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IQuality>(s, datas);
+    HStreamHelper::write<QString, HeData::IQuality>(s, datas);
     s << useIndex;
 }
 

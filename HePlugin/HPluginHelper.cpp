@@ -268,7 +268,6 @@ bool HPluginHelper::selectedParameter(QWidget *parent, QStringList optional, QSt
 bool HPluginHelper::getInputText(QWidget *parent, QString label, QString &text)
 {
     QInputDialog dlg(parent);
-
     dlg.setLabelText(label);
     dlg.setInputMode(QInputDialog::TextInput);
     if (!dlg.exec() || dlg.textValue().isEmpty())

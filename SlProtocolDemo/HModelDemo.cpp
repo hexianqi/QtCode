@@ -41,25 +41,6 @@ QString HModelDemo::typeName()
     return "HModelDemo";
 }
 
-void HModelDemo::addAction(HActionType action, ulong delay)
-{
-    Q_D(HModelDemo);
-    if (action >= 0x10000000)
-    {
-        emit actionFinished(action);
-        return;
-    }
-
-    if (delay > 30)
-    {
-        d->delayThread->addAction(action, delay);
-        return;
-    }
-
-    for (auto t : d_ptr->threads->values())
-        t->addAction(action);
-}
-
 void HModelDemo::syncTestData(quint32 type)
 {
     Q_D(HModelDemo);

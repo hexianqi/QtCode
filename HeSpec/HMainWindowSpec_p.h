@@ -4,10 +4,10 @@
 #include "HMainWindowSpec.h"
 #include "HeGui/HAbstractMainWindow_p.h"
 
-class HMainWindowSpecPrivate : public HMainWindowPrivate
+class HMainWindowSpecPrivate : public HAbstractMainWindowPrivate
 {
 public:
-    using HMainWindowPrivate::HMainWindowPrivate;
+    using HAbstractMainWindowPrivate::HAbstractMainWindowPrivate;
 };
 
 #endif // HMAINWINDOWSPEC_P_H

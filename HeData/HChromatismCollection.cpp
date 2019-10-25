@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IChromatism.h"
 #include "IFileStream.h"
-#include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 #include <QtCore/QJsonObject>
@@ -25,14 +25,14 @@ void HChromatismCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HDataHelper::read<QString, HeData::IChromatism>(s, datas, [=](QString type) { return factory->createChromatism(type); });
+    HStreamHelper::read<QString, HeData::IChromatism>(s, datas, [=](QString type) { return factory->createChromatism(type); });
     s >> useIndex;
 }
 
 void HChromatismCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HDataHelper::write<QString, HeData::IChromatism>(s, datas);
+    HStreamHelper::write<QString, HeData::IChromatism>(s, datas);
     s << useIndex;
 }
 

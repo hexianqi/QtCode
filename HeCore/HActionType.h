@@ -39,13 +39,42 @@ using HActionType = long long;
 #define     ACT_GET_SOURCE_STATE                    0x00020111
 #define     ACT_GET_ELEC_PARAM                      0x00020112
 
+#define     ACT_SET_ELEC_MODULE                     0x00020201
+#define     ACT_SET_GEARS_OUTPUT_VOLTAGE            0x00020202
+#define     ACT_SET_GEARS_OUTPUT_CURRENT            0x00020203
+#define     ACT_SET_GEARS_MEASURED_VOLTAGE          0x00020204
+#define     ACT_SET_GEARS_MEASURED_CURRENT          0x00020205
+#define     ACT_SET_GEARS_REVERSE_VOLTAGE           0x00020206
+#define     ACT_SET_GEARS_REVERSE_CURRENT           0x00020207
+#define     ACT_SET_REVERSE_VOLTAGE                 0x00020208
+#define     ACT_GET_MEASURED_VOLTAGE                0x00020211
+#define     ACT_GET_MEASURED_CURRENT                0x00020212
+#define     ACT_GET_REVERSE_CURRENT                 0x00020213
+
+
+//#define     ACT_SET_FORWARD_CURRENT_GEARS           0x00000104
+//#define     ACT_SET_FORWARD_CURRENT                 0x00000105
+//#define     ACT_SET_REVERSE_VOLTAGE                 0x00000106
+//#define     ACT_SET_FORWARD_CURRENT2                0x00000111
+//#define     ACT_SET_FORWARD_CURRENT_CODE1           0x00000112
+//#define     ACT_SET_FORWARD_CURRENT_CODE2           0x00000113
+//#define     ACT_SET_ELEC_CODE                       0x00000107
+//#define     ACT_GET_ELEC                            0x00000181
+//#define     ACT_GET_FORWARD_VOLTAGE                 0x00000182
+//#define     ACT_GET_REVERSE_CURRENT                 0x00000183
+//#define     ACT_GET_FEEDBACK_CURRENT                0x00000184
+
+
+
 #define     ACT_SINGLE_TEST                         0x10000001
+#define     ACT_GET_SPECTRUM_ELEC                   0x10000002
 
 #define     ACT_RESET_SPECTRUM                      0xF0000001
 #define     ACT_RESET_GRADE                         0xF0000002
 #define     ACT_RESET_ADJUST                        0xF0000003
 #define     ACT_RESET_QUALITY                       0xF0000004
 #define     ACT_RESET_CHROMATISM                    0xF0000005
+#define     ACT_RESET_ELEC                          0xF0000006
 
 ////#define     ACT_REFRESH_USE_TIME                    0x00000012
 

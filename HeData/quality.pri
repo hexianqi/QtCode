@@ -3,7 +3,6 @@ HEADERS += \
     $$PWD/HQuality_p.h \
     $$PWD/HQualityCollection.h \
     $$PWD/HQualityCollection_p.h \
-    $$PWD/HQualityType.h \
     $$PWD/IQuality.h \
     $$PWD/IQualityCollection.h \
     $$PWD/IQualityItem.h \

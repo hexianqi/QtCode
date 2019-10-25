@@ -34,7 +34,8 @@ protected:
 protected:
     virtual void run() override;
     virtual bool checkAction(HActionType action);
-    virtual HErrorType handleAction(HActionType action) = 0;
+    virtual HErrorType handleAction(HActionType action);
+    virtual bool isSupport(HActionType action);
 
 protected:
     virtual void debugMode();

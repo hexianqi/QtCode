@@ -26,12 +26,12 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    void setItemCollection(ElecType type, IElecCalibrateItemCollection *) override;
-    IElecCalibrateItemCollection *itemCollection(ElecType type) override;
-    IElecCalibrateItem *item(ElecType type, int index = 0) override;
-    double toFiction(double value, ElecType type, int index = 0) override;
-    double toReal(double value, ElecType type, int index = 0) override;
-    QString toString(ElecType type) override;
+    void setItemCollection(HElecType type, IElecCalibrateItemCollection *) override;
+    IElecCalibrateItemCollection *itemCollection(HElecType type) override;
+    IElecCalibrateItem *item(HElecType type, int index = 0) override;
+    double toFiction(double value, HElecType type, int index = 0) override;
+    double toReal(double value, HElecType type, int index = 0) override;
+    QString toString(HElecType type) override;
 
 protected:
     HElecCalibrate(HElecCalibratePrivate &);

@@ -28,9 +28,6 @@ public:
 
 protected:
     HSpecThread(HSpecThreadPrivate &p, QObject *parent = nullptr);
-
-protected:
-    HErrorType handleAction(HActionType action) override;
 };
 
 HE_CONTROLLER_END_NAMESPACE

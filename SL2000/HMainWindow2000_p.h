@@ -4,10 +4,10 @@
 #include "HMainWindow2000.h"
 #include "HeGui/HAbstractMainWindow_p.h"
 
-class HMainWindow2000Private : public HMainWindowPrivate
+class HMainWindow2000Private : public HAbstractMainWindowPrivate
 {
 public:
-    using HMainWindowPrivate::HMainWindowPrivate;
+    using HAbstractMainWindowPrivate::HAbstractMainWindowPrivate;
 };
 
 #endif // HMAINWINDOW2100_P_H

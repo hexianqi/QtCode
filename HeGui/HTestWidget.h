@@ -34,6 +34,7 @@ protected:
     virtual void initToolBar();
     virtual void exportExcel();
     virtual void exportDatabase();
+    virtual void clearResult() = 0;
 };
 
 HE_GUI_END_NAMESPACE

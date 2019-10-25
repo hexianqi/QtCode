@@ -102,7 +102,7 @@ HErrorType HProtocolDemo::getSpectrumSample(QVector<double> &value)
     int size = 3000;
     double temp;
 
-    if (!d_ptr->getSpectrumSample(buff, &size, &temp, false))
+    if (!d_ptr->getSpectrumSample(buff, &size, &temp, true))
         return E_DEVICE_INVALID;
     value.clear();
     for (int i = 0; i < size; i++)
