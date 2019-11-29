@@ -17,7 +17,7 @@ class QDESIGNER_WIDGET_EXPORT HMarkerChartExtend : public HAbstractChartExtend
 public:
     explicit HMarkerChartExtend(QObject *parent = nullptr);
     explicit HMarkerChartExtend(QChart *chart, QObject *parent = nullptr);
-    ~HMarkerChartExtend();
+    ~HMarkerChartExtend() override;
 
 public:
     bool connectExtend() override;

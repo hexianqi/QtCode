@@ -16,7 +16,7 @@ class QDESIGNER_WIDGET_EXPORT HOptionalTableExtend : public HAbstractTableExtend
 
 public:
     explicit HOptionalTableExtend(QObject *parent = nullptr);
-    ~HOptionalTableExtend();
+    ~HOptionalTableExtend() override;
 
 public:
     void setTableView(QTableView *) override;

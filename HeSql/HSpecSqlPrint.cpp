@@ -67,8 +67,8 @@ int HSpecSqlPrint::pageCount()
 
 void HSpecSqlPrint::paintPage(QPainter *painter, int page)
 {
-    auto y1 = paintHeader(painter, tr("松朗光色电测试报告"));
-    y1 = paintTitle(painter, tr("光源光谱测试报告"), y1);
+    auto y1 = paintHeader(painter, tr("松朗光电测试报告"));
+    y1 = paintTitle(painter, tr("光谱测试报告"), y1);
     auto y2 = paintFooter(painter, tr(" - %1 - ").arg(page + 1));
     paintBody(painter, y1, y2, page);
 }

@@ -15,6 +15,7 @@
 #include "HQualitySelectHandler.h"
 #include "HSqlBrowserHandler.h"
 #include "HProductInfoEditHandler.h"
+#include "HIVTestHandler.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
@@ -77,6 +78,7 @@ void HGuiFactory::registerClass()
 {
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
+
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HElecCalibrateHandler>("HElecCalibrateHandler");
@@ -90,6 +92,7 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
     HObjectFactory::registerClass<HProductInfoEditHandler>("HProductInfoEditHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
+    HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
 }
 
 HE_GUI_END_NAMESPACE

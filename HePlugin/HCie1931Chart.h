@@ -16,7 +16,7 @@ class HCie1931Chart : public HSingleAxisChart
 
 public:
     explicit HCie1931Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-    ~HCie1931Chart();
+    ~HCie1931Chart() override;
 
 signals:
     void pointFocusChanged(QPointF value);

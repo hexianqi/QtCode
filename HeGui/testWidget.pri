@@ -13,7 +13,11 @@ HEADERS += \
     $$PWD/HAbstractTestDetailWidget.h \
     $$PWD/HAbstractTestDetailWidget_p.h \
     $$PWD/HSimpleTestSetWidget.h \
-    $$PWD/HSimpleTestSetWidget_p.h
+    $$PWD/HSimpleTestSetWidget_p.h \
+    $$PWD/HIVTestWidget.h \
+    $$PWD/HIVTestWidget_p.h \
+    $$PWD/HIVTestSetWidget.h \
+    $$PWD/HIVTestSetWidget_p.h
 
 SOURCES += \
     $$PWD/HAbstractTestWidget.cpp \
@@ -21,8 +25,11 @@ SOURCES += \
     $$PWD/HTestWidget.cpp \
     $$PWD/HResultTableWidget.cpp \
     $$PWD/HAbstractTestDetailWidget.cpp \
-    $$PWD/HSimpleTestSetWidget.cpp
+    $$PWD/HSimpleTestSetWidget.cpp \
+    $$PWD/HIVTestWidget.cpp \
+    $$PWD/HIVTestSetWidget.cpp
 
 FORMS += \
-    $$PWD/HSimpleTestSetWidget.ui
+    $$PWD/HSimpleTestSetWidget.ui \
+    $$PWD/HIVTestSetWidget.ui
 

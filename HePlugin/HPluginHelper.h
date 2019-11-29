@@ -54,7 +54,6 @@ public:
     static QImage createCrossImage(QSize size, QPen pen);
     // 计算椭圆
     static QPolygonF calcEllipse(QPointF center, double r, double theta, double a, double b);
-
 };
 
 #endif // HPLUGINHELPER_H

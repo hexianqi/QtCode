@@ -97,6 +97,29 @@ QString HCartesianWidget::unitY()
     return d->unitY;
 }
 
+void HCartesianWidget::appendPoint(int id, QPointF value, bool refix, bool refresh)
+{
+    Q_D(HCartesianWidget);
+    d->polygons[id].append(value);
+
+    if (refix)
+    {
+        auto axis = d->coordinate->axis();
+        if (!axis.contains(value))
+        {
+            QRectF rect;
+            rect.setLeft(qMin(value.x(), axis.left()));
+            rect.setRight(qMax(value.x(), axis.right()));
+            rect.setTop(qMin(value.y(), axis.top()));
+            rect.setBottom(qMax(value.y(), axis.bottom()));
+            d->coordinate->setAxis(rect);
+            refresh = true;
+        }
+    }
+    if (refresh)
+        refreshPixmap();
+}
+
 void HCartesianWidget::mousePressEvent(QMouseEvent *e)
 {
     Q_D(HCartesianWidget);

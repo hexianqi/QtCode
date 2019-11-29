@@ -33,6 +33,9 @@ protected slots:
     void on_checkBox_1_clicked(bool b);
     void on_comboBox_1_currentIndexChanged(int value);
 
+protected:
+    bool adjustIntegralTime();
+
 private:
     void init();
 

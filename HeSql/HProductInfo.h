@@ -17,7 +17,7 @@ class HProductInfo : public QObject, public IProductInfo
 
 public:
     explicit HProductInfo(QObject *parent = nullptr);
-    virtual ~HProductInfo();
+    ~HProductInfo() override;
 
 public:
     void initialize(QVariantMap param) override;

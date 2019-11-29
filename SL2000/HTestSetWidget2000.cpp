@@ -51,8 +51,7 @@ void HTestSetWidget2000::handleAction(HActionType action)
             setTestState(false);
             break;
         }
-        if (d->integralTimeAuto && d->testSpec->adjustIntegralTime())
-            d->model->addAction(ACT_SET_INTEGRAL_TIME);
+        adjustIntegralTime();
         d->model->addAction(ACT_GET_SPECTRUM, 100);
         break;
     default:
@@ -95,6 +94,17 @@ void HTestSetWidget2000::on_checkBox_1_clicked(bool b)
 void HTestSetWidget2000::on_comboBox_1_currentIndexChanged(int value)
 {
     setTestMode(value);
+}
+
+bool HTestSetWidget2000::adjustIntegralTime()
+{
+    Q_D(HTestSetWidget2000);
+    if (!d->integralTimeAuto)
+        return false;
+    if (!d->testSpec->adjustIntegralTime())
+        return false;
+    d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    return true;
 }
 
 void HTestSetWidget2000::init()

@@ -18,7 +18,7 @@ class QDESIGNER_WIDGET_EXPORT HAbstractChartExtend : public QObject, public ICha
 public:
     explicit HAbstractChartExtend(QObject *parent = nullptr);
     explicit HAbstractChartExtend(QChart *chart, QObject *parent = nullptr);
-    ~HAbstractChartExtend();
+    ~HAbstractChartExtend() override;
 
 public:
     void setChart(QChart *) override;

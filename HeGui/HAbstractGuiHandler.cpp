@@ -1,6 +1,5 @@
 #include "HAbstractGuiHandler_p.h"
 #include "HeCore/HAppContext.h"
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -24,7 +23,6 @@ HAbstractGuiHandler::HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject 
 
 HAbstractGuiHandler::~HAbstractGuiHandler()
 {
-    qDebug() << __func__;
 }
 
 HE_GUI_END_NAMESPACE

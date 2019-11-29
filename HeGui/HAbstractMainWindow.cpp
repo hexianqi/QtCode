@@ -43,12 +43,20 @@ QAction *HAbstractMainWindow::insertMenu(QMenu *menu)
     return menuBar()->insertMenu(d_ptr->actionSeparator, menu);
 }
 
-bool HAbstractMainWindow::openCalibrateDlg(QDialog *dlg)
+bool HAbstractMainWindow::openDialog(QDialog *dlg)
 {
     d_ptr->testWidget->stop();
     auto result = dlg->exec();
     d_ptr->testWidget->start();
     return result == QDialog::Accepted;
+}
+
+void HAbstractMainWindow::openWidget(QWidget *w)
+{
+    d_ptr->testWidget->stop();
+    w->setAttribute(Qt::WA_ShowModal, true);
+    w->show();
+    d_ptr->testWidget->start();
 }
 
 void HAbstractMainWindow::initialize()

@@ -36,7 +36,7 @@ void HElecCalibrateHandler::execute(QObject *sender, QVariantMap param)
     Q_UNUSED(sender)
     Q_UNUSED(param)
     HElecCalibrateDialog dlg(d->mainWindow);
-    d->mainWindow->openCalibrateDlg(&dlg);
+    d->mainWindow->openDialog(&dlg);
     d->model->addAction(ACT_RESET_ELEC);
 }
 

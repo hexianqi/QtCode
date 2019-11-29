@@ -25,7 +25,8 @@ public:
 
 public:
     QAction *insertMenu(QMenu *) override;
-    bool openCalibrateDlg(QDialog *) override;
+    bool openDialog(QDialog *) override;
+    void openWidget(QWidget *) override;
 
 protected:
     HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);

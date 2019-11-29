@@ -18,9 +18,17 @@
 #include "HeCommunicate/IDevice.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
+#include "HeSql/ISqlFactory.h"
+#include "HeSql/ISqlDatabase.h"
+#include "HeSql/ISqlTableModel.h"
+#include "HeSql/ISqlBrowser.h"
+#include "HeSql/ISqlHandle.h"
+#include "HeSql/ISqlPrint.h"
+#include "HeSql/IProductInfo.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
@@ -191,7 +199,33 @@ void HBuilder2000DC::buildModel()
 
 void HBuilder2000DC::buildDatabase()
 {
+    Q_D(HBuilder2000DC);
+    auto find = d->sqlField;
+    auto exportExcel = d->sqlField;
+    find.removeFirst();
+    find.removeLast();
+    find.removeLast();
+    exportExcel.removeLast();
 
+    auto db = d->sqlFactory->createDatabase("HSqlDatabase");
+    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
+    auto info = d->sqlFactory->createProductInfo("HProductInfo");
+    auto handle = d->sqlFactory->createHandle("HSqlHandle");
+    auto print = d->sqlFactory->createPrint("HSpecElecSqlPrint");
+    auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
+    db->openDatabase(QString("%1.db").arg(qApp->applicationName()));
+    model->setField(d->sqlField);
+    model->setTable("Spec");
+    info->setRelationTableName("Spec");
+    handle->setProductInfo(info);
+    handle->setFieldFind(find);
+    print->setFieldExportExcel(exportExcel);
+    browser->setRecordHandle(handle);
+    browser->setRecordPrint(print);
+    browser->setModel(model);
+    db->insertTableModel("Spec", model);
+    HAppContext::setContextPointer("ISqlHandle", handle);
+    HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 
 void HBuilder2000DC::buildMenu()

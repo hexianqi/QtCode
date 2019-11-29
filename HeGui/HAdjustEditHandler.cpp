@@ -46,7 +46,7 @@ void HAdjustEditHandler::execute(QObject *sender, QVariantMap param)
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("调整数据配置"));
     dlg.setDataDetail(detail);
-    d->mainWindow->openCalibrateDlg(&dlg);
+    d->mainWindow->openDialog(&dlg);
     d->model->addAction(ACT_RESET_ADJUST);
 }
 

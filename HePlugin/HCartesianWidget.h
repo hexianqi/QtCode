@@ -38,6 +38,9 @@ public:
     QString unitX();
     QString unitY();
 
+public:
+    void appendPoint(int id, QPointF value, bool refix = true, bool refresh = true);
+
 protected:
     HCartesianWidget(HCartesianWidgetPrivate &p, QWidget *parent = nullptr);
 

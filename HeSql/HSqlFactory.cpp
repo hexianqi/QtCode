@@ -4,7 +4,7 @@
 #include "HSqlHandle.h"
 #include "HSqlBrowser.h"
 #include "HProductInfo.h"
-#include "HSpecSqlPrint.h"
+#include "HSpecElecSqlPrint.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -86,6 +86,7 @@ IProductInfo *HSqlFactory::createProductInfo(QString type, QVariantMap param)
 void HSqlFactory::registerClass()
 {
     HObjectFactory::registerClass<HSpecSqlPrint>("HSpecSqlPrint");
+    HObjectFactory::registerClass<HSpecElecSqlPrint>("HSpecElecSqlPrint");
 }
 
 HE_SQL_END_NAMESPACE
