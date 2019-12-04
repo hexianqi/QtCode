@@ -1,7 +1,6 @@
 #include "HAbstractTestDetailWidget_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -24,7 +23,6 @@ HAbstractTestDetailWidget::HAbstractTestDetailWidget(HAbstractTestDetailWidgetPr
 
 HAbstractTestDetailWidget::~HAbstractTestDetailWidget()
 {
-    qDebug() << __func__;
 }
 
 HE_GUI_END_NAMESPACE

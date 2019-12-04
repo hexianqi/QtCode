@@ -8,6 +8,7 @@
 #include "HePlugin/HPluginHelper.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtWidgets/QColorDialog>
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -28,6 +29,7 @@ HQualityItemCollectionWidget::HQualityItemCollectionWidget(QWidget *parent) :
 
 HQualityItemCollectionWidget::~HQualityItemCollectionWidget()
 {
+    qDebug() << __func__;
     delete ui;
 }
 

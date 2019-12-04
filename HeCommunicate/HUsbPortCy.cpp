@@ -1,6 +1,5 @@
 #include "HUsbPortCy_p.h"
-#include <QtCore/QVector>
-#include <QtDebug>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_USE_NAMESPACE
 
@@ -65,6 +64,7 @@ HUsbPortCy::HUsbPortCy(HUsbPortCyPrivate &p) :
 
 HUsbPortCy::~HUsbPortCy()
 {
+    qDebug() << __func__;
     Q_D(HUsbPortCy);
     d->unloadDLL();
 }

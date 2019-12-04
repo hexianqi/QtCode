@@ -18,6 +18,7 @@ HElecCalibrateHandler::HElecCalibrateHandler(HElecCalibrateHandlerPrivate &p, QO
 
 HElecCalibrateHandler::~HElecCalibrateHandler()
 {
+    qDebug() << __func__;
 }
 
 void HElecCalibrateHandler::initialize(QVariantMap /*param*/)

@@ -39,18 +39,16 @@ bool HAbstractEventFilter::isEnable()
     return d_ptr->enable;
 }
 
-void HAbstractEventFilter::setHandleFunc(QMap<QEvent::Type, std::function<bool (QEvent *)> > value)
+void HAbstractEventFilter::addHandle(QEvent::Type type, std::function<bool (QEvent *)> func)
 {
-    d_ptr->handleFunc = value;
+    d_ptr->handleFunc.insert(type, func);
 }
 
 bool HAbstractEventFilter::eventFilter(QObject */*watched*/, QEvent *event)
 {
-    if (!isEnable())
+    if (!isEnable() || !d_ptr->handleFunc.contains(event->type()))
         return false;
-    if (d_ptr->handleFunc.contains(event->type()))
-        return d_ptr->handleFunc.value(event->type())(event);
-    return false;
+    return d_ptr->handleFunc.value(event->type())(event);
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -1,6 +1,6 @@
 #include "HSerialPort_p.h"
-#include <QtCore/QVector>
 #include <QtSerialPort/QSerialPort>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -22,6 +22,7 @@ HSerialPort::HSerialPort(HSerialPortPrivate &p) :
 
 HSerialPort::~HSerialPort()
 {
+    qDebug() << __func__;
 }
 
 void HSerialPort::initialize(QVariantMap param)

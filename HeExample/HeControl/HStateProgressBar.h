@@ -16,7 +16,7 @@ class HStateProgressBar : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QString tip READ tip WRITE setTip)
-    Q_PROPERTY(StateStyle tip READ stateStyle WRITE setStateStyle)
+    Q_PROPERTY(StateStyle stateStyle READ stateStyle WRITE setStateStyle)
     Q_PROPERTY(QColor barColor READ barColor WRITE setBarColor)
     Q_PROPERTY(QColor barBackground READ barBackground WRITE setBarBackground)
     Q_PROPERTY(QColor noteColor READ noteColor WRITE setNoteColor)

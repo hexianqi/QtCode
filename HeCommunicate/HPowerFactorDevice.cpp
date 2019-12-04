@@ -1,6 +1,6 @@
 #include "HPowerFactorDevice_p.h"
 #include "IPort.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -11,6 +11,7 @@ HPowerFactorDevice::HPowerFactorDevice() :
 
 HPowerFactorDevice::~HPowerFactorDevice()
 {
+    qDebug() << __func__;
 }
 
 QString HPowerFactorDevice::typeName()

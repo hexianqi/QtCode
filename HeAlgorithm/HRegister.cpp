@@ -1,15 +1,17 @@
 #include "HRegister_p.h"
 #include <QtCore/QSettings>
 #include <QtCore/QDate>
+#include <QtCore/QDebug>
 #include <exception>
 #include <memory>
 #include <windows.h>
+
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
 using namespace std;
 
-const QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\ebangTest";
+const QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\Test";
 const QString REGISTER_ID = "banben";
 const QString REGISTER_CODE = "xulie";
 const QString SERIAL_NUMBER = "ma_no";
@@ -84,6 +86,7 @@ HRegister::HRegister(HRegisterPrivate &p)
 
 HRegister::~HRegister()
 {
+    qDebug() << __func__;
 }
 
 bool HRegister::getRegisterCode(QString &registerCode)

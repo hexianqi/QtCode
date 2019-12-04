@@ -14,7 +14,6 @@ HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p) :
 
 HAbstractCodec::~HAbstractCodec()
 {
-
 }
 
 HE_COMMUNICATE_END_NAMESPACE

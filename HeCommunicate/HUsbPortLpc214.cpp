@@ -1,4 +1,5 @@
 #include "HUsbPortLpc214_p.h"
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_USE_NAMESPACE
 
@@ -57,6 +58,7 @@ HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p)
 
 HUsbPortLpc214::~HUsbPortLpc214()
 {
+    qDebug() << __func__;
     Q_D(HUsbPortLpc214);
     d->unloadDLL();
 }

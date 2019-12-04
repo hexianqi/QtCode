@@ -1,6 +1,6 @@
 #include "HSlCodecDevice_p.h"
 #include "HSlCodec.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -12,6 +12,7 @@ HSlCodecDevicePrivate::HSlCodecDevicePrivate()
 HSlCodecDevice::HSlCodecDevice() :
     HSlDevice(*new HSlCodecDevicePrivate)
 {
+    qDebug() << __func__;
 }
 
 HSlCodecDevice::~HSlCodecDevice()

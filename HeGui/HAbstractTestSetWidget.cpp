@@ -1,7 +1,6 @@
 #include "HAbstractTestSetWidget_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -25,7 +24,6 @@ HAbstractTestSetWidget::HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p,
 
 HAbstractTestSetWidget::~HAbstractTestSetWidget()
 {
-    qDebug() << __func__;
 }
 
 bool HAbstractTestSetWidget::setTestState(bool b)

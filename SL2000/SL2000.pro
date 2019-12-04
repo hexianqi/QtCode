@@ -40,6 +40,7 @@ Debug {
 }
 
 Release {
+    DEFINES += QT_NO_DEBUG_OUTPUT
     LIBS    += \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeData \

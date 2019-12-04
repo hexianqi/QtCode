@@ -6,7 +6,6 @@
 #include <QtCore/QSettings>
 #include <QtCore/QWaitCondition>
 #include <QtCore/QMutexLocker>
-#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -51,7 +50,6 @@ HAbstractThread::HAbstractThread(HAbstractThreadPrivate &p, QObject *parent) :
 
 HAbstractThread::~HAbstractThread()
 {
-    qDebug() << __func__;
     writeSettings();
     stop();
 }

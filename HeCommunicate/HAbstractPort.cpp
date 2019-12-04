@@ -1,6 +1,5 @@
 #include "HAbstractPort_p.h"
 #include "HeCore/HCoreHelper.h"
-//#include <QtCore/QThread>
 #include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -79,7 +78,6 @@ HErrorType HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &up
 
     if (delay > 10)
         HCoreHelper::msleep(delay);
-//        QThread::msleep(delay);
     return read(upData);
 }
 

@@ -1,8 +1,8 @@
 #include "HUi2008Protocol_p.h"
 #include "HSerialPort.h"
 #include "HPowerFactorDevice.h"
-#include <QtCore/QVector>
 #include <QtCore/QtMath>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -26,7 +26,7 @@ HUi2008Protocol::HUi2008Protocol() :
 
 HUi2008Protocol::~HUi2008Protocol()
 {
-
+    qDebug() << __func__;
 }
 
 QString HUi2008Protocol::typeName()

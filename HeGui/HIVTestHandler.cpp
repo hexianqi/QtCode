@@ -1,6 +1,7 @@
 #include "HIVTestHandler_p.h"
 #include "HIVTestWidget.h"
 #include "IMainWindow.h"
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -16,6 +17,7 @@ HIVTestHandler::HIVTestHandler(HIVTestHandlerPrivate &p, QObject *parent) :
 
 HIVTestHandler::~HIVTestHandler()
 {
+    qDebug() << __func__;
 }
 
 void HIVTestHandler::initialize(QVariantMap /*param*/)

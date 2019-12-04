@@ -5,6 +5,7 @@
 #include "HeData/ITestSpec.h"
 #include "HeData/ITestElec.h"
 #include "HePlugin/HPluginHelper.h"
+#include <QtCore/QDebug>
 
 HTestSetWidget2000DCPrivate::HTestSetWidget2000DCPrivate()
 {
@@ -22,6 +23,7 @@ HTestSetWidget2000DC::HTestSetWidget2000DC(QWidget *parent) :
 
 HTestSetWidget2000DC::~HTestSetWidget2000DC()
 {
+    qDebug() << __func__;
     delete ui;
 }
 

@@ -1,6 +1,5 @@
 #include "HAbstractGradeItemDialog_p.h"
 #include "HeData/IGradeItem.h"
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -20,7 +19,6 @@ HAbstractGradeItemDialog::HAbstractGradeItemDialog(HAbstractGradeItemDialogPriva
 
 HAbstractGradeItemDialog::~HAbstractGradeItemDialog()
 {
-    qDebug() << __func__;
 }
 
 void HAbstractGradeItemDialog::setData(IGradeItem *p)

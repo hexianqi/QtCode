@@ -16,6 +16,7 @@ HSpecFittingPolynomWidget::HSpecFittingPolynomWidget(QWidget *parent) :
 
 HSpecFittingPolynomWidget::~HSpecFittingPolynomWidget()
 {
+    qDebug() << __func__;
     delete ui;
 }
 

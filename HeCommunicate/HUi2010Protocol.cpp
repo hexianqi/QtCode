@@ -1,8 +1,8 @@
 #include "HUi2010Protocol_p.h"
 #include "HSerialPort.h"
 #include "HPowerFactorDevice.h"
-#include <QtCore/QVector>
 #include <QtCore/QtMath>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -32,7 +32,7 @@ HUi2010Protocol::HUi2010Protocol() :
 
 HUi2010Protocol::~HUi2010Protocol()
 {
-
+    qDebug() << __func__;
 }
 
 QString HUi2010Protocol::typeName()

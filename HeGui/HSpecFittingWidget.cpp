@@ -5,7 +5,6 @@
 #include "HeData/ITestSpec.h"
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -31,7 +30,6 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
 
 HSpecFittingWidget::~HSpecFittingWidget()
 {
-    qDebug() << __func__;
 }
 
 void HSpecFittingWidget::setData(HSpecFitting *p)
@@ -108,7 +106,6 @@ bool HSpecFittingWidget::setTest(bool b)
         d_ptr->progressDialog->setValue(0);
         d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());
         d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
-        qDebug() << "HSpecFittingWidget";
     }
     d_ptr->testSpec->setFitting(!b);
     d_ptr->testState = b;

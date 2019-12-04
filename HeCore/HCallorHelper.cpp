@@ -2,8 +2,8 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-HCallorHelper::HCallorHelper()
-    : _p(nullptr)
+HCallorHelper::HCallorHelper() :
+    _p(nullptr)
 {
 }
 

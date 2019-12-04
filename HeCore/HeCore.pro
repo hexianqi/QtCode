@@ -45,18 +45,8 @@ RESOURCES   += HeCore.qrc
 
 INCLUDEPATH += ..
 
-Debug {
-    TARGET  = HeCored
-}
-
-Release {
-    TARGET  = HeCore
-}
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+Debug:      TARGET  = HeCored
+Release:    TARGET  = HeCore
 
 include(interface.pri)
 include(reflect.pri)

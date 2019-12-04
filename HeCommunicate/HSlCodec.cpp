@@ -1,4 +1,5 @@
 #include "HSlCodec_p.h"
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -20,6 +21,7 @@ HSlCodec::HSlCodec(HSlCodecPrivate &p) :
 
 HSlCodec::~HSlCodec()
 {
+    qDebug() << __func__;
 }
 
 void HSlCodec::initialize(QVariantMap param)

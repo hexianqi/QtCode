@@ -6,7 +6,6 @@
 #include "HeCore/HCore.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IFileStream.h"
-#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -33,7 +32,6 @@ HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent) :
 
 HAbstractModel::~HAbstractModel()
 {
-    qDebug() << __func__;
     if (d_ptr->initialized)
     {
         stopDelayThread();

@@ -1,6 +1,7 @@
 #include "HTestWidget2000DC_p.h"
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
+#include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
@@ -33,6 +34,7 @@ HTestWidget2000DC::HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *paren
 
 HTestWidget2000DC::~HTestWidget2000DC()
 {
+    qDebug() << __func__;
 }
 
 QString HTestWidget2000DC::typeName()

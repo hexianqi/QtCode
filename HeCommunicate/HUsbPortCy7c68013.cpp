@@ -1,6 +1,6 @@
 #include "HUsbPortCy7c68013_p.h"
 #include "include/ezusbsys.h"
-#include <QtCore/QVariant>
+#include <QtCore/QDebug>
 #include <windows.h>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -17,6 +17,7 @@ HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p)
 
 HUsbPortCy7c68013::~HUsbPortCy7c68013()
 {
+    qDebug() << __func__;
 }
 
 void HUsbPortCy7c68013::initialize(QVariantMap param)

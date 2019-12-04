@@ -1,6 +1,6 @@
 #include "HSlDevice_p.h"
 #include "IPort.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -16,6 +16,7 @@ HSlDevice::HSlDevice(HSlDevicePrivate &p) :
 
 HSlDevice::~HSlDevice()
 {
+    qDebug() << __func__;
 }
 
 QString HSlDevice::typeName()

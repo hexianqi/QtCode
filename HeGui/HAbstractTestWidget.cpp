@@ -2,7 +2,6 @@
 #include "ITestSetWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -26,7 +25,6 @@ HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget 
 
 HAbstractTestWidget::~HAbstractTestWidget()
 {
-    qDebug() << __func__;
 }
 
 QList<QMenu *> HAbstractTestWidget::menus()

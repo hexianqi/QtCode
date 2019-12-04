@@ -27,15 +27,15 @@ SOURCES += \
         main.cpp \
         HMainWindowSpec.cpp \
         HBuilderSpec.cpp \
-    HModelSpec.cpp
+        HModelSpec.cpp
 
 HEADERS += \
         HMainWindowSpec.h \
         HMainWindowSpec_p.h \
         HBuilderSpec.h \
         HBuilderSpec_p.h \
-    HModelSpec.h \
-    HModelSpec_p.h
+        HModelSpec.h \
+        HModelSpec_p.h
 
 TARGET = HeSpec
 
@@ -53,6 +53,7 @@ Debug {
 }
 
 Release {
+    DEFINES += QT_NO_DEBUG_OUTPUT
     LIBS    += \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeData \

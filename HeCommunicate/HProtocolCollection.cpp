@@ -1,4 +1,5 @@
 #include "HProtocolCollection_p.h"
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -14,6 +15,7 @@ HProtocolCollection::HProtocolCollection(HProtocolCollectionPrivate &p) :
 
 HProtocolCollection::~HProtocolCollection()
 {
+    qDebug() << __func__;
 }
 
 QString HProtocolCollection::typeName()

@@ -1,5 +1,6 @@
 #include "HDeviceCollection_p.h"
 #include "IDevice.h"
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -15,6 +16,7 @@ HDeviceCollection::HDeviceCollection(HDeviceCollectionPrivate &p) :
 
 HDeviceCollection::~HDeviceCollection()
 {
+    qDebug() << __func__;
 }
 
 void HDeviceCollection::initialize(QVariantMap param)

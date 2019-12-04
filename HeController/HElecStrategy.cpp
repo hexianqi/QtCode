@@ -3,7 +3,7 @@
 #include "HeData/ITestElec.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -34,6 +34,7 @@ HElecStrategy::HElecStrategy(HElecStrategyPrivate &p, QObject *parent) :
 
 HElecStrategy::~HElecStrategy()
 {
+    qDebug() << __func__;
 }
 
 QString HElecStrategy::typeName()

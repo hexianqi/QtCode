@@ -1,5 +1,4 @@
 #include "HSlSimulation_p.h"
-#include <QtCore/QVector>
 #include <QtCore/QtMath>
 #include <QtCore/QDebug>
 

@@ -15,7 +15,6 @@
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
-#include <QtCore/QDebug>
 
 HE_SQL_BEGIN_NAMESPACE
 
@@ -38,7 +37,6 @@ HAbstractSqlPrint::HAbstractSqlPrint(HAbstractSqlPrintPrivate &p, QObject *paren
 
 HAbstractSqlPrint::~HAbstractSqlPrint()
 {
-    qDebug() << __func__;
 }
 
 void HAbstractSqlPrint::setModel(ISqlTableModel *p)

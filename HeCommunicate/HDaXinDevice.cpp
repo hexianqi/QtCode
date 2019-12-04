@@ -1,6 +1,6 @@
 #include "HDaXinDevice_p.h"
 #include "HSerialPort.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -15,10 +15,10 @@ uint getCrc16(uchar *data, uchar size)
     char da;
     while (size-- != 0)
     {
-        da = ((uchar)(crc / 256)) / 16;
+        da = (static_cast<uchar>(crc / 256)) / 16;
         crc <<= 4;
         crc ^= crc_tab[da ^(*data / 16)];
-        da = ((uchar)(crc / 256)) / 16;
+        da = (static_cast<uchar>(crc / 256)) / 16;
         crc <<= 4;
         crc ^= crc_tab[da ^(*data & 0x0F)];
         data++;
@@ -56,6 +56,7 @@ HDaXinDevice::HDaXinDevice() :
 
 HDaXinDevice::~HDaXinDevice()
 {
+    qDebug() << __func__;
 }
 
 QString HDaXinDevice::typeName()

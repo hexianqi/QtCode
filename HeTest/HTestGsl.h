@@ -3,17 +3,15 @@
 
 #include <QtGui/QPolygonF>
 
-class QWidget;
-
 class HTestGsl
 {
 public:
-    void polyEval();
-    void polySolve();
-    QList<QPolygonF> interpEval();
-    QList<QPolygonF> linearFit();
-    QList<QPolygonF> multiFit();
-    QList<QPolygonF> multiFit2();
+    static void polyEval();
+    static void polySolve();
+    static QList<QPolygonF> interpEval();
+    static QList<QPolygonF> linearFit();
+    static QList<QPolygonF> multiFit();
+    static QList<QPolygonF> multiFit2();
 };
 
 #endif // HTESTGSL_H

@@ -14,30 +14,30 @@ void HDataFormatInfoPrivate::init(QString typeName, QString unit, double min, do
     this->singleStep = singleStep;
 }
 
-HDataFormatInfo::HDataFormatInfo()
-    : d_ptr(new HDataFormatInfoPrivate)
+HDataFormatInfo::HDataFormatInfo() :
+    d_ptr(new HDataFormatInfoPrivate)
 {
 }
 
-HDataFormatInfo::HDataFormatInfo(QString typeName, double min, double max, int decimals, double singleStep)
-    : d_ptr(new HDataFormatInfoPrivate)
+HDataFormatInfo::HDataFormatInfo(QString typeName, double min, double max, int decimals, double singleStep) :
+    d_ptr(new HDataFormatInfoPrivate)
 {
     d_ptr->init(typeName, "", min, max, decimals, singleStep);
 }
 
-HDataFormatInfo::HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color)
-    : d_ptr(new HDataFormatInfoPrivate)
+HDataFormatInfo::HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color) :
+    d_ptr(new HDataFormatInfoPrivate)
 {
     d_ptr->init(typeName, unit, min, max, decimals, singleStep, color);
 }
 
-HDataFormatInfo::HDataFormatInfo(const HDataFormatInfo &rhs)
-    : d_ptr(rhs.d_ptr)
+HDataFormatInfo::HDataFormatInfo(const HDataFormatInfo &rhs) :
+    d_ptr(rhs.d_ptr)
 {
 }
 
-HDataFormatInfo::HDataFormatInfo(HDataFormatInfoPrivate &p)
-    : d_ptr(&p)
+HDataFormatInfo::HDataFormatInfo(HDataFormatInfoPrivate &p) :
+    d_ptr(&p)
 {
 }
 

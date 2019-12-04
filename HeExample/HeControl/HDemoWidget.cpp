@@ -63,7 +63,7 @@
 #include <QtCore/QTimer>
 #include <QtWidgets/QTableWidget>
 #include <QtGui/QStandardItemModel>
-#include <QtCore/QDebug>
+
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -78,7 +78,6 @@ HDemoWidget::HDemoWidget(QWidget *parent) :
 
 HDemoWidget::~HDemoWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 

@@ -7,7 +7,6 @@
 #include "HeGui/HGuiFactory.h"
 #include "HeSql/HSqlFactory.h"
 #include <QtWidgets/QApplication>
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -34,7 +33,6 @@ HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *pare
 
 HAbstractBuilder::~HAbstractBuilder()
 {
-    qDebug() << __func__;
 }
 
 void HAbstractBuilder::buildAll()

@@ -1,5 +1,4 @@
 #include "HMath.h"
-#include <QtCore/QPointF>
 #include <QtCore/QtMath>
 #include <QtGui/QPolygonF>
 

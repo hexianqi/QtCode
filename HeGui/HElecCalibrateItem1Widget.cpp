@@ -3,6 +3,7 @@
 #include "HeCore/HCore.h"
 #include "HeData/IElecCalibrateItem.h"
 #include "HePlugin/HPluginHelper.h"
+#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -15,6 +16,7 @@ HElecCalibrateItem1Widget::HElecCalibrateItem1Widget(QWidget *parent) :
 
 HElecCalibrateItem1Widget::~HElecCalibrateItem1Widget()
 {
+    qDebug() << __func__;
     delete ui;
 }
 

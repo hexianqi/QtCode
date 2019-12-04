@@ -24,7 +24,7 @@ public:
     bool setValidRegion(QRectF value) override;
     bool setEnable(bool b) override;
     bool isEnable() override;
-    void setHandleFunc(QMap<QEvent::Type, std::function<bool(QEvent *)>> value) override;
+    void addHandle(QEvent::Type type, std::function<bool(QEvent *)> func) override;
 
 public:
     bool eventFilter(QObject *, QEvent *) override;

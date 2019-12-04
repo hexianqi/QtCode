@@ -1,8 +1,7 @@
 #include "HSlDevice2_p.h"
 #include "IPort.h"
-#include <QtCore/QVector>
 #include <QtCore/QtMath>
-#include <QtDebug>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -14,6 +13,7 @@ HSlDevice2::HSlDevice2() :
 HSlDevice2::HSlDevice2(HSlDevice2Private &p) :
     HAbstractDevice(p)
 {
+    qDebug() << __func__;
 }
 
 HSlDevice2::~HSlDevice2()

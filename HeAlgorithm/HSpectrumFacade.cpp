@@ -4,6 +4,7 @@
 #include "HChromaticityV2.h"
 #include "HPhotopicVision.h"
 #include <QtCore/QtMath>
+#include <QtCore/QDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -83,6 +84,7 @@ HSpecFacade::HSpecFacade()
 
 HSpecFacade::~HSpecFacade()
 {
+    qDebug() << __func__;
 }
 
 void HSpecFacade::calcSpectrum(HSpecData *data)

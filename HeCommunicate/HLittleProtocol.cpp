@@ -1,6 +1,6 @@
 #include "HLittleProtocol_p.h"
 #include "IDevice.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -16,6 +16,7 @@ HLittleProtocol::HLittleProtocol(HLittleProtocolPrivate &p) :
 
 HLittleProtocol::~HLittleProtocol()
 {
+    qDebug() << __func__;
 }
 
 QString HLittleProtocol::typeName()

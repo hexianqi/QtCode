@@ -2,7 +2,6 @@
 #include "ui_HTypeOptionalDialog.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HCoreHelper.h"
-#include <QtCore/QDebug>
 
 HE_CORE_USE_NAMESPACE
 
@@ -20,7 +19,6 @@ HTypeOptionalDialog::HTypeOptionalDialog(QStringList selected, QStringList optio
 
 HTypeOptionalDialog::~HTypeOptionalDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 

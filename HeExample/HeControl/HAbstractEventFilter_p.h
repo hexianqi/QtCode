@@ -3,7 +3,7 @@
 
 #include "HAbstractEventFilter.h"
 #include <QtCore/QRectF>
-#include <QtCore/QMap>
+#include <QtCore/QHash>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -12,7 +12,7 @@ class HAbstractEventFilterPrivate
 public:
     QRectF validRegion;
     bool enable = true;
-    QMap<QEvent::Type, std::function<bool(QEvent *)>> handleFunc;
+    QHash<QEvent::Type, std::function<bool(QEvent *)>> handleFunc;
 };
 
 HE_CONTROL_END_NAMESPACE

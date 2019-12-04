@@ -1,6 +1,7 @@
 #include "HChromaticityV2_p.h"
 #include "HSpecData.h"
 #include "HSpecHelper.h"
+#include <QtCore/QDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -21,6 +22,7 @@ HChromaticityV2::HChromaticityV2(HChromaticityV2Private &p)
 
 HChromaticityV2::~HChromaticityV2()
 {
+    qDebug() << __func__;
 }
 
 void HChromaticityV2::calcSpectrum(HSpecData *data)

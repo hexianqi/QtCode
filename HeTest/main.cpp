@@ -19,8 +19,7 @@ HE_CONTROL_USE_NAMESPACE
 
 void testGslChart()
 {
-    HTestGsl gsl;
-    auto p = gsl.interpEval();
+    auto p = HTestGsl::interpEval();
     HTestChart::diffChart(p[0], p[1])->show();
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 }
@@ -31,9 +30,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
-
-    auto str = QString("[abcdefg]");
-    qDebug() << str.left(str.size() - 1);
 
 //    HControlWidget cw;
 //    cw.show();

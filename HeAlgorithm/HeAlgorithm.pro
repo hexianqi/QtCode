@@ -38,10 +38,5 @@ RESOURCES   += HeAlgorithm.qrc
 Debug:      TARGET  = HeAlgorithmd
 Release:    TARGET  = HeAlgorithm
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
 include(gsl.pri)
 include(spec.pri)

@@ -3,7 +3,7 @@
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -32,6 +32,7 @@ HSpecStrategy::HSpecStrategy(HSpecStrategyPrivate &p, QObject *parent) :
 
 HSpecStrategy::~HSpecStrategy()
 {
+    qDebug() << __func__;
 }
 
 QString HSpecStrategy::typeName()

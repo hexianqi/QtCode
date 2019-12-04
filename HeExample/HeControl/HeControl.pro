@@ -26,14 +26,14 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 SOURCES     += \
             HControlHelper.cpp \
             HDrawHelper.cpp \
-    HXmlHelper.cpp
+            HXmlHelper.cpp
 
 HEADERS     += \
             HControlGlobal.h \
             HControlHelper.h \
             HDrawHelper.h \
             HControlType.h \
-    HXmlHelper.h
+            HXmlHelper.h
 
 RESOURCES   = HeControl.qrc \
               qss.qrc
@@ -58,7 +58,8 @@ unix {
     INSTALLS += target
 }
 
-include(beautify.pri)
+include(_liudianwu.pri)
+include(_ww.pri)
 include(event.pri)
 include(layout.pri)
 include(network.pri)
@@ -67,4 +68,3 @@ include(style.pri)
 include(table.pri)
 include(test.pri)
 include(tools.pri)
-include(ww.pri)

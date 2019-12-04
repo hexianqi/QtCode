@@ -8,7 +8,6 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QStatusBar>
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -34,7 +33,6 @@ HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HC
 
 HAbstractMainWindow::~HAbstractMainWindow()
 {
-    qDebug() << __func__;
     save(false);
 }
 

@@ -1,6 +1,6 @@
 #include "HBigProtocol_p.h"
 #include "IDevice.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -16,6 +16,7 @@ HBigProtocol::HBigProtocol(HBigProtocolPrivate &p) :
 
 HBigProtocol::~HBigProtocol()
 {
+    qDebug() << __func__;
 }
 
 QString HBigProtocol::typeName()

@@ -7,7 +7,7 @@
 #define HINTERP2D_H
 
 #include "HAlgorithmGlobal.h"
-#include <QtGui/QPolygonF>
+#include <QtCore/QVector>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
