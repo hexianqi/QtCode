@@ -23,7 +23,7 @@ class HE_CONTROL_EXPORT HColorPicker : public QWidget
 
 public:
     explicit HColorPicker(QWidget *parent = nullptr);
-    ~HColorPicker();
+    ~HColorPicker() override;
 
 public slots:
     void showColorValue();

@@ -4,10 +4,9 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-bool HSerialPortPrivate::openSerialPort(int portNum)
+HSerialPortPrivate::HSerialPortPrivate() :
+    port(new QSerialPort)
 {
-    serial.reset(new QSerialPort(QString("COM%1").arg(portNum)));
-    return serial->setBaudRate(baudRate) && serial->open(QIODevice::ReadWrite);
 }
 
 HSerialPort::HSerialPort() :
@@ -45,7 +44,7 @@ HErrorType HSerialPort::transport(QVector<uchar> &downData, QVector<uchar> &upDa
         return error;
 
     if (delay > 10)
-        d->serial->waitForReadyRead(delay);
+        d->port->waitForReadyRead(delay);
 
     return read(upData);
 }
@@ -56,7 +55,7 @@ HErrorType HSerialPort::clear()
         return E_PORT_CLOSED;
 
     Q_D(HSerialPort);
-    d->serial->clear();
+    d->port->clear();
     return E_OK;
 }
 
@@ -69,7 +68,11 @@ void HSerialPort::setBaudRate(int value)
 HErrorType HSerialPort::openPort(int portNum)
 {
     Q_D(HSerialPort);
-    if (!d->openSerialPort(portNum))
+    if (d->port->isOpen())
+        d->port->close();
+    d->port->setPortName(QString("COM%1").arg(portNum));
+    d->port->setBaudRate(d->baudRate);
+    if (!d->port->open(QIODevice::ReadWrite))
         return E_PORT_INVALID_HANDLE;
     return E_OK;
 }
@@ -77,15 +80,15 @@ HErrorType HSerialPort::openPort(int portNum)
 HErrorType HSerialPort::closePort()
 {
     Q_D(HSerialPort);
-    d->serial->close();
+    d->port->close();
     return E_OK;
 }
 
 HErrorType HSerialPort::writeData(uchar *data, int maxSize)
 {
     Q_D(HSerialPort);
-    auto ret = d->serial->write(reinterpret_cast<char *>(data), maxSize);
-    if(!d->serial->waitForBytesWritten(d->timeOut))
+    auto ret = d->port->write(reinterpret_cast<char *>(data), maxSize);
+    if(!d->port->waitForBytesWritten(d->timeOut))
         return E_PORT_WRITE_FAILED;
     if (ret < maxSize)
         return E_PORT_WRITE_DATA_LESS;
@@ -96,9 +99,9 @@ HErrorType HSerialPort::readData(uchar *data, int maxSize)
 {
     Q_D(HSerialPort);
 
-    if (!d->serial->waitForReadyRead(d->timeOut))
+    if (!d->port->waitForReadyRead(d->timeOut))
         return E_PORT_READ_FAILED;
-    auto ret = d->serial->read(reinterpret_cast<char *>(data), maxSize);
+    auto ret = d->port->read(reinterpret_cast<char *>(data), maxSize);
     if (ret < maxSize)
         return E_PORT_READ_DATA_LESS;
     return E_OK;

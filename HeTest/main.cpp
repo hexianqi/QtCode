@@ -31,10 +31,10 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-//    HControlWidget cw;
-//    cw.show();
-    HDemoWidget dw;
-    dw.show();
+    HControlWidget cw;
+    cw.show();
+//    HDemoWidget dw;
+//    dw.show();
 
 //    MainWindow window;
 //    window.setCentralWidget(new HControlWidget);

@@ -1,9 +1,6 @@
 HEADERS += \
     $$PWD/HStyleWidget.h \
-    $$PWD/HStyleWidget_p.h \
-    $$PWD/IControlFactory.h \
-    $$PWD/HControlFactory.h \
-    $$PWD/HControlFactory_p.h \
+    $$PWD/HStyleWidget_p.h \    
     $$PWD/HControlWidget.h \
     $$PWD/HControlWidget_p.h \
     $$PWD/HFlatStyleWidget.h \
@@ -14,8 +11,7 @@ HEADERS += \
     $$PWD/HIconFontWidget.h
 
 SOURCES += \
-    $$PWD/HStyleWidget.cpp \
-    $$PWD/HControlFactory.cpp \
+    $$PWD/HStyleWidget.cpp \    
     $$PWD/HControlWidget.cpp \
     $$PWD/HFlatStyleWidget.cpp \
     $$PWD/HDemoWidget.cpp \

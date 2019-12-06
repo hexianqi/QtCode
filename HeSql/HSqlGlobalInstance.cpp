@@ -38,7 +38,7 @@ HSqlGlobalInstance *theInstance = HSqlGlobalInstance::instance();
 HSqlGlobalInstance::HSqlGlobalInstance(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << __func__;
+    qInfo() << "Start Sql Instance.";
     initFieldType();
     initFieldCreateStyle();
 }

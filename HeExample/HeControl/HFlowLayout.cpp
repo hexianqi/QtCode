@@ -9,19 +9,21 @@ HFlowLayoutPrivate::HFlowLayoutPrivate(int hSpace, int vSpacing)
     this->vSpacing = vSpacing;
 }
 
-HFlowLayout::HFlowLayout(QWidget *parent, int margin, int hSpacing, int vSpacing)
-    : QLayout(parent), d_ptr(new HFlowLayoutPrivate(hSpacing, vSpacing))
+HFlowLayout::HFlowLayout(QWidget *parent, int margin, int hSpacing, int vSpacing) :
+    QLayout(parent),
+    d_ptr(new HFlowLayoutPrivate(hSpacing, vSpacing))
 {
     setContentsMargins(margin, margin, margin, margin);
 }
 
-HFlowLayout::HFlowLayout()
-    : d_ptr(new HFlowLayoutPrivate)
+HFlowLayout::HFlowLayout() :
+    d_ptr(new HFlowLayoutPrivate)
 {
 }
 
-HFlowLayout::HFlowLayout(HFlowLayoutPrivate &p, QWidget *parent)
-    : QLayout(parent), d_ptr(&p)
+HFlowLayout::HFlowLayout(HFlowLayoutPrivate &p, QWidget *parent) :
+    QLayout(parent),
+    d_ptr(&p)
 {
 }
 
@@ -67,7 +69,7 @@ QSize HFlowLayout::minimumSize() const
 
 Qt::Orientations HFlowLayout::expandingDirections() const
 {
-    return 0;
+    return Qt::Horizontal;
 }
 
 void HFlowLayout::setGeometry(const QRect &rect)
@@ -104,20 +106,20 @@ int HFlowLayout::doLayout(const QRect &rect, bool testOnly) const
 {
     int left, top, right, bottom;
     getContentsMargins(&left, &top, &right, &bottom);
-    QRect effectiveRect = rect.adjusted(+left, +top, -right, -bottom);
-    int x = effectiveRect.x();
-    int y = effectiveRect.y();
-    int lineHeight = 0;
+    auto effectiveRect = rect.adjusted(+left, +top, -right, -bottom);
+    auto x = effectiveRect.x();
+    auto y = effectiveRect.y();
+    auto lineHeight = 0;
     for (auto item : d_ptr->items)
     {
-        QWidget *widget = item->widget();
-        int spaceX = horizontalSpacing();
+        auto widget = item->widget();
+        auto spaceX = horizontalSpacing();
         if (spaceX == -1)
             spaceX = widget->style()->layoutSpacing(QSizePolicy::PushButton, QSizePolicy::PushButton, Qt::Horizontal);
-        int spaceY = verticalSpacing();
+        auto spaceY = verticalSpacing();
         if (spaceY == -1)
             spaceY = widget->style()->layoutSpacing(QSizePolicy::PushButton, QSizePolicy::PushButton, Qt::Vertical);
-        int nextX = x + item->sizeHint().width() + spaceX;
+        auto nextX = x + item->sizeHint().width() + spaceX;
         if (nextX - spaceX > effectiveRect.right() && lineHeight > 0)
         {
             x = effectiveRect.x();
@@ -135,13 +137,13 @@ int HFlowLayout::doLayout(const QRect &rect, bool testOnly) const
 
 int HFlowLayout::smartSpacing(QStyle::PixelMetric pm) const
 {
-    QObject *parent = this->parent();
+    auto parent = this->parent();
     if (!parent)
         return -1;
     if (!parent->isWidgetType())
         return qobject_cast<QLayout *>(parent)->spacing();
-    QWidget *widget = qobject_cast<QWidget *>(parent);
-    return widget->style()->pixelMetric(pm, 0, widget);
+    auto widget = qobject_cast<QWidget *>(parent);
+    return widget->style()->pixelMetric(pm, nullptr, widget);
 }
 
 HE_CONTROL_END_NAMESPACE

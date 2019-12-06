@@ -1,8 +1,7 @@
-#include "HWmicWrapper.h"
+#include "HWmicHelper.h"
 #include <QtCore/QProcess>
 
 HE_CONTROL_BEGIN_NAMESPACE
-
 
 // 获取cpu名称：      wmic cpu get Name
 // 获取cpu核心数：    wmic cpu get NumberOfCores
@@ -11,7 +10,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 // 查询主板序列号：   wmic baseboard get serialnumber
 // 查询BIOS序列号：   wmic bios get serialnumber
 // 查看硬盘：         wmic diskdrive get serialnumber
-QString getWmicInfo(const QString &cmd)
+QString wmicInfo(const QString &cmd)
 {
     QProcess p;
     p.start(cmd);
@@ -25,19 +24,19 @@ QString getWmicInfo(const QString &cmd)
     return result;
 }
 
-QString HWmicWrapper::getCpuName()
+QString HWmicHelper::cpuName()
 {
-    return getWmicInfo("wmic cpu get name");
+    return wmicInfo("wmic cpu get name");
 }
 
-QString HWmicWrapper::getCpuId()
+QString HWmicHelper::cpuId()
 {
-    return getWmicInfo("wmic cpu get processorid");
+    return wmicInfo("wmic cpu get processorid");
 }
 
-QString HWmicWrapper::getDiskNum()
+QString HWmicHelper::diskNum()
 {
-    return getWmicInfo("wmic diskdrive where index=0 get serialnumber");
+    return wmicInfo("wmic diskdrive where index=0 get serialnumber");
 }
 
 HE_CONTROL_END_NAMESPACE

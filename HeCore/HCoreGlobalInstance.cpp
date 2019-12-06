@@ -155,7 +155,7 @@ HCoreGlobalInstance *theInstance = HCoreGlobalInstance::instance();
 HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << __func__;
+    qInfo() << "Start Core Instance.";
     qRegisterMetaType<HLogType>("HLogType");
     qRegisterMetaType<HErrorType>("HErrorType");
     qRegisterMetaType<HActionType>("HActionType");

@@ -60,5 +60,6 @@
         <file>image/beautify/fog.svg</file>
         <file>image/beautify/wind.svg</file>
         <file>image/beautify/partly_cloud.svg</file>
+        <file>image/widget/NavigationWidget.gif</file>
     </qresource>
 </RCC>

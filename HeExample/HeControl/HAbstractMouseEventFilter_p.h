@@ -9,10 +9,10 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HAbstractMouseEventFilterPrivate : public HAbstractEventFilterPrivate
 {
 public:
-    HAbstractMouseEventFilterPrivate(QWidget *p);
+    HAbstractMouseEventFilterPrivate(QWidget *);
 
 public:
-    QWidget *parent = nullptr;
+    QWidget *widget = nullptr;
 };
 
 HE_CONTROL_END_NAMESPACE

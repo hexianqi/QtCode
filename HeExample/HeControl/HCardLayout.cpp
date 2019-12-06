@@ -2,18 +2,20 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HCardLayout::HCardLayout(QWidget *parent)
-    : QLayout(parent), d_ptr(new HCardLayoutPrivate)
+HCardLayout::HCardLayout(QWidget *parent) :
+    QLayout(parent),
+    d_ptr(new HCardLayoutPrivate)
 {
 }
 
-HCardLayout::HCardLayout()
-    : d_ptr(new HCardLayoutPrivate)
+HCardLayout::HCardLayout() :
+    d_ptr(new HCardLayoutPrivate)
 {
 }
 
-HCardLayout::HCardLayout(HCardLayoutPrivate &p, QWidget *parent)
-    : QLayout(parent), d_ptr(&p)
+HCardLayout::HCardLayout(HCardLayoutPrivate &p, QWidget *parent) :
+    QLayout(parent),
+    d_ptr(&p)
 {
 }
 
@@ -52,8 +54,8 @@ QLayoutItem *HCardLayout::takeAt(int index)
 // sizeHint()和minimumSize()通常非常相似。这两个函数返回的尺寸应包括spacing()，但不包括margin()。
 QSize HCardLayout::sizeHint() const
 {
-    int n = count();
-    QSize size = n > 0 ? QSize(100, 70) : QSize(0, 0);
+    auto n = count();
+    auto size = n > 0 ? QSize(100, 70) : QSize(0, 0);
     for (auto item : d_ptr->items)
         size = size.expandedTo(item->sizeHint());
     return size + n * QSize(spacing(), spacing());
@@ -71,13 +73,12 @@ QSize HCardLayout::minimumSize() const
 void HCardLayout::setGeometry(const QRect &rect)
 {
     QLayout::setGeometry(rect);
-
-    int n = count();
+    auto n = count();
     if (n == 0)
         return;
 
-    int w = rect.width() - (n - 1) * spacing();
-    int h = rect.height() - (n - 1) * spacing();
+    auto w = rect.width() - (n - 1) * spacing();
+    auto h = rect.height() - (n - 1) * spacing();
     for (int i = 0; i < n; i++)
         itemAt(i)->setGeometry(QRect(rect.x() + i * spacing(), rect.y() + i * spacing(), w, h));
 }

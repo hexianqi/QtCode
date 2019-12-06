@@ -2,8 +2,7 @@ HEADERS += \
     $$PWD/HSerialPortWidget.h \
     $$PWD/HSerialPortWidget_p.h \
     $$PWD/HGifWidget.h \
-    $$PWD/HGifWidget_p.h \
-    $$PWD/HWmicWrapper.h \
+    $$PWD/HGifWidget_p.h \    
     $$PWD/HTcpClientWidget.h \
     $$PWD/HTcpClientWidget_p.h \
     $$PWD/HTcpServerWidget.h \
@@ -21,7 +20,6 @@ HEADERS += \
 SOURCES += \
     $$PWD/HSerialPortWidget.cpp \
     $$PWD/HGifWidget.cpp \
-    $$PWD/HWmicWrapper.cpp \
     $$PWD/HTcpClientWidget.cpp \
     $$PWD/HTcpServerWidget.cpp \
     $$PWD/HUdpServerWidget.cpp \

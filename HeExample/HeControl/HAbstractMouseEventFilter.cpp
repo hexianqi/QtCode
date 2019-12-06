@@ -6,7 +6,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 HAbstractMouseEventFilterPrivate::HAbstractMouseEventFilterPrivate(QWidget *p)
 {
-    parent = p;
+    widget = p;
 }
 
 HAbstractMouseEventFilter::HAbstractMouseEventFilter(QWidget *parent) :

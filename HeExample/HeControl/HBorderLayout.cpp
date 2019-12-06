@@ -2,20 +2,22 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HBorderLayout::HBorderLayout(QWidget *parent, int margin, int spacing)
-    : QLayout(parent), d_ptr(new HBorderLayoutPrivate)
+HBorderLayout::HBorderLayout(QWidget *parent, int margin, int spacing) :
+    QLayout(parent),
+    d_ptr(new HBorderLayoutPrivate)
 {
     setContentsMargins(margin, margin, margin, margin);
     setSpacing(spacing);
 }
 
-HBorderLayout::HBorderLayout()
-    : d_ptr(new HBorderLayoutPrivate)
+HBorderLayout::HBorderLayout() :
+    d_ptr(new HBorderLayoutPrivate)
 {
 }
 
-HBorderLayout::HBorderLayout(HBorderLayoutPrivate &p, QWidget *parent)
-    : QLayout(parent), d_ptr(&p)
+HBorderLayout::HBorderLayout(HBorderLayoutPrivate &p, QWidget *parent) :
+    QLayout(parent),
+    d_ptr(&p)
 {
 }
 
@@ -74,8 +76,8 @@ void HBorderLayout::setGeometry(const QRect &rect)
 
     for (auto p : d_ptr->items)
     {
-        QLayoutItem *item = p.first;
-        Position position = p.second;
+        auto item = p.first;
+        auto position = p.second;
         if (position == North)
         {
             item->setGeometry(QRect(rect.x(), northHeight, rect.width(), item->sizeHint().height()));

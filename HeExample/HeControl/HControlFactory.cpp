@@ -54,19 +54,23 @@ QWidget *HControlFactory::createWidget(QString type, QWidget *parent)
 void HControlFactory::registerClass()
 {
     auto b = HWidgetFactory::keys().toSet();
+
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
-    HWidgetFactory::registerClass<HColorPicker>("HColorPickerWidget");
-    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");    
-    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
-    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
-    HWidgetFactory::registerClass<HIconFontWidget>("HIconFontWidget");
     HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
+    HWidgetFactory::registerClass<HSpliteWidget>("HSpliteWidget");
+
+    HWidgetFactory::registerClass<HColorPicker>("HColorPickerWidget");
+    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
     HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
     HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
-    HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
     HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
-    HWidgetFactory::registerClass<HSpliteWidget>("HSpliteWidget");
+
+    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");    
+    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
+    HWidgetFactory::registerClass<HIconFontWidget>("HIconFontWidget");
+    HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
     HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
+
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->keys = e.subtract(b).toList();
 }

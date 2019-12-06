@@ -24,16 +24,14 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-            HControlHelper.cpp \
-            HDrawHelper.cpp \
-            HXmlHelper.cpp
+            HControlFactory.cpp
 
 HEADERS     += \
             HControlGlobal.h \
-            HControlHelper.h \
-            HDrawHelper.h \
             HControlType.h \
-            HXmlHelper.h
+            IControlFactory.h \
+            HControlFactory.h \
+            HControlFactory_p.h
 
 RESOURCES   = HeControl.qrc \
               qss.qrc
@@ -61,6 +59,7 @@ unix {
 include(_liudianwu.pri)
 include(_ww.pri)
 include(event.pri)
+include(helper.pri)
 include(layout.pri)
 include(network.pri)
 include(service.pri)
@@ -68,3 +67,4 @@ include(style.pri)
 include(table.pri)
 include(test.pri)
 include(tools.pri)
+include(widget.pri)
