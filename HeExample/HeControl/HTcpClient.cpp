@@ -21,20 +21,20 @@ HTcpClient::~HTcpClient()
 {
 }
 
-QString HTcpClient::ip() const
+QString HTcpClient::ip()
 {
-    return peerAddress().toString();
+    return peerAddress().toString().replace("::ffff:", "");
 }
 
-int HTcpClient::port() const
+quint16 HTcpClient::port()
 {
     return peerPort();
 }
 
 void HTcpClient::sendData(const QByteArray &value)
 {
-    write(value);
-    emit sentData(ip(), port(), value);
+    if (write(value) != -1)
+        emit sentData(ip(), port(), value);
 }
 
 void HTcpClient::handleReadyRead()

@@ -1,13 +1,13 @@
 #ifndef HCONTROLWIDGET_P_H
 #define HCONTROLWIDGET_P_H
 
-#include "HControlWidget.h"
+#include "HControlFactoryWidget.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class IControlFactory;
 
-class HControlWidgetPrivate
+class HControlFactoryWidgetPrivate
 {
 public:
     IControlFactory *factory = nullptr;

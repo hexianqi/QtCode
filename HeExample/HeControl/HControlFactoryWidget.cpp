@@ -1,38 +1,38 @@
-#include "HControlWidget_p.h"
-#include "ui_HControlWidget.h"
+#include "HControlFactoryWidget_p.h"
+#include "ui_HControlFactoryWidget.h"
 #include "HControlFactory.h"
 #include <QtWidgets/QListView>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HControlWidget::HControlWidget(QWidget *parent) :
+HControlFactoryWidget::HControlFactoryWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::HControlWidget),
-    d_ptr(new HControlWidgetPrivate)
+    ui(new Ui::HControlFactoryWidget),
+    d_ptr(new HControlFactoryWidgetPrivate)
 {
     ui->setupUi(this);
     init();
 }
 
-HControlWidget::~HControlWidget()
+HControlFactoryWidget::~HControlFactoryWidget()
 {
     delete ui;
 }
 
-void HControlWidget::on_pushButton_clicked()
+void HControlFactoryWidget::on_pushButton_clicked()
 {
     auto w = d_ptr->factory->createWidget(ui->comboBox->currentText());
     w->show();
 }
 
-void HControlWidget::init()
+void HControlFactoryWidget::init()
 {
     QStringList qss;
     qss << "QComboBox { min-height: 25px; min-width: 60px; }"
         << "QComboBox QAbstractItemView::item { min-height: 25px; min-width: 60px; }";
     d_ptr->factory = new HControlFactory(this);
     ui->comboBox->setView(new QListView());
-    ui->comboBox->addItems(d_ptr->factory->keys());
+    ui->comboBox->addItems(d_ptr->factory->supportedWidgets());
     setStyleSheet(qss.join("\n"));
 }
 

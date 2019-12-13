@@ -6,13 +6,14 @@
 #define HDRAWHELPER_H
 
 #include "HControlGlobal.h"
+#include <qnamespace.h>
 
+class QChar;
 class QSize;
 class QPointF;
 class QColor;
 class QPen;
 class QPainter;
-class QPixmap;
 class QImage;
 class QFont;
 
@@ -24,15 +25,17 @@ public:
     // 绘制遮罩层
     static void drawOverlay(QPainter *, double radius, QColor color);
     // 绘制十字瞄准线
-    static void drawCrosshair(QPainter *, QPointF point, int width, QColor color);
+    static void drawCrosshair(QPainter *, QPointF point, int width, const QColor &color);
     // 绘制十字光标
-    static void drawCrossCursor(QPainter *, QPointF point, int size, QColor color);
+    static void drawCrossCursor(QPainter *, QPointF point, int size, const QColor &color);
     // 创建平铺图像
-    static QImage createTiledImage(QColor color1, QColor color2, int size);
-    // 创建十字图片
-    static QImage createCrossImage(QSize size, QPen pen);
+    static QImage createTiledImage(int size, const QColor &color1, const QColor &color2);
+    // 创建十字图像
+    static QImage createCrossImage(QSize size, const QPen &pen);
+    // 创建字体图像
+    static QImage createFontImage(const QFont &font, const QChar &c, QSize size, const QPen &pen, int flags = Qt::AlignCenter);
     // 自动调节文字大小
-    static QFont adjustFontSize(QPainter *, QString text, double width);
+    static QFont adjustFontSize(QPainter *, const QString &text, double width);
 };
 
 HE_CONTROL_END_NAMESPACE

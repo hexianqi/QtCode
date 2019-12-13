@@ -26,7 +26,7 @@ public:
 public:
     QPalette toPalette();
     QString toStyleSheet() override;
-    QStringList keys() override;
+    QStringList styles() override;
     bool selectStyle(QString value) override;
 
 protected:

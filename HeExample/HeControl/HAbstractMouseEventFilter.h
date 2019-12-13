@@ -19,20 +19,20 @@ class HAbstractMouseEventFilter : public HAbstractEventFilter
     Q_DECLARE_PRIVATE(HAbstractMouseEventFilter)
 
 public:
-    explicit HAbstractMouseEventFilter(QWidget *parent = nullptr);
+    explicit HAbstractMouseEventFilter(QObject *parent = nullptr);
     ~HAbstractMouseEventFilter() override;
 
 public:
-    bool eventFilter(QObject *, QEvent *) override;
+    bool addWatched(QObject *) override;
 
 protected:
-    HAbstractMouseEventFilter(HAbstractMouseEventFilterPrivate &p, QWidget *parent = nullptr);
+    HAbstractMouseEventFilter(HAbstractMouseEventFilterPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual bool isValid(QPointF pos);
-    virtual bool mousePressEvent(QMouseEvent *) = 0;
-    virtual bool mouseReleaseEvent(QMouseEvent *) = 0;
-    virtual bool mouseMoveEvent(QMouseEvent *) = 0;
+    bool handleInternal(QObject *, QEvent *) override;
+    virtual bool mousePressEvent(QWidget *, QMouseEvent *) = 0;
+    virtual bool mouseReleaseEvent(QWidget *, QMouseEvent *) = 0;
+    virtual bool mouseMoveEvent(QWidget *, QMouseEvent *) = 0;
 };
 
 HE_CONTROL_END_NAMESPACE

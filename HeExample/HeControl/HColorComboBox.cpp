@@ -132,9 +132,9 @@ void HColorComboBox::paintEvent(QPaintEvent *)
         if (c.isValid())
         {
             int size = style()->pixelMetric(QStyle::PM_ButtonIconSize, &option, this);
-            QPixmap pm(size, size);
-            pm.fill(c);
-            option.currentIcon = pm;
+            QPixmap pixmap(size, size);
+            pixmap.fill(c);
+            option.currentIcon = pixmap;
         }
     }
 

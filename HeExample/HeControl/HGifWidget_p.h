@@ -17,7 +17,7 @@ public:
     int fps = 10;                               // 帧数 100为1s
     QString fileName;                           // 保存文件名称
     QRect screen;                               // 截屏区域
-    QTimer *timer = nullptr;                        // 截屏定时器
+    QTimer *timer = nullptr;                    // 截屏定时器
     Gif *gif = nullptr;
     Gif::GifWriter *gifWriter = nullptr;
     IEventFilter *filter = nullptr;

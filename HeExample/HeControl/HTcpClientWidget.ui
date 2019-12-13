@@ -138,7 +138,7 @@
       <item>
        <widget class="QLabel" name="label_101">
         <property name="text">
-         <string>服务器IP地址</string>
+         <string>服务器地址</string>
         </property>
        </widget>
       </item>

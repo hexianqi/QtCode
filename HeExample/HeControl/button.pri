@@ -1,6 +1,4 @@
 HEADERS += \
-    $$PWD/HLightButton.h \
-    $$PWD/HLightButton_p.h \
     $$PWD/HMultiStyleButton.h \
     $$PWD/HMultiStyleButton_p.h \
     $$PWD/HSwitchButton.h \
@@ -8,7 +6,6 @@ HEADERS += \
 
 
 SOURCES += \
-    $$PWD/HLightButton.cpp \
     $$PWD/HMultiStyleButton.cpp \
     $$PWD/HSwitchButton.cpp
 

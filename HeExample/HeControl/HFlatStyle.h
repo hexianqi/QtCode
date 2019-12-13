@@ -1,9 +1,10 @@
 /***************************************************************************************************
 **      2019-06-12  HFaltStyle
+**                  https://gitee.com/feiyangqingyun/QWidgetDemo
 ***************************************************************************************************/
 
-#ifndef HFALTSTYLE_H
-#define HFALTSTYLE_H
+#ifndef HFLATSTYLE_H
+#define HFLATSTYLE_H
 
 #include "HAbstractCustomStyle.h"
 
@@ -17,16 +18,16 @@ class QScrollBar;
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HFaltStylePrivate;
+class HFlatStylePrivate;
 
-class HFaltStyle : public HAbstractCustomStyle
+class HFlatStyle : public HAbstractCustomStyle
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HFaltStyle)
+    Q_DECLARE_PRIVATE(HFlatStyle)
 
 public:
-    explicit HFaltStyle(QObject *parent = nullptr);
-    ~HFaltStyle() override;
+    explicit HFlatStyle(QObject *parent = nullptr);
+    ~HFlatStyle() override;
 
 public:
     QString typeName() override;
@@ -85,9 +86,9 @@ public:
                   QString handlePressedColor = "#E74C3C");  // 指示器按下颜色
 
 protected:
-    HFaltStyle(HFaltStylePrivate &p, QObject *parent = nullptr);
+    HFlatStyle(HFlatStylePrivate &p, QObject *parent = nullptr);
 };
 
 HE_CONTROL_END_NAMESPACE
 
-#endif // HFALTSTYLE_H
+#endif // HFLATSTYLE_H

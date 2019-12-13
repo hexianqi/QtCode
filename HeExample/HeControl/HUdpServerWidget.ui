@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>413</height>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,31 +96,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_101">
+       <widget class="QLabel" name="label_105">
         <property name="text">
-         <string>远程IP地址</string>
+         <string>监听地址</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_101"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_102">
-        <property name="text">
-         <string>远程端口</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_102">
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="maximum">
-         <number>65535</number>
-        </property>
-       </widget>
+       <widget class="QComboBox" name="comboBox_101"/>
       </item>
       <item>
        <widget class="QLabel" name="label_103">
@@ -130,7 +113,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_103">
+       <widget class="QSpinBox" name="spinBox_102">
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -161,17 +144,21 @@
        </widget>
       </item>
       <item>
-       <spacer name="spacer_101">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
+       <widget class="QLabel" name="label_104">
+        <property name="text">
+         <string>共 0 个客户端</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listWidget_101"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_105">
+        <property name="text">
+         <string>对全部客户端发送</string>
         </property>
-       </spacer>
+       </widget>
       </item>
      </layout>
     </widget>

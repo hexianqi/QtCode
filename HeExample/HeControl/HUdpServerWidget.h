@@ -5,7 +5,7 @@
 #ifndef HUDPSERVERWIDGET_H
 #define HUDPSERVERWIDGET_H
 
-#include "HAbstractNetworkWidget.h"
+#include "HAbstractServerWidget.h"
 
 namespace Ui {
 class HUdpServerWidget;
@@ -15,7 +15,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HUdpServerWidgetPrivate;
 
-class HUdpServerWidget : public HAbstractNetworkWidget
+class HUdpServerWidget : public HAbstractServerWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HUdpServerWidget)
@@ -24,22 +24,19 @@ public:
     explicit HUdpServerWidget(QWidget *parent = nullptr);
     ~HUdpServerWidget() override;
 
-public slots:
-    void setServerIp(QString value);
-    void setServerPort(int value);
-    void setListenPort(int value);
-    void clearData();
+public slots:    
     void sendData() override;
+    void clearData() override;
 
 protected slots:
     void on_pushButton_101_clicked();
     void on_pushButton_102_clicked();
-    void handleReadyRead();
-    void append(int type, QString data);
+    void handleClientConnected(const QString &ip, quint16 port) override;
+    void handleClientDisconnected(const QString &ip, quint16 port) override;
+    void append(int type, QString data) override;
 
 protected:
-    void readSettings() override;
-    void writeSettings() override;
+    QString groupName() override;
 
 private:
     void init();

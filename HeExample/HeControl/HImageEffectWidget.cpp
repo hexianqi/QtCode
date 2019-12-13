@@ -94,7 +94,7 @@ void HImageEffectWidget::setImageName2(const QString &value)
 
 void HImageEffectWidget::setPixmap1(const QPixmap &value)
 {
-    if (d_ptr->pixmap1 == value)
+    if (!d_ptr->pixmap1.isNull() && d_ptr->pixmap1 == value)
         return;
     d_ptr->pixmap1 = value;
     update();
@@ -102,7 +102,7 @@ void HImageEffectWidget::setPixmap1(const QPixmap &value)
 
 void HImageEffectWidget::setPixmap2(const QPixmap &value)
 {
-    if (d_ptr->pixmap2 == value)
+    if (!d_ptr->pixmap2.isNull() && d_ptr->pixmap2 == value)
         return;
     d_ptr->pixmap2 = value;
     update();

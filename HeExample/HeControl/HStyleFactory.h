@@ -26,8 +26,6 @@ public:
 public:
     QStringList keys() override;
     IStyle *create(QString type, QVariantMap param = QVariantMap()) override;
-    IQssStyle *createQss(QString type, QVariantMap param = QVariantMap()) override;
-    ICustomStyle *createCustom(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HStyleFactory(HStyleFactoryPrivate &p, QObject *parent = nullptr);

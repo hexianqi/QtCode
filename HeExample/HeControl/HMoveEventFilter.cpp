@@ -4,8 +4,8 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HMoveEventFilter::HMoveEventFilter(QWidget *parent) :
-    HAbstractMouseEventFilter(*new HMoveEventFilterPrivate(parent), parent)
+HMoveEventFilter::HMoveEventFilter(QObject *parent) :
+    HAbstractMouseEventFilter(*new HMoveEventFilterPrivate, parent)
 {
 }
 
@@ -13,33 +13,45 @@ HMoveEventFilter::~HMoveEventFilter()
 {
 }
 
-bool HMoveEventFilter::mousePressEvent(QMouseEvent *e)
+void HMoveEventFilter::initialize(QVariantMap /*param*/)
+{
+
+}
+
+QString HMoveEventFilter::typeName()
+{
+    return "HMoveEventFilter";
+}
+
+bool HMoveEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
-    if (e->button() != Qt::LeftButton)
+    if (event->button() != Qt::LeftButton)
+        return false;
+    if (!widget->rect().contains(event->pos()))
         return false;
     d->pressed = true;
-    d->pos = e->pos();
-    d->widget->setCursor(Qt::OpenHandCursor);
+    d->pos = event->pos();
+    widget->setCursor(Qt::OpenHandCursor);
     return true;
 }
 
-bool HMoveEventFilter::mouseReleaseEvent(QMouseEvent *e)
+bool HMoveEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
-    if (e->button() != Qt::LeftButton)
+    if (event->button() != Qt::LeftButton)
         return false;
     d->pressed = false;
-    d->widget->setCursor(Qt::ArrowCursor);
+    widget->setCursor(Qt::ArrowCursor);
     return true;
 }
 
-bool HMoveEventFilter::mouseMoveEvent(QMouseEvent *e)
+bool HMoveEventFilter::mouseMoveEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
     if (!d->pressed)
         return false;
-    d->widget->move(e->globalPos() - d->pos);
+    widget->move(event->globalPos() - d->pos);
     return true;
 }
 

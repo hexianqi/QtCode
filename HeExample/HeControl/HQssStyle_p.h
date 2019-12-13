@@ -10,7 +10,7 @@ class HQssStylePrivate
 public:
     QString current;
     QMap<QString, QPalette> palette;
-    QMap<QString, QString> styleSheet;    
+    QMap<QString, QString> styleSheet;
 };
 
 HE_CONTROL_END_NAMESPACE

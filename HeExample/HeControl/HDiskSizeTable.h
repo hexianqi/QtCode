@@ -1,6 +1,6 @@
 /***************************************************************************************************
 **      2016-11-30  HDiskSizeTable 本地存储空间大小控件
-**                  http://www.qtcn.org/bbs/read-htm-tid-85996-ds-1.html#tpc
+**                  https://gitee.com/feiyangqingyun/QWidgetDemo
 **                  1:可自动加载本地存储设备的总容量/已用容量
 **                  2:进度条显示已用容量
 **                  3:支持所有操作系统
@@ -32,7 +32,7 @@ public:
     explicit HDiskSizeTable(QWidget *parent = nullptr);
     ~HDiskSizeTable() override;
 
-Q_SIGNALS:
+signals:
     void sdcardReceive(const QString &name);
     void udiskReceive(const QString &name);
 

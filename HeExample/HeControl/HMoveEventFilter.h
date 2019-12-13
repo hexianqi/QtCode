@@ -17,13 +17,17 @@ class HMoveEventFilter : public HAbstractMouseEventFilter
     Q_DECLARE_PRIVATE(HMoveEventFilter)
 
 public:
-    explicit HMoveEventFilter(QWidget *parent = nullptr);
+    explicit HMoveEventFilter(QObject *parent = nullptr);
     ~HMoveEventFilter() override;
 
+public:
+    void initialize(QVariantMap param) override;
+    QString typeName() override;
+
 protected:
-    bool mousePressEvent(QMouseEvent *) override;
-    bool mouseReleaseEvent(QMouseEvent *) override;
-    bool mouseMoveEvent(QMouseEvent *) override;
+    bool mousePressEvent(QWidget *, QMouseEvent *) override;
+    bool mouseReleaseEvent(QWidget *, QMouseEvent *) override;
+    bool mouseMoveEvent(QWidget *, QMouseEvent *) override;
 };
 
 HE_CONTROL_END_NAMESPACE

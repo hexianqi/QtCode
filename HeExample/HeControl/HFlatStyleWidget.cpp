@@ -1,6 +1,6 @@
 #include "HFlatStyleWidget.h"
 #include "ui_HFlatStyleWidget.h"
-#include "HFaltStyle.h"
+#include "HFlatStyle.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -19,7 +19,7 @@ HFlatStyleWidget::~HFlatStyleWidget()
 
 void HFlatStyleWidget::init()
 {
-    auto style = new HFaltStyle(this);
+    auto style = new HFlatStyle(this);
     style->setStyle(ui->pushButton_1, 8, 5, "#FFFFFF", "#34495E", "#F0F0F0", "#4E6D8C", "#B8C6D1", "#2D3E50");
     style->setStyle(ui->pushButton_2, 8, 5, "#E6F8F5", "#1ABC9C", "#FFFFFF", "#2EE1C1", "#A7EEE6", "#16A086");
     style->setStyle(ui->pushButton_3, 8, 5, "#FFFFFF", "#3498DB", "#E5FEFF", "#5DACE4", "#A0DAFB", "#2483C7");

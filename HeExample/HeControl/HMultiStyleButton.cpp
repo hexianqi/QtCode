@@ -120,7 +120,7 @@ bool HMultiStyleButton::isMoveEnable() const
 
 void HMultiStyleButton::setBackground(const QPixmap &value)
 {
-    if (d_ptr->background == value)
+    if (!d_ptr->background.isNull() && d_ptr->background == value)
         return;
     d_ptr->background = value;
     update();

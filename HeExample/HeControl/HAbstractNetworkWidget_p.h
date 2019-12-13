@@ -13,9 +13,10 @@ public:
     bool ascii = false;
     bool autoSend = false;
     int interval = 1000;
+    int currentCount = 0;
+    int maxCount = 100;
 
 public:
-    QString groupName;
     QTimer *timer;
 };
 

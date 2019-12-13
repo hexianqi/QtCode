@@ -39,11 +39,13 @@ public slots:
     void setAutoSend(bool b);
     void setInterval(int value);
     virtual void sendData() = 0;
+    virtual void clearData();
 
 protected:
     HAbstractNetworkWidget(HAbstractNetworkWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    virtual QString groupName() = 0;
     virtual void readSettings();
     virtual void writeSettings();
     virtual bool saveData(QString value);

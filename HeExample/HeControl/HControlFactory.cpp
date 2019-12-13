@@ -1,17 +1,23 @@
 #include "HControlFactory_p.h"
+#include "HControlDemoWidget.h"
+#include "HFlatStyleWidget.h"
+#include "HStyleWidget.h"
+#include "HQssCreator.h"
+#include "HIconFontWidget.h"
+#include "HCodeCountWidget.h"
+#include "HGifWidget.h"
+#include "HNetworkWidget.h"
+
+#include "HMoveEventFilter.h"
+
 #include "HCircularProgress.h"
 #include "HColorPicker.h"
 #include "HDemoWidget.h"
-#include "HFlatStyleWidget.h"
-#include "HGifWidget.h"
-#include "HIconFontWidget.h"
 #include "HImageEffectWidget.h"
 #include "HImageBrowser.h"
-#include "HNetworkWidget.h"
-#include "HQssCreator.h"
 #include "HSerialPortWidget.h"
-#include "HSpliteWidget.h"
-#include "HStyleWidget.h"
+
+#include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
 
@@ -41,9 +47,14 @@ QString HControlFactory::typeName()
     return "HControlFactory";
 }
 
-QStringList HControlFactory::keys()
+QStringList HControlFactory::supportedWidgets()
 {
-    return d_ptr->keys;
+    return d_ptr->supportedWidgets;
+}
+
+QStringList HControlFactory::supportedEventFilters()
+{
+    return d_ptr->supportedEventFilters;
 }
 
 QWidget *HControlFactory::createWidget(QString type, QWidget *parent)
@@ -51,28 +62,40 @@ QWidget *HControlFactory::createWidget(QString type, QWidget *parent)
     return HWidgetFactory::createWidget<QWidget>(type, parent);
 }
 
+IEventFilter *HControlFactory::createEventFilter(QString type, QVariantMap param)
+{
+    return HObjectFactory::createObject<IEventFilter>(type, param, this);
+}
+
 void HControlFactory::registerClass()
 {
     auto b = HWidgetFactory::keys().toSet();
-
+    // 演示
+    HWidgetFactory::registerClass<HControlDemoWidget>("HControlDemoWidget");
+    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
+    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
+    HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
+    HWidgetFactory::registerClass<HIconFontWidget>("HIconFontWidget");
+    // 工具
+    HWidgetFactory::registerClass<HCodeCountWidget>("HCodeCountWidget");
+    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
+    HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
+    // 未整理
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
-    HWidgetFactory::registerClass<HSpliteWidget>("HSpliteWidget");
-
     HWidgetFactory::registerClass<HColorPicker>("HColorPickerWidget");
-    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
-    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
-    HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
+    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");    
     HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
-
-    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");    
-    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
-    HWidgetFactory::registerClass<HIconFontWidget>("HIconFontWidget");
-    HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
-    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
+    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
 
     auto e = HWidgetFactory::keys().toSet();
-    d_ptr->keys = e.subtract(b).toList();
+    d_ptr->supportedWidgets = e.subtract(b).toList();
+
+
+    b = HObjectFactory::keys().toSet();
+    HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
+    e = HObjectFactory::keys().toSet();
+    d_ptr->supportedEventFilters = e.subtract(b).toList();
 }
 
 HE_CONTROL_END_NAMESPACE

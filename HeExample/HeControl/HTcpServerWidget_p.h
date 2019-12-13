@@ -2,23 +2,16 @@
 #define HTCPSERVERWIDGET_P_H
 
 #include "HTcpServerWidget.h"
-#include "HAbstractNetworkWidget_p.h"
+#include "HAbstractServerWidget_p.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HTcpServer;
 
-class HTcpServerWidgetPrivate : public HAbstractNetworkWidgetPrivate
+class HTcpServerWidgetPrivate : public HAbstractServerWidgetPrivate
 {
 public:
-    HTcpServerWidgetPrivate();
-
-public:
-    int listenPort = 6000;
-    bool connect = false;
-    int currentCount = 0;
-    int maxCount = 100;
-    HTcpServer *tcpServer;
+    HTcpServer *server = nullptr;
 };
 
 HE_CONTROL_END_NAMESPACE

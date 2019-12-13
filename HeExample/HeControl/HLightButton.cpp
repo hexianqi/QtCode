@@ -231,13 +231,6 @@ void HLightButton::alarm()
     d_ptr->isAlarm = !d_ptr->isAlarm;
 }
 
-bool HLightButton::eventFilter(QObject *watched, QEvent *event)
-{
-    if (isMoveEnable())
-        d_ptr->filter->eventFilter(watched, event);
-    return QWidget::eventFilter(watched, event);
-}
-
 void HLightButton::paintEvent(QPaintEvent *)
 {
     // 绘制准备工作，启用反锯齿，平移坐标轴中心，等比例缩放
@@ -332,6 +325,7 @@ void HLightButton::drawText(QPainter *painter)
 void HLightButton::init()
 {
     d_ptr->filter = new HMoveEventFilter(this);
+    d_ptr->filter->addWatched(this);
     installEventFilter(this);
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(500);

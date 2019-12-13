@@ -1,21 +1,14 @@
 #include "HUdpServerWidget_p.h"
 #include "ui_HUdpServerWidget.h"
-#include "HeCore/HAppContext.h"
-#include <QtCore/QSettings>
+#include "HNetworkHelper.h"
+#include "HUdpServer.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
-#include <QtNetwork/QUdpSocket>
 
-HE_CORE_USE_NAMESPACE
 HE_CONTROL_BEGIN_NAMESPACE
 
-HUdpServerWidgetPrivate::HUdpServerWidgetPrivate()
-{
-    groupName = "UdpServer";
-}
-
 HUdpServerWidget::HUdpServerWidget(QWidget *parent) :
-    HAbstractNetworkWidget(*new HUdpServerWidgetPrivate, parent),
+    HAbstractServerWidget(*new HUdpServerWidgetPrivate, parent),
     ui(new Ui::HUdpServerWidget)
 {
     ui->setupUi(this);
@@ -25,68 +18,60 @@ HUdpServerWidget::HUdpServerWidget(QWidget *parent) :
 
 HUdpServerWidget::~HUdpServerWidget()
 {
+    Q_D(HUdpServerWidget);
+    d->server->stop();
     writeSettings();
     delete ui;
-}
-
-void HUdpServerWidget::setServerIp(QString value)
-{
-    Q_D(HUdpServerWidget);
-    if (d->serverIp == value)
-        return;
-    d->serverIp = value;
-}
-
-void HUdpServerWidget::setServerPort(int value)
-{
-    Q_D(HUdpServerWidget);
-    if (d->serverPort == value)
-        return;
-    d->serverPort = value;
-}
-
-void HUdpServerWidget::setListenPort(int value)
-{
-    Q_D(HUdpServerWidget);
-    if (d->listenPort == value)
-        return;
-    d->listenPort = value;
-}
-
-void HUdpServerWidget::clearData()
-{
-    Q_D(HUdpServerWidget);
-    ui->textEdit->clear();
-    d->currentCount = 0;
 }
 
 void HUdpServerWidget::sendData()
 {
     Q_D(HUdpServerWidget);
+    if (!d->server->isRunning())
+        return;
+
     auto text = ui->lineEdit_201->text();
     if (text.length() <= 0)
         return;
 
     auto data = toByteArray(text);
-    d->udpSocket->writeDatagram(data, QHostAddress(d->serverIp), d->serverPort);
-    append(0, QString("[%1:%2] %3").arg(d->serverIp).arg(d->serverPort).arg(text));
+    if (!ui->checkBox_105->isChecked())
+    {
+        auto row = ui->listWidget_101->currentRow();
+        if (row >= 0)
+        {
+            auto list = ui->listWidget_101->item(row)->text().split(":");
+            d->server->sendData(list.at(0), list.at(1).toUShort(), data);
+        }
+    }
+    else
+        d->server->sendData(data);
+}
+
+void HUdpServerWidget::clearData()
+{
+    HAbstractServerWidget::clearData();
+    ui->textEdit->clear();
 }
 
 void HUdpServerWidget::on_pushButton_101_clicked()
 {
     Q_D(HUdpServerWidget);
-    if (ui->pushButton_101->text() == "监听")
+    if (d->server->isRunning())
     {
-        if (d->udpSocket->bind(QHostAddress::AnyIPv4, d->listenPort))
-        {
-            ui->pushButton_101->setText("关闭");
-            append(0, "监听成功");
-        }
+        d->server->stop();
+        ui->pushButton_101->setText(tr("监听"));
+        append(0, tr("关闭监听"));
     }
     else
     {
-        d->udpSocket->abort();
-        ui->pushButton_101->setText("监听");
+        d->server->setListenIP(d->listenIP);
+        d->server->setListenPort(d->listenPort);
+        if (d->server->start())
+        {
+            ui->pushButton_101->setText(tr("关闭"));
+            append(0, tr("开始监听"));
+        }
     }
 }
 
@@ -96,24 +81,31 @@ void HUdpServerWidget::on_pushButton_102_clicked()
         clearData();
 }
 
-void HUdpServerWidget::handleReadyRead()
+void HUdpServerWidget::handleClientConnected(const QString &ip, quint16 port)
 {
-    Q_D(HUdpServerWidget);
-    QHostAddress host;
-    quint16 port;
-    QByteArray data;
-    QString text;
+    auto text = QString("%1:%2").arg(ip).arg(port);
+    ui->listWidget_101->addItem(text);
+    ui->label_104->setText(tr("共 %1 个客户端").arg(ui->listWidget_101->count()));
+    append(1, tr("[%1:%2] 客户端上线").arg(ip).arg(port));
+}
 
-    while (d->udpSocket->hasPendingDatagrams())
+void HUdpServerWidget::handleClientDisconnected(const QString &ip, quint16 port)
+{
+    int row = -1;
+    QString text = QString("%1:%2").arg(ip).arg(port);
+    for (int i = 0; i < ui->listWidget_101->count(); i++)
     {
-        data.resize(d->udpSocket->pendingDatagramSize());
-        d->udpSocket->readDatagram(data.data(), data.size(), &host, &port);
-
-        auto ip = host.toString();
-        if (ip.isEmpty())
-            continue;
-        auto text = fromByteArray(data);
-        append(1, QString("[%1:%2] %3").arg(ip).arg(port).arg(text));
+        if (ui->listWidget_101->item(i)->text() == text)
+        {
+            row = i;
+            break;
+        }
+    }
+    if (row != -1)
+    {
+        ui->listWidget_101->takeItem(row);
+        ui->label_104->setText(tr("共 %1 个客户端").arg(ui->listWidget_101->count()));
+        append(1, tr("[%1:%2] 客户端下线").arg(ip).arg(port));
     }
 }
 
@@ -124,74 +116,45 @@ void HUdpServerWidget::append(int type, QString data)
         clearData();
 
     auto text = data.replace("\r", "").replace("\n", "");
-    QString strType;
-    if (type == 0)
-    {
-        strType = tr("发送");
-        ui->textEdit->setTextColor(Qt::darkGreen);
-    }
-    else
-    {
-        strType = tr("接收");
-        ui->textEdit->setTextColor(Qt::red);
-    }
-    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz")).arg(strType).arg(text));
+    ui->textEdit->setTextColor(type == 0 ? Qt::darkGreen : Qt::red);
+    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz")).arg(type == 0 ? tr("发送") : tr("接收")).arg(text));
     d->currentCount++;
 }
 
-void HUdpServerWidget::readSettings()
+QString HUdpServerWidget::groupName()
 {
-    Q_D(HUdpServerWidget);
-    HAbstractNetworkWidget::readSettings();
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup(d->groupName);
-    d->serverIp = settings->value("sServerIp", "127.0.0.1").toString();
-    d->serverPort = settings->value("iServerPort", 6000).toInt();
-    d->listenPort = settings->value("iListenPort", 6000).toInt();
-    settings->endGroup();
+    return "UdpServer";
 }
-
-void HUdpServerWidget::writeSettings()
-{
-    Q_D(HUdpServerWidget);
-    HAbstractNetworkWidget::writeSettings();
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup(d->groupName);
-    settings->setValue("sServerIp", d->serverIp);
-    settings->setValue("iServerPort", d->serverPort);
-    settings->setValue("iListenPort", d->listenPort);
-    settings->endGroup();
-}
-
 
 void HUdpServerWidget::init()
 {
     Q_D(HUdpServerWidget);
-    d->udpSocket = new QUdpSocket(this);
+    d->server = new HUdpServer(this);
     d->timer->setInterval(d->interval);
     d->autoSend ? d->timer->start() : d->timer->stop();
     ui->checkBox_101->setChecked(d->hexSend);
     ui->checkBox_102->setChecked(d->hexReceive);
     ui->checkBox_103->setChecked(d->ascii);
     ui->checkBox_104->setChecked(d->autoSend);
+    ui->comboBox_101->addItems(HNetworkHelper::localIP());
+    ui->comboBox_101->addItem("0.0.0.0");
+    ui->comboBox_101->setCurrentText(d->listenIP);
     ui->spinBox_101->setValue(d->interval);
-    ui->spinBox_102->setValue(d->serverPort);
-    ui->spinBox_103->setValue(d->listenPort);
-    ui->lineEdit_101->setText(d->serverIp);
+    ui->spinBox_102->setValue(d->listenPort);
     connect(ui->checkBox_101, &QCheckBox::clicked, this, &HUdpServerWidget::setHexSend);
     connect(ui->checkBox_102, &QCheckBox::clicked, this, &HUdpServerWidget::setHexReceive);
     connect(ui->checkBox_103, &QCheckBox::clicked, this, &HUdpServerWidget::setAscii);
     connect(ui->checkBox_104, &QCheckBox::clicked, this, &HUdpServerWidget::setAutoSend);
+    connect(ui->comboBox_101, &QComboBox::currentTextChanged, this, &HUdpServerWidget::setListenIP);
     connect(ui->spinBox_101, SIGNAL(valueChanged(int)), this, SLOT(setInterval(int)));
-    connect(ui->spinBox_102, SIGNAL(valueChanged(int)), this, SLOT(setServerPort(int)));
-    connect(ui->spinBox_103, SIGNAL(valueChanged(int)), this, SLOT(setListenPort(int)));
-    connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerIp(ui->lineEdit_101->text()); });
+    connect(ui->spinBox_102, SIGNAL(valueChanged(int)), this, SLOT(setListenPort(int)));
     connect(ui->pushButton_103, &QPushButton::clicked, this, &HUdpServerWidget::clearData);
     connect(ui->pushButton_201, &QPushButton::clicked, this, &HUdpServerWidget::sendData);
-    connect(d->udpSocket, &QUdpSocket::readyRead, this, &HUdpServerWidget::handleReadyRead);
-    setWindowTitle(tr("Udp服务端"));
+    connect(d->server, &HUdpServer::clientConnected, this, &HUdpServerWidget::handleClientConnected);
+    connect(d->server, &HUdpServer::clientDisconnected, this, &HUdpServerWidget::handleClientDisconnected);
+    connect(d->server, &HUdpServer::sentData, this, &HUdpServerWidget::handleSentData);
+    connect(d->server, &HUdpServer::receiveData, this, &HUdpServerWidget::handleReceiveData);
+    setWindowTitle(tr("UDP服务端"));
 }
 
 HE_CONTROL_END_NAMESPACE

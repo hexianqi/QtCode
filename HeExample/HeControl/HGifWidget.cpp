@@ -8,7 +8,7 @@
 #include <QtGui/QScreen>
 #include <QtGui/QDesktopServices>
 #include <QtWidgets/QStyle>
-#include <QtCore/QDebug>
+#include <QtWidgets/QFileDialog>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -54,15 +54,10 @@ QColor HGifWidget::background() const
     return d_ptr->background;
 }
 
-bool HGifWidget::eventFilter(QObject *watched, QEvent *event)
-{
-    if (d_ptr->filter->eventFilter(watched, event))
-        return true;
-    return QDialog::eventFilter(watched, event);
-}
-
 void HGifWidget::resizeEvent(QResizeEvent *e)
 {
+    if (d_ptr->isStart)
+        return;
     ui->spinBox_32->setValue(ui->widget_2->width());
     ui->spinBox_33->setValue(ui->widget_2->height());
     QDialog::resizeEvent(e);
@@ -112,11 +107,15 @@ void HGifWidget::record()
     }
     else
     {
+        d_ptr->fileName = QFileDialog::getSaveFileName(this, tr("选择保存位置"), qApp->applicationDirPath() + "/", "gif图片(*.gif)");
+        if (d_ptr->fileName.isEmpty())
+            return;
+
         clearWriter();
         int width = ui->spinBox_32->value();
         int height = ui->spinBox_33->value();
         d_ptr->fps = ui->spinBox_31->value();
-        d_ptr->fileName = qApp->applicationDirPath() + "/" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss.gif");
+
         d_ptr->gifWriter = new Gif::GifWriter;
         if (!d_ptr->gif->GifBegin(d_ptr->gifWriter, d_ptr->fileName.toLocal8Bit().data(), width, height, d_ptr->fps))
         {
@@ -128,6 +127,9 @@ void HGifWidget::record()
         ui->label_34->setText(tr("开始录制..."));
     }
     d_ptr->isStart = !d_ptr->isStart;
+    ui->spinBox_31->setEnabled(!d_ptr->isStart);
+    ui->spinBox_32->setEnabled(!d_ptr->isStart);
+    ui->spinBox_33->setEnabled(!d_ptr->isStart);
     ui->pushButton_31->setText(d_ptr->isStart ? tr("停 止") : tr("开 始"));
 }
 
@@ -156,6 +158,7 @@ void HGifWidget::init()
                              << "#labStatus{ font:15px; }";
 
     d_ptr->filter = new HMoveEventFilter(this);
+    d_ptr->filter->addWatched(this);
     d_ptr->gif = new Gif;
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(100);
@@ -171,7 +174,6 @@ void HGifWidget::init()
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint | Qt::WindowStaysOnTopHint);
     setWindowIcon(QIcon(":/image/tools/gifWidget.ico"));
-    installEventFilter(this);
     setStyleSheet(qss.join(""));
 }
 

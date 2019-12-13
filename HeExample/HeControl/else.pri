@@ -7,10 +7,6 @@ HEADERS += \
     $$PWD/HCpuMemoryLabel_p.h\
     $$PWD/HLedNumber.h \
     $$PWD/HLedNumber_p.h \
-    $$PWD/HSpliteWidget.h \
-    $$PWD/HSpliteWidget_p.h \
-    $$PWD/HDiskSizeTable.h \
-    $$PWD/HDiskSizeTable_p.h \
     $$PWD/HPanelItem.h \
     $$PWD/HPanelItem_p.h
 
@@ -19,6 +15,4 @@ SOURCES += \
     $$PWD/HBattery.cpp \
     $$PWD/HCpuMemoryLabel.cpp \
     $$PWD/HLedNumber.cpp \
-    $$PWD/HSpliteWidget.cpp \
-    $$PWD/HDiskSizeTable.cpp \
     $$PWD/HPanelItem.cpp

@@ -57,5 +57,8 @@
         <file>qss/psblack/radiobutton_checked_disable.png</file>
         <file>qss/psblack/radiobutton_unchecked.png</file>
         <file>qss/psblack/radiobutton_unchecked_disable.png</file>
+        <file>qss/flatwhite.png</file>
+        <file>qss/lightblue.png</file>
+        <file>qss/psblack.png</file>
     </qresource>
 </RCC>

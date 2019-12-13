@@ -15,7 +15,7 @@ public:
     Qt::Alignment textAlign = Qt::AlignCenter;
     bool showTriangle = false;
     int triangleLen = 5;
-    HNavButton::Position trianglePosition = HNavButton::Position_Right;
+    HNavButton::Position trianglePosition = HNavButton::PositionRight;
     QColor triangleColor = Qt::black;
     bool showIcon = false;
     int iconSpace = 10;
@@ -26,7 +26,7 @@ public:
     bool showLine = true;
     int lineSpace = 0;
     int lineWidth = 5;
-    HNavButton::Position linePosition = HNavButton::Position_Left;
+    HNavButton::Position linePosition = HNavButton::PositionLeft;
     QColor lineColor = QColor(0, 187, 158);
     QColor normalBackground = QColor(230, 230, 230);
     QColor hoverBackground = QColor(130, 130, 130);

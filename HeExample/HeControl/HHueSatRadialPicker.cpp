@@ -152,28 +152,27 @@ void HHueSatRadialPicker::buildPixmap()
     auto radius = qMin(width(), height()) / 2 - 2;
 
     d_ptr->gradient.setCenter(center);
-    auto pm1 = QImage(size(), QImage::Format_ARGB32);
-    pm1.fill(Qt::transparent);
-    QPainter painter1(&pm1);
+    auto image1 = QImage(size(), QImage::Format_ARGB32);
+    image1.fill(Qt::transparent);
+    QPainter painter1(&image1);
     painter1.setRenderHint(QPainter::Antialiasing, true);
     painter1.setBrush(d_ptr->gradient);
     painter1.setPen(palette().color(QPalette::Shadow));
     painter1.drawEllipse(center, radius, radius);
-    d_ptr->pixmap = QPixmap::fromImage(pm1);
 
     auto gradient = QRadialGradient(center, radius, center);
     for (double i = 0; i < 1.0; i += 0.01)
         gradient.setColorAt(i, QColor::fromHsvF(0, 0, 1, 1 - i));
-    auto pm2 = QImage(size(), QImage::Format_ARGB32);
-    pm2.fill(Qt::transparent);
-    QPainter painter2(&pm2);
+    auto image2 = QImage(size(), QImage::Format_ARGB32);
+    image2.fill(Qt::transparent);
+    QPainter painter2(&image2);
     painter2.setRenderHint(QPainter::Antialiasing, true);
     painter2.setBrush(gradient);
     painter2.setPen(palette().color(QPalette::Shadow));
     painter2.drawEllipse(center, radius, radius);
     painter2.setCompositionMode(QPainter::CompositionMode_DestinationOver);
-    painter2.drawPixmap(0, 0, d_ptr->pixmap);
-    d_ptr->pixmap = QPixmap::fromImage(pm2);
+    painter2.drawImage(0, 0, image1);
+    d_ptr->pixmap = QPixmap::fromImage(image2);
 }
 
 void HHueSatRadialPicker::colorPick(const QPointF &point, double radius)

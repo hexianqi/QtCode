@@ -9,20 +9,20 @@
 #include <QtWidgets/QWidget>
 
 namespace Ui {
-class HControlWidget;
+class HControlFactoryWidget;
 }
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HControlWidgetPrivate;
+class HControlFactoryWidgetPrivate;
 
-class HE_CONTROL_EXPORT HControlWidget : public QWidget
+class HE_CONTROL_EXPORT HControlFactoryWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit HControlWidget(QWidget *parent = nullptr);
-    ~HControlWidget();
+    explicit HControlFactoryWidget(QWidget *parent = nullptr);
+    ~HControlFactoryWidget();
 
 private slots:
     void on_pushButton_clicked();
@@ -31,8 +31,8 @@ private:
     void init();
 
 private:
-    Ui::HControlWidget *ui;
-    QScopedPointer<HControlWidgetPrivate> d_ptr;
+    Ui::HControlFactoryWidget *ui;
+    QScopedPointer<HControlFactoryWidgetPrivate> d_ptr;
 };
 
 HE_CONTROL_END_NAMESPACE

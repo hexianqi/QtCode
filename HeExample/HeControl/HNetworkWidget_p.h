@@ -9,6 +9,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HTcpClientWidget;
 class HTcpServerWidget;
+class HUdpClientWidget;
 class HUdpServerWidget;
 
 class HNetworkWidgetPrivate
@@ -17,6 +18,7 @@ public:
     QTabWidget *tabWidget;
     HTcpClientWidget *tcpClient;
     HTcpServerWidget *tcpServer;
+    HUdpClientWidget *udpClient;
     HUdpServerWidget *udpServer;
 };
 

@@ -21,8 +21,8 @@ HStyleWidget::~HStyleWidget()
 
 void HStyleWidget::init()
 {
-    d_ptr->factory = new HStyleFactory(this);
-    auto style = d_ptr->factory->create("HFaltStyle");
+    auto factory = new HStyleFactory(this);
+    auto style = factory->create("HFlatStyle");
     this->setStyleSheet(style->toStyleSheet());
 }
 

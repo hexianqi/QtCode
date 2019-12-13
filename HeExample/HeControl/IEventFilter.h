@@ -6,25 +6,29 @@
 #define IEVENTFILTER_H
 
 #include "HControlGlobal.h"
+#include "HeCore/IInitializeable.h"
 #include <QtCore/QEvent>
-#include <functional>
 
-class QObject;
-class QRectF;
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IEventFilter
+class IEventFilter: public QObject, public IInitializeable
 {
+    Q_OBJECT
+
 public:
-    // 设置有效范围
-    virtual bool setValidRegion(QRectF value) = 0;
+    using QObject::QObject;
+
+public:
     // 设置是否启用
     virtual bool setEnable(bool b) = 0;
     // 是否启用
     virtual bool isEnable() = 0;
+    // 添加观测对象
+    virtual bool addWatched(QObject *) = 0;
     // 添加处理函数
-    virtual void addHandle(QEvent::Type type, std::function<bool(QEvent *)> func) = 0;
+    virtual void addHandler(QEvent::Type type, std::function<bool(QEvent *)> func) = 0;
 
 public:
     // 事件过滤器

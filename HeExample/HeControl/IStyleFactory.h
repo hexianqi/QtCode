@@ -13,8 +13,6 @@ HE_CORE_USE_NAMESPACE
 HE_CONTROL_BEGIN_NAMESPACE
 
 class IStyle;
-class IQssStyle;
-class ICustomStyle;
 
 class IStyleFactory : public IInitializeable
 {
@@ -23,10 +21,6 @@ public:
     virtual QStringList keys() = 0;
     // 创建样式
     virtual IStyle *create(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建Qss样式
-    virtual IQssStyle *createQss(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建定制样式
-    virtual ICustomStyle *createCustom(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_CONTROL_END_NAMESPACE

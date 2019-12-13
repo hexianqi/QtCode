@@ -24,8 +24,10 @@ public:
     QString typeName() override;
 
 public:
-    QStringList keys() override;
+    QStringList supportedWidgets() override;
+    QStringList supportedEventFilters() override;
     QWidget *createWidget(QString type, QWidget *parent = nullptr) override;
+    IEventFilter *createEventFilter(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     QScopedPointer<HControlFactoryPrivate> d_ptr;

@@ -42,7 +42,7 @@ QString HQssStyle::toStyleSheet()
     return d_ptr->styleSheet.value(d_ptr->current);
 }
 
-QStringList HQssStyle::keys()
+QStringList HQssStyle::styles()
 {
     return d_ptr->styleSheet.keys();
 }

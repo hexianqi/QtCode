@@ -77,7 +77,7 @@ void HTiledBackground::setSize(int value)
 
 void HTiledBackground::setPixmap(const QPixmap &value)
 {
-    if (d_ptr->pixmap == value)
+    if (!d_ptr->pixmap.isNull() && d_ptr->pixmap == value)
         return;
     d_ptr->pixmap = value;
     update();
@@ -86,7 +86,7 @@ void HTiledBackground::setPixmap(const QPixmap &value)
 void HTiledBackground::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    auto pixmap = d_ptr->pixmap.isNull() ? QPixmap::fromImage(HDrawHelper::createTiledImage(d_ptr->color1, d_ptr->color2, d_ptr->size)) : d_ptr->pixmap;
+    auto pixmap = d_ptr->pixmap.isNull() ? QPixmap::fromImage(HDrawHelper::createTiledImage(d_ptr->size, d_ptr->color1, d_ptr->color2)) : d_ptr->pixmap;
     painter.drawTiledPixmap(rect(), pixmap);
 }
 

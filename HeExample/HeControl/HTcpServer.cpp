@@ -21,16 +21,37 @@ HTcpServer::~HTcpServer()
     stop();
 }
 
+bool HTcpServer::isRunning()
+{
+    return isListening();
+}
+
 bool HTcpServer::start()
 {
-    return listen(QHostAddress::AnyIPv4, d_ptr->listenPort);
+    if (isRunning())
+        return true;
+    auto addr = d_ptr->listenIP.isEmpty() ? QHostAddress::AnyIPv4 : QHostAddress(d_ptr->listenIP);
+    return listen(addr, d_ptr->listenPort);
 }
 
 void HTcpServer::stop()
 {
-    for (auto c : d_ptr->clients.values())
-        c->disconnectFromHost();
+    if (!isRunning())
+        return;
+    disconnectClient();
     close();
+}
+
+void HTcpServer::setListenIP(const QString &value)
+{
+    if (d_ptr->listenIP == value)
+        return;
+    d_ptr->listenIP = value;
+    if (isRunning())
+    {
+        stop();
+        start();
+    }
 }
 
 void HTcpServer::setListenPort(quint16 value)
@@ -38,14 +59,20 @@ void HTcpServer::setListenPort(quint16 value)
     if (d_ptr->listenPort == value)
         return;
     d_ptr->listenPort = value;
-    if (isListening())
+    if (isRunning())
     {
         stop();
         start();
     }
 }
 
-void HTcpServer::sendData(QString ip, int port, QByteArray data)
+void HTcpServer::sendData(const QByteArray &data)
+{
+    for (auto c : d_ptr->clients)
+        c->sendData(data);
+}
+
+void HTcpServer::sendData(const QString &ip, quint16 port, const QByteArray &data)
 {
     auto key = QString("%1:%2").arg(ip).arg(port);
     if (!d_ptr->clients.contains(key))
@@ -53,13 +80,13 @@ void HTcpServer::sendData(QString ip, int port, QByteArray data)
     d_ptr->clients.value(key)->sendData(data);
 }
 
-void HTcpServer::sendData(QByteArray data)
+void HTcpServer::disconnectClient()
 {
-    for (auto c : d_ptr->clients)
-        c->sendData(data);
+    for (auto c : d_ptr->clients.values())
+        c->disconnectFromHost();
 }
 
-void HTcpServer::disconnectClient(QString ip, int port)
+void HTcpServer::disconnectClient(const QString &ip, quint16 port)
 {
     auto key = QString("%1:%2").arg(ip).arg(port);
     if (!d_ptr->clients.contains(key))

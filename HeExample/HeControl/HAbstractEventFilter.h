@@ -6,13 +6,12 @@
 #define HABSTRACTEVENTFILTER_H
 
 #include "IEventFilter.h"
-#include <QtCore/QObject>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HAbstractEventFilterPrivate;
 
-class HAbstractEventFilter : public QObject, public IEventFilter
+class HAbstractEventFilter : public IEventFilter
 {
     Q_OBJECT
 
@@ -21,16 +20,21 @@ public:
     ~HAbstractEventFilter() override;
 
 public:
-    bool setValidRegion(QRectF value) override;
     bool setEnable(bool b) override;
     bool isEnable() override;
-    void addHandle(QEvent::Type type, std::function<bool(QEvent *)> func) override;
+    bool addWatched(QObject *) override;
+    void addHandler(QEvent::Type type, std::function<bool(QEvent *)> func) override;
 
 public:
     bool eventFilter(QObject *, QEvent *) override;
 
 protected:
     HAbstractEventFilter(HAbstractEventFilterPrivate &p, QObject *parent = nullptr);
+
+protected:
+    virtual bool hasWatched(QObject *);
+    virtual bool hasHandler(QEvent::Type t);
+    virtual bool handleInternal(QObject *, QEvent *) = 0;
 
 protected:
     QScopedPointer<HAbstractEventFilterPrivate> d_ptr;

@@ -5,7 +5,8 @@
 #include "HTestGsl.h"
 #include "HeCore/HCore.h"
 #include "HeExample/HeControl/HDemoWidget.h"
-#include "HeExample/HeControl/HControlWidget.h"
+#include "HeExample/HeControl/HControlFactoryWidget.h"
+#include "HeExample/HeControl/HControlDemoWidget.h"
 #include <QtCore/QDebug>
 #include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
@@ -31,9 +32,9 @@ int main(int argc, char *argv[])
     a.addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HControlWidget cw;
+    HControlFactoryWidget cw;
     cw.show();
-//    HDemoWidget dw;
+//    HControlDemoWidget dw;
 //    dw.show();
 
 //    MainWindow window;

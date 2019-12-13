@@ -2,24 +2,16 @@
 #define HUDPSERVERWIDGET_P_H
 
 #include "HUdpServerWidget.h"
-#include "HAbstractNetworkWidget_p.h"
-
-class QUdpSocket;
+#include "HAbstractServerWidget_p.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HUdpServerWidgetPrivate : public HAbstractNetworkWidgetPrivate
+class HUdpServer;
+
+class HUdpServerWidgetPrivate : public HAbstractServerWidgetPrivate
 {
 public:
-    HUdpServerWidgetPrivate();
-
-public:
-    QString serverIp;
-    int serverPort = 6000;
-    int listenPort = 6000;
-    int currentCount = 0;
-    int maxCount = 100;
-    QUdpSocket *udpSocket;
+    HUdpServer *server = nullptr;
 };
 
 HE_CONTROL_END_NAMESPACE

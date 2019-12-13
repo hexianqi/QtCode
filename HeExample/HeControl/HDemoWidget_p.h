@@ -5,12 +5,12 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HFaltStyle;
+class HFlatStyle;
 
 class HDemoWidgetPrivate
 {
 public:
-    HFaltStyle *style;
+    HFlatStyle *style;
 };
 
 HE_CONTROL_END_NAMESPACE

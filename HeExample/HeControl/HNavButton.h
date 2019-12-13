@@ -1,6 +1,5 @@
 /***************************************************************************************************
 **      2017-12-19  HNavButton 导航按钮控件
-**
 **                  http://www.qtcn.org/bbs/read-htm-tid-85593-ds-1.html#tpc
 **                  1:可设置文字的左侧+右侧+顶部+底部间隔
 **                  2:可设置文字对齐方式
@@ -59,10 +58,10 @@ class HNavButton : public QPushButton
 public:
     enum Position
     {
-        Position_Left = 0,      //左侧
-        Position_Right = 1,     //右侧
-        Position_Top = 2,       //顶部
-        Position_Bottom = 3     //底部
+        PositionLeft = 0,      //左侧
+        PositionRight = 1,     //右侧
+        PositionTop = 2,       //顶部
+        PositionBottom = 3     //底部
     };
     Q_ENUM(Position)
 
@@ -113,9 +112,9 @@ public slots:
     void setShowIcon(bool b);
     void setIconSpace(int value);
     void setIconSize(QSize value);
-    void setIconNormal(QPixmap value);
-    void setIconHover(QPixmap value);
-    void setIconCheck(QPixmap value);
+    void setIconNormal(const QPixmap &value);
+    void setIconHover(const QPixmap &value);
+    void setIconCheck(const QPixmap &value);
     void setShowLine(bool b);
     void setLineSpace(int value);
     void setLineWidth(int value);

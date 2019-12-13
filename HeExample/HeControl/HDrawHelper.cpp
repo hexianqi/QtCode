@@ -6,8 +6,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 void HDrawHelper::drawOverlay(QPainter *painter, double radius, QColor color)
 {
-    QPainterPath smallCircle;
-    QPainterPath bigCircle;
+    QPainterPath smallCircle, bigCircle;
     radius -= 1;
     smallCircle.addEllipse(-radius, -radius, radius * 2, radius * 2);
     radius *= 2;
@@ -25,7 +24,7 @@ void HDrawHelper::drawOverlay(QPainter *painter, double radius, QColor color)
     painter->restore();
 }
 
-void HDrawHelper::drawCrosshair(QPainter *painter, QPointF point, int width, QColor color)
+void HDrawHelper::drawCrosshair(QPainter *painter, QPointF point, int width, const QColor &color)
 {
     painter->save();
     painter->setPen(QPen(color, width));
@@ -36,7 +35,7 @@ void HDrawHelper::drawCrosshair(QPainter *painter, QPointF point, int width, QCo
     painter->restore();
 }
 
-void HDrawHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, QColor color)
+void HDrawHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, const QColor &color)
 {
     QString text = "+";
     auto f = painter->font();
@@ -52,7 +51,7 @@ void HDrawHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, QC
     painter->restore();
 }
 
-QImage HDrawHelper::createTiledImage(QColor color1, QColor color2, int size)
+QImage HDrawHelper::createTiledImage(int size, const QColor &color1, const QColor &color2)
 {
     auto image = QImage(size * 2, size * 2, QImage::Format_ARGB32);
     image.fill(color1);
@@ -63,7 +62,7 @@ QImage HDrawHelper::createTiledImage(QColor color1, QColor color2, int size)
     return image;
 }
 
-QImage HDrawHelper::createCrossImage(QSize size, QPen pen)
+QImage HDrawHelper::createCrossImage(QSize size, const QPen &pen)
 {
     QPainterPath path;
     path.moveTo(0, size.height() / 2);
@@ -81,7 +80,20 @@ QImage HDrawHelper::createCrossImage(QSize size, QPen pen)
     return image;
 }
 
-QFont HDrawHelper::adjustFontSize(QPainter *painter, QString text, double width)
+QImage HDrawHelper::createFontImage(const QFont &font, const QChar &c, QSize size, const QPen &pen, int flags)
+{
+    auto image = QImage(size, QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+
+    QPainter painter(&image);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+    painter.setPen(pen);
+    painter.setFont(font);
+    painter.drawText(image.rect(), flags, c);
+    return image;
+}
+
+QFont HDrawHelper::adjustFontSize(QPainter *painter, const QString &text, double width)
 {
     auto f = painter->font();
     f.setPointSize(10);

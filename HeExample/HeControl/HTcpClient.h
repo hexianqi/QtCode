@@ -25,8 +25,8 @@ signals:
     void receiveData(const QString &ip, int port, const QByteArray &data);
 
 public:
-    QString ip() const;
-    int port() const;
+    QString ip();
+    quint16 port();
 
 public slots:
     void sendData(const QByteArray &value);

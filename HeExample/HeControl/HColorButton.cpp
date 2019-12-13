@@ -149,12 +149,12 @@ void HColorButton::setCurrentIndex(const QModelIndex &index)
     d_ptr->currentColor = qvariant_cast<QColor>(index.data(Qt::DecorationRole));
     d_ptr->currentName = index.data(Qt::ToolTipRole).toString();
 
-    QPixmap pm(64, 64);
-    QPainter pt(&pm);
-    pt.setBrush(d_ptr->currentColor);
-    pt.drawRect(0, 0, pm.width() - 1, pm.height() - 1);
+    QPixmap pixmap(64, 64);
+    QPainter painter(&pixmap);
+    painter.setBrush(d_ptr->currentColor);
+    painter.drawRect(0, 0, pixmap.width() - 1, pixmap.height() - 1);
 
-    setIcon(d_ptr->currentColor.isValid() ? pm : QIcon());
+    setIcon(d_ptr->currentColor.isValid() ? pixmap : QIcon());
     if (d_ptr->showName)
         setText(d_ptr->currentName);
     if (d_ptr->currentColor.isValid())

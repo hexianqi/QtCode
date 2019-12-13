@@ -4,17 +4,12 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HAbstractMouseEventFilterPrivate::HAbstractMouseEventFilterPrivate(QWidget *p)
-{
-    widget = p;
-}
-
-HAbstractMouseEventFilter::HAbstractMouseEventFilter(QWidget *parent) :
-    HAbstractEventFilter(*new HAbstractMouseEventFilterPrivate(parent), parent)
+HAbstractMouseEventFilter::HAbstractMouseEventFilter(QObject *parent) :
+    HAbstractEventFilter(*new HAbstractMouseEventFilterPrivate, parent)
 {
 }
 
-HAbstractMouseEventFilter::HAbstractMouseEventFilter(HAbstractMouseEventFilterPrivate &p, QWidget *parent) :
+HAbstractMouseEventFilter::HAbstractMouseEventFilter(HAbstractMouseEventFilterPrivate &p, QObject *parent) :
     HAbstractEventFilter(p, parent)
 {
 }
@@ -23,25 +18,26 @@ HAbstractMouseEventFilter::~HAbstractMouseEventFilter()
 {
 }
 
-bool HAbstractMouseEventFilter::eventFilter(QObject *watched, QEvent *event)
+bool HAbstractMouseEventFilter::addWatched(QObject *p)
 {
-    if (!isEnable())
+    if (!p->inherits("QWidget"))
         return false;
-    auto e = static_cast<QMouseEvent *>(event);
-    if (e == nullptr)
-        return false;
-    if (e->type() == QEvent::MouseButtonPress)
-        return mousePressEvent(e);
-    if (e->type() == QEvent::MouseButtonRelease)
-        return mouseReleaseEvent(e);
-    if (e->type() == QEvent::MouseMove)
-        return mouseMoveEvent(e);
-    return HAbstractEventFilter::eventFilter(watched, event);
+    return HAbstractEventFilter::addWatched(p);
 }
 
-bool HAbstractMouseEventFilter::isValid(QPointF pos)
+bool HAbstractMouseEventFilter::handleInternal(QObject *watched, QEvent *event)
 {
-    return d_ptr->validRegion.contains(pos);
+    auto w = static_cast<QWidget *>(watched);
+    auto e = static_cast<QMouseEvent *>(event);
+    if (w == nullptr || e == nullptr)
+        return false;
+    if (e->type() == QEvent::MouseButtonPress)
+        return mousePressEvent(w, e);
+    if (e->type() == QEvent::MouseButtonRelease)
+        return mouseReleaseEvent(w, e);
+    if (e->type() == QEvent::MouseMove)
+        return mouseMoveEvent(w, e);
+    return false;
 }
 
 HE_CONTROL_END_NAMESPACE

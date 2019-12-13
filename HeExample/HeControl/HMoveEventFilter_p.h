@@ -3,14 +3,12 @@
 
 #include "HMoveEventFilter.h"
 #include "HAbstractMouseEventFilter_p.h"
+#include <QtCore/QPoint>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HMoveEventFilterPrivate : public HAbstractMouseEventFilterPrivate
 {
-public:
-    using HAbstractMouseEventFilterPrivate::HAbstractMouseEventFilterPrivate;
-
 public:
     bool pressed = false;
     QPoint pos;

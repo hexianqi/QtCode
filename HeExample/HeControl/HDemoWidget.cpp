@@ -1,6 +1,6 @@
 #include "HDemoWidget_p.h"
 #include "ui_HDemoWidget.h"
-#include "HFaltStyle.h"
+#include "HFlatStyle.h"
 #include "HAntLine.h"
 #include "HTiledBackground.h"
 #include "HBattery.h"
@@ -83,7 +83,7 @@ HDemoWidget::~HDemoWidget()
 
 void HDemoWidget::init()
 {
-    d_ptr->style = new HFaltStyle(this);
+    d_ptr->style = new HFlatStyle(this);
 
 //    addSlideNavigation();
     addAntLine();

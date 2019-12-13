@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>image/RbTableHeader.png</file>
         <file>image/Layout/BorderLayout.png</file>
         <file>image/Layout/CardLayout.png</file>
         <file>image/Layout/FlowLayout.gif</file>
@@ -48,8 +47,6 @@
         <file>image/ww/textright.png</file>
         <file>image/ww/textunder.png</file>
         <file>image/ww/twocolorindicator.png</file>
-        <file>image/fonts/pe-icon-set-weather.ttf</file>
-        <file>image/fonts/fontawesome-webfont.ttf</file>
         <file>image/beautify/sun.svg</file>
         <file>image/beautify/rain.svg</file>
         <file>image/beautify/snow.svg</file>
@@ -60,6 +57,16 @@
         <file>image/beautify/fog.svg</file>
         <file>image/beautify/wind.svg</file>
         <file>image/beautify/partly_cloud.svg</file>
-        <file>image/widget/NavigationWidget.gif</file>
+        <file>image/demo/NavigationWidget.gif</file>
+        <file>image/demo/CodeCount.gif</file>
+        <file>image/demo/FlatUI.gif</file>
+        <file>image/demo/LightButton.gif</file>
+        <file>image/demo/GifWidget.gif</file>
+        <file>image/demo/RbTableHeader.png</file>
+        <file>image/demo/DeviceSizeTable.gif</file>
+        <file>fonts/fontawesome-webfont.ttf</file>
+        <file>fonts/pe-icon-set-weather.ttf</file>
+        <file>image/demo/NavButton.gif</file>
+        <file>image/demo/SpliteWidget.gif</file>
     </qresource>
 </RCC>

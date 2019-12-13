@@ -18,7 +18,7 @@ public:
 
 public:
     // 所有样式
-    virtual QStringList keys() = 0;
+    virtual QStringList styles() = 0;
     // 选择样式
     virtual bool selectStyle(QString vlaue) = 0;
 };

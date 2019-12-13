@@ -113,8 +113,8 @@ void HSpliteWidget::showWidget(int index, int flag)
     for (int i = 0; i < flag * flag && i < d_ptr->totalCount - index; i++)
     {
         auto w = d_ptr->labels[index + i];
-        w->setVisible(true);
         d_ptr->gridLayout->addWidget(w, i / flag, i % flag);
+        w->setVisible(true);
     }
 }
 
@@ -147,10 +147,9 @@ void HSpliteWidget::showWidget8(int index)
 void HSpliteWidget::init()
 {
     d_ptr->gridLayout = new QGridLayout(this);
-    QStringList qss;
-    qss << "QFrame { border:2px solid #000000; }"
-        << "QLabel { font:75 25px; color:#F0F0F0; border:2px solid #AAAAAA; background:#000000; }"
-        << "QLabel:focus { border:2px solid #00BB9E; background:#555555; } ";
+    auto qss = QStringList() << "QFrame { border:2px solid #000000; }"
+                             << "QLabel { font:75 25px; color:#F0F0F0; border:2px solid #AAAAAA; background:#000000; }"
+                             << "QLabel:focus { border:2px solid #00BB9E; background:#555555; } ";
     setStyleSheet(qss.join("\n"));
     initLabel();
     initMenu();
@@ -171,7 +170,6 @@ void HSpliteWidget::initLabel()
         w->setFocusPolicy(Qt::StrongFocus);
         w->setAlignment(Qt::AlignCenter);
         w->setText(tr("通道 %1").arg(i + 1));
-        //w->setPixmap(QPixmap(":/bg_novideo.png"));
         d_ptr->labels << w;
     }
 }

@@ -5,7 +5,7 @@
 #ifndef HTCPSERVERWIDGET_H
 #define HTCPSERVERWIDGET_H
 
-#include "HAbstractNetworkWidget.h"
+#include "HAbstractServerWidget.h"
 
 namespace Ui {
 class HTcpServerWidget;
@@ -15,7 +15,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HTcpServerWidgetPrivate;
 
-class HTcpServerWidget : public HAbstractNetworkWidget
+class HTcpServerWidget : public HAbstractServerWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HTcpServerWidget)
@@ -25,21 +25,19 @@ public:
     ~HTcpServerWidget() override;
 
 public slots:
-    void setListenPort(int value);
-    void clearData();
     void sendData() override;
+    void clearData() override;
 
 protected slots:
     void on_pushButton_101_clicked();
     void on_pushButton_102_clicked();
-    void handleReceiveData(QString ip, int port, QByteArray data);
-    void handleClientConnected(QString ip, int port);
-    void handleClientDisconnected(QString ip, int port);
-    void append(int type, QString data);
+    void on_pushButton_104_clicked();
+    void handleClientConnected(const QString &ip, quint16 port) override;
+    void handleClientDisconnected(const QString &ip, quint16 port) override;
+    void append(int type, QString data) override;
 
 protected:
-    void readSettings() override;
-    void writeSettings() override;
+    QString groupName() override;
 
 private:
     void init();

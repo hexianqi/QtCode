@@ -1,6 +1,6 @@
 /***************************************************************************************************
 **      2016-10-16  HLightButton 高亮发光按钮控件。
-**                  http://www.qtcn.org/bbs/read-htm-tid-63464.html
+**                  https://gitee.com/feiyangqingyun/QWidgetDemo
 **                  1:可设置文本,居中显示
 **                  2:可设置文本颜色
 **                  3:可设置外边框渐变颜色
@@ -83,7 +83,6 @@ protected:
     HLightButton(HLightButtonPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    bool eventFilter(QObject *, QEvent *) override;
     void paintEvent(QPaintEvent *) override;
     void drawRect(QPainter *);
     void drawBorderOut(QPainter *);

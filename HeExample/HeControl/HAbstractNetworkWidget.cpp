@@ -88,11 +88,16 @@ void HAbstractNetworkWidget::setInterval(int value)
     d_ptr->timer->setInterval(value);
 }
 
+void HAbstractNetworkWidget::clearData()
+{
+    d_ptr->currentCount = 0;
+}
+
 void HAbstractNetworkWidget::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup(d_ptr->groupName);
+    settings->beginGroup(groupName());
     d_ptr->hexSend = settings->value("bHexSend", false).toBool();
     d_ptr->hexReceive = settings->value("bHexReceive", false).toBool();
     d_ptr->ascii = settings->value("bAscii", false).toBool();
@@ -105,7 +110,7 @@ void HAbstractNetworkWidget::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup(d_ptr->groupName);
+    settings->beginGroup(groupName());
     settings->setValue("bHexSend", d_ptr->hexSend);
     settings->setValue("bHexReceive", d_ptr->hexReceive);
     settings->setValue("bAscii", d_ptr->ascii);

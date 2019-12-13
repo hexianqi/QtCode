@@ -3,27 +3,19 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HAbstractEventFilter::HAbstractEventFilter(QObject *parent) :
-    QObject(parent),
+    IEventFilter(parent),
     d_ptr(new HAbstractEventFilterPrivate)
 {
 }
 
 HAbstractEventFilter::HAbstractEventFilter(HAbstractEventFilterPrivate &p, QObject *parent) :
-    QObject(parent),
+    IEventFilter(parent),
     d_ptr(&p)
 {
 }
 
 HAbstractEventFilter::~HAbstractEventFilter()
 {
-}
-
-bool HAbstractEventFilter::setValidRegion(QRectF value)
-{
-    if (d_ptr->validRegion == value)
-        return false;
-    d_ptr->validRegion = value;
-    return true;
 }
 
 bool HAbstractEventFilter::setEnable(bool b)
@@ -39,16 +31,41 @@ bool HAbstractEventFilter::isEnable()
     return d_ptr->enable;
 }
 
-void HAbstractEventFilter::addHandle(QEvent::Type type, std::function<bool (QEvent *)> func)
+bool HAbstractEventFilter::addWatched(QObject *p)
 {
-    d_ptr->handleFunc.insert(type, func);
+    if (hasWatched(p))
+        return false;
+    d_ptr->watcheds.insert(p);
+    p->installEventFilter(this);
+    return true;
 }
 
-bool HAbstractEventFilter::eventFilter(QObject */*watched*/, QEvent *event)
+void HAbstractEventFilter::addHandler(QEvent::Type type, std::function<bool (QEvent *)> func)
 {
-    if (!isEnable() || !d_ptr->handleFunc.contains(event->type()))
+    d_ptr->handlers.insert(type, func);
+}
+
+bool HAbstractEventFilter::eventFilter(QObject *watched, QEvent *event)
+{
+    if (!isEnable())
         return false;
-    return d_ptr->handleFunc.value(event->type())(event);
+    if (!hasWatched(watched))
+        return false;
+    if (handleInternal(watched, event))
+        return true;
+    if (hasHandler(event->type()))
+        return d_ptr->handlers.value(event->type())(event);
+    return QObject::eventFilter(watched, event);
+}
+
+bool HAbstractEventFilter::hasWatched(QObject *p)
+{
+    return d_ptr->watcheds.contains(p);
+}
+
+bool HAbstractEventFilter::hasHandler(QEvent::Type t)
+{
+    return d_ptr->handlers.contains(t);
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -96,6 +96,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_103">
+        <property name="text">
+         <string>监听地址</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_101"/>
+      </item>
+      <item>
        <widget class="QLabel" name="label_101">
         <property name="text">
          <string>监听端口</string>
@@ -134,9 +144,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_104">
+        <property name="text">
+         <string>断开</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label_102">
         <property name="text">
-         <string>已连接客户端共 0 个</string>
+         <string>共 0 个客户端</string>
         </property>
        </widget>
       </item>

@@ -23,7 +23,7 @@ HQssCreator::~HQssCreator()
 void HQssCreator::init()
 {
     initStyle();
-    initAction();    
+    initAction();
     initTableWidget();
     initTreeWidget();
     initListWidget();
@@ -42,7 +42,7 @@ void HQssCreator::initStyle()
 void HQssCreator::initAction()
 {
     auto g = new QActionGroup(this);
-    for (auto k : d_ptr->style->keys())
+    for (auto k : d_ptr->style->styles())
         g->addAction(k)->setData(k);
     connect(g, &QActionGroup::triggered, this, &HQssCreator::changeStyle);
     addActions(g->actions());
@@ -54,11 +54,11 @@ void HQssCreator::initTableWidget()
     // 设置列数和列宽
     int width =  QApplication::primaryScreen()->availableGeometry().width() - 120;
     ui->tableWidget->setColumnCount(5);
-    ui->tableWidget->setColumnWidth(0, width * 0.06);
-    ui->tableWidget->setColumnWidth(1, width * 0.10);
-    ui->tableWidget->setColumnWidth(2, width * 0.06);
-    ui->tableWidget->setColumnWidth(3, width * 0.10);
-    ui->tableWidget->setColumnWidth(4, width * 0.15);
+    ui->tableWidget->setColumnWidth(0, static_cast<int>(width * 0.06));
+    ui->tableWidget->setColumnWidth(1, static_cast<int>(width * 0.10));
+    ui->tableWidget->setColumnWidth(2, static_cast<int>(width * 0.06));
+    ui->tableWidget->setColumnWidth(3, static_cast<int>(width * 0.10));
+    ui->tableWidget->setColumnWidth(4, static_cast<int>(width * 0.15));
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(25);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "设备编号" << "设备名称" << "设备地址" << "告警内容" << "告警时间");
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
