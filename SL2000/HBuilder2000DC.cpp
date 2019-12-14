@@ -148,18 +148,17 @@ void HBuilder2000DC::buildDevice()
     param[1].insert("baudRate", 115200);
     auto port1 = d->communicateFactory->createPort("HUsbPortCy", param[0]);
     auto port2 = d->communicateFactory->createPort("HSerialPort", param[1]);
-    auto device1 = d->communicateFactory->createDevice("HSlDevice2");
+    auto device1 = d->communicateFactory->createDevice("HSlDevice");
     auto device2 = d->communicateFactory->createDevice("HSlCodecDevice");
     auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-    auto protocol1 = d->communicateFactory->createProtocol("HBigProtocol");
+    auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     device1->setPort(port1, 0, false);
-    device1->addActionParam(ACT_CHECK_DEVICE,       QList<uchar>() << 0x00 << 0x02 << 0x00);
-    device1->addActionParam(ACT_SET_INTEGRAL_TIME,  QList<uchar>() << 0x00 << 0x04 << 0x01);
-    device1->addActionParam(ACT_GET_SPECTRUM,       QList<uchar>() << 0x10 << 0x50 << 0x02);
-    device1->addActionParam(ACT_SET_RAM,            QList<uchar>() << 0xFF << 0xFA << 0x03);
-    device1->addActionParam(ACT_GET_RAM,            QList<uchar>() << 0xFF << 0xFA << 0x04);
+    device1->setDeviceID(0x81);
+    device1->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
+    device1->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
+    device1->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
     device2->setPort(port2, 4, true);
     device2->setDeviceID(0x01);
     device2->addActionParam(ACT_CHECK_DEVICE,               QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x00);
@@ -256,6 +255,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

@@ -43,3 +43,4 @@ Dest/HeTest.exe
 *.cfg
 *.zip
 *.db
+*.debug

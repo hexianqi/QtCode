@@ -105,9 +105,7 @@ HErrorType HAbstractThread::handleAction(HActionType action)
     {
         if (!v->isSupport(action))
             continue;
-        auto error = v->handle(action);
-        if (error != E_OK)
-            return error;
+        return v->handle(action);
     }
     return E_THREAD_NO_HANDLE;
 }
