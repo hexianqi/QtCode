@@ -22,9 +22,9 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
     strategySpec = factory->createStrategy("HSpecStrategy");
     strategyElec = factory->createStrategy("HElecStrategy");
     strategys.insert("Spec", strategySpec);
-    strategys.insert("Elec", strategyElec);
+//    strategys.insert("Elec", strategyElec);
     protocols.insert("Spec", protocolCollection->value("Spec"));
-    protocols.insert("Elec", protocolCollection->value("Elec"));
+//    protocols.insert("Elec", protocolCollection->value("Elec"));
 }
 
 HSpecElecThread::HSpecElecThread(QObject *parent) :
@@ -60,24 +60,24 @@ HErrorType HSpecElecThread::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SINGLE_TEST:
-        error = d->strategyElec->handle(ACT_GET_ELEC_PARAM);
-        if (error != E_OK)
-            return error;
+//        error = d->strategyElec->handle(ACT_GET_ELEC_PARAM);
+//        if (error != E_OK)
+//            return error;
         error = d->strategySpec->handle(ACT_GET_SPECTRUM);
         if (error != E_OK)
             return error;
-        error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
-        if (error != E_OK)
-            return error;
+//        error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
+//        if (error != E_OK)
+//            return error;
         setEfficacy();
         return E_OK;
     case ACT_GET_SPECTRUM_ELEC:
-        error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
-        if (error != E_OK)
-            return error;
-        error = d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
-        if (error != E_OK)
-            return error;
+//        error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
+//        if (error != E_OK)
+//            return error;
+//        error = d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
+//        if (error != E_OK)
+//            return error;
         error = d->strategySpec->handle(ACT_GET_SPECTRUM);
         if (error != E_OK)
             return error;

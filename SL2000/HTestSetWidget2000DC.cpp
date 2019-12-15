@@ -96,6 +96,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
             d->model->addAction(ACT_SET_SOURCE_MODE);
         }
     }
+    emit testStateChanged(b);
     return true;
 }
 
