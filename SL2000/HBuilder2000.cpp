@@ -10,7 +10,6 @@
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IDevice.h"
-#include "HeCommunicate/IDeviceCollection.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
@@ -107,75 +106,21 @@ void HBuilder2000::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
-//// 第一版设备554b
-//void HBuilder2000::buildDevice()
-//{
-//    Q_D(HBuilder2000);
-//    QVariantMap param;
-//    param.insert("timeOut", 1000);
-//    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-//    auto device = d->communicateFactory->createDevice("HSlDevice");
-//    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-//    device->setPort(port, 0, false);
-//    device->setDeviceID(0x81);
-//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
-//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
-//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
-//    devices->insert("Spec", device);
-////    devices->addSupport(ACT_PULSE_TEST);
-////    devices->addSupport(ACT_GET_LUMINOUS_SPECTRUM);
-////    devices->addSupport(ACT_GET_ELEC_LUMINOUS_SPECTRUM);
-//    protocol->setDevice(device);
-//    protocols->insert("Spec", protocol);
-//    HAppContext::setContextPointer("IDeviceCollection", devices);
-//    HAppContext::setContextPointer("IProtocolCollection", protocols);
-//}
-
-// 第二版设备1305
 void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
-    QVariantMap param;
-    param.insert("timeOut", 3000);
-    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-    auto device = d->communicateFactory->createDevice("HSlDevice2");
-    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-    auto protocol = d->communicateFactory->createProtocol("HBigProtocol");
-    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-    device->setPort(port, 0, false);
-    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x00);
-    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x01);
-    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x10 << 0x50 << 0x02);
-    device->addActionParam(ACT_SET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x03);
-    device->addActionParam(ACT_GET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x04);
-    devices->insert("Spec", device);
+    // 设备模拟
+    auto device = d->communicateFactory->createDevice("HSlSimulation");
+    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol->setDevice(device);
+    // 第一版设备554b
+    // auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
+    // 第二版设备1305
+    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
-
-//// 设备模拟
-//void HBuilder2000::buildDevice()
-//{
-//    Q_D(HBuilder2000);
-//    QVariantMap param;
-//    param.insert("timeOut", 1000);
-//    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-//    auto device = d->communicateFactory->createDevice("HSlSimulation");
-//    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-//    device->setPort(port, 0, false);
-//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
-//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
-//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
-//    devices->insert("Spec", device);
-//    protocol->setDevice(device);
-//    protocols->insert("Spec", protocol);
-//    HAppContext::setContextPointer("IProtocolCollection", protocols);
-//}
 
 void HBuilder2000::buildThread()
 {
@@ -262,6 +207,67 @@ void HBuilder2000::buildTestWidget()
 //    param.insert("device", ToVariant(d->devices->value("Spec")));
 //    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol", param);
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
+//    protocols->insert("Spec", protocol);
+//    HAppContext::setContextPointer("IProtocolCollection", protocols);
+//}
+
+//// 第一版设备554b
+//void HBuilder2000::buildDevice()
+//{
+//    Q_D(HBuilder2000);
+//    QVariantMap param;
+//    param.insert("timeOut", 1000);
+//    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
+//    auto device = d->communicateFactory->createDevice("HSlDevice");
+//    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
+//    device->setPort(port, 0, false);
+//    device->setDeviceID(0x81);
+//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
+//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
+//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
+//    devices->insert("Spec", device);
+////    devices->addSupport(ACT_PULSE_TEST);
+////    devices->addSupport(ACT_GET_LUMINOUS_SPECTRUM);
+////    devices->addSupport(ACT_GET_ELEC_LUMINOUS_SPECTRUM);
+//    protocol->setDevice(device);
+//    protocols->insert("Spec", protocol);
+//    HAppContext::setContextPointer("IDeviceCollection", devices);
+//    HAppContext::setContextPointer("IProtocolCollection", protocols);
+//}
+
+// 第二版设备1305
+//void HBuilder2000::buildDevice()
+//{
+//    Q_D(HBuilder2000);
+//    QVariantMap param;
+//    param.insert("timeOut", 3000);
+//    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
+//    auto device = d->communicateFactory->createDevice("HSlDevice2");
+//    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
+//    auto protocol = d->communicateFactory->createProtocol("HBigProtocol");
+//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
+//    device->setPort(port, 0, false);
+//    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x00);
+//    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x01);
+//    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x10 << 0x50 << 0x02);
+//    device->addActionParam(ACT_SET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x03);
+//    device->addActionParam(ACT_GET_RAM,             QList<uchar>() << 0xFF << 0xFA << 0x04);
+//    devices->insert("Spec", device);
+//    protocol->setDevice(device);
+//    protocols->insert("Spec", protocol);
+//    HAppContext::setContextPointer("IProtocolCollection", protocols);
+//}
+
+//// 设备模拟
+//void HBuilder2000::buildDevice()
+//{
+//    Q_D(HBuilder2000);
+//    auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
+//    protocol->setDevice(device);
 //    protocols->insert("Spec", protocol);
 //    HAppContext::setContextPointer("IProtocolCollection", protocols);
 //}

@@ -12,7 +12,13 @@ HEADERS += \
     $$PWD/HLittleProtocol.h \
     $$PWD/HLittleProtocol_p.h \
     $$PWD/HBigProtocol.h \
-    $$PWD/HBigProtocol_p.h
+    $$PWD/HBigProtocol_p.h \
+    $$PWD/HCcd554bProtocol.h \
+    $$PWD/HCcd554bProtocol_p.h \
+    $$PWD/HCcd1305Protocol.h \
+    $$PWD/HCcd1305Protocol_p.h \
+    $$PWD/HSl1000Protocol.h \
+    $$PWD/HSl1000Protocol_p.h
 
 SOURCES += \
     $$PWD/HProtocolCollection.cpp \
@@ -20,5 +26,8 @@ SOURCES += \
     $$PWD/HUi2010Protocol.cpp \
     $$PWD/HAbstractProtocol.cpp \
     $$PWD/HLittleProtocol.cpp \
-    $$PWD/HBigProtocol.cpp
+    $$PWD/HBigProtocol.cpp \
+    $$PWD/HCcd554bProtocol.cpp \
+    $$PWD/HCcd1305Protocol.cpp \
+    $$PWD/HSl1000Protocol.cpp
 

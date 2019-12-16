@@ -29,6 +29,10 @@ void HAbstractDevice::initialize(QVariantMap param)
         d_ptr->portNumScan = param.value("portNumScan").toBool();
     if (param.contains("deviceID"))
         d_ptr->deviceID = param.value("deviceID").toInt();
+    if (param.contains("action"))
+        d_ptr->actionParams = param.value("action").value<QMap<HActionType, QList<uchar>>>();
+    if (d_ptr->port != nullptr)
+        d_ptr->port->initialize(param);
 }
 
 bool HAbstractDevice::isSupport(HActionType action)

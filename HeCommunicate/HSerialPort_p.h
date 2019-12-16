@@ -4,19 +4,13 @@
 #include "HAbstractPort_p.h"
 #include "HSerialPort.h"
 
-class QSerialPort;
-
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HSerialPortPrivate : public HAbstractPortPrivate
 {
-//public:
-//    bool openSerialPort(int portNum);
-
 public:
-    qint32 baudRate = 115200;
-    void *hDevice;
-//    QScopedPointer<QSerialPort> serial;
+    ulong baudRate = 115200;
+    void *hDevice = nullptr;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

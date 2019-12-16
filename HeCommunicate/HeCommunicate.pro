@@ -6,8 +6,6 @@
 
 QT          -= gui
 
-QT          += serialport
-
 TEMPLATE    = lib
 
 CONFIG      += c++11

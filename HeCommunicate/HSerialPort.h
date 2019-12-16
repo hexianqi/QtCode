@@ -23,12 +23,8 @@ public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
 
-//public:
-//    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
-//    HErrorType clear() override;
-
 public:
-    void setBaudRate(int value);
+    void setBaudRate(ulong value);
 
 protected:
     HSerialPort(HSerialPortPrivate &);

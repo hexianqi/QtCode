@@ -3,7 +3,6 @@
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IDevice.h"
-#include "HeCommunicate/IDeviceCollection.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
@@ -71,22 +70,16 @@ void HBuilderSpec::buildTestData()
 void HBuilderSpec::buildDevice()
 {
     Q_D(HBuilderSpec);
-    QVariantMap param;
-    param.insert("timeOut", 3000);
-    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-    auto device = d->communicateFactory->createDevice("HSlDevice");
-    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
-    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+    // 设备模拟
+    // auto device = d->communicateFactory->createDevice("HSlSimulation");
+    // auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+    // protocol->setDevice(device);
+    // 第一版设备554b
+    auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
+    // 第二版设备1305
+    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-    device->setPort(port, 0, false);
-    device->setDeviceID(0x81);
-    device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
-    device->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
-    device->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
-    devices->insert("Spec", device);
-    protocol->setDevice(device);
     protocols->insert("Spec", protocol);
-    HAppContext::setContextPointer("IDeviceCollection", devices);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 

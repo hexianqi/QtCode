@@ -10,6 +10,9 @@
 #include "HPowerFactorDevice.h"
 #include "HLittleProtocol.h"
 #include "HBigProtocol.h"
+#include "HCcd1305Protocol.h"
+#include "HCcd554bProtocol.h"
+#include "HSl1000Protocol.h"
 #include "HUi2008Protocol.h"
 #include "HUi2010Protocol.h"
 #include "HProtocolCollection.h"
@@ -89,6 +92,9 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
     HFactory::registerClass<HLittleProtocol>("HLittleProtocol");
     HFactory::registerClass<HBigProtocol>("HBigProtocol");
+    HFactory::registerClass<HUi2010Protocol>("HCcd1305Protocol");
+    HFactory::registerClass<HUi2010Protocol>("HCcd554bProtocol");
+    HFactory::registerClass<HSl1000Protocol>("HSl1000Protocol");
     HFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
     HFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");
 }
