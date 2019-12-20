@@ -58,7 +58,6 @@
         <file>image/beautify/wind.svg</file>
         <file>image/beautify/partly_cloud.svg</file>
         <file>image/demo/NavigationWidget.gif</file>
-        <file>image/demo/CodeCount.gif</file>
         <file>image/demo/FlatUI.gif</file>
         <file>image/demo/LightButton.gif</file>
         <file>image/demo/GifWidget.gif</file>
@@ -68,5 +67,20 @@
         <file>fonts/pe-icon-set-weather.ttf</file>
         <file>image/demo/NavButton.gif</file>
         <file>image/demo/SpliteWidget.gif</file>
+        <file>image/demo/IPAddress.gif</file>
+        <file>image/background1.png</file>
+        <file>image/background2.png</file>
+        <file>image/background3.png</file>
+        <file>image/background4.png</file>
+        <file>image/background5.png</file>
+        <file>image/demo/Translucent.gif</file>
+        <file>image/demo/CodeCountWidget.gif</file>
+        <file>image/demo/ColorPicker.gif</file>
+        <file>image/demo/PngAmend.gif</file>
+        <file>image/demo/ShadeWidget.gif</file>
+        <file>image/demo/Battery.gif</file>
+        <file>image/demo/LineEditGroup.gif</file>
+        <file>data/jianpin.dat</file>
+        <file>data/pinyin.dat</file>
     </qresource>
 </RCC>

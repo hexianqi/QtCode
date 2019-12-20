@@ -1,8 +1,14 @@
 #include "HControlDemoWidget_p.h"
+#include "HIconFontFactory.h"
+#include "HFlatStyle.h"
 #include "HNavigationWidget.h"
+
+#include "HBattery.h"
 #include "HLightButton.h"
 #include "HNavButton.h"
 #include "HDiskSizeTable.h"
+#include "HIPAddress.h"
+
 #include "HStyleWidget.h"
 #include "HFlatStyleWidget.h"
 #include "HQssCreator.h"
@@ -10,16 +16,21 @@
 #include "HSpliteWidget.h"
 #include "HCodeCountWidget.h"
 #include "HNetworkWidget.h"
+#include "HPngAmend.h"
+
 #include "HRbTableHeaderView.h"
-#include "HIconFontFactory.h"
+#include "HLineEditGroup.h"
+
 #include "HDrawHelper.h"
+
 #include <QtGui/QPen>
+#include <QtGui/QStandardItemModel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QGridLayout>
-#include <QtGui/QStandardItemModel>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -43,7 +54,8 @@ HControlDemoWidget::~HControlDemoWidget()
 
 void HControlDemoWidget::init()
 {
-    d_ptr->iconFacuory = new HIconFontFactory(this);
+    d_ptr->iconFactory = new HIconFontFactory(this);
+    d_ptr->style = new HFlatStyle(this);
     initWidget();
     addLiuDianWu();
     addStyle();
@@ -56,7 +68,7 @@ void HControlDemoWidget::initWidget()
     auto layout = new QGridLayout(this);
     auto splitter = new QSplitter;
     auto nav = new HNavigationWidget;
-    auto stacked = new QStackedWidget;    
+    auto stacked = new QStackedWidget;
     auto keys = QStringList() << tr("ludianwu") << tr("ww") << tr("DEMO") << tr("工具") << tr("其他");
 
     for (auto key : keys)
@@ -76,9 +88,11 @@ void HControlDemoWidget::initWidget()
 
 void HControlDemoWidget::addLiuDianWu()
 {
+    addBattery();
+    addExplorer();
+    addIPAddress();
     addLightButton();
     addNavButton();
-    addExplorer();
 }
 
 void HControlDemoWidget::addStyle()
@@ -94,12 +108,28 @@ void HControlDemoWidget::addTool()
 {
     addTab(tr("工具"), new HCodeCountWidget);
     addTab(tr("工具"), new HNetworkWidget);
+    addTab(tr("工具"), new HPngAmend);
 }
 
 void HControlDemoWidget::addElse()
 {
     addMultHeaderTableView();
     addMultHeaderTableWidget();
+    addLineEditGroup();
+}
+
+void HControlDemoWidget::addBattery()
+{
+    auto layout = new QGridLayout;
+    auto battery = new HBattery;
+    auto slider = new QSlider;
+    slider->setOrientation(Qt::Horizontal);
+    slider->setSingleStep(10);
+    connect(slider, &QSlider::valueChanged, battery, &HBattery::setValue);
+    layout->addWidget(battery, 0, 0);
+    layout->addWidget(slider, 1, 0);
+    addTab(tr("ludianwu"), tr("电池电量"), layout);
+    d_ptr->style->setStyle(slider, 8, "#505050", "#1ABC9C", "#1ABC9C");
 }
 
 void HControlDemoWidget::addLightButton()
@@ -125,7 +155,7 @@ void HControlDemoWidget::addNavButton()
     auto layout4 = new QVBoxLayout;
     auto layout5 = new QHBoxLayout;
     auto layout6 = new QHBoxLayout;
-    auto iconFont = d_ptr->iconFacuory->createFont("FontAwesome");
+    auto iconFont = d_ptr->iconFactory->createFont("FontAwesome");
     iconFont.setPixelSize(15);
     QFont font;
     font.setPixelSize(15);
@@ -327,6 +357,7 @@ void HControlDemoWidget::addNavButton()
     layout->addLayout(layout5, 1, 0, 1, 4);
     layout->addLayout(layout6, 2, 0, 1, 4);
     layout->addItem(new QSpacerItem(20, 20), 3, 0, 1, 4);
+    layout->setRowStretch(3, 1);
     addTab(tr("ludianwu"), tr("导航按钮"), layout);
 }
 
@@ -341,6 +372,11 @@ void HControlDemoWidget::addExplorer()
 //    layout->addWidget(w, 0, 0);
     layout->addWidget(table, 1, 0);
     addTab(tr("ludianwu"), tr("资源管理器"), layout);
+}
+
+void HControlDemoWidget::addIPAddress()
+{
+    addTab(tr("ludianwu"), new HIPAddress);
 }
 
 void HControlDemoWidget::addMultHeaderTableView()
@@ -438,6 +474,20 @@ void HControlDemoWidget::addMultHeaderTableWidget()
     rootWidget->setCellWidget(0, 2, widget3);
 
     addTab(tr("其他"), tr("多标题表格2"), rootWidget);
+}
+
+void HControlDemoWidget::addLineEditGroup()
+{
+    auto group = new HLineEditGroup(this);
+    auto layout = new QVBoxLayout;
+    for (int i = 0; i < 5; i++)
+    {
+        auto lineEdit = new QLineEdit();
+        layout->addWidget(lineEdit);
+        group->addLineEdit(lineEdit);
+    }
+    layout->addStretch();
+    addTab(tr("其他"), tr("行编辑器组"), layout);
 }
 
 void HControlDemoWidget::addTab(QString key, QWidget *w)

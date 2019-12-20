@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets serialport network xml svg
+QT          += widgets serialport network xml svg concurrent
 
 TEMPLATE    = lib
 
@@ -64,6 +64,7 @@ include(iconFont.pri)
 include(layout.pri)
 include(network.pri)
 include(service.pri)
+#include(sql.pri)
 include(style.pri)
 include(table.pri)
 include(test.pri)

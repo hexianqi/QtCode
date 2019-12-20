@@ -9,7 +9,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 HNavTreeDelegate::HNavTreeDelegate(QObject *parent)
 {
     _view = qobject_cast<HNavTreeView *>(parent);
-    _model = static_cast<QStandardItemModel *>(_view->model());
+    _model = qobject_cast<QStandardItemModel *>(_view->model());
     auto fontId = QFontDatabase::addApplicationFont(":/image/fonts/pe-icon-set-weather.ttf");
     auto fontName = QFontDatabase::applicationFontFamilies(fontId).at(0);
     _iconFont = QFont(fontName);

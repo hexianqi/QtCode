@@ -10,9 +10,6 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" rowspan="3">
     <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,2,1,2,2,1,5">

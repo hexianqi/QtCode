@@ -10,7 +10,7 @@ class HKeepFileLog;
 class HLogServicePrivate
 {
 public:
-    HKeepFileLog *log;
+    HKeepFileLog *fileLog;
     bool toNet = false;
 };
 

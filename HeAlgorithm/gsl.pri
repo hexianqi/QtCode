@@ -14,14 +14,15 @@ SOURCES += \
 #    $$PWD/HDigitalFilter.cpp \
 #    $$PWD/HBSplines.cpp \
 
-DEFINES     += GSL_DLL  #此句不加将会遇到一些连接错误
+#此句不加将会遇到一些连接错误
+DEFINES     += GSL_DLL
 
 LIBS        += \
-            -LD:/Qt/gsl32/lib/ -lgsl \
-            -LD:/Qt/gsl32/lib/ -lgslcblas
+            -LD:/Qt/libgsl/lib/ -lgsl \
+            -LD:/Qt/libgsl/lib/ -lgslcblas
 
-INCLUDEPATH += D:/Qt/gsl32/include
-DEPENDPATH  += D:/Qt/gsl32/include
+INCLUDEPATH += D:/Qt/libgsl/include
+DEPENDPATH  += D:/Qt/libgsl/include
 
 include(gsl_sf.pri)
 include(gsl_interp.pri)

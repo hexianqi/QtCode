@@ -1,7 +1,7 @@
 #include "HLogService_p.h"
 #include "HKeepFileLog.h"
 #include "HNetworkLog.h"
-#include <QMutexLocker>
+#include <QtCore/QMutexLocker>
 #include <mutex>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -39,9 +39,9 @@ void log(QtMsgType type, const QMessageLogContext &context, const QString &msg)
     HLogService::instance()->save(text);
 }
 
-HLogService *HLogService::instance(QObject *parent)
+HLogService *HLogService::instance()
 {
-    std::call_once(__oc, [&]{ __instance.reset(new HLogService(parent)); });
+    std::call_once(__oc, [&]{ __instance.reset(new HLogService); });
     return __instance.data();
 }
 
@@ -52,15 +52,9 @@ HLogService::HLogService(QObject *parent) :
     init();
 }
 
-HLogService::HLogService(HLogServicePrivate &p, QObject *parent) :
-    QObject(parent),
-    d_ptr(&p)
-{
-    init();
-}
-
 HLogService::~HLogService()
 {
+    stop();
 }
 
 void HLogService::start()
@@ -75,11 +69,11 @@ void HLogService::stop()
 
 // 如果重定向输出到网络则通过网络发出去,否则输出到日志文件
 void HLogService::save(const QString &value)
-{    
+{
     if (d_ptr->toNet)
         emit send(value);
     else
-        d_ptr->log->appendContent(QStringList() << value);
+        d_ptr->fileLog->appendContent(QStringList() << value);
 }
 
 void HLogService::setToNet(bool b)
@@ -91,8 +85,8 @@ void HLogService::setToNet(bool b)
 
 void HLogService::init()
 {
-    d_ptr->log = new HKeepFileLog(this);
-    d_ptr->log->setName("Log");
+    d_ptr->fileLog = new HKeepFileLog(this);
+    d_ptr->fileLog->setName("Log");
     // 必须用信号槽形式,不然提示 QSocketNotifier: Socket notifiers cannot be enabled or disabled from another thread
     // 估计日志钩子可能单独开了线程
     connect(this, SIGNAL(send(QString)), HNetworkLog::instance(), SLOT(send(QString)));

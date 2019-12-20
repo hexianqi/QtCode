@@ -35,12 +35,16 @@ private:
     void addElse();
 
     // LiuDianWu
+    void addBattery();
+    void addExplorer();
+    void addIPAddress();
     void addLightButton();
     void addNavButton();
-    void addExplorer();
+
     // Else
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
+    void addLineEditGroup();
 
 private:
     void addTab(QString key, QWidget *);

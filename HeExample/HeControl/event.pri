@@ -7,11 +7,14 @@ HEADERS += \
     $$PWD/HAbstractEventFilter.h \
     $$PWD/HAbstractEventFilter_p.h \
     $$PWD/HResizeEventFilter.h \
-    $$PWD/HResizeEventFilter_p.h
+    $$PWD/HResizeEventFilter_p.h \
+    $$PWD/HBackgroundEventFilter.h \
+    $$PWD/HBackgroundEventFilter_p.h
 
 SOURCES += \
     $$PWD/HAbstractMouseEventFilter.cpp \
     $$PWD/HMoveEventFilter.cpp \
     $$PWD/HAbstractEventFilter.cpp \
-    $$PWD/HResizeEventFilter.cpp
+    $$PWD/HResizeEventFilter.cpp \
+    $$PWD/HBackgroundEventFilter.cpp
 

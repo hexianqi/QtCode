@@ -9,7 +9,9 @@ HEADERS += \
     $$PWD/HImageBrowser_p.h \
     $$PWD/HColorPicker.h \
     $$PWD/HCodeCountWidget.h \
-    $$PWD/HCodeCountWidget_p.h
+    $$PWD/HCodeCountWidget_p.h \
+    $$PWD/HPngAmend.h \
+    $$PWD/HPngAmend_p.h
 
 SOURCES += \
     $$PWD/HSerialPortWidget.cpp \
@@ -17,10 +19,12 @@ SOURCES += \
     $$PWD/HNetworkWidget.cpp \
     $$PWD/HImageBrowser.cpp \
     $$PWD/HColorPicker.cpp \
-    $$PWD/HCodeCountWidget.cpp
+    $$PWD/HCodeCountWidget.cpp \
+    $$PWD/HPngAmend.cpp
 
 FORMS += \
     $$PWD/HSerialPortWidget.ui \
     $$PWD/HGifWidget.ui \
     $$PWD/HColorPicker.ui \
-    $$PWD/HCodeCountWidget.ui
+    $$PWD/HCodeCountWidget.ui \
+    $$PWD/HPngAmend.ui

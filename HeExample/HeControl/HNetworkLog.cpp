@@ -8,22 +8,15 @@ HE_CONTROL_BEGIN_NAMESPACE
 QScopedPointer<HNetworkLog> HNetworkLog::__instance;
 static std::once_flag __oc; // 用于call_once的局部静态变量
 
-HNetworkLog *HNetworkLog::instance(QObject *parent)
+HNetworkLog *HNetworkLog::instance()
 {
-    std::call_once(__oc, [&]{ __instance.reset(new HNetworkLog(parent)); });
+    std::call_once(__oc, [&]{ __instance.reset(new HNetworkLog); });
     return __instance.data();
 }
 
 HNetworkLog::HNetworkLog(QObject *parent) :
     QObject(parent),
     d_ptr(new HNetworkLogPrivate)
-{
-    init();
-}
-
-HNetworkLog::HNetworkLog(HNetworkLogPrivate &p, QObject *parent) :
-    QObject(parent),
-    d_ptr(&p)
 {
     init();
 }
@@ -56,6 +49,5 @@ void HNetworkLog::handleNewConnection()
     while (d_ptr->server->hasPendingConnections())
         d_ptr->socket = d_ptr->server->nextPendingConnection();
 }
-
 
 HE_CONTROL_END_NAMESPACE

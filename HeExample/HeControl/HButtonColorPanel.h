@@ -54,7 +54,7 @@ protected:
 private:
     void init();
     void initButton();
-    void initStyle();
+    void updateStyle();
     void handleButtonPressed();
 };
 

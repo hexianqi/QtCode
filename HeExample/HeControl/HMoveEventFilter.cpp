@@ -31,7 +31,7 @@ bool HMoveEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
     if (!widget->rect().contains(event->pos()))
         return false;
     d->pressed = true;
-    d->pos = event->pos();
+    d->lastPos = event->pos();
     widget->setCursor(Qt::OpenHandCursor);
     return true;
 }
@@ -39,7 +39,7 @@ bool HMoveEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
 bool HMoveEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
-    if (event->button() != Qt::LeftButton)
+    if (event->button() != Qt::LeftButton || !d->pressed)
         return false;
     d->pressed = false;
     widget->setCursor(Qt::ArrowCursor);
@@ -51,7 +51,7 @@ bool HMoveEventFilter::mouseMoveEvent(QWidget *widget, QMouseEvent *event)
     Q_D(HMoveEventFilter);
     if (!d->pressed)
         return false;
-    widget->move(event->globalPos() - d->pos);
+    widget->move(event->globalPos() - d->lastPos);
     return true;
 }
 

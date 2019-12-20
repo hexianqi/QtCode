@@ -5,15 +5,13 @@
 #ifndef HRESIZEEVENTFILTER_H
 #define HRESIZEEVENTFILTER_H
 
-#include "HAbstractEventFilter.h"
-
-class QMouseEvent;
+#include "HAbstractMouseEventFilter.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HResizeEventFilterPrivate;
 
-class HResizeEventFilter : public HAbstractEventFilter
+class HResizeEventFilter : public HAbstractMouseEventFilter
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HResizeEventFilter)
@@ -34,10 +32,11 @@ protected:
 
 protected:
     bool handleInternal(QObject *, QEvent *) override;
-    virtual bool resizeEvent(QWidget *, QEvent *);
-    virtual bool mousePressEvent(QWidget *, QMouseEvent *) = 0;
-    virtual bool mouseReleaseEvent(QWidget *, QMouseEvent *) = 0;
-    virtual bool hoverMoveEvent(QWidget *, QMouseEvent *) = 0;
+    bool mousePressEvent(QWidget *, QMouseEvent *) override;
+    bool mouseReleaseEvent(QWidget *, QMouseEvent *) override;
+    bool mouseMoveEvent(QWidget *, QMouseEvent *) override;
+    bool resizeEvent(QWidget *, QEvent *);
+    bool hoverMoveEvent(QWidget *, QEvent *);
 };
 
 HE_CONTROL_END_NAMESPACE

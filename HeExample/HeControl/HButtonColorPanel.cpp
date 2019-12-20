@@ -89,7 +89,7 @@ void HButtonColorPanel::setBorderRadius(int value)
     if (d->borderRadius == value)
         return;
     d->borderRadius = value;
-    initStyle();
+    updateStyle();
 }
 
 void HButtonColorPanel::setBorderWidth(int value)
@@ -98,7 +98,7 @@ void HButtonColorPanel::setBorderWidth(int value)
     if (d->borderWidth == value)
         return;
     d->borderWidth = value;
-    initStyle();
+    updateStyle();
 }
 
 void HButtonColorPanel::setBorderColor(const QColor &value)
@@ -107,7 +107,7 @@ void HButtonColorPanel::setBorderColor(const QColor &value)
     if (d->borderColor == value)
         return;
     d->borderColor = value;
-    initStyle();
+    updateStyle();
 }
 
 void HButtonColorPanel::setColors(const QStringList &value)
@@ -135,7 +135,7 @@ void HButtonColorPanel::init()
     d->gridLayout->setSpacing(2);
     d->gridLayout->setMargin(0);
     initButton();
-    initStyle();
+    updateStyle();
 }
 
 void HButtonColorPanel::initButton()
@@ -156,12 +156,11 @@ void HButtonColorPanel::initButton()
     }
 }
 
-void HButtonColorPanel::initStyle()
+void HButtonColorPanel::updateStyle()
 {
     Q_D(HButtonColorPanel);
-    QStringList qss;
-    qss << QString("QPushButton { border:none; border-radius:%1px;}").arg(d->borderRadius)
-        << QString("QPushButton:hover { border:%1px solid %2; }").arg(d->borderWidth).arg(d->borderColor.name());
+    auto qss = QStringList() << QString("QPushButton { border:none; border-radius:%1px;}").arg(d->borderRadius)
+                             << QString("QPushButton:hover { border:%1px solid %2; }").arg(d->borderWidth).arg(d->borderColor.name());
     setStyleSheet(qss.join("\n"));
 }
 

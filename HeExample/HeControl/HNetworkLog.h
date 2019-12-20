@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2019-07-12  HNetworkLog 网络日志
+**      2019-07-12  HNetworkLog 网络日志（只监控一个IP）。
 ***************************************************************************************************/
 
 #ifndef HNETWORKLOG_H
@@ -17,9 +17,9 @@ class HNetworkLog : public QObject
     Q_OBJECT
 
 public:
-    static HNetworkLog *instance(QObject *parent = nullptr);
+    static HNetworkLog *instance();
 
-public:    
+public:
     ~HNetworkLog() override;
 
 public slots:
@@ -27,7 +27,6 @@ public slots:
 
 protected:
     HNetworkLog(QObject *parent = nullptr);
-    HNetworkLog(HNetworkLogPrivate &p, QObject *parent = nullptr);
     HNetworkLog(const HNetworkLog&) = delete;
     HNetworkLog &operator=(const HNetworkLog&) = delete;
 

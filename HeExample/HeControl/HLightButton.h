@@ -39,7 +39,6 @@ class HLightButton : public QWidget
     Q_PROPERTY(bool showRect READ isShowRect WRITE setShowRect)
     Q_PROPERTY(bool showOverlay READ isShowOverlay WRITE setShowOverlay)
 
-
 public:
     explicit HLightButton(QWidget *parent = nullptr);
     ~HLightButton() override;

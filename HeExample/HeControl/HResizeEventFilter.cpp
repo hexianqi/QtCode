@@ -5,12 +5,12 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HResizeEventFilter::HResizeEventFilter(QObject *parent) :
-    HAbstractEventFilter(*new HResizeEventFilterPrivate, parent)
+    HAbstractMouseEventFilter(*new HResizeEventFilterPrivate, parent)
 {
 }
 
 HResizeEventFilter::HResizeEventFilter(HResizeEventFilterPrivate &p, QObject *parent) :
-    HAbstractEventFilter(p, parent)
+    HAbstractMouseEventFilter(p, parent)
 {
 }
 
@@ -30,28 +30,23 @@ QString HResizeEventFilter::typeName()
 
 bool HResizeEventFilter::addWatched(QObject *p)
 {
-    if (!p->inherits("QWidget"))
+    if (!HAbstractMouseEventFilter::addWatched(p))
         return false;
-    return HAbstractEventFilter::addWatched(p);
+    auto w = qobject_cast<QWidget *>(p);
+    w->setAttribute(Qt::WA_Hover, true);
+    return true;
 }
 
 bool HResizeEventFilter::handleInternal(QObject *watched, QEvent *event)
 {
-    auto w = static_cast<QWidget *>(watched);
+    auto w = qobject_cast<QWidget *>(watched);
     if (w == nullptr)
         return false;
     if (event->type() == QEvent::Resize)
         return resizeEvent(w, event);
-    auto e = static_cast<QMouseEvent *>(event);
-    if (e == nullptr)
-        return false;
-    if (e->type() == QEvent::MouseButtonPress)
-        return mousePressEvent(w, e);
-    if (e->type() == QEvent::MouseButtonRelease)
-        return mouseReleaseEvent(w, e);
-    if (e->type() == QEvent::HoverMove)
-        return hoverMoveEvent(w, e);
-    return false;
+    if (event->type() == QEvent::HoverMove)
+        return hoverMoveEvent(w, event);
+    return HAbstractMouseEventFilter::handleInternal(watched, event);
 }
 
 bool HResizeEventFilter::resizeEvent(QWidget *widget, QEvent *)
@@ -63,11 +58,96 @@ bool HResizeEventFilter::resizeEvent(QWidget *widget, QEvent *)
     d->rectTop = QRect(d->padding, 0, width - d->padding * 2, d->padding);
     d->rectRight = QRect(width - d->padding, d->padding, d->padding, height - d->padding * 2);
     d->rectBottom = QRect(d->padding, height - d->padding, width - d->padding * 2, d->padding);
-    d->rectLeftTop = QRect(0, 0, d->padding, d->padding);
-    d->rectRightTop = QRect(width - d->padding, 0, d->padding, d->padding);
-    d->rectLeftBottom = QRect(0, height - d->padding, d->padding, d->padding);
-    d->rectRightBottom = QRect(width - d->padding, height - d->padding, d->padding, d->padding);
+    d->rectTopLeft = QRect(0, 0, d->padding, d->padding);
+    d->rectTopRight = QRect(width - d->padding, 0, d->padding, d->padding);
+    d->rectBottomLeft = QRect(0, height - d->padding, d->padding, d->padding);
+    d->rectBottomRight = QRect(width - d->padding, height - d->padding, d->padding, d->padding);
     return false;
+}
+
+bool HResizeEventFilter::hoverMoveEvent(QWidget *widget, QEvent *event)
+{
+    Q_D(HResizeEventFilter);
+    auto e = static_cast<QHoverEvent *>(event);
+    auto pos = e->pos();
+    auto offsetX = pos.x() - d->lastPos.x();
+    auto offsetY = pos.y() - d->lastPos.y();
+    if (d->rectLeft.contains(pos))
+        widget->setCursor(Qt::SizeHorCursor);
+    else if (d->rectRight.contains(pos))
+        widget->setCursor(Qt::SizeHorCursor);
+    else if (d->rectTop.contains(pos))
+        widget->setCursor(Qt::SizeVerCursor);
+    else if (d->rectBottom.contains(pos))
+        widget->setCursor(Qt::SizeVerCursor);
+    else if (d->rectTopLeft.contains(pos))
+        widget->setCursor(Qt::SizeFDiagCursor);
+    else if (d->rectTopRight.contains(pos))
+        widget->setCursor(Qt::SizeBDiagCursor);
+    else if (d->rectBottomLeft.contains(pos))
+        widget->setCursor(Qt::SizeBDiagCursor);
+    else if (d->rectBottomRight.contains(pos))
+        widget->setCursor(Qt::SizeFDiagCursor);
+    else
+        widget->setCursor(Qt::ArrowCursor);
+
+    if (d->pressedLeft)
+    {
+        auto resizeW = widget->width() - offsetX;
+        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
+            widget->setGeometry(widget->x() + offsetX, d->lastGeometry.top(), resizeW, d->lastGeometry.height());
+    }
+    else if (d->pressedRight)
+    {
+        auto resizeW = widget->width() + offsetX;
+        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
+            widget->setGeometry(d->lastGeometry.adjusted(0, 0, offsetX, 0));
+    }
+    else if (d->pressedTop)
+    {
+        auto resizeH = widget->height() - offsetY;
+        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
+            widget->setGeometry(d->lastGeometry.left(), widget->y() + offsetY, d->lastGeometry.width(), resizeH);
+    }
+    else if (d->pressedBottom)
+    {
+        auto resizeH = widget->height() + offsetY;
+        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
+            widget->setGeometry(d->lastGeometry.adjusted(0, 0, 0, offsetY));
+    }
+    else if (d->pressedTopLeft)
+    {
+        auto resizeW = widget->width() - offsetX;
+        auto resizeH = widget->height() - offsetY;
+        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
+            widget->setGeometry(widget->x() + offsetX, widget->y(), resizeW, resizeH);
+        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
+            widget->setGeometry(widget->x(), widget->y() + offsetY, resizeW, resizeH);
+    }
+    else if (d->pressedTopRight)
+    {
+        auto resizeW = d->lastGeometry.width() + offsetX;
+        auto resizeH = widget->height() - offsetY;
+        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW && widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
+            widget->setGeometry(widget->x(), widget->y() + offsetY, resizeW, resizeH);
+    }
+    else if (d->pressedBottomLeft)
+    {
+        auto resizeW = widget->width() - offsetX;
+        auto resizeH = d->lastGeometry.height() + offsetY;
+        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
+            widget->setGeometry(widget->x() + offsetX, widget->y(), resizeW, resizeH);
+        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
+            widget->setGeometry(widget->x(), widget->y(), resizeW, resizeH);
+    }
+    else if (d->pressedBottomRight)
+    {
+        auto resizeW = d->lastGeometry.width() + offsetX;
+        auto resizeH = d->lastGeometry.height() + offsetY;
+        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW && widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
+            widget->setGeometry(widget->x(), widget->y(), resizeW, resizeH);
+    }
+    return true;
 }
 
 bool HResizeEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
@@ -75,7 +155,6 @@ bool HResizeEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
     Q_D(HResizeEventFilter);
     if (event->button() != Qt::LeftButton)
         return false;
-    d->preRect = widget->rect();
     auto pos = event->pos();
     if (d->rectLeft.contains(pos))
         d->pressedLeft = true;
@@ -85,15 +164,43 @@ bool HResizeEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
         d->pressedTop = true;
     else if (d->rectBottom.contains(pos))
         d->pressedBottom = true;
-    else if (d->rectLeftTop.contains(pos))
-        d->pressedLeftTop = true;
-    else if (d->rectRightTop.contains(pos))
-        d->pressedRightTop = true;
-    else if (d->rectLeftBottom.contains(pos))
-        d->pressedLeftBottom = true;
-    else if (d->rectRightBottom.contains(pos))
-        d->pressedRightBottom = true;
+    else if (d->rectTopLeft.contains(pos))
+        d->pressedTopLeft = true;
+    else if (d->rectTopRight.contains(pos))
+        d->pressedTopRight = true;
+    else if (d->rectBottomLeft.contains(pos))
+        d->pressedBottomLeft = true;
+    else if (d->rectBottomRight.contains(pos))
+        d->pressedBottomRight = true;
+    else
+        return false;
+    d->pressed = true;
+    d->lastPos = pos;
+    d->lastGeometry = widget->geometry();
     return true;
+}
+
+bool HResizeEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
+{
+    Q_D(HResizeEventFilter);
+    if (event->button() != Qt::LeftButton || !d->pressed)
+        return false;
+    d->pressed = false;
+    d->pressedLeft = false;
+    d->pressedRight = false;
+    d->pressedTop = false;
+    d->pressedBottom = false;
+    d->pressedTopLeft = false;
+    d->pressedTopRight = false;
+    d->pressedBottomLeft = false;
+    d->pressedBottomRight = false;
+    widget->setCursor(Qt::ArrowCursor);
+    return true;
+}
+
+bool HResizeEventFilter::mouseMoveEvent(QWidget *, QMouseEvent *)
+{
+    return false;
 }
 
 HE_CONTROL_END_NAMESPACE

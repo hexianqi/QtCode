@@ -13,7 +13,7 @@ class HFileLog;
 class HRunTimeServicePrivate
 {
 public:
-    HFileLog *log;
+    HFileLog *fileLog;
     QTimer *timer;
     int lastId;
     QDateTime startTime;

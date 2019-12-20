@@ -8,11 +8,13 @@ class QTabWidget;
 HE_CONTROL_BEGIN_NAMESPACE
 
 class IIconFontFactory;
+class HFlatStyle;
 
 class HControlDemoWidgetPrivate
 {
 public:
-    IIconFontFactory *iconFacuory;
+    HFlatStyle *style;
+    IIconFontFactory *iconFactory;
     QHash<QString, QTabWidget *> tabWidgets;
 };
 

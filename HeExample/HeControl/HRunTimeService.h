@@ -17,7 +17,7 @@ class HRunTimeService : public QObject, public IService
     Q_OBJECT
 
 public:
-    static HRunTimeService *instance(QObject *parent = nullptr);
+    static HRunTimeService *instance();
 
 public:
     ~HRunTimeService() override;
@@ -25,11 +25,10 @@ public:
 public:
     void start() override;
     void stop() override;
-    void setInterval(int);    
+    void setInterval(int);
 
 protected:
     HRunTimeService(QObject *parent = nullptr);
-    HRunTimeService(HRunTimeServicePrivate &p, QObject *parent = nullptr);
     HRunTimeService(const HRunTimeService&) = delete;
     HRunTimeService &operator=(const HRunTimeService&) = delete;
 

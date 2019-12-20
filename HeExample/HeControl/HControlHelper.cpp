@@ -1,9 +1,12 @@
 #include "HControlHelper.h"
+#include "HMoveEventFilter.h"
+#include "HResizeEventFilter.h"
+#include "HBackgroundEventFilter.h"
 #include <QtCore/QTranslator>
 #include <QtCore/QTime>
 #include <QtGui/QScreen>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QWidget>
+#include <QtWidgets/QAction>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -18,13 +21,6 @@ void HControlHelper::initTranslator()
     auto t2 = new QTranslator(qApp);
     t2->load(":/translator/textEdit.qm");
     qApp->installTranslator(t2);
-}
-
-void HControlHelper::centerWidget(QWidget *widget)
-{
-    auto size = QApplication::primaryScreen()->availableSize();
-    widget->move((size.width() - widget->width()) / 2, (size.height() - widget->height()) / 2);
-    widget->setFixedSize(widget->width(), widget->height());
 }
 
 QString HControlHelper::runTime(QDateTime start, QDateTime end)
@@ -55,6 +51,56 @@ QString HControlHelper::runTime(QDateTime start, QDateTime end)
         sec--;
     }
     return QString("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
+}
+
+void HControlHelper::centerWidget(QWidget *widget)
+{
+    auto size = QApplication::primaryScreen()->availableSize();
+    widget->move((size.width() - widget->width()) / 2, (size.height() - widget->height()) / 2);
+    widget->setFixedSize(widget->width(), widget->height());
+}
+
+void HControlHelper::framelessWidget(QWidget *widget, bool moveEnable, bool resizeEnable)
+{
+    widget->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+
+    if (moveEnable)
+    {
+        auto filter = new HMoveEventFilter(widget);
+        filter->addWatched(widget);
+    }
+    if (resizeEnable)
+    {
+        auto filter = new HResizeEventFilter(widget);
+        filter->addWatched(widget);
+    }
+    addClose(widget);
+}
+
+void HControlHelper::translucentWidget(QWidget *widget, QStringList files, bool moveEnable)
+{
+    widget->setAttribute(Qt::WA_TranslucentBackground);
+    widget->setWindowFlags(Qt::FramelessWindowHint);
+
+    if (moveEnable)
+    {
+        auto filter = new HMoveEventFilter(widget);
+        filter->addWatched(widget);
+    }
+    {
+        auto filter = new HBackgroundEventFilter(widget);
+        filter->setBackgroundImage(files);
+        filter->addWatched(widget);
+    }
+    addClose(widget);
+}
+
+void HControlHelper::addClose(QWidget *widget)
+{
+    auto close = new QAction(tr("关闭(&C)"));
+    connect(close, &QAction::triggered, widget, &QWidget::close);
+    widget->addAction(close);
+    widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 HE_CONTROL_END_NAMESPACE

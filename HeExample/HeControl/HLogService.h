@@ -18,7 +18,7 @@ class HLogService : public QObject, public IService
     Q_OBJECT
 
 public:
-    static HLogService *instance(QObject *parent = nullptr);
+    static HLogService *instance();
 
 public:
     ~HLogService() override;
@@ -34,7 +34,6 @@ public:
 
 protected:
     HLogService(QObject *parent = nullptr);
-    HLogService(HLogServicePrivate &p, QObject *parent = nullptr);
     HLogService(const HLogService&) = delete;
     HLogService &operator=(const HLogService&) = delete;
 

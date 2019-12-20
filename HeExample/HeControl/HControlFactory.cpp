@@ -7,11 +7,13 @@
 #include "HCodeCountWidget.h"
 #include "HGifWidget.h"
 #include "HNetworkWidget.h"
+#include "HPngAmend.h"
+#include "HColorPicker.h"
 
 #include "HMoveEventFilter.h"
 
 #include "HCircularProgress.h"
-#include "HColorPicker.h"
+
 #include "HDemoWidget.h"
 #include "HImageEffectWidget.h"
 #include "HImageBrowser.h"
@@ -80,11 +82,14 @@ void HControlFactory::registerClass()
     HWidgetFactory::registerClass<HCodeCountWidget>("HCodeCountWidget");
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
     HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
+    HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
+    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
+
     // 未整理
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
-    HWidgetFactory::registerClass<HColorPicker>("HColorPickerWidget");
-    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");    
+
+    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
     HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
     HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
 

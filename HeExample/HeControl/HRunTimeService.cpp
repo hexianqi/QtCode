@@ -9,22 +9,15 @@ HE_CONTROL_BEGIN_NAMESPACE
 QScopedPointer<HRunTimeService> HRunTimeService::__instance;
 static std::once_flag __oc; // 用于call_once的局部静态变量
 
-HRunTimeService *HRunTimeService::instance(QObject *parent)
+HRunTimeService *HRunTimeService::instance()
 {
-    std::call_once(__oc, [&]{ __instance.reset(new HRunTimeService(parent)); });
+    std::call_once(__oc, [&]{ __instance.reset(new HRunTimeService); });
     return __instance.data();
 }
 
 HRunTimeService::HRunTimeService(QObject *parent) :
     QObject(parent),
     d_ptr(new HRunTimeServicePrivate)
-{
-    init();
-}
-
-HRunTimeService::HRunTimeService(HRunTimeServicePrivate &p, QObject *parent) :
-    QObject(parent),
-    d_ptr(&p)
 {
     init();
 }
@@ -63,7 +56,7 @@ void HRunTimeService::setInterval(int value)
 void HRunTimeService::initLog()
 {
     QStringList list;
-    if (!d_ptr->log->readContent(list))
+    if (!d_ptr->fileLog->readContent(list))
         return;
 
     if (list.size() < 2)
@@ -81,14 +74,14 @@ void HRunTimeService::initLog()
             .arg(d_ptr->startTime.toString("yyyy-MM-dd HH:mm:ss"))
             .arg(current.toString("yyyy-MM-dd HH:mm:ss"))
             .arg(HControlHelper::runTime(d_ptr->startTime, current));
-    d_ptr->log->writeContent(list);
+    d_ptr->fileLog->writeContent(list);
 }
 
 // 每次保存都是将之前的所有文本读取出来,然后替换最后一行即可
 void HRunTimeService::saveLog()
 {
     QStringList list;
-    if (!d_ptr->log->readContent(list))
+    if (!d_ptr->fileLog->readContent(list))
         return;
 
     if (list.size() < 2)
@@ -102,16 +95,16 @@ void HRunTimeService::saveLog()
     texts[2] = current.toString("yyyy-MM-dd HH:mm:ss");
     texts[3] = HControlHelper::runTime(d_ptr->startTime, current);
     list[list.size() - 1] = texts.join("\t");
-    d_ptr->log->writeContent(list);
+    d_ptr->fileLog->writeContent(list);
 }
 
 void HRunTimeService::init()
 {
     d_ptr->lastId = 0;
     d_ptr->startTime = QDateTime::currentDateTime();
-    d_ptr->log = new HFileLog(this);
-    d_ptr->log->setName("Run");
-    d_ptr->log->setDataFormat("hhhhMM");
+    d_ptr->fileLog = new HFileLog(this);
+    d_ptr->fileLog->setName("Run");
+    d_ptr->fileLog->setDataFormat("hhhhMM");
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(60 * 10000);
     connect(d_ptr->timer, &QTimer::timeout, this, &HRunTimeService::saveLog);
