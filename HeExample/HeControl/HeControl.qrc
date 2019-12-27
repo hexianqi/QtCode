@@ -6,12 +6,6 @@
         <file>image/tools/ColorPicker.ico</file>
         <file>image/tools/gifwidget.ico</file>
         <file>image/tools/gifwidget.png</file>
-        <file>image/beautify/Calendar_blue.png</file>
-        <file>image/beautify/Calendar_brown.png</file>
-        <file>image/beautify/Calendar_gray.png</file>
-        <file>image/beautify/Calendar_purple.png</file>
-        <file>image/beautify/Calendar_red.png</file>
-        <file>image/beautify/Calendar_yellow.png</file>
         <file>translator/qt_zh_CN.qm</file>
         <file>translator/textEdit.qm</file>
         <file>image/beautify/back.png</file>
@@ -82,5 +76,44 @@
         <file>image/demo/LineEditGroup.gif</file>
         <file>data/jianpin.dat</file>
         <file>data/pinyin.dat</file>
+        <file>image/ludianwu/defence_button_alarm_bubble.png</file>
+        <file>image/ludianwu/defence_button_alarm_bubble2.png</file>
+        <file>image/ludianwu/defence_button_alarm_circle.png</file>
+        <file>image/ludianwu/defence_button_alarm_msg.png</file>
+        <file>image/ludianwu/defence_button_alarm_msg2.png</file>
+        <file>image/ludianwu/defence_button_alarm_police.png</file>
+        <file>image/ludianwu/defence_button_arming_bubble.png</file>
+        <file>image/ludianwu/defence_button_arming_bubble2.png</file>
+        <file>image/ludianwu/defence_button_arming_circle.png</file>
+        <file>image/ludianwu/defence_button_arming_msg.png</file>
+        <file>image/ludianwu/defence_button_arming_msg2.png</file>
+        <file>image/ludianwu/defence_button_arming_police.png</file>
+        <file>image/ludianwu/defence_button_bypass_bubble.png</file>
+        <file>image/ludianwu/defence_button_bypass_bubble2.png</file>
+        <file>image/ludianwu/defence_button_bypass_circle.png</file>
+        <file>image/ludianwu/defence_button_bypass_msg.png</file>
+        <file>image/ludianwu/defence_button_bypass_msg2.png</file>
+        <file>image/ludianwu/defence_button_bypass_police.png</file>
+        <file>image/ludianwu/defence_button_disarming_bubble.png</file>
+        <file>image/ludianwu/defence_button_disarming_bubble2.png</file>
+        <file>image/ludianwu/defence_button_disarming_circle.png</file>
+        <file>image/ludianwu/defence_button_disarming_msg.png</file>
+        <file>image/ludianwu/defence_button_disarming_msg2.png</file>
+        <file>image/ludianwu/defence_button_disarming_police.png</file>
+        <file>image/ludianwu/defence_button_error_bubble.png</file>
+        <file>image/ludianwu/defence_button_error_bubble2.png</file>
+        <file>image/ludianwu/defence_button_error_circle.png</file>
+        <file>image/ludianwu/defence_button_error_msg.png</file>
+        <file>image/ludianwu/defence_button_error_msg2.png</file>
+        <file>image/ludianwu/defence_button_error_police.png</file>
+        <file>image/ludianwu/defence_button_bk.jpg</file>
+        <file>image/demo/DefenceButton.gif</file>
+        <file>image/ludianwu/calendar_blue.png</file>
+        <file>image/ludianwu/calendar_brown.png</file>
+        <file>image/ludianwu/calendar_gray.png</file>
+        <file>image/ludianwu/calendar_purple.png</file>
+        <file>image/ludianwu/calendar_red.png</file>
+        <file>image/ludianwu/calendar_yellow.png</file>
+        <file>image/ludianwu/calendar_item_bk.png</file>
     </qresource>
 </RCC>

@@ -29,6 +29,8 @@ public:
 public:
     // 是否闰年
     bool isLoopYear(int year);
+    // 指定年月该月共多少天
+    int monthDays(int year, int month);
     // 指定年月对应到该月有几天
     int totalMonthDays(int year, int month);
     // 指定年月对应星期
@@ -44,8 +46,11 @@ public:
     // 指定年月日农历年份及属相
     QString lunarYearMonthDay(int year, int month, int day);
     QString lunarMonthDay(int year, int month, int day);
+    QString lunarDay(int year, int month, int day);
+    // 指定年月日农历信息
+    QString lunarInfo(int year, int month, int day, bool yearInfo, bool monthInfo, bool dayInfo);
     // 指定年月日农历信息,包括公历节日和农历节日及二十四节气
-    void lunarCalendarInfo(int year, int month, int day, QString &holiday, QString &solarTerms, QString &lunarFestival, QString &lunarYear, QString &lunarMonth, QString &lunarDay);
+    void lunarInfo(int year, int month, int day, QString &holiday, QString &solarTerms, QString &lunarFestival, QString &lunarYear, QString &lunarMonth, QString &lunarDay);
 
 protected:
     HLunarCalendarInfo(HLunarCalendarInfoPrivate &p, QObject *parent = nullptr);

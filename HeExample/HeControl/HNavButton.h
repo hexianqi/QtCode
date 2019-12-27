@@ -14,7 +14,7 @@
 #ifndef HNAVBUTTON_H
 #define HNAVBUTTON_H
 
-#include "HControlGlobal.h"
+#include "HControlType.h"
 #include <QtWidgets/QPushButton>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -32,7 +32,7 @@ class HNavButton : public QPushButton
 
     Q_PROPERTY(bool showTriangle READ isShowTriangle WRITE setShowTriangle)
     Q_PROPERTY(int triangleLen READ triangleLen WRITE setTriangleLen)
-    Q_PROPERTY(Position trianglePosition READ trianglePosition WRITE setTrianglePosition)
+    Q_PROPERTY(HControlType::Position trianglePosition READ trianglePosition WRITE setTrianglePosition)
     Q_PROPERTY(QColor triangleColor READ triangleColor WRITE setTriangleColor)
 
     Q_PROPERTY(bool showIcon READ isShowIcon WRITE setShowIcon)
@@ -45,7 +45,7 @@ class HNavButton : public QPushButton
     Q_PROPERTY(bool showLine READ isShowLine WRITE setShowLine)
     Q_PROPERTY(int lineSpace READ lineSpace WRITE setLineSpace)
     Q_PROPERTY(int lineWidth READ lineWidth WRITE setLineWidth)
-    Q_PROPERTY(Position linePosition READ linePosition WRITE setLinePosition)
+    Q_PROPERTY(HControlType::Position linePosition READ linePosition WRITE setLinePosition)
     Q_PROPERTY(QColor lineColor READ lineColor WRITE setLineColor)
 
     Q_PROPERTY(QColor normalBackground READ bormalBackground WRITE setNormalBackground)
@@ -54,16 +54,6 @@ class HNavButton : public QPushButton
     Q_PROPERTY(QColor normalTextColor READ normalTextColor WRITE setNormalTextColor)
     Q_PROPERTY(QColor hoverTextColor READ hoverTextColor WRITE setHoverTextColor)
     Q_PROPERTY(QColor checkTextColor READ checkTextColor WRITE setCheckTextColor)
-
-public:
-    enum Position
-    {
-        PositionLeft = 0,      //左侧
-        PositionRight = 1,     //右侧
-        PositionTop = 2,       //顶部
-        PositionBottom = 3     //底部
-    };
-    Q_ENUM(Position)
 
 public:
     explicit HNavButton(QWidget *parent = nullptr);
@@ -77,7 +67,7 @@ public:
     Qt::Alignment textAlign() const;
     bool isShowTriangle() const;
     int triangleLen() const;
-    Position trianglePosition() const;
+    HControlType::Position trianglePosition() const;
     QColor triangleColor() const;
     bool isShowIcon() const;
     int iconSpace() const;
@@ -88,7 +78,7 @@ public:
     bool isShowLine() const;
     int lineSpace() const;
     int lineWidth() const;
-    Position linePosition() const;
+    HControlType::Position linePosition() const;
     QColor lineColor() const;
     QColor bormalBackground() const;
     QColor hoverBackground() const;
@@ -107,7 +97,7 @@ public slots:
     void setTextAlign(Qt::Alignment value);
     void setShowTriangle(bool b);
     void setTriangleLen(int value);
-    void setTrianglePosition(Position value);
+    void setTrianglePosition(HControlType::Position value);
     void setTriangleColor(const QColor &value);
     void setShowIcon(bool b);
     void setIconSpace(int value);
@@ -118,7 +108,7 @@ public slots:
     void setShowLine(bool b);
     void setLineSpace(int value);
     void setLineWidth(int value);
-    void setLinePosition(Position value);
+    void setLinePosition(HControlType::Position value);
     void setLineColor(const QColor &value);
     void setNormalBackground(const QColor &value);
     void setHoverBackground(const QColor &value);

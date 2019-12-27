@@ -88,7 +88,7 @@ void HTestGsl::polySolve()
 QList<QPolygonF> HTestGsl::interpEval()
 {
     auto p1 = readTestTc15();
-    auto p2 = HInterp::eval(p1, p1.first().x() - 20, p1.last().x() + 50, 5, HInterpType::Akima);
+    auto p2 = HInterp::eval(p1, p1.first().x() - 20, p1.last().x() + 50, 5, HInterp::Akima);
     return QList<QPolygonF>() << p1 << p2;
 }
 
@@ -175,11 +175,11 @@ QList<QPolygonF> HTestGsl::multiFit2()
 
     QPolygonF p1;
     QVector<double> c,cov;
-    QList<HRobustType> types;
+    QList<HMultiFit::RobustType> types;
     QList<QPolygonF> list;
 
-    types << HRobustType::Bisquare << HRobustType::Cauchy << HRobustType::Fair
-          << HRobustType::Huber << HRobustType::Ols << HRobustType::Welsch;
+    types << HMultiFit::Bisquare << HMultiFit::Cauchy << HMultiFit::Fair
+          << HMultiFit::Huber << HMultiFit::Ols << HMultiFit::Welsch;
     c.resize(5);
     for (double x = 0.1; x < 2; x+= 0.1)
     {

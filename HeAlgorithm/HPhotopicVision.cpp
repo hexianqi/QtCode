@@ -87,7 +87,7 @@ void HPhotopicVision::readStandard()
     }
     file.close();
 
-    _stdData = HInterp::eval(poly, poly.first().x(), poly.last().x(), 0.1, HInterpType::Cspline);
+    _stdData = HInterp::eval(poly, poly.first().x(), poly.last().x(), 0.1, HInterp::Cspline);
 }
 
 HE_ALGORITHM_END_NAMESPACE

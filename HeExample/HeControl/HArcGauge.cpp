@@ -101,13 +101,13 @@ void HArcGauge::drawPointer(QPainter *painter, int /*radius*/)
     painter->setOpacity(0.8);
     painter->rotate(d->angleStart);
     painter->rotate(toAngle(d->currentValue));
-    if (d->pointerStyle == HControlType::PointerStyleCircle)
+    if (d->pointerStyle == HControlType::PointerStyle_Circle)
         drawPointerCircle(painter);
-    if (d->pointerStyle == HControlType::PointerStyleIndicator)
+    if (d->pointerStyle == HControlType::PointerStyle_Indicator)
         drawPointerIndicator(painter);
-    if (d->pointerStyle == HControlType::PointerStyleIndicatorR)
+    if (d->pointerStyle == HControlType::PointerStyle_IndicatorR)
         drawPointerIndicatorR(painter);
-    if (d->pointerStyle == HControlType::PointerStyleTriangle)
+    if (d->pointerStyle == HControlType::PointerStyle_Triangle)
         drawPointerTriangle(painter);
     drawPointerCenter(painter);
     painter->restore();

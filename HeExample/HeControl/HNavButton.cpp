@@ -54,7 +54,7 @@ int HNavButton::triangleLen() const
     return d_ptr->triangleLen;
 }
 
-HNavButton::Position HNavButton::trianglePosition() const
+HControlType::Position HNavButton::trianglePosition() const
 {
     return d_ptr->trianglePosition;
 }
@@ -109,7 +109,7 @@ int HNavButton::lineWidth() const
     return d_ptr->lineWidth;
 }
 
-HNavButton::Position HNavButton::linePosition() const
+HControlType::Position HNavButton::linePosition() const
 {
     return d_ptr->linePosition;
 }
@@ -223,7 +223,7 @@ void HNavButton::setTriangleLen(int value)
     update();
 }
 
-void HNavButton::setTrianglePosition(Position value)
+void HNavButton::setTrianglePosition(HControlType::Position value)
 {
     if (d_ptr->trianglePosition == value)
         return;
@@ -311,7 +311,7 @@ void HNavButton::setLineWidth(int value)
     update();
 }
 
-void HNavButton::setLinePosition(Position value)
+void HNavButton::setLinePosition(HControlType::Position value)
 {
     if (d_ptr->linePosition == value)
         return;
@@ -436,13 +436,13 @@ void HNavButton::drawBackground(QPainter *painter)
     QRect rect;
     QBrush brush;
     QColor color;
-    if (d_ptr->linePosition == PositionLeft)
+    if (d_ptr->linePosition == HControlType::Position_Left)
         rect = this->rect().adjusted(d_ptr->lineSpace, 0, 0, 0);
-    else if (d_ptr->linePosition == PositionRight)
+    else if (d_ptr->linePosition == HControlType::Position_Right)
         rect = this->rect().adjusted(0, 0, -d_ptr->lineSpace, 0);
-    else if (d_ptr->linePosition == PositionTop)
+    else if (d_ptr->linePosition == HControlType::Position_Top)
         rect = this->rect().adjusted(0, d_ptr->lineSpace, 0, 0);
-    else if (d_ptr->linePosition == PositionBottom)
+    else if (d_ptr->linePosition == HControlType::Position_Bottom)
         rect = this->rect().adjusted(0, 0, 0, -d_ptr->lineSpace);
     if (isChecked())
     {
@@ -509,22 +509,22 @@ void HNavButton::drawLine(QPainter *painter)
         return;
 
     QPoint start, end;
-    if (d_ptr->linePosition == PositionLeft)
+    if (d_ptr->linePosition == HControlType::Position_Left)
     {
         start = QPoint(0, 0);
         end = QPoint(0, height());
     }
-    else if (d_ptr->linePosition == PositionRight)
+    else if (d_ptr->linePosition == HControlType::Position_Right)
     {
         start = QPoint(width(), 0);
         end = QPoint(width(), height());
     }
-    else if (d_ptr->linePosition == PositionTop)
+    else if (d_ptr->linePosition == HControlType::Position_Top)
     {
         start = QPoint(0, 0);
         end = QPoint(width(), 0);
     }
-    else if (d_ptr->linePosition == PositionBottom)
+    else if (d_ptr->linePosition == HControlType::Position_Bottom)
     {
         start = QPoint(0, height());
         end = QPoint(width(), height());
@@ -544,13 +544,13 @@ void HNavButton::drawTriangle(QPainter *painter)
     int x = width() / 2;
     int y = height() / 2;
     QPolygon poly;
-    if (d_ptr->trianglePosition == PositionLeft)
+    if (d_ptr->trianglePosition == HControlType::Position_Left)
         poly.setPoints(3, d_ptr->triangleLen, y, 0, y - d_ptr->triangleLen, 0, y + d_ptr->triangleLen);
-    else if (d_ptr->trianglePosition == PositionRight)
+    else if (d_ptr->trianglePosition == HControlType::Position_Right)
         poly.setPoints(3, width() - d_ptr->triangleLen, y, width(), y - d_ptr->triangleLen, width(), y + d_ptr->triangleLen);
-    else if (d_ptr->trianglePosition == PositionTop)
+    else if (d_ptr->trianglePosition == HControlType::Position_Top)
         poly.setPoints(3, x, d_ptr->triangleLen, x - d_ptr->triangleLen, 0, x + d_ptr->triangleLen, 0);
-    else if (d_ptr->trianglePosition == PositionBottom)
+    else if (d_ptr->trianglePosition == HControlType::Position_Bottom)
         poly.setPoints(3, x, height() - d_ptr->triangleLen, x - d_ptr->triangleLen, height(), x + d_ptr->triangleLen, height());
 
     painter->save();

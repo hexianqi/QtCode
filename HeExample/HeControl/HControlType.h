@@ -20,12 +20,21 @@ public:
 public:
     enum PointerStyle
     {
-        PointerStyleCircle = 0,        // 圆形指示器
-        PointerStyleIndicator = 1,     // 指针指示器
-        PointerStyleIndicatorR = 2,    // 圆角指针指示器
-        PointerStyleTriangle = 3       // 三角形指示器
+        PointerStyle_Circle = 0,        // 圆形指示器
+        PointerStyle_Indicator = 1,     // 指针指示器
+        PointerStyle_IndicatorR = 2,    // 圆角指针指示器
+        PointerStyle_Triangle = 3       // 三角形指示器
     };
     Q_ENUM(PointerStyle)
+
+    enum Position
+    {
+        Position_Left = 0,
+        Position_Right = 1,
+        Position_Top = 2,
+        Position_Bottom = 3
+    };
+    Q_ENUM(Position)
 
     enum Direction4
     {

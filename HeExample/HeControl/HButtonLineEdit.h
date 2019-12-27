@@ -26,11 +26,11 @@ class HButtonLineEdit : public QLineEdit
 public:
     enum Position
     {
-        None = 0,
-        RightOutside = 1,
-        RightInside = 2,
-        LeftOutside = 3,
-        LeftInside = 4
+        Position_None = 0,
+        Position_RightOutside = 1,
+        Position_RightInside = 2,
+        Position_LeftOutside = 3,
+        Position_LeftInside = 4
     };
     Q_ENUM(Position)
 

@@ -19,7 +19,7 @@ double HMesopticVision::calcRatio(QString type, double value)
 {
     if (!_stdData.contains(type))
         return 0;
-    return HInterp::eval(_stdData[type], value, HInterpType::Cspline);
+    return HInterp::eval(_stdData[type], value, HInterp::Cspline);
 }
 
 void HMesopticVision::readStandard()

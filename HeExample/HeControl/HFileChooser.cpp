@@ -193,7 +193,7 @@ void HFileChooser::init()
     setTextMargins(style()->pixelMetric(QStyle::PM_SmallIconSize, &option, this) + 2, 0, 0, 0);
     setCompleter(d->completer);
     setModel(new QDirModel(this));
-    setButtonPosition(RightOutside);
+    setButtonPosition(Position_RightOutside);
     setAutoRaise(true);
     setAcceptMode(QFileDialog::AcceptOpen);
     connect(this, &HFileChooser::buttonClicked, this, &HFileChooser::chooseFile);

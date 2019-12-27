@@ -22,6 +22,8 @@ HLightButton::HLightButton(HLightButtonPrivate &p, QWidget *parent) :
 
 HLightButton::~HLightButton()
 {
+    if (d_ptr->timer->isActive())
+        d_ptr->timer->stop();
 }
 
 QSize HLightButton::sizeHint() const
@@ -184,6 +186,7 @@ void HLightButton::setMoveEnable(bool b)
     if (d_ptr->moveEnable == b)
         return;
     d_ptr->moveEnable = b;
+    d_ptr->filter->setEnable(b);
 }
 
 void HLightButton::setShowRect(bool b)
@@ -326,7 +329,6 @@ void HLightButton::init()
 {
     d_ptr->filter = new HMoveEventFilter(this);
     d_ptr->filter->addWatched(this);
-    installEventFilter(this);
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(500);
     connect(d_ptr->timer, &QTimer::timeout, this, &HLightButton::alarm);

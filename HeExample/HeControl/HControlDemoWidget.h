@@ -36,10 +36,13 @@ private:
 
     // LiuDianWu
     void addBattery();
+    void addCalendar();
     void addExplorer();
     void addIPAddress();
+    void addDefenceButton();
     void addLightButton();
     void addNavButton();
+
 
     // Else
     void addMultHeaderTableView();

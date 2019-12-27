@@ -70,3 +70,6 @@ include(table.pri)
 include(test.pri)
 include(tools.pri)
 include(widget.pri)
+
+DISTFILES += \
+    111

@@ -13,10 +13,10 @@ public:
     QColor foreground = Qt::white;
     bool showArrow = true;
     int arrowSize = 5;
-    HNavLabel::Position arrowPosition = HNavLabel::Position_Right;
+    HControlType::Position arrowPosition = HControlType::Position_Right;
     bool showTriangle = false;
     int triangleSize = 5;
-    HNavLabel::Position trianglePosition = HNavLabel::Position_Left;
+    HControlType::Position trianglePosition = HControlType::Position_Left;
     QColor triangleColor = Qt::white;
     QRect plotArea;
 };

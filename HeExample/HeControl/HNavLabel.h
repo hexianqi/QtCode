@@ -11,7 +11,7 @@
 #ifndef HNAVLABEL_H
 #define HNAVLABEL_H
 
-#include "HControlGlobal.h"
+#include "HControlType.h"
 #include <QtWidgets/QLabel>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -27,22 +27,12 @@ class HNavLabel : public QLabel
 
     Q_PROPERTY(bool showArrow READ isShowArrow WRITE setShowArrow)
     Q_PROPERTY(int arrowSize READ arrowSize WRITE setArrowSize)
-    Q_PROPERTY(Position arrowPosition READ arrowPosition WRITE setArrowPosition)
+    Q_PROPERTY(HControlType::Position arrowPosition READ arrowPosition WRITE setArrowPosition)
 
     Q_PROPERTY(bool showTriangle READ isShowTriangle WRITE setShowTriangle)
     Q_PROPERTY(int triangleSize READ triangleSize WRITE setTriangleSize)
-    Q_PROPERTY(Position trianglePosition READ trianglePosition WRITE setTrianglePosition)
+    Q_PROPERTY(HControlType::Position trianglePosition READ trianglePosition WRITE setTrianglePosition)
     Q_PROPERTY(QColor triangleColor READ triangleColor WRITE setTriangleColor)
-
-public:
-    enum Position
-    {
-        Position_Left = 0,
-        Position_Right = 1,
-        Position_Top = 2,
-        Position_Bottom = 3
-    };
-    Q_ENUM(Position)
 
 public:
     explicit HNavLabel(QWidget *parent = nullptr);
@@ -59,10 +49,10 @@ public:
     QColor foreground() const;
     bool isShowArrow() const;
     int arrowSize() const;
-    Position arrowPosition() const;
+    HControlType::Position arrowPosition() const;
     bool isShowTriangle() const;
     int triangleSize() const;
-    Position trianglePosition() const;
+    HControlType::Position trianglePosition() const;
     QColor triangleColor() const;
 
 public slots:
@@ -71,10 +61,10 @@ public slots:
     void setForeground(const QColor &value);
     void setShowArrow(bool b);
     void setArrowSize(int value);
-    void setArrowPosition(Position value);
+    void setArrowPosition(HControlType::Position value);
     void setShowTriangle(bool b);
     void setTriangleSize(int value);
-    void setTrianglePosition(Position value);
+    void setTrianglePosition(HControlType::Position value);
     void setTriangleColor(const QColor &value);
 
 protected:

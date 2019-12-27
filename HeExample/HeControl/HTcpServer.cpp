@@ -96,6 +96,8 @@ void HTcpServer::disconnectClient(const QString &ip, quint16 port)
 
 void HTcpServer::incomingConnection(int handle)
 {
+    if (d_ptr->clients.size() > maxPendingConnections())
+        return;
     auto client = new HTcpClient(this);
     client->setSocketDescriptor(handle);
     connect(client, &HTcpClient::disconnected, this, &HTcpServer::handleClientDisconnected);

@@ -22,7 +22,7 @@ public:
     bool showOverlay = true;
     QColor overlayColor = QColor(255, 255, 255, 30);
     HCarGauge::PieStyle pieStyle = HCarGauge::PieStyle_Three;
-    HControlType::PointerStyle pointerStyle = HControlType::PointerStyleIndicator;
+    HControlType::PointerStyle pointerStyle = HControlType::PointerStyle_Indicator;
 };
 
 HE_CONTROL_END_NAMESPACE

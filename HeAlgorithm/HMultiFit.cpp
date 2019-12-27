@@ -5,23 +5,23 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-const gsl_multifit_robust_type *toGsl(HRobustType type)
+const gsl_multifit_robust_type *toGsl(HMultiFit::RobustType type)
 {
     switch (type)
     {
-    case Default:
+    case HMultiFit::Default:
         return gsl_multifit_robust_default;
-    case Bisquare:
+    case HMultiFit::Bisquare:
         return gsl_multifit_robust_bisquare;
-    case Cauchy:
+    case HMultiFit::Cauchy:
         return gsl_multifit_robust_cauchy;
-    case Fair:
+    case HMultiFit::Fair:
         return gsl_multifit_robust_fair;
-    case Huber:
+    case HMultiFit::Huber:
         return gsl_multifit_robust_huber;
-    case Ols:
+    case HMultiFit::Ols:
         return gsl_multifit_robust_ols;
-    case Welsch:
+    case HMultiFit::Welsch:
         return gsl_multifit_robust_welsch;
     }
     return gsl_multifit_robust_default;
@@ -106,7 +106,7 @@ void HMultiFit::linear_est(double x, QVector<double> ca, QVector<double> cova, d
     doEst(x, ca, cova, func);
 }
 
-void HMultiFit::robust(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, HRobustType type)
+void HMultiFit::robust(QPolygonF basis, QVector<double> &ca, QVector<double> &cova, RobustType type)
 {
     auto work = gsl_multifit_robust_alloc(toGsl(type), basis.size(), ca.size());
     auto func = [&](gsl_matrix *x, gsl_vector *y, gsl_vector *c, gsl_matrix *cov) {

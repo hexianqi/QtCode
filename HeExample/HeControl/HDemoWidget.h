@@ -29,7 +29,6 @@ private:
 //    void addSlideNavigation();
     void addAntLine();
     void addBackground();
-    void addBattery();
     void addButton();
     void addColorPanel();
     void addCpuMemoryLabel();
@@ -39,8 +38,6 @@ private:
     void addLedNumber();
     void addLightPoint();
     void addMagic();
-    void addMultHeaderTableView();
-    void addMultHeaderTableWidget();
     void addNav();
     void addPanel();
     void addProgressBar();

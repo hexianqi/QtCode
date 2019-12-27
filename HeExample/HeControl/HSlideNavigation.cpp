@@ -91,7 +91,7 @@ QColor HSlideNavigation::itemTextColor() const
     return d_ptr->itemTextColor;
 }
 
-HSlideNavigation::ItemLineStyle HSlideNavigation::itemLineStyle() const
+HSlideNavigation::LineStyle HSlideNavigation::itemLineStyle() const
 {
     return d_ptr->itemLineStyle;
 }
@@ -250,7 +250,7 @@ void HSlideNavigation::setItemTextColor(const QColor &value)
     update();
 }
 
-void HSlideNavigation::setItemLineStyle(ItemLineStyle value)
+void HSlideNavigation::setItemLineStyle(LineStyle value)
 {
     if (d_ptr->itemLineStyle == value)
         return;
@@ -414,29 +414,29 @@ void HSlideNavigation::drawItemBackground(QPainter *painter)
 
 void HSlideNavigation::drawItemLine(QPainter *painter)
 {
-    if (d_ptr->rectStart.isNull() || d_ptr->itemLineStyle == None)
+    if (d_ptr->rectStart.isNull() || d_ptr->itemLineStyle == LineStyle_None)
         return;
 
     QPointF p1,p2;
     switch(d_ptr->itemLineStyle)
     {
-    case ItemTop:
+    case LineStyle_Top:
         p1 = d_ptr->rectStart.topLeft();
         p2 = d_ptr->rectStart.topRight();
         break;
-    case ItemRight:
+    case LineStyle_Right:
         p1 = d_ptr->rectStart.topRight();
         p2 = d_ptr->rectStart.bottomRight();
         break;
-    case ItemBottom:
+    case LineStyle_Bottom:
         p1 = d_ptr->rectStart.bottomLeft();
         p2 = d_ptr->rectStart.bottomRight();
         break;
-    case ItemLeft:
+    case LineStyle_Left:
         p1 = d_ptr->rectStart.topLeft();
         p2 = d_ptr->rectStart.bottomLeft();
         break;
-    case ItemRect:
+    case LineStyle_Rect:
         break;
     default:
         return;
@@ -446,7 +446,7 @@ void HSlideNavigation::drawItemLine(QPainter *painter)
     pen.setWidth(d_ptr->itemLineWidth);
     painter->save();
     painter->setPen(pen);
-    if(d_ptr->itemLineStyle == ItemRect)
+    if(d_ptr->itemLineStyle == LineStyle_Rect)
         painter->drawRoundedRect(d_ptr->rectStart, d_ptr->itemRadious, d_ptr->itemRadious);
     else
         painter->drawLine(p1, p2);

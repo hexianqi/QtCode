@@ -51,7 +51,7 @@ RESOURCES   += \
 INCLUDEPATH += \
             .. \
             ../HeExample \
-            D:/Qt/gsl32/include \
+            D:/Qt/libgsl/include \
 
 
 Debug {

@@ -22,11 +22,21 @@ HLunarCalendarInfo::~HLunarCalendarInfo()
 
 bool HLunarCalendarInfo::isLoopYear(int year)
 {
-    return (((0 == (year % 4)) && (0 != (year % 100))) || (0 == (year % 400)));
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
+
+int HLunarCalendarInfo::monthDays(int year, int month)
+{
+    if (month < 1 || month > 12)
+        return 0;
+    auto add = (isLoopYear(year) && month == 2) ? 1 : 0;
+    return d_ptr->monthDay[month - 1] + add;
 }
 
 int HLunarCalendarInfo::totalMonthDays(int year, int month)
 {
+    if (month < 1 || month > 12)
+        return 0;
     auto add = (isLoopYear(year) && month > 2) ? 1 : 0;
     return d_ptr->monthAdd[month - 1] + add;
 }
@@ -69,20 +79,40 @@ QString HLunarCalendarInfo::lunarYear(int year)
 
 QString HLunarCalendarInfo::lunarYearMonthDay(int year, int month, int day)
 {
-    QString holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay;
-    lunarCalendarInfo(year, month, day, holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay);
-    return QString("%1年 %2%3").arg(lunarYear).arg(lunarMonth).arg(lunarDay);
+    return lunarInfo(year, month, day, true, true, true);
 }
 
 QString HLunarCalendarInfo::lunarMonthDay(int year, int month, int day)
 {
-    QString holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay;
-    lunarCalendarInfo(year, month, day, holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay);
-    return QString("%1%2").arg(lunarMonth).arg(lunarDay);
+    return lunarInfo(year, month, day, false, true, true);
 }
 
-void HLunarCalendarInfo::lunarCalendarInfo(int year, int month, int day, QString &holiday, QString &solarTerms, QString &lunarFestival, QString &lunarYear, QString &lunarMonth, QString &lunarDay)
+QString HLunarCalendarInfo::lunarDay(int year, int month, int day)
 {
+    return lunarInfo(year, month, day, false, false, true);
+}
+
+QString HLunarCalendarInfo::lunarInfo(int year, int month, int day, bool yearInfo, bool monthInfo, bool dayInfo)
+{
+    QString holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay;
+    lunarInfo(year, month, day, holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay);
+
+    // 农历节日优先,其次农历节气,然后公历节日,最后才是农历月份名称
+    if (!lunarFestival.isEmpty())
+        lunarDay = lunarFestival;
+    else if (!solarTerms.isEmpty())
+        lunarDay = solarTerms;
+    else if (!holiday.isEmpty())
+        lunarDay = holiday;
+
+    return QString("%1%2%3").arg(yearInfo ? lunarYear + "年" : "").arg(monthInfo ? lunarMonth : "").arg(dayInfo ? lunarDay : "");
+}
+
+void HLunarCalendarInfo::lunarInfo(int year, int month, int day, QString &holiday, QString &solarTerms, QString &lunarFestival, QString &lunarYear, QString &lunarMonth, QString &lunarDay)
+{
+    if (year < 1901 || year > 2099 || month < 1 || month > 12 || day < 1 || day > 31)
+        return;
+
     int info, end, monTemp, k, n, bit;
 
     holiday = this->holiday(month, day);
@@ -131,6 +161,8 @@ void HLunarCalendarInfo::lunarCalendarInfo(int year, int month, int day, QString
 
     // 计算农历天干地支月日
     end = 0;
+    k = 11;
+    n = 11;
     while (end != 1)
     {
         k = d_ptr->lunarData.at(monTemp) < 4095 ? 11 : 12;
@@ -167,17 +199,19 @@ void HLunarCalendarInfo::lunarCalendarInfo(int year, int month, int day, QString
     }
 
     lunarYear = this->lunarYear(year);
-    lunarMonth = d_ptr->monName.at(qAbs(month));
+    lunarMonth = d_ptr->monthName.at(qAbs(month));
     lunarDay = d_ptr->dayName.at(qAbs(day));
     lunarFestival = this->lunarFestival(qAbs(month), qAbs(day));
 }
 
 void HLunarCalendarInfo::init()
 {
+    d_ptr->monthDay << 31 << 28 << 31 << 30 << 31 << 30 << 31 << 31 << 30 << 31 << 30 << 31;
     d_ptr->monthAdd << 0 << 31 << 59 << 90 << 120 << 151 << 181 << 212 << 243 << 273 << 304 << 334;
     d_ptr->holiday.insert(0x0101, tr("元旦"));
     d_ptr->holiday.insert(0x020E, tr("情人节"));
     d_ptr->holiday.insert(0x0308, tr("妇女节"));
+    d_ptr->holiday.insert(0x030C, tr("植树节"));
     d_ptr->holiday.insert(0x0401, tr("愚人节"));
     d_ptr->holiday.insert(0x0501, tr("劳动节"));
     d_ptr->holiday.insert(0x0504, tr("青年节"));
@@ -186,7 +220,8 @@ void HLunarCalendarInfo::init()
     d_ptr->holiday.insert(0x0801, tr("建军节"));
     d_ptr->holiday.insert(0x090A, tr("教师节"));
     d_ptr->holiday.insert(0x0A01, tr("国庆节"));
-    d_ptr->holiday.insert(0x0C18, tr("圣诞节"));
+    d_ptr->holiday.insert(0x0C18, tr("平安夜"));
+    d_ptr->holiday.insert(0x0C19, tr("圣诞节"));
     d_ptr->lunarFestival.insert(0x0101, tr("春节"));
     d_ptr->lunarFestival.insert(0x010F, tr("元宵节"));
     d_ptr->lunarFestival.insert(0x0202, tr("龙抬头"));
@@ -209,8 +244,8 @@ void HLunarCalendarInfo::init()
                    << tr("十六") << tr("十七") << tr("十八") << tr("十九") << tr("二十") << tr("廿一") << tr("廿二") << tr("廿三")
                    << tr("廿四") << tr("廿五") << tr("廿六") << tr("廿七") << tr("廿八") << tr("廿九") << tr("三十");
 
-    d_ptr->monName << tr("*") << tr("正月") << tr("二月") << tr("三月") << tr("四月") << tr("五月") << tr("六月")
-                   << tr("七月") << tr("八月") << tr("九月") << tr("十月") << tr("冬月") << tr("腊月");
+    d_ptr->monthName << tr("*") << tr("正月") << tr("二月") << tr("三月") << tr("四月") << tr("五月") << tr("六月")
+                     << tr("七月") << tr("八月") << tr("九月") << tr("十月") << tr("冬月") << tr("腊月");
 
     d_ptr->chineseTwentyFourData << 0x95 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x97 << 0x88 << 0x78 << 0x78 << 0x69 << 0x78 << 0x87; // 1970
     d_ptr->chineseTwentyFourData << 0x96 << 0xB4 << 0x96 << 0xA6 << 0x97 << 0x97 << 0x78 << 0x79 << 0x79 << 0x69 << 0x78 << 0x77; // 1971

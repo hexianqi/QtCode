@@ -41,7 +41,7 @@ void HResetLineEdit::resetText()
 
 void HResetLineEdit::init()
 {
-    setButtonPosition(RightInside);
+    setButtonPosition(Position_RightInside);
     setIcon(QIcon(":/image/ww/wrap.png"));
     setAutoRaise(true);
     setButtonVisible(false);

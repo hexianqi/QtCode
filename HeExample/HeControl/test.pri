@@ -19,7 +19,11 @@ SOURCES += \
     $$PWD/HQssCreator.cpp \
     $$PWD/HIconFontWidget.cpp \
     $$PWD/HControlDemoWidget.cpp \
-    $$PWD/HControlFactoryWidget.cpp
+    $$PWD/HControlFactoryWidget.cpp \
+    $$PWD/HControlDemoWidget_ldw.cpp \
+    $$PWD/HControlDemoWidget_demo.cpp \
+    $$PWD/HControlDemoWidget_tool.cpp \
+    $$PWD/HControlDemoWidget_else.cpp
 
 FORMS += \
     $$PWD/HStyleWidget.ui \

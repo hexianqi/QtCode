@@ -207,17 +207,17 @@ void HColorProgressBar::paintEvent(QPaintEvent *)
     auto curPos = toRatio(d->value) * width();
     auto text = QString("%1%").arg(QString::number(maximum(), 'f', decimal()));
 
-    if (d->textPosition == TextOutBar)
+    if (d->textPosition == TextPosition_OutBar)
     {
         barRect = QRectF(0, 0, 0.85 * width(), height());
         textRect = QRectF(0.85 * width(), 0, 0.15 * width(), height());
     }
-    else if (d->textPosition == TextInBar)
+    else if (d->textPosition == TextPosition_InBar)
     {
         barRect = QRectF(0, 0, width(), height());
         textRect = QRectF(curPos - 0.15 * width(), 0, 0.15 * width(), height());
     }
-    else if (d->textPosition == TextOnBar)
+    else if (d->textPosition == TextPosition_OnBar)
     {
         barRect = QRectF(0, height() * 7 / 12, width(), height() / 3);
         if (curPos < 0.9 * width())
@@ -253,13 +253,13 @@ void HColorProgressBar::drawBarBackground(QPainter *painter, QRectF rect)
 void HColorProgressBar::drawTextBackground(QPainter *painter, QRectF rect)
 {
     Q_D(HColorProgressBar);
-    if (d->textPosition == TextInBar)
+    if (d->textPosition == TextPosition_InBar)
         return;
 
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(QBrush(d->textBackColor));
-    if (d->textPosition == TextOnBar)
+    if (d->textPosition == TextPosition_OnBar)
     {
         auto curPos = toRatio(d->value) * width();
         auto length = qMin(width(), height());
@@ -267,7 +267,7 @@ void HColorProgressBar::drawTextBackground(QPainter *painter, QRectF rect)
         painter->drawRoundedRect(rect, 3, 3);
         painter->drawEllipse(QPointF(curPos - 2 * radius, height() * 9 / 12), radius, radius);
     }
-    if (d->textPosition == TextOutBar)
+    if (d->textPosition == TextPosition_OutBar)
         painter->drawRoundedRect(rect, d->radius, d->radius);
     painter->restore();
 }

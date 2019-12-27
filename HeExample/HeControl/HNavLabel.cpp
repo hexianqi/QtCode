@@ -55,7 +55,7 @@ int HNavLabel::arrowSize() const
     return d_ptr->arrowSize;
 }
 
-HNavLabel::Position HNavLabel::arrowPosition() const
+HControlType::Position HNavLabel::arrowPosition() const
 {
     return d_ptr->arrowPosition;
 }
@@ -70,7 +70,7 @@ int HNavLabel::triangleSize() const
     return d_ptr->triangleSize;
 }
 
-HNavLabel::Position HNavLabel::trianglePosition() const
+HControlType::Position HNavLabel::trianglePosition() const
 {
     return d_ptr->trianglePosition;
 }
@@ -120,7 +120,7 @@ void HNavLabel::setArrowSize(int value)
     update();
 }
 
-void HNavLabel::setArrowPosition(Position value)
+void HNavLabel::setArrowPosition(HControlType::Position value)
 {
     if (d_ptr->arrowPosition == value)
         return;
@@ -144,7 +144,7 @@ void HNavLabel::setTriangleSize(int value)
     update();
 }
 
-void HNavLabel::setTrianglePosition(Position value)
+void HNavLabel::setTrianglePosition(HControlType::Position value)
 {
     if (d_ptr->trianglePosition == value)
         return;
@@ -188,22 +188,22 @@ void HNavLabel::drawBackground(QPainter *painter)
         int endX = width - d_ptr->arrowSize;
         int endY = height - d_ptr->arrowSize;
         QPolygon poly;
-        if (d_ptr->arrowPosition == Position_Right)
+        if (d_ptr->arrowPosition == HControlType::Position_Right)
         {
             d_ptr->plotArea = QRect(0, 0, endX, height);
             poly.setPoints(3, endX, height / 2 - d_ptr->arrowSize, endX, height / 2 + d_ptr->arrowSize, width, height / 2);
         }
-        else if (d_ptr->arrowPosition == Position_Left)
+        else if (d_ptr->arrowPosition == HControlType::Position_Left)
         {
             d_ptr->plotArea = QRect(d_ptr->arrowSize, 0, endX, height);
             poly.setPoints(3, d_ptr->arrowSize, height / 2 - d_ptr->arrowSize, d_ptr->arrowSize, height / 2 + d_ptr->arrowSize, 0, height / 2);
         }
-        else if (d_ptr->arrowPosition == Position_Bottom)
+        else if (d_ptr->arrowPosition == HControlType::Position_Bottom)
         {
             d_ptr->plotArea = QRect(0, 0, width, endY);
             poly.setPoints(3, width / 2 - d_ptr->arrowSize, endY, width / 2 + d_ptr->arrowSize, endY, width / 2, height);
         }
-        else if (d_ptr->arrowPosition == Position_Top)
+        else if (d_ptr->arrowPosition == HControlType::Position_Top)
         {
             d_ptr->plotArea = QRect(0, d_ptr->arrowSize, width, endY);
             poly.setPoints(3, width / 2 - d_ptr->arrowSize, d_ptr->arrowSize, width / 2 + d_ptr->arrowSize, d_ptr->arrowSize, width / 2, 0);
@@ -238,13 +238,13 @@ void HNavLabel::drawTriangle(QPainter *painter)
     int midWidth = width / 2;
     int midHeight = height / 2;
     QPolygon pts;
-    if (d_ptr->trianglePosition == Position_Left)
+    if (d_ptr->trianglePosition == HControlType::Position_Left)
         pts.setPoints(3, d_ptr->triangleSize, midHeight, 0, midHeight - d_ptr->triangleSize, 0, midHeight + d_ptr->triangleSize);
-    else if (d_ptr->trianglePosition == Position_Right)
+    else if (d_ptr->trianglePosition == HControlType::Position_Right)
         pts.setPoints(3, width - d_ptr->triangleSize, midHeight, width, midHeight - d_ptr->triangleSize, width, midHeight + d_ptr->triangleSize);
-    else if (d_ptr->trianglePosition == Position_Top)
+    else if (d_ptr->trianglePosition == HControlType::Position_Top)
         pts.setPoints(3, midWidth, d_ptr->triangleSize, midWidth - d_ptr->triangleSize, 0, midWidth + d_ptr->triangleSize, 0);
-    else if (d_ptr->trianglePosition == Position_Bottom)
+    else if (d_ptr->trianglePosition == HControlType::Position_Bottom)
         pts.setPoints(3, midWidth, height - d_ptr->triangleSize, midWidth - d_ptr->triangleSize, height, midWidth + d_ptr->triangleSize, height);
 
     painter->save();

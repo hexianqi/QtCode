@@ -9,7 +9,7 @@ class HButtonLineEditPrivate
 {
 public:
     QToolButton *button = nullptr;
-    HButtonLineEdit::Position position = HButtonLineEdit::RightInside;
+    HButtonLineEdit::Position position = HButtonLineEdit::Position_RightInside;
     bool visible = true;
 };
 

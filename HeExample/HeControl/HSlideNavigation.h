@@ -28,19 +28,19 @@ class HSlideNavigation : public QWidget
     Q_PROPERTY(QColor itemBackgroundStart READ itemBackgroundStart WRITE setItemBackgroundStart)
     Q_PROPERTY(QColor itemBackgroundEnd READ itemBackgroundEnd WRITE setItemBackgroundEnd)
     Q_PROPERTY(QColor itemTextColor READ itemTextColor WRITE setItemTextColor)
-    Q_PROPERTY(ItemLineStyle itemLineStyle READ itemLineStyle WRITE setItemLineStyle)
+    Q_PROPERTY(LineStyle itemLineStyle READ itemLineStyle WRITE setItemLineStyle)
     Q_PROPERTY(int itemLineWidth READ itemLineWidth WRITE setItemLineWidth)
     Q_PROPERTY(QColor itemLineColor READ itemLineColor WRITE setItemLineColor)
 
 public:
-    enum ItemLineStyle
+    enum LineStyle
     {
-        None,       //不显示
-        ItemTop,    //上方
-        ItemRight,  //右方
-        ItemBottom, //下方
-        ItemLeft,   //左方
-        ItemRect,   //矩形
+        LineStyle_None,   //不显示
+        LineStyle_Top,    //上方
+        LineStyle_Right,  //右方
+        LineStyle_Bottom, //下方
+        LineStyle_Left,   //左方
+        LineStyle_Rect,   //矩形
     };
 
 public:
@@ -64,7 +64,7 @@ public:
     QColor itemBackgroundStart() const;
     QColor itemBackgroundEnd() const;
     QColor itemTextColor() const;
-    ItemLineStyle itemLineStyle() const;
+    LineStyle itemLineStyle() const;
     int itemLineWidth() const;
     QColor itemLineColor() const;
 
@@ -83,7 +83,7 @@ public slots:
     void setItemBackgroundStart(const QColor &value);
     void setItemBackgroundEnd(const QColor &value);
     void setItemTextColor(const QColor &value);
-    void setItemLineStyle(ItemLineStyle value);
+    void setItemLineStyle(LineStyle value);
     void setItemLineWidth(int value);
     void setItemLineColor(const QColor &value);
 

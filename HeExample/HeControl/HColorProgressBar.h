@@ -31,9 +31,9 @@ class HColorProgressBar : public HAbstractProgress
 public:
     enum TextPosition
     {
-        TextInBar,
-        TextOnBar,
-        TextOutBar
+        TextPosition_InBar,
+        TextPosition_OnBar,
+        TextPosition_OutBar
     };
     Q_ENUM(TextPosition)
 

@@ -20,12 +20,12 @@ public:
     QColor borderInColorEnd = QColor(255, 255, 255);
     QColor background = QColor(100, 184, 255);
     QColor overlayColor = QColor(255, 255, 255);
-    bool moveEnable = false;
+    bool moveEnable = true;
     bool showRect = false;
     bool showOverlay = true;
     bool isAlarm = false;
     IEventFilter *filter = nullptr;
-    QTimer *timer;
+    QTimer *timer = nullptr;
 };
 
 HE_CONTROL_END_NAMESPACE

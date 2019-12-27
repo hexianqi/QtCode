@@ -9,6 +9,7 @@
 #include "HNetworkWidget.h"
 #include "HPngAmend.h"
 #include "HColorPicker.h"
+#include "HEmailWidget.h"
 
 #include "HMoveEventFilter.h"
 
@@ -84,6 +85,7 @@ void HControlFactory::registerClass()
     HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
     HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
     HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
+    HWidgetFactory::registerClass<HEmailWidget>("HEmailWidget");
 
     // 未整理
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");

@@ -12,7 +12,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HRbTableHeaderItemPrivate;
 
-enum HRbHeaderRole
+enum RbHeaderRole
 {
     ColumnSpanRole = Qt::UserRole + 1,
     RowSpanRole

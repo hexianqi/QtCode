@@ -10,7 +10,7 @@ class HColorProgressBarPrivate : public HAbstractProgressPrivate
 {
 public:
     int radius = 10;
-    HColorProgressBar::TextPosition textPosition = HColorProgressBar::TextOutBar;
+    HColorProgressBar::TextPosition textPosition = HColorProgressBar::TextPosition_OutBar;
     QColor textForeColor = Qt::black;
     QColor textBackColor = Qt::white;
     HColorProgressBar::BarStyle barStyle = HColorProgressBar::BarStyle_Solid;

@@ -45,12 +45,12 @@ void HClearLineEdit::paintEvent(QPaintEvent *e)
 
 void HClearLineEdit::init()
 {
-    setButtonPosition(None);
+    setButtonPosition(Position_None);
     setIcon(QIcon(":/image/ww/closetab.png"));
     setAutoRaise(true);
     setButtonFocusPolicy(Qt::NoFocus);
     connect(this, &HClearLineEdit::buttonClicked, this, [=] { if (!isReadOnly()) clear(); });
-    connect(this, &HClearLineEdit::textChanged, this, [=](const QString &value) { setButtonPosition(value.isEmpty() ? None : RightInside); });
+    connect(this, &HClearLineEdit::textChanged, this, [=](const QString &value) { setButtonPosition(value.isEmpty() ? Position_None : Position_RightInside); });
 }
 
 HE_CONTROL_END_NAMESPACE

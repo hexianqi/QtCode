@@ -92,12 +92,12 @@ void HImageCalendar::changeStyle(QAction *p)
 void HImageCalendar::init()
 {
     d_ptr->lunar = new HLunarCalendarInfo(this);
-    d_ptr->images.insert(CalendarStyle_Yellow,    ":/image/beautify/Calendar_yellow.png");
-    d_ptr->images.insert(CalendarStyle_Blue,      ":/image/beautify/Calendar_blue.png");
-    d_ptr->images.insert(CalendarStyle_Brown,     ":/image/beautify/Calendar_brown.png");
-    d_ptr->images.insert(CalendarStyle_Gray,      ":/image/beautify/Calendar_gray.png");
-    d_ptr->images.insert(CalendarStyle_Purple,    ":/image/beautify/Calendar_purple.png");
-    d_ptr->images.insert(CalendarStyle_Red,       ":/image/beautify/Calendar_red.png");
+    d_ptr->images.insert(CalendarStyle_Yellow,    ":/image/ludianwu/calendar_yellow.png");
+    d_ptr->images.insert(CalendarStyle_Blue,      ":/image/ludianwu/calendar_blue.png");
+    d_ptr->images.insert(CalendarStyle_Brown,     ":/image/ludianwu/calendar_brown.png");
+    d_ptr->images.insert(CalendarStyle_Gray,      ":/image/ludianwu/calendar_gray.png");
+    d_ptr->images.insert(CalendarStyle_Purple,    ":/image/ludianwu/calendar_purple.png");
+    d_ptr->images.insert(CalendarStyle_Red,       ":/image/ludianwu/calendar_red.png");
     QMap<CalendarStyle, QString> alias;
     alias.insert(CalendarStyle_Yellow,    tr("黄色风格"));
     alias.insert(CalendarStyle_Blue,      tr("蓝色风格"));
@@ -118,6 +118,7 @@ void HImageCalendar::init()
     group->actions().first()->setChecked(true);
     changeStyle(group->actions().first());
     setFont(QFont("Microsoft Yahei", 9));
+    setWindowTitle(tr("日历"));
 }
 
 HE_CONTROL_END_NAMESPACE

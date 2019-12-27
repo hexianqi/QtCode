@@ -51,7 +51,7 @@ bool HMoveEventFilter::mouseMoveEvent(QWidget *widget, QMouseEvent *event)
     Q_D(HMoveEventFilter);
     if (!d->pressed)
         return false;
-    widget->move(event->globalPos() - d->lastPos);
+    widget->move(widget->pos() + event->pos() - d->lastPos);
     return true;
 }
 

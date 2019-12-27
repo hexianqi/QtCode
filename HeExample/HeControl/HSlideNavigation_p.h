@@ -20,7 +20,7 @@ public:
     QColor itemBackgroundStart = QColor(46, 132, 243);
     QColor itemBackgroundEnd  = QColor(39, 110, 203);
     QColor itemTextColor = Qt::white;
-    HSlideNavigation::ItemLineStyle itemLineStyle = HSlideNavigation::None;
+    HSlideNavigation::LineStyle itemLineStyle = HSlideNavigation::LineStyle_None;
     int itemLineWidth = 3;
     QColor itemLineColor = QColor(255, 107, 107);
 

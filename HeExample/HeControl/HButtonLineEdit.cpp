@@ -75,23 +75,23 @@ void HButtonLineEdit::setButtonPosition(Position value)
     auto w = qMin(d_ptr->button->sizeHint().width(), testAttribute(Qt::WA_Resized) ? height() : sizeHint().height());
     switch (value)
     {
-    case None:
+    case Position_None:
         setTextMargins(0, 0, 0, 0);
         setContentsMargins(0, 0, 0, 0);
         break;
-    case RightOutside:
+    case Position_RightOutside:
         setTextMargins(0, 0, 0, 0);
         setContentsMargins(0, 0, w + 2, 0);
         break;
-    case RightInside:
+    case Position_RightInside:
         setContentsMargins(0, 0, 0, 0);
         setTextMargins(0, 0, w, 0);
         break;
-    case LeftOutside:
+    case Position_LeftOutside:
         setTextMargins(0, 0, 0, 0);
         setContentsMargins(w + 2, 0, 0, 0);
         break;
-    case LeftInside:
+    case Position_LeftInside:
         setContentsMargins(0, 0, 0, 0);
         setTextMargins(w, 0, 0, 0);
         break;
@@ -103,7 +103,7 @@ void HButtonLineEdit::setButtonPosition(Position value)
 void HButtonLineEdit::setButtonVisible(bool b)
 {
     d_ptr->visible = b;
-    d_ptr->button->setVisible(b && d_ptr->position != None);
+    d_ptr->button->setVisible(b && d_ptr->position != Position_None);
 }
 
 void HButtonLineEdit::setRegularExpression(const QString &value)
@@ -158,16 +158,16 @@ void HButtonLineEdit::actionEvent(QActionEvent *e)
 
 void HButtonLineEdit::updateButtonPosition(int w)
 {
-    if (d_ptr->position == None)
+    if (d_ptr->position == Position_None)
         d_ptr->button->hide();
     else if (d_ptr->visible)
         d_ptr->button->show();
 
-    if(d_ptr->position == RightInside)
+    if(d_ptr->position == Position_RightInside)
         d_ptr->button->setGeometry(rect().right() - w + 3, rect().top() + 2, w - 4, rect().height() - 4);
-    else if (d_ptr->position == RightOutside)
+    else if (d_ptr->position == Position_RightOutside)
         d_ptr->button->setGeometry(rect().right() - w + 1, rect().top(), w, rect().height());
-    else if(d_ptr->position == LeftInside)
+    else if(d_ptr->position == Position_LeftInside)
         d_ptr->button->setGeometry(rect().left() + 2, rect().top() + 2, w - 4, rect().height() - 4);
     else
         d_ptr->button->setGeometry(rect().left(), rect().top(), w, rect().height());
@@ -179,7 +179,7 @@ void HButtonLineEdit::init()
     d_ptr->button->setText("...");
     d_ptr->button->setCursor(Qt::ArrowCursor);
     connect(d_ptr->button, &QToolButton::clicked, this, &HButtonLineEdit::buttonClicked);
-    setButtonPosition(RightOutside);
+    setButtonPosition(Position_RightOutside);
     setWindowIcon(QIcon(":/image/ww/buttonlineedit.png"));
 }
 
