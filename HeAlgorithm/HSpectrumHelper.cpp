@@ -89,7 +89,7 @@ QVector<double> HSpecHelper::g2abt(QVector<double> value)
                              << qRadiansToDegrees(theta/2);
 }
 
-QColor wave2color(double wave, double gamma, double intensityMax)
+QColor HSpecHelper::wave2color(double wave, double gamma, double intensityMax)
 {
     double r, g, b, alpha;
     if (wave >= 380.0 && wave < 440.0)
