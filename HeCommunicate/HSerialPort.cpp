@@ -1,5 +1,5 @@
 #include "HSerialPort_p.h"
-#include <QtCore/QVector>
+#include <QtCore/QDebug>
 #include <windows.h>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -43,9 +43,7 @@ HErrorType HSerialPort::openPort(int port)
     if (d->connected)
         return E_PORT_OPENED;
 
-
     DCB dcb;
-
     auto name = QString("COM%1").arg(port).toStdWString().c_str();
     COMMTIMEOUTS timeOuts;
     timeOuts.ReadIntervalTimeout = 0;

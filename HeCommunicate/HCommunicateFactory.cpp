@@ -92,8 +92,8 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
     HFactory::registerClass<HLittleProtocol>("HLittleProtocol");
     HFactory::registerClass<HBigProtocol>("HBigProtocol");
-    HFactory::registerClass<HUi2010Protocol>("HCcd1305Protocol");
-    HFactory::registerClass<HUi2010Protocol>("HCcd554bProtocol");
+    HFactory::registerClass<HCcd1305Protocol>("HCcd1305Protocol");
+    HFactory::registerClass<HCcd554bProtocol>("HCcd554bProtocol");
     HFactory::registerClass<HSl1000Protocol>("HSl1000Protocol");
     HFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
     HFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");

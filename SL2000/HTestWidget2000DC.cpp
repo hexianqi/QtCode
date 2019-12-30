@@ -2,6 +2,7 @@
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
 #include <QtWidgets/QMenu>
+#include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {

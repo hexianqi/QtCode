@@ -273,7 +273,7 @@ void HDiagramWidget::setPlotArea(QRectF value)
 
 void HDiagramWidget::refreshPixmap(bool refresh)
 {
-    if (size().width() == 0 || size().height() == 0)
+    if (size().width() * size().height() == 0)
         return;
 
     d_ptr->pixmap = QPixmap(size());
@@ -283,6 +283,7 @@ void HDiagramWidget::refreshPixmap(bool refresh)
     initPixmap(&painter);
     drawFrame(&painter);
     drawRuler(&painter);
+    drawTick(&painter);
     drawPolygon(&painter);
     drawElse(&painter);
     drawGrid(&painter);
@@ -333,9 +334,16 @@ bool HDiagramWidget::drawRuler(QPainter *)
     return true;
 }
 
+bool HDiagramWidget::drawTick(QPainter *)
+{
+    if (!d_ptr->halfSide || !isValid())
+        return false;
+    return true;
+}
+
 bool HDiagramWidget::drawGrid(QPainter *)
 {
-    if (!isDrawGrid() || !isValid())
+    if (d_ptr->halfSide || !isDrawGrid() || !isValid())
         return false;
     return true;
 }

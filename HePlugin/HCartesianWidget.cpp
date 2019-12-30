@@ -5,19 +5,19 @@
 #include <QtGui/QPainter>
 #include <QtWidgets/QAction>
 
-HCartesianWidgetPrivate::HCartesianWidgetPrivate(HCartesianWidget *q)
-    : HDiagramWidgetPrivate(q)
+HCartesianWidgetPrivate::HCartesianWidgetPrivate(HCartesianWidget *q) :
+    HDiagramWidgetPrivate(q)
 {
 }
 
-HCartesianWidget::HCartesianWidget(QWidget *parent)
-    : HDiagramWidget(*new HCartesianWidgetPrivate(this), parent)
+HCartesianWidget::HCartesianWidget(QWidget *parent) :
+    HDiagramWidget(*new HCartesianWidgetPrivate(this), parent)
 {
     init();
 }
 
-HCartesianWidget::HCartesianWidget(HCartesianWidgetPrivate &p, QWidget *parent)
-    : HDiagramWidget(p, parent)
+HCartesianWidget::HCartesianWidget(HCartesianWidgetPrivate &p, QWidget *parent) :
+    HDiagramWidget(p, parent)
 {
     init();
 }
@@ -164,7 +164,7 @@ bool HCartesianWidget::drawRuler(QPainter *painter)
         str = list[i];
         if (d->unitInRuler)
             str += d->unitX;
-        painter->drawText(d->plotArea.left() + (i - 0.5) * width, d->plotArea.bottom() + margin, width, height, Qt::AlignHCenter | Qt::AlignTop, str);
+        painter->drawText(QRectF(d->plotArea.left() + (i - 0.5) * width, d->plotArea.bottom() + margin, width, height), Qt::AlignHCenter | Qt::AlignTop, str);
     }
 
     width = d->plotArea.left() - 2 * margin;
@@ -175,13 +175,42 @@ bool HCartesianWidget::drawRuler(QPainter *painter)
         str = list[i];
         if (d->unitInRuler)
             str += d->unitY;
-        painter->drawText(margin, d->plotArea.bottom() - (i + 0.5) * height, width, height, Qt::AlignRight | Qt::AlignVCenter, str);
+        painter->drawText(QRectF(margin, d->plotArea.bottom() - (i + 0.5) * height, width, height), Qt::AlignRight | Qt::AlignVCenter, str);
     }
 
     if (!d->unitInRuler)
     {
-        painter->drawText(d->plotArea.right() + 5, d->plotArea.bottom() - 20, d->margins.right() - 10, 30, Qt::AlignVCenter | Qt::AlignLeft, d->unitX);
-        painter->drawText(d->plotArea.left() - 15, 5, 30, d->plotArea.top() - 10, Qt::AlignHCenter | Qt::AlignBottom, d->unitY);
+        painter->drawText(QRectF(d->plotArea.right() + 5, d->plotArea.bottom() - 20, d->margins.right() - 10, 30), Qt::AlignVCenter | Qt::AlignLeft, d->unitX);
+        painter->drawText(QRectF(d->plotArea.left() - 15, 5, 30, d->plotArea.top() - 10), Qt::AlignHCenter | Qt::AlignBottom, d->unitY);
+    }
+    painter->restore();
+    return true;
+}
+
+bool HCartesianWidget::drawTick(QPainter *painter)
+{
+    Q_D(HCartesianWidget);
+    if (!HDiagramWidget::drawTick(painter))
+        return false;
+
+    int i;
+    double t;
+    auto tickX = d->coordinate->tickX();
+    auto tickY = d->coordinate->tickY();
+
+    painter->save();
+    painter->setClipRect(d->plotArea.adjusted(-5, -5, +5, +5));
+    painter->setBrush(Qt::NoBrush);
+    painter->setPen(d->colorFrame);
+    for (i = 0; i <= tickX; i++)
+    {
+        t = d->plotArea.left() + i * d->plotArea.width() / tickX;
+        painter->drawLine(QLineF(t, d->plotArea.bottom(), t, d->plotArea.bottom() + 5));
+    }
+    for (i = 0; i <= tickY; i++)
+    {
+        t = d->plotArea.bottom() - i * d->plotArea.height() / tickY;
+        painter->drawLine(QLineF(d->plotArea.left(), t, d->plotArea.left() - 5, t));
     }
     painter->restore();
     return true;
@@ -195,44 +224,22 @@ bool HCartesianWidget::drawGrid(QPainter *painter)
 
     int i;
     double t;
-    QPen pen;
+    auto tickX = d->coordinate->tickX();
+    auto tickY = d->coordinate->tickY();
 
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(-5, -5, +5, +5));
     painter->setBrush(Qt::NoBrush);
-    auto tickX = d->coordinate->tickX();
-    auto tickY = d->coordinate->tickY();
-
-    if (d->halfSide)
+    painter->setPen(QPen(d->colorGrid, 1, Qt::DashLine));
+    for (i = 1; i < tickX; i++)
     {
-        pen.setColor(d->colorFrame);
-        painter->setPen(pen);
-        for (i = 0; i <= tickX; i++)
-        {
-            t = d->plotArea.left() + i * d->plotArea.width() / tickX;
-            painter->drawLine(t, d->plotArea.bottom(), t, d->plotArea.bottom() + 5);
-        }
-        for (i = 0; i <= tickY; i++)
-        {
-            t = d->plotArea.bottom() - i * d->plotArea.height() / tickY;
-            painter->drawLine(d->plotArea.left(), t, d->plotArea.left() - 5, t);
-        }
+        t = d->plotArea.left() + i * d->plotArea.width() / tickX;
+        painter->drawLine(QLineF(t, d->plotArea.top(), t, d->plotArea.bottom()));
     }
-    else
+    for (i = 1; i < tickY; i++)
     {
-        pen.setColor(d->colorGrid);
-        pen.setStyle(Qt::DashLine);
-        painter->setPen(pen);
-        for (i = 1; i < tickX; i++)
-        {
-            t = d->plotArea.left() + i * d->plotArea.width() / tickX;
-            painter->drawLine(t, d->plotArea.top(), t, d->plotArea.bottom());
-        }
-        for (i = 1; i < tickY; i++)
-        {
-            t = d->plotArea.bottom() - i * d->plotArea.height() / tickY;
-            painter->drawLine(d->plotArea.left(), t, d->plotArea.right(), t);
-        }
+        t = d->plotArea.bottom() - i * d->plotArea.height() / tickY;
+        painter->drawLine(QLineF(d->plotArea.left(), t, d->plotArea.right(), t));
     }
     painter->restore();
     return true;

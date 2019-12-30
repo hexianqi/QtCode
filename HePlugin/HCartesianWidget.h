@@ -48,9 +48,10 @@ protected:
     virtual void mousePressEvent(QMouseEvent *) override;
     virtual void mouseMoveEvent(QMouseEvent *) override;
     virtual void mouseReleaseEvent(QMouseEvent *) override;
-    virtual bool drawRuler(QPainter *painter) override;
-    virtual bool drawGrid(QPainter *painter) override;
-    virtual bool drawPolygon(QPainter *painter) override;
+    virtual bool drawRuler(QPainter *) override;
+    virtual bool drawTick(QPainter *) override;
+    virtual bool drawGrid(QPainter *) override;
+    virtual bool drawPolygon(QPainter *) override;
 
 protected slots:
     virtual void handleCoordinateChanged(HCartesianCoordinate *);

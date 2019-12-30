@@ -81,9 +81,10 @@ protected:
     virtual void initPixmap(QPainter *);
     virtual bool drawFrame(QPainter *);
     virtual bool drawRuler(QPainter *);
+    virtual bool drawTick(QPainter *);
     virtual bool drawGrid(QPainter *);
     virtual bool drawPolygon(QPainter *);
-    virtual bool drawElse(QPainter *);    
+    virtual bool drawElse(QPainter *);
     virtual bool isValid();
 
 protected:

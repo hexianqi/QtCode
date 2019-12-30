@@ -42,6 +42,7 @@ HSpecCalibrateWidget::HSpecCalibrateWidget(QWidget *parent) :
 HSpecCalibrateWidget::~HSpecCalibrateWidget()
 {
     qDebug() << __func__;
+    setTest(false);
     delete ui;
 }
 
@@ -228,10 +229,10 @@ void HSpecCalibrateWidget::init()
     d->energyWidget = new HSpecEnergyWidget;
     d->pelsWaveWidget = new HSpecPelsWaveWidget;
     d->detailWidget = new HSpecDetailWidget;
-    ui->tabWidget_1->addTab(d->sampleView, d->sampleView->windowTitle());    
+    ui->tabWidget_1->addTab(d->sampleView, d->sampleView->windowTitle());
     ui->tabWidget_1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     ui->tabWidget_1->addTab(d->ccdView, d->ccdView->windowTitle());
-    ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());    
+    ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());
     ui->tabWidget_2->addTab(d->detailWidget, d->detailWidget->windowTitle());
     ui->splitter_2->setStretchFactor(0,1);
     ui->splitter_1->setStretchFactor(0,1);

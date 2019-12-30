@@ -202,6 +202,7 @@ void HSpecDiagramWidget::refreshPixmap(bool refresh)
     initPixmap(&painter);
     drawFrame(&painter);
     drawRuler(&painter);
+    drawTick(&painter);
     if (!drawCenter(&painter))
     {
         if (!drawRibbon(&painter))
@@ -214,6 +215,7 @@ void HSpecDiagramWidget::refreshPixmap(bool refresh)
 
     if (refresh)
         update();
+
 }
 
 bool HSpecDiagramWidget::drawCenter(QPainter *painter)
