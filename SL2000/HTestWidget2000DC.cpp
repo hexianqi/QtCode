@@ -1,7 +1,7 @@
 #include "HTestWidget2000DC_p.h"
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
-#include <QtCore/QDebug>
+#include <QtWidgets/QMenu>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
@@ -50,4 +50,12 @@ void HTestWidget2000DC::handleAction(HActionType action)
         refreshWidget();
     }
     HTestWidget2000::handleAction(action);
+}
+
+void HTestWidget2000DC::createMenu()
+{
+    Q_D(HTestWidget2000);
+    auto menu1 = new QMenu(tr("测试配置(&T)"));
+    menu1->addAction(d->actionAdjust);
+    d->menus << menu1;
 }

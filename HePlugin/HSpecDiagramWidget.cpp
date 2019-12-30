@@ -186,13 +186,13 @@ void HSpecDiagramWidget::addPolygon(int id, QPolygonF value, bool refresh)
     Q_D(HSpecDiagramWidget);
     d->drawCenter = false;
     if (id == 0)
-        setPolygonRibbon(value, refresh);
+        setPolygonRibbon(value, false);
     HCartesianWidget::addPolygon(id, value, refresh);
 }
 
 void HSpecDiagramWidget::refreshPixmap(bool refresh)
 {
-    if (size().width() == 0 || size().height() == 0)
+    if (size().width() * size().height() == 0)
         return;
 
     d_ptr->pixmap = QPixmap(size());
@@ -207,7 +207,6 @@ void HSpecDiagramWidget::refreshPixmap(bool refresh)
         if (!drawRibbon(&painter))
         {
             drawPolygon(&painter);
-            drawElse(&painter);
             drawGrid(&painter);
             drawLeftTop(&painter);
         }

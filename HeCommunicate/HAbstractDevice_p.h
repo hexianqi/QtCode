@@ -8,7 +8,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 class HAbstractDevicePrivate
 {
 public:
-    IPort* port = nullptr;
+    IPort *port = nullptr;
     int portNum = 1;
     bool portNumScan = true;
     int deviceID = 0x00;

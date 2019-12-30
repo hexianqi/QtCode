@@ -101,11 +101,8 @@ HErrorType HAbstractThread::handleAction(HActionType action)
 {
     for (auto v : d_ptr->strategys)
     {
-        if (!v->isSupport(action))
-            continue;
-        auto error = v->handle(action);
-        if (error != E_OK)
-            return error;
+        if (v->isSupport(action))
+            return v->handle(action);
     }
     return E_THREAD_NO_HANDLE;
 }

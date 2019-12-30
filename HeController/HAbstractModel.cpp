@@ -52,7 +52,7 @@ void HAbstractModel::start()
 
 void HAbstractModel::addAction(HActionType action, ulong delay)
 {
-    if (action >= 0x10000000)
+    if (action >= 0xF0000000)
     {
         emit actionFinished(action);
         return;
