@@ -1,24 +1,18 @@
 #include "HControlFactory_p.h"
 #include "HControlDemoWidget.h"
-#include "HFlatStyleWidget.h"
-#include "HStyleWidget.h"
-#include "HQssCreator.h"
-#include "HIconFontWidget.h"
 #include "HCodeCountWidget.h"
+#include "HColorPicker.h"
+#include "HEmailWidget.h"
 #include "HGifWidget.h"
 #include "HNetworkWidget.h"
 #include "HPngAmend.h"
-#include "HColorPicker.h"
-#include "HEmailWidget.h"
-
+#include "HSerialPortWidget.h"
 #include "HMoveEventFilter.h"
 
 #include "HCircularProgress.h"
-
 #include "HDemoWidget.h"
 #include "HImageEffectWidget.h"
 #include "HImageBrowser.h"
-#include "HSerialPortWidget.h"
 
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
@@ -75,24 +69,21 @@ void HControlFactory::registerClass()
     auto b = HWidgetFactory::keys().toSet();
     // 演示
     HWidgetFactory::registerClass<HControlDemoWidget>("HControlDemoWidget");
-    HWidgetFactory::registerClass<HFlatStyleWidget>("HFlatStyleWidget");
-    HWidgetFactory::registerClass<HStyleWidget>("HStyleWidget");
-    HWidgetFactory::registerClass<HQssCreator>("HQssCreator");
-    HWidgetFactory::registerClass<HIconFontWidget>("HIconFontWidget");
     // 工具
     HWidgetFactory::registerClass<HCodeCountWidget>("HCodeCountWidget");
+    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
+    HWidgetFactory::registerClass<HEmailWidget>("HEmailWidget");
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
     HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
     HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
-    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
-    HWidgetFactory::registerClass<HEmailWidget>("HEmailWidget");
+    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
 
     // 未整理
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
 
     HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
-    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
+
     HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
 
     auto e = HWidgetFactory::keys().toSet();

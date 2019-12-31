@@ -8,10 +8,12 @@
 #include "HImageCalendar.h"
 #include "HIPAddress.h"
 #include "HLightButton.h"
+#include "HLunarCalendarWidget.h"
 #include "HNavButton.h"
 
 #include <QtGui/QPen>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
 
@@ -25,21 +27,25 @@ void HControlDemoWidget::addLiuDianWu()
     addIPAddress();
     addDefenceButton();
     addLightButton();
+    addLunarCalendar();
     addNavButton();
 }
 
 void HControlDemoWidget::addBattery()
 {
-    auto layout = new QGridLayout;
     auto battery = new HBattery;
+
     auto slider = new QSlider;
     slider->setOrientation(Qt::Horizontal);
     slider->setSingleStep(10);
-    connect(slider, &QSlider::valueChanged, battery, &HBattery::setValue);
+
+    auto layout = new QGridLayout;
     layout->addWidget(battery, 0, 0);
     layout->addWidget(slider, 1, 0);
-    addTab(tr("ludianwu"), tr("电池电量"), layout);
+
     d_ptr->style->setStyle(slider, 8, "#505050", "#1ABC9C", "#1ABC9C");
+    connect(slider, &QSlider::valueChanged, battery, &HBattery::setValue);
+    addTab(tr("ludianwu"), tr("电池电量"), layout);
 }
 
 void HControlDemoWidget::addCalendar()
@@ -49,13 +55,14 @@ void HControlDemoWidget::addCalendar()
 
 void HControlDemoWidget::addExplorer()
 {
-    auto layout = new QGridLayout;
+
 //    auto w = new HCpuMemoryLabel();
     auto table = new HDiskSizeTable();
 //    w->setFont(QFont("Microsoft Yahei", 13));
 //    w->setStyleSheet("QLabel{ background-color: #000000; color: #64B8FF; }");
 //    w->start(1500);
 //    layout->addWidget(w, 0, 0);
+    auto layout = new QGridLayout;
     layout->addWidget(table, 1, 0);
     addTab(tr("ludianwu"), tr("资源管理器"), layout);
 }
@@ -82,7 +89,6 @@ void HControlDemoWidget::addDefenceButton()
     status.insert(tr("旁路"), HDefenceButton::ButtonStatus_Bypass);
     status.insert(tr("故障"), HDefenceButton::ButtonStatus_Error);
 
-    auto hLayout = new QHBoxLayout;
     auto label = new QLabel;
     label->setFrameShape(QFrame::Box);
     label->setFrameShadow(QFrame::Sunken);
@@ -106,7 +112,6 @@ void HControlDemoWidget::addDefenceButton()
         defenceButton2->setButtonStyle(style);
         defenceButton3->setButtonStyle(style);
     };
-
     auto changeStatus = [=] {
         auto pushButton = qobject_cast<QPushButton *>(sender());
         auto status = pushButton->property("buttonStatus").value<HDefenceButton::ButtonStatus>();
@@ -114,7 +119,6 @@ void HControlDemoWidget::addDefenceButton()
         defenceButton2->setButtonStatus(status);
         defenceButton3->setButtonStatus(status);
     };
-
     auto changeMove = [=](int value) {
         defenceButton1->setMoveEnable(value != 0);
         defenceButton2->setMoveEnable(value != 0);
@@ -154,6 +158,8 @@ void HControlDemoWidget::addDefenceButton()
 
     vLayout->addWidget(check);
     vLayout->addStretch();
+
+    auto hLayout = new QHBoxLayout;
     hLayout->addWidget(label);
     hLayout->addWidget(frame);
     addTab(tr("ludianwu"), tr("布防按钮"), hLayout);
@@ -161,21 +167,61 @@ void HControlDemoWidget::addDefenceButton()
 
 void HControlDemoWidget::addLightButton()
 {
-    auto layout = new QHBoxLayout;
     auto lightButton1 = new HLightButton;
     auto lightButton2 = new HLightButton;
     auto lightButton3 = new HLightButton;
     lightButton2->setBackground(QColor(255, 107, 107));
     lightButton3->setBackground(QColor(24, 189, 155));
+
+    auto layout = new QHBoxLayout;
     layout->addWidget(lightButton1);
     layout->addWidget(lightButton2);
     layout->addWidget(lightButton3);
     addTab(tr("ludianwu"), tr("发光按钮"), layout);
 }
 
+void HControlDemoWidget::addLunarCalendar()
+{
+    auto label1 = new QLabel(tr("选中样式："));
+    auto label2 = new QLabel(tr("星期格式："));
+    label1->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    label2->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+    auto comboBox1 = new QComboBox;
+    auto comboBox2 = new QComboBox;
+    comboBox1->addItem(tr("矩形背景"), HLunarCalendarItem::SelectType_Rect);
+    comboBox1->addItem(tr("圆形背景"), HLunarCalendarItem::SelectType_Circle);
+    comboBox1->addItem(tr("角标背景"), HLunarCalendarItem::SelectType_Triangle);
+    comboBox1->addItem(tr("图片背景"), HLunarCalendarItem::SelectType_Image);
+    comboBox2->addItem(tr("短名称"),   HLunarCalendarWidget::WeekNameFormat_Short);
+    comboBox2->addItem(tr("普通名称"), HLunarCalendarWidget::WeekNameFormat_Normal);
+    comboBox2->addItem(tr("长名称"),   HLunarCalendarWidget::WeekNameFormat_Long);
+    comboBox2->addItem(tr("英文名称"), HLunarCalendarWidget::WeekNameFormat_En);
+
+    auto checkCox = new QCheckBox(tr("显示农历"));
+    checkCox->setChecked(true);
+
+    auto widget = new HLunarCalendarWidget;
+
+    auto hLayout = new QHBoxLayout;
+    hLayout->addWidget(label1, 1);
+    hLayout->addWidget(comboBox1, 3);
+    hLayout->addWidget(label2, 1);
+    hLayout->addWidget(comboBox2, 3);
+    hLayout->addWidget(checkCox, 2);
+
+    auto vLayout = new QVBoxLayout;
+    vLayout->addWidget(widget);
+    vLayout->addLayout(hLayout);
+
+    connect(comboBox1, &QComboBox::currentTextChanged, this, [=] { widget->setSelectType(comboBox1->currentData().value<HLunarCalendarItem::SelectType>()); });
+    connect(comboBox2, &QComboBox::currentTextChanged, this, [=] { widget->setWeekNameFormat(comboBox2->currentData().value<HLunarCalendarWidget::WeekNameFormat>()); });
+    connect(checkCox, &QCheckBox::clicked, this, [=](bool b) { widget->setShowLunar(b); });
+    addTab(tr("ludianwu"), tr("农历"), vLayout);
+}
+
 void HControlDemoWidget::addNavButton()
 {
-    auto layout = new QGridLayout;
     auto layout1 = new QVBoxLayout;
     auto layout2 = new QVBoxLayout;
     auto layout3 = new QVBoxLayout;
@@ -377,6 +423,7 @@ void HControlDemoWidget::addNavButton()
             layout6->addWidget(button);
         }
     }
+    auto layout = new QGridLayout;
     layout->addLayout(layout1, 0, 0);
     layout->addLayout(layout2, 0, 1);
     layout->addLayout(layout3, 0, 2);

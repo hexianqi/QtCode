@@ -115,5 +115,6 @@
         <file>image/ludianwu/calendar_red.png</file>
         <file>image/ludianwu/calendar_yellow.png</file>
         <file>image/ludianwu/calendar_item_bk.png</file>
+        <file>image/demo/LunarCalendarWidget.gif</file>
     </qresource>
 </RCC>

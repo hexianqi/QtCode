@@ -4,7 +4,7 @@ HEADERS += \
     $$PWD/HAbstractProgress.h \
     $$PWD/HAbstractProgress_p.h \
     $$PWD/HAnimationProgress.h \
-    $$PWD/HAnimationProgress_p.h
+    $$PWD/HAnimationProgress_p.h \
 
 SOURCES += \
     $$PWD/HSlideNavigation.cpp \

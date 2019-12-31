@@ -1,5 +1,6 @@
 #include "HLunarCalendarItem_p.h"
 #include <QtGui/QPainter>
+#include <QtDebug>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -63,7 +64,7 @@ QDate HLunarCalendarItem::date() const
     return d_ptr->date;
 }
 
-QString HLunarCalendarItem::dunar() const
+QString HLunarCalendarItem::lunar() const
 {
     return d_ptr->lunar;
 }
@@ -163,6 +164,7 @@ void HLunarCalendarItem::setSelect(bool b)
 
 void HLunarCalendarItem::setShowLunar(bool b)
 {
+    qDebug() << __FUNCTION__;
     if (d_ptr->showLunar == b)
         return;
     d_ptr->showLunar = b;
@@ -179,9 +181,18 @@ void HLunarCalendarItem::setBackgroundImage(const QString &value)
 
 void HLunarCalendarItem::setSelectType(HLunarCalendarItem::SelectType value)
 {
+    qDebug() << __FUNCTION__;
     if (d_ptr->selectType == value)
         return;
     d_ptr->selectType = value;
+    update();
+}
+
+void HLunarCalendarItem::setDate(const QDate &date, const QString &lunar, const HLunarCalendarItem::DayType &type)
+{
+    d_ptr->date = date;
+    d_ptr->lunar = lunar;
+    d_ptr->dayType = type;
     update();
 }
 
@@ -219,6 +230,7 @@ void HLunarCalendarItem::setBorderColor(const QColor &value)
 
 void HLunarCalendarItem::setWeekColor(const QColor &value)
 {
+    qDebug() << __FUNCTION__;
     if (d_ptr->weekColor == value)
         return;
     d_ptr->weekColor = value;

@@ -42,6 +42,7 @@ private:
     void addDefenceButton();
     void addLightButton();
     void addNavButton();
+    void addLunarCalendar();
 
 
     // Else

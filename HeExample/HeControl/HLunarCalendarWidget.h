@@ -1,29 +1,37 @@
 /***************************************************************************************************
-**      2019-12-27  HLunarCalendarItem
+**      2017-11-17  HLunarCalendarWidget 农历控件
+**                  https://gitee.com/feiyangqingyun/QWidgetDemo
+**                  1:可设置边框/周末/角标/农历节日颜色
+**                  2:可设置当前月/其他月/选中日期/悬停日期文字颜色
+**                  3:可设置当前月/其他月/选中日期/悬停日期农历文字颜色
+**                  4:可设置当前月/其他月/选中日期/悬停日期背景颜色
+**                  5:可设置四种选中背景模式（矩形背景、圆形背景、图片背景、带三角标）
+**                  6:可直接切换到上一年/下一年/上一月/下一月/转到今天
+**                  7:可设置是否显示农历信息,不显示则当做正常的日历使用
+**                  8:支持1901年-2099年范围
 ***************************************************************************************************/
 
-#ifndef HLUNARCALENDARITEM_H
-#define HLUNARCALENDARITEM_H
+#ifndef HLUNARCALENDARWIDGET_H
+#define HLUNARCALENDARWIDGET_H
 
-#include "HControlGlobal.h"
-#include <QtCore/QDate>
-#include <QtWidgets/QWidget>
+#include "HLunarCalendarItem.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class HLunarCalendarItemPrivate;
+class HLunarCalendarWidgetPrivate;
 
-class HLunarCalendarItem : public QWidget
+class HLunarCalendarWidget : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(bool select READ isSelect WRITE setSelect)
+    Q_PROPERTY(QDate date READ date WRITE setDate)
+
+    Q_PROPERTY(WeekNameFormat weekNameFormat READ weekNameFormat WRITE setWeekNameFormat)
+    Q_PROPERTY(QColor weekTextColor READ weekTextColor WRITE setWeekTextColor)
+    Q_PROPERTY(QColor weekBackground READ weekBackground WRITE setWeekBackground)
+
     Q_PROPERTY(bool showLunar READ isShowLunar WRITE setShowLunar)
     Q_PROPERTY(QString backgroundImage READ backgroundImage WRITE setBackgroundImage)
-    Q_PROPERTY(SelectType selectType READ selectType WRITE setSelectType)
-
-    Q_PROPERTY(QDate date READ date WRITE setDate)
-    Q_PROPERTY(QString lunar READ lunar WRITE setLunar)
-    Q_PROPERTY(DayType dayType READ dayType WRITE setDayType)
+    Q_PROPERTY(HLunarCalendarItem::SelectType selectType READ selectType WRITE setSelectType)
 
     Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor)
     Q_PROPERTY(QColor weekColor READ weekColor WRITE setWeekColor)
@@ -46,41 +54,33 @@ class HLunarCalendarItem : public QWidget
     Q_PROPERTY(QColor hoverBackground READ hoverBackground WRITE setHoverBackground)
 
 public:
-    enum DayType
+    enum WeekNameFormat
     {
-        DayType_MonthPre = 0,       // 上月剩余天数
-        DayType_MonthNext = 1,      // 下个月的天数
-        DayType_MonthCurrent = 2,   // 当月天数
-        DayType_WeekEnd = 3         // 周末
+        WeekNameFormat_Short = 0,   // 短名称
+        WeekNameFormat_Normal = 1,  // 普通名称
+        WeekNameFormat_Long = 2,    // 长名称
+        WeekNameFormat_En = 3       // 英文名称
     };
-    Q_ENUM(DayType)
-
-    enum SelectType
-    {
-        SelectType_Rect = 0,        // 矩形背景
-        SelectType_Circle = 1,      // 圆形背景
-        SelectType_Triangle = 2,    // 角标背景
-        SelectType_Image = 3        // 图片背景
-    };
-    Q_ENUM(SelectType)
+    Q_ENUM(WeekNameFormat)
 
 public:
-    explicit HLunarCalendarItem(QWidget *parent = nullptr);
-    ~HLunarCalendarItem() override;
+    explicit HLunarCalendarWidget(QWidget *parent = nullptr);
+    ~HLunarCalendarWidget() override;
 
 signals:
-    void clicked(const QDate &date, const DayType &dayType);
+    void clicked(const QDate &date);
+    void selectionChanged();
 
 public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-    bool isSelect() const;
+    QDate date() const;
+    WeekNameFormat weekNameFormat() const;
+    QColor weekTextColor() const;
+    QColor weekBackground() const;
     bool isShowLunar() const;
     QString backgroundImage() const;
-    SelectType selectType() const;
-    QDate date() const;
-    QString lunar() const;
-    DayType dayType() const;
+    HLunarCalendarItem::SelectType selectType() const;
     QColor borderColor() const;
     QColor weekColor() const;
     QColor superColor() const;
@@ -99,14 +99,13 @@ public:
     QColor hoverBackground() const;
 
 public slots:
-    void setSelect(bool b);
+    void setDate(const QDate &value);
+    void setWeekNameFormat(WeekNameFormat value);
+    void setWeekTextColor(const QColor &value);
+    void setWeekBackground(const QColor &value);
     void setShowLunar(bool b);
     void setBackgroundImage(const QString &value);
-    void setSelectType(SelectType value);
-    void setDate(const QDate &date, const QString &lunar, const DayType &type);
-    void setDate(const QDate &value);
-    void setLunar(const QString &value);
-    void setDayType(DayType value);
+    void setSelectType(HLunarCalendarItem::SelectType value);
     void setBorderColor(const QColor &value);
     void setWeekColor(const QColor &value);
     void setSuperColor(const QColor &value);
@@ -123,26 +122,32 @@ public slots:
     void setOtherBackground(const QColor &value);
     void setSelectBackground(const QColor &value);
     void setHoverBackground(const QColor &value);
+    void showYearPrevious();
+    void showYearNext();
+    void showMonthPrevious();
+    void showMonthNext();
+    void showToday();
 
 protected:
-    HLunarCalendarItem(HLunarCalendarItemPrivate &p, QWidget *parent = nullptr);
+    HLunarCalendarWidget(HLunarCalendarWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    void enterEvent(QEvent *) override;
-    void leaveEvent(QEvent *) override;
-    void mousePressEvent(QMouseEvent *) override;
-    void mouseReleaseEvent(QMouseEvent *) override;
-    void paintEvent(QPaintEvent *) override;
-    void drawBackground(QPainter *);
-    void drawState(QPainter *);
-    void drawCurrent(QPainter *, const QColor &);
-    void drawDay(QPainter *);
-    void drawLunar(QPainter *);
+    QScopedPointer<HLunarCalendarWidgetPrivate> d_ptr;
 
-protected:
-    QScopedPointer<HLunarCalendarItemPrivate> d_ptr;
+private:
+    void init();
+    void initWidget();
+    void initStyle();
+    void initDate();
+
+private slots:
+    void handleYearChanged(const QString &);
+    void handleMonthChanged(const QString &);
+    void handleItemClicked(const QDate &, const HLunarCalendarItem::DayType &);
+    void dayChanged(const QDate &);
+    void dateChanged(int year, int month, int day);
 };
 
 HE_CONTROL_END_NAMESPACE
 
-#endif // HLUNARCALENDARITEM_H
+#endif // HLUNARCALENDARWIDGET_H

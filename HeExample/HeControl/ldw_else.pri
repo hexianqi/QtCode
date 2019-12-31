@@ -12,7 +12,9 @@ HEADERS += \
     $$PWD/HImageCalendar.h \
     $$PWD/HImageCalendar_p.h \
     $$PWD/HLunarCalendarItem.h \
-    $$PWD/HLunarCalendarItem_p.h
+    $$PWD/HLunarCalendarItem_p.h \
+    $$PWD/HLunarCalendarWidget.h \
+    $$PWD/HLunarCalendarWidget_p.h
 
 SOURCES += \
     $$PWD/HBattery.cpp \
@@ -21,4 +23,6 @@ SOURCES += \
     $$PWD/HSpliteWidget.cpp \
     $$PWD/HLunarCalendarInfo.cpp \
     $$PWD/HImageCalendar.cpp \
-    $$PWD/HLunarCalendarItem.cpp
+    $$PWD/HLunarCalendarItem.cpp \
+    $$PWD/HLunarCalendarWidget.cpp
+

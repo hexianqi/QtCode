@@ -33,8 +33,9 @@ HEADERS     += \
             HControlFactory.h \
             HControlFactory_p.h
 
-RESOURCES   = HeControl.qrc \
-              qss.qrc
+RESOURCES   = \
+            HeControl.qrc \
+            qss.qrc
 
 INCLUDEPATH += \
             ../..
@@ -64,12 +65,9 @@ include(iconFont.pri)
 include(layout.pri)
 include(network.pri)
 include(service.pri)
-#include(sql.pri)
+include(sql.pri)
 include(style.pri)
 include(table.pri)
 include(test.pri)
 include(tools.pri)
 include(widget.pri)
-
-DISTFILES += \
-    111

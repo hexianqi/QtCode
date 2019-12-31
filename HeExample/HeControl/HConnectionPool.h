@@ -23,7 +23,7 @@ public:
     // 获取数据库连接
     static QSqlDatabase openConnection();
     // 释放数据库连接
-    static void closeConnection(QSqlDatabase connection);
+    static void closeConnection(QSqlDatabase db);
 
 public:
     ~HConnectionPool();
@@ -31,18 +31,15 @@ public:
 public:
     void setDatabaseInfo(QVariantMap param);
     int maxConnectionCount() const;
+    ulong maxWaitTime() const;
+    ulong waitInterval() const;
     int usedCount() const;
     int unusedCount() const;
-    int maxWaitTime() const;
-    int waitInterval() const;
 
 protected:
     HConnectionPool();
     HConnectionPool(const HConnectionPool&) = delete;
     HConnectionPool &operator=(const HConnectionPool&) = delete;
-
-protected:
-    QSqlDatabase createConnection(const QString &connectionName);
 
 protected:
     static QScopedPointer<HConnectionPool> __instance;
