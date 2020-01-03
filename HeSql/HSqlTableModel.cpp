@@ -49,7 +49,7 @@ QStringList HSqlTableModel::field()
 void HSqlTableModel::setTable(const QString &tableName)
 {
     auto db = database();
-    if (!db.tables().contains(tableName))
+    if (!db.tables().contains(tableName, Qt::CaseInsensitive))
     {
         if (!HSqlHelper::createTable(tableName, d_ptr->fields, db))
             return;
@@ -89,11 +89,10 @@ int HSqlTableModel::currentRow()
 QVariant HSqlTableModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::TextAlignmentRole)
-        return int(Qt::AlignHCenter | Qt::AlignVCenter);
+        return Qt::AlignCenter;
     if (role == Qt::DisplayRole || role == Qt::EditRole)
     {
-        int n;
-        n = index.column();
+        int n = index.column();
         if (n >= 0 && n < d_ptr->fields.size())
             return HSql::toString(d_ptr->fields[n], QSqlTableModel::data(index, Qt::EditRole));
     }
@@ -105,7 +104,7 @@ QVariant HSqlTableModel::headerData(int section, Qt::Orientation orientation, in
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
     {
         if (section >= 0 && section < d_ptr->fields.size())
-            return HSql::toCaptionUnit(d_ptr->fields[section]);
+            return HSql::toCaptionUnit(d_ptr->fields.at(section));
     }
     return QSqlTableModel::headerData(section, orientation, role);
 }

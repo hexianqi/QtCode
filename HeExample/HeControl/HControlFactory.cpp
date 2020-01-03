@@ -6,6 +6,7 @@
 #include "HGifWidget.h"
 #include "HNetworkWidget.h"
 #include "HPngAmend.h"
+#include "HScreenWidget.h"
 #include "HSerialPortWidget.h"
 #include "HMoveEventFilter.h"
 
@@ -76,6 +77,7 @@ void HControlFactory::registerClass()
     HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
     HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
     HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
+    HWidgetFactory::registerClass<HScreenWidget>("HScreenWidget");
     HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
 
     // 未整理

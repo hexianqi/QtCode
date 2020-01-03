@@ -13,7 +13,11 @@ HEADERS += \
     $$PWD/HPngAmend.h \
     $$PWD/HPngAmend_p.h \
     $$PWD/HEmailWidget.h \
-    $$PWD/HEmailWidget_p.h
+    $$PWD/HEmailWidget_p.h \
+    $$PWD/HScreenObject.h \
+    $$PWD/HScreenObject_p.h \
+    $$PWD/HScreenWidget.h \
+    $$PWD/HScreenWidget_p.h \
 
 SOURCES += \
     $$PWD/HSerialPortWidget.cpp \
@@ -23,7 +27,10 @@ SOURCES += \
     $$PWD/HColorPicker.cpp \
     $$PWD/HCodeCountWidget.cpp \
     $$PWD/HPngAmend.cpp \
-    $$PWD/HEmailWidget.cpp
+    $$PWD/HEmailWidget.cpp \
+    $$PWD/HScreenObject.cpp \
+    $$PWD/HScreenWidget.cpp \
+
 
 FORMS += \
     $$PWD/HSerialPortWidget.ui \

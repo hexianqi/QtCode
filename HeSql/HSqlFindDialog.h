@@ -22,7 +22,7 @@ class HSqlFindDialog : public QDialog
 
 public:
     explicit HSqlFindDialog(QStringList fields, QString filter = QString(), QWidget *parent = nullptr);
-    ~HSqlFindDialog();
+    ~HSqlFindDialog() override;
 
 public:
     QString filter() const;

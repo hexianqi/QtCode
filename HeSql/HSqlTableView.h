@@ -20,7 +20,7 @@ class HSqlTableView : public HTableView
 
 public:
     explicit HSqlTableView(QWidget *parent = nullptr);
-    ~HSqlTableView();
+    ~HSqlTableView() override;
 
 public:
     void setModel(ISqlTableModel *);

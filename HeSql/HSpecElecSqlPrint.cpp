@@ -60,7 +60,7 @@ void HSpecElecSqlPrint::paintPage(QPainter *painter, int page)
     paintBody(painter, y1, y2, page);
 }
 
-void HSpecElecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int page)
+void HSpecElecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /*page*/)
 {
     auto gap = 8.0;
     auto font1 = QFont("宋体", 12, QFont::Bold);

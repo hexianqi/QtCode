@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets serialport network xml svg concurrent
+QT          += widgets serialport network xml svg concurrent sql
 
 TEMPLATE    = lib
 

@@ -32,7 +32,6 @@ public:
     QAction *colorAction;
     QAction *listAtion;
     QList<QAction *> separators;
-
 };
 
 HE_CONTROL_END_NAMESPACE

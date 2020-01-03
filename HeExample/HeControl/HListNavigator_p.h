@@ -17,12 +17,6 @@ public:
     QToolButton *next;
     QToolButton *last;
     QListWidget *listWidget = nullptr;
-
-
-//    Qt::Orientation m_orientation;
-//    bool m_autoRaise;
-//    Qt::ToolButtonStyle m_toolButtonStyle;
-
 };
 
 HE_CONTROL_END_NAMESPACE

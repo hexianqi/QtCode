@@ -7,6 +7,8 @@ HE_SQL_BEGIN_NAMESPACE
 QHash<QString, QString>      hashFieldType;
 QHash<QString, QString>      hashFieldCreateStyle;
 
+HSqlGlobalInstance *theInstance = HSqlGlobalInstance::instance();
+
 QString HSql::toType(QString field)
 {
     return hashFieldType.value(field, "[" + field + "]");
@@ -32,8 +34,6 @@ QStringList HSql::toCreateStyle(QStringList field)
         list << toCreateStyle(f);
     return list;
 }
-
-HSqlGlobalInstance *theInstance = HSqlGlobalInstance::instance();
 
 HSqlGlobalInstance::HSqlGlobalInstance(QObject *parent) :
     QObject(parent)

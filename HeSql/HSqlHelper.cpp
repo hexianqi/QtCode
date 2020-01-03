@@ -11,9 +11,9 @@ bool HSqlHelper::createTable(QString tableName, QStringList field, QSqlDatabase 
         return false;
 
     QSqlQuery query(db);
-    auto text = QString("CREATE TABLE %1 (%2)").arg(tableName).arg(HSql::toCreateStyle(field).join(','));
-    query.exec("DROP TABLE " + tableName);
-    return query.exec(text);
+    if (db.tables().contains(tableName, Qt::CaseInsensitive))
+        query.exec("DROP TABLE " + tableName);
+    return query.exec(QString("CREATE TABLE %1 (%2)").arg(tableName).arg(HSql::toCreateStyle(field).join(',')));
 }
 
 HE_SQL_END_NAMESPACE

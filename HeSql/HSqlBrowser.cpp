@@ -117,13 +117,13 @@ void HSqlBrowser::createAction()
     d_ptr->actionPrintPreview = new QAction(tr("打印预览(&V)"), this);
     d_ptr->actionPrintPreview->setIcon(QIcon(":/image/PrintPreview.png"));
     d_ptr->actionPrintPreview->setIconText(tr("打印预览"));
-    connect(d_ptr->actionRevert, &QAction::triggered, this, [=]{ if (d_ptr->handle != nullptr) d_ptr->handle->revertRecord(); });
-    connect(d_ptr->actionFind, &QAction::triggered, this, [=]{ if (d_ptr->handle != nullptr) d_ptr->handle->findRecord(); });
+    connect(d_ptr->actionRevert, &QAction::triggered, this, [=] { if (d_ptr->handle != nullptr) d_ptr->handle->revertRecord(); });
+    connect(d_ptr->actionFind, &QAction::triggered, this, [=] { if (d_ptr->handle != nullptr) d_ptr->handle->findRecord(); });
     connect(d_ptr->actionRemove, &QAction::triggered, this, &HSqlBrowser::removeRecord);
     connect(d_ptr->actionExportExcel, &QAction::triggered, this, &HSqlBrowser::exportExcel);
-    connect(d_ptr->actionExportPdf, &QAction::triggered, this, [=]{ if (d_ptr->print != nullptr) d_ptr->print->exportPdf(); });
-    connect(d_ptr->actionPrint, &QAction::triggered, this, [=]{ if (d_ptr->print != nullptr) d_ptr->print->print(); });
-    connect(d_ptr->actionPrintPreview, &QAction::triggered, [=]{ if (d_ptr->print != nullptr) d_ptr->print->printPreview(); });
+    connect(d_ptr->actionExportPdf, &QAction::triggered, this, [=] { if (d_ptr->print != nullptr) d_ptr->print->exportPdf(); });
+    connect(d_ptr->actionPrint, &QAction::triggered, this, [=] { if (d_ptr->print != nullptr) d_ptr->print->print(); });
+    connect(d_ptr->actionPrintPreview, &QAction::triggered, [=] { if (d_ptr->print != nullptr) d_ptr->print->printPreview(); });
 }
 
 void HSqlBrowser::createToolBar()

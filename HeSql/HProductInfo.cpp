@@ -37,11 +37,10 @@ HProductInfo::~HProductInfo()
 
 void HProductInfo::initialize(QVariantMap param)
 {
-    if (param.contains("relationTableName"))
-        d_ptr->relationTableName = param.value("relationTableName").toString();
     if (param.contains("datas"))
         setData(param.value("datas").toMap());
-    readSettings();
+    if (param.contains("relationTableName"))
+        setRelationTableName(param.value("relationTableName").toString());
 }
 
 QString HProductInfo::typeName()
