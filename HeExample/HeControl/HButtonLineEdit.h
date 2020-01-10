@@ -43,6 +43,8 @@ signals:
     void validatorChanged(const QString &);
 
 public:
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
     QIcon icon() const;
     bool isAutoRaise() const;
     Position buttonPosition() const;

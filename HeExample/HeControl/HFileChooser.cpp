@@ -53,25 +53,12 @@ QCompleter::CompletionMode HFileChooser::completionMode() const
     return d->completer->completionMode();
 }
 
-QSize HFileChooser::sizeHint() const
-{
-    Q_D(const HFileChooser);
-    return QLineEdit::sizeHint() + QSize(d->button->sizeHint().width(), 0);
-}
-
-QSize HFileChooser::minimumSizeHint() const
-{
-    Q_D(const HFileChooser);
-    return QLineEdit::minimumSizeHint() + QSize(d->button->sizeHint().width(), 0);
-}
-
 void HFileChooser::setModel(QAbstractItemModel *p)
 {
     Q_D(HFileChooser);
-    if (d->model == p)
+    if (d->completer->model() == p)
         return;
-    d->model = p == nullptr ? new QDirModel(this) : p;
-    d->completer->setModel(d->model);
+    d->completer->setModel(p == nullptr ? new QDirModel(this) : p);
 }
 
 void HFileChooser::setFileMode(QFileDialog::FileMode value)
@@ -83,6 +70,9 @@ void HFileChooser::setFileMode(QFileDialog::FileMode value)
 void HFileChooser::setAcceptMode(QFileDialog::AcceptMode value)
 {
     Q_D(HFileChooser);
+    if (d->acceptMode == value)
+        return;
+
     d->acceptMode = value;
     if (d->acceptMode == QFileDialog::AcceptOpen)
         setIcon(QIcon::fromTheme("document-open", QIcon(":/image/ww/fileopen.png")));
@@ -130,8 +120,6 @@ void HFileChooser::chooseFile()
                 path = QFileDialog::getOpenFileName(this, tr("选择文件"), text(), filter());
             break;
         case QFileDialog::Directory:
-            path = QFileDialog::getExistingDirectory(this, tr("选择目录"), text());
-            break;
         case QFileDialog::DirectoryOnly:
             path = QFileDialog::getExistingDirectory(this, tr("选择目录"), text());
             break;
@@ -166,8 +154,8 @@ void HFileChooser::chooseFile()
 void HFileChooser::handleTextChanged(const QString &value)
 {
     Q_D(HFileChooser);
-    QFileIconProvider prov;
-    d->icon = prov.icon(QFileInfo(value));
+    QFileIconProvider provider;
+    d->icon = provider.icon(QFileInfo(value));
     update();
 }
 
@@ -175,12 +163,12 @@ void HFileChooser::paintEvent(QPaintEvent *e)
 {
     Q_D(HFileChooser);
     HButtonLineEdit::paintEvent(e);
-    QPainter p(this);
+    QPainter painter(this);
     QStyleOption option;
     option.initFrom(this);
     int margin = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, &option, this);
     int size = style()->pixelMetric(QStyle::PM_SmallIconSize, &option, this);
-    d->icon.paint(&p, QRect(contentsRect().left() + margin + 1, margin + 1, size, size), Qt::AlignCenter, option.state & QStyle::State_Enabled ? QIcon::Normal : QIcon::Disabled);
+    d->icon.paint(&painter, QRect(contentsRect().left() + margin + 1, margin + 1, size, size), Qt::AlignCenter, option.state & QStyle::State_Enabled ? QIcon::Normal : QIcon::Disabled);
 }
 
 void HFileChooser::init()
@@ -188,7 +176,7 @@ void HFileChooser::init()
     Q_D(HFileChooser);
     QStyleOption option;
     option.initFrom(this);
-    auto sc = new QShortcut(QKeySequence("Ctrl+Space"), this);
+    auto shortcut = new QShortcut(QKeySequence("Ctrl+Space"), this);
     d->completer = new QCompleter(this);
     setTextMargins(style()->pixelMetric(QStyle::PM_SmallIconSize, &option, this) + 2, 0, 0, 0);
     setCompleter(d->completer);
@@ -198,7 +186,7 @@ void HFileChooser::init()
     setAcceptMode(QFileDialog::AcceptOpen);
     connect(this, &HFileChooser::buttonClicked, this, &HFileChooser::chooseFile);
     connect(this, &HFileChooser::textChanged, this, &HFileChooser::handleTextChanged);
-    connect(sc, &QShortcut::activated, this, [=] { d->completer->complete(); });
+    connect(shortcut, &QShortcut::activated, this, [=] { d->completer->complete(); });
     setWindowIcon(QIcon(":/image/ww/filechooser.png"));
 }
 

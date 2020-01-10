@@ -94,8 +94,7 @@ void HHueSatRadialPicker::mousePressEvent(QMouseEvent *e)
             return;
         colorPick(p, r);
     }
-    else
-        QWidget::mousePressEvent(e);
+    QWidget::mousePressEvent(e);
 }
 
 void HHueSatRadialPicker::mouseMoveEvent(QMouseEvent *e)
@@ -112,13 +111,12 @@ void HHueSatRadialPicker::mouseMoveEvent(QMouseEvent *e)
         }
         colorPick(p, r);
     }
-    else
-        QWidget::mousePressEvent(e);
-
+    QWidget::mousePressEvent(e);
 }
 
-void HHueSatRadialPicker::resizeEvent(QResizeEvent *)
+void HHueSatRadialPicker::resizeEvent(QResizeEvent *e)
 {
+    QWidget::resizeEvent(e);
     buildPixmap();
     update();
 }
@@ -140,10 +138,15 @@ void HHueSatRadialPicker::init()
 
 void HHueSatRadialPicker::buildGradient(int value)
 {
-    d_ptr->gradient.setStops(QGradientStops());
+    d_ptr->conicalGradient.setStops(QGradientStops());
     for (int i = 0; i < 360; i++)
-        d_ptr->gradient.setColorAt(i / 360.0, QColor::fromHsv(i, 255, value));
-    d_ptr->gradient.setColorAt(1, QColor::fromHsv(359, 255, value));
+        d_ptr->conicalGradient.setColorAt(i / 360.0, QColor::fromHsv(i, 255, value));
+    d_ptr->conicalGradient.setColorAt(1, QColor::fromHsv(359, 255, value));
+
+    d_ptr->radialGradient.setStops(QGradientStops());
+    for (int i = 0; i < 100; i ++)
+        d_ptr->radialGradient.setColorAt(i / 100.0, QColor::fromHsvF(0, 0, 1, 1 - i / 100.0));
+    d_ptr->radialGradient.setColorAt(1, QColor::fromHsvF(0, 0, 1, 0));
 }
 
 void HHueSatRadialPicker::buildPixmap()
@@ -151,23 +154,24 @@ void HHueSatRadialPicker::buildPixmap()
     auto center = rect().center();
     auto radius = qMin(width(), height()) / 2 - 2;
 
-    d_ptr->gradient.setCenter(center);
+    d_ptr->conicalGradient.setCenter(center);
+    d_ptr->radialGradient.setCenter(center);
+    d_ptr->radialGradient.setRadius(radius);
+    d_ptr->radialGradient.setFocalPoint(center);
+
     auto image1 = QImage(size(), QImage::Format_ARGB32);
     image1.fill(Qt::transparent);
     QPainter painter1(&image1);
     painter1.setRenderHint(QPainter::Antialiasing, true);
-    painter1.setBrush(d_ptr->gradient);
+    painter1.setBrush(d_ptr->conicalGradient);
     painter1.setPen(palette().color(QPalette::Shadow));
     painter1.drawEllipse(center, radius, radius);
 
-    auto gradient = QRadialGradient(center, radius, center);
-    for (double i = 0; i < 1.0; i += 0.01)
-        gradient.setColorAt(i, QColor::fromHsvF(0, 0, 1, 1 - i));
     auto image2 = QImage(size(), QImage::Format_ARGB32);
     image2.fill(Qt::transparent);
     QPainter painter2(&image2);
     painter2.setRenderHint(QPainter::Antialiasing, true);
-    painter2.setBrush(gradient);
+    painter2.setBrush(d_ptr->radialGradient);
     painter2.setPen(palette().color(QPalette::Shadow));
     painter2.drawEllipse(center, radius, radius);
     painter2.setCompositionMode(QPainter::CompositionMode_DestinationOver);

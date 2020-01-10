@@ -144,13 +144,13 @@ void HLedWidget::mouseReleaseEvent(QMouseEvent *e)
 void HLedWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    auto color = palette().background().color();
+    auto color = isChecked() ? d_ptr->color : palette().background().color();
     if (d_ptr->shapeStyle == ShapeStyle_Circular)
     {
         auto side = qMin(width(), height());
         auto gradient = QRadialGradient(rect().center(), side * 0.45, rect().center() - QPointF(side * 0.1, side * 0.1));
         gradient.setColorAt(0.0, palette().color(QPalette::Light));
-        gradient.setColorAt(0.75, isChecked() ? d_ptr->color : color);
+        gradient.setColorAt(0.75, color);
         painter.setRenderHint(QPainter::Antialiasing);
         painter.setBrush(gradient);
         painter.setPen(QPen(palette().color(QPalette::Foreground), d_ptr->frameWidth));
@@ -166,7 +166,7 @@ void HLedWidget::paintEvent(QPaintEvent *)
             option.state |= QStyle::State_Raised;
         else if (d_ptr->shapeStyle == ShapeStyle_RectangularSunken)
             option.state |= QStyle::State_Sunken;
-        auto brush = QBrush(isChecked() ? d_ptr->color : color);
+        auto brush = QBrush(color);
         if (d_ptr->shapeStyle == ShapeStyle_RectangularPlain)
             qDrawPlainRect(&painter, option.rect, option.palette.foreground().color(), d_ptr->frameWidth, &brush);
         else

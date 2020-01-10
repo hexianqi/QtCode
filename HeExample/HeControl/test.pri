@@ -23,7 +23,8 @@ SOURCES += \
     $$PWD/HControlDemoWidget_ldw.cpp \
     $$PWD/HControlDemoWidget_demo.cpp \
     $$PWD/HControlDemoWidget_tool.cpp \
-    $$PWD/HControlDemoWidget_else.cpp
+    $$PWD/HControlDemoWidget_else.cpp \
+    $$PWD/HControlDemoWidget_ww.cpp
 
 FORMS += \
     $$PWD/HStyleWidget.ui \

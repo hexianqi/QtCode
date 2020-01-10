@@ -6,13 +6,13 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HTaskPanel::HTaskPanel(QWidget *parent) :
-    HAbstractMultiWidget(*new HTaskPanelPrivate, parent)
+    HAbstractMultiPanel(*new HTaskPanelPrivate, parent)
 {
     init();
 }
 
 HTaskPanel::HTaskPanel(HTaskPanelPrivate &p, QWidget *parent) :
-    HAbstractMultiWidget(p, parent)
+    HAbstractMultiPanel(p, parent)
 {
     init();
 }
@@ -32,7 +32,7 @@ int HTaskPanel::indexOf(QWidget *p) const
     Q_D(const HTaskPanel);
     for (int i = 0; i < d->tasks.count(); i++)
     {
-        if (d->tasks.at(i) == p)
+        if (d->tasks.at(i)->body() == p)
             return i;
     }
     return -1;
@@ -66,7 +66,7 @@ QIcon HTaskPanel::toggleIcon() const
 void HTaskPanel::insertWidget(int index, QWidget *widget, const QIcon &icon, const QString &label)
 {
     Q_D(HTaskPanel);
-    HAbstractMultiWidget::insertWidget(index, widget, icon, label);
+    HAbstractMultiPanel::insertWidget(index, widget, icon, label);
 
     auto task = new HTaskWidget(widget);
     task->setToggleIcon(d->toggleIcon);
@@ -77,11 +77,11 @@ void HTaskPanel::insertWidget(int index, QWidget *widget, const QIcon &icon, con
     task->show();
 }
 
-void HTaskPanel::removeWidget(int index)
+bool HTaskPanel::removeWidget(int index)
 {
     Q_D(HTaskPanel);
-    if (index < 0 || index >= count())
-        return;
+    if (!HAbstractMultiPanel::removeWidget(index))
+        return false;
 
     auto task = d->tasks.at(index);
     d->tasks.removeAt(index);
@@ -90,6 +90,7 @@ void HTaskPanel::removeWidget(int index)
     auto body = task->body();
     body->setParent(this);
     delete task;
+    return true;
 }
 
 bool HTaskPanel::setCurrentIndex(int value)
@@ -147,9 +148,9 @@ void HTaskPanel::init()
     d->layout->addStretch();
     sa->setWidget(d->panel);
     sa->setWidgetResizable(true);
-    auto l = new QVBoxLayout(this);
-    l->setMargin(0);
-    l->addWidget(sa);
+    auto layout = new QVBoxLayout(this);
+    layout->setMargin(0);
+    layout->addWidget(sa);
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
 }
 

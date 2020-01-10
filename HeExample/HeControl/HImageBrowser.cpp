@@ -331,7 +331,7 @@ void HImageBrowser::init()
     connect(d_ptr->timer, &QTimer::timeout, this, &HImageBrowser::doFading);
     connect(d_ptr->previous, &QToolButton::clicked, this, &HImageBrowser::movePrevious);
     connect(d_ptr->next, &QToolButton::clicked, this, &HImageBrowser::moveNext);
-    connect(actionLoad, SIGNAL(triggered(bool)), this, SLOT(load()));
+    connect(actionLoad, &QAction::triggered, this, [=] { load(); });
     connect(actionClear, &QAction::triggered, this, &HImageBrowser::clear);
     connect(actionFill, &QAction::triggered, this, &HImageBrowser::setFill);
     connect(actionFade, &QAction::triggered, this, &HImageBrowser::setFade);

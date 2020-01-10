@@ -30,7 +30,8 @@ private:
     void init();
     void initWidget();
     void addLiuDianWu();
-    void addStyle();
+    void addWw();
+    void addDemo();
     void addTool();
     void addElse();
 
@@ -43,6 +44,15 @@ private:
     void addLightButton();
     void addNavButton();
     void addLunarCalendar();
+
+    // ww
+    void addWwExtend();
+    void addWwPicker();
+    void addWwNavigator();
+    void addWwConfigPanel();
+    void addWwNavigationPanel();
+    void addWwTaskPanel();
+    void addWwElse();
 
 
     // Else

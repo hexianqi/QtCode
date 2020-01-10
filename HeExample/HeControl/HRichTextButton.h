@@ -51,6 +51,7 @@ private:
     void init();
     void initStyleOption(QStyleOptionButton *option) const;
     void createInternalDoc(const QString &text);
+    void deleteInternalDoc();
 };
 
 HE_CONTROL_END_NAMESPACE

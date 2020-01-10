@@ -1,6 +1,5 @@
 #include "HLunarCalendarItem_p.h"
 #include <QtGui/QPainter>
-#include <QtDebug>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -164,7 +163,6 @@ void HLunarCalendarItem::setSelect(bool b)
 
 void HLunarCalendarItem::setShowLunar(bool b)
 {
-    qDebug() << __FUNCTION__;
     if (d_ptr->showLunar == b)
         return;
     d_ptr->showLunar = b;
@@ -181,7 +179,6 @@ void HLunarCalendarItem::setBackgroundImage(const QString &value)
 
 void HLunarCalendarItem::setSelectType(HLunarCalendarItem::SelectType value)
 {
-    qDebug() << __FUNCTION__;
     if (d_ptr->selectType == value)
         return;
     d_ptr->selectType = value;
@@ -230,7 +227,6 @@ void HLunarCalendarItem::setBorderColor(const QColor &value)
 
 void HLunarCalendarItem::setWeekColor(const QColor &value)
 {
-    qDebug() << __FUNCTION__;
     if (d_ptr->weekColor == value)
         return;
     d_ptr->weekColor = value;

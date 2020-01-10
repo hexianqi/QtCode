@@ -12,7 +12,7 @@ HColorPopup::HColorPopup(HColorModel *model, QWidget *parent) :
     QWidget(parent, Qt::Popup),
     d_ptr(new HColorPopupPrivate)
 {
-    auto l = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     d_ptr->view = new QListView;
     d_ptr->view->setFlow(QListView::LeftToRight);
     d_ptr->view->setResizeMode(QListView::Adjust);
@@ -24,10 +24,10 @@ HColorPopup::HColorPopup(HColorModel *model, QWidget *parent) :
     d_ptr->view->setModel(model);
     d_ptr->button = new QPushButton(tr("其他"));
     d_ptr->button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    l->setSpacing(0);
-    l->setMargin(0);
-    l->addWidget(d_ptr->view);
-    l->addWidget(d_ptr->button);
+    layout->setSpacing(0);
+    layout->setMargin(0);
+    layout->addWidget(d_ptr->view);
+    layout->addWidget(d_ptr->button);
     connect(d_ptr->view, &QListView::clicked, this, &HColorPopup::selectIndex);
     connect(d_ptr->button, &QPushButton::clicked, this, &HColorPopup::popupDialog);
     setMaximumHeight(250);
@@ -44,17 +44,17 @@ QListView *HColorPopup::colorView() const
 
 void HColorPopup::setCurrentIndex(const QModelIndex &index)
 {
-    d_ptr->currentColor = qvariant_cast<QColor>(index.data(Qt::DecorationRole));
+    d_ptr->currentColor = index.data(Qt::DecorationRole).value<QColor>();
     d_ptr->view->selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
 }
 
 void HColorPopup::popupDialog()
 {
-    auto c = QColorDialog::getColor(d_ptr->currentColor, this, tr("选取颜色"), QColorDialog::ShowAlphaChannel);
-    if (c == d_ptr->currentColor || !c.isValid())
+    auto color = QColorDialog::getColor(d_ptr->currentColor, this, tr("选取颜色"), QColorDialog::ShowAlphaChannel);
+    if (color == d_ptr->currentColor || !color.isValid())
         return;
-    d_ptr->currentColor = c;
-    emit selectColor(c);
+    d_ptr->currentColor = color;
+    emit selectColor(color);
 }
 
 HE_CONTROL_END_NAMESPACE

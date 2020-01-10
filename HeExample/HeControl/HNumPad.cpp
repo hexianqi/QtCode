@@ -37,10 +37,10 @@ void HNumPad::animateClick(const QString &button, int msec)
     else
         name = QString("b%1").arg(key);
 
-    auto tb = findChild<QToolButton *>(name);
-    if (tb != nullptr)
+    auto buttonn = findChild<QToolButton *>(name);
+    if (buttonn != nullptr)
         return;
-    tb->animateClick(msec);
+    buttonn->animateClick(msec);
 }
 
 void HNumPad::init()

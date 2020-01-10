@@ -16,20 +16,14 @@ HEADERS += \
     $$PWD/HColorDelegate.h \
     $$PWD/HColorComboBox.h \
     $$PWD/HColorComboBox_p.h \
-    $$PWD/HConfigWidget.h \
-    $$PWD/HConfigWidget_p.h \
     $$PWD/HHueSatPicker.h \
     $$PWD/HHueSatPicker_p.h \
     $$PWD/HHueSatRadialPicker.h \
     $$PWD/HHueSatRadialPicker_p.h \
     $$PWD/HLedWidget.h \
     $$PWD/HLedWidget_p.h \
-    $$PWD/HListNavigator.h \
-    $$PWD/HListNavigator_p.h \
     $$PWD/HLongSpinBox.h \
     $$PWD/HLongSpinBox_p.h \
-    $$PWD/HNavigationBar.h \
-    $$PWD/HNavigationBar_p.h \
     $$PWD/HNumPad.h \
     $$PWD/HNumPad_p.h \
     $$PWD/HResetLineEdit.h \
@@ -44,12 +38,18 @@ HEADERS += \
     $$PWD/HTaskHeader_p.h \
     $$PWD/HTaskWidget.h \
     $$PWD/HTaskWidget_p.h \
-    $$PWD/HAbstractMultiWidget.h \
-    $$PWD/HAbstractMultiWidget_p.h \
     $$PWD/HTextSpinBox.h \
     $$PWD/HTextSpinBox_p.h \
     $$PWD/HTwoColorIndicator.h \
-    $$PWD/HTwoColorIndicator_p.h
+    $$PWD/HTwoColorIndicator_p.h \
+    $$PWD/HNavigationSlider.h \
+    $$PWD/HNavigationSlider_p.h \
+    $$PWD/HNavigationPanel.h \
+    $$PWD/HNavigationPanel_p.h \
+    $$PWD/HConfigPanel.h \
+    $$PWD/HConfigPanel_p.h \
+    $$PWD/HAbstractMultiPanel.h \
+    $$PWD/HAbstractMultiPanel_p.h
 
 SOURCES += \
     $$PWD/HButtonLineEdit.cpp \
@@ -61,13 +61,10 @@ SOURCES += \
     $$PWD/HColorPopup.cpp \
     $$PWD/HColorDelegate.cpp \
     $$PWD/HColorComboBox.cpp \
-    $$PWD/HConfigWidget.cpp \
     $$PWD/HHueSatPicker.cpp \
     $$PWD/HHueSatRadialPicker.cpp \
     $$PWD/HLedWidget.cpp \
-    $$PWD/HListNavigator.cpp \
     $$PWD/HLongSpinBox.cpp \
-    $$PWD/HNavigationBar.cpp \
     $$PWD/HNumPad.cpp \
     $$PWD/HResetLineEdit.cpp \
     $$PWD/HRichTextButton.cpp \
@@ -75,9 +72,9 @@ SOURCES += \
     $$PWD/HTaskPanel.cpp \
     $$PWD/HTaskHeader.cpp \
     $$PWD/HTaskWidget.cpp \
-    $$PWD/HAbstractMultiWidget.cpp \
     $$PWD/HTextSpinBox.cpp \
-    $$PWD/HTwoColorIndicator.cpp
-
-FORMS +=
-
+    $$PWD/HTwoColorIndicator.cpp \
+    $$PWD/HNavigationSlider.cpp \
+    $$PWD/HNavigationPanel.cpp \
+    $$PWD/HConfigPanel.cpp \
+    $$PWD/HAbstractMultiPanel.cpp

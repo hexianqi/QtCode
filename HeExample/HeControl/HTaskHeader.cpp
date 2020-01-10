@@ -71,17 +71,17 @@ void HTaskHeader::init()
 {
     d_ptr->spacer = new QSpacerItem(0, 0, QSizePolicy::Fixed, QSizePolicy::Fixed);
     d_ptr->label = new QLabel;
-    auto f = d_ptr->label->font();
-    f.setBold(true);
-    d_ptr->label->setFont(f);
+    auto font = d_ptr->label->font();
+    font.setBold(true);
+    d_ptr->label->setFont(font);
     d_ptr->button = new QToolButton;
     d_ptr->button->setAutoRaise(true);
     d_ptr->button->setCheckable(true);
     d_ptr->button->setArrowType(Qt::DownArrow);
-    auto l = new QHBoxLayout(this);
-    l->addItem(d_ptr->spacer);
-    l->addWidget(d_ptr->label);
-    l->addWidget(d_ptr->button);
+    auto layout = new QHBoxLayout(this);
+    layout->addItem(d_ptr->spacer);
+    layout->addWidget(d_ptr->label);
+    layout->addWidget(d_ptr->button);
     setFrameShape(QFrame::StyledPanel);
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
 }

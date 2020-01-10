@@ -34,13 +34,13 @@ public:
     bool isShowName() const;
 
 public slots:
-    void setStandardColors();
-    void addColor(const QColor &color, const QString &name);
-    void clear();
     void setColors(const QStringList &);
     void setCurrentColor(const QColor &);
     void setDragEnabled(bool b);
     void setShowName(bool showName);
+    void setStandardColors();
+    void addColor(const QColor &color, const QString &name);
+    void clear();
 
 protected:
     HColorButton(HColorButtonPrivate &p, QWidget *parent = nullptr);

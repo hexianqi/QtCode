@@ -9,7 +9,7 @@ HColorDrag::HColorDrag(QWidget *source, const QColor &color, const QString &name
     QDrag(source)
 {
     auto size = source->style()->pixelMetric(QStyle::PM_ButtonIconSize, nullptr, source);
-    auto pixmap = QPixmap(QSize(size, size));
+    auto pixmap = QPixmap(size, size);
     pixmap.fill(color);
     setPixmap(pixmap);
     auto data = new QMimeData;

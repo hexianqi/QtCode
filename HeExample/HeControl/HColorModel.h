@@ -22,6 +22,7 @@ public:
     QModelIndex addColor(const QColor &color, const QString &name = QString());
     QModelIndex insertColor(int index, const QColor &color, const QString &name = QString());
     void setStandardColors();
+    void setColors(const QStringList &value);
 
 public:
     QStringList colors() const;

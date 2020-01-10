@@ -15,32 +15,32 @@ class HColorComboBoxPrivate;
 class HColorComboBox : public QComboBox
 {
     Q_OBJECT
+    Q_PROPERTY(QStringList colors READ colors WRITE setColors)
+    Q_PROPERTY(QColor currentColor READ currentColor WRITE setCurrentColor)
     Q_PROPERTY(bool colorDialogEnabled READ isColorDialogEnabled WRITE setColorDialogEnabled)
     Q_PROPERTY(int colorCount READ colorCount)
-    Q_PROPERTY(QColor currentColor READ currentColor WRITE setCurrentColor)
-    Q_PROPERTY(QStringList colors READ colors WRITE setColors)
 
 public:
     explicit HColorComboBox(QWidget *parent = nullptr);
     ~HColorComboBox() override;
 
 signals:
-    void activated(const QColor &);
+    void colorPicked(const QColor &);
 
 public:
+    QStringList colors() const;
+    QColor currentColor() const;
     QColor color(int index) const;
     bool isColorDialogEnabled() const;
     int colorCount() const;
-    QColor currentColor() const;
-    QStringList colors() const;
 
 public slots:
+    void setColors(const QStringList &);
+    void setCurrentColor(const QColor &);
+    void setColorDialogEnabled(bool b = true);
     void setStandardColors();
     void addColor(const QColor &color, const QString &name);
     void insertColor(int index, const QColor &color, const QString &name);
-    void setColorDialogEnabled(bool b = true);
-    void setCurrentColor(const QColor &);
-    void setColors(const QStringList &);
 
 protected:
     HColorComboBox(HColorComboBoxPrivate &p, QWidget *parent = nullptr);

@@ -49,28 +49,9 @@ bool HColorButton::isShowName() const
     return d_ptr->showName;
 }
 
-void HColorButton::setStandardColors()
-{
-    d_ptr->model->setStandardColors();
-}
-
-void HColorButton::addColor(const QColor &color, const QString &name)
-{
-    d_ptr->model->addColor(color, name);
-}
-
-void HColorButton::clear()
-{
-    d_ptr->model->clear();
-}
-
 void HColorButton::setColors(const QStringList &value)
 {
-    for (auto v : value)
-    {
-        auto s = v.split(",");
-        addColor(QColor(s[0]), s[1]);
-    }
+    d_ptr->model->setColors(value);
     setCurrentIndex(d_ptr->model->index(0, 0));
     update();
 }
@@ -95,8 +76,23 @@ void HColorButton::setShowName(bool b)
 {
     if (d_ptr->showName == b)
         return;
-    setText(b ? d_ptr->currentName : "");
     d_ptr->showName = b;
+    setText(b ? d_ptr->currentName : "");
+}
+
+void HColorButton::setStandardColors()
+{
+    d_ptr->model->setStandardColors();
+}
+
+void HColorButton::addColor(const QColor &color, const QString &name)
+{
+    d_ptr->model->addColor(color, name);
+}
+
+void HColorButton::clear()
+{
+    d_ptr->model->clear();
 }
 
 void HColorButton::mousePressEvent(QMouseEvent *e)
@@ -119,12 +115,12 @@ void HColorButton::mouseMoveEvent(QMouseEvent *e)
 
 void HColorButton::dragEnterEvent(QDragEnterEvent *e)
 {
-    QColor c;
+    QColor color;
     if (e->mimeData()->hasColor())
-        c = qvariant_cast<QColor>(e->mimeData()->colorData());
+        color = e->mimeData()->colorData().value<QColor>();
     else if (e->mimeData()->hasText())
-        c = QColor(e->mimeData()->text());
-    if (c.isValid())
+        color = QColor(e->mimeData()->text());
+    if (color.isValid())
         e->acceptProposedAction();
 }
 
@@ -133,7 +129,7 @@ void HColorButton::dropEvent(QDropEvent *e)
     if (e->source() == this)
         return;
     if (e->mimeData()->hasColor())
-        setCurrentColor(qvariant_cast<QColor>(e->mimeData()->colorData()));
+        setCurrentColor(e->mimeData()->colorData().value<QColor>());
     else
         setCurrentColor(e->mimeData()->text());
 }
@@ -146,7 +142,7 @@ void HColorButton::setCurrentIndex(const QModelIndex &index)
         d_ptr->popup->setCurrentIndex(index);
     }
 
-    d_ptr->currentColor = qvariant_cast<QColor>(index.data(Qt::DecorationRole));
+    d_ptr->currentColor = index.data(Qt::DecorationRole).value<QColor>();
     d_ptr->currentName = index.data(Qt::ToolTipRole).toString();
 
     QPixmap pixmap(64, 64);
@@ -165,8 +161,7 @@ QString HColorButton::findStandardColorName(const QColor &color)
 {
     for (auto name : QColor::colorNames())
     {
-        auto t = QColor(name);
-        if (t == color)
+        if (color == QColor(name))
             return name;
     }
     return QString("Custom color");
@@ -199,7 +194,7 @@ void HColorButton::showPopup()
     }
     auto point = mapToGlobal(rect().bottomLeft());
     auto avail = QApplication::primaryScreen()->availableGeometry();
-    int height = avail.height() - point.y();
+    auto height = avail.height() - point.y();
     auto size = calcSize();
     if (size.height() > height)
         size.setHeight(height);
@@ -209,7 +204,7 @@ void HColorButton::showPopup()
 }
 
 void HColorButton::init()
-{    
+{
     d_ptr->model = new HColorModel(this);
     connect(this, &HColorButton::clicked, this, &HColorButton::showPopup);
     setStandardColors();

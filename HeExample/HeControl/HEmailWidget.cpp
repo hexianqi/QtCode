@@ -45,11 +45,11 @@ void HEmailWidget::on_pushButton_2_clicked()
     dialog.setFileMode(QFileDialog::ExistingFiles);
     if (dialog.exec())
     {
-        QFileIconProvider icon;
+        QFileIconProvider provider;
         for (auto file : dialog.selectedFiles())
         {
             QFileInfo info(file);
-            ui->listWidget->addItem(new QListWidgetItem(icon.icon(info), info.fileName()));
+            ui->listWidget->addItem(new QListWidgetItem(provider.icon(info), info.fileName()));
         }
         ui->listWidget->setVisible(ui->listWidget->count() > 0);
     }

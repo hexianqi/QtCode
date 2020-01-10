@@ -5,13 +5,13 @@
 #ifndef HTASKPANEL_H
 #define HTASKPANEL_H
 
-#include "HAbstractMultiWidget.h"
+#include "HAbstractMultiPanel.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HTaskPanelPrivate;
 
-class HTaskPanel : public HAbstractMultiWidget
+class HTaskPanel : public HAbstractMultiPanel
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HTaskPanel)
@@ -32,7 +32,7 @@ public:
 
 public:
     void insertWidget(int index, QWidget *widget, const QIcon &icon, const QString &label = QString()) override;
-    void removeWidget(int index) override;
+    bool removeWidget(int index) override;
 
 public slots:
     bool setCurrentIndex(int value) override;

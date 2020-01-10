@@ -56,9 +56,9 @@ void HCircularProgress::setDuration(int value)
 void HCircularProgress::setCircular(ICircular *p)
 {
     if (d_ptr->circular != nullptr)
-        disconnect(d_ptr->circular, SIGNAL(dataChanged()), this, SLOT(update()));
+        d_ptr->circular->disconnect(this);
     d_ptr->circular = p;
-    connect(d_ptr->circular, SIGNAL(dataChanged()), this, SLOT(update()));
+    connect(d_ptr->circular, &ICircular::dataChanged, this, [=] { update(); });
 }
 
 bool HCircularProgress::isReverse() const

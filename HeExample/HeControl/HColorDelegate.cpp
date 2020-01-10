@@ -12,15 +12,15 @@ void HColorDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
 {
     if (!index.isValid())
         return;
-    auto c = qvariant_cast<QColor>(index.data(Qt::DecorationRole));
+
     painter->save();
-    painter->setBrush(c);
+    painter->setBrush(index.data(Qt::DecorationRole).value<QColor>());
     painter->drawRect(option.rect);
     if (option.state & QStyle::State_Selected)
     {
-        auto p = painter->pen();
-        p.setWidth(2);
-        painter->setPen(p);
+        auto pen = painter->pen();
+        pen.setWidth(2);
+        painter->setPen(pen);
         painter->drawRect(option.rect.adjusted(1, 1, 0, 0));
     }
     painter->restore();

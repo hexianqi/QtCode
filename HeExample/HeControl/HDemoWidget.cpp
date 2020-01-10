@@ -51,14 +51,14 @@
 #include "HHueSatPicker.h"
 #include "HHueSatRadialPicker.h"
 #include "HLedWidget.h"
-#include "HListNavigator.h"
+#include "HNavigationSlider.h"
 #include "HLongSpinBox.h"
 #include "HTextSpinBox.h"
 #include "HNumPad.h"
 #include "HRichTextEdit.h"
-#include "HConfigWidget.h"
+#include "HConfigPanel.h"
 #include "HTaskPanel.h"
-#include "HNavigationBar.h"
+#include "HNavigationPanel.h"
 
 #include <QtCore/QTimer>
 #include <QtWidgets/QTableWidget>
@@ -375,7 +375,7 @@ void HDemoWidget::addww()
     auto hsr = new HHueSatRadialPicker;
     auto led = new HLedWidget;
     auto tci = new HTwoColorIndicator;
-    auto ln = new HListNavigator;
+    auto ln = new HNavigationSlider;
     auto np = new HNumPad;
     auto rte = new HRichTextEdit;
     auto lsb = new HLongSpinBox;

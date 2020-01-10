@@ -9,11 +9,12 @@ class HLongSpinBoxPrivate
 {
 public:
     qlonglong minimum = 0;
-    qlonglong maximum = 99;
+    qlonglong maximum = 0x7FFFFFFFFFFFFFFF;
     qlonglong value = 0;
+    qlonglong singleStep = 1;
     QString prefix;
     QString suffix;
-    qlonglong singleStep = 1;
+
 };
 
 class HLongSpinBoxValidator : public QValidator

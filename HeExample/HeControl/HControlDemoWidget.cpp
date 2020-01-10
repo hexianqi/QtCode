@@ -33,7 +33,8 @@ void HControlDemoWidget::init()
     d_ptr->style = new HFlatStyle(this);
     initWidget();
     addLiuDianWu();
-    addStyle();
+    addWw();
+    addDemo();
     addTool();
     addElse();
 }

@@ -172,7 +172,7 @@ void HTwoColorIndicator::dragEnterEvent(QDragEnterEvent *e)
 {
     QColor c;
     if (e->mimeData()->hasColor())
-        c = qvariant_cast<QColor>(e->mimeData()->colorData());
+        c = e->mimeData()->colorData().value<QColor>();
     else if (e->mimeData()->hasFormat("text/plain"))
         c = QColor(e->mimeData()->text());
     if (c.isValid())
@@ -197,7 +197,7 @@ void HTwoColorIndicator::dropEvent(QDropEvent *e)
 {
     QColor c;
     if (e->mimeData()->hasColor())
-        c = qvariant_cast<QColor>(e->mimeData()->colorData());
+        c = e->mimeData()->colorData().value<QColor>();
     else
         c.setNamedColor(e->mimeData()->text());
     if (foregroundRect().contains(e->pos()))

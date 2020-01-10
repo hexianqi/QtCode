@@ -36,9 +36,7 @@ public:
     QCompleter::CompletionMode completionMode() const;
 
 public:
-    virtual QSize sizeHint() const override;
-    virtual QSize minimumSizeHint() const override;
-    virtual void setModel(QAbstractItemModel *);
+    void setModel(QAbstractItemModel *);
 
 public slots:
     void setFileMode(QFileDialog::FileMode value);

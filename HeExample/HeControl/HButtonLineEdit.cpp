@@ -23,6 +23,16 @@ HButtonLineEdit::~HButtonLineEdit()
 {
 }
 
+QSize HButtonLineEdit::sizeHint() const
+{
+    return QLineEdit::sizeHint() + QSize(d_ptr->button->sizeHint().width(), 0);
+}
+
+QSize HButtonLineEdit::minimumSizeHint() const
+{
+    return QLineEdit::minimumSizeHint() + QSize(d_ptr->button->sizeHint().width(), 0);
+}
+
 QIcon HButtonLineEdit::icon() const
 {
     return d_ptr->button ? d_ptr->button->icon() : QIcon();
@@ -136,8 +146,7 @@ void HButtonLineEdit::setButtonFocusPolicy(Qt::FocusPolicy value)
 
 void HButtonLineEdit::resizeEvent(QResizeEvent *e)
 {
-    int w = qMin(d_ptr->button->sizeHint().width(), height());
-    updateButtonPosition(w);
+    updateButtonPosition(qMin(d_ptr->button->sizeHint().width(), height()));
     QLineEdit::resizeEvent(e);
 }
 

@@ -2,7 +2,7 @@
 #define HTASKPANEL_P_H
 
 #include "HTaskPanel.h"
-#include "HAbstractMultiWidget_p.h"
+#include "HAbstractMultiPanel_p.h"
 
 class QVBoxLayout;
 
@@ -10,7 +10,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HTaskWidget;
 
-class HTaskPanelPrivate: public HAbstractMultiWidgetPrivate
+class HTaskPanelPrivate : public HAbstractMultiPanelPrivate
 {
 public:
     bool animated = false;

@@ -201,15 +201,11 @@ void HHueSatPicker::buildPixmap()
 {
     int cy = contentsRect().height();
     int cx = contentsRect().width();
-    auto image = QImage(cx, cy, QImage::Format_RGB32);
+    auto image = QImage(cx, cy, QImage::Format_ARGB32);
     for (int y = 0; y < cy; y++)
     {
         for (int x = 0; x < cx; x++)
-        {
-            QColor c;
-            c.setHsvF(hueFromX(x), satFromY(y), d_ptr->value / 255.0);
-            image.setPixel(x, y, c.rgb());
-        }
+            image.setPixel(x, y, QColor::fromHsvF(hueFromX(x), satFromY(y), d_ptr->value / 255.0).rgb());
     }
     d_ptr->pixmap = QPixmap::fromImage(image);
 }
@@ -241,7 +237,7 @@ void HHueSatPicker::colorPick(const QPointF &point)
     auto h = hueFromX(point.x() - contentsRect().x());
     auto s = satFromY(point.y() - contentsRect().y());
     auto v = d_ptr->value / 255.0;
-    if (h < 0 || s < 0 || h > 1.0 || s > 1.0)
+    if (h < 0.0 || h > 1.0 || s < 0.0 || s > 1.0)
         return;
     emit colorPicked(QColor::fromHsvF(h, s, v));
     d_ptr->point = point;

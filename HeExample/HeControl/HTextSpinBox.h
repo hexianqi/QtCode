@@ -16,6 +16,7 @@ class HTextSpinBoxPrivate;
 class HTextSpinBox : public QSpinBox
 {
     Q_OBJECT
+    Q_PROPERTY(QStringList stringList READ stringList WRITE setStringList)
 
 public:
     explicit HTextSpinBox(QWidget *parent = nullptr);

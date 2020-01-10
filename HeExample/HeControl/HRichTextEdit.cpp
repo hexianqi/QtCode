@@ -35,18 +35,18 @@ HRichTextEdit::Options HRichTextEdit::options() const
 
 void HRichTextEdit::setFontFocus()
 {
-    auto f = d_ptr->fontComboBox->currentFont();
-    f.setPointSize(d_ptr->sizeComboBox->currentText().toInt());
-    setFont(f);
+    auto font = d_ptr->fontComboBox->currentFont();
+    font.setPointSize(d_ptr->sizeComboBox->currentText().toInt());
+    setFont(font);
     setFocus();
 }
 
 void HRichTextEdit::setFont(const QFont &value)
 {
-    QTextCharFormat f;
-    f.setFontFamily(value.family());
-    f.setFontPointSize(value.pointSize());
-    setCharFormat(f);
+    QTextCharFormat format;
+    format.setFontFamily(value.family());
+    format.setFontPointSize(value.pointSize());
+    setCharFormat(format);
     if (d_ptr->fontComboBox->currentFont().family() != value.family())
         d_ptr->fontComboBox->setCurrentFont(value);
     if (d_ptr->sizeComboBox->currentText().toInt() != value.pointSize())
@@ -55,57 +55,57 @@ void HRichTextEdit::setFont(const QFont &value)
 
 void HRichTextEdit::setBold(bool b)
 {
-    QTextCharFormat f;
-    f.setFontWeight(b ? QFont::Bold : QFont::Normal);
-    setCharFormat(f);
+    QTextCharFormat format;
+    format.setFontWeight(b ? QFont::Bold : QFont::Normal);
+    setCharFormat(format);
 }
 
 void HRichTextEdit::setItalic(bool b)
 {
-    QTextCharFormat f;
-    f.setFontItalic(b);
-    setCharFormat(f);
+    QTextCharFormat format;
+    format.setFontItalic(b);
+    setCharFormat(format);
 }
 
 void HRichTextEdit::setUnderline(bool b)
 {
-    QTextCharFormat f;
-    f.setFontUnderline(b);
-    setCharFormat(f);
+    QTextCharFormat format;
+    format.setFontUnderline(b);
+    setCharFormat(format);
 }
 
 void HRichTextEdit::setAlignment(QAction *p)
 {
-    auto c = textCursor();
-    QTextBlockFormat f;
+    auto cursor = textCursor();
+    QTextBlockFormat format;
     auto v = static_cast<Qt::Alignment>(p->data().toInt());
-    f.setAlignment(v);
-    c.mergeBlockFormat(f);
-    setTextCursor(c);
+    format.setAlignment(v);
+    cursor.mergeBlockFormat(format);
+    setTextCursor(cursor);
 }
 
 void HRichTextEdit::setList(bool b)
 {
-    QTextCursor c = textCursor();
+    QTextCursor cursor = textCursor();
     if (b)
     {
-      QTextListFormat f;
-      f.setStyle(QTextListFormat::ListDisc);
-      d_ptr->currentList = c.createList(f);
+        QTextListFormat format;
+        format.setStyle(QTextListFormat::ListDisc);
+        d_ptr->currentList = cursor.createList(format);
     }
     else
     {
-      c.setBlockFormat(QTextBlockFormat());
-      setTextCursor(c);
-      d_ptr->currentList = nullptr;
+        cursor.setBlockFormat(QTextBlockFormat());
+        setTextCursor(cursor);
+        d_ptr->currentList = nullptr;
     }
 }
 
 void HRichTextEdit::setColor(const QColor &value)
 {
-    QTextCharFormat f;
-    f.setForeground(value);
-    setCharFormat(f);
+    QTextCharFormat format;
+    format.setForeground(value);
+    setCharFormat(format);
 }
 
 void HRichTextEdit::setOptions(Options value)
@@ -167,9 +167,9 @@ void HRichTextEdit::updateActions()
 
 void HRichTextEdit::setCharFormat(QTextCharFormat value)
 {
-    auto c = textCursor();
-    c.mergeCharFormat(value);
-    setTextCursor(c);
+    auto cursor = textCursor();
+    cursor.mergeCharFormat(value);
+    setTextCursor(cursor);
 }
 
 void HRichTextEdit::keyPressEvent(QKeyEvent *e)
@@ -188,12 +188,12 @@ void HRichTextEdit::keyPressEvent(QKeyEvent *e)
 
 void HRichTextEdit::resizeEvent(QResizeEvent *e)
 {
-    auto s = verticalScrollBar();
-    d_ptr->toolBar->setGeometry(1, 1, width() - s->sizeHint().width() - 1, d_ptr->toolBar->sizeHint().height());
+    auto bar = verticalScrollBar();
+    d_ptr->toolBar->setGeometry(1, 1, width() - bar->sizeHint().width() - 1, d_ptr->toolBar->sizeHint().height());
     QTextEdit::resizeEvent(e);
-    auto r = s->geometry();
-    r.setTop(d_ptr->toolBar->geometry().bottom() + 2);
-    s->setGeometry(r);
+    auto rect = bar->geometry();
+    rect.setTop(d_ptr->toolBar->geometry().bottom() + 2);
+    bar->setGeometry(rect);
 }
 
 void HRichTextEdit::contextMenuEvent(QContextMenuEvent *e)
@@ -279,7 +279,7 @@ void HRichTextEdit::init()
     connect(d_ptr->boldAction, &QAction::triggered, this, &HRichTextEdit::setBold);
     connect(d_ptr->italicAction, &QAction::triggered, this, &HRichTextEdit::setItalic);
     connect(d_ptr->underlineAction, &QAction::triggered, this, &HRichTextEdit::setUnderline);
-    connect(group, &QActionGroup::triggered, this, &HRichTextEdit::setAlignment);    
+    connect(group, &QActionGroup::triggered, this, &HRichTextEdit::setAlignment);
     connect(d_ptr->colorButton, &HColorButton::colorPicked, this, &HRichTextEdit::setColor);
     connect(d_ptr->listAtion, &QAction::triggered, this, &HRichTextEdit::setList);
     updateActions();

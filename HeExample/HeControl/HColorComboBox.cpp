@@ -26,9 +26,19 @@ HColorComboBox::~HColorComboBox()
 {
 }
 
+QStringList HColorComboBox::colors() const
+{
+    return d_ptr->model->colors();
+}
+
+QColor HColorComboBox::currentColor() const
+{
+    return color(currentIndex());
+}
+
 QColor HColorComboBox::color(int index) const
 {
-    return qvariant_cast<QColor>(itemData(index, Qt::DecorationRole));
+    return itemData(index, Qt::DecorationRole).value<QColor>();
 }
 
 bool HColorComboBox::isColorDialogEnabled() const
@@ -41,14 +51,30 @@ int HColorComboBox::colorCount() const
     return d_ptr->model->rowCount();
 }
 
-QColor HColorComboBox::currentColor() const
+void HColorComboBox::setColors(const QStringList &value)
 {
-    return color(currentIndex());
+    d_ptr->model->setColors(value);
+    handleActivated(0);
+    update();
 }
 
-QStringList HColorComboBox::colors() const
+void HColorComboBox::setCurrentColor(const QColor &value)
 {
-    return d_ptr->model->colors();
+    int index = findData(value, Qt::DecorationRole);
+    if (index != -1)
+    {
+        setCurrentIndex(index);
+    }
+    else
+    {
+        addColor(value, tr("自定义颜色"));
+        setCurrentIndex(count() - 1);
+    }
+}
+
+void HColorComboBox::setColorDialogEnabled(bool b)
+{
+    d_ptr->colorDialogEnabled = b;
 }
 
 void HColorComboBox::setStandardColors()
@@ -58,42 +84,12 @@ void HColorComboBox::setStandardColors()
 
 void HColorComboBox::addColor(const QColor &color, const QString &name)
 {
-    insertColor(colorCount(), color, name);
+    d_ptr->model->addColor(color, name);
 }
 
 void HColorComboBox::insertColor(int index, const QColor &color, const QString &name)
 {
     d_ptr->model->insertColor(index, color, name);
-}
-
-void HColorComboBox::setColorDialogEnabled(bool b)
-{
-    d_ptr->colorDialogEnabled = b;
-}
-
-void HColorComboBox::setCurrentColor(const QColor &value)
-{
-    int i = findData(value, Qt::DecorationRole);
-    if (i != -1)
-    {
-        setCurrentIndex(i);
-    }
-    else
-    {
-        addColor(value, tr("自定义颜色"));
-        setCurrentIndex(count() - 1);
-    }
-}
-
-void HColorComboBox::setColors(const QStringList &value)
-{
-    for (auto v : value)
-    {
-        auto s = v.split(",");
-        addColor(QColor(s[0]), s[1]);
-    }
-    handleActivated(0);
-    update();
 }
 
 bool HColorComboBox::eventFilter(QObject *object, QEvent *event)
@@ -128,12 +124,12 @@ void HColorComboBox::paintEvent(QPaintEvent *)
     initStyleOption(&option);
     if (option.currentIcon.isNull())
     {
-        auto c = qvariant_cast<QColor>(itemData(currentIndex(), Qt::DecorationRole));
-        if (c.isValid())
+        auto color = itemData(currentIndex(), Qt::DecorationRole).value<QColor>();
+        if (color.isValid())
         {
             int size = style()->pixelMetric(QStyle::PM_ButtonIconSize, &option, this);
             QPixmap pixmap(size, size);
-            pixmap.fill(c);
+            pixmap.fill(color);
             option.currentIcon = pixmap;
         }
     }
@@ -146,12 +142,12 @@ void HColorComboBox::paintEvent(QPaintEvent *)
 
 void HColorComboBox::dragEnterEvent(QDragEnterEvent *e)
 {
-    QColor c;
+    QColor color;
     if (e->mimeData()->hasColor())
-        c = qvariant_cast<QColor>(e->mimeData()->colorData());
+        color = e->mimeData()->colorData().value<QColor>();
     else if (e->mimeData()->hasText())
-        c = QColor(e->mimeData()->text());
-    if (c.isValid())
+        color = QColor(e->mimeData()->text());
+    if (color.isValid())
         e->acceptProposedAction();
 }
 
@@ -160,7 +156,7 @@ void HColorComboBox::dropEvent(QDropEvent *e)
     if (e->source() == this)
         return;
     if (e->mimeData()->hasColor())
-        setCurrentColor(qvariant_cast<QColor>(e->mimeData()->colorData()));
+        setCurrentColor(e->mimeData()->colorData().value<QColor>());
     else
         setCurrentColor(e->mimeData()->text());
 }
@@ -172,15 +168,15 @@ void HColorComboBox::handleActivated(int index)
 
     auto c = color(index);
     if (c.isValid())
-        emit activated(c);
+        emit colorPicked(c);
 }
 
 void HColorComboBox::popupDialog()
 {
-    auto c = QColorDialog::getColor(currentColor(), this, tr("选取颜色"), QColorDialog::ShowAlphaChannel);
-    if (!c.isValid())
+    auto color = QColorDialog::getColor(currentColor(), this, tr("选取颜色"), QColorDialog::ShowAlphaChannel);
+    if (!color.isValid())
         return;
-    setCurrentColor(c);
+    setCurrentColor(color);
 }
 
 void HColorComboBox::init()

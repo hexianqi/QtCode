@@ -9,7 +9,6 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HFileChooserPrivate : public HButtonLineEditPrivate
 {
 public:
-    QAbstractItemModel *model;
     QCompleter *completer;
     QFileDialog::FileMode fileMode = QFileDialog::AnyFile;
     QFileDialog::AcceptMode acceptMode = QFileDialog::AcceptOpen;

@@ -7,7 +7,7 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-void HControlDemoWidget::addStyle()
+void HControlDemoWidget::addDemo()
 {
     addTab(tr("DEMO"), "Style", new HStyleWidget);
     addTab(tr("DEMO"), "Flat", new HFlatStyleWidget);

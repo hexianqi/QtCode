@@ -204,15 +204,15 @@ void HRbTableHeaderView::paintSection(QPainter *painter, const QRect &rect, int 
         option.text = cell.data(Qt::DisplayRole).toString();
         option.rect = section;
         // file background or foreground color of the cell
-        QVariant bg = cell.data(Qt::BackgroundRole);
-        QVariant fg = cell.data(Qt::ForegroundRole);
-        if (bg.canConvert(QMetaType::QBrush))
+        QVariant background = cell.data(Qt::BackgroundRole);
+        QVariant foreground = cell.data(Qt::ForegroundRole);
+        if (background.canConvert(QMetaType::QBrush))
         {
-            option.palette.setBrush(QPalette::Button, qvariant_cast<QBrush>(bg));
-            option.palette.setBrush(QPalette::Window, qvariant_cast<QBrush>(bg));
+            option.palette.setBrush(QPalette::Button, background.value<QBrush>());
+            option.palette.setBrush(QPalette::Window, background.value<QBrush>());
         }
-        if (fg.canConvert(QMetaType::QBrush))
-            option.palette.setBrush(QPalette::ButtonText, qvariant_cast<QBrush>(fg));
+        if (foreground.canConvert(QMetaType::QBrush))
+            option.palette.setBrush(QPalette::ButtonText, foreground.value<QBrush>());
 
         painter->save();
         qDrawShadePanel(painter, option.rect, option.palette, false, 1, &option.palette.brush(QPalette::Button));

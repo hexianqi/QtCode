@@ -27,10 +27,11 @@ public:
     ~HHueSatPicker() override;
 
 signals:
-    void valueChanged(int);
+    void colorPicked(const QColor &);
     void satChanged(int, int);
     void hueChanged(int, int);
-    void colorPicked(const QColor &);
+    void valueChanged(int);
+
 
 public:
     QSize sizeHint() const override;

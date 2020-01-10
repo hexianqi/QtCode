@@ -23,8 +23,7 @@ HRichTextButton::HRichTextButton(HRichTextButtonPrivate &p, QWidget *parent) :
 
 HRichTextButton::~HRichTextButton()
 {
-    if (d_ptr->internalDoc)
-        delete d_ptr->doc;
+    deleteInternalDoc();
 }
 
 QSize HRichTextButton::sizeHint() const
@@ -88,13 +87,12 @@ void HRichTextButton::setDocument(QTextDocument *p)
 {
     if (document())
         document()->disconnect(this);
-    if (d_ptr->internalDoc)
-        delete d_ptr->doc;
+    deleteInternalDoc();
     d_ptr->doc = p;
     if (p == nullptr)
         return;
-    d_ptr->doc->adjustSize();
 
+    d_ptr->doc->adjustSize();
     updateGeometry();
     connect(d_ptr->doc, &QTextDocument::contentsChanged, this, [=] { update(); });
     connect(d_ptr->doc, &QTextDocument::destroyed, this, [=] { if (!d_ptr->internalDoc) createInternalDoc(""); });
@@ -116,7 +114,7 @@ void HRichTextButton::paintEvent(QPaintEvent *)
     auto h = qRound(document()->documentLayout()->documentSize().height());
     auto r = style()->subElementRect(QStyle::SE_PushButtonContents, &option, this);
 
-    painter.translate(r.left() - rect().left(), r.top() - rect().top());
+    painter.translate(r.topLeft() - rect().topLeft());
     if(r.height() > h)
         painter.translate(0, (r.height() - h) / 2);
     if (isDown() || isChecked())
@@ -162,6 +160,12 @@ void HRichTextButton::createInternalDoc(const QString &text)
     doc->setHtml(text);
     setDocument(doc);
     d_ptr->internalDoc = true;
+}
+
+void HRichTextButton::deleteInternalDoc()
+{
+    if (d_ptr->internalDoc)
+        delete d_ptr->doc;
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -58,5 +58,4 @@ int HTextSpinBox::valueFromText(const QString &text) const
     return d_ptr->strings.indexOf(text);
 }
 
-
 HE_CONTROL_END_NAMESPACE

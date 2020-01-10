@@ -1,6 +1,16 @@
 #include "HColorModel.h"
 
+
 HE_CONTROL_BEGIN_NAMESPACE
+
+QStandardItem *createItem(const QColor &color, const QString &name)
+{
+    auto item = new QStandardItem;
+    item->setText(name);
+    item->setData(color, Qt::DecorationRole);
+    item->setData(name, Qt::ToolTipRole);
+    return item;
+}
 
 HColorModel::HColorModel(QObject *parent) :
     QStandardItemModel(parent)
@@ -16,20 +26,14 @@ QModelIndex HColorModel::contains(const QColor &color)
 
 QModelIndex HColorModel::addColor(const QColor &color, const QString &name)
 {
-    auto item = new QStandardItem;
-    item->setText(name);
-    item->setData(color, Qt::DecorationRole);
-    item->setData(name, Qt::ToolTipRole);
+    auto item = createItem(color, name);
     appendRow(item);
     return item->index();
 }
 
 QModelIndex HColorModel::insertColor(int index, const QColor &color, const QString &name)
 {
-    auto *item = new QStandardItem;
-    item->setText(name);
-    item->setData(color, Qt::DecorationRole);
-    item->setData(name, Qt::ToolTipRole);
+    auto item = createItem(color, name);
     insertRow(index, item);
     return item->index();
 }
@@ -41,11 +45,22 @@ void HColorModel::setStandardColors()
         addColor(QColor(name), name);
 }
 
+void HColorModel::setColors(const QStringList &value)
+{
+    clear();
+    for (auto v : value)
+    {
+        auto s = v.split(",");
+        if (s.size() > 1)
+            addColor(QColor(s[0]), s[1]);
+    }
+}
+
 QStringList HColorModel::colors() const
 {
     QStringList list;
     for (int i = 0; i < rowCount();i++)
-        list << QString("%1,%2").arg(qvariant_cast<QColor>(index(i, 0).data(Qt::DecorationRole)).name()).arg(index(i, 0).data(Qt::ToolTipRole).toString());
+        list << QString("%1,%2").arg(index(i, 0).data(Qt::DecorationRole).value<QColor>().name()).arg(index(i, 0).data(Qt::ToolTipRole).toString());
     return list;
 }
 

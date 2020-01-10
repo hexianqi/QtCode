@@ -23,8 +23,8 @@ public:
     ~HHueSatRadialPicker() override;
 
 signals:
-    void valueChanged(int);
     void colorPicked(const QColor &);
+    void valueChanged(int);
 
 public:
     QSize sizeHint() const override;
