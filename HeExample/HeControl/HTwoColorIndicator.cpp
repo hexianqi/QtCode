@@ -97,9 +97,9 @@ void HTwoColorIndicator::switchColors()
 
 void HTwoColorIndicator::mousePressEvent(QMouseEvent *e)
 {
-    d_ptr->pressPos = e->pos();
     if (e->button() == Qt::LeftButton)
     {
+        d_ptr->pressPos = e->pos();
         if (foregroundRect().contains(e->pos()))
         {
             d_ptr->foregroundPress = true;
@@ -146,9 +146,9 @@ void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *e)
             emit foregroundClicked();
             if (isActive())
             {
-                auto c = QColorDialog::getColor(foreground(), this, tr("选择前景色"), QColorDialog::ShowAlphaChannel);
-                if (c.isValid())
-                    setForeground(c);
+                auto color = QColorDialog::getColor(foreground(), this, tr("选择前景色"), QColorDialog::ShowAlphaChannel);
+                if (color.isValid())
+                    setForeground(color);
             }
         }
         else if (d_ptr->backgroundPress && backgroundRect().contains(e->pos()))
@@ -156,9 +156,9 @@ void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *e)
             emit backgroundClicked();
             if (isActive())
             {
-                auto c = QColorDialog::getColor(background(), this, tr("选择背景色"), QColorDialog::ShowAlphaChannel);
-                if (c.isValid())
-                    setBackground(c);
+                auto color = QColorDialog::getColor(background(), this, tr("选择背景色"), QColorDialog::ShowAlphaChannel);
+                if (color.isValid())
+                    setBackground(color);
             }
         }
         d_ptr->foregroundPress = false;
@@ -170,12 +170,12 @@ void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *e)
 
 void HTwoColorIndicator::dragEnterEvent(QDragEnterEvent *e)
 {
-    QColor c;
+    QColor color;
     if (e->mimeData()->hasColor())
-        c = e->mimeData()->colorData().value<QColor>();
+        color = e->mimeData()->colorData().value<QColor>();
     else if (e->mimeData()->hasFormat("text/plain"))
-        c = QColor(e->mimeData()->text());
-    if (c.isValid())
+        color = QColor(e->mimeData()->text());
+    if (color.isValid())
         e->acceptProposedAction();
 }
 
@@ -219,10 +219,7 @@ void HTwoColorIndicator::paintSection(QPainter *painter, const QRect &rect, cons
     QStyleOptionButton option;
     option.initFrom(this);
     option.rect = rect;
-    if ((rect.contains(QPoint(3, 3)) && d_ptr->foregroundPress) || (rect.contains(QPoint(width() - 4, height() - 4)) && d_ptr->backgroundPress))
-        option.state |= QStyle::State_Sunken;
-    else
-        option.state |= QStyle::State_Raised;
+    option.state |= (rect.contains(3, 3) && d_ptr->foregroundPress) || (rect.contains(width() - 4, height() - 4) && d_ptr->backgroundPress) ? QStyle::State_Sunken : QStyle::State_Raised;
     if (rect == foregroundRect() && rect.contains(mapFromGlobal(QCursor::pos())))
         option.state |= QStyle::State_MouseOver;
     else if (rect == backgroundRect() && rect.contains(mapFromGlobal(QCursor::pos())) && !foregroundRect().contains(mapFromGlobal(QCursor::pos())))
@@ -236,7 +233,7 @@ void HTwoColorIndicator::paintSection(QPainter *painter, const QRect &rect, cons
     if (option.state & QStyle::State_Sunken)
         fillRect.translate(style()->pixelMetric(QStyle::PM_ButtonShiftHorizontal), style()->pixelMetric(QStyle::PM_ButtonShiftVertical));
     painter->setPen(Qt::NoPen);
-    painter->setBrush(option.state & QStyle::State_Enabled ? color : palette().color(QPalette::Disabled, QPalette::Window ));
+    painter->setBrush(option.state & QStyle::State_Enabled ? color : palette().color(QPalette::Disabled, QPalette::Window));
     painter->setRenderHint(QPainter::Antialiasing);
     painter->drawRoundedRect(fillRect, 3, 3);
 }

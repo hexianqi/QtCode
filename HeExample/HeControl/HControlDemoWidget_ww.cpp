@@ -11,16 +11,14 @@
 #include "HRichTextEdit.h"
 #include "HHueSatPicker.h"
 #include "HHueSatRadialPicker.h"
-
 #include "HNavigationSlider.h"
-
 #include "HConfigPanel.h"
 #include "HNavigationPanel.h"
 #include "HTaskPanel.h"
-
+#include "HTipWidget.h"
 #include "HLedWidget.h"
 #include "HNumPad.h"
-
+#include "HTwoColorIndicator.h"
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QGridLayout>
@@ -35,6 +33,7 @@ void HControlDemoWidget::addWw()
     addWwConfigPanel();
     addWwNavigationPanel();
     addWwTaskPanel();
+    addWwTipWidget();
     addWwElse();
 }
 
@@ -115,21 +114,27 @@ void HControlDemoWidget::addWwNavigationPanel()
 
 void HControlDemoWidget::addWwTaskPanel()
 {
-    auto w = new HNavigationPanel;
+    auto w = new HTaskPanel;
     w->addWidget(new HHueSatPicker, tr("颜色拾取器"));
     w->addWidget(new HHueSatRadialPicker, tr("颜色拾取器2"));
     w->addWidget(new HRichTextEdit, tr("富文本编辑器"));
     addTab(tr("ww"), tr("任务面板"), w);
 }
 
+void HControlDemoWidget::addWwTipWidget()
+{
+    addTab(tr("ww"), tr("提示框"), new HTipWidget);
+}
+
 void HControlDemoWidget::addWwElse()
 {
-    auto layout = new QVBoxLayout;
+    auto layout = new QGridLayout;
     auto led = new HLedWidget;
+    auto indicator = new HTwoColorIndicator;
     auto num = new HNumPad;
-    layout->addWidget(led);
-    layout->addWidget(num);
-  //  layout->addStretch();
+    layout->addWidget(led, 0, 0);
+    layout->addWidget(indicator, 0, 1);
+    layout->addWidget(num, 1, 0, 1, 2);
     addTab(tr("ww"), tr("其他"), layout);
 }
 

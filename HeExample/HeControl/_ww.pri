@@ -49,7 +49,9 @@ HEADERS += \
     $$PWD/HConfigPanel.h \
     $$PWD/HConfigPanel_p.h \
     $$PWD/HAbstractMultiPanel.h \
-    $$PWD/HAbstractMultiPanel_p.h
+    $$PWD/HAbstractMultiPanel_p.h \
+    $$PWD/HTipWidget.h \
+    $$PWD/HTipWidget_p.h
 
 SOURCES += \
     $$PWD/HButtonLineEdit.cpp \
@@ -77,4 +79,5 @@ SOURCES += \
     $$PWD/HNavigationSlider.cpp \
     $$PWD/HNavigationPanel.cpp \
     $$PWD/HConfigPanel.cpp \
-    $$PWD/HAbstractMultiPanel.cpp
+    $$PWD/HAbstractMultiPanel.cpp \
+    $$PWD/HTipWidget.cpp

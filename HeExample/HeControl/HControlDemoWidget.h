@@ -52,6 +52,7 @@ private:
     void addWwConfigPanel();
     void addWwNavigationPanel();
     void addWwTaskPanel();
+    void addWwTipWidget();
     void addWwElse();
 
 

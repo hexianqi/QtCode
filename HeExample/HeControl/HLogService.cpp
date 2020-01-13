@@ -92,5 +92,4 @@ void HLogService::init()
     connect(this, SIGNAL(send(QString)), HNetworkLog::instance(), SLOT(send(QString)));
 }
 
-
 HE_CONTROL_END_NAMESPACE
