@@ -20,7 +20,7 @@ class HE_GUI_EXPORT HTestWidget : public HAbstractTestWidget
 
 public:
     explicit HTestWidget(QWidget *parent = nullptr);
-    ~HTestWidget();
+    ~HTestWidget() override;
 
 protected:
     HTestWidget(HTestWidgetPrivate &p, QWidget *parent = nullptr);

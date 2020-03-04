@@ -50,11 +50,11 @@ void HAbstractBuilder::buildAll()
 
 void HAbstractBuilder::buildFactory()
 {
-    d_ptr->communicateFactory = new HCommunicateFactory(this);
-    d_ptr->controllerFactory = new HControllerFactory(this);
-    d_ptr->dataFactory = new HDataFactory(this);
-    d_ptr->guiFactory = new HGuiFactory(this);
     d_ptr->sqlFactory = new HSqlFactory(this);
+    d_ptr->guiFactory = new HGuiFactory(this);
+    d_ptr->dataFactory = new HDataFactory(this);
+    d_ptr->controllerFactory = new HControllerFactory(this);
+    d_ptr->communicateFactory = new HCommunicateFactory(this);
     HAppContext::setContextPointer("ICommunicateFactory", d_ptr->communicateFactory);
     HAppContext::setContextPointer("IControllerFactory", d_ptr->controllerFactory);
     HAppContext::setContextPointer("IDataFactory", d_ptr->dataFactory);

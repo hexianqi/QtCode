@@ -33,6 +33,7 @@ HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HC
 
 HAbstractMainWindow::~HAbstractMainWindow()
 {
+    d_ptr->testWidget->stop();
     save(false);
 }
 

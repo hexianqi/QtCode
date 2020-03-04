@@ -141,14 +141,14 @@ void HBuilder2000DC::buildTestData()
 void HBuilder2000DC::buildDevice()
 {
     Q_D(HBuilder2000DC);
-    // 设备模拟
-    auto device = d->communicateFactory->createDevice("HSlSimulation");
-    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-    protocol->setDevice(device);
+//    // 设备模拟
+//    auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    protocol->setDevice(device);
     // 第一版设备554b
     // auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
     // 第二版设备1305
-    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+    auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
@@ -266,6 +266,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

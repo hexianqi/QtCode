@@ -54,7 +54,7 @@ Release {
 include(SL2000.pri)
 include(SL2000DC.pri)
 
-DEFINES += SL2000DC
+DEFINES += SL2000
 
 if (contains(DEFINES, SL2000)) {
     TARGET_NAME = SL2000

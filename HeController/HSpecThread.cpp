@@ -8,18 +8,25 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 HSpecThreadPrivate::HSpecThreadPrivate()
 {
-    strategys.insert("Spec", HAppContext::getContextPointer<IControllerFactory>("IControllerFactory")->createStrategy("HSpecStrategy"));
     protocols.insert("Spec", HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec"));
 }
 
 HSpecThread::HSpecThread(QObject *parent) :
     HAbstractThread(*new HSpecThreadPrivate, parent)
 {
+    init();
 }
 
 HSpecThread::HSpecThread(HSpecThreadPrivate &p, QObject *parent) :
     HAbstractThread(p, parent)
 {
+    init();
+}
+
+void HSpecThread::init()
+{
+    Q_D(HSpecThread);
+    d->strategys.insert("Spec", HAppContext::getContextPointer<IControllerFactory>("IControllerFactory")->createStrategy("HSpecStrategy", this));
 }
 
 HSpecThread::~HSpecThread()

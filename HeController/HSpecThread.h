@@ -28,6 +28,9 @@ public:
 
 protected:
     HSpecThread(HSpecThreadPrivate &p, QObject *parent = nullptr);
+
+private:
+    void init();
 };
 
 HE_CONTROLLER_END_NAMESPACE

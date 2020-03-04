@@ -60,7 +60,7 @@ void HDelayThread::stop()
         return;
     clearAction();
     addAction(ACT_EXIT, 0);
-    wait(1000);
+    wait(100);
 }
 
 void HDelayThread::addAction(HActionType action, ulong delay)

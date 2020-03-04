@@ -32,6 +32,9 @@ protected:
 protected:
     HErrorType handleAction(HActionType action) override;
     void setEfficacy();
+
+private:
+    void init();
 };
 
 HE_CONTROLLER_END_NAMESPACE

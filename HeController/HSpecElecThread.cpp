@@ -15,14 +15,11 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
     actionSupport << ACT_SINGLE_TEST
                   << ACT_GET_SPECTRUM_ELEC;
 
-    auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
     testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
-    strategySpec = factory->createStrategy("HSpecStrategy");
-    strategyElec = factory->createStrategy("HElecStrategy");
-    strategys.insert("Spec", strategySpec);
-//    strategys.insert("Elec", strategyElec);
+
     protocols.insert("Spec", protocolCollection->value("Spec"));
 //    protocols.insert("Elec", protocolCollection->value("Elec"));
 }
@@ -30,11 +27,13 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
 HSpecElecThread::HSpecElecThread(QObject *parent) :
     HAbstractThread(*new HSpecElecThreadPrivate, parent)
 {
+    init();
 }
 
 HSpecElecThread::HSpecElecThread(HSpecElecThreadPrivate &p, QObject *parent) :
     HAbstractThread(p, parent)
 {
+    init();
 }
 
 HSpecElecThread::~HSpecElecThread()
@@ -93,6 +92,16 @@ void HSpecElecThread::setEfficacy()
     auto l = d->testSpec->data("[光谱光通量]").toDouble();
     auto p = d->testElec->data("[电功率]").toDouble();
     d->testSpec->setData("[光效率]", p < 0.01 ? 0.0 :  l / p);
+}
+
+void HSpecElecThread::init()
+{
+    Q_D(HSpecElecThread);
+    auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+    d->strategySpec = factory->createStrategy("HSpecStrategy", this);
+    d->strategyElec = factory->createStrategy("HElecStrategy", this);
+    d->strategys.insert("Spec", d->strategySpec);
+    d->strategys.insert("Elec", d->strategyElec);
 }
 
 HE_CONTROLLER_END_NAMESPACE

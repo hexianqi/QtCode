@@ -57,9 +57,11 @@ IModel *HControllerFactory::createModel(QString type, QVariantMap param)
     return HObjectFactory::createObject<IModel>(type, param, this);
 }
 
-IActionStrategy *HControllerFactory::createStrategy(QString type, QVariantMap param)
+IActionStrategy *HControllerFactory::createStrategy(QString type, QObject *parent, QVariantMap param)
 {
-    return HObjectFactory::createObject<IActionStrategy>(type, param, this);
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IActionStrategy>(type, param, parent);
 }
 
 void HControllerFactory::registerClass()
@@ -69,7 +71,7 @@ void HControllerFactory::registerClass()
     HObjectFactory::registerClass<HSpecModel>("HSpecModel");
     HObjectFactory::registerClass<HSpecElecModel>("HSpecElecModel");
     HObjectFactory::registerClass<HSpecStrategy>("HSpecStrategy");
-    HObjectFactory::registerClass<HSpecStrategy>("HElecStrategy");
+    HObjectFactory::registerClass<HElecStrategy>("HElecStrategy");
 }
 
 HE_CONTROLLER_END_NAMESPACE
