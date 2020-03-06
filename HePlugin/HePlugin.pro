@@ -12,11 +12,13 @@ SOURCES     += \
             class2Plugin.cpp \
             HCollectionInterface.cpp \
             HPluginHelper.cpp \
+            HImageHelper.cpp
 
 HEADERS     += \
             class2Plugin.h \
             HCollectionInterface.h \
-            HPluginHelper.h
+            HPluginHelper.h \
+            HImageHelper.h
 
 RESOURCES   = HePlugin.qrc
 

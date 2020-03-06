@@ -6,7 +6,7 @@
 class HHexSpinBoxPrivate
 {
 public:
-    QRegExpValidator *validator;
+    QRegularExpressionValidator *validator;
 };
 
 #endif // HHEXSPINBOX_P_H

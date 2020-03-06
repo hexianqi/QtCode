@@ -38,4 +38,9 @@ QVariant HAbstractDataItem::data(QString name)
     return d_ptr->datas.value(name);
 }
 
+QVariantMap HAbstractDataItem::data()
+{
+    return d_ptr->datas;
+}
+
 HE_DATA_END_NAMESPACE

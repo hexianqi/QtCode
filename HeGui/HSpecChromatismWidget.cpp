@@ -9,7 +9,6 @@
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include "HePlugin/HChromatismWidget.h"
-#include <QtCore/QJsonObject>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QGridLayout>
 #include <QtCore/QDebug>
@@ -46,7 +45,7 @@ void HSpecChromatismWidget::initMenuShow()
         return;
     auto group = new QActionGroup(this);
     for (auto v : data->values())
-         group->addAction(v->data("[标题]").toString())->setData(v->toJson());
+         group->addAction(v->data("[标题]").toString())->setData(v->data());
     connect(group, &QActionGroup::triggered, this, &HSpecChromatismWidget::showChromatism);
     d_ptr->menuShow->addActions(group->actions());
     if (group->actions().size() > 0)
@@ -55,14 +54,14 @@ void HSpecChromatismWidget::initMenuShow()
 
 void HSpecChromatismWidget::refreshWidget()
 {
-    d_ptr->chromatismWidget->setData(d_ptr->testData->data("[色容差Json]").toJsonObject());
+    d_ptr->chromatismWidget->setData(d_ptr->testData->data("[色容差标准]").toMap());
 }
 
 void HSpecChromatismWidget::showChromatism(QAction *p)
 {
     if (p == nullptr)
         return;
-    d_ptr->chromatismWidget->setData(p->data().toJsonObject());
+    d_ptr->chromatismWidget->setData(p->data().toMap());
 }
 
 void HSpecChromatismWidget::init()

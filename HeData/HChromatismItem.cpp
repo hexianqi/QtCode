@@ -1,7 +1,5 @@
 #include "HChromatismItem_p.h"
 #include <QtCore/QPointF>
-#include <QtCore/QJsonObject>
-#include <QtCore/QJsonArray>
 #include <QtCore/QDataStream>
 #include <QtCore/QtMath>
 
@@ -69,25 +67,6 @@ double HChromatismItem::calcSdcm(QPointF xy)
     setData("[测试点]", xy);
     setData("[测试Sdcm]", sdcm);
     return sdcm;
-}
-
-QJsonObject HChromatismItem::toJson()
-{
-    QJsonObject json;
-    json.insert("title", data("[标题]").toString());
-    json.insert("isUse", data("[使用]").toBool());
-    json.insert("stdTc", data("[相关色温]").toDouble());
-    json.insert("stdSdcm", data("[标准Sdcm]").toDouble());
-    json.insert("pointCenterX", data("[中心点]").toPointF().x());
-    json.insert("pointCenterY", data("[中心点]").toPointF().y());
-    json.insert("stdG", QJsonArray::fromVariantList(data("[参数G]").toList()));
-    json.insert("stdTheta", data("[旋转角]").toDouble());
-    json.insert("stdA", data("[轴A]").toDouble());
-    json.insert("stdB", data("[轴B]").toDouble());
-    json.insert("pointFocusX", data("[测试点]").toPointF().x());
-    json.insert("pointFocusY", data("[测试点]").toPointF().y());
-    json.insert("sdcm", data("[测试Sdcm]").toDouble());
-    return json;
 }
 
 HE_DATA_END_NAMESPACE

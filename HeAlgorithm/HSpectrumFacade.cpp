@@ -58,7 +58,7 @@ void calcSpectrumEnergy(HSpecData *data)
     data->Bandwidth = qFabs(x - y);
     data->EnergyPercent.clear();
     for (auto p : data->Energy)
-        data->EnergyPercent.append(QPointF(p.x(), 100 * p.y() / max));
+        data->EnergyPercent << QPointF(p.x(), 100 * p.y() / max);
 }
 
 HSpecFacadePrivate::HSpecFacadePrivate()
@@ -77,8 +77,8 @@ void HSpecFacadePrivate::setChromaticity(int type)
         chromaticity.reset(new HChromaticityV2);
 }
 
-HSpecFacade::HSpecFacade()
-    : d_ptr(new HSpecFacadePrivate)
+HSpecFacade::HSpecFacade() :
+    d_ptr(new HSpecFacadePrivate)
 {
 }
 

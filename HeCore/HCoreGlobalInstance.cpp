@@ -4,8 +4,7 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QFile>
 #include <QtCore/QPointF>
-#include <QtCore/QVariant>
-#include <QtCore/QVector>
+#include <QtCore/QRegularExpression>
 #include <QtCore/QDebug>
 
 HE_CORE_BEGIN_NAMESPACE
@@ -571,7 +570,7 @@ void HCoreGlobalInstance::initDataCaption()
 
 void HCoreGlobalInstance::initMimeType()
 {
-    QRegExp whitespace("\\s+");
+    QRegularExpression sep("\\s+");
     QString fileName = QFile::exists("/etc/Mime.types") ? "/etc/Mime.types" : ":/dat/Mime.types";
     QFile file(fileName);
 
@@ -582,7 +581,7 @@ void HCoreGlobalInstance::initMimeType()
     while (!in.atEnd())
     {
         auto line = in.readLine();
-        auto parts = line.split(whitespace);
+        auto parts = line.split(sep);
         if (parts.isEmpty())
             continue;
         hashMimeType[parts.at(0)].unite(QSet<QString>::fromList(parts.mid(1)));

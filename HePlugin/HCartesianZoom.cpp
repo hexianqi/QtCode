@@ -3,8 +3,8 @@
 #include "HRubberBand.h"
 #include <QtWidgets/QToolButton>
 
-HCartesianZoomPrivate::HCartesianZoomPrivate(QWidget *p)
-    : HAbstractMouseStrategyPrivate(p)
+HCartesianZoomPrivate::HCartesianZoomPrivate(QWidget *p) :
+    HAbstractMouseStrategyPrivate(p)
 {
     zoomIn = new QToolButton(p);
     zoomIn->setIcon(QIcon(":/image/ZoomIn.png"));
@@ -15,14 +15,14 @@ HCartesianZoomPrivate::HCartesianZoomPrivate(QWidget *p)
     rubberBand = new HRubberBand(p);
 }
 
-HCartesianZoom::HCartesianZoom(QWidget *parent)
-    : HAbstractMouseStrategy(*new HCartesianZoomPrivate(parent), parent)
+HCartesianZoom::HCartesianZoom(QWidget *parent) :
+    HAbstractMouseStrategy(*new HCartesianZoomPrivate(parent), parent)
 {
     init();
 }
 
-HCartesianZoom::HCartesianZoom(HCartesianZoomPrivate &p, QWidget *parent)
-    : HAbstractMouseStrategy(p, parent)
+HCartesianZoom::HCartesianZoom(HCartesianZoomPrivate &p, QWidget *parent) :
+    HAbstractMouseStrategy(p, parent)
 {
     init();
 }

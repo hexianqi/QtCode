@@ -59,7 +59,7 @@ bool HTestSpecDemo::setEnergy(QPolygonF value, double percent)
     addData("[蓝色比]", d->specData->BlueRatio);
     addData("[绿色比]", d->specData->GreenRatio);
     addData("[显色指数]", d->specData->RenderingIndexAvg);
-    addData("[显色指数Rx]", d->renderingIndexS());
+    addData("[显色指数Rx]", d->renderingIndex());
     addData("[光谱光通量]", d->specData->LuminousFlux);
     addData("[光功率]", d->specData->LuminousPower);
     return true;

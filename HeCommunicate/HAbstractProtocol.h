@@ -28,8 +28,6 @@ public:
 public:
     HErrorType setData(HActionType action, uchar value, int delay = 0) override;
     HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
-
-public:
     HErrorType getData(HActionType action, uchar &value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 

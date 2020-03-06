@@ -2,20 +2,18 @@
 #include "HHexSpinBox.h"
 #include "HPluginHelper.h"
 
-HHexSpinBoxDelegate::HHexSpinBoxDelegate(QObject *parent)
-    : HItemDelegate(*new HHexSpinBoxDelegatePrivate, parent)
+HHexSpinBoxDelegate::HHexSpinBoxDelegate(QObject *parent) :
+    HItemDelegate(*new HHexSpinBoxDelegatePrivate, parent)
 {
 }
 
-HHexSpinBoxDelegate::HHexSpinBoxDelegate(HHexSpinBoxDelegatePrivate &p, QObject *parent)
-    : HItemDelegate(p, parent)
+HHexSpinBoxDelegate::HHexSpinBoxDelegate(HHexSpinBoxDelegatePrivate &p, QObject *parent) :
+    HItemDelegate(p, parent)
 {
-
 }
 
 HHexSpinBoxDelegate::~HHexSpinBoxDelegate()
 {
-
 }
 
 QWidget *HHexSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const

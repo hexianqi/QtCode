@@ -37,9 +37,6 @@ protected:
     HElecCalibrate(HElecCalibratePrivate &);
 
 protected:
-
-
-protected:
     QScopedPointer<HElecCalibratePrivate> d_ptr;
 };
 

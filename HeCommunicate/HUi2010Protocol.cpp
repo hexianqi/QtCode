@@ -54,7 +54,7 @@ HErrorType HUi2010Protocol::getData(HActionType action, QVector<double> &value, 
         CharFloat cf;
         for (int j = 0; j < 4; j++)
             cf.c[j] = data[4 * i + j];
-        value[i] = cf.f;
+        value[i] = double(cf.f);
     }
     return E_OK;
 }

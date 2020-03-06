@@ -30,11 +30,10 @@ protected:
     HSlDevice2(HSlDevice2Private &);
 
 protected:
-    HErrorType setData(uchar cmd, QVector<uchar> value, int delay = 0);
-    HErrorType getData(int size, uchar cmd, uchar block, QVector<uchar> &value, int delay = 0);
+    HErrorType setDataOnce(uchar cmd, QVector<uchar> value, int delay = 0);
+    HErrorType getDataOnce(int size, uchar cmd, uchar block, QVector<uchar> &value, int delay = 0);
     HErrorType setDataBatch(QList<uchar> param, QVector<uchar> value, int delay = 0);
     HErrorType getDataBatch(QList<uchar> param, QVector<uchar> &value, int delay = 0);
-    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 };
 
 HE_COMMUNICATE_END_NAMESPACE

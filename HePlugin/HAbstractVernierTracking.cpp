@@ -2,8 +2,8 @@
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QWidget>
 
-HAbstractVernierTrackingPrivate::HAbstractVernierTrackingPrivate(Qt::Orientation o, QWidget *p)
-    : HAbstractMouseStrategyPrivate(p)
+HAbstractVernierTrackingPrivate::HAbstractVernierTrackingPrivate(Qt::Orientation o, QWidget *p) :
+    HAbstractMouseStrategyPrivate(p)
 {
     orientation = o;
     validRegion.setRect(0, 0, 1, 1);

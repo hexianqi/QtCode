@@ -35,11 +35,9 @@ QString HQualityEditHandler::typeName()
     return "HQualityEditHandler";
 }
 
-void HQualityEditHandler::execute(QObject *sender, QVariantMap param)
+void HQualityEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualityEditHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     auto detail = new HDataDetail<IQuality>();
     detail->setEditWidget(new HQualityEditWidget);
     detail->setData(d->configManage->qualityCollection());

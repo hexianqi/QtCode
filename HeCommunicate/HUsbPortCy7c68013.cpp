@@ -37,21 +37,17 @@ HErrorType HUsbPortCy7c68013::openPort(int portNum)
 {
     Q_D(HUsbPortCy7c68013);
 
-    wchar_t ch[64] = L"";
-    QString("\\\\.\\EZUSB-%1").arg(portNum).toWCharArray(ch);
-
-    DWORD flags = d->isAsync ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED : 0;
-    d->hand = CreateFileW(ch, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, flags, NULL);
-    if (d->hand == INVALID_HANDLE_VALUE)
+    auto name = QString("\\\\.\\EZUSB-%1").arg(portNum).toStdWString().c_str();
+    d->handle = CreateFileW(name, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, d->isAsync ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED : 0, nullptr);
+    if (d->handle == INVALID_HANDLE_VALUE)
         return E_PORT_INVALID_HANDLE;
-
     return E_OK;
 }
 
 HErrorType HUsbPortCy7c68013::closePort()
 {
     Q_D(HUsbPortCy7c68013);
-    CloseHandle(d->hand);
+    CloseHandle(d->handle);
     return E_OK;
 }
 
@@ -61,23 +57,24 @@ HErrorType HUsbPortCy7c68013::writeData(uchar *data, int maxSize)
 
     ulong ret;
     ulong pipeNum = 0;
+    ulong size = ulong(maxSize);
     if (d->isAsync)
     {
         OVERLAPPED os;
-        if (!DeviceIoControl(d->hand, IOCTL_EZUSB_BULK_WRITE, &pipeNum, sizeof(ulong), data, maxSize, &ret, &os))
+        if (!DeviceIoControl(d->handle, IOCTL_EZUSB_BULK_WRITE, &pipeNum, sizeof(ulong), data, size, &ret, &os))
         {
             if (GetLastError() == ERROR_IO_PENDING)
-                GetOverlappedResult(d->hand, &os, &ret, true);
+                GetOverlappedResult(d->handle, &os, &ret, true);
             else
                 return E_PORT_WRITE_FAILED;
         }
     }
     else
     {
-        if (!DeviceIoControl(d->hand, IOCTL_EZUSB_BULK_WRITE, &pipeNum, sizeof(ulong), data, maxSize, &ret, NULL))
+        if (!DeviceIoControl(d->handle, IOCTL_EZUSB_BULK_WRITE, &pipeNum, sizeof(ulong), data, size, &ret, nullptr))
             return E_PORT_WRITE_FAILED;
     }
-    if (ret < static_cast<ulong>(maxSize))
+    if (ret < size)
         return E_PORT_WRITE_DATA_LESS;
     return E_OK;
 }
@@ -88,23 +85,24 @@ HErrorType HUsbPortCy7c68013::readData(uchar *data, int maxSize)
 
     ulong ret;
     ulong pipeNum = 2;
+    ulong size = ulong(maxSize);
     if (d->isAsync)
     {
         OVERLAPPED os;
-        if (!DeviceIoControl(d->hand, IOCTL_EZUSB_BULK_READ, &pipeNum, sizeof(ulong), data, maxSize, &ret, &os))
+        if (!DeviceIoControl(d->handle, IOCTL_EZUSB_BULK_READ, &pipeNum, sizeof(ulong), data, size, &ret, &os))
         {
             if (GetLastError() == ERROR_IO_PENDING)
-                GetOverlappedResult(d->hand, &os, &ret, true);
+                GetOverlappedResult(d->handle, &os, &ret, true);
             else
                 return E_PORT_READ_FAILED;
         }
     }
     else
     {
-        if (!DeviceIoControl(d->hand, IOCTL_EZUSB_BULK_READ, &pipeNum, sizeof(ulong), data, maxSize, &ret, NULL))
+        if (!DeviceIoControl(d->handle, IOCTL_EZUSB_BULK_READ, &pipeNum, sizeof(ulong), data, size, &ret, nullptr))
             return E_PORT_READ_FAILED;
     }
-    if (ret < static_cast<ulong>(maxSize))
+    if (ret < size)
         return E_PORT_READ_DATA_LESS;
     return E_OK;
 }

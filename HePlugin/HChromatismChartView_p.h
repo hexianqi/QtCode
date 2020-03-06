@@ -14,12 +14,12 @@ public:
 
 public:
     QPointF pointCenter;
-    double stdSdcm = 0.0;
-    double stdTheta = 0.0;
-    double stdA = 0.0;
-    double stdB = 0.0;
+    double sdcmStd = 0.0;
+    double theta = 0.0;
+    double axisA = 0.0;
+    double axisB = 0.0;
     QPointF pointFocus;
-    double sdcm = 0.0;
+    double sdcmFocus = 0.0;
 };
 
 #endif // HCHROMATISMCHARTVIEW_P_H

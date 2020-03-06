@@ -33,7 +33,7 @@ HErrorType HSlDevice2::setData(HActionType action, QVector<uchar> value, int del
         return E_DEVICE_ACTION_PARAM_ERROR;
     if (param[0] == 0xFF)
         return setDataBatch(param, value, delay);
-    return setData(param[2], value, delay);
+    return setDataOnce(param[2], value, delay);
 }
 
 HErrorType HSlDevice2::getData(HActionType action, QVector<uchar> &value, int delay)
@@ -44,10 +44,10 @@ HErrorType HSlDevice2::getData(HActionType action, QVector<uchar> &value, int de
         return E_DEVICE_ACTION_PARAM_ERROR;
     if (param[0] == 0xFF)
         return getDataBatch(param, value, delay);
-    return getData(param[0] * 256 + param[1] + 4, param[2], 0, value, delay);
+    return getDataOnce(param[0] * 256 + param[1] + 4, param[2], 0, value, delay);
 }
 
-HErrorType HSlDevice2::setData(uchar cmd, QVector<uchar> value, int delay)
+HErrorType HSlDevice2::setDataOnce(uchar cmd, QVector<uchar> value, int delay)
 {
     if (value.size() % 2 == 0)
         value.append(0);
@@ -66,7 +66,7 @@ HErrorType HSlDevice2::setData(uchar cmd, QVector<uchar> value, int delay)
     return E_OK;
 }
 
-HErrorType HSlDevice2::getData(int size, uchar cmd, uchar block, QVector<uchar> &value, int delay)
+HErrorType HSlDevice2::getDataOnce(int size, uchar cmd, uchar block, QVector<uchar> &value, int delay)
 {
     auto downData = QVector<uchar>() << 0x00 << 0x04 << cmd << block;
     auto upData = QVector<uchar>(size);
@@ -95,7 +95,7 @@ HErrorType HSlDevice2::setDataBatch(QList<uchar> param, QVector<uchar> value, in
     for (i = 0; i < n; i++)
     {
         auto buff = QVector<uchar>() << uchar(i + 1) << value.mid(i * param[1], param[1]);
-        auto error = setData(param[2], buff, 300);
+        auto error = setDataOnce(param[2], buff, 300);
         if (error != E_OK)
             return error;
     }
@@ -106,27 +106,21 @@ HErrorType HSlDevice2::getDataBatch(QList<uchar> param, QVector<uchar> &value, i
 {
     QVector<uchar> buff;
     int size = param[1] + 4;
-    auto error = getData(size, param[2], 1, buff, delay);
+    auto error = getDataOnce(size, param[2], 1, buff, delay);
     if (error != E_OK)
         return error;
     value.clear();
     value << buff;
 
-    int n = qCeil((value[0] * 256.0 + value[1]) / param[1]);
-    for (int i = 1; i < n; i++)
+    uchar n = uchar(qCeil((value[0] * 256.0 + value[1]) / param[1]));
+    for (uchar i = 1; i < n; i++)
     {
-        error = getData(size, param[2], i + 1, buff, 300);
+        error = getDataOnce(size, param[2], i + 1, buff, 300);
         if (error != E_OK)
             return error;
         value << buff;
     }
     return E_OK;
-}
-
-HErrorType HSlDevice2::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
-{
-    Q_D(HSlDevice2);
-    return d->port->transport(downData, upData, delay);
 }
 
 HE_COMMUNICATE_END_NAMESPACE

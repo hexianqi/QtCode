@@ -49,11 +49,11 @@ QVector<uchar> HSpecPelsWave::toBinaryData()
     Q_D(HSpecPelsWave);
     auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
                                << HDataHelper::writeUInt16(1)  // 版本
-                               << HDataHelper::writeUInt16(d->pelsWave.size());
+                               << HDataHelper::writeUInt16(quint16(d->pelsWave.size()));
     for (auto p : d->pelsWave)
-        r << HDataHelper::writeUInt16(p.x()) << HDataHelper::writeUInt16(p.y() * 10);
-    r[0] = r.size() / 256;
-    r[1] = r.size() % 256;
+        r << HDataHelper::writeUInt16(quint16(p.x())) << HDataHelper::writeUInt16(quint16(p.y() * 10));
+    r[0] = uchar(r.size() / 256);
+    r[1] = uchar(r.size() % 256);
     return r;
 }
 

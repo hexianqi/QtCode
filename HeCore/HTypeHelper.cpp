@@ -36,7 +36,7 @@ template <typename T>
 T *HTypeHelper::createObject(QString className)
 {
     int id = QMetaType::type(className.toLatin1());
-    return id == QMetaType::UnknownType ? nullptr : dynamic_cast<T*>(QMetaType::create(id));
+    return id == QMetaType::UnknownType ? nullptr : dynamic_cast<T *>(QMetaType::create(id));
 }
 
 template <typename T>

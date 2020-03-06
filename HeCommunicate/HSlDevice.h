@@ -28,9 +28,6 @@ public:
 
 protected:
     HSlDevice(HSlDevicePrivate &);
-
-protected:
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 };
 
 HE_COMMUNICATE_END_NAMESPACE

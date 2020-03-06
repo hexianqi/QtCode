@@ -9,18 +9,20 @@
 #include <QtCore/QDataStream>
 #include <functional>
 
+HE_DATA_BEGIN_NAMESPACE
+
 class HStreamHelper
 {
 public:
     template<typename K, typename T>
-    static bool read(QDataStream &s, QMap<K, T *> &data, std::function<T *(QString)> func);
+    static bool read(QDataStream &s, QMap<K, T *> &data, std::function<T *(QString)> create);
 
     template<typename K, typename T>
     static bool write(QDataStream &s, QMap<K, T *> data);
 };
 
 template<typename K, typename T>
-bool HStreamHelper::read(QDataStream &s, QMap<K, T *> &data, std::function<T *(QString)> func)
+bool HStreamHelper::read(QDataStream &s, QMap<K, T *> &data, std::function<T *(QString)> create)
 {
     quint32 size;
     QString type;
@@ -31,7 +33,7 @@ bool HStreamHelper::read(QDataStream &s, QMap<K, T *> &data, std::function<T *(Q
     for (quint32 i = 0; i < size; i++)
     {
         s >> key >> type;
-        auto item = func(type);
+        auto item = create(type);
         item->readContent(s);
         if (s.status() != QDataStream::Ok)
         {
@@ -54,5 +56,7 @@ bool HStreamHelper::write(QDataStream &s, QMap<K, T *> data)
     }
     return true;
 }
+
+HE_DATA_END_NAMESPACE
 
 #endif // HSTREAMHELPER_H

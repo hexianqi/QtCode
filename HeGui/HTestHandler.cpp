@@ -25,10 +25,8 @@ QString HTestHandler::typeName()
     return "HTestHandler";
 }
 
-void HTestHandler::execute(QObject *sender, QVariantMap param)
+void HTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     Q_D(HTestHandler);
     QMessageBox::information(d->mainWindow, "" , tr("敬请期待"));
 }

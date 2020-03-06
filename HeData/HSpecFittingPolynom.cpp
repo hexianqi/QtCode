@@ -59,8 +59,8 @@ QVector<uchar> HSpecFittingPolynom::toBinaryData()
     for (auto p : d->fittingPoints)
         r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
 //    r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
-    r[0] = static_cast<uchar>(r.size() / 256);
-    r[1] = static_cast<uchar>(r.size() % 256);
+    r[0] = uchar(r.size() / 256);
+    r[1] = uchar(r.size() % 256);
     return r;
 }
 

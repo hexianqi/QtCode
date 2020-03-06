@@ -40,10 +40,4 @@ HErrorType HPowerFactorDevice::getData(HActionType action, QVector<uchar> &value
     return E_OK;
 }
 
-HErrorType HPowerFactorDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
-{
-    Q_D(HPowerFactorDevice);
-    return d->port->transport(downData, upData, delay);
-}
-
 HE_COMMUNICATE_END_NAMESPACE

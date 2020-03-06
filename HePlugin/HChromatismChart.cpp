@@ -1,5 +1,5 @@
 #include "HChromatismChart_p.h"
-#include "HPluginHelper.h"
+#include "HImageHelper.h"
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QScatterSeries>
@@ -11,7 +11,7 @@ HChromatismChartPrivate::HChromatismChartPrivate()
     focus->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
     focus->setMarkerSize(11.0);
     focus->setPen(QColor(Qt::transparent));
-    focus->setBrush(HPluginHelper::createCrossImage(QSize(9, 9), QPen(Qt::red, 2)));
+    focus->setBrush(HImageHelper::createCrossImage(QSize(9, 9), QPen(Qt::red, 2)));
     focus->append(0.5, 0.5);
     center = new QScatterSeries();
     center->setMarkerShape(QScatterSeries::MarkerShapeCircle);

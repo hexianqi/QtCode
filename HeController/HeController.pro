@@ -42,8 +42,7 @@ Debug {
             -L$$DESTDIR -lHeAlgorithmd \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeCommunicated \
-            -L$$DESTDIR -lHeDatad \
-
+            -L$$DESTDIR -lHeDatad
 }
 
 Release {
@@ -53,11 +52,6 @@ Release {
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeData
-}
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
 }
 
 include(memento.pri)

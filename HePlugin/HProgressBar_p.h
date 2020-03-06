@@ -6,7 +6,7 @@
 class HProgressBarPrivate
 {
 public:
-    QColor colorProgress = Qt::green;
+    QColor color = Qt::green;
 };
 
 #endif // HPROGRESSBAR_P_H

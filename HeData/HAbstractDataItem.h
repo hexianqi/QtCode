@@ -24,6 +24,7 @@ public:
     void setData(QString name, QVariant value) override;
     void setData(QVariantMap value) override;
     QVariant data(QString name) override;
+    QVariantMap data() override;
 
 protected:
     HAbstractDataItem(HAbstractDataItemPrivate &);

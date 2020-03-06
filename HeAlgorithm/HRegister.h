@@ -6,37 +6,42 @@
 #define HREGISTER_H
 
 #include "HAlgorithmGlobal.h"
-#include <QtCore/QScopedPointer>
+#include <QtCore/QObject>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
 class HRegisterPrivate;
 
-class HE_ALGORITHM_EXPORT HRegister
+class HE_ALGORITHM_EXPORT HRegister : QObject
 {
-public:
-    HRegister();
-    ~HRegister();
+    Q_OBJECT
 
 public:
-    // 获取注册码
-    bool getRegisterCode(QString &registerCode);
-    // 设置注册码
-    bool setRegisterCode(QString registerCode);
+    HRegister(QObject *parent = nullptr);
+    ~HRegister() override;
+
+public:
     // 获取注册号
-    QString getRegisterId();
-    // 校验注册码
-    bool checkRegisterCode();
-    bool checkRegisterCode(QString registerId, QString registerCode);
-    // 解密注册号
-    QString encrypt(QString registerId);
+    QString registerId();
+    // 获取注册码
+    QString registerCode();
     // 是否到期
     bool isExpires();
+
+public:
+    // 设置注册码
+    bool setRegisterCode(const QString &value);
+    // 校验注册码
+    bool check();
+    bool check(const QString &id, const QString &code);
+    // 解密注册号
+    QString encrypt(QString id);
+
     // 试用
     void trial();
 
 protected:
-    HRegister(HRegisterPrivate &);
+    HRegister(HRegisterPrivate &p, QObject *parent = nullptr);
 
 protected:
     QScopedPointer<HRegisterPrivate> d_ptr;

@@ -2,8 +2,8 @@
 **      2019-04-03  HGraphicsCalloutItem    标注图样项。
 ***************************************************************************************************/
 
-#ifndef HGRAPHICSCALLOUTITEM_H
-#define HGRAPHICSCALLOUTITEM_H
+#ifndef HCALLOUTCHARTITEM_H
+#define HCALLOUTCHARTITEM_H
 
 #include "HGraphicsItem.h"
 #include <QtCharts/QChartGlobal>
@@ -14,30 +14,32 @@ QT_CHARTS_END_NAMESPACE
 QT_CHARTS_USE_NAMESPACE
 
 class QGraphicsSceneMouseEvent;
-class HGraphicsCalloutItemPrivate;
+class HCalloutChartItemPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HGraphicsCalloutItem : public HGraphicsItem
+class QDESIGNER_WIDGET_EXPORT HCalloutChartItem : public HGraphicsItem
 {
-    Q_DECLARE_PRIVATE(HGraphicsCalloutItem)
+    Q_DECLARE_PRIVATE(HCalloutChartItem)
 
 public:
-    explicit HGraphicsCalloutItem(QChart *parent = nullptr);
-    ~HGraphicsCalloutItem() override;
+    explicit HCalloutChartItem(QChart *parent = nullptr);
+    ~HCalloutChartItem() override;
+
+public:
+    QFont font();
 
 public:
     void setFont(QFont value);
     void setText(QString value);
     void setAnchor(QPointF value);
     void updateGeometry();
-    QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 public:
-    QFont font();
+    QRectF boundingRect() const override;
+    void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
 };
 
-#endif // HGRAPHICSCALLOUTITEM_H
+#endif // HCALLOUTCHARTITEM_H

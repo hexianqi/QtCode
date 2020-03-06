@@ -17,7 +17,7 @@ class HAbstractTableExtend : public QObject, public ITableExtend
 
 public:
     explicit HAbstractTableExtend(QObject *parent = nullptr);
-    ~HAbstractTableExtend();
+    ~HAbstractTableExtend() override;
 
 public:
     void setTableView(QTableView *) override;

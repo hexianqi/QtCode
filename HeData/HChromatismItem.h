@@ -28,7 +28,6 @@ public:
 
 public:
     double calcSdcm(QPointF xy) override;
-    QJsonObject toJson() override;
 
 protected:
     HChromatismItem(HChromatismItemPrivate &);

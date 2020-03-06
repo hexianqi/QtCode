@@ -1,8 +1,8 @@
 #include "HAbstractChartExtend_p.h"
 
-HAbstractChartExtendPrivate::HAbstractChartExtendPrivate(QChart *c)
+HAbstractChartExtendPrivate::HAbstractChartExtendPrivate(QChart *p)
 {
-    chart = c;
+    chart = p;
 }
 
 HAbstractChartExtend::HAbstractChartExtend(QObject *parent) :
@@ -27,12 +27,12 @@ HAbstractChartExtend::~HAbstractChartExtend()
 {
 }
 
-void HAbstractChartExtend::setChart(QChart *c)
+void HAbstractChartExtend::setChart(QChart *p)
 {
-    if (d_ptr->chart == c)
+    if (d_ptr->chart == p)
         return;
     disconnectExtend();
-    d_ptr->chart = c;
+    d_ptr->chart = p;
     connectExtend();
 }
 

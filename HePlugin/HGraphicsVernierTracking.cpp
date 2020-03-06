@@ -3,19 +3,19 @@
 #include <QtGui/QPen>
 #include <QtWidgets/QGraphicsLineItem>
 
-HGraphicsVernierTrackingPrivate::HGraphicsVernierTrackingPrivate(Qt::Orientation o, QGraphicsItem *gp, QWidget *p)
-    : HAbstractVernierTrackingPrivate(o, p)
+HGraphicsVernierTrackingPrivate::HGraphicsVernierTrackingPrivate(Qt::Orientation o, QGraphicsItem *gp, QWidget *p) :
+    HAbstractVernierTrackingPrivate(o, p)
 {
     gparent = gp;
 }
 
-HGraphicsVernierTracking::HGraphicsVernierTracking(Qt::Orientation orientation, QGraphicsItem *gpatent, QWidget *parent)
-    : HAbstractVernierTracking(*new HGraphicsVernierTrackingPrivate(orientation, gpatent, parent), parent)
+HGraphicsVernierTracking::HGraphicsVernierTracking(Qt::Orientation orientation, QGraphicsItem *gpatent, QWidget *parent) :
+    HAbstractVernierTracking(*new HGraphicsVernierTrackingPrivate(orientation, gpatent, parent), parent)
 {
 }
 
-HGraphicsVernierTracking::HGraphicsVernierTracking(HGraphicsVernierTrackingPrivate &p, QWidget *parent)
-    : HAbstractVernierTracking(p, parent)
+HGraphicsVernierTracking::HGraphicsVernierTracking(HGraphicsVernierTrackingPrivate &p, QWidget *parent) :
+    HAbstractVernierTracking(p, parent)
 {
 }
 

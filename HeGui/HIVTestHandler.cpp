@@ -30,11 +30,9 @@ QString HIVTestHandler::typeName()
     return "HIVTestHandler";
 }
 
-void HIVTestHandler::execute(QObject *sender, QVariantMap param)
+void HIVTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HIVTestHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     d->mainWindow->openWidget(new HIVTestWidget);
 }
 

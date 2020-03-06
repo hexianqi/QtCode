@@ -24,7 +24,7 @@ public:
     // 设置通讯口
     virtual void setPort(IPort *port, int num = 0, bool scan = true) = 0;
     // 设置设备ID
-    virtual void setDeviceID(int id) = 0;
+    virtual void setDeviceID(int value) = 0;
     // 添加命令参数
     virtual void addActionParam(HActionType key, QList<uchar> value) = 0;
 

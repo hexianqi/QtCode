@@ -46,12 +46,6 @@ Release {
     LIBS    += -L$$DESTDIR -lHeCore
 }
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
-
 include(codec.pri)
 include(device.pri)
 include(port.pri)

@@ -18,7 +18,7 @@ class QDESIGNER_WIDGET_EXPORT HChart : public QChart
 
 public:
     explicit HChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-    ~HChart();
+    ~HChart() override;
 
 protected:
     HChart(HChartPrivate &p, QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());

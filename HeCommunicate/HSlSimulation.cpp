@@ -38,7 +38,7 @@ HErrorType HSlSimulation::setData(HActionType action, QVector<uchar> value, int 
 {
     Q_D(HSlSimulation);
     if (action == ACT_SET_INTEGRAL_TIME)
-        d->intergalTime = (value[0] + value[1] * 256 + value[2] * 256 * 256 + value[3] * 256 * 256 * 256) / 1000.0;
+        d->intergalTime = (value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) / 1000.0;
     return E_OK;
 }
 
@@ -49,9 +49,9 @@ HErrorType HSlSimulation::getData(HActionType action, QVector<uchar> &value, int
         value.clear();
         for (int i = 0; i < 2304; i++)
         {
-            int v = static_cast<int>(simulate(i));
-            value << static_cast<uchar>(v % 256);
-            value << static_cast<uchar>(v / 256);
+            int v = int(simulate(i));
+            value << uchar(v % 256);
+            value << uchar(v / 256);
         }
     }
     return E_OK;

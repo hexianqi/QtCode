@@ -21,7 +21,6 @@ HE_CORE_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
 class IFileStream;
-class ITestData;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
 class IElecCalibrate;
@@ -30,6 +29,7 @@ class IChromatismCollection;
 class IGradeCollection;
 class IAdjustCollection;
 class IQualityCollection;
+class ITestData;
 
 class IConfigManage : public IInitializeable
 {
@@ -57,7 +57,7 @@ public:
     // 设置光谱校准数据集
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) = 0;
     // 获取光谱校准数据
-    virtual ISpecCalibrate *specCalibrate(QString name) = 0;    
+    virtual ISpecCalibrate *specCalibrate(QString name) = 0;
     // 设置电校准数据集
     virtual void setElecCalibrateCollection(IElecCalibrateCollection *) = 0;
     // 获取电校准数据集

@@ -12,7 +12,7 @@ quint16 HDataHelper::readUInt16(QVector<uchar> data, int &pos)
 
 QVector<uchar> HDataHelper::writeUInt16(quint16 data)
 {
-    return QVector<uchar>() << data / 256 << data % 256;
+    return QVector<uchar>() << uchar(data / 256) << uchar(data % 256);
 }
 
 bool HDataHelper::checkHead(QVector<uchar> data, int &pos, int &version)
