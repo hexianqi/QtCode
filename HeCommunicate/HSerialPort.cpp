@@ -37,31 +37,31 @@ void HSerialPort::setBaudRate(ulong value)
     d->baudRate = value;
 }
 
-HErrorType HSerialPort::openPort(int port)
+HErrorType HSerialPort::openPort(int portNum)
 {
     Q_D(HSerialPort);
     if (d->connected)
         return E_PORT_OPENED;
 
     DCB dcb;
-    auto name = QString("COM%1").arg(port).toStdWString().c_str();
+    auto name = QString("COM%1").arg(portNum).toStdWString().c_str();
     COMMTIMEOUTS timeOuts;
     timeOuts.ReadIntervalTimeout = 0;
-    timeOuts.ReadTotalTimeoutMultiplier = 1;
-    timeOuts.ReadTotalTimeoutConstant = 300;
-    timeOuts.WriteTotalTimeoutMultiplier = 1;
-    timeOuts.WriteTotalTimeoutConstant = 300;
+    timeOuts.ReadTotalTimeoutMultiplier = 2;
+    timeOuts.ReadTotalTimeoutConstant = ulong(d->timeOut);
+    timeOuts.WriteTotalTimeoutMultiplier = 2;
+    timeOuts.WriteTotalTimeoutConstant = ulong(d->timeOut);
 
-    d->hDevice = CreateFileW(name, GENERIC_READ|GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-    if (d->hDevice == INVALID_HANDLE_VALUE)
+    d->handle = CreateFileW(name, GENERIC_READ|GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (d->handle == INVALID_HANDLE_VALUE)
         return E_PORT_INVALID_HANDLE;
 
-    SetupComm(d->hDevice, 10240, 10240);
-    SetCommTimeouts(d->hDevice, &timeOuts);
+    SetupComm(d->handle, 10240, 10240);
+    SetCommTimeouts(d->handle, &timeOuts);
 
-    if (!GetCommState(d->hDevice, &dcb))
+    if (!GetCommState(d->handle, &dcb))
     {
-        CloseHandle(d->hDevice);
+        CloseHandle(d->handle);
         return E_PORT_INVALID_HANDLE;
     }
     dcb.BaudRate = d->baudRate;
@@ -70,25 +70,18 @@ HErrorType HSerialPort::openPort(int port)
     dcb.fParity = 1;
     dcb.fBinary = 1;
     dcb.Parity = 0;
-    if (!SetCommState(d->hDevice, &dcb))
+    if (!SetCommState(d->handle, &dcb))
     {
-        CloseHandle(d->hDevice);
+        CloseHandle(d->handle);
         return E_PORT_INVALID_HANDLE;
     }
-
-    d->connected = true;
-    clear();
     return E_OK;
 }
 
 HErrorType HSerialPort::closePort()
 {
     Q_D(HSerialPort);
-    if (!d->connected)
-        return E_PORT_CLOSED;
-
-    d->connected = false;
-    CloseHandle(d->hDevice);
+    CloseHandle(d->handle);
     return E_OK;
 }
 
@@ -96,12 +89,12 @@ HErrorType HSerialPort::writeData(uchar *buff, int size)
 {
     Q_D(HSerialPort);
     ulong ret;
-    auto num = static_cast<ulong>(size);
+    auto num = ulong(size);
 
 //    FlushFileBuffers(d->hDevice);
-    PurgeComm(d->hDevice, PURGE_TXCLEAR);
-    PurgeComm(d->hDevice, PURGE_RXCLEAR);
-    if (!WriteFile(d->hDevice, buff, num, &ret, nullptr))
+    PurgeComm(d->handle, PURGE_TXCLEAR);
+    PurgeComm(d->handle, PURGE_RXCLEAR);
+    if (!WriteFile(d->handle, buff, num, &ret, nullptr))
         return E_PORT_WRITE_FAILED;
     if (ret < num)
         return E_PORT_WRITE_DATA_LESS;
@@ -112,9 +105,9 @@ HErrorType HSerialPort::readData(uchar *buff, int size)
 {
     Q_D(HSerialPort);
     ulong ret;
-    auto num = static_cast<ulong>(size);
+    auto num = ulong(size);
 
-    if (!ReadFile(d->hDevice, buff, num, &ret, nullptr))
+    if (!ReadFile(d->handle, buff, num, &ret, nullptr))
         return E_PORT_READ_FAILED;
     if (ret < num)
         return E_PORT_READ_DATA_LESS;

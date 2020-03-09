@@ -24,7 +24,7 @@ public:
 
 public:
     double calcSdcm(double tc, QPointF xy) override;
-    QJsonObject toJson() override;
+    QVariantMap toMap() override;
 
 protected:
     HChromatismCollection(HChromatismCollectionPrivate &);

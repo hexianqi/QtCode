@@ -33,12 +33,9 @@ QString HChromatismSelectHandler::typeName()
     return "HChromatismSelectHandler";
 }
 
-void HChromatismSelectHandler::execute(QObject *sender, QVariantMap param)
+void HChromatismSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HChromatismSelectHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
-
     auto data = d->configManage->chromatismCollection();
     if (data == nullptr || data->keys().size() < 2)
         return;

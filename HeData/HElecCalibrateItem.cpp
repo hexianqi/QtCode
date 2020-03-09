@@ -75,7 +75,6 @@ double HElecCalibrateItem::toReal(double value)
 void HElecCalibrateItem::restoreDefault()
 {
     Q_D(HElecCalibrateItem);
-    d->relation.clear();
     d->relation = QPolygonF() << QPointF(0, 10) << QPointF(6000, 100);
 }
 

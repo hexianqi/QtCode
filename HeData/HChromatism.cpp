@@ -4,7 +4,6 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
-#include <QtCore/QJsonObject>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -56,10 +55,10 @@ double HChromatism::calcSdcm(double tc, QPointF xy)
     return d->selectItem->calcSdcm(xy);
 }
 
-QJsonObject HChromatism::toJson()
+QVariantMap HChromatism::toMap()
 {
     Q_D(HChromatism);
-    return d->selectItem == nullptr ? QJsonObject() : d->selectItem->toJson();
+    return d->selectItem == nullptr ? QVariantMap() : d->selectItem->data();
 }
 
 bool HChromatism::matching(double tc)

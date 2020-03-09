@@ -39,8 +39,8 @@ public:
     QVector<double> average(QVector<double> value);
     void calcMaxSample();
     bool calcSpec();
-    QString renderingIndexS();
-    QString energyS();
+    QString renderingIndex();
+    QString energy();
 
 public:
     QReadWriteLock *lock;

@@ -10,14 +10,14 @@ HVernierWidgetPrivate::HVernierWidgetPrivate(HVernierWidget *q) :
     halfSide = true;
 }
 
-HVernierWidget::HVernierWidget(QWidget *parent)
-    : HCartesianWidget(*new HVernierWidgetPrivate(this), parent)
+HVernierWidget::HVernierWidget(QWidget *parent) :
+    HCartesianWidget(*new HVernierWidgetPrivate(this), parent)
 {
     init();
 }
 
-HVernierWidget::HVernierWidget(HVernierWidgetPrivate &p, QWidget *parent)
-    : HCartesianWidget(p, parent)
+HVernierWidget::HVernierWidget(HVernierWidgetPrivate &p, QWidget *parent) :
+    HCartesianWidget(p, parent)
 {
     init();
 }

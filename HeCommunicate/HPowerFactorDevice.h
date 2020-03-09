@@ -25,9 +25,6 @@ public:
 public:
     HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
-
-protected:
-    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 };
 
 HE_COMMUNICATE_END_NAMESPACE

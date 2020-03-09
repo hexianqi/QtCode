@@ -138,7 +138,7 @@ QDoubleValidator *HDataFormatInfo::toDoubleValidator(QObject * parent)
 
 QIntValidator *HDataFormatInfo::toIntValidator(QObject *parent)
 {
-    return new QIntValidator(static_cast<int>(min()), static_cast<int>(max()), parent);
+    return new QIntValidator(int(min()), int(max()), parent);
 }
 
 HE_CORE_END_NAMESPACE

@@ -23,7 +23,7 @@ public:
 public:
     bool isSupport(HActionType action) override;
     void setPort(IPort *port, int num = 0, bool scan = true) override;
-    void setDeviceID(int id) override;
+    void setDeviceID(int value) override;
     void addActionParam(HActionType action, QList<uchar> value) override;
 
 public:
@@ -36,6 +36,7 @@ protected:
 protected:
     virtual HErrorType open(int num);
     virtual HErrorType check();
+    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 
 protected:
     QScopedPointer<HAbstractDevicePrivate> d_ptr;

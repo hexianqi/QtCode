@@ -130,22 +130,15 @@ QStringList HTestData::toString(QStringList type)
 QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
 {
     QString text;
-    QString caption,value,unit;
-
-    text = QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>").arg(bgcolor.name());
     for (auto t : type)
     {
-        caption = HCore::toCaption(t);
-        value = toString(t);
-        unit = HCore::toUnit(t);
         text += QString("<tr>"
                         "<td><p align = right>%1</p></td>"
                         "<td><p align = center>%2</p></td>"
                         "<td><p align = left>%3</p></td>"
-                        "</tr>").arg(caption).arg(value).arg(unit);
+                        "</tr>").arg(HCore::toCaption(t)).arg(toString(t)).arg(HCore::toUnit(t));
     }
-    text += "</table>";
-    return text;
+    return QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>%2</table>").arg(bgcolor.name()).arg(text);
 }
 
 HE_DATA_END_NAMESPACE

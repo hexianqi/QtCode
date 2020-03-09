@@ -24,7 +24,7 @@ public:
     ~HChromatismWidget() override;
 
 public:
-    void setData(QJsonObject);
+    void setData(QVariantMap value);
     void setColorPointFocus(QColor value);
     void setColorTitle(QColor value);
     void setColorBody(QColor value);

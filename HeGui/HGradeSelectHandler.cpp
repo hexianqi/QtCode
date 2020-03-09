@@ -33,12 +33,9 @@ QString HGradeSelectHandler::typeName()
     return "HGradeSelectHandler";
 }
 
-void HGradeSelectHandler::execute(QObject *sender, QVariantMap param)
+void HGradeSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HGradeSelectHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
-
     auto data = d->configManage->gradeCollection();
     if (data == nullptr || data->keys().size() < 2)
         return;

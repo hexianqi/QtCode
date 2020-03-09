@@ -11,7 +11,6 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
-#include <QtCore/QJsonObject>
 #include <QtGui/QColor>
 #include <QtCore/QDebug>
 
@@ -19,11 +18,11 @@ HE_DATA_BEGIN_NAMESPACE
 
 QSet<QString> supplement(QSet<QString> set, QSet<QString> other)
 {
-    bool b = false;
     for (auto s : other)
-        b = b | set.contains(s);
-    if (b)
-        set.unite(other);
+    {
+        if (set.contains(s))
+            return set.unite(other);
+    }
     return set;
 }
 
@@ -114,7 +113,7 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     }
     if (contain & IConfigManage::ContainQuality)
     {
-        s << adjusts->typeName();
+        s << qualitys->typeName();
         qualitys->fileStream()->writeContent(s);
     }
 }
@@ -284,7 +283,7 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     if (d_ptr->chromatisms != nullptr)
     {
         test->setData("[色容差]", d_ptr->chromatisms->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
-        test->setData("[色容差Json]", d_ptr->chromatisms->toJson());
+        test->setData("[色容差标准]", d_ptr->chromatisms->toMap());
     }
     if (d_ptr->grades != nullptr)
     {

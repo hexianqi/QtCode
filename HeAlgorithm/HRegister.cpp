@@ -3,9 +3,7 @@
 #include <QtCore/QDate>
 #include <QtCore/QDebug>
 #include <exception>
-#include <memory>
 #include <windows.h>
-
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -18,18 +16,18 @@ const QString SERIAL_NUMBER = "ma_no";
 const QString TRIAL_TIMES = "trti";
 const QString FIRST_DATE = "fida";
 
-void splitRegisterId(QString registerId, int &i1, int &i2)
+void splitRegisterId(QString id, int &i1, int &i2)
 {
-    if (registerId.length() < 10)
+    if (id.length() < 10)
     {
-        for (int i = 1; i <= 10 - registerId.length(); i++)
-            registerId = registerId + QString::number(i);
+        for (int i = 1; i <= 10 - id.length(); i++)
+            id = id + QString::number(i);
     }
-    if (registerId.length() > 10)
-        registerId = registerId.left(10);
+    if (id.length() > 10)
+        id = id.left(10);
 
-    i1 = registerId.left(5).toInt();
-    i2 = registerId.right(5).toInt();
+    i1 = id.left(5).toInt();
+    i2 = id.right(5).toInt();
 }
 
 int encryptDate(QDate value)
@@ -37,10 +35,10 @@ int encryptDate(QDate value)
     return (value.year() - 2010) * 430 + value.month() * 32 + value.day();
 }
 
-QString HRegisterPrivate::getRegisterId()
+QString HRegisterPrivate::registerId()
 {
-    if (!registerId.isEmpty())
-        return registerId;
+    if (!id.isEmpty())
+        return id;
 
     DWORD volumeSerialNumber;
     GetVolumeInformation(L"C:\\", nullptr, 0, &volumeSerialNumber, nullptr, nullptr, nullptr, 0);
@@ -49,38 +47,69 @@ QString HRegisterPrivate::getRegisterId()
     bool ok;
     for (int i = 0; i < serialNumber.length(); i++)
         zcmNumber += QString::number(QString(serialNumber[i]).toInt(&ok, 16), 10);
-    registerId = zcmNumber;
-    return registerId;
+    id = zcmNumber;
+    return id;
+}
+
+QString HRegisterPrivate::registerCode()
+{
+    try
+    {
+        QSettings reg(REGISTRY_KEY, QSettings::NativeFormat);
+        return reg.value(REGISTER_CODE).toString();
+    }
+    catch (exception e)
+    {
+        qDebug() << __func__ << e.what();
+        return QString();
+    }
 }
 
 bool HRegisterPrivate::isExpires()
 {
-    auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
-    trialTimes = reg->value(TRIAL_TIMES, 0).toInt();
-    firstDate = reg->value(FIRST_DATE, 0).toInt();
+    QSettings reg(REGISTRY_KEY, QSettings::NativeFormat);
+    trialTimes = reg.value(TRIAL_TIMES, 0).toInt();
+    firstDate = reg.value(FIRST_DATE, 0).toInt();
     if (trialTimes == 0 && firstDate == 0)
         return false;
-
-    auto expires = encryptDate(QDate::currentDate());
-    return trialTimes > 100 && expires - firstDate > 60;
+    return trialTimes > 100 && encryptDate(QDate::currentDate()) - firstDate > 60;
 }
 
 void HRegisterPrivate::trial()
 {
+    QSettings reg(REGISTRY_KEY, QSettings::NativeFormat);
     trialTimes++;
-    auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
-    reg->setValue(TRIAL_TIMES, trialTimes);
+    reg.setValue(TRIAL_TIMES, trialTimes);
     if (firstDate == 0)
-        reg->setValue(FIRST_DATE, encryptDate(QDate::currentDate()));
+        reg.setValue(FIRST_DATE, encryptDate(QDate::currentDate()));
 }
 
-HRegister::HRegister()
-    : d_ptr(new HRegisterPrivate)
+bool HRegisterPrivate::setRegisterCode(const QString &value)
+{
+    try
+    {
+        QSettings reg(REGISTRY_KEY, QSettings::NativeFormat);
+        reg.setValue(REGISTER_CODE, value);
+        reg.setValue(REGISTER_ID, id);
+        reg.setValue(SERIAL_NUMBER, serialNumber);
+        return true;
+    }
+    catch (exception e)
+    {
+        qDebug() << __func__ << e.what();
+        return false;
+    }
+}
+
+HRegister::HRegister(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HRegisterPrivate)
 {
 }
 
-HRegister::HRegister(HRegisterPrivate &p)
-    : d_ptr(&p)
+HRegister::HRegister(HRegisterPrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
 }
 
@@ -89,74 +118,53 @@ HRegister::~HRegister()
     qDebug() << __func__;
 }
 
-bool HRegister::getRegisterCode(QString &registerCode)
+QString HRegister::registerId()
 {
-    registerCode = "";
-    try
-    {
-        auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
-        registerCode = reg->value(REGISTER_CODE).toString();
-        return true;
-    }
-    catch (exception e)
-    {
-        return false;
-    }
+    return d_ptr->registerId();
 }
 
-bool HRegister::setRegisterCode(QString registerCode)
+QString HRegister::registerCode()
 {
-    try
-    {
-        auto reg = make_shared<QSettings>(REGISTRY_KEY, QSettings::NativeFormat);
-        reg->setValue(REGISTER_CODE, registerCode);
-        reg->setValue(REGISTER_ID, d_ptr->registerId);
-        reg->setValue(SERIAL_NUMBER, d_ptr->serialNumber);
-        return true;
-    }
-    catch (exception e)
-    {
-        return false;
-    }
-}
-
-QString HRegister::getRegisterId()
-{
-    return d_ptr->getRegisterId();
-}
-
-bool HRegister::checkRegisterCode()
-{
-    QString registerCode;
-    if (!getRegisterCode(registerCode))
-        return false;
-    return checkRegisterCode(getRegisterId(), registerCode);
-}
-
-bool HRegister::checkRegisterCode(QString registerId, QString registerCode)
-{
-    try
-    {
-        return encrypt(registerId) == registerCode;
-    }
-    catch (std::exception ex)
-    {
-        return false;
-    }
-}
-
-QString HRegister::encrypt(QString registerId)
-{
-    int i1, i2;
-    splitRegisterId(registerId, i1, i2);
-    registerId = QString::number(i1 * 5918 + i2 * 5858);
-    splitRegisterId(registerId, i1, i2);
-    return QString::number(i1 ^ i2);
+    return d_ptr->registerCode();
 }
 
 bool HRegister::isExpires()
 {
     return d_ptr->isExpires();
+}
+
+bool HRegister::setRegisterCode(const QString &value)
+{
+    return d_ptr->setRegisterCode(value);
+}
+
+bool HRegister::check()
+{
+    auto id = registerId();
+    auto code = registerCode();
+    return check(id, code);
+}
+
+bool HRegister::check(const QString &id, const QString &code)
+{
+    try
+    {
+        return encrypt(id) == code;
+    }
+    catch (exception e)
+    {
+        qDebug() << __func__ << e.what();
+        return false;
+    }
+}
+
+QString HRegister::encrypt(QString id)
+{
+    int i1, i2;
+    splitRegisterId(id, i1, i2);
+    id = QString::number(i1 * 5918 + i2 * 5858);
+    splitRegisterId(id, i1, i2);
+    return QString::number(i1 ^ i2);
 }
 
 void HRegister::trial()

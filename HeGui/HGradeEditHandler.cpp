@@ -35,11 +35,9 @@ QString HGradeEditHandler::typeName()
     return "HGradeEditHandler";
 }
 
-void HGradeEditHandler::execute(QObject *sender, QVariantMap param)
+void HGradeEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HGradeEditHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     auto detail = new HDataDetail<IGrade>();
     detail->setEditWidget(new HGradeEditWidget);
     detail->setData(d->configManage->gradeCollection());

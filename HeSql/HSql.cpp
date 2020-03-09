@@ -3,7 +3,6 @@
 #include <QtCore/QVariant>
 
 HE_CORE_USE_NAMESPACE
-
 HE_SQL_BEGIN_NAMESPACE
 
 QString HSql::toString(QString field, QVariant value)

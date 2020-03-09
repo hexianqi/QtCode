@@ -1,5 +1,5 @@
 #include "HCalloutChartExtend_p.h"
-#include "HGraphicsCalloutItem.h"
+#include "HCalloutChartItem.h"
 #include <QtCharts/QChart>
 #include <QtCharts/QXYSeries>
 
@@ -79,8 +79,7 @@ void HCalloutChartExtend::updateGeometry()
 void HCalloutChartExtend::clear()
 {
     Q_D(HCalloutChartExtend);
-    for (int i = 0; i < d->callouts.size(); i++)
-        delete d->callouts[i];
+    qDeleteAll(d->callouts);
     d->callouts.clear();
 }
 
@@ -95,7 +94,7 @@ void HCalloutChartExtend::handleSeriesHovered(QPointF point, bool state)
 {
     Q_D(HCalloutChartExtend);
     if (d->tooltip == nullptr)
-        d->tooltip = new HGraphicsCalloutItem(d->chart);
+        d->tooltip = new HCalloutChartItem(d->chart);
 
     if (state)
     {

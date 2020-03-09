@@ -35,11 +35,9 @@ QString HChromatismEditHandler::typeName()
     return "HChromatismEditHandler";
 }
 
-void HChromatismEditHandler::execute(QObject *sender, QVariantMap param)
+void HChromatismEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HChromatismEditHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     auto detail = new HDataDetail<IChromatism>();
     detail->setEditWidget(new HChromatismEditWidget);
     detail->setData(d->configManage->chromatismCollection());

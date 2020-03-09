@@ -29,11 +29,9 @@ QString HSqlBrowserHandler::typeName()
     return "HSqlBrowserHandler";
 }
 
-void HSqlBrowserHandler::execute(QObject *sender, QVariantMap param)
+void HSqlBrowserHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HSqlBrowserHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     d->browser->show();
 }
 

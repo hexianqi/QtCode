@@ -8,13 +8,13 @@ HRubberBandPrivate::HRubberBandPrivate(QWidget *p) :
     rubberBand = new QRubberBand(QRubberBand::Rectangle, p);
 }
 
-HRubberBand::HRubberBand(QWidget *parent)
-    : HAbstractMouseStrategy(*new HRubberBandPrivate(parent), parent)
+HRubberBand::HRubberBand(QWidget *parent) :
+    HAbstractMouseStrategy(*new HRubberBandPrivate(parent), parent)
 {
 }
 
-HRubberBand::HRubberBand(HRubberBandPrivate &p, QWidget *parent)
-    : HAbstractMouseStrategy(p, parent)
+HRubberBand::HRubberBand(HRubberBandPrivate &p, QWidget *parent) :
+    HAbstractMouseStrategy(p, parent)
 {
 }
 

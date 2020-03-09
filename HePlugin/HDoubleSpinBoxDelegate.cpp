@@ -2,20 +2,18 @@
 #include "HPluginHelper.h"
 #include <QtWidgets/QDoubleSpinBox>
 
-HDoubleSpinBoxDelegate::HDoubleSpinBoxDelegate(QObject *parent)
-    : HItemDelegate(*new HDoubleSpinBoxDelegatePrivate, parent)
+HDoubleSpinBoxDelegate::HDoubleSpinBoxDelegate(QObject *parent) :
+    HItemDelegate(*new HDoubleSpinBoxDelegatePrivate, parent)
 {
 }
 
-HDoubleSpinBoxDelegate::HDoubleSpinBoxDelegate(HDoubleSpinBoxDelegatePrivate &p, QObject *parent)
-    : HItemDelegate(p, parent)
+HDoubleSpinBoxDelegate::HDoubleSpinBoxDelegate(HDoubleSpinBoxDelegatePrivate &p, QObject *parent) :
+    HItemDelegate(p, parent)
 {
-
 }
 
 HDoubleSpinBoxDelegate::~HDoubleSpinBoxDelegate()
 {
-
 }
 
 QWidget *HDoubleSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const

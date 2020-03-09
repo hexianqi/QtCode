@@ -24,6 +24,10 @@ public:
     static double interpolateY(double y, QPolygonF poly);
     // 多项式拟合
     // static bool polyfit(QVector<QPointF> points, QVector<double> &factors);
+
+public:
+    // 计算椭圆
+    static QPolygonF calcEllipse(QPointF center, double r, double theta, double a, double b);
 };
 
 HE_ALGORITHM_END_NAMESPACE

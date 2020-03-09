@@ -3,14 +3,14 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-HSpecLuminous::HSpecLuminous()
-    : HAbstractDataItem(*new HSpecLuminousPrivate)
+HSpecLuminous::HSpecLuminous() :
+    HAbstractDataItem(*new HSpecLuminousPrivate)
 {
     restoreDefault();
 }
 
-HSpecLuminous::HSpecLuminous(HSpecLuminousPrivate &p)
-    : HAbstractDataItem(p)
+HSpecLuminous::HSpecLuminous(HSpecLuminousPrivate &p):
+    HAbstractDataItem(p)
 {
 }
 

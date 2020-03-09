@@ -29,11 +29,9 @@ QString HProductInfoEditHandler::typeName()
     return "HProductInfoEditHandler";
 }
 
-void HProductInfoEditHandler::execute(QObject *sender, QVariantMap param)
+void HProductInfoEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HProductInfoEditHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     d->handle->editProductInfo();
 }
 

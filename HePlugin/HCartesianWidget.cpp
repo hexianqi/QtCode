@@ -149,7 +149,7 @@ bool HCartesianWidget::drawRuler(QPainter *painter)
 
     int i;
     double margin,width,height;
-    QString str;
+    QString text;
     QStringList list;
 
     painter->save();
@@ -161,10 +161,10 @@ bool HCartesianWidget::drawRuler(QPainter *painter)
     list = d->coordinate->axisX();
     for (i = 0; i < list.size(); i++)
     {
-        str = list[i];
+        text = list[i];
         if (d->unitInRuler)
-            str += d->unitX;
-        painter->drawText(QRectF(d->plotArea.left() + (i - 0.5) * width, d->plotArea.bottom() + margin, width, height), Qt::AlignHCenter | Qt::AlignTop, str);
+            text += d->unitX;
+        painter->drawText(QRectF(d->plotArea.left() + (i - 0.5) * width, d->plotArea.bottom() + margin, width, height), Qt::AlignHCenter | Qt::AlignTop, text);
     }
 
     width = d->plotArea.left() - 2 * margin;
@@ -172,10 +172,10 @@ bool HCartesianWidget::drawRuler(QPainter *painter)
     list = d->coordinate->axisY();
     for (i = 0; i < list.size(); i++)
     {
-        str = list[i];
+        text = list[i];
         if (d->unitInRuler)
-            str += d->unitY;
-        painter->drawText(QRectF(margin, d->plotArea.bottom() - (i + 0.5) * height, width, height), Qt::AlignRight | Qt::AlignVCenter, str);
+            text += d->unitY;
+        painter->drawText(QRectF(margin, d->plotArea.bottom() - (i + 0.5) * height, width, height), Qt::AlignRight | Qt::AlignVCenter, text);
     }
 
     if (!d->unitInRuler)

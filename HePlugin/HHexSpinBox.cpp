@@ -1,13 +1,15 @@
 #include "HHexSpinBox_p.h"
 
-HHexSpinBox::HHexSpinBox(QWidget *parent)
-    : QSpinBox(parent), d_ptr(new HHexSpinBoxPrivate)
+HHexSpinBox::HHexSpinBox(QWidget *parent) :
+    QSpinBox(parent),
+    d_ptr(new HHexSpinBoxPrivate)
 {
     init();
 }
 
-HHexSpinBox::HHexSpinBox(HHexSpinBoxPrivate &p, QWidget *parent)
-    :  QSpinBox(parent), d_ptr(&p)
+HHexSpinBox::HHexSpinBox(HHexSpinBoxPrivate &p, QWidget *parent) :
+    QSpinBox(parent),
+    d_ptr(&p)
 {
     init();
 }
@@ -34,5 +36,5 @@ QString HHexSpinBox::textFromValue(int value) const
 
 void HHexSpinBox::init()
 {
-    d_ptr->validator = new QRegExpValidator(QRegExp("[0-9A-Fa-f]{1,8}"), this);
+    d_ptr->validator = new QRegularExpressionValidator(QRegularExpression("[0-9A-Fa-f]{1,8}"), this);
 }

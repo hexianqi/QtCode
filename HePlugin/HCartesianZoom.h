@@ -17,7 +17,7 @@ class HCartesianZoom : public HAbstractMouseStrategy
 
 public:
     explicit HCartesianZoom(QWidget *parent = nullptr);
-    ~HCartesianZoom();
+    ~HCartesianZoom() override;
 
 signals:
     void coordinateChanged(HCartesianCoordinate *);
