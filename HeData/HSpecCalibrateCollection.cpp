@@ -21,7 +21,6 @@ HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate()
 void HSpecCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
-
     s >> version;
     HStreamHelper::read<QString, HeData::ISpecCalibrate>(s, datas, [=](QString type) { return factory->createSpecCalibrate(type); });
 }

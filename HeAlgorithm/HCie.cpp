@@ -1,6 +1,6 @@
 #include "HCie.h"
-#include "HLinearFit.h"
 #include "HSpecHelper.h"
+#include "HLinearFit.h"
 #include "HMath.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
@@ -36,7 +36,6 @@ void HCieTc32::readStandard()
     _stdData.resize(n);
     str = in.readLine();
     str = in.readLine();
-
     for (i = 0; i < n; i++)
     {
         in >> _stdData[i].wave;
@@ -54,14 +53,11 @@ HCie1931::HCie1931()
 
 QPointF HCie1931::calcCoordinateUv(QPolygonF spd)
 {
-    int i,j;
-    double X,Y,Z;
-
-    i = 0;
-    j = 0;
-    X = 0;
-    Y = 0;
-    Z = 0;
+    int i = 0;
+    int j = 0;
+    double X = 0;
+    double Y = 0;
+    double Z = 0;
     while (i < spd.size() && j < _stdData.size())
     {
         if (qFabs(spd[i].x() - _stdData[j].wave) < 1e-6)
@@ -266,7 +262,6 @@ void HCie1931::readStandard()
     _stdData.resize(n);
     str = in.readLine();
     str = in.readLine();
-
     for (i = 0; i < n; i++)
         in >> _stdData[i].wave >> _stdData[i].X >> _stdData[i].Y >> _stdData[i].Z >> _stdData[i].x >> _stdData[i].y >> _stdData[i].z >> _stdData[i].slope;
     file.close();
@@ -335,7 +330,6 @@ void HCieDay::readStandard()
     _stdData.resize(n);
     str = in.readLine();
     str = in.readLine();
-
     for (i = 0; i < n; i++)
     {
         in >> _stdData[i].wave;
@@ -386,7 +380,6 @@ void HIsotherm::readStandard()
     _stdData.resize(n);
     str = in.readLine();
     str = in.readLine();
-
     for (i = 0; i < n; i++)
         in >> _stdData[i].Tc >> _stdData[i].u >> _stdData[i].v >> _stdData[i].slope;
     file.close();
@@ -469,7 +462,6 @@ void HCieUcs::readStandard()
     _cieUcs.resize(n);
     str = in.readLine();
     str = in.readLine();
-
     for (i = 0; i < n; i++)
     {
         in >> _cieUcs[i].Tc >> _cieUcs[i].urt >> _cieUcs[i].vrt >> _cieUcs[i].xt >> _cieUcs[i].yt >> _cieUcs[i].ur >> _cieUcs[i].vr >> _cieUcs[i].cr >> _cieUcs[i].dr;
@@ -496,7 +488,6 @@ void HCieUcs::readStandardP()
     _cieUcsP.resize(n);
     str = in.readLine();
     str = in.readLine();
-
     for (i = 0; i < n; i++)
         in >> _cieUcsP[i].Tc >> _cieUcsP[i].urt >> _cieUcsP[i].vrt;
     file.close();

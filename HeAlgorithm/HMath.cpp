@@ -63,9 +63,27 @@ double HMath::interpolateY(double y, QPolygonF poly)
 
     int i;
     for (i = 1; i < poly.size() - 1; i++)
-        if (y < poly[i].y())
+    {
+        if (y <= poly[i].y())
             break;
+    }
     return interpolateY(y, poly[i-1], poly[i]);
+}
+
+QPolygonF HMath::calcEllipse(QPointF center, double r, double theta, double a, double b)
+{
+    QPolygonF poly;
+    auto theta1 = qDegreesToRadians(theta);
+    for (int i = 0; i < 3600; i++)
+    {
+        auto theta2 = qDegreesToRadians(i * 0.1);
+        auto x1 = r * a * qCos(theta2);
+        auto y1 = r * b * qSin(theta2);
+        auto x2 = x1 * qCos(theta1) - y1 * qSin(theta1) + center.x();
+        auto y2 = x1 * qSin(theta1) + y1 * qCos(theta1) + center.y();
+        poly << QPointF(x2, y2);
+    }
+    return poly;
 }
 
 //bool HMath::polyfit(QVector<QPointF> points, QVector<double> &factors)

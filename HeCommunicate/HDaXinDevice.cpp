@@ -15,15 +15,15 @@ uint getCrc16(uchar *data, uchar size)
     char da;
     while (size-- != 0)
     {
-        da = (static_cast<uchar>(crc / 256)) / 16;
+        da = (uchar(crc / 256)) / 16;
         crc <<= 4;
         crc ^= crc_tab[da ^(*data / 16)];
-        da = (static_cast<uchar>(crc / 256)) / 16;
+        da = (uchar(crc / 256)) / 16;
         crc <<= 4;
         crc ^= crc_tab[da ^(*data & 0x0F)];
         data++;
     }
-    return(crc);
+    return crc;
 }
 
 HDaXinDevicePrivate::HDaXinDevicePrivate()
@@ -73,13 +73,13 @@ HErrorType HDaXinDevice::setData(HActionType action, QVector<uchar> value, int d
 
     auto size = value.size();
     auto upData = QVector<uchar>(10);
-    auto downData = QVector<uchar>() << d->da << d->sa << param[2] << 0x80 << size % 256 << value;
+    auto downData = QVector<uchar>() << d->da << d->sa << param[2] << 0x80 << uchar(size % 256) << value;
     if (size == 0)
         downData << 0x00;
-    auto crc = getCrc16(downData.data(), downData.size());
+    auto crc = getCrc16(downData.data(), uchar(downData.size()));
     downData.prepend(0x5A);
     downData.prepend(0xA5);
-    downData << crc / 256 << crc % 256;
+    downData << uchar(crc / 256) << uchar(crc % 256);
 
     auto error = transport(downData, upData, delay);
     if (error != E_OK)
@@ -107,14 +107,15 @@ HErrorType HDaXinDevice::getData(HActionType action, QVector<uchar> &value, int 
 
     auto upData = QVector<uchar>(9 + param[0] * 256 + param[1]);
     auto downData =  QVector<uchar>() << d->da << d->sa << param[2] << 0x80 << 0x00;
-    auto crc = getCrc16(downData.data(), downData.size());
+    auto crc = getCrc16(downData.data(), uchar(downData.size()));
     downData.prepend(0x5A);
     downData.prepend(0xA5);
-    downData << crc / 256 << crc % 256;
+    downData << uchar(crc / 256) << uchar(crc % 256);
 
     auto error = transport(downData, upData, delay);
     if (error != E_OK)
         return error;
+
     if (upData.size() < 10
             || upData[0] != 0xA5
             || upData[1] != 0x5A
@@ -135,12 +136,6 @@ HErrorType HDaXinDevice::check()
     if (error != E_OK)
         return error;
     return setData(ACT_SET_OUTPUT_CURRENT, QVector<uchar>() << 0x00 << 0x00);
-}
-
-HErrorType HDaXinDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
-{
-    Q_D(HDaXinDevice);
-    return d->port->transport(downData, upData, delay);
 }
 
 HE_COMMUNICATE_END_NAMESPACE

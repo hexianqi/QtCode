@@ -38,9 +38,9 @@ QPolygonF HGslHelper::formGsl(QVector<gsl_complex> za)
 
 QVector<double> HGslHelper::fromGsl(gsl_vector *v)
 {
-    QVector<double> r(v->size);
+    QVector<double> r;
     for (uint i = 0; i < v->size; i++)
-        r[i] = gsl_vector_get(v, i);
+        r << gsl_vector_get(v, i);
     return r;
 }
 

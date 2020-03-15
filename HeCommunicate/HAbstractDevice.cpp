@@ -47,9 +47,9 @@ void HAbstractDevice::setPort(IPort* port, int num, bool scan)
     d_ptr->portNumScan = scan;
 }
 
-void HAbstractDevice::setDeviceID(int id)
+void HAbstractDevice::setDeviceID(int value)
 {
-    d_ptr->deviceID = id;
+    d_ptr->deviceID = value;
 }
 
 void HAbstractDevice::addActionParam(HActionType action, QList<uchar> value)
@@ -102,6 +102,11 @@ HErrorType HAbstractDevice::check()
 {
     QVector<uchar> data;
     return getData(ACT_CHECK_DEVICE, data);
+}
+
+HErrorType HAbstractDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
+{
+    return d_ptr->port->transport(downData, upData, delay);
 }
 
 HE_COMMUNICATE_END_NAMESPACE

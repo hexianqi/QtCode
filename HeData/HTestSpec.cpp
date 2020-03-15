@@ -61,7 +61,7 @@ bool HTestSpecPrivate::setSample(QVector<double> value, bool avg)
 {
     samples[0] = value;
     if (avg)
-        value = average(samples[0]);
+        value = average(samples.at(0));
     samples[1] = calibrate->preprocess(value, fitting);
     return calcSpec();
 }
@@ -112,7 +112,7 @@ QVector<double> HTestSpecPrivate::average(QVector<double> value)
     {
         auto avg = 0.0;
         for (j = 0; j < sampleCache.size(); j++)
-            avg += sampleCache[j][i];
+            avg += sampleCache.at(j).at(i);
         value[i] = avg / j;
     }
     return value;
@@ -121,8 +121,8 @@ QVector<double> HTestSpecPrivate::average(QVector<double> value)
 void HTestSpecPrivate::calcMaxSample()
 {
     maxSample = 0;
-    for (int i = 0; i < samples[0].size(); i++)
-        maxSample = qMax(maxSample, samples[0][i]);
+    for (int i = 0; i < samples.at(0).size(); i++)
+        maxSample = qMax(maxSample, samples.at(0).at(i));
     setData("[采样比率]", maxSample * 100.0 / 65535);
 }
 
@@ -169,13 +169,13 @@ bool HTestSpecPrivate::calcSpec()
     addData("[蓝色比]", specData->BlueRatio);
     addData("[绿色比]", specData->GreenRatio);
     addData("[显色指数]", specData->RenderingIndexAvg);
-    addData("[显色指数Rx]", renderingIndexS());
+    addData("[显色指数Rx]", renderingIndex());
     addData("[光谱光通量]", specData->LuminousFlux);
     addData("[光功率]", specData->LuminousPower);
     return true;
 }
 
-QString HTestSpecPrivate::renderingIndexS()
+QString HTestSpecPrivate::renderingIndex()
 {
     QStringList list;
     for (int i = 0; i < specData->RenderingIndex.size(); i++)
@@ -187,11 +187,11 @@ QString HTestSpecPrivate::renderingIndexS()
     return list.join(" ");
 }
 
-QString HTestSpecPrivate::energyS()
+QString HTestSpecPrivate::energy()
 {
     QStringList list;
     for (auto p : specData->EnergyPercent)
-        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.x());
+        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
     return list.join(",");
 }
 
@@ -218,7 +218,7 @@ QVariant HTestSpec::data(QString type)
 {
     Q_D(HTestSpec);
     if (type == "[光谱能量数据]")
-        return d->energyS();
+        return d->energy();
     return HTestData::data(type);
 }
 
@@ -269,9 +269,9 @@ void HTestSpec::resetStdCurve()
 double HTestSpec::sample(int type, int pel)
 {
     auto s = sample(type);
-    if (s.isEmpty() || pel < 0 || pel >= s.size())
-        return 0;
-    return s[pel];
+    if (pel < 0 || pel >= s.size())
+        return 0.0;
+    return s.at(pel);
 }
 
 QVector<double> HTestSpec::sample(int type)
@@ -293,10 +293,10 @@ QPointF HTestSpec::sampleMax(int type, double a, double b)
     double y = 0.0;
     for (int i = f; i < l; i++)
     {
-        if (y < s[i])
+        if (y < s.at(i))
         {
             x = i;
-            y = s[i];
+            y = s.at(i);
         }
     }
     return QPointF(x, y);
@@ -310,7 +310,7 @@ QPolygonF HTestSpec::samplePoly(int type)
 
     QPolygonF r;
     for (int i = 0; i < s.size(); i++)
-        r << QPointF(i, s[i]);
+        r << QPointF(i, s.at(i));
     return r;
 }
 

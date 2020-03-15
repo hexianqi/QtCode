@@ -83,15 +83,11 @@ void HControlFactory::registerClass()
     // 未整理
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
-
     HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
-
     HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
 
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->supportedWidgets = e.subtract(b).toList();
-
-
     b = HObjectFactory::keys().toSet();
     HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
     e = HObjectFactory::keys().toSet();

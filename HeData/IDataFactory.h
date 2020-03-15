@@ -45,6 +45,7 @@ public:
     virtual IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建Excel文件流
     virtual IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) = 0;
+
 public:
     // 创建测试数据
     virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) = 0;

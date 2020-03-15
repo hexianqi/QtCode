@@ -25,10 +25,10 @@ public:
     bool isConnected() override;
     HErrorType open(int portNum = 1) override;
     HErrorType close() override;
+    HErrorType clear() override;
     HErrorType write(QVector<uchar> data) override;
     HErrorType read(QVector<uchar> &data) override;
     HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
-    HErrorType clear() override;
 
 protected:
     HAbstractPort(HAbstractPortPrivate &);

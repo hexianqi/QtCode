@@ -33,11 +33,9 @@ QString HQualitySelectHandler::typeName()
     return "HQualitySelectHandler";
 }
 
-void HQualitySelectHandler::execute(QObject *sender, QVariantMap param)
+void HQualitySelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualitySelectHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
 
     auto data = d->configManage->qualityCollection();
     if (data == nullptr || data->keys().size() < 2)

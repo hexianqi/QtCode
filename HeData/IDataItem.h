@@ -22,6 +22,8 @@ public:
     virtual void setData(QVariantMap value) = 0;
     // 获取数据
     virtual QVariant data(QString name) = 0;
+    // 获取数据
+    virtual QVariantMap data() = 0;
 
 public:
     // 读取内容

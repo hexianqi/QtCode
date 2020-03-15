@@ -33,7 +33,7 @@ protected:
     QScopedPointer<HProgressBarPrivate> d_ptr;
 
 protected:
-     void refreshStyleSheet();
+     void updateStyleSheet();
 
 private:
     void init();

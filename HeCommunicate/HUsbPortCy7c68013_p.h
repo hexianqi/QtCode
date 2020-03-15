@@ -9,7 +9,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 class HUsbPortCy7c68013Private : public HAbstractPortPrivate
 {
 public:
-    void *hand = nullptr;
+    void *handle = nullptr;
     bool isAsync = false;
 };
 

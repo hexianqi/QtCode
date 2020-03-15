@@ -118,7 +118,7 @@ bool HFileStream::readFile(QString fileName)
     s >> d_ptr->fileVersion;
     auto r = readContent(s);
     file.close();
-    return  r;
+    return r;
 }
 
 bool HFileStream::writeFile(QString fileName)
@@ -128,6 +128,7 @@ bool HFileStream::writeFile(QString fileName)
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
         return false;
+
     QDataStream s(&file);
     s.setVersion(QDataStream::Qt_5_10);
     s << d_ptr->magicNumber;

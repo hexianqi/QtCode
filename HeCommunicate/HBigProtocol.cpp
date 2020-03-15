@@ -1,5 +1,4 @@
 #include "HBigProtocol_p.h"
-#include "IDevice.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -32,8 +31,7 @@ HErrorType HBigProtocol::setData(HActionType action, int value, int delay)
 
 HErrorType HBigProtocol::setData(HActionType action, uchar value, int delay)
 {
-    auto data = QVector<uchar>() << value;
-    return setData(action, data, delay);
+    return HAbstractProtocol::setData(action, value, delay);
 }
 
 HErrorType HBigProtocol::setData(HActionType action, uint value, int delay)
@@ -55,8 +53,7 @@ HErrorType HBigProtocol::setData(HActionType action, QVector<int> value, int del
 
 HErrorType HBigProtocol::setData(HActionType action, QVector<uchar> value, int delay)
 {
-    Q_D(HBigProtocol);
-    return d->device->setData(action, value, delay);
+    return HAbstractProtocol::setData(action, value, delay);
 }
 
 HErrorType HBigProtocol::setData(HActionType action, QVector<uint> value, int delay)
@@ -84,12 +81,7 @@ HErrorType HBigProtocol::getData(HActionType action, int &value, int delay)
 
 HErrorType HBigProtocol::getData(HActionType action, uchar &value, int delay)
 {
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = data[0];
-    return E_OK;
+    return HAbstractProtocol::getData(action, value, delay);
 }
 
 HErrorType HBigProtocol::getData(HActionType action, uint &value, int delay)
@@ -98,7 +90,7 @@ HErrorType HBigProtocol::getData(HActionType action, uint &value, int delay)
     auto error = getData(action, data, delay);
     if (error != E_OK)
         return error;
-    value = static_cast<uint>((data[0] << 24) + (data[1] << 16) + (data[2] << 8) + data[3]);
+    value = uint((data[0] << 24) + (data[1] << 16) + (data[2] << 8) + data[3]);
     return E_OK;
 }
 
@@ -118,8 +110,7 @@ HErrorType HBigProtocol::getData(HActionType action, QVector<int> &value, int de
 
 HErrorType HBigProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
 {
-    Q_D(HBigProtocol);
-    return d->device->getData(action, value, delay);
+    return HAbstractProtocol::getData(action, value, delay);;
 }
 
 HErrorType HBigProtocol::getData(HActionType action, QVector<uint> &value, int delay)
@@ -132,7 +123,7 @@ HErrorType HBigProtocol::getData(HActionType action, QVector<uint> &value, int d
         value.resize(data.size() / 4);
     auto size = qMin(value.size(), data.size() / 4);
     for (int i = 0; i < size; i++)
-        value[i] = static_cast<uint>((data[4 * i] << 24) + (data[4 * i + 1] << 16) + (data[4 * i + 2] << 8) + data[4 * i + 3]);
+        value[i] = uint((data[4 * i] << 24) + (data[4 * i + 1] << 16) + (data[4 * i + 2] << 8) + data[4 * i + 3]);
     return E_OK;
 }
 

@@ -10,13 +10,13 @@ HChromaticityV2Private::HChromaticityV2Private()
     cieUcs = std::make_shared<HCieUcs>();
 }
 
-HChromaticityV2::HChromaticityV2()
-    : HChromaticity(*new HChromaticityV2Private)
+HChromaticityV2::HChromaticityV2() :
+    HChromaticity(*new HChromaticityV2Private)
 {
 }
 
-HChromaticityV2::HChromaticityV2(HChromaticityV2Private &p)
-    : HChromaticity(p)
+HChromaticityV2::HChromaticityV2(HChromaticityV2Private &p) :
+    HChromaticity(p)
 {
 }
 

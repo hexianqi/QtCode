@@ -1,56 +1,62 @@
-#include "HGraphicsCalloutItem_p.h"
+#include "HCalloutChartItem_p.h"
 #include <QtGui/QFontMetrics>
 #include <QtGui/QPainter>
 #include <QtWidgets/QGraphicsSceneMouseEvent>
 #include <QtCharts/QChart>
 
-HGraphicsCalloutItem::HGraphicsCalloutItem(QChart *parent) :
-    HGraphicsItem(*new HGraphicsCalloutItemPrivate, parent)
+HCalloutChartItem::HCalloutChartItem(QChart *parent) :
+    HGraphicsItem(*new HCalloutChartItemPrivate, parent)
 {
-    Q_D(HGraphicsCalloutItem);
+    Q_D(HCalloutChartItem);
     d->chart = parent;
 }
 
-HGraphicsCalloutItem::~HGraphicsCalloutItem()
+HCalloutChartItem::~HCalloutChartItem()
 {
 }
 
-void HGraphicsCalloutItem::setFont(QFont value)
+QFont HCalloutChartItem::font()
 {
-    Q_D(HGraphicsCalloutItem);
+    Q_D(HCalloutChartItem);
+    return d->font;
+}
+
+void HCalloutChartItem::setFont(QFont value)
+{
+    Q_D(HCalloutChartItem);
     if (d->font == value)
         return;
     d->font = value;
     update();
 }
 
-void HGraphicsCalloutItem::setText(QString value)
+void HCalloutChartItem::setText(QString value)
 {
-    Q_D(HGraphicsCalloutItem);
+    Q_D(HCalloutChartItem);
     QFontMetrics metrics(font());
     d->text = value;
-    d->textRect = metrics.boundingRect(QRect(0, 0, 150, 150), Qt::AlignLeft, value).translated(5, 5);
+    d->textRect = metrics.boundingRect(0, 0, 150, 150, Qt::AlignLeft, value).translated(5, 5);
     prepareGeometryChange();
     d->rect = d->textRect.adjusted(-5, -5, 5, 5);
 }
 
-void HGraphicsCalloutItem::setAnchor(QPointF value)
+void HCalloutChartItem::setAnchor(QPointF value)
 {
-    Q_D(HGraphicsCalloutItem);
+    Q_D(HCalloutChartItem);
     d->anchor = value;
 }
 
-void HGraphicsCalloutItem::updateGeometry()
+void HCalloutChartItem::updateGeometry()
 {
-    Q_D(HGraphicsCalloutItem);
+    Q_D(HCalloutChartItem);
     prepareGeometryChange();
     setPos(d->chart->mapToPosition(d->anchor) + QPoint(10, -50));
 }
 
-QRectF HGraphicsCalloutItem::boundingRect() const
+QRectF HCalloutChartItem::boundingRect() const
 {
-    Q_D(const HGraphicsCalloutItem);
-    QPointF anchor = mapFromParent(d->chart->mapToPosition(d->anchor));
+    Q_D(const HCalloutChartItem);
+    auto anchor = mapFromParent(d->chart->mapToPosition(d->anchor));
     QRectF rect;
     rect.setLeft(qMin(d->rect.left(), anchor.x()));
     rect.setRight(qMax(d->rect.right(), anchor.x()));
@@ -59,14 +65,14 @@ QRectF HGraphicsCalloutItem::boundingRect() const
     return rect;
 }
 
-void HGraphicsCalloutItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void HCalloutChartItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_D(HGraphicsCalloutItem);
+    Q_D(HCalloutChartItem);
     Q_UNUSED(option)
     Q_UNUSED(widget)
     QPainterPath path;
     path.addRoundedRect(d->rect, 5, 5);
-    QPointF anchor = mapFromParent(d->chart->mapToPosition(d->anchor));
+    auto anchor = mapFromParent(d->chart->mapToPosition(d->anchor));
     if (!d->rect.contains(anchor))
     {
         QPointF point1, point2;
@@ -109,18 +115,12 @@ void HGraphicsCalloutItem::paint(QPainter *painter, const QStyleOptionGraphicsIt
     painter->drawText(d->textRect, d->text);
 }
 
-QFont HGraphicsCalloutItem::font()
-{
-    Q_D(HGraphicsCalloutItem);
-    return d->font;
-}
-
-void HGraphicsCalloutItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void HCalloutChartItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     event->setAccepted(true);
 }
 
-void HGraphicsCalloutItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void HCalloutChartItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton)
     {

@@ -34,9 +34,9 @@ QVector<uchar> HSpecFittingLinear::toBinaryData()
                                << HDataHelper::writeUInt16(1)  // 版本
                                << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
     for (auto p : d->fittingPoints)
-        r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
-    r[0] = static_cast<uchar>(r.size() / 256);
-    r[1] = static_cast<uchar>(r.size() % 256);
+        r << HDataHelper::writeUInt16(quint16(p.x())) << HDataHelper::writeUInt16(quint16(p.y() * 10000));
+    r[0] = uchar((r.size() / 256));
+    r[1] = uchar((r.size() % 256));
     return r;
 }
 

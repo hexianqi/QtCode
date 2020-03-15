@@ -2,14 +2,16 @@
 #include <QtCore/QtMath>
 #include <QtGui/QPolygonF>
 
-HCartesianCoordinate::HCartesianCoordinate(QObject *parent)
-    : QObject(parent), d_ptr(new HCartesianCoordinatePrivate)
+HCartesianCoordinate::HCartesianCoordinate(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HCartesianCoordinatePrivate)
 {
     setAxis(QRectF(0, 0, 1, 1), 5, 5);
 }
 
-HCartesianCoordinate::HCartesianCoordinate(HCartesianCoordinatePrivate &p, QObject *parent)
-    : QObject(parent), d_ptr(&p)
+HCartesianCoordinate::HCartesianCoordinate(HCartesianCoordinatePrivate &p, QObject *parent) :
+    QObject(parent),
+    d_ptr(&p)
 {
     setAxis(QRectF(0, 0, 1, 1), 5, 5);
 }

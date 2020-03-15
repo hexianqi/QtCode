@@ -35,11 +35,9 @@ QString HAdjustEditHandler::typeName()
     return "HAdjustEditHandler";
 }
 
-void HAdjustEditHandler::execute(QObject *sender, QVariantMap param)
+void HAdjustEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAdjustEditHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
     auto detail = new HDataDetail<IAdjust>();
     detail->setEditWidget(new HAdjustEditWidget);
     detail->setData(d->configManage->adjustCollection());

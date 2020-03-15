@@ -33,7 +33,6 @@ public:
     double toReal(double value) override;
     void restoreDefault();
 
-
 protected:
     HElecCalibrateItem(HElecCalibrateItemPrivate &);
 };

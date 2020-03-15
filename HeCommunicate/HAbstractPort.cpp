@@ -60,6 +60,15 @@ HErrorType HAbstractPort::close()
     return E_OK;
 }
 
+HErrorType HAbstractPort::clear()
+{
+    if (!isConnected())
+        return E_PORT_CLOSED;
+    QVector<uchar> data(100);
+    read(data);
+    return E_OK;
+}
+
 HErrorType HAbstractPort::write(QVector<uchar> data)
 {
     return writeData(data.data(), data.size());
@@ -79,15 +88,6 @@ HErrorType HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &up
     if (delay > 10)
         HCoreHelper::msleep(delay);
     return read(upData);
-}
-
-HErrorType HAbstractPort::clear()
-{
-    if (!isConnected())
-        return E_PORT_CLOSED;
-    QVector<uchar> data(100);
-    read(data);
-    return E_OK;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

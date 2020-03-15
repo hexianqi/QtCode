@@ -74,10 +74,4 @@ HErrorType HSlDevice::getData(HActionType action, QVector<uchar> &value, int del
     return E_OK;
 }
 
-HErrorType HSlDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
-{
-    Q_D(HSlDevice);
-    return d->port->transport(downData, upData, delay);
-}
-
 HE_COMMUNICATE_END_NAMESPACE

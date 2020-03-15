@@ -66,7 +66,7 @@ void HSpecCalibrate::writeContent(QDataStream &s)
     s << quint32(1);
     d_ptr->setting->writeContent(s);
     d_ptr->pelsWave->writeContent(s);
-    d_ptr->stdCurve->writeContent(s);    
+    d_ptr->stdCurve->writeContent(s);
     d_ptr->luminous->writeContent(s);
     s << d_ptr->fitting->typeName();
     d_ptr->fitting->writeContent(s);
@@ -79,8 +79,8 @@ QVector<uchar> HSpecCalibrate::toBinaryData()
                                << d_ptr->setting->toBinaryData()
                                << d_ptr->pelsWave->toBinaryData()
                                << d_ptr->fitting->toBinaryData();
-    r[0] = r.size() / 256;
-    r[1] = r.size() % 256;
+    r[0] = uchar(r.size() / 256);
+    r[1] = uchar(r.size() % 256);
     return r;
 }
 

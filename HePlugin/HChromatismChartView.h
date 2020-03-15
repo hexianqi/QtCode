@@ -21,7 +21,7 @@ public:
 
 public:
     HChromatismChart *chart();
-    void setData(QJsonObject);
+    void setData(QVariantMap value);
 
 protected:
     HChromatismChartView(HChromatismChartViewPrivate &p, QWidget *parent = nullptr);

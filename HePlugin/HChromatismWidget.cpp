@@ -1,8 +1,11 @@
 #include "HChromatismWidget_p.h"
 #include "HCartesianCoordinate.h"
-#include "HPluginHelper.h"
-#include <QtCore/QJsonObject>
+#include "HeAlgorithm/HMath.h"
+#include <QtCore/QVariant>
 #include <QtGui/QPainter>
+
+
+HE_ALGORITHM_USE_NAMESPACE
 
 HChromatismWidgetPrivate::HChromatismWidgetPrivate(HChromatismWidget *q) :
     HCartesianWidgetPrivate(q)
@@ -25,30 +28,26 @@ HChromatismWidget::~HChromatismWidget()
 {
 }
 
-void HChromatismWidget::setData(QJsonObject json)
+void HChromatismWidget::setData(QVariantMap value)
 {
     Q_D(HChromatismWidget);
-    if (json.contains("title"))
-        d->title = json.value("title").toString();
-    if (json.contains("stdSdcm"))
-        d->stdSdcm = json.value("stdSdcm").toDouble();
-    if (json.contains("pointCenterX"))
-        d->pointCenter.setX(json.value("pointCenterX").toDouble());
-    if (json.contains("pointCenterY"))
-        d->pointCenter.setY(json.value("pointCenterY").toDouble());
-    if (json.contains("stdTheta"))
-        d->stdTheta = json.value("stdTheta").toDouble();
-    if (json.contains("stdA"))
-        d->stdA = json.value("stdA").toDouble();
-    if (json.contains("stdB"))
-        d->stdB = json.value("stdB").toDouble();
-    if (json.contains("pointFocusX"))
-        d->pointFocus.setX(json.value("pointFocusX").toDouble());
-    if (json.contains("pointFocusY"))
-        d->pointFocus.setY(json.value("pointFocusY").toDouble());
-    if (json.contains("sdcm"))
-        d->sdcm = json.value("sdcm").toDouble();
-    auto poly = HPluginHelper::calcEllipse(d->pointCenter, d->stdSdcm, d->stdTheta, d->stdA, d->stdB);
+    if (value.contains("[标题]"))
+        d->title = value.value("[标题]").toString();
+    if (value.contains("[标准Sdcm]"))
+        d->sdcmStd = value.value("[标准Sdcm]").toDouble();
+    if (value.contains("[中心点]"))
+        d->pointCenter = value.value("[中心点]").toPointF();
+    if (value.contains("[旋转角]"))
+        d->theta = value.value("[旋转角]").toDouble();
+    if (value.contains("[轴A]"))
+        d->axisA = value.value("[轴A]").toDouble();
+    if (value.contains("[轴B]"))
+        d->axisB = value.value("[轴B]").toDouble();
+    if (value.contains("[测试点]"))
+        d->pointFocus = value.value("[测试点]").toPointF();
+    if (value.contains("[测试Sdcm]"))
+        d->sdcmFocus = value.value("[测试Sdcm]").toDouble();
+    auto poly = HMath::calcEllipse(d->pointCenter, d->sdcmStd, d->theta, d->axisA, d->axisB);
     fixCoordinate(d->pointCenter, poly);
     addPolygon(0, poly, true);
 }
@@ -175,8 +174,8 @@ bool HChromatismWidget::drawDescription(QPainter *painter)
     if (!isValid())
         return false;
 
-    auto body = tr("%1 SDCM\t\t\r\n(%2, %3)").arg(d->sdcm, 0, 'f', 1).arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4);
-    auto footer = tr("标准 %1 SDCM \n 目标值x=%2,y=%3").arg(d->stdSdcm, 0, 'f', 1).arg(d->pointCenter.x(), 0, 'f', 3).arg(d->pointCenter.y(), 0, 'f', 3);
+    auto body = tr("%1 SDCM\t\t\r\n(%2, %3)").arg(d->sdcmFocus, 0, 'f', 1).arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4);
+    auto footer = tr("标准 %1 SDCM \n 目标值x=%2,y=%3").arg(d->sdcmStd, 0, 'f', 1).arg(d->pointCenter.x(), 0, 'f', 3).arg(d->pointCenter.y(), 0, 'f', 3);
 
     painter->save();
     painter->setPen(d->colorBody);
@@ -184,8 +183,8 @@ bool HChromatismWidget::drawDescription(QPainter *painter)
     painter->drawText(d->plotArea.adjusted(25, 25, -25, -25), Qt::AlignRight | Qt::AlignTop | Qt::TextWordWrap, body);
     painter->setPen(d->colorTitle);
     painter->setFont(d->fontTitle);
-    painter->drawText(d->plotArea.left(), 5, d->plotArea.width(), d->plotArea.top() - 15, Qt::AlignBottom | Qt::AlignHCenter, d->title);
-    painter->drawText(d->plotArea.left(), d->plotArea.bottom() + 20, d->plotArea.width(), 50, Qt::AlignTop | Qt::AlignHCenter, footer);
+    painter->drawText(QRectF(d->plotArea.left(), 5, d->plotArea.width(), d->plotArea.top() - 15), Qt::AlignBottom | Qt::AlignHCenter, d->title);
+    painter->drawText(QRectF(d->plotArea.left(), d->plotArea.bottom() + 20, d->plotArea.width(), 50), Qt::AlignTop | Qt::AlignHCenter, footer);
     painter->restore();
     return true;
 }

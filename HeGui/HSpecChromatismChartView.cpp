@@ -8,7 +8,6 @@
 #include "HeData/IChromatism.h"
 #include "HeData/IChromatismItem.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QJsonObject>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
@@ -44,7 +43,7 @@ void HSpecChromatismChartView::initMenuShow()
         return;
     auto group = new QActionGroup(this);
     for (auto v : data->values())
-         group->addAction(v->data("[标题]").toString())->setData(v->toJson());
+         group->addAction(v->data("[标题]").toString())->setData(v->data());
     connect(group, &QActionGroup::triggered, this, &HSpecChromatismChartView::showChromatism);
     d->menuShow->addActions(group->actions());
     if (group->actions().size() > 0)
@@ -54,7 +53,7 @@ void HSpecChromatismChartView::initMenuShow()
 void HSpecChromatismChartView::refreshWidget()
 {
     Q_D(HSpecChromatismChartView);
-    setData(d->testData->data("[色容差Json]").toJsonObject());
+    setData(d->testData->data("[色容差标准]").toMap());
 }
 
 void HSpecChromatismChartView::init()
@@ -74,7 +73,7 @@ void HSpecChromatismChartView::showChromatism(QAction *p)
 {
     if (p == nullptr)
         return;
-    setData(p->data().toJsonObject());
+    setData(p->data().toMap());
 }
 
 HE_GUI_END_NAMESPACE

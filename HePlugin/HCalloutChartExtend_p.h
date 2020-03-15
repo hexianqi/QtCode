@@ -4,7 +4,7 @@
 #include "HCalloutChartExtend.h"
 #include "HAbstractChartExtend_p.h"
 
-class HGraphicsCalloutItem;
+class HCalloutChartItem;
 
 class HCalloutChartExtendPrivate : public HAbstractChartExtendPrivate
 {
@@ -12,8 +12,8 @@ public:
     using HAbstractChartExtendPrivate::HAbstractChartExtendPrivate;
 
 public:
-    HGraphicsCalloutItem *tooltip = nullptr;
-    QList<HGraphicsCalloutItem *> callouts;
+    HCalloutChartItem *tooltip = nullptr;
+    QList<HCalloutChartItem *> callouts;
 };
 
 #endif // HCALLOUTCHARTEXTEND_P_H

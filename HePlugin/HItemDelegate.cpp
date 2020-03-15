@@ -1,12 +1,14 @@
 #include "HItemDelegate_p.h"
 
-HItemDelegate::HItemDelegate(QObject *parent)
-    : QItemDelegate(parent), d_ptr(new HItemDelegatePrivate)
+HItemDelegate::HItemDelegate(QObject *parent) :
+    QItemDelegate(parent),
+    d_ptr(new HItemDelegatePrivate)
 {
 }
 
-HItemDelegate::HItemDelegate(HItemDelegatePrivate &p, QObject *parent)
-    :  QItemDelegate(parent), d_ptr(&p)
+HItemDelegate::HItemDelegate(HItemDelegatePrivate &p, QObject *parent) :
+    QItemDelegate(parent),
+    d_ptr(&p)
 {
 }
 
@@ -38,7 +40,7 @@ QString HItemDelegate::toType(QModelIndex index) const
 {
     auto n = d_ptr->orientation == Qt::Horizontal ? index.column() - d_ptr->origin.x() : index.row() - d_ptr->origin.y();
     n = qMin(n, d_ptr->typeList.size() - 1);
-    return d_ptr->typeList[n];
+    return d_ptr->typeList.at(n);
 }
 
 bool HItemDelegate::isRedefine(QModelIndex index) const

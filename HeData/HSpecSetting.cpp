@@ -50,17 +50,17 @@ QVector<uchar> HSpecSetting::toBinaryData()
     auto times = data("[光谱平滑次数]").toInt();
     auto range = data("[光谱平滑范围]").toInt();
     auto frame = data("[光谱平滑帧数]").toInt();
-    auto tc = int(data("[标准色温]").toDouble() * 10);
+    auto tc = quint16(data("[标准色温]").toDouble() * 10);
     auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
                                << HDataHelper::writeUInt16(1)  // 版本
-                               << HDataHelper::writeUInt16(pels.x())
-                               << HDataHelper::writeUInt16(pels.y())
-                               << HDataHelper::writeUInt16(times)
-                               << HDataHelper::writeUInt16(range)
-                               << HDataHelper::writeUInt16(frame)
+                               << HDataHelper::writeUInt16(quint16(pels.x()))
+                               << HDataHelper::writeUInt16(quint16(pels.y()))
+                               << HDataHelper::writeUInt16(quint16(times))
+                               << HDataHelper::writeUInt16(quint16(range))
+                               << HDataHelper::writeUInt16(quint16(frame))
                                << HDataHelper::writeUInt16(tc);
-    r[0] = r.size() / 256;
-    r[1] = r.size() % 256;
+    r[0] = uchar(r.size() / 256);
+    r[1] = uchar(r.size() % 256);
     return r;
 }
 

@@ -33,12 +33,9 @@ QString HAdjustSelectHandler::typeName()
     return "HAdjustSelectHandler";
 }
 
-void HAdjustSelectHandler::execute(QObject *sender, QVariantMap param)
+void HAdjustSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAdjustSelectHandler);
-    Q_UNUSED(sender)
-    Q_UNUSED(param)
-
     auto data = d->configManage->adjustCollection();
     if (data == nullptr || data->keys().size() < 2)
         return;

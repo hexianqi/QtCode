@@ -40,14 +40,14 @@ int HParallelGrade::calcLevel(QVariantMap value, QString *text)
     }
     int j = 0;
     int sum = 0;
-    QString str = "";
+    QStringList list;
     for (auto p : map)
     {
         sum = p.x() + p.y() * sum;
-        str += QString("%1%2").arg(QChar('A' + j)).arg(p.x());
+        list << QString("%1%2").arg(QChar('A' + j)).arg(p.x());
         j++;
     }
-    *text = str;
+    *text = list.join("");
     return sum + 1;
 }
 
