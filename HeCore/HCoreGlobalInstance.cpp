@@ -366,7 +366,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 500, 1));
     hashDataFormatInfo.insert("[光谱采样]",                     new HDataFormatInfo("[光谱采样]", 0.0, 65536.0, 1));
     hashDataFormatInfo.insert("[光谱像元]",                     new HDataFormatInfo("[光谱像元]", 0, 2047));
-    hashDataFormatInfo.insert("[光谱波长]",                     new HDataFormatInfo("[光谱波长]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[光谱波长]",                     new HDataFormatInfo("[光谱波长]", "nm", 200, 1100, 1));
     hashDataFormatInfo.insert("[光谱波长间隔]",                 new HDataFormatInfo("[光谱波长间隔]", "nm", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱采样等待时间]",             new HDataFormatInfo("[光谱采样等待时间]", 0, 1000));
     hashDataFormatInfo.insert("[光谱平均次数]",                 new HDataFormatInfo("[光谱平均次数]", 1, 8));
@@ -385,8 +385,8 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
     // 光谱数据
     hashDataFormatInfo.insert("[采样比率]",                     new HDataFormatInfo("[采样比率]",  "%", 0, 100, 1));
-    hashDataFormatInfo.insert("[峰值波长]",                     new HDataFormatInfo("[峰值波长]", "nm", 300, 1100, 1));
-    hashDataFormatInfo.insert("[峰值带宽]",                     new HDataFormatInfo("[峰值带宽]", "nm", 300, 1100, 1));
+    hashDataFormatInfo.insert("[峰值波长]",                     new HDataFormatInfo("[峰值波长]", "nm", 200, 1100, 1));
+    hashDataFormatInfo.insert("[峰值带宽]",                     new HDataFormatInfo("[峰值带宽]", "nm", 200, 1100, 1));
     hashDataFormatInfo.insert("[主波长]",                       new HDataFormatInfo("[主波长]", "nm", 360, 780, 1));
     hashDataFormatInfo.insert("[色纯度]",                       new HDataFormatInfo("[色纯度]", 0, 100, 3));
     hashDataFormatInfo.insert("[色温]",                         new HDataFormatInfo("[色温]", "K", 1400, 25000));

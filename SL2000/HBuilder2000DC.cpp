@@ -154,41 +154,6 @@ void HBuilder2000DC::buildDevice()
     protocols->insert("Spec", protocol);
     protocols->insert("Elec", protocol2);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
-
-//    Q_D(HBuilder2000DC);
-//    QVariantMap param[2];
-//    param[0].insert("timeOut", 3000);
-//    param[1].insert("timeOut", 3000);
-//    param[1].insert("baudRate", 115200);
-//    auto port1 = d->communicateFactory->createPort("HUsbPortCy", param[0]);
-//    auto port2 = d->communicateFactory->createPort("HSerialPort", param[1]);
-//    auto device1 = d->communicateFactory->createDevice("HSlDevice");
-//    auto device2 = d->communicateFactory->createDevice("HSlCodecDevice");
-//    auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
-//    auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
-//    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-//    device1->setPort(port1, 0, false);
-//    device1->setDeviceID(0x81);
-//    device1->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);
-//    device1->addActionParam(ACT_SET_INTEGRAL_TIME,   QList<uchar>() << 0x00 << 0x04 << 0x03 << 0x05);
-//    device1->addActionParam(ACT_GET_SPECTRUM,        QList<uchar>() << 0x12 << 0x00 << 0x03 << 0x11);
-//    device2->setPort(port2, 4, true);
-//    device2->setDeviceID(0x01);
-//    device2->addActionParam(ACT_CHECK_DEVICE,               QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x00);
-//    device2->addActionParam(ACT_SET_SOURCE_MODE,            QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x05);
-//    device2->addActionParam(ACT_SET_OUTPUT_VOLTAGE,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x06);
-//    device2->addActionParam(ACT_SET_OUTPUT_CURRENT,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x07);
-//    device2->addActionParam(ACT_SET_GEARS_OUTPUT_CURRENT,   QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x08);
-//    device2->addActionParam(ACT_SET_REVERSE_VOLTAGE,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x09);
-//    device2->addActionParam(ACT_GET_ELEC_PARAM,             QList<uchar>() << 0x00 << 0x06 << 0x01 << 0x11);
-//    device2->addActionParam(ACT_GET_MEASURED_VOLTAGE,       QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x12);
-//    device2->addActionParam(ACT_GET_MEASURED_CURRENT,       QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x13);
-//    device2->addActionParam(ACT_GET_REVERSE_CURRENT,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x14);
-//    protocol1->setDevice(device1);
-//    protocol2->setDevice(device2);
-//    protocols->insert("Spec", protocol1);
-//    protocols->insert("Elec", protocol2);
-//    HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
 void HBuilder2000DC::buildThread()

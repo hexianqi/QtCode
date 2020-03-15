@@ -204,7 +204,7 @@ void HAbstractMainWindow::showDeviceFailed(QString text)
 {
     QMessageBox::critical(this, "", text);
 #ifndef QT_DEBUG
-    close();
+ //   close();
 #endif
 }
 
