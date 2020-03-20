@@ -1,6 +1,7 @@
 #include "HSl1000Protocol_p.h"
 #include "HSerialPort.h"
 #include "HSlCodecDevice.h"
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -38,6 +39,7 @@ HSl1000Protocol::HSl1000Protocol(HSl1000ProtocolPrivate &p) :
 
 HSl1000Protocol::~HSl1000Protocol()
 {
+    qDebug() << __func__;
 }
 
 void HSl1000Protocol::initialize(QVariantMap param)

@@ -12,11 +12,11 @@ HSlCodecDevicePrivate::HSlCodecDevicePrivate()
 HSlCodecDevice::HSlCodecDevice() :
     HSlDevice(*new HSlCodecDevicePrivate)
 {
-    qDebug() << __func__;
 }
 
 HSlCodecDevice::~HSlCodecDevice()
 {
+    qDebug() << __func__;
 }
 
 void HSlCodecDevice::initialize(QVariantMap param)

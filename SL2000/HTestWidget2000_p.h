@@ -2,7 +2,7 @@
 #define HTESTWIDGET2000_P_H
 
 #include "HTestWidget2000.h"
-#include "HeGui/HTestWidget_p.h"
+#include "HeGui/HTestWidget2_p.h"
 
 class HCie1931Widget;
 
@@ -18,7 +18,7 @@ class ITestSetWidget;
 class ITestDetailWidget;
 HE_GUI_END_NAMESPACE
 
-class HTestWidget2000Private : public HTestWidgetPrivate
+class HTestWidget2000Private : public HTestWidget2Private
 {
 public:
     HTestWidget2000Private();

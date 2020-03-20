@@ -1,13 +1,11 @@
 /***************************************************************************************************
-**      2019-04-09  HTestWidget 测试窗体。
+**      2020-03-20  HTestWidget 测试窗体。
 ***************************************************************************************************/
 
 #ifndef HTESTWIDGET_H
 #define HTESTWIDGET_H
 
 #include "HAbstractTestWidget.h"
-
-class QTextStream;
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -27,14 +25,14 @@ protected:
 
 protected:
     virtual void init();
-    virtual void createWidget() = 0;
     virtual void createAction();
+    virtual void createWidget() = 0;
     virtual void createMenu() = 0;
     virtual void createToolBar() = 0;
     virtual void initToolBar();
-    virtual void exportExcel();
-    virtual void exportDatabase();
     virtual void clearResult() = 0;
+    virtual void exportExcel() = 0;
+    virtual bool canExport() = 0;
 };
 
 HE_GUI_END_NAMESPACE

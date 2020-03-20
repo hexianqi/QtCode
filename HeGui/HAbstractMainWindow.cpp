@@ -33,7 +33,7 @@ HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HC
 
 HAbstractMainWindow::~HAbstractMainWindow()
 {
-    d_ptr->testWidget->stop();
+    d_ptr->testWidget->close();
     save(false);
 }
 
@@ -54,6 +54,7 @@ void HAbstractMainWindow::openWidget(QWidget *w)
 {
     d_ptr->testWidget->stop();
     w->setAttribute(Qt::WA_ShowModal, true);
+    w->setAttribute(Qt::WA_DeleteOnClose, true);
     w->show();
     d_ptr->testWidget->start();
 }

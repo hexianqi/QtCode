@@ -52,11 +52,3 @@ void HTestWidget2000DC::handleAction(HActionType action)
     }
     HTestWidget2000::handleAction(action);
 }
-
-void HTestWidget2000DC::createMenu()
-{
-    Q_D(HTestWidget2000);
-    auto menu1 = new QMenu(tr("测试配置(&T)"));
-    menu1->addAction(d->actionAdjust);
-    d->menus << menu1;
-}

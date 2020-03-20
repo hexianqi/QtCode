@@ -31,7 +31,7 @@ public:
     QStringList field() override;
 
 public:
-    bool addRecord(QVariantMap value) override;
+    bool addRecord(QVariantMap value, bool edit = true) override;
     void removeRecord() override;
     void removeRecord(int row, int count) override;
     void revertRecord() override;

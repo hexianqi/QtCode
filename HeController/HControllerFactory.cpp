@@ -27,7 +27,7 @@ HControllerFactory::HControllerFactory(HControllerFactoryPrivate &p, QObject *pa
 
 HControllerFactory::~HControllerFactory()
 {
-    qDebug() << __func__;
+    qDebug() << endl << __func__;
 }
 
 void HControllerFactory::initialize(QVariantMap /*param*/)

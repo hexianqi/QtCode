@@ -16,6 +16,7 @@ void HDrawHelper::drawOverlay(QPainter *painter, double radius, QColor color)
     gradient.setColorAt(0.0, color);
     color.setAlpha(30);
     gradient.setColorAt(1.0, color);
+
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(gradient);
@@ -37,13 +38,12 @@ void HDrawHelper::drawCrosshair(QPainter *painter, QPointF point, int width, con
 
 void HDrawHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, const QColor &color)
 {
-    QString text = "+";
-    auto f = painter->font();
-    f.setPixelSize(size);
-    auto fm = QFontMetrics(f);
-    auto p = point - QPointF(fm.width(text) / 2, -(fm.height() / 4));
+    auto text = QString("+");
+    auto font = painter->font();
+    font.setPixelSize(size);
+    auto fm = QFontMetrics(font);
     QPainterPath path;
-    path.addText(p, f, text);
+    path.addText(point - QPointF(fm.width(text) / 2, -fm.height() / 4), font, text);
 
     painter->save();
     painter->setPen(color);
@@ -95,12 +95,12 @@ QImage HDrawHelper::createFontImage(const QFont &font, const QChar &c, QSize siz
 
 QFont HDrawHelper::adjustFontSize(QPainter *painter, const QString &text, double width)
 {
-    auto f = painter->font();
-    f.setPointSize(10);
-    auto fm = QFontMetricsF(f);
+    auto font = painter->font();
+    font.setPointSize(10);
+    auto fm = QFontMetricsF(font);
     auto textWidth = fm.width(text);
-    f.setPointSizeF(f.pointSize() * width / textWidth);
-    return f;
+    font.setPointSizeF(font.pointSize() * width / textWidth);
+    return font;
 }
 
 HE_CONTROL_END_NAMESPACE

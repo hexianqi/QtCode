@@ -2,7 +2,7 @@
 #define HTESTWIDGETDEMO_P_H
 
 #include "HTestWidgetDemo.h"
-#include "HeGui/HTestWidget_p.h"
+#include "HeGui/HTestWidget2_p.h"
 
 class QTabWidget;
 
@@ -16,7 +16,7 @@ class ITestSetWidget;
 class ITestDetailWidget;
 HE_GUI_END_NAMESPACE
 
-class HTestWidgetDemoPrivate : public HTestWidgetPrivate
+class HTestWidgetDemoPrivate : public HTestWidget2Private
 {
 public:
     ISpecCalibrate *specCalibrate;

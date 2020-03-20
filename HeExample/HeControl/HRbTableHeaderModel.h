@@ -18,7 +18,7 @@ class HRbTableHeaderModel : public QAbstractTableModel
 
 public:
     explicit HRbTableHeaderModel(int rows, int columns, QObject *parent = nullptr);
-    ~HRbTableHeaderModel();
+    ~HRbTableHeaderModel() override;
 
 public:
     QModelIndex index(int row, int column, const QModelIndex & parent = QModelIndex()) const override;

@@ -62,9 +62,9 @@ QStringList HSqlHandle::field()
     return d_ptr->model->field();
 }
 
-bool HSqlHandle::addRecord(QVariantMap value)
+bool HSqlHandle::addRecord(QVariantMap value, bool edit)
 {
-    if (d_ptr->productInfo->editable())
+    if (edit && d_ptr->productInfo->editable())
         editProductInfo();
 
     auto r = d_ptr->model->record();

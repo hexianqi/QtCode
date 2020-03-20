@@ -26,6 +26,7 @@ HE_DATA_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
 
 class HElecCalibrateDialogPrivate;
+class HElecCalibrateItemWidget;
 
 class HElecCalibrateDialog : public QDialog
 {
@@ -46,6 +47,7 @@ protected:
     void done(int result) override;
     QTreeWidgetItem *createItem(QString text, int value, QTreeWidgetItem *parent);
     void createItem(IElecCalibrate *data, HElecType type, int &value, QTreeWidgetItem *parent);
+    HElecCalibrateItemWidget *createItemWidget(HElecType type);
 
 private:
     void init();

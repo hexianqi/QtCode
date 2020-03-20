@@ -32,7 +32,7 @@ QSqlDatabase HConnectionPoolPrivate::createConnection(const QString &connectionN
         if (check)
         {
             // 返回连接前访问数据库，如果连接断开，重新建立连接
-            qDebug() << "Test connection on borrow, execute:" << checkSql << ", for" << connectionName;
+            qDebug() << "Test connection on borrow, execute:" << checkSql << ", for " << connectionName;
             QSqlQuery query(checkSql, db1);
             if (query.lastError().type() != QSqlError::NoError && !db1.open())
             {
@@ -85,17 +85,6 @@ void HConnectionPool::setDatabaseInfo(QVariantMap param)
         d_ptr->password = param.value("password").toString();
 }
 
-HConnectionPool *HConnectionPool::instance()
-{
-    if (__instance.isNull())
-    {
-        QMutexLocker locker(&__mutex);
-        if (__instance.isNull())
-            __instance.reset(new HConnectionPool);
-    }
-    return __instance.data();
-}
-
 int HConnectionPool::maxConnectionCount() const
 {
     return d_ptr->maxConnectionCount;
@@ -119,6 +108,17 @@ int HConnectionPool::usedCount() const
 int HConnectionPool::unusedCount() const
 {
     return d_ptr->unusedConnectionNames.size();
+}
+
+HConnectionPool *HConnectionPool::instance()
+{
+    if (__instance.isNull())
+    {
+        QMutexLocker locker(&__mutex);
+        if (__instance.isNull())
+            __instance.reset(new HConnectionPool);
+    }
+    return __instance.data();
 }
 
 void HConnectionPool::release()

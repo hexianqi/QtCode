@@ -12,12 +12,12 @@ HOptionalTableExtend::~HOptionalTableExtend()
 {
 }
 
-void HOptionalTableExtend::setTableView(QTableView *v)
+void HOptionalTableExtend::setTableView(QTableView *p)
 {
-    HAbstractTableExtend::setTableView(v);
+    HAbstractTableExtend::setTableView(p);
     auto optional = new QAction(QIcon(":/image/Options.png"), tr("显示选项(&O)..."));
     connect(optional, &QAction::triggered, this, &HOptionalTableExtend::editSelected);
-    v->addAction(optional);
+    p->addAction(optional);
 }
 
 void HOptionalTableExtend::setDisplay(QStringList value)

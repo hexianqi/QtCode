@@ -23,12 +23,6 @@ HSpecThread::HSpecThread(HSpecThreadPrivate &p, QObject *parent) :
     init();
 }
 
-void HSpecThread::init()
-{
-    Q_D(HSpecThread);
-    d->strategys.insert("Spec", HAppContext::getContextPointer<IControllerFactory>("IControllerFactory")->createStrategy("HSpecStrategy", this));
-}
-
 HSpecThread::~HSpecThread()
 {
     qDebug() << __func__;
@@ -44,5 +38,10 @@ QString HSpecThread::threadInfo()
     return tr("光谱线程");
 }
 
-HE_CONTROLLER_END_NAMESPACE
+void HSpecThread::init()
+{
+    Q_D(HSpecThread);
+    d->strategys.insert("Spec", HAppContext::getContextPointer<IControllerFactory>("IControllerFactory")->createStrategy("HSpecStrategy", this));
+}
 
+HE_CONTROLLER_END_NAMESPACE

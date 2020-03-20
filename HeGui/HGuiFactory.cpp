@@ -38,7 +38,7 @@ HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p, QObject *parent) :
 
 HGuiFactory::~HGuiFactory()
 {
-    qDebug() << __func__;
+    qDebug() << endl << __func__;
 }
 
 void HGuiFactory::initialize(QVariantMap /*param*/)

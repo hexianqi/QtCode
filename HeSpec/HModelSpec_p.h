@@ -17,7 +17,7 @@ HE_DATA_END_NAMESPACE
 class HModelSpecPrivate : public HAbstractModelPrivate
 {
 public:
-    HModelSpecPrivate(IModel *);
+    HModelSpecPrivate();
 
 public:
     HSpecCalibrateWidget *widget();

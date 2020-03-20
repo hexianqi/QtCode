@@ -7,8 +7,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 bool HRegularExpressionHelper::isMatch(const QString &text, const QString &pattern)
 {
     QRegularExpression re(pattern);
-    auto rem = re.match(text);
-    return rem.hasMatch();
+    return re.match(text).hasMatch();
 }
 
 bool HRegularExpressionHelper::isIP(const QString &text)

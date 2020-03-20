@@ -83,7 +83,7 @@ void HBuilder2000DC::buildConfigManage()
         param[0].insert("itemClassName", "HElecCalibrateItem");
         param[0].insert("itemTypeList", QStringList() << "[输出电压]");
         param[1].insert("itemClassName", "HElecCalibrateItem");
-        param[1].insert("itemTypeList", QStringList() << "[输出电流]");
+        param[1].insert("itemTypeList", QStringList() << "[输出电流1]" << "[输出电流2]");
         param[2].insert("itemClassName", "HElecCalibrateItem");
         param[2].insert("itemTypeList", QStringList() << "[实测电压]");
         param[3].insert("itemClassName", "HElecCalibrateItem");
@@ -129,6 +129,7 @@ void HBuilder2000DC::buildTestData()
     auto elec = d->dataFactory->createTestElec("HTestElec");
     elec->setSuccessor(other);
     elec->setCalibrate(d->configManage->elecCalibrateCollection());
+    elec->setParam(OutputVoltage, 10);
     spec->setSuccessor(elec);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
     data->setSuccessor(spec);
@@ -192,14 +193,17 @@ void HBuilder2000DC::buildDatabase()
     model->setField(d->sqlField);
     model->setTable("Spec");
     info->setRelationTableName("Spec");
+    handle->setModel(model);
     handle->setProductInfo(info);
     handle->setFieldFind(find);
+    print->setModel(model);
     print->setFieldExportExcel(exportExcel);
+    browser->setModel(model);
     browser->setRecordHandle(handle);
     browser->setRecordPrint(print);
-    browser->setModel(model);
     db->insertTableModel("Spec", model);
     HAppContext::setContextPointer("ISqlHandle", handle);
+    HAppContext::setContextPointer("ISqlPrint", print);
     HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 
@@ -210,6 +214,7 @@ void HBuilder2000DC::buildMenu()
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
     auto quality = new QMenu(tr("品质(&Q)"));
+    auto test = new QMenu(tr("其他测试(&E)"));
     auto database = new QMenu(tr("数据库(&D)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("电定标(&S)..."), "HElecCalibrateHandler"));
@@ -219,18 +224,20 @@ void HBuilder2000DC::buildMenu()
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
+    test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
+    d->mainWindow->insertMenu(test);
     d->mainWindow->insertMenu(database);
 }
 
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

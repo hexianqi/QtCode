@@ -6,14 +6,13 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HSpecModelPrivate::HSpecModelPrivate(IModel *q) :
-    HAbstractModelPrivate(q)
+HSpecModelPrivate::HSpecModelPrivate()
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
 HSpecModel::HSpecModel(QObject *parent) :
-    HAbstractModel(*new HSpecModelPrivate(this), parent)
+    HAbstractModel(*new HSpecModelPrivate, parent)
 {
 }
 
@@ -52,9 +51,7 @@ void HSpecModel::syncTestData(quint32 type)
 void HSpecModel::syncMachine(quint32 type)
 {
     if (type & IConfigManage::ContainSpec)
-    {
         addAction(ACT_SET_INTEGRAL_TIME);
-    }
 }
 
 HE_CONTROLLER_END_NAMESPACE

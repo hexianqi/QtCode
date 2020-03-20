@@ -3,8 +3,6 @@
 #include <QtCore/QRegularExpression>
 #include <mutex>
 
-#include <QtDebug>
-
 HE_CONTROL_BEGIN_NAMESPACE
 
 QScopedPointer<HChineseHelper> HChineseHelper::__instance;
@@ -86,8 +84,6 @@ void HChineseHelper::init()
 {
     loadPingYin(":/data/pinyin.dat");
     loadJianPin(":/data/jianpin.dat");
-    qDebug() << "PinYin:" << d_ptr->pinYins.size();
-    qDebug() << "JianPin:" << d_ptr->jianPins.size();
 }
 
 HE_CONTROL_END_NAMESPACE

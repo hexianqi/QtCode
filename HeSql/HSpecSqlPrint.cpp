@@ -12,7 +12,6 @@ HE_SQL_BEGIN_NAMESPACE
 HSpecSqlPrint::HSpecSqlPrint(QObject *parent) :
     HAbstractSqlPrint(*new HSpecSqlPrintPrivate, parent)
 {
-
 }
 
 HSpecSqlPrint::HSpecSqlPrint(HSpecSqlPrintPrivate &p, QObject *parent) :

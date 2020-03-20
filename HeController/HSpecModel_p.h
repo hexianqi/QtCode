@@ -13,7 +13,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 class HSpecModelPrivate : public HAbstractModelPrivate
 {
 public:
-    HSpecModelPrivate(IModel *);
+    HSpecModelPrivate();
 
 public:
     ITestSpec *testSpec;

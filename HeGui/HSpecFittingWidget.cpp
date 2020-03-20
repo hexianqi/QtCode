@@ -14,16 +14,16 @@ HSpecFittingWidgetPrivate::HSpecFittingWidgetPrivate()
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 
-HSpecFittingWidget::HSpecFittingWidget(QWidget *parent)
-    : QWidget(parent)
-    , d_ptr(new HSpecFittingWidgetPrivate)
+HSpecFittingWidget::HSpecFittingWidget(QWidget *parent) :
+    QWidget(parent),
+    d_ptr(new HSpecFittingWidgetPrivate)
 {
     init();
 }
 
-HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent)
-    : QWidget(parent)
-    , d_ptr(&p)
+HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent) :
+    QWidget(parent),
+    d_ptr(&p)
 {
     init();
 }
@@ -101,7 +101,7 @@ bool HSpecFittingWidget::setTest(bool b)
         if (!initParam())
             return false;
         d_ptr->lastSample = 0.0;
-        d_ptr->curTimes = 0;        
+        d_ptr->curTimes = 0;
         d_ptr->progressDialog->setRange(0, d_ptr->points.size());
         d_ptr->progressDialog->setValue(0);
         d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());

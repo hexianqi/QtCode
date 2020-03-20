@@ -5,13 +5,13 @@
 #ifndef HIVTESTWIDGET_H
 #define HIVTESTWIDGET_H
 
-#include "HAbstractTestWidget.h"
+#include "HTestWidget.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HIVTestWidgetPrivate;
 
-class HIVTestWidget : public HAbstractTestWidget
+class HIVTestWidget : public HTestWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HIVTestWidget)
@@ -29,15 +29,13 @@ protected:
     void handleAction(HActionType action) override;
 
 protected:
-    void exportExcel();
-    void clearResult();
+    void createWidget() override;
+    void createMenu() override;
+    void createToolBar() override;
+    void clearResult() override;
+    void exportExcel() override;
+    bool canExport() override;
     void handleTestStateChanged(bool b);
-
-private:
-    void init();
-    void createAction();
-    void createToolBar();
-    void createWidget();
 };
 
 HE_GUI_END_NAMESPACE

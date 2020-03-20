@@ -6,7 +6,7 @@
 #define HTESTWIDGETDEMO_H
 
 #include "HeData/HDataGlobal.h"
-#include "HeGui/HTestWidget.h"
+#include "HeGui/HTestWidget2.h"
 
 HE_GUI_USE_NAMESPACE
 
@@ -17,7 +17,7 @@ HE_DATA_USE_NAMESPACE
 
 class HTestWidgetDemoPrivate;
 
-class HTestWidgetDemo : public HTestWidget
+class HTestWidgetDemo : public HTestWidget2
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HTestWidgetDemo)

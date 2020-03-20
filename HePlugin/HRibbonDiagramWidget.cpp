@@ -87,7 +87,7 @@ bool HRibbonDiagramWidget::drawRibbon(QPainter *painter)
     painter->setPen(color);
     for (auto p : poly)
         painter->drawLine(p.x(), d->plotArea.top(), p.x(), p.y());
-    //    painter->drawLine(QLineF(p.x(), d->plotArea.top(), p.x(), p.y()));
+    //    painter->drawLine(QLineF(p.x(), d->plotArea.top(), p.x(), p.y())); 会死机
     painter->restore();
     return true;
 }

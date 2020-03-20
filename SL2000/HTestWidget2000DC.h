@@ -26,7 +26,6 @@ protected:
 
 protected:
     void handleAction(HActionType action) override;
-    void createMenu() override;
 };
 
 #endif // HTESTWIDGET2000DC_H

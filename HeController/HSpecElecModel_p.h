@@ -13,7 +13,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 class HSpecElecModelPrivate : public HSpecModelPrivate
 {
 public:
-    HSpecElecModelPrivate(IModel *);
+    HSpecElecModelPrivate();
 
 public:
     ITestElec *testElec;

@@ -158,14 +158,17 @@ void HBuilder2000::buildDatabase()
     model->setField(d->sqlField);
     model->setTable("Spec");
     info->setRelationTableName("Spec");
+    handle->setModel(model);
     handle->setProductInfo(info);
     handle->setFieldFind(find);
+    print->setModel(model);
     print->setFieldExportExcel(exportExcel);
+    browser->setModel(model);
     browser->setRecordHandle(handle);
     browser->setRecordPrint(print);
-    browser->setModel(model);
     db->insertTableModel("Spec", model);
     HAppContext::setContextPointer("ISqlHandle", handle);
+    HAppContext::setContextPointer("ISqlPrint", print);
     HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 

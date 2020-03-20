@@ -37,7 +37,7 @@ HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject 
 
 HCommunicateFactory::~HCommunicateFactory()
 {
-    qDebug() << __func__;
+    qDebug() << endl << __func__;
 }
 
 void HCommunicateFactory::initialize(QVariantMap /*param*/)

@@ -20,7 +20,7 @@
 #include <QtCore/QDebug>
 
 HTestWidgetDemo::HTestWidgetDemo(QWidget *parent) :
-    HTestWidget(*new HTestWidgetDemoPrivate, parent)
+    HTestWidget2(*new HTestWidgetDemoPrivate, parent)
 {
     init();
 }
@@ -78,7 +78,7 @@ void HTestWidgetDemo::handleAction(HActionType action)
 void HTestWidgetDemo::createAction()
 {
     Q_D(HTestWidgetDemo);
-    HTestWidget::createAction();
+    HTestWidget2::createAction();
     d->actionImport = new QAction(tr("导入标准(&I)"), this);
     d->actionImport->setIcon(QIcon(":/image/Import.png"));
     d->actionImport->setIconText(tr("导入标准"));

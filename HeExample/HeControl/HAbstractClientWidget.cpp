@@ -40,7 +40,7 @@ void HAbstractClientWidget::setServerIP(const QString &value)
     d->serverIP = value;
 }
 
-void HAbstractClientWidget::setServerPort(int value)
+void HAbstractClientWidget::setServerPort(quint16 value)
 {
     Q_D(HAbstractClientWidget);
     if (d->serverPort == value)

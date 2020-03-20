@@ -1,6 +1,7 @@
 #include "HProductInfo_p.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QSettings>
+#include <QtCore/QDebug>
 
 HE_SQL_BEGIN_NAMESPACE
 
@@ -32,6 +33,7 @@ HProductInfo::HProductInfo(HProductInfoPrivate &p, QObject *parent) :
 
 HProductInfo::~HProductInfo()
 {
+    qDebug() << __func__;
     writeSettings();
 }
 

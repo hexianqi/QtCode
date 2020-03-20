@@ -1,6 +1,7 @@
 #include "HCcd1305Protocol_p.h"
 #include "HUsbPortCy.h"
 #include "HSlDevice2.h"
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -31,6 +32,7 @@ HCcd1305Protocol::HCcd1305Protocol(HCcd1305ProtocolPrivate &p) :
 
 HCcd1305Protocol::~HCcd1305Protocol()
 {
+    qDebug() << __func__;
 }
 
 void HCcd1305Protocol::initialize(QVariantMap param)

@@ -23,20 +23,20 @@ gsl_complex HPolynomial::complex_eval(QVector<gsl_complex> c, gsl_complex z)
 QVector<double> HPolynomial::eval_derivs(QVector<double> c, double x, int n)
 {
     QVector<double> r(n);
-    gsl_poly_eval_derivs(c.data(), c.size(), x, r.data(), r.size());
+    gsl_poly_eval_derivs(c.data(), size_t(c.size()), x, r.data(), size_t(r.size()));
     return r;
 }
 
 QVector<gsl_complex> HPolynomial::complex_solve(QVector<double> a)
 {
     QVector<gsl_complex> r;
-    auto size = a.size();
-    double z[size * 2 - 2];
+    auto size = size_t(a.size());
+    auto z = new double[size * 2 - 2];
     auto w = gsl_poly_complex_workspace_alloc(size);
     if (gsl_poly_complex_solve(a.data(), size, w, z) == 0)
     {
-        for (int i = 0; i < size - 1; i++)
-            r << gsl_complex_rect(z[2*i], z[2*i+1]);
+        for (size_t i = 0; i < size - 1; i++)
+            r << gsl_complex_rect(z[2 * i], z[2 * i + 1]);
     }
     gsl_poly_complex_workspace_free(w);
     return r;

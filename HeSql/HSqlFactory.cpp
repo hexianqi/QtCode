@@ -26,7 +26,7 @@ HSqlFactory::HSqlFactory(HSqlFactoryPrivate &p, QObject *parent) :
 
 HSqlFactory::~HSqlFactory()
 {
-    qDebug() << __func__;
+    qDebug() << endl << __func__;
 }
 
 void HSqlFactory::initialize(QVariantMap /*param*/)

@@ -47,7 +47,7 @@ HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent) :
 
 HDataFactory::~HDataFactory()
 {
-    qDebug() << __func__;
+    qDebug() << endl << __func__;
 }
 
 void HDataFactory::initialize(QVariantMap /*param*/)

@@ -18,12 +18,11 @@ class HDelayThread;
 class HE_CONTROLLER_EXPORT HAbstractModelPrivate
 {
 public:
-    HAbstractModelPrivate(IModel *);
+    HAbstractModelPrivate();
 
 public:
     bool initialized;
     QString configFileName;
-    IModel *q_ptr;
     IConfigManage *configManage = nullptr;
     IThreadCollection *threads = nullptr;
     HDelayThread *delayThread = nullptr;

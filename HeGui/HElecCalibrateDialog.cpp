@@ -15,7 +15,7 @@
 HE_GUI_BEGIN_NAMESPACE
 
 HElecCalibrateDialogPrivate::HElecCalibrateDialogPrivate()
-{    
+{
     calibrate = HAppContext::getContextPointer<IConfigManage>("IConfigManage")->elecCalibrateCollection();
     testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
     model = HAppContext::getContextPointer<IModel>("IModel");
@@ -96,7 +96,7 @@ void HElecCalibrateDialog::setElec(HElecType type, double value)
 {
     if (type == OutputVoltage)
     {
-        d_ptr->testElec->setData("[输出电压_F]", value);        
+        d_ptr->testElec->setData("[输出电压_F]", value);
         d_ptr->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
     }
     if (type == OutputCurrent)
@@ -157,16 +157,12 @@ void HElecCalibrateDialog::createItem(IElecCalibrate *data, HElecType type, int 
     if (collection == nullptr || collection->size() == 0)
         return;
 
-    HElecCalibrateItemWidget *w;
     int i = 0;
     auto p = collection->size() > 1 ? createItem(HCore::toCaption(data->toString(type)), value, parent) : parent;
     for (auto t : collection->keys())
     {
         createItem(HCore::toCaption(t), value, p);
-        if (type == OutputVoltage || type == OutputCurrent || type == ReverseVoltage)
-            w = new HElecCalibrateItem1Widget(this);
-        else
-            w = new HElecCalibrateItem2Widget(this);
+        auto w = createItemWidget(type);
         w->setData(collection->value(t), type, i);
         ui->stackedWidget->addWidget(w);
         connect(w, &HElecCalibrateItemWidget::elecChanged, this, &HElecCalibrateDialog::setElec);
@@ -174,6 +170,13 @@ void HElecCalibrateDialog::createItem(IElecCalibrate *data, HElecType type, int 
         value++;
         i++;
     }
+}
+
+HElecCalibrateItemWidget *HElecCalibrateDialog::createItemWidget(HElecType type)
+{
+    if (type == OutputVoltage || type == OutputCurrent || type == ReverseVoltage)
+        return new HElecCalibrateItem1Widget(this);
+    return new HElecCalibrateItem2Widget(this);
 }
 
 void HElecCalibrateDialog::init()
@@ -192,9 +195,11 @@ void HElecCalibrateDialog::init()
             createItem(item, type, value, parent);
         value += 0x00010000;
     }
+    ui->treeWidget->setStyleSheet("QTreeWidget::item { height:30px }");
     ui->treeWidget->expandAll();
     ui->treeWidget->setCurrentItem(ui->treeWidget->topLevelItem(0));
     connect(d_ptr->model, &IModel::actionFinished, this, &HElecCalibrateDialog::handleAction);
+    setWindowTitle(tr("电参数定标"));
 }
 
 HE_GUI_END_NAMESPACE

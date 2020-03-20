@@ -6,14 +6,13 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HSpecElecModelPrivate::HSpecElecModelPrivate(IModel *q) :
-    HSpecModelPrivate(q)
+HSpecElecModelPrivate::HSpecElecModelPrivate()
 {
     testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
 }
 
 HSpecElecModel::HSpecElecModel(QObject *parent) :
-    HSpecModel(*new HSpecElecModelPrivate(this), parent)
+    HSpecModel(*new HSpecElecModelPrivate, parent)
 {
 }
 

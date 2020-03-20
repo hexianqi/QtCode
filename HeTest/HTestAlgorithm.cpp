@@ -7,11 +7,11 @@ HE_ALGORITHM_USE_NAMESPACE
 void HTestAlgorithm::testRegister()
 {
     HRegister reg;
-    if (reg.checkRegisterCode())
+    if (reg.check())
         return;
 
     // 注册
-    auto id = reg.getRegisterId();
+    auto id = reg.registerId();
     auto code = reg.encrypt(id);
     reg.setRegisterCode(code);
 

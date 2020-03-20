@@ -13,11 +13,11 @@ HSlDevice2::HSlDevice2() :
 HSlDevice2::HSlDevice2(HSlDevice2Private &p) :
     HAbstractDevice(p)
 {
-    qDebug() << __func__;
 }
 
 HSlDevice2::~HSlDevice2()
 {
+    qDebug() << __func__;
 }
 
 QString HSlDevice2::typeName()

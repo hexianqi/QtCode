@@ -5,8 +5,7 @@
 #include "HeGui/HSpecCalibrateWidget.h"
 #include <QtCore/QDebug>
 
-HModelSpecPrivate::HModelSpecPrivate(IModel *q) :
-    HAbstractModelPrivate(q)
+HModelSpecPrivate::HModelSpecPrivate()
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
@@ -19,7 +18,7 @@ HSpecCalibrateWidget *HModelSpecPrivate::widget()
 }
 
 HModelSpec::HModelSpec(QObject *parent) :
-    HAbstractModel(*new HModelSpecPrivate(this), parent)
+    HAbstractModel(*new HModelSpecPrivate, parent)
 {
 }
 

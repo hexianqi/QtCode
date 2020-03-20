@@ -15,7 +15,6 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
     actionSupport << ACT_SINGLE_TEST
                   << ACT_GET_SPECTRUM_ELEC;
 
-
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
     testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");

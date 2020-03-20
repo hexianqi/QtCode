@@ -54,6 +54,9 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
     case ACT_SET_REVERSE_VOLTAGE:
         ui->doubleSpinBox_3->setValue(d->testData->data("[反向电压]").toDouble());
         break;
+    case ACT_SET_GEARS_OUTPUT_CURRENT:
+        ui->comboBox_2->setCurrentIndex(d->testData->data("[输出电流_档位]").toInt());
+        break;
     case ACT_SINGLE_TEST:
         if (!d->testState)
             break;
@@ -147,6 +150,13 @@ void HTestSetWidget2000DC::on_comboBox_1_currentIndexChanged(int value)
     setTestMode(value);
 }
 
+void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
+{
+    Q_D(HTestSetWidget2000DC);
+    d->testElec->setGears(OutputCurrent, value);
+    d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+}
+
 bool HTestSetWidget2000DC::adjustIntegralTime()
 {
     Q_D(HTestSetWidget2000DC);
@@ -170,5 +180,6 @@ void HTestSetWidget2000DC::init()
     ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
     ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
     ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  "));
+    ui->comboBox_2->addItems(QStringList() << tr("  1档  ") << tr("  2档  "));
 }
 

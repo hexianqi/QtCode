@@ -1,13 +1,13 @@
 #ifndef HTESTWIDGET2000_H
 #define HTESTWIDGET2000_H
 
-#include "HeGui/HTestWidget.h"
+#include "HeGui/HTestWidget2.h"
 
 HE_GUI_USE_NAMESPACE
 
 class HTestWidget2000Private;
 
-class HTestWidget2000 : public HTestWidget
+class HTestWidget2000 : public HTestWidget2
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HTestWidget2000)
@@ -26,18 +26,19 @@ public:
 protected:
     bool setTest(bool b) override;
     void handleAction(HActionType action) override;
+    void clearResult() override;
+    bool canExport() override;
 
 protected:
-    void createWidget() override;
     void createAction() override;
+    void createWidget() override;
     void createMenu() override;
     void createToolBar() override;
-    void clearResult() override;
 
 protected:
     void handleTestStateChanged(bool b);
     void resetGrade();
-    void refreshWidget();    
+    void refreshWidget();
     void postProcess();
     void importCurve();
     void exportCurve();

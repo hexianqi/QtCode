@@ -34,7 +34,7 @@ public:
 
 public:
     // 添加记录
-    virtual bool addRecord(QVariantMap value) = 0;
+    virtual bool addRecord(QVariantMap value, bool edit = true) = 0;
     // 删除记录
     virtual void removeRecord() = 0;
     virtual void removeRecord(int row, int count) = 0;

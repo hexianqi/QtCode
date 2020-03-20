@@ -7,17 +7,17 @@
 
 #include "HGuiGlobal.h"
 
-class QStringList;
 class QWidget;
-class QTableView;
-class QTableWidget;
-class QAction;
+class QMainWindow;
 
 HE_GUI_BEGIN_NAMESPACE
 
+class ITestWidget;
+
 class HE_GUI_EXPORT HGuiHelper
 {
-//public:
+public:
+    static QMainWindow *decoratorInMainWindow(ITestWidget *widget, QWidget *parent = nullptr);
 //    static QString copy(QTableView *widget, bool withHeader = false);
 //    static QString copy(QTableWidget *widget, bool withHeader = false);
 //    static QString paste(QTableView *widget);

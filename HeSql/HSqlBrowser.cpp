@@ -39,16 +39,16 @@ QString HSqlBrowser::typeName()
 
 void HSqlBrowser::setRecordHandle(ISqlHandle *p)
 {
+    if (d_ptr->handle == p)
+        return;
     d_ptr->handle = p;
-    if (d_ptr->handle != nullptr && d_ptr->model != nullptr)
-        d_ptr->handle->setModel(d_ptr->model);
 }
 
 void HSqlBrowser::setRecordPrint(ISqlPrint *p)
 {
+    if (d_ptr->print == p)
+        return;
     d_ptr->print = p;
-    if (d_ptr->print != nullptr && d_ptr->model != nullptr)
-        d_ptr->print->setModel(d_ptr->model);
 }
 
 void HSqlBrowser::setModel(ISqlTableModel *p)
@@ -57,10 +57,6 @@ void HSqlBrowser::setModel(ISqlTableModel *p)
         return;
     d_ptr->model = p;
     d_ptr->view->setModel(p);
-    if (d_ptr->handle != nullptr)
-        d_ptr->handle->setModel(p);
-    if (d_ptr->print != nullptr)
-        d_ptr->print->setModel(p);
 }
 
 void HSqlBrowser::removeRecord()

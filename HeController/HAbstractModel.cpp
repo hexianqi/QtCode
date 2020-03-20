@@ -9,8 +9,7 @@
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-HAbstractModelPrivate::HAbstractModelPrivate(IModel *q) :
-    q_ptr(q)
+HAbstractModelPrivate::HAbstractModelPrivate()
 {
     initialized = false;
     configFileName = HAppContext::getContextValue<QString>("ConfigFileName");
@@ -20,7 +19,7 @@ HAbstractModelPrivate::HAbstractModelPrivate(IModel *q) :
 
 HAbstractModel::HAbstractModel(QObject *parent) :
     IModel(parent),
-    d_ptr(new HAbstractModelPrivate(this))
+    d_ptr(new HAbstractModelPrivate)
 {
 }
 

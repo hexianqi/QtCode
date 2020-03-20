@@ -419,6 +419,8 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[电模块]",                       new HDataFormatInfo("[电模块]", 0, 100, 1));
     hashDataFormatInfo.insert("[输出电压]",                     new HDataFormatInfo("[输出电压]", "V", 0, 400, 2));
     hashDataFormatInfo.insert("[输出电流]",                     new HDataFormatInfo("[输出电流]", "mA", 0, 5000, 2));
+    hashDataFormatInfo.insert("[输出电流1]",                    new HDataFormatInfo("[输出电流1]", "mA", 0, 5000, 2));
+    hashDataFormatInfo.insert("[输出电流2]",                    new HDataFormatInfo("[输出电流2]", "mA", 0, 5000, 2));
     hashDataFormatInfo.insert("[反向电压]",                     new HDataFormatInfo("[反向电压]", "V", 0, 400, 2));
     hashDataFormatInfo.insert("[实测电压]",                     new HDataFormatInfo("[实测电压]", "V", 0, 400, 2));
     hashDataFormatInfo.insert("[实测电流]",                     new HDataFormatInfo("[实测电流]", "mA", 0, 5000, 2));
@@ -428,12 +430,16 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[功率因数]",                     new HDataFormatInfo("[功率因数]", 0, 1, 3));
     hashDataFormatInfo.insert("[输出电压_F]",                   new HDataFormatInfo("[输出电压_F]"));
     hashDataFormatInfo.insert("[输出电流_F]",                   new HDataFormatInfo("[输出电流_F]"));
+    hashDataFormatInfo.insert("[输出电流1_F]",                  new HDataFormatInfo("[输出电流1_F]"));
+    hashDataFormatInfo.insert("[输出电流2_F]",                  new HDataFormatInfo("[输出电流2_F]"));
     hashDataFormatInfo.insert("[反向电压_F]",                   new HDataFormatInfo("[反向电压_F]"));
     hashDataFormatInfo.insert("[实测电压_F]",                   new HDataFormatInfo("[实测电压_F]"));
     hashDataFormatInfo.insert("[实测电流_F]",                   new HDataFormatInfo("[实测电流_F]"));
     hashDataFormatInfo.insert("[反向漏流_F]",                   new HDataFormatInfo("[反向漏流_F]"));
     hashDataFormatInfo.insert("[输出电压_R]",                   new HDataFormatInfo("[输出电压_R]", "V", 0, 400, 3));
     hashDataFormatInfo.insert("[输出电流_R]",                   new HDataFormatInfo("[输出电流_R]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[输出电流1_R]",                  new HDataFormatInfo("[输出电流1_R]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[输出电流2_R]",                  new HDataFormatInfo("[输出电流2_R]", "mA", 0, 5000, 3));
     hashDataFormatInfo.insert("[反向电压_R]",                   new HDataFormatInfo("[反向电压_R]", "V", 0, 400, 3));
     hashDataFormatInfo.insert("[实测电压_R]",                   new HDataFormatInfo("[实测电压_R]", "V", 0, 400, 3));
     hashDataFormatInfo.insert("[实测电流_R]",                   new HDataFormatInfo("[实测电流_R]", "mA", 0, 5000, 3));

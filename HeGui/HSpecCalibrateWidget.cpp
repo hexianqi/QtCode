@@ -42,7 +42,6 @@ HSpecCalibrateWidget::HSpecCalibrateWidget(QWidget *parent) :
 HSpecCalibrateWidget::~HSpecCalibrateWidget()
 {
     qDebug() << __func__;
-    setTest(false);
     delete ui;
 }
 

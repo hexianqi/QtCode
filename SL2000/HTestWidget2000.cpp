@@ -46,7 +46,7 @@ HTestWidget2000Private::HTestWidget2000Private()
 }
 
 HTestWidget2000::HTestWidget2000(QWidget *parent) :
-    HTestWidget(*new HTestWidget2000Private, parent)
+    HTestWidget2(*new HTestWidget2000Private, parent)
 {
     readSettings();
     init();
@@ -54,9 +54,8 @@ HTestWidget2000::HTestWidget2000(QWidget *parent) :
 }
 
 HTestWidget2000::HTestWidget2000(HTestWidget2000Private &p, QWidget *parent) :
-    HTestWidget(p, parent)
+    HTestWidget2(p, parent)
 {
-
 }
 
 HTestWidget2000::~HTestWidget2000()
@@ -104,6 +103,37 @@ void HTestWidget2000::handleAction(HActionType action)
     d->testSetWidget->handleAction(action);
 }
 
+void HTestWidget2000::clearResult()
+{
+    Q_D(HTestWidget2000);
+    d->cieWidget->clearPoint();
+    d->resultWidget->clearResult();
+}
+
+bool HTestWidget2000::canExport()
+{
+    // 判断是否可导出
+    return true;
+}
+
+void HTestWidget2000::createAction()
+{
+    Q_D(HTestWidget2000);
+    HTestWidget2::createAction();
+    d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
+    d->actionAdjust->setCheckable(true);
+    d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
+    d->actionSetRam = new QAction(tr("写入数据到设备(&S)"), this);
+    d->actionGetRam = new QAction(tr("从设备读取数据(&G)"), this);
+    d->actionImportCurve = new QAction(tr("导入标准曲线(&I)"), this);
+    d->actionExportCurve = new QAction(tr("导出标准曲线(&E)"), this);
+    connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
+    connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
+    connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
+    connect(d->actionImportCurve, &QAction::triggered, this, &HTestWidget2000::importCurve);
+    connect(d->actionExportCurve, &QAction::triggered, this, &HTestWidget2000::exportCurve);
+}
+
 void HTestWidget2000::createWidget()
 {
     Q_D(HTestWidget2000);
@@ -115,6 +145,7 @@ void HTestWidget2000::createWidget()
     auto splitter2 = new QSplitter(Qt::Vertical);
     d->resultWidget->setDisplay(d->displays);
     d->resultWidget->setSelected(d->tableSelecteds);
+    d->resultWidget->addAction(d->actionClear);
     tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
@@ -132,24 +163,6 @@ void HTestWidget2000::createWidget()
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget2000::handleTestStateChanged);
-}
-
-void HTestWidget2000::createAction()
-{
-    Q_D(HTestWidget2000);
-    HTestWidget::createAction();    
-    d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
-    d->actionAdjust->setCheckable(true);
-    d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
-    d->actionSetRam = new QAction(tr("写入数据到设备(&S)"), this);
-    d->actionGetRam = new QAction(tr("从设备读取数据(&G)"), this);
-    d->actionImportCurve = new QAction(tr("导入标准曲线(&I)"), this);
-    d->actionExportCurve = new QAction(tr("导出标准曲线(&E)"), this);
-    connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
-    connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
-    connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
-    connect(d->actionImportCurve, &QAction::triggered, this, &HTestWidget2000::importCurve);
-    connect(d->actionExportCurve, &QAction::triggered, this, &HTestWidget2000::exportCurve);
 }
 
 void HTestWidget2000::createMenu()
@@ -176,14 +189,8 @@ void HTestWidget2000::createToolBar()
     toolBar2->addAction(d->actionClear);
     toolBar2->addAction(d->actionExportExcel);
     toolBar2->addAction(d->actionExportDatabase);
+    toolBar2->addAction(d->actionPrintPreview);
     d->toolBars << toolBar1 << toolBar2;
-}
-
-void HTestWidget2000::clearResult()
-{
-    Q_D(HTestWidget2000);
-    d->cieWidget->clearPoint();
-    d->resultWidget->clearResult();
 }
 
 void HTestWidget2000::handleTestStateChanged(bool b)
@@ -191,9 +198,10 @@ void HTestWidget2000::handleTestStateChanged(bool b)
     Q_D(HTestWidget2000);
     d->actionStart->setEnabled(!b);
     d->actionStop->setEnabled(b);
+    d->actionClear->setEnabled(!b);
     d->actionExportExcel->setEnabled(!b);
     d->actionExportDatabase->setEnabled(!b);
-    d->actionClear->setEnabled(!b);
+    d->actionPrintPreview->setEnabled(!b);
 }
 
 void HTestWidget2000::resetGrade()
@@ -209,6 +217,7 @@ void HTestWidget2000::refreshWidget()
     Q_D(HTestWidget2000);
     d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
+    d->chromatismWidget->refreshWidget();
     d->cieWidget->addPoint(d->testData->data("[色坐标]").toPointF());
     d->resultWidget->refreshResult(0, d->testSetWidget->testMode() == 0);
 }

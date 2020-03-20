@@ -27,6 +27,7 @@ public:
 
 private:
     void init();
+    using HTableView::setModel;
 };
 
 HE_SQL_END_NAMESPACE

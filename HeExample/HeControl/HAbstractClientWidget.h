@@ -28,7 +28,7 @@ public:
 
 public slots:
     void setServerIP(const QString &value);
-    void setServerPort(int value);
+    void setServerPort(quint16 value);
 
 protected:
     HAbstractClientWidget(HAbstractClientWidgetPrivate &p, QWidget *parent = nullptr);

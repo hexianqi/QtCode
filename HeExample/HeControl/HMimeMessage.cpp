@@ -18,7 +18,7 @@ HMimeMessage::~HMimeMessage()
 
 }
 
-HeControl::HEmailAddress *HMimeMessage::sender()
+HEmailAddress *HMimeMessage::sender()
 {
     return d_ptr->sender;
 }
