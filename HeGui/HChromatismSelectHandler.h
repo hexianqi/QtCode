@@ -5,13 +5,13 @@
 #ifndef HCHROMATISMSELECTHANDLER_H
 #define HCHROMATISMSELECTHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HChromatismSelectHandlerPrivate;
 
-class HChromatismSelectHandler : public HAbstractGuiHandler
+class HChromatismSelectHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HChromatismSelectHandler)

@@ -3,12 +3,8 @@
 #include "HeSql/ISqlBrowser.h"
 #include <QtCore/QDebug>
 
+HE_SQL_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
-
-HSqlBrowserHandlerPrivate::HSqlBrowserHandlerPrivate()
-{
-    browser = HAppContext::getContextPointer<ISqlBrowser>("ISqlBrowser");
-}
 
 HSqlBrowserHandler::HSqlBrowserHandler(QObject *parent) :
     HAbstractGuiHandler(*new HSqlBrowserHandlerPrivate, parent)
@@ -31,8 +27,7 @@ QString HSqlBrowserHandler::typeName()
 
 void HSqlBrowserHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
-    Q_D(HSqlBrowserHandler);
-    d->browser->show();
+    HAppContext::getContextPointer<ISqlBrowser>("ISqlBrowser")->show();
 }
 
 HE_GUI_END_NAMESPACE

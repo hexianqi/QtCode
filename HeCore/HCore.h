@@ -9,6 +9,7 @@
 #include "HActionType.h"
 #include "HErrorType.h"
 
+class QObject;
 class QVariant;
 class QStringList;
 
@@ -21,7 +22,7 @@ class HE_CORE_EXPORT HCore
 public:
     static char *toCommand(HLogType type);
     static QString toComment(HActionType type);
-    static QString toComment(HErrorType type);    
+    static QString toComment(HErrorType type);
 
 public:
     static HDataFormatInfo *toFormatInfo(QString type);
@@ -40,6 +41,10 @@ public:
 
 public:
     static QString typeAddition(QString type, QString addition);
+
+public:
+    // 转储结构
+    static void dumpStructure(const QObject *obj, int spaceCount);
 };
 
 HE_CORE_END_NAMESPACE

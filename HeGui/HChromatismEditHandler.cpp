@@ -3,7 +3,6 @@
 #include "HListCollectionDialog.h"
 #include "HDataDetail.h"
 #include "HChromatismEditWidget.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IChromatismCollection.h"
 #include "HeController/IModel.h"
@@ -11,13 +10,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HChromatismEditHandlerPrivate::HChromatismEditHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HChromatismEditHandler::HChromatismEditHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HChromatismEditHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HChromatismEditHandlerPrivate, parent)
 {
 }
 

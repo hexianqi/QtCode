@@ -49,7 +49,6 @@ QSqlDatabase HConnectionPoolPrivate::createConnection(const QString &connectionN
     db.setHostName(hostName);
     db.setUserName(userName);
     db.setPassword(password);
-
     if (!db.open())
     {
         qDebug() << "Open datatabase error:" << db.lastError().text();
@@ -69,20 +68,6 @@ HConnectionPool::~HConnectionPool()
         QSqlDatabase::removeDatabase(name);
     for(auto name : d_ptr->unusedConnectionNames)
         QSqlDatabase::removeDatabase(name);
-}
-
-void HConnectionPool::setDatabaseInfo(QVariantMap param)
-{
-    if (param.contains("databaseType"))
-        d_ptr->databaseType = param.value("databaseType").toString();
-    if (param.contains("databaseName"))
-        d_ptr->databaseName = param.value("databaseName").toString();
-    if (param.contains("hostName"))
-        d_ptr->hostName = param.value("hostName").toString();
-    if (param.contains("userName"))
-        d_ptr->userName = param.value("userName").toString();
-    if (param.contains("password"))
-        d_ptr->password = param.value("password").toString();
 }
 
 int HConnectionPool::maxConnectionCount() const
@@ -108,6 +93,20 @@ int HConnectionPool::usedCount() const
 int HConnectionPool::unusedCount() const
 {
     return d_ptr->unusedConnectionNames.size();
+}
+
+void HConnectionPool::setConnectionInfo(QVariantMap param)
+{
+    if (param.contains("databaseType"))
+        d_ptr->databaseType = param.value("databaseType").toString();
+    if (param.contains("databaseName"))
+        d_ptr->databaseName = param.value("databaseName").toString();
+    if (param.contains("hostName"))
+        d_ptr->hostName = param.value("hostName").toString();
+    if (param.contains("userName"))
+        d_ptr->userName = param.value("userName").toString();
+    if (param.contains("password"))
+        d_ptr->password = param.value("password").toString();
 }
 
 HConnectionPool *HConnectionPool::instance()
@@ -163,7 +162,7 @@ QSqlDatabase HConnectionPool::openConnection()
 
     // 创建连接
     auto db = d->createConnection(connectionName);
-    // 有效的连接才放入 usedConnectionNames
+    // 有效的连接才放入usedConnectionNames
     if (db.isOpen())
         d->usedConnectionNames.enqueue(connectionName);
     return db;

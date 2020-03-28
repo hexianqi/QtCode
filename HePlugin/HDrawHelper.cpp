@@ -1,7 +1,7 @@
-#include "HImageHelper.h"
+#include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
-QImage HImageHelper::createCrossImage(QSize size, QPen pen)
+QImage HDrawHelper::createCrossImage(QSize size, QPen pen)
 {
     QPainterPath path;
     path.moveTo(0, size.height() / 2);

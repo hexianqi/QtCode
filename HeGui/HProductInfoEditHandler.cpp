@@ -3,12 +3,8 @@
 #include "HeSql/ISqlHandle.h"
 #include <QtCore/QDebug>
 
+HE_SQL_USE_NAMESPACE
 HE_GUI_BEGIN_NAMESPACE
-
-HProductInfoEditHandlerPrivate::HProductInfoEditHandlerPrivate()
-{
-    handle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
-}
 
 HProductInfoEditHandler::HProductInfoEditHandler(QObject *parent) :
     HAbstractGuiHandler(*new HProductInfoEditHandlerPrivate, parent)
@@ -31,8 +27,7 @@ QString HProductInfoEditHandler::typeName()
 
 void HProductInfoEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
-    Q_D(HProductInfoEditHandler);
-    d->handle->editProductInfo();
+    HAppContext::getContextPointer<ISqlHandle>("ISqlHandle")->editProductInfo();
 }
 
 HE_GUI_END_NAMESPACE

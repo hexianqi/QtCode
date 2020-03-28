@@ -1,6 +1,7 @@
 #include "HAbstractTestWidget_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
+#include <QtGui/QCloseEvent>
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -23,10 +24,11 @@ HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget 
 {
 }
 
-void HAbstractTestWidget::closeEvent(QCloseEvent */*event*/)
+void HAbstractTestWidget::closeEvent(QCloseEvent *event)
 {
     qDebug() << __func__;
     stop();
+    event->accept();
 }
 
 HAbstractTestWidget::~HAbstractTestWidget()

@@ -5,13 +5,13 @@
 #ifndef HADJUSTSELECTHANDLER_H
 #define HADJUSTSELECTHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HAdjustSelectHandlerPrivate;
 
-class HAdjustSelectHandler : public HAbstractGuiHandler
+class HAdjustSelectHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HAdjustSelectHandler)

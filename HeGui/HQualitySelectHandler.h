@@ -5,13 +5,13 @@
 #ifndef HQUALITYSELECTHANDLER_H
 #define HQUALITYSELECTHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HQualitySelectHandlerPrivate;
 
-class HQualitySelectHandler : public HAbstractGuiHandler
+class HQualitySelectHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HQualitySelectHandler)

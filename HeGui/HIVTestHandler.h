@@ -26,9 +26,6 @@ public:
 
 public:
     void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) override;
-
-protected:
-    HIVTestHandler(HIVTestHandlerPrivate &p, QObject *parent = nullptr);
 };
 
 HE_GUI_END_NAMESPACE

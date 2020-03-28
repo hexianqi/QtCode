@@ -29,12 +29,14 @@ public:
     ~HConnectionPool();
 
 public:
-    void setDatabaseInfo(QVariantMap param);
     int maxConnectionCount() const;
     ulong maxWaitTime() const;
     ulong waitInterval() const;
     int usedCount() const;
     int unusedCount() const;
+
+public:
+    void setConnectionInfo(QVariantMap param);
 
 protected:
     HConnectionPool();

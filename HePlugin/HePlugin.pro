@@ -12,13 +12,13 @@ SOURCES     += \
             class2Plugin.cpp \
             HCollectionInterface.cpp \
             HPluginHelper.cpp \
-            HImageHelper.cpp
+    HDrawHelper.cpp
 
 HEADERS     += \
             class2Plugin.h \
             HCollectionInterface.h \
             HPluginHelper.h \
-            HImageHelper.h
+    HDrawHelper.h
 
 RESOURCES   = HePlugin.qrc
 
@@ -41,10 +41,8 @@ Release {
 include(chart.pri)
 include(delegate.pri)
 include(diagram.pri)
-include(dialog.pri)
 include(graphics.pri)
-include(promotion.pri)
+include(painter.pri)
 include(strategy.pri)
-include(table.pri)
 include(widget.pri)
 include(class2.pri)

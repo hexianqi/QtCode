@@ -5,13 +5,13 @@
 #ifndef HCHROMATISMEDITHANDLER_H
 #define HCHROMATISMEDITHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HChromatismEditHandlerPrivate;
 
-class HChromatismEditHandler : public HAbstractGuiHandler
+class HChromatismEditHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HChromatismEditHandler)

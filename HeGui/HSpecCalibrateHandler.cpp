@@ -7,7 +7,7 @@
 HE_GUI_BEGIN_NAMESPACE
 
 HSpecCalibrateHandler::HSpecCalibrateHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HSpecCalibrateHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HSpecCalibrateHandlerPrivate, parent)
 {
 }
 

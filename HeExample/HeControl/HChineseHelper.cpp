@@ -23,7 +23,6 @@ HChineseHelper::HChineseHelper(QObject *parent) :
 
 HChineseHelper::~HChineseHelper()
 {
-
 }
 
 void HChineseHelper::loadPingYin(const QString &fileName)

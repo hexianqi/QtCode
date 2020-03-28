@@ -181,6 +181,7 @@ void HBuilder2000::buildMenu()
     auto quality = new QMenu(tr("品质(&Q)"));
     auto database = new QMenu(tr("数据库(&D)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
+    calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&S)..."), "HSpecLuminousHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));

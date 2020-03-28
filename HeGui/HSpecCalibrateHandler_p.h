@@ -2,11 +2,11 @@
 #define HSPECCALIBRATEHANDLER_P_H
 
 #include "HSpecCalibrateHandler.h"
-#include "HAbstractGuiHandler_p.h"
+#include "HAbstractConfigHandler_p.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HSpecCalibrateHandlerPrivate : public HAbstractGuiHandlerPrivate
+class HSpecCalibrateHandlerPrivate : public HAbstractConfigHandlerPrivate
 {
 };
 

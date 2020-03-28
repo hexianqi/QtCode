@@ -5,13 +5,13 @@
 #ifndef HSPECCALIBRATEHANDLER_H
 #define HSPECCALIBRATEHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HSpecCalibrateHandlerPrivate;
 
-class HSpecCalibrateHandler : public HAbstractGuiHandler
+class HSpecCalibrateHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecCalibrateHandler)

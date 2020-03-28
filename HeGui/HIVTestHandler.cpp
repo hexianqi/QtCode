@@ -1,6 +1,6 @@
 #include "HIVTestHandler_p.h"
-#include "HIVTestWidget.h"
 #include "IMainWindow.h"
+#include "HIVTestWidget.h"
 #include "HGuiHelper.h"
 #include <QtCore/QDebug>
 
@@ -8,11 +8,6 @@ HE_GUI_BEGIN_NAMESPACE
 
 HIVTestHandler::HIVTestHandler(QObject *parent) :
     HAbstractGuiHandler(*new HIVTestHandlerPrivate, parent)
-{
-}
-
-HIVTestHandler::HIVTestHandler(HIVTestHandlerPrivate &p, QObject *parent) :
-    HAbstractGuiHandler(p, parent)
 {
 }
 

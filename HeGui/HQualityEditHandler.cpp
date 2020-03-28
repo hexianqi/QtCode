@@ -3,7 +3,6 @@
 #include "HListCollectionDialog.h"
 #include "HDataDetail.h"
 #include "HQualityEditWidget.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IQualityCollection.h"
 #include "HeController/IModel.h"
@@ -11,13 +10,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HQualityEditHandlerPrivate::HQualityEditHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HQualityEditHandler::HQualityEditHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HQualityEditHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HQualityEditHandlerPrivate, parent)
 {
 }
 

@@ -455,6 +455,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[偏移量]",                       new HDataFormatInfo("[偏移量]", -0.5, 0.5, 4, 0.001));
     // 调整参数
     hashDataFormatInfo.insert("[调整比率]",                     new HDataFormatInfo("[调整比率]", "%", 10, 1000, 1));
+    hashDataFormatInfo.insert("[自吸收系数]",                   new HDataFormatInfo("[自吸收系数]", 0, 100, 2));
 
             //    //电参数
 //    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));

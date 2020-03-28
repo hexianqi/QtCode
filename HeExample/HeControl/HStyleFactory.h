@@ -24,8 +24,9 @@ public:
     QString typeName() override;
 
 public:
-    QStringList keys() override;
-    IStyle *create(QString type, QVariantMap param = QVariantMap()) override;
+    QStringList styles() override;
+    IStyle *createStyle(QString type, QVariantMap param = QVariantMap()) override;
+    IQssStyle *createQssStyle(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HStyleFactory(HStyleFactoryPrivate &p, QObject *parent = nullptr);

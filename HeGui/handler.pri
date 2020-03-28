@@ -29,7 +29,11 @@ HEADERS += \
     $$PWD/HElecCalibrateHandler.h \
     $$PWD/HElecCalibrateHandler_p.h \
     $$PWD/HIVTestHandler.h \
-    $$PWD/HIVTestHandler_p.h
+    $$PWD/HIVTestHandler_p.h \
+    $$PWD/HSpecLuminousHandler.h \
+    $$PWD/HSpecLuminousHandler_p.h \
+    $$PWD/HAbstractConfigHandler.h \
+    $$PWD/HAbstractConfigHandler_p.h
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
@@ -46,4 +50,6 @@ SOURCES += \
     $$PWD/HChromatismEditHandler.cpp \
     $$PWD/HChromatismSelectHandler.cpp \
     $$PWD/HElecCalibrateHandler.cpp \
-    $$PWD/HIVTestHandler.cpp
+    $$PWD/HIVTestHandler.cpp \
+    $$PWD/HSpecLuminousHandler.cpp \
+    $$PWD/HAbstractConfigHandler.cpp

@@ -3,7 +3,6 @@
 #include "HListCollectionDialog.h"
 #include "HDataDetail.h"
 #include "HGradeEditWidget.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
 #include "HeController/IModel.h"
@@ -11,13 +10,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HGradeEditHandlerPrivate::HGradeEditHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HGradeEditHandler::HGradeEditHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HGradeEditHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HGradeEditHandlerPrivate, parent)
 {
 }
 

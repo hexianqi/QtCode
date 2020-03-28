@@ -34,14 +34,23 @@ QString HStyleFactory::typeName()
     return "HStyleFactory";
 }
 
-QStringList HStyleFactory::keys()
-{
-    return d_ptr->keys;
-}
-
-IStyle *HStyleFactory::create(QString type, QVariantMap param)
+IStyle *HStyleFactory::createStyle(QString type, QVariantMap param)
 {
     return HObjectFactory::createObject<IStyle>(type, param, this);
+}
+
+IQssStyle *HStyleFactory::createQssStyle(QString type, QVariantMap param)
+{
+//    return HObjectFactory::createObject<IQssStyle>(type, param, this);
+    Q_UNUSED(type);
+    auto p = new HQssStyle(this);
+    p->initialize(param);
+    return p;
+}
+
+QStringList HStyleFactory::styles()
+{
+    return d_ptr->styles;
 }
 
 void HStyleFactory::registerClass()
@@ -49,7 +58,7 @@ void HStyleFactory::registerClass()
     auto b = HObjectFactory::keys().toSet();
     HObjectFactory::registerClass<HFlatStyle>("HFlatStyle");
     HObjectFactory::registerClass<HQssStyle>("HQssStyle");
-    d_ptr->keys = HObjectFactory::keys().toSet().subtract(b).toList();
+    d_ptr->styles = HObjectFactory::keys().toSet().subtract(b).toList();
 }
 
 HE_CONTROL_END_NAMESPACE

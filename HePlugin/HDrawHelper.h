@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2020-01-16  HImageHelper 图片帮助类。
+**      2020-01-16  HDrawHelper 绘制帮助类。
 ***************************************************************************************************/
 
 #ifndef HIMAGEHELPER_H
@@ -11,10 +11,10 @@ class QImage;
 class QSize;
 class QPen;
 
-class QDESIGNER_WIDGET_EXPORT HImageHelper
+class QDESIGNER_WIDGET_EXPORT HDrawHelper
 {
 public:
-    // 创建十字图片
+    // 创建十字图像
     static QImage createCrossImage(QSize size, QPen pen);
 };
 

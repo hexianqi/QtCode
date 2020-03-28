@@ -30,7 +30,7 @@ void HBackgroundEventFilter::initialize(QVariantMap param)
         setBackgroundImage(param.value("backgroundImage").toStringList());
     if (param.contains("backgroundRepeated"))
         setBackgroundRepeated(param.value("backgroundRepeated").toBool());
-    if (param.contains("backgroundImage"))
+    if (param.contains("backgroundStretched"))
         setBackgroundStretched(param.value("backgroundStretched").toBool());
 }
 
@@ -54,7 +54,7 @@ bool HBackgroundEventFilter::addWatched(QObject *p)
         auto l = new QHBoxLayout(widget);
         l->addWidget(background);
     }
-    updateStyleSheet(widget);
+    updateBackground(widget);
     return true;
 }
 
@@ -65,7 +65,7 @@ void HBackgroundEventFilter::setBackgroundImage(QStringList value)
         return;
     d->imageFiles = value;
     d->index = 0;
-    updateStyleSheet();
+    updateBackground();
 }
 
 void HBackgroundEventFilter::setBackgroundRepeated(bool b)
@@ -74,7 +74,7 @@ void HBackgroundEventFilter::setBackgroundRepeated(bool b)
     if (d->repeated == b)
         return;
     d->repeated = b;
-    updateStyleSheet();
+    updateBackground();
 }
 
 void HBackgroundEventFilter::setBackgroundStretched(bool b)
@@ -83,7 +83,7 @@ void HBackgroundEventFilter::setBackgroundStretched(bool b)
     if (d->stretched == b)
         return;
     d->stretched = b;
-    updateStyleSheet();
+    updateBackground();
 }
 
 bool HBackgroundEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
@@ -97,7 +97,7 @@ bool HBackgroundEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event
     d->index++;
     if (d->index >= d->imageFiles.count())
         d->index = 0;
-    updateStyleSheet(widget);
+    updateBackground(widget);
     return false;
 }
 
@@ -115,14 +115,14 @@ bool HBackgroundEventFilter::mouseMoveEvent(QWidget *, QMouseEvent *)
     return false;
 }
 
-void HBackgroundEventFilter::updateStyleSheet()
+void HBackgroundEventFilter::updateBackground()
 {
     Q_D(HBackgroundEventFilter);
     for (auto obj : d->watcheds)
-        updateStyleSheet(qobject_cast<QWidget *>(obj));
+        updateBackground(qobject_cast<QWidget *>(obj));
 }
 
-void HBackgroundEventFilter::updateStyleSheet(QWidget *widget)
+void HBackgroundEventFilter::updateBackground(QWidget *widget)
 {
     Q_D(HBackgroundEventFilter);
     auto background = widget->findChild<QWidget *>("background");

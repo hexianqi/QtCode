@@ -41,11 +41,11 @@ protected:
     void showData();
     void saveData();
 
-protected:
-    QScopedPointer<HSpecSettingDialogPrivate> d_ptr;
-
 private:
     void init();
+
+protected:
+    QScopedPointer<HSpecSettingDialogPrivate> d_ptr;
 
 private:
     Ui::HSpecSettingDialog *ui;

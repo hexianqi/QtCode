@@ -50,7 +50,7 @@ QString HControlHelper::runTime(QDateTime start, QDateTime end)
         }
         sec--;
     }
-    return QString("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
+    return tr("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
 }
 
 void HControlHelper::centerWidget(QWidget *widget)

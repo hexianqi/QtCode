@@ -5,13 +5,13 @@
 #ifndef HGRADESELECTHANDLER_H
 #define HGRADESELECTHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HGradeSelectHandlerPrivate;
 
-class HGradeSelectHandler : public HAbstractGuiHandler
+class HGradeSelectHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HGradeSelectHandler)

@@ -1,6 +1,5 @@
 #include "HAdjustSelectHandler_p.h"
 #include "IMainWindow.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IAdjustCollection.h"
 #include "HeController/IModel.h"
@@ -9,13 +8,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HAdjustSelectHandlerPrivate::HAdjustSelectHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HAdjustSelectHandler::HAdjustSelectHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HAdjustSelectHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HAdjustSelectHandlerPrivate, parent)
 {
 }
 

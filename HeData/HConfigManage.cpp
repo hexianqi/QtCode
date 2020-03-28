@@ -207,7 +207,7 @@ void HConfigManage::setGradeCollection(IGradeCollection *p)
 
 IGradeCollection *HConfigManage::gradeCollection()
 {
-    return  d_ptr->grades;
+    return d_ptr->grades;
 }
 
 void HConfigManage::setAdjustCollection(IAdjustCollection *p)

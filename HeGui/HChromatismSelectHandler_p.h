@@ -2,23 +2,12 @@
 #define HCHROMATISMSELECTHANDLER_P_H
 
 #include "HChromatismSelectHandler.h"
-#include "HAbstractGuiHandler_p.h"
-#include "HeData/HDataGlobal.h"
-
-HE_DATA_BEGIN_NAMESPACE
-class IConfigManage;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
+#include "HAbstractConfigHandler_p.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HChromatismSelectHandlerPrivate : public HAbstractGuiHandlerPrivate
+class HChromatismSelectHandlerPrivate : public HAbstractConfigHandlerPrivate
 {
-public:
-    HChromatismSelectHandlerPrivate();
-
-public:
-    IConfigManage *configManage;
 };
 
 HE_GUI_END_NAMESPACE

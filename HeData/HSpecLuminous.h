@@ -11,7 +11,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HSpecLuminousPrivate;
 
-class HSpecLuminous : public HAbstractDataItem
+class HE_DATA_EXPORT HSpecLuminous : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecLuminous)
 
@@ -29,6 +29,10 @@ public:
 public:
     void restoreDefault();
     double handle(double value);
+
+public:
+    void setSelfAbsorption(QMap<QString, double> value);
+    QMap<QString, double> selfAbsorption();
 
 protected:
     HSpecLuminous(HSpecLuminousPrivate &p);

@@ -41,8 +41,8 @@ protected:
     bool mouseMoveEvent(QWidget *, QMouseEvent *) override;
 
 protected:
-    void updateStyleSheet();
-    void updateStyleSheet(QWidget *);
+    void updateBackground();
+    void updateBackground(QWidget *);
 };
 
 HE_CONTROL_END_NAMESPACE

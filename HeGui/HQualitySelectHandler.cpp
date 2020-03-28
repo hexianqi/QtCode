@@ -1,6 +1,5 @@
 #include "HQualitySelectHandler_p.h"
 #include "IMainWindow.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IQualityCollection.h"
 #include "HeController/IModel.h"
@@ -9,13 +8,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HQualitySelectHandlerPrivate::HQualitySelectHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HQualitySelectHandler::HQualitySelectHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HQualitySelectHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HQualitySelectHandlerPrivate, parent)
 {
 }
 

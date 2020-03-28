@@ -1,6 +1,5 @@
 #include "HChromatismSelectHandler_p.h"
 #include "IMainWindow.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IChromatismCollection.h"
 #include "HePlugin/HSelectDialog.h"
@@ -9,13 +8,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HChromatismSelectHandlerPrivate::HChromatismSelectHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HChromatismSelectHandler::HChromatismSelectHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HChromatismSelectHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HChromatismSelectHandlerPrivate, parent)
 {
 }
 

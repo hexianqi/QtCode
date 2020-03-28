@@ -33,9 +33,9 @@ public:
     int row();
     int column();
     HRbTableHeaderItem *parent();
-    HRbTableHeaderItem *insertChild(int row, int column);
     const HRbTableHeaderItem *child(int row, int column) const;
     HRbTableHeaderItem *child(int row, int column);
+    HRbTableHeaderItem *insertChild(int row, int column);
 
 protected:
     HRbTableHeaderItem(HRbTableHeaderItemPrivate &p);

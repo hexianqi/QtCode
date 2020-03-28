@@ -32,14 +32,14 @@ QString HQssStyle::typeName()
     return "HQssStyle";
 }
 
-QPalette HQssStyle::toPalette()
-{
-    return d_ptr->palette.value(d_ptr->current);
-}
-
 QString HQssStyle::toStyleSheet()
 {
     return d_ptr->styleSheet.value(d_ptr->current);
+}
+
+QPalette HQssStyle::toPalette()
+{
+    return d_ptr->palette.value(d_ptr->current);
 }
 
 QStringList HQssStyle::styles()

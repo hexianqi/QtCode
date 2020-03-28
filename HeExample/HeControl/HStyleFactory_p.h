@@ -8,7 +8,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HStyleFactoryPrivate
 {
 public:
-    QStringList keys;
+    QStringList styles;
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -5,13 +5,13 @@
 #ifndef HADJUSTEDITHANDLER_H
 #define HADJUSTEDITHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HAdjustEditHandlerPrivate;
 
-class HAdjustEditHandler : public HAbstractGuiHandler
+class HAdjustEditHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HAdjustEditHandler)

@@ -7,12 +7,7 @@
 HE_GUI_BEGIN_NAMESPACE
 
 HElecCalibrateHandler::HElecCalibrateHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HElecCalibrateHandlerPrivate, parent)
-{
-}
-
-HElecCalibrateHandler::HElecCalibrateHandler(HElecCalibrateHandlerPrivate &p, QObject *parent) :
-    HAbstractGuiHandler(p, parent)
+    HAbstractConfigHandler(*new HElecCalibrateHandlerPrivate, parent)
 {
 }
 

@@ -8,7 +8,6 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HIVTestHandlerPrivate : public HAbstractGuiHandlerPrivate
 {
-
 };
 
 HE_GUI_END_NAMESPACE

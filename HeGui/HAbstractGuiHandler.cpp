@@ -6,7 +6,7 @@ HE_GUI_BEGIN_NAMESPACE
 HAbstractGuiHandlerPrivate::HAbstractGuiHandlerPrivate()
 {
     mainWindow = HAppContext::getContextPointer<IMainWindow>("IMainWindow");
-    model = HAppContext::getContextPointer<IModel>("IModel");
+
 }
 
 HAbstractGuiHandler::HAbstractGuiHandler(QObject *parent) :

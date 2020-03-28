@@ -2,8 +2,8 @@
 #include "class2Plugin.h"
 #include <QtPlugin>
 
-class2Plugin::class2Plugin(QObject *parent)
-    : QObject(parent)
+class2Plugin::class2Plugin(QObject *parent) :
+    QObject(parent)
 {
     _initialized = false;
 }

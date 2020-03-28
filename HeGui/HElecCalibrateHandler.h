@@ -5,13 +5,13 @@
 #ifndef HELECCALIBRATEHANDLER_H
 #define HELECCALIBRATEHANDLER_H
 
-#include "HAbstractGuiHandler.h"
+#include "HAbstractConfigHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
 class HElecCalibrateHandlerPrivate;
 
-class HElecCalibrateHandler : public HAbstractGuiHandler
+class HElecCalibrateHandler : public HAbstractConfigHandler
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HElecCalibrateHandler)
@@ -26,9 +26,6 @@ public:
 
 public:
     void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) override;
-
-protected:
-    HElecCalibrateHandler(HElecCalibrateHandlerPrivate &p, QObject *parent = nullptr);
 };
 
 HE_GUI_END_NAMESPACE

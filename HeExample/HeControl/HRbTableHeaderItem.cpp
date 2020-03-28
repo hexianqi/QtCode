@@ -67,13 +67,6 @@ HRbTableHeaderItem *HRbTableHeaderItem::parent()
     return  d_ptr->parent;
 }
 
-HRbTableHeaderItem *HRbTableHeaderItem::insertChild(int row, int column)
-{
-    auto item = new HRbTableHeaderItem(row, column, this);
-    d_ptr->childs.insert(QPair<int, int>(row,column), item);
-    return item;
-}
-
 const HRbTableHeaderItem *HRbTableHeaderItem::child(int row, int column) const
 {
     auto k = QPair<int, int>(row,column);
@@ -88,6 +81,13 @@ HRbTableHeaderItem *HRbTableHeaderItem::child(int row, int column)
     if (d_ptr->childs.contains(k))
         return d_ptr->childs[k];
     return nullptr;
+}
+
+HRbTableHeaderItem *HRbTableHeaderItem::insertChild(int row, int column)
+{
+    auto item = new HRbTableHeaderItem(row, column, this);
+    d_ptr->childs.insert(QPair<int, int>(row,column), item);
+    return item;
 }
 
 HE_CONTROL_END_NAMESPACE

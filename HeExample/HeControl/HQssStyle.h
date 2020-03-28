@@ -24,16 +24,14 @@ public:
     QString typeName() override;
 
 public:
-    QPalette toPalette();
     QString toStyleSheet() override;
+    QPalette toPalette() override;
     QStringList styles() override;
     bool selectStyle(QString value) override;
+    void addStyle(QString key, QString fileName) override;
 
 protected:
     HQssStyle(HQssStylePrivate &p, QObject *parent = nullptr);
-
-protected:
-    void addStyle(QString key, QString fileName);
 
 protected:
     QScopedPointer<HQssStylePrivate> d_ptr;

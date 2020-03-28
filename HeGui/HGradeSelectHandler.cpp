@@ -1,6 +1,5 @@
 #include "HGradeSelectHandler_p.h"
 #include "IMainWindow.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
 #include "HeController/IModel.h"
@@ -9,13 +8,8 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HGradeSelectHandlerPrivate::HGradeSelectHandlerPrivate()
-{
-    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-}
-
 HGradeSelectHandler::HGradeSelectHandler(QObject *parent) :
-    HAbstractGuiHandler(*new HGradeSelectHandlerPrivate, parent)
+    HAbstractConfigHandler(*new HGradeSelectHandlerPrivate, parent)
 {
 }
 
