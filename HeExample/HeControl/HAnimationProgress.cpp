@@ -86,7 +86,6 @@ void HAnimationProgress::init()
 {
     Q_D(HAnimationProgress);
 //    d->animation = new QPropertyAnimation(this, "currentValue", this);
-//    d->animation->setEasingCurve(QEasingCurve::Linear);
     d->animation = new QPropertyAnimation(this);
     d->animation->setTargetObject(this);
     d->animation->setEasingCurve(QEasingCurve::Linear);

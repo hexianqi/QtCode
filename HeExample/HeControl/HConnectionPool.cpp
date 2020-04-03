@@ -1,5 +1,5 @@
 #include "HConnectionPool_p.h"
-#include <QtCore/QMutexLocker>
+#include "HDBConfig.h"
 #include <QtCore/QWaitCondition>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
@@ -11,50 +11,21 @@ HE_CONTROL_BEGIN_NAMESPACE
 static QMutex __mutex;
 static QWaitCondition __waitConnection;
 
-QScopedPointer<HConnectionPool> HConnectionPool::__instance;
-
 HConnectionPoolPrivate::HConnectionPoolPrivate()
 {
-    databaseType = "QMYSQL";
-    databaseName = "quick";
-    hostName     = "localhost";
-    userName     = "root";
-    password     = "";
+    auto config = HDBConfig::instance();
+    databaseType        = config->type();
+    databaseName        = config->name();
+    hostName            = config->hostName();
+    userName            = config->username();
+    password            = config->password();
+    port                = config->port();
+    testOnBorrow        = config->isTestOnBorrow();
+    testOnBorrowSql     = config->testOnBorrowSql();
+    maxConnectionCount  = config->maxConnectionCount();
+    maxWaitTime         = config->maxWaitTime();
+    waitInterval        = config->waitInterval();
     unusedConnectionNames.enqueue(QSqlDatabase::defaultConnection);
-}
-
-QSqlDatabase HConnectionPoolPrivate::createConnection(const QString &connectionName)
-{
-    // 连接已经创建过了，复用它，而不是重新创建
-    if (QSqlDatabase::contains(connectionName))
-    {
-        auto db1 = QSqlDatabase::database(connectionName);
-        if (check)
-        {
-            // 返回连接前访问数据库，如果连接断开，重新建立连接
-            qDebug() << "Test connection on borrow, execute:" << checkSql << ", for " << connectionName;
-            QSqlQuery query(checkSql, db1);
-            if (query.lastError().type() != QSqlError::NoError && !db1.open())
-            {
-                qDebug() << "Open datatabase error:" << db1.lastError().text();
-                return QSqlDatabase();
-            }
-        }
-        return db1;
-    }
-
-    // 创建一个新的连接
-    auto db = QSqlDatabase::addDatabase(databaseType, connectionName);
-    db.setDatabaseName(databaseName);
-    db.setHostName(hostName);
-    db.setUserName(userName);
-    db.setPassword(password);
-    if (!db.open())
-    {
-        qDebug() << "Open datatabase error:" << db.lastError().text();
-        return QSqlDatabase();
-    }
-    return db;
 }
 
 HConnectionPool::HConnectionPool() :
@@ -70,115 +41,80 @@ HConnectionPool::~HConnectionPool()
         QSqlDatabase::removeDatabase(name);
 }
 
-int HConnectionPool::maxConnectionCount() const
-{
-    return d_ptr->maxConnectionCount;
-}
-
-ulong HConnectionPool::maxWaitTime() const
-{
-    return d_ptr->maxWaitTime;
-}
-
-ulong HConnectionPool::waitInterval() const
-{
-    return d_ptr->waitInterval;
-}
-
-int HConnectionPool::usedCount() const
-{
-    return d_ptr->usedConnectionNames.size();
-}
-
-int HConnectionPool::unusedCount() const
-{
-    return d_ptr->unusedConnectionNames.size();
-}
-
-void HConnectionPool::setConnectionInfo(QVariantMap param)
-{
-    if (param.contains("databaseType"))
-        d_ptr->databaseType = param.value("databaseType").toString();
-    if (param.contains("databaseName"))
-        d_ptr->databaseName = param.value("databaseName").toString();
-    if (param.contains("hostName"))
-        d_ptr->hostName = param.value("hostName").toString();
-    if (param.contains("userName"))
-        d_ptr->userName = param.value("userName").toString();
-    if (param.contains("password"))
-        d_ptr->password = param.value("password").toString();
-}
-
-HConnectionPool *HConnectionPool::instance()
-{
-    if (__instance.isNull())
-    {
-        QMutexLocker locker(&__mutex);
-        if (__instance.isNull())
-            __instance.reset(new HConnectionPool);
-    }
-    return __instance.data();
-}
-
-void HConnectionPool::release()
-{
-    QMutexLocker locker(&__mutex);
-    __instance.reset();
-}
-
 QSqlDatabase HConnectionPool::openConnection()
 {
-    auto d = instance()->d_ptr.data();
-
-    QString connectionName;
-    QMutexLocker locker(&__mutex);
-
-    // 已创建连接数
-    auto connectionCount = d->usedConnectionNames.size() + d->unusedConnectionNames.size();
-
-    // 如果连接已经用完，等待 waitInterval 毫秒看看是否有可用连接，最长等待 maxWaitTime 毫秒
-    for (ulong i = 0; i < d->maxWaitTime && connectionCount == d->maxConnectionCount && d->unusedConnectionNames.isEmpty(); i += d->waitInterval)
-    {
-        __waitConnection.wait(&__mutex, d->waitInterval);
-        connectionCount = d->usedConnectionNames.size() + d->unusedConnectionNames.size();
-    }
-
-    if (!d->unusedConnectionNames.isEmpty())
-    {
-        // 有已经回收的连接，复用它们
-        connectionName = d->unusedConnectionNames.dequeue();
-    }
-    else if (connectionCount < d->maxConnectionCount)
-    {
-        // 没有已经回收的连接，但是没有达到最大连接数，则创建新的连接
-        connectionName = QString("Connection-%1").arg(connectionCount + 1);
-    }
-    else
-    {
-        // 已经达到最大连接数
-        qDebug() << "Cannot create more connections.";
+    auto connectionName = getConnectionName();
+    if (connectionName.isEmpty())
         return QSqlDatabase();
+
+    if (QSqlDatabase::contains(connectionName))
+    {
+        auto db1 = QSqlDatabase::database(connectionName);
+        if (d_ptr->testOnBorrow)
+        {
+            qDebug() << "Test connection on borrow, execute:" << d_ptr->testOnBorrowSql << ", for " << connectionName;
+            QSqlQuery query(d_ptr->testOnBorrowSql, db1);
+            if (query.lastError().type() != QSqlError::NoError && !db1.open())
+            {
+                qDebug() << "Open datatabase error:" << db1.lastError().text();
+                return QSqlDatabase();
+            }
+        }
+        d_ptr->usedConnectionNames.enqueue(connectionName);
+        return db1;
     }
 
-    // 创建连接
-    auto db = d->createConnection(connectionName);
-    // 有效的连接才放入usedConnectionNames
+    auto db = createConnection(connectionName);
     if (db.isOpen())
-        d->usedConnectionNames.enqueue(connectionName);
+        d_ptr->usedConnectionNames.enqueue(connectionName);
     return db;
 }
 
 void HConnectionPool::closeConnection(QSqlDatabase db)
 {
-    auto d = instance()->d_ptr.data();
     auto connectionName = db.connectionName();
-    if (d->usedConnectionNames.contains(connectionName))
+    if (d_ptr->usedConnectionNames.contains(connectionName))
     {
         QMutexLocker locker(&__mutex);
-        d->usedConnectionNames.removeOne(connectionName);
-        d->unusedConnectionNames.enqueue(connectionName);
+        d_ptr->usedConnectionNames.removeOne(connectionName);
+        d_ptr->unusedConnectionNames.enqueue(connectionName);
         __waitConnection.wakeOne();
     }
+}
+
+QString HConnectionPool::getConnectionName()
+{
+    QMutexLocker locker(&__mutex);
+    auto connectionCount = d_ptr->usedConnectionNames.size() + d_ptr->unusedConnectionNames.size();
+    // 如果连接已经用完，等待 waitInterval 毫秒看看是否有可用连接，最长等待 maxWaitTime 毫秒
+    for (int i = 0; i < d_ptr->maxWaitTime && connectionCount == d_ptr->maxConnectionCount && d_ptr->unusedConnectionNames.isEmpty(); i += d_ptr->waitInterval)
+    {
+        __waitConnection.wait(&__mutex, d_ptr->waitInterval);
+        connectionCount = d_ptr->usedConnectionNames.size() + d_ptr->unusedConnectionNames.size();
+    }
+    if (!d_ptr->unusedConnectionNames.isEmpty())
+        return d_ptr->unusedConnectionNames.dequeue();
+    if (connectionCount < d_ptr->maxConnectionCount)
+        return QString("Connection-%1").arg(connectionCount + 1);
+    qDebug() << "Cannot create more connections.";
+    return QString();
+}
+
+QSqlDatabase HConnectionPool::createConnection(const QString &connectionName)
+{
+    auto db = QSqlDatabase::addDatabase(d_ptr->databaseType, connectionName);
+    db.setDatabaseName(d_ptr->databaseName);
+    db.setHostName(d_ptr->hostName);
+    db.setUserName(d_ptr->userName);
+    db.setPassword(d_ptr->password);
+    if (d_ptr->port != 0)
+        db.setPort(d_ptr->port);
+    if (!db.open())
+    {
+        qDebug() << "Open datatabase error:" << db.lastError().text();
+        return QSqlDatabase();
+    }
+    return db;
 }
 
 HE_CONTROL_END_NAMESPACE

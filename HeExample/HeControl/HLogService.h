@@ -7,7 +7,10 @@
 #define HLOGSERVICE_H
 
 #include "IService.h"
+#include "HeCore/HSingleton3.h"
 #include <QtCore/QObject>
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -16,11 +19,10 @@ class HLogServicePrivate;
 class HLogService : public QObject, public IService
 {
     Q_OBJECT
+    H_SINGLETON3(HLogService)
 
-public:
-    static HLogService *instance();
-
-public:
+private:
+    HLogService(QObject *parent = nullptr);
     ~HLogService() override;
 
 signals:
@@ -33,12 +35,6 @@ public:
     void setToNet(bool b);
 
 protected:
-    HLogService(QObject *parent = nullptr);
-    HLogService(const HLogService&) = delete;
-    HLogService &operator=(const HLogService&) = delete;
-
-protected:
-    static QScopedPointer<HLogService> __instance;
     QScopedPointer<HLogServicePrivate> d_ptr;
 
 private:

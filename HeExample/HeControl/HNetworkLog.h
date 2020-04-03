@@ -6,7 +6,10 @@
 #define HNETWORKLOG_H
 
 #include "HControlGlobal.h"
+#include "HeCore/HSingleton3.h"
 #include <QtCore/QObject>
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -15,23 +18,16 @@ class HNetworkLogPrivate;
 class HNetworkLog : public QObject
 {
     Q_OBJECT
+    H_SINGLETON3(HNetworkLog)
 
-public:
-    static HNetworkLog *instance();
-
-public:
-    ~HNetworkLog() override;
+private:
+   HNetworkLog(QObject *parent = nullptr);
+   ~HNetworkLog() override;
 
 public slots:
     void send(const QString &value);
 
 protected:
-    HNetworkLog(QObject *parent = nullptr);
-    HNetworkLog(const HNetworkLog&) = delete;
-    HNetworkLog &operator=(const HNetworkLog&) = delete;
-
-protected:
-    static QScopedPointer<HNetworkLog> __instance;
     QScopedPointer<HNetworkLogPrivate> d_ptr;
 
 private:

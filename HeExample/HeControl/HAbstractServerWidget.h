@@ -16,7 +16,7 @@ class HAbstractServerWidget : public HAbstractNetworkWidget
     Q_OBJECT
     Q_DECLARE_PRIVATE(HAbstractServerWidget)
     Q_PROPERTY(QString listenIP READ listenIP WRITE setListenIP)
-    Q_PROPERTY(quint16 listenPort READ listenPort WRITE setListenPort)
+    Q_PROPERTY(int listenPort READ listenPort WRITE setListenPort)
 
 public:
     explicit HAbstractServerWidget(QWidget *parent = nullptr);
@@ -24,15 +24,15 @@ public:
 
 public:
     QString listenIP() const;
-    quint16 listenPort() const;
+    int listenPort() const;
 
 public slots:
     void setListenIP(const QString &value);
     void setListenPort(int value);
-    virtual void handleClientConnected(const QString &ip, quint16 port) = 0;
-    virtual void handleClientDisconnected(const QString &ip, quint16 port) = 0;
-    virtual void handleSentData(const QString &ip, quint16 port, const QByteArray &data);
-    virtual void handleReceiveData(const QString &ip, quint16 port, const QByteArray &data);
+    virtual void handleClientConnected(const QString &ip, int port) = 0;
+    virtual void handleClientDisconnected(const QString &ip, int port) = 0;
+    virtual void handleSentData(const QString &ip, int port, const QByteArray &data);
+    virtual void handleReceiveData(const QString &ip, int port, const QByteArray &data);
     virtual void append(int type, QString data) = 0;
 
 protected:

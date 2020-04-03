@@ -3,32 +3,26 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-void HDataFormatInfoPrivate::init(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color)
-{
-    this->typeName = typeName;
-    this->unit = unit;
-    this->color = color;
-    this->decimals = decimals;
-    this->min = min;
-    this->max = max;
-    this->singleStep = singleStep;
-}
-
 HDataFormatInfo::HDataFormatInfo() :
-    d_ptr(new HDataFormatInfoPrivate)
+    HDataFormatInfo("")
 {
 }
 
 HDataFormatInfo::HDataFormatInfo(QString typeName, double min, double max, int decimals, double singleStep) :
-    d_ptr(new HDataFormatInfoPrivate)
+    HDataFormatInfo(typeName, "", min, max, decimals, singleStep)
 {
-    d_ptr->init(typeName, "", min, max, decimals, singleStep);
 }
 
 HDataFormatInfo::HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color) :
     d_ptr(new HDataFormatInfoPrivate)
 {
-    d_ptr->init(typeName, unit, min, max, decimals, singleStep, color);
+    d_ptr->typeName = typeName;
+    d_ptr->unit = unit;
+    d_ptr->color = color;
+    d_ptr->decimals = decimals;
+    d_ptr->min = min;
+    d_ptr->max = max;
+    d_ptr->singleStep = singleStep;
 }
 
 HDataFormatInfo::HDataFormatInfo(const HDataFormatInfo &rhs) :

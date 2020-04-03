@@ -6,21 +6,21 @@
 #define HCHINESEHELPER_H
 
 #include "HControlGlobal.h"
-#include <QtCore/QObject>
+#include "HeCore/HSingleton3.h"
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HChineseHelperPrivate;
 
-class HChineseHelper : public QObject
+class HChineseHelper
 {
-    Q_OBJECT
+    H_SINGLETON3(HChineseHelper)
 
-public:
-    static HChineseHelper *instance();
-
-public:
-    ~HChineseHelper() override;
+private:
+    HChineseHelper();
+    ~HChineseHelper();
 
 public:
     void loadPingYin(const QString &fileName);
@@ -28,16 +28,10 @@ public:
     QString toPingYin(const QString &value);
     QString toJianPin(const QString &value);
 
-protected:
-    HChineseHelper(QObject *parent = nullptr);
-    HChineseHelper(const HChineseHelper&) = delete;
-    HChineseHelper &operator=(const HChineseHelper&) = delete;
-
 private:
     void init();
 
 private:
-    static QScopedPointer<HChineseHelper> __instance;
     QScopedPointer<HChineseHelperPrivate> d_ptr;
 };
 

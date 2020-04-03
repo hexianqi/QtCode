@@ -10,7 +10,7 @@ class HAbstractServerWidgetPrivate : public HAbstractNetworkWidgetPrivate
 {
 public:
     QString listenIP = "127.0.0.1";
-    quint16 listenPort = 6000;
+    int listenPort = 6000;
 };
 
 HE_CONTROL_END_NAMESPACE

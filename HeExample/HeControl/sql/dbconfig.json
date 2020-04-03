@@ -1,0 +1,17 @@
+{
+    "database": {
+        "debug": true,
+        "type": "QMYSQL",
+        "host": "127.0.0.1",
+        "port": 3306,
+        "name": "qt",
+        "username": "root",
+        "password": "root",
+        "test_on_borrow": true,
+        "test_on_borrow_sql": "SELECT 1",
+        "sql_files": [
+            ":/sql/user.sql",
+            ":/sql/product.sql"
+        ]
+    }
+}

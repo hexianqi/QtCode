@@ -12,7 +12,7 @@ class HSmtpClientPrivate
 public:
     QTcpSocket *socket = nullptr;
     QString host = "localhost";
-    quint16 port = 25;
+    int port = 25;
     HSmtpClient::ConnectionType connectionType = HSmtpClient::Tcp;
     HSmtpClient::AuthMethod authMethod = HSmtpClient::AuthLogin;
     int connectionTimeout = 5000;

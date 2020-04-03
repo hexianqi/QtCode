@@ -1,0 +1,65 @@
+/* 按钮的公共样式 */
+QPushButton {
+    border-width: 0 0 0 0;
+    width:  64px;
+    height: 64px;
+    min-width:  64px;
+    max-width:  64px;
+    min-height: 64px;
+    max-height: 64px;
+}
+
+/* 中间的按钮 */
+#centerButton {
+    border-image: url(:/qss/abnormityButton/center.png);
+}
+#centerButton:hover {
+    border-image: url(:/qss/abnormityButton/center-hover.png);
+}
+#centerButton:pressed {
+    border-image: url(:/qss/abnormityButton/center-pressed.png);
+}
+
+/* 顶部的按钮 */
+#topButton {
+    border-image: url(:/qss/abnormityButton/top.png);
+}
+#topButton:hover {
+    border-image: url(:/qss/abnormityButton/top-hover.png);
+}
+#topButton:pressed {
+    border-image: url(:/qss/abnormityButton/top-pressed.png);
+}
+
+/* 右边的按钮 */
+#rightButton {
+    border-image: url(:/qss/abnormityButton/right.png);
+}
+#rightButton:hover {
+    border-image: url(:/qss/abnormityButton/right-hover.png);
+}
+#rightButton:pressed {
+    border-image: url(:/qss/abnormityButton/right-pressed.png);
+}
+
+/* 底部的按钮 */
+#bottomButton {
+    border-image: url(:/qss/abnormityButton/bottom.png);
+}
+#bottomButton:hover {
+    border-image: url(:/qss/abnormityButton/bottom-hover.png);
+}
+#bottomButton:pressed {
+    border-image: url(:/qss/abnormityButton/bottom-pressed.png);
+}
+
+/* 左边的按钮 */
+#leftButton {
+    border-image: url(:/qss/abnormityButton/left.png);
+}
+#leftButton:hover {
+    border-image: url(:/qss/abnormityButton/left-hover.png);
+}
+#leftButton:pressed {
+    border-image: url(:/qss/abnormityButton/left-pressed.png);
+}

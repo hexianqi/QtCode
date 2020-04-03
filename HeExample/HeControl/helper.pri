@@ -6,7 +6,8 @@ HEADERS += \
     $$PWD/HNetworkHelper.h \
     $$PWD/HRegularExpressionHelper.h \
     $$PWD/HChineseHelper.h \
-    $$PWD/HChineseHelper_p.h
+    $$PWD/HChineseHelper_p.h \
+    $$PWD/HStyleHelper.h
 
 SOURCES += \
     $$PWD/HControlHelper.cpp \
@@ -15,4 +16,5 @@ SOURCES += \
     $$PWD/HWmicHelperr.cpp \
     $$PWD/HNetworkHelper.cpp \
     $$PWD/HRegularExpressionHelper.cpp \
-    $$PWD/HChineseHelper.cpp
+    $$PWD/HChineseHelper.cpp \
+    $$PWD/HStyleHelper.cpp

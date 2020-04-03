@@ -60,5 +60,32 @@
         <file>qss/flatwhite.png</file>
         <file>qss/lightblue.png</file>
         <file>qss/psblack.png</file>
+        <file>qss/stepButton.css</file>
+        <file>qss/StepButton/active.png</file>
+        <file>qss/StepButton/active-pre.png</file>
+        <file>qss/StepButton/last.png</file>
+        <file>qss/StepButton/last-active.png</file>
+        <file>qss/StepButton/normal.png</file>
+        <file>qss/groupButton.css</file>
+        <file>qss/groupButton.png</file>
+        <file>qss/stepButton.png</file>
+        <file>qss/abnormityButton.css</file>
+        <file>qss/abnormityButton/bottom.png</file>
+        <file>qss/abnormityButton/bottom-hover.png</file>
+        <file>qss/abnormityButton/bottom-pressed.png</file>
+        <file>qss/abnormityButton/center.png</file>
+        <file>qss/abnormityButton/center-hover.png</file>
+        <file>qss/abnormityButton/center-pressed.png</file>
+        <file>qss/abnormityButton/left.png</file>
+        <file>qss/abnormityButton/left-hover.png</file>
+        <file>qss/abnormityButton/left-pressed.png</file>
+        <file>qss/abnormityButton/right.png</file>
+        <file>qss/abnormityButton/right-hover.png</file>
+        <file>qss/abnormityButton/right-pressed.png</file>
+        <file>qss/abnormityButton/top.png</file>
+        <file>qss/abnormityButton/top-hover.png</file>
+        <file>qss/abnormityButton/top-pressed.png</file>
+        <file>qss/abnormityButton.png</file>
+        <file>qss/animatedCheckbox.gif</file>
     </qresource>
 </RCC>

@@ -116,5 +116,9 @@
         <file>image/ludianwu/calendar_yellow.png</file>
         <file>image/ludianwu/calendar_item_bk.png</file>
         <file>image/demo/LunarCalendarWidget.gif</file>
+        <file>sql/dbconfig.json</file>
+        <file>sql/product.sql</file>
+        <file>sql/table.sql</file>
+        <file>sql/user.sql</file>
     </qresource>
 </RCC>

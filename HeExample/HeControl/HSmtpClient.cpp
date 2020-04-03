@@ -14,7 +14,7 @@ class HSendMessageTimeoutException : public QException
 {
 };
 
-HSmtpClient::HSmtpClient(const QString &host, quint16 port, ConnectionType type, QObject *parent) :
+HSmtpClient::HSmtpClient(const QString &host, int port, ConnectionType type, QObject *parent) :
     QObject(parent),
     d_ptr(new HSmtpClientPrivate)
 {
@@ -34,7 +34,7 @@ QString HSmtpClient::host() const
     return d_ptr->host;
 }
 
-quint16 HSmtpClient::port() const
+int HSmtpClient::port() const
 {
     return d_ptr->port;
 }
@@ -96,7 +96,7 @@ void HSmtpClient::setHost(const QString &value)
     d_ptr->host = value;
 }
 
-void HSmtpClient::setPort(quint16 value)
+void HSmtpClient::setPort(int value)
 {
     if (d_ptr->port == value)
         return;

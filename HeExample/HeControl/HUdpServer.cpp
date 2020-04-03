@@ -58,7 +58,7 @@ void HUdpServer::setListenIP(const QString &value)
     }
 }
 
-void HUdpServer::setListenPort(quint16 value)
+void HUdpServer::setListenPort(int value)
 {
     if (d_ptr->listenPort == value)
         return;
@@ -79,7 +79,7 @@ void HUdpServer::sendData(const QByteArray &data)
     }
 }
 
-void HUdpServer::sendData(const QString &ip, quint16 port, const QByteArray &data)
+void HUdpServer::sendData(const QString &ip, int port, const QByteArray &data)
 {
     if (d_ptr->socket->writeDatagram(data, QHostAddress(ip), port) == -1)
         clientDisconnected(ip, port);
@@ -87,7 +87,7 @@ void HUdpServer::sendData(const QString &ip, quint16 port, const QByteArray &dat
         emit sentData(ip, port, data);
 }
 
-void HUdpServer::incomingConnection(const QString &ip, quint16 port)
+void HUdpServer::incomingConnection(const QString &ip, int port)
 {
     auto text = QString("%1:%2").arg(ip).arg(port);
     if (d_ptr->clients.contains(text))
@@ -106,7 +106,7 @@ void HUdpServer::disconnectClient()
     }
 }
 
-void HUdpServer::disconnectClient(const QString &ip, quint16 port)
+void HUdpServer::disconnectClient(const QString &ip, int port)
 {
     auto key = QString("%1:%2").arg(ip).arg(port);
     if (!d_ptr->clients.contains(key))
@@ -121,7 +121,7 @@ void HUdpServer::handleReadyRead()
     {
         auto datagram = d_ptr->socket->receiveDatagram();
         auto ip = datagram.senderAddress().toString().replace("::ffff:", "");
-        auto port = static_cast<quint16>(datagram.senderPort());
+        auto port = datagram.senderPort();
         auto data = datagram.data();
         if (ip.isEmpty() || data.isEmpty())
             continue;

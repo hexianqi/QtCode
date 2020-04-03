@@ -1,18 +1,8 @@
 #include "HNetworkLog_p.h"
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QTcpServer>
-#include <mutex>
 
 HE_CONTROL_BEGIN_NAMESPACE
-
-QScopedPointer<HNetworkLog> HNetworkLog::__instance;
-static std::once_flag __oc; // 用于call_once的局部静态变量
-
-HNetworkLog *HNetworkLog::instance()
-{
-    std::call_once(__oc, [&]{ __instance.reset(new HNetworkLog); });
-    return __instance.data();
-}
 
 HNetworkLog::HNetworkLog(QObject *parent) :
     QObject(parent),

@@ -1,6 +1,10 @@
 #include "HControlDemoWidget_p.h"
 #include "HRbTableHeaderView.h"
 #include "HLineEditGroup.h"
+#include "HAbnormityButton.h"
+#include "HGroupButton.h"
+#include "HStepButton.h"
+#include "HAnimatedCheckBox.h"
 #include <QtGui/QStandardItemModel>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QLineEdit>
@@ -13,6 +17,8 @@ void HControlDemoWidget::addElse()
     addMultHeaderTableView();
     addMultHeaderTableWidget();
     addLineEditGroup();
+    addButtonGroup();
+    addAnimatedCheckBox();
 }
 
 void HControlDemoWidget::addMultHeaderTableView()
@@ -124,6 +130,25 @@ void HControlDemoWidget::addLineEditGroup()
     }
     layout->addStretch();
     addTab(tr("其他"), tr("行编辑器组"), layout);
+}
+
+void HControlDemoWidget::addButtonGroup()
+{
+    auto layout = new QVBoxLayout;
+    auto abnormity = new HAbnormityButton;
+    auto group = new HGroupButton;
+    auto step = new HStepButton;
+    step->setButton(QStringList() << tr("提交订单") << tr("付款成功") << tr("商品出库") << tr("------ 快递中-等待收货 ------") << tr("完成"));
+    group->setButton(QStringList() << "Java" << "C++" << "Python" << "PHP" << "Qt");
+    layout->addWidget(group);
+    layout->addWidget(step);
+    layout->addWidget(abnormity);
+    addTab(tr("其他"), tr("按钮组"), layout);
+}
+
+void HControlDemoWidget::addAnimatedCheckBox()
+{
+    addTab(tr("其他"), tr("动画复选框"), new HAnimatedCheckBox);
 }
 
 HE_CONTROL_END_NAMESPACE

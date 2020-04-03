@@ -21,7 +21,7 @@ HUdpClient::~HUdpClient()
 {
 }
 
-void HUdpClient::sendData(const QString &ip, quint16 port, const QByteArray &value)
+void HUdpClient::sendData(const QString &ip, int port, const QByteArray &value)
 {
     if (writeDatagram(value, QHostAddress(ip), port) != -1)
         emit sentData(ip, port, value);
@@ -33,7 +33,7 @@ void HUdpClient::handleReadyRead()
     {
         auto datagram = receiveDatagram();
         auto ip = datagram.senderAddress().toString().replace("::ffff:", "");
-        auto port = static_cast<quint16>(datagram.senderPort());
+        auto port = datagram.senderPort();
         auto data = datagram.data();
         if (ip.isEmpty() || data.isEmpty())
             continue;

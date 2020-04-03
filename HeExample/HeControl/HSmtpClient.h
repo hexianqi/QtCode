@@ -42,7 +42,7 @@ public:
     };
 
 public:
-    explicit HSmtpClient(const QString &host = "locahost", quint16 port = 25, ConnectionType type = Tcp, QObject *parent = nullptr);
+    explicit HSmtpClient(const QString &host = "locahost", int port = 25, ConnectionType type = Tcp, QObject *parent = nullptr);
     ~HSmtpClient() override;
 
 signals:
@@ -50,7 +50,7 @@ signals:
 
 public:
     QString host() const;
-    quint16 port() const;
+    int port() const;
     ConnectionType connectionType() const;
     AuthMethod authMethod() const;
     int connectionTimeout() const;
@@ -64,7 +64,7 @@ public:
 
 public:
     void setHost(const QString &value);
-    void setPort(quint16 value);
+    void setPort(int value);
     void setConnectionType(ConnectionType value);
     void setAuthMethod(AuthMethod value);
     void setConnectionTimeout(int msec);

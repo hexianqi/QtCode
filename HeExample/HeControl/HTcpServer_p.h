@@ -11,7 +11,7 @@ class HTcpServerPrivate
 {
 public:
     QString listenIP = "0.0.0.0";
-    quint16 listenPort = 6000;
+    int listenPort = 6000;
     QMap<QString, HTcpClient *> clients;
 };
 

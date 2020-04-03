@@ -23,13 +23,12 @@ public:
     QString hostName;
     QString userName;
     QString password;
-
-    int maxConnectionCount = 100;   // 最大连接数
-    ulong maxWaitTime = 1000;       // 获取连接最大等待时间
-    ulong waitInterval = 200;       // 尝试获取连接时等待间隔时间
-
-    bool check = true;              // 取得连接的时候验证连接是否有效
-    QString checkSql = "select 1";  // 测试访问数据库的 SQL
+    int port;
+    bool testOnBorrow = true;
+    QString testOnBorrowSql = "select 1";
+    int maxConnectionCount = 100;
+    int maxWaitTime = 1000;
+    int waitInterval = 200;
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -1,5 +1,5 @@
 #include "HCie1931Chart_p.h"
-#include "HImageHelper.h"
+#include "HDrawHelper.h"
 #include <QtCore/QTextStream>
 #include <QtGui/QPainter>
 #include <QtCharts/QValueAxis>

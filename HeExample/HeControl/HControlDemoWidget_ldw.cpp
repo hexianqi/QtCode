@@ -34,7 +34,6 @@ void HControlDemoWidget::addLiuDianWu()
 void HControlDemoWidget::addBattery()
 {
     auto battery = new HBattery;
-
     auto slider = new QSlider;
     slider->setOrientation(Qt::Horizontal);
     slider->setSingleStep(10);
@@ -55,7 +54,6 @@ void HControlDemoWidget::addCalendar()
 
 void HControlDemoWidget::addExplorer()
 {
-
 //    auto w = new HCpuMemoryLabel();
     auto table = new HDiskSizeTable();
 //    w->setFont(QFont("Microsoft Yahei", 13));

@@ -5,6 +5,7 @@
 #include <QtWidgets/QDesktopWidget>
 #include <QtGui/QScreen>
 #include <QtGui/QIcon>
+#include <QtCore/QDebug>
 
 HE_CONTROL_BEGIN_NAMESPACE
 

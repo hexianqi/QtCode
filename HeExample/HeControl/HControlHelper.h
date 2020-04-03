@@ -21,6 +21,8 @@ public:
     static void initTranslator();
     // 运行时间
     static QString runTime(QDateTime start, QDateTime end);
+
+public:
     // 窗体居中桌面
     static void centerWidget(QWidget *);
     // 无边框窗体
@@ -28,7 +30,7 @@ public:
     // 无边框背景窗体
     static void translucentWidget(QWidget *, QStringList files, bool moveEnable = true);
 
-protected:
+public:
     // 添加关闭
     static void addClose(QWidget *);
 };

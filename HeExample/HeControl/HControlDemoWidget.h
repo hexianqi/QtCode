@@ -55,11 +55,12 @@ private:
     void addWwTipWidget();
     void addWwElse();
 
-
     // Else
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
     void addLineEditGroup();
+    void addButtonGroup();
+    void addAnimatedCheckBox();
 
 private:
     void addTab(QString key, QWidget *);

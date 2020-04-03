@@ -2,18 +2,9 @@
 #include "HControlHelper.h"
 #include "HFileLog.h"
 #include <QtCore/QTimer>
-#include <mutex>
+#include <QtWidgets/QApplication>
 
 HE_CONTROL_BEGIN_NAMESPACE
-
-QScopedPointer<HRunTimeService> HRunTimeService::__instance;
-static std::once_flag __oc; // 用于call_once的局部静态变量
-
-HRunTimeService *HRunTimeService::instance()
-{
-    std::call_once(__oc, [&]{ __instance.reset(new HRunTimeService); });
-    return __instance.data();
-}
 
 HRunTimeService::HRunTimeService(QObject *parent) :
     QObject(parent),
@@ -108,6 +99,7 @@ void HRunTimeService::init()
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(60 * 10000);
     connect(d_ptr->timer, &QTimer::timeout, this, &HRunTimeService::saveLog);
+    connect(qApp, &QApplication::aboutToQuit, this, &HRunTimeService::stop);
 }
 
 HE_CONTROL_END_NAMESPACE

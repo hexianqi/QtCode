@@ -22,7 +22,7 @@ HStyleWidget::~HStyleWidget()
 void HStyleWidget::init()
 {
     auto factory = new HStyleFactory(this);
-    auto style = factory->create("HFlatStyle");
+    auto style = factory->createStyle("HFlatStyle");
     this->setStyleSheet(style->toStyleSheet());
 }
 

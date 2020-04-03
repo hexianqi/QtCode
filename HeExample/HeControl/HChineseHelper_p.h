@@ -2,6 +2,7 @@
 #define HCHINESEHELPER_P_H
 
 #include "HChineseHelper.h"
+#include <QtCore/QStringList>
 
 HE_CONTROL_BEGIN_NAMESPACE
 

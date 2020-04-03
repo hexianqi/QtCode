@@ -25,7 +25,7 @@ QString HAbstractServerWidget::listenIP() const
     return d->listenIP;
 }
 
-quint16 HAbstractServerWidget::listenPort() const
+int HAbstractServerWidget::listenPort() const
 {
     Q_D(const HAbstractServerWidget);
     return d->listenPort;
@@ -47,13 +47,13 @@ void HAbstractServerWidget::setListenPort(int value)
     d->listenPort = value;
 }
 
-void HAbstractServerWidget::handleSentData(const QString &ip, quint16 port, const QByteArray &data)
+void HAbstractServerWidget::handleSentData(const QString &ip, int port, const QByteArray &data)
 {
     auto text = fromByteArray(data);
     append(0, QString("[%1:%2] %3").arg(ip).arg(port).arg(text));
 }
 
-void HAbstractServerWidget::handleReceiveData(const QString &ip, quint16 port, const QByteArray &data)
+void HAbstractServerWidget::handleReceiveData(const QString &ip, int port, const QByteArray &data)
 {
     auto text = fromByteArray(data);
     append(1, QString("[%1:%2] %3").arg(ip).arg(port).arg(text));
@@ -67,7 +67,7 @@ void HAbstractServerWidget::readSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
     d->listenIP = settings->value("iListenIP", "127.0.0.1").toString();
-    d->listenPort = settings->value("iListenPort", 6000).value<quint16>();
+    d->listenPort = settings->value("iListenPort", 6000).value<int>();
     settings->endGroup();
 }
 

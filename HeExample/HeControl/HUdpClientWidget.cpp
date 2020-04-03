@@ -57,7 +57,7 @@ void HUdpClientWidget::handleReadyRead()
     {
         auto datagram = d->socket->receiveDatagram();
         auto ip = datagram.senderAddress().toString().replace("::ffff:", "");
-        auto port = static_cast<quint16>(datagram.senderPort());
+        auto port = datagram.senderPort();
         auto data = datagram.data();
         if (ip.isEmpty() || data.isEmpty())
             continue;

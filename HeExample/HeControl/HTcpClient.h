@@ -26,7 +26,7 @@ signals:
 
 public:
     QString ip();
-    quint16 port();
+    int port();
 
 public slots:
     void sendData(const QByteArray &value);

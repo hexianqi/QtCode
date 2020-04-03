@@ -2,12 +2,8 @@
 #include "HKeepFileLog.h"
 #include "HNetworkLog.h"
 #include <QtCore/QMutexLocker>
-#include <mutex>
 
 HE_CONTROL_BEGIN_NAMESPACE
-
-QScopedPointer<HLogService> HLogService::__instance;
-static std::once_flag __oc; // 用于call_once的局部静态变量
 
 // 日志重定向
 void log(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -39,17 +35,11 @@ void log(QtMsgType type, const QMessageLogContext &context, const QString &msg)
     HLogService::instance()->save(text);
 }
 
-HLogService *HLogService::instance()
-{
-    std::call_once(__oc, [&]{ __instance.reset(new HLogService); });
-    return __instance.data();
-}
-
 HLogService::HLogService(QObject *parent) :
-    QObject(parent),
+    QObject (parent),
     d_ptr(new HLogServicePrivate)
 {
-    init();
+
 }
 
 HLogService::~HLogService()

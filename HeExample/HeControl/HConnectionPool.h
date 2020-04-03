@@ -6,9 +6,11 @@
 #define HCONNECTIONPOOL_H
 
 #include "HControlGlobal.h"
-#include <QtCore/QVariant>
+#include "HeCore/HSingleton2.h"
 
 class QSqlDatabase;
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -16,35 +18,21 @@ class HConnectionPoolPrivate;
 
 class HConnectionPool
 {
-public:
-    static HConnectionPool *instance();
-    // 关闭所有的数据库连接
-    static void release();
-    // 获取数据库连接
-    static QSqlDatabase openConnection();
-    // 释放数据库连接
-    static void closeConnection(QSqlDatabase db);
+    H_SINGLETON2(HConnectionPool)
 
-public:
+private:
+    HConnectionPool();
     ~HConnectionPool();
 
 public:
-    int maxConnectionCount() const;
-    ulong maxWaitTime() const;
-    ulong waitInterval() const;
-    int usedCount() const;
-    int unusedCount() const;
+    QSqlDatabase openConnection();
+    void closeConnection(QSqlDatabase db);
 
-public:
-    void setConnectionInfo(QVariantMap param);
+private:
+    QString getConnectionName();
+    QSqlDatabase createConnection(const QString &connectionName);
 
-protected:
-    HConnectionPool();
-    HConnectionPool(const HConnectionPool&) = delete;
-    HConnectionPool &operator=(const HConnectionPool&) = delete;
-
-protected:
-    static QScopedPointer<HConnectionPool> __instance;
+private:
     QScopedPointer<HConnectionPoolPrivate> d_ptr;
 };
 

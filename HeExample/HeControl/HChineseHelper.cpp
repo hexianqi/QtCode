@@ -1,21 +1,10 @@
 #include "HChineseHelper_p.h"
 #include <QtCore/QFile>
 #include <QtCore/QRegularExpression>
-#include <mutex>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-QScopedPointer<HChineseHelper> HChineseHelper::__instance;
-static std::once_flag __oc; // 用于call_once的局部静态变量
-
-HChineseHelper *HChineseHelper::instance()
-{
-    std::call_once(__oc, [&]{ __instance.reset(new HChineseHelper); });
-    return __instance.data();
-}
-
-HChineseHelper::HChineseHelper(QObject *parent) :
-    QObject(parent),
+HChineseHelper::HChineseHelper() :
     d_ptr(new HChineseHelperPrivate)
 {
     init();

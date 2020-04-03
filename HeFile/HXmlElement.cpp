@@ -43,13 +43,13 @@ HXmlElement *HXmlElement::parse(QString fileName, QDomElement *domElement, HXmlE
     return xe;
 }
 
-HXmlElement::HXmlElement(QString fileName, QDomElement *domElement, HXmlElement *parent)
-    : d_ptr(new HXmlElementPrivate(fileName, domElement, parent))
+HXmlElement::HXmlElement(QString fileName, QDomElement *domElement, HXmlElement *parent) :
+    d_ptr(new HXmlElementPrivate(fileName, domElement, parent))
 {
 }
 
-HXmlElement::HXmlElement(HXmlElementPrivate &p)
-    : d_ptr(&p)
+HXmlElement::HXmlElement(HXmlElementPrivate &p) :
+    d_ptr(&p)
 {
 }
 

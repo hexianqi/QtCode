@@ -26,7 +26,7 @@ QString HAbstractClientWidget::serverIP() const
     return d->serverIP;
 }
 
-quint16 HAbstractClientWidget::serverPort() const
+int HAbstractClientWidget::serverPort() const
 {
     Q_D(const HAbstractClientWidget);
     return d->serverPort;
@@ -40,7 +40,7 @@ void HAbstractClientWidget::setServerIP(const QString &value)
     d->serverIP = value;
 }
 
-void HAbstractClientWidget::setServerPort(quint16 value)
+void HAbstractClientWidget::setServerPort(int value)
 {
     Q_D(HAbstractClientWidget);
     if (d->serverPort == value)
@@ -56,7 +56,7 @@ void HAbstractClientWidget::readSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
     d->serverIP = settings->value("sServerIP", "127.0.0.1").toString();
-    d->serverPort = settings->value("iServerPort", 6000).value<quint16>();
+    d->serverPort = settings->value("iServerPort", 6000).value<int>();
     settings->endGroup();
 }
 

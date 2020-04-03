@@ -251,12 +251,10 @@ bool HCartesianWidget::drawPolygon(QPainter *painter)
     if (!HDiagramWidget::drawPolygon(painter))
         return false;
 
-    QHashIterator<int, QPolygonF> i(d->polygons);
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
-    while (i.hasNext())
+    for (auto i = d->polygons.begin(); i != d->polygons.end(); i++)
     {
-        i.next();
         painter->setPen(d->polygonColors.value(i.key(), Qt::black));
         painter->drawPolyline(d->coordinate->mapToPosition(i.value(), d->plotArea));
     }

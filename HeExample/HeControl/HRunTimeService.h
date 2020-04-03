@@ -6,7 +6,10 @@
 #define HRUNTIMESERVICE_H
 
 #include "IService.h"
+#include "HeCore/HSingleton2.h"
 #include <QtCore/QObject>
+
+HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -15,11 +18,10 @@ class HRunTimeServicePrivate;
 class HRunTimeService : public QObject, public IService
 {
     Q_OBJECT
+    H_SINGLETON2(HRunTimeService)
 
-public:
-    static HRunTimeService *instance();
-
-public:
+private:
+    HRunTimeService(QObject *parent = nullptr);
     ~HRunTimeService() override;
 
 public:
@@ -28,16 +30,10 @@ public:
     void setInterval(int);
 
 protected:
-    HRunTimeService(QObject *parent = nullptr);
-    HRunTimeService(const HRunTimeService&) = delete;
-    HRunTimeService &operator=(const HRunTimeService&) = delete;
-
-protected:
     void initLog();
     void saveLog();
 
 protected:
-    static QScopedPointer<HRunTimeService> __instance;
     QScopedPointer<HRunTimeServicePrivate> d_ptr;
 
 private:

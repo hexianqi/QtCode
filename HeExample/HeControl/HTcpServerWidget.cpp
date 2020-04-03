@@ -64,7 +64,7 @@ void HTcpServerWidget::on_pushButton_101_clicked()
         append(0, tr("关闭监听"));
     }
     else
-    {        
+    {
         d->server->setListenIP(d->listenIP);
         d->server->setListenPort(d->listenPort);
         if (d->server->start())
@@ -97,7 +97,7 @@ void HTcpServerWidget::on_pushButton_104_clicked()
         d->server->disconnectClient();
 }
 
-void HTcpServerWidget::handleClientConnected(const QString &ip, quint16 port)
+void HTcpServerWidget::handleClientConnected(const QString &ip, int port)
 {
     auto text = QString("%1:%2").arg(ip).arg(port);
     ui->listWidget_101->addItem(text);
@@ -105,7 +105,7 @@ void HTcpServerWidget::handleClientConnected(const QString &ip, quint16 port)
     append(1, tr("[%1:%2] 客户端上线").arg(ip).arg(port));
 }
 
-void HTcpServerWidget::handleClientDisconnected(const QString &ip, quint16 port)
+void HTcpServerWidget::handleClientDisconnected(const QString &ip, int port)
 {
     int row = -1;
     QString text = QString("%1:%2").arg(ip).arg(port);
@@ -156,7 +156,7 @@ void HTcpServerWidget::init()
     ui->comboBox_101->addItem("0.0.0.0");
     ui->comboBox_101->setCurrentText(d->listenIP);
     ui->spinBox_101->setValue(d->interval);
-    ui->spinBox_102->setValue(d->listenPort);    
+    ui->spinBox_102->setValue(d->listenPort);
     connect(ui->checkBox_101, &QCheckBox::clicked, this, &HTcpServerWidget::setHexSend);
     connect(ui->checkBox_102, &QCheckBox::clicked, this, &HTcpServerWidget::setHexReceive);
     connect(ui->checkBox_103, &QCheckBox::clicked, this, &HTcpServerWidget::setAscii);

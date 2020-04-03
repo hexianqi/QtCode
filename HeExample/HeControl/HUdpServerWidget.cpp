@@ -81,7 +81,7 @@ void HUdpServerWidget::on_pushButton_102_clicked()
         clearData();
 }
 
-void HUdpServerWidget::handleClientConnected(const QString &ip, quint16 port)
+void HUdpServerWidget::handleClientConnected(const QString &ip, int port)
 {
     auto text = QString("%1:%2").arg(ip).arg(port);
     ui->listWidget_101->addItem(text);
@@ -89,7 +89,7 @@ void HUdpServerWidget::handleClientConnected(const QString &ip, quint16 port)
     append(1, tr("[%1:%2] 客户端上线").arg(ip).arg(port));
 }
 
-void HUdpServerWidget::handleClientDisconnected(const QString &ip, quint16 port)
+void HUdpServerWidget::handleClientDisconnected(const QString &ip, int port)
 {
     int row = -1;
     QString text = QString("%1:%2").arg(ip).arg(port);

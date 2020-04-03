@@ -49,4 +49,5 @@ unix {
     INSTALLS += target
 }
 
-include(Xml.pri)
+include(json.pri)
+include(xml.pri)

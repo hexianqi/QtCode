@@ -29,8 +29,10 @@ public:
         return __instance;
     }
 
-    static void destroyInstance()
+    static void release()
     {
+        if (__instance == nullptr)
+            return;
         delete __instance;
         __instance = nullptr;
     }
@@ -38,17 +40,16 @@ public:
 protected:
     HSingleton() = default;
     ~HSingleton() = default;
-    HSingleton(const HSingleton&) = delete;
-    HSingleton &operator=(const HSingleton&) = delete;
+    HSingleton(const HSingleton &) = delete;
+    HSingleton &operator=(const HSingleton &) = delete;
 
 protected:
     static T *__instance;
 };
 
-template <typename T>
-T *HSingleton<T>::__instance = nullptr;
+template <typename T> T *HSingleton<T>::__instance = nullptr;
 
-#define H_FRIEND_SINGLETON(theClass)    friend class HSingleton<theClass>;
+#define H_FRIEND_SINGLETON(Class)    friend HSingleton<Class>;
 
 HE_CORE_END_NAMESPACE
 

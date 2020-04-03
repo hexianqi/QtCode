@@ -1,5 +1,5 @@
 #include "HQssStyle_p.h"
-#include <QtCore/QFile>
+#include "HStyleHelper.h"
 #include <QtGui/QPalette>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -57,11 +57,10 @@ bool HQssStyle::selectStyle(QString value)
 
 void HQssStyle::addStyle(QString key, QString fileName)
 {
-    QFile file(fileName);
-    if (!file.open(QFile::ReadOnly))
+    auto qss = HStyleHelper::loadStyle(fileName);
+    if (qss.isEmpty())
         return;
-    QString qss = QLatin1String(file.readAll());
-    QString color = qss.mid(20, 7);
+    auto color = qss.mid(20, 7);
     d_ptr->styleSheet.insert(key, qss);
     d_ptr->palette.insert(key, QPalette(QColor(color)));
 }

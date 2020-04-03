@@ -26,7 +26,7 @@ QString HTcpClient::ip()
     return peerAddress().toString().replace("::ffff:", "");
 }
 
-quint16 HTcpClient::port()
+int HTcpClient::port()
 {
     return peerPort();
 }

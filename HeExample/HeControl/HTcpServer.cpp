@@ -54,7 +54,7 @@ void HTcpServer::setListenIP(const QString &value)
     }
 }
 
-void HTcpServer::setListenPort(quint16 value)
+void HTcpServer::setListenPort(int value)
 {
     if (d_ptr->listenPort == value)
         return;
@@ -72,7 +72,7 @@ void HTcpServer::sendData(const QByteArray &data)
         c->sendData(data);
 }
 
-void HTcpServer::sendData(const QString &ip, quint16 port, const QByteArray &data)
+void HTcpServer::sendData(const QString &ip, int port, const QByteArray &data)
 {
     auto key = QString("%1:%2").arg(ip).arg(port);
     if (!d_ptr->clients.contains(key))
@@ -86,7 +86,7 @@ void HTcpServer::disconnectClient()
         c->disconnectFromHost();
 }
 
-void HTcpServer::disconnectClient(const QString &ip, quint16 port)
+void HTcpServer::disconnectClient(const QString &ip, int port)
 {
     auto key = QString("%1:%2").arg(ip).arg(port);
     if (!d_ptr->clients.contains(key))

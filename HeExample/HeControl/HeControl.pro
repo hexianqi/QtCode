@@ -43,13 +43,15 @@ INCLUDEPATH += \
 Debug {
     TARGET = HeControld
     LIBS    += \
-            -L$$DESTDIR -lHeCored
+            -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHeFiled
 }
 
 Release {
     TARGET  = HeControl
     LIBS    += \
             -L$$DESTDIR -lHeCore \
+            -L$$DESTDIR -lHeFile \
 }
 
 unix {
