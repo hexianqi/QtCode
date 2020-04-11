@@ -22,10 +22,6 @@ HAbstractTestSetWidget::HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p,
 {
 }
 
-HAbstractTestSetWidget::~HAbstractTestSetWidget()
-{
-}
-
 bool HAbstractTestSetWidget::setTestState(bool b)
 {
     if (d_ptr->testState == b)

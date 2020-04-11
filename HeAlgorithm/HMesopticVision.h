@@ -26,7 +26,7 @@ protected:
     void readStandard();
 
 protected:
-    QHash<QString, QPolygonF> _stdData;
+    QHash<QString, QPolygonF> _standard;
 };
 
 HE_ALGORITHM_END_NAMESPACE

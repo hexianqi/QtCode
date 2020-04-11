@@ -30,7 +30,7 @@ public:
 protected slots:
     void setCurve1Visible(bool b);
     void setCurve2Visible(bool b);
-    void setVernier(QList<double> value);
+    void setVernier(const QList<double> &value);
 
 private:
     void init();

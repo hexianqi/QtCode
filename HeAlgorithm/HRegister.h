@@ -36,7 +36,6 @@ public:
     bool check(const QString &id, const QString &code);
     // 解密注册号
     QString encrypt(QString id);
-
     // 试用
     void trial();
 

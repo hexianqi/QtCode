@@ -22,10 +22,6 @@ HQualityItem::HQualityItem(HQualityItemPrivate &p) :
 {
 }
 
-HQualityItem::~HQualityItem()
-{
-}
-
 QString HQualityItem::typeName()
 {
     return "HQualityItem";

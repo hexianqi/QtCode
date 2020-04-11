@@ -15,7 +15,6 @@ class HAbstractGuiHandler : public IGuiHandler
 {
 public:
     explicit HAbstractGuiHandler(QObject *parent = nullptr);
-    ~HAbstractGuiHandler() override;
 
 protected:
     HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject *parent = nullptr);

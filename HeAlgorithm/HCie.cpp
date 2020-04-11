@@ -15,12 +15,12 @@ HCieTc32::HCieTc32()
 
 int HCieTc32::size()
 {
-    return _stdData.size();
+    return _standard.size();
 }
 
 CIE_TC_32 HCieTc32::data(int i)
 {
-    return _stdData[i];
+    return _standard[i];
 }
 
 void HCieTc32::readStandard()
@@ -33,14 +33,14 @@ void HCieTc32::readStandard()
     QTextStream in(&file);
 
     in >> str >> n;
-    _stdData.resize(n);
+    _standard.resize(n);
     str = in.readLine();
     str = in.readLine();
     for (i = 0; i < n; i++)
     {
-        in >> _stdData[i].wave;
+        in >> _standard[i].wave;
         for (j = 0; j < 15; j++)
-            in >> _stdData[i].S[j];
+            in >> _standard[i].S[j];
     }
     file.close();
 }
@@ -58,18 +58,18 @@ QPointF HCie1931::calcCoordinateUv(QPolygonF spd)
     double X = 0;
     double Y = 0;
     double Z = 0;
-    while (i < spd.size() && j < _stdData.size())
+    while (i < spd.size() && j < _standard.size())
     {
-        if (qFabs(spd[i].x() - _stdData[j].wave) < 1e-6)
+        if (qFabs(spd[i].x() - _standard[j].wave) < 1e-6)
         {
-            X += spd[i].y() * _stdData[j].X;
-            Y += spd[i].y() * _stdData[j].Y;
-            Z += spd[i].y() * _stdData[j].Z;
+            X += spd[i].y() * _standard[j].X;
+            Y += spd[i].y() * _standard[j].Y;
+            Z += spd[i].y() * _standard[j].Z;
             i++;
             j++;
             continue;
         }
-        if (spd[i].x() < _stdData[j].wave)
+        if (spd[i].x() < _standard[j].wave)
             i++;
         else
             j++;
@@ -91,48 +91,48 @@ QList<double> HCie1931::calcDominantWavePurity(QPointF xy)
     double wave,purity;
 
     auto slope = (xy.y() - 0.3333) / (xy.x() - 0.3333);
-    auto left = xy.x() < 0.3333 ? slope <= _stdData.first().slope : slope < _stdData.last().slope;
+    auto left = xy.x() < 0.3333 ? slope <= _standard.first().slope : slope < _standard.last().slope;
     if (left)
     {
         i = 0;
-        ls = _stdData[i].slope;
-        lx = _stdData[i].x;
-        ly = _stdData[i].y;
-        while (1)
+        ls = _standard[i].slope;
+        lx = _standard[i].x;
+        ly = _standard[i].y;
+        while (true)
         {
             i++;
-            rs = _stdData[i].slope;
-            rx = _stdData[i].x;
-            ry = _stdData[i].y;
-            if ((slope <ls && slope > rs) || _stdData[i].wave > 554)
+            rs = _standard[i].slope;
+            rx = _standard[i].x;
+            ry = _standard[i].y;
+            if ((slope <ls && slope > rs) || _standard[i].wave > 554)
                 break;
             ls = rs;
             lx = rx;
             ly = ry;
         }
         xd = (ly - 0.3333 + slope * 0.3333 - (ry -ly) * lx / (rx - lx)) / (slope - (ry -ly) / (rx -lx));
-        wave = _stdData[i].wave - (xd - rx) / (lx - rx);
+        wave = _standard[i].wave - (xd - rx) / (lx - rx);
     }
     else
     {
         i = 470;
-        rs = _stdData[i].slope;
-        rx = _stdData[i].x;
-        ry = _stdData[i].y;
-        while (1)
+        rs = _standard[i].slope;
+        rx = _standard[i].x;
+        ry = _standard[i].y;
+        while (true)
         {
             i--;
-            ls = _stdData[i].slope;
-            lx = _stdData[i].x;
-            ly = _stdData[i].y;
-            if ((slope < ls && slope > rs) || _stdData[i].wave < 555)
+            ls = _standard[i].slope;
+            lx = _standard[i].x;
+            ly = _standard[i].y;
+            if ((slope < ls && slope > rs) || _standard[i].wave < 555)
                 break;
             rs = ls;
             rx = lx;
             ry = ly;
         }
         xd = (ly - 0.3333 + slope * 0.3333 - (ry - ly) * lx / (rx - lx)) / (slope - (ry - ly) / (rx - lx));
-        wave = _stdData[i].wave + (xd - lx) / (rx - lx);
+        wave = _standard[i].wave + (xd - lx) / (rx - lx);
     }
     purity = (xy.x() - 0.3333) / (xd - 0.3333);
     return QList<double>() << wave << purity;
@@ -157,28 +157,28 @@ void HCie1931::calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<
     X.fill(0, 15);
     Y.fill(0, 15);
     Z.fill(0, 15);
-    while (i < spd.size() && j < _stdData.size() && k < _cieTc32->size())
+    while (i < spd.size() && j < _standard.size() && k < _cieTc32->size())
     {
-        if (qFabs(spd[i].x() - _stdData[j].wave) < 1e-6 && qFabs(spd[i].x() - _cieTc32->data(k).wave) < 1e-6)
+        if (qFabs(spd[i].x() - _standard[j].wave) < 1e-6 && qFabs(spd[i].x() - _cieTc32->data(k).wave) < 1e-6)
         {
             for (l = 0; l < 15; l++)
             {
-                X[l] += spd[i].y() * _stdData[j].X * _cieTc32->data(k).S[l];
-                Y[l] += spd[i].y() * _stdData[j].Y * _cieTc32->data(k).S[l];
-                Z[l] += spd[i].y() * _stdData[j].Z * _cieTc32->data(k).S[l];
+                X[l] += spd[i].y() * _standard[j].X * _cieTc32->data(k).S[l];
+                Y[l] += spd[i].y() * _standard[j].Y * _cieTc32->data(k).S[l];
+                Z[l] += spd[i].y() * _standard[j].Z * _cieTc32->data(k).S[l];
             }
-            sum += spd[i].y() * _stdData[j].Y;
+            sum += spd[i].y() * _standard[j].Y;
             i++;
             j++;
             k++;
             continue;
         }
-        if (spd[i].x() < _stdData[j].wave || spd[i].x() < _cieTc32->data(k).wave)
+        if (spd[i].x() < _standard[j].wave || spd[i].x() < _cieTc32->data(k).wave)
         {
             i++;
             continue;
         }
-        if (_stdData[j].wave < spd[i].x() || _stdData[j].wave < _cieTc32->data(k).wave)
+        if (_standard[j].wave < spd[i].x() || _standard[j].wave < _cieTc32->data(k).wave)
         {
             j++;
             continue;
@@ -219,16 +219,16 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
     Uprime = 0;
     Vprime = 0;
     Wprime = 0;
-    for (i = 0; i < _stdData.size(); i++)
+    for (i = 0; i < _standard.size(); i++)
     {
-        ubar = _stdData[i].X * 2 / 3;
-        vbar = _stdData[i].Y;
-        wbar = -0.5 * _stdData[i].X + 1.5 * _stdData[i].Y + 0.5 * _stdData[i].Z;
-        P = HSpecHelper::planck(_stdData[i].wave, tc);
+        ubar = _standard[i].X * 2 / 3;
+        vbar = _standard[i].Y;
+        wbar = -0.5 * _standard[i].X + 1.5 * _standard[i].Y + 0.5 * _standard[i].Z;
+        P = HSpecHelper::planck(_standard[i].wave, tc);
         U += P * ubar;
         V += P * vbar;
         W += P * wbar;
-        Pprime = HSpecHelper::planckPrime(_stdData[i].wave, tc);
+        Pprime = HSpecHelper::planckPrime(_standard[i].wave, tc);
         Uprime += Pprime * ubar;
         Vprime += Pprime * vbar;
         Wprime += Pprime * wbar;
@@ -259,11 +259,11 @@ void HCie1931::readStandard()
     QTextStream in(&file);
 
     in >> str >> n;
-    _stdData.resize(n);
+    _standard.resize(n);
     str = in.readLine();
     str = in.readLine();
     for (i = 0; i < n; i++)
-        in >> _stdData[i].wave >> _stdData[i].X >> _stdData[i].Y >> _stdData[i].Z >> _stdData[i].x >> _stdData[i].y >> _stdData[i].z >> _stdData[i].slope;
+        in >> _standard[i].wave >> _standard[i].X >> _standard[i].Y >> _standard[i].Z >> _standard[i].x >> _standard[i].y >> _standard[i].z >> _standard[i].slope;
     file.close();
 }
 
@@ -291,13 +291,13 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
     auto m1 = (-1.3515 - 1.7703 * xd + 5.9114 * yd) / (0.0241 + 0.2562 * xd - 0.7341 * yd);
     auto m2 = (0.0300 - 31.4424 * xd + 30.0717 * yd) / (0.0241 + 0.2562 * xd - 0.7341 * yd);
 
-    for (i = 1; i < _stdData.size() - 1; i++)
-        if (wave <= _stdData[i].wave)
+    for (i = 1; i < _standard.size() - 1; i++)
+        if (wave <= _standard[i].wave)
             break;
-    auto wave1 = _stdData[i-1].wave;
-    auto wave2 = _stdData[i].wave;
-    auto sp1 = _stdData[i-1].S[0] + m1 * _stdData[i-1].S[1] + m2 * _stdData[i-1].S[2];
-    auto sp2 = _stdData[i].S[0] + m1 * _stdData[i].S[1] + m2 * _stdData[i].S[2];
+    auto wave1 = _standard[i-1].wave;
+    auto wave2 = _standard[i].wave;
+    auto sp1 = _standard[i-1].S[0] + m1 * _standard[i-1].S[1] + m2 * _standard[i-1].S[2];
+    auto sp2 = _standard[i].S[0] + m1 * _standard[i].S[1] + m2 * _standard[i].S[2];
     return qMax(0.0, HMath::interpolate(wave, wave1, wave2, sp1, sp2));
 }
 
@@ -327,14 +327,14 @@ void HCieDay::readStandard()
     QTextStream in(&file);
 
     in >> str >> n;
-    _stdData.resize(n);
+    _standard.resize(n);
     str = in.readLine();
     str = in.readLine();
     for (i = 0; i < n; i++)
     {
-        in >> _stdData[i].wave;
+        in >> _standard[i].wave;
         for (j = 0; j < 3; j++)
-            in >> _stdData[i].S[j];
+            in >> _standard[i].S[j];
     }
     file.close();
 }
@@ -354,7 +354,7 @@ double HIsotherm::calcColorTemperature(double u, double v)
     auto index = 0;
     auto d2 = 0.0;
     auto d1 = calcDistance(0, u, v);
-    for (int i = 1; i < _stdData.size(); i++)
+    for (int i = 1; i < _standard.size(); i++)
     {
         d2 = calcDistance(i, u, v);
         if ( d1/d2 < 0)
@@ -364,7 +364,7 @@ double HIsotherm::calcColorTemperature(double u, double v)
         }
         d1 = d2;
     }
-    return index == 0 ? 0 : 1/(1/_stdData[index-1].Tc + (1/_stdData[index].Tc - 1/_stdData[index-1].Tc) * d1 / (d1 - d2));
+    return index == 0 ? 0 : 1/(1/_standard[index-1].Tc + (1/_standard[index].Tc - 1/_standard[index-1].Tc) * d1 / (d1 - d2));
 }
 
 void HIsotherm::readStandard()
@@ -377,17 +377,17 @@ void HIsotherm::readStandard()
     QTextStream in(&file);
 
     in >> str >> n;
-    _stdData.resize(n);
+    _standard.resize(n);
     str = in.readLine();
     str = in.readLine();
     for (i = 0; i < n; i++)
-        in >> _stdData[i].Tc >> _stdData[i].u >> _stdData[i].v >> _stdData[i].slope;
+        in >> _standard[i].Tc >> _standard[i].u >> _standard[i].v >> _standard[i].slope;
     file.close();
 }
 
 double HIsotherm::calcDistance(int i, double u, double v)
 {
-    return (v - _stdData[i].v - _stdData[i].slope * (u - _stdData[i].u)) / qSqrt(1 + _stdData[i].slope * _stdData[i].slope);
+    return (v - _standard[i].v - _standard[i].slope * (u - _standard[i].u)) / qSqrt(1 + _standard[i].slope * _standard[i].slope);
 }
 
 HCieUcs::HCieUcs()

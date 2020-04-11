@@ -17,7 +17,7 @@ public:
     void writeContent(QDataStream &);
 
 public:
-    quint32 contain;
+    quint32 contain = 0;
     IDataFactory *factory = nullptr;
     IFileStream *fileStream = nullptr;
     ISpecCalibrateCollection *specCalibrates = nullptr;

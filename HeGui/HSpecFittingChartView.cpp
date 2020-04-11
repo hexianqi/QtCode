@@ -22,10 +22,10 @@ HSpecFittingChartView::~HSpecFittingChartView()
     qDebug() << __func__;
 }
 
-void HSpecFittingChartView::addLineSeries(int id, QPolygonF value)
+void HSpecFittingChartView::addLineSeries(int id, const QPolygonF &value)
 {
     Q_D(HSpecFittingChartView);
-    if (value.size() <= 0)
+    if (value.isEmpty())
         return;
     removeLineSeries(id);
     auto series = new QLineSeries();
@@ -49,10 +49,10 @@ void HSpecFittingChartView::removeLineSeries(int id)
     delete series;
 }
 
-void HSpecFittingChartView::addScatterSeries(int id, QPolygonF value)
+void HSpecFittingChartView::addScatterSeries(int id, const QPolygonF &value)
 {
     Q_D(HSpecFittingChartView);
-    if (value.size() <= 0)
+    if (value.isEmpty())
         return;
     removeScatterSeries(id);
     auto series = new QScatterSeries();

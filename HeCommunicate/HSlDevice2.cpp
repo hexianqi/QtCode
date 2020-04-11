@@ -112,7 +112,7 @@ HErrorType HSlDevice2::getDataBatch(QList<uchar> param, QVector<uchar> &value, i
     value.clear();
     value << buff;
 
-    uchar n = uchar(qCeil((value[0] * 256.0 + value[1]) / param[1]));
+    auto n = uchar(qCeil((value[0] * 256.0 + value[1]) / param[1]));
     for (uchar i = 1; i < n; i++)
     {
         error = getDataOnce(size, param[2], i + 1, buff, 300);

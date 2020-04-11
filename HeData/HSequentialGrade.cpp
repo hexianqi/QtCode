@@ -10,10 +10,6 @@ HSequentialGrade::HSequentialGrade() :
 {
 }
 
-HSequentialGrade::~HSequentialGrade()
-{
-}
-
 QString HSequentialGrade::typeName()
 {
     return "HSequentialGrade";

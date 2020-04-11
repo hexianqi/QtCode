@@ -24,13 +24,13 @@ public:
     HAdjustEditDialogPrivate();
 
 public:
-    IModel *model;
-    ITestData *testData;
+    IModel *model = nullptr;
+    ITestData *testData = nullptr;
 
 public:
-    HAdjustEditWidget *editWidget;
-    HSpecEnergyWidget *energyWidget;
-    ITestSetWidget *testSetWidget;
+    HAdjustEditWidget *editWidget = nullptr;
+    HSpecEnergyWidget *energyWidget = nullptr;
+    ITestSetWidget *testSetWidget = nullptr;
 };
 
 HE_GUI_END_NAMESPACE

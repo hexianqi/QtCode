@@ -15,13 +15,11 @@ HExcelStream::HExcelStream(QObject *parent) :
 {
 }
 
+HExcelStream::~HExcelStream() = default;
+
 HExcelStream::HExcelStream(HExcelStreamPrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)
-{
-}
-
-HExcelStream::~HExcelStream()
 {
 }
 

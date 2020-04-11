@@ -15,7 +15,7 @@ class HElecCalibrate : public IElecCalibrate
 {
 public:
     explicit HElecCalibrate();
-    virtual ~HElecCalibrate();
+    virtual ~HElecCalibrate() = default;
 
 public:
     void initialize(QVariantMap param) override;

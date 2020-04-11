@@ -60,7 +60,7 @@ QStringList HColorModel::colors() const
 {
     QStringList list;
     for (int i = 0; i < rowCount();i++)
-        list << QString("%1,%2").arg(index(i, 0).data(Qt::DecorationRole).value<QColor>().name()).arg(index(i, 0).data(Qt::ToolTipRole).toString());
+        list << QString("%1,%2").arg(index(i, 0).data(Qt::DecorationRole).value<QColor>().name(), index(i, 0).data(Qt::ToolTipRole).toString());
     return list;
 }
 

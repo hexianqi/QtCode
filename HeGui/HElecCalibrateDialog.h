@@ -45,7 +45,7 @@ protected slots:
 
 protected:
     void done(int result) override;
-    QTreeWidgetItem *createItem(QString text, int value, QTreeWidgetItem *parent);
+    QTreeWidgetItem *createItem(const QString &text, int value, QTreeWidgetItem *parent);
     void createItem(IElecCalibrate *data, HElecType type, int &value, QTreeWidgetItem *parent);
     HElecCalibrateItemWidget *createItemWidget(HElecType type);
 

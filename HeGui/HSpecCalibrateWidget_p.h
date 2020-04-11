@@ -23,17 +23,17 @@ public:
     HSpecCalibrateWidgetPrivate();
 
 public:
-    ITestSpec *testSpec;
+    ITestSpec *testSpec = nullptr;
     ISpecCalibrate *calibrate = nullptr;
 
 public:
-    HSpecSampleChartView *sampleView;
-    HSpecFittingChartView *ccdView;
-    HSpecEnergyWidget *energyWidget;
-    HSpecPelsWaveWidget *pelsWaveWidget;
-    HSpecFittingWidget *fittingWidget;
-    ITestSetWidget *testSetWidget;
-    ITestDetailWidget *detailWidget;
+    HSpecSampleChartView *sampleView = nullptr;
+    HSpecFittingChartView *ccdView = nullptr;
+    HSpecEnergyWidget *energyWidget = nullptr;
+    HSpecPelsWaveWidget *pelsWaveWidget = nullptr;
+    HSpecFittingWidget *fittingWidget = nullptr;
+    ITestSetWidget *testSetWidget = nullptr;
+    ITestDetailWidget *detailWidget = nullptr;
 
 public:
     int fittingTimes = 0;

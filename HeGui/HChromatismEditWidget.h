@@ -49,7 +49,7 @@ protected slots:
 
 private:
     void init();
-    void showTable(int row, QString key, IChromatismItem *value);
+    void showTable(int row, const QString &key, IChromatismItem *value);
 
 private:
     QScopedPointer<HChromatismEditWidgetPrivate> d_ptr;

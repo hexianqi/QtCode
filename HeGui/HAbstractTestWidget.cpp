@@ -18,6 +18,8 @@ HAbstractTestWidget::HAbstractTestWidget(QWidget *parent) :
 {
 }
 
+HAbstractTestWidget::~HAbstractTestWidget() = default;
+
 HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent) :
     ITestWidget(parent),
     d_ptr(&p)
@@ -29,10 +31,6 @@ void HAbstractTestWidget::closeEvent(QCloseEvent *event)
     qDebug() << __func__;
     stop();
     event->accept();
-}
-
-HAbstractTestWidget::~HAbstractTestWidget()
-{
 }
 
 QList<QMenu *> HAbstractTestWidget::menus()

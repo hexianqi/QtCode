@@ -25,22 +25,22 @@ public:
     static QString toComment(HErrorType type);
 
 public:
-    static HDataFormatInfo *toFormatInfo(QString type);
-    static QString toString(QString type, double value, char f = 'f');
-    static QString toString(QString type, QVariant value);
-    static QStringList toString(QString type, QVector<double> value, char f = 'f');
-    static QString toUnit(QString type);
-    static QString toCaption(QString type);
+    static HDataFormatInfo *toFormatInfo(const QString &type);
+    static QString toString(const QString &type, double value, char f = 'f');
+    static QString toString(const QString &type, const QVariant &value);
+    static QStringList toString(const QString &type, QVector<double> value, char f = 'f');
+    static QString toUnit(const QString &type);
+    static QString toCaption(const QString &type);
     static QStringList toCaption(QStringList type);
-    static QString toCaptionUnit(QString type);
+    static QString toCaptionUnit(const QString &type);
     static QStringList toCaptionUnit(QStringList type);
 
 public:
-    static QString filenameFilter(const QString &name, const QList<QByteArray> formats);
-    static QString filenameFilter(const QString &name, const QStringList &mimeTypes);
+    static QString fileNameFilter(const QString &name, const QList<QByteArray> formats);
+    static QString fileNameFilter(const QString &name, const QStringList &mimeTypes);
 
 public:
-    static QString typeAddition(QString type, QString addition);
+    static QString typeAddition(const QString &type, const QString &addition);
 
 public:
     // 转储结构

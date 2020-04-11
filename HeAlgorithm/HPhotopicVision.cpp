@@ -27,11 +27,11 @@ void HPhotopicVision::calcSpectrum(HSpecData *data)
     b = 0;
     sum1 = 0.0;
     sum2 = 0.0;
-    while (i < data->Energy.size() && j < _stdData.size())
+    while (i < data->Energy.size() && j < _standard.size())
     {
-        if (qAbs(data->Energy[i].x() - _stdData[j].x()) < 1e-6)
+        if (qAbs(data->Energy[i].x() - _standard[j].x()) < 1e-6)
         {
-            t = data->Energy[i].y() * _stdData[j].y();
+            t = data->Energy[i].y() * _standard[j].y();
             sum1 += data->Energy[i].y();
             sum2 += t;
             if (data->Energy[i].x() >= 380 && data->Energy[i].x() < 500)
@@ -43,7 +43,7 @@ void HPhotopicVision::calcSpectrum(HSpecData *data)
             i++;
             j++;
         }
-        else if (data->Energy[i].x() < _stdData[j].x())
+        else if (data->Energy[i].x() < _standard[j].x())
             i++;
         else
             j++;
@@ -87,7 +87,7 @@ void HPhotopicVision::readStandard()
     }
     file.close();
 
-    _stdData = HInterp::eval(poly, poly.first().x(), poly.last().x(), 0.1, HInterp::Cspline);
+    _standard = HInterp::eval(poly, poly.first().x(), poly.last().x(), 0.1, HInterp::Cspline);
 }
 
 HE_ALGORITHM_END_NAMESPACE

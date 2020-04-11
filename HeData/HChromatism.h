@@ -17,7 +17,7 @@ class HChromatism : public IChromatism
 
 public:
     explicit HChromatism();
-    virtual ~HChromatism();
+    virtual ~HChromatism() = default;
 
 public:
     QString typeName() override;

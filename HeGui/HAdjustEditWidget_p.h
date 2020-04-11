@@ -17,10 +17,10 @@ public:
 public:
     IDataFactory *factory = nullptr;
     IAdjust *data = nullptr;
+    QAction *actionEdit = nullptr;
     QStringList optionals;
     QStringList selecteds;
     QStringList unselecteds;
-    QAction *actionEdit;
 };
 
 HE_GUI_END_NAMESPACE

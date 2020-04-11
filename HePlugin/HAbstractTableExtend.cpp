@@ -12,9 +12,7 @@ HAbstractTableExtend::HAbstractTableExtend(HAbstractTableExtendPrivate &p, QObje
 {
 }
 
-HAbstractTableExtend::~HAbstractTableExtend()
-{
-}
+HAbstractTableExtend::~HAbstractTableExtend() = default;
 
 void HAbstractTableExtend::setTableView(QTableView *v)
 {

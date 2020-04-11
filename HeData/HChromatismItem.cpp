@@ -31,10 +31,6 @@ HChromatismItem::HChromatismItem(HChromatismItemPrivate &p) :
 {
 }
 
-HChromatismItem::~HChromatismItem()
-{
-}
-
 QString HChromatismItem::typeName()
 {
     return "HChromatismItem";

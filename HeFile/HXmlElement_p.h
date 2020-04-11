@@ -9,7 +9,7 @@ HE_FILE_BEGIN_NAMESPACE
 class HXmlElementPrivate
 {
 public:
-    HXmlElementPrivate(QString fileName, QDomElement *domElement, HXmlElement *parent);
+    HXmlElementPrivate(const QString &fileName, QDomElement *domElement, HXmlElement *parent);
 
 public:
     QString fileName;

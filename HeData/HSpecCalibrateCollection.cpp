@@ -41,10 +41,6 @@ HSpecCalibrateCollection::HSpecCalibrateCollection(HSpecCalibrateCollectionPriva
 {
 }
 
-HSpecCalibrateCollection::~HSpecCalibrateCollection()
-{
-}
-
 QString HSpecCalibrateCollection::typeName()
 {
     return "HSpecCalibrateCollection";

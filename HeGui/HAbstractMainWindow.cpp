@@ -187,7 +187,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-//    d_ptr->model->start();
+    d_ptr->model->start();
 }
 
 void HAbstractMainWindow::initCentralWidget()
@@ -201,7 +201,7 @@ void HAbstractMainWindow::initCentralWidget()
     d_ptr->testWidget->start();
 }
 
-void HAbstractMainWindow::showDeviceFailed(QString text)
+void HAbstractMainWindow::showDeviceFailed(const QString &text)
 {
     QMessageBox::critical(this, "", text);
 #ifndef QT_DEBUG
@@ -209,7 +209,7 @@ void HAbstractMainWindow::showDeviceFailed(QString text)
 #endif
 }
 
-void HAbstractMainWindow::showActionFailed(HActionType action, QString text)
+void HAbstractMainWindow::showActionFailed(HActionType action, const QString &text)
 {
     Q_UNUSED(action);
     QMessageBox::warning(this, "", text);
@@ -220,7 +220,7 @@ void HAbstractMainWindow::updateStatusBar(QStringList list)
     for (auto w : d_ptr->labels)
         statusBar()->removeWidget(w);
     d_ptr->labels.clear();
-    for (auto s : list)
+    for (const auto &s : list)
     {
         auto l = new QLabel;
         l->setText(tr("%1:<font color=#FF0000>关闭</font>").arg(s));
@@ -229,7 +229,7 @@ void HAbstractMainWindow::updateStatusBar(QStringList list)
     }
 }
 
-void HAbstractMainWindow::updateLabel(QString name, int state)
+void HAbstractMainWindow::updateLabel(const QString &name, int state)
 {
     if (!d_ptr->labels.contains(name))
         return;

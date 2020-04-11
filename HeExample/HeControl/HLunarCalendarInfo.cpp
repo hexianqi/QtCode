@@ -74,7 +74,7 @@ QString HLunarCalendarInfo::solarTerms(int year, int month, int day)
 QString HLunarCalendarInfo::lunarYear(int year)
 {
     int t = year - 4;
-    return QString("%1%2%3").arg(d_ptr->tiangan.at(t % 10)).arg(d_ptr->dizhi.at(t % 12)).arg(d_ptr->animal.at(t % 12));
+    return QString("%1%2%3").arg(d_ptr->tiangan.at(t % 10), d_ptr->dizhi.at(t % 12), d_ptr->animal.at(t % 12));
 }
 
 QString HLunarCalendarInfo::lunarYearMonthDay(int year, int month, int day)
@@ -105,7 +105,7 @@ QString HLunarCalendarInfo::lunarInfo(int year, int month, int day, bool yearInf
     else if (!holiday.isEmpty())
         lunarDay = holiday;
 
-    return QString("%1%2%3").arg(yearInfo ? lunarYear + "年" : "").arg(monthInfo ? lunarMonth : "").arg(dayInfo ? lunarDay : "");
+    return QString("%1%2%3").arg(yearInfo ? lunarYear + "年" : "", monthInfo ? lunarMonth : "", dayInfo ? lunarDay : "");
 }
 
 void HLunarCalendarInfo::lunarInfo(int year, int month, int day, QString &holiday, QString &solarTerms, QString &lunarFestival, QString &lunarYear, QString &lunarMonth, QString &lunarDay)

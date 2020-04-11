@@ -23,10 +23,6 @@ HGradeItem2D::HGradeItem2D(HGradeItem2DPrivate &p) :
 {
 }
 
-HGradeItem2D::~HGradeItem2D()
-{
-}
-
 QString HGradeItem2D::typeName()
 {
     return "HGradeItem2D";

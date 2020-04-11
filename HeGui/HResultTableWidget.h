@@ -22,8 +22,8 @@ public:
     ~HResultTableWidget() override;
 
 public:
-    void setDisplay(QStringList value);
-    void setSelected(QStringList value);
+    void setDisplay(const QStringList &value);
+    void setSelected(const QStringList &value);
     void clearResult();
     void refreshResult(int row, bool append);
 

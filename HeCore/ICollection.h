@@ -34,7 +34,7 @@ public:
     // 第N个值
     virtual T *itemAt(int index) = 0;
     // 所有键
-    virtual QStringList keys() = 0;
+    virtual QStringList keys() = 0 ;
     // 所有值
     virtual QList<T *> values() = 0;
 };

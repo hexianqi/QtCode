@@ -24,9 +24,9 @@ class HSpecFittingWidgetPrivate;
 class HE_GUI_EXPORT HSpecFittingWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit HSpecFittingWidget(QWidget *parent = nullptr);
-    ~HSpecFittingWidget() override;
 
 signals:
     void testStateChanged(bool b);
@@ -44,7 +44,7 @@ protected:
     HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    void cancel(QString text);
+    void cancel(const QString &text);
     virtual bool initParam() = 0;
     virtual void saveData() = 0;
     virtual void showData() = 0;

@@ -74,7 +74,7 @@ void HUdpClientWidget::append(int type, QString data)
 
     auto text = data.replace("\r", "").replace("\n", "");
     ui->textEdit->setTextColor(type == 0 ? Qt::darkGreen : Qt::red);
-    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz")).arg(type == 0 ? tr("发送") : tr("接收")).arg(text));
+    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), type == 0 ? tr("发送") : tr("接收"), text));
     d->currentCount++;
 }
 

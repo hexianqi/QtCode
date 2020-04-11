@@ -27,10 +27,10 @@ public:
     bool showLogo = false;
 
 public:
-    HAbstractMainWindow *q_ptr;
-    IBuilder *builder;
-    IModel *model;
-    ITestWidget *testWidget;
+    HAbstractMainWindow *q_ptr = nullptr;
+    IBuilder *builder = nullptr;
+    IModel *model = nullptr;
+    ITestWidget *testWidget = nullptr;
 
 public:
     QMap<QString, quint32> importExport;
@@ -40,24 +40,24 @@ public:
     QPixmap logo;
 
 public:
-    QAction *actionOpen;
-    QAction *actionSave;
-    QAction *actionSaveAs;
-    QAction *actionExit;
-    QAction *actionAbout;
-    QAction *actionSeparator;
-    QActionGroup *actionGroupImport;
-    QActionGroup *actionGroupExport;
+    QAction *actionOpen = nullptr;
+    QAction *actionSave = nullptr;
+    QAction *actionSaveAs = nullptr;
+    QAction *actionExit = nullptr;
+    QAction *actionAbout = nullptr;
+    QAction *actionSeparator = nullptr;
+    QActionGroup *actionGroupImport = nullptr;
+    QActionGroup *actionGroupExport = nullptr;
 
 public:
-    QMenu *menuFile;
-    QMenu *menuImport;
-    QMenu *menuExport;
-    QMenu *menuDatabase;
-    QMenu *menuHelp;
+    QMenu *menuFile = nullptr;
+    QMenu *menuImport = nullptr;
+    QMenu *menuExport = nullptr;
+    QMenu *menuDatabase = nullptr;
+    QMenu *menuHelp = nullptr;
 
 public:
-    QToolBar *toolBarLogo;
+    QToolBar *toolBarLogo = nullptr;
 };
 
 HE_GUI_END_NAMESPACE

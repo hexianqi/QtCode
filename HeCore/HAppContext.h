@@ -25,19 +25,19 @@ class HE_CORE_EXPORT HAppContext
 {
 public:
     // 设置上下文数值
-    static void setContextValue(QString key, QVariant value);
+    static void setContextValue(const QString &key, const QVariant &value);
     // 获取上下文数值
-    static QVariant getContextValue(QString key);
+    static QVariant getContextValue(const QString &key);
     // 获取上下文数值
     template<typename T>
-    static T getContextValue(QString key);
+    static T getContextValue(const QString &key);
     // 设置上下文指针
-    static void setContextPointer(QString key, void *value);
+    static void setContextPointer(const QString &key, void *value);
     // 获取上下文指针
-    static void *getContextPointer(QString key);
+    static void *getContextPointer(const QString &key);
     // 获取上下文指针
     template<typename T>
-    static T *getContextPointer(QString key);
+    static T *getContextPointer(const QString &key);
 
 protected:
     static QHash<QString, QVariant> __contextValue;
@@ -45,13 +45,13 @@ protected:
 };
 
 template<typename T>
-T HAppContext::getContextValue(QString key)
+T HAppContext::getContextValue(const QString &key)
 {
     return getContextValue(key).value<T>();
 }
 
 template<typename T>
-T *HAppContext::getContextPointer(QString key)
+T *HAppContext::getContextPointer(const QString &key)
 {
     return static_cast<T *>(getContextPointer(key));
 }

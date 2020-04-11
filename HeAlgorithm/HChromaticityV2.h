@@ -24,7 +24,7 @@ public:
     void calcSpectrum(HSpecData *) override;
 
 protected:
-    QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc) override;
+    QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc) override;
 
 protected:
     HChromaticityV2(HChromaticityV2Private &);

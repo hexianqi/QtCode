@@ -22,10 +22,6 @@ HAdjust::HAdjust(HAdjustPrivate &p) :
 {
 }
 
-HAdjust::~HAdjust()
-{
-}
-
 QString HAdjust::typeName()
 {
     return "HAdjust";
@@ -56,7 +52,7 @@ void HAdjust::restoreDefault()
 QVariantMap HAdjust::correct(QVariantMap value)
 {
     QVariantMap map;
-    for (auto i : keys())
+    for (const auto &i : keys())
     {
         if (!value.contains(i))
             continue;

@@ -21,10 +21,6 @@ HTestWidget::HTestWidget(HTestWidgetPrivate &p, QWidget *parent) :
 {
 }
 
-HTestWidget::~HTestWidget()
-{
-}
-
 void HTestWidget::init()
 {
     createAction();

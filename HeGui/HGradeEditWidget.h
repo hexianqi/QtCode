@@ -41,7 +41,7 @@ public:
     void showData() override;
 
 protected:
-    bool editData(QString type);
+    bool editData(const QString &type);
 
 protected slots:
     void on_pushButton_1_clicked();

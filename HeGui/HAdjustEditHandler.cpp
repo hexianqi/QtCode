@@ -32,12 +32,12 @@ QString HAdjustEditHandler::typeName()
 void HAdjustEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAdjustEditHandler);
-    auto detail = new HDataDetail<IAdjust>();
-    detail->setEditWidget(new HAdjustEditWidget);
-    detail->setData(d->configManage->adjustCollection());
+    HDataDetail<IAdjust> detail;
+    detail.setEditWidget(new HAdjustEditWidget);
+    detail.setData(d->configManage->adjustCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("调整数据配置"));
-    dlg.setDataDetail(detail);
+    dlg.setDataDetail(&detail);
     d->mainWindow->openDialog(&dlg);
     d->model->addAction(ACT_RESET_ADJUST);
 }

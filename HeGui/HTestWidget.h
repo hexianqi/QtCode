@@ -18,7 +18,6 @@ class HE_GUI_EXPORT HTestWidget : public HAbstractTestWidget
 
 public:
     explicit HTestWidget(QWidget *parent = nullptr);
-    ~HTestWidget() override;
 
 protected:
     HTestWidget(HTestWidgetPrivate &p, QWidget *parent = nullptr);
@@ -32,7 +31,6 @@ protected:
     virtual void initToolBar();
     virtual void clearResult() = 0;
     virtual void exportExcel() = 0;
-    virtual bool canExport() = 0;
 };
 
 HE_GUI_END_NAMESPACE

@@ -153,7 +153,7 @@ QColor HSpecHelper::wave2color(double wave, double gamma, double intensityMax)
     int R = qFuzzyIsNull(r) ? 0 : int(std::round(intensityMax * std::pow(r * alpha, gamma)));
     int G = qFuzzyIsNull(g) ? 0 : int(std::round(intensityMax * std::pow(g * alpha, gamma)));
     int B = qFuzzyIsNull(b) ? 0 : int(std::round(intensityMax * std::pow(b * alpha, gamma)));
-    int A = int(alpha);
+    auto A = int(alpha);
     return QColor(R, G, B, A);
 }
 

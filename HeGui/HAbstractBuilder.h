@@ -19,7 +19,6 @@ class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
 
 public:
     explicit HAbstractBuilder(IMainWindow *parent = nullptr);
-    ~HAbstractBuilder() override;
 
 public:
     void buildAll() override;

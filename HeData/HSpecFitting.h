@@ -17,7 +17,6 @@ class HE_DATA_EXPORT HSpecFitting : public HAbstractDataItem
 
 public:
     explicit HSpecFitting();
-    ~HSpecFitting() override;
 
 public:
     void readContent(QDataStream &) override;

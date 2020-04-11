@@ -8,7 +8,7 @@ HE_GUI_BEGIN_NAMESPACE
 class HActionPrivate
 {
 public:
-    IHandler *handler;
+    IHandler *handler = nullptr;
 };
 
 HE_GUI_END_NAMESPACE

@@ -48,9 +48,6 @@ public:
     static HJson *fromJson(QByteArray &data);
 
 public:
-    virtual ~HJson();
-
-public:
     bool isValid() const;
     QString errorString() const;
 
@@ -64,9 +61,10 @@ public:
     QJsonArray  getJsonArray(const QString &path, const QJsonObject &fromNode = QJsonObject()) const;
 
 public:
-    void setValue(const QString &path, const QJsonValue &value);
-    void setValue(const QString &path, const QStringList &value);
-    void saveFile(const QString &fileName, bool pretty = true) const;
+    void set(const QString &path, const QJsonValue &value);
+    void set(const QString &path, const QStringList &value);
+    void save(const QString &fileName, bool pretty = true) const;
+    void remove(const QString &path);
     QString toString(bool pretty = true) const;
 
 protected:

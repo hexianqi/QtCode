@@ -14,8 +14,8 @@ public:
     HSpecCalibrateDialogPrivate();
 
 public:
-    IGuiFactory *factory;
-    HSpecCalibrateWidget *widget;
+    IGuiFactory *factory = nullptr;
+    HSpecCalibrateWidget *widget = nullptr;
     QString type;
 };
 

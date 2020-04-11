@@ -5,13 +5,13 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HUsbPortCy7c68013::HUsbPortCy7c68013()
-    : HAbstractPort(*new HUsbPortCy7c68013Private)
+HUsbPortCy7c68013::HUsbPortCy7c68013() :
+    HAbstractPort(*new HUsbPortCy7c68013Private)
 {
 }
 
-HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p)
-    : HAbstractPort(p)
+HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p) :
+    HAbstractPort(p)
 {
 }
 

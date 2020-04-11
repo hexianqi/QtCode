@@ -33,8 +33,8 @@ protected:
     HSlCodec(HSlCodecPrivate &);
 
 protected:
-    void setEncrypt(QVector<bool> value);
-    void setCheckCode(QVector<bool> value);
+    void setEncrypt(const QVector<bool> &value);
+    void setCheckCode(const QVector<bool> &value);
     bool isEncrypt(int n);
     bool isCheckCode(int n);
     int encryptSize(QVector<uchar> value);

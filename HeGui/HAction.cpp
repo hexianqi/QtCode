@@ -9,13 +9,11 @@ HAction::HAction(QObject* parent) :
 {
 }
 
+HAction::~HAction() = default;
+
 HAction::HAction(HActionPrivate &p, QObject *parent) :
     QAction(parent),
     d_ptr(&p)
-{
-}
-
-HAction::~HAction()
 {
 }
 

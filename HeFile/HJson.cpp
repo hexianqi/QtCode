@@ -27,11 +27,8 @@ QJsonValue HJsonPrivate::getValue(const QString &path, const QJsonObject &fromNo
 // 使用递归加引用设置 Json 的值，因为toObject()等返回的是对象的副本，对其修改不会改变原来的对象，所以需要用引用来实现
 void HJsonPrivate::setValue(QJsonObject &parent, const QString &path, const QJsonValue &value)
 {
-    // 第一个 . 的位置
-    auto index   = path.indexOf('.');
-    // 第一个 . 之前的内容
+    auto index = path.indexOf('.');
     auto property = path.left(index);
-    // 第一个 . 后面的内容
     auto restPath = (index > 0) ? path.mid(index + 1) : QString();
 
     auto fieldValue = parent.value(property);
@@ -43,10 +40,10 @@ void HJsonPrivate::setValue(QJsonObject &parent, const QString &path, const QJso
     else
     {
         // 路径中间的属性，递归访问它的子属性
-        auto obj = fieldValue.toObject();
-        setValue(obj, restPath, value);
+        auto child = fieldValue.toObject();
+        setValue(child, restPath, value);
         // 因为 QJsonObject 操作的都是对象的副本，所以递归结束后需要保存起来再次设置回parent
-        fieldValue = obj;
+        fieldValue = child;
     }
     // 如果不存在则会创建
     parent[property] = fieldValue;
@@ -58,6 +55,26 @@ void HJsonPrivate::setError(const QString &value)
     errorString = value;
 }
 
+void HJsonPrivate::remove(QJsonObject &parent, const QString &path)
+{
+    auto index   = path.indexOf('.');
+    auto property = path.left(index);
+    auto restPath = (index > 0) ? path.mid(index + 1) : QString();
+
+    if(restPath.isEmpty())
+    {
+        // 找到要删除的属性
+        parent.remove(property);
+    }
+    else
+    {
+        // 路径中间的属性，递归访问它的子属性
+        auto child = parent[property].toObject();
+        remove(child, restPath);
+        parent[property] = child;
+    }
+}
+
 HJson::HJson() :
     d_ptr(new HJsonPrivate)
 {
@@ -67,11 +84,6 @@ HJson::HJson(HJsonPrivate &p) :
     d_ptr(&p)
 {
 }
-
-HJson::~HJson()
-{
-}
-
 
 HJson *HJson::fromFile(const QString &fileName)
 {
@@ -139,8 +151,8 @@ QStringList HJson::getStringList(const QString &path, const QJsonObject &fromNod
 {
     QStringList list;
     auto array = getJsonValue(path, fromNode).toArray();
-    for (int i = 0; i < array.size(); i++)
-        list << array[i].toString();
+    for (auto i : array)
+        list << i.toString();
     return list;
 }
 
@@ -162,17 +174,17 @@ QJsonArray HJson::getJsonArray(const QString &path, const QJsonObject &fromNode)
     return getJsonValue(path, fromNode).toArray();
 }
 
-void HJson::setValue(const QString &path, const QJsonValue &value)
+void HJson::set(const QString &path, const QJsonValue &value)
 {
     d_ptr->setValue(d_ptr->root, path, value);
 }
 
-void HJson::setValue(const QString &path, const QStringList &value)
+void HJson::set(const QString &path, const QStringList &value)
 {
     d_ptr->setValue(d_ptr->root, path, QJsonArray::fromStringList(value));
 }
 
-void HJson::saveFile(const QString &fileName, bool pretty) const
+void HJson::save(const QString &fileName, bool pretty) const
 {
     if (fileName.isEmpty())
         return;
@@ -184,6 +196,11 @@ void HJson::saveFile(const QString &fileName, bool pretty) const
     out << toString(pretty);
     out.flush();
     file.close();
+}
+
+void HJson::remove(const QString &path)
+{
+    d_ptr->remove(d_ptr->root, path);
 }
 
 QString HJson::toString(bool pretty) const

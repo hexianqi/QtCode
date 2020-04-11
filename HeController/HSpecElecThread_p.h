@@ -19,10 +19,10 @@ public:
     HSpecElecThreadPrivate();
 
 public:
-    ITestSpec *testSpec;
-    ITestElec *testElec;
-    IActionStrategy *strategySpec;
-    IActionStrategy *strategyElec;
+    ITestSpec *testSpec = nullptr;
+    ITestElec *testElec = nullptr;
+    IActionStrategy *strategySpec = nullptr;
+    IActionStrategy *strategyElec = nullptr;
 };
 
 HE_CONTROLLER_END_NAMESPACE

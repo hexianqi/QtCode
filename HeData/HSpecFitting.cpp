@@ -14,10 +14,6 @@ HSpecFitting::HSpecFitting(HSpecFittingPrivate &p) :
 {
 }
 
-HSpecFitting::~HSpecFitting()
-{
-}
-
 void HSpecFitting::readContent(QDataStream &s)
 {
     Q_D(HSpecFitting);

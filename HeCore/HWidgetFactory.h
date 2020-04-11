@@ -59,10 +59,10 @@ template <typename T>
 T *HWidgetFactory::createWidget(QString className, QVariantMap param, QWidget *parent)
 {
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");
-    auto t = createWidget<T>(className, parent);
-    if (t != nullptr)
-        t->initialize(param);
-    return t;
+    auto p = createWidget<T>(className, parent);
+    if (p != nullptr)
+        p->initialize(param);
+    return p;
 }
 
 template <typename T>

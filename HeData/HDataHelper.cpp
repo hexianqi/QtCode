@@ -15,7 +15,7 @@ QVector<uchar> HDataHelper::writeUInt16(quint16 data)
     return QVector<uchar>() << uchar(data / 256) << uchar(data % 256);
 }
 
-bool HDataHelper::checkHead(QVector<uchar> data, int &pos, int &version)
+bool HDataHelper::checkHead(const QVector<uchar> &data, int &pos, int &version)
 {
     if (data.size() < pos + 4)
         return false;

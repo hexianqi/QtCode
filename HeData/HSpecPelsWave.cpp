@@ -17,10 +17,6 @@ HSpecPelsWave::HSpecPelsWave(HSpecPelsWavePrivate &p) :
 {
 }
 
-HSpecPelsWave::~HSpecPelsWave()
-{
-}
-
 QString HSpecPelsWave::typeName()
 {
     return "HSpecPelsWave";
@@ -57,7 +53,7 @@ QVector<uchar> HSpecPelsWave::toBinaryData()
     return r;
 }
 
-bool HSpecPelsWave::fromBinaryData(QVector<uchar> data, int &pos)
+bool HSpecPelsWave::fromBinaryData(const QVector<uchar> &data, int &pos)
 {
     Q_D(HSpecPelsWave);
     int version = 0;
@@ -87,7 +83,7 @@ void HSpecPelsWave::restoreDefault()
                               << QPointF(1933, 763.5);
 }
 
-void HSpecPelsWave::setPelsWave(QPolygonF value)
+void HSpecPelsWave::setPelsWave(const QPolygonF &value)
 {
     Q_D(HSpecPelsWave);
     d->pelsWave = value;

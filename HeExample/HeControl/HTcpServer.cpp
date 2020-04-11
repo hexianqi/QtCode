@@ -82,7 +82,7 @@ void HTcpServer::sendData(const QString &ip, int port, const QByteArray &data)
 
 void HTcpServer::disconnectClient()
 {
-    for (auto c : d_ptr->clients.values())
+    for (auto c : d_ptr->clients)
         c->disconnectFromHost();
 }
 

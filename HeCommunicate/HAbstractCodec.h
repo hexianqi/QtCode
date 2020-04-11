@@ -15,7 +15,7 @@ class HAbstractCodec : public ICodec
 {
 public:
     explicit HAbstractCodec();
-    virtual ~HAbstractCodec();
+    virtual ~HAbstractCodec() = default;
 
 protected:
     HAbstractCodec(HAbstractCodecPrivate &);

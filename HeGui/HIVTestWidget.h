@@ -34,7 +34,6 @@ protected:
     void createToolBar() override;
     void clearResult() override;
     void exportExcel() override;
-    bool canExport() override;
     void handleTestStateChanged(bool b);
 };
 

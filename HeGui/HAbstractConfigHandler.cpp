@@ -19,8 +19,4 @@ HAbstractConfigHandler::HAbstractConfigHandler(HAbstractConfigHandlerPrivate &p,
 {
 }
 
-HAbstractConfigHandler::~HAbstractConfigHandler()
-{
-}
-
 HE_GUI_END_NAMESPACE

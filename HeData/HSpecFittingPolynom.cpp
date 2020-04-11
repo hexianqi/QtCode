@@ -20,10 +20,6 @@ HSpecFittingPolynom::HSpecFittingPolynom(HSpecFittingPolynomPrivate &p) :
 {
 }
 
-HSpecFittingPolynom::~HSpecFittingPolynom()
-{
-}
-
 QString HSpecFittingPolynom::typeName()
 {
     return "HSpecFittingPolynom";

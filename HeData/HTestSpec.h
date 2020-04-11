@@ -18,7 +18,6 @@ class HE_DATA_EXPORT HTestSpec : public ITestSpec
 
 public:
     explicit HTestSpec();
-    ~HTestSpec() override;
 
 public:
     QString typeName() override;

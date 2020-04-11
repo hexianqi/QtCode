@@ -25,7 +25,7 @@ protected:
     void readStandard();
 
 protected:
-    QPolygonF _stdData;
+    QPolygonF _standard;
 };
 
 HE_ALGORITHM_END_NAMESPACE

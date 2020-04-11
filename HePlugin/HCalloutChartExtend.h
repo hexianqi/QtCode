@@ -22,7 +22,6 @@ class QDESIGNER_WIDGET_EXPORT HCalloutChartExtend : public HAbstractChartExtend
 public:
     explicit HCalloutChartExtend(QObject *parent = nullptr);
     explicit HCalloutChartExtend(QChart *chart, QObject *parent = nullptr);
-    ~HCalloutChartExtend() override;
 
 public:
     bool connectExtend() override;

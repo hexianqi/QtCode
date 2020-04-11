@@ -106,7 +106,7 @@ void HIVTestWidget::clearResult()
 void HIVTestWidget::exportExcel()
 {
     Q_D(HIVTestWidget);
-    if (!canExport())
+    if (d->data.isEmpty())
         return;
     QString text;
     text += tr("ID\t电流(mA)\t电压(V)") + "\n";
@@ -114,12 +114,6 @@ void HIVTestWidget::exportExcel()
         text += QString("%1\t%2\t%3\n").arg(i+1).arg(d->data[i].x()).arg(d->data[i].y());
     d->excelStream->setWriteContent(text);
     d->excelStream->saveAsFile();
-}
-
-bool HIVTestWidget::canExport()
-{
-    Q_D(HIVTestWidget);
-    return !d->data.isEmpty();
 }
 
 void HIVTestWidget::handleTestStateChanged(bool b)

@@ -17,7 +17,6 @@ class HSpecFittingLinear : public HSpecFitting
 
 public:
     explicit HSpecFittingLinear();
-    ~HSpecFittingLinear() override;
 
 public:
     QString typeName() override;

@@ -22,10 +22,6 @@ HChromatism::HChromatism(HChromatismPrivate &p) :
 {
 }
 
-HChromatism::~HChromatism()
-{
-}
-
 QString HChromatism::typeName()
 {
     return "HChromatism";

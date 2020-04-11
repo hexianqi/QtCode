@@ -10,10 +10,6 @@ HParallelGrade::HParallelGrade() :
 {
 }
 
-HParallelGrade::~HParallelGrade()
-{
-}
-
 QString HParallelGrade::typeName()
 {
     return "HParallelGrade";
@@ -31,7 +27,7 @@ int HParallelGrade::calcLevel(QVariantMap value, QString *text)
         if (!value.contains(i.key()))
             return -1;
         auto index = i.value()->indexOf(value.value(i.key()));
-        if (index.size() == 0)
+        if (index.isEmpty())
             return 0;
         auto priority = i.value()->data("[优先级]").toInt();
         if (map.contains(priority))

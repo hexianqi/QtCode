@@ -24,10 +24,6 @@ HGradeItem::HGradeItem(HGradeItemPrivate &p) :
 
 }
 
-HGradeItem::~HGradeItem()
-{
-}
-
 QString HGradeItem::typeName()
 {
     return "HGradeItem";

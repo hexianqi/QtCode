@@ -36,7 +36,7 @@ void HSpecChromatismChartView::initMenuShow()
     Q_D(HSpecChromatismChartView);
     d->menuShow->clear();
     auto datas = d->configManage->chromatismCollection();
-    if (datas == nullptr || datas->keys().size() == 0)
+    if (datas == nullptr || datas->isEmpty())
         return;
     auto data = datas->value(datas->useIndex());
     if (data == nullptr)
@@ -46,7 +46,7 @@ void HSpecChromatismChartView::initMenuShow()
          group->addAction(v->data("[标题]").toString())->setData(v->data());
     connect(group, &QActionGroup::triggered, this, &HSpecChromatismChartView::showChromatism);
     d->menuShow->addActions(group->actions());
-    if (group->actions().size() > 0)
+    if (!group->actions().isEmpty())
         showChromatism(group->actions().first());
 }
 

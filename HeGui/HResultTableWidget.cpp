@@ -31,7 +31,7 @@ HResultTableWidget::~HResultTableWidget()
     qDebug() << __func__;
 }
 
-void HResultTableWidget::setDisplay(QStringList value)
+void HResultTableWidget::setDisplay(const QStringList &value)
 {
     Q_D(HResultTableWidget);
     if (d->displays == value)
@@ -42,7 +42,7 @@ void HResultTableWidget::setDisplay(QStringList value)
     setHorizontalHeaderLabels(HCore::toCaptionUnit(value));
 }
 
-void HResultTableWidget::setSelected(QStringList value)
+void HResultTableWidget::setSelected(const QStringList &value)
 {
     Q_D(HResultTableWidget);
     d->optional->setSelected(value);

@@ -36,7 +36,7 @@ protected:
     HAbstractModel(HAbstractModelPrivate &p, QObject *parent = nullptr);
 
 protected:
-    void setConfigFile(QString fileName);
+    void setConfigFile(const QString &fileName);
     void initDelayThread();
     void stopDelayThread();
     void initWorkThread();

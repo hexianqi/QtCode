@@ -2,24 +2,24 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-QPolygonF HGslHelper::join(QVector<double> xa, QVector<double> ya)
+QPolygonF HGslHelper::join(QVector<double> xa, QVector<double> y)
 {
-    Q_ASSERT(xa.size() == ya.size());
+    Q_ASSERT(xa.size() == y.size());
 
     QPolygonF r;
     for (int i = 0; i < xa.size(); i++)
-        r << QPointF(xa[i], ya[i]);
+        r << QPointF(xa[i], y[i]);
     return r;
 }
 
-void HGslHelper::split(QPolygonF poly, QVector<double> &xa, QVector<double> &ya)
+void HGslHelper::split(QPolygonF poly, QVector<double> &x, QVector<double> &y)
 {
-    xa.clear();
-    ya.clear();
+    x.clear();
+    y.clear();
     for (auto p : poly)
     {
-        xa << p.x();
-        ya << p.y();
+        x << p.x();
+        y << p.y();
     }
 }
 
@@ -28,11 +28,11 @@ QPointF HGslHelper::formGsl(gsl_complex z)
     return QPointF(GSL_REAL(z), GSL_IMAG(z));
 }
 
-QPolygonF HGslHelper::formGsl(QVector<gsl_complex> za)
+QPolygonF HGslHelper::formGsl(QVector<gsl_complex> z)
 {
     QPolygonF r;
-    for (auto zi : za)
-        r << formGsl(zi);
+    for (auto i : z)
+        r << formGsl(i);
     return r;
 }
 

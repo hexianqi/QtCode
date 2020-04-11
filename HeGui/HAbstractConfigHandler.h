@@ -18,7 +18,6 @@ class HAbstractConfigHandler : public HAbstractGuiHandler
 
 public:
     explicit HAbstractConfigHandler(QObject *parent = nullptr);
-    ~HAbstractConfigHandler() override;
 
 protected:
     HAbstractConfigHandler(HAbstractConfigHandlerPrivate &p, QObject *parent = nullptr);

@@ -91,7 +91,7 @@ void HSpecSampleWidget::setCurve2Visible(bool b)
     refreshWidget();
 }
 
-void HSpecSampleWidget::setVernier(QList<double> value)
+void HSpecSampleWidget::setVernier(const QList<double> &value)
 {
     Q_D(HSpecSampleWidget);
     d->verniers = value;

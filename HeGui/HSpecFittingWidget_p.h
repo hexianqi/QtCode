@@ -23,16 +23,16 @@ public:
     HSpecFittingWidgetPrivate();
 
 public:
-    IModel *model;
-    ITestSpec *testSpec;
-    HSpecFitting *data;
-    QProgressDialog *progressDialog;
+    IModel *model = nullptr;
+    ITestSpec *testSpec = nullptr;
+    HSpecFitting *data = nullptr;
+    QProgressDialog *progressDialog = nullptr;
 
 public:
     bool testState = false;
-    int pel;
-    int curTimes;
-    double lastSample;
+    int pel = 0;
+    int curTimes = 0;
+    double lastSample = 0.0;
     QPointF integralTime;
     QPolygonF points;
 };

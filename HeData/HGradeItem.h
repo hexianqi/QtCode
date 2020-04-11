@@ -17,7 +17,6 @@ class HGradeItem : public IGradeItem
 
 public:
     explicit HGradeItem();
-    ~HGradeItem() override;
 
 public:
     QString typeName() override;

@@ -6,6 +6,7 @@
 #include "HDefenceButton.h"
 #include "HDiskSizeTable.h"
 #include "HImageCalendar.h"
+#include "HImageSwitch.h"
 #include "HIPAddress.h"
 #include "HLightButton.h"
 #include "HLunarCalendarWidget.h"
@@ -29,6 +30,7 @@ void HControlDemoWidget::addLiuDianWu()
     addLightButton();
     addLunarCalendar();
     addNavButton();
+    addImageSwitch();
 }
 
 void HControlDemoWidget::addBattery()
@@ -165,16 +167,15 @@ void HControlDemoWidget::addDefenceButton()
 
 void HControlDemoWidget::addLightButton()
 {
-    auto lightButton1 = new HLightButton;
-    auto lightButton2 = new HLightButton;
-    auto lightButton3 = new HLightButton;
-    lightButton2->setBackground(QColor(255, 107, 107));
-    lightButton3->setBackground(QColor(24, 189, 155));
-
+    auto button1 = new HLightButton;
+    auto button2 = new HLightButton;
+    auto button3 = new HLightButton;
+    button2->setBackground(QColor(255, 107, 107));
+    button3->setBackground(QColor(24, 189, 155));
     auto layout = new QHBoxLayout;
-    layout->addWidget(lightButton1);
-    layout->addWidget(lightButton2);
-    layout->addWidget(lightButton3);
+    layout->addWidget(button1);
+    layout->addWidget(button2);
+    layout->addWidget(button3);
     addTab(tr("ludianwu"), tr("发光按钮"), layout);
 }
 
@@ -431,6 +432,21 @@ void HControlDemoWidget::addNavButton()
     layout->addItem(new QSpacerItem(20, 20), 3, 0, 1, 4);
     layout->setRowStretch(3, 1);
     addTab(tr("ludianwu"), tr("导航按钮"), layout);
+}
+
+void HControlDemoWidget::addImageSwitch()
+{
+    auto button1 = new HImageSwitch;
+    auto button2 = new HImageSwitch;
+    auto button3 = new HImageSwitch;
+    button1->setButtonStyle(HImageSwitch::ButtonStyle_1);
+    button2->setButtonStyle(HImageSwitch::ButtonStyle_2);
+    button3->setButtonStyle(HImageSwitch::ButtonStyle_3);
+    auto layout = new QHBoxLayout;
+    layout->addWidget(button1);
+    layout->addWidget(button2);
+    layout->addWidget(button3);
+    addTab(tr("ludianwu"), tr("图片开关按钮"), layout);
 }
 
 HE_CONTROL_END_NAMESPACE

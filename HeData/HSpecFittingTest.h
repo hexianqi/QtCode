@@ -17,7 +17,6 @@ class HSpecFittingTest : public HSpecFitting
 
 public:
     explicit HSpecFittingTest();
-    ~HSpecFittingTest() override;
 
 public:
     QString typeName() override;

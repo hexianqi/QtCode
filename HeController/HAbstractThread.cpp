@@ -186,18 +186,17 @@ void HAbstractThread::normalMode()
 bool HAbstractThread::openProtocol()
 {
     QList<IProtocol *> list;
-    for (auto key : d_ptr->protocols.keys())
+    for (auto i = d_ptr->protocols.begin(); i != d_ptr->protocols.end(); i++)
     {
-        auto p = d_ptr->protocols.value(key);
-        auto error = p->open();
+        auto error = i.value()->open();
         if (error != E_OK)
         {
             for (auto item : list)
                 item->close();
-            emit startFailed(tr("\n设备“%1”连接失败！错误原因“%2”。\n").arg(key).arg(HCore::toComment(error)));
+            emit startFailed(tr("\n设备“%1”连接失败！错误原因“%2”。\n").arg(i.key(), HCore::toComment(error)));
             return false;
         }
-        list.append(p);
+        list.append(i.value());
     }
     emit startFinished();
     return true;

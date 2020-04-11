@@ -120,5 +120,11 @@
         <file>sql/product.sql</file>
         <file>sql/table.sql</file>
         <file>sql/user.sql</file>
+        <file>image/ludianwu/check_off_1.png</file>
+        <file>image/ludianwu/check_off_2.png</file>
+        <file>image/ludianwu/check_off_3.png</file>
+        <file>image/ludianwu/check_on_1.png</file>
+        <file>image/ludianwu/check_on_2.png</file>
+        <file>image/ludianwu/check_on_3.png</file>
     </qresource>
 </RCC>

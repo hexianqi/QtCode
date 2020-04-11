@@ -21,10 +21,6 @@ HAdjustItem::HAdjustItem(HAdjustItemPrivate &p) :
 {
 }
 
-HAdjustItem::~HAdjustItem()
-{
-}
-
 QString HAdjustItem::typeName()
 {
     return "HAdjustItem";

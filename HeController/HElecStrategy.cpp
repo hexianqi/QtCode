@@ -46,8 +46,8 @@ HErrorType HElecStrategy::handle(HActionType action)
 {
     Q_D(HElecStrategy);
     HErrorType error;
-    int isample;
-    QVector<int> ibuff;
+    int sample;
+    QVector<int> buff;
 
     switch(action)
     {
@@ -62,24 +62,24 @@ HErrorType HElecStrategy::handle(HActionType action)
     case ACT_SET_REVERSE_VOLTAGE:
         return d->protocol->setData(action, d->testElec->data("[反向电压_F]").toInt());
     case ACT_GET_ELEC_PARAM:
-        error = d->protocol->getData(action, ibuff);
+        error = d->protocol->getData(action, buff);
         if (error == E_OK)
-            d->testElec->setSample(ibuff);
+            d->testElec->setSample(buff);
         return error;
     case ACT_GET_MEASURED_VOLTAGE:
-        error = d->protocol->getData(action, isample);
+        error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setParam(MeasuredVoltage, isample);
+            d->testElec->setParam(MeasuredVoltage, sample);
         return error;
     case ACT_GET_MEASURED_CURRENT:
-        error = d->protocol->getData(action, isample);
+        error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setParam(MeasuredCurrent, isample);
+            d->testElec->setParam(MeasuredCurrent, sample);
         return error;
     case ACT_GET_REVERSE_CURRENT:
-        error = d->protocol->getData(action, isample);
+        error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setParam(ReverseCurrent, isample);
+            d->testElec->setParam(ReverseCurrent, sample);
         return error;
     }
     return E_OK;

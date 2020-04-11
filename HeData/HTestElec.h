@@ -17,7 +17,6 @@ class HTestElec : public ITestElec
 
 public:
     explicit HTestElec();
-    ~HTestElec() override;
 
 public:
     QString typeName() override;

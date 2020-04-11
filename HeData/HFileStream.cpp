@@ -16,13 +16,11 @@ HFileStream::HFileStream(QObject *parent) :
 {
 }
 
+HFileStream::~HFileStream() = default;
+
 HFileStream::HFileStream(HFileStreamPrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)
-{
-}
-
-HFileStream::~HFileStream()
 {
 }
 

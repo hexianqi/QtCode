@@ -16,7 +16,7 @@ const gsl_interp2d_type *toGsl(HInterp2D::Interp2DType type)
     return gsl_interp2d_bilinear;
 }
 
-double doInterp(QVector<double> xa, QVector<double> ya, QVector<double> za, HInterp2D::Interp2DType type, std::function<double(gsl_spline2d *, gsl_interp_accel *, gsl_interp_accel *)> func)
+double interp(QVector<double> xa, QVector<double> ya, QVector<double> za, HInterp2D::Interp2DType type, const std::function<double(gsl_spline2d *, gsl_interp_accel *, gsl_interp_accel *)> &func)
 {
     auto t = toGsl(type);
     auto xsize = size_t(xa.size());
@@ -42,37 +42,37 @@ double doInterp(QVector<double> xa, QVector<double> ya, QVector<double> za, HInt
 double HInterp2D::eval(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type)
 {
     auto func = [&](gsl_spline2d *spline, gsl_interp_accel *xacc, gsl_interp_accel *yacc) { return gsl_spline2d_eval(spline, x, y, xacc, yacc); };
-    return doInterp(xa, ya, za, type, func);
+    return interp(xa, ya, za, type, func);
 }
 
 double HInterp2D::eval_deriv_x(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type)
 {
     auto func = [&](gsl_spline2d *spline, gsl_interp_accel *xacc, gsl_interp_accel *yacc) { return gsl_spline2d_eval_deriv_x(spline, x, y, xacc, yacc); };
-    return doInterp(xa, ya, za, type, func);
+    return interp(xa, ya, za, type, func);
 }
 
 double HInterp2D::eval_deriv_y(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type)
 {
     auto func = [&](gsl_spline2d *spline, gsl_interp_accel *xacc, gsl_interp_accel *yacc) { return gsl_spline2d_eval_deriv_y(spline, x, y, xacc, yacc); };
-    return doInterp(xa, ya, za, type, func);
+    return interp(xa, ya, za, type, func);
 }
 
 double HInterp2D::eval_deriv_xx(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type)
 {
     auto func = [&](gsl_spline2d *spline, gsl_interp_accel *xacc, gsl_interp_accel *yacc) { return gsl_spline2d_eval_deriv_xx(spline, x, y, xacc, yacc); };
-    return doInterp(xa, ya, za, type, func);
+    return interp(xa, ya, za, type, func);
 }
 
 double HInterp2D::eval_deriv_yy(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type)
 {
     auto func = [&](gsl_spline2d *spline, gsl_interp_accel *xacc, gsl_interp_accel *yacc) { return gsl_spline2d_eval_deriv_yy(spline, x, y, xacc, yacc); };
-    return doInterp(xa, ya, za, type, func);
+    return interp(xa, ya, za, type, func);
 }
 
 double HInterp2D::eval_deriv_xy(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type)
 {
     auto func = [&](gsl_spline2d *spline, gsl_interp_accel *xacc, gsl_interp_accel *yacc) { return gsl_spline2d_eval_deriv_xy(spline, x, y, xacc, yacc); };
-    return doInterp(xa, ya, za, type, func);
+    return interp(xa, ya, za, type, func);
 }
 
 HE_ALGORITHM_END_NAMESPACE

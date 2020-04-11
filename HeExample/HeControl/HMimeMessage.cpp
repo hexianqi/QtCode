@@ -174,7 +174,7 @@ QString HMimeMessage::toString(HEmailAddress *p)
     QString name;
     if (!p->name().isEmpty())
         name = encode(p->name());
-    return QString(" %1 <%2>").arg(name).arg(p->address());
+    return QString(" %1 <%2>").arg(name, p->address());
 }
 
 QString HMimeMessage::toString(QList<HEmailAddress *> p)

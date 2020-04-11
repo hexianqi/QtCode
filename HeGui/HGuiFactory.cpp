@@ -5,6 +5,8 @@
 #include "HTestHandler.h"
 #include "HElecCalibrateHandler.h"
 #include "HSpecCalibrateHandler.h"
+#include "HSpecLuminousHandler.h"
+#include "HSpecTcHandler.h"
 #include "HChromatismEditHandler.h"
 #include "HChromatismSelectHandler.h"
 #include "HGradeEditHandler.h"
@@ -82,6 +84,8 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HElecCalibrateHandler>("HElecCalibrateHandler");
+    HObjectFactory::registerClass<HSpecLuminousHandler>("HSpecLuminousHandler");
+    HObjectFactory::registerClass<HSpecTcHandler>("HSpecTcHandler");
     HObjectFactory::registerClass<HChromatismEditHandler>("HChromatismEditHandler");
     HObjectFactory::registerClass<HChromatismSelectHandler>("HChromatismSelectHandler");
     HObjectFactory::registerClass<HGradeEditHandler>("HGradeEditHandler");

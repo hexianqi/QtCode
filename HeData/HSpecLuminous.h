@@ -17,7 +17,6 @@ class HE_DATA_EXPORT HSpecLuminous : public HAbstractDataItem
 
 public:
     explicit HSpecLuminous();
-    ~HSpecLuminous() override;
 
 public:
     QString typeName() override;
@@ -31,7 +30,7 @@ public:
     double handle(double value);
 
 public:
-    void setSelfAbsorption(QMap<QString, double> value);
+    void setSelfAbsorption(const QMap<QString, double> &value);
     QMap<QString, double> selfAbsorption();
 
 protected:

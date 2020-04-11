@@ -44,6 +44,7 @@ private:
     void addLightButton();
     void addNavButton();
     void addLunarCalendar();
+    void addImageSwitch();
 
     // ww
     void addWwExtend();

@@ -15,7 +15,7 @@ class HE_DATA_EXPORT HTestData : public ITestData
 {
 public:
     explicit HTestData();
-    virtual ~HTestData();
+    virtual ~HTestData() = default;
 
 public:
     void initialize(QVariantMap param) override;

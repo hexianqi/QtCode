@@ -17,7 +17,6 @@ class HAdjustItem : public IAdjustItem
 
 public:
     explicit HAdjustItem();
-    ~HAdjustItem() override;
 
 public:
     QString typeName() override;

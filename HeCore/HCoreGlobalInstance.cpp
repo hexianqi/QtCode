@@ -31,26 +31,26 @@ QString HCore::toComment(HErrorType type)
     return hashErrorComment.value(type);
 }
 
-HDataFormatInfo *HCore::toFormatInfo(QString type)
+HDataFormatInfo *HCore::toFormatInfo(const QString &type)
 {
     if (!hashDataFormatInfo.contains(type))
         return new HDataFormatInfo();
     return hashDataFormatInfo.value(type);
 }
 
-QString HCore::toString(QString type, double value, char f)
+QString HCore::toString(const QString &type, double value, char f)
 {
     auto info = toFormatInfo(type);
     return QString().setNum(value, f, info->decimals());
 }
 
-QString HCore::toString(QString type, QVariant value)
+QString HCore::toString(const QString &type, const QVariant &value)
 {
     auto vt = value.type();
     if (vt == QVariant::PointF)
-        return QString("(%1,%2)").arg(toString(type, value.toPointF().x())).arg(toString(type, value.toPointF().y()));
+        return QString("(%1,%2)").arg(toString(type, value.toPointF().x()), toString(type, value.toPointF().y()));
     if (vt == QVariant::Point)
-        return QString("(%1,%2)").arg(toString(type, value.toPoint().x())).arg(toString(type, value.toPoint().y()));
+        return QString("(%1,%2)").arg(toString(type, value.toPoint().x()), toString(type, value.toPoint().y()));
     if (vt == QVariant::Double)
         return toString(type, value.toDouble());
     if (vt == QVariant::Int)
@@ -77,7 +77,7 @@ QString HCore::toString(QString type, QVariant value)
     return value.toString();
 }
 
-QStringList HCore::toString(QString type, QVector<double> value, char f)
+QStringList HCore::toString(const QString &type, QVector<double> value, char f)
 {
     auto info = toFormatInfo(type);
     QStringList list;
@@ -86,12 +86,12 @@ QStringList HCore::toString(QString type, QVector<double> value, char f)
     return list;
 }
 
-QString HCore::toUnit(QString type)
+QString HCore::toUnit(const QString &type)
 {
     return toFormatInfo(type)->unit(false);
 }
 
-QString HCore::toCaption(QString type)
+QString HCore::toCaption(const QString &type)
 {
     return hashDataCaption.value(type, type.mid(1, type.size() - 2));
 }
@@ -104,7 +104,7 @@ QStringList HCore::toCaption(QStringList type)
     return list;
 }
 
-QString HCore::toCaptionUnit(QString type)
+QString HCore::toCaptionUnit(const QString &type)
 {
     auto caption = toCaption(type);
     auto unit = toUnit(type);
@@ -121,7 +121,7 @@ QStringList HCore::toCaptionUnit(QStringList type)
     return list;
 }
 
-QString HCore::filenameFilter(const QString &name, const QList<QByteArray> formats)
+QString HCore::fileNameFilter(const QString &name, const QList<QByteArray> formats)
 {
     QStringList list;
 
@@ -134,7 +134,7 @@ QString HCore::filenameFilter(const QString &name, const QList<QByteArray> forma
     return QString("%1 (*.").arg(name) + list.join(" *.") + ")";
 }
 
-QString HCore::filenameFilter(const QString &name, const QStringList &mimeTypes)
+QString HCore::fileNameFilter(const QString &name, const QStringList &mimeTypes)
 {
     QSet<QString> formats;
     QStringList list;
@@ -362,7 +362,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[_F]",                           new HDataFormatInfo("[_F]", 0, 65535));
     // 光谱参数
     hashDataFormatInfo.insert("[标准色温]",                     new HDataFormatInfo("[标准色温]", "K", 2300, 4000, 2));
-    hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 500, 1));
+    hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 3000, 1));
     hashDataFormatInfo.insert("[光谱采样]",                     new HDataFormatInfo("[光谱采样]", 0.0, 65536.0, 1));
     hashDataFormatInfo.insert("[光谱像元]",                     new HDataFormatInfo("[光谱像元]", 0, 2047));
     hashDataFormatInfo.insert("[光谱波长]",                     new HDataFormatInfo("[光谱波长]", "nm", 200, 1100, 1));

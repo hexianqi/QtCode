@@ -17,7 +17,6 @@ class HE_DATA_EXPORT HSpecPelsWave : public HAbstractDataItem
 
 public:
     explicit HSpecPelsWave();
-    ~HSpecPelsWave() override;
 
 public:
     QString typeName() override;
@@ -26,11 +25,11 @@ public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
     QVector<uchar> toBinaryData();
-    bool fromBinaryData(QVector<uchar> data, int &pos);
+    bool fromBinaryData(const QVector<uchar> &data, int &pos);
 
 public:
     void restoreDefault();
-    void setPelsWave(QPolygonF value);
+    void setPelsWave(const QPolygonF &value);
     QPolygonF pelsWave();
     double handle(double value);
 

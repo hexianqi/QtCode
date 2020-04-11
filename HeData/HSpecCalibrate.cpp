@@ -34,10 +34,6 @@ HSpecCalibrate::HSpecCalibrate(HSpecCalibratePrivate &p) :
 {
 }
 
-HSpecCalibrate::~HSpecCalibrate()
-{
-}
-
 void HSpecCalibrate::initialize(QVariantMap /*param*/)
 {
 }
@@ -126,7 +122,7 @@ QVariantMap HSpecCalibrate::testParam()
 
 QVector<double> HSpecCalibrate::preprocess(QVector<double> value, bool fitting)
 {
-    if (value.size() < 1)
+    if (value.isEmpty())
         return value;
 
     value = d_ptr->setting->dealBotton(value);

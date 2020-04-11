@@ -25,7 +25,6 @@ class HAbstractGradeItemDialog : public QDialog
 
 public:
     explicit HAbstractGradeItemDialog(QWidget *parent = nullptr);
-    ~HAbstractGradeItemDialog() override;
 
 public:
     virtual void setData(IGradeItem *);

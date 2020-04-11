@@ -120,7 +120,7 @@ T *HCollection<T>::first()
 template <typename T>
 T *HCollection<T>::value(QString key)
 {
-    return d_ptr->datas.value(key);
+    return d_ptr->datas.value(key, nullptr);
 }
 
 template <typename T>

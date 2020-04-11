@@ -12,6 +12,7 @@ public:
     QJsonValue getValue(const QString &path, const QJsonObject &fromNode) const;
     void setValue(QJsonObject &parent, const QString &path, const QJsonValue &value);
     void setError(const QString &value);
+    void remove(QJsonObject &parent, const QString &path);
 
 public:
     QJsonObject root;    // Json 的根节点

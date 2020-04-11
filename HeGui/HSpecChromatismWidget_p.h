@@ -23,11 +23,11 @@ public:
     HSpecChromatismWidgetPrivate();
 
 public:
-    IGuiFactory *factory;
-    IConfigManage *configManage;
-    ITestData *testData;
-    HChromatismWidget *chromatismWidget;
-    QMenu *menuShow;
+    IGuiFactory *factory = nullptr;
+    IConfigManage *configManage = nullptr;
+    ITestData *testData = nullptr;
+    HChromatismWidget *chromatismWidget = nullptr;
+    QMenu *menuShow = nullptr;
 };
 
 HE_GUI_END_NAMESPACE

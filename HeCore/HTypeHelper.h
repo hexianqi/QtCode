@@ -15,10 +15,10 @@ class HTypeHelper
 public:
     // 创建对象
     template <typename T>
-    static T *createObject(QString className);
+    static T *createObject(const QString &className);
     // 创建对象
     template <typename T>
-    static T *createObject(QString className, QVariantMap param);
+    static T *createObject(const QString &className, QVariantMap param);
 };
 
 HE_CORE_END_NAMESPACE

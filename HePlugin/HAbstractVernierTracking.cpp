@@ -19,10 +19,6 @@ HAbstractVernierTracking::HAbstractVernierTracking(HAbstractVernierTrackingPriva
 {
 }
 
-HAbstractVernierTracking::~HAbstractVernierTracking()
-{
-}
-
 bool HAbstractVernierTracking::setValidRegion(QRectF value)
 {
     Q_D(HAbstractVernierTracking);
@@ -53,7 +49,7 @@ bool HAbstractVernierTracking::setOrientation(Qt::Orientation value)
     return true;
 }
 
-bool HAbstractVernierTracking::setVernierColor(QColor value)
+bool HAbstractVernierTracking::setVernierColor(const QColor &value)
 {
     Q_D(HAbstractVernierTracking);
     if (d->color == value)
@@ -83,7 +79,7 @@ void HAbstractVernierTracking::resizeVernier(int size)
     {
         d->verniers[0] = d->validRegion.topLeft();
         for (int i = 1; i < size; i++)
-            setVernier(i, i / (size - 1));
+            setVernier(i, i / (size - 1.0));
     }
     emit vernierSizeChanged(size);
 }

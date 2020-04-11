@@ -73,7 +73,7 @@ void HMimeMultiPart::prepare()
         p->prepare();
         list << p->toString();
     }
-    d->content = QString("%1%2--%3--\r\n").arg(sep).arg(list.join(sep)).arg(d_ptr->contentBoundary).toUtf8();
+    d->content = QString("%1%2--%3--\r\n").arg(sep, list.join(sep), d_ptr->contentBoundary).toUtf8();
     HMimePart::prepare();
 }
 

@@ -66,8 +66,8 @@ void HAbstractSqlPrint::exportExcel(int index, int count)
     if (!d_ptr->model->isValid(index))
         return;
 
-    auto max = d_ptr->model->rowCount() - index;
-    count = count == -1 ? max : qBound(0, count, max);
+    auto surplus = d_ptr->model->rowCount() - index;
+    count = count == -1 ? surplus : qBound(0, count, surplus);
     d_ptr->excelStream->setWriteContent(textForExcel(index, count));
     d_ptr->excelStream->saveAsFile();
 }

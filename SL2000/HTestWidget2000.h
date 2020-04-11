@@ -27,7 +27,7 @@ protected:
     bool setTest(bool b) override;
     void handleAction(HActionType action) override;
     void clearResult() override;
-    bool canExport() override;
+    void exportDatabase2() override;
 
 protected:
     void createAction() override;

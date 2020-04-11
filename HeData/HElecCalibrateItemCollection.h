@@ -17,7 +17,7 @@ class HElecCalibrateItemCollection : public IElecCalibrateItemCollection
 
 public:
     explicit HElecCalibrateItemCollection();
-    virtual ~HElecCalibrateItemCollection();
+    virtual ~HElecCalibrateItemCollection() = default;
 
 public:
     void initialize(QVariantMap param) override;

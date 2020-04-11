@@ -9,12 +9,12 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 
 using namespace std;
 
-const QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\Test";
-const QString REGISTER_ID = "banben";
-const QString REGISTER_CODE = "xulie";
-const QString SERIAL_NUMBER = "ma_no";
-const QString TRIAL_TIMES = "trti";
-const QString FIRST_DATE = "fida";
+QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\Test";
+QString REGISTER_ID = "banben";
+QString REGISTER_CODE = "xulie";
+QString SERIAL_NUMBER = "ma_no";
+QString TRIAL_TIMES = "trti";
+QString FIRST_DATE = "fida";
 
 void splitRegisterId(QString id, int &i1, int &i2)
 {
@@ -26,8 +26,8 @@ void splitRegisterId(QString id, int &i1, int &i2)
     if (id.length() > 10)
         id = id.left(10);
 
-    i1 = id.left(5).toInt();
-    i2 = id.right(5).toInt();
+    i1 = id.leftRef(5).toInt();
+    i2 = id.leftRef(5).toInt();
 }
 
 int encryptDate(QDate value)
@@ -45,8 +45,8 @@ QString HRegisterPrivate::registerId()
     serialNumber =  QString::number(volumeSerialNumber, 16).toUpper();
     QString zcmNumber = "";
     bool ok;
-    for (int i = 0; i < serialNumber.length(); i++)
-        zcmNumber += QString::number(QString(serialNumber[i]).toInt(&ok, 16), 10);
+    for (const auto & i : serialNumber)
+        zcmNumber += QString::number(QString(i).toInt(&ok, 16), 10);
     id = zcmNumber;
     return id;
 }
@@ -58,7 +58,7 @@ QString HRegisterPrivate::registerCode()
         QSettings reg(REGISTRY_KEY, QSettings::NativeFormat);
         return reg.value(REGISTER_CODE).toString();
     }
-    catch (exception e)
+    catch (exception &e)
     {
         qDebug() << __func__ << e.what();
         return QString();
@@ -94,7 +94,7 @@ bool HRegisterPrivate::setRegisterCode(const QString &value)
         reg.setValue(SERIAL_NUMBER, serialNumber);
         return true;
     }
-    catch (exception e)
+    catch (exception &e)
     {
         qDebug() << __func__ << e.what();
         return false;
@@ -151,7 +151,7 @@ bool HRegister::check(const QString &id, const QString &code)
     {
         return encrypt(id) == code;
     }
-    catch (exception e)
+    catch (exception &e)
     {
         qDebug() << __func__ << e.what();
         return false;

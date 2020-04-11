@@ -17,7 +17,6 @@ class HE_DATA_EXPORT HSpecSetting : public HAbstractDataItem
 
 public:
     explicit HSpecSetting();
-    ~HSpecSetting() override;
 
 public:
     QString typeName() override;
@@ -26,7 +25,7 @@ public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
     QVector<uchar> toBinaryData();
-    bool fromBinaryData(QVector<uchar> data, int &pos);
+    bool fromBinaryData(const QVector<uchar> &data, int &pos);
 
 public:
     // 还原默认

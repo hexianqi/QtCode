@@ -98,7 +98,7 @@ void HChromatismEditWidget::showData()
     ui->tableWidget->setRowCount(d_ptr->data->size());
 
     int r = 0;
-    for (auto key : d_ptr->data->keys())
+    for (const auto &key : d_ptr->data->keys())
     {
         showTable(r, key, d_ptr->data->item(key));
         r++;
@@ -175,10 +175,10 @@ void HChromatismEditWidget::init()
     ui->tableWidget->setItemDelegate(delegate);
 }
 
-void HChromatismEditWidget::showTable(int row, QString key, IChromatismItem *value)
+void HChromatismEditWidget::showTable(int row, const QString &key, IChromatismItem *value)
 {
     QList<double> g;
-    for (auto v : value->data("[参数G]").toList())
+    for (const auto &v : value->data("[参数G]").toList())
         g << v.toDouble();
     auto list =  QStringList() << value->data("[标题]").toString()
                                << HCore::toString("[色温]", value->data("[相关色温]"))

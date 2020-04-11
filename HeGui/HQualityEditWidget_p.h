@@ -25,8 +25,8 @@ public:
     QColor colorDamage = Qt::white;
     QColor colorNoPass = Qt::white;
     QColor colorPassing = Qt::white;
-    HQualityItemCollectionWidget *widget1;
-    HQualityItemCollectionWidget *widget2;
+    HQualityItemCollectionWidget *widget1 = nullptr;
+    HQualityItemCollectionWidget *widget2 = nullptr;
     QString css;
 };
 

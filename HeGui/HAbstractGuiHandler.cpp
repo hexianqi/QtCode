@@ -21,8 +21,4 @@ HAbstractGuiHandler::HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject 
 {
 }
 
-HAbstractGuiHandler::~HAbstractGuiHandler()
-{
-}
-
 HE_GUI_END_NAMESPACE

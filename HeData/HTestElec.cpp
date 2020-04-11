@@ -16,10 +16,6 @@ HTestElec::HTestElec(HTestElecPrivate &p) :
 {
 }
 
-HTestElec::~HTestElec()
-{
-}
-
 QString HTestElec::typeName()
 {
     return "HTestElec";
@@ -107,11 +103,11 @@ void HTestElec::setParam(HElecType type, double value)
 
 void HTestElec::setSample(QVector<int> value)
 {
-    if (value.size() > 0)
+    if (value.length() > 0)
         setParam(MeasuredVoltage, value.at(0));
-    if (value.size() > 1)
+    if (value.length() > 1)
         setParam(MeasuredCurrent, value.at(1));
-    if (value.size() > 2)
+    if (value.length() > 2)
         setParam(ReverseCurrent, value.at(2));
 }
 

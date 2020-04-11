@@ -20,10 +20,6 @@ HSpecSetting::HSpecSetting(HSpecSettingPrivate &p) :
 {
 }
 
-HSpecSetting::~HSpecSetting()
-{
-}
-
 QString HSpecSetting::typeName()
 {
     return "HSpecSetting";
@@ -64,7 +60,7 @@ QVector<uchar> HSpecSetting::toBinaryData()
     return r;
 }
 
-bool HSpecSetting::fromBinaryData(QVector<uchar> data, int &pos)
+bool HSpecSetting::fromBinaryData(const QVector<uchar> &data, int &pos)
 {
     int version = 0;
     if (!HDataHelper::checkHead(data, pos, version))

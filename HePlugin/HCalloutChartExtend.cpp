@@ -18,10 +18,6 @@ HCalloutChartExtend::HCalloutChartExtend(HCalloutChartExtendPrivate &p, QObject 
 {
 }
 
-HCalloutChartExtend::~HCalloutChartExtend()
-{
-}
-
 bool HCalloutChartExtend::connectExtend()
 {
     if (!HAbstractChartExtend::connectExtend())

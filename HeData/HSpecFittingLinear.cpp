@@ -18,10 +18,6 @@ HSpecFittingLinear::HSpecFittingLinear(HSpecFittingLinearPrivate &p) :
 {
 }
 
-HSpecFittingLinear::~HSpecFittingLinear()
-{
-}
-
 QString HSpecFittingLinear::typeName()
 {
     return "HSpecFittingLinear";

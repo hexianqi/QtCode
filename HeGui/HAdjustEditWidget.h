@@ -40,7 +40,7 @@ public:
     void saveData() override;
     void showData() override;
     void setEnableEdit(bool b);
-    void setTestData(QStringList value);
+    void setTestData(const QStringList &value);
 
 public:
     QStringList selecteds();

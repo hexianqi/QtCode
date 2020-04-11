@@ -35,13 +35,13 @@ protected:
     HChromaticity(HChromaticityPrivate &);
 
 protected:
-    virtual QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc);
-    virtual QVector<double> calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, CIE_UCS refer);
+    virtual QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc);
+    virtual QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, CIE_UCS refer);
     virtual double calcColorRenderingIndexAvg(QVector<double> index);
 
 protected:
     CIE_UCS calcCieUcs(double tc);
-    bool exportIsotherm(QString fileName, QList<ISOTHERM> data);
+    bool exportIsotherm(const QString &fileName, QList<ISOTHERM> data);
 
 protected:
     QScopedPointer<HChromaticityPrivate> d_ptr;

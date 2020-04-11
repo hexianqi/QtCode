@@ -22,7 +22,6 @@ class QDESIGNER_WIDGET_EXPORT HCalloutChartItem : public HGraphicsItem
 
 public:
     explicit HCalloutChartItem(QChart *parent = nullptr);
-    ~HCalloutChartItem() override;
 
 public:
     QFont font();

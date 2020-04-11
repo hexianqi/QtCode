@@ -8,12 +8,12 @@ HDataFormatInfo::HDataFormatInfo() :
 {
 }
 
-HDataFormatInfo::HDataFormatInfo(QString typeName, double min, double max, int decimals, double singleStep) :
+HDataFormatInfo::HDataFormatInfo(const QString &typeName, double min, double max, int decimals, double singleStep) :
     HDataFormatInfo(typeName, "", min, max, decimals, singleStep)
 {
 }
 
-HDataFormatInfo::HDataFormatInfo(QString typeName, QString unit, double min, double max, int decimals, double singleStep, QColor color) :
+HDataFormatInfo::HDataFormatInfo(const QString &typeName, const QString &unit, double min, double max, int decimals, double singleStep, const QColor &color) :
     d_ptr(new HDataFormatInfoPrivate)
 {
     d_ptr->typeName = typeName;
@@ -42,21 +42,17 @@ HDataFormatInfo &HDataFormatInfo::operator=(const HDataFormatInfo &rhs)
     return *this;
 }
 
-HDataFormatInfo::~HDataFormatInfo()
-{
-}
-
-void HDataFormatInfo::setTypeName(QString text)
+void HDataFormatInfo::setTypeName(const QString &text)
 {
     d_ptr->typeName = text;
 }
 
-void HDataFormatInfo::setUnit(QString text)
+void HDataFormatInfo::setUnit(const QString &text)
 {
     d_ptr->unit = text;
 }
 
-void HDataFormatInfo::setColor(QColor value)
+void HDataFormatInfo::setColor(const QColor &value)
 {
     d_ptr->color = value;
 }
@@ -95,7 +91,7 @@ QString HDataFormatInfo::typeName() const
 
 QString HDataFormatInfo::unit(bool withColor) const
 {
-    return withColor ? QString("<font color=%1>%2</font>").arg(color().name()).arg(d_ptr->unit) : d_ptr->unit;
+    return withColor ? QString("<font color=%1>%2</font>").arg(color().name(), d_ptr->unit) : d_ptr->unit;
 }
 
 QColor HDataFormatInfo::color() const

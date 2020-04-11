@@ -17,7 +17,6 @@ class HSequentialGrade : public HAbstractGrade
 
 public:
     explicit HSequentialGrade();
-    ~HSequentialGrade() override;
 
 public:
     QString typeName() override;

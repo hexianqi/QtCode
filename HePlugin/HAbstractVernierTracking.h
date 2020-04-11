@@ -17,7 +17,6 @@ class QDESIGNER_WIDGET_EXPORT HAbstractVernierTracking : public HAbstractMouseSt
 
 public:
     explicit HAbstractVernierTracking(Qt::Orientation orientation, QWidget *parent = nullptr);
-    ~HAbstractVernierTracking() override;
 
 signals:
     void orientationChanged(Qt::Orientation value);
@@ -27,7 +26,7 @@ signals:
 public:
     virtual bool setValidRegion(QRectF value) override;
     virtual bool setOrientation(Qt::Orientation value);
-    virtual bool setVernierColor(QColor value);
+    virtual bool setVernierColor(const QColor &value);
     virtual bool setVernier(int i, double percent);
     virtual void resizeVernier(int size);
 

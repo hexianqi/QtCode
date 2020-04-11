@@ -71,19 +71,19 @@ bool HSlCodec::check(QVector<uchar> value)
     return code == calcCheckCode(value);
 }
 
-void HSlCodec::setEncrypt(QVector<bool> value)
+void HSlCodec::setEncrypt(const QVector<bool> &value)
 {
     Q_D(HSlCodec);
     d->encrypts = value;
-    if (d->encrypts.size() == 0)
+    if (d->encrypts.isEmpty())
         d->encrypts.append(false);
 }
 
-void HSlCodec::setCheckCode(QVector<bool> value)
+void HSlCodec::setCheckCode(const QVector<bool> &value)
 {
     Q_D(HSlCodec);
     d->checkCodes = value;
-    if (d->checkCodes.size() == 0)
+    if (d->checkCodes.isEmpty())
         d->checkCodes.append(false);
 }
 

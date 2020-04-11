@@ -115,7 +115,7 @@ void HGradeEditWidget::showData()
     }
 }
 
-bool HGradeEditWidget::editData(QString type)
+bool HGradeEditWidget::editData(const QString &type)
 {
     HAbstractGradeItemDialog *dlg;
     auto item = d_ptr->data->value(type);

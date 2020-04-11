@@ -20,8 +20,8 @@ public:
     HResultTableWidgetPrivate();
 
 public:
-    ITestData *testData;
-    HOptionalTableExtend *optional;
+    ITestData *testData = nullptr;
+    HOptionalTableExtend *optional = nullptr;
     QStringList displays;
 };
 

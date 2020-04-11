@@ -32,7 +32,7 @@ void HShadeWidget::setBackground(const QColor &value)
     if (d_ptr->background == value)
         return;
     d_ptr->background = value;
-    setStyleSheet(QString("QWidget#%1 { background-color:%2 }").arg(objectName()).arg(value.name()));
+    setStyleSheet(QString("QWidget#%1 { background-color:%2 }").arg(objectName(), value.name()));
 }
 
 void HShadeWidget::setOpacity(double value)

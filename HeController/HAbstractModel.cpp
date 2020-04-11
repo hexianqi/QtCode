@@ -104,7 +104,7 @@ bool HAbstractModel::exportFile(quint32 type)
     return d_ptr->configManage->exportPart(type);
 }
 
-void HAbstractModel::setConfigFile(QString fileName)
+void HAbstractModel::setConfigFile(const QString &fileName)
 {
     d_ptr->configFileName = fileName;
     HAppContext::setContextValue("ConfigFileName", fileName);
@@ -147,7 +147,7 @@ void HAbstractModel::stopWorkThread()
 
 void HAbstractModel::handleActionFailed(HActionType action, HErrorType error)
 {
-    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action)).arg(HCore::toComment(error)));
+    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action), HCore::toComment(error)));
 }
 
 HE_CONTROLLER_END_NAMESPACE

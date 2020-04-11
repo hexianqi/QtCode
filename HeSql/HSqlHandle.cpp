@@ -15,7 +15,6 @@ HSqlHandle::HSqlHandle(QObject *parent) :
 {
 }
 
-
 HSqlHandle::HSqlHandle(HSqlHandlePrivate &p, QObject *parent) :
     ISqlHandle(parent),
     d_ptr(&p)

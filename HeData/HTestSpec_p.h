@@ -43,10 +43,10 @@ public:
     QString energy();
 
 public:
-    QReadWriteLock *lock;
-    ISpecCalibrate *calibrate;
-    HSpecFacade *specFacade;
-    HSpecData *specData;
+    QReadWriteLock *lock = nullptr;
+    ISpecCalibrate *calibrate = nullptr;
+    HSpecFacade *specFacade = nullptr;
+    HSpecData *specData = nullptr;
     bool fitting = true;
     double maxSample = 0;
     QVector<QVector<double>> samples;

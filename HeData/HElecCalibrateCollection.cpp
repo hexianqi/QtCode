@@ -42,10 +42,6 @@ HElecCalibrateCollection::HElecCalibrateCollection(HElecCalibrateCollectionPriva
 {
 }
 
-HElecCalibrateCollection::~HElecCalibrateCollection()
-{
-}
-
 QString HElecCalibrateCollection::typeName()
 {
     return "HElecCalibrateCollection";

@@ -22,10 +22,6 @@ HQualityItemCollection::HQualityItemCollection(HQualityItemCollectionPrivate &p)
 {
 }
 
-HQualityItemCollection::~HQualityItemCollection()
-{
-}
-
 QString HQualityItemCollection::typeName()
 {
     return "HQualityItemCollection";
@@ -60,7 +56,7 @@ int HQualityItemCollection::check(QVariantMap value, QVariantMap *color)
         if (!item(i)->isContains(value.value(i), &c))
             color->insert(i, c);
     }
-    return color->size() > 0 ? 1: 0;
+    return color->isEmpty() ? 0: 1;
 }
 
 double HQualityItemCollection::drift(QString type, QVariant value)

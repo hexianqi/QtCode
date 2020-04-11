@@ -14,10 +14,6 @@ HSpecStdCurve::HSpecStdCurve(HSpecStdCurvePrivate &p) :
 {
 }
 
-HSpecStdCurve::~HSpecStdCurve()
-{
-}
-
 QString HSpecStdCurve::typeName()
 {
     return "HSpecStdCurve";
@@ -46,7 +42,7 @@ void HSpecStdCurve::restoreDefault()
     d->curve.clear();
 }
 
-void HSpecStdCurve::setCurve(QVector<double> value)
+void HSpecStdCurve::setCurve(const QVector<double> &value)
 {
     Q_D(HSpecStdCurve);
     d->curve = value;

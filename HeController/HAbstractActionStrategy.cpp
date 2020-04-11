@@ -14,10 +14,6 @@ HAbstractActionStrategy::HAbstractActionStrategy(HAbstractActionStrategyPrivate 
 {
 }
 
-HAbstractActionStrategy::~HAbstractActionStrategy()
-{
-}
-
 void HAbstractActionStrategy::initialize(QVariantMap /*param*/)
 {
 

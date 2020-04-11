@@ -120,16 +120,15 @@ void HSpecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /*pag
     y += h1;
     painter->setFont(font2);
     text = tr(" 色品坐标：x = %1    y = %2    u' = %3    v' = %4    duv = %5")
-            .arg(toString("CC_x")).arg(toString("CC_y")).arg(toString("CC_up")).arg(toString("CC_vp")).arg(toString("Duv"));
+            .arg(toString("CC_x"), toString("CC_y"), toString("CC_up"), toString("CC_vp"), toString("Duv"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft |  Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3")
-            .arg(toString("ColorTemperature")).arg(toString("DominantWave")).arg(toString("ColorPurity"));
+            .arg(toString("ColorTemperature"), toString("DominantWave"), toString("ColorPurity"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr("色比：R = %1 ％  G = %2 ％  B = %3 ％ 峰值波长：λp = %4 nm   峰值带宽：Δλd = %5 nm")
-            .arg(toString("RedRatio")).arg(toString("GreenRadio")).arg(toString("BlueRatio"))
-            .arg(toString("PeakWave")).arg(toString("PeakBandwidth"));
+            .arg(toString("RedRatio"), toString("GreenRadio"), toString("BlueRatio"), toString("PeakWave"), toString("PeakBandwidth"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 显色指数：Ra = %1").arg(toString("Ra"));
@@ -138,11 +137,11 @@ void HSpecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /*pag
     if (rx.size() > 13)
     {
         text = tr("  R1 = %1    R2 = %2    R3 = %3    R4 = %4    R5 = %5    R6 = %6    R7 = %7")
-                .arg(rx[0]).arg(rx[1]).arg(rx[2]).arg(rx[3]).arg(rx[4]).arg(rx[5]).arg(rx[6]);
+                .arg(rx[0], rx[1], rx[2], rx[3], rx[4], rx[5], rx[6]);
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
         text = tr("  R8 = %1    R9 = %2    R10 = %3   R11 = %4   R12 = %5   R13 = %6   R14 = %7")
-                .arg(rx[7]).arg(rx[8]).arg(rx[9]).arg(rx[10]).arg(rx[11]).arg(rx[12]).arg(rx[13]);
+                .arg(rx[7], rx[8], rx[9], rx[10], rx[11], rx[12], rx[13]);
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }
@@ -150,7 +149,7 @@ void HSpecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /*pag
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2").arg(toString("LuminousFluxSpec")).arg(toString("LuminousPower"));
+    text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2").arg(toString("LuminousFluxSpec"), toString("LuminousPower"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
 

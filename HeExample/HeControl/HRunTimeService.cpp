@@ -60,11 +60,7 @@ void HRunTimeService::initLog()
         d_ptr->lastId = list.last().split("\t").at(0).toInt() + 1;
 
     auto current = QDateTime::currentDateTime();
-    list << QString("%1\t%2\t%3\t%4")
-            .arg(d_ptr->lastId)
-            .arg(d_ptr->startTime.toString("yyyy-MM-dd HH:mm:ss"))
-            .arg(current.toString("yyyy-MM-dd HH:mm:ss"))
-            .arg(HControlHelper::runTime(d_ptr->startTime, current));
+    list << QString("%1\t%2\t%3\t%4").arg(d_ptr->lastId).arg(d_ptr->startTime.toString("yyyy-MM-dd HH:mm:ss"), current.toString("yyyy-MM-dd HH:mm:ss"), HControlHelper::runTime(d_ptr->startTime, current));
     d_ptr->fileLog->writeContent(list);
 }
 

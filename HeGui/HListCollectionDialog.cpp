@@ -68,7 +68,7 @@ void HListCollectionDialog::setCurrentIndex(QModelIndex index)
     d_ptr->detail->setCurrentItem(index.data().toString());
 }
 
-void HListCollectionDialog::handleSourceChanged(QStringList names, QString name)
+void HListCollectionDialog::handleSourceChanged(const QStringList &names, const QString &name)
 {
     int row = names.indexOf(name);
     d_ptr->model->setStringList(names);

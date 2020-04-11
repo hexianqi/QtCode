@@ -121,8 +121,8 @@ QVector<double> HTestSpecPrivate::average(QVector<double> value)
 void HTestSpecPrivate::calcMaxSample()
 {
     maxSample = 0;
-    for (int i = 0; i < samples.at(0).size(); i++)
-        maxSample = qMax(maxSample, samples.at(0).at(i));
+    for (double i : samples.at(0))
+        maxSample = qMax(maxSample, i);
     setData("[采样比率]", maxSample * 100.0 / 65535);
 }
 
@@ -139,10 +139,10 @@ bool HTestSpecPrivate::calcSpec()
     if(specData->Energy.isEmpty())
         return false;
     specFacade->calcSpectrum(specData);
-    // 554b测试数据LED对不起来，作弊一下；
+    //// 554b测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
-    if (specData->PeakWave < 700 && data("[CCD类型]").toString() == "554b")
+    if (specData->PeakWave < 700)//  && data("[CCD类型]").toString() == "554b")
     {
         specData->Energy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
         specFacade->calcSpectrum(specData);
@@ -205,10 +205,6 @@ HTestSpec::HTestSpec(HTestSpecPrivate &p) :
 {
 }
 
-HTestSpec::~HTestSpec()
-{
-}
-
 QString HTestSpec::typeName()
 {
     return "HTestSpec";
@@ -243,7 +239,7 @@ bool HTestSpec::adjustIntegralTime()
 bool HTestSpec::setSample(QVector<double> value, bool avg)
 {
     Q_D(HTestSpec);
-    if (value.size() < 1)
+    if (value.isEmpty())
         return false;
     return d->setSample(value, avg);
 }

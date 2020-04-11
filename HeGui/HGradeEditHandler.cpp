@@ -32,12 +32,12 @@ QString HGradeEditHandler::typeName()
 void HGradeEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HGradeEditHandler);
-    auto detail = new HDataDetail<IGrade>();
-    detail->setEditWidget(new HGradeEditWidget);
-    detail->setData(d->configManage->gradeCollection());
+    HDataDetail<IGrade> detail;
+    detail.setEditWidget(new HGradeEditWidget);
+    detail.setData(d->configManage->gradeCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("分级数据配置"));
-    dlg.setDataDetail(detail);
+    dlg.setDataDetail(&detail);
     dlg.resize(1000, 600);
     dlg.exec();
     d->model->addAction(ACT_RESET_GRADE);

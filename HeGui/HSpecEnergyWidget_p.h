@@ -21,11 +21,11 @@ public:
     HSpecEnergyWidgetPrivate();
 
 public:
-    ITestSpec *testSpec;
+    ITestSpec *testSpec = nullptr;
+    HSpecDiagramWidget *specWidget = nullptr;
+    HProgressBar *progressBar = nullptr;
+    QHBoxLayout *progressLayout = nullptr;
     QStringList toolTipTypes;
-    HSpecDiagramWidget *specWidget;
-    HProgressBar *progressBar;
-    QHBoxLayout *progressLayout;
 };
 
 HE_GUI_END_NAMESPACE

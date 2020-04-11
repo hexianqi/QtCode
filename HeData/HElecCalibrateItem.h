@@ -17,7 +17,6 @@ class HElecCalibrateItem : public IElecCalibrateItem
 
 public:
     explicit HElecCalibrateItem();
-    ~HElecCalibrateItem() override;
 
 public:
     QString typeName() override;

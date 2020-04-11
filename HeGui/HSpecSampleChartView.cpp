@@ -79,7 +79,7 @@ void HSpecSampleChartView::refreshRight()
     d->textRight->setText(QString("(%1)").arg(list.join(',')));
 }
 
-void HSpecSampleChartView::setVernier(QList<double> value)
+void HSpecSampleChartView::setVernier(const QList<double> &value)
 {
     Q_D(HSpecSampleChartView);
     d->verniers = value;

@@ -24,7 +24,6 @@ class HElecCalibrateItemWidget : public QWidget
 
 public:
     explicit HElecCalibrateItemWidget(QWidget *parent = nullptr);
-    ~HElecCalibrateItemWidget() override;
 
 signals:
     void elecChanged(HElecType type, double value);

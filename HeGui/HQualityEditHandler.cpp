@@ -32,12 +32,12 @@ QString HQualityEditHandler::typeName()
 void HQualityEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualityEditHandler);
-    auto detail = new HDataDetail<IQuality>();
-    detail->setEditWidget(new HQualityEditWidget);
-    detail->setData(d->configManage->qualityCollection());
+    HDataDetail<IQuality> detail;
+    detail.setEditWidget(new HQualityEditWidget);
+    detail.setData(d->configManage->qualityCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("品质数据配置"));
-    dlg.setDataDetail(detail);
+    dlg.setDataDetail(&detail);
     dlg.resize(1200, 600);
     dlg.exec();
     d->model->addAction(ACT_RESET_QUALITY);

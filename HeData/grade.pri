@@ -4,8 +4,6 @@ HEADERS += \
     $$PWD/IGradeCollection.h \
     $$PWD/HAbstractGrade.h \
     $$PWD/HAbstractGrade_p.h \
-    $$PWD/HAbstractGradeItem.h \
-    $$PWD/HAbstractGradeItem_p.h \
     $$PWD/HGradeCollection.h \
     $$PWD/HGradeCollection_p.h \
     $$PWD/HSequentialGrade.h \
@@ -20,7 +18,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractGrade.cpp \
-    $$PWD/HAbstractGradeItem.cpp \
     $$PWD/HGradeCollection.cpp \
     $$PWD/HSequentialGrade.cpp \
     $$PWD/HParallelGrade.cpp \

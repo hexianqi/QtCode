@@ -21,10 +21,10 @@ public:
     HSpecChromatismChartViewPrivate();
 
 public:
-    IGuiFactory *factory;
-    IConfigManage *configManage;
-    ITestData *testData;
-    QMenu *menuShow;
+    IGuiFactory *factory = nullptr;
+    IConfigManage *configManage = nullptr;
+    ITestData *testData = nullptr;
+    QMenu *menuShow = nullptr;
 };
 
 HE_GUI_END_NAMESPACE

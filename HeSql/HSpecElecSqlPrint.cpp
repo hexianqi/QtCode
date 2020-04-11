@@ -78,13 +78,13 @@ void HSpecElecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("电参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 输出电压：%1 V   输出电流：%2 mA ").arg(toString("OutputVoltage")).arg(toString("OutputCurrent"));
+    text = tr(" 输出电压：%1 V   输出电流：%2 mA ").arg(toString("OutputVoltage"), toString("OutputCurrent"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 实测电压：%1 V   实测电流：%2 mA  电功率：%3 W").arg(toString("MeasuredVoltage")).arg(toString("MeasuredCurrent")).arg(toString("ElecPower"));
+    text = tr(" 实测电压：%1 V   实测电流：%2 mA  电功率：%3 W").arg(toString("MeasuredVoltage"), toString("MeasuredCurrent"), toString("ElecPower"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 反向电压：%1 V   反向漏流：%2 mA  光效率：%3").arg(toString("ReverseVoltage")).arg(toString("ReverseCurrent"));
+    text = tr(" 反向电压：%1 V   反向漏流：%2 mA  光效率：%3").arg(toString("ReverseVoltage"), toString("ReverseCurrent"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     // 颜色参数
@@ -93,16 +93,15 @@ void HSpecElecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /
     y += h1;
     painter->setFont(font2);
     text = tr(" 色品坐标：x = %1    y = %2    u' = %3    v' = %4    duv = %5")
-            .arg(toString("CC_x")).arg(toString("CC_y")).arg(toString("CC_up")).arg(toString("CC_vp")).arg(toString("Duv"));
+            .arg(toString("CC_x"), toString("CC_y"), toString("CC_up"), toString("CC_vp"), toString("Duv"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft |  Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3")
-            .arg(toString("ColorTemperature")).arg(toString("DominantWave")).arg(toString("ColorPurity"));
+            .arg(toString("ColorTemperature"), toString("DominantWave"), toString("ColorPurity"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr("色比：R = %1 ％  G = %2 ％  B = %3 ％ 峰值波长：λp = %4 nm   峰值带宽：Δλd = %5 nm")
-            .arg(toString("RedRatio")).arg(toString("GreenRadio")).arg(toString("BlueRatio"))
-            .arg(toString("PeakWave")).arg(toString("PeakBandwidth"));
+            .arg(toString("RedRatio"), toString("GreenRadio"), toString("BlueRatio"), toString("PeakWave"), toString("PeakBandwidth"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 显色指数：Ra = %1").arg(toString("Ra"));
@@ -111,11 +110,11 @@ void HSpecElecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /
     if (rx.size() > 13)
     {
         text = tr("  R1 = %1    R2 = %2    R3 = %3    R4 = %4    R5 = %5    R6 = %6    R7 = %7")
-                .arg(rx[0]).arg(rx[1]).arg(rx[2]).arg(rx[3]).arg(rx[4]).arg(rx[5]).arg(rx[6]);
+                .arg(rx[0], rx[1], rx[2], rx[3], rx[4], rx[5], rx[6]);
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
         text = tr("  R8 = %1    R9 = %2    R10 = %3   R11 = %4   R12 = %5   R13 = %6   R14 = %7")
-                .arg(rx[7]).arg(rx[8]).arg(rx[9]).arg(rx[10]).arg(rx[11]).arg(rx[12]).arg(rx[13]);
+                .arg(rx[7], rx[8], rx[9], rx[10], rx[11], rx[12], rx[13]);
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }
@@ -124,7 +123,7 @@ void HSpecElecSqlPrint::paintBody(QPainter *painter, double y1, double y2, int /
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2   光效率：%3 lm/W").arg(toString("LuminousFluxSpec")).arg(toString("LuminousPower")).arg(toString("LuminousEfficiency"));
+    text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2   光效率：%3 lm/W").arg(toString("LuminousFluxSpec"), toString("LuminousPower"), toString("LuminousEfficiency"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
 

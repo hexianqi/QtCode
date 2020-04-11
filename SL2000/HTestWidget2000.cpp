@@ -106,14 +106,16 @@ void HTestWidget2000::handleAction(HActionType action)
 void HTestWidget2000::clearResult()
 {
     Q_D(HTestWidget2000);
+    HTestWidget2::clearResult();
     d->cieWidget->clearPoint();
     d->resultWidget->clearResult();
 }
 
-bool HTestWidget2000::canExport()
+void HTestWidget2000::exportDatabase2()
 {
-    // 判断是否可导出
-    return true;
+    Q_D(HTestWidget2000);
+    for (auto range : d->resultWidget->selectedRanges())
+        exportDatabase(range.topRow(), range.rowCount());
 }
 
 void HTestWidget2000::createAction()
@@ -146,6 +148,7 @@ void HTestWidget2000::createWidget()
     d->resultWidget->setDisplay(d->displays);
     d->resultWidget->setSelected(d->tableSelecteds);
     d->resultWidget->addAction(d->actionClear);
+    d->resultWidget->addAction(d->actionExportDatabase2);
     tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
@@ -207,8 +210,7 @@ void HTestWidget2000::handleTestStateChanged(bool b)
 void HTestWidget2000::resetGrade()
 {
     Q_D(HTestWidget2000);
-    auto v = d->configManage->gradeCollection()->levels("[色坐标]");
-    auto p = v.value<QList<QPolygonF>>();
+    auto p = d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>();
     d->cieWidget->setGrade(p);
 }
 
@@ -220,6 +222,7 @@ void HTestWidget2000::refreshWidget()
     d->chromatismWidget->refreshWidget();
     d->cieWidget->addPoint(d->testData->data("[色坐标]").toPointF());
     d->resultWidget->refreshResult(0, d->testSetWidget->testMode() == 0);
+    saveRecord(d->testSetWidget->testMode() == 0);
 }
 
 void HTestWidget2000::postProcess()

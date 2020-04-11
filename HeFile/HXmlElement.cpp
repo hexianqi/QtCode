@@ -5,14 +5,14 @@
 
 HE_FILE_BEGIN_NAMESPACE
 
-HXmlElementPrivate::HXmlElementPrivate(QString fileName, QDomElement *domElement, HXmlElement *parent)
+HXmlElementPrivate::HXmlElementPrivate(const QString &fileName, QDomElement *domElement, HXmlElement *parent)
 {
     this->fileName = fileName;
     this->domElement = domElement;
     this->parent = parent;
 }
 
-HXmlElement *HXmlElement::load(QString fileName)
+HXmlElement *HXmlElement::load(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -31,19 +31,19 @@ HXmlElement *HXmlElement::load(QString fileName)
     return xe;
 }
 
-HXmlElement *HXmlElement::parse(QString fileName, QDomElement *domElement, HXmlElement *parent)
+HXmlElement *HXmlElement::parse(const QString &fileName, QDomElement *domElement, HXmlElement *parent)
 {
     auto xe = new HXmlElement(fileName, domElement, parent);
     auto child = domElement->firstChildElement();
     while (!child.isNull())
     {
-        xe->childs().append(parse(fileName, &child, xe));
+        xe->childs() << parse(fileName, &child, xe);
         child = child.nextSiblingElement();
     }
     return xe;
 }
 
-HXmlElement::HXmlElement(QString fileName, QDomElement *domElement, HXmlElement *parent) :
+HXmlElement::HXmlElement(const QString &fileName, QDomElement *domElement, HXmlElement *parent) :
     d_ptr(new HXmlElementPrivate(fileName, domElement, parent))
 {
 }
@@ -68,17 +68,17 @@ QList<HXmlElement *> HXmlElement::childs()
     return d_ptr->childs;
 }
 
-void HXmlElement::setChild(QList<HXmlElement *> value)
+void HXmlElement::setChild(const QList<HeFile::HXmlElement *> &value)
 {
     d_ptr->childs = value;
 }
 
-QString HXmlElement::attribute(QString name)
+QString HXmlElement::attribute(const QString &name)
 {
     return d_ptr->domElement->attribute(name);
 }
 
-void HXmlElement::setAttribute(QString name, QString value)
+void HXmlElement::setAttribute(const QString &name, const QString &value)
 {
     d_ptr->domElement->setAttribute(name, value);
 }
@@ -88,7 +88,7 @@ bool HXmlElement::save()
     return save(d_ptr->fileName);
 }
 
-bool HXmlElement::save(QString fileName)
+bool HXmlElement::save(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly | QFile::Text))
@@ -100,7 +100,7 @@ bool HXmlElement::save(QString fileName)
     return true;
 }
 
-HXmlElement *HXmlElement::createChild(QString name)
+HXmlElement *HXmlElement::createChild(const QString &name)
 {
     auto de = d_ptr->domElement->ownerDocument().createElement(name);
     auto xe = new HXmlElement(d_ptr->fileName, &de, this);
@@ -116,7 +116,7 @@ void HXmlElement::removeChild(HXmlElement *xe)
     xe->d_ptr->parent = nullptr;
 }
 
-HXmlElement *HXmlElement::findElement(std::function<bool(HXmlElement *)> func)
+HXmlElement *HXmlElement::findElement(const std::function<bool(HXmlElement *)> &func)
 {
     if (func(this))
         return this;
@@ -131,7 +131,7 @@ HXmlElement *HXmlElement::findElement(std::function<bool(HXmlElement *)> func)
     return xe;
 }
 
-QList<HXmlElement*> HXmlElement::findElementAll(std::function<bool(HXmlElement *)> func)
+QList<HXmlElement*> HXmlElement::findElementAll(const std::function<bool(HXmlElement *)> &func)
 {
     QList<HXmlElement *> list;
     if (func(this))
@@ -141,7 +141,7 @@ QList<HXmlElement*> HXmlElement::findElementAll(std::function<bool(HXmlElement *
     return list;
 }
 
-void HXmlElement::forEach(std::function<void(HXmlElement *)> func)
+void HXmlElement::forEach(const std::function<void(HXmlElement *)>& func)
 {
     func(this);
     for (auto item : childs())

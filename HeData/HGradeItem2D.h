@@ -17,7 +17,6 @@ class HGradeItem2D : public IGradeItem
 
 public:
     explicit HGradeItem2D();
-    ~HGradeItem2D() override;
 
 public:
     QString typeName() override;

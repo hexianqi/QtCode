@@ -17,10 +17,6 @@ HAbstractGradeItemDialog::HAbstractGradeItemDialog(HAbstractGradeItemDialogPriva
     setWindowFlags(windowFlags() | Qt::WindowMinMaxButtonsHint);
 }
 
-HAbstractGradeItemDialog::~HAbstractGradeItemDialog()
-{
-}
-
 void HAbstractGradeItemDialog::setData(IGradeItem *p)
 {
     d_ptr->data = p;

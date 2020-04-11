@@ -15,7 +15,7 @@ class HAbstractDataItem : public IDataItem
 {
 public:
     explicit HAbstractDataItem();
-    virtual ~HAbstractDataItem();
+    virtual ~HAbstractDataItem() = default;
 
 public:
     void initialize(QVariantMap param) override;

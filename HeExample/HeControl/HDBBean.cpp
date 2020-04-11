@@ -23,7 +23,7 @@ void HTestThread::run()
 QString HUser::toString() const
 {
     return QString("ID: %1, Username: %2, Password: %3, Email: %4, Mobile: %5")
-            .arg(id).arg(username).arg(password).arg(email).arg(mobile);
+            .arg(id).arg(username, password, email, mobile);
 }
 
 HUser HUserDao::findByUserId(int id)

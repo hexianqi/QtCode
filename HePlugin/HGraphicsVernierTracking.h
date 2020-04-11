@@ -23,7 +23,7 @@ public:
     bool setEnable(bool b) override;
     bool setValidRegion(QRectF value) override;
     bool setOrientation(Qt::Orientation value) override;
-    bool setVernierColor(QColor value) override;
+    bool setVernierColor(const QColor &value) override;
     bool setVernier(int i, double percent) override;
     void resizeVernier(int size) override;
 

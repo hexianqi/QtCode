@@ -50,11 +50,7 @@ void HAbstractFileLog::setDataFormat(QString value)
 
 QString HAbstractFileLog::fileName()
 {
-    return QString("%1%2%3_%4.log")
-            .arg(d_ptr->path)
-            .arg(QDir::separator())
-            .arg(d_ptr->name)
-            .arg(QDate::currentDate().toString(d_ptr->dataFormat));
+    return QString("%1%2%3_%4.log").arg(d_ptr->path, QDir::separator(), d_ptr->name, QDate::currentDate().toString(d_ptr->dataFormat));
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -6,11 +6,11 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-typedef union CharFloat
+union CharFloat
 {
     float f;
     unsigned char c[4];
-} CharFloat;
+};
 
 HUi2010ProtocolPrivate::HUi2010ProtocolPrivate()
 {
@@ -46,14 +46,14 @@ HErrorType HUi2010Protocol::getData(HActionType action, QVector<double> &value, 
     auto error = HLittleProtocol::getData(action, data, delay);
     if (error != E_OK)
         return error;
-    if (value.size() == 0)
+    if (value.isEmpty())
         value.resize(data.size() / 4);
     auto size = qMin(value.size(), data.size() / 4);
     for (int i = 0; i < size; i++)
     {
         CharFloat cf;
         for (int j = 0; j < 4; j++)
-            cf.c[j] = data[4 * i + j];
+            cf.c[j] = data.at(4 * i + j);
         value[i] = double(cf.f);
     }
     return E_OK;

@@ -14,10 +14,6 @@ HSpecLuminous::HSpecLuminous(HSpecLuminousPrivate &p):
 {
 }
 
-HSpecLuminous::~HSpecLuminous()
-{
-}
-
 QString HSpecLuminous::typeName()
 {
     return "HSpecLuminous";
@@ -62,7 +58,7 @@ double HSpecLuminous::handle(double value)
     return r;
 }
 
-void HSpecLuminous::setSelfAbsorption(QMap<QString, double> value)
+void HSpecLuminous::setSelfAbsorption(const QMap<QString, double> &value)
 {
     Q_D(HSpecLuminous);
     d->selfAbsorption = value;

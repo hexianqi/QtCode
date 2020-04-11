@@ -12,14 +12,14 @@ HMesopticVision::HMesopticVision()
 
 QStringList HMesopticVision::sourceTypes() const
 {
-    return _stdData.keys();
+    return _standard.keys();
 }
 
 double HMesopticVision::calcRatio(QString type, double value)
 {
-    if (!_stdData.contains(type))
+    if (!_standard.contains(type))
         return 0;
-    return HInterp::eval(_stdData[type], value, HInterp::Cspline);
+    return HInterp::eval(_standard[type], value, HInterp::Cspline);
 }
 
 void HMesopticVision::readStandard()
@@ -49,7 +49,7 @@ void HMesopticVision::readStandard()
             in >> y;
             poly.append(QPointF(x[j], y));
         }
-        _stdData[type] = poly;
+        _standard[type] = poly;
     }
 
     file.close();

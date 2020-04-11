@@ -25,11 +25,13 @@ public:
 
 public:
     QAction *actionExportDatabase;
+    QAction *actionExportDatabase2;
     QAction *actionPrintPreview;
 
 public:
     QStringList displays;
     QStringList tableSelecteds;
+    QList<QVariantMap> records;
 };
 
 HE_GUI_END_NAMESPACE

@@ -22,10 +22,6 @@ HElecCalibrate::HElecCalibrate(HElecCalibratePrivate &p) :
 {
 }
 
-HElecCalibrate::~HElecCalibrate()
-{
-}
-
 void HElecCalibrate::initialize(QVariantMap /*param*/)
 {
 

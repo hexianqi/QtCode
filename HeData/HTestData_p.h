@@ -8,11 +8,11 @@ HE_DATA_BEGIN_NAMESPACE
 class HTestDataPrivate
 {
 public:
-    void setData(QString type, QVariant value);
+    void setData(const QString &type, const QVariant &value);
     void setData(QVariantMap value);
-    void addData(QString type, QVariant value);
+    void addData(const QString &type, const QVariant &value);
     void addData(QVariantMap value);
-    QVariant data(QString type);
+    QVariant data(const QString &type);
 
 public:
     ITestData *successor = nullptr;

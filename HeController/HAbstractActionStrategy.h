@@ -17,7 +17,6 @@ class HAbstractActionStrategy : public IActionStrategy
 
 public:
     explicit HAbstractActionStrategy(QObject *parent = nullptr);
-    ~HAbstractActionStrategy() override;
 
 public:
     void initialize(QVariantMap param) override;

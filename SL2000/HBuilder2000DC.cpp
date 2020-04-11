@@ -143,13 +143,13 @@ void HBuilder2000DC::buildDevice()
 {
     Q_D(HBuilder2000DC);
 //    // 设备模拟
-//    auto device = d->communicateFactory->createDevice("HSlSimulation");
-//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-//    protocol->setDevice(device);
-    // 第一版设备554b
+    auto device = d->communicateFactory->createDevice("HSlSimulation");
+    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+    protocol->setDevice(device);
+    // 第一版设备1305
     // auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
-    // 第二版设备1305
-    auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+    // 第二版设备554b
+//    auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
@@ -184,12 +184,12 @@ void HBuilder2000DC::buildDatabase()
     exportExcel.removeLast();
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
+    db->openDatabase(QString("%1.db").arg(qApp->applicationName()));
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
     auto print = d->sqlFactory->createPrint("HSpecElecSqlPrint");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    db->openDatabase(QString("%1.db").arg(qApp->applicationName()));
     model->setField(d->sqlField);
     model->setTable("Spec");
     info->setRelationTableName("Spec");
@@ -217,8 +217,9 @@ void HBuilder2000DC::buildMenu()
     auto test = new QMenu(tr("其他测试(&E)"));
     auto database = new QMenu(tr("数据库(&D)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
-    calibrate->addAction(d->guiFactory->createAction(tr("电定标(&S)..."), "HElecCalibrateHandler"));
-    calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&S)..."), "HSpecLuminousHandler"));
+    calibrate->addAction(d->guiFactory->createAction(tr("电定标(&E)..."), "HElecCalibrateHandler"));
+    calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
+    calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));
@@ -239,6 +240,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+ //   widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

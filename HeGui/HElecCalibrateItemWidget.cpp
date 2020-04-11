@@ -14,10 +14,6 @@ HElecCalibrateItemWidget::HElecCalibrateItemWidget(HElecCalibrateItemWidgetPriva
 {
 }
 
-HElecCalibrateItemWidget::~HElecCalibrateItemWidget()
-{
-}
-
 HElecType HElecCalibrateItemWidget::type()
 {
     return d_ptr->type;

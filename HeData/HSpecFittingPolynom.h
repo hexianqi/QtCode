@@ -17,7 +17,6 @@ class HSpecFittingPolynom : public HSpecFitting
 
 public:
     explicit HSpecFittingPolynom();
-    ~HSpecFittingPolynom() override;
 
 public:
     QString typeName() override;

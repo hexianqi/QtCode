@@ -17,7 +17,6 @@ class QDESIGNER_WIDGET_EXPORT HAbstractMouseStrategy : public QObject, public IM
 
 public:
     explicit HAbstractMouseStrategy(QWidget *parent = nullptr);
-    ~HAbstractMouseStrategy() override;
 
 public:
     bool setValidRegion(QRectF value) override;

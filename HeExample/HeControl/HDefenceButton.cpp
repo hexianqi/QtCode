@@ -21,19 +21,6 @@ HDefenceButton::HDefenceButton(HDefenceButtonPrivate &p, QWidget *parent) :
     init();
 }
 
-void HDefenceButton::mousePressEvent(QMouseEvent *event)
-{
-    emit clicked();
-    return QWidget::mousePressEvent(event);
-
-}
-
-void HDefenceButton::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    emit doubleClicked();
-    return QWidget::mouseDoubleClickEvent(event);
-}
-
 HDefenceButton::~HDefenceButton()
 {
     if (d_ptr->timer->isActive())
@@ -111,6 +98,18 @@ void HDefenceButton::alarm()
 
     d_ptr->isDark = !d_ptr->isDark;
     update();
+}
+
+void HDefenceButton::mousePressEvent(QMouseEvent *event)
+{
+    emit clicked();
+    QWidget::mousePressEvent(event);
+}
+
+void HDefenceButton::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    emit doubleClicked();
+    QWidget::mouseDoubleClickEvent(event);
 }
 
 void HDefenceButton::paintEvent(QPaintEvent *)

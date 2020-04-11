@@ -17,7 +17,6 @@ class HE_DATA_EXPORT HSpecStdCurve : public HAbstractDataItem
 
 public:
     explicit HSpecStdCurve();
-    ~HSpecStdCurve() override;
 
 public:
     QString typeName() override;
@@ -28,7 +27,7 @@ public:
 
 public:
     void restoreDefault();
-    void setCurve(QVector<double> value);
+    void setCurve(const QVector<double> &value);
     QVector<double> curve();
 
 protected:

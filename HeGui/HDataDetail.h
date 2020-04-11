@@ -27,7 +27,7 @@ template <typename T>
 class HDataDetail : public IDataDetail
 {
 public:
-    explicit HDataDetail(QWidget *parent = nullptr);
+    explicit HDataDetail(QObject *parent = nullptr);
     ~HDataDetail();
 
 public:
@@ -52,7 +52,7 @@ protected:
 };
 
 template <typename T>
-HDataDetail<T>::HDataDetail(QWidget *parent) :
+HDataDetail<T>::HDataDetail(QObject *parent) :
     IDataDetail(parent),
     d_ptr(new HDataDetailPrivate<T>)
 {

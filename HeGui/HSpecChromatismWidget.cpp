@@ -38,7 +38,7 @@ void HSpecChromatismWidget::initMenuShow()
 {
     d_ptr->menuShow->clear();
     auto datas = d_ptr->configManage->chromatismCollection();
-    if (datas == nullptr || datas->keys().size() == 0)
+    if (datas == nullptr || datas->isEmpty())
         return;
     auto data = datas->value(datas->useIndex());
     if (data == nullptr)
@@ -48,7 +48,7 @@ void HSpecChromatismWidget::initMenuShow()
          group->addAction(v->data("[标题]").toString())->setData(v->data());
     connect(group, &QActionGroup::triggered, this, &HSpecChromatismWidget::showChromatism);
     d_ptr->menuShow->addActions(group->actions());
-    if (group->actions().size() > 0)
+    if (!group->actions().isEmpty())
         showChromatism(group->actions().first());
 }
 

@@ -23,9 +23,7 @@ HAbstractChartExtend::HAbstractChartExtend(HAbstractChartExtendPrivate &p, QObje
 {
 }
 
-HAbstractChartExtend::~HAbstractChartExtend()
-{
-}
+HAbstractChartExtend::~HAbstractChartExtend() = default;
 
 void HAbstractChartExtend::setChart(QChart *p)
 {

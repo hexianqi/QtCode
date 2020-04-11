@@ -5,7 +5,7 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-void HTestDataPrivate::setData(QString type, QVariant value)
+void HTestDataPrivate::setData(const QString &type, const QVariant &value)
 {
     if (datas.contains(type))
     {
@@ -23,7 +23,7 @@ void HTestDataPrivate::setData(QVariantMap value)
         setData(i.key(), i.value());
 }
 
-void HTestDataPrivate::addData(QString type, QVariant value)
+void HTestDataPrivate::addData(const QString &type, const QVariant &value)
 {
     datas.insert(type, value);
 }
@@ -34,7 +34,7 @@ void HTestDataPrivate::addData(QVariantMap value)
         addData(i.key(), i.value());
 }
 
-QVariant HTestDataPrivate::data(QString type)
+QVariant HTestDataPrivate::data(const QString &type)
 {
     if (datas.contains(type))
         return datas.value(type);
@@ -56,10 +56,6 @@ HTestData::HTestData() :
 
 HTestData::HTestData(HTestDataPrivate &p) :
     d_ptr(&p)
-{
-}
-
-HTestData::~HTestData()
 {
 }
 
@@ -136,9 +132,9 @@ QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
                         "<td><p align = right>%1</p></td>"
                         "<td><p align = center>%2</p></td>"
                         "<td><p align = left>%3</p></td>"
-                        "</tr>").arg(HCore::toCaption(t)).arg(toString(t)).arg(HCore::toUnit(t));
+                        "</tr>").arg(HCore::toCaption(t), toString(t), HCore::toUnit(t));
     }
-    return QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>%2</table>").arg(bgcolor.name()).arg(text);
+    return QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>%2</table>").arg(bgcolor.name(), text);
 }
 
 HE_DATA_END_NAMESPACE

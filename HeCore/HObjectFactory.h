@@ -59,10 +59,10 @@ template <typename T>
 T *HObjectFactory::createObject(QString className, QVariantMap param, QObject *parent)
 {
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");
-    auto t = createObject<T>(className, parent);
-    if (t != nullptr)
-        t->initialize(param);
-    return t;
+    auto p = createObject<T>(className, parent);
+    if (p != nullptr)
+        p->initialize(param);
+    return p;
 }
 
 template <typename T>

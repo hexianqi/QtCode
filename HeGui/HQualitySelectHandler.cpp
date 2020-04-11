@@ -30,7 +30,6 @@ QString HQualitySelectHandler::typeName()
 void HQualitySelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualitySelectHandler);
-
     auto data = d->configManage->qualityCollection();
     if (data == nullptr || data->keys().size() < 2)
         return;

@@ -11,10 +11,6 @@ HCalloutChartItem::HCalloutChartItem(QChart *parent) :
     d->chart = parent;
 }
 
-HCalloutChartItem::~HCalloutChartItem()
-{
-}
-
 QFont HCalloutChartItem::font()
 {
     Q_D(HCalloutChartItem);

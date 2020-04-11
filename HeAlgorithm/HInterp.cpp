@@ -27,7 +27,7 @@ const gsl_interp_type *toGsl(HInterp::InterpType type)
     return gsl_interp_linear;
 }
 
-void doInterp(QPolygonF basis, HInterp::InterpType type, std::function<void(gsl_spline *, gsl_interp_accel *)> func)
+void interp(QPolygonF basis, HInterp::InterpType type, const std::function<void(gsl_spline *, gsl_interp_accel *)> &func)
 {
     auto t = toGsl(type);
     auto size = size_t(basis.size());
@@ -58,7 +58,7 @@ QVector<double> HInterp::eval(QPolygonF basis, QVector<double> xa, InterpType ty
         for (auto xi : xa)
             r << gsl_spline_eval(spline, xi, acc);
     };
-    doInterp(basis, type, func);
+    interp(basis, type, func);
     return r;
 }
 
@@ -81,7 +81,7 @@ QVector<double> HInterp::eval_deriv(QPolygonF basis, QVector<double> xa, InterpT
         for (auto xi : xa)
             r << gsl_spline_eval_deriv(spline, xi, acc);
     };
-    doInterp(basis, type, func);
+    interp(basis, type, func);
     return r;
 }
 
@@ -93,7 +93,7 @@ QVector<double> HInterp::eval_deriv2(QPolygonF basis, QVector<double> xa, Interp
         for (auto xi : xa)
             r << gsl_spline_eval_deriv2(spline, xi, acc);
     };
-    doInterp(basis, type, func);
+    interp(basis, type, func);
     return r;
 }
 
@@ -101,7 +101,7 @@ double HInterp::eval_integ(QPolygonF basis, double a, double b, InterpType type)
 {
     double r;
     auto func = [&](gsl_spline *spline, gsl_interp_accel *acc) { r = gsl_spline_eval_integ(spline, a, b, acc); };
-    doInterp(basis, type, func);
+    interp(basis, type, func);
     return r;
 }
 

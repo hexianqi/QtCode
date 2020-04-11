@@ -28,7 +28,7 @@ public:
     void refreshRight();
 
 protected slots:
-    void setVernier(QList<double> value);
+    void setVernier(const QList<double> &value);
 
 protected:
     void init() override;

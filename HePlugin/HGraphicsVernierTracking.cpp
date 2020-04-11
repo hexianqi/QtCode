@@ -47,7 +47,7 @@ bool HGraphicsVernierTracking::setOrientation(Qt::Orientation value)
     return true;
 }
 
-bool HGraphicsVernierTracking::setVernierColor(QColor value)
+bool HGraphicsVernierTracking::setVernierColor(const QColor &value)
 {
     if (!HAbstractVernierTracking::setVernierColor(value))
         return false;

@@ -143,7 +143,7 @@ void HElecCalibrateDialog::done(int result)
     QDialog::done(result);
 }
 
-QTreeWidgetItem *HElecCalibrateDialog::createItem(QString text, int value, QTreeWidgetItem *parent)
+QTreeWidgetItem *HElecCalibrateDialog::createItem(const QString &text, int value, QTreeWidgetItem *parent)
 {
     auto item = new QTreeWidgetItem(parent);
     item->setText(0, text);

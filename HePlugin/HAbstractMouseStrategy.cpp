@@ -18,10 +18,6 @@ HAbstractMouseStrategy::HAbstractMouseStrategy(HAbstractMouseStrategyPrivate &p,
 {
 }
 
-HAbstractMouseStrategy::~HAbstractMouseStrategy()
-{
-}
-
 bool HAbstractMouseStrategy::setValidRegion(QRectF value)
 {
     if (d_ptr->validRegion == value)

@@ -85,7 +85,7 @@ void HAdjustEditWidget::showData()
         return;
 
     int r = 0;
-    for (auto key : d_ptr->data->keys())
+    for (const auto &key : d_ptr->data->keys())
     {
         auto item = ui->tableWidget->item(r, 0);
         item->setData(Qt::UserRole, key);
@@ -100,7 +100,7 @@ void HAdjustEditWidget::setEnableEdit(bool b)
     d_ptr->actionEdit->setVisible(b);
 }
 
-void HAdjustEditWidget::setTestData(QStringList value)
+void HAdjustEditWidget::setTestData(const QStringList &value)
 {
     ui->tableWidget->setColumn(2, value);
 }

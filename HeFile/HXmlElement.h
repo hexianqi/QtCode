@@ -19,9 +19,9 @@ class HE_FILE_EXPORT HXmlElement
 {
 public:
     // 装载XML文档
-    static HXmlElement *load(QString fileName);
+    static HXmlElement *load(const QString &fileName);
     // 解析XML文档
-    static HXmlElement *parse(QString fileName, QDomElement *domElement, HXmlElement *parent);
+    static HXmlElement *parse(const QString &fileName, QDomElement *domElement, HXmlElement *parent);
 
 public:
     // 元素名称
@@ -30,28 +30,28 @@ public:
     HXmlElement *parent();
     // 子节点
     QList<HXmlElement*> childs();
-    void setChild(QList<HXmlElement*> value);
+    void setChild(const QList<HXmlElement *> &value);
     // 属性
-    QString attribute(QString name);
-    void setAttribute(QString name, QString value);
+    QString attribute(const QString &name);
+    void setAttribute(const QString &name, const QString &value);
 
 public:
     // 保存到文件
     bool save();
-    bool save(QString fileName);
+    bool save(const QString &fileName);
     // 添加节点
-    HXmlElement *createChild(QString name);
+    HXmlElement *createChild(const QString &name);
     // 移除子节点
     void removeChild(HXmlElement *xe);
     // 遍历所有元素 查找符合条件的首个元素
-    HXmlElement *findElement(std::function<bool(HXmlElement *)> func);
+    HXmlElement *findElement(const std::function<bool(HXmlElement *)> &func);
     // 遍历所有元素 查找符合条件的所有元素
-    QList<HXmlElement *> findElementAll(std::function<bool(HXmlElement *)> func);
+    QList<HXmlElement *> findElementAll(const std::function<bool(HXmlElement *)> &func);
     // 遍历所有元素 执行
-    void forEach(std::function<void(HXmlElement *)> func);
+    void forEach(const std::function<void(HXmlElement *)>& func);
 
 protected:
-    HXmlElement(QString fileName, QDomElement *domElement, HXmlElement *parent);
+    HXmlElement(const QString &fileName, QDomElement *domElement, HXmlElement *parent);
     HXmlElement(HXmlElementPrivate &);
 
 private:

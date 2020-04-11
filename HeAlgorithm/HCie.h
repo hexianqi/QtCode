@@ -84,7 +84,7 @@ protected:
     void readStandard();
 
 protected:
-    QVector<CIE_TC_32> _stdData;
+    QVector<CIE_TC_32> _standard;
 };
 
 class HCie1931
@@ -113,7 +113,7 @@ protected:
     void readStandard();
 
 protected:
-    QVector<CIE1931> _stdData;
+    QVector<CIE1931> _standard;
     std::shared_ptr<HCieTc32> _cieTc32;
 };
 
@@ -131,7 +131,7 @@ protected:
     void readStandard();
 
 protected:
-    QVector<CIE_DAY> _stdData;
+    QVector<CIE_DAY> _standard;
 };
 
 class HIsotherm
@@ -149,7 +149,7 @@ protected:
     double calcDistance(int i, double u, double v);
 
 protected:
-    QVector<ISOTHERM> _stdData;
+    QVector<ISOTHERM> _standard;
 };
 
 class HCieUcs

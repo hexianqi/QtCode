@@ -137,24 +137,24 @@ bool HChromaticity::exportCieUcs(QString fileName, QPointF tc, double interval)
             << QString::number(ucs[i].cr, 'f', 4) << "\t"
             << QString::number(ucs[i].dr, 'f', 4);
         for (j = 0; j < 15; j++)
-            out << "\t" << QString::number(ucs[i].Ur[j], 'f', 2);
+            out << "\t" << QString::number(ucs.at(i).Ur[j], 'f', 2);
         for (j = 0; j < 15; j++)
-            out << "\t" << QString::number(ucs[i].Vr[j], 'f', 2);
+            out << "\t" << QString::number(ucs.at(i).Vr[j], 'f', 2);
         for (j = 0; j < 15; j++)
-            out << "\t" << QString::number(ucs[i].Wr[j], 'f', 2);
+            out << "\t" << QString::number(ucs.at(i).Wr[j], 'f', 2);
         out << endl;
     }
     file.close();
     return true;
 }
 
-QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, double tc)
+QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc)
 {
     auto ucs = calcCieUcs(tc);
     return calcColorRenderingIndex(uvk, spdk, ucs);
 }
 
-QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, QPolygonF spdk, CIE_UCS refer)
+QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, CIE_UCS refer)
 {
     int i;
     double ur,vr,cr,dr,ck,dk,cki,dki;
@@ -236,14 +236,14 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     ucs.dr = cd.y();
     for (i = 0; i < 15; i++)
     {
-        ucs.Ur[i] = Uri[i];
-        ucs.Vr[i] = Vri[i];
-        ucs.Wr[i] = Wri[i];
+        ucs.Ur[i] = Uri.at(i);
+        ucs.Vr[i] = Vri.at(i);
+        ucs.Wr[i] = Wri.at(i);
     }
     return ucs;
 }
 
-bool HChromaticity::exportIsotherm(QString fileName, QList<HeAlgorithm::ISOTHERM> data)
+bool HChromaticity::exportIsotherm(const QString &fileName, QList<HeAlgorithm::ISOTHERM> data)
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))

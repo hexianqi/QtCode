@@ -15,13 +15,11 @@ HAbstractTestDetailWidget::HAbstractTestDetailWidget(QWidget *parent) :
 {
 }
 
+HAbstractTestDetailWidget::~HAbstractTestDetailWidget() = default;
+
 HAbstractTestDetailWidget::HAbstractTestDetailWidget(HAbstractTestDetailWidgetPrivate &p, QWidget *parent) :
     ITestDetailWidget(parent),
     d_ptr(&p)
-{
-}
-
-HAbstractTestDetailWidget::~HAbstractTestDetailWidget()
 {
 }
 

@@ -14,12 +14,12 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 class HGslHelper
 {
 public:
-    static QPolygonF join(QVector<double> xa, QVector<double> ya);
-    static void split(QPolygonF poly, QVector<double> &xa, QVector<double> &ya);
+    static QPolygonF join(QVector<double> x, QVector<double> y);
+    static void split(QPolygonF poly, QVector<double> &x, QVector<double> &y);
 
 public:
     static QPointF formGsl(gsl_complex z);
-    static QPolygonF formGsl(QVector<gsl_complex> za);
+    static QPolygonF formGsl(QVector<gsl_complex> z);
     static QVector<double> fromGsl(gsl_vector *v);
     static QVector<double> fromGsl(gsl_matrix *m);
 };

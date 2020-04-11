@@ -49,7 +49,7 @@ HErrorType HSlSimulation::getData(HActionType action, QVector<uchar> &value, int
         value.clear();
         for (int i = 0; i < 2304; i++)
         {
-            int v = int(simulate(i));
+            auto v = int(simulate(i));
             value << uchar(v % 256);
             value << uchar(v / 256);
         }

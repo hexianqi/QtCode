@@ -17,7 +17,6 @@ class HChromatismItem : public IChromatismItem
 
 public:
     explicit HChromatismItem();
-     ~HChromatismItem() override;
 
 public:
     QString typeName() override;

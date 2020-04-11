@@ -17,7 +17,6 @@ class HQualityItem : public IQualityItem
 
 public:
     explicit HQualityItem();
-    ~HQualityItem() override;
 
 public:
     QString typeName() override;

@@ -17,12 +17,12 @@ HCie1931ChartPrivate::HCie1931ChartPrivate()
     pointFocus = new QScatterSeries;
     pointFocus->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
     pointFocus->setMarkerSize(11.0);
-    pointFocus->setBrush(HImageHelper::createCrossImage(QSize(11, 11), QPen(Qt::red, 2)));
+    pointFocus->setBrush(HDrawHelper::createCrossImage(QSize(11, 11), QPen(Qt::red, 2)));
     pointFocus->setPen(QColor(Qt::transparent));
     point = new QScatterSeries;
     point->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
     point->setMarkerSize(11.0);
-    point->setBrush(HImageHelper::createCrossImage(QSize(11, 11), QPen(Qt::black)));
+    point->setBrush(HDrawHelper::createCrossImage(QSize(11, 11), QPen(Qt::black)));
     point->setPen(QColor(Qt::transparent));
     gradeFocus = new QLineSeries;
     gradeFocus->setPen(QPen(Qt::red, 2));

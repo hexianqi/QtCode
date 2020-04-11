@@ -39,7 +39,7 @@ protected slots:
 
 protected:
     void setCurrentIndex(QModelIndex index);
-    void handleSourceChanged(QStringList names, QString name);
+    void handleSourceChanged(const QStringList &names, const QString &name);
 
 protected:
     QScopedPointer<HListCollectionDialogPrivate> d_ptr;

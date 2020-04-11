@@ -17,7 +17,6 @@ class HE_GUI_EXPORT HAbstractTestSetWidget : public ITestSetWidget
 
 public:
     explicit HAbstractTestSetWidget(QWidget *parent = nullptr);
-    ~HAbstractTestSetWidget() override;
 
 public:
     bool setTestState(bool b) override;

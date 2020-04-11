@@ -21,10 +21,6 @@ HElecCalibrateItem::HElecCalibrateItem(HElecCalibrateItemPrivate &p) :
 {
 }
 
-HElecCalibrateItem::~HElecCalibrateItem()
-{
-}
-
 QString HElecCalibrateItem::typeName()
 {
     return "HElecCalibrateItem";

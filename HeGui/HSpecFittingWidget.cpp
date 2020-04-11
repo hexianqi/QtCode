@@ -28,10 +28,6 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
     init();
 }
 
-HSpecFittingWidget::~HSpecFittingWidget()
-{
-}
-
 void HSpecFittingWidget::setData(HSpecFitting *p)
 {
     d_ptr->data = p;
@@ -113,7 +109,7 @@ bool HSpecFittingWidget::setTest(bool b)
     return true;
 }
 
-void HSpecFittingWidget::cancel(QString text)
+void HSpecFittingWidget::cancel(const QString &text)
 {
     d_ptr->progressDialog->cancel();
     setTest(false);

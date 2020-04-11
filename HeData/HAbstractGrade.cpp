@@ -21,10 +21,6 @@ HAbstractGrade::HAbstractGrade(HAbstractGradePrivate &p) :
 {
 }
 
-HAbstractGrade::~HAbstractGrade()
-{
-}
-
 void HAbstractGrade::readContent(QDataStream &s)
 {
     Q_D(HAbstractGrade);

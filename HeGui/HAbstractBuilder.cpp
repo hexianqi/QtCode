@@ -31,10 +31,6 @@ HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *pare
 {
 }
 
-HAbstractBuilder::~HAbstractBuilder()
-{
-}
-
 void HAbstractBuilder::buildAll()
 {
     buildFactory();

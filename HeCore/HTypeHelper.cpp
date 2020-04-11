@@ -22,7 +22,7 @@
 ** 第三步：通过int id = QMetaType::type(该类名字的字符串转换为QByteArray或者直接const char*)，
 **         然后使用QMetaType::create(id)返回一个新的该类的指针。例如：
 **          QString className = "CExample";
-**          int id = QMetaType::type(className.toLatin1());  //或者int id = QMetaType::type("CExample");
+**          int id = QMetaType::type(className.toLatin1());  // 或者int id = QMetaType::type("CExample");
 **          CExample* result = static_cast<CExample*>(QMetaType::create(id));
 ***************************************************************************************************************************/
 
@@ -33,14 +33,14 @@
 HE_CORE_BEGIN_NAMESPACE
 
 template <typename T>
-T *HTypeHelper::createObject(QString className)
+T *HTypeHelper::createObject(const QString &className)
 {
     int id = QMetaType::type(className.toLatin1());
     return id == QMetaType::UnknownType ? nullptr : dynamic_cast<T *>(QMetaType::create(id));
 }
 
 template <typename T>
-T *HTypeHelper::createObject(QString className, QVariantMap param)
+T *HTypeHelper::createObject(const QString &className, QVariantMap param)
 {
     static_assert(std::is_base_of<IInitializeable, T>::value, "T needs to be IInitializeable based.");
     auto t = createObject<T>(className);

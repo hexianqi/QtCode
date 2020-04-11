@@ -42,7 +42,7 @@ HErrorType HUi2008Protocol::getData(HActionType action, QVector<double> &value, 
     auto error = HLittleProtocol::getData(action, data, delay);
     if (error != E_OK)
         return error;
-    if (value.size() == 0)
+    if (value.isEmpty())
         value.resize(data.size() / 4);
     auto size = qMin(value.size(), data.size() / 4);
     for (i = 0; i < size; i++)
