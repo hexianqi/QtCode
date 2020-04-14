@@ -20,7 +20,6 @@ class HCircleCircular : public HAbstractCircular
 
 public:
     explicit HCircleCircular(QObject *parent = nullptr);
-    ~HCircleCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

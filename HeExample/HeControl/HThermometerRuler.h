@@ -60,7 +60,6 @@ public:
 
 public:
     explicit HThermometerRuler(QWidget *parent = nullptr);
-    ~HThermometerRuler() override;
 
 public:
     QSize sizeHint() const override;
@@ -85,12 +84,12 @@ public slots:
     void setSpace(int value);
     void setShowUserValue(bool b);
     void setUserValue(double value);
-    void setUserValueColor(const QColor &value);
-    void setBackgroundStart(const QColor &value);
-    void setBackgroundEnd(const QColor &value);
-    void setLineColor(const QColor &value);
-    void setBarBackground(const QColor &value);
-    void setBarColor(const QColor &value);
+    void setUserValueColor(const QColor &);
+    void setBackgroundStart(const QColor &);
+    void setBackgroundEnd(const QColor &);
+    void setLineColor(const QColor &);
+    void setBarBackground(const QColor &);
+    void setBarColor(const QColor &);
     void setBarPosition(BarPosition value);
     void setTickPosition(TickPosition value);
 

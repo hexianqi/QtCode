@@ -17,7 +17,6 @@ class HPositionTracking : public HAbstractMouseStrategy
 
 public:
     explicit HPositionTracking(QWidget *parent = nullptr);
-    ~HPositionTracking() override;
 
 signals:
     void positionChanged(QPointF pos);

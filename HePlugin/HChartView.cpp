@@ -18,6 +18,5 @@ HChartView::HChartView(HChartViewPrivate &p, QChart *chart, QWidget *parent) :
 {
 }
 
-HChartView::~HChartView()
-{
-}
+HChartView::~HChartView() = default;
+

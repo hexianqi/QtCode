@@ -31,7 +31,6 @@ class HPanelGauge : public HCircleGauge
 
 public:
     explicit HPanelGauge(QWidget *parent = nullptr);
-    ~HPanelGauge() override;
 
 public:
     int ringWidth() const;

@@ -30,7 +30,7 @@ void HHttpTest::run()
         }).post();
 
         // [4] PUT 请求，使用 json 添加参数，请求的参数使用 Json 格式
-        HHttpClient(url).debug(true).json("{\"name\": \"孔明\"}").success([](const QString &response) {
+        HHttpClient(url).debug(true).json(R"({"name": "孔明"})").success([](const QString &response) {
             qDebug().noquote() << response;
         }).put();
 

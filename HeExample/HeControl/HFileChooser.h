@@ -26,7 +26,6 @@ class HFileChooser : public HButtonLineEdit
 
 public:
     explicit HFileChooser(QWidget *parent = nullptr);
-    ~HFileChooser() override;
 
 public:
     QFileDialog::FileMode fileMode() const;

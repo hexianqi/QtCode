@@ -21,9 +21,9 @@ public:
     ~HSelectDialog();
 
 public:
-    void setLabelText(QString value);
-    void setOptionals(QStringList value);
-    void setSelected(QString value);
+    void setLabelText(const QString &);
+    void setOptionals(const QStringList &);
+    void setSelected(const QString &);
 
 public:
     QString selected();

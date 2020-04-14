@@ -13,17 +13,17 @@ HE_CONTROL_BEGIN_NAMESPACE
 void HControlHelper::initTranslator()
 {
     // 加载鼠标右键菜单翻译文件
-    auto t1 = new QTranslator(qApp);
+    auto t1 = new QTranslator(QApplication::instance());
     t1->load(":/translator/qt_zh_CN.qm");
-    qApp->installTranslator(t1);
+    QApplication::installTranslator(t1);
 
     // 加载富文本框鼠标右键菜单翻译文件
-    auto t2 = new QTranslator(qApp);
+    auto t2 = new QTranslator(QApplication::instance());
     t2->load(":/translator/textEdit.qm");
-    qApp->installTranslator(t2);
+    QApplication::installTranslator(t2);
 }
 
-QString HControlHelper::runTime(QDateTime start, QDateTime end)
+QString HControlHelper::runTime(const QDateTime &start, const QDateTime &end)
 {
     qint64 sec = start.secsTo(end);
     int day = 0;
@@ -77,7 +77,7 @@ void HControlHelper::framelessWidget(QWidget *widget, bool moveEnable, bool resi
     addClose(widget);
 }
 
-void HControlHelper::translucentWidget(QWidget *widget, QStringList files, bool moveEnable)
+void HControlHelper::translucentWidget(QWidget *widget, const QStringList &files, bool moveEnable)
 {
     widget->setAttribute(Qt::WA_TranslucentBackground);
     widget->setWindowFlags(Qt::FramelessWindowHint);

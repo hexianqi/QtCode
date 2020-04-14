@@ -16,7 +16,6 @@ class QDESIGNER_WIDGET_EXPORT HDoubleSpinBoxDelegate : public HItemDelegate
 
 public:
     explicit HDoubleSpinBoxDelegate(QObject *parent = nullptr);
-    ~HDoubleSpinBoxDelegate() override;
 
 public:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;

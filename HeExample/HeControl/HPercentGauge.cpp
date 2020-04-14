@@ -22,10 +22,6 @@ HPercentGauge::HPercentGauge(HPercentGaugePrivate &p, QWidget *parent) :
 {
 }
 
-HPercentGauge::~HPercentGauge()
-{
-}
-
 QColor HPercentGauge::baseColor() const
 {
     Q_D(const HPercentGauge);
@@ -151,7 +147,7 @@ void HPercentGauge::drawTitle(QPainter *painter)
     auto radius = 100;
     auto f = font();
     f.setPixelSize(20);
-    auto rect = QRectF(-radius, radius / 3, radius * 2, radius / 3);
+    auto rect = QRectF(-radius, radius / 3.0, radius * 2, radius / 3.0);
     painter->save();
     painter->setPen(d->titleColor);
     painter->setFont(f);

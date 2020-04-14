@@ -13,10 +13,6 @@ HWheelCircular::HWheelCircular(HWheelCircularPrivate &p, QObject *parent) :
 {
 }
 
-HWheelCircular::~HWheelCircular()
-{
-}
-
 void HWheelCircular::initialize(QVariantMap param)
 {
     if (param.contains("backgroundStart"))

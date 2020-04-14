@@ -24,20 +24,20 @@ public:
     HTestWidget2000Private();
 
 public:
-    IConfigManage *configManage;
-    HSpecEnergyWidget *energyWidget;
-    HSpecChromatismChartView *chromatismWidget;
-    HCie1931Widget *cieWidget;
-    HResultTableWidget *resultWidget;
-    ITestSetWidget *testSetWidget;
-    ITestDetailWidget *detailWidget;
+    IConfigManage *configManage = nullptr;
+    HSpecEnergyWidget *energyWidget = nullptr;
+    HSpecChromatismChartView *chromatismWidget = nullptr;
+    HCie1931Widget *cieWidget = nullptr;
+    HResultTableWidget *resultWidget = nullptr;
+    ITestSetWidget *testSetWidget = nullptr;
+    ITestDetailWidget *detailWidget = nullptr;
 
 public:
-    QAction *actionAdjust;
-    QAction *actionSetRam;
-    QAction *actionGetRam;
-    QAction *actionImportCurve;
-    QAction *actionExportCurve;
+    QAction *actionAdjust = nullptr;
+    QAction *actionSetRam = nullptr;
+    QAction *actionGetRam = nullptr;
+    QAction *actionImportCurve = nullptr;
+    QAction *actionExportCurve = nullptr;
 };
 
 #endif // HTESTWIDGET2000_P_H

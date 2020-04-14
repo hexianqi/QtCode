@@ -30,18 +30,16 @@ HDiskSizeTable::HDiskSizeTable(HDiskSizeTablePrivate &p, QWidget *parent) :
     init();
 }
 
-HDiskSizeTable::~HDiskSizeTable()
-{
-}
+HDiskSizeTable::~HDiskSizeTable() = default;
 
 QSize HDiskSizeTable::sizeHint() const
 {
-    return QSize(500, 300);
+    return {500, 300};
 }
 
 QSize HDiskSizeTable::minimumSizeHint() const
 {
-    return QSize(200, 150);
+    return {200, 150};
 }
 
 QColor HDiskSizeTable::background() const
@@ -84,10 +82,10 @@ void HDiskSizeTable::load()
     clearContents();
     setRowCount(0);
 #ifdef Q_OS_WIN
-    for (auto dir : QDir::drives())
+    for (const auto &dir : QDir::drives())
     {
-        QString dirName = dir.absolutePath();
-        LPCWSTR driver = (LPCWSTR)dirName.utf16();
+        auto dirName = dir.absolutePath();
+        auto driver = (LPCWSTR)dirName.utf16();
         ULARGE_INTEGER freeBytesAvailable, totalBytes, totalFreeBytes;
         if (GetDiskFreeSpaceEx(driver, &freeBytesAvailable, &totalBytes, &totalFreeBytes))
         {
@@ -194,7 +192,7 @@ void HDiskSizeTable::insertSize(const QString &name, const QString &use, const Q
         textColor = d_ptr->textColor3.name();
         chunkColor = d_ptr->chunkColor3.name();
     }
-    auto qss = QStringList() << QString("QProgressBar { background:%1; color:%2; border-width:0px; border-radius:0px; text-align:center; }").arg(d_ptr->background.name()).arg(textColor)
+    auto qss = QStringList() << QString("QProgressBar { background:%1; color:%2; border-width:0px; border-radius:0px; text-align:center; }").arg(d_ptr->background.name(), textColor)
                              << QString("QProgressBar::chunk { background:%1; border-radius:0px; }").arg(chunkColor);
 
     auto bar = new QProgressBar(this);

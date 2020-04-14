@@ -28,12 +28,12 @@ HLightButton::~HLightButton()
 
 QSize HLightButton::sizeHint() const
 {
-    return QSize(100, 100);
+    return {100, 100};
 }
 
 QSize HLightButton::minimumSizeHint() const
 {
-    return QSize(10, 10);
+    return {10, 10};
 }
 
 QString HLightButton::text() const
@@ -243,7 +243,7 @@ void HLightButton::paintEvent(QPaintEvent *)
 
     if (!isShowRect())
     {
-        painter.translate(width() / 2, height() / 2);
+        painter.translate(width() / 2.0, height() / 2.0);
         painter.scale(side / 200.0, side / 200.0);
         drawBorderOut(&painter);
         drawBorderIn(&painter);

@@ -22,9 +22,7 @@ HTipWidget::HTipWidget(HTipWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HTipWidget::~HTipWidget()
-{
-}
+HTipWidget::~HTipWidget() = default;
 
 QStringList HTipWidget::tips() const
 {
@@ -81,7 +79,7 @@ QTextBrowser *HTipWidget::tipCanvas() const
     return d_ptr->browser;
 }
 
-void HTipWidget::setTips(QStringList value)
+void HTipWidget::setTips(const QStringList &value)
 {
     if (d_ptr->model->stringList() == value)
         return;

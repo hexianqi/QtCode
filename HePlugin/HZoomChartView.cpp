@@ -18,10 +18,6 @@ HZoomChartView::HZoomChartView(HZoomChartViewPrivate &p, QChart *chart, QWidget 
 {
 }
 
-HZoomChartView::~HZoomChartView()
-{
-}
-
 void HZoomChartView::resizeEvent(QResizeEvent *e)
 {
     if (scene())

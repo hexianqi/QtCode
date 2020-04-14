@@ -114,7 +114,7 @@ void HTestWidget2000::clearResult()
 void HTestWidget2000::exportDatabase2()
 {
     Q_D(HTestWidget2000);
-    for (auto range : d->resultWidget->selectedRanges())
+    for (const auto &range : d->resultWidget->selectedRanges())
         exportDatabase(range.topRow(), range.rowCount());
 }
 

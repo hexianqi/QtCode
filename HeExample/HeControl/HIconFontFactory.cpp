@@ -46,7 +46,7 @@ QFont HIconFontFactory::createFont(const QString &family)
         return QFont(family);
     if (!d_ptr->fontResource.contains(family))
         return QFont();
-    auto id = db.addApplicationFont(d_ptr->fontResource.value(family));   // 加入字体，并获取字体ID
+    auto id = QFontDatabase::addApplicationFont(d_ptr->fontResource.value(family));   // 加入字体，并获取字体ID
     auto name = QFontDatabase::applicationFontFamilies(id).at(0);         // 获取字体名称
     return QFont(name);
 }

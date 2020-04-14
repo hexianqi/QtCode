@@ -5,32 +5,32 @@
 HE_CORE_USE_NAMESPACE
 HE_SQL_BEGIN_NAMESPACE
 
-QString HSql::toString(QString field, QVariant value)
+QString HSql::toString(const QString &field, const QVariant& value)
 {
     return HCore::toString(toType(field), value);
 }
 
-QString HSql::toCaption(QString field)
+QString HSql::toCaption(const QString &field)
 {
     return HCore::toCaption(toType(field));
 }
 
-QStringList HSql::toCaption(QStringList field)
+QStringList HSql::toCaption(const QStringList &field)
 {
     return HCore::toCaption(toType(field));
 }
 
-QString HSql::toUnit(QString field)
+QString HSql::toUnit(const QString &field)
 {
     return HCore::toUnit(toType(field));
 }
 
-QString HSql::toCaptionUnit(QString field)
+QString HSql::toCaptionUnit(const QString &field)
 {
     return HCore::toCaptionUnit(toType(field));
 }
 
-QStringList HSql::toCaptionUnit(QStringList field)
+QStringList HSql::toCaptionUnit(const QStringList &field)
 {
     return HCore::toCaptionUnit(toType(field));
 }

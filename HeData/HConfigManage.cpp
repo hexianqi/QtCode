@@ -18,7 +18,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 QSet<QString> supplement(QSet<QString> set, QSet<QString> other)
 {
-    for (auto s : other)
+    for (const auto &s : other)
     {
         if (set.contains(s))
             return set.unite(other);

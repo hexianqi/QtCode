@@ -45,7 +45,7 @@ void HChromaticityV2::calcSpectrum(HSpecData *data)
 QVector<double> HChromaticityV2::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc)
 {
     Q_D(HChromaticityV2);
-    auto ucs = d->cieUcs->getCieUcs(tc);
+    auto ucs = d->cieUcs->findCieUcs(tc);
     if (ucs.Tc < 2300)
         ucs = calcCieUcs(tc);
     return HChromaticity::calcColorRenderingIndex(uvk, spdk, ucs);

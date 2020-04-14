@@ -14,8 +14,6 @@ HAbstractShaderEffect::HAbstractShaderEffect(HAbstractShaderEffectPrivate &p, QO
 {
 }
 
-HAbstractShaderEffect::~HAbstractShaderEffect()
-{
-}
+HAbstractShaderEffect::~HAbstractShaderEffect() = default;
 
 HE_CONTROL_END_NAMESPACE

@@ -23,7 +23,7 @@ void TransparentLeaf::remove(TransparentComponent *)
     cout << "Can't remove from a Leaf" << endl;
 }
 
-TransparentComponent *TransparentLeaf::getChild(int index)
+TransparentComponent *TransparentLeaf::getChild(int /*index*/)
 {
     cout << "Can't get child from a Leaf" << endl;
     return nullptr;

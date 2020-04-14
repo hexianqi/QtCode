@@ -119,7 +119,7 @@ void HSqlBrowser::createAction()
     connect(d_ptr->actionExportExcel, &QAction::triggered, this, &HSqlBrowser::exportExcel);
     connect(d_ptr->actionExportPdf, &QAction::triggered, this, [=] { if (d_ptr->print != nullptr) d_ptr->print->exportPdf(); });
     connect(d_ptr->actionPrint, &QAction::triggered, this, [=] { if (d_ptr->print != nullptr) d_ptr->print->print(); });
-    connect(d_ptr->actionPrintPreview, &QAction::triggered, [=] { if (d_ptr->print != nullptr) d_ptr->print->printPreview(); });
+    connect(d_ptr->actionPrintPreview, &QAction::triggered, this, [=] { if (d_ptr->print != nullptr) d_ptr->print->printPreview(); });
 }
 
 void HSqlBrowser::createToolBar()

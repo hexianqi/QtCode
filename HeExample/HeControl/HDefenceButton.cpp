@@ -29,12 +29,12 @@ HDefenceButton::~HDefenceButton()
 
 QSize HDefenceButton::sizeHint() const
 {
-    return QSize(50, 50);
+    return {50, 50};
 }
 
 QSize HDefenceButton::minimumSizeHint() const
 {
-    return QSize(10, 10);
+    return {10, 10};
 }
 
 bool HDefenceButton::isMoveEnable() const

@@ -47,7 +47,6 @@ public:
 
 public:
     explicit HColorProgressBar(QWidget *parent = nullptr);
-    ~HColorProgressBar() override;
 
 public:
     QSize sizeHint() const override;

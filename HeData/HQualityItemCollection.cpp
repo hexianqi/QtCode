@@ -45,12 +45,12 @@ void HQualityItemCollection::writeContent(QDataStream &s)
 
 int HQualityItemCollection::check(QVariantMap value, QVariantMap *color)
 {
-    for (auto i : keys())
+    for (const auto &i : keys())
     {
         if (!value.contains(i))
             return -1;
     }
-    for (auto i : keys())
+    for (const auto &i : keys())
     {
         QColor c;
         if (!item(i)->isContains(value.value(i), &c))

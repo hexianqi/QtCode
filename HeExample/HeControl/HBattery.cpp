@@ -13,18 +13,14 @@ HBattery::HBattery(HBatteryPrivate &p, QWidget *parent) :
 {
 }
 
-HBattery::~HBattery()
-{
-}
-
 QSize HBattery::sizeHint() const
 {
-    return QSize(150, 80);
+    return {150, 80};
 }
 
 QSize HBattery::minimumSizeHint() const
 {
-    return QSize(30, 10);
+    return {30, 10};
 }
 
 double HBattery::alarmValue() const
@@ -183,12 +179,12 @@ void HBattery::paintEvent(QPaintEvent *)
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.save();
     // 绘制电池边框
-    auto rect1 = QRectF(QPointF(5, 5), QPointF(width() * 9 / 10, height() - 5));
+    auto rect1 = QRectF(QPointF(5, 5), QPointF(width() * 9.0 / 10, height() - 5));
     painter.setPen(QPen(borderColorStart(), 5));
     painter.setBrush(Qt::NoBrush);
     painter.drawRoundRect(rect1, borderRadius(), borderRadius());
     // 绘制电池头部
-    auto rect2 = QRectF(QPointF(rect1.right(), height() / 3), QPointF(width() - 5, height() * 2 / 3));
+    auto rect2 = QRectF(QPointF(rect1.right(), height() / 3.0), QPointF(width() - 5, height() * 2.0 / 3));
     auto gradient2 = QLinearGradient(rect2.topLeft(), rect2.bottomLeft());
     gradient2.setColorAt(0.0, borderColorStart());
     gradient2.setColorAt(1.0, borderColorEnd());

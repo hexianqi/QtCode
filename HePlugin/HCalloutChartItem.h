@@ -27,8 +27,8 @@ public:
     QFont font();
 
 public:
-    void setFont(QFont value);
-    void setText(QString value);
+    void setFont(const QFont &value);
+    void setText(const QString &value);
     void setAnchor(QPointF value);
     void updateGeometry();
 

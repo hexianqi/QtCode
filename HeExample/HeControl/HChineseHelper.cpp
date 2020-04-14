@@ -10,9 +10,7 @@ HChineseHelper::HChineseHelper() :
     init();
 }
 
-HChineseHelper::~HChineseHelper()
-{
-}
+HChineseHelper::~HChineseHelper() = default;
 
 void HChineseHelper::loadPingYin(const QString &fileName)
 {
@@ -34,7 +32,7 @@ void HChineseHelper::loadJianPin(const QString &fileName)
 
 QString HChineseHelper::toPingYin(const QString &value)
 {
-    if (d_ptr->pinYins.size() == 0)
+    if (d_ptr->pinYins.isEmpty())
         return value;
 
     QStringList list;

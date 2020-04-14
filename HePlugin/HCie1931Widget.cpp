@@ -10,8 +10,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QLabel>
 
-HCie1931WidgetPrivate::HCie1931WidgetPrivate(HCie1931Widget *q) :
-    HCartesianWidgetPrivate(q)
+HCie1931WidgetPrivate::HCie1931WidgetPrivate()
 {
     square = true;
     fontPointFocus.setPointSize(12);
@@ -45,13 +44,9 @@ void HCie1931WidgetPrivate::readStandard()
 }
 
 HCie1931Widget::HCie1931Widget(QWidget *parent) :
-    HCartesianWidget(*new HCie1931WidgetPrivate(this), parent)
+    HCartesianWidget(*new HCie1931WidgetPrivate, parent)
 {
     init();
-}
-
-HCie1931Widget::~HCie1931Widget()
-{
 }
 
 void HCie1931Widget::setEnableTracking(bool b)
@@ -106,7 +101,7 @@ void HCie1931Widget::setDrawPoint(bool b)
     refreshPixmap();
 }
 
-void HCie1931Widget::setColorHorseshoe(QColor value)
+void HCie1931Widget::setColorHorseshoe(const QColor &value)
 {
     Q_D(HCie1931Widget);
     if (d->colorHorseshoe == value)
@@ -115,7 +110,7 @@ void HCie1931Widget::setColorHorseshoe(QColor value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setColorPlanckian(QColor value)
+void HCie1931Widget::setColorPlanckian(const QColor &value)
 {
     Q_D(HCie1931Widget);
     if (d->colorPlanckian == value)
@@ -124,7 +119,7 @@ void HCie1931Widget::setColorPlanckian(QColor value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setColorGrade(QColor value)
+void HCie1931Widget::setColorGrade(const QColor &value)
 {
     Q_D(HCie1931Widget);
     if (d->colorGrade == value)
@@ -133,7 +128,7 @@ void HCie1931Widget::setColorGrade(QColor value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setColorGradeFocus(QColor value)
+void HCie1931Widget::setColorGradeFocus(const QColor &value)
 {
     Q_D(HCie1931Widget);
     if (d->colorGradeFocus == value)
@@ -142,7 +137,7 @@ void HCie1931Widget::setColorGradeFocus(QColor value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setColorPoint(QColor value)
+void HCie1931Widget::setColorPoint(const QColor &value)
 {
     Q_D(HCie1931Widget);
     if (d->colorPoint == value)
@@ -151,7 +146,7 @@ void HCie1931Widget::setColorPoint(QColor value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setColorPointFocus(QColor value)
+void HCie1931Widget::setColorPointFocus(const QColor &value)
 {
     Q_D(HCie1931Widget);
     if (d->colorPointFocus == value)
@@ -160,7 +155,7 @@ void HCie1931Widget::setColorPointFocus(QColor value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setFontPointFocus(QFont value)
+void HCie1931Widget::setFontPointFocus(const QFont &value)
 {
     Q_D(HCie1931Widget);
     if (d->fontPointFocus == value)
@@ -247,21 +242,21 @@ QFont HCie1931Widget::fontPointFocus()
     return d->fontPointFocus;
 }
 
-void HCie1931Widget::setGradeFocus(QPolygonF value)
+void HCie1931Widget::setGradeFocus(const QPolygonF &value)
 {
     Q_D(HCie1931Widget);
     d->gradeFocus = value;
     refreshPixmap();
 }
 
-void HCie1931Widget::setGrade(QList<QPolygonF> value)
+void HCie1931Widget::setGrade(const QList<QPolygonF> &value)
 {
     Q_D(HCie1931Widget);
     d->grades = value;
     refreshPixmap();
 }
 
-void HCie1931Widget::addGrade(QPolygonF value, bool focus, bool refresh)
+void HCie1931Widget::addGrade(const QPolygonF &value, bool focus, bool refresh)
 {
     Q_D(HCie1931Widget);
     d->grades << value;
@@ -271,7 +266,7 @@ void HCie1931Widget::addGrade(QPolygonF value, bool focus, bool refresh)
         refreshPixmap();
 }
 
-void HCie1931Widget::removeGrade(QPolygonF value, bool refresh)
+void HCie1931Widget::removeGrade(const QPolygonF &value, bool refresh)
 {
     Q_D(HCie1931Widget);
     if (d->grades.removeAll(value) > 0 && refresh)
@@ -293,7 +288,7 @@ void HCie1931Widget::setPointFocus(QPointF value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setPoint(QList<QPointF> value)
+void HCie1931Widget::setPoint(const QList<QPointF> &value)
 {
     Q_D(HCie1931Widget);
     d->points = value;
@@ -395,7 +390,7 @@ bool HCie1931Widget::drawGradeBlock(QPainter *painter)
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(d->colorGrade);
-    for (auto p : d->grades)
+    for (const auto &p : d->grades)
         painter->drawPolygon(d->coordinate->mapToPosition(p, d->plotArea));
 
     painter->setPen(QPen(d->colorGradeFocus, 2));

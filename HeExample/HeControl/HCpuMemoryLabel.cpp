@@ -36,12 +36,12 @@ HCpuMemoryLabel::~HCpuMemoryLabel()
 
 QSize HCpuMemoryLabel::sizeHint() const
 {
-    return QSize(300, 30);
+    return {300, 30};
 }
 
 QSize HCpuMemoryLabel::minimumSizeHint() const
 {
-    return QSize(30, 20);
+    return {30, 20};
 }
 
 void HCpuMemoryLabel::start(int interval)

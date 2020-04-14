@@ -17,9 +17,7 @@ HTableView::HTableView(HTableViewPrivate &p, QWidget *parent) :
     init();
 }
 
-HTableView::~HTableView()
-{
-}
+HTableView::~HTableView() = default;
 
 void HTableView::setEditTriggers(EditTriggers triggers)
 {

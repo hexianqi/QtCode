@@ -18,9 +18,7 @@ HShadeWidget::HShadeWidget(HShadeWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HShadeWidget::~HShadeWidget()
-{
-}
+HShadeWidget::~HShadeWidget() = default;
 
 void HShadeWidget::addWatched(QWidget *p)
 {
@@ -45,7 +43,7 @@ void HShadeWidget::setOpacity(double value)
 
 bool HShadeWidget::eventFilter(QObject *watched, QEvent *event)
 {
-    auto w = static_cast<QWidget *>(watched);
+    auto w = qobject_cast<QWidget *>(watched);
     if (w != nullptr)
     {
         if (w == d_ptr->mainWidget)
@@ -74,7 +72,7 @@ void HShadeWidget::showEvent(QShowEvent *e)
 
 void HShadeWidget::init()
 {
-    d_ptr->mainWidget = parentWidget() == nullptr ? qApp->desktop() : parentWidget();
+    d_ptr->mainWidget = parentWidget() == nullptr ? QApplication::desktop() : parentWidget();
     setObjectName("shade");
     setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
     setBackground(Qt::black);

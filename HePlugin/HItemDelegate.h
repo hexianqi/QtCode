@@ -24,8 +24,8 @@ signals:
 public:
     void setOrientation(Qt::Orientation value);
     void setOrigin(QPoint value);
-    void setType(QString value);
-    void setType(QStringList value);
+    void setType(const QString &);
+    void setType(const QStringList &);
 
 protected:
     HItemDelegate(HItemDelegatePrivate &p, QObject *parent = nullptr);

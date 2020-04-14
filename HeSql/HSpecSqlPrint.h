@@ -31,7 +31,7 @@ protected:
     QString textForExcel() override;
     int pageCount() override;
     void paintPage(QPainter *painter, int page) override;
-    double paintFooter(QPainter *painter, QString text) override;
+    double paintFooter(QPainter *painter, const QString &text) override;
     void paintBody(QPainter *painter, double y1, double y2, int page) override;
 
 protected:

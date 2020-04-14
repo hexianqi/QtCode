@@ -21,7 +21,6 @@ class HMoveEffect : public HAbstractShaderEffect
 
 public:
     explicit HMoveEffect(QObject *parent = nullptr);
-    ~HMoveEffect() override;
 
 public:
     void initialize(QVariantMap param) override;

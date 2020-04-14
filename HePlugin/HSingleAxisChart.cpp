@@ -10,10 +10,6 @@ HSingleAxisChart::HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *pa
 {
 }
 
-HSingleAxisChart::~HSingleAxisChart()
-{
-}
-
 void HSingleAxisChart::addSeries(QAbstractSeries *series)
 {
     Q_D(HSingleAxisChart);

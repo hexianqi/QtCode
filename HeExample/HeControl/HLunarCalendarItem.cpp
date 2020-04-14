@@ -24,18 +24,16 @@ HLunarCalendarItem::HLunarCalendarItem(HLunarCalendarItemPrivate &p, QWidget *pa
 }
 
 
-HLunarCalendarItem::~HLunarCalendarItem()
-{
-}
+HLunarCalendarItem::~HLunarCalendarItem() = default;
 
 QSize HLunarCalendarItem::sizeHint() const
 {
-    return QSize(100, 100);
+    return {100, 100};
 }
 
 QSize HLunarCalendarItem::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 bool HLunarCalendarItem::isSelect() const
@@ -419,16 +417,14 @@ void HLunarCalendarItem::drawCurrent(QPainter *painter, const QColor &color)
     if (d_ptr->selectType == SelectType_Circle)
     {
         int radius = side / 2 - 3;
-        painter->drawEllipse(QPointF(width / 2, height / 2), radius, radius);
+        painter->drawEllipse(QPointF(width / 2.0, height / 2.0), radius, radius);
     }
     if (d_ptr->selectType == SelectType_Triangle)
     {
-        int radius = side / 3;
-        QPolygon pts;
-        pts.setPoints(3, 1, 1, radius, 1, 1, radius);
+        auto radius = side / 3;
         painter->drawRect(rect());
         painter->setBrush(d_ptr->superColor);
-        painter->drawConvexPolygon(pts);
+        painter->drawConvexPolygon(QPolygon() << QPoint(1, 1) << QPoint(radius, 1) << QPoint(1, radius));
     }
     if (d_ptr->selectType == SelectType_Image)
     {

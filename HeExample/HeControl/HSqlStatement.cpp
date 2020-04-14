@@ -135,15 +135,13 @@ HSqlStatement::HSqlStatement(HSqlStatementPrivate &p) :
     init();
 }
 
-HSqlStatement::~HSqlStatement()
-{
-}
+HSqlStatement::~HSqlStatement() = default;
 
 QString HSqlStatement::getSql(const QString &sqlNamespace, const QString &id)
 {
     auto sql = d_ptr->statements.value(buildKey(sqlNamespace, id));
     if (sql.isEmpty())
-        qDebug() << QString("Cannot find SQL for %1::%2").arg(sqlNamespace).arg(id);
+        qDebug() << QString("Cannot find SQL for %1::%2").arg(sqlNamespace, id);
     return sql;
 }
 
@@ -162,7 +160,7 @@ void HSqlStatement::addSqlFile(const QString &fileName)
 void HSqlStatement::init()
 {
     d_ptr->handler = new HXmlSqlHandler;
-    for (auto fileName : HDBConfig::instance()->sqlFiles())
+    for (const auto &fileName : HDBConfig::instance()->sqlFiles())
         addSqlFile(fileName);
 }
 

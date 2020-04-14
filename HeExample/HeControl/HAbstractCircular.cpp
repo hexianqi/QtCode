@@ -15,16 +15,14 @@ HAbstractCircular::HAbstractCircular(HAbstractCircularPrivate &p, QObject *paren
 {
 }
 
-HAbstractCircular::~HAbstractCircular()
-{
-}
+HAbstractCircular::~HAbstractCircular() = default;
 
 void HAbstractCircular::draw(QPainter *painter, double /*factor*/, QVariantMap param)
 {
     auto w = param.value("width", 100).toInt();
     auto h = param.value("height", 100).toInt();
     auto side = qMin(w, h);
-    painter->translate(w / 2, h / 2);
+    painter->translate(w / 2.0, h / 2.0);
     painter->scale(side / 100.0, side / 100.0);
 }
 

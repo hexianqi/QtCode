@@ -25,7 +25,6 @@ class HWheelCircular : public HAbstractCircular
 
 public:
     explicit HWheelCircular(QObject *parent = nullptr);
-    ~HWheelCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

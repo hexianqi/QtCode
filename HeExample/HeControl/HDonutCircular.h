@@ -22,7 +22,6 @@ class HDonutCircular : public HAbstractCircular
 
 public:
     explicit HDonutCircular(QObject *parent = nullptr);
-    ~HDonutCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

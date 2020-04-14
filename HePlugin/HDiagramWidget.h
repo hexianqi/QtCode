@@ -34,22 +34,22 @@ signals:
     void plotAreaChanged(QRectF value);
 
 public:
-    virtual QSize sizeHint() const override;
-    virtual QSize minimumSizeHint() const override;
+     QSize sizeHint() const override;
+     QSize minimumSizeHint() const override;
 
 public:
     void setMargins(QMargins value);
     void setMargins(int left, int top, int right, int bottom);
-    void setBrushBackground(QBrush value);
-    void setBrushPlotArea(QBrush value);
+    void setBrushBackground(const QBrush &);
+    void setBrushPlotArea(const QBrush &);
     void setSquare(bool b);
     void setHalfSide(bool b);
     void setDrawFrame(bool b);
     void setDrawRuler(bool b);
     void setDrawGrid(bool b);
-    void setColorFrame(QColor value);
-    void setColorRuler(QColor value);
-    void setColorGrid(QColor value);
+    void setColorFrame(const QColor &);
+    void setColorRuler(const QColor &);
+    void setColorGrid(const QColor &);
 
 public:
     QMargins margins() const;
@@ -65,17 +65,17 @@ public:
     QColor colorGrid() const;
 
 public:
-    virtual void addPolygon(int id, QPolygonF value, bool refresh = true);
+    virtual void addPolygon(int id, const QPolygonF &value, bool refresh = true);
     virtual void removePolygon(int id);
     virtual void clearPolygon();
-    virtual void setPolygonColor(int id, QColor color);
+    virtual void setPolygonColor(int id, const QColor &value);
 
 protected:
     HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *) override;
-    virtual void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
+    void paintEvent(QPaintEvent *) override;
     virtual void setPlotArea(QRectF value);
     virtual void refreshPixmap(bool refresh = true);
     virtual void initPixmap(QPainter *);

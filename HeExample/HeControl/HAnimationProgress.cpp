@@ -15,10 +15,6 @@ HAnimationProgress::HAnimationProgress(HAnimationProgressPrivate &p, QWidget *pa
     init();
 }
 
-HAnimationProgress::~HAnimationProgress()
-{
-}
-
 bool HAnimationProgress::isAnimationEnable() const
 {
     Q_D(const HAnimationProgress);

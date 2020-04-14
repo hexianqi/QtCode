@@ -16,9 +16,7 @@ HEmailAddress::HEmailAddress(const QString &address, const QString &name, QObjec
     setName(name);
 }
 
-HEmailAddress::~HEmailAddress()
-{
-}
+HEmailAddress::~HEmailAddress() = default;
 
 HEmailAddress *HEmailAddress::fromString(const QString &value, QObject *parent)
 {

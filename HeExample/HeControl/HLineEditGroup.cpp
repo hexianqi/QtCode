@@ -15,9 +15,7 @@ HLineEditGroup::HLineEditGroup(HLineEditGroupPrivate &p, QObject *parent) :
 {
 }
 
-HLineEditGroup::~HLineEditGroup()
-{
-}
+HLineEditGroup::~HLineEditGroup() = default;
 
 void HLineEditGroup::addLineEdit(QLineEdit *p)
 {

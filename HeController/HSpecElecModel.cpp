@@ -34,7 +34,7 @@ QString HSpecElecModel::typeName()
 void HSpecElecModel::syncTestData(quint32 type)
 {
     Q_D(HSpecElecModel);
-    if (type & IConfigManage::ContainElec)
+    if ((type & IConfigManage::ContainElec) != 0u)
     {
         d->testElec->setCalibrate(d->configManage->elecCalibrateCollection());
         addAction(ACT_RESET_ELEC);
@@ -45,7 +45,7 @@ void HSpecElecModel::syncTestData(quint32 type)
 
 void HSpecElecModel::syncMachine(quint32 type)
 {
-    if (type & IConfigManage::ContainElec)
+    if ((type & IConfigManage::ContainElec) != 0u)
     {
         addAction(ACT_GET_REVERSE_CURRENT);
         addAction(ACT_SET_OUTPUT_VOLTAGE);

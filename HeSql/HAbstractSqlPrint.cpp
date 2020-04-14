@@ -35,9 +35,7 @@ HAbstractSqlPrint::HAbstractSqlPrint(HAbstractSqlPrintPrivate &p, QObject *paren
 {
 }
 
-HAbstractSqlPrint::~HAbstractSqlPrint()
-{
-}
+HAbstractSqlPrint::~HAbstractSqlPrint() = default;
 
 void HAbstractSqlPrint::setModel(ISqlTableModel *p)
 {
@@ -117,7 +115,7 @@ bool HAbstractSqlPrint::isValid()
     return d_ptr->model->isValid(d_ptr->model->currentRow());
 }
 
-QVariant HAbstractSqlPrint::recordValue(QString field, int index)
+QVariant HAbstractSqlPrint::recordValue(const QString &field, int index)
 {
     if (index < 0)
         index = d_ptr->model->currentRow();
@@ -140,23 +138,23 @@ QVariant HAbstractSqlPrint::recordValue(QString field, int index)
     return QVariant();
 }
 
-QString HAbstractSqlPrint::toString(QString field, int index)
+QString HAbstractSqlPrint::toString(const QString &field, int index)
 {
     return HSql::toString(field, recordValue(field, index));
 }
 
-QString HAbstractSqlPrint::toWhole(QString field, int index)
+QString HAbstractSqlPrint::toWhole(const QString &field, int index)
 {
     return HSql::toCaption(field) + ": " + toString(field, index) + " " + HSql::toUnit(field);
 }
 
-QPolygonF HAbstractSqlPrint::toPolygonF(QString field, int index)
+QPolygonF HAbstractSqlPrint::toPolygonF(const QString &field, int index)
 {
     QPolygonF poly;
     auto list = recordValue(field, index).toString().split(",", QString::SkipEmptyParts);
     if (list.isEmpty())
         return poly;
-    for (auto t : list)
+    for (const auto &t : list)
     {
         auto l = t.split(":", QString::SkipEmptyParts);
         if (l.size() < 2)
@@ -172,7 +170,7 @@ QString HAbstractSqlPrint::textForExcel(int index, int count)
     for (int i = 0; i < count; i++)
     {
         QStringList list;
-        for (auto f : d_ptr->fieldExportExcels)
+        for (const auto &f : d_ptr->fieldExportExcels)
             list << toString(f, index + i);
         text += list.join("\t") + "\n";
     }
@@ -191,7 +189,7 @@ void HAbstractSqlPrint::printPages(QPrinter *printer)
     }
 }
 
-double HAbstractSqlPrint::paintHeader(QPainter *painter, QString text)
+double HAbstractSqlPrint::paintHeader(QPainter *painter, const QString &text)
 {
     painter->setFont(QFont("宋体", 12));
     HSqlPainterHelper::drawText(painter, 20, 0, text);
@@ -199,7 +197,7 @@ double HAbstractSqlPrint::paintHeader(QPainter *painter, QString text)
     return 40;
 }
 
-double HAbstractSqlPrint::paintFooter(QPainter *painter, QString text)
+double HAbstractSqlPrint::paintFooter(QPainter *painter, const QString &text)
 {
     painter->setFont(QFont(tr("宋体"), 8));
     auto y = painter->viewport().height() - painter->fontMetrics().lineSpacing() - 10;
@@ -208,7 +206,7 @@ double HAbstractSqlPrint::paintFooter(QPainter *painter, QString text)
     return y - 5;
 }
 
-double HAbstractSqlPrint::paintTitle(QPainter *painter, QString text, double y)
+double HAbstractSqlPrint::paintTitle(QPainter *painter, const QString &text, double y)
 {
     painter->setFont(QFont(tr("宋体"), 16, QFont::Bold));
     return HSqlPainterHelper::drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;

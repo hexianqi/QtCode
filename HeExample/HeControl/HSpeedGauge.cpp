@@ -23,10 +23,6 @@ HSpeedGauge::HSpeedGauge(HSpeedGaugePrivate &p, QWidget *parent) :
 {
 }
 
-HSpeedGauge::~HSpeedGauge()
-{
-}
-
 int HSpeedGauge::ringWidth() const
 {
     Q_D(const HSpeedGauge);

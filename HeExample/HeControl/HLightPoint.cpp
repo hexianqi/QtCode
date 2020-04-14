@@ -26,12 +26,12 @@ HLightPoint::~HLightPoint()
 
 QSize HLightPoint::sizeHint() const
 {
-    return QSize(100, 100);
+    return {100, 100};
 }
 
 QSize HLightPoint::minimumSizeHint() const
 {
-    return QSize(5, 5);
+    return {5, 5};
 }
 
 int HLightPoint::step() const
@@ -77,7 +77,7 @@ void HLightPoint::paintEvent(QPaintEvent *)
     auto side = qMin(width(), height());
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.scale(side / 200.0, side / 200.0);
     drawBackground(&painter);
 }

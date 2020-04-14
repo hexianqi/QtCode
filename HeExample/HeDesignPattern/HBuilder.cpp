@@ -1,6 +1,5 @@
 #include "HBuilder.h"
 
-
 void Computer::setCpu(string value)
 {
     _cpu = value;

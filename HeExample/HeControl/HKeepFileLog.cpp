@@ -41,7 +41,7 @@ bool HKeepFileLog::writeContent(QStringList value)
     reopenFileIfNeeded();
     d->file->resize(0);
     QTextStream s(d->file);
-    for (auto v : value)
+    for (const auto &v : value)
         s << v << endl;
     return true;
 }
@@ -51,7 +51,7 @@ bool HKeepFileLog::appendContent(QStringList value)
     Q_D(HKeepFileLog);
     reopenFileIfNeeded();
     QTextStream s(d->file);
-    for (auto v : value)
+    for (const auto &v : value)
         s << v << endl;
     return true;
 }

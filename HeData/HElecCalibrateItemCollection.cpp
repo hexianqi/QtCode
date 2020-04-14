@@ -28,7 +28,7 @@ void HElecCalibrateItemCollection::initialize(QVariantMap param)
     {
         auto name = param.value("itemClassName").toString();
         auto types = param.value("itemTypeList").toStringList();
-        for (auto type : types)
+        for (const auto &type : types)
         {
             auto item = d->factory->createElecCalibrateItem(name);
             item->setData("[项类型]", type);

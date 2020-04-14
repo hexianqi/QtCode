@@ -128,8 +128,8 @@ void HAbstractModel::initWorkThread()
     {
         t->setParent(this);
         connect(t, &IThread::startFailed, this, &HAbstractModel::threadStartFailed);
-        connect(t, &IThread::startFinished, [=]{ emit threadStateChanged(t->threadInfo(), 1); });
-        connect(t, &IThread::stopFinished, [=]{ emit threadStateChanged(t->threadInfo(), 0); });
+        connect(t, &IThread::startFinished, this, [=]{ emit threadStateChanged(t->threadInfo(), 1); });
+        connect(t, &IThread::stopFinished, this, [=]{ emit threadStateChanged(t->threadInfo(), 0); });
         connect(t, &IThread::actionFailed, this, &HAbstractModel::handleActionFailed);
         connect(t, &IThread::actionFinished, this, &HAbstractModel::actionFinished);
         list << t->threadInfo();

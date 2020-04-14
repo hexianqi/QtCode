@@ -13,10 +13,7 @@ HMimeMessage::HMimeMessage(QObject *parent) :
     d_ptr->content = new HMimeMultiPart(this);
 }
 
-HMimeMessage::~HMimeMessage()
-{
-
-}
+HMimeMessage::~HMimeMessage() = default;
 
 HEmailAddress *HMimeMessage::sender()
 {
@@ -141,7 +138,7 @@ QString HMimeMessage::toString()
     /* --------- Recipients / To --------- */
     data << QString("To:%1").arg(toString(d_ptr->recipientsTo));
     /* --------- Recipients / Cc --------- */
-    if (d_ptr->recipientsCc.size() > 0)
+    if (!d_ptr->recipientsCc.isEmpty())
         data << QString("Cc:%1").arg(toString(d_ptr->recipientsCc));
     /* ------------- Subject ------------- */
     data << QString("Subject: %1").arg(encode(d_ptr->subject));

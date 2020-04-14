@@ -13,10 +13,6 @@ HZoomCircleCircular::HZoomCircleCircular(HZoomCircleCircularPrivate &p, QObject 
 {
 }
 
-HZoomCircleCircular::~HZoomCircleCircular()
-{
-}
-
 void HZoomCircleCircular::initialize(QVariantMap param)
 {
     if (param.contains("foreground"))

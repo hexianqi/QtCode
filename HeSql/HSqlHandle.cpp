@@ -67,7 +67,7 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
         editProductInfo();
 
     auto r = d_ptr->model->record();
-    for (auto f : field())
+    for (const auto &f : field())
     {
         if (f == "ID")
             continue;
@@ -128,7 +128,7 @@ void HSqlHandle::editProductInfo()
     dlg.exec();
 }
 
-void HSqlHandle::setFilter(QString value)
+void HSqlHandle::setFilter(const QString &value)
 {
     d_ptr->model->setFilter(value);
     d_ptr->model->select();

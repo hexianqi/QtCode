@@ -18,18 +18,17 @@ HImageSwitch::HImageSwitch(HImageSwitchPrivate &p, QWidget *parent) :
     setButtonStyle(ButtonStyle_2);
 }
 
-HImageSwitch::~HImageSwitch()
-{
-}
+HImageSwitch::~HImageSwitch() = default;
+
 
 QSize HImageSwitch::sizeHint() const
 {
-    return QSize(87, 28);
+    return {87, 28};
 }
 
 QSize HImageSwitch::minimumSizeHint() const
 {
-    return QSize(87, 28);
+    return {87, 28};
 }
 
 bool HImageSwitch::isChecked() const

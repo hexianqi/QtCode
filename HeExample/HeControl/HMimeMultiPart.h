@@ -30,7 +30,6 @@ public:
 
 public:
     explicit HMimeMultiPart(QObject *parent = nullptr);
-    ~HMimeMultiPart() override;
 
 public:
     MimeType mimeType() const;

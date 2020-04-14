@@ -26,10 +26,7 @@ HRbTableHeaderView::HRbTableHeaderView(HRbTableHeaderViewPrivate &p, Qt::Orienta
     init();
 }
 
-HRbTableHeaderView::~HRbTableHeaderView()
-{
-
-}
+HRbTableHeaderView::~HRbTableHeaderView() = default;
 
 void HRbTableHeaderView::setRowHeight(int row, int height)
 {
@@ -276,7 +273,7 @@ QModelIndex HRbTableHeaderView::indexAt(const QPoint &pos)
                 return cell;
         }
     }
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex HRbTableHeaderView::index(int row, int column) const
@@ -295,7 +292,7 @@ QModelIndex HRbTableHeaderView::columnSpanIndex(const QModelIndex &currentIndex)
         if (span.isValid() && cell.column() + span.toInt() - 1 >= column)
             return cell;
     }
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex HRbTableHeaderView::rowSpanIndex(const QModelIndex &currentIndex) const
@@ -309,7 +306,7 @@ QModelIndex HRbTableHeaderView::rowSpanIndex(const QModelIndex &currentIndex) co
         if (span.isValid() && cell.row() + span.toInt() - 1 >= row)
             return cell;
     }
-    return QModelIndex();
+    return {};
 }
 
 int HRbTableHeaderView::columnCount() const

@@ -17,6 +17,7 @@ HSerialPort::HSerialPort(HSerialPortPrivate &p) :
 HSerialPort::~HSerialPort()
 {
     qDebug() << __func__;
+    close();
 }
 
 void HSerialPort::initialize(QVariantMap param)

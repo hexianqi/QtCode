@@ -20,7 +20,7 @@ public:
     // 初始化翻译
     static void initTranslator();
     // 运行时间
-    static QString runTime(QDateTime start, QDateTime end);
+    static QString runTime(const QDateTime &start, const QDateTime &end);
 
 public:
     // 窗体居中桌面
@@ -28,7 +28,7 @@ public:
     // 无边框窗体
     static void framelessWidget(QWidget *, bool moveEnable = true, bool resizeEnable = true);
     // 无边框背景窗体
-    static void translucentWidget(QWidget *, QStringList files, bool moveEnable = true);
+    static void translucentWidget(QWidget *, const QStringList &files, bool moveEnable = true);
 
 public:
     // 添加关闭

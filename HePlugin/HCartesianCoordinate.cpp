@@ -9,15 +9,13 @@ HCartesianCoordinate::HCartesianCoordinate(QObject *parent) :
     setAxis(QRectF(0, 0, 1, 1), 5, 5);
 }
 
+HCartesianCoordinate::~HCartesianCoordinate() = default;
+
 HCartesianCoordinate::HCartesianCoordinate(HCartesianCoordinatePrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)
 {
     setAxis(QRectF(0, 0, 1, 1), 5, 5);
-}
-
-HCartesianCoordinate::~HCartesianCoordinate()
-{
 }
 
 QPointF HCartesianCoordinate::map(QPointF data, QRectF target, QRectF source)
@@ -26,7 +24,7 @@ QPointF HCartesianCoordinate::map(QPointF data, QRectF target, QRectF source)
     auto dy = target.height() / source.height();
     auto x = target.left() + (data.x() - source.left()) * dx;
     auto y = target.top() - (data.y() - source.bottom()) * dy;
-    return QPointF(x, y);
+    return {x, y};
 }
 
 QPolygonF HCartesianCoordinate::map(QPolygonF data, QRectF target, QRectF source)
@@ -49,7 +47,7 @@ QRectF HCartesianCoordinate::map(QRectF data, QRectF target, QRectF source)
     auto dy = target.height() / source.height();
     auto x = target.left() + (data.left() - source.left()) * dx;
     auto y = target.top() - (data.bottom() - source.bottom()) * dy;
-    return QRectF(x, y, data.width() * dx, data.height() * dy);
+    return {x, y, data.width() * dx, data.height() * dy};
 }
 
 void HCartesianCoordinate::adjustAxis(double &min, double &max, int &tick)
@@ -140,14 +138,14 @@ QStringList HCartesianCoordinate::axisY()
     return list;
 }
 
-QPointF HCartesianCoordinate::mapToPosition(QPointF value, QRectF logic)
+QPointF HCartesianCoordinate::mapToPosition(QPointF value, const QRectF logic)
 {
     return map(value, logic, d_ptr->axis);
 }
 
 QPolygonF HCartesianCoordinate::mapToPosition(QPolygonF value, QRectF logic)
 {
-    return map(value, logic, d_ptr->axis);
+    return map(std::move(value), logic, d_ptr->axis);
 }
 
 QPointF HCartesianCoordinate::mapToValue(QPointF position, QRectF logic)
@@ -157,7 +155,7 @@ QPointF HCartesianCoordinate::mapToValue(QPointF position, QRectF logic)
 
 QPolygonF HCartesianCoordinate::mapToValue(QPolygonF position, QRectF logic)
 {
-    return map(position, d_ptr->axis, logic);
+    return map(std::move(position), d_ptr->axis, logic);
 }
 
 QRectF HCartesianCoordinate::mapToValue(QRectF rect, QRectF logic)

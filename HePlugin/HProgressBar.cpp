@@ -1,20 +1,20 @@
 #include "HProgressBar_p.h"
 
-HProgressBar::HProgressBar(QWidget *parent)
-    : QProgressBar(parent), d_ptr(new HProgressBarPrivate)
+HProgressBar::HProgressBar(QWidget *parent) :
+    QProgressBar(parent),
+    d_ptr(new HProgressBarPrivate)
 {
     updateStyleSheet();
 }
 
-HProgressBar::HProgressBar(HProgressBarPrivate &p, QWidget *parent)
-    :  QProgressBar(parent), d_ptr(&p)
+HProgressBar::HProgressBar(HProgressBarPrivate &p, QWidget *parent) :
+    QProgressBar(parent),
+    d_ptr(&p)
 {
     updateStyleSheet();
 }
 
-HProgressBar::~HProgressBar()
-{
-}
+HProgressBar::~HProgressBar() = default;
 
 void HProgressBar::setOrientation(Qt::Orientation value)
 {
@@ -22,7 +22,7 @@ void HProgressBar::setOrientation(Qt::Orientation value)
     updateStyleSheet();
 }
 
-void HProgressBar::setColorProgress(QColor value)
+void HProgressBar::setColorProgress(const QColor &value)
 {
     d_ptr->color = value;
     updateStyleSheet();

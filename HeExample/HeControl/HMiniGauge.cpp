@@ -21,11 +21,6 @@ HMiniGauge::HMiniGauge(HMiniGaugePrivate &p, QWidget *parent) :
 {
 }
 
-
-HMiniGauge::~HMiniGauge()
-{
-}
-
 HControlType::PointerStyle HMiniGauge::pointerStyle() const
 {
     Q_D(const HMiniGauge);

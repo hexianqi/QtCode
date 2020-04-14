@@ -17,14 +17,13 @@ class HMimeAttachment : public HMimeFile
     Q_DECLARE_PRIVATE(HMimeAttachment)
 
 public:
-    explicit HMimeAttachment(QString fileName, QObject *parent = nullptr);
-    ~HMimeAttachment() override;
+    explicit HMimeAttachment(const QString &fileName, QObject *parent = nullptr);
 
 public:
     void prepare() override;
 
 protected:
-    HMimeAttachment(HMimeAttachmentPrivate &p, QString fileName, QObject *parent = nullptr);
+    HMimeAttachment(HMimeAttachmentPrivate &p, const QString &fileName, QObject *parent = nullptr);
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -21,11 +21,7 @@ void HChromatismChartView::handlePlotAreaChanged(QRectF value)
     d->pointFocusItem->setPos(value.right() - d->pointFocusItem->boundingRect().width() - 5, value.top() + 5);
 }
 
-HChromatismChartView::~HChromatismChartView()
-{
-}
-
-void HChromatismChartView::setData(QVariantMap value)
+void HChromatismChartView::setData(const QVariantMap &value)
 {
     Q_D(HChromatismChartView);
     if (value.contains("[标题]"))

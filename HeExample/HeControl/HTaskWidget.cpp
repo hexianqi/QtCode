@@ -16,9 +16,7 @@ HTaskWidget::HTaskWidget(QWidget *body, QWidget *parent) :
     init(body);
 }
 
-HTaskWidget::~HTaskWidget()
-{
-}
+HTaskWidget::~HTaskWidget() = default;
 
 QWidget *HTaskWidget::body() const
 {

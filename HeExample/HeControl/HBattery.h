@@ -35,7 +35,6 @@ class HBattery : public HAnimationProgress
 
 public:
     explicit HBattery(QWidget *parent = nullptr);
-    ~HBattery() override;
 
 public:
     QSize sizeHint() const override;
@@ -56,12 +55,12 @@ public slots:
     void setBorderRadius(int value);
     void setBackgroundRadius(int value);
     void setHeadRadius(int value);
-    void setBorderColorStart(const QColor &value);
-    void setBorderColorEnd(const QColor &value);
-    void setAlarmColorStart(const QColor &value);
-    void setAlarmColorEnd(const QColor &value);
-    void setNormalColorStart(const QColor &value);
-    void setNormalColorEnd(const QColor &value);
+    void setBorderColorStart(const QColor &);
+    void setBorderColorEnd(const QColor &);
+    void setAlarmColorStart(const QColor &);
+    void setAlarmColorEnd(const QColor &);
+    void setNormalColorStart(const QColor &);
+    void setNormalColorEnd(const QColor &);
 
 protected:
     HBattery(HBatteryPrivate &, QWidget *parent = nullptr);

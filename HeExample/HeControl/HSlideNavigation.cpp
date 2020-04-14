@@ -19,9 +19,7 @@ HSlideNavigation::HSlideNavigation(HSlideNavigationPrivate &p, QWidget *parent) 
     init();
 }
 
-HSlideNavigation::~HSlideNavigation()
-{
-}
+HSlideNavigation::~HSlideNavigation() = default;
 
 QStringList HSlideNavigation::items() const
 {
@@ -106,7 +104,7 @@ QColor HSlideNavigation::itemLineColor() const
     return d_ptr->itemLineColor;
 }
 
-void HSlideNavigation::addItem(QString value)
+void HSlideNavigation::addItem(const QString &value)
 {
     if(value.isEmpty())
         return;
@@ -152,9 +150,9 @@ void HSlideNavigation::addItem(QString value)
     update();
 }
 
-void HSlideNavigation::addItem(QStringList value)
+void HSlideNavigation::addItem(const QStringList &value)
 {
-    for (auto v : value)
+    for (const auto &v : value)
         addItem(v);
 }
 
@@ -312,7 +310,7 @@ void HSlideNavigation::moveTo(int value)
 
 }
 
-void HSlideNavigation::moveTo(QString value)
+void HSlideNavigation::moveTo(const QString &value)
 {
     for (auto it = d_ptr->items.begin(); it != d_ptr->items.end(); it++)
     {
@@ -457,7 +455,7 @@ void HSlideNavigation::drawText(QPainter *painter)
 {
     painter->save();
     painter->setPen(d_ptr->itemTextColor);
-    for (auto v : d_ptr->items)
+    for (const auto &v : d_ptr->items)
         painter->drawText(v.second, Qt::AlignCenter, v.first);
     painter->restore();
 }

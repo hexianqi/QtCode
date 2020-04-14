@@ -27,12 +27,12 @@ HMagicFish::~HMagicFish()
 
 QSize HMagicFish::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HMagicFish::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 QColor HMagicFish::baseColor() const
@@ -192,7 +192,7 @@ void HMagicFish::paintEvent(QPaintEvent *)
 
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.rotate(d_ptr->angle);
     drawHead(&painter);
     drawBody(&painter, pos, angle);
@@ -234,7 +234,7 @@ void HMagicFish::drawBody(QPainter *painter, const QPointF &pos, double angle)
 void HMagicFish::drawFin(QPainter *painter, const QPointF &pos, double angle, bool left)
 {
     auto sign = left ? 1.0 : -1.0;
-    auto controlAngle = 115;    
+    auto controlAngle = 115;
     auto finAngle = d_ptr->finMoveEnable ? qSin(calcWaveRadians(16.1)) * 12.0 : 2.0;
     auto endPos = calcPoint(pos, d_ptr->finLen, angle + (finAngle + 180) * sign);
     auto controlPos = calcPoint(pos, d_ptr->finLen * 1.8, angle + (controlAngle + finAngle) * sign);
@@ -337,7 +337,7 @@ QPointF HMagicFish::calcPoint(const QPointF &pos, double len, double angle)
 {
     auto x = qCos(qDegreesToRadians(angle)) * len;
     auto y = qSin(qDegreesToRadians(angle - 180)) * len;
-    return QPointF(pos + QPointF(x, y));
+    return pos + QPointF(x, y);
 }
 
 double HMagicFish::calcWaveRadians(double value)

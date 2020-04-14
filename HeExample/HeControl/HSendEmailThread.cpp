@@ -96,18 +96,18 @@ void HSendEmailThread::run()
         // 添加发件人
         message.setSender(HEmailAddress::fromString(d_ptr->sender));
         // 添加收件人
-        for (auto addr : d_ptr->recipientTo.split(';'))
+        for (const auto &addr : d_ptr->recipientTo.split(';'))
             message.addRecipientTo(HEmailAddress::fromString(addr));
         // 添加抄送
         if (!d_ptr->recipientCc.isEmpty())
         {
-            for (auto addr : d_ptr->recipientCc.split(';'))
+            for (const auto &addr : d_ptr->recipientCc.split(';'))
                 message.addRecipientCc(HEmailAddress::fromString(addr));
         }
         // 添加密抄
         if (!d_ptr->recipientBcc.isEmpty())
         {
-            for (auto addr : d_ptr->recipientBcc.split(';'))
+            for (const auto &addr : d_ptr->recipientBcc.split(';'))
                 message.addRecipientBcc(HEmailAddress::fromString(addr));
         }
         // 构建邮件标题
@@ -117,7 +117,7 @@ void HSendEmailThread::run()
         // 构建附件
         if (!fileName.isEmpty())
         {
-            for (auto name : fileName.split(";"))
+            for (const auto &name : fileName.split(";"))
             {
                 if (QFile::exists(name))
                     message.addPart(new HMimeAttachment(name));

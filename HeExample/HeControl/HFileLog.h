@@ -18,7 +18,6 @@ class HFileLog : public HAbstractFileLog
 
 public:
     explicit HFileLog(QObject *parent = nullptr);
-    ~HFileLog() override;
 
 public:
     bool readContent(QStringList &value) override;

@@ -28,7 +28,6 @@ public:
 
 public:
     explicit HSplitEffect(QObject *parent = nullptr);
-    ~HSplitEffect() override;
 
 public:
     void initialize(QVariantMap param) override;

@@ -28,14 +28,12 @@ HRbTableHeaderModel::HRbTableHeaderModel(HRbTableHeaderModelPrivate &p, QObject 
 {
 }
 
-HRbTableHeaderModel::~HRbTableHeaderModel()
-{
-}
+HRbTableHeaderModel::~HRbTableHeaderModel() = default;
 
 QModelIndex HRbTableHeaderModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!hasIndex(row, column, parent))
-        return QModelIndex();
+        return {};
 
     auto parentItem = parent.isValid() ? static_cast<HRbTableHeaderItem *>(parent.internalPointer()) : d_ptr->root;
     auto childItem = parentItem->child(row, column);

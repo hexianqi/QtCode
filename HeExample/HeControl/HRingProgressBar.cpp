@@ -13,18 +13,14 @@ HRingProgressBar::HRingProgressBar(HRingProgressBarPrivate &p, QWidget *parent) 
 {
 }
 
-HRingProgressBar::~HRingProgressBar()
-{
-}
-
 QSize HRingProgressBar::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HRingProgressBar::minimumSizeHint() const
 {
-    return QSize(40, 40);
+    return {40, 40};
 }
 
 bool HRingProgressBar::isReverse() const
@@ -295,7 +291,7 @@ void HRingProgressBar::paintEvent(QPaintEvent *)
     QPainter painter(this);
     // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.scale(side / 200.0, side / 200.0);
     // 绘制背景
     drawBackground(&painter);

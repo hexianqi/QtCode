@@ -21,9 +21,7 @@ HAnimatedCheckBox::HAnimatedCheckBox(HAnimatedCheckBoxPrivate &p, QWidget *paren
     init();
 }
 
-HAnimatedCheckBox::~HAnimatedCheckBox()
-{
-}
+HAnimatedCheckBox::~HAnimatedCheckBox() = default;
 
 // 重写 paintEvent 方法，清除 QCheckBox 的默认样式
 void HAnimatedCheckBox::paintEvent(QPaintEvent *)

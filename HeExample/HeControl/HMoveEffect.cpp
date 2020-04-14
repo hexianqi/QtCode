@@ -13,10 +13,6 @@ HMoveEffect::HMoveEffect(HMoveEffectPrivate &p, QObject *parent) :
 {
 }
 
-HMoveEffect::~HMoveEffect()
-{
-}
-
 void HMoveEffect::initialize(QVariantMap param)
 {
     if (param.contains("direction"))

@@ -34,7 +34,7 @@ public:
 
 public slots:
     void setBorderWidth(int);
-    void setBackground(QColor);
+    void setBackground(const QColor &);
 
 public:
     int borderWidth() const;

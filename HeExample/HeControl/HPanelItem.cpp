@@ -18,9 +18,7 @@ HPanelItem::HPanelItem(HPanelItemPrivate &p, QWidget *parent) :
     init();
 }
 
-HPanelItem::~HPanelItem()
-{
-}
+HPanelItem::~HPanelItem() = default;
 
 int HPanelItem::borderWidth() const
 {

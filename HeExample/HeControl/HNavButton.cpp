@@ -15,9 +15,7 @@ HNavButton::HNavButton(HNavButtonPrivate &p, QWidget *parent) :
 {
 }
 
-HNavButton::~HNavButton()
-{
-}
+HNavButton::~HNavButton() = default;
 
 int HNavButton::paddingLeft() const
 {

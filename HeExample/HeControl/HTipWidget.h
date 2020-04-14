@@ -48,9 +48,9 @@ public:
     QTextBrowser *tipCanvas() const;
 
 public slots:
-    void setTips(QStringList value);
+    void setTips(const QStringList &);
     void setCurrentTip(int value);
-    void setDefaultIcon(const QIcon &value);
+    void setDefaultIcon(const QIcon &);
     void setIconSize(QSize value);
     void setIconAlignment(Qt::Alignment value);
     void setCheckVisible(bool b);

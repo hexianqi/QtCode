@@ -14,9 +14,7 @@ HHexSpinBox::HHexSpinBox(HHexSpinBoxPrivate &p, QWidget *parent) :
     init();
 }
 
-HHexSpinBox::~HHexSpinBox()
-{
-}
+HHexSpinBox::~HHexSpinBox() = default;
 
 QValidator::State HHexSpinBox::validate(QString &text, int &pos) const
 {

@@ -22,15 +22,14 @@ class QDESIGNER_WIDGET_EXPORT HCartesianWidget : public HDiagramWidget
 
 public:
     explicit HCartesianWidget(QWidget *parent = nullptr);
-    ~HCartesianWidget() override ;
 
 public:
     void setCoordinate(HCartesianCoordinate *);
     void setCoordinate(QRectF rect, int tickX, int tickY);
     void setEnableZoom(bool b);
     void setUnitInRuler(bool b);
-    void setUnitX(QString value);
-    void setUnitY(QString value);
+    void setUnitX(const QString &value);
+    void setUnitY(const QString &value);
 
 public:
     bool isEnableZoom();

@@ -15,9 +15,7 @@ HAbstractMultiPanel::HAbstractMultiPanel(HAbstractMultiPanelPrivate &p, QWidget 
 {
 }
 
-HAbstractMultiPanel::~HAbstractMultiPanel()
-{
-}
+HAbstractMultiPanel::~HAbstractMultiPanel() = default;
 
 int HAbstractMultiPanel::currentIndex() const
 {

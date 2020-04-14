@@ -56,7 +56,7 @@ void HPngAmend::on_pushButton_3_clicked()
     {
         QDir imagePath(currentDir);
         auto list = imagePath.entryList(QStringList() << "*.png");
-        for(auto name : list)
+        for(const auto &name : list)
             files << currentDir + QDir::separator() + name;
     }
 

@@ -18,7 +18,6 @@ class HBackgroundEventFilter : public HAbstractMouseEventFilter
 
 public:
     explicit HBackgroundEventFilter(QObject *parent = nullptr);
-    ~HBackgroundEventFilter() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -28,7 +27,7 @@ public:
     bool addWatched(QObject *) override;
 
 public:
-    void setBackgroundImage(QStringList value);
+    void setBackgroundImage(const QStringList &);
     void setBackgroundRepeated(bool b);
     void setBackgroundStretched(bool b);
 

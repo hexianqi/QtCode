@@ -3,7 +3,7 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-void HXmlHelper::setAttribute(QDomElement elem, QString tagName, QString attributeName, QString attributeValue)
+void HXmlHelper::setAttribute(QDomElement elem, const QString &tagName, const QString &attributeName, const QString &attributeValue)
 {
     if (elem.tagName().compare(tagName) == 0)
         elem.setAttribute(attributeName, attributeValue);

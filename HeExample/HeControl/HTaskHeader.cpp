@@ -20,10 +20,7 @@ HTaskHeader::HTaskHeader(HTaskHeaderPrivate &p, QWidget *parent) :
     init();
 }
 
-
-HTaskHeader::~HTaskHeader()
-{
-}
+HTaskHeader::~HTaskHeader() = default;
 
 QToolButton *HTaskHeader::toggleButton() const
 {

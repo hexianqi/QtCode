@@ -8,8 +8,7 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecSampleWidgetPrivate::HSpecSampleWidgetPrivate(HSpecSampleWidget *q) :
-    HVernierWidgetPrivate(q)
+HSpecSampleWidgetPrivate::HSpecSampleWidgetPrivate()
 {
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
     decimals = 0;
@@ -17,7 +16,7 @@ HSpecSampleWidgetPrivate::HSpecSampleWidgetPrivate(HSpecSampleWidget *q) :
 }
 
 HSpecSampleWidget::HSpecSampleWidget(QWidget *parent) :
-    HVernierWidget(*new HSpecSampleWidgetPrivate(this), parent)
+    HVernierWidget(*new HSpecSampleWidgetPrivate, parent)
 {
     init();
 }

@@ -14,18 +14,14 @@ HCircleGauge::HCircleGauge(HCircleGaugePrivate &p, QWidget *parent) :
 {
 }
 
-HCircleGauge::~HCircleGauge()
-{
-}
-
 QSize HCircleGauge::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HCircleGauge::minimumSizeHint() const
 {
-    return QSize(40, 40);
+    return {40, 40};
 }
 
 int HCircleGauge::scaleMajor() const
@@ -190,7 +186,7 @@ void HCircleGauge::preDraw(QPainter *painter)
     // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
     auto side = qMin(width(), height());
     painter->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter->translate(width() / 2, height() / 2);
+    painter->translate(width() / 2.0, height() / 2.0);
     painter->scale(side / 200.0, side / 200.0);
 }
 
@@ -248,8 +244,8 @@ void HCircleGauge::drawScaleLabel(QPainter *painter, int radius)
         auto text = QString::number(value, 'f', d->scaleDecimal);
         auto textWidth = fontMetrics().width(text);
         auto textHeight = fontMetrics().height();
-        auto x = radius * qCos(angle) - textWidth / 2;
-        auto y = -radius * qSin(angle) + textHeight / 4;
+        auto x = radius * qCos(angle) - textWidth / 2.0;
+        auto y = -radius * qSin(angle) + textHeight / 4.0;
         painter->drawText(QPointF(x, y), text);
     }
     painter->restore();
@@ -258,14 +254,12 @@ void HCircleGauge::drawScaleLabel(QPainter *painter, int radius)
 void HCircleGauge::drawPointer(QPainter *painter, int radius)
 {
     Q_D(HCircleGauge);
-    QPolygon pts;
-    pts.setPoints(4, -5, 0, 0, -8, 5, 0, 0, radius);
     painter->save();
     painter->setPen(Qt::NoPen);
     painter->setBrush(d->pointerColor);
     painter->rotate(d->angleStart);
     painter->rotate(toAngle(d->currentValue));
-    painter->drawConvexPolygon(pts);
+    painter->drawConvexPolygon(QPolygon() << QPoint(-5, 0) << QPoint(0, -8) << QPoint(5, 0) << QPoint(0, radius));
     painter->restore();
 }
 
@@ -274,7 +268,7 @@ void HCircleGauge::drawValue(QPainter *painter, int radius)
     Q_D(HCircleGauge);
     auto f = font();
     f.setPixelSize(30);
-    auto rect = QRectF(-radius, radius / 2, radius * 2, radius / 3);
+    auto rect = QRectF(-radius, radius / 2.0, radius * 2.0, radius / 3.0);
     auto text = QString::number(d->currentValue, 'f', d->decimal);
     painter->save();
     painter->setPen(d->textColor);

@@ -40,9 +40,7 @@ HNinePatchPainter::HNinePatchPainter(HNinePatchPainterPrivate &p) :
 {
 }
 
-HNinePatchPainter::~HNinePatchPainter()
-{
-}
+HNinePatchPainter::~HNinePatchPainter() = default;
 
 void HNinePatchPainter::setMargins(QMargins value)
 {

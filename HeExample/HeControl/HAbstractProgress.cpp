@@ -14,9 +14,7 @@ HAbstractProgress::HAbstractProgress(HAbstractProgressPrivate &p, QWidget *paren
 {
 }
 
-HAbstractProgress::~HAbstractProgress()
-{
-}
+HAbstractProgress::~HAbstractProgress() = default;
 
 double HAbstractProgress::minimum() const
 {

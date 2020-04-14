@@ -41,14 +41,14 @@ QModelIndex HColorModel::insertColor(int index, const QColor &color, const QStri
 void HColorModel::setStandardColors()
 {
     clear();
-    for (auto name : QColor::colorNames())
+    for (const auto &name : QColor::colorNames())
         addColor(QColor(name), name);
 }
 
 void HColorModel::setColors(const QStringList &value)
 {
     clear();
-    for (auto v : value)
+    for (const auto &v : value)
     {
         auto s = v.split(",");
         if (s.size() > 1)

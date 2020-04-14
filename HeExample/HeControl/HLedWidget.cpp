@@ -22,9 +22,7 @@ HLedWidget::HLedWidget(HLedWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HLedWidget::~HLedWidget()
-{
-}
+HLedWidget::~HLedWidget() = default;
 
 QSize HLedWidget::sizeHint() const
 {

@@ -13,10 +13,6 @@ HBlindsEffect::HBlindsEffect(HBlindsEffectPrivate &p, QObject *parent) :
 {
 }
 
-HBlindsEffect::~HBlindsEffect()
-{
-}
-
 void HBlindsEffect::initialize(QVariantMap param)
 {
     if (param.contains("page"))

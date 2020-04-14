@@ -36,7 +36,6 @@ public:
 
 public:
     explicit HRoundProgressBar(QWidget *parent = nullptr);
-    ~HRoundProgressBar() override;
 
 public:
     BarStyle barStyle() const;
@@ -58,10 +57,10 @@ public slots:
     void setDrawDataCircle(bool b);
     void setDrawInnerCircle(bool b);
     void setDrawText(bool b);
-    void setFormat(QString value);
+    void setFormat(const QString &);
     void setExcircleWidth(double value);
     void setDataCircleWidth(double value);
-    void setDataColors(const QGradientStops &value);
+    void setDataColors(const QGradientStops &);
 
 protected:
     HRoundProgressBar(HRoundProgressBarPrivate &p, QWidget *parent = nullptr);

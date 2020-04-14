@@ -21,7 +21,7 @@ public:
 
 public:
     void setOrientation(Qt::Orientation);
-    void setColorProgress(QColor);
+    void setColorProgress(const QColor &);
 
 public:
      QColor colorProgress() const;

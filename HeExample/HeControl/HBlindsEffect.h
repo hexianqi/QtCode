@@ -21,7 +21,6 @@ class HBlindsEffect : public HAbstractShaderEffect
 
 public:
     explicit HBlindsEffect(QObject *parent = nullptr);
-    ~HBlindsEffect() override;
 
 public:
     void initialize(QVariantMap param) override;

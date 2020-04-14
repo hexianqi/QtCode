@@ -27,11 +27,6 @@ HCartesianZoom::HCartesianZoom(HCartesianZoomPrivate &p, QWidget *parent) :
     init();
 }
 
-HCartesianZoom::~HCartesianZoom()
-{
-
-}
-
 void HCartesianZoom::setCoordinate(HCartesianCoordinate *p)
 {
     Q_D(HCartesianZoom);

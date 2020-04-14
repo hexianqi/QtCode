@@ -17,14 +17,13 @@ class HMimeInlineFile : public HMimeFile
     Q_DECLARE_PRIVATE(HMimeInlineFile)
 
 public:
-    explicit HMimeInlineFile(QString fileName, QObject *parent = nullptr);
-    ~HMimeInlineFile() override;
+    explicit HMimeInlineFile(const QString &fileName, QObject *parent = nullptr);
 
 public:
     void prepare() override;
 
 protected:
-    HMimeInlineFile(HMimeInlineFilePrivate &p, QString fileName, QObject *parent = nullptr);
+    HMimeInlineFile(HMimeInlineFilePrivate &p, const QString &fileName, QObject *parent = nullptr);
 };
 
 HE_CONTROL_END_NAMESPACE

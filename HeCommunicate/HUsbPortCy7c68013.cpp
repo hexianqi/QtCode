@@ -18,6 +18,7 @@ HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p) :
 HUsbPortCy7c68013::~HUsbPortCy7c68013()
 {
     qDebug() << __func__;
+    close();
 }
 
 void HUsbPortCy7c68013::initialize(QVariantMap param)
@@ -37,7 +38,7 @@ HErrorType HUsbPortCy7c68013::openPort(int portNum)
 {
     Q_D(HUsbPortCy7c68013);
 
-    auto name = QString("\\\\.\\EZUSB-%1").arg(portNum).toStdWString().c_str();
+    auto name = QString(R"(\\.\EZUSB-%1)").arg(portNum).toStdWString().c_str();
     d->handle = CreateFileW(name, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, d->isAsync ? FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED : 0, nullptr);
     if (d->handle == INVALID_HANDLE_VALUE)
         return E_PORT_INVALID_HANDLE;
@@ -55,9 +56,9 @@ HErrorType HUsbPortCy7c68013::writeData(uchar *data, int maxSize)
 {
     Q_D(HUsbPortCy7c68013);
 
-    ulong ret;
-    ulong pipeNum = 0;
-    ulong size = ulong(maxSize);
+    auto ret = 0ul;
+    auto pipeNum = 0ul;
+    auto size = ulong(maxSize);
     if (d->isAsync)
     {
         OVERLAPPED os;
@@ -83,9 +84,9 @@ HErrorType HUsbPortCy7c68013::readData(uchar *data, int maxSize)
 {
     Q_D(HUsbPortCy7c68013);
 
-    ulong ret;
-    ulong pipeNum = 2;
-    ulong size = ulong(maxSize);
+    auto ret = 0ul;
+    auto pipeNum = 2ul;
+    auto size = ulong(maxSize);
     if (d->isAsync)
     {
         OVERLAPPED os;

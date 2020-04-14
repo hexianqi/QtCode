@@ -18,10 +18,6 @@ HPositionTracking::HPositionTracking(HPositionTrackingPrivate &p, QWidget *paren
 {
 }
 
-HPositionTracking::~HPositionTracking()
-{
-}
-
 bool HPositionTracking::mousePressEvent(QMouseEvent *)
 {
     return true;

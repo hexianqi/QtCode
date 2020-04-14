@@ -25,7 +25,7 @@ void HCodeCountWidget::on_pushButton_1_clicked()
 {
     auto filter = QString("代码文件(%1)").arg(ui->lineEdit_09->text().trimmed());
     auto files = QFileDialog::getOpenFileNames(this, tr("选择文件"), "./", filter);
-    if (files.size() == 0)
+    if (files.isEmpty())
         return;
     ui->lineEdit_07->setText(files.join("|"));
     countCode(files);
@@ -124,7 +124,7 @@ QStringList HCodeCountWidget::countCode(const QString &path)
 {
     QStringList files;
     auto dir = QDir(path);
-    for (auto info : dir.entryInfoList())
+    for (const auto &info : dir.entryInfoList())
     {
         if (info.isFile())
         {
@@ -190,7 +190,7 @@ void HCodeCountWidget::countCode(const QStringList &files)
         totalNotes  += lineNotes;
         totalBlanks += lineBlank;
         if (i % 100 == 0)
-            qApp->processEvents();
+            QApplication::processEvents();
     }
 
     // 显示统计结果

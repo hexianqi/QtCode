@@ -10,10 +10,6 @@ HCie1931ChartView::HCie1931ChartView(QWidget *parent) :
     init();
 }
 
-HCie1931ChartView::~HCie1931ChartView()
-{
-}
-
 void HCie1931ChartView::setEnableTracking(bool b)
 {
     Q_D(HCie1931ChartView);

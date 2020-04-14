@@ -13,10 +13,6 @@ HLineCircular::HLineCircular(HLineCircularPrivate &p, QObject *parent) :
 {
 }
 
-HLineCircular::~HLineCircular()
-{
-}
-
 void HLineCircular::initialize(QVariantMap param)
 {
     if (param.contains("foreground"))

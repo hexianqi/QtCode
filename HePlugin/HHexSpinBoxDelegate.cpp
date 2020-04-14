@@ -12,10 +12,6 @@ HHexSpinBoxDelegate::HHexSpinBoxDelegate(HHexSpinBoxDelegatePrivate &p, QObject 
 {
 }
 
-HHexSpinBoxDelegate::~HHexSpinBoxDelegate()
-{
-}
-
 QWidget *HHexSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     if (!isRedefine(index))

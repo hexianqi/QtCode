@@ -53,12 +53,12 @@ public:
     Qt::FocusPolicy buttonFocusPolicy() const;
 
 public slots:
-    virtual void setIcon(QIcon value);
+    virtual void setIcon(const QIcon &);
     virtual void setAutoRaise(bool b);
     virtual void setButtonPosition(Position value);
     virtual void setButtonVisible(bool b);
-    virtual void setRegularExpression(const QString &value);
-    virtual void setRegularExpression(const QRegularExpression &value);
+    virtual void setRegularExpression(const QString &);
+    virtual void setRegularExpression(const QRegularExpression &);
     virtual void setButtonFocusPolicy(Qt::FocusPolicy value);
 
 protected:

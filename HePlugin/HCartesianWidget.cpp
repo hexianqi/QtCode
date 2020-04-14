@@ -5,13 +5,8 @@
 #include <QtGui/QPainter>
 #include <QtWidgets/QAction>
 
-HCartesianWidgetPrivate::HCartesianWidgetPrivate(HCartesianWidget *q) :
-    HDiagramWidgetPrivate(q)
-{
-}
-
 HCartesianWidget::HCartesianWidget(QWidget *parent) :
-    HDiagramWidget(*new HCartesianWidgetPrivate(this), parent)
+    HDiagramWidget(*new HCartesianWidgetPrivate, parent)
 {
     init();
 }
@@ -20,10 +15,6 @@ HCartesianWidget::HCartesianWidget(HCartesianWidgetPrivate &p, QWidget *parent) 
     HDiagramWidget(p, parent)
 {
     init();
-}
-
-HCartesianWidget::~HCartesianWidget()
-{
 }
 
 void HCartesianWidget::setCoordinate(HCartesianCoordinate *p)
@@ -55,7 +46,7 @@ void HCartesianWidget::setUnitInRuler(bool b)
     refreshPixmap();
 }
 
-void HCartesianWidget::setUnitX(QString value)
+void HCartesianWidget::setUnitX(const QString &value)
 {
     Q_D(HCartesianWidget);
     if (d->unitX == value)
@@ -64,7 +55,7 @@ void HCartesianWidget::setUnitX(QString value)
     refreshPixmap();
 }
 
-void HCartesianWidget::setUnitY(QString value)
+void HCartesianWidget::setUnitY(const QString &value)
 {
     Q_D(HCartesianWidget);
     if (d->unitY == value)

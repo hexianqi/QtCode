@@ -20,7 +20,7 @@ HAbstractGradeItemDialog::HAbstractGradeItemDialog(HAbstractGradeItemDialogPriva
 void HAbstractGradeItemDialog::setData(IGradeItem *p)
 {
     d_ptr->data = p;
-    d_ptr->type = p->types().first();
+    d_ptr->type = p->types().at(0);
     showData();
 }
 

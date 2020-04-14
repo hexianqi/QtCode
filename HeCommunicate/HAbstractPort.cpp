@@ -14,11 +14,6 @@ HAbstractPort::HAbstractPort(HAbstractPortPrivate &p) :
 {
 }
 
-HAbstractPort::~HAbstractPort()
-{
-    close();
-}
-
 void HAbstractPort::initialize(QVariantMap param)
 {
     if (param.contains("timeOut"))
@@ -50,7 +45,7 @@ HErrorType HAbstractPort::open(int portNum)
 
 HErrorType HAbstractPort::close()
 {
-    if (!isConnected())
+    if (!d_ptr->connected)
         return E_PORT_CLOSED;
 
     auto error = closePort();
@@ -62,7 +57,7 @@ HErrorType HAbstractPort::close()
 
 HErrorType HAbstractPort::clear()
 {
-    if (!isConnected())
+    if (!d_ptr->connected)
         return E_PORT_CLOSED;
     QVector<uchar> data(100);
     read(data);

@@ -21,7 +21,6 @@ class HAnimationProgress : public HAbstractProgress
 
 public:
     explicit HAnimationProgress(QWidget *parent = nullptr);
-    ~HAnimationProgress() override;
 
 public:
     bool isAnimationEnable() const;

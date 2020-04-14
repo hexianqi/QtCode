@@ -6,7 +6,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 QStringList HNetworkHelper::localIP(QAbstractSocket::NetworkLayerProtocol type)
 {
     QSet<QString> set;
-    for (auto i : QNetworkInterface::allInterfaces())
+    for (const auto &i : QNetworkInterface::allInterfaces())
     {
         // 移除虚拟机和抓包工具的虚拟网卡
         auto name = i.humanReadableName().toLower();
@@ -15,7 +15,7 @@ QStringList HNetworkHelper::localIP(QAbstractSocket::NetworkLayerProtocol type)
         // 过滤当前网络接口
         if (i.flags() != (QNetworkInterface::IsUp | QNetworkInterface::IsRunning | QNetworkInterface::CanBroadcast | QNetworkInterface::CanMulticast))
             continue;
-        for (auto addr : i.addressEntries())
+        for (const auto &addr : i.addressEntries())
         {
             if (addr.ip().protocol() == type)
                 set << addr.ip().toString();

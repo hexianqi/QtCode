@@ -19,18 +19,16 @@ HCustomGraphics::HCustomGraphics(HCustomGraphicsPrivate &p, QWidget *parent) :
     init();
 }
 
-HCustomGraphics::~HCustomGraphics()
-{
-}
+HCustomGraphics::~HCustomGraphics() = default;
 
 QSize HCustomGraphics::sizeHint() const
 {
-    return QSize(200, 100);
+    return {200, 100};
 }
 
 QSize HCustomGraphics::minimumSizeHint() const
 {
-    return QSize(40, 20);
+    return {40, 20};
 }
 
 bool HCustomGraphics::isSelectDotVisible() const

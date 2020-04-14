@@ -20,9 +20,7 @@ HNavigationSlider::HNavigationSlider(HNavigationSliderPrivate &p, QWidget *paren
     init();
 }
 
-HNavigationSlider::~HNavigationSlider()
-{
-}
+HNavigationSlider::~HNavigationSlider() = default;
 
 bool HNavigationSlider::isAutoRaise() const
 {

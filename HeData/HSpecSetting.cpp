@@ -97,7 +97,7 @@ QVariantMap HSpecSetting::testParam()
 {
     QVariantMap param;
     auto list = QStringList() << "[光谱平均次数]" << "[光谱采样延时]" << "[光谱波长范围]";
-    for (auto s : list)
+    for (const auto &s : list)
         param.insert(s, data(s));
     return param;
 }

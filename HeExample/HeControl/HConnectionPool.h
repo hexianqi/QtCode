@@ -26,7 +26,7 @@ private:
 
 public:
     QSqlDatabase openConnection();
-    void closeConnection(QSqlDatabase db);
+    void closeConnection(const QSqlDatabase &db);
 
 private:
     QString getConnectionName();

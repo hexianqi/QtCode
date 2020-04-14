@@ -15,10 +15,6 @@ HRoundProgressBar::HRoundProgressBar(HRoundProgressBarPrivate &p, QWidget *paren
 {
 }
 
-HRoundProgressBar::~HRoundProgressBar()
-{
-}
-
 HRoundProgressBar::BarStyle HRoundProgressBar::barStyle() const
 {
     Q_D(const HRoundProgressBar);
@@ -142,7 +138,7 @@ void HRoundProgressBar::setDrawText(bool b)
     update();
 }
 
-void HRoundProgressBar::setFormat(QString value)
+void HRoundProgressBar::setFormat(const QString &value)
 {
     Q_D(HRoundProgressBar);
     if (d->format == value)
@@ -185,7 +181,7 @@ void HRoundProgressBar::paintEvent(QPaintEvent *)
 
     d->outerRadius = qMin(width(), height());
     QPainter painter(this);
-    painter.translate((width() - d->outerRadius) / 2, (height() - d->outerRadius) / 2);
+    painter.translate((width() - d->outerRadius) / 2.0, (height() - d->outerRadius) / 2.0);
     painter.drawImage(0, 0, createImage());
 }
 

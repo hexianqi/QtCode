@@ -7,7 +7,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 HAbstractFileLogPrivate::HAbstractFileLogPrivate()
 {
-    path = qApp->applicationDirPath() + QDir::separator() + "Log";
+    path = QApplication::applicationDirPath() + QDir::separator() + "Log";
     dataFormat = "hhhhMMdd";
 }
 
@@ -23,25 +23,23 @@ HAbstractFileLog::HAbstractFileLog(HAbstractFileLogPrivate &p, QObject *parent) 
 {
 }
 
-HAbstractFileLog::~HAbstractFileLog()
-{
-}
+HAbstractFileLog::~HAbstractFileLog() = default;
 
-void HAbstractFileLog::setPath(QString value)
+void HAbstractFileLog::setPath(const QString &value)
 {
     if (d_ptr->path == value)
         return;
     d_ptr->path = value;
 }
 
-void HAbstractFileLog::setName(QString value)
+void HAbstractFileLog::setName(const QString &value)
 {
     if (d_ptr->name == value)
         return;
     d_ptr->name = value;
 }
 
-void HAbstractFileLog::setDataFormat(QString value)
+void HAbstractFileLog::setDataFormat(const QString &value)
 {
     if (d_ptr->dataFormat == value)
         return;

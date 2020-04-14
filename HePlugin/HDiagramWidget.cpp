@@ -3,8 +3,7 @@
 #include <QtWidgets/QStylePainter>
 #include <QtWidgets/QStyleOptionFocusRect>
 
-HDiagramWidgetPrivate::HDiagramWidgetPrivate(HDiagramWidget *q) :
-    q_ptr(q)
+HDiagramWidgetPrivate::HDiagramWidgetPrivate()
 {
     polygonColors.insert(0, QColor(255, 85, 0));
     polygonColors.insert(1, QColor(255, 85, 255));
@@ -29,7 +28,7 @@ QRectF HDiagramWidgetPrivate::calcPlotArea(QSize size)
 
 HDiagramWidget::HDiagramWidget(QWidget *parent) :
     QWidget(parent),
-    d_ptr(new HDiagramWidgetPrivate(this))
+    d_ptr(new HDiagramWidgetPrivate)
 {
     init();
 }
@@ -41,18 +40,16 @@ HDiagramWidget::HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HDiagramWidget::~HDiagramWidget()
-{
-}
+HDiagramWidget::~HDiagramWidget() = default;
 
 QSize HDiagramWidget::sizeHint() const
 {
-    return QSize(500, 500);
+    return {500, 500};
 }
 
 QSize HDiagramWidget::minimumSizeHint() const
 {
-    return QSize(350, 350);
+    return {350, 350};
 }
 
 void HDiagramWidget::setMargins(QMargins value)
@@ -83,7 +80,7 @@ void HDiagramWidget::setMargins(int left, int top, int right, int bottom)
     emit marginChanged(d_ptr->margins);
 }
 
-void HDiagramWidget::setBrushBackground(QBrush value)
+void HDiagramWidget::setBrushBackground(const QBrush &value)
 {
     if (d_ptr->brushBackground == value)
         return;
@@ -91,7 +88,7 @@ void HDiagramWidget::setBrushBackground(QBrush value)
     refreshPixmap();
 }
 
-void HDiagramWidget::setBrushPlotArea(QBrush value)
+void HDiagramWidget::setBrushPlotArea(const QBrush &value)
 {
     if (d_ptr->brushPlotArea == value)
         return;
@@ -139,7 +136,7 @@ void HDiagramWidget::setDrawGrid(bool b)
     refreshPixmap();
 }
 
-void HDiagramWidget::setColorFrame(QColor value)
+void HDiagramWidget::setColorFrame(const QColor &value)
 {
     if (d_ptr->colorFrame == value)
         return;
@@ -147,7 +144,7 @@ void HDiagramWidget::setColorFrame(QColor value)
     refreshPixmap();
 }
 
-void HDiagramWidget::setColorRuler(QColor value)
+void HDiagramWidget::setColorRuler(const QColor &value)
 {
     if (d_ptr->colorRuler == value)
         return;
@@ -155,7 +152,7 @@ void HDiagramWidget::setColorRuler(QColor value)
     refreshPixmap();
 }
 
-void HDiagramWidget::setColorGrid(QColor value)
+void HDiagramWidget::setColorGrid(const QColor &value)
 {
     if (d_ptr->colorGrid == value)
         return;
@@ -218,7 +215,7 @@ QColor HDiagramWidget::colorGrid() const
     return d_ptr->colorGrid;
 }
 
-void HDiagramWidget::addPolygon(int id, QPolygonF value, bool refresh)
+void HDiagramWidget::addPolygon(int id, const QPolygonF &value, bool refresh)
 {
     d_ptr->polygons.insert(id, value);
     if (refresh)
@@ -237,9 +234,9 @@ void HDiagramWidget::clearPolygon()
     refreshPixmap();
 }
 
-void HDiagramWidget::setPolygonColor(int id, QColor color)
+void HDiagramWidget::setPolygonColor(int id, const QColor &value)
 {
-    d_ptr->polygonColors.insert(id, color);
+    d_ptr->polygonColors.insert(id, value);
     refreshPixmap();
 }
 
@@ -329,30 +326,22 @@ bool HDiagramWidget::drawFrame(QPainter *painter)
 
 bool HDiagramWidget::drawRuler(QPainter *)
 {
-    if (!isDrawRuler() || !isValid())
-        return false;
-    return true;
+    return isValid() && isDrawRuler();
 }
 
 bool HDiagramWidget::drawTick(QPainter *)
 {
-    if (!d_ptr->halfSide || !isValid())
-        return false;
-    return true;
+    return isValid() && d_ptr->halfSide;
 }
 
 bool HDiagramWidget::drawGrid(QPainter *)
 {
-    if (d_ptr->halfSide || !isDrawGrid() || !isValid())
-        return false;
-    return true;
+    return isValid() && isDrawGrid() && !d_ptr->halfSide;
 }
 
 bool HDiagramWidget::drawPolygon(QPainter *)
 {
-    if (!isValid())
-        return false;
-    return true;
+    return isValid();
 }
 
 bool HDiagramWidget::drawElse(QPainter *)

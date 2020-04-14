@@ -11,14 +11,14 @@ class HRubberBand;
 class HCartesianZoomPrivate : public HAbstractMouseStrategyPrivate
 {
 public:
-    HCartesianZoomPrivate(QWidget *p);
+    HCartesianZoomPrivate(QWidget *);
 
 public:
-    QToolButton *zoomIn;
-    QToolButton *zoomOut;
-    HRubberBand *rubberBand;
+    int pos = 0;
+    QToolButton *zoomIn = nullptr;
+    QToolButton *zoomOut = nullptr;
+    HRubberBand *rubberBand = nullptr;
     QVector<HCartesianCoordinate *> coordinates;
-    int pos;
 };
 
 #endif // HCARTESIANZOOM_P_H

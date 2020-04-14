@@ -33,9 +33,7 @@ HColorPopup::HColorPopup(HColorModel *model, QWidget *parent) :
     setMaximumHeight(250);
 }
 
-HColorPopup::~HColorPopup()
-{
-}
+HColorPopup::~HColorPopup() = default;
 
 QListView *HColorPopup::colorView() const
 {

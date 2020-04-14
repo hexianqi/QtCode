@@ -143,13 +143,13 @@ void HBuilder2000DC::buildDevice()
 {
     Q_D(HBuilder2000DC);
 //    // 设备模拟
-    auto device = d->communicateFactory->createDevice("HSlSimulation");
-    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-    protocol->setDevice(device);
+//    auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    protocol->setDevice(device);
     // 第一版设备1305
     // auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
     // 第二版设备554b
-//    auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+    auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
@@ -184,7 +184,7 @@ void HBuilder2000DC::buildDatabase()
     exportExcel.removeLast();
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    db->openDatabase(QString("%1.db").arg(qApp->applicationName()));
+    db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");

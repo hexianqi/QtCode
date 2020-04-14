@@ -26,10 +26,6 @@ HCarGauge::HCarGauge(HCarGaugePrivate &p, QWidget *parent) :
 {
 }
 
-HCarGauge::~HCarGauge()
-{
-}
-
 QColor HCarGauge::outerCircleColor() const
 {
     Q_D(const HCarGauge);

@@ -13,10 +13,6 @@ HFlipEffect::HFlipEffect(HFlipEffectPrivate &p, QObject *parent) :
 {
 }
 
-HFlipEffect::~HFlipEffect()
-{
-}
-
 void HFlipEffect::initialize(QVariantMap param)
 {
     if (param.contains("direction"))
@@ -31,39 +27,39 @@ QString HFlipEffect::typeName()
 void HFlipEffect::draw(QPainter *painter, double factor, const QRect &rect, const QPixmap &pixmap)
 {
     Q_D(HFlipEffect);
+    QTransform t;
     auto w = rect.width();
     auto h = rect.height();
     auto x = (w - pixmap.width()) / 2;
     auto y = (h - pixmap.height()) / 2;
-    QTransform t;
 
     if (d->direction == HControlType::Direction4_Left)
     {
         auto r = 90 * (factor - 1);
-        t.translate(w * (1 - factor), h / 2);
+        t.translate(w * (1 - factor), h / 2.0);
         t.rotate(r, Qt::YAxis);
-        t.translate(0, -h / 2);
+        t.translate(0, -h / 2.0);
     }
     if (d->direction == HControlType::Direction4_Right)
     {
         auto r = -90 * (factor - 1);
-        t.translate(w * factor, h / 2);
+        t.translate(w * factor, h / 2.0);
         t.rotate(r, Qt::YAxis);
-        t.translate(-w, -h / 2);
+        t.translate(-w, -h / 2.0);
     }
     if (d->direction == HControlType::Direction4_Up)
     {
         auto r = 90 * (factor - 1);
-        t.translate(w / 2, h  * (1 - factor));
+        t.translate(w / 2.0, h  * (1 - factor));
         t.rotate(r, Qt::XAxis);
-        t.translate(-w / 2, 0);
+        t.translate(-w / 2.0, 0);
     }
     if (d->direction == HControlType::Direction4_Down)
     {
         auto r = -90 * (factor - 1);
-        t.translate(w / 2, h  * factor);
+        t.translate(w / 2.0, h  * factor);
         t.rotate(r, Qt::XAxis);
-        t.translate(-w/ 2, -h);
+        t.translate(-w/ 2.0, -h);
     }
     painter->save();
     painter->setTransform(t);

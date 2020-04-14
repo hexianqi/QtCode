@@ -15,7 +15,7 @@ class HCartesianCoordinate : public QObject
 
 public:
     explicit HCartesianCoordinate(QObject *parent = nullptr);
-    ~HCartesianCoordinate();
+    ~HCartesianCoordinate() override;
 
 public:
     // 位置转换
@@ -40,12 +40,12 @@ public:
     QStringList axisY();
 
 public:
-    QPointF mapToPosition(QPointF value, QRectF logic);
-    QPolygonF mapToPosition(QPolygonF value, QRectF logic);
-    QPointF mapToValue(QPointF position, QRectF logic);
-    QPolygonF mapToValue(QPolygonF position, QRectF logic);
-    QRectF mapToValue(QRectF rect, QRectF logic);
-    QRectF mapToAxis(QRectF data, QRectF axis);
+    QPointF mapToPosition(QPointF value,  QRectF logic);
+    QPolygonF mapToPosition(QPolygonF value,  QRectF logic);
+    QPointF mapToValue(QPointF position,  QRectF logic);
+    QPolygonF mapToValue(QPolygonF position,  QRectF logic);
+    QRectF mapToValue(QRectF rect,  QRectF logic);
+    QRectF mapToAxis(QRectF data,  QRectF axis);
 
 protected:
     HCartesianCoordinate(HCartesianCoordinatePrivate &p, QObject *parent = nullptr);

@@ -25,11 +25,7 @@ HChromatismChart::HChromatismChart(QGraphicsItem *parent, Qt::WindowFlags wFlags
     init();
 }
 
-HChromatismChart::~HChromatismChart()
-{
-}
-
-void HChromatismChart::setEllipse(QPolygonF value)
+void HChromatismChart::setEllipse(const QPolygonF &value)
 {
     Q_D(HChromatismChart);
     d->ellipse->replace(value);
@@ -47,7 +43,7 @@ void HChromatismChart::setPointCenter(QPointF value)
     d->center->replace(0, value);
 }
 
-void HChromatismChart::setAxesXTitle(QString value)
+void HChromatismChart::setAxesXTitle(const QString &value)
 {
     auto ax = axes(Qt::Horizontal).at(0);
     QFont font;

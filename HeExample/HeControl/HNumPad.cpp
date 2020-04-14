@@ -19,9 +19,7 @@ HNumPad::HNumPad(HNumPadPrivate &p, QWidget *parent) :
     init();
 }
 
-HNumPad::~HNumPad()
-{
-}
+HNumPad::~HNumPad() = default;
 
 void HNumPad::animateClick(const QString &button, int msec)
 {

@@ -17,7 +17,7 @@ QFont HCalloutChartItem::font()
     return d->font;
 }
 
-void HCalloutChartItem::setFont(QFont value)
+void HCalloutChartItem::setFont(const QFont &value)
 {
     Q_D(HCalloutChartItem);
     if (d->font == value)
@@ -26,7 +26,7 @@ void HCalloutChartItem::setFont(QFont value)
     update();
 }
 
-void HCalloutChartItem::setText(QString value)
+void HCalloutChartItem::setText(const QString &value)
 {
     Q_D(HCalloutChartItem);
     QFontMetrics metrics(font());

@@ -18,7 +18,6 @@ class HResizeEventFilter : public HAbstractMouseEventFilter
 
 public:
     explicit HResizeEventFilter(QObject *parent = nullptr);
-    ~HResizeEventFilter() override;
 
 public:
     void initialize(QVariantMap param) override;

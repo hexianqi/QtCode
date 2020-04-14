@@ -21,7 +21,6 @@ class HTaichiCircular : public HAbstractCircular
 
 public:
     explicit HTaichiCircular(QObject *parent = nullptr);
-    ~HTaichiCircular() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -35,8 +34,8 @@ public:
     QColor foreground() const;
 
 public slots:
-    void setBackground(const QColor &value);
-    void setForeground(const QColor &value);
+    void setBackground(const QColor &);
+    void setForeground(const QColor &);
 
 protected:
     HTaichiCircular(HTaichiCircularPrivate &p, QObject *parent = nullptr);

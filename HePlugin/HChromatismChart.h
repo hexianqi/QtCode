@@ -16,13 +16,12 @@ class HChromatismChart : public HChart
 
 public:
     explicit HChromatismChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-    ~HChromatismChart();
 
 public:
-    void setEllipse(QPolygonF);
+    void setEllipse(const QPolygonF &);
     void setPointFocus(QPointF);
     void setPointCenter(QPointF);
-    void setAxesXTitle(QString);
+    void setAxesXTitle(const QString &);
     void createFixAxes();
 
 private:

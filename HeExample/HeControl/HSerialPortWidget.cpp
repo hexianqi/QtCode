@@ -210,9 +210,9 @@ void HSerialPortWidget::init()
     d_ptr->readTimer = new QTimer(this);
     d_ptr->sendTimer = new QTimer(this);
     d_ptr->saveTimer = new QTimer(this);
-    for (auto info : QSerialPortInfo::availablePorts())
+    for (const auto &info : QSerialPortInfo::availablePorts())
         ui->comboBox_101->addItem(info.portName());
-    for (auto rate : QSerialPortInfo::standardBaudRates())
+    for (const auto &rate : QSerialPortInfo::standardBaudRates())
         ui->comboBox_102->addItem(QString("%1").arg(rate), rate);
     ui->comboBox_103->addItem("5", QSerialPort::Data5);
     ui->comboBox_103->addItem("6", QSerialPort::Data6);

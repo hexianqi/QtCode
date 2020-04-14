@@ -7,7 +7,7 @@
 
 HE_SQL_BEGIN_NAMESPACE
 
-bool HSqlHelper::createTable(QString tableName, QStringList field, QSqlDatabase db)
+bool HSqlHelper::createTable(const QString &tableName, const QStringList &field, QSqlDatabase db)
 {
     if (tableName.isEmpty())
         return false;

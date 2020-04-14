@@ -5,7 +5,7 @@
 
 HE_CORE_USE_NAMESPACE
 
-HTypeOptionalDialog::HTypeOptionalDialog(QStringList selected, QStringList optional, QWidget *parent) :
+HTypeOptionalDialog::HTypeOptionalDialog(const QStringList &selected, const QStringList &optional, QWidget *parent) :
     QDialog(parent),
     d_ptr(new HTypeOptionalDialogPrivate),
     ui(new Ui::HTypeOptionalDialog)
@@ -80,14 +80,14 @@ void HTypeOptionalDialog::done(int result)
 
 void HTypeOptionalDialog::showData()
 {
-    for (auto t : d_ptr->unselecteds)
+    for (const auto &t : d_ptr->unselecteds)
     {
         auto item = new QListWidgetItem;
         item->setData(Qt::UserRole, t);
         item->setData(Qt::DisplayRole, HCore::toCaption(t));
         ui->listWidget_1->addItem(item);
     }
-    for (auto t : d_ptr->selecteds)
+    for (const auto &t : d_ptr->selecteds)
     {
         auto item = new QListWidgetItem;
         item->setData(Qt::UserRole, t);

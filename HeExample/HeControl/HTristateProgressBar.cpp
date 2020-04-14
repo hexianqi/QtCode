@@ -16,18 +16,16 @@ HTristateProgressBar::HTristateProgressBar(HTristateProgressBarPrivate &p, QWidg
 {
 }
 
-HTristateProgressBar::~HTristateProgressBar()
-{
-}
+HTristateProgressBar::~HTristateProgressBar() = default;
 
 QSize HTristateProgressBar::sizeHint() const
 {
-    return QSize(300, 30);
+    return {300, 30};
 }
 
 QSize HTristateProgressBar::minimumSizeHint() const
 {
-    return QSize(60, 20);
+    return {60, 20};
 }
 
 int HTristateProgressBar::value1() const

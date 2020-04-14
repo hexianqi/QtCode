@@ -21,13 +21,11 @@ HCircularProgress::HCircularProgress(HCircularProgressPrivate &p, QWidget *paren
     init();
 }
 
-HCircularProgress::~HCircularProgress()
-{
-}
+HCircularProgress::~HCircularProgress() = default;
 
 QSize HCircularProgress::sizeHint() const
 {
-    return QSize(100, 100);
+    return {100, 100};
 }
 
 void HCircularProgress::setReverse(bool b)
@@ -116,7 +114,7 @@ void HCircularProgress::init()
     auto group = d_ptr->factory->toActionGroup();
     setContextMenuPolicy(Qt::ActionsContextMenu);
     addActions(group->actions());
-    changeCircular(group->actions().first());
+    changeCircular(group->actions().at(0));
     connect(group, &QActionGroup::triggered, this, &HCircularProgress::changeCircular);
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(100);

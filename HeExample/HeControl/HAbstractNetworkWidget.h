@@ -48,8 +48,8 @@ protected:
     virtual QString groupName() = 0;
     virtual void readSettings();
     virtual void writeSettings();
-    virtual bool saveData(QString value);
-    virtual QString fromByteArray(QByteArray value);
+    virtual bool saveData(const QString &);
+    virtual QString fromByteArray(const QByteArray &);
     virtual QByteArray toByteArray(QString value);
 
 protected:

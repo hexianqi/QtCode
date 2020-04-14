@@ -25,7 +25,7 @@ void HGslHelper::split(QPolygonF poly, QVector<double> &x, QVector<double> &y)
 
 QPointF HGslHelper::formGsl(gsl_complex z)
 {
-    return QPointF(GSL_REAL(z), GSL_IMAG(z));
+    return {GSL_REAL(z), GSL_IMAG(z)};
 }
 
 QPolygonF HGslHelper::formGsl(QVector<gsl_complex> z)

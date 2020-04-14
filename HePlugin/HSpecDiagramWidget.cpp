@@ -3,8 +3,7 @@
 #include <QtGui/QIcon>
 #include <QtGui/QPainter>
 
-HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q)
-    : HRibbonDiagramWidgetPrivate(q)
+HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate()
 {
     halfSide = true;
     unitInRuler = false;
@@ -16,20 +15,16 @@ HSpecDiagramWidgetPrivate::HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q)
     brushCenter.setStyle(Qt::SolidPattern);
 }
 
-HSpecDiagramWidget::HSpecDiagramWidget(QWidget *parent)
-    : HRibbonDiagramWidget(*new HSpecDiagramWidgetPrivate(this), parent)
+HSpecDiagramWidget::HSpecDiagramWidget(QWidget *parent) :
+    HRibbonDiagramWidget(*new HSpecDiagramWidgetPrivate, parent)
 {
     init();
 }
 
-HSpecDiagramWidget::HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *parent)
-    : HRibbonDiagramWidget(p, parent)
+HSpecDiagramWidget::HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *parent) :
+    HRibbonDiagramWidget(p, parent)
 {
     init();
-}
-
-HSpecDiagramWidget::~HSpecDiagramWidget()
-{
 }
 
 void HSpecDiagramWidget::setWaveRange(QPointF value)
@@ -55,7 +50,7 @@ void HSpecDiagramWidget::setDrawTopLeft(bool b)
     refreshPixmap();
 }
 
-void HSpecDiagramWidget::setTextCenter(QString text, bool show, bool refresh)
+void HSpecDiagramWidget::setTextCenter(const QString &text, bool show, bool refresh)
 {
     Q_D(HSpecDiagramWidget);
     d->textCenter = text;
@@ -64,7 +59,7 @@ void HSpecDiagramWidget::setTextCenter(QString text, bool show, bool refresh)
         refreshPixmap();
 }
 
-void HSpecDiagramWidget::setTextTopLeft(QString text, bool refresh)
+void HSpecDiagramWidget::setTextTopLeft(const QString &text, bool refresh)
 {
     Q_D(HSpecDiagramWidget);
     d->textTopLeft = text;
@@ -72,7 +67,7 @@ void HSpecDiagramWidget::setTextTopLeft(QString text, bool refresh)
         refreshPixmap();
 }
 
-void HSpecDiagramWidget::setColorCenter(QColor value)
+void HSpecDiagramWidget::setColorCenter(const QColor &value)
 {
     Q_D(HSpecDiagramWidget);
     if (d->colorCenter == value)
@@ -81,7 +76,7 @@ void HSpecDiagramWidget::setColorCenter(QColor value)
     refreshPixmap();
 }
 
-void HSpecDiagramWidget::setColorTopLeft(QColor value)
+void HSpecDiagramWidget::setColorTopLeft(const QColor &value)
 {
     Q_D(HSpecDiagramWidget);
     if (d->colorTopLeft == value)
@@ -90,7 +85,7 @@ void HSpecDiagramWidget::setColorTopLeft(QColor value)
     refreshPixmap();
 }
 
-void HSpecDiagramWidget::setFontCenter(QFont value)
+void HSpecDiagramWidget::setFontCenter(const QFont &value)
 {
     Q_D(HSpecDiagramWidget);
     if (d->fontCenter == value)
@@ -99,7 +94,7 @@ void HSpecDiagramWidget::setFontCenter(QFont value)
     refreshPixmap();
 }
 
-void HSpecDiagramWidget::setFontTopLeft(QFont value)
+void HSpecDiagramWidget::setFontTopLeft(const QFont &value)
 {
     Q_D(HSpecDiagramWidget);
     if (d->fontTopLeft == value)
@@ -108,7 +103,7 @@ void HSpecDiagramWidget::setFontTopLeft(QFont value)
     refreshPixmap();
 }
 
-void HSpecDiagramWidget::setBrushCenter(QBrush value)
+void HSpecDiagramWidget::setBrushCenter(const QBrush &value)
 {
     Q_D(HSpecDiagramWidget);
     if (d->brushCenter == value)
@@ -117,7 +112,7 @@ void HSpecDiagramWidget::setBrushCenter(QBrush value)
     refreshPixmap();
 }
 
-void HSpecDiagramWidget::setCenter(QString text, QColor color, QColor brush)
+void HSpecDiagramWidget::setCenter(const QString &text, const QColor &color, const QColor &brush)
 {
     Q_D(HSpecDiagramWidget);
     d->drawCenter = true;
@@ -181,7 +176,7 @@ QBrush HSpecDiagramWidget::brushCenter()
     return d->brushCenter;
 }
 
-void HSpecDiagramWidget::addPolygon(int id, QPolygonF value, bool refresh)
+void HSpecDiagramWidget::addPolygon(int id, const QPolygonF &value, bool refresh)
 {
     Q_D(HSpecDiagramWidget);
     d->drawCenter = false;

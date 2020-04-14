@@ -31,18 +31,16 @@ HLunarCalendarWidget::HLunarCalendarWidget(HLunarCalendarWidgetPrivate &p, QWidg
     init();
 }
 
-HLunarCalendarWidget::~HLunarCalendarWidget()
-{
-}
+HLunarCalendarWidget::~HLunarCalendarWidget() = default;
 
 QSize HLunarCalendarWidget::sizeHint() const
 {
-    return QSize(600, 500);
+    return {600, 500};
 }
 
 QSize HLunarCalendarWidget::minimumSizeHint() const
 {
-    return QSize(200, 150);
+    return {200, 150};
 }
 
 QDate HLunarCalendarWidget::date() const
@@ -532,7 +530,7 @@ void HLunarCalendarWidget::initStyle()
     list << QString("QToolButton { padding:0px; background:none; border:none; border-radius:5px; }")
          << QString("QToolButton:hover { background:#16A085; color:#FFFFFF; }")
          << QString("QPushButton { background:#16A085; color:#FFFFFF; border-radius:5px; }")
-         << QString("QLabel { background:%1; color:%2; }").arg(d_ptr->weekBackground.name()).arg(d_ptr->weekTextColor.name())
+         << QString("QLabel { background:%1; color:%2; }").arg(d_ptr->weekBackground.name(), d_ptr->weekTextColor.name())
          << QString("QWidget#widgetBody { border:1px solid %1; }").arg(d_ptr->borderColor.name())
          << QString("HeControl--HLunarCalendarItem { qproperty-showLunar:%1; }").arg(d_ptr->showLunar)
          << QString("HeControl--HLunarCalendarItem { qproperty-backgroundImage:%1; }").arg(d_ptr->backgroundImage)
@@ -645,14 +643,14 @@ void HLunarCalendarWidget::handleYearChanged(const QString &value)
 {
     if (d_ptr->comboBoxClicked)
         return;
-    dateChanged(value.mid(0, value.length() - 1).toInt(), d_ptr->date.month(), d_ptr->date.day());
+    dateChanged(value.midRef(0, value.length() - 1).toInt(), d_ptr->date.month(), d_ptr->date.day());
 }
 
 void HLunarCalendarWidget::handleMonthChanged(const QString &value)
 {
     if (d_ptr->comboBoxClicked)
         return;
-    dateChanged(d_ptr->date.year(), value.mid(0, value.length() - 1).toInt(), d_ptr->date.day());
+    dateChanged(d_ptr->date.year(), value.midRef(0, value.length() - 1).toInt(), d_ptr->date.day());
 }
 
 void HLunarCalendarWidget::handleItemClicked(const QDate &date, const HLunarCalendarItem::DayType &type)

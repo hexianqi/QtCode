@@ -105,7 +105,7 @@ QVariant HTestData::data(QString type)
 QVariantMap HTestData::select(QStringList type)
 {
     QVariantMap r;
-    for (auto t : type)
+    for (const auto &t : type)
         r.insert(t, data(t));
     return r;
 }
@@ -118,7 +118,7 @@ QString HTestData::toString(QString type)
 QStringList HTestData::toString(QStringList type)
 {
     QStringList list;
-    for (auto t : type)
+    for (const auto &t : type)
         list << toString(t);
     return list;
 }
@@ -126,7 +126,7 @@ QStringList HTestData::toString(QStringList type)
 QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
 {
     QString text;
-    for (auto t : type)
+    for (const auto &t : type)
     {
         text += QString("<tr>"
                         "<td><p align = right>%1</p></td>"

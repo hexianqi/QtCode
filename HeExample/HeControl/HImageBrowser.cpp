@@ -31,12 +31,12 @@ HImageBrowser::~HImageBrowser()
 
 QSize HImageBrowser::sizeHint() const
 {
-    return QSize(300, 150);
+    return {300, 150};
 }
 
 QSize HImageBrowser::minimumSizeHint() const
 {
-    return QSize(60, 30);
+    return {60, 30};
 }
 
 QColor HImageBrowser::backgroundStart() const
@@ -96,11 +96,11 @@ void HImageBrowser::load(const QString &folder)
     clear();
 
     QStringList filters;
-    for (auto s : QImageReader::supportedImageFormats())
+    for (const auto &s : QImageReader::supportedImageFormats())
         filters << "*." + s;
     dir.setFilter(QDir::Files | QDir::NoSymLinks);
     dir.setNameFilters(filters);
-    for (auto f : dir.entryList())
+    for (const auto &f : dir.entryList())
         d_ptr->imageNames << folder + QDir::separator() + f;
     d_ptr->totalNum = d_ptr->imageNames.size();
     moveFirst();

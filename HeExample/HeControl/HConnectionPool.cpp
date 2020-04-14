@@ -8,8 +8,8 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-static QMutex __mutex;
-static QWaitCondition __waitConnection;
+QMutex __mutex;
+QWaitCondition __waitConnection;
 
 HConnectionPoolPrivate::HConnectionPoolPrivate()
 {
@@ -35,9 +35,9 @@ HConnectionPool::HConnectionPool() :
 
 HConnectionPool::~HConnectionPool()
 {
-    for(auto name : d_ptr->usedConnectionNames)
+    for(const auto &name : d_ptr->usedConnectionNames)
         QSqlDatabase::removeDatabase(name);
-    for(auto name : d_ptr->unusedConnectionNames)
+    for(const auto &name : d_ptr->unusedConnectionNames)
         QSqlDatabase::removeDatabase(name);
 }
 
@@ -70,7 +70,7 @@ QSqlDatabase HConnectionPool::openConnection()
     return db;
 }
 
-void HConnectionPool::closeConnection(QSqlDatabase db)
+void HConnectionPool::closeConnection(const QSqlDatabase &db)
 {
     auto connectionName = db.connectionName();
     if (d_ptr->usedConnectionNames.contains(connectionName))

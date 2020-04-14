@@ -22,18 +22,16 @@ HIPAddress::HIPAddress(HIPAddressPrivate &p, QWidget *parent) :
     init();
 }
 
-HIPAddress::~HIPAddress()
-{
-}
+HIPAddress::~HIPAddress() = default;
 
 QSize HIPAddress::sizeHint() const
 {
-    return QSize(250, 20);
+    return {250, 20};
 }
 
 QSize HIPAddress::minimumSizeHint() const
 {
-    return QSize(30, 10);
+    return {30, 10};
 }
 
 QString HIPAddress::ip() const
@@ -105,7 +103,7 @@ bool HIPAddress::eventFilter(QObject *watched, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         auto line = qobject_cast<QLineEdit *>(watched);
-        auto key = static_cast<QKeyEvent *>(event);
+        auto key = dynamic_cast<QKeyEvent *>(event);
         if (key != nullptr && d_ptr->lineEdits.contains(line))
         {
             if (key->text() == ".")

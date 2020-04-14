@@ -18,10 +18,6 @@ HRubberBand::HRubberBand(HRubberBandPrivate &p, QWidget *parent) :
 {
 }
 
-HRubberBand::~HRubberBand()
-{
-}
-
 bool HRubberBand::setEnable(bool b)
 {
     Q_D(HRubberBand);

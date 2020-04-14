@@ -15,18 +15,18 @@ HE_SQL_BEGIN_NAMESPACE
 class HE_SQL_EXPORT HSql
 {
 public:
-    static QString toType(QString field);
-    static QStringList toType(QStringList field);
-    static QString toCreateStyle(QString field);
-    static QStringList toCreateStyle(QStringList field);
+    static QString toType(const QString &field);
+    static QStringList toType(const QStringList &field);
+    static QString toCreateStyle(const QString &field);
+    static QStringList toCreateStyle(const QStringList &field);
 
 public:
-    static QString toString(QString field, QVariant value);
-    static QString toCaption(QString field);
-    static QStringList toCaption(QStringList field);
-    static QString toUnit(QString field);
-    static QString toCaptionUnit(QString field);
-    static QStringList toCaptionUnit(QStringList field);
+    static QString toString(const QString &field, const QVariant& value);
+    static QString toCaption(const QString &field);
+    static QStringList toCaption(const QStringList &field);
+    static QString toUnit(const QString &field);
+    static QString toCaptionUnit(const QString &field);
+    static QStringList toCaptionUnit(const QStringList &field);
 };
 
 HE_SQL_END_NAMESPACE

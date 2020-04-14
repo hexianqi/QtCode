@@ -9,20 +9,16 @@ HMimeTextPrivate::HMimeTextPrivate()
     contentEncoding = HMimePart::_8Bit;
 }
 
-HMimeText::HMimeText(QString text, QObject *parent) :
+HMimeText::HMimeText(const QString &text, QObject *parent) :
     HMimePart(*new HMimeTextPrivate, parent)
 {
     setText(text);
 }
 
-HMimeText::HMimeText(HMimeTextPrivate &p, QString text, QObject *parent) :
+HMimeText::HMimeText(HMimeTextPrivate &p, const QString &text, QObject *parent) :
     HMimePart(p, parent)
 {
     setText(text);
-}
-
-HMimeText::~HMimeText()
-{
 }
 
 QString HMimeText::text() const

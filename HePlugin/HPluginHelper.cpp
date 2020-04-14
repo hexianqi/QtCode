@@ -200,7 +200,7 @@ QString HPluginHelper::paste(QTableView *widget)
     return text;
 }
 
-void HPluginHelper::initWidget(QString type, QSpinBox *widget)
+void HPluginHelper::initWidget(const QString &type, QSpinBox *widget)
 {
     auto info = HCore::toFormatInfo(type);
     auto unit = info->unit(false);
@@ -211,7 +211,7 @@ void HPluginHelper::initWidget(QString type, QSpinBox *widget)
         widget->setSuffix(QString(" %1").arg(unit));
 }
 
-void HPluginHelper::initWidget(QString type, QDoubleSpinBox *widget)
+void HPluginHelper::initWidget(const QString &type, QDoubleSpinBox *widget)
 {
     auto info = HCore::toFormatInfo(type);
     auto unit = info->unit(false);
@@ -223,7 +223,7 @@ void HPluginHelper::initWidget(QString type, QDoubleSpinBox *widget)
         widget->setSuffix(QString(" %1").arg(unit));
 }
 
-void HPluginHelper::initWidget(QString type, QInputDialog *dlg)
+void HPluginHelper::initWidget(const QString &type, QInputDialog *dlg)
 {
     auto info = HCore::toFormatInfo(type);
     dlg->setInputMode(QInputDialog::DoubleInput);
@@ -263,7 +263,7 @@ bool HPluginHelper::selectedParameter(QWidget *parent, QStringList optional, QSt
     return true;
 }
 
-bool HPluginHelper::getInputText(QWidget *parent, QString label, QString &text)
+bool HPluginHelper::getInputText(QWidget *parent, const QString &label, QString &text)
 {
     QInputDialog dlg(parent);
     dlg.setLabelText(label);

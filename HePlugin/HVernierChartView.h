@@ -18,7 +18,6 @@ class QDESIGNER_WIDGET_EXPORT HVernierChartView : public HZoomChartView
 public:
     explicit HVernierChartView(QWidget *parent = nullptr);
     explicit HVernierChartView(QChart *chart, QWidget *parent = nullptr);
-    ~HVernierChartView() override;
 
 signals:
     void vernierValueChanged(QList<double> value);

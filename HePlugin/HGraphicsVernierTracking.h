@@ -17,7 +17,6 @@ class HGraphicsVernierTracking : public HAbstractVernierTracking
 
 public:
     explicit HGraphicsVernierTracking(Qt::Orientation orientation, QGraphicsItem *gpatent = nullptr, QWidget *parent = nullptr);
-    ~HGraphicsVernierTracking() override;
 
 public:
     bool setEnable(bool b) override;
@@ -35,7 +34,7 @@ protected:
 
 protected:
     void setLinesVisible(bool b);
-    void setLinesColor(QColor color);
+    void setLinesColor(const QColor &);
     void setLine(int pos);
     void setLines();
 };

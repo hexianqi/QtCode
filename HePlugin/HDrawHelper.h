@@ -15,7 +15,7 @@ class QDESIGNER_WIDGET_EXPORT HDrawHelper
 {
 public:
     // 创建十字图像
-    static QImage createCrossImage(QSize size, QPen pen);
+    static QImage createCrossImage(QSize size, const QPen &pen);
 };
 
 #endif // HIMAGEHELPER_H

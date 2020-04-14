@@ -208,18 +208,13 @@ HNavListDelegate::HNavListDelegate(QObject *parent) :
     _iconFont = QFont(fontName);
 }
 
-HNavListDelegate::~HNavListDelegate()
-{
-
-}
-
 QSize HNavListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(option);
     auto node = index.data(Qt::UserRole).value<HNavListModel::HTreeNode *>();
     if (node->level == 1)
-        return QSize(50, 35);
-    return QSize(50, 28);
+        return {50, 35};
+    return {50, 28};
 }
 
 void HNavListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -412,18 +407,16 @@ HNavListView::HNavListView(HNavListViewPrivate &p, QWidget *parent) :
     init();
 }
 
-HNavListView::~HNavListView()
-{
-}
+HNavListView::~HNavListView() = default;
 
 QSize HNavListView::sizeHint() const
 {
-    return QSize(200, 400);
+    return {200, 400};
 }
 
 QSize HNavListView::minimumSizeHint() const
 {
-    return QSize(50, 50);
+    return {50, 50};
 }
 
 QString HNavListView::items() const

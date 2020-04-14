@@ -10,14 +10,13 @@
 
 HE_ALGORITHM_USE_NAMESPACE
 
-HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate(HRibbonDiagramWidget *q) :
-    HCartesianWidgetPrivate(q)
+HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate()
 {
     pixmapRibbon.load(":/image/7color.png");
 }
 
 HRibbonDiagramWidget::HRibbonDiagramWidget(QWidget *parent) :
-    HCartesianWidget(*new HRibbonDiagramWidgetPrivate(this), parent)
+    HCartesianWidget(*new HRibbonDiagramWidgetPrivate, parent)
 {
     init();
 }
@@ -26,10 +25,6 @@ HRibbonDiagramWidget::HRibbonDiagramWidget(HRibbonDiagramWidgetPrivate &p, QWidg
     HCartesianWidget(p, parent)
 {
     init();
-}
-
-HRibbonDiagramWidget::~HRibbonDiagramWidget()
-{
 }
 
 void HRibbonDiagramWidget::setDrawRibbon(bool b)
@@ -41,7 +36,7 @@ void HRibbonDiagramWidget::setDrawRibbon(bool b)
     refreshPixmap();
 }
 
-void HRibbonDiagramWidget::setPolygonRibbon(QPolygonF value, bool refresh)
+void HRibbonDiagramWidget::setPolygonRibbon(const QPolygonF &value, bool refresh)
 {
     Q_D(HRibbonDiagramWidget);
     d->polyRibbon = value;

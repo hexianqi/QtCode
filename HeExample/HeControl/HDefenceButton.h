@@ -22,10 +22,10 @@ class HDefenceButtonPrivate;
 class HDefenceButton : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(bool moveEnable READ isMoveEnable WRITE setMoveEnable)
-    Q_PROPERTY(QString text READ text WRITE setText)
-    Q_PROPERTY(ButtonStyle buttonStyle READ buttonStyle WRITE setButtonStyle)
-    Q_PROPERTY(ButtonStatus buttonStatus READ buttonStatus WRITE setButtonStatus)
+    Q_PROPERTY(bool moveEnable              READ isMoveEnable   WRITE setMoveEnable)
+    Q_PROPERTY(QString text                 READ text           WRITE setText)
+    Q_PROPERTY(ButtonStyle buttonStyle      READ buttonStyle    WRITE setButtonStyle)
+    Q_PROPERTY(ButtonStatus buttonStatus    READ buttonStatus   WRITE setButtonStatus)
 
 public:
     enum ButtonStyle

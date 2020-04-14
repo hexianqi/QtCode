@@ -33,7 +33,6 @@ class HMiniGauge : public HCircleGauge
 
 public:
     explicit HMiniGauge(QWidget *parent = nullptr);
-    ~HMiniGauge() override;
 
 public:
     HControlType::PointerStyle pointerStyle() const;

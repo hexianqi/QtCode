@@ -23,9 +23,7 @@ HTwoColorIndicator::HTwoColorIndicator(HTwoColorIndicatorPrivate &p, QWidget *pa
     init();
 }
 
-HTwoColorIndicator::~HTwoColorIndicator()
-{
-}
+HTwoColorIndicator::~HTwoColorIndicator() = default;
 
 QSize HTwoColorIndicator::sizeHint() const
 {
@@ -240,17 +238,17 @@ void HTwoColorIndicator::paintSection(QPainter *painter, const QRect &rect, cons
 
 QRect HTwoColorIndicator::foregroundRect() const
 {
-    return QRect(0, 0, width() * 2 / 3, height() * 2 / 3);
+    return {0, 0, width() * 2 / 3, height() * 2 / 3};
 }
 
 QRect HTwoColorIndicator::backgroundRect() const
 {
-    return QRect(width() / 3, height() / 3, width() * 2 / 3, height() * 2 / 3);
+    return {width() / 3, height() / 3, width() * 2 / 3, height() * 2 / 3};
 }
 
 QRect HTwoColorIndicator::switchButtonRect() const
 {
-    return QRect(1 + width() / 6, 1 + height() * 4 / 6, width() / 6 - 1, height() / 6 - 1);
+    return {1 + width() / 6, 1 + height() * 4 / 6, width() / 6 - 1, height() / 6 - 1};
 }
 
 void HTwoColorIndicator::init()

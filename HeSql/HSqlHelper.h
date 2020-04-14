@@ -13,7 +13,7 @@ HE_SQL_BEGIN_NAMESPACE
 class HE_SQL_EXPORT HSqlHelper
 {
 public:
-    static bool createTable(QString tableName, QStringList field, QSqlDatabase db = QSqlDatabase());
+    static bool createTable(const QString &tableName, const QStringList &field, QSqlDatabase db = QSqlDatabase());
 };
 
 HE_SQL_END_NAMESPACE

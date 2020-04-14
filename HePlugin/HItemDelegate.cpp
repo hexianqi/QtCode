@@ -12,9 +12,7 @@ HItemDelegate::HItemDelegate(HItemDelegatePrivate &p, QObject *parent) :
 {
 }
 
-HItemDelegate::~HItemDelegate()
-{
-}
+HItemDelegate::~HItemDelegate() = default;
 
 void HItemDelegate::setOrientation(Qt::Orientation value)
 {
@@ -26,12 +24,12 @@ void HItemDelegate::setOrigin(QPoint value)
     d_ptr->origin = value;
 }
 
-void HItemDelegate::setType(QString value)
+void HItemDelegate::setType(const QString &value)
 {
     d_ptr->typeList = QStringList() << value;
 }
 
-void HItemDelegate::setType(QStringList value)
+void HItemDelegate::setType(const QStringList &value)
 {
     d_ptr->typeList = value;
 }

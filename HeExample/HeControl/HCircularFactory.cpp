@@ -70,8 +70,8 @@ QActionGroup *HCircularFactory::toActionGroup()
         action->setCheckable(true);
         action->setData(it.key());
     }
-    if (group->actions().size() > 0)
-        group->actions().first()->setChecked(true);
+    if (!group->actions().isEmpty())
+        group->actions().at(0)->setChecked(true);
     return group;
 }
 
@@ -98,7 +98,7 @@ void HCircularFactory::registerClass()
     d_ptr->aliass.insert("HPieCircular", tr("饼状"));
     d_ptr->aliass.insert("HTaichiCircular", tr("太极图"));
     d_ptr->aliass.insert("HWheelCircular", tr("轮子"));
-    d_ptr->aliass.insert("HZoomCircleCircular", tr("缩放"));    
+    d_ptr->aliass.insert("HZoomCircleCircular", tr("缩放"));
 }
 
 HE_CONTROL_END_NAMESPACE

@@ -9,17 +9,15 @@ class HPositionTracking;
 
 class HCie1931WidgetPrivate : public HCartesianWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HCie1931Widget)
-
 public:
-    HCie1931WidgetPrivate(HCie1931Widget *);
+    HCie1931WidgetPrivate();
 
 public:
     void readStandard();
 
 public:
-    HPositionTracking *tracking;
-    QLabel *label;
+    HPositionTracking *tracking = nullptr;
+    QLabel *label = nullptr;
     bool drawCIE = true;
     bool drawHorseshoe = true;
     bool drawPlanckian = true;

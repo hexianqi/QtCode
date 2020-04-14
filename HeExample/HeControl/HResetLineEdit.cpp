@@ -14,10 +14,6 @@ HResetLineEdit::HResetLineEdit(HResetLineEditPrivate &p, QWidget *parent) :
     init();
 }
 
-HResetLineEdit::~HResetLineEdit()
-{
-}
-
 QString HResetLineEdit::defaultText() const
 {
     Q_D(const HResetLineEdit);

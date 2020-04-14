@@ -17,7 +17,6 @@ class QDESIGNER_WIDGET_EXPORT HVernierTracking : public HAbstractVernierTracking
 
 public:
     explicit HVernierTracking(Qt::Orientation orientation, QWidget *parent = nullptr);
-    ~HVernierTracking() override;
 
 public:
     virtual void paintEvent(QPaintEvent *);

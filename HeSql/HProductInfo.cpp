@@ -98,7 +98,7 @@ void HProductInfo::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(d_ptr->relationTableName + "Product");
-    for (auto k : settings->allKeys())
+    for (const auto &k : settings->allKeys())
         setData(k, settings->value(k));
     settings->endGroup();
 }

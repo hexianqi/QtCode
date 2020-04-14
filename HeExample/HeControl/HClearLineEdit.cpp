@@ -15,11 +15,6 @@ HClearLineEdit::HClearLineEdit(HClearLineEditPrivate &p, QWidget *parent) :
     init();
 }
 
-
-HClearLineEdit::~HClearLineEdit()
-{
-}
-
 void HClearLineEdit::setButtonVisible(bool b)
 {
     if (isReadOnly())

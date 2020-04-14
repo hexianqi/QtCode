@@ -17,8 +17,8 @@ class HImageCalendarPrivate;
 
 class HImageCalendar : public QWidget
 {
-    Q_OBJECT    
-    Q_PROPERTY(CalendarStyle calendarStyle READ calendarStyle WRITE setCalendarStyle)
+    Q_OBJECT
+    Q_PROPERTY(CalendarStyle calendarStyle  READ calendarStyle  WRITE setCalendarStyle)
 
 public:
     enum CalendarStyle

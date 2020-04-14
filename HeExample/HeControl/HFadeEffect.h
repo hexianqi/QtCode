@@ -18,7 +18,6 @@ class HFadeEffect : public HAbstractShaderEffect
 
 public:
     explicit HFadeEffect(QObject *parent = nullptr);
-    ~HFadeEffect() override;
 
 public:
     void initialize(QVariantMap param) override;

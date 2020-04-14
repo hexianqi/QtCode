@@ -21,7 +21,6 @@ class HInfiniteCircular : public HAbstractCircular
 
 public:
     explicit HInfiniteCircular(QObject *parent = nullptr);
-    ~HInfiniteCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

@@ -17,9 +17,7 @@ HTableWidget::HTableWidget(HTableWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HTableWidget::~HTableWidget()
-{
-}
+HTableWidget::~HTableWidget() = default;
 
 void HTableWidget::removeRows(int row, int count)
 {

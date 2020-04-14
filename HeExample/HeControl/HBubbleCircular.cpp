@@ -13,10 +13,6 @@ HBubbleCircular::HBubbleCircular(HBubbleCircularPrivate &p, QObject *parent) :
 {
 }
 
-HBubbleCircular::~HBubbleCircular()
-{
-}
-
 void HBubbleCircular::initialize(QVariantMap param)
 {
     if (param.contains("foreground"))

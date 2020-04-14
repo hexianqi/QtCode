@@ -7,10 +7,8 @@
 
 class HChromatismWidgetPrivate : public HCartesianWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HChromatismWidget)
-
 public:
-    HChromatismWidgetPrivate(HChromatismWidget *);
+    HChromatismWidgetPrivate();
 
 public:
     QColor colorPointFocus = Qt::red;

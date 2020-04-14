@@ -20,9 +20,7 @@ HScreenObject::HScreenObject(HScreenObjectPrivate &p, QObject *parent) :
     init();
 }
 
-HScreenObject::~HScreenObject()
-{
-}
+HScreenObject::~HScreenObject() = default;
 
 HScreenObject::Status HScreenObject::status() const
 {
@@ -116,12 +114,12 @@ void HScreenObject::initScreen()
     p.drawPixmap(0, 0, pm);
 }
 
-void HScreenObject::saveScreen(QString fileName)
+void HScreenObject::saveScreen(const QString &fileName)
 {
     d_ptr->fullScreen.copy(d_ptr->area).save(fileName, "png");
 }
 
-void HScreenObject::saveFullScreen(QString fileName)
+void HScreenObject::saveFullScreen(const QString &fileName)
 {
     d_ptr->fullScreen.save(fileName, "png");
 }

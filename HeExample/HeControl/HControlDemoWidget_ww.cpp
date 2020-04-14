@@ -51,7 +51,7 @@ void HControlDemoWidget::addWwExtend()
     auto textSpinBox = new HTextSpinBox;
     auto richTextEdit = new HRichTextEdit;
     textSpinBox->setStringList(QStringList() << "a" << "b" << "c" << "d");
-    richTextButton->setHtml("<p align=\"center\"><span style=\" font-weight:600; color:#ff0000;\">富文本按钮</span></p>");
+    richTextButton->setHtml(R"(<p align="center"><span style=" font-weight:600; color:#ff0000;">富文本按钮</span></p>)");
     layout->addWidget(buttonLineEdit);
     layout->addWidget(fileChooser);
     layout->addWidget(clearLineEdit);

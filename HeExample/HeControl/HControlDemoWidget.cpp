@@ -23,9 +23,7 @@ HControlDemoWidget::HControlDemoWidget(HControlDemoWidgetPrivate &p, QWidget *pa
     init();
 }
 
-HControlDemoWidget::~HControlDemoWidget()
-{
-}
+HControlDemoWidget::~HControlDemoWidget() = default;
 
 void HControlDemoWidget::init()
 {
@@ -47,7 +45,7 @@ void HControlDemoWidget::initWidget()
     auto stacked = new QStackedWidget;
     auto keys = QStringList() << tr("ludianwu") << tr("ww") << tr("DEMO") << tr("工具") << tr("其他");
 
-    for (auto key : keys)
+    for (const auto &key : keys)
     {
         auto w = new QTabWidget;
         stacked->addWidget(w);
@@ -62,18 +60,18 @@ void HControlDemoWidget::initWidget()
     resize(1000, 800);
 }
 
-void HControlDemoWidget::addTab(QString key, QWidget *w)
+void HControlDemoWidget::addTab(const QString &key, QWidget *w)
 {
     addTab(key, w->windowTitle(), w);
 }
 
-void HControlDemoWidget::addTab(QString key, QString title, QWidget *w)
+void HControlDemoWidget::addTab(const QString &key, const QString &title, QWidget *w)
 {
     if (d_ptr->tabWidgets.contains(key))
         d_ptr->tabWidgets[key]->addTab(w, title);
 }
 
-void HControlDemoWidget::addTab(QString key, QString title, QLayout *layout)
+void HControlDemoWidget::addTab(const QString &key, const QString &title, QLayout *layout)
 {
     auto w = new QWidget;
     w->setLayout(layout);

@@ -24,9 +24,7 @@ HRbTableHeaderItem::HRbTableHeaderItem(HRbTableHeaderItemPrivate &p) :
 {
 }
 
-HRbTableHeaderItem::~HRbTableHeaderItem()
-{
-}
+HRbTableHeaderItem::~HRbTableHeaderItem() = default;
 
 void HRbTableHeaderItem::setData(const QVariant &data, int role)
 {
@@ -47,7 +45,7 @@ void HRbTableHeaderItem::setText(const QString &text)
 
 void HRbTableHeaderItem::clear()
 {
-    for (HRbTableHeaderItem *item : d_ptr->childs)
+    for (auto item : d_ptr->childs)
         delete item;
     d_ptr->childs.clear();
 }

@@ -22,9 +22,7 @@ HColorComboBox::HColorComboBox(HColorComboBoxPrivate &p, QWidget *parent) :
     init();
 }
 
-HColorComboBox::~HColorComboBox()
-{
-}
+HColorComboBox::~HColorComboBox() = default;
 
 QStringList HColorComboBox::colors() const
 {

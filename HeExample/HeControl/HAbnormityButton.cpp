@@ -20,9 +20,7 @@ HAbnormityButton::HAbnormityButton(HAbnormityButtonPrivate &p, QWidget *parent) 
     init();
 }
 
-HAbnormityButton::~HAbnormityButton()
-{
-}
+HAbnormityButton::~HAbnormityButton() = default;
 
 void HAbnormityButton::init()
 {

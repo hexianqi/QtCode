@@ -21,9 +21,7 @@ HGroupButton::HGroupButton(HGroupButtonPrivate &p, QWidget *parent) :
     init();
 }
 
-HGroupButton::~HGroupButton()
-{
-}
+HGroupButton::~HGroupButton() = default;
 
 void HGroupButton::setButton(QStringList value)
 {
@@ -34,7 +32,7 @@ void HGroupButton::setButton(QStringList value)
         w->deleteLater();
     d_ptr->buttons.clear();
 
-    for (auto step : value)
+    for (const auto &step : value)
     {
         auto button = new QPushButton(step);
         button->setProperty("class", "GroupButton");

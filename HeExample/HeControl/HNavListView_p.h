@@ -55,7 +55,6 @@ class HNavListDelegate : public QStyledItemDelegate
     Q_OBJECT
 public:
     explicit HNavListDelegate(QObject *parent = nullptr);
-    ~HNavListDelegate() override;
 
 protected:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
@@ -88,7 +87,7 @@ public:
     int lineWidth = 6;
     QColor lineColor = QColor(0, 187, 158);
     bool triangleVisible = true;
-    bool triangleLeft = false;    
+    bool triangleLeft = false;
     int triangleWidth = 6;
     QColor triangleColor = QColor(250, 250, 250);
     int parentMargin = 10;

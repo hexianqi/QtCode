@@ -39,11 +39,11 @@ public:
     HHttpClient& manager(QNetworkAccessManager *);
     HHttpClient& debug(bool b);
     HHttpClient& param(const QString &name, const QVariant &value);
-    HHttpClient& param(const QVariantMap &value);
-    HHttpClient& json(const QString &value);
+    HHttpClient& param(const QVariantMap &);
+    HHttpClient& json(const QString &);
     HHttpClient& header(const QString &name, const QString &value);
-    HHttpClient& header(const QVariantMap value);
-    HHttpClient& charset(const QString &value);
+    HHttpClient& header(const QVariantMap &);
+    HHttpClient& charset(const QString &);
     HHttpClient& success(std::function<void (const QString &)> func);
     HHttpClient& fail(std::function<void (const QString &, int)> func);
     HHttpClient& complete(std::function<void ()> func);

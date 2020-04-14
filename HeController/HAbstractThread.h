@@ -24,7 +24,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
-    void stop() override;
+    void stop() final;
     void addAction(HActionType action) override;
     void clearAction() override;
 
@@ -32,7 +32,7 @@ protected:
     HAbstractThread(HAbstractThreadPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual void run() override;
+    void run() override;
     virtual bool checkAction(HActionType action);
     virtual HErrorType handleAction(HActionType action);
     virtual bool isSupport(HActionType action);

@@ -17,10 +17,6 @@ HTaskPanel::HTaskPanel(HTaskPanelPrivate &p, QWidget *parent) :
     init();
 }
 
-HTaskPanel::~HTaskPanel()
-{
-}
-
 int HTaskPanel::count() const
 {
     Q_D(const HTaskPanel);

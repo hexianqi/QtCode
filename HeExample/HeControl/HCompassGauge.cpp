@@ -18,18 +18,16 @@ HCompassGauge::HCompassGauge(HCompassGaugePrivate &p, QWidget *parent) :
     init();
 }
 
-HCompassGauge::~HCompassGauge()
-{
-}
+HCompassGauge::~HCompassGauge() = default;
 
 QSize HCompassGauge::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HCompassGauge::minimumSizeHint() const
 {
-    return QSize(40, 40);
+    return {40, 40};
 }
 
 double HCompassGauge::value() const
@@ -231,7 +229,7 @@ void HCompassGauge::paintEvent(QPaintEvent *)
     QPainter painter(this);
     // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.scale(side / 200.0, side / 200.0);
     // 绘制外边框圆
     drawCrownCircle(&painter);
@@ -361,10 +359,8 @@ void HCompassGauge::drawCoverCenterCircle(QPainter *painter)
 
 void HCompassGauge::drawPointer(QPainter *painter)
 {
-    QPolygon pts;
     auto radius = 75;
-    pts.setPoints(3, -10, 0, 10, 0, 0, radius);
-
+    auto pts = QPolygon() << QPoint(-10, 0) << QPoint(10, 0) << QPoint(0, radius);
     painter->save();
     painter->setOpacity(0.7);
     painter->setPen(Qt::NoPen);

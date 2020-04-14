@@ -43,7 +43,7 @@ void HDrawHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, co
     font.setPixelSize(size);
     auto fm = QFontMetrics(font);
     QPainterPath path;
-    path.addText(point - QPointF(fm.width(text) / 2, -fm.height() / 4), font, text);
+    path.addText(point - QPointF(fm.width(text) / 2.0, -fm.height() / 4.0), font, text);
 
     painter->save();
     painter->setPen(color);
@@ -65,10 +65,10 @@ QImage HDrawHelper::createTiledImage(int size, const QColor &color1, const QColo
 QImage HDrawHelper::createCrossImage(QSize size, const QPen &pen)
 {
     QPainterPath path;
-    path.moveTo(0, size.height() / 2);
-    path.lineTo(size.width(), size.height() / 2);
-    path.moveTo(size.width() / 2, 0);
-    path.lineTo(size.width() / 2, size.height());
+    path.moveTo(0, size.height() / 2.0);
+    path.lineTo(size.width(), size.height() / 2.0);
+    path.moveTo(size.width() / 2.0, 0);
+    path.lineTo(size.width() / 2.0, size.height());
 
     auto image = QImage(size, QImage::Format_ARGB32);
     image.fill(Qt::transparent);

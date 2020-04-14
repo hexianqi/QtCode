@@ -17,9 +17,7 @@ HTcpClient::HTcpClient(HTcpClientPrivate &p, QObject *parent) :
     init();
 }
 
-HTcpClient::~HTcpClient()
-{
-}
+HTcpClient::~HTcpClient() = default;
 
 QString HTcpClient::ip()
 {

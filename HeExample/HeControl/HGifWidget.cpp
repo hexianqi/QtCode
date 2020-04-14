@@ -36,7 +36,7 @@ void HGifWidget::setBorderWidth(int value)
     update();
 }
 
-void HGifWidget::setBackground(QColor value)
+void HGifWidget::setBackground(const QColor &value)
 {
     if (d_ptr->background == value)
         return;
@@ -107,7 +107,7 @@ void HGifWidget::record()
     }
     else
     {
-        d_ptr->fileName = QFileDialog::getSaveFileName(this, tr("选择保存位置"), qApp->applicationDirPath() + "/", "gif图片(*.gif)");
+        d_ptr->fileName = QFileDialog::getSaveFileName(this, tr("选择保存位置"), QApplication::applicationDirPath() + "/", "gif图片(*.gif)");
         if (d_ptr->fileName.isEmpty())
             return;
 

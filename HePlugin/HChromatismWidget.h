@@ -21,15 +21,14 @@ class QDESIGNER_WIDGET_EXPORT HChromatismWidget : public HCartesianWidget
 
 public:
     explicit HChromatismWidget(QWidget *parent = nullptr);
-    ~HChromatismWidget() override;
 
 public:
-    void setData(QVariantMap value);
-    void setColorPointFocus(QColor value);
-    void setColorTitle(QColor value);
-    void setColorBody(QColor value);
-    void setFontTitle(QFont value);
-    void setFontBody(QFont value);
+    void setData(const QVariantMap &);
+    void setColorPointFocus(const QColor &);
+    void setColorTitle(const QColor &);
+    void setColorBody(const QColor &);
+    void setFontTitle(const QFont &);
+    void setFontBody(const QFont &);
 
 public:
     QColor colorPointFocus();

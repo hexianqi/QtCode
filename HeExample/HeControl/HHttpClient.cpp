@@ -1,3 +1,9 @@
+#include <utility>
+
+#include <utility>
+
+#include <utility>
+
 #include "HHttpClient_p.h"
 #include <QtCore/QFile>
 #include <QtNetwork/QNetworkAccessManager>
@@ -32,8 +38,8 @@ QNetworkRequest createRequest(HHttpClientPrivate *d, HHttpClientRequestMethod me
         else if (withForm || upload)
         {
             auto list = QStringList() << "[参数]";
-            for (auto v : d->query.queryItems())
-                list << QString("       %1=%2").arg(v.first).arg(v.second);
+            for (const auto &v : d->query.queryItems())
+                list << QString("       %1=%2").arg(v.first, v.second);
             if (list.size() > 1)
                 qDebug().noquote() << list.join("\n");
         }
@@ -44,7 +50,7 @@ QNetworkRequest createRequest(HHttpClientPrivate *d, HHttpClientRequestMethod me
         d->header["Content-Type"] = "application/json; charset=utf-8";
 
     QNetworkRequest request(QUrl(d->url));
-    for (auto i = d->header.begin(); i != d->header.cend(); ++i)
+    for (auto i = d->header.begin(); i != d->header.end(); ++i)
         request.setRawHeader(i.key().toUtf8(), i.value().toUtf8());
     return request;
 }
@@ -124,7 +130,7 @@ void execute(HHttpClientPrivate *d, HHttpClientRequestMethod method)
 // 2. 创建请求需要的变量，执行请求
 // 3. 有数据可读取时回调 readyRead()
 // 4. 请求结束时获取响应数据，在 handleFinish 中执行回调函数
-void downloadData(HHttpClientPrivate *d, std::function<void (const QByteArray &)> readyRead)
+void downloadData(HHttpClientPrivate *d, const std::function<void (const QByteArray &)> &readyRead)
 {
     auto cache = d->cache();
     auto request = createRequest(d, HHttpClientRequestMethod::GET);
@@ -142,7 +148,7 @@ void downloadData(HHttpClientPrivate *d, const QString &fileName)
     auto file = new QFile(fileName);
     if (!file->open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
-        auto text = QString("[错误] 打开文件失败[%1]: %2").arg(file->fileName()).arg(file->errorString());
+        auto text = QString("[错误] 打开文件失败[%1]: %2").arg(file->fileName(), file->errorString());
         if (d->debug)
             qDebug().noquote() << text;
         if (d->fail != nullptr)
@@ -177,7 +183,7 @@ void uploadData(HHttpClientPrivate *d, const QStringList &files, const QByteArra
 {
     auto cache = d->cache();
     auto multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
-    for (auto v : d->query.queryItems())
+    for (const auto &v : d->query.queryItems())
     {
         QHttpPart part;
         part.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data; name=\"%1\"").arg(v.first));
@@ -185,10 +191,10 @@ void uploadData(HHttpClientPrivate *d, const QStringList &files, const QByteArra
         multiPart->append(part);
     }
 
-    if (files.size() > 0)
+    if (!files.isEmpty())
     {
         auto inputName = files.size() == 1 ? "file" : "files";
-        for (auto fileName : files)
+        for (const auto &fileName : files)
         {
             if (fileName.isEmpty())
                 continue;
@@ -208,7 +214,7 @@ void uploadData(HHttpClientPrivate *d, const QStringList &files, const QByteArra
             // 注意: 服务器是 Java 的则用 form-data
             // 注意: 服务器是 PHP  的则用 multipart/form-data
             QHttpPart part;
-            part.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data; name=\"%1\"; filename=\"%2\"").arg(inputName, file->fileName()));
+            part.setHeader(QNetworkRequest::ContentDispositionHeader, QString(R"(form-data; name="%1"; filename="%2")").arg(inputName, file->fileName()));
             part.setBodyDevice(file);
             multiPart->append(part);
         }
@@ -216,7 +222,7 @@ void uploadData(HHttpClientPrivate *d, const QStringList &files, const QByteArra
     else
     {
         QHttpPart part;
-        part.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data; name=\"file\"; filename=\"no-name\""));
+        part.setHeader(QNetworkRequest::ContentDispositionHeader, QString(R"(form-data; name="file"; filename="no-name")"));
         part.setBody(data);
         multiPart->append(part);
     }
@@ -266,9 +272,7 @@ HHttpClient::HHttpClient(const QString &url) :
 
 }
 
-HHttpClient::~HHttpClient()
-{
-}
+HHttpClient::~HHttpClient() = default;
 
 HHttpClient &HHttpClient::manager(QNetworkAccessManager *p)
 {
@@ -309,7 +313,7 @@ HHttpClient &HHttpClient::header(const QString &name, const QString &value)
     return *this;
 }
 
-HHttpClient &HHttpClient::header(const QVariantMap value)
+HHttpClient &HHttpClient::header(const QVariantMap &value)
 {
     for (auto i = value.begin(); i != value.end(); i++)
         d_ptr->header[i.key()] = i.value().toString();
@@ -324,19 +328,19 @@ HHttpClient &HHttpClient::charset(const QString &value)
 
 HHttpClient &HHttpClient::success(std::function<void (const QString &)> func)
 {
-    d_ptr->success = func;
+    d_ptr->success = std::move(func);
     return *this;
 }
 
 HHttpClient &HHttpClient::fail(std::function<void (const QString &, int)> func)
 {
-    d_ptr->fail = func;
+    d_ptr->fail = std::move(func);
     return *this;
 }
 
 HHttpClient &HHttpClient::complete(std::function<void ()> func)
 {
-    d_ptr->complete = func;
+    d_ptr->complete = std::move(func);
     return *this;
 }
 

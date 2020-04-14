@@ -24,7 +24,6 @@ public:
 
 public:
     HErrorType open() override;
-    HErrorType close() override;
     HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 

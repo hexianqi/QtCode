@@ -46,7 +46,7 @@ void HEmailWidget::on_pushButton_2_clicked()
     if (dialog.exec())
     {
         QFileIconProvider provider;
-        for (auto file : dialog.selectedFiles())
+        for (const auto &file : dialog.selectedFiles())
         {
             QFileInfo info(file);
             ui->listWidget->addItem(new QListWidgetItem(provider.icon(info), info.fileName()));

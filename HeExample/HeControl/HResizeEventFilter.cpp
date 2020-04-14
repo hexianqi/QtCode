@@ -14,13 +14,8 @@ HResizeEventFilter::HResizeEventFilter(HResizeEventFilterPrivate &p, QObject *pa
 {
 }
 
-HResizeEventFilter::~HResizeEventFilter()
-{
-}
-
 void HResizeEventFilter::initialize(QVariantMap /*param*/)
 {
-
 }
 
 QString HResizeEventFilter::typeName()
@@ -121,7 +116,7 @@ bool HResizeEventFilter::resizeEvent(QWidget *widget, QEvent *)
 bool HResizeEventFilter::hoverMoveEvent(QWidget *widget, QEvent *event)
 {
     Q_D(HResizeEventFilter);
-    auto e = static_cast<QHoverEvent *>(event);
+    auto e = dynamic_cast<QHoverEvent *>(event);
     auto pos = e->pos();
     auto offsetX = pos.x() - d->lastPos.x();
     auto offsetY = pos.y() - d->lastPos.y();

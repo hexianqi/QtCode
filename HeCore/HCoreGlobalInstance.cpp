@@ -70,7 +70,7 @@ QString HCore::toString(const QString &type, const QVariant &value)
     if (vt == QVariant::List)
     {
         QStringList list;
-        for (auto v : value.toList())
+        for (const auto &v : value.toList())
             list << toString(type, v);
         return list.join(" ");
     }
@@ -99,7 +99,7 @@ QString HCore::toCaption(const QString &type)
 QStringList HCore::toCaption(QStringList type)
 {
     QStringList list;
-    for (auto t : type)
+    for (const auto &t : type)
         list << toCaption(t);
     return list;
 }
@@ -116,7 +116,7 @@ QString HCore::toCaptionUnit(const QString &type)
 QStringList HCore::toCaptionUnit(QStringList type)
 {
     QStringList list;
-    for (auto t : type)
+    for (const auto &t : type)
         list << toCaptionUnit(t);
     return list;
 }
@@ -125,7 +125,7 @@ QString HCore::fileNameFilter(const QString &name, const QList<QByteArray> forma
 {
     QStringList list;
 
-    for (auto ba : formats)
+    for (const auto &ba : formats)
         list += ba;
     if (list.isEmpty())
         list << "*";
@@ -139,7 +139,7 @@ QString HCore::fileNameFilter(const QString &name, const QStringList &mimeTypes)
     QSet<QString> formats;
     QStringList list;
 
-    for (auto mimeType : mimeTypes)
+    for (const auto &mimeType : mimeTypes)
         formats.unite(hashMimeType.value(mimeType));
     list = QStringList::fromSet(formats);
     if (list.isEmpty())

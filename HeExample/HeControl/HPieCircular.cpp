@@ -13,10 +13,6 @@ HPieCircular::HPieCircular(HPieCircularPrivate &p, QObject *parent) :
 {
 }
 
-HPieCircular::~HPieCircular()
-{
-}
-
 void HPieCircular::initialize(QVariantMap param)
 {
     if (param.contains("background"))

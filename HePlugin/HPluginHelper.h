@@ -32,9 +32,9 @@ public:
     static QString paste(QTableView *);
 
 public:
-    static void initWidget(QString type, QSpinBox *);
-    static void initWidget(QString type, QDoubleSpinBox *);
-    static void initWidget(QString type, QInputDialog *);
+    static void initWidget(const QString &type, QSpinBox *);
+    static void initWidget(const QString &type, QDoubleSpinBox *);
+    static void initWidget(const QString &type, QInputDialog *);
     // 窗体居中桌面
     static void centerWidget(QWidget *);
 
@@ -42,7 +42,7 @@ public:
     // 选择参数
     static bool selectedParameter(QWidget *parent, QStringList optional, QString &selected);
     // 获取输入文本
-    static bool getInputText(QWidget *parent, QString label, QString &text);
+    static bool getInputText(QWidget *parent, const QString &label, QString &text);
 };
 
 #endif // HPLUGINHELPER_H

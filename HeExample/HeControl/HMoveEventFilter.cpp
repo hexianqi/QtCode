@@ -9,13 +9,8 @@ HMoveEventFilter::HMoveEventFilter(QObject *parent) :
 {
 }
 
-HMoveEventFilter::~HMoveEventFilter()
-{
-}
-
 void HMoveEventFilter::initialize(QVariantMap /*param*/)
 {
-
 }
 
 QString HMoveEventFilter::typeName()

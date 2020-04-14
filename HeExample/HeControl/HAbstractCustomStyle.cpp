@@ -14,9 +14,7 @@ HAbstractCustomStyle::HAbstractCustomStyle(HAbstractCustomStylePrivate &p, QObje
 {
 }
 
-HAbstractCustomStyle::~HAbstractCustomStyle()
-{
-}
+HAbstractCustomStyle::~HAbstractCustomStyle() = default;
 
 void HAbstractCustomStyle::initialize(QVariantMap param)
 {
@@ -36,7 +34,7 @@ QString HAbstractCustomStyle::toStyleSheet()
     return list.join("\n");
 }
 
-QVariant HAbstractCustomStyle::data(QString type, QVariantMap param, QVariant defaultValue)
+QVariant HAbstractCustomStyle::data(const QString &type, const QVariantMap &param, const QVariant &defaultValue)
 {
     if (param.contains(type))
         return param.value(type);

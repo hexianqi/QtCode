@@ -15,7 +15,7 @@ QStringList HMesopticVision::sourceTypes() const
     return _standard.keys();
 }
 
-double HMesopticVision::calcRatio(QString type, double value)
+double HMesopticVision::calcRatio(const QString &type, double value)
 {
     if (!_standard.contains(type))
         return 0;

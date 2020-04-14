@@ -48,6 +48,9 @@ public:
     static HJson *fromJson(QByteArray &data);
 
 public:
+    ~HJson();
+
+public:
     bool isValid() const;
     QString errorString() const;
 

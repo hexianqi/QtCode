@@ -62,7 +62,7 @@ QLineF HChromaticity::calcIsothermUv(double tc, double duvB, double duvE)
 {
     auto line1 = calcIsothermUv(tc, duvB);
     auto line2 = calcIsothermUv(tc, duvE);
-    return QLineF(line1.p2(), line2.p2());
+    return {line1.p2(), line2.p2()};
 }
 
 QLineF HChromaticity::calcIsothermXy(double tc, double duv)
@@ -70,14 +70,14 @@ QLineF HChromaticity::calcIsothermXy(double tc, double duv)
     auto line = calcIsothermUv(tc, duv);
     auto p1 = HSpecHelper::uv2xy(line.p1());
     auto p2 = HSpecHelper::uv2xy(line.p2());
-    return QLineF(p1, p2);
+    return {p1, p2};
 }
 
 QLineF HChromaticity::calcIsothermXy(double tc, double duvB, double duvE)
 {
     auto line1 = calcIsothermXy(tc, duvB);
     auto line2 = calcIsothermXy(tc, duvE);
-    return QLineF(line1.p2(), line2.p2());
+    return {line1.p2(), line2.p2()};
 }
 
 bool HChromaticity::exportIsotherm(QString fileName, QPointF tc, double interval)
@@ -207,24 +207,15 @@ double HChromaticity::calcColorRenderingIndexAvg(QVector<double> index)
 
 CIE_UCS HChromaticity::calcCieUcs(double tc)
 {
-    int i;
-    QVector<double> Yri(15),uri(15),vri(15),Uri(15),Vri(15),Wri(15);
-    QPointF uvt,uv,xyt,cd;
-    QPolygonF spd;
+    QVector<double> Yri(15),uri(15),vri(15);
     CIE_UCS ucs;
 
-    spd = d_ptr->cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
-    uvt = d_ptr->cie1931->calcIsoCoordinateUv(tc);
-    xyt = HSpecHelper::uv2xy(uvt);
-    uv = d_ptr->cie1931->calcCoordinateUv(spd);
-    cd = HSpecHelper::uv2cd(uv);
+    auto spd = d_ptr->cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
+    auto uvt = d_ptr->cie1931->calcIsoCoordinateUv(tc);
+    auto uv = d_ptr->cie1931->calcCoordinateUv(spd);
+    auto xyt = HSpecHelper::uv2xy(uvt);
+    auto cd = HSpecHelper::uv2cd(uv);
     d_ptr->cie1931->calcColorReflectance(spd, uri, vri, Yri);
-    for (i = 0; i < 15; i++)
-    {
-        Wri[i] = 25 * pow(Yri[i], 1.0/3) - 17;
-        Uri[i] = 13 * Wri[i] * (uri[i] - uv.x());
-        Vri[i] = 13 * Wri[i] * (vri[i] - uv.y());
-    }
     ucs.Tc = tc;
     ucs.urt = uvt.x();
     ucs.vrt = uvt.y();
@@ -234,11 +225,11 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     ucs.vr = uv.y();
     ucs.cr = cd.x();
     ucs.dr = cd.y();
-    for (i = 0; i < 15; i++)
+    for (int i = 0; i < 15; i++)
     {
-        ucs.Ur[i] = Uri.at(i);
-        ucs.Vr[i] = Vri.at(i);
-        ucs.Wr[i] = Wri.at(i);
+        ucs.Wr[i] = 25 * pow(Yri[i], 1.0/3) - 17;
+        ucs.Ur[i] = 13 * ucs.Wr[i] * (uri[i] - uv.x());
+        ucs.Vr[i] = 13 * ucs.Wr[i] * (vri[i] - uv.y());
     }
     return ucs;
 }

@@ -16,18 +16,16 @@ HNavLabel::HNavLabel(HNavLabelPrivate &p, QWidget *parent) :
 {
 }
 
-HNavLabel::~HNavLabel()
-{
-}
+HNavLabel::~HNavLabel() = default;
 
 QSize HNavLabel::sizeHint() const
 {
-    return QSize(100, 25);
+    return {100, 25};
 }
 
 QSize HNavLabel::minimumSizeHint() const
 {
-    return QSize(20, 5);
+    return {20, 5};
 }
 
 int HNavLabel::borderRadius() const

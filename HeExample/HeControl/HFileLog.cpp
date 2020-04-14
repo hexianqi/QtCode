@@ -14,10 +14,6 @@ HFileLog::HFileLog(HFileLogPrivate &p, QObject *parent) :
 {
 }
 
-HFileLog::~HFileLog()
-{
-}
-
 bool HFileLog::readContent(QStringList &value)
 {
     QFile file(fileName());
@@ -37,7 +33,7 @@ bool HFileLog::writeContent(QStringList value)
         return false;
 
     QTextStream s(&file);
-    for (auto v : value)
+    for (const auto &v : value)
         s << v << endl;
     file.close();
     return true;
@@ -50,7 +46,7 @@ bool HFileLog::appendContent(QStringList value)
         return false;
 
     QTextStream s(&file);
-    for (auto v : value)
+    for (const auto &v : value)
         s << v << endl;
     file.close();
     return true;

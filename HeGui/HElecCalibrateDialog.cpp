@@ -154,12 +154,12 @@ QTreeWidgetItem *HElecCalibrateDialog::createItem(const QString &text, int value
 void HElecCalibrateDialog::createItem(IElecCalibrate *data, HElecType type, int &value, QTreeWidgetItem *parent)
 {
     auto collection = data->itemCollection(type);
-    if (collection == nullptr || collection->size() == 0)
+    if (collection == nullptr || collection->isEmpty())
         return;
 
     int i = 0;
     auto p = collection->size() > 1 ? createItem(HCore::toCaption(data->toString(type)), value, parent) : parent;
-    for (auto t : collection->keys())
+    for (const auto &t : collection->keys())
     {
         createItem(HCore::toCaption(t), value, p);
         auto w = createItemWidget(type);
@@ -185,7 +185,7 @@ void HElecCalibrateDialog::init()
     auto list = QList<HElecType>() << OutputVoltage << OutputCurrent
                                   << MeasuredVoltage << MeasuredCurrent
                                   << ReverseVoltage << ReverseCurrent;
-    for (auto key : d_ptr->calibrate->keys())
+    for (const auto &key : d_ptr->calibrate->keys())
     {
         auto item = d_ptr->calibrate->value(key);
         auto parent = ui->treeWidget->invisibleRootItem();

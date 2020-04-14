@@ -7,7 +7,7 @@ HE_CORE_BEGIN_NAMESPACE
 
 QStringList HCoreHelper::unselected(QStringList optional, QStringList selected)
 {
-    for (auto s : selected)
+    for (const auto &s : selected)
         optional.removeAll(s);
     return optional;
 }

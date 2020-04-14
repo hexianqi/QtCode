@@ -17,7 +17,6 @@ class QDESIGNER_WIDGET_EXPORT HCie1931ChartView : public HZoomChartView
 
 public:
     explicit HCie1931ChartView(QWidget *parent = nullptr);
-    ~HCie1931ChartView() override;
 
 signals:
     void mouseDoubleClicked(QPointF point);

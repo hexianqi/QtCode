@@ -2,17 +2,13 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HMimeAttachment::HMimeAttachment(QString fileName, QObject *parent) :
+HMimeAttachment::HMimeAttachment(const QString &fileName, QObject *parent) :
     HMimeFile(*new HMimeAttachmentPrivate, fileName, parent)
 {
 }
 
-HMimeAttachment::HMimeAttachment(HMimeAttachmentPrivate &p, QString fileName, QObject *parent) :
+HMimeAttachment::HMimeAttachment(HMimeAttachmentPrivate &p, const QString &fileName, QObject *parent) :
     HMimeFile(p, fileName, parent)
-{
-}
-
-HMimeAttachment::~HMimeAttachment()
 {
 }
 

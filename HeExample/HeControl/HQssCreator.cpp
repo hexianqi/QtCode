@@ -42,7 +42,7 @@ void HQssCreator::initStyle()
 void HQssCreator::initAction()
 {
     auto g = new QActionGroup(this);
-    for (auto k : d_ptr->style->styles())
+    for (const auto &k : d_ptr->style->styles())
         g->addAction(k)->setData(k);
     connect(g, &QActionGroup::triggered, this, &HQssCreator::changeStyle);
     addActions(g->actions());

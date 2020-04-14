@@ -12,7 +12,5 @@ HGraphicsItem::HGraphicsItem(HGraphicsItemPrivate &p, QGraphicsItem *parent) :
 {
 }
 
-HGraphicsItem::~HGraphicsItem()
-{
-}
+HGraphicsItem::~HGraphicsItem() = default;
 

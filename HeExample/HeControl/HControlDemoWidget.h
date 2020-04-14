@@ -64,9 +64,9 @@ private:
     void addAnimatedCheckBox();
 
 private:
-    void addTab(QString key, QWidget *);
-    void addTab(QString key, QString title, QWidget *);
-    void addTab(QString key, QString title, QLayout *);
+    void addTab(const QString &key, QWidget *);
+    void addTab(const QString &key, const QString &title, QWidget *);
+    void addTab(const QString &key, const QString &title, QLayout *);
 };
 
 HE_CONTROL_END_NAMESPACE

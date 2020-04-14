@@ -28,7 +28,7 @@ void HColorDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
 
 QSize HColorDelegate::sizeHint(const QStyleOptionViewItem &/*option*/, const QModelIndex &/*index*/) const
 {
-    return QSize(16, 16);
+    return {16, 16};
 }
 
 HE_CONTROL_END_NAMESPACE

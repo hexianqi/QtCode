@@ -28,7 +28,7 @@ public:
 
 public:
     HErrorType open() override;
-    HErrorType close() override;
+    HErrorType close() final;
 
 protected:
     HAbstractDevice(HAbstractDevicePrivate &);

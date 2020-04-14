@@ -13,7 +13,6 @@ class HNavTreeDelegate : public QStyledItemDelegate
     Q_OBJECT
 public:
     explicit HNavTreeDelegate(QObject *parent = nullptr);
-    ~HNavTreeDelegate() override;
 
 protected:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;

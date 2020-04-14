@@ -13,10 +13,6 @@ HDynamicChartView::HDynamicChartView(QWidget *parent) :
     init();
 }
 
-HDynamicChartView::~HDynamicChartView()
-{
-}
-
 QValueAxis *HDynamicChartView::axisX()
 {
     Q_D(HDynamicChartView);

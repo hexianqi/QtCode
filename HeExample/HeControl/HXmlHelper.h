@@ -16,7 +16,7 @@ class HXmlHelper
 {
 public:
     // 修改属性
-    static void setAttribute(QDomElement elem, QString tagName, QString attributeName, QString attributeValue);
+    static void setAttribute(QDomElement elem, const QString &tagName, const QString &attributeName, const QString &attributeValue);
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -23,35 +23,35 @@ class HLunarCalendarWidgetPrivate;
 class HLunarCalendarWidget : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(QDate date READ date WRITE setDate)
+    Q_PROPERTY(QDate date                                   READ date WRITE setDate)
 
-    Q_PROPERTY(WeekNameFormat weekNameFormat READ weekNameFormat WRITE setWeekNameFormat)
-    Q_PROPERTY(QColor weekTextColor READ weekTextColor WRITE setWeekTextColor)
-    Q_PROPERTY(QColor weekBackground READ weekBackground WRITE setWeekBackground)
+    Q_PROPERTY(WeekNameFormat weekNameFormat                READ weekNameFormat     WRITE setWeekNameFormat)
+    Q_PROPERTY(QColor weekTextColor                         READ weekTextColor      WRITE setWeekTextColor)
+    Q_PROPERTY(QColor weekBackground                        READ weekBackground     WRITE setWeekBackground)
 
-    Q_PROPERTY(bool showLunar READ isShowLunar WRITE setShowLunar)
-    Q_PROPERTY(QString backgroundImage READ backgroundImage WRITE setBackgroundImage)
-    Q_PROPERTY(HLunarCalendarItem::SelectType selectType READ selectType WRITE setSelectType)
+    Q_PROPERTY(bool showLunar                               READ isShowLunar        WRITE setShowLunar)
+    Q_PROPERTY(QString backgroundImage                      READ backgroundImage    WRITE setBackgroundImage)
+    Q_PROPERTY(HLunarCalendarItem::SelectType selectType    READ selectType         WRITE setSelectType)
 
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor)
-    Q_PROPERTY(QColor weekColor READ weekColor WRITE setWeekColor)
-    Q_PROPERTY(QColor superColor READ superColor WRITE setSuperColor)
-    Q_PROPERTY(QColor lunarColor READ lunarColor WRITE setLunarColor)
+    Q_PROPERTY(QColor borderColor                           READ borderColor        WRITE setBorderColor)
+    Q_PROPERTY(QColor weekColor                             READ weekColor          WRITE setWeekColor)
+    Q_PROPERTY(QColor superColor                            READ superColor         WRITE setSuperColor)
+    Q_PROPERTY(QColor lunarColor                            READ lunarColor         WRITE setLunarColor)
 
-    Q_PROPERTY(QColor currentTextColor READ currentTextColor WRITE setCurrentTextColor)
-    Q_PROPERTY(QColor otherTextColor READ otherTextColor WRITE setOtherTextColor)
-    Q_PROPERTY(QColor selectTextColor READ selectTextColor WRITE setSelectTextColor)
-    Q_PROPERTY(QColor hoverTextColor READ hoverTextColor WRITE setHoverTextColor)
+    Q_PROPERTY(QColor currentTextColor                      READ currentTextColor   WRITE setCurrentTextColor)
+    Q_PROPERTY(QColor otherTextColor                        READ otherTextColor     WRITE setOtherTextColor)
+    Q_PROPERTY(QColor selectTextColor                       READ selectTextColor    WRITE setSelectTextColor)
+    Q_PROPERTY(QColor hoverTextColor                        READ hoverTextColor     WRITE setHoverTextColor)
 
-    Q_PROPERTY(QColor currentLunarColor READ currentLunarColor WRITE setCurrentLunarColor)
-    Q_PROPERTY(QColor otherLunarColor READ otherLunarColor WRITE setOtherLunarColor)
-    Q_PROPERTY(QColor selectLunarColor READ selectLunarColor WRITE setSelectLunarColor)
-    Q_PROPERTY(QColor hoverLunarColor READ hoverLunarColor WRITE setHoverLunarColor)
+    Q_PROPERTY(QColor currentLunarColor                     READ currentLunarColor  WRITE setCurrentLunarColor)
+    Q_PROPERTY(QColor otherLunarColor                       READ otherLunarColor    WRITE setOtherLunarColor)
+    Q_PROPERTY(QColor selectLunarColor                      READ selectLunarColor   WRITE setSelectLunarColor)
+    Q_PROPERTY(QColor hoverLunarColor                       READ hoverLunarColor    WRITE setHoverLunarColor)
 
-    Q_PROPERTY(QColor currentBackground READ currentBackground WRITE setCurrentBackground)
-    Q_PROPERTY(QColor otherBackground READ otherBackground WRITE setOtherBackground)
-    Q_PROPERTY(QColor selectBackground READ selectBackground WRITE setSelectBackground)
-    Q_PROPERTY(QColor hoverBackground READ hoverBackground WRITE setHoverBackground)
+    Q_PROPERTY(QColor currentBackground                     READ currentBackground  WRITE setCurrentBackground)
+    Q_PROPERTY(QColor otherBackground                       READ otherBackground    WRITE setOtherBackground)
+    Q_PROPERTY(QColor selectBackground                      READ selectBackground   WRITE setSelectBackground)
+    Q_PROPERTY(QColor hoverBackground                       READ hoverBackground    WRITE setHoverBackground)
 
 public:
     enum WeekNameFormat

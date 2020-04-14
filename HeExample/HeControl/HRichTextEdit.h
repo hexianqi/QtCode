@@ -58,8 +58,8 @@ protected:
 protected:
     void keyPressEvent(QKeyEvent *) override;
     void resizeEvent(QResizeEvent *) override;
-    void contextMenuEvent(QContextMenuEvent *) override;    
-    void setCharFormat(QTextCharFormat value);
+    void contextMenuEvent(QContextMenuEvent *) override;
+    void setCharFormat(const QTextCharFormat &);
 
 protected:
     QScopedPointer<HRichTextEditPrivate> d_ptr;

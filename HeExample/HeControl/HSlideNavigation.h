@@ -69,23 +69,23 @@ public:
     QColor itemLineColor() const;
 
 public slots:
-    void addItem(QString value);
-    void addItem(QStringList value);
+    void addItem(const QString &);
+    void addItem(const QStringList &);
     void setCurrentIndex(int value);
     void setKeyMoveEnable(bool b);
     void setOrientation(Qt::Orientation value);
     void setFixed(bool b);
     void setSpace(int value);
     void setBarRadious(int value);
-    void setBarBackgroundStart(const QColor &value);
-    void setBarBackgroundEnd(const QColor &value);
+    void setBarBackgroundStart(const QColor &);
+    void setBarBackgroundEnd(const QColor &);
     void setItemRadious(int value);
-    void setItemBackgroundStart(const QColor &value);
-    void setItemBackgroundEnd(const QColor &value);
-    void setItemTextColor(const QColor &value);
+    void setItemBackgroundStart(const QColor &);
+    void setItemBackgroundEnd(const QColor &);
+    void setItemTextColor(const QColor &);
     void setItemLineStyle(LineStyle value);
     void setItemLineWidth(int value);
-    void setItemLineColor(const QColor &value);
+    void setItemLineColor(const QColor &);
 
 public slots:
     void moveToFirst();
@@ -93,7 +93,7 @@ public slots:
     void moveToPrevious();
     void moveToNext();
     void moveTo(int value);
-    void moveTo(QString value);
+    void moveTo(const QString &);
     void moveTo(QPointF value);
 
 protected:

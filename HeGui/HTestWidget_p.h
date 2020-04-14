@@ -17,13 +17,13 @@ public:
     HTestWidgetPrivate();
 
 public:
-    IExcelStream *excelStream;
+    IExcelStream *excelStream = nullptr;
 
 public:
-    QAction *actionStart;
-    QAction *actionStop;
-    QAction *actionExportExcel;
-    QAction *actionClear;
+    QAction *actionStart = nullptr;
+    QAction *actionStop = nullptr;
+    QAction *actionExportExcel = nullptr;
+    QAction *actionClear = nullptr;
 };
 
 HE_GUI_END_NAMESPACE

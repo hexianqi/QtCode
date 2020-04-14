@@ -16,7 +16,6 @@ class HCie1931Chart : public HSingleAxisChart
 
 public:
     explicit HCie1931Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-    ~HCie1931Chart() override;
 
 signals:
     void pointFocusChanged(QPointF value);
@@ -36,12 +35,12 @@ public:
     bool isEnablePoint();
 
 public:
-    void setGradeFocus(QPolygonF value);
-    void setGrades(QList<QPolygonF> value);
+    void setGradeFocus(QPolygonF);
+    void setGrades(QList<QPolygonF>);
     void addGrade(QPolygonF value, bool focus = true);
     void clearGrade();
-    void setPointFocus(QPointF value);
-    void setPoints(QList<QPointF> value);
+    void setPointFocus(QPointF);
+    void setPoints(const QList<QPointF> &);
     void addPoint(QPointF value, bool focus = true);
     void clearPoint();
 

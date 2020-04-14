@@ -19,11 +19,11 @@ public:
     ~HEntireTableWidget() override;
 
 public:
-    void setHorizontalHeaderLabels(QStringList value);
-    void setVerticalHeaderLabels(QStringList value);
-    void setRow(int row, QStringList value);
-    void setColumn(int column, QStringList value);
-    void insertRow(int row, QStringList value = QStringList());
+    void setHorizontalHeaderLabels(const QStringList &);
+    void setVerticalHeaderLabels(const QStringList &);
+    void setRow(int row, const QStringList &value);
+    void setColumn(int column, const QStringList &value);
+    void insertRow(int row, const QStringList &value = QStringList());
 
 protected:
     HEntireTableWidget(HEntireTableWidgetPrivate &p, QWidget *parent = nullptr);

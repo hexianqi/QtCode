@@ -23,9 +23,7 @@ HScreenWidget::HScreenWidget(HScreenWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HScreenWidget::~HScreenWidget()
-{
-}
+HScreenWidget::~HScreenWidget() = default;
 
 void HScreenWidget::contextMenuEvent(QContextMenuEvent *e)
 {
@@ -94,14 +92,14 @@ void HScreenWidget::showEvent(QShowEvent *)
 
 void HScreenWidget::saveScreen()
 {
-    auto fileName = QString("%1/screen_%2.png").arg(qApp->applicationDirPath(), QDateTime::currentDateTime().toString("yyyy-MM-dd-HH-mm-ss"));
+    auto fileName = QString("%1/screen_%2.png").arg(QApplication::applicationDirPath(), QDateTime::currentDateTime().toString("yyyy-MM-dd-HH-mm-ss"));
     d_ptr->screen->saveScreen(fileName);
     close();
 }
 
 void HScreenWidget::saveFullScreen()
 {
-    auto fileName = QString("%1/screen_%2.png").arg(qApp->applicationDirPath(), QDateTime::currentDateTime().toString("yyyy-MM-dd-HH-mm-ss"));
+    auto fileName = QString("%1/screen_%2.png").arg(QApplication::applicationDirPath(), QDateTime::currentDateTime().toString("yyyy-MM-dd-HH-mm-ss"));
     d_ptr->screen->saveFullScreen(fileName);
     close();
 }

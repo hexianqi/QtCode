@@ -28,7 +28,6 @@ class HCircleGauge : public HAnimationProgress
 
 public:
     explicit HCircleGauge(QWidget *parent = nullptr);
-    ~HCircleGauge() override;
 
 public:
     QSize sizeHint() const override;
@@ -51,11 +50,11 @@ public slots:
     void setScaleDecimal(int value);
     void setAngleStart(int value);
     void setAngleEnd(int value);
-    void setBackground(const QColor &value);
-    void setTextColor(const QColor &value);
-    void setPointerColor(const QColor &value);
-    void setScaleColor(const QColor &value);
-    void setScaleLabelColor(const QColor &value);
+    void setBackground(const QColor &);
+    void setTextColor(const QColor &);
+    void setPointerColor(const QColor &);
+    void setScaleColor(const QColor &);
+    void setScaleLabelColor(const QColor &);
 
 protected:
     HCircleGauge(HCircleGaugePrivate &p, QWidget *parent = nullptr);

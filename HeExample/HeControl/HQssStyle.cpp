@@ -18,13 +18,10 @@ HQssStyle::HQssStyle(HQssStylePrivate &p, QObject *parent) :
     init();
 }
 
-HQssStyle::~HQssStyle()
-{
-}
+HQssStyle::~HQssStyle() = default;
 
 void HQssStyle::initialize(QVariantMap /*param*/)
 {
-
 }
 
 QString HQssStyle::typeName()

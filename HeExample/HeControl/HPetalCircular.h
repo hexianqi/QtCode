@@ -20,7 +20,6 @@ class HPetalCircular : public HAbstractCircular
 
 public:
     explicit HPetalCircular(QObject *parent = nullptr);
-    ~HPetalCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

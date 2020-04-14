@@ -21,7 +21,6 @@ class HBearingCircular : public HAbstractCircular
 
 public:
     explicit HBearingCircular(QObject *parent = nullptr);
-    ~HBearingCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

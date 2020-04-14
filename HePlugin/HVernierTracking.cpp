@@ -3,22 +3,18 @@
 #include <QtWidgets/QStyleOptionFocusRect>
 #include <QtWidgets/QStylePainter>
 
-HVernierTrackingPrivate::HVernierTrackingPrivate(Qt::Orientation o, QWidget *p)
-    : HAbstractVernierTrackingPrivate(o, p)
+HVernierTrackingPrivate::HVernierTrackingPrivate(Qt::Orientation o, QWidget *p) :
+    HAbstractVernierTrackingPrivate(o, p)
 {
 }
 
-HVernierTracking::HVernierTracking(Qt::Orientation orientation, QWidget *parent)
-    : HAbstractVernierTracking(*new HVernierTrackingPrivate(orientation, parent), parent)
+HVernierTracking::HVernierTracking(Qt::Orientation orientation, QWidget *parent) :
+    HAbstractVernierTracking(*new HVernierTrackingPrivate(orientation, parent), parent)
 {
 }
 
-HVernierTracking::HVernierTracking(HVernierTrackingPrivate &p, QWidget *parent)
-    : HAbstractVernierTracking(p, parent)
-{
-}
-
-HVernierTracking::~HVernierTracking()
+HVernierTracking::HVernierTracking(HVernierTrackingPrivate &p, QWidget *parent) :
+    HAbstractVernierTracking(p, parent)
 {
 }
 

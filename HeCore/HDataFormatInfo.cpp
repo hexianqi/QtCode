@@ -25,9 +25,9 @@ HDataFormatInfo::HDataFormatInfo(const QString &typeName, const QString &unit, d
     d_ptr->singleStep = singleStep;
 }
 
-HDataFormatInfo::HDataFormatInfo(const HDataFormatInfo &rhs) :
-    d_ptr(rhs.d_ptr)
+HDataFormatInfo::HDataFormatInfo(const HDataFormatInfo &rhs)
 {
+    d_ptr = rhs.d_ptr;
 }
 
 HDataFormatInfo::HDataFormatInfo(HDataFormatInfoPrivate &p) :
@@ -41,6 +41,8 @@ HDataFormatInfo &HDataFormatInfo::operator=(const HDataFormatInfo &rhs)
         d_ptr.operator=(rhs.d_ptr);
     return *this;
 }
+
+HDataFormatInfo::~HDataFormatInfo() = default;
 
 void HDataFormatInfo::setTypeName(const QString &text)
 {

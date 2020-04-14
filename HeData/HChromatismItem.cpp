@@ -54,7 +54,7 @@ void HChromatismItem::writeContent(QDataStream &s)
 double HChromatismItem::calcSdcm(QPointF xy)
 {
     QList<double> g;
-    for (auto v : data("[参数G]").toList())
+    for (const auto &v : data("[参数G]").toList())
         g << v.toDouble();
     auto center = data("[中心点]").toPointF();
     auto x = center.x() - xy.x();

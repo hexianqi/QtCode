@@ -19,7 +19,6 @@ class HResetLineEdit : public HButtonLineEdit
 
 public:
     explicit HResetLineEdit(QWidget *parent = nullptr);
-    ~HResetLineEdit() override;
 
 public:
     QString defaultText() const;

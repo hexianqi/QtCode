@@ -42,7 +42,7 @@ protected:
     HSqlHandle(HSqlHandlePrivate &p, QObject *parent = nullptr);
 
 protected:
-    void setFilter(QString value);
+    void setFilter(const QString &);
 
 protected:
     QScopedPointer<HSqlHandlePrivate> d_ptr;

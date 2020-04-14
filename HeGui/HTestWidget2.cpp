@@ -104,7 +104,7 @@ QVariantMap HTestWidget2::toRecord()
 {
     Q_D(HTestWidget2);
     QVariantMap data;
-    for (auto f : d->sqlHandle->field())
+    for (const auto &f : d->sqlHandle->field())
         data.insert(f, d->testData->data(HSql::toType(f)));
     return data;
 }

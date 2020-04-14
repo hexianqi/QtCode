@@ -14,7 +14,7 @@ QPointF HSpecHelper::xy2uv(QPointF xy)
     auto y = xy.y();
     auto u = 4 * x / (-2 * x + 12 * y + 3);
     auto v = 6 * y / (-2 * x + 12 * y +3);
-    return QPointF(u, v);
+    return {u, v};
 }
 
 QPointF HSpecHelper::uv2xy(QPointF uv)
@@ -23,12 +23,12 @@ QPointF HSpecHelper::uv2xy(QPointF uv)
     auto v = uv.y();
     auto x = 3 * u / (4 + 2 * u - 8 * v);
     auto y = 2 * v / (4 + 2 * u - 8 * v);
-    return QPointF(x, y);
+    return {x, y};
 }
 
 QPointF HSpecHelper::uv2uvp(QPointF uv)
 {
-    return QPointF(uv.x(), 1.5 * uv.y());
+    return {uv.x(), 1.5 * uv.y()};
 }
 
 QPointF HSpecHelper::uv2cd(QPointF uv)
@@ -37,7 +37,7 @@ QPointF HSpecHelper::uv2cd(QPointF uv)
     auto v = uv.y();
     auto c = (4 - u - 10 * v) / v;
     auto d = (1.708 * v + 0.404 - 1.481 * u) / v;
-    return QPointF(c, d);
+    return {c, d};
 }
 
 /***************************************************************************************************
@@ -154,7 +154,7 @@ QColor HSpecHelper::wave2color(double wave, double gamma, double intensityMax)
     int G = qFuzzyIsNull(g) ? 0 : int(std::round(intensityMax * std::pow(g * alpha, gamma)));
     int B = qFuzzyIsNull(b) ? 0 : int(std::round(intensityMax * std::pow(b * alpha, gamma)));
     auto A = int(alpha);
-    return QColor(R, G, B, A);
+    return {R, G, B, A};
 }
 
 HE_ALGORITHM_END_NAMESPACE

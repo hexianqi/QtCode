@@ -87,46 +87,9 @@ protected:
 private:
     void init();
     void updateTime();
-    void updateSpring(QVariant value);
+    void updateSpring(const QVariant &);
 };
 
 HE_CONTROL_END_NAMESPACE
 
 #endif // HCLOCKGAUGE_H
-
-//    QTimer *timer;                  //定时器绘制
-//    int hour, min, sec, msec;       //时分秒毫秒
-
-//    QTimer *timerSpring;            //定时器显示弹簧效果
-//    double angleSpring;             //弹簧角度
-
-//    QAction *action_secondstyle;    //秒针样式右键菜单
-
-//private slots:
-//    void doAction();
-
-//public Q_SLOTS:
-//    //设置秒针走动样式
-//    void setSecondStyle(const SecondStyle &secondStyle);
-//    //设置系统时间
-//    void setSystemDateTime(const QString &year, const QString &month, const QString &day,
-//                           const QString &hour, const QString &min, const QString &sec);
-
-//    //设置外边框渐变颜色
-//    void setCrownColorStart(const QColor &crownColorStart);
-//    void setCrownColorEnd(const QColor &crownColorEnd);
-
-//    //设置前景色
-//    void setForeground(const QColor &foreground);
-//    //设备背景色
-//    void setBackground(const QColor &background);
-
-//    //设置时钟指针颜色
-//    void setPointerHourColor(const QColor &pointerHourColor);
-//    //设置分钟指针颜色
-//    void setPointerMinColor(const QColor &pointerMinColor);
-//    //设置秒钟指针颜色
-//    void setPointerSecColor(const QColor &pointerSecColor);
-//};
-
-//#endif // GAUGECLOCK_H

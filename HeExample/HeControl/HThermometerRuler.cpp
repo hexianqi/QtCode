@@ -13,18 +13,14 @@ HThermometerRuler::HThermometerRuler(HThermometerRulerPrivate &p, QWidget *paren
 {
 }
 
-HThermometerRuler::~HThermometerRuler()
-{
-}
-
 QSize HThermometerRuler::sizeHint() const
 {
-    return QSize(130, 350);
+    return {130, 350};
 }
 
 QSize HThermometerRuler::minimumSizeHint() const
 {
-    return QSize(26, 70);
+    return {26, 70};
 }
 
 int HThermometerRuler::longStep() const
@@ -230,7 +226,7 @@ void HThermometerRuler::resizeEvent(QResizeEvent *)
     d->barWidth = side / 8;
     d->barHeight = height() - d->space - d->radius * 2 - 2;
     d->targetX = rect().center().x();
-    d->barRect = QRectF(d->targetX - d->barWidth / 2, d->space, d->barWidth, d->barHeight + 5);
+    d->barRect = QRectF(d->targetX - d->barWidth / 2.0, d->space, d->barWidth, d->barHeight + 5);
     d->circleRect = QRectF(d->targetX - d->radius, height() - d->radius * 2 - 2, d->radius * 2, d->radius * 2);
 }
 
@@ -313,9 +309,9 @@ void HThermometerRuler::drawRuler(QPainter *painter, int type)
             auto fontHeight = painter->fontMetrics().height();
             painter->drawLine(QLineF(x + longLine, y, x, y));
             if (type == 0)
-                painter->drawText(QRectF(x - 45, y - fontHeight / 3, 30, 15), Qt::AlignRight, text);
+                painter->drawText(QRectF(x - 45, y - fontHeight / 3.0, 30, 15), Qt::AlignRight, text);
             if (type == 1)
-                painter->drawText(QRectF(x + longLine + 5, y - fontHeight / 3, 30, 15), Qt::AlignLeft, text);
+                painter->drawText(QRectF(x + longLine + 5, y - fontHeight / 3.0, 30, 15), Qt::AlignLeft, text);
         }
         else
             painter->drawLine(QLineF(x + shortLine, y, x, y));
@@ -331,7 +327,7 @@ void HThermometerRuler::drawBar(QPainter *painter)
     int circlePercent = qMax(2, d->radius / 6);
     double increment = (height() - 2 * d->space - 2 * d->radius) / range();
     double rulerHeight = height() - d->space - 2 * d->radius;
-    double barX = d->targetX - d->barWidth / 2;
+    double barX = d->targetX - d->barWidth / 2.0;
     double barY = rulerHeight - (d->currentValue - d->minimum) * increment;
     QPainterPath path;
     path.addRect(QRectF(barX + barPercent, barY + barPercent, d->barWidth - barPercent * 2, d->barHeight + d->radius - barY));
@@ -350,21 +346,21 @@ void HThermometerRuler::drawBar(QPainter *painter)
         if (d->tickPosition == TickPosition_Left || d->tickPosition == TickPosition_Both)
         {
             QPolygonF pts;
-            double initX = d->targetX - (d->barWidth / 2 + 5);
+            double initX = d->targetX - (d->barWidth / 2.0 + 5);
             double initY = rulerHeight - (d->userValue - d->minimum) * increment + barPercent;
             pts << QPointF(initX, initY);
-            pts << QPointF(initX - offset, initY - offset / 2);
-            pts << QPointF(initX - offset, initY + offset / 2);
+            pts << QPointF(initX - offset, initY - offset / 2.0);
+            pts << QPointF(initX - offset, initY + offset / 2.0);
             painter->drawPolygon(pts);
         }
         if (d->tickPosition == TickPosition_Right || d->tickPosition == TickPosition_Both)
         {
             QPolygonF pts;
-            double initX = d->targetX + (d->barWidth / 2 + 5);
+            double initX = d->targetX + (d->barWidth / 2.0 + 5);
             double initY = rulerHeight - (d->userValue - d->minimum) * increment + barPercent;
             pts << QPointF(initX, initY);
-            pts << QPointF(initX + offset, initY - offset / 2);
-            pts << QPointF(initX + offset, initY + offset / 2);
+            pts << QPointF(initX + offset, initY - offset / 2.0);
+            pts << QPointF(initX + offset, initY + offset / 2.0);
             painter->drawPolygon(pts);
         }
     }

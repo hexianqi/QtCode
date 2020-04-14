@@ -12,23 +12,21 @@ HEntireTableWidget::HEntireTableWidget(HEntireTableWidgetPrivate &p, QWidget *pa
     init();
 }
 
-HEntireTableWidget::~HEntireTableWidget()
-{
-}
+HEntireTableWidget::~HEntireTableWidget() = default;
 
-void HEntireTableWidget::setHorizontalHeaderLabels(QStringList value)
+void HEntireTableWidget::setHorizontalHeaderLabels(const QStringList &value)
 {
     setColumnCount(value.size());
     HTableWidget::setHorizontalHeaderLabels(value);
 }
 
-void HEntireTableWidget::setVerticalHeaderLabels(QStringList value)
+void HEntireTableWidget::setVerticalHeaderLabels(const QStringList &value)
 {
     setRowCount(value.size());
     HTableWidget::setVerticalHeaderLabels(value);
 }
 
-void HEntireTableWidget::setRow(int row, QStringList value)
+void HEntireTableWidget::setRow(int row, const QStringList &value)
 {
     if (row < 0 || row >= rowCount())
         return;
@@ -37,7 +35,7 @@ void HEntireTableWidget::setRow(int row, QStringList value)
         item(row, i)->setText(value[i]);
 }
 
-void HEntireTableWidget::setColumn(int column, QStringList value)
+void HEntireTableWidget::setColumn(int column, const QStringList &value)
 {
     if (column < 0 || column >= columnCount())
         return;
@@ -46,7 +44,7 @@ void HEntireTableWidget::setColumn(int column, QStringList value)
         item(i, column)->setText(value[i]);
 }
 
-void HEntireTableWidget::insertRow(int row, QStringList value)
+void HEntireTableWidget::insertRow(int row, const QStringList &value)
 {
     QTableWidget::insertRow(row);
     if (!value.isEmpty())

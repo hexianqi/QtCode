@@ -17,7 +17,6 @@ class HCartesianZoom : public HAbstractMouseStrategy
 
 public:
     explicit HCartesianZoom(QWidget *parent = nullptr);
-    ~HCartesianZoom() override;
 
 signals:
     void coordinateChanged(HCartesianCoordinate *);
@@ -27,12 +26,12 @@ public:
     void resetCoordinate();
 
 public:
-    virtual bool setValidRegion(QRectF value) override;
+    bool setValidRegion(QRectF value) override;
 
 public:
-    virtual bool mousePressEvent(QMouseEvent *) override;
-    virtual bool mouseMoveEvent(QMouseEvent *) override;
-    virtual bool mouseReleaseEvent(QMouseEvent *) override;
+    bool mousePressEvent(QMouseEvent *) override;
+    bool mouseMoveEvent(QMouseEvent *) override;
+    bool mouseReleaseEvent(QMouseEvent *) override;
 
 protected:
     HCartesianZoom(HCartesianZoomPrivate &p, QWidget *parent = nullptr);

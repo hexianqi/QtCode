@@ -22,7 +22,6 @@ class HPieCircular : public HAbstractCircular
 
 public:
     explicit HPieCircular(QObject *parent = nullptr);
-    ~HPieCircular() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -37,8 +36,8 @@ public:
     int spanAngle() const;
 
 public slots:
-    void setBackground(const QColor &value);
-    void setForeground(const QColor &value);
+    void setBackground(const QColor &);
+    void setForeground(const QColor &);
     void setSpanAngle(int value);
 
 protected:

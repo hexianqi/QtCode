@@ -34,8 +34,8 @@ public:
     QTextDocument *document() const;
 
 public slots:
-    void setText(QString value);
-    void setHtml(QString value);
+    void setText(const QString &);
+    void setHtml(const QString &value);
     void setDocument(QTextDocument *);
 
 protected:

@@ -21,10 +21,6 @@ HNavigationPanel::HNavigationPanel(HNavigationPanelPrivate &p, QWidget *parent) 
     init();
 }
 
-HNavigationPanel::~HNavigationPanel()
-{
-}
-
 int HNavigationPanel::count() const
 {
     Q_D(const HNavigationPanel);
@@ -153,15 +149,9 @@ void HNavigationPanel::actionEvent(QActionEvent *e)
     if (e->type() == QEvent::ActionAdded)
     {
         if (e->before() == nullptr)
-        {
             addToolButton(0, e->action());
-            return;
-        }
         else
-        {
             findToolButton(e->before(), [=](int index, QToolButton */*button*/) { addToolButton(index, e->action()); });
-            return;
-        }
     }
     if (e->type() == QEvent::ActionRemoved)
     {
@@ -180,7 +170,7 @@ void HNavigationPanel::addToolButton(int index, QAction *action)
     d->bottomLayout->insertWidget(index, tb);
 }
 
-void HNavigationPanel::findToolButton(QAction *action, std::function<void (int, QToolButton *)> func)
+void HNavigationPanel::findToolButton(QAction *action, const std::function<void (int, QToolButton *)> &func)
 {
     Q_D(HNavigationPanel);
     for (int i = 0; i< d->bottomLayout->count(); i++)

@@ -20,9 +20,7 @@ HStepButton::HStepButton(HStepButtonPrivate &p, QWidget *parent) :
     init();
 }
 
-HStepButton::~HStepButton()
-{
-}
+HStepButton::~HStepButton() = default;
 
 void HStepButton::setButton(QStringList value)
 {
@@ -33,7 +31,7 @@ void HStepButton::setButton(QStringList value)
         w->deleteLater();
     d_ptr->buttons.clear();
 
-    for (auto step : value)
+    for (const auto &step : value)
     {
         auto button = new QPushButton(step);
         button->setFlat(true);

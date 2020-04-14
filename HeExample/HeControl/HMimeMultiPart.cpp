@@ -3,7 +3,7 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-const QString MULTI_PART_NAMES[] =
+QString MULTI_PART_NAMES[] =
 {
     "multipart/mixed",         //    Mixed
     "multipart/digest",        //    Digest
@@ -17,7 +17,7 @@ const QString MULTI_PART_NAMES[] =
 HMimeMultiPartPrivate::HMimeMultiPartPrivate()
 {
     mimeType = HMimeMultiPart::Related;
-    contentType = MULTI_PART_NAMES[mimeType];
+    contentType = MULTI_PART_NAMES->at(mimeType);
     contentEncoding = HMimePart::_8Bit;
     QCryptographicHash md5(QCryptographicHash::Md5);
     md5.addData(QByteArray().append(static_cast<char>(qrand())));
@@ -31,10 +31,6 @@ HMimeMultiPart::HMimeMultiPart(QObject *parent) :
 
 HMimeMultiPart::HMimeMultiPart(HMimeMultiPartPrivate &p, QObject *parent) :
     HMimePart(p, parent)
-{
-}
-
-HMimeMultiPart::~HMimeMultiPart()
 {
 }
 
@@ -54,7 +50,7 @@ void HMimeMultiPart::setMimeType(MimeType type)
 {
     Q_D(HMimeMultiPart);
     d->mimeType = type;
-    d->contentType = MULTI_PART_NAMES[type];
+    d->contentType = MULTI_PART_NAMES->at(type);
 }
 
 void HMimeMultiPart::addPart(HMimePart *p)

@@ -25,19 +25,19 @@ class HLightButtonPrivate;
 class HLightButton : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(QString text READ text WRITE setText)
-    Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
-    Q_PROPERTY(QColor alarmColor READ alarmColor WRITE setAlarmColor)
-    Q_PROPERTY(QColor normalColor READ normalColor WRITE setNormalColor)
-    Q_PROPERTY(QColor borderOutColorStart READ borderOutColorStart WRITE setBorderOutColorStart)
-    Q_PROPERTY(QColor borderOutColorEnd READ borderOutColorEnd WRITE setBorderOutColorEnd)
-    Q_PROPERTY(QColor borderInColorStart READ borderInColorStart WRITE setBorderInColorStart)
-    Q_PROPERTY(QColor borderInColorEnd READ borderInColorEnd WRITE setBorderInColorEnd)
-    Q_PROPERTY(QColor background READ background WRITE setBackground)
-    Q_PROPERTY(QColor overlayColor READ overlayColor WRITE setOverlayColor)
-    Q_PROPERTY(bool moveEnable READ isMoveEnable WRITE setMoveEnable)
-    Q_PROPERTY(bool showRect READ isShowRect WRITE setShowRect)
-    Q_PROPERTY(bool showOverlay READ isShowOverlay WRITE setShowOverlay)
+    Q_PROPERTY(QString text                 READ text                   WRITE setText)
+    Q_PROPERTY(QColor textColor             READ textColor              WRITE setTextColor)
+    Q_PROPERTY(QColor alarmColor            READ alarmColor             WRITE setAlarmColor)
+    Q_PROPERTY(QColor normalColor           READ normalColor            WRITE setNormalColor)
+    Q_PROPERTY(QColor borderOutColorStart   READ borderOutColorStart    WRITE setBorderOutColorStart)
+    Q_PROPERTY(QColor borderOutColorEnd     READ borderOutColorEnd      WRITE setBorderOutColorEnd)
+    Q_PROPERTY(QColor borderInColorStart    READ borderInColorStart     WRITE setBorderInColorStart)
+    Q_PROPERTY(QColor borderInColorEnd      READ borderInColorEnd       WRITE setBorderInColorEnd)
+    Q_PROPERTY(QColor background            READ background             WRITE setBackground)
+    Q_PROPERTY(QColor overlayColor          READ overlayColor           WRITE setOverlayColor)
+    Q_PROPERTY(bool moveEnable              READ isMoveEnable           WRITE setMoveEnable)
+    Q_PROPERTY(bool showRect                READ isShowRect             WRITE setShowRect)
+    Q_PROPERTY(bool showOverlay             READ isShowOverlay          WRITE setShowOverlay)
 
 public:
     explicit HLightButton(QWidget *parent = nullptr);

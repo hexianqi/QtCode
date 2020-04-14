@@ -30,10 +30,6 @@ HWeatherGauge::HWeatherGauge(HWeatherGaugePrivate &p, QWidget *parent) :
     init();
 }
 
-HWeatherGauge::~HWeatherGauge()
-{
-}
-
 HWeatherGauge::WeatherType HWeatherGauge::weatherType() const
 {
     Q_D(const HWeatherGauge);

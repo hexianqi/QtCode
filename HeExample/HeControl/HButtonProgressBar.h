@@ -28,7 +28,6 @@ class HButtonProgressBar : public HAbstractProgress
 
 public:
     explicit HButtonProgressBar(QWidget *parent = nullptr);
-    ~HButtonProgressBar() override;
 
 public:
     QSize sizeHint() const override;

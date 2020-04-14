@@ -14,9 +14,7 @@ HAbstractColorPanel::HAbstractColorPanel(HAbstractColorPanelPrivate &p, QWidget 
 {
 }
 
-HAbstractColorPanel::~HAbstractColorPanel()
-{
-}
+HAbstractColorPanel::~HAbstractColorPanel() = default;
 
 QColor HAbstractColorPanel::color() const
 {

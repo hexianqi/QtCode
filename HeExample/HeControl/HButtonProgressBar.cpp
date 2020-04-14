@@ -17,18 +17,14 @@ HButtonProgressBar::HButtonProgressBar(HButtonProgressBarPrivate &p, QWidget *pa
     init();
 }
 
-HButtonProgressBar::~HButtonProgressBar()
-{
-}
-
 QSize HButtonProgressBar::sizeHint() const
 {
-    return QSize(200, 80);
+    return {200, 80};
 }
 
 QSize HButtonProgressBar::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 QColor HButtonProgressBar::background() const
@@ -181,7 +177,7 @@ void HButtonProgressBar::drawProgress(QPainter *painter)
     auto percent = toRatio(d->value) * 100;
 
     painter->save();
-    painter->translate(width() / 2, height() / 2);
+    painter->translate(width() / 2.0, height() / 2.0);
     painter->scale(side / 200.0, side / 200.0);
     painter->setPen(d->borderWidth > 0 ? pen1 : Qt::NoPen);
     painter->setBrush(d->background);

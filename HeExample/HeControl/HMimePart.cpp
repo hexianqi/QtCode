@@ -15,9 +15,7 @@ HMimePart::HMimePart(HMimePartPrivate &p, QObject *parent) :
 {
 }
 
-HMimePart::~HMimePart()
-{
-}
+HMimePart::~HMimePart() = default;
 
 QString HMimePart::header() const
 {
@@ -162,7 +160,7 @@ QString HMimePart::format(const QString &content, bool quotedPrintable, int maxL
 {
     QString result;
     int chars = 0;
-    for (int i = 0; i < content.length(); i++)
+    for (auto i : content)
     {
         chars++;
         if (!quotedPrintable)
@@ -175,20 +173,20 @@ QString HMimePart::format(const QString &content, bool quotedPrintable, int maxL
         }
         else
         {
-            if (content[i] == '\n') // new line
+            if (i == '\n') // new line
             {
-                result.append(content[i]);
+                result.append(i);
                 chars = 0;
                 continue;
             }
-            if ((chars > maxLength - 1) || ((content[i] == '=') && (chars > maxLength - 3)))
+            if ((chars > maxLength - 1) || ((i == '=') && (chars > maxLength - 3)))
             {
                 result.append('=');
                 result.append("\r\n");
                 chars = 1;
             }
         }
-        result.append(content[i]);
+        result.append(i);
     }
     return result;
 }

@@ -38,10 +38,10 @@ protected:
 
 protected:
     virtual bool isValid();
-    virtual QVariant recordValue(QString field, int index = -1);
-    virtual QString toString(QString field, int index = -1);
-    virtual QString toWhole(QString field, int index = -1);
-    virtual QPolygonF toPolygonF(QString field, int index = -1);
+    virtual QVariant recordValue(const QString &field, int index = -1);
+    virtual QString toString(const QString &field, int index = -1);
+    virtual QString toWhole(const QString &field, int index = -1);
+    virtual QPolygonF toPolygonF(const QString &field, int index = -1);
     virtual QString textForExcel() = 0;
     virtual QString textForExcel(int index, int count);
 
@@ -49,9 +49,9 @@ protected:
     virtual void printPages(QPrinter *printer);
     virtual int pageCount() = 0;
     virtual void paintPage(QPainter *painter, int page) = 0;
-    virtual double paintHeader(QPainter *painter, QString text);
-    virtual double paintFooter(QPainter *painter, QString text);
-    virtual double paintTitle(QPainter *painter, QString text, double y);
+    virtual double paintHeader(QPainter *painter, const QString &text);
+    virtual double paintFooter(QPainter *painter, const QString &text);
+    virtual double paintTitle(QPainter *painter, const QString &text, double y);
     virtual void paintBody(QPainter *painter, double y1, double y2, int page) = 0;
 
 protected:

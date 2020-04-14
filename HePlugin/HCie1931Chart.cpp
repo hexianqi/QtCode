@@ -34,10 +34,6 @@ HCie1931Chart::HCie1931Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags) :
     init();
 }
 
-HCie1931Chart::~HCie1931Chart()
-{
-}
-
 void HCie1931Chart::setEnableCIE(bool b)
 {
     Q_D(HCie1931Chart);
@@ -128,7 +124,7 @@ void HCie1931Chart::setGradeFocus(QPolygonF value)
 void HCie1931Chart::setGrades(QList<QPolygonF> value)
 {
     clearGrade();
-    for (auto poly : value)
+    for (const auto &poly : value)
         addGrade(poly, false);
 }
 
@@ -162,7 +158,7 @@ void HCie1931Chart::setPointFocus(QPointF value)
     emit pointFocusChanged(value);
 }
 
-void HCie1931Chart::setPoints(QList<QPointF> value)
+void HCie1931Chart::setPoints(const QList<QPointF> &value)
 {
     Q_D(HCie1931Chart);
     d->point->replace(value);

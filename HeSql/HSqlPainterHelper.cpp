@@ -4,19 +4,19 @@
 
 HE_SQL_BEGIN_NAMESPACE
 
-QPointF HSqlPainterHelper::drawText(QPainter *painter, double x, double y, QString text, int flags)
+QPointF HSqlPainterHelper::drawText(QPainter *painter, double x, double y, const QString &text, int flags)
 {
     return drawText(painter, QRectF(x, y, painter->viewport().width() - x, painter->viewport().height() - y), text, flags);
 }
 
-QPointF HSqlPainterHelper::drawText(QPainter *painter, QRectF rect, QString text, int flags)
+QPointF HSqlPainterHelper::drawText(QPainter *painter, QRectF rect, const QString &text, int flags)
 {
     rect = painter->boundingRect(rect, flags, text);
     painter->drawText(rect, flags, text);
     return rect.bottomRight();
 }
 
-QPointF HSqlPainterHelper::drawChart(QPainter *painter, QRectF rect, QString title, QWidget *widget)
+QPointF HSqlPainterHelper::drawChart(QPainter *painter, QRectF rect, const QString &title, QWidget *widget)
 {
     painter->setFont(QFont("宋体", 10));
     auto y = drawText(painter, rect, title, Qt::AlignHCenter).y();

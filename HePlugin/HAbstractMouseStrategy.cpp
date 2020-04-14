@@ -12,6 +12,8 @@ HAbstractMouseStrategy::HAbstractMouseStrategy(QWidget *parent) :
 {
 }
 
+HAbstractMouseStrategy::~HAbstractMouseStrategy() = default;
+
 HAbstractMouseStrategy::HAbstractMouseStrategy(HAbstractMouseStrategyPrivate &p, QWidget *parent) :
     QObject(parent),
     d_ptr(&p)

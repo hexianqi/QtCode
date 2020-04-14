@@ -20,7 +20,6 @@ class HTaskPanel : public HAbstractMultiPanel
 
 public:
     explicit HTaskPanel(QWidget *parent = nullptr);
-    ~HTaskPanel() override;
 
 public:
     int count() const override;

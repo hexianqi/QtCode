@@ -26,12 +26,12 @@ HAntLine::~HAntLine()
 
 QSize HAntLine::sizeHint() const
 {
-    return QSize(100, 100);
+    return {100, 100};
 }
 
 QSize HAntLine::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 int HAntLine::lineLength() const

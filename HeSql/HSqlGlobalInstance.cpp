@@ -9,28 +9,28 @@ QHash<QString, QString>      hashFieldCreateStyle;
 
 HSqlGlobalInstance *theInstance = HSqlGlobalInstance::instance();
 
-QString HSql::toType(QString field)
+QString HSql::toType(const QString &field)
 {
     return hashFieldType.value(field, "[" + field + "]");
 }
 
-QStringList HSql::toType(QStringList field)
+QStringList HSql::toType(const QStringList &field)
 {
     QStringList list;
-    for (auto f : field)
+    for (const auto &f : field)
         list << toType(f);
     return list;
 }
 
-QString HSql::toCreateStyle(QString field)
+QString HSql::toCreateStyle(const QString &field)
 {
     return hashFieldCreateStyle.value(field, field + " [ntext]");
 }
 
-QStringList HSql::toCreateStyle(QStringList field)
+QStringList HSql::toCreateStyle(const QStringList &field)
 {
     QStringList list;
-    for (auto f : field)
+    for (const auto &f : field)
         list << toCreateStyle(f);
     return list;
 }

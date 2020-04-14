@@ -13,10 +13,6 @@ HPanelGauge::HPanelGauge(HPanelGaugePrivate &p, QWidget *parent) :
 {
 }
 
-HPanelGauge::~HPanelGauge()
-{
-}
-
 int HPanelGauge::ringWidth() const
 {
     Q_D(const HPanelGauge);

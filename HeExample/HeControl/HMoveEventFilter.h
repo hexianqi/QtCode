@@ -18,7 +18,6 @@ class HMoveEventFilter : public HAbstractMouseEventFilter
 
 public:
     explicit HMoveEventFilter(QObject *parent = nullptr);
-    ~HMoveEventFilter() override;
 
 public:
     void initialize(QVariantMap param) override;

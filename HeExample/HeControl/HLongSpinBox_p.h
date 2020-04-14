@@ -23,11 +23,10 @@ class HLongSpinBoxValidator : public QValidator
 
 public:
     explicit HLongSpinBoxValidator(HLongSpinBox *parent = nullptr);
-    ~HLongSpinBoxValidator() override;
 
 public:
-    void fixup(QString & input) const override;
-    State validate(QString &input, int &pos ) const override;
+    void fixup(QString &input) const override;
+    State validate(QString &input, int &pos) const override;
 
 private:
     HLongSpinBox *_spinBox;

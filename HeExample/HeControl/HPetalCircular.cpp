@@ -13,10 +13,6 @@ HPetalCircular::HPetalCircular(HPetalCircularPrivate &p, QObject *parent) :
 {
 }
 
-HPetalCircular::~HPetalCircular()
-{
-}
-
 void HPetalCircular::initialize(QVariantMap param)
 {
     if (param.contains("foreground"))

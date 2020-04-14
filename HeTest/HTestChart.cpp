@@ -13,7 +13,7 @@
 
 QChartView *HTestChart::zoomChart()
 {
-    QLineSeries *series = new QLineSeries();
+    auto *series = new QLineSeries();
     for (int i = 0; i < 500; i++)
     {
         QPointF p((qreal) i, qSin(M_PI / 50 * i) * 100);
@@ -21,14 +21,14 @@ QChartView *HTestChart::zoomChart()
         *series << p;
     }
 
-    QChart *chart = new QChart();
+    auto chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("Zoom in/out example");
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->legend()->hide();
     chart->createDefaultAxes();
 
-    auto *chartView = new QChartView;
+    auto chartView = new QChartView;
     chartView->setRubberBand(QChartView::RectangleRubberBand);
     chartView->setChart(chart);
     return chartView;
@@ -39,7 +39,7 @@ QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
     auto chartView = new QChartView;
     auto chart = new QChart();
     auto marker = new HMarkerChartExtend(chart, chartView);
-    if (polys.size() > 0)
+    if (!polys.isEmpty())
     {
         auto scatter = new QScatterSeries();
         scatter->setName("Scatter");
@@ -61,7 +61,7 @@ QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
     return chartView;
 }
 
-QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
+QChartView *HTestChart::diffChart(const QPolygonF &p1, const QPolygonF &p2)
 {
     auto points = p1.toList();
     auto chartView = new HZoomChartView;
@@ -92,7 +92,7 @@ QChartView *HTestChart::diffChart(QPolygonF p1, QPolygonF p2)
     return chartView;
 }
 
-QChartView *HTestChart::vernierChart(QPolygonF p1, QPolygonF p2)
+QChartView *HTestChart::vernierChart(const QPolygonF &p1, const QPolygonF &p2)
 {
     auto points = p1.toList();
     auto chart = new QChart();

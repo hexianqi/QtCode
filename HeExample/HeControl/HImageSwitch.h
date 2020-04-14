@@ -18,8 +18,8 @@ class HImageSwitchPrivate;
 class HImageSwitch : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(bool checked READ isChecked WRITE setChecked)
-    Q_PROPERTY(ButtonStyle buttonStyle READ buttonStyle WRITE setButtonStyle)
+    Q_PROPERTY(bool checked             READ isChecked      WRITE setChecked)
+    Q_PROPERTY(ButtonStyle buttonStyle  READ buttonStyle    WRITE setButtonStyle)
 
 public:
     enum ButtonStyle

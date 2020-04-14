@@ -47,7 +47,7 @@ void HSpecChromatismChartView::initMenuShow()
     connect(group, &QActionGroup::triggered, this, &HSpecChromatismChartView::showChromatism);
     d->menuShow->addActions(group->actions());
     if (!group->actions().isEmpty())
-        showChromatism(group->actions().first());
+        showChromatism(group->actions().at(0));
 }
 
 void HSpecChromatismChartView::refreshWidget()

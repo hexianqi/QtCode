@@ -2,17 +2,13 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-HMimeInlineFile::HMimeInlineFile(QString fileName, QObject *parent) :
+HMimeInlineFile::HMimeInlineFile(const QString &fileName, QObject *parent) :
     HMimeFile(*new HMimeInlineFilePrivate, fileName, parent)
 {
 }
 
-HMimeInlineFile::HMimeInlineFile(HMimeInlineFilePrivate &p, QString fileName, QObject *parent) :
+HMimeInlineFile::HMimeInlineFile(HMimeInlineFilePrivate &p, const QString &fileName, QObject *parent) :
     HMimeFile(p, fileName, parent)
-{
-}
-
-HMimeInlineFile::~HMimeInlineFile()
 {
 }
 

@@ -20,10 +20,6 @@ HBackgroundEventFilter::HBackgroundEventFilter(HBackgroundEventFilterPrivate &p,
 {
 }
 
-HBackgroundEventFilter::~HBackgroundEventFilter()
-{
-}
-
 void HBackgroundEventFilter::initialize(QVariantMap param)
 {
     if (param.contains("backgroundImage"))
@@ -58,7 +54,7 @@ bool HBackgroundEventFilter::addWatched(QObject *p)
     return true;
 }
 
-void HBackgroundEventFilter::setBackgroundImage(QStringList value)
+void HBackgroundEventFilter::setBackgroundImage(const QStringList &value)
 {
     Q_D(HBackgroundEventFilter);
     if (d->imageFiles == value || value.isEmpty())

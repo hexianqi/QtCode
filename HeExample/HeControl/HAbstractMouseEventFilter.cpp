@@ -14,10 +14,6 @@ HAbstractMouseEventFilter::HAbstractMouseEventFilter(HAbstractMouseEventFilterPr
 {
 }
 
-HAbstractMouseEventFilter::~HAbstractMouseEventFilter()
-{
-}
-
 bool HAbstractMouseEventFilter::addWatched(QObject *p)
 {
     if (!p->inherits("QWidget"))
@@ -27,8 +23,8 @@ bool HAbstractMouseEventFilter::addWatched(QObject *p)
 
 bool HAbstractMouseEventFilter::handleInternal(QObject *watched, QEvent *event)
 {
-    auto w = static_cast<QWidget *>(watched);
-    auto e = static_cast<QMouseEvent *>(event);
+    auto w = dynamic_cast<QWidget *>(watched);
+    auto e = dynamic_cast<QMouseEvent *>(event);
     if (w == nullptr || e == nullptr)
         return false;
     if (e->type() == QEvent::MouseButtonPress)

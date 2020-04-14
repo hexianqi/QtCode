@@ -33,7 +33,6 @@ class HSpeedGauge : public HCircleGauge
 
 public:
     explicit HSpeedGauge(QWidget *parent = nullptr);
-    ~HSpeedGauge() override;
 
 public:
     int ringWidth() const;

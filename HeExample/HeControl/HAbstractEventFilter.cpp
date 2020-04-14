@@ -14,9 +14,7 @@ HAbstractEventFilter::HAbstractEventFilter(HAbstractEventFilterPrivate &p, QObje
 {
 }
 
-HAbstractEventFilter::~HAbstractEventFilter()
-{
-}
+HAbstractEventFilter::~HAbstractEventFilter() = default;
 
 bool HAbstractEventFilter::setEnable(bool b)
 {

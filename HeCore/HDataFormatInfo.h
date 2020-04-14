@@ -25,7 +25,7 @@ public:
     HDataFormatInfo(const QString &typeName, const QString &unit, double min, double max, int decimals = 0, double singleStep = 1, const QColor &color = Qt::black);
     HDataFormatInfo(const HDataFormatInfo &);
     HDataFormatInfo &operator=(const HDataFormatInfo &);
-    ~HDataFormatInfo() = default;
+    ~HDataFormatInfo();
 
 public:
     void setTypeName(const QString &value);

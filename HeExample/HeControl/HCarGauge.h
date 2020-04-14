@@ -50,9 +50,8 @@ public:
 
 public:
     explicit HCarGauge(QWidget *parent = nullptr);
-    ~HCarGauge() override;
 
-public:    
+public:
     QColor outerCircleColor() const;
     QColor innerCircleColor() const;
     QColor coverCircleColor() const;

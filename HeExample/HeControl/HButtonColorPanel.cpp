@@ -16,18 +16,14 @@ HButtonColorPanel::HButtonColorPanel(HButtonColorPanelPrivate &p, QWidget *paren
     init();
 }
 
-HButtonColorPanel::~HButtonColorPanel()
-{
-}
-
 QSize HButtonColorPanel::sizeHint() const
 {
-    return QSize(400, 300);
+    return {400, 300};
 }
 
 QSize HButtonColorPanel::minimumSizeHint() const
 {
-    return QSize(40, 30);
+    return {40, 30};
 }
 
 int HButtonColorPanel::space() const

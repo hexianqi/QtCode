@@ -19,7 +19,7 @@ class QDESIGNER_WIDGET_EXPORT HTypeOptionalDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit HTypeOptionalDialog(QStringList selected, QStringList optional, QWidget *parent = nullptr);
+    explicit HTypeOptionalDialog(const QStringList &selected, const QStringList &optional, QWidget *parent = nullptr);
     ~HTypeOptionalDialog() override;
 
 public:

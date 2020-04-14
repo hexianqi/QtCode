@@ -19,18 +19,16 @@ HMultiStyleButton::HMultiStyleButton(HMultiStyleButtonPrivate &p, QWidget *paren
     init();
 }
 
-HMultiStyleButton::~HMultiStyleButton()
-{
-}
+HMultiStyleButton::~HMultiStyleButton() = default;
 
 QSize HMultiStyleButton::sizeHint() const
 {
-    return QSize(100, 50);
+    return {100, 50};
 }
 
 QSize HMultiStyleButton::minimumSizeHint() const
 {
-    return QSize(20, 10);
+    return {20, 10};
 }
 
 QPixmap HMultiStyleButton::background() const

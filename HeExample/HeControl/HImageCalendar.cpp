@@ -20,18 +20,16 @@ HImageCalendar::HImageCalendar(HImageCalendarPrivate &p, QWidget *parent) :
     init();
 }
 
-HImageCalendar::~HImageCalendar()
-{
-}
+HImageCalendar::~HImageCalendar() = default;
 
 QSize HImageCalendar::sizeHint() const
 {
-    return QSize(140, 158);
+    return {140, 158};
 }
 
 QSize HImageCalendar::minimumSizeHint() const
 {
-    return QSize(140, 158);
+    return {140, 158};
 }
 
 HImageCalendar::CalendarStyle HImageCalendar::calendarStyle() const
@@ -115,8 +113,8 @@ void HImageCalendar::init()
     addActions(group->actions());
     connect(group, &QActionGroup::triggered, this, &HImageCalendar::changeStyle);
     setContextMenuPolicy(Qt::ActionsContextMenu);
-    group->actions().first()->setChecked(true);
-    changeStyle(group->actions().first());
+    group->actions().at(0)->setChecked(true);
+    changeStyle(group->actions().at(0));
     setFont(QFont("Microsoft Yahei", 9));
     setWindowTitle(tr("日历"));
 }

@@ -12,10 +12,6 @@ HDoubleSpinBoxDelegate::HDoubleSpinBoxDelegate(HDoubleSpinBoxDelegatePrivate &p,
 {
 }
 
-HDoubleSpinBoxDelegate::~HDoubleSpinBoxDelegate()
-{
-}
-
 QWidget *HDoubleSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     if (!isRedefine(index))

@@ -17,9 +17,7 @@ HCustomComboBox::HCustomComboBox(HCustomComboBoxPrivate &p, QWidget *parent) :
     init();
 }
 
-HCustomComboBox::~HCustomComboBox()
-{
-}
+HCustomComboBox::~HCustomComboBox() = default;
 
 int HCustomComboBox::itemWidth() const
 {

@@ -4,26 +4,51 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-const uint crc_tab[] = { 0x0000, 0x1021, 0x2042, 0x3063,
-                         0x4084, 0x50a5, 0x60c6, 0x70e7,
-                         0x8108, 0x9129, 0xa14a, 0xb16b,
-                         0xc18c, 0xd1ad, 0xe1ce, 0xf1ef };
+//uint crc_tab[] = { 0x0000, 0x1021, 0x2042, 0x3063,
+//                   0x4084, 0x50a5, 0x60c6, 0x70e7,
+//                   0x8108, 0x9129, 0xa14a, 0xb16b,
+//                   0xc18c, 0xd1ad, 0xe1ce, 0xf1ef };
 
-uint getCrc16(uchar *data, uchar size)
+//uint getCrc16(uchar *data, uchar size)
+//{
+//    uint crc = 0;
+//    char da;
+//    while (size-- != 0)
+//    {
+//        da = (uchar(crc / 256)) / 16;
+//        crc <<= 4;
+//        crc ^= crc_tab[da ^(*data / 16)];
+//        da = (uchar(crc / 256)) / 16;
+//        crc <<= 4;
+//        crc ^= crc_tab[da ^(*data & 0x0F)];
+//        data++;
+//    }
+//    return crc;
+//}
+
+quint16 crc16(const QVector<uchar> &data)
 {
-    uint crc = 0;
-    char da;
-    while (size-- != 0)
+    quint16 c;
+    quint16 crc16 = 0xFFFF;
+    for (auto i : data)
     {
-        da = (uchar(crc / 256)) / 16;
-        crc <<= 4;
-        crc ^= crc_tab[da ^(*data / 16)];
-        da = (uchar(crc / 256)) / 16;
-        crc <<= 4;
-        crc ^= crc_tab[da ^(*data & 0x0F)];
-        data++;
+        c = i & 0x00FF;
+        crc16 ^= c;
+        for (int j = 0; j < 8; j++)
+        {
+            if(crc16 & 0x0001)
+            {
+                crc16 >>= 1;
+                crc16 ^= 0xA001;
+            }
+            else
+            {
+                crc16 >>= 1;
+            }
+        }
     }
-    return crc;
+    crc16 = (crc16 >> 8) + (crc16 << 8);
+    return crc16;
 }
 
 HDaXinDevicePrivate::HDaXinDevicePrivate()
@@ -76,7 +101,7 @@ HErrorType HDaXinDevice::setData(HActionType action, QVector<uchar> value, int d
     auto downData = QVector<uchar>() << d->da << d->sa << param[2] << 0x80 << uchar(size % 256) << value;
     if (size == 0)
         downData << 0x00;
-    auto crc = getCrc16(downData.data(), uchar(downData.size()));
+    auto crc = crc16(downData);
     downData.prepend(0x5A);
     downData.prepend(0xA5);
     downData << uchar(crc / 256) << uchar(crc % 256);
@@ -107,7 +132,7 @@ HErrorType HDaXinDevice::getData(HActionType action, QVector<uchar> &value, int 
 
     auto upData = QVector<uchar>(9 + param[0] * 256 + param[1]);
     auto downData =  QVector<uchar>() << d->da << d->sa << param[2] << 0x80 << 0x00;
-    auto crc = getCrc16(downData.data(), uchar(downData.size()));
+    auto crc = crc16(downData);
     downData.prepend(0x5A);
     downData.prepend(0xA5);
     downData << uchar(crc / 256) << uchar(crc % 256);

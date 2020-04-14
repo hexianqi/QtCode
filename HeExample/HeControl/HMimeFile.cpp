@@ -9,20 +9,16 @@ HMimeFilePrivate::HMimeFilePrivate()
     contentEncoding = HMimePart::Base64;
 }
 
-HMimeFile::HMimeFile(QString fileName, QObject *parent) :
+HMimeFile::HMimeFile(const QString &fileName, QObject *parent) :
     HMimePart(*new HMimeFilePrivate, parent)
 {
     setFileName(fileName);
 }
 
-HMimeFile::HMimeFile(HMimeFilePrivate &p, QString fileName, QObject *parent) :
+HMimeFile::HMimeFile(HMimeFilePrivate &p, const QString &fileName, QObject *parent) :
     HMimePart(p, parent)
 {
     setFileName(fileName);
-}
-
-HMimeFile::~HMimeFile()
-{
 }
 
 QString HMimeFile::fileName() const

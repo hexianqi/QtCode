@@ -22,7 +22,6 @@ class HZoomCircleCircular : public HAbstractCircular
 
 public:
     explicit HZoomCircleCircular(QObject *parent = nullptr);
-    ~HZoomCircleCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

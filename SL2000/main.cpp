@@ -10,16 +10,16 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.addLibraryPath("./plugins");
+    QApplication::addLibraryPath("./plugins");
 
 #ifdef SL2000
-    a.setApplicationName("SL2000");
+    QApplication::setApplicationName("SL2000");
     HMainWindow2000 w;
     w.show();
 #elif SL2000DC
-    a.setApplicationName("SL2000DC");
+    QApplication::setApplicationName("SL2000DC");
     HMainWindow2000DC w;
     w.show();
 #endif
-    return a.exec();
+    return QApplication::exec();
 }

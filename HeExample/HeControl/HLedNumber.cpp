@@ -17,18 +17,16 @@ HLedNumber::HLedNumber(HLedNumberPrivate &p, QWidget *parent) :
     init();
 }
 
-HLedNumber::~HLedNumber()
-{
-}
+HLedNumber::~HLedNumber() = default;
 
 QSize HLedNumber::sizeHint() const
 {
-    return QSize(150, 160);
+    return {150, 160};
 }
 
 QSize HLedNumber::minimumSizeHint() const
 {
-    return QSize(10, 10);
+    return {10, 10};
 }
 
 int HLedNumber::number() const

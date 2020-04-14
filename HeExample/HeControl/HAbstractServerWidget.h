@@ -20,7 +20,6 @@ class HAbstractServerWidget : public HAbstractNetworkWidget
 
 public:
     explicit HAbstractServerWidget(QWidget *parent = nullptr);
-    ~HAbstractServerWidget() override;
 
 public:
     QString listenIP() const;

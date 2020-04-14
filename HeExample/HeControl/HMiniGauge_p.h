@@ -12,7 +12,7 @@ public:
     HMiniGaugePrivate();
 
 public:
-    HControlType::PointerStyle pointerStyle;
+    HControlType::PointerStyle pointerStyle = HControlType::PointerStyle_Circle;
     QColor borderColor = Qt::black;
     QColor progressColor = QColor(100, 184, 255);
     bool doubleProgress = true;

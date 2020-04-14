@@ -117,6 +117,8 @@ HJson *HJson::fromJson(QByteArray &data)
     return json;
 }
 
+HJson::~HJson() = default;
+
 bool HJson::isValid() const
 {
     return d_ptr->valid;

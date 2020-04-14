@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
 {
     qDebug() << HCore::toCommand(HLogType::ForePurple);
     QApplication a(argc, argv);
-    a.addLibraryPath("./plugins");
-    a.setStyle(QStyleFactory::create("Plastique"));
+    QApplication::addLibraryPath("./plugins");
+    QApplication::setStyle(QStyleFactory::create("Plastique"));
 
     HControlFactoryWidget cw;
     cw.show();

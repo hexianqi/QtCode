@@ -18,7 +18,6 @@ class HRubberBand : public HAbstractMouseStrategy
 
 public:
     explicit HRubberBand(QWidget *parent = nullptr);
-    ~HRubberBand() override;
 
 signals:
     void rubberBandChanged(QRectF value);

@@ -6,10 +6,8 @@
 
 class HRibbonDiagramWidgetPrivate : public HCartesianWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HRibbonDiagramWidget)
-
 public:
-     HRibbonDiagramWidgetPrivate(HRibbonDiagramWidget *q);
+     HRibbonDiagramWidgetPrivate();
 
 public:
      QPixmap pixmapRibbon;

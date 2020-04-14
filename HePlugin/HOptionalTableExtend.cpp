@@ -8,10 +8,6 @@ HOptionalTableExtend::HOptionalTableExtend(QObject *parent) :
 {
 }
 
-HOptionalTableExtend::~HOptionalTableExtend()
-{
-}
-
 void HOptionalTableExtend::setTableView(QTableView *p)
 {
     HAbstractTableExtend::setTableView(p);
@@ -20,7 +16,7 @@ void HOptionalTableExtend::setTableView(QTableView *p)
     p->addAction(optional);
 }
 
-void HOptionalTableExtend::setDisplay(QStringList value)
+void HOptionalTableExtend::setDisplay(const QStringList &value)
 {
     Q_D(HOptionalTableExtend);
     if (d->displays == value)
@@ -28,7 +24,7 @@ void HOptionalTableExtend::setDisplay(QStringList value)
     d->displays = value;
 }
 
-void HOptionalTableExtend::setOptional(QStringList value)
+void HOptionalTableExtend::setOptional(const QStringList &value)
 {
     Q_D(HOptionalTableExtend);
     if (d->optionals == value)
@@ -36,7 +32,7 @@ void HOptionalTableExtend::setOptional(QStringList value)
     d->optionals = value;
 }
 
-void HOptionalTableExtend::setSelected(QStringList value)
+void HOptionalTableExtend::setSelected(const QStringList &value)
 {
     Q_D(HOptionalTableExtend);
     if (d->selecteds == value)

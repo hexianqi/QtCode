@@ -20,18 +20,16 @@ HHueSatPicker::HHueSatPicker(HHueSatPickerPrivate &p, QWidget *parent) :
     init();
 }
 
-HHueSatPicker::~HHueSatPicker()
-{
-}
+HHueSatPicker::~HHueSatPicker() = default;
 
 QSize HHueSatPicker::sizeHint() const
 {
-    return QSize((d_ptr->maximumHue - d_ptr->minimumHue) + 2 * frameWidth(), (d_ptr->maximumSat - d_ptr->minimumSat) + 2 * frameWidth());
+    return {(d_ptr->maximumHue - d_ptr->minimumHue) + 2 * frameWidth(), (d_ptr->maximumSat - d_ptr->minimumSat) + 2 * frameWidth()};
 }
 
 QSize HHueSatPicker::minimumSizeHint() const
 {
-    return QSize(qMin((d_ptr->maximumHue - d_ptr->minimumHue) / 4, 40) + 2 * frameWidth(), qMin((d_ptr->maximumSat - d_ptr->minimumSat) / 4, 40) + 2 * frameWidth());
+    return {qMin((d_ptr->maximumHue - d_ptr->minimumHue) / 4, 40) + 2 * frameWidth(), qMin((d_ptr->maximumSat - d_ptr->minimumSat) / 4, 40) + 2 * frameWidth()};
 }
 
 int HHueSatPicker::minimumHue() const

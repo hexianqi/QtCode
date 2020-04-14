@@ -16,7 +16,6 @@ class QDESIGNER_WIDGET_EXPORT HSingleAxisChart : public HChart
 
 public:
     explicit HSingleAxisChart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-    ~HSingleAxisChart();
 
 public:
     void addSeries(QAbstractSeries *);

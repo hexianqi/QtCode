@@ -21,9 +21,9 @@ public:
     ~HAbstractFileLog() override;
 
 public:
-    virtual void setPath(QString);
-    virtual void setName(QString);
-    virtual void setDataFormat(QString);
+    virtual void setPath(const QString &);
+    virtual void setName(const QString &);
+    virtual void setDataFormat(const QString &);
     virtual bool readContent(QStringList &value) = 0;
     virtual bool writeContent(QStringList value) = 0;
     virtual bool appendContent(QStringList value) = 0;

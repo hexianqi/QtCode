@@ -13,10 +13,6 @@ HCircleCircular::HCircleCircular(HCircleCircularPrivate &p, QObject *parent) :
 {
 }
 
-HCircleCircular::~HCircleCircular()
-{
-}
-
 void HCircleCircular::initialize(QVariantMap param)
 {
     if (param.contains("foreground"))

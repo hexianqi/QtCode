@@ -13,17 +13,17 @@ HSelectDialog::~HSelectDialog()
     delete ui;
 }
 
-void HSelectDialog::setLabelText(QString value)
+void HSelectDialog::setLabelText(const QString &value)
 {
     ui->label_001->setText(value);
 }
 
-void HSelectDialog::setOptionals(QStringList value)
+void HSelectDialog::setOptionals(const QStringList &value)
 {
     ui->comboBox_1->addItems(value);
 }
 
-void HSelectDialog::setSelected(QString value)
+void HSelectDialog::setSelected(const QString &value)
 {
     ui->comboBox_1->setCurrentText(value);
 }

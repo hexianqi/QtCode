@@ -21,7 +21,7 @@ class HSqlFindDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit HSqlFindDialog(QStringList fields, QString filter = QString(), QWidget *parent = nullptr);
+    explicit HSqlFindDialog(const QStringList &fields, const QString &filter = QString(), QWidget *parent = nullptr);
     ~HSqlFindDialog() override;
 
 public:

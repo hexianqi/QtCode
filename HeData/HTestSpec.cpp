@@ -280,7 +280,7 @@ QPointF HTestSpec::sampleMax(int type, double a, double b)
 {
     auto s = sample(type);
     if (s.isEmpty())
-        return QPointF();
+        return {};
     if (a > b)
         qSwap(a, b);
     int f = qBound(0, qFloor(a), s.size());
@@ -295,7 +295,7 @@ QPointF HTestSpec::sampleMax(int type, double a, double b)
             y = s.at(i);
         }
     }
-    return QPointF(x, y);
+    return {x, y};
 }
 
 QPolygonF HTestSpec::samplePoly(int type)

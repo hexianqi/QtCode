@@ -7,8 +7,7 @@
 
 HE_ALGORITHM_USE_NAMESPACE
 
-HChromatismWidgetPrivate::HChromatismWidgetPrivate(HChromatismWidget *q) :
-    HCartesianWidgetPrivate(q)
+HChromatismWidgetPrivate::HChromatismWidgetPrivate()
 {
     fontTitle.setPointSize(12);
     fontTitle.setWeight(QFont::Bold);
@@ -19,16 +18,12 @@ HChromatismWidgetPrivate::HChromatismWidgetPrivate(HChromatismWidget *q) :
 }
 
 HChromatismWidget::HChromatismWidget(QWidget *parent) :
-    HCartesianWidget(*new HChromatismWidgetPrivate(this), parent)
+    HCartesianWidget(*new HChromatismWidgetPrivate, parent)
 {
     init();
 }
 
-HChromatismWidget::~HChromatismWidget()
-{
-}
-
-void HChromatismWidget::setData(QVariantMap value)
+void HChromatismWidget::setData(const QVariantMap &value)
 {
     Q_D(HChromatismWidget);
     if (value.contains("[标题]"))
@@ -52,7 +47,7 @@ void HChromatismWidget::setData(QVariantMap value)
     addPolygon(0, poly, true);
 }
 
-void HChromatismWidget::setColorPointFocus(QColor value)
+void HChromatismWidget::setColorPointFocus(const QColor &value)
 {
     Q_D(HChromatismWidget);
     if (d->colorPointFocus == value)
@@ -61,7 +56,7 @@ void HChromatismWidget::setColorPointFocus(QColor value)
     refreshPixmap();
 }
 
-void HChromatismWidget::setColorTitle(QColor value)
+void HChromatismWidget::setColorTitle(const QColor &value)
 {
     Q_D(HChromatismWidget);
     if (d->colorTitle == value)
@@ -70,7 +65,7 @@ void HChromatismWidget::setColorTitle(QColor value)
     refreshPixmap();
 }
 
-void HChromatismWidget::setColorBody(QColor value)
+void HChromatismWidget::setColorBody(const QColor &value)
 {
     Q_D(HChromatismWidget);
     if (d->colorBody == value)
@@ -79,7 +74,7 @@ void HChromatismWidget::setColorBody(QColor value)
     refreshPixmap();
 }
 
-void HChromatismWidget::setFontTitle(QFont value)
+void HChromatismWidget::setFontTitle(const QFont &value)
 {
     Q_D(HChromatismWidget);
     if (d->fontTitle == value)
@@ -88,7 +83,7 @@ void HChromatismWidget::setFontTitle(QFont value)
     refreshPixmap();
 }
 
-void HChromatismWidget::setFontBody(QFont value)
+void HChromatismWidget::setFontBody(const QFont &value)
 {
     Q_D(HChromatismWidget);
     if (d->fontTitle == value)

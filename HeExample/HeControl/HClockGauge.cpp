@@ -28,12 +28,12 @@ HClockGauge::~HClockGauge()
 
 QSize HClockGauge::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HClockGauge::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 QColor HClockGauge::foreground() const
@@ -151,7 +151,7 @@ void HClockGauge::paintEvent(QPaintEvent *)
     QPainter painter(this);
     // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.scale(side / 200.0, side / 200.0);
 
     // 绘制外边框
@@ -233,8 +233,8 @@ void HClockGauge::drawScaleLabel(QPainter *painter)
         auto text = QString("%1").arg(i + 1);
         auto textWidth = fontMetrics().width(text);
         auto textHeight = fontMetrics().height();
-        auto x = radius * qCos(angle) - textWidth / 2;
-        auto y = -radius * qSin(angle) + textHeight / 4;
+        auto x = radius * qCos(angle) - textWidth / 2.0;
+        auto y = -radius * qSin(angle) + textHeight / 4.0;
         painter->drawText(QPointF(x, y), text);
     }
     painter->restore();
@@ -324,7 +324,7 @@ void HClockGauge::updateTime()
     }
 }
 
-void HClockGauge::updateSpring(QVariant value)
+void HClockGauge::updateSpring(const QVariant &value)
 {
     d_ptr->angleSpring = 6.0 * (d_ptr->sec + value.toDouble());
     update();

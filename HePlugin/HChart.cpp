@@ -12,6 +12,4 @@ HChart::HChart(HChartPrivate &p, QGraphicsItem *parent, Qt::WindowFlags wFlags) 
 {
 }
 
-HChart::~HChart()
-{
-}
+HChart::~HChart() = default;

@@ -22,9 +22,7 @@ HAbstractNetworkWidget::HAbstractNetworkWidget(HAbstractNetworkWidgetPrivate &p,
     init();
 }
 
-HAbstractNetworkWidget::~HAbstractNetworkWidget()
-{
-}
+HAbstractNetworkWidget::~HAbstractNetworkWidget() = default;
 
 bool HAbstractNetworkWidget::isHexSend() const
 {
@@ -119,7 +117,7 @@ void HAbstractNetworkWidget::writeSettings()
     settings->endGroup();
 }
 
-bool HAbstractNetworkWidget::saveData(QString value)
+bool HAbstractNetworkWidget::saveData(const QString &value)
 {
     if (value.length() <= 0)
         return false;
@@ -133,7 +131,7 @@ bool HAbstractNetworkWidget::saveData(QString value)
     return true;
 }
 
-QString HAbstractNetworkWidget::fromByteArray(QByteArray value)
+QString HAbstractNetworkWidget::fromByteArray(const QByteArray &value)
 {
     if (isHexReceive())
         return QString::fromLatin1(value.toHex(' '));
@@ -144,7 +142,6 @@ QString HAbstractNetworkWidget::fromByteArray(QByteArray value)
 
 QByteArray HAbstractNetworkWidget::toByteArray(QString value)
 {
-    QByteArray data;
     if (isHexSend())
         return QByteArray::fromHex(value.remove(' ').toLatin1());
     if (isAscii())

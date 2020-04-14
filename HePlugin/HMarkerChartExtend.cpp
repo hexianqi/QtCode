@@ -17,10 +17,6 @@ HMarkerChartExtend::HMarkerChartExtend(HMarkerChartExtendPrivate &p, QObject *pa
 {
 }
 
-HMarkerChartExtend::~HMarkerChartExtend()
-{
-}
-
 bool HMarkerChartExtend::connectExtend()
 {
     if (!HAbstractChartExtend::connectExtend())

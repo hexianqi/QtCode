@@ -6,10 +6,8 @@
 
 class HSpecDiagramWidgetPrivate : public HRibbonDiagramWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HSpecDiagramWidget)
-
 public:
-    HSpecDiagramWidgetPrivate(HSpecDiagramWidget *q);
+    HSpecDiagramWidgetPrivate();
 
 public:
     bool drawCenter = false;

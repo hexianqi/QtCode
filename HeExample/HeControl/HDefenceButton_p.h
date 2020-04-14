@@ -10,10 +10,10 @@ class IEventFilter;
 class HDefenceButtonPrivate
 {
 public:
+    HDefenceButton::ButtonStyle buttonStyle   = HDefenceButton::ButtonStyle_Police;
+    HDefenceButton::ButtonStatus buttonStatus = HDefenceButton::ButtonStatus_Arming;
     QString text = "1";
     bool moveEnable = true;
-    HDefenceButton::ButtonStyle buttonStyle = HDefenceButton::ButtonStyle_Police;
-    HDefenceButton::ButtonStatus buttonStatus = HDefenceButton::ButtonStatus_Arming;
     bool isDark = false;
     QString type;
     QString imageName;

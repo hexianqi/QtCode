@@ -25,10 +25,6 @@ HArcGauge::HArcGauge(HArcGaugePrivate &p, QWidget *parent) :
 {
 }
 
-HArcGauge::~HArcGauge()
-{
-}
-
 QColor HArcGauge::arcColor() const
 {
     Q_D(const HArcGauge);
@@ -60,7 +56,7 @@ void HArcGauge::setPointerStyle(HControlType::PointerStyle value)
 }
 
 void HArcGauge::paintEvent(QPaintEvent *)
-{    
+{
     QPainter painter(this);
     preDraw(&painter);
     // 绘制进度条

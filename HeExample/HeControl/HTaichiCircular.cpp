@@ -13,10 +13,6 @@ HTaichiCircular::HTaichiCircular(HTaichiCircularPrivate &p, QObject *parent) :
 {
 }
 
-HTaichiCircular::~HTaichiCircular()
-{
-}
-
 void HTaichiCircular::initialize(QVariantMap param)
 {
     if (param.contains("background"))
@@ -37,9 +33,9 @@ void HTaichiCircular::draw(QPainter *painter, double factor, QVariantMap param)
     auto reverse = param.value("reverse", false).toBool();
     auto rect = QRectF(-50, -50, 100, 100);
     auto rectb1 = QRectF(-25, 0, 50, 50);
-    auto rectb2 = QRectF(-50 / 8, -50 * 5 / 8, 50 / 4, 50 / 4);
+    auto rectb2 = QRectF(-50.0 / 8, -50.0 * 5 / 8, 50.0 / 4, 50.0 / 4);
     auto rectf1 = QRectF(-25, -50, 50, 50);
-    auto rectf2 = QRectF(-50 / 8, 50 * 3 / 8, 50 / 4, 50 / 4);
+    auto rectf2 = QRectF(-50.0 / 8, 50.0 * 3 / 8, 50.0 / 4, 50.0 / 4);
     if (reverse)
     {
         qSwap(rectb1, rectf1);

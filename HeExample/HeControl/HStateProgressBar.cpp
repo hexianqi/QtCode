@@ -15,18 +15,16 @@ HStateProgressBar::HStateProgressBar(HStateProgressBarPrivate &p, QWidget *paren
 {
 }
 
-HStateProgressBar::~HStateProgressBar()
-{
-}
+HStateProgressBar::~HStateProgressBar() = default;
 
 QSize HStateProgressBar::sizeHint() const
 {
-    return QSize(width(), width() / 5);
+    return {width(), width() / 5};
 }
 
 QSize HStateProgressBar::minimumSizeHint() const
 {
-    return QSize(125 * d_ptr->maximum, 25 * d_ptr->maximum);
+    return {125 * d_ptr->maximum, 25 * d_ptr->maximum};
 }
 
 QString HStateProgressBar::tip() const
@@ -184,9 +182,9 @@ void HStateProgressBar::paintEvent(QPaintEvent */*event*/)
     f.setPixelSize(d_ptr->bigRadius);
     painter.setFont(f);
     if (d_ptr->notes.isEmpty() && d_ptr->tip.isEmpty() && !d_ptr->states.isEmpty())
-        painter.translate(d_ptr->lineWidth / 2, height() / 4);
+        painter.translate(d_ptr->lineWidth / 2.0, height() / 4.0);
     else
-        painter.translate(d_ptr->lineWidth / 2, height() / 2);
+        painter.translate(d_ptr->lineWidth / 2.0, height() / 2.0);
     drawBackground(&painter);
     drawBarBackground(&painter);
     drawBar(&painter);
@@ -256,9 +254,9 @@ void HStateProgressBar::drawBarNumber(QPainter *painter)
         {
             painter->setPen(QPen(Qt::white, 2));
             auto center = QPointF(i*d_ptr->lineWidth, 0);
-            auto p1 = QPointF(center.x(), center.y() + d_ptr->smallRadius / 3);
-            auto p2 = QPointF(center.x() - d_ptr->smallRadius / 3, center.y());
-            auto p3 = QPointF(center.x() + d_ptr->smallRadius / 2, center.y() - d_ptr->smallRadius / 3);
+            auto p1 = QPointF(center.x(), center.y() + d_ptr->smallRadius / 3.0);
+            auto p2 = QPointF(center.x() - d_ptr->smallRadius / 3.0, center.y());
+            auto p3 = QPointF(center.x() + d_ptr->smallRadius / 2.0, center.y() - d_ptr->smallRadius / 3.0);
             painter->drawLine(p1, p2);
             painter->drawLine(p1, p3);
         }

@@ -17,17 +17,16 @@ class HMimeFile : public HMimePart
     Q_DECLARE_PRIVATE(HMimeFile)
 
 public:
-    explicit HMimeFile(QString fileName, QObject *parent = nullptr);
-    ~HMimeFile() override;
+    explicit HMimeFile(const QString &fileName, QObject *parent = nullptr);
 
 public:
     QString fileName() const;
 
 public:
-    void setFileName(const QString &value);
+    void setFileName(const QString &);
 
 protected:
-    HMimeFile(HMimeFilePrivate &p, QString fileName, QObject *parent = nullptr);
+    HMimeFile(HMimeFilePrivate &p, const QString &fileName, QObject *parent = nullptr);
 };
 
 HE_CONTROL_END_NAMESPACE

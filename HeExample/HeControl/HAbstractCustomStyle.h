@@ -27,7 +27,7 @@ protected:
     HAbstractCustomStyle(HAbstractCustomStylePrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual QVariant data(QString type, QVariantMap param, QVariant defaultValue = QVariant());
+    virtual QVariant data(const QString &type, const QVariantMap &param, const QVariant &defaultValue = QVariant());
 
 protected:
     QScopedPointer<HAbstractCustomStylePrivate> d_ptr;

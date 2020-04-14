@@ -62,7 +62,7 @@ void HSqlDatabase::insertTableModel(QString name, ISqlTableModel *model)
 
 ISqlTableModel *HSqlDatabase::tableModel(QString name)
 {
-    if (d_ptr->tableModels.size() == 0)
+    if (d_ptr->tableModels.isEmpty())
         return nullptr;
     if (d_ptr->tableModels.contains(name))
         return d_ptr->tableModels.value(name);

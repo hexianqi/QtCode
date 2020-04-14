@@ -20,7 +20,6 @@ class HFlipEffect : public HAbstractShaderEffect
 
 public:
     explicit HFlipEffect(QObject *parent = nullptr);
-    ~HFlipEffect() override;
 
 public:
     void initialize(QVariantMap param) override;

@@ -48,7 +48,6 @@ class HRingProgressBar : public HAnimationProgress
 
 public:
     explicit HRingProgressBar(QWidget *parent = nullptr);
-    ~HRingProgressBar() override;
 
 public:
     QSize sizeHint() const override;

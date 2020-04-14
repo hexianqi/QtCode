@@ -20,7 +20,6 @@ class HBubbleCircular : public HAbstractCircular
 
 public:
     explicit HBubbleCircular(QObject *parent = nullptr);
-    ~HBubbleCircular() override;
 
 public:
     void initialize(QVariantMap param) override;

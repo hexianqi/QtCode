@@ -20,18 +20,16 @@ HSwitchButton::HSwitchButton(HSwitchButtonPrivate &p, QWidget *parent) :
     init();
 }
 
-HSwitchButton::~HSwitchButton()
-{
-}
+HSwitchButton::~HSwitchButton() = default;
 
 QSize HSwitchButton::sizeHint() const
 {
-    return QSize(60, 30);
+    return {60, 30};
 }
 
 QSize HSwitchButton::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 int HSwitchButton::space() const
@@ -269,7 +267,7 @@ void HSwitchButton::drawBackground(QPainter *painter)
         QPainterPath path1, path2, path3;
         path1.addEllipse(0, y, side, side);
         path2.addEllipse(width() - side, y, side, side);
-        path3.addRect(side / 2, y, width() - side, side);
+        path3.addRect(side / 2.0, y, width() - side, side);
         painter->drawPath(path3 + path1 + path2);
     }
     else if (buttonStyle() == ButtonStyle_CircleOut)
@@ -348,7 +346,7 @@ void HSwitchButton::drawSlider(QPainter *painter)
         auto rect = QRect(d_ptr->pos, y, side, side);
         auto color1 = (isChecked() ? Qt::white : backgroundOff());
         auto color2 = (isChecked() ? sliderColorOn() : sliderColorOff());
-        auto gradient = QRadialGradient(rect.center(), side / 2);
+        auto gradient = QRadialGradient(rect.center(), side / 2.0);
         gradient.setColorAt(0.0, isChecked() ? color1 : color2);
         gradient.setColorAt(0.5, isChecked() ? color1 : color2);
         gradient.setColorAt(0.6, isChecked() ? color2 : color1);

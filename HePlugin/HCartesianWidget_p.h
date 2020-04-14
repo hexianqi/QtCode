@@ -7,9 +7,6 @@
 class HCartesianWidgetPrivate : public HDiagramWidgetPrivate
 {
 public:
-    HCartesianWidgetPrivate(HCartesianWidget *q);
-
-public:
     HCartesianZoom *zoom;
     HCartesianCoordinate *coordinate;
     bool unitInRuler = true;

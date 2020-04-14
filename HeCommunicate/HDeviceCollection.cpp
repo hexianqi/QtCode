@@ -24,7 +24,7 @@ void HDeviceCollection::initialize(QVariantMap param)
     HCollection<IDevice>::initialize(param);
     if (param.contains("supports"))
     {
-        for (auto v : param.value("supports").toList())
+        for (const auto &v : param.value("supports").toList())
             addSupport(v.toLongLong());
     }
 }

@@ -12,11 +12,10 @@ class QDESIGNER_WIDGET_EXPORT HRibbonDiagramWidget : public HCartesianWidget
 
 public:
     explicit HRibbonDiagramWidget(QWidget *parent = nullptr);
-    ~HRibbonDiagramWidget();
 
 public:
     virtual void setDrawRibbon(bool b);
-    virtual void setPolygonRibbon(QPolygonF value, bool refresh = true);
+    virtual void setPolygonRibbon(const QPolygonF &value, bool refresh = true);
 
 public:
     bool isDrawRibbon();

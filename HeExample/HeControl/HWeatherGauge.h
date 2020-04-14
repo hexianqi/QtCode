@@ -55,7 +55,6 @@ public:
 
 public:
     explicit HWeatherGauge(QWidget *parent = nullptr);
-    ~HWeatherGauge() override;
 
 public:
     WeatherType weatherType() const;
@@ -76,21 +75,21 @@ public:
 
 public slots:
     void setWeatherType(WeatherType value);
-    void setNegativeColor(const QColor &value);
-    void setPositiveColor(const QColor &value);
-    void setNegativeTextColor(const QColor &value);
-    void setPositiveTextColor(const QColor &value);
-    void setNegativePixmapColor(const QColor &value);
-    void setPositivePixmapColor(const QColor &value);
+    void setNegativeColor(const QColor &);
+    void setPositiveColor(const QColor &);
+    void setNegativeTextColor(const QColor &);
+    void setPositiveTextColor(const QColor &);
+    void setNegativePixmapColor(const QColor &);
+    void setPositivePixmapColor(const QColor &);
     void setOuterRange(double minimum, double maximum);
     void setOuterMinimum(double value);
     void setOuterMaximum(double value);
-    void setOuterValue(double value);    
+    void setOuterValue(double value);
     void setOuterAngleStart(int value);
     void setOuterAngleEnd(int value);
-    void setOuterRingBackground(const QColor &value);
-    void setOuterRingColor(const QColor &value);
-    void setOuterTextColor(const QColor &value);
+    void setOuterRingBackground(const QColor &);
+    void setOuterRingColor(const QColor &);
+    void setOuterTextColor(const QColor &);
 
 protected:
     HWeatherGauge(HWeatherGaugePrivate &p, QWidget *parent = nullptr);

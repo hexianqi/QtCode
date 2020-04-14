@@ -29,7 +29,7 @@ HRichTextButton::~HRichTextButton()
 QSize HRichTextButton::sizeHint() const
 {
     if (document() == nullptr)
-        return QSize(80, 25);
+        return {80, 25};
     QStyleOptionButton option;
     initStyleOption(&option);
     auto m = (style()->pixelMetric(QStyle::PM_ButtonMargin, &option, this) + style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, this)) * 2;
@@ -67,12 +67,12 @@ QTextDocument *HRichTextButton::document() const
     return d_ptr->doc;
 }
 
-void HRichTextButton::setText(QString value)
+void HRichTextButton::setText(const QString &value)
 {
     setHtml(value);
 }
 
-void HRichTextButton::setHtml(QString value)
+void HRichTextButton::setHtml(const QString &value)
 {
     if (document() != nullptr && d_ptr->internalDoc)
         d_ptr->doc->setHtml(value);
@@ -116,7 +116,7 @@ void HRichTextButton::paintEvent(QPaintEvent *)
 
     painter.translate(r.topLeft() - rect().topLeft());
     if(r.height() > h)
-        painter.translate(0, (r.height() - h) / 2);
+        painter.translate(0, (r.height() - h) / 2.0);
     if (isDown() || isChecked())
     {
         auto size = QSize(style()->pixelMetric(QStyle::PM_ButtonShiftHorizontal, &option, this), style()->pixelMetric(QStyle::PM_ButtonShiftVertical, &option, this));

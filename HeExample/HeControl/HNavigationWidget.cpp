@@ -18,9 +18,7 @@ HNavigationWidget::HNavigationWidget(HNavigationWidgetPrivate &p, QWidget *paren
     init();
 }
 
-HNavigationWidget::~HNavigationWidget()
-{
-}
+HNavigationWidget::~HNavigationWidget() = default;
 
 void HNavigationWidget::addItem(const QString &value)
 {

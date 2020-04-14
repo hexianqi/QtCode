@@ -13,8 +13,8 @@ HE_GUI_BEGIN_NAMESPACE
 HAbstractBuilderPrivate::HAbstractBuilderPrivate(IMainWindow *p)
 {
     mainWindow = p;
-    configFileName = QString("%1.cfg").arg(qApp->applicationName());
-    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(qApp->applicationName()));
+    configFileName = QString("%1.cfg").arg(QApplication::applicationName());
+    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(QApplication::applicationName()));
     HAppContext::setContextValue("ConfigFileName", configFileName);
     HAppContext::setContextPointer("IMainWindow", mainWindow);
 }

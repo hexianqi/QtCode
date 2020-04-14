@@ -14,10 +14,6 @@ HDonutCircular::HDonutCircular(HDonutCircularPrivate &p, QObject *parent) :
 {
 }
 
-HDonutCircular::~HDonutCircular()
-{
-}
-
 void HDonutCircular::initialize(QVariantMap param)
 {
     if (param.contains("background"))

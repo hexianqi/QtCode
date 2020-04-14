@@ -20,7 +20,6 @@ class QDESIGNER_WIDGET_EXPORT HDynamicChartView : public HZoomChartView
 
 public:
     explicit HDynamicChartView(QWidget *parent = nullptr);
-    ~HDynamicChartView() override;
 
 public:
     QValueAxis *axisX();

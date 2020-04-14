@@ -6,7 +6,7 @@
 
 HE_SQL_BEGIN_NAMESPACE
 
-HSqlFindDialog::HSqlFindDialog(QStringList fields, QString filter, QWidget *parent) :
+HSqlFindDialog::HSqlFindDialog(const QStringList &fields, const QString &filter, QWidget *parent) :
     QDialog(parent),
     d_ptr(new HSqlFindDialogPrivate),
     ui(new Ui::HSqlFindDialog)

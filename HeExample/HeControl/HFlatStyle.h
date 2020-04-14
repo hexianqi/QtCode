@@ -27,7 +27,6 @@ class HFlatStyle : public HAbstractCustomStyle
 
 public:
     explicit HFlatStyle(QObject *parent = nullptr);
-    ~HFlatStyle() override;
 
 public:
     QString typeName() override;
@@ -43,47 +42,47 @@ public:
 
 public:
     void setStyle(QPushButton *obj,
-                  int padding = 8,                          // 间距
-                  int radius = 5,                           // 圆角半径
-                  QString normalColor = "#E6F8F5",          // 文字颜色
-                  QString normalBackground = "#1ABC9C",     // 背景颜色
-                  QString hoverColor = "#FFFFFF",           // 悬停颜色
-                  QString hoverBackground = "#2EE1C1",      // 悬停背景颜色
-                  QString pressedColor = "#A7EEE6",         // 按下颜色
-                  QString pressedBackground = "#16A086");   // 按下背景颜色
+                  int padding = 8,                                  // 间距
+                  int radius = 5,                                   // 圆角半径
+                  const QString &normalColor = "#E6F8F5",           // 文字颜色
+                  const QString &normalBackground = "#1ABC9C",       // 背景颜色
+                  const QString &hoverColor = "#FFFFFF",            // 悬停颜色
+                  const QString &hoverBackground = "#2EE1C1",       // 悬停背景颜色
+                  const QString &pressedColor = "#A7EEE6",          // 按下颜色
+                  const QString &pressedBackground = "#16A086");    // 按下背景颜色
     void setStyle(QLineEdit *obj,
-                  int padding = 8,                          // 间距
-                  int radius = 3,                           // 圆角半径
-                  int borderWidth = 2,                      // 边框大小
-                  QString normalColor = "#DCE4EC",          // 正常颜色
-                  QString focusColor = "#1ABC9C");          // 选中颜色
+                  int padding = 8,                                  // 间距
+                  int radius = 3,                                   // 圆角半径
+                  int borderWidth = 2,                              // 边框大小
+                  const QString &normalColor = "#DCE4EC",           // 正常颜色
+                  const QString &focusColor = "#1ABC9C");           // 选中颜色
     void setStyle(QProgressBar *obj,
-                  int fontSize = 9,                         // 文字字号
-                  int height = 8,                           // 高度
-                  int radius = 5,                           // 圆角半径
-                  QString normalColor = "#E8EDF2",          // 正常颜色
-                  QString chunkColor = "#1ABC9C");          // 进度颜色
+                  int fontSize = 9,                                 // 文字字号
+                  int height = 8,                                   // 高度
+                  int radius = 5,                                   // 圆角半径
+                  const QString &normalColor = "#E8EDF2",           // 正常颜色
+                  const QString &chunkColor = "#1ABC9C");           // 进度颜色
     void setStyle(QSlider *obj,
-                  int height = 8,                           // 高度
-                  QString normalColor = "#E8EDF2",          // 正常颜色
-                  QString grooveColor = "#1ABC9C",          // 滑块颜色
-                  QString handleColor = "#1ABC9C");         // 指示器颜色
+                  int height = 8,                                   // 高度
+                  const QString &normalColor = "#E8EDF2",           // 正常颜色
+                  const QString &grooveColor = "#1ABC9C",           // 滑块颜色
+                  const QString &handleColor = "#1ABC9C");          // 指示器颜色
     void setStyle(QRadioButton *obj,
-                  int radius = 8,                           // 指示器圆角半径
-                  QString uncheckColor = "#D7DBDE",         // 未选中颜色
-                  QString checkColor = "#1ABC9C");          // 选中颜色
+                  int radius = 8,                                   // 指示器圆角半径
+                  const QString &uncheckColor = "#D7DBDE",          // 未选中颜色
+                  const QString &checkColor = "#1ABC9C");           // 选中颜色
     void setStyle(QCheckBox *obj,
-                  int radius = 3,                           // 指示器圆角半径
-                  QString uncheckColor = "#D7DBDE",         // 未选中颜色
-                  QString checkColor = "#1ABC9C");          // 选中颜色
+                  int radius = 3,                                   // 指示器圆角半径
+                  const QString &uncheckColor = "#D7DBDE",          // 未选中颜色
+                  const QString &checkColor = "#1ABC9C");           // 选中颜色
     void setStyle(QScrollBar *obj,
-                  int radius = 6,                           // 圆角半径
-                  int min = 120,                            // 指示器最小长度
-                  int max = 12,                             // 滚动条最大长度
-                  QString background = "#E8EDF2",           // 背景色
-                  QString handleNormalColor = "#1ABC9C",    // 指示器正常颜色
-                  QString handleHoverColor = "#3498DB",     // 指示器悬停颜色
-                  QString handlePressedColor = "#E74C3C");  // 指示器按下颜色
+                  int radius = 6,                                   // 圆角半径
+                  int min = 120,                                    // 指示器最小长度
+                  int max = 12,                                     // 滚动条最大长度
+                  const QString &background = "#E8EDF2",            // 背景色
+                  const QString &handleNormalColor = "#1ABC9C",     // 指示器正常颜色
+                  const QString &handleHoverColor = "#3498DB",      // 指示器悬停颜色
+                  const QString &handlePressedColor = "#E74C3C");   // 指示器按下颜色
 
 protected:
     HFlatStyle(HFlatStylePrivate &p, QObject *parent = nullptr);

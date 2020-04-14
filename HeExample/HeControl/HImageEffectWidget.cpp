@@ -21,18 +21,16 @@ HImageEffectWidget::HImageEffectWidget(HImageEffectWidgetPrivate &p, QWidget *pa
     init();
 }
 
-HImageEffectWidget::~HImageEffectWidget()
-{
-}
+HImageEffectWidget::~HImageEffectWidget() = default;
 
 QSize HImageEffectWidget::sizeHint() const
 {
-    return QSize(300, 200);
+    return {300, 200};
 }
 
 QSize HImageEffectWidget::minimumSizeHint() const
 {
-    return QSize(60, 40);
+    return {60, 40};
 }
 
 void HImageEffectWidget::setEffect(IShaderEffect *p)
@@ -152,7 +150,7 @@ void HImageEffectWidget::init()
     auto group = d_ptr->factory->toActionGroup();
     setContextMenuPolicy(Qt::ActionsContextMenu);
     addActions(group->actions());
-    changeEffect(group->actions().first());
+    changeEffect(group->actions().at(0));
     connect(group, &QActionGroup::triggered, this, &HImageEffectWidget::changeEffect);
 }
 

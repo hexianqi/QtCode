@@ -409,7 +409,7 @@ void HDemoWidget::addww()
     addTab(l, tr("ww"));
 }
 
-void HDemoWidget::addTab(QLayout *layout, QString title)
+void HDemoWidget::addTab(QLayout *layout, const QString &title)
 {
     auto w = new QWidget;
     w->setLayout(layout);

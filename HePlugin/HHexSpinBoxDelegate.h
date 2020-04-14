@@ -16,7 +16,6 @@ class QDESIGNER_WIDGET_EXPORT HHexSpinBoxDelegate : public HItemDelegate
 
 public:
     explicit HHexSpinBoxDelegate(QObject *parent = nullptr);
-    ~HHexSpinBoxDelegate() override;
 
 public:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;

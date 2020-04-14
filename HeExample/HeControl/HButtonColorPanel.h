@@ -28,7 +28,6 @@ class HButtonColorPanel : public HAbstractColorPanel
 
 public:
     explicit HButtonColorPanel(QWidget *parent = nullptr);
-    ~HButtonColorPanel() override;
 
 public:
     QSize sizeHint() const override;

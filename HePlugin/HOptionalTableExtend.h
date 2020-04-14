@@ -16,15 +16,14 @@ class QDESIGNER_WIDGET_EXPORT HOptionalTableExtend : public HAbstractTableExtend
 
 public:
     explicit HOptionalTableExtend(QObject *parent = nullptr);
-    ~HOptionalTableExtend() override;
 
 public:
     void setTableView(QTableView *) override;
 
 public:
-    void setDisplay(QStringList value);
-    void setOptional(QStringList value);
-    void setSelected(QStringList value);
+    void setDisplay(const QStringList &);
+    void setOptional(const QStringList &);
+    void setSelected(const QStringList &);
 
 public:
     QStringList selected();

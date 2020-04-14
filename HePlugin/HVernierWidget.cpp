@@ -4,14 +4,13 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
 
-HVernierWidgetPrivate::HVernierWidgetPrivate(HVernierWidget *q) :
-    HCartesianWidgetPrivate(q)
+HVernierWidgetPrivate::HVernierWidgetPrivate()
 {
     halfSide = true;
 }
 
 HVernierWidget::HVernierWidget(QWidget *parent) :
-    HCartesianWidget(*new HVernierWidgetPrivate(this), parent)
+    HCartesianWidget(*new HVernierWidgetPrivate, parent)
 {
     init();
 }
@@ -20,10 +19,6 @@ HVernierWidget::HVernierWidget(HVernierWidgetPrivate &p, QWidget *parent) :
     HCartesianWidget(p, parent)
 {
     init();
-}
-
-HVernierWidget::~HVernierWidget()
-{
 }
 
 void HVernierWidget::setDecimals(int value)
@@ -40,7 +35,7 @@ void HVernierWidget::updataVernier()
     Q_D(HVernierWidget);
     auto rect = (d->plotArea.width() < 0.1 || d->plotArea.height() < 0.1) ? QRectF(0, 0, 1, 1) : d->plotArea;
     auto verniers = d->coordinate->mapToValue(d->tracking->verniers(), rect);
-    if (verniers.size() < 1)
+    if (verniers.isEmpty())
         return;
 
     double value;

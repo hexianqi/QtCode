@@ -25,20 +25,19 @@ class QDESIGNER_WIDGET_EXPORT HSpecDiagramWidget : public HRibbonDiagramWidget
 
 public:
     explicit HSpecDiagramWidget(QWidget *parent = nullptr);
-    ~HSpecDiagramWidget() override;
 
 public:
     void setWaveRange(QPointF value);
     void setDrawCenter(bool b);
     void setDrawTopLeft(bool b);
-    void setTextCenter(QString text, bool show = true, bool refresh = true);
-    void setTextTopLeft(QString text, bool refresh = true);
-    void setColorCenter(QColor value);
-    void setColorTopLeft(QColor value);
-    void setFontCenter(QFont value);
-    void setFontTopLeft(QFont value);
-    void setBrushCenter(QBrush value);
-    void setCenter(QString text, QColor color, QColor brush);
+    void setTextCenter(const QString &text, bool show = true, bool refresh = true);
+    void setTextTopLeft(const QString &text, bool refresh = true);
+    void setColorCenter(const QColor &value);
+    void setColorTopLeft(const QColor &value);
+    void setFontCenter(const QFont &value);
+    void setFontTopLeft(const QFont &value);
+    void setBrushCenter(const QBrush &value);
+    void setCenter(const QString &text, const QColor &color, const QColor &brush);
 
 public:
     bool isDrawCenter();
@@ -52,13 +51,13 @@ public:
     QBrush brushCenter();
 
 public:
-    void addPolygon(int id, QPolygonF value, bool refresh = true) override;
+    void addPolygon(int id, const QPolygonF &value, bool refresh = true) override;
 
 protected:
     HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    virtual void refreshPixmap(bool refresh = true) override;
+    void refreshPixmap(bool refresh = true) override;
     virtual bool drawCenter(QPainter *);
     virtual bool drawLeftTop(QPainter *);
 

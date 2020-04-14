@@ -94,7 +94,7 @@ public:
 
 public:
     // 计算色坐标
-    QPointF calcCoordinateUv(QPolygonF spd);
+    QPointF calcCoordinateUv(const QPolygonF &spd);
     // 计算Duv
     double calcDuv(QPointF uv, double tc);
     // 计算主波长，色纯度
@@ -161,7 +161,7 @@ public:
     // 计算色温
     void calcColorTemperature(QPointF uv, double &tc, double &duv);
     // 获取CIE_UCS
-    CIE_UCS getCieUcs(double tc);
+    CIE_UCS findCieUcs(double tc);
 
 protected:
     void readStandard();

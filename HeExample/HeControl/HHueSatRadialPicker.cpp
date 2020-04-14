@@ -21,18 +21,16 @@ HHueSatRadialPicker::HHueSatRadialPicker(HHueSatRadialPickerPrivate &p, QWidget 
     init();
 }
 
-HHueSatRadialPicker::~HHueSatRadialPicker()
-{
-}
+HHueSatRadialPicker::~HHueSatRadialPicker() = default;
 
 QSize HHueSatRadialPicker::sizeHint() const
 {
-    return QSize(202, 202);
+    return {202, 202};
 }
 
 QSize HHueSatRadialPicker::minimumSizeHint() const
 {
-    return QSize(202, 202);
+    return {202, 202};
 }
 
 int HHueSatRadialPicker::heightForWidth(int value) const
@@ -73,7 +71,7 @@ void HHueSatRadialPicker::setColor(const QColor &value)
         setValue(v);
 
     auto side = qMin(width(), height());
-    auto r = s * (side / 2 - 2) / 255.0;
+    auto r = s * (side / 2.0 - 2) / 255.0;
     auto x = r * qCos(qDegreesToRadians(h * 1.0));
     auto y = r * qSin(qDegreesToRadians(h * 1.0));
     auto c = rect().center();
@@ -90,7 +88,7 @@ void HHueSatRadialPicker::mousePressEvent(QMouseEvent *e)
         auto p = e->localPos();
         auto r = radius(p);
         auto side = qMin(width(), height());
-        if (r >= side / 2)
+        if (r >= side / 2.0)
             return;
         colorPick(p, r);
     }
@@ -104,9 +102,9 @@ void HHueSatRadialPicker::mouseMoveEvent(QMouseEvent *e)
         auto p = e->localPos();
         auto r = radius(p);
         auto side = qMin(width(), height());
-        if (r >= side / 2)
+        if (r >= side / 2.0)
         {
-            r = side / 2;
+            r = side / 2.0;
             p = d_ptr->point;
         }
         colorPick(p, r);

@@ -19,10 +19,6 @@ HVernierChartView::HVernierChartView(HVernierChartViewPrivate &p, QChart *chart,
 {
 }
 
-HVernierChartView::~HVernierChartView()
-{
-}
-
 void HVernierChartView::setDecimals(int value)
 {
     Q_D(HVernierChartView);

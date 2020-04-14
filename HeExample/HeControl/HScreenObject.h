@@ -40,8 +40,8 @@ public:
     void move(QPoint);
     void drawScreen(QPainter *);
     void initScreen();
-    void saveScreen(QString fileName);
-    void saveFullScreen(QString fileName);
+    void saveScreen(const QString &fileName);
+    void saveFullScreen(const QString &fileName);
 
 protected:
     HScreenObject(HScreenObjectPrivate &p, QObject *parent = nullptr);

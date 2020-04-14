@@ -58,8 +58,8 @@ void HDelayThread::stop()
 {
     if (!d_ptr->running)
         return;
-    clearAction();
-    addAction(ACT_EXIT, 0);
+    d_ptr->clearAction();
+    d_ptr->enqueueAction(ACT_EXIT, 0);
     wait(100);
 }
 

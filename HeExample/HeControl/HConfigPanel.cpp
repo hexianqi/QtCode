@@ -33,7 +33,7 @@ QSize HConfigPanelDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
 {
     auto size = option.decorationSize;
     auto width = option.fontMetrics.width(index.data(Qt::DisplayRole).toString());
-    return QSize(qBound(size.width(), width, option.rect.width()), size.height() + option.fontMetrics.height() + 12);
+    return {qBound(size.width(), width, option.rect.width()), size.height() + option.fontMetrics.height() + 12};
 }
 
 HConfigPanel::HConfigPanel(QWidget *parent) :
@@ -46,10 +46,6 @@ HConfigPanel::HConfigPanel(HConfigPanelPrivate &p, QWidget *parent) :
      HAbstractMultiPanel(p, parent)
 {
     init();
-}
-
-HConfigPanel::~HConfigPanel()
-{
 }
 
 int HConfigPanel::count() const

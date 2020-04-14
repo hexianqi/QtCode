@@ -218,11 +218,11 @@ bool HSmtpClient::connectToHost()
                 return false;
         }
     }
-    catch (HSendMessageTimeoutException)
+    catch (HSendMessageTimeoutException &)
     {
          return false;
     }
-    catch (HResponseTimeoutException)
+    catch (HResponseTimeoutException &)
     {
         return false;
     }
@@ -269,12 +269,12 @@ bool HSmtpClient::login(const QString &user, const QString &password, HSmtpClien
                 return false;
         }
     }
-    catch (HResponseTimeoutException)
+    catch (HResponseTimeoutException &)
     {
         emit error(AuthenticationFailed);
         return false;
     }
-    catch (HSendMessageTimeoutException)
+    catch (HSendMessageTimeoutException &)
     {
         emit error(AuthenticationFailed);
         return false;
@@ -312,11 +312,11 @@ bool HSmtpClient::sendMail(HMimeMessage *value)
         if (d_ptr->responseCode != 250)
             return false;
     }
-    catch (HResponseTimeoutException)
+    catch (HResponseTimeoutException &)
     {
         return false;
     }
-    catch (HSendMessageTimeoutException)
+    catch (HSendMessageTimeoutException &)
     {
         return false;
     }
@@ -329,7 +329,7 @@ void HSmtpClient::quit()
     {
         sendMessage("QUIT");
     }
-    catch(HSendMessageTimeoutException)
+    catch(HSendMessageTimeoutException &)
     {
         // Manually close the connection to the smtp server if message "QUIT" wasn't received by the smtp server
         auto state = d_ptr->socket->state();
@@ -361,7 +361,7 @@ void HSmtpClient::waitForResponse()
             // Save the server's response
             d_ptr->responseText = d_ptr->socket->readLine();
             // Extract the respose code from the server's responce (first 3 digits)
-            d_ptr->responseCode = d_ptr->responseText.left(3).toInt();
+            d_ptr->responseCode = d_ptr->responseText.leftRef(3).toInt();
             if (d_ptr->responseCode / 100 == 4)
                 emit error(ServerError);
             if (d_ptr->responseCode / 100 == 5)

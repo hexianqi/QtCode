@@ -14,13 +14,9 @@ HColorProgressBar::HColorProgressBar(HColorProgressBarPrivate &p, QWidget *paren
 {
 }
 
-HColorProgressBar::~HColorProgressBar()
-{
-}
-
 QSize HColorProgressBar::sizeHint() const
 {
-    return QSize(300, 30);
+    return {300, 30};
 }
 
 int HColorProgressBar::radius() const
@@ -219,14 +215,14 @@ void HColorProgressBar::paintEvent(QPaintEvent *)
     }
     else if (d->textPosition == TextPosition_OnBar)
     {
-        barRect = QRectF(0, height() * 7 / 12, width(), height() / 3);
+        barRect = QRectF(0, height() * 7 / 12.0, width(), height() / 3.0);
         if (curPos < 0.9 * width())
         {
             auto offset = qMin(15.0, curPos);
-            textRect = QRectF(curPos - offset, height() / 12, 0.15 * width(), height() * 5 / 12);
+            textRect = QRectF(curPos - offset, height() / 12.0, 0.15 * width(), height() * 5 / 12.0);
         }
         else
-            textRect = QRectF(0.85 * width(), height() / 12, 0.15 * width(), height() * 5 / 12);
+            textRect = QRectF(0.85 * width(), height() / 12.0, 0.15 * width(), height() * 5 / 12.0);
     }
 
     QPainter painter(this);
@@ -265,7 +261,7 @@ void HColorProgressBar::drawTextBackground(QPainter *painter, QRectF rect)
         auto length = qMin(width(), height());
         auto radius = qMin(length, 10) / 2.0;
         painter->drawRoundedRect(rect, 3, 3);
-        painter->drawEllipse(QPointF(curPos - 2 * radius, height() * 9 / 12), radius, radius);
+        painter->drawEllipse(QPointF(curPos - 2 * radius, height() * 9 / 12.0), radius, radius);
     }
     if (d->textPosition == TextPosition_OutBar)
         painter->drawRoundedRect(rect, d->radius, d->radius);

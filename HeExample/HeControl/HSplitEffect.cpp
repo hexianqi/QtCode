@@ -13,10 +13,6 @@ HSplitEffect::HSplitEffect(HSplitEffectPrivate &p, QObject *parent) :
 {
 }
 
-HSplitEffect::~HSplitEffect()
-{
-}
-
 void HSplitEffect::initialize(QVariantMap param)
 {
     if (param.contains("orientation"))
@@ -50,13 +46,13 @@ void HSplitEffect::draw(QPainter *painter, double factor, const QRect &rect, con
         if (d->orientation == Qt::Horizontal)
         {
             x2 = x1;
-            y2 = (pixmap.height() + h) / 2 - wh;
+            y2 = (pixmap.height() + h) / 2.0 - wh;
             rect1.setRect(0, 0, pixmap.width(), wh);
             rect2.setRect(0, pixmap.height() - wh, pixmap.width(), wh);
         }
         else
         {
-            x2 = (pixmap.width() + w) / 2 - wh;
+            x2 = (pixmap.width() + w) / 2.0 - wh;
             y2 = y1;
             rect1.setRect(0, 0, wh, pixmap.height());
             rect2.setRect(pixmap.width() - wh, 0, wh, pixmap.height());
@@ -72,14 +68,14 @@ void HSplitEffect::draw(QPainter *painter, double factor, const QRect &rect, con
         QRectF rect;
         if (d->orientation == Qt::Horizontal)
         {
-            point.setX((w - pixmap.width()) / 2);
+            point.setX((w - pixmap.width()) / 2.0);
             point.setY((h - wh) / 2);
             rect.setRect(0, (pixmap.height() - wh) / 2 , pixmap.width(), wh);
         }
         else
         {
             point.setX((w - wh) / 2);
-            point.setY((h - pixmap.height()) / 2);
+            point.setY((h - pixmap.height()) / 2.0);
             rect.setRect((pixmap.width() - wh) / 2, 0, wh, pixmap.height());
         }
         painter->save();

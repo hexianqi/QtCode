@@ -15,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecSampleWidgetPrivate : public HVernierWidgetPrivate
 {
 public:
-    HSpecSampleWidgetPrivate(HSpecSampleWidget *);
+    HSpecSampleWidgetPrivate();
 
 public:
     ITestSpec *testSpec;

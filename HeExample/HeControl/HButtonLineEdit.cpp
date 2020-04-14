@@ -19,9 +19,7 @@ HButtonLineEdit::HButtonLineEdit(HButtonLineEditPrivate &p, QWidget *parent) :
     init();
 }
 
-HButtonLineEdit::~HButtonLineEdit()
-{
-}
+HButtonLineEdit::~HButtonLineEdit() = default;
 
 QSize HButtonLineEdit::sizeHint() const
 {
@@ -66,7 +64,7 @@ Qt::FocusPolicy HButtonLineEdit::buttonFocusPolicy() const
     return d_ptr->button->focusPolicy();
 }
 
-void HButtonLineEdit::setIcon(QIcon value)
+void HButtonLineEdit::setIcon(const QIcon &value)
 {
     d_ptr->button->setIcon(value);
 }

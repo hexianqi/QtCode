@@ -22,7 +22,7 @@ class HE_CONTROL_EXPORT HDemoWidget : public QWidget
 
 public:
     explicit HDemoWidget(QWidget *parent = nullptr);
-    ~HDemoWidget();
+    ~HDemoWidget() override;
 
 private:
     void init();
@@ -45,7 +45,7 @@ private:
     void addww();
 
 private:
-    void addTab(QLayout *, QString title);
+    void addTab(QLayout *, const QString &title);
 
 private:
     Ui::HDemoWidget *ui;

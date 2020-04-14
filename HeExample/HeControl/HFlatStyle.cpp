@@ -20,10 +20,6 @@ HFlatStyle::HFlatStyle(HFlatStylePrivate &p, QObject *parent) :
 {
 }
 
-HFlatStyle::~HFlatStyle()
-{
-}
-
 QString HFlatStyle::typeName()
 {
     return "HFlatStyle";
@@ -41,9 +37,9 @@ QString HFlatStyle::pushButton(QVariantMap param)
     auto pressedBackground = data("pressed_background", param, "#16A086").toString();
 
     QStringList list;
-    list << QString("QPushButton { border-style:none; padding:%1px; border-radius:%2px; color:%3; background:%4; }").arg(padding).arg(borderRadius).arg(color).arg(background)
-         << QString("QPushButton:hover { color:%1; background:%2; }").arg(hoverColor).arg(hoverBackground)
-         << QString("QPushButton:pressed { color:%1; background:%2; }").arg(pressedColor).arg(pressedBackground);
+    list << QString("QPushButton { border-style:none; padding:%1px; border-radius:%2px; color:%3; background:%4; }").arg(padding).arg(borderRadius).arg(color, background)
+         << QString("QPushButton:hover { color:%1; background:%2; }").arg(hoverColor, hoverBackground)
+         << QString("QPushButton:pressed { color:%1; background:%2; }").arg(pressedColor, pressedBackground);
     return list.join("\n");
 }
 
@@ -181,7 +177,7 @@ QString HFlatStyle::scrollBar(QVariantMap param)
     return list.join("\n");
 }
 
-void HFlatStyle::setStyle(QPushButton *obj, int padding, int radius, QString normalColor, QString normalBackground, QString hoverColor, QString hoverBackground, QString pressedColor, QString pressedBackground)
+void HFlatStyle::setStyle(QPushButton *obj, int padding, int radius, const QString &normalColor, const QString &normalBackground, const QString &hoverColor, const QString &hoverBackground, const QString &pressedColor, const QString &pressedBackground)
 {
     QVariantMap param;
     param["padding"] = padding;
@@ -195,7 +191,7 @@ void HFlatStyle::setStyle(QPushButton *obj, int padding, int radius, QString nor
     obj->setStyleSheet(pushButton(param));
 }
 
-void HFlatStyle::setStyle(QLineEdit *obj, int padding, int radius, int borderWidth, QString normalColor, QString focusColor)
+void HFlatStyle::setStyle(QLineEdit *obj, int padding, int radius, int borderWidth, const QString &normalColor, const QString &focusColor)
 {
     QVariantMap param;
     param["padding"] = padding;
@@ -206,7 +202,7 @@ void HFlatStyle::setStyle(QLineEdit *obj, int padding, int radius, int borderWid
     obj->setStyleSheet(lineEdit(param));
 }
 
-void HFlatStyle::setStyle(QProgressBar *obj, int fontSize, int height, int radius, QString normalColor, QString chunkColor)
+void HFlatStyle::setStyle(QProgressBar *obj, int fontSize, int height, int radius, const QString &normalColor, const QString &chunkColor)
 {
     QVariantMap param;
     param["font-size"] = fontSize;
@@ -217,7 +213,7 @@ void HFlatStyle::setStyle(QProgressBar *obj, int fontSize, int height, int radiu
     obj->setStyleSheet(progressBar(param));
 }
 
-void HFlatStyle::setStyle(QSlider *obj, int height, QString normalColor, QString grooveColor, QString handleColor)
+void HFlatStyle::setStyle(QSlider *obj, int height, const QString &normalColor, const QString &grooveColor, const QString &handleColor)
 {
     QVariantMap param;
     param["height"] = height;
@@ -227,7 +223,7 @@ void HFlatStyle::setStyle(QSlider *obj, int height, QString normalColor, QString
     obj->setStyleSheet(slider(param));
 }
 
-void HFlatStyle::setStyle(QRadioButton *obj, int radius, QString uncheckColor, QString checkColor)
+void HFlatStyle::setStyle(QRadioButton *obj, int radius, const QString &uncheckColor, const QString &checkColor)
 {
     QVariantMap param;
     param["indicator_border-radius"] = radius;
@@ -236,7 +232,7 @@ void HFlatStyle::setStyle(QRadioButton *obj, int radius, QString uncheckColor, Q
     obj->setStyleSheet(radioButton(param));
 }
 
-void HFlatStyle::setStyle(QCheckBox *obj, int radius, QString uncheckColor, QString checkColor)
+void HFlatStyle::setStyle(QCheckBox *obj, int radius, const QString &uncheckColor, const QString &checkColor)
 {
     QVariantMap param;
     param["indicator_border-radius"] = radius;
@@ -245,7 +241,7 @@ void HFlatStyle::setStyle(QCheckBox *obj, int radius, QString uncheckColor, QStr
     obj->setStyleSheet(checkBox(param));
 }
 
-void HFlatStyle::setStyle(QScrollBar *obj, int radius, int min, int max, QString background, QString handleNormalColor, QString handleHoverColor, QString handlePressedColor)
+void HFlatStyle::setStyle(QScrollBar *obj, int radius, int min, int max, const QString &background, const QString &handleNormalColor, const QString &handleHoverColor, const QString &handlePressedColor)
 {
     QVariantMap param;
     param["border-radius"] = radius;

@@ -19,10 +19,6 @@ HGraphicsVernierTracking::HGraphicsVernierTracking(HGraphicsVernierTrackingPriva
 {
 }
 
-HGraphicsVernierTracking::~HGraphicsVernierTracking()
-{
-}
-
 bool HGraphicsVernierTracking::setEnable(bool b)
 {
     if (!HAbstractVernierTracking::setEnable(b))
@@ -98,11 +94,11 @@ void HGraphicsVernierTracking::setLinesVisible(bool b)
         l->setVisible(b);
 }
 
-void HGraphicsVernierTracking::setLinesColor(QColor color)
+void HGraphicsVernierTracking::setLinesColor(const QColor &value)
 {
     Q_D(HGraphicsVernierTracking);
     for (auto l : d->lines)
-        l->setPen(QPen(color));
+        l->setPen(value);
 }
 
 void HGraphicsVernierTracking::setLine(int pos)

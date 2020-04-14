@@ -10,10 +10,6 @@ HLongSpinBoxValidator::HLongSpinBoxValidator(HLongSpinBox *parent) :
     _spinBox = parent;
 }
 
-HLongSpinBoxValidator::~HLongSpinBoxValidator()
-{
-}
-
 void HLongSpinBoxValidator::fixup(QString &input) const
 {
     _spinBox->fixup(input);
@@ -42,10 +38,7 @@ HLongSpinBox::HLongSpinBox(HLongSpinBoxPrivate &p, QWidget *parent) :
     init();
 }
 
-
-HLongSpinBox::~HLongSpinBox()
-{
-}
+HLongSpinBox::~HLongSpinBox() = default;
 
 qlonglong HLongSpinBox::minimum() const
 {

@@ -20,7 +20,6 @@ class HAbstractMouseEventFilter : public HAbstractEventFilter
 
 public:
     explicit HAbstractMouseEventFilter(QObject *parent = nullptr);
-    ~HAbstractMouseEventFilter() override;
 
 public:
     bool addWatched(QObject *) override;

@@ -31,13 +31,12 @@ class HArcGauge : public HCircleGauge
 
 public:
     explicit HArcGauge(QWidget *parent = nullptr);
-    ~HArcGauge() override;
 
 public:
-    QColor arcColor() const;    
+    QColor arcColor() const;
     HControlType::PointerStyle pointerStyle() const;
 
-public slots:    
+public slots:
     void setArcColor(const QColor &value);
     void setPointerStyle(HControlType::PointerStyle value);
 

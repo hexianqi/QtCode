@@ -25,12 +25,12 @@ HBarRuler::~HBarRuler()
 
 QSize HBarRuler::sizeHint() const
 {
-    return QSize(130, 350);
+    return {130, 350};
 }
 
 QSize HBarRuler::minimumSizeHint() const
 {
-    return QSize(26, 70);
+    return {26, 70};
 }
 
 int HBarRuler::longStep() const
@@ -249,8 +249,8 @@ void HBarRuler::drawRuler(QPainter *painter)
             auto text = QString::number(i, 'f', decimal());
             auto fontWidth = painter->fontMetrics().width(text);
             auto fontHeight = painter->fontMetrics().height();
-            painter->drawText(QPointF(x - fontWidth - 15, y + fontHeight / 3), text);
-            painter->drawLine(QLineF(x - longLine, y, x, y));
+            painter->drawText(x - fontWidth - 15, y + fontHeight / 3.0, text);
+            painter->drawLine(x - longLine, y, x, y);
         }
         else
         {

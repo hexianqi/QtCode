@@ -81,7 +81,7 @@ QList<QVariantMap> HDBUtil::selectMaps(const QString &sql, const QVariantMap &pa
     return maps;
 }
 
-void HDBUtil::execute(const QString &sql, const QVariantMap &param, std::function<void (QSqlQuery *)> func)
+void HDBUtil::execute(const QString &sql, const QVariantMap &param, const std::function<void (QSqlQuery *)> &func)
 {
     auto db = HConnectionPool::instance()->openConnection();
     auto query = new QSqlQuery(db);
@@ -110,7 +110,7 @@ void HDBUtil::debug(QSqlQuery *query, const QVariantMap &param)
     if (query->lastError().type() != QSqlError::NoError)
         qDebug().noquote() << "==> SQL Error: " << query->lastError().text().trimmed();
     qDebug().noquote() << "==> SQL Query:" << query->lastQuery();
-    if (param.size() > 0)
+    if (!param.isEmpty())
         qDebug().noquote() << "==> SQL Params: " << param;
 }
 
@@ -128,7 +128,7 @@ QList<QVariantMap> HDBUtil::toMaps(QSqlQuery *query)
     while (query->next())
     {
         QVariantMap row;
-        for (auto name : fieldNames)
+        for (const auto &name : fieldNames)
             row.insert(name, query->value(name));
         list << row;
     }

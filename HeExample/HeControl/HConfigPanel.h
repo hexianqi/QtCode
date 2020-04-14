@@ -19,7 +19,6 @@ class HConfigPanel : public HAbstractMultiPanel
 
 public:
     explicit HConfigPanel(QWidget *parent = nullptr);
-    ~HConfigPanel() override;
 
 signals:
     void saving();

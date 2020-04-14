@@ -16,18 +16,16 @@ HTiledBackground::HTiledBackground(HTiledBackgroundPrivate &p, QWidget *parent) 
 {
 }
 
-HTiledBackground::~HTiledBackground()
-{
-}
+HTiledBackground::~HTiledBackground() = default;
 
 QSize HTiledBackground::sizeHint() const
 {
-    return QSize(100, 100);
+    return {100, 100};
 }
 
 QSize HTiledBackground::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 QColor HTiledBackground::color1() const

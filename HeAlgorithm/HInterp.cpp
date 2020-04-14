@@ -27,7 +27,7 @@ const gsl_interp_type *toGsl(HInterp::InterpType type)
     return gsl_interp_linear;
 }
 
-void interp(QPolygonF basis, HInterp::InterpType type, const std::function<void(gsl_spline *, gsl_interp_accel *)> &func)
+void interp(const QPolygonF &basis, HInterp::InterpType type, const std::function<void(gsl_spline *, gsl_interp_accel *)> &func)
 {
     auto t = toGsl(type);
     auto size = size_t(basis.size());

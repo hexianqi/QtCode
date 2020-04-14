@@ -15,14 +15,9 @@ HNavTreeDelegate::HNavTreeDelegate(QObject *parent)
     _iconFont = QFont(fontName);
 }
 
-HNavTreeDelegate::~HNavTreeDelegate()
-{
-
-}
-
 QSize HNavTreeDelegate::sizeHint(const QStyleOptionViewItem &/*option*/, const QModelIndex &/*index*/) const
 {
-    return QSize(50, 30);
+    return {50, 30};
 }
 
 void HNavTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -34,7 +29,6 @@ void HNavTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     drawText(painter, option, index);
     drawTip(painter, option, index);
     painter->restore();
-
 }
 
 void HNavTreeDelegate::drawBackground(QPainter *painter, const QStyleOptionViewItem &option) const
@@ -126,9 +120,7 @@ HNavTreeView::HNavTreeView(HNavTreeViewPrivate &p, QWidget *parent) :
     init();
 }
 
-HNavTreeView::~HNavTreeView()
-{
-}
+HNavTreeView::~HNavTreeView() = default;
 
 QString HNavTreeView::info(const QModelIndex &index)
 {

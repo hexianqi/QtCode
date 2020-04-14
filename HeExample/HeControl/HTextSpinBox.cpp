@@ -14,13 +14,11 @@ HTextSpinBox::HTextSpinBox(HTextSpinBoxPrivate &p, QWidget *parent) :
 {
 }
 
-HTextSpinBox::~HTextSpinBox()
-{
-}
+HTextSpinBox::~HTextSpinBox() = default;
 
 QValidator::State HTextSpinBox::validate(QString &input, int &/*pos*/) const
 {
-    for (auto s : d_ptr->strings)
+    for (const auto &s : d_ptr->strings)
     {
         if (s == input)
             return QValidator::Acceptable;

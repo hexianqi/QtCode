@@ -52,7 +52,7 @@ void HQualityItemCollectionWidget::showData()
         return;
 
     int r = 0;
-    for (auto key : d_ptr->data->keys())
+    for (const auto &key : d_ptr->data->keys())
     {
         auto value = d_ptr->data->item(key);
         auto item = ui->tableWidget->item(r, 0);

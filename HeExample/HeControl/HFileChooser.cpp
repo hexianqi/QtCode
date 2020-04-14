@@ -19,10 +19,6 @@ HFileChooser::HFileChooser(HFileChooserPrivate &p, QWidget *parent) :
     init();
 }
 
-HFileChooser::~HFileChooser()
-{
-}
-
 QFileDialog::FileMode HFileChooser::fileMode() const
 {
     Q_D(const HFileChooser);

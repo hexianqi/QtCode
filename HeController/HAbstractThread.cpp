@@ -63,8 +63,8 @@ void HAbstractThread::stop()
 {
     if (!d_ptr->running)
         return;
-    clearAction();
-    addAction(ACT_EXIT);
+    d_ptr->clearAction();
+    d_ptr->enqueueAction(ACT_EXIT);
     wait(1000);
 }
 

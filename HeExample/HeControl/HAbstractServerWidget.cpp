@@ -15,10 +15,6 @@ HAbstractServerWidget::HAbstractServerWidget(HAbstractServerWidgetPrivate &p, QW
 {
 }
 
-HAbstractServerWidget::~HAbstractServerWidget()
-{
-}
-
 QString HAbstractServerWidget::listenIP() const
 {
     Q_D(const HAbstractServerWidget);

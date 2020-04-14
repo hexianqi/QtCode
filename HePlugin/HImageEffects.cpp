@@ -3,7 +3,7 @@
 #include <functional>
 
 // 把图片上每一个像素的颜色转换为函数 process() 的计算结果
-void convert(QImage *image, std::function<QColor(QColor)> process)
+void convert(QImage *image, const std::function<QColor(QColor)> &process)
 {
     int w = image->width();
     int h = image->height();

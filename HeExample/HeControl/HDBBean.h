@@ -39,9 +39,6 @@ class HTestThread : public QThread
 {
     Q_OBJECT
 
-public:
-    HTestThread();
-
 protected:
     void run() override;
 };

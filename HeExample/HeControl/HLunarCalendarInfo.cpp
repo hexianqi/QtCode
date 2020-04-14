@@ -16,9 +16,7 @@ HLunarCalendarInfo::HLunarCalendarInfo(HLunarCalendarInfoPrivate &p, QObject *pa
     init();
 }
 
-HLunarCalendarInfo::~HLunarCalendarInfo()
-{
-}
+HLunarCalendarInfo::~HLunarCalendarInfo() = default;
 
 bool HLunarCalendarInfo::isLoopYear(int year)
 {

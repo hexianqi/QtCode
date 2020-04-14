@@ -6,13 +6,12 @@
 class HDiagramWidgetPrivate
 {
 public:
-    HDiagramWidgetPrivate(HDiagramWidget *q);
+    HDiagramWidgetPrivate();
 
 public:
     QRectF calcPlotArea(QSize size);
 
 public:
-    HDiagramWidget *q_ptr;
     QPixmap pixmap;
     QMargins margins = QMargins(50, 50, 50, 50);
     QRectF plotArea;

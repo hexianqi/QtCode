@@ -22,13 +22,11 @@ HSpliteWidget::HSpliteWidget(HSpliteWidgetPrivate &p, QWidget *parent) :
     init();
 }
 
-HSpliteWidget::~HSpliteWidget()
-{
-}
+HSpliteWidget::~HSpliteWidget() = default;
 
 bool HSpliteWidget::eventFilter(QObject *watched, QEvent *event)
 {
-    auto e = static_cast<QMouseEvent *>(event);
+    auto e = dynamic_cast<QMouseEvent *>(event);
     if (e != nullptr)
     {
         if (e->type() == QEvent::MouseButtonDblClick)

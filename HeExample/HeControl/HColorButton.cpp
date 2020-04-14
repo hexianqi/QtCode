@@ -25,9 +25,7 @@ HColorButton::HColorButton(HColorButtonPrivate &p, QWidget *parent) :
     init();
 }
 
-HColorButton::~HColorButton()
-{
-}
+HColorButton::~HColorButton() = default;
 
 QStringList HColorButton::colors() const
 {
@@ -170,7 +168,7 @@ QString HColorButton::findStandardColorName(const QColor &color)
 QSize HColorButton::calcSize()
 {
     if (!d_ptr->model)
-        return QSize(80, 100);
+        return {80, 100};
 
     int margin = 2 * style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, this) + 1;
     int cols = d_ptr->model->rowCount();
@@ -178,10 +176,10 @@ QSize HColorButton::calcSize()
     int fitRows = cols % fit == 0 ? cols / fit : (1 + cols / fit);
     int scExt = style()->pixelMetric(QStyle::PM_ScrollBarExtent, nullptr, this);
     if (fitRows <= 12)
-        return QSize(fit * 16 + margin, fitRows * 16 + margin + 27);
+        return {fit * 16 + margin, fitRows * 16 + margin + 27};
     fit = qMax(3, (width() - margin - scExt) / 16);
     fitRows = cols / fit;
-    return QSize(fit * 16 + margin + scExt + 1, 16 * 12 + margin + 30);
+    return {fit * 16 + margin + scExt + 1, 16 * 12 + margin + 30};
 }
 
 void HColorButton::showPopup()

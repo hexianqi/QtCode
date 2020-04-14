@@ -15,18 +15,16 @@ HMagicMouse::HMagicMouse(HMagicMousePrivate &p, QWidget *parent) :
 {
 }
 
-HMagicMouse::~HMagicMouse()
-{
-}
+HMagicMouse::~HMagicMouse() = default;
 
 QSize HMagicMouse::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HMagicMouse::minimumSizeHint() const
 {
-    return QSize(30, 30);
+    return {30, 30};
 }
 
 double HMagicMouse::angle() const
@@ -125,7 +123,7 @@ void HMagicMouse::paintEvent(QPaintEvent *)
     auto side = qMin(width(), height());
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.scale(side / 100.0, side / 100.0);
     painter.rotate(d_ptr->angle);
     drawBody(&painter);

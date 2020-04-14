@@ -18,7 +18,6 @@ class HClearLineEdit : public HButtonLineEdit
 
 public:
     explicit HClearLineEdit(QWidget *parent = nullptr);
-    ~HClearLineEdit() override;
 
 public slots:
     void setButtonVisible(bool b) override;

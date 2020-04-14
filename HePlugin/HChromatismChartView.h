@@ -17,11 +17,10 @@ class QDESIGNER_WIDGET_EXPORT HChromatismChartView : public HZoomChartView
 
 public:
     explicit HChromatismChartView(QWidget *parent = nullptr);
-    ~HChromatismChartView() override;
 
 public:
     HChromatismChart *chart();
-    void setData(QVariantMap value);
+    void setData(const QVariantMap &);
 
 protected:
     HChromatismChartView(HChromatismChartViewPrivate &p, QWidget *parent = nullptr);

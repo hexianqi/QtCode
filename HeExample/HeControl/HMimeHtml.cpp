@@ -7,17 +7,13 @@ HMimeHtmlPrivate::HMimeHtmlPrivate()
     contentType = "text/html";
 }
 
-HMimeHtml::HMimeHtml(QString html, QObject *parent) :
+HMimeHtml::HMimeHtml(const QString &html, QObject *parent) :
     HMimeText(*new HMimeHtmlPrivate, html, parent)
 {
 }
 
-HMimeHtml::HMimeHtml(HMimeHtmlPrivate &p, QString html, QObject *parent) :
+HMimeHtml::HMimeHtml(HMimeHtmlPrivate &p, const QString &html, QObject *parent) :
     HMimeText(p, html, parent)
-{
-}
-
-HMimeHtml::~HMimeHtml()
 {
 }
 

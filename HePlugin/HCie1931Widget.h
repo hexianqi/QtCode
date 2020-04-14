@@ -29,7 +29,6 @@ class QDESIGNER_WIDGET_EXPORT HCie1931Widget : public HCartesianWidget
 
 public:
     explicit HCie1931Widget(QWidget *parent = nullptr);
-    ~HCie1931Widget();
 
 signals:
     void mouseDoubleClicked(QPointF point);
@@ -41,13 +40,13 @@ public:
     void setDrawPlanckian(bool b);
     void setDrawGrade(bool b);
     void setDrawPoint(bool b);
-    void setColorHorseshoe(QColor value);
-    void setColorPlanckian(QColor value);
-    void setColorGrade(QColor value);
-    void setColorGradeFocus(QColor value);
-    void setColorPoint(QColor value);
-    void setColorPointFocus(QColor value);
-    void setFontPointFocus(QFont value);
+    void setColorHorseshoe(const QColor &);
+    void setColorPlanckian(const QColor &);
+    void setColorGrade(const QColor &);
+    void setColorGradeFocus(const QColor &);
+    void setColorPoint(const QColor &);
+    void setColorPointFocus(const QColor &);
+    void setFontPointFocus(const QFont &);
 
 public:
     bool isEnableTracking();
@@ -65,13 +64,13 @@ public:
     QFont fontPointFocus();
 
 public:
-    void setGradeFocus(QPolygonF value);
-    void setGrade(QList<QPolygonF> value);
-    void addGrade(QPolygonF value, bool focus = true, bool refresh = true);
-    void removeGrade(QPolygonF value, bool refresh = true);
+    void setGradeFocus(const QPolygonF &);
+    void setGrade(const QList<QPolygonF> &);
+    void addGrade(const QPolygonF &value, bool focus = true, bool refresh = true);
+    void removeGrade(const QPolygonF &value, bool refresh = true);
     void clearGrade();
     void setPointFocus(QPointF value);
-    void setPoint(QList<QPointF> value);
+    void setPoint(const QList<QPointF> &);
     void addPoint(QPointF value, bool focus = true, bool refresh = true);
     void clearPoint();
 

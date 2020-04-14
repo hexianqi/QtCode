@@ -23,7 +23,6 @@ class HNavigationPanel : public HAbstractMultiPanel
 
 public:
     explicit HNavigationPanel(QWidget *parent = nullptr);
-    ~HNavigationPanel() override;
 
 public:
     int count() const override;
@@ -49,7 +48,7 @@ protected:
 protected:
     void actionEvent(QActionEvent *) override;
     void addToolButton(int index, QAction *action);
-    void findToolButton(QAction *action, std::function<void (int, QToolButton *)> func);
+    void findToolButton(QAction *action, const std::function<void (int, QToolButton *)> &func);
 
 private:
     void init();

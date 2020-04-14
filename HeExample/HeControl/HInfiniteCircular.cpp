@@ -14,10 +14,6 @@ HInfiniteCircular::HInfiniteCircular(HInfiniteCircularPrivate &p, QObject *paren
 {
 }
 
-HInfiniteCircular::~HInfiniteCircular()
-{
-}
-
 void HInfiniteCircular::initialize(QVariantMap param)
 {
     if (param.contains("background"))

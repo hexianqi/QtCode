@@ -41,7 +41,6 @@ class HKnobGauge : public HAnimationProgress
 
 public:
     explicit HKnobGauge(QWidget *parent = nullptr);
-    ~HKnobGauge() override;
 
 public:
     QSize sizeHint() const override;
@@ -61,12 +60,12 @@ public:
 public slots:
     void setAngleStart(int value);
     void setAngleEnd(int value);
-    void setBackground(const QColor &value);
-    void setProgressBackground(const QColor &value);
-    void setProgressColor(const QColor &value);
-    void setCircleColorStart(const QColor &value);
-    void setCircleColorEnd(const QColor &value);
-    void setTextColor(const QColor &value);
+    void setBackground(const QColor &);
+    void setProgressBackground(const QColor &);
+    void setProgressColor(const QColor &);
+    void setCircleColorStart(const QColor &);
+    void setCircleColorEnd(const QColor &);
+    void setTextColor(const QColor &);
     void setShowPointer(bool b);
     void setShowValue(bool b);
     void setPointerStyle(HControlType::PointerStyle pointerStyle);
@@ -91,7 +90,7 @@ protected:
     void drawPointerIndicatorR(QPainter *);
     void drawPointerTriangle(QPainter *);
     void drawPointerCenter(QPainter *);
-    void drawValue(QPainter *painter);
+    void drawValue(QPainter *);
 
 protected:
     double angleSpan();
@@ -100,7 +99,7 @@ protected:
 
 private:
     void init();
-    void updateRadius(QVariant value);
+    void updateRadius(const QVariant &value);
     void setPressedValue(QPointF value);
 };
 

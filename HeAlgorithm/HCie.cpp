@@ -51,7 +51,7 @@ HCie1931::HCie1931()
     readStandard();
 }
 
-QPointF HCie1931::calcCoordinateUv(QPolygonF spd)
+QPointF HCie1931::calcCoordinateUv(const QPolygonF &spd)
 {
     int i = 0;
     int j = 0;
@@ -60,16 +60,16 @@ QPointF HCie1931::calcCoordinateUv(QPolygonF spd)
     double Z = 0;
     while (i < spd.size() && j < _standard.size())
     {
-        if (qFabs(spd[i].x() - _standard[j].wave) < 1e-6)
+        if (qFabs(spd.at(i).x() - _standard[j].wave) < 1e-6)
         {
-            X += spd[i].y() * _standard[j].X;
-            Y += spd[i].y() * _standard[j].Y;
-            Z += spd[i].y() * _standard[j].Z;
+            X += spd.at(i).y() * _standard[j].X;
+            Y += spd.at(i).y() * _standard[j].Y;
+            Z += spd.at(i).y() * _standard[j].Z;
             i++;
             j++;
             continue;
         }
-        if (spd[i].x() < _standard[j].wave)
+        if (spd.at(i).x() < _standard[j].wave)
             i++;
         else
             j++;
@@ -197,7 +197,7 @@ void HCie1931::calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<
 QPointF HCie1931::calcIsoCoordinateUv(double tc)
 {
     auto iso = calcIsotherm(tc);
-    return QPointF(iso.u, iso.v);
+    return {iso.u, iso.v};
 }
 
 QPointF HCie1931::calcIsoCoordinateXy(double tc)
@@ -435,18 +435,17 @@ void HCieUcs::calcColorTemperature(QPointF uv, double &tc, double &duv)
     tc = _cieUcsP[n].Tc;
 }
 
-CIE_UCS HCieUcs::getCieUcs(double tc)
+CIE_UCS HCieUcs::findCieUcs(double tc)
 {
-    CIE_UCS ucs;
-    if (tc < 2300 || tc > 25000)
-        return ucs;
-
-    for (int i = 0; i < _cieUcs.size() - 1; i++)
+    if (tc >= 2300 && tc <= 25000)
     {
-        if (qFabs(tc - _cieUcs[i].Tc) < 1e-6 || (tc > _cieUcs[i].Tc && tc < _cieUcs[i+1].Tc))
-            return _cieUcs[i];
+        for (int i = 0; i < _cieUcs.size() - 1; i++)
+        {
+            if (qFabs(tc - _cieUcs[i].Tc) < 1e-6 || (tc > _cieUcs[i].Tc && tc < _cieUcs[i+1].Tc))
+                return _cieUcs[i];
+        }
     }
-    return ucs;
+    return {};
 }
 
 void HCieUcs::readStandard()

@@ -95,7 +95,7 @@ void HRunTimeService::init()
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(60 * 10000);
     connect(d_ptr->timer, &QTimer::timeout, this, &HRunTimeService::saveLog);
-    connect(qApp, &QApplication::aboutToQuit, this, &HRunTimeService::stop);
+    connect(QApplication::instance(), &QApplication::aboutToQuit, this, &HRunTimeService::stop);
 }
 
 HE_CONTROL_END_NAMESPACE

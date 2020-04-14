@@ -18,18 +18,14 @@ HKnobGauge::HKnobGauge(HKnobGaugePrivate &p, QWidget *parent) :
     init();
 }
 
-HKnobGauge::~HKnobGauge()
-{
-}
-
 QSize HKnobGauge::sizeHint() const
 {
-    return QSize(200, 200);
+    return {200, 200};
 }
 
 QSize HKnobGauge::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    return {20, 20};
 }
 
 int HKnobGauge::angleStart() const
@@ -259,7 +255,7 @@ void HKnobGauge::paintEvent(QPaintEvent *)
     QPainter painter(this);
     // 绘制准备工作,启用反锯齿,平移坐标轴中心,等比例缩放
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-    painter.translate(width() / 2, height() / 2);
+    painter.translate(width() / 2.0, height() / 2.0);
     painter.scale(side / 200.0, side / 200.0);
     // 绘制背景
     drawBackground(&painter);
@@ -402,7 +398,7 @@ void HKnobGauge::drawValue(QPainter *painter)
     if (!d->showValue)
         return;
     auto radius = 100;
-    auto rect = QRectF(-radius, radius / 2, radius * 2, radius / 3);
+    auto rect = QRectF(-radius, radius / 2.0, radius * 2.0, radius / 3.0);
     auto text = QString::number(d->currentValue, 'f', d->decimal);
     auto f = font();
     f.setPixelSize(d->showPointer ? radius - 50 : radius - 15);
@@ -441,7 +437,7 @@ void HKnobGauge::init()
     connect(d->animationHover, &QPropertyAnimation::valueChanged, this, &HKnobGauge::updateRadius);
 }
 
-void HKnobGauge::updateRadius(QVariant value)
+void HKnobGauge::updateRadius(const QVariant &value)
 {
     Q_D(HKnobGauge);
     d->radiusCoverCircle = value.toInt();

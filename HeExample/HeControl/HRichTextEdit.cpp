@@ -24,9 +24,7 @@ HRichTextEdit::HRichTextEdit(HRichTextEditPrivate &p, QWidget *parent) :
     init();
 }
 
-HRichTextEdit::~HRichTextEdit()
-{
-}
+HRichTextEdit::~HRichTextEdit() = default;
 
 HRichTextEdit::Options HRichTextEdit::options() const
 {
@@ -165,7 +163,7 @@ void HRichTextEdit::updateActions()
     }
 }
 
-void HRichTextEdit::setCharFormat(QTextCharFormat value)
+void HRichTextEdit::setCharFormat(const QTextCharFormat &value)
 {
     auto cursor = textCursor();
     cursor.mergeCharFormat(value);

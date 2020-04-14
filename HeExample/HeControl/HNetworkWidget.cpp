@@ -21,9 +21,7 @@ HNetworkWidget::HNetworkWidget(HNetworkWidgetPrivate &p, QWidget *parent) :
 {
 }
 
-HNetworkWidget::~HNetworkWidget()
-{
-}
+HNetworkWidget::~HNetworkWidget() = default;
 
 void HNetworkWidget::init()
 {

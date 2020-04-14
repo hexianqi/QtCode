@@ -149,7 +149,7 @@ void HBuilder2000::buildDatabase()
     exportExcel.removeLast();
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    db->openDatabase(QString("%1.db").arg(qApp->applicationName()));
+    db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");

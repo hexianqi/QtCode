@@ -37,7 +37,7 @@ public:
     static QList<T> selectBeans(T mapToBean(const QVariantMap &), const QString &sql, const QVariantMap &param = QVariantMap());
 
 private:
-    static void execute(const QString &sql, const QVariantMap &param, std::function<void(QSqlQuery *)> func);
+    static void execute(const QString &sql, const QVariantMap &param, const std::function<void(QSqlQuery *)>& func);
     static QStringList getFieldNames(QSqlQuery *);
     static void debug(QSqlQuery *, const QVariantMap &);
     static void bindValue(QSqlQuery *query, const QVariantMap &);

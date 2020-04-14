@@ -72,7 +72,7 @@ void HUdpServer::setListenPort(int value)
 
 void HUdpServer::sendData(const QByteArray &data)
 {
-    for (auto c : d_ptr->clients)
+    for (const auto &c : d_ptr->clients)
     {
         auto list = c.split(":");
         sendData(list.at(0), list.at(1).toUShort(), data);
@@ -99,7 +99,7 @@ void HUdpServer::incomingConnection(const QString &ip, int port)
 void HUdpServer::disconnectClient()
 {
     auto cs = d_ptr->clients;
-    for (auto c : cs)
+    for (const auto &c : cs)
     {
         auto list = c.split(":");
         disconnectClient(list.at(0), list.at(1).toUShort());

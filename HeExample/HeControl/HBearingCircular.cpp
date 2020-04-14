@@ -14,11 +14,6 @@ HBearingCircular::HBearingCircular(HBearingCircularPrivate &p, QObject *parent) 
 {
 }
 
-HBearingCircular::~HBearingCircular()
-{
-}
-
-
 void HBearingCircular::initialize(QVariantMap param)
 {
     if (param.contains("background"))

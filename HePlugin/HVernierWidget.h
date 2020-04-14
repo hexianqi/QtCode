@@ -19,7 +19,6 @@ class QDESIGNER_WIDGET_EXPORT HVernierWidget : public HCartesianWidget
 
 public:
     explicit HVernierWidget(QWidget *parent = nullptr);
-    ~HVernierWidget() override;
 
 signals:
     void vernierValueChanged(QList<double> value);

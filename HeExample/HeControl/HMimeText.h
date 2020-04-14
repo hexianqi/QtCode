@@ -17,20 +17,19 @@ class HMimeText : public HMimePart
     Q_DECLARE_PRIVATE(HMimeText)
 
 public:
-    explicit HMimeText(QString text = QString(), QObject *parent = nullptr);
-    ~HMimeText() override;
+    explicit HMimeText(const QString &text = QString(), QObject *parent = nullptr);
 
 public:
     QString text() const;
 
 public:
-    void setText(const QString &value);
+    void setText(const QString &);
 
 public:
     void prepare() override;
 
 protected:
-    HMimeText(HMimeTextPrivate &p, QString text = QString(), QObject *parent = nullptr);
+    HMimeText(HMimeTextPrivate &p, const QString &text = QString(), QObject *parent = nullptr);
 };
 
 HE_CONTROL_END_NAMESPACE

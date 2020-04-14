@@ -9,10 +9,6 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 const char * const SQL_NAMESPACE_USER = "User";
 
-HTestThread::HTestThread()
-{
-}
-
 void HTestThread::run()
 {
     qDebug() << HDBUtil::selectInt("select id from user where username='Alice'");
@@ -91,7 +87,7 @@ void HDbTest::useDBUtil()
     // 2. 查找 Alice 的密码
     qDebug() << "\n2. 查找 Alice 的密码";
     qDebug() << HDBUtil::selectString("select password from user where username='Alice'");
-    qDebug() << HDBUtil::selectMap("select password from user where username='Alice'")["password"].toString();
+    qDebug() << HDBUtil::selectMap("select password from user where username='Alice'").value("password").toString();
 
     // 3. 查找 Alice 的所有信息，如名字，密码，邮件等
     qDebug() << "\n3. 查找 Alice 的所有信息，如名字，密码，邮件等";
@@ -133,7 +129,7 @@ void HDbTest::useDao()
     qDebug() << "Update: " << HUserDao::update(user);
 
     auto users = HUserDao::findAll();
-    for (auto u : users)
+    for (const auto &u : users)
         qDebug() << u.toString();
 }
 

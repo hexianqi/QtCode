@@ -8,17 +8,15 @@ class QGridLayout;
 
 class QDESIGNER_WIDGET_EXPORT HVernierWidgetPrivate : public HCartesianWidgetPrivate
 {
-    Q_DECLARE_PUBLIC(HVernierWidget)
+public:
+    HVernierWidgetPrivate();
 
 public:
-    HVernierWidgetPrivate(HVernierWidget *);
-
-public:
-    HVernierTracking *tracking;
-    QLabel *labelLeft;
-    QLabel *labelCenter;
-    QLabel *labelRight;
-    QGridLayout *layoutLabel;
+    HVernierTracking *tracking = nullptr;
+    QLabel *labelLeft = nullptr;
+    QLabel *labelCenter = nullptr;
+    QLabel *labelRight = nullptr;
+    QGridLayout *layoutLabel = nullptr;
     int decimals = 2;
 };
 

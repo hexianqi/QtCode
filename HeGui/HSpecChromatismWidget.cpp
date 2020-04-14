@@ -49,7 +49,7 @@ void HSpecChromatismWidget::initMenuShow()
     connect(group, &QActionGroup::triggered, this, &HSpecChromatismWidget::showChromatism);
     d_ptr->menuShow->addActions(group->actions());
     if (!group->actions().isEmpty())
-        showChromatism(group->actions().first());
+        showChromatism(group->actions().at(0));
 }
 
 void HSpecChromatismWidget::refreshWidget()

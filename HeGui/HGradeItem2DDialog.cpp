@@ -113,7 +113,7 @@ void HGradeItem2DDialog::averageLevels()
     if (t == 0 || t > 99999)
         return;
 
-    p1 = getLevels().first();
+    p1 = getLevels().at(0);
     for (i = 0; i < r; i++)
     {
         p2.clear();

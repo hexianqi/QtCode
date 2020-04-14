@@ -31,7 +31,6 @@ class HPercentGauge : public HCircleGauge
 
 public:
     explicit HPercentGauge(QWidget *parent = nullptr);
-    ~HPercentGauge() override;
 
 public:
     QColor baseColor() const;
@@ -39,7 +38,7 @@ public:
     QColor titleColor() const;
     QString title() const;
 
-public slots:    
+public slots:
     void setBaseColor(const QColor &value);
     void setArcColor(const QColor &value);
     void setTitleColor(const QColor &value);

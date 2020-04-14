@@ -17,9 +17,7 @@ HUdpClient::HUdpClient(HUdpClientPrivate &p, QObject *parent) :
     init();
 }
 
-HUdpClient::~HUdpClient()
-{
-}
+HUdpClient::~HUdpClient() = default;
 
 void HUdpClient::sendData(const QString &ip, int port, const QByteArray &value)
 {

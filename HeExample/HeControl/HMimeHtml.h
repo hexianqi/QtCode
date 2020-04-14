@@ -17,17 +17,16 @@ class HMimeHtml : public HMimeText
     Q_DECLARE_PRIVATE(HMimeHtml)
 
 public:
-    explicit HMimeHtml(QString html = QString(), QObject *parent = nullptr);
-    ~HMimeHtml() override;
+    explicit HMimeHtml(const QString &html = QString(), QObject *parent = nullptr);
 
 public:
     QString html() const;
 
 public:
-    void setHtml(const QString &value);
+    void setHtml(const QString &);
 
 protected:
-    HMimeHtml(HMimeHtmlPrivate &p, QString html = QString(), QObject *parent = nullptr);
+    HMimeHtml(HMimeHtmlPrivate &p, const QString &html = QString(), QObject *parent = nullptr);
 };
 
 HE_CONTROL_END_NAMESPACE

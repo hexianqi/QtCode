@@ -72,7 +72,7 @@ void HSpecSqlPrint::paintPage(QPainter *painter, int page)
     paintBody(painter, y1, y2, page);
 }
 
-double HSpecSqlPrint::paintFooter(QPainter *painter, QString /*text*/)
+double HSpecSqlPrint::paintFooter(QPainter *painter, const QString & /*text*/)
 {
     auto gap = 4.0;
     auto font = QFont("宋体", 10, QFont::Bold);
