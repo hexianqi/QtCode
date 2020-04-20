@@ -31,22 +31,29 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-HBuilder2000DC::HBuilder2000DC(IMainWindow *parent) :
-    HAbstractBuilder(*new HBuilder2000DCPrivate(parent), parent)
+HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
+    HAbstractBuilderPrivate(p)
 {
-    Q_D(HBuilder2000DC);
-    d->sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-                                << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-                                << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
-                                << "LuminousFluxSpec" << "LuminousPower" << "LuminousEfficiency"
-                                << "PeakWave" << "PeakBandwidth" << "DominantWave"
-                                << "ColorTemperature" << "ColorPurity"
-                                << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-                                << "RedRatio" << "GreenRadio" << "BlueRatio"
-                                << "Ra" << "Rx" << "EnergyGraph";
+    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
+    deploy.insert("Protocol",       "HCcd1305Protocol");    // HCcd1305Protocol; HCcd554bProtocol
+
+    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+                             << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
+                             << "LuminousFluxSpec" << "LuminousPower" << "LuminousEfficiency"
+                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
+                             << "ColorTemperature" << "ColorPurity"
+                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+                             << "RedRatio" << "GreenRadio" << "BlueRatio"
+                             << "Ra" << "Rx" << "EnergyGraph";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+}
+
+HBuilder2000DC::HBuilder2000DC(IMainWindow *parent) :
+    HAbstractBuilder(*new HBuilder2000DCPrivate(parent), parent)
+{
 }
 
 HBuilder2000DC::~HBuilder2000DC()
@@ -73,25 +80,25 @@ void HBuilder2000DC::buildConfigManage()
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
         {
-            auto fit = d->dataFactory->createSpecFitting("HSpecFittingPolynom");
+            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             spec->setFitting(fit);
             specs->insert("1", spec);
         }
 
         QVariantMap param[6];
-        param[0].insert("itemClassName", "HElecCalibrateItem");
-        param[0].insert("itemTypeList", QStringList() << "[输出电压]");
-        param[1].insert("itemClassName", "HElecCalibrateItem");
-        param[1].insert("itemTypeList", QStringList() << "[输出电流1]" << "[输出电流2]");
-        param[2].insert("itemClassName", "HElecCalibrateItem");
-        param[2].insert("itemTypeList", QStringList() << "[实测电压]");
-        param[3].insert("itemClassName", "HElecCalibrateItem");
-        param[3].insert("itemTypeList", QStringList() << "[实测电流]");
-        param[4].insert("itemClassName", "HElecCalibrateItem");
-        param[4].insert("itemTypeList", QStringList() << "[反向电压]");
-        param[5].insert("itemClassName", "HElecCalibrateItem");
-        param[5].insert("itemTypeList", QStringList() << "[反向漏流]");
+        param[0].insert("itemClassName",    "HElecCalibrateItem");
+        param[0].insert("itemTypeList",     QStringList() << "[输出电压]");
+        param[1].insert("itemClassName",    "HElecCalibrateItem");
+        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]");
+        param[2].insert("itemClassName",    "HElecCalibrateItem");
+        param[2].insert("itemTypeList",     QStringList() << "[实测电压]");
+        param[3].insert("itemClassName",    "HElecCalibrateItem");
+        param[3].insert("itemTypeList",     QStringList() << "[实测电流]");
+        param[4].insert("itemClassName",    "HElecCalibrateItem");
+        param[4].insert("itemTypeList",     QStringList() << "[反向电压]");
+        param[5].insert("itemClassName",    "HElecCalibrateItem");
+        param[5].insert("itemTypeList",     QStringList() << "[反向漏流]");
         auto elec = d->dataFactory->createElecCalibrate("HElecCalibrate");
         elec->setItemCollection(OutputVoltage,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[0]));
         elec->setItemCollection(OutputCurrent,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[1]));
@@ -142,14 +149,12 @@ void HBuilder2000DC::buildTestData()
 void HBuilder2000DC::buildDevice()
 {
     Q_D(HBuilder2000DC);
-//    // 设备模拟
-//    auto device = d->communicateFactory->createDevice("HSlSimulation");
-//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-//    protocol->setDevice(device);
-    // 第一版设备1305
-    // auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
-    // 第二版设备554b
-    auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+    // 模拟设备
+    auto device = d->communicateFactory->createDevice("HSlSimulation");
+    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+    protocol->setDevice(device);
+//    // 真实设备
+//    auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
@@ -240,6 +245,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
- //   widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

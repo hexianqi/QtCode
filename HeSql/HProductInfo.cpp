@@ -7,16 +7,16 @@ HE_SQL_BEGIN_NAMESPACE
 
 HProductInfoPrivate::HProductInfoPrivate()
 {
-    datas.insert("Manufacturer", "Manufacturer");
-    datas.insert("ProductName", "Name");
-    datas.insert("ProductModel", "Model");
-    datas.insert("TestInstitute", "");
-    datas.insert("Tester", "");
-    datas.insert("SampleNumber", 1);
-    datas.insert("Temperature", 25.0);
-    datas.insert("Humidity", 60.0);
-    datas.insert("Editable", true);
-    datas.insert("Increase", true);
+    datas.insert("Manufacturer",    "Manufacturer");
+    datas.insert("ProductName",     "Name");
+    datas.insert("ProductModel",    "Model");
+    datas.insert("TestInstitute",   "");
+    datas.insert("Tester",          "");
+    datas.insert("SampleNumber",    1);
+    datas.insert("Temperature",     25.0);
+    datas.insert("Humidity",        60.0);
+    datas.insert("Editable",        true);
+    datas.insert("Increase",        true);
 }
 
 HProductInfo::HProductInfo(QObject *parent) :

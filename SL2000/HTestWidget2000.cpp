@@ -217,12 +217,13 @@ void HTestWidget2000::resetGrade()
 void HTestWidget2000::refreshWidget()
 {
     Q_D(HTestWidget2000);
+    auto mode = d->testSetWidget->testMode();
     d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
     d->cieWidget->addPoint(d->testData->data("[色坐标]").toPointF());
-    d->resultWidget->refreshResult(0, d->testSetWidget->testMode() == 0);
-    saveRecord(d->testSetWidget->testMode() == 0);
+    d->resultWidget->refreshResult(0, mode == 0 || mode == 3);
+    saveRecord(mode == 0 || mode == 3);
 }
 
 void HTestWidget2000::postProcess()
@@ -294,10 +295,9 @@ void HTestWidget2000::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
-    d->tableSelecteds = settings->value("sTableSelected", d->displays).toStringList();
-    d->testData->setData("[使用调整]", settings->value("bAdjust", false));
-    d->testData->setData("[CCD类型]", settings->value("sCCD", "1305"));
-    d->testData->setData("[CCD偏差]", settings->value("fOffset", 55.0));
+    d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
+    d->testData->setData("[使用调整]", settings->value("Adjust", false));
+    d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
     settings->endGroup();
 }
 
@@ -307,9 +307,8 @@ void HTestWidget2000::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
-    settings->setValue("sTableSelected", d->resultWidget->selected());
-    settings->setValue("bAdjust", d->testData->data("[使用调整]"));
-    settings->setValue("sCCD", d->testData->data("[CCD类型]"));
-    settings->setValue("fOffset", d->testData->data("[CCD偏差]"));
+    settings->setValue("TableSelected", d->resultWidget->selected());
+    settings->setValue("Adjust", d->testData->data("[使用调整]"));
+    settings->setValue("Offset", d->testData->data("[CCD偏差]"));
     settings->endGroup();
 }

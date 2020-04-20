@@ -49,6 +49,7 @@ public:
     IConfigManage *configManage = nullptr;
     IModel *model = nullptr;
     QString configFileName;
+    QVariantMap deploy;
 };
 
 HE_GUI_END_NAMESPACE

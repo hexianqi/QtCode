@@ -80,7 +80,7 @@ QLineF HChromaticity::calcIsothermXy(double tc, double duvB, double duvE)
     return {line1.p2(), line2.p2()};
 }
 
-bool HChromaticity::exportIsotherm(QString fileName, QPointF tc, double interval)
+bool HChromaticity::exportIsotherm(const QString &fileName, QPointF tc, double interval)
 {
     int i,n;
     double t;
@@ -95,7 +95,7 @@ bool HChromaticity::exportIsotherm(QString fileName, QPointF tc, double interval
     return exportIsotherm(fileName, isotherm);
 }
 
-bool HChromaticity::exportIsotherm(QString fileName)
+bool HChromaticity::exportIsotherm(const QString &fileName)
 {
     int i;
     QList<double> mrecpK;
@@ -109,7 +109,7 @@ bool HChromaticity::exportIsotherm(QString fileName)
     return exportIsotherm(fileName, isotherm);
 }
 
-bool HChromaticity::exportCieUcs(QString fileName, QPointF tc, double interval)
+bool HChromaticity::exportCieUcs(const QString &fileName, QPointF tc, double interval)
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))

@@ -25,10 +25,10 @@ public:
 
 public:
     // 导出等温线数据
-    virtual bool exportIsotherm(QString fileName, QPointF tc, double interval = 1.0) = 0;
-    virtual bool exportIsotherm(QString fileName) = 0;
+    virtual bool exportIsotherm(const QString &fileName, QPointF tc, double interval = 1.0) = 0;
+    virtual bool exportIsotherm(const QString &fileName) = 0;
     // 导出UCS数据
-    virtual bool exportCieUcs(QString fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) = 0;
+    virtual bool exportCieUcs(const QString &fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) = 0;
 };
 
 HE_ALGORITHM_END_NAMESPACE

@@ -96,11 +96,11 @@ void HAbstractNetworkWidget::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    d_ptr->hexSend = settings->value("bHexSend", false).toBool();
-    d_ptr->hexReceive = settings->value("bHexReceive", false).toBool();
-    d_ptr->ascii = settings->value("bAscii", false).toBool();
-    d_ptr->autoSend = settings->value("bAutoSend", false).toBool();
-    d_ptr->interval = settings->value("iInterval", 1000).toInt();
+    d_ptr->hexSend = settings->value("HexSend", false).toBool();
+    d_ptr->hexReceive = settings->value("HexReceive", false).toBool();
+    d_ptr->ascii = settings->value("Ascii", false).toBool();
+    d_ptr->autoSend = settings->value("AutoSend", false).toBool();
+    d_ptr->interval = settings->value("Interval", 1000).toInt();
     settings->endGroup();
 }
 
@@ -109,11 +109,11 @@ void HAbstractNetworkWidget::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    settings->setValue("bHexSend", d_ptr->hexSend);
-    settings->setValue("bHexReceive", d_ptr->hexReceive);
-    settings->setValue("bAscii", d_ptr->ascii);
-    settings->setValue("bAutoSend", d_ptr->autoSend);
-    settings->setValue("iInterval", d_ptr->interval);
+    settings->setValue("HexSend", d_ptr->hexSend);
+    settings->setValue("HexReceive", d_ptr->hexReceive);
+    settings->setValue("Ascii", d_ptr->ascii);
+    settings->setValue("AutoSend", d_ptr->autoSend);
+    settings->setValue("Interval", d_ptr->interval);
     settings->endGroup();
 }
 

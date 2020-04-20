@@ -26,8 +26,8 @@ public:
 public:
     QStringList supportedWidgets() override;
     QStringList supportedEventFilters() override;
-    QWidget *createWidget(QString type, QWidget *parent = nullptr) override;
-    IEventFilter *createEventFilter(QString type, QVariantMap param = QVariantMap()) override;
+    QWidget *createWidget(const QString &type, QWidget *parent = nullptr) override;
+    IEventFilter *createEventFilter(const QString &type, QVariantMap param = QVariantMap()) override;
 
 protected:
     QScopedPointer<HControlFactoryPrivate> d_ptr;

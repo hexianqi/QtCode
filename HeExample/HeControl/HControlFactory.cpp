@@ -55,12 +55,12 @@ QStringList HControlFactory::supportedEventFilters()
     return d_ptr->supportedEventFilters;
 }
 
-QWidget *HControlFactory::createWidget(QString type, QWidget *parent)
+QWidget *HControlFactory::createWidget(const QString &type, QWidget *parent)
 {
     return HWidgetFactory::createWidget<QWidget>(type, parent);
 }
 
-IEventFilter *HControlFactory::createEventFilter(QString type, QVariantMap param)
+IEventFilter *HControlFactory::createEventFilter(const QString &type, QVariantMap param)
 {
     return HObjectFactory::createObject<IEventFilter>(type, param, this);
 }

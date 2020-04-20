@@ -48,11 +48,12 @@ FORMS       += \
 RESOURCES   += \
             HeTest.qrc
 
+3RDPARTY    = $$absolute_path("../../../libgsl", $$[QT_INSTALL_DATA])
+
 INCLUDEPATH += \
             .. \
             ../HeExample \
-            D:/Qt/libgsl/include \
-
+            $$3RDPARTY/include \
 
 Debug {
 #    CONFIG  += console

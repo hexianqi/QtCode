@@ -25,7 +25,6 @@ HListCollectionDialog::~HListCollectionDialog()
 void HListCollectionDialog::setDataDetail(IDataDetail *p)
 {
     d_ptr->detail = p;
-    d_ptr->detail->setParent(this);
     ui->groupBox_2->layout()->addWidget(p->editWidget());
     connect(d_ptr->detail, &IDataDetail::sourceChanged, this, &HListCollectionDialog::handleSourceChanged);
     d_ptr->detail->start();

@@ -7,6 +7,8 @@ HAbstractCodec::HAbstractCodec() :
 {
 }
 
+HAbstractCodec::~HAbstractCodec() = default;
+
 HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p) :
     d_ptr(&p)
 {

@@ -31,6 +31,7 @@ protected:
 
 protected:
     HErrorType handleAction(HActionType action) override;
+    HErrorType getSpectrum(int n = 1);
     void setEfficacy();
 
 private:

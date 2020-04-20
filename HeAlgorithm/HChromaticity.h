@@ -27,9 +27,9 @@ public:
     QLineF calcIsothermXy(double tc, double duvB, double duvE) override;
 
 public:
-    bool exportIsotherm(QString fileName, QPointF tc, double interval = 1.0) override;
-    bool exportIsotherm(QString fileName) override;
-    bool exportCieUcs(QString fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) override;
+    bool exportIsotherm(const QString &fileName, QPointF tc, double interval = 1.0) override;
+    bool exportIsotherm(const QString &fileName) override;
+    bool exportCieUcs(const QString &fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) override;
 
 protected:
     HChromaticity(HChromaticityPrivate &);

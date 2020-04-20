@@ -27,6 +27,8 @@ protected:
     HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *parent = nullptr);
 
 protected:
+    virtual void openDeploy();
+    virtual void saveDeploy();
     virtual void buildFactory();
     virtual void buildConfigManage() = 0;
     virtual void buildTestData() = 0;
@@ -36,6 +38,9 @@ protected:
     virtual void buildDatabase() = 0;
     virtual void buildMenu() = 0;
     virtual void buildTestWidget() = 0;
+
+protected:
+    QString deployItem(const QString &key);
 
 protected:
     QScopedPointer<HAbstractBuilderPrivate> d_ptr;

@@ -62,8 +62,8 @@ void HAbstractServerWidget::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    d->listenIP = settings->value("iListenIP", "127.0.0.1").toString();
-    d->listenPort = settings->value("iListenPort", 6000).value<int>();
+    d->listenIP = settings->value("ListenIP", "127.0.0.1").toString();
+    d->listenPort = settings->value("ListenPort", 6000).value<int>();
     settings->endGroup();
 }
 
@@ -74,8 +74,8 @@ void HAbstractServerWidget::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    settings->setValue("iListenIP", d->listenIP);
-    settings->setValue("iListenPort", d->listenPort);
+    settings->setValue("ListenIP", d->listenIP);
+    settings->setValue("ListenPort", d->listenPort);
     settings->endGroup();
 }
 

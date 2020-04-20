@@ -28,7 +28,7 @@ class HDataDetail : public IDataDetail
 {
 public:
     explicit HDataDetail(QObject *parent = nullptr);
-    ~HDataDetail();
+    ~HDataDetail() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -66,9 +66,7 @@ HDataDetail<T>::HDataDetail(HDataDetailPrivate<T> &p, QWidget *parent) :
 }
 
 template <typename T>
-HDataDetail<T>::~HDataDetail()
-{
-}
+HDataDetail<T>::~HDataDetail() = default;
 
 template<typename T>
 void HDataDetail<T>::initialize(QVariantMap /*param*/)

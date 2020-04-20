@@ -15,9 +15,11 @@ public:
     HTestSetWidget2000DCPrivate();
 
 public:
-    ITestSpec *testSpec;
-    ITestElec *testElec;
+    ITestSpec *testSpec = nullptr;
+    ITestElec *testElec = nullptr;
     bool integralTimeAuto = false;
+    QTimer *timerContinue = nullptr;
+    QTimer *timerInterval = nullptr;
 };
 
 #endif // HTESTSETWIDGET2000DC_P_H

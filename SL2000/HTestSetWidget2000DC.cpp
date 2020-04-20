@@ -5,6 +5,7 @@
 #include "HeData/ITestSpec.h"
 #include "HeData/ITestElec.h"
 #include "HePlugin/HPluginHelper.h"
+#include <QtCore/QTimer>
 #include <QtCore/QDebug>
 
 HTestSetWidget2000DCPrivate::HTestSetWidget2000DCPrivate()
@@ -69,7 +70,8 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
         if (!d->testState)
             break;
         adjustIntegralTime();
-        d->model->addAction(ACT_GET_SPECTRUM_ELEC, 100);
+        if (d->testMode == 1 || d->testMode == 2)
+            d->model->addAction(ACT_GET_SPECTRUM_ELEC, 100);
         break;
     default:
         break;
@@ -81,6 +83,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
     Q_D(HTestSetWidget2000DC);
     if (!HAbstractTestSetWidget::setTestState(b))
         return false;
+
     if (b)
     {
         d->testSpec->clearCache();
@@ -88,17 +91,36 @@ bool HTestSetWidget2000DC::setTestState(bool b)
             d->model->addAction(ACT_SINGLE_TEST);
         if (d->testMode == 1)
         {
+            d->model->addAction(ACT_GET_REVERSE_CURRENT);
             d->testElec->setData("[电源模式]", 1);
             d->model->addAction(ACT_SET_SOURCE_MODE);
             d->model->addAction(ACT_GET_SPECTRUM_ELEC);
         }
+        if (d->testMode == 2)
+        {
+            auto t = ui->timeEdit_1->time();
+            d->model->addAction(ACT_GET_REVERSE_CURRENT);
+            d->testElec->setData("[电源模式]", 1);
+            d->model->addAction(ACT_SET_SOURCE_MODE);
+            d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+            d->timerContinue->start((t.hour() * 3600 + t.minute() * 60 + t.second()) * 1000);
+        }
+        if (d->testMode == 3)
+        {
+            d->model->addAction(ACT_GET_REVERSE_CURRENT);
+            d->testElec->setData("[电源模式]", 1);
+            d->model->addAction(ACT_SET_SOURCE_MODE);
+            d->timerInterval->start(ui->spinBox_1->value() * 1000);
+        }
     }
     else
     {
-        if (d->testMode == 1)
+        if (d->testMode > 0)
         {
             d->testElec->setData("[电源模式]", 0);
             d->model->addAction(ACT_SET_SOURCE_MODE);
+            d->timerContinue->stop();
+            d->timerInterval->stop();
         }
     }
     emit testStateChanged(b);
@@ -147,7 +169,11 @@ void HTestSetWidget2000DC::on_checkBox_1_clicked(bool b)
 
 void HTestSetWidget2000DC::on_comboBox_1_currentIndexChanged(int value)
 {
-    setTestMode(value);
+    if (setTestMode(value))
+    {
+        ui->timeEdit_1->setEnabled(value == 2);
+        ui->spinBox_1->setEnabled(value == 3);
+    }
 }
 
 void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
@@ -155,6 +181,17 @@ void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
     Q_D(HTestSetWidget2000DC);
     d->testElec->setGears(OutputCurrent, value);
     d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+}
+
+void HTestSetWidget2000DC::continueTest()
+{
+    setTestState(false);
+}
+
+void HTestSetWidget2000DC::intervalTest()
+{
+    Q_D(HTestSetWidget2000DC);
+    d->model->addAction(ACT_GET_SPECTRUM_ELEC);
 }
 
 bool HTestSetWidget2000DC::adjustIntegralTime()
@@ -179,7 +216,12 @@ void HTestSetWidget2000DC::init()
     ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
     ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
     ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));
     ui->comboBox_2->addItems(QStringList() << tr("  1档  ") << tr("  2档  "));
+
+    d->timerContinue = new QTimer(this);
+    d->timerInterval = new QTimer(this);
+    connect(d->timerContinue, &QTimer::timeout, this, &HTestSetWidget2000DC::continueTest);
+    connect(d->timerInterval, &QTimer::timeout, this, &HTestSetWidget2000DC::intervalTest);
 }
 

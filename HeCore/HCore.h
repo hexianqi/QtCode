@@ -36,7 +36,7 @@ public:
     static QStringList toCaptionUnit(QStringList type);
 
 public:
-    static QString fileNameFilter(const QString &name, const QList<QByteArray> formats);
+    static QString fileNameFilter(const QString &name, const QList<QByteArray> &formats);
     static QString fileNameFilter(const QString &name, const QStringList &mimeTypes);
 
 public:

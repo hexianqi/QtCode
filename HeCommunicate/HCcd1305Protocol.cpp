@@ -8,7 +8,7 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 HCcd1305ProtocolPrivate::HCcd1305ProtocolPrivate()
 {
     QVariantMap param;
-    param.insert("timeOut", 3000);
+    param.insert("timeOut", 4000);
     auto port = new HUsbPortCy;
     port->initialize(param);
     device = new HSlDevice2;

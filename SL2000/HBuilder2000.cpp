@@ -28,21 +28,28 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-HBuilder2000::HBuilder2000(IMainWindow *parent) :
-    HAbstractBuilder(*new HBuilder2000Private(parent), parent)
+HBuilder2000Private::HBuilder2000Private(IMainWindow *p) :
+    HAbstractBuilderPrivate(p)
 {
-    Q_D(HBuilder2000);
-    d->sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-                                << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-                                << "LuminousFluxSpec" << "LuminousPower"
-                                << "PeakWave" << "PeakBandwidth" << "DominantWave"
-                                << "ColorTemperature" << "ColorPurity"
-                                << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-                                << "RedRatio" << "GreenRadio" << "BlueRatio"
-                                << "Ra" << "Rx" << "EnergyGraph";
+    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
+    deploy.insert("Protocol",       "HCcd1305Protocol");    // HCcd1305Protocol; HCcd554bProtocol
+
+    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+                             << "LuminousFluxSpec" << "LuminousPower"
+                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
+                             << "ColorTemperature" << "ColorPurity"
+                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+                             << "RedRatio" << "GreenRadio" << "BlueRatio"
+                             << "Ra" << "Rx" << "EnergyGraph";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+}
+
+HBuilder2000::HBuilder2000(IMainWindow *parent) :
+    HAbstractBuilder(*new HBuilder2000Private(parent), parent)
+{
 }
 
 HBuilder2000::~HBuilder2000()
@@ -68,10 +75,7 @@ void HBuilder2000::buildConfigManage()
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
         {
-            // 多项式拟合（默认）
-            auto fit = d->dataFactory->createSpecFitting("HSpecFittingPolynom");
-            // 插值拟合
-            // auto fit = d->dataFactory->createSpecFitting("HSpecFittingLinear");
+            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
             spec->setFitting(fit);
             specs->insert("1", spec);
@@ -109,14 +113,12 @@ void HBuilder2000::buildTestData()
 void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
-    // 设备模拟
-    auto device = d->communicateFactory->createDevice("HSlSimulation");
-    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-    protocol->setDevice(device);
-    // 第一版设备554b
-    // auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
-    // 第二版设备1305
-    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+//    // 模拟设备
+//    auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    protocol->setDevice(device);
+    // 真实设备
+    auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
     HAppContext::setContextPointer("IProtocolCollection", protocols);

@@ -17,12 +17,14 @@ SOURCES += \
 #此句不加将会遇到一些连接错误
 DEFINES     += GSL_DLL
 
-LIBS        += \
-            -LD:/Qt/libgsl/lib/ -lgsl \
-            -LD:/Qt/libgsl/lib/ -lgslcblas
+3RDPARTY    = $$absolute_path("../../../libgsl", $$[QT_INSTALL_DATA])
 
-INCLUDEPATH += D:/Qt/libgsl/include
-DEPENDPATH  += D:/Qt/libgsl/include
+LIBS        += \
+            -L$$3RDPARTY/lib -lgsl \
+            -L$$3RDPARTY/lib -lgslcblas
+
+INCLUDEPATH += $$3RDPARTY/include
+DEPENDPATH  += $$3RDPARTY/include
 
 include(gsl_sf.pri)
 include(gsl_interp.pri)

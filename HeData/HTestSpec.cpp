@@ -16,7 +16,6 @@ HTestSpecPrivate::HTestSpecPrivate()
     specFacade = new HSpecFacade;
     specData = new HSpecData;
     samples.resize(2);
-    addData("[CCD类型]", "1305");
     addData("[CCD偏差]", 55.0);
     addData("[光谱采样等待时间]", 0);
     addData("[积分时间]", 10.0);
@@ -139,10 +138,10 @@ bool HTestSpecPrivate::calcSpec()
     if(specData->Energy.isEmpty())
         return false;
     specFacade->calcSpectrum(specData);
-    //// 554b测试数据LED对不起来，作弊一下；
+    // 测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
-    if (specData->PeakWave < 700)//  && data("[CCD类型]").toString() == "554b")
+    if (specData->PeakWave < 700)
     {
         specData->Energy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
         specFacade->calcSpectrum(specData);

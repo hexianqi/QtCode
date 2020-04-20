@@ -6,6 +6,7 @@
 #include "HeData/HDataFactory.h"
 #include "HeGui/HGuiFactory.h"
 #include "HeSql/HSqlFactory.h"
+#include <QtCore/QSettings>
 #include <QtWidgets/QApplication>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -33,6 +34,7 @@ HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *pare
 
 void HAbstractBuilder::buildAll()
 {
+    openDeploy();
     buildFactory();
     buildConfigManage();
     buildTestData();
@@ -42,6 +44,27 @@ void HAbstractBuilder::buildAll()
     buildDatabase();
     buildMenu();
     buildTestWidget();
+    saveDeploy();
+}
+
+void HAbstractBuilder::openDeploy()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("Builder");
+    for (const auto &k : settings->allKeys())
+        d_ptr->deploy.insert(k, settings->value(k));
+    settings->endGroup();
+}
+
+void HAbstractBuilder::saveDeploy()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("Builder");
+    for (auto i = d_ptr->deploy.begin(); i != d_ptr->deploy.end(); i++)
+        settings->setValue(i.key(), i.value());
+    settings->endGroup();
 }
 
 void HAbstractBuilder::buildFactory()
@@ -56,6 +79,11 @@ void HAbstractBuilder::buildFactory()
     HAppContext::setContextPointer("IDataFactory", d_ptr->dataFactory);
     HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
     HAppContext::setContextPointer("ISqlFactory", d_ptr->sqlFactory);
+}
+
+QString HAbstractBuilder::deployItem(const QString &key)
+{
+    return d_ptr->deploy.value(key).toString();
 }
 
 HE_GUI_END_NAMESPACE

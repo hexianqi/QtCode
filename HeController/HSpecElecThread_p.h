@@ -19,6 +19,7 @@ public:
     HSpecElecThreadPrivate();
 
 public:
+    IProtocol *protocolSpec = nullptr;
     ITestSpec *testSpec = nullptr;
     ITestElec *testElec = nullptr;
     IActionStrategy *strategySpec = nullptr;

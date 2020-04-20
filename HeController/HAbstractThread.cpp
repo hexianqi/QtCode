@@ -214,9 +214,9 @@ void HAbstractThread::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("Thread");
-    d_ptr->runMode = settings->value("iRunMode", 2).toInt();
-    d_ptr->retry = settings->value("iRetry", 3).toInt();
-    d_ptr->sleepTime = settings->value("iSleepTime", 1000).toUInt();
+    d_ptr->runMode = settings->value("RunMode", 2).toInt();
+    d_ptr->retry = settings->value("Retry", 3).toInt();
+    d_ptr->sleepTime = settings->value("SleepTime", 1000).toUInt();
     settings->endGroup();
 }
 
@@ -225,9 +225,9 @@ void HAbstractThread::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("Thread");
-    settings->setValue("iRunMode", d_ptr->runMode);
-    settings->setValue("iRetry", d_ptr->retry);
-    settings->setValue("iSleepTime", d_ptr->sleepTime);
+    settings->setValue("RunMode", d_ptr->runMode);
+    settings->setValue("Retry", d_ptr->retry);
+    settings->setValue("SleepTime", d_ptr->sleepTime);
     settings->endGroup();
 }
 

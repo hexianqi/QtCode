@@ -7,7 +7,7 @@
 class HBuilder2000DCPrivate : public HAbstractBuilderPrivate
 {
 public:
-    using HAbstractBuilderPrivate::HAbstractBuilderPrivate;
+    HBuilder2000DCPrivate(IMainWindow *);
 
 public:
     QStringList sqlField;
