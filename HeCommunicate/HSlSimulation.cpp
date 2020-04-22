@@ -29,6 +29,11 @@ HErrorType HSlSimulation::open()
     return E_OK;
 }
 
+HErrorType HSlSimulation::close()
+{
+    return E_OK;
+}
+
 HErrorType HSlSimulation::setData(HActionType action, QVector<uchar> value, int /*delay*/)
 {
     Q_D(HSlSimulation);

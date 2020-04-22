@@ -23,7 +23,7 @@ public:
 public:
     void setDevice(IDevice *) override;
     HErrorType open() override;
-    HErrorType close() final;
+    HErrorType close() override;
 
 public:
     HErrorType setData(HActionType action, uchar value, int delay = 0) override;

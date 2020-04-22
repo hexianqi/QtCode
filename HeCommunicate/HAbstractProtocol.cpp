@@ -20,10 +20,7 @@ HAbstractProtocol::HAbstractProtocol(HAbstractProtocolPrivate &p) :
 {
 }
 
-HAbstractProtocol::~HAbstractProtocol()
-{
-    close();
-}
+HAbstractProtocol::~HAbstractProtocol() = default;
 
 void HAbstractProtocol::initialize(QVariantMap param)
 {

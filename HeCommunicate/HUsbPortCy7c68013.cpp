@@ -18,7 +18,6 @@ HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p) :
 HUsbPortCy7c68013::~HUsbPortCy7c68013()
 {
     qDebug() << __func__;
-    close();
 }
 
 void HUsbPortCy7c68013::initialize(QVariantMap param)

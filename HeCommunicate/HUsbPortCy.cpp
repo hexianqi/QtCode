@@ -66,7 +66,6 @@ HUsbPortCy::~HUsbPortCy()
 {
     qDebug() << __func__;
     Q_D(HUsbPortCy);
-    close();
     d->unloadDLL();
 }
 

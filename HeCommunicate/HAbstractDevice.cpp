@@ -14,10 +14,7 @@ HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p) :
 {
 }
 
-HAbstractDevice::~HAbstractDevice()
-{
-    close();
-}
+HAbstractDevice::~HAbstractDevice() = default;
 
 void HAbstractDevice::initialize(QVariantMap param)
 {

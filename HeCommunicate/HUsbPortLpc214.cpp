@@ -60,7 +60,6 @@ HUsbPortLpc214::~HUsbPortLpc214()
 {
     qDebug() << __func__;
     Q_D(HUsbPortLpc214);
-    close();
     d->unloadDLL();
 }
 

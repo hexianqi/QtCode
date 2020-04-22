@@ -14,6 +14,8 @@ HAbstractPort::HAbstractPort(HAbstractPortPrivate &p) :
 {
 }
 
+HAbstractPort::~HAbstractPort() = default;
+
 void HAbstractPort::initialize(QVariantMap param)
 {
     if (param.contains("timeOut"))

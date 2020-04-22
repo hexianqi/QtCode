@@ -19,7 +19,7 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
     testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
     protocols.insert("Spec", protocolSpec);
-//    protocols.insert("Elec", protocolCollection->value("Elec"));
+    protocols.insert("Elec", protocolCollection->value("Elec"));
 }
 
 HSpecElecThread::HSpecElecThread(QObject *parent) :
@@ -57,24 +57,24 @@ HErrorType HSpecElecThread::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SINGLE_TEST:
-//        error = d->strategyElec->handle(ACT_GET_ELEC_PARAM);
-//        if (error != E_OK)
-//            return error;
+        error = d->strategyElec->handle(ACT_GET_ELEC_PARAM);
+        if (error != E_OK)
+            return error;
         error = getSpectrum(d->testSpec->data("[光谱平均次数]").toInt());
         if (error != E_OK)
             return error;
-//        error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
-//        if (error != E_OK)
-//            return error;
-//        setEfficacy();
+        error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
+        if (error != E_OK)
+            return error;
+        setEfficacy();
         return E_OK;
     case ACT_GET_SPECTRUM_ELEC:
-//        error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
-//        if (error != E_OK)
-//            return error;
-//        error = d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
-//        if (error != E_OK)
-//            return error;
+        error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
+        if (error != E_OK)
+            return error;
+        error = d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
+        if (error != E_OK)
+            return error;
         error = d->strategySpec->handle(ACT_GET_SPECTRUM);
         if (error != E_OK)
             return error;
@@ -121,7 +121,7 @@ void HSpecElecThread::init()
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
     d->strategyElec = factory->createStrategy("HElecStrategy", this);
     d->strategys.insert("Spec", d->strategySpec);
-//    d->strategys.insert("Elec", d->strategyElec);
+    d->strategys.insert("Elec", d->strategyElec);
 }
 
 HE_CONTROLLER_END_NAMESPACE
