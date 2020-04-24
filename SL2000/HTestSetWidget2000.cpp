@@ -69,7 +69,7 @@ bool HTestSetWidget2000::setTestState(bool b)
         d->testSpec->clearCache();
         d->model->addAction(ACT_GET_SPECTRUM);
     }
-    emit testStateChanged(b);
+    emit stateChanged(b);
     return true;
 }
 

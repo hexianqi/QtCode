@@ -61,10 +61,7 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
     case ACT_SINGLE_TEST:
         if (!d->testState)
             break;
-        if (adjustIntegralTime())
-            d->model->addAction(ACT_SINGLE_TEST);
-        else
-            setTestState(false);
+        setTestState(false);
         break;
     case ACT_GET_SPECTRUM_ELEC:
         if (!d->testState)
@@ -88,29 +85,28 @@ bool HTestSetWidget2000DC::setTestState(bool b)
     {
         d->testSpec->clearCache();
         if (d->testMode == 0)
+        {
             d->model->addAction(ACT_SINGLE_TEST);
-        if (d->testMode == 1)
-        {
-            d->model->addAction(ACT_GET_REVERSE_CURRENT);
-            d->testElec->setData("[电源模式]", 1);
-            d->model->addAction(ACT_SET_SOURCE_MODE);
-            d->model->addAction(ACT_GET_SPECTRUM_ELEC);
         }
-        if (d->testMode == 2)
-        {
-            auto t = ui->timeEdit_1->time();
-            d->model->addAction(ACT_GET_REVERSE_CURRENT);
-            d->testElec->setData("[电源模式]", 1);
-            d->model->addAction(ACT_SET_SOURCE_MODE);
-            d->model->addAction(ACT_GET_SPECTRUM_ELEC);
-            d->timerContinue->start((t.hour() * 3600 + t.minute() * 60 + t.second()) * 1000);
-        }
-        if (d->testMode == 3)
+        else
         {
             d->model->addAction(ACT_GET_REVERSE_CURRENT);
             d->testElec->setData("[电源模式]", 1);
             d->model->addAction(ACT_SET_SOURCE_MODE);
-            d->timerInterval->start(ui->spinBox_1->value() * 1000);
+            if (d->testMode == 1)
+            {
+                d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+            }
+            if (d->testMode == 2)
+            {
+                auto t = ui->timeEdit_1->time();
+                d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+                d->timerContinue->start((t.hour() * 3600 + t.minute() * 60 + t.second()) * 1000);
+            }
+            if (d->testMode == 3)
+            {
+                d->timerInterval->start(ui->spinBox_1->value() * 1000);
+            }
         }
     }
     else
@@ -123,7 +119,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
             d->timerInterval->stop();
         }
     }
-    emit testStateChanged(b);
+    emit stateChanged(b);
     return true;
 }
 

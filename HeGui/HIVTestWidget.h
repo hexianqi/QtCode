@@ -34,7 +34,7 @@ protected:
     void createToolBar() override;
     void clearResult() override;
     void exportExcel() override;
-    void handleTestStateChanged(bool b);
+    void handleStateChanged(bool b);
 };
 
 HE_GUI_END_NAMESPACE

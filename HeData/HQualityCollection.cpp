@@ -59,10 +59,10 @@ HQualityReport HQualityCollection::check(QVariantMap value, QVariantMap *color)
     return i == nullptr ? HQualityReport::InvalidQuality : i->check(value, color);
 }
 
-QColor HQualityCollection::color(HQualityReport value)
+QColor HQualityCollection::color(HQualityReport type)
 {
     auto i = item(useIndex());
-    return i == nullptr ? Qt::transparent : i->color(value);
+    return i == nullptr ? Qt::transparent : i->color(type);
 }
 
 double HQualityCollection::drift(QString type, QVariant value)

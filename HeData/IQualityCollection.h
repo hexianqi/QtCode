@@ -21,7 +21,7 @@ public:
     // 检验
     virtual HQualityReport check(QVariantMap value, QVariantMap *color = nullptr) = 0;
     // 颜色
-    virtual QColor color(HQualityReport value) = 0;
+    virtual QColor color(HQualityReport type) = 0;
     // 偏差
     virtual double drift(QString type, QVariant value) = 0;
 };

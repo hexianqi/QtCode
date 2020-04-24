@@ -26,9 +26,9 @@ public:
     // 品质数据子项集
     virtual IQualityItemCollection *itemCollection(HQualityType type) = 0;
     // 设置颜色
-    virtual void setColor(HQualityReport type, QColor color) = 0;
+    virtual void setColor(HQualityReport type, const QColor &value) = 0;
     // 颜色
-    virtual QColor color(HQualityReport value) = 0;
+    virtual QColor color(HQualityReport type) = 0;
     // 检验
     virtual HQualityReport check(QVariantMap value, QVariantMap *color) = 0;
     // 偏差

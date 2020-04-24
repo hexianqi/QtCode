@@ -44,9 +44,9 @@ protected:
     void handleAction(HActionType action) override;
 
 protected slots:
-    void handleTestStateChanged(bool b);
-    void handleTestModeChanged(int value);
-    void handleTestFitStateChanged(bool b);
+    void handleStateChanged(bool b);
+    void handleModeChanged(int value);
+    void handleFitStateChanged(bool b);
     void on_tabWidget_1_currentChanged(int index);
     void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();

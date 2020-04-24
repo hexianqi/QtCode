@@ -20,9 +20,9 @@ HSpecFittingPolynomWidget::~HSpecFittingPolynomWidget()
     delete ui;
 }
 
-bool HSpecFittingPolynomWidget::setTest(bool b)
+bool HSpecFittingPolynomWidget::setTestState(bool b)
 {
-    if (!HSpecFittingWidget::setTest(b))
+    if (!HSpecFittingWidget::setTestState(b))
         return false;
     ui->spinBox_1->setEnabled(!b);
     ui->spinBox_2->setEnabled(!b);

@@ -25,6 +25,8 @@ HSl1000ProtocolPrivate::HSl1000ProtocolPrivate()
     device->addActionParam(ACT_GET_MEASURED_VOLTAGE,       QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x12);
     device->addActionParam(ACT_GET_MEASURED_CURRENT,       QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x13);
     device->addActionParam(ACT_GET_REVERSE_CURRENT,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x14);
+    device->addActionParam(ACT_RESET_STATE_TRIGGER,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x0F);
+    device->addActionParam(ACT_QUERY_STATE_TRIGGER,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x15);
 }
 
 HSl1000Protocol::HSl1000Protocol() :

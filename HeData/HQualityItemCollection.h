@@ -27,7 +27,8 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    int check(QVariantMap value, QVariantMap *color) override;
+    bool isValid(QVariantMap value) override;
+    bool check(QVariantMap value, QVariantMap *color) override;
     double drift(QString type, QVariant value) override;
 
 protected:

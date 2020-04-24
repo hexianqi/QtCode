@@ -188,7 +188,8 @@ void HTwoColorIndicator::dragMoveEvent(QDragMoveEvent *e)
     {
         e->acceptProposedAction();
     }
-    else e->ignore();
+    else
+        e->ignore();
 }
 
 void HTwoColorIndicator::dropEvent(QDropEvent *e)

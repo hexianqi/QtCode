@@ -22,8 +22,8 @@ public:
     using QWidget::QWidget;
 
 signals:
-    void testStateChanged(bool b);
-    void testModeChanged(int value);
+    void stateChanged(bool b);
+    void modeChanged(int value);
 
 public:
     // 处理动作

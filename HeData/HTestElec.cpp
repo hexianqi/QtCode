@@ -6,6 +6,11 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
+HTestElecPrivate::HTestElecPrivate()
+{
+    addData("[触发状态]", 0);
+}
+
 HTestElec::HTestElec() :
     ITestElec(*new HTestElecPrivate)
 {

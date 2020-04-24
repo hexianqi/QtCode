@@ -81,6 +81,13 @@ HErrorType HElecStrategy::handle(HActionType action)
         if (error == E_OK)
             d->testElec->setParam(ReverseCurrent, sample);
         return error;
+    case ACT_RESET_STATE_TRIGGER:
+        return d->protocol->setData(action, 0);
+    case ACT_QUERY_STATE_TRIGGER:
+        error = d->protocol->getData(action, sample);
+        if (error == E_OK)
+            d->testElec->setData("[触发状态]", sample);
+        return error;
     }
     return E_OK;
 }

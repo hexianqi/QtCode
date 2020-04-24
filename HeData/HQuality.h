@@ -28,8 +28,8 @@ public:
 
 public:
     IQualityItemCollection *itemCollection(HQualityType type) override;
-    void setColor(HQualityReport type, QColor color) override;
-    QColor color(HQualityReport value) override;
+    void setColor(HQualityReport type, const QColor &value) override;
+    QColor color(HQualityReport type) override;
     HQualityReport check(QVariantMap value, QVariantMap *color) override;
     double drift(QString type, QVariant value) override;
 

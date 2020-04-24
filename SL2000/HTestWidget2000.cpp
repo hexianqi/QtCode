@@ -50,7 +50,6 @@ HTestWidget2000::HTestWidget2000(QWidget *parent) :
 {
     readSettings();
     init();
-    resetGrade();
 }
 
 HTestWidget2000::HTestWidget2000(HTestWidget2000Private &p, QWidget *parent) :
@@ -118,6 +117,12 @@ void HTestWidget2000::exportDatabase2()
         exportDatabase(range.topRow(), range.rowCount());
 }
 
+void HTestWidget2000::init()
+{
+    HTestWidget2::init();
+    resetGrade();
+}
+
 void HTestWidget2000::createAction()
 {
     Q_D(HTestWidget2000);
@@ -165,7 +170,7 @@ void HTestWidget2000::createWidget()
     splitter2->setHandleWidth(15);
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
-    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget2000::handleTestStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HTestWidget2000::handleStateChanged);
 }
 
 void HTestWidget2000::createMenu()
@@ -196,7 +201,7 @@ void HTestWidget2000::createToolBar()
     d->toolBars << toolBar1 << toolBar2;
 }
 
-void HTestWidget2000::handleTestStateChanged(bool b)
+void HTestWidget2000::handleStateChanged(bool b)
 {
     Q_D(HTestWidget2000);
     d->actionStart->setEnabled(!b);

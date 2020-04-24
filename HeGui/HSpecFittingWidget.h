@@ -29,16 +29,18 @@ public:
     explicit HSpecFittingWidget(QWidget *parent = nullptr);
 
 signals:
-    void testStateChanged(bool b);
+    void stateChanged(bool b);
     void fittingFinished();
+
+public:
+    QPolygonF fittingPoints();
+    QPolygonF fittingCurve();
 
 public:
     void setData(HSpecFitting *);
     void clearData();
-    QPolygonF fittingPoints();
-    QPolygonF fittingCurve();
+    virtual bool setTestState(bool b);
     virtual void handleAction(HActionType action);
-    virtual bool setTest(bool b);
 
 protected:
     HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent = nullptr);

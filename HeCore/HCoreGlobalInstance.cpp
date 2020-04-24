@@ -225,7 +225,6 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_SET_SOURCE_IO,                 tr("设置电源输入输出"));
     hashActionComment.insert(ACT_GET_SOURCE_STATE,              tr("获取电源状态"));
     hashActionComment.insert(ACT_GET_ELEC_PARAM,                tr("获取电参数"));
-
     hashActionComment.insert(ACT_SET_ELEC_MODULE,               tr("设置电模块"));
     hashActionComment.insert(ACT_SET_GEARS_OUTPUT_VOLTAGE,      tr("设置输出电压档位"));
     hashActionComment.insert(ACT_SET_GEARS_OUTPUT_CURRENT,      tr("设置输出电流档位"));
@@ -237,11 +236,13 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_GET_MEASURED_VOLTAGE,          tr("获取实测电压"));
     hashActionComment.insert(ACT_GET_MEASURED_CURRENT,          tr("获取实测电流"));
     hashActionComment.insert(ACT_GET_REVERSE_CURRENT,           tr("获取反向漏流"));
+    // 状态操作
+    hashActionComment.insert(ACT_RESET_STATE_TRIGGER,           tr("复位触发状态"));
+    hashActionComment.insert(ACT_QUERY_STATE_TRIGGER,           tr("查询触发状态"));
 
     // 测试操作
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
     hashActionComment.insert(ACT_GET_SPECTRUM_ELEC,             tr("获取光谱&电数据"));
-
     // 重置操作
     hashActionComment.insert(ACT_RESET_SPECTRUM,                tr("重新配置光谱数据"));
     hashActionComment.insert(ACT_RESET_ELEC,                    tr("重新配置电数据"));
@@ -276,46 +277,43 @@ void HCoreGlobalInstance::initActionComment()
 
 //    hashActionComment.insert(ACT_RESET_MOTOR,                    QStringList() << tr("ACT_RESET_MOTOR") << tr("电机复位"));
 
-//    hashActionComment.insert(ACT_RESET_STATE_TRIGGER,            QStringList() << tr("ACT_RESET_STATE_TRIGGER") << tr("复位触发状态"));
-//    hashActionComment.insert(ACT_QUERY_STATE_TRIGGER,            QStringList() << tr("ACT_QUERY_STATE_TRIGGER") << tr("查询触发状态"));
-
 //    hashActionComment.insert(ACT_SET_LED_NUM,                    QStringList() << tr("ACT_SET_LED_NUM") << tr("设置LED编号"));
 //    hashActionComment.insert(ACT_SET_LED_ADDRESS,                QStringList() << tr("ACT_SET_LED_ADDRESS") << tr("设置LED地址"));
 
-////    hashActionComment.insert(ACT_SET_MOTOR_MODULE,           QStringList() << tr("ACT_SET_MOTOR_MODULE") << tr("设置电机模块"));
-////    hashActionComment.insert(ACT_SET_MOTOR_DIRECTION,        QStringList() << tr("ACT_SET_MOTOR_DIRECTION") << tr("设置电机走步方向"));
-////    hashActionComment.insert(ACT_SET_MOTOR_STEP,             QStringList() << tr("ACT_SET_MOTOR_STEP") << tr("设置电机走步"));
+//    hashActionComment.insert(ACT_SET_MOTOR_MODULE,           QStringList() << tr("ACT_SET_MOTOR_MODULE") << tr("设置电机模块"));
+//    hashActionComment.insert(ACT_SET_MOTOR_DIRECTION,        QStringList() << tr("ACT_SET_MOTOR_DIRECTION") << tr("设置电机走步方向"));
+//    hashActionComment.insert(ACT_SET_MOTOR_STEP,             QStringList() << tr("ACT_SET_MOTOR_STEP") << tr("设置电机走步"));
 
-////    hashActionComment.insert(ACT_SET_TEMPERATURE_MODULE,     QStringList() << tr("ACT_SET_TEMPERATURE_MODULE") << tr("设置温度模块"));
-////    hashActionComment.insert(ACT_SET_TEMPERATURE_TYPE,       QStringList() << tr("ACT_SET_TEMPERATURE_TYPE") << tr("设置温度类型"));
-////    hashActionComment.insert(ACT_SET_TEMPERATURE_GEARS,      QStringList() << tr("ACT_SET_TEMPERATURE_GEARS") << tr("设置温度档位"));
-////    hashActionComment.insert(ACT_SET_TEMPERATURE_CALIBRATE,  QStringList() << tr("ACT_SET_TEMPERATURE_CALIBRATE") << tr("设置温度校准数据"));
-////    hashActionComment.insert(ACT_GET_TEMPERATURE,            QStringList() << tr("ACT_GET_TEMPERATURE") << tr("获取温度"));
-////    hashActionComment.insert(ACT_GET_TEMPERATURE_CALIBRATE,  QStringList() << tr("ACT_GET_TEMPERATURE_CALIBRATE") << tr("获取温度校准数据"));
+//    hashActionComment.insert(ACT_SET_TEMPERATURE_MODULE,     QStringList() << tr("ACT_SET_TEMPERATURE_MODULE") << tr("设置温度模块"));
+//    hashActionComment.insert(ACT_SET_TEMPERATURE_TYPE,       QStringList() << tr("ACT_SET_TEMPERATURE_TYPE") << tr("设置温度类型"));
+//    hashActionComment.insert(ACT_SET_TEMPERATURE_GEARS,      QStringList() << tr("ACT_SET_TEMPERATURE_GEARS") << tr("设置温度档位"));
+//    hashActionComment.insert(ACT_SET_TEMPERATURE_CALIBRATE,  QStringList() << tr("ACT_SET_TEMPERATURE_CALIBRATE") << tr("设置温度校准数据"));
+//    hashActionComment.insert(ACT_GET_TEMPERATURE,            QStringList() << tr("ACT_GET_TEMPERATURE") << tr("获取温度"));
+//    hashActionComment.insert(ACT_GET_TEMPERATURE_CALIBRATE,  QStringList() << tr("ACT_GET_TEMPERATURE_CALIBRATE") << tr("获取温度校准数据"));
 
-////    hashActionComment.insert(ACT_GET_LAMPS_ELEC,             QStringList() << tr("ACT_GET_LAMPS_ELEC") << tr("获取灯具电量参数"));
+//    hashActionComment.insert(ACT_GET_LAMPS_ELEC,             QStringList() << tr("ACT_GET_LAMPS_ELEC") << tr("获取灯具电量参数"));
 
 
 
-////    hashActionComment.insert(ACT_PLC_RESET_MOTOR,            QStringList() << tr("ACT_PLC_RESET_MOTOR") << tr("电机复位"));
-////    hashActionComment.insert(ACT_PLC_SEND_DATA,              QStringList() << tr("ACT_PLC_SEND_DATA") << tr("发送数据"));
-////    hashActionComment.insert(ACT_PLC_FLUSH_DELAY,            QStringList() << tr("ACT_PLC_FLUSH_DELAY") << tr("设置吹气延时"));
-////    hashActionComment.insert(ACT_PLC_GET_FEEDBACK,           QStringList() << tr("ACT_PLC_GET_FEEDBACK") << tr("获取回溯数据"));
-////    hashActionComment.insert(ACT_PLC_QUERY_STATE_TRIGGER,    QStringList() << tr("ACT_PLC_QUERY_STATE_TRIGGER") << tr("查询触发状态"));
-////    hashActionComment.insert(ACT_PLC_QUERY_STATE_MOTOR,      QStringList() << tr("ACT_PLC_QUERY_STATE_MOTOR") << tr("查询电机状态"));
-////    hashActionComment.insert(ACT_PLC_QUERY_STATE_BLANKING,   QStringList() << tr("ACT_PLC_QUERY_STATE_BLANKING") << tr("查询落料状态"));
+//    hashActionComment.insert(ACT_PLC_RESET_MOTOR,            QStringList() << tr("ACT_PLC_RESET_MOTOR") << tr("电机复位"));
+//    hashActionComment.insert(ACT_PLC_SEND_DATA,              QStringList() << tr("ACT_PLC_SEND_DATA") << tr("发送数据"));
+//    hashActionComment.insert(ACT_PLC_FLUSH_DELAY,            QStringList() << tr("ACT_PLC_FLUSH_DELAY") << tr("设置吹气延时"));
+//    hashActionComment.insert(ACT_PLC_GET_FEEDBACK,           QStringList() << tr("ACT_PLC_GET_FEEDBACK") << tr("获取回溯数据"));
+//    hashActionComment.insert(ACT_PLC_QUERY_STATE_TRIGGER,    QStringList() << tr("ACT_PLC_QUERY_STATE_TRIGGER") << tr("查询触发状态"));
+//    hashActionComment.insert(ACT_PLC_QUERY_STATE_MOTOR,      QStringList() << tr("ACT_PLC_QUERY_STATE_MOTOR") << tr("查询电机状态"));
+//    hashActionComment.insert(ACT_PLC_QUERY_STATE_BLANKING,   QStringList() << tr("ACT_PLC_QUERY_STATE_BLANKING") << tr("查询落料状态"));
 
-////    hashActionComment.insert(ACT_COB_SET_CYLINDER,           QStringList() << tr("ACT_COB_SET_CYLINDER") << tr("气缸控制"));
-////    hashActionComment.insert(ACT_COB_SET_MOTOR_MODE,         QStringList() << tr("ACT_COB_SET_MOTOR_MODE") << tr("设置电机模式"));
-////    hashActionComment.insert(ACT_COB_SET_MOTOR_DATA,         QStringList() << tr("ACT_COB_SET_MOTOR_DATA") << tr("设置电机数据"));
-////    hashActionComment.insert(ACT_COB_RESET_MOTOR_POSITION,   QStringList() << tr("ACT_COB_RESET_MOTOR_POSITION") << tr("电机复位"));
-////    hashActionComment.insert(ACT_COB_SET_MOTOR_POSITION,     QStringList() << tr("ACT_COB_SET_MOTOR_POSITION") << tr("电机移动"));
-////    hashActionComment.insert(ACT_COB_RESET_MOTOR_STEP,       QStringList() << tr("ACT_COB_RESET_MOTOR_STEP") << tr("电机复位"));
-////    hashActionComment.insert(ACT_COB_SET_MOTOR_STEP,         QStringList() << tr("ACT_COB_SET_MOTOR_STEP") << tr("电机移动"));
-////    hashActionComment.insert(ACT_COB_QUERY_STATE,            QStringList() << tr("ACT_COB_QUERY_STATE") << tr("查询状态"));
+//    hashActionComment.insert(ACT_COB_SET_CYLINDER,           QStringList() << tr("ACT_COB_SET_CYLINDER") << tr("气缸控制"));
+//    hashActionComment.insert(ACT_COB_SET_MOTOR_MODE,         QStringList() << tr("ACT_COB_SET_MOTOR_MODE") << tr("设置电机模式"));
+//    hashActionComment.insert(ACT_COB_SET_MOTOR_DATA,         QStringList() << tr("ACT_COB_SET_MOTOR_DATA") << tr("设置电机数据"));
+//    hashActionComment.insert(ACT_COB_RESET_MOTOR_POSITION,   QStringList() << tr("ACT_COB_RESET_MOTOR_POSITION") << tr("电机复位"));
+//    hashActionComment.insert(ACT_COB_SET_MOTOR_POSITION,     QStringList() << tr("ACT_COB_SET_MOTOR_POSITION") << tr("电机移动"));
+//    hashActionComment.insert(ACT_COB_RESET_MOTOR_STEP,       QStringList() << tr("ACT_COB_RESET_MOTOR_STEP") << tr("电机复位"));
+//    hashActionComment.insert(ACT_COB_SET_MOTOR_STEP,         QStringList() << tr("ACT_COB_SET_MOTOR_STEP") << tr("电机移动"));
+//    hashActionComment.insert(ACT_COB_QUERY_STATE,            QStringList() << tr("ACT_COB_QUERY_STATE") << tr("查询状态"));
 
-////
-////    hashActionComment.insert(ACT_SET_MOTOR_ANGULAR,          QStringList() << tr("ACT_SET_MOTOR_ANGULAR") << tr("设置电机角度"));
+//
+//    hashActionComment.insert(ACT_SET_MOTOR_ANGULAR,          QStringList() << tr("ACT_SET_MOTOR_ANGULAR") << tr("设置电机角度"));
 
 //
 //    hashActionComment.insert(ACT_GET_ELEC_LUMINOUS_SPECTRUM,     QStringList() << tr("ACT_GET_ELEC_LUMINOUS_SPECTRUM") << tr("获取光色电数据"));

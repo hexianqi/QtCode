@@ -25,7 +25,6 @@ HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
 {
     readSettings();
     init();
-    resetGrade();
 }
 
 HTestWidget2000DC::HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *parent) :

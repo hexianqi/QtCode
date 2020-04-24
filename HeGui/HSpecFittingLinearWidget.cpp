@@ -20,9 +20,9 @@ HSpecFittingLinearWidget::~HSpecFittingLinearWidget()
     delete ui;
 }
 
-bool HSpecFittingLinearWidget::setTest(bool b)
+bool HSpecFittingLinearWidget::setTestState(bool b)
 {
-    if (!HSpecFittingWidget::setTest(b))
+    if (!HSpecFittingWidget::setTestState(b))
         return false;
     ui->spinBox_1->setEnabled(!b);
     ui->spinBox_2->setEnabled(!b);

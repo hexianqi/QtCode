@@ -71,7 +71,7 @@ void HIVTestWidget::createWidget()
     tabWidget->addTab(d->chartView, tr("测试图形"));
     tabWidget->addTab(d->tableWidget, tr("结果列表"));
     layout->addWidget(tabWidget, 1, 0, 1, 2);
-    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HIVTestWidget::handleTestStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HIVTestWidget::handleStateChanged);
 }
 
 void HIVTestWidget::createMenu()
@@ -116,7 +116,7 @@ void HIVTestWidget::exportExcel()
     d->excelStream->saveAsFile();
 }
 
-void HIVTestWidget::handleTestStateChanged(bool b)
+void HIVTestWidget::handleStateChanged(bool b)
 {
     Q_D(HIVTestWidget);
     d->actionStart->setEnabled(!b);

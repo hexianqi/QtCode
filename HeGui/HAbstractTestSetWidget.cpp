@@ -40,7 +40,7 @@ bool HAbstractTestSetWidget::setTestMode(int value)
     if (d_ptr->testMode == value)
         return false;
     d_ptr->testMode = value;
-    emit testModeChanged(value);
+    emit modeChanged(value);
     return true;
 }
 

@@ -11,6 +11,9 @@ class IElecCalibrate;
 class HTestElecPrivate : public HTestDataPrivate
 {
 public:
+    HTestElecPrivate();
+
+public:
     IElecCalibrateCollection *collection = nullptr;
     IElecCalibrate *calibrate = nullptr;
     int module = 0;

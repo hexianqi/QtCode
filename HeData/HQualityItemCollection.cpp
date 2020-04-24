@@ -43,20 +43,25 @@ void HQualityItemCollection::writeContent(QDataStream &s)
     HStreamHelper::write<QString, HeData::IQualityItem>(s, d->datas);
 }
 
-int HQualityItemCollection::check(QVariantMap value, QVariantMap *color)
+bool HQualityItemCollection::isValid(QVariantMap value)
 {
     for (const auto &i : keys())
     {
         if (!value.contains(i))
-            return -1;
+            return false;
     }
+    return true;
+}
+
+bool HQualityItemCollection::check(QVariantMap value, QVariantMap *color)
+{
     for (const auto &i : keys())
     {
         QColor c;
         if (!item(i)->isContains(value.value(i), &c))
             color->insert(i, c);
     }
-    return color->isEmpty() ? 0: 1;
+    return color->isEmpty();
 }
 
 double HQualityItemCollection::drift(QString type, QVariant value)

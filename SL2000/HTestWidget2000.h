@@ -30,13 +30,14 @@ protected:
     void exportDatabase2() override;
 
 protected:
+    void init() override;
     void createAction() override;
     void createWidget() override;
     void createMenu() override;
     void createToolBar() override;
 
 protected:
-    void handleTestStateChanged(bool b);
+    void handleStateChanged(bool b);
     void resetGrade();
     void refreshWidget();
     void postProcess();

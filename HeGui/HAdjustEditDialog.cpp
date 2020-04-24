@@ -40,7 +40,7 @@ void HAdjustEditDialog::setTestSetWidget(ITestSetWidget *p)
 {
     d_ptr->testSetWidget = p;
     ui->groupBox_3->layout()->addWidget(d_ptr->testSetWidget);
-    connect(d_ptr->testSetWidget, &ITestSetWidget::testStateChanged, this, [=](bool b){ ui->groupBox_2->setEnabled(!b); });
+    connect(d_ptr->testSetWidget, &ITestSetWidget::stateChanged, this, [=](bool b){ ui->groupBox_2->setEnabled(!b); });
 }
 
 void HAdjustEditDialog::done(int result)

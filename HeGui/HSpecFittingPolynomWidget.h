@@ -22,10 +22,10 @@ class HE_GUI_EXPORT HSpecFittingPolynomWidget : public HSpecFittingWidget
 
 public:
     explicit HSpecFittingPolynomWidget(QWidget *parent = nullptr);
-    ~HSpecFittingPolynomWidget();
+    ~HSpecFittingPolynomWidget() override;
 
 public:
-    bool setTest(bool b) override;
+    bool setTestState(bool b) override;
 
 protected:
     bool initParam() override;

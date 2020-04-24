@@ -25,7 +25,7 @@ public:
     ~HSpecFittingLinearWidget() override;
 
 public:
-    bool setTest(bool b) override;
+    bool setTestState(bool b) override;
 
 protected:
     bool initParam() override;

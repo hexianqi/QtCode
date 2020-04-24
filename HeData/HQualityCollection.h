@@ -24,7 +24,7 @@ public:
 
 public:
     HQualityReport check(QVariantMap value, QVariantMap *color = nullptr) override;
-    QColor color(HQualityReport value) override;
+    QColor color(HQualityReport type) override;
     double drift(QString type, QVariant value) override;
 
 protected:

@@ -73,7 +73,7 @@ void HSpecCalibrateWidget::setCalibrate(ISpecCalibrate *p)
     d->fittingWidget->setData(f);
     d->pelsWaveWidget->setData(w);
     ui->tabWidget_2->addTab(d->fittingWidget, d->fittingWidget->windowTitle());
-    connect(d->fittingWidget, &HSpecFittingWidget::testStateChanged, this, &HSpecCalibrateWidget::handleTestFitStateChanged);
+    connect(d->fittingWidget, &HSpecFittingWidget::stateChanged, this, &HSpecCalibrateWidget::handleFitStateChanged);
     connect(d->fittingWidget, &HSpecFittingWidget::fittingFinished, this, [=]{ refreshCcdView(); });
     refreshCcdView();
 }
@@ -83,8 +83,8 @@ void HSpecCalibrateWidget::setTestSetWidget(ITestSetWidget *p)
     Q_D(HSpecCalibrateWidget);
     d->testSetWidget = p;
     ui->splitter_2->addWidget(d->testSetWidget);
-    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HSpecCalibrateWidget::handleTestStateChanged);
-    connect(d->testSetWidget, &ITestSetWidget::testModeChanged, this, &HSpecCalibrateWidget::handleTestModeChanged);
+    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HSpecCalibrateWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::modeChanged, this, &HSpecCalibrateWidget::handleModeChanged);
 }
 
 bool HSpecCalibrateWidget::setTest(bool b)
@@ -102,13 +102,13 @@ void HSpecCalibrateWidget::handleAction(HActionType action)
     d->testSetWidget->handleAction(action);
 }
 
-void HSpecCalibrateWidget::handleTestStateChanged(bool b)
+void HSpecCalibrateWidget::handleStateChanged(bool b)
 {
     Q_D(HSpecCalibrateWidget);
     d->sampleView->setEnablePeak(!b);
 }
 
-void HSpecCalibrateWidget::handleTestModeChanged(int value)
+void HSpecCalibrateWidget::handleModeChanged(int value)
 {
     Q_D(HSpecCalibrateWidget);
     if (value == 1)
@@ -119,7 +119,7 @@ void HSpecCalibrateWidget::handleTestModeChanged(int value)
     }
 }
 
-void HSpecCalibrateWidget::handleTestFitStateChanged(bool b)
+void HSpecCalibrateWidget::handleFitStateChanged(bool b)
 {
     Q_D(HSpecCalibrateWidget);
     d->testSetWidget->setTestMode(b ? 2 : 0);
@@ -164,7 +164,7 @@ void HSpecCalibrateWidget::on_pushButton_3_clicked()
     Q_D(HSpecCalibrateWidget);
     d->testSetWidget->setTestState(false);
     HCoreHelper::msleep(100);
-    d->fittingWidget->setTest(true);
+    d->fittingWidget->setTestState(true);
 }
 
 void HSpecCalibrateWidget::on_pushButton_4_clicked()

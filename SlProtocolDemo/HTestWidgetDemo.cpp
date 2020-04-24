@@ -108,7 +108,7 @@ void HTestWidgetDemo::createWidget()
     splitter->setHandleWidth(15);
     splitter->setStretchFactor(0, 1);
     layout->addWidget(splitter);
-    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidgetDemo::handleTestStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HTestWidgetDemo::handleStateChanged);
 }
 
 void HTestWidgetDemo::createMenu()
@@ -128,7 +128,7 @@ void HTestWidgetDemo::createToolBar()
     d->toolBars << toolBar1 << toolBar2;
 }
 
-void HTestWidgetDemo::handleTestStateChanged(bool b)
+void HTestWidgetDemo::handleStateChanged(bool b)
 {
     Q_D(HTestWidgetDemo);
     d->actionStart->setEnabled(!b);

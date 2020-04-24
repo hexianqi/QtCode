@@ -54,6 +54,8 @@ HTestData::HTestData() :
 {
 }
 
+HTestData::~HTestData() = default;
+
 HTestData::HTestData(HTestDataPrivate &p) :
     d_ptr(&p)
 {

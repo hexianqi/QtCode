@@ -7,10 +7,10 @@ HE_DATA_BEGIN_NAMESPACE
 
 HQualityPrivate::HQualityPrivate()
 {
-    colors.insert(HQualityReport::InvalidData, Qt::yellow);
-    colors.insert(HQualityReport::Broken, Qt::gray);
-    colors.insert(HQualityReport::NoPass, Qt::red);
-    colors.insert(HQualityReport::Passing, Qt::green);
+    colors.insert(HQualityReport::InvalidData,  Qt::yellow);
+    colors.insert(HQualityReport::Broken,       Qt::gray);
+    colors.insert(HQualityReport::NoPass,       Qt::red);
+    colors.insert(HQualityReport::Passing,      Qt::green);
     damages = new HQualityItemCollection;
     criterions = new HQualityItemCollection;
 }
@@ -60,31 +60,27 @@ IQualityItemCollection *HQuality::itemCollection(HQualityType type)
     return nullptr;
 }
 
-void HQuality::setColor(HQualityReport type, QColor color)
+void HQuality::setColor(HQualityReport type, const QColor &value)
 {
-    d_ptr->colors.insert(type, color);
+    d_ptr->colors.insert(type, value);
 }
 
-QColor HQuality::color(HQualityReport value)
+QColor HQuality::color(HQualityReport type)
 {
-    return d_ptr->colors.value(value, Qt::black);
+    return d_ptr->colors.value(type, Qt::black);
 }
 
 HQualityReport HQuality::check(QVariantMap value, QVariantMap *color)
 {
     if (value.isEmpty())
         return HQualityReport::InvalidData;
-
-    auto state = d_ptr->damages->check(value, color);
-    if (state < 0)
+    if (!d_ptr->damages->isValid(value))
         return HQualityReport::InvalidData;
-    if (state == 0)
+    if (!d_ptr->criterions->isValid(value))
+        return HQualityReport::InvalidData;
+    if (!d_ptr->damages->check(value, color))
         return HQualityReport::Broken;
-
-    state = d_ptr->criterions->check(value, color);
-    if (state < 0)
-        return HQualityReport::InvalidData;
-    if (state == 0)
+    if (!d_ptr->criterions->check(value, color))
         return HQualityReport::NoPass;
     return HQualityReport::Passing;
 }

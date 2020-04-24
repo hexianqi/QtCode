@@ -28,6 +28,16 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
     init();
 }
 
+QPolygonF HSpecFittingWidget::fittingPoints()
+{
+    return d_ptr->data->fittingPoints();
+}
+
+QPolygonF HSpecFittingWidget::fittingCurve()
+{
+    return d_ptr->data->fittingCurve(1);
+}
+
 void HSpecFittingWidget::setData(HSpecFitting *p)
 {
     d_ptr->data = p;
@@ -40,14 +50,26 @@ void HSpecFittingWidget::clearData()
     showData();
 }
 
-QPolygonF HSpecFittingWidget::fittingPoints()
+bool HSpecFittingWidget::setTestState(bool b)
 {
-    return d_ptr->data->fittingPoints();
-}
+    if (d_ptr->testState == b)
+        return false;
 
-QPolygonF HSpecFittingWidget::fittingCurve()
-{
-    return d_ptr->data->fittingCurve(1);
+    if (b)
+    {
+        if (!initParam())
+            return false;
+        d_ptr->lastSample = 0.0;
+        d_ptr->curTimes = 0;
+        d_ptr->progressDialog->setRange(0, d_ptr->points.size());
+        d_ptr->progressDialog->setValue(0);
+        d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());
+        d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
+    }
+    d_ptr->testSpec->setFitting(!b);
+    d_ptr->testState = b;
+    emit stateChanged(b);
+    return true;
 }
 
 void HSpecFittingWidget::handleAction(HActionType action)
@@ -82,37 +104,16 @@ void HSpecFittingWidget::handleAction(HActionType action)
     }
 
     saveData();
-    setTest(false);
+    setTestState(false);
     showData();
     emit fittingFinished();
     QMessageBox::information(this, tr("提示"), tr("拟合完成！"), QMessageBox::Yes);
 }
 
-bool HSpecFittingWidget::setTest(bool b)
-{
-    if (d_ptr->testState == b)
-        return false;
-    if (b)
-    {
-        if (!initParam())
-            return false;
-        d_ptr->lastSample = 0.0;
-        d_ptr->curTimes = 0;
-        d_ptr->progressDialog->setRange(0, d_ptr->points.size());
-        d_ptr->progressDialog->setValue(0);
-        d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());
-        d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
-    }
-    d_ptr->testSpec->setFitting(!b);
-    d_ptr->testState = b;
-    emit testStateChanged(b);
-    return true;
-}
-
 void HSpecFittingWidget::cancel(const QString &text)
 {
     d_ptr->progressDialog->cancel();
-    setTest(false);
+    setTestState(false);
     QMessageBox::warning(this, tr("提示"), text, QMessageBox::Yes);
 }
 
@@ -120,7 +121,7 @@ void HSpecFittingWidget::init()
 {
     d_ptr->progressDialog = new QProgressDialog(tr("正在采样...."), tr("取消"), 0, 100, this);
     d_ptr->progressDialog->reset();
-    connect(d_ptr->progressDialog, &QProgressDialog::canceled, this, [=]{ setTest(false); });
+    connect(d_ptr->progressDialog, &QProgressDialog::canceled, this, [=]{ setTestState(false); });
     setWindowTitle(tr("光谱拟合"));
 }
 

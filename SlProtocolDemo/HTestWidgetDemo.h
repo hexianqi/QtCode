@@ -44,7 +44,7 @@ protected:
     void createToolBar() override;
 
 protected:
-    void handleTestStateChanged(bool b);
+    void handleStateChanged(bool b);
     void refreshCcdView();
     void refreshSpecWidget();
 };
