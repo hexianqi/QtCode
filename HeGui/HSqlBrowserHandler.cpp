@@ -27,7 +27,9 @@ QString HSqlBrowserHandler::typeName()
 
 void HSqlBrowserHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
-    HAppContext::getContextPointer<ISqlBrowser>("ISqlBrowser")->show();
+    auto browser = HAppContext::getContextPointer<ISqlBrowser>("ISqlBrowser");
+    browser->revert();
+    browser->show();
 }
 
 HE_GUI_END_NAMESPACE

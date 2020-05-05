@@ -27,6 +27,7 @@ public:
     void setModel(ISqlTableModel *) override;
     void setRecordHandle(ISqlHandle *) override;
     void setRecordPrint(ISqlPrint *) override;
+    void revert() override;
 
 protected:
     HSqlBrowser(HSqlBrowserPrivate &p, QWidget *parent = nullptr);

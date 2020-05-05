@@ -51,6 +51,12 @@ void HSqlBrowser::setRecordPrint(ISqlPrint *p)
     d_ptr->print = p;
 }
 
+void HSqlBrowser::revert()
+{
+    if (d_ptr->handle != nullptr)
+        d_ptr->handle->revertRecord();
+}
+
 void HSqlBrowser::setModel(ISqlTableModel *p)
 {
     if (d_ptr->model == p)
@@ -113,7 +119,7 @@ void HSqlBrowser::createAction()
     d_ptr->actionPrintPreview = new QAction(tr("打印预览(&V)"), this);
     d_ptr->actionPrintPreview->setIcon(QIcon(":/image/PrintPreview.png"));
     d_ptr->actionPrintPreview->setIconText(tr("打印预览"));
-    connect(d_ptr->actionRevert, &QAction::triggered, this, [=] { if (d_ptr->handle != nullptr) d_ptr->handle->revertRecord(); });
+    connect(d_ptr->actionRevert, &QAction::triggered, this, &HSqlBrowser::revert);
     connect(d_ptr->actionFind, &QAction::triggered, this, [=] { if (d_ptr->handle != nullptr) d_ptr->handle->findRecord(); });
     connect(d_ptr->actionRemove, &QAction::triggered, this, &HSqlBrowser::removeRecord);
     connect(d_ptr->actionExportExcel, &QAction::triggered, this, &HSqlBrowser::exportExcel);

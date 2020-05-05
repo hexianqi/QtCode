@@ -31,6 +31,7 @@ public:
     virtual void setRecordHandle(ISqlHandle *) = 0;
     // 设置记录打印
     virtual void setRecordPrint(ISqlPrint *) = 0;
+    virtual void revert() = 0;
 };
 
 HE_SQL_END_NAMESPACE
