@@ -74,7 +74,7 @@ QPointF HCie1931::calcCoordinateUv(const QPolygonF &spd)
         else
             j++;
     }
-    Z = (X + 15 * Y + 3 * Z);
+    Z = X + 15 * Y + 3 * Z;
     return qFuzzyIsNull(Z) ? QPointF(0.0, 0.0) : QPointF(4 * X / Z, 6 * Y / Z);
 }
 
@@ -274,9 +274,6 @@ HCieDay::HCieDay()
 
 double HCieDay::calcRefSourceSpectrum(double tc, double wave)
 {
-    if (tc > 25000)
-        return 0;
-
     if (tc <= 5000)
         return HSpecHelper::planck(wave, tc);
 
@@ -298,7 +295,7 @@ double HCieDay::calcRefSourceSpectrum(double tc, double wave)
     auto wave2 = _standard[i].wave;
     auto sp1 = _standard[i-1].S[0] + m1 * _standard[i-1].S[1] + m2 * _standard[i-1].S[2];
     auto sp2 = _standard[i].S[0] + m1 * _standard[i].S[1] + m2 * _standard[i].S[2];
-    return qMax(0.0, HMath::interpolate(wave, wave1, wave2, sp1, sp2));
+    return qMax(0.0, HMath::interpolate(wave, wave1, sp1, wave2, sp2));
 }
 
 QPolygonF HCieDay::calcRefSourceSpectrum(double tc, QPointF wave, double interval)
@@ -312,7 +309,7 @@ QPolygonF HCieDay::calcRefSourceSpectrum(double tc, QPointF wave, double interva
     {
         x = wave.x() + interval * i;
         y = calcRefSourceSpectrum(tc, x);
-        poly.append(QPointF(x,y));
+        poly << QPointF(x, y);
     }
     return poly;
 }

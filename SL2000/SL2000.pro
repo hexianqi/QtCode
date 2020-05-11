@@ -23,8 +23,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-        main.cpp \
+SOURCES     += \
+            main.cpp
 
 INCLUDEPATH += ..
 
@@ -80,3 +80,7 @@ QMAKE_TARGET_DESCRIPTION = $$TARGET_NAME
 QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2019 保留所有权利。"
 # 中文（简体）
 RC_LANG = 0x0004
+
+HEADERS +=
+
+FORMS +=

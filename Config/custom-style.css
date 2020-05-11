@@ -1,0 +1,14 @@
+QWidget
+{
+	font: 9pt "Microsoft YaHei";
+}
+
+QPlainTextEdit
+{
+	font: 9pt "Microsoft YaHei";
+}
+
+QTreeView, QTextEdit, QListView, QLineEdit, QLabel, QToolTip, QMenu
+{
+    font:  9pt "Microsoft YaHei";
+}

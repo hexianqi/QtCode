@@ -32,7 +32,7 @@ HBuilder2000Private::HBuilder2000Private(IMainWindow *p) :
     HAbstractBuilderPrivate(p)
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
-    deploy.insert("Protocol",       "HCcd1305Protocol");    // HCcd1305Protocol; HCcd554bProtocol
+    deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
     sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
                              << "Temperature" << "Humidity" << "TestDate" << "TestTime"

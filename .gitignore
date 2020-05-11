@@ -37,10 +37,11 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
-Dest/HeTest.exe
+Dest
 *.exe
 *.ini
 *.cfg
 *.zip
+*.7z
 *.db
 *.debug
