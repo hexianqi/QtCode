@@ -207,9 +207,10 @@ void HTestWidget2000::handleStateChanged(bool b)
     d->actionStart->setEnabled(!b);
     d->actionStop->setEnabled(b);
     d->actionClear->setEnabled(!b);
+    d->actionPrintPreview->setEnabled(!b);
     d->actionExportExcel->setEnabled(!b);
     d->actionExportDatabase->setEnabled(!b);
-    d->actionPrintPreview->setEnabled(!b);
+    d->actionExportDatabase2->setEnabled(!b);
 }
 
 void HTestWidget2000::resetGrade()
@@ -223,12 +224,13 @@ void HTestWidget2000::refreshWidget()
 {
     Q_D(HTestWidget2000);
     auto mode = d->testSetWidget->testMode();
+    auto append = mode == 0 || mode >= 3;
+    saveRecord(append);
     d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
     d->cieWidget->addPoint(d->testData->data("[色坐标]").toPointF());
-    d->resultWidget->refreshResult(0, mode == 0 || mode == 3);
-    saveRecord(mode == 0 || mode == 3);
+    d->resultWidget->refreshResult(0, append);
 }
 
 void HTestWidget2000::postProcess()

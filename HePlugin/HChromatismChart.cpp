@@ -45,12 +45,7 @@ void HChromatismChart::setPointCenter(QPointF value)
 
 void HChromatismChart::setAxesXTitle(const QString &value)
 {
-    auto ax = axes(Qt::Horizontal).at(0);
-    QFont font;
-    font.setPixelSize(15);
-    font.setBold(true);
-    ax->setTitleFont(font);
-    ax->setTitleText(value);
+    axes(Qt::Horizontal).at(0)->setTitleText(value);
 }
 
 void HChromatismChart::createFixAxes()
@@ -75,6 +70,7 @@ void HChromatismChart::createFixAxes()
     auto axisX = new QValueAxis;
     axisX->setRange(x1, x2);
     axisX->setTickCount(6);
+    axisX->setTitleFont(titleFont());
     setAxisX(axisX);
     auto axisY = new QValueAxis;
     axisY->setRange(y1, y2);
@@ -91,10 +87,10 @@ void HChromatismChart::createFixAxes()
 void HChromatismChart::init()
 {
     Q_D(HChromatismChart);
-    QFont font;
-    font.setPixelSize(15);
-    font.setBold(true);
-    setTitleFont(font);
+    auto f = font();
+    f.setPixelSize(15);
+    f.setBold(true);
+    setTitleFont(f);
     addSeries(d->ellipse);
     addSeries(d->focus);
     addSeries(d->center);

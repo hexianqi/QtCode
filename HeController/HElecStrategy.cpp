@@ -17,7 +17,9 @@ HElecStrategyPrivate::HElecStrategyPrivate()
                   << ACT_GET_ELEC_PARAM
                   << ACT_GET_MEASURED_VOLTAGE
                   << ACT_GET_MEASURED_CURRENT
-                  << ACT_GET_REVERSE_CURRENT;
+                  << ACT_GET_REVERSE_CURRENT
+                  << ACT_RESET_STATE_TRIGGER
+                  << ACT_QUERY_STATE_TRIGGER;
     protocol = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Elec");
     testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
 }

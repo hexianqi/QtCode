@@ -23,24 +23,8 @@ bool HCalloutChartExtend::connectExtend()
     if (!HAbstractChartExtend::connectExtend())
         return false;
 
-    auto series = chart()->series();
-    for (auto s : series)
-    {
-        auto ss = qobject_cast<QXYSeries *>(s);
-        if (ss == nullptr)
-            continue;
-        connectExtend(ss);
-    }
+    forEachSeries([=](QAbstractSeries *p) { connectSeries(p); });
     return true;
-}
-
-void HCalloutChartExtend::connectExtend(QXYSeries *s)
-{
-    // Disconnect possible existing connection to avoid multiple connections
-    disconnect(s, &QXYSeries::clicked, this, &HCalloutChartExtend::handleSeriesClicked);
-    disconnect(s, &QXYSeries::hovered, this, &HCalloutChartExtend::handleSeriesHovered);
-    connect(s, &QXYSeries::clicked, this, &HCalloutChartExtend::handleSeriesClicked);
-    connect(s, &QXYSeries::hovered, this, &HCalloutChartExtend::handleSeriesHovered);
 }
 
 bool HCalloutChartExtend::disconnectExtend()
@@ -48,19 +32,28 @@ bool HCalloutChartExtend::disconnectExtend()
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 
-    auto series = chart()->series();
-    for (auto s : series)
-    {
-        auto ss = qobject_cast<QXYSeries *>(s);
-        if (ss == nullptr)
-            continue;
-        disconnectExtend(ss);
-    }
+    forEachSeries([=](QAbstractSeries *p) { disconnectSeries(p); });
     return true;
 }
 
-void HCalloutChartExtend::disconnectExtend(QXYSeries *s)
+void HCalloutChartExtend::connectSeries(QAbstractSeries *p)
 {
+    auto s = qobject_cast<QXYSeries *>(p);
+    if (s == nullptr)
+        return;
+
+    // Disconnect possible existing connection to avoid multiple connections
+    disconnect(s, &QXYSeries::clicked, this, &HCalloutChartExtend::handleSeriesClicked);
+    disconnect(s, &QXYSeries::hovered, this, &HCalloutChartExtend::handleSeriesHovered);
+    connect(s, &QXYSeries::clicked, this, &HCalloutChartExtend::handleSeriesClicked);
+    connect(s, &QXYSeries::hovered, this, &HCalloutChartExtend::handleSeriesHovered);
+}
+
+void HCalloutChartExtend::disconnectSeries(QAbstractSeries *p)
+{
+    auto s = qobject_cast<QXYSeries *>(p);
+    if (s == nullptr)
+        return;
     disconnect(s, &QXYSeries::clicked, this, &HCalloutChartExtend::handleSeriesClicked);
     disconnect(s, &QXYSeries::hovered, this, &HCalloutChartExtend::handleSeriesHovered);
 }

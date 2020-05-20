@@ -41,7 +41,9 @@ QString HSpecThread::threadInfo()
 void HSpecThread::init()
 {
     Q_D(HSpecThread);
-    d->strategys.insert("Spec", HAppContext::getContextPointer<IControllerFactory>("IControllerFactory")->createStrategy("HSpecStrategy", this));
+    auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+    auto strategy = factory->createStrategy("HSpecStrategy", this);
+    d->strategys.insert("Spec", strategy);
 }
 
 HE_CONTROLLER_END_NAMESPACE

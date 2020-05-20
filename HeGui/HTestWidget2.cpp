@@ -46,6 +46,10 @@ void HTestWidget2::createAction()
 {
     Q_D(HTestWidget2);
     HTestWidget::createAction();
+    d->actionPrintPreview = new QAction(tr("打印预览(&V)"), this);
+    d->actionPrintPreview->setIcon(QIcon(":/image/PrintPreview.png"));
+    d->actionPrintPreview->setIconText(tr("打印预览"));
+    d->actionPrintPreview->setEnabled(false);
     d->actionExportDatabase = new QAction(tr("保存数据库(&D)"), this);
     d->actionExportDatabase->setIcon(QIcon(":/image/DbComit.png"));
     d->actionExportDatabase->setIconText(tr("保存数据库"));
@@ -53,13 +57,9 @@ void HTestWidget2::createAction()
     d->actionExportDatabase2 = new QAction(tr("保存数据库(&D)"), this);
     d->actionExportDatabase2->setIcon(QIcon(":/image/DbComit.png"));
     d->actionExportDatabase2->setIconText(tr("保存数据库"));
-    d->actionPrintPreview = new QAction(tr("打印预览(&V)"), this);
-    d->actionPrintPreview->setIcon(QIcon(":/image/PrintPreview.png"));
-    d->actionPrintPreview->setIconText(tr("打印预览"));
-    d->actionPrintPreview->setEnabled(false);
+    connect(d->actionPrintPreview, &QAction::triggered, this, &HTestWidget2::printPreview);
     connect(d->actionExportDatabase, &QAction::triggered, this, [=] { exportDatabase(); });
     connect(d->actionExportDatabase2, &QAction::triggered, this, &HTestWidget2::exportDatabase2);
-    connect(d->actionPrintPreview, &QAction::triggered, this, &HTestWidget2::printPreview);
 }
 
 void HTestWidget2::exportExcel()
@@ -78,6 +78,13 @@ void HTestWidget2::clearResult()
     d->records.clear();
 }
 
+void HTestWidget2::printPreview()
+{
+    Q_D(HTestWidget2);
+    d->sqlHandle->addRecord(toRecord(), false);
+    d->sqlPrint->printPreview();
+}
+
 void HTestWidget2::exportDatabase()
 {
     Q_D(HTestWidget2);
@@ -91,13 +98,6 @@ void HTestWidget2::exportDatabase(int index, int count)
     count = count == -1 ? surplus : qBound(0, count, surplus);
     for (int i = 0; i < count; i++)
         d->sqlHandle->addRecord(d->records.at(index + i), false);
-}
-
-void HTestWidget2::printPreview()
-{
-    Q_D(HTestWidget2);
-    d->sqlHandle->addRecord(toRecord(), false);
-    d->sqlPrint->printPreview();
 }
 
 QVariantMap HTestWidget2::toRecord()

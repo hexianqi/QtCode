@@ -2,21 +2,21 @@
 **      2019-03-22  HItemDelegate 编辑功能条目代理类。
 ***************************************************************************************************/
 
-#ifndef HITEMDELEGATE_H
-#define HITEMDELEGATE_H
+#ifndef HSTYLEDITEMDELEGATE_H
+#define HSTYLEDITEMDELEGATE_H
 
 #include <QtUiPlugin/QDesignerExportWidget>
-#include <QtWidgets/QItemDelegate>
+#include <QtWidgets/QStyledItemDelegate>
 
-class HItemDelegatePrivate;
+class HStyledItemDelegatePrivate;
 
-class QDESIGNER_WIDGET_EXPORT HItemDelegate : public QItemDelegate
+class QDESIGNER_WIDGET_EXPORT HStyledItemDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 
 public:
-    explicit HItemDelegate(QObject *parent = nullptr);
-    ~HItemDelegate() override;
+    explicit HStyledItemDelegate(QObject *parent = nullptr);
+    ~HStyledItemDelegate() override;
 
 signals:
     void editingFinished();
@@ -28,14 +28,14 @@ public:
     void setType(const QStringList &);
 
 protected:
-    HItemDelegate(HItemDelegatePrivate &p, QObject *parent = nullptr);
+    HStyledItemDelegate(HStyledItemDelegatePrivate &p, QObject *parent = nullptr);
 
 protected:
     QString toType(QModelIndex index) const;
     bool isRedefine(QModelIndex index) const;
 
 protected:
-    QScopedPointer<HItemDelegatePrivate> d_ptr;
+    QScopedPointer<HStyledItemDelegatePrivate> d_ptr;
 };
 
-#endif // HITEMDELEGATE_H
+#endif // HSTYLEDITEMDELEGATE_H

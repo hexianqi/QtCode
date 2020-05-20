@@ -1,4 +1,6 @@
 #include "HAbstractChartExtend_p.h"
+#include <QtCharts/QChart>
+#include <QtCharts/QLegendMarker>
 
 HAbstractChartExtendPrivate::HAbstractChartExtendPrivate(QChart *p)
 {
@@ -47,4 +49,18 @@ bool HAbstractChartExtend::connectExtend()
 bool HAbstractChartExtend::disconnectExtend()
 {
     return chart() != nullptr;
+}
+
+void HAbstractChartExtend::forEachMarker(const std::function<void(QLegendMarker *)> &func)
+{
+    auto markers = chart()->legend()->markers();
+    for (auto m : markers)
+        func(m);
+}
+
+void HAbstractChartExtend::forEachSeries(const std::function<void(QAbstractSeries *)> &func)
+{
+    auto series = chart()->series();
+    for (auto s : series)
+        func(s);
 }

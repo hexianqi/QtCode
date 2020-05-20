@@ -47,6 +47,9 @@ protected slots:
     virtual void about();
 
 protected:
+    virtual QString summary();
+
+protected:
     virtual void initialize() override;
     virtual void initImportExport();
     virtual void createAction();
@@ -60,9 +63,6 @@ protected:
     virtual void initBuilder() = 0;
     virtual void initModel();
     virtual void initCentralWidget();
-
-protected:
-    virtual QString summary();
 
 protected:
     QScopedPointer<HAbstractMainWindowPrivate> d_ptr;

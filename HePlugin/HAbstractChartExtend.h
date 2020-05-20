@@ -8,6 +8,12 @@
 #include "IChartExtend.h"
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCore/QObject>
+#include <functional>
+
+QT_CHARTS_BEGIN_NAMESPACE
+class QLegendMarker;
+class QAbstractSeries;
+QT_CHARTS_END_NAMESPACE
 
 class HAbstractChartExtendPrivate;
 
@@ -28,6 +34,10 @@ public:
 
 protected:
     HAbstractChartExtend(HAbstractChartExtendPrivate &p, QObject *parent = nullptr);
+
+protected:
+    void forEachMarker(const std::function<void(QLegendMarker *)> &func);
+    void forEachSeries(const std::function<void(QAbstractSeries *)> &func);
 
 protected:
     QScopedPointer<HAbstractChartExtendPrivate> d_ptr;

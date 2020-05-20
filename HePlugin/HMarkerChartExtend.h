@@ -21,6 +21,8 @@ public:
 public:
     bool connectExtend() override;
     bool disconnectExtend() override;
+    void connectMarker(QLegendMarker *);
+    void disconnectMarker(QLegendMarker *);
 
 protected:
     void handleMarkerClicked();

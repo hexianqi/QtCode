@@ -2,9 +2,9 @@
 #define HDOUBLESPINBOXDELEGATE_P_H
 
 #include "HDoubleSpinBoxDelegate.h"
-#include "HItemDelegate_p.h"
+#include "HStyledItemDelegate_p.h"
 
-class HDoubleSpinBoxDelegatePrivate : public HItemDelegatePrivate
+class HDoubleSpinBoxDelegatePrivate : public HStyledItemDelegatePrivate
 {
 
 };

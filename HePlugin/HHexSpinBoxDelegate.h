@@ -5,11 +5,11 @@
 #ifndef HHEXSPINBOXDELEGATE_H
 #define HHEXSPINBOXDELEGATE_H
 
-#include "HItemDelegate.h"
+#include "HStyledItemDelegate.h"
 
 class HHexSpinBoxDelegatePrivate;
 
-class QDESIGNER_WIDGET_EXPORT HHexSpinBoxDelegate : public HItemDelegate
+class QDESIGNER_WIDGET_EXPORT HHexSpinBoxDelegate : public HStyledItemDelegate
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HHexSpinBoxDelegate)

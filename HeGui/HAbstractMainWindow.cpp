@@ -59,6 +59,11 @@ void HAbstractMainWindow::openWidget(QWidget *w)
     d_ptr->testWidget->start();
 }
 
+QString HAbstractMainWindow::summary()
+{
+    return QString();
+}
+
 void HAbstractMainWindow::initialize()
 {
     initImportExport();
@@ -292,11 +297,6 @@ void HAbstractMainWindow::about()
             + tr("<p>版权所有：2017-2019 %1 保留所有权利。<p>").arg(QApplication::organizationName())
             + tr("<p>%1<p>").arg(summary());
     QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
-}
-
-QString HAbstractMainWindow::summary()
-{
-    return QString();
 }
 
 HE_GUI_END_NAMESPACE

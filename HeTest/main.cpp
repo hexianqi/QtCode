@@ -45,10 +45,8 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    exportCieUcs();
-    return 1;
-//    HControlFactoryWidget cw;
-//    cw.show();
+    HControlFactoryWidget cw;
+    cw.show();
 //    HControlDemoWidget dw;
 //    dw.show();
 

@@ -141,7 +141,7 @@ QList<HXmlElement*> HXmlElement::findElementAll(const std::function<bool(HXmlEle
     return list;
 }
 
-void HXmlElement::forEach(const std::function<void(HXmlElement *)>& func)
+void HXmlElement::forEach(const std::function<void(HXmlElement *)> &func)
 {
     func(this);
     for (auto item : childs())

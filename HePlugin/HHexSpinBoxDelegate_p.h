@@ -2,9 +2,9 @@
 #define HHEXSPINBOXDELEGATE_P_H
 
 #include "HHexSpinBoxDelegate.h"
-#include "HItemDelegate_p.h"
+#include "HStyledItemDelegate_p.h"
 
-class HHexSpinBoxDelegatePrivate : public HItemDelegatePrivate
+class HHexSpinBoxDelegatePrivate : public HStyledItemDelegatePrivate
 {
 
 };

@@ -48,7 +48,7 @@ public:
     // 遍历所有元素 查找符合条件的所有元素
     QList<HXmlElement *> findElementAll(const std::function<bool(HXmlElement *)> &func);
     // 遍历所有元素 执行
-    void forEach(const std::function<void(HXmlElement *)>& func);
+    void forEach(const std::function<void(HXmlElement *)> &func);
 
 protected:
     HXmlElement(const QString &fileName, QDomElement *domElement, HXmlElement *parent);

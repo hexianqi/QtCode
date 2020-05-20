@@ -31,7 +31,7 @@ HAdjustEditDialog::~HAdjustEditDialog()
     delete ui;
 }
 
-void HeGui::HAdjustEditDialog::setData(IAdjust *p)
+void HAdjustEditDialog::setData(IAdjust *p)
 {
     d_ptr->editWidget->setData(p);
 }

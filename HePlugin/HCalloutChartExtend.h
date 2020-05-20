@@ -25,18 +25,18 @@ public:
 
 public:
     bool connectExtend() override;
-    void connectExtend(QXYSeries *);
     bool disconnectExtend() override;
-    void disconnectExtend(QXYSeries *);
+    void connectSeries(QAbstractSeries *);
+    void disconnectSeries(QAbstractSeries *);
     void updateGeometry();
     void clear();
+
+protected:
+    HCalloutChartExtend(HCalloutChartExtendPrivate &p, QObject *parent = nullptr);
 
 protected slots:
     void handleSeriesClicked(QPointF point);
     void handleSeriesHovered(QPointF point, bool state);
-
-protected:
-    HCalloutChartExtend(HCalloutChartExtendPrivate &p, QObject *parent = nullptr);
 };
 
 #endif // HCALLOUTCHARTEXTEND_H

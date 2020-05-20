@@ -77,7 +77,7 @@ void HDataDetail<T>::initialize(QVariantMap /*param*/)
 template<typename T>
 QString HDataDetail<T>::typeName()
 {
-    return QString("HDataDetail<T>");
+    return "HDataDetail<T>";
 }
 
 template<typename T>

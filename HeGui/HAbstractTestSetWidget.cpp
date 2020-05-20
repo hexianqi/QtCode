@@ -27,6 +27,7 @@ bool HAbstractTestSetWidget::setTestState(bool b)
     if (d_ptr->testState == b)
         return false;
     d_ptr->testState = b;
+    emit stateChanged(b);
     return true;
 }
 

@@ -22,13 +22,8 @@ bool HMarkerChartExtend::connectExtend()
     if (!HAbstractChartExtend::connectExtend())
         return false;
 
-    auto markers = chart()->legend()->markers();
-    for (auto m : markers)
-    {
-        // Disconnect possible existing connection to avoid multiple connections
-        disconnect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
-        connect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
-    }
+//    forEachMarker(std::bind(&HMarkerChartExtend::connectMarker, this, std::placeholders::_1));
+    forEachMarker([=](QLegendMarker *p) { connectMarker(p); });
     return true;
 }
 
@@ -37,10 +32,20 @@ bool HMarkerChartExtend::disconnectExtend()
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 
-    auto markers = chart()->legend()->markers();
-    for (auto m : markers)
-        disconnect(m, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+    forEachMarker([=](QLegendMarker *p) { disconnectMarker(p); });
     return true;
+}
+
+void HMarkerChartExtend::connectMarker(QLegendMarker *p)
+{
+    // Disconnect possible existing connection to avoid multiple connections
+    disconnect(p, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+    connect(p, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
+}
+
+void HMarkerChartExtend::disconnectMarker(QLegendMarker *p)
+{
+    disconnect(p, &QLegendMarker::clicked, this, &HMarkerChartExtend::handleMarkerClicked);
 }
 
 void HMarkerChartExtend::handleMarkerClicked()

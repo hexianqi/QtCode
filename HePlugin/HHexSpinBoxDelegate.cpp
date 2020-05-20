@@ -3,31 +3,31 @@
 #include "HPluginHelper.h"
 
 HHexSpinBoxDelegate::HHexSpinBoxDelegate(QObject *parent) :
-    HItemDelegate(*new HHexSpinBoxDelegatePrivate, parent)
+    HStyledItemDelegate(*new HHexSpinBoxDelegatePrivate, parent)
 {
 }
 
 HHexSpinBoxDelegate::HHexSpinBoxDelegate(HHexSpinBoxDelegatePrivate &p, QObject *parent) :
-    HItemDelegate(p, parent)
+    HStyledItemDelegate(p, parent)
 {
 }
 
 QWidget *HHexSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     if (!isRedefine(index))
-        return HItemDelegate::createEditor(parent, option, index);
+        return HStyledItemDelegate::createEditor(parent, option, index);
 
     auto type = toType(index);
     auto editor = new HHexSpinBox(parent);
     HPluginHelper::initWidget(type, editor);
-    connect(editor, &HHexSpinBox::editingFinished, this, &HItemDelegate::editingFinished);
+    connect(editor, &HHexSpinBox::editingFinished, this, &HStyledItemDelegate::editingFinished);
     return editor;
 }
 
 void HHexSpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     if (!isRedefine(index))
-        return QItemDelegate::setEditorData(editor, index);
+        return HStyledItemDelegate::setEditorData(editor, index);
 
     auto spinBox = qobject_cast<HHexSpinBox *>(editor);
     auto value = index.model()->data(index, Qt::EditRole).toInt();
@@ -37,7 +37,7 @@ void HHexSpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 void HHexSpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     if (!isRedefine(index))
-        return QItemDelegate::setModelData(editor, model, index);
+        return HStyledItemDelegate::setModelData(editor, model, index);
 
     auto spinBox = qobject_cast<HHexSpinBox *>(editor);
     spinBox->interpretText();

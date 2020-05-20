@@ -20,13 +20,13 @@ public:
     HTestWidget2Private();
 
 public:
-    ISqlHandle *sqlHandle = nullptr;;
-    ISqlPrint *sqlPrint = nullptr;;
+    ISqlHandle *sqlHandle = nullptr;
+    ISqlPrint *sqlPrint = nullptr;
 
 public:
-    QAction *actionExportDatabase = nullptr;;
-    QAction *actionExportDatabase2 = nullptr;;
-    QAction *actionPrintPreview = nullptr;;
+    QAction *actionPrintPreview = nullptr;
+    QAction *actionExportDatabase = nullptr;
+    QAction *actionExportDatabase2 = nullptr;
 
 public:
     QStringList displays;

@@ -33,7 +33,7 @@ void HSpecFittingChartView::addLineSeries(int id, const QPolygonF &value)
     series->replace(value);
     d->chart->addSeries(series);
     d->marker->connectExtend();
-    d->callout->connectExtend(series);
+    d->callout->connectSeries(series);
     d->lineSeries.insert(id, series);
 }
 
@@ -44,7 +44,7 @@ void HSpecFittingChartView::removeLineSeries(int id)
         return;
     auto series = d->lineSeries[id];
     d->chart->removeSeries(series);
-    d->callout->disconnectExtend(series);
+    d->callout->disconnectSeries(series);
     d->lineSeries.remove(id);
     delete series;
 }
