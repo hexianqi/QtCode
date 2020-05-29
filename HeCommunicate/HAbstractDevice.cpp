@@ -32,6 +32,13 @@ void HAbstractDevice::initialize(QVariantMap param)
         d_ptr->port->initialize(param);
 }
 
+QString HAbstractDevice::portType()
+{
+    if (d_ptr->port == nullptr)
+        return "unknown";
+    return d_ptr->port->portType();
+}
+
 bool HAbstractDevice::isSupport(HActionType action)
 {
     return d_ptr->actionParams.contains(action);

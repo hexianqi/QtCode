@@ -1,5 +1,9 @@
+@if '%{Cpp:PragmaOnce}'
+#pragma once
+@else
 #ifndef %{GUARDP}
 #define %{GUARDP}
+@endif
 
 #include "%{HdrFileName}"
 @if %{isInheritDPointer}
@@ -19,4 +23,6 @@ class %{CNP}
 
 %{EN}
 
-#endif // %{GUARDP}\
+@if ! '%{Cpp:PragmaOnce}'
+#endif // %{GUARDP}
+@endif

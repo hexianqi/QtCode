@@ -33,6 +33,9 @@ protected slots:
     void on_checkBox_01_clicked(bool b);
     void on_checkBox_02_clicked(bool b);
 
+protected:
+    bool adjustIntegralTime();
+
 private:
     void init();
 

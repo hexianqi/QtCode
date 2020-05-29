@@ -1,6 +1,7 @@
 #include "HTestWidget2000DC_p.h"
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
+#include "HeGui/HSpecEnergyWidget.h"
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
@@ -10,7 +11,7 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[分级]"
                              << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]"
                              << "[色容差]"
-                             << "[光谱光通量]" << "[光功率]" << "[光效率]"
+                             << "[光通量]" << "[光功率]" << "[光效率]"
                              << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
                              << "[色温]" << "[色纯度]"
                              << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
@@ -18,6 +19,7 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[显色指数]" <<"[显色指数Rx]";
     testSetWidget = new HTestSetWidget2000DC;
     detailWidget = new HDetailWidget2000DC;
+    energyWidget->addProgressBar("[光采样比率]");
 }
 
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :

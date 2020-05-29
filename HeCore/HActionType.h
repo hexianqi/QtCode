@@ -37,7 +37,7 @@ using HActionType = long long;
 #define     ACT_SET_SOURCE_REVERSE                  0x00020109
 #define     ACT_SET_SOURCE_IO                       0x0002010A
 #define     ACT_GET_SOURCE_STATE                    0x00020111
-#define     ACT_GET_ELEC_PARAM                      0x00020112
+#define     ACT_GET_ELEC_DATA                       0x00020112
 
 #define     ACT_SET_ELEC_MODULE                     0x00020201
 #define     ACT_SET_GEARS_OUTPUT_VOLTAGE            0x00020202
@@ -51,6 +51,11 @@ using HActionType = long long;
 #define     ACT_GET_MEASURED_CURRENT                0x00020212
 #define     ACT_GET_REVERSE_CURRENT                 0x00020213
 
+#define     ACT_SET_LUMINOUS_MODULE                 0x00020301
+#define     ACT_SET_LUMINOUS_TYPE                   0x00020302
+#define     ACT_SET_LUMINOUS_GEARS                  0x00020303
+#define     ACT_GET_LUMINOUS_DATA                   0x00020311
+
 #define     ACT_RESET_STATE_TRIGGER                 0x00030101
 #define     ACT_QUERY_STATE_TRIGGER                 0x00030111
 
@@ -63,13 +68,10 @@ using HActionType = long long;
 #define     ACT_RESET_QUALITY                       0xF0000004
 #define     ACT_RESET_CHROMATISM                    0xF0000005
 #define     ACT_RESET_ELEC                          0xF0000006
+#define     ACT_RESET_LUMINOUS                      0xF0000007
 
 //#define     ACT_REFRESH_USE_TIME                    0x00000012
 
-//#define     ACT_SET_LUMINOUS_MODULE                 0x00000201
-//#define     ACT_SET_LUMINOUS_TYPE                   0x00000202
-//#define     ACT_SET_LUMINOUS_GEARS                  0x00000203
-//#define     ACT_GET_LUMINOUS                        0x00000281
 //#define     ACT_GET_ANGULAR_DISTRIBUTION            0x000002C1
 
 //#define     ACT_RESET_MOTOR                         0x00001101
@@ -117,9 +119,6 @@ using HActionType = long long;
 
 //////#define     ACT_SET_MOTOR_ANGULAR                   0x0F000201
 
-
-//
-//
 //#define     ACT_RESET_JUDGMENT                      0xF0000003
 //#define     ACT_RESET_CIRCUIT                       0xF0000004
 

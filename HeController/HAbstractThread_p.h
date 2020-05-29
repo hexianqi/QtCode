@@ -34,11 +34,11 @@ public:
     volatile bool running = false;
     QQueue<HActionType> actionCache;
     QSet<HActionType> actionSupport;
-    int runMode = 2;    //0:测试模式; 1:脱机模式; 2:联机模式;
+    QList<IProtocol *> protocols;
+    QList<IActionStrategy *> strategys;
+    int runMode = 2;    // 0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
-    QMap<QString, IProtocol *> protocols;
-    QMap<QString, IActionStrategy *> strategys;
 };
 
 HE_CONTROLLER_END_NAMESPACE

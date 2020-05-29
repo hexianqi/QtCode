@@ -1,7 +1,8 @@
 #include "HSpecEnergyWidget_p.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCore.h"
 #include "HeController/IModel.h"
-#include "HeData/ITestSpec.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HProgressBar.h"
 #include "HePlugin/HSpecDiagramWidget.h"
 #include <QtGui/QIcon>
@@ -14,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 HSpecEnergyWidgetPrivate::HSpecEnergyWidgetPrivate()
 {
     toolTipTypes = QStringList() << "[峰值波长]" << "[主波长]" << "[色温]" << "[色坐标]" << "[显色指数]";
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
 HSpecEnergyWidget::HSpecEnergyWidget(QWidget *parent):
@@ -24,9 +25,9 @@ HSpecEnergyWidget::HSpecEnergyWidget(QWidget *parent):
     init();
 }
 
-HSpecEnergyWidget::HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *parent)
-    : QWidget(parent)
-    , d_ptr(&p)
+HSpecEnergyWidget::HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *parent) :
+    QWidget(parent),
+    d_ptr(&p)
 {
     init();
 }
@@ -38,19 +39,21 @@ HSpecEnergyWidget::~HSpecEnergyWidget()
 
 void HSpecEnergyWidget::initCoordinate()
 {
-    d_ptr->specWidget->setWaveRange(d_ptr->testSpec->data("[光谱波长范围]").toPointF());
+    d_ptr->specWidget->setWaveRange(d_ptr->testData->data("[光谱波长范围]").toPointF());
 }
 
 void HSpecEnergyWidget::refreshWidget()
 {
     QString tip;
-    int state = d_ptr->testSpec->data("[采样溢出状态]").toInt();
-    d_ptr->progressBar->setValue(d_ptr->testSpec->data("[采样比率]").toInt());
 
+    for (auto bar : d_ptr->progressBars)
+        bar->setValue(d_ptr->testData->data(bar->property("showType").toString()).toDouble());
+
+    int state = d_ptr->testData->data("[光谱采样溢出状态]").toInt();
     if (state == 0)
     {
-        d_ptr->specWidget->addPolygon(0, d_ptr->testSpec->energy());
-        tip = d_ptr->testSpec->toHtmlTable(d_ptr->toolTipTypes, Qt::white);
+        d_ptr->specWidget->addPolygon(0, d_ptr->testData->data("[光谱能量曲线]").value<QPolygonF>());
+        tip = d_ptr->testData->toHtmlTable(d_ptr->toolTipTypes, Qt::white);
     }
     else if (state < 0)
         d_ptr->specWidget->setCenter(tr("光谱采样数值太小!"), Qt::green, Qt::black);
@@ -59,19 +62,26 @@ void HSpecEnergyWidget::refreshWidget()
     d_ptr->specWidget->setToolTip(tip);
 }
 
+void HSpecEnergyWidget::addProgressBar(const QString &type)
+{
+    auto bar = new HProgressBar;
+    bar->setOrientation(Qt::Vertical);
+    bar->setRange(0, 100);
+    bar->setValue(0);
+    bar->setToolTip(HCore::toCaption(type));
+    bar->setProperty("showType", type);
+    d_ptr->progressBars.append(bar);
+    d_ptr->progressLayout->addWidget(bar);
+}
+
 void HSpecEnergyWidget::init()
 {
     d_ptr->specWidget = new HSpecDiagramWidget;
-    d_ptr->progressBar = new HProgressBar;
-    d_ptr->progressBar->setOrientation(Qt::Vertical);
-    d_ptr->progressBar->setRange(0, 100);
-    d_ptr->progressBar->setValue(0);
-    d_ptr->progressBar->setToolTip(tr("采样比率"));
     auto margins = d_ptr->specWidget->margins();
     d_ptr->progressLayout = new QHBoxLayout;
     d_ptr->progressLayout->setSpacing(2);
     d_ptr->progressLayout->setContentsMargins(5, margins.top(), 5, margins.bottom());
-    d_ptr->progressLayout->addWidget(d_ptr->progressBar);
+    addProgressBar("[光谱采样比率]");
     auto layout = new QGridLayout(this);
     layout->setSpacing(9);
     layout->addLayout(d_ptr->progressLayout, 0, 0);

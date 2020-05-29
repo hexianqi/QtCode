@@ -22,6 +22,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
+    void setProtocol(IProtocol *) override;
     bool isSupport(HActionType action) override;
 
 protected:

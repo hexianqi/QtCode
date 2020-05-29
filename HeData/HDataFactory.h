@@ -31,6 +31,7 @@ public:
     ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
     ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
     ITestElec *createTestElec(QString type, QVariantMap param = QVariantMap()) override;
+    ITestLuminous *createTestLuminous(QString type, QVariantMap param = QVariantMap()) override;
 
 public:
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;
@@ -40,6 +41,9 @@ public:
     IElecCalibrate *createElecCalibrate(QString type, QVariantMap param = QVariantMap()) override;
     IElecCalibrateItemCollection *createElecCalibrateItemCollection(QString type, QVariantMap param = QVariantMap()) override;
     IElecCalibrateItem *createElecCalibrateItem(QString type, QVariantMap param = QVariantMap()) override;
+    ILuminousCalibrateCollection *createLuminousCalibrateCollection(QString type, QVariantMap param = QVariantMap()) override;
+    ILuminousCalibrate *createLuminousCalibrate(QString type, QVariantMap param = QVariantMap()) override;
+    ILuminousCalibrateItem *createLuminousCalibrateItem(QString type, QVariantMap param = QVariantMap()) override;
     IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) override;
     IChromatism *createChromatism(QString type, QVariantMap param = QVariantMap()) override;
     IChromatismItem *createChromatismItem(QString type, QVariantMap param = QVariantMap()) override;

@@ -2,8 +2,7 @@
 #include "IControllerFactory.h"
 #include "IActionStrategy.h"
 #include "HeCore/HAppContext.h"
-#include "HeData/ITestSpec.h"
-#include "HeData/ITestElec.h"
+#include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include <QtCore/QDebug>
@@ -16,10 +15,9 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
                   << ACT_GET_SPECTRUM_ELEC;
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-    testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
-    protocols.insert("Spec", protocolSpec);
-    protocols.insert("Elec", protocolCollection->value("Elec"));
+    protocolElse = protocolCollection->value("Else");
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
+    protocols << protocolSpec << protocolElse;
 }
 
 HSpecElecThread::HSpecElecThread(QObject *parent) :
@@ -57,16 +55,16 @@ HErrorType HSpecElecThread::handleAction(HActionType action)
     switch(action)
     {
     case ACT_SINGLE_TEST:
-        error = d->strategyElec->handle(ACT_GET_ELEC_PARAM);
+        error = d->strategyElec->handle(ACT_GET_ELEC_DATA);
         if (error != E_OK)
             return error;
-        error = getSpectrum(d->testSpec->data("[光谱平均次数]").toInt());
+        error = getSpectrum(d->testData->data("[光谱平均次数]").toInt());
         if (error != E_OK)
             return error;
         error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         if (error != E_OK)
             return error;
-        setEfficacy();
+        handleData();
         return E_OK;
     case ACT_GET_SPECTRUM_ELEC:
         error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
@@ -78,7 +76,7 @@ HErrorType HSpecElecThread::handleAction(HActionType action)
         error = d->strategySpec->handle(ACT_GET_SPECTRUM);
         if (error != E_OK)
             return error;
-        setEfficacy();
+        handleData();
         return E_OK;
     }
     return HAbstractThread::handleAction(action);
@@ -100,18 +98,18 @@ HErrorType HSpecElecThread::getSpectrum(int n)
         if (sample1.size() < samples2.size())
             sample1.resize(samples2.size());
         for (j = 0; j < samples2.size(); j++)
-            sample1[j] += samples2[j] / n;
+            sample1[j] += 1.0 * samples2.at(j) / n;
     }
-    d->testSpec->setSample(sample1, false);
+    d->testData->setData("[光谱采样值]", QVariant::fromValue(sample1));
     return E_OK;
 }
 
-void HSpecElecThread::setEfficacy()
+void HSpecElecThread::handleData()
 {
     Q_D(HSpecElecThread);
-    auto l = d->testSpec->data("[光谱光通量]").toDouble();
-    auto p = d->testElec->data("[电功率]").toDouble();
-    d->testSpec->setData("[光效率]", p < 0.01 ? 0.0 :  l / p);
+    auto f = d->testData->data("[光谱光通量]").toDouble();
+    auto p = d->testData->data("[电功率]").toDouble();
+    d->testData->setData("[光效率]", p < 0.0001 ? 0.0 :  f / p);
 }
 
 void HSpecElecThread::init()
@@ -120,8 +118,9 @@ void HSpecElecThread::init()
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
     d->strategyElec = factory->createStrategy("HElecStrategy", this);
-    d->strategys.insert("Spec", d->strategySpec);
-    d->strategys.insert("Elec", d->strategyElec);
+    d->strategySpec->setProtocol(d->protocolSpec);
+    d->strategyElec->setProtocol(d->protocolElse);
+    d->strategys << d->strategySpec << d->strategyElec;
 }
 
 HE_CONTROLLER_END_NAMESPACE

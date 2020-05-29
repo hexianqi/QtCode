@@ -35,11 +35,11 @@ void HSpecDetailWidget::refreshWidget()
     Q_D(HSpecDetailWidget);
 
     QString text;
-    ui->lineEdit_001->setText(d->testData->toString(("[峰值波长]")));
-    ui->lineEdit_002->setText(d->testData->toString(("[主波长]")));
-    ui->lineEdit_003->setText(d->testData->toString(("[色温]")));
-    ui->lineEdit_004->setText(d->testData->toString(("[色坐标]")));
-    ui->lineEdit_005->setText(d->testData->toString(("[显色指数]")));
+    ui->lineEdit_001->setText(d->testData->toString("[峰值波长]"));
+    ui->lineEdit_002->setText(d->testData->toString("[主波长]"));
+    ui->lineEdit_003->setText(d->testData->toString("[色温]"));
+    ui->lineEdit_004->setText(d->testData->toString("[色坐标]"));
+    ui->lineEdit_005->setText(d->testData->toString("[显色指数]"));
     auto rx = d->testData->toString("[显色指数Rx]");
     if (!rx.isEmpty())
     {

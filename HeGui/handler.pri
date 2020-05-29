@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HLuminousCalibrateHandler.h \
+    $$PWD/HLuminousCalibrateHandler_p.h \
     $$PWD/IGuiHandler.h \
     $$PWD/HAbstractGuiHandler.h \
     $$PWD/HAbstractGuiHandler_p.h \
@@ -37,6 +39,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
+    $$PWD/HLuminousCalibrateHandler.cpp \
     $$PWD/HTestHandler.cpp \
     $$PWD/HGradeEditHandler.cpp \
     $$PWD/HSpecCalibrateHandler.cpp \

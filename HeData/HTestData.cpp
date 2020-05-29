@@ -104,6 +104,13 @@ QVariant HTestData::data(QString type)
     return d_ptr->data(type);
 }
 
+QVariant HTestData::handleOperation(QString type, QVariant value)
+{
+    if (d_ptr->successor != nullptr)
+        return d_ptr->successor->handleOperation(type, value);
+    return false;
+}
+
 QVariantMap HTestData::select(QStringList type)
 {
     QVariantMap r;

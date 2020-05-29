@@ -8,7 +8,7 @@
 #include "HeData/IElecCalibrate.h"
 #include "HeData/IElecCalibrateCollection.h"
 #include "HeData/IElecCalibrateItemCollection.h"
-#include "HeData/ITestElec.h"
+#include "HeData/ITestData.h"
 #include "HeController/IModel.h"
 #include <QtCore/QDebug>
 
@@ -17,7 +17,7 @@ HE_GUI_BEGIN_NAMESPACE
 HElecCalibrateDialogPrivate::HElecCalibrateDialogPrivate()
 {
     calibrate = HAppContext::getContextPointer<IConfigManage>("IConfigManage")->elecCalibrateCollection();
-    testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
     model = HAppContext::getContextPointer<IModel>("IModel");
 }
 
@@ -46,22 +46,20 @@ void HElecCalibrateDialog::on_treeWidget_itemSelectionChanged()
     auto index = value & 0xFF;
 
     d_ptr->loop = false;
+    if (d_ptr->currentWidget != nullptr)
+        d_ptr->currentWidget->setLoop(false);
+
     if (d_ptr->module != module)
     {
         d_ptr->module = module;
-        d_ptr->testElec->setModule(module);
+        d_ptr->testData->setData("[电模块]", module);
         d_ptr->model->addAction(ACT_SET_ELEC_MODULE);
     }
-    if (d_ptr->index != index)
-    {
-        d_ptr->index = index;
-        if (d_ptr->currentWidget != nullptr)
-            d_ptr->currentWidget->setLoop(false);
-        ui->stackedWidget->setCurrentIndex(index);
-        d_ptr->currentWidget = qobject_cast<HElecCalibrateItemWidget *>(ui->stackedWidget->currentWidget());
-        d_ptr->testElec->setGears(d_ptr->currentWidget->type(), d_ptr->currentWidget->gears());
-        d_ptr->model->addAction(ACT_SET_GEARS_OUTPUT_VOLTAGE + d_ptr->currentWidget->type());
-    }
+
+    d_ptr->index = index;
+    ui->stackedWidget->setCurrentIndex(index);
+    d_ptr->currentWidget = qobject_cast<HElecCalibrateItemWidget *>(ui->stackedWidget->currentWidget());
+    setGears(d_ptr->currentWidget->type(), d_ptr->currentWidget->gears());
 }
 
 void HElecCalibrateDialog::on_pushButton_1_clicked()
@@ -78,15 +76,15 @@ void HElecCalibrateDialog::handleAction(HActionType action)
     switch (action)
     {
     case ACT_GET_MEASURED_VOLTAGE:
-        d_ptr->currentWidget->updateData(d_ptr->testElec->data("[实测电压_F]").toDouble());
+        d_ptr->currentWidget->updateData(d_ptr->testData->data("[实测电压_F]").toDouble());
         d_ptr->model->addAction(action);
         break;
     case ACT_GET_MEASURED_CURRENT:
-        d_ptr->currentWidget->updateData(d_ptr->testElec->data("[实测电流_F]").toDouble());
+        d_ptr->currentWidget->updateData(d_ptr->testData->data("[实测电流_F]").toDouble());
         d_ptr->model->addAction(action);
         break;
     case ACT_GET_REVERSE_CURRENT:
-        d_ptr->currentWidget->updateData(d_ptr->testElec->data("[反向漏流_F]").toDouble());
+        d_ptr->currentWidget->updateData(d_ptr->testData->data("[反向漏流_F]").toDouble());
         d_ptr->model->addAction(action);
         break;
     }
@@ -96,31 +94,65 @@ void HElecCalibrateDialog::setElec(HElecType type, double value)
 {
     if (type == OutputVoltage)
     {
-        d_ptr->testElec->setData("[输出电压_F]", value);
+        d_ptr->testData->setData("[输出电压_F]", value);
         d_ptr->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
     }
     if (type == OutputCurrent)
     {
-        d_ptr->testElec->setData("[输出电流_F]", value);
+        d_ptr->testData->setData("[输出电流_F]", value);
         d_ptr->model->addAction(ACT_SET_OUTPUT_CURRENT);
     }
     if (type == ReverseVoltage)
     {
-        d_ptr->testElec->setData("[反向电压_F]", value);
+        d_ptr->testData->setData("[反向电压_F]", value);
         d_ptr->model->addAction(ACT_SET_REVERSE_VOLTAGE);
     }
     if (type == MeasuredVoltage || type == MeasuredCurrent)
     {
-        d_ptr->testElec->setParam(OutputCurrent, value);
+        d_ptr->testData->setData("[输出电流]", value);
         d_ptr->model->addAction(ACT_SET_OUTPUT_CURRENT);
     }
     if (type == ReverseCurrent)
     {
-        d_ptr->testElec->setParam(ReverseVoltage, value);
+        d_ptr->testData->setData("[反向电压]", value);
         d_ptr->model->addAction(ACT_SET_REVERSE_VOLTAGE);
     }
-    d_ptr->testElec->setData("[电源模式]", type == ReverseVoltage || type == ReverseCurrent ? 2 : 1);
+    d_ptr->testData->setData("[电源模式]", type == ReverseVoltage || type == ReverseCurrent ? 2 : 1);
     d_ptr->model->addAction(ACT_SET_SOURCE_MODE);
+}
+
+void HElecCalibrateDialog::setGears(HElecType type, int value)
+{
+    if (type == OutputVoltage)
+    {
+        d_ptr->testData->setData("[输出电压_档位]", value);
+        d_ptr->model->addAction(ACT_SET_GEARS_OUTPUT_VOLTAGE);
+    }
+    if (type == OutputCurrent)
+    {
+        d_ptr->testData->setData("[输出电流_档位]", value);
+        d_ptr->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+    }
+    if (type == MeasuredVoltage)
+    {
+        d_ptr->testData->setData("[实测电压_档位]", value);
+        d_ptr->model->addAction(ACT_SET_GEARS_MEASURED_VOLTAGE);
+    }
+    if (type == MeasuredCurrent)
+    {
+        d_ptr->testData->setData("[实测电流_档位]", value);
+        d_ptr->model->addAction(ACT_SET_GEARS_MEASURED_CURRENT);
+    }
+    if (type == ReverseVoltage)
+    {
+        d_ptr->testData->setData("[反向电压_档位]", value);
+        d_ptr->model->addAction(ACT_SET_GEARS_REVERSE_VOLTAGE);
+    }
+    if (type == ReverseCurrent)
+    {
+        d_ptr->testData->setData("[反向漏流_档位]", value);
+        d_ptr->model->addAction(ACT_SET_GEARS_REVERSE_CURRENT);
+    }
 }
 
 void HElecCalibrateDialog::setLoop(HElecType type, bool loop)
@@ -157,16 +189,12 @@ void HElecCalibrateDialog::createItem(IElecCalibrate *data, HElecType type, int 
     if (collection == nullptr || collection->isEmpty())
         return;
 
-    int i = 0;
+    auto i = 0;
     auto p = collection->size() > 1 ? createItem(HCore::toCaption(data->toString(type)), value, parent) : parent;
-    for (const auto &t : collection->keys())
+    for (const auto &k : collection->keys())
     {
-        createItem(HCore::toCaption(t), value, p);
-        auto w = createItemWidget(type);
-        w->setData(collection->value(t), type, i);
-        ui->stackedWidget->addWidget(w);
-        connect(w, &HElecCalibrateItemWidget::elecChanged, this, &HElecCalibrateDialog::setElec);
-        connect(w, &HElecCalibrateItemWidget::loopChanged, this, &HElecCalibrateDialog::setLoop);
+        createItem(HCore::toCaption(k), value, p);
+        addStackedWidget(collection->value(k), type, i);
         value++;
         i++;
     }
@@ -179,12 +207,19 @@ HElecCalibrateItemWidget *HElecCalibrateDialog::createItemWidget(HElecType type)
     return new HElecCalibrateItem2Widget(this);
 }
 
+void HElecCalibrateDialog::addStackedWidget(IElecCalibrateItem *data, HElecType type, int gears)
+{
+    auto w = createItemWidget(type);
+    w->setData(data, type, gears);
+    connect(w, &HElecCalibrateItemWidget::elecChanged, this, &HElecCalibrateDialog::setElec);
+    connect(w, &HElecCalibrateItemWidget::loopChanged, this, &HElecCalibrateDialog::setLoop);
+    ui->stackedWidget->addWidget(w);
+}
+
 void HElecCalibrateDialog::init()
 {
     auto value = 0;
-    auto list = QList<HElecType>() << OutputVoltage << OutputCurrent
-                                  << MeasuredVoltage << MeasuredCurrent
-                                  << ReverseVoltage << ReverseCurrent;
+    auto list = QList<HElecType>() << OutputVoltage << OutputCurrent << MeasuredVoltage << MeasuredCurrent << ReverseVoltage << ReverseCurrent;
     for (const auto &key : d_ptr->calibrate->keys())
     {
         auto item = d_ptr->calibrate->value(key);
@@ -198,6 +233,7 @@ void HElecCalibrateDialog::init()
     ui->treeWidget->setStyleSheet("QTreeWidget::item { height:30px }");
     ui->treeWidget->expandAll();
     ui->treeWidget->setCurrentItem(ui->treeWidget->topLevelItem(0));
+    ui->splitter->setStretchFactor(1, 10);
     connect(d_ptr->model, &IModel::actionFinished, this, &HElecCalibrateDialog::handleAction);
     setWindowTitle(tr("电参数定标"));
 }

@@ -41,6 +41,9 @@ protected slots:
     void on_radioButton_01_clicked();
     void on_radioButton_02_clicked();
 
+protected:
+    bool adjustIntegralTime();
+
 private:
     void init();
 

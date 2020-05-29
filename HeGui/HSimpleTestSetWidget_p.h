@@ -4,19 +4,11 @@
 #include "HSimpleTestSetWidget.h"
 #include "HAbstractTestSetWidget_p.h"
 
-HE_DATA_BEGIN_NAMESPACE
-class ITestSpec;
-HE_DATA_END_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 class HSimpleTestSetWidgetPrivate : public HAbstractTestSetWidgetPrivate
 {
 public:
-    HSimpleTestSetWidgetPrivate();
-
-public:
-    ITestSpec *testSpec;
     bool integralTimeAuto = false;
 };
 

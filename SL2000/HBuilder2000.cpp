@@ -80,8 +80,10 @@ void HBuilder2000::buildConfigManage()
             spec->setFitting(fit);
             specs->insert("1", spec);
         }
+
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
         chromatisms->fileStream()->readFile(":/dat/Chromatism.hcc");
+
         d->configManage->setContain(IConfigManage::ContainSpec
                                     | IConfigManage::ContainChromatism
                                     | IConfigManage::ContainGrade

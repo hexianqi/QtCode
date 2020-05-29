@@ -1,5 +1,6 @@
 #include "HSpecThread_p.h"
 #include "IControllerFactory.h"
+#include "IActionStrategy.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include <QtCore/QDebug>
@@ -8,7 +9,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 HSpecThreadPrivate::HSpecThreadPrivate()
 {
-    protocols.insert("Spec", HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec"));
+    protocols << HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
 }
 
 HSpecThread::HSpecThread(QObject *parent) :
@@ -43,7 +44,8 @@ void HSpecThread::init()
     Q_D(HSpecThread);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
     auto strategy = factory->createStrategy("HSpecStrategy", this);
-    d->strategys.insert("Spec", strategy);
+    strategy->setProtocol(d->protocols.first());
+    d->strategys << strategy;
 }
 
 HE_CONTROLLER_END_NAMESPACE

@@ -9,8 +9,14 @@
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
 #include "HeCore/HErrorType.h"
+#include "HeCommunicate/HCommunicateGlobal.h"
 
 HE_CORE_USE_NAMESPACE
+
+HE_COMMUNICATE_BEGIN_NAMESPACE
+class IProtocol;
+HE_COMMUNICATE_END_NAMESPACE
+HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -22,6 +28,8 @@ public:
     using QObject::QObject;
 
 public:
+    // 设置协议
+    virtual void setProtocol(IProtocol *) = 0;
     // 是否支持动作
     virtual bool isSupport(HActionType action) = 0;
     // 处理动作

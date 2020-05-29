@@ -97,7 +97,8 @@ QPolygonF HSpecPelsWave::pelsWave()
 
 double HSpecPelsWave::handle(double value)
 {
-    return HMath::interpolate(value, pelsWave());
+    Q_D(HSpecPelsWave);
+    return HMath::interpolate(value, d->pelsWave);
 }
 
 HE_DATA_END_NAMESPACE

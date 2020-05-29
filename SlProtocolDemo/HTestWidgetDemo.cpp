@@ -1,6 +1,5 @@
 #include "HTestWidgetDemo_p.h"
 #include "HTestSetWidgetDemo.h"
-#include "HeCore/HAppContext.h"
 #include "HeData/ITestSpec.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/HSpecFitting.h"

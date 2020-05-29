@@ -31,6 +31,11 @@ QString HSerialPort::typeName()
     return "HSerialPort";
 }
 
+QString HSerialPort::portType()
+{
+    return "COM";
+}
+
 void HSerialPort::setBaudRate(ulong value)
 {
     Q_D(HSerialPort);

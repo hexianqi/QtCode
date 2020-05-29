@@ -5,6 +5,7 @@
 #include "HSqlBrowser.h"
 #include "HProductInfo.h"
 #include "HSpecElecSqlPrint.h"
+#include "HIntegrateSqlPrint.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -86,6 +87,7 @@ IProductInfo *HSqlFactory::createProductInfo(QString type, QVariantMap param)
 void HSqlFactory::registerClass()
 {
     HObjectFactory::registerClass<HSpecSqlPrint>("HSpecSqlPrint");
+    HObjectFactory::registerClass<HIntegrateSqlPrint>("HIntegrateSqlPrint");
     HObjectFactory::registerClass<HSpecElecSqlPrint>("HSpecElecSqlPrint");
 }
 

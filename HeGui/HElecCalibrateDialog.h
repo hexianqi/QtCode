@@ -20,6 +20,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 class IElecCalibrate;
+class IElecCalibrateItem;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -41,6 +42,7 @@ protected slots:
     void on_pushButton_1_clicked();
     void handleAction(HActionType action);
     void setElec(HElecType type, double value);
+    void setGears(HElecType type, int value);
     void setLoop(HElecType type, bool loop);
 
 protected:
@@ -48,6 +50,7 @@ protected:
     QTreeWidgetItem *createItem(const QString &text, int value, QTreeWidgetItem *parent);
     void createItem(IElecCalibrate *data, HElecType type, int &value, QTreeWidgetItem *parent);
     HElecCalibrateItemWidget *createItemWidget(HElecType type);
+    void addStackedWidget(IElecCalibrateItem *data, HElecType type, int gears);
 
 private:
     void init();

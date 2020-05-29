@@ -16,10 +16,12 @@ HE_COMMUNICATE_BEGIN_NAMESPACE
 class IPort : public IInitializeable
 {
 public:
-    // 设置超时
-    virtual void setTimeOut(int value) = 0;
+    // 端口类型
+    virtual QString portType() = 0;
     // 是否连接
     virtual bool isConnected() = 0;
+    // 设置超时
+    virtual void setTimeOut(int value) = 0;
     // 打开
     virtual HErrorType open(int portNum = 1) = 0;
     // 关闭

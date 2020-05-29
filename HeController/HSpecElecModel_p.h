@@ -2,21 +2,23 @@
 #define HSPECELECMODEL_P_H
 
 #include "HSpecElecModel.h"
-#include "HSpecModel_p.h"
+#include "HAbstractModel_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
+class ITestSpec;
 class ITestElec;
 HE_DATA_END_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HSpecElecModelPrivate : public HSpecModelPrivate
+class HSpecElecModelPrivate : public HAbstractModelPrivate
 {
 public:
     HSpecElecModelPrivate();
 
 public:
-    ITestElec *testElec;
+    ITestSpec *testSpec = nullptr;
+    ITestElec *testElec = nullptr;
 };
 
 HE_CONTROLLER_END_NAMESPACE

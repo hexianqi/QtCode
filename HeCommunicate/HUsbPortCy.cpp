@@ -74,6 +74,11 @@ QString HUsbPortCy::typeName()
     return "HUsbPortCy";
 }
 
+QString HUsbPortCy::portType()
+{
+    return "USB";
+}
+
 HErrorType HUsbPortCy::openPort(int portNum)
 {
     Q_D(HUsbPortCy);

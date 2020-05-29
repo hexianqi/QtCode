@@ -38,8 +38,8 @@ HEADERS     += \
             HAbstractDataItem.h \
             HAbstractDataItem_p.h \
             HDataHelper.h \
-    HDataCollection.h \
-    HDataType.h
+            HDataCollection.h \
+            HDataType.h
 
 SOURCES     += \
             HDataFactory.cpp \
@@ -74,6 +74,7 @@ include(adjust.pri)
 include(chromatism.pri)
 include(elec.pri)
 include(grade.pri)
+include(luminous.pri)
 include(quality.pri)
 include(spec.pri)
 include(stream.pri)

@@ -21,6 +21,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
+    QString portType() override;
     void setDevice(IDevice *) override;
     HErrorType open() override;
     HErrorType close() override;

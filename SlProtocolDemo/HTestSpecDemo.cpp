@@ -38,7 +38,7 @@ bool HTestSpecDemo::setEnergy(QPolygonF value, double percent)
     if(d->specData->Energy.isEmpty())
         return false;
     d->specFacade->calcSpectrum(d->specData);
-    setData("[采样比率]", percent);
+    setData("[光谱采样比率]", percent);
     addData("[峰值波长]", d->specData->PeakWave);
     addData("[峰值带宽]", d->specData->Bandwidth);
     addData("[主波长]", d->specData->DominantWave);
@@ -54,7 +54,7 @@ bool HTestSpecDemo::setEnergy(QPolygonF value, double percent)
     addData("[色坐标up]", d->specData->CoordinateUvp.x());
     addData("[色坐标vp]", d->specData->CoordinateUvp.y());
     addData("[Duv]", d->specData->Duv);
-    addData("[明视觉能量]", d->specData->VisionEnergy);
+    addData("[明视觉光通量]", d->specData->VisionFlux);
     addData("[红色比]", d->specData->RedRatio);
     addData("[蓝色比]", d->specData->BlueRatio);
     addData("[绿色比]", d->specData->GreenRatio);

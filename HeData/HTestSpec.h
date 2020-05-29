@@ -23,23 +23,20 @@ public:
     QString typeName() override;
 
 public:
+    void setData(QString type, QVariant value) override;
     QVariant data(QString type) override;
+    QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 public:
     void setCalibrate(ISpecCalibrate *) override;
-    void setIntegralTime(double value) override;
-    bool adjustIntegralTime() override;
     bool setSample(QVector<double> value, bool avg = false) override;
     void setFitting(bool b) override;
-    void clearCache() override;
-    void resetStdCurve() override;
 
 public:
     double sample(int type, int pel) override;
     QVector<double> sample(int type) override;
     QPolygonF samplePoly(int type) override;
     QPointF sampleMax(int type, double a, double b) override;
-    QPolygonF energy() override;
 
 public:
     double pelsToWave(double value) override;

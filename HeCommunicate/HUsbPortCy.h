@@ -21,6 +21,7 @@ public:
 
 public:
     QString typeName() override;
+    QString portType() override;
 
 protected:
     HUsbPortCy(HUsbPortCyPrivate &);

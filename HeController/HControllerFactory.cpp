@@ -2,10 +2,13 @@
 #include "HThreadCollection.h"
 #include "HSpecThread.h"
 #include "HSpecElecThread.h"
+#include "HIntegrateThread.h"
 #include "HSpecModel.h"
 #include "HSpecElecModel.h"
+#include "HIntegrateModel.h"
 #include "HSpecStrategy.h"
 #include "HElecStrategy.h"
+#include "HLuminousStrategy.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -68,10 +71,13 @@ void HControllerFactory::registerClass()
 {
     HObjectFactory::registerClass<HSpecThread>("HSpecThread");
     HObjectFactory::registerClass<HSpecElecThread>("HSpecElecThread");
+    HObjectFactory::registerClass<HIntegrateThread>("HIntegrateThread");
     HObjectFactory::registerClass<HSpecModel>("HSpecModel");
     HObjectFactory::registerClass<HSpecElecModel>("HSpecElecModel");
+    HObjectFactory::registerClass<HIntegrateModel>("HIntegrateModel");
     HObjectFactory::registerClass<HSpecStrategy>("HSpecStrategy");
     HObjectFactory::registerClass<HElecStrategy>("HElecStrategy");
+    HObjectFactory::registerClass<HLuminousStrategy>("HLuminousStrategy");
 }
 
 HE_CONTROLLER_END_NAMESPACE

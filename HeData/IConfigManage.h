@@ -1,13 +1,14 @@
 /***************************************************************************************************
 **      2018-06-19  IConfigManage 配置管理接口。
-**                      class                   MagicNumber     Filter
-**                  IConfigManage               0x00010001      *.cfg
-**                  ISpecCalibrateCollection    0x00020001      *.hcs
-**                  IElecCalibrateCollection    0x00020002      *.hce
-**                  IChromatismCollection       0x00020101      *.hcc
-**                  IGradeCollection            0x00030001      *.hcg
-**                  IQualityCollection          0x00030101      *.hcq
-**                  IAdjustCollection           0x00040001      *.hca
+**                      class                       MagicNumber     Filter
+**                  IConfigManage                   0x00010001      *.cfg
+**                  ISpecCalibrateCollection        0x00020001      *.hcs
+**                  IElecCalibrateCollection        0x00020002      *.hce
+**                  ILuminousCalibrateCollection    0x00020003      *.hcl
+**                  IChromatismCollection           0x00020101      *.hcc
+**                  IGradeCollection                0x00030001      *.hcg
+**                  IQualityCollection              0x00030101      *.hcq
+**                  IAdjustCollection               0x00040001      *.hca
 ***************************************************************************************************/
 
 #ifndef ICONFIGMANAGE_H
@@ -23,8 +24,8 @@ HE_DATA_BEGIN_NAMESPACE
 class IFileStream;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
-class IElecCalibrate;
 class IElecCalibrateCollection;
+class ILuminousCalibrateCollection;
 class IChromatismCollection;
 class IGradeCollection;
 class IAdjustCollection;
@@ -39,6 +40,7 @@ public:
         ContainNone          = 0x00000000,
         ContainSpec          = 0x00000001,
         ContainElec          = 0x00000002,
+        ContainLuminous      = 0x00000003,
         ContainChromatism    = 0x00000100,
         ContainGrade         = 0x00010000,
         ContainQuality       = 0x00020000,
@@ -62,8 +64,10 @@ public:
     virtual void setElecCalibrateCollection(IElecCalibrateCollection *) = 0;
     // 获取电校准数据集
     virtual IElecCalibrateCollection *elecCalibrateCollection() = 0;
-    // 获取电校准数据
-    virtual IElecCalibrate *elecCalibrate(QString name) = 0;
+    // 设置光校准数据集
+    virtual void setLuminousCalibrateCollection(ILuminousCalibrateCollection *) = 0;
+    // 获取光校准数据集
+    virtual ILuminousCalibrateCollection *luminousCalibrateCollection() = 0;
     // 设置色容差数据集
     virtual void setChromatismCollection(IChromatismCollection *) = 0;
     // 获取色容差数据集

@@ -63,7 +63,7 @@ bool HSpecFittingWidget::setTestState(bool b)
         d_ptr->curTimes = 0;
         d_ptr->progressDialog->setRange(0, d_ptr->points.size());
         d_ptr->progressDialog->setValue(0);
-        d_ptr->testSpec->setIntegralTime(d_ptr->points.first().y());
+        d_ptr->testSpec->setData("[积分时间]", d_ptr->points.first().y());
         d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
     }
     d_ptr->testSpec->setFitting(!b);
@@ -77,13 +77,13 @@ void HSpecFittingWidget::handleAction(HActionType action)
     if (!d_ptr->testState || action != ACT_GET_SPECTRUM)
         return;
 
-    if (d_ptr->testSpec->data("[采样溢出状态]").toInt() != 0)
+    if (d_ptr->testSpec->data("[光谱采样溢出状态]").toInt() != 0)
     {
-        cancel(tr("采样数据溢出!"));
+        cancel(tr("光谱采样数据溢出!"));
         return;
     }
 
-    if (d_ptr->testSpec->data("[采样帧溢出状态]").toInt() < 0)
+    if (d_ptr->testSpec->data("[光谱采样帧溢出状态]").toInt() < 0)
         return;
 
     auto sample = d_ptr->testSpec->sample(1, d_ptr->pel);
@@ -98,7 +98,7 @@ void HSpecFittingWidget::handleAction(HActionType action)
     d_ptr->progressDialog->setValue(d_ptr->curTimes);
     if (d_ptr->curTimes < d_ptr->points.size())
     {
-        d_ptr->testSpec->setIntegralTime(d_ptr->points[d_ptr->curTimes].y());
+        d_ptr->testSpec->setData("[积分时间]", d_ptr->points[d_ptr->curTimes].y());
         d_ptr->model->addAction(ACT_SET_INTEGRAL_TIME);
         return;
     }

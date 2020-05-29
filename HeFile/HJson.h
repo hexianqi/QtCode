@@ -48,12 +48,10 @@ public:
     static HJson *fromJson(QByteArray &data);
 
 public:
-    ~HJson();
-
-public:
     bool isValid() const;
     QString errorString() const;
 
+public:
     int         getInt(const QString &path, int defaultValue = 0, const QJsonObject &fromNode = QJsonObject()) const;
     bool        getBool(const QString &path, bool defaultValue = false, const QJsonObject &fromNode = QJsonObject()) const;
     double      getDouble(const QString &path, double defaultValue = 0.0, const QJsonObject &fromNode = QJsonObject()) const;
@@ -73,9 +71,11 @@ public:
 protected:
     HJson();
     HJson(HJsonPrivate &);
+    ~HJson();
 
 protected:
     QScopedPointer<HJsonPrivate> d_ptr;
+    friend QScopedPointerDeleter<HJsonPrivate>;
 };
 
 HE_FILE_END_NAMESPACE

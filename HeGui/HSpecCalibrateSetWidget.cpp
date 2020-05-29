@@ -1,18 +1,12 @@
 #include "HSpecCalibrateSetWidget_p.h"
 #include "ui_HSpecCalibrateSetWidget.h"
-#include "HeCore/HAppContext.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeController/IModel.h"
-#include "HeData/ITestSpec.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
-
-HSpecCalibrateSetWidgetPrivate::HSpecCalibrateSetWidgetPrivate()
-{
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-}
 
 HSpecCalibrateSetWidget::HSpecCalibrateSetWidget(QWidget *parent) :
     HAbstractTestSetWidget(*new HSpecCalibrateSetWidgetPrivate, parent),
@@ -49,8 +43,7 @@ void HSpecCalibrateSetWidget::handleAction(HActionType action)
     case ACT_GET_SPECTRUM:
         if (!d->testState)
             break;
-        if (d->integralTimeAuto && d->testSpec->adjustIntegralTime())
-            d->model->addAction(ACT_SET_INTEGRAL_TIME);
+        adjustIntegralTime();
         d->model->addAction(ACT_GET_SPECTRUM, 50);
         break;
     default:
@@ -66,7 +59,7 @@ bool HSpecCalibrateSetWidget::setTestState(bool b)
     ui->checkBox_02->setChecked(b);
     if (b)
     {
-        d->testSpec->clearCache();
+        d->testData->handleOperation("<清空光谱采样缓存>");
         d->model->addAction(ACT_GET_SPECTRUM);
     }
     return true;
@@ -104,7 +97,7 @@ void HSpecCalibrateSetWidget::on_doubleSpinBox_01_valueChanged(double value)
     Q_D(HSpecCalibrateSetWidget);
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
-    d->testSpec->setIntegralTime(value);
+    d->testData->setData("[积分时间]", value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
@@ -128,6 +121,17 @@ void HSpecCalibrateSetWidget::on_radioButton_02_clicked()
     setTestState(false);
     HCoreHelper::msleep(100);
     setTestMode(1);
+}
+
+bool HSpecCalibrateSetWidget::adjustIntegralTime()
+{
+    Q_D(HSpecCalibrateSetWidget);
+    if (!d->integralTimeAuto)
+        return false;
+    if (!d->testData->handleOperation("<匹配积分时间>").toBool())
+        return false;
+    d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    return true;
 }
 
 void HSpecCalibrateSetWidget::init()

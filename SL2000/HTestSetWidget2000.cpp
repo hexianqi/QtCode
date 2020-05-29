@@ -1,15 +1,9 @@
 #include "HTestSetWidget2000_p.h"
 #include "ui_HTestSetWidget2000.h"
-#include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include "HeData/ITestSpec.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QDebug>
-
-HTestSetWidget2000Private::HTestSetWidget2000Private()
-{
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-}
 
 HTestSetWidget2000::HTestSetWidget2000(QWidget *parent) :
     HAbstractTestSetWidget(*new HTestSetWidget2000Private, parent),
@@ -66,7 +60,7 @@ bool HTestSetWidget2000::setTestState(bool b)
         return false;
     if (b)
     {
-        d->testSpec->clearCache();
+        d->testData->handleOperation("<清空光谱采样缓存>");
         d->model->addAction(ACT_GET_SPECTRUM);
     }
     return true;
@@ -77,7 +71,7 @@ void HTestSetWidget2000::on_doubleSpinBox_1_valueChanged(double value)
     Q_D(HTestSetWidget2000);
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
-    d->testSpec->setIntegralTime(value);
+    d->testData->setData("[积分时间]", value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
@@ -101,7 +95,7 @@ bool HTestSetWidget2000::adjustIntegralTime()
     Q_D(HTestSetWidget2000);
     if (!d->integralTimeAuto)
         return false;
-    if (!d->testSpec->adjustIntegralTime())
+    if (!d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
     return true;

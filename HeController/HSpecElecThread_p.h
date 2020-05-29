@@ -6,8 +6,7 @@
 #include "HeData/HDataGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class ITestSpec;
-class ITestElec;
+class ITestData;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -20,8 +19,8 @@ public:
 
 public:
     IProtocol *protocolSpec = nullptr;
-    ITestSpec *testSpec = nullptr;
-    ITestElec *testElec = nullptr;
+    IProtocol *protocolElse = nullptr;
+    ITestData *testData = nullptr;
     IActionStrategy *strategySpec = nullptr;
     IActionStrategy *strategyElec = nullptr;
 };

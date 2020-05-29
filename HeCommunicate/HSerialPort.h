@@ -22,6 +22,7 @@ public:
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
+    QString portType() override;
 
 public:
     void setBaudRate(ulong value);

@@ -48,10 +48,10 @@ void HPhotopicVision::calcSpectrum(HSpecData *data)
         else
             j++;
     }
-    if (qFuzzyIsNull(sum2))
+    if (qFuzzyIsNull(sum1))
     {
-        data->VisionEnergy = 0;
-        data->VisionEnergyRatio = 0;
+        data->VisionFlux = 0;
+        data->VisionEfficien = 0;
         data->RedRatio = 0;
         data->GreenRatio = 0;
         data->BlueRatio = 0;
@@ -59,8 +59,8 @@ void HPhotopicVision::calcSpectrum(HSpecData *data)
     else
     {
         auto rgb = r + g + b;
-        data->VisionEnergy = sum2;
-        data->VisionEnergyRatio = 1000 * sum1 / sum2 / 683;
+        data->VisionFlux = 683 * sum2;              // lm
+        data->VisionEfficien = 683 * sum2 / sum1;   // lm/W
         data->RedRatio = 100 * r / rgb;
         data->GreenRatio = 100 * g / rgb;
         data->BlueRatio = 100 * b / rgb;

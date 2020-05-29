@@ -10,10 +10,9 @@
 #include "HSpecSampleChartView.h"
 #include "HSpecSettingDialog.h"
 #include "HeCore/HCoreHelper.h"
-#include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
 #include "HeData/IConfigManage.h"
-#include "HeData/ITestSpec.h"
+#include "HeData/ITestData.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/HSpecFitting.h"
 #include "HeData/HSpecPelsWave.h"
@@ -25,11 +24,6 @@
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
-
-HSpecCalibrateWidgetPrivate::HSpecCalibrateWidgetPrivate()
-{
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-}
 
 HSpecCalibrateWidget::HSpecCalibrateWidget(QWidget *parent) :
     HAbstractTestWidget(*new HSpecCalibrateWidgetPrivate, parent),
@@ -114,7 +108,7 @@ void HSpecCalibrateWidget::handleModeChanged(int value)
     if (value == 1)
     {
         ui->tabWidget_1->setCurrentIndex(0);
-        d->testSpec->resetStdCurve();
+        d->testData->handleOperation("<使用标准光谱曲线>");
         refreshSpecWidget();
     }
 }
@@ -147,7 +141,7 @@ void HSpecCalibrateWidget::on_pushButton_1_clicked()
     dlg.setData(dynamic_cast<HSpecSetting *>(d->calibrate->item(Setting)));
     if (dlg.exec())
     {
-        d->testSpec->setData(d->calibrate->testParam());
+        d->testData->setData(d->calibrate->testParam());
         d->energyWidget->initCoordinate();
     }
 }
@@ -170,8 +164,8 @@ void HSpecCalibrateWidget::on_pushButton_3_clicked()
 void HSpecCalibrateWidget::on_pushButton_4_clicked()
 {
     Q_D(HSpecCalibrateWidget);
-    auto energy = d->testSpec->data("[明视觉能量]").toDouble();
-    auto integral = d->testSpec->data("[积分时间]").toDouble();
+    auto energy = d->testData->data("[明视觉光通量]").toDouble();
+    auto integral = d->testData->data("[积分时间]").toDouble();
     if (energy < 0.01)
         return;
 
@@ -190,7 +184,7 @@ void HSpecCalibrateWidget::on_pushButton_4_clicked()
 void HSpecCalibrateWidget::on_pushButton_5_clicked()
 {
     Q_D(HSpecCalibrateWidget);
-    d->calibrate->setStdCurve(d->testSpec->sample(1));
+    d->testData->handleOperation("<设置标准光谱曲线>");
 }
 
 void HSpecCalibrateWidget::on_pushButton_6_clicked()

@@ -32,6 +32,7 @@ public:
     QString toString(QString type) override;
     QStringList toString(QStringList type) override;
     QString toHtmlTable(QStringList type, QColor bgcolor) override;
+    QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 protected:
     HTestData(HTestDataPrivate &p);

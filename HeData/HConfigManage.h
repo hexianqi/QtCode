@@ -29,7 +29,8 @@ public:
     ISpecCalibrate *specCalibrate(QString name) override;
     void setElecCalibrateCollection(IElecCalibrateCollection *) override;
     IElecCalibrateCollection *elecCalibrateCollection() override;
-    IElecCalibrate *elecCalibrate(QString name) override;
+    void setLuminousCalibrateCollection(ILuminousCalibrateCollection *) override;
+    ILuminousCalibrateCollection *luminousCalibrateCollection() override;
     void setChromatismCollection(IChromatismCollection *) override;
     IChromatismCollection *chromatismCollection() override;
     void setGradeCollection(IGradeCollection *) override;

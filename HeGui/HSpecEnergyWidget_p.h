@@ -9,7 +9,7 @@ class HProgressBar;
 class QHBoxLayout;
 
 HE_DATA_BEGIN_NAMESPACE
-class ITestSpec;
+class ITestData;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -21,10 +21,10 @@ public:
     HSpecEnergyWidgetPrivate();
 
 public:
-    ITestSpec *testSpec = nullptr;
+    ITestData *testData = nullptr;
     HSpecDiagramWidget *specWidget = nullptr;
-    HProgressBar *progressBar = nullptr;
     QHBoxLayout *progressLayout = nullptr;
+    QList<HProgressBar *> progressBars;
     QStringList toolTipTypes;
 };
 

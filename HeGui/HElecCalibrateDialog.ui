@@ -6,11 +6,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>798</width>
-    <height>521</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="1,0">
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
@@ -80,7 +80,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pushButton_2">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -115,7 +115,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>pushButton_2</sender>
    <signal>clicked()</signal>
    <receiver>HElecCalibrateDialog</receiver>
    <slot>reject()</slot>

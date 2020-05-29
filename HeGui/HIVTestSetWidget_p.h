@@ -4,22 +4,14 @@
 #include "HIVTestSetWidget.h"
 #include "HAbstractTestSetWidget_p.h"
 
-HE_DATA_BEGIN_NAMESPACE
-class ITestElec;
-HE_DATA_END_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 class HIVTestSetWidgetPrivate : public HAbstractTestSetWidgetPrivate
 {
 public:
-    HIVTestSetWidgetPrivate();
-
-public:
-    ITestElec *testElec;
-    double elecCurrent = 1.0;
-    double elecFrom = 1.0;
-    double elecTo = 100.0;
+    double current = 1.0;
+    double from = 1.0;
+    double to = 100.0;
     double interval = 1.0;
 };
 

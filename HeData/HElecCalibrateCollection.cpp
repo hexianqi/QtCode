@@ -21,7 +21,6 @@ HElecCalibrateCollectionPrivate::HElecCalibrateCollectionPrivate()
 void HElecCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
-
     s >> version;
     HStreamHelper::read<QString, HeData::IElecCalibrate>(s, datas, [=](QString type) { return factory->createElecCalibrate(type); });
 }

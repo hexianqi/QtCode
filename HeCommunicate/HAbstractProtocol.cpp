@@ -28,6 +28,13 @@ void HAbstractProtocol::initialize(QVariantMap param)
         setDevice(FromVariant(IDevice, param.value("device")));
 }
 
+QString HAbstractProtocol::portType()
+{
+    if (d_ptr->device == nullptr)
+        return "unknown";
+    return d_ptr->device->portType();
+}
+
 void HAbstractProtocol::setDevice(IDevice *p)
 {
     close();

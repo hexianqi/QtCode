@@ -22,6 +22,7 @@ public:
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
+    QString portType() override;
 
 protected:
     HUsbPortCy7c68013(HUsbPortCy7c68013Private &);

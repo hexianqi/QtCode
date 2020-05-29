@@ -1,17 +1,11 @@
 #include "HSimpleTestSetWidget_p.h"
 #include "ui_HSimpleTestSetWidget.h"
-#include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include "HeData/ITestSpec.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
-
-HSimpleTestSetWidgetPrivate::HSimpleTestSetWidgetPrivate()
-{
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-}
 
 HSimpleTestSetWidget::HSimpleTestSetWidget(QWidget *parent) :
     HAbstractTestSetWidget(*new HSimpleTestSetWidgetPrivate, parent),
@@ -48,8 +42,7 @@ void HSimpleTestSetWidget::handleAction(HActionType action)
     case ACT_GET_SPECTRUM:
         if (!d->testState)
             break;
-        if (d->integralTimeAuto && d->testSpec->adjustIntegralTime())
-            d->model->addAction(ACT_SET_INTEGRAL_TIME);
+        adjustIntegralTime();
         d->model->addAction(ACT_GET_SPECTRUM, 100);
         break;
     default:
@@ -65,7 +58,7 @@ bool HSimpleTestSetWidget::setTestState(bool b)
     ui->checkBox_02->setChecked(b);
     if (b)
     {
-        d->testSpec->clearCache();
+        d->testData->handleOperation("<清空光谱采样缓存>");
         d->model->addAction(ACT_GET_SPECTRUM);
     }
     return true;
@@ -76,7 +69,7 @@ void HSimpleTestSetWidget::on_doubleSpinBox_01_valueChanged(double value)
     Q_D(HSimpleTestSetWidget);
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
-    d->testSpec->setIntegralTime(value);
+    d->testData->setData("[积分时间]", value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
@@ -93,6 +86,17 @@ void HSimpleTestSetWidget::on_checkBox_01_clicked(bool b)
 void HSimpleTestSetWidget::on_checkBox_02_clicked(bool b)
 {
     setTestState(b);
+}
+
+bool HSimpleTestSetWidget::adjustIntegralTime()
+{
+    Q_D(HSimpleTestSetWidget);
+    if (!d->integralTimeAuto)
+        return false;
+    if (!d->testData->handleOperation("<匹配积分时间>").toBool())
+        return false;
+    d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    return true;
 }
 
 void HSimpleTestSetWidget::init()

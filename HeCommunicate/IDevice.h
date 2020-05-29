@@ -19,6 +19,8 @@ class IPort;
 class IDevice : public IInitializeable
 {
 public:
+    // 端口类型
+    virtual QString portType() = 0;
     // 是否支持命令
     virtual bool isSupport(HActionType action) = 0;
     // 设置通讯口

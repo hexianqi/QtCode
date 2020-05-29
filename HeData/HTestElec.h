@@ -22,18 +22,16 @@ public:
     QString typeName() override;
 
 public:
+    void setData(QString type, QVariant value) override;
     bool setCalibrate(IElecCalibrateCollection *) override;
-    void setModule(int value) override;
-    void setModule(QString value) override;
-    void setGears(HElecType type, int value) override;
-    void setParam(HElecType type, double value) override;
-    void setSample(QVector<int> value) override;
 
 protected:
     HTestElec(HTestElecPrivate &);
 
 protected:
-    int gears(HElecType type);
+    void setModule(int value);
+    void setGears(HElecType type, int value);
+    void setParam(HElecType type, double value);
 };
 
 HE_DATA_END_NAMESPACE

@@ -16,7 +16,6 @@ public:
 public:
     IElecCalibrateCollection *collection = nullptr;
     IElecCalibrate *calibrate = nullptr;
-    int module = 0;
     QMap<HElecType, int> gears;
 };
 

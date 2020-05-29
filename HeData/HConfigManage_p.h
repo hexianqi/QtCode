@@ -22,6 +22,7 @@ public:
     IFileStream *fileStream = nullptr;
     ISpecCalibrateCollection *specCalibrates = nullptr;
     IElecCalibrateCollection *elecCalibrates = nullptr;
+    ILuminousCalibrateCollection *luminousCalibrates = nullptr;
     IChromatismCollection *chromatisms = nullptr;
     IGradeCollection *grades = nullptr;
     IAdjustCollection *adjusts = nullptr;

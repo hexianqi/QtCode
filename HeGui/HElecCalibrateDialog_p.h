@@ -6,7 +6,7 @@
 
 HE_DATA_BEGIN_NAMESPACE
 class IElecCalibrateCollection;
-class ITestElec;
+class ITestData;
 HE_DATA_END_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -16,8 +16,6 @@ HE_CONTROLLER_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HElecCalibrateItemWidget;
-
 class HElecCalibrateDialogPrivate
 {
 public:
@@ -25,7 +23,7 @@ public:
 
 public:
     IElecCalibrateCollection *calibrate = nullptr;
-    ITestElec *testElec = nullptr;
+    ITestData *testData = nullptr;
     IModel *model = nullptr;
     HElecCalibrateItemWidget *currentWidget = nullptr;
     bool loop = false;

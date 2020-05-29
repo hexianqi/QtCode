@@ -1,8 +1,6 @@
 #include "HElecStrategy_p.h"
-#include "HeCore/HAppContext.h"
-#include "HeData/ITestElec.h"
+#include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
-#include "HeCommunicate/IProtocolCollection.h"
 #include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -14,14 +12,12 @@ HElecStrategyPrivate::HElecStrategyPrivate()
                   << ACT_SET_OUTPUT_CURRENT
                   << ACT_SET_GEARS_OUTPUT_CURRENT
                   << ACT_SET_REVERSE_VOLTAGE
-                  << ACT_GET_ELEC_PARAM
+                  << ACT_GET_ELEC_DATA
                   << ACT_GET_MEASURED_VOLTAGE
                   << ACT_GET_MEASURED_CURRENT
                   << ACT_GET_REVERSE_CURRENT
                   << ACT_RESET_STATE_TRIGGER
                   << ACT_QUERY_STATE_TRIGGER;
-    protocol = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Elec");
-    testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
 }
 
 HElecStrategy::HElecStrategy(QObject *parent) :
@@ -54,41 +50,48 @@ HErrorType HElecStrategy::handle(HActionType action)
     switch(action)
     {
     case ACT_SET_SOURCE_MODE:
-        return d->protocol->setData(action, d->testElec->data("[电源模式]").toInt());
+        return d->protocol->setData(action, d->testData->data("[电源模式]").toInt());
     case ACT_SET_OUTPUT_VOLTAGE:
-        return d->protocol->setData(action, d->testElec->data("[输出电压_F]").toInt());
+        return d->protocol->setData(action, d->testData->data("[输出电压_F]").toInt());
     case ACT_SET_OUTPUT_CURRENT:
-        return d->protocol->setData(action, d->testElec->data("[输出电流_F]").toInt());
+        return d->protocol->setData(action, d->testData->data("[输出电流_F]").toInt());
     case ACT_SET_GEARS_OUTPUT_CURRENT:
-        return d->protocol->setData(action, d->testElec->data("[输出电流_档位]").toInt());
+        return d->protocol->setData(action, d->testData->data("[输出电流_档位]").toInt());
     case ACT_SET_REVERSE_VOLTAGE:
-        return d->protocol->setData(action, d->testElec->data("[反向电压_F]").toInt());
-    case ACT_GET_ELEC_PARAM:
+        return d->protocol->setData(action, d->testData->data("[反向电压_F]").toInt());
+    case ACT_GET_ELEC_DATA:
         error = d->protocol->getData(action, buff);
         if (error == E_OK)
-            d->testElec->setSample(buff);
+        {
+            if (buff.length() > 0)
+                d->testData->setData("[实测电压_F]", buff.at(0));
+            if (buff.length() > 1)
+                d->testData->setData("[实测电流_F]", buff.at(1));
+            if (buff.length() > 2)
+                d->testData->setData("[反向漏流_F]", buff.at(2));
+        }
         return error;
     case ACT_GET_MEASURED_VOLTAGE:
         error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setParam(MeasuredVoltage, sample);
+            d->testData->setData("[实测电压_F]", sample);
         return error;
     case ACT_GET_MEASURED_CURRENT:
         error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setParam(MeasuredCurrent, sample);
+            d->testData->setData("[实测电流_F]", sample);
         return error;
     case ACT_GET_REVERSE_CURRENT:
         error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setParam(ReverseCurrent, sample);
+            d->testData->setData("[反向漏流_F]", sample);
         return error;
     case ACT_RESET_STATE_TRIGGER:
         return d->protocol->setData(action, 0);
     case ACT_QUERY_STATE_TRIGGER:
         error = d->protocol->getData(action, sample);
         if (error == E_OK)
-            d->testElec->setData("[触发状态]", sample);
+            d->testData->setData("[触发状态]", sample);
         return error;
     }
     return E_OK;

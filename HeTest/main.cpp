@@ -45,8 +45,14 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HControlFactoryWidget cw;
-    cw.show();
+    QObject obj;
+    obj.setProperty("测试属性", "测试值");
+    qDebug() << obj.property("测试属性").toString();
+
+
+
+//    HControlFactoryWidget cw;
+//    cw.show();
 //    HControlDemoWidget dw;
 //    dw.show();
 

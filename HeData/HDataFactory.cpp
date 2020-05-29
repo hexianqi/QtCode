@@ -3,6 +3,7 @@
 #include "HFileStream.h"
 #include "HTestSpec.h"
 #include "HTestElec.h"
+#include "HTestLuminous.h"
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
 #include "HSpecCalibrateCollection.h"
@@ -10,6 +11,9 @@
 #include "HElecCalibrateCollection.h"
 #include "HElecCalibrateItem.h"
 #include "HElecCalibrateItemCollection.h"
+#include "HLuminousCalibrate.h"
+#include "HLuminousCalibrateCollection.h"
+#include "HLuminousCalibrateItem.h"
 #include "HChromatism.h"
 #include "HChromatismCollection.h"
 #include "HChromatismItem.h"
@@ -99,6 +103,14 @@ ITestElec *HDataFactory::createTestElec(QString type, QVariantMap param)
     return p;
 }
 
+ITestLuminous *HDataFactory::createTestLuminous(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HTestLuminous;
+    p->initialize(param);
+    return p;
+}
+
 IConfigManage *HDataFactory::createConfigManage(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
@@ -151,6 +163,30 @@ IElecCalibrateItem *HDataFactory::createElecCalibrateItem(QString type, QVariant
 {
     Q_UNUSED(type)
     auto p = new HElecCalibrateItem;
+    p->initialize(param);
+    return p;
+}
+
+ILuminousCalibrateCollection *HDataFactory::createLuminousCalibrateCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HLuminousCalibrateCollection;
+    p->initialize(param);
+    return p;
+}
+
+ILuminousCalibrate *HDataFactory::createLuminousCalibrate(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HLuminousCalibrate;
+    p->initialize(param);
+    return p;
+}
+
+ILuminousCalibrateItem *HDataFactory::createLuminousCalibrateItem(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HLuminousCalibrateItem;
     p->initialize(param);
     return p;
 }

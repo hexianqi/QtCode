@@ -93,8 +93,8 @@ void HSpecSettingDialog::init()
     HPluginHelper::initWidget("[积分时间]",     ui->doubleSpinBox_102);
     HPluginHelper::initWidget("[光谱波长]",     ui->doubleSpinBox_103);
     HPluginHelper::initWidget("[光谱波长]",     ui->doubleSpinBox_104);
-    HPluginHelper::initWidget("[光谱采样]",     ui->doubleSpinBox_105);
-    HPluginHelper::initWidget("[光谱采样]",     ui->doubleSpinBox_106);
+    HPluginHelper::initWidget("[光谱采样值]",   ui->doubleSpinBox_105);
+    HPluginHelper::initWidget("[光谱采样值]",   ui->doubleSpinBox_106);
     HPluginHelper::initWidget("[标准色温]",     ui->doubleSpinBox_107);
     HPluginHelper::initWidget("[光谱固定暗底]", ui->doubleSpinBox_201);
     HPluginHelper::initWidget("[光谱左右暗底]", ui->doubleSpinBox_202);

@@ -20,15 +20,6 @@ public:
 public:
     // 设置校准数据
     virtual bool setCalibrate(IElecCalibrateCollection *) = 0;
-    // 设置模块
-    virtual void setModule(int value) = 0;
-    virtual void setModule(QString value) = 0;
-    // 设置档位
-    virtual void setGears(HElecType type, int value) = 0;
-    // 设置参数
-    virtual void setParam(HElecType type, double value) = 0;
-    // 设置采样数据
-    virtual void setSample(QVector<int> value) = 0;
 };
 
 HE_DATA_END_NAMESPACE

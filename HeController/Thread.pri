@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HIntegrateThread.h \
+    $$PWD/HIntegrateThread_p.h \
     $$PWD/IThread.h \
     $$PWD/HAbstractThread.h \
     $$PWD/HAbstractThread_p.h \
@@ -14,6 +16,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractThread.cpp \
+    $$PWD/HIntegrateThread.cpp \
     $$PWD/HThreadCollection.cpp \
     $$PWD/HDelayThread.cpp \
     $$PWD/HSpecThread.cpp \

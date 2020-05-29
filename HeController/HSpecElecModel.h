@@ -5,13 +5,13 @@
 #ifndef HSPECELECMODEL_H
 #define HSPECELECMODEL_H
 
-#include "HSpecModel.h"
+#include "HAbstractModel.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HSpecElecModelPrivate;
 
-class HSpecElecModel : public HSpecModel
+class HSpecElecModel : public HAbstractModel
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecElecModel)
@@ -21,6 +21,7 @@ public:
     ~HSpecElecModel() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 protected:

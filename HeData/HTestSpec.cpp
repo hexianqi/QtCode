@@ -19,9 +19,9 @@ HTestSpecPrivate::HTestSpecPrivate()
     addData("[CCD偏差]", 55.0);
     addData("[光谱采样等待时间]", 0);
     addData("[积分时间]", 10.0);
-    addData("[采样帧溢出状态]", -1);
-    addData("[采样溢出状态]", 0);
-    addData("[采样比率]", 0.0);
+    addData("[光谱采样帧溢出状态]", -1);
+    addData("[光谱采样溢出状态]", 0);
+    addData("[光谱采样比率]", 0.0);
 }
 
 void HTestSpecPrivate::setCalibrate(ISpecCalibrate *p)
@@ -37,7 +37,7 @@ void HTestSpecPrivate::setIntegralTime(double value)
     clearCache();
 }
 
-bool HTestSpecPrivate::adjustIntegralTime()
+bool HTestSpecPrivate::matchIntegralTime()
 {
     if (maxSample >= 32000 && maxSample <= 60000)
         return false;
@@ -70,11 +70,16 @@ void HTestSpecPrivate::clearCache()
     sampleCache.clear();
 }
 
-void HTestSpecPrivate::resetStdCurve()
+void HTestSpecPrivate::useStdCurve()
 {
     samples[0] = calibrate->stdCurve();
     samples[1] = calibrate->stdCurve();
     calcSpec();
+}
+
+void HTestSpecPrivate::setStdCurve()
+{
+    calibrate->setStdCurve(sample(1));
 }
 
 QVector<double> HTestSpecPrivate::sample(int type)
@@ -88,14 +93,14 @@ QVector<double> HTestSpecPrivate::sample(int type)
 int HTestSpecPrivate::checkFrameOverflow()
 {
     int i = calibrate->checkFrameOverflow(sampleCache.size());
-    setData("[采样帧溢出状态]", i);
+    setData("[光谱采样帧溢出状态]", i);
     return i;
 }
 
 int HTestSpecPrivate::checkSampleOverflow()
 {
     int i = calibrate->checkSampleOverflow(maxSample);
-    setData("[采样溢出状态]", i);
+    setData("[光谱采样溢出状态]", i);
     return i;
 }
 
@@ -122,7 +127,7 @@ void HTestSpecPrivate::calcMaxSample()
     maxSample = 0;
     for (double i : samples.at(0))
         maxSample = qMax(maxSample, i);
-    setData("[采样比率]", maxSample * 100.0 / 65535);
+    setData("[光谱采样比率]", maxSample / 655.35);
 }
 
 bool HTestSpecPrivate::calcSpec()
@@ -146,8 +151,8 @@ bool HTestSpecPrivate::calcSpec()
         specData->Energy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
         specFacade->calcSpectrum(specData);
     }
-    specData->LuminousFlux = calibrate->calcLuminous(specData->VisionEnergy / data("[积分时间]").toDouble());
-    specData->LuminousPower = specData->LuminousFlux * specData->VisionEnergyRatio;
+    specData->LuminousFlux = calibrate->calcLuminous(specData->VisionFlux / data("[积分时间]").toDouble());
+    specData->LuminousPower = specData->VisionEfficien < 0.00001 ? 0.0 : 1000 * specData->LuminousFlux / specData->VisionEfficien;
     addData("[峰值波长]", specData->PeakWave);
     addData("[峰值带宽]", specData->Bandwidth);
     addData("[主波长]", specData->DominantWave);
@@ -163,7 +168,8 @@ bool HTestSpecPrivate::calcSpec()
     addData("[色坐标up]", specData->CoordinateUvp.x());
     addData("[色坐标vp]", specData->CoordinateUvp.y());
     addData("[Duv]", specData->Duv);
-    addData("[明视觉能量]", specData->VisionEnergy);
+    addData("[明视觉光通量]", specData->VisionFlux);
+    addData("[明视觉光效率]", specData->VisionFlux);
     addData("[红色比]", specData->RedRatio);
     addData("[蓝色比]", specData->BlueRatio);
     addData("[绿色比]", specData->GreenRatio);
@@ -209,30 +215,56 @@ QString HTestSpec::typeName()
     return "HTestSpec";
 }
 
+void HTestSpec::setData(QString type, QVariant value)
+{
+    Q_D(HTestSpec);
+    if (type == "[积分时间]")
+        return d->setIntegralTime(value.toDouble());
+    if (type == "[光谱采样值]")
+    {
+        setSample(value.value<QVector<double>>());
+        return;
+    }
+    return ITestSpec::setData(type, value);
+}
+
 QVariant HTestSpec::data(QString type)
 {
     Q_D(HTestSpec);
     if (type == "[光谱能量数据]")
         return d->energy();
+    if (type == "[光谱能量曲线]")
+        return QVariant::fromValue(d->specData->EnergyPercent);
     return HTestData::data(type);
+}
+
+QVariant HTestSpec::handleOperation(QString type, QVariant value)
+{
+    Q_D(HTestSpec);
+    if (type == "<匹配积分时间>")
+        return d->matchIntegralTime();
+    if (type == "<清空光谱采样缓存>")
+    {
+        d->clearCache();
+        return true;
+    }
+    if (type == "<使用标准光谱曲线>")
+    {
+        d->useStdCurve();
+        return true;
+    }
+    if (type == "<设置标准光谱曲线>")
+    {
+        d->setStdCurve();
+        return true;
+    }
+    return HTestData::handleOperation(type, value);
 }
 
 void HTestSpec::setCalibrate(ISpecCalibrate *p)
 {
     Q_D(HTestSpec);
     d->setCalibrate(p);
-}
-
-void HTestSpec::setIntegralTime(double value)
-{
-    Q_D(HTestSpec);
-    d->setIntegralTime(value);
-}
-
-bool HTestSpec::adjustIntegralTime()
-{
-    Q_D(HTestSpec);
-    return d->adjustIntegralTime();
 }
 
 bool HTestSpec::setSample(QVector<double> value, bool avg)
@@ -247,18 +279,6 @@ void HTestSpec::setFitting(bool b)
 {
     Q_D(HTestSpec);
     d->fitting = b;
-}
-
-void HTestSpec::clearCache()
-{
-    Q_D(HTestSpec);
-    d->clearCache();
-}
-
-void HTestSpec::resetStdCurve()
-{
-    Q_D(HTestSpec);
-    d->resetStdCurve();
 }
 
 double HTestSpec::sample(int type, int pel)
@@ -307,12 +327,6 @@ QPolygonF HTestSpec::samplePoly(int type)
     for (int i = 0; i < s.size(); i++)
         r << QPointF(i, s.at(i));
     return r;
-}
-
-QPolygonF HTestSpec::energy()
-{
-    Q_D(HTestSpec);
-    return d->specData->EnergyPercent;
 }
 
 double HTestSpec::pelsToWave(double value)

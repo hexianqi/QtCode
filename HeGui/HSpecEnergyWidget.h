@@ -23,6 +23,7 @@ public:
 public:
     void initCoordinate();
     void refreshWidget();
+    void addProgressBar(const QString &type);
 
 protected:
     HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *parent = nullptr);

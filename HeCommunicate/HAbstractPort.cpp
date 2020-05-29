@@ -22,14 +22,14 @@ void HAbstractPort::initialize(QVariantMap param)
         setTimeOut(param.value("timeOut").toInt());
 }
 
-void HAbstractPort::setTimeOut(int value)
-{
-    d_ptr->timeOut = value;
-}
-
 bool HAbstractPort::isConnected()
 {
     return d_ptr->connected;
+}
+
+void HAbstractPort::setTimeOut(int value)
+{
+    d_ptr->timeOut = value;
 }
 
 HErrorType HAbstractPort::open(int portNum)

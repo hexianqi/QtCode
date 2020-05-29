@@ -109,6 +109,12 @@ HXmlElement *HXmlElement::createChild(const QString &name)
     return xe;
 }
 
+void HXmlElement::addChild(HXmlElement *xe)
+{
+    d_ptr->domElement->appendChild(*xe->d_ptr->domElement);
+    d_ptr->childs.append(xe);
+}
+
 void HXmlElement::removeChild(HXmlElement *xe)
 {
     d_ptr->childs.removeAll(xe);
@@ -121,7 +127,7 @@ HXmlElement *HXmlElement::findElement(const std::function<bool(HXmlElement *)> &
     if (func(this))
         return this;
 
-    HXmlElement* xe = nullptr;
+    HXmlElement *xe = nullptr;
     for (auto item : childs())
     {
         xe = item->findElement(func);

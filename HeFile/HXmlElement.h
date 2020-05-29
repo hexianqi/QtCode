@@ -29,7 +29,7 @@ public:
     // 父节点
     HXmlElement *parent();
     // 子节点
-    QList<HXmlElement*> childs();
+    QList<HXmlElement *> childs();
     void setChild(const QList<HXmlElement *> &value);
     // 属性
     QString attribute(const QString &name);
@@ -39,8 +39,10 @@ public:
     // 保存到文件
     bool save();
     bool save(const QString &fileName);
-    // 添加节点
+    // 创建子节点
     HXmlElement *createChild(const QString &name);
+    // 添加子节点
+    void addChild(HXmlElement *);
     // 移除子节点
     void removeChild(HXmlElement *xe);
     // 遍历所有元素 查找符合条件的首个元素

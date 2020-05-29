@@ -25,9 +25,10 @@ public:
 public:
     void setCalibrate(ISpecCalibrate *);
     void setIntegralTime(double value);
-    bool adjustIntegralTime();
+    bool matchIntegralTime();
     bool setSample(QVector<double> value, bool avg = false);
-    void resetStdCurve();
+    void useStdCurve();
+    void setStdCurve();
     void clearCache();
 
 public:

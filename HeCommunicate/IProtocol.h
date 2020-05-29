@@ -19,6 +19,8 @@ class IDevice;
 class IProtocol : public IInitializeable
 {
 public:
+    // 端口类型
+    virtual QString portType() = 0;
     // 设置设备
     virtual void setDevice(IDevice *) = 0;
     // 打开

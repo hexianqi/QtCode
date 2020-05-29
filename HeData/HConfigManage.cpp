@@ -4,6 +4,7 @@
 #include "ITestData.h"
 #include "ISpecCalibrateCollection.h"
 #include "IElecCalibrateCollection.h"
+#include "ILuminousCalibrateCollection.h"
 #include "IChromatismCollection.h"
 #include "IGradeCollection.h"
 #include "IAdjustCollection.h"
@@ -56,6 +57,12 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         elecCalibrates = factory->createElecCalibrateCollection(type);
         elecCalibrates->fileStream()->readContent(s);
     }
+    if (contain & IConfigManage::ContainLuminous)
+    {
+        s >> type;
+        luminousCalibrates = factory->createLuminousCalibrateCollection(type);
+        luminousCalibrates->fileStream()->readContent(s);
+    }
     if (contain & IConfigManage::ContainChromatism)
     {
         s >> type;
@@ -95,6 +102,11 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     {
         s << elecCalibrates->typeName();
         elecCalibrates->fileStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainLuminous)
+    {
+        s << luminousCalibrates->typeName();
+        luminousCalibrates->fileStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainChromatism)
     {
@@ -182,12 +194,14 @@ IElecCalibrateCollection *HConfigManage::elecCalibrateCollection()
     return d_ptr->elecCalibrates;
 }
 
-IElecCalibrate *HConfigManage::elecCalibrate(QString name)
+void HConfigManage::setLuminousCalibrateCollection(ILuminousCalibrateCollection *p)
 {
-    Q_ASSERT(d_ptr->elecCalibrates != nullptr);
-    if (d_ptr->elecCalibrates->contains(name))
-        return d_ptr->elecCalibrates->value(name);
-    return d_ptr->elecCalibrates->first();
+    d_ptr->luminousCalibrates = p;
+}
+
+ILuminousCalibrateCollection *HConfigManage::luminousCalibrateCollection()
+{
+    return d_ptr->luminousCalibrates;
 }
 
 void HConfigManage::setChromatismCollection(IChromatismCollection *p)
@@ -238,6 +252,8 @@ bool HConfigManage::importPart(quint32 value)
         return d_ptr->specCalibrates->fileStream()->openFile();
     if (value & ContainElec)
         return d_ptr->elecCalibrates->fileStream()->openFile();
+    if (value & ContainLuminous)
+        return d_ptr->luminousCalibrates->fileStream()->openFile();
     if (value & ContainChromatism)
         return d_ptr->chromatisms->fileStream()->openFile();
     if (value & ContainGrade)
@@ -257,6 +273,8 @@ bool HConfigManage::exportPart(quint32 value)
         return d_ptr->specCalibrates->fileStream()->saveAsFile();
     if (value & ContainElec)
         return d_ptr->elecCalibrates->fileStream()->saveAsFile();
+    if (value & ContainLuminous)
+        return d_ptr->luminousCalibrates->fileStream()->saveAsFile();
     if (value & ContainChromatism)
         return d_ptr->chromatisms->fileStream()->saveAsFile();
     if (value & ContainGrade)

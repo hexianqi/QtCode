@@ -21,6 +21,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
+    QString portType() override;
     bool isSupport(HActionType action) override;
     void setPort(IPort *port, int num = 0, bool scan = true) override;
     void setDeviceID(int value) override;

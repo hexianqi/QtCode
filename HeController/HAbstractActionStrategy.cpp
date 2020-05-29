@@ -1,6 +1,13 @@
 #include "HAbstractActionStrategy_p.h"
+#include "HeCore/HAppContext.h"
+#include "HeData/ITestData.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
+
+HAbstractActionStrategyPrivate::HAbstractActionStrategyPrivate()
+{
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
+}
 
 HAbstractActionStrategy::HAbstractActionStrategy(QObject *parent) :
     IActionStrategy(parent),
@@ -16,7 +23,11 @@ HAbstractActionStrategy::HAbstractActionStrategy(HAbstractActionStrategyPrivate 
 
 void HAbstractActionStrategy::initialize(QVariantMap /*param*/)
 {
+}
 
+void HAbstractActionStrategy::setProtocol(IProtocol *p)
+{
+    d_ptr->protocol = p;
 }
 
 bool HAbstractActionStrategy::isSupport(HActionType action)

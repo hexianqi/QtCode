@@ -4,16 +4,20 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IFileStream.h"
-#include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/ISpecCalibrate.h"
-#include "HeData/IElecCalibrateCollection.h"
+#include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/IElecCalibrate.h"
+#include "HeData/IElecCalibrateCollection.h"
 #include "HeData/IChromatismCollection.h"
 #include "HeData/ITestSpec.h"
 #include "HeData/ITestElec.h"
+#include "HeData/ITestLuminous.h"
+#include "HeData/ILuminousCalibrate.h"
+#include "HeData/ILuminousCalibrateItem.h"
+#include "HeData/ILuminousCalibrateCollection.h"
 #include "HeCommunicate/ICommunicateFactory.h"
-#include "HeCommunicate/IProtocolCollection.h"
 #include "HeCommunicate/IProtocol.h"
+#include "HeCommunicate/IProtocolCollection.h"
 #include "HeCommunicate/IDevice.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
@@ -40,15 +44,15 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
     sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
                              << "Temperature" << "Humidity" << "TestDate" << "TestTime"
                              << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
-                             << "LuminousFluxSpec" << "LuminousPower" << "LuminousEfficiency"
+                             << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency"
                              << "PeakWave" << "PeakBandwidth" << "DominantWave"
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
                              << "Ra" << "Rx" << "EnergyGraph";
-    HAppContext::setContextValue("GradeOptionals",      QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
-    HAppContext::setContextValue("QualityOptionals",    QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("GradeOptionals",      QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
+    HAppContext::setContextValue("QualityOptionals",    QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
 }
 
 HBuilder2000DC::HBuilder2000DC(IMainWindow *parent) :
@@ -107,18 +111,29 @@ void HBuilder2000DC::buildConfigManage()
         elec->setItemCollection(ReverseVoltage,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[4]));
         elec->setItemCollection(ReverseCurrent,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[5]));
         auto elecs = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
-        elecs->insert("1", elec);
+        elecs->insert("模块1", elec);
+
+        auto luminousItem = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
+        luminousItem->setData("[项类型]", "[光通量]");
+        luminousItem->setTotalGears(5);
+        auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
+        luminous->insert("[光通量]", luminousItem);
+        auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
+        luminouss->insert("模块1", luminous);
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
         chromatisms->fileStream()->readFile(":/dat/Chromatism.hcc");
+
         d->configManage->setContain(IConfigManage::ContainSpec
                                     | IConfigManage::ContainElec
+                                    | IConfigManage::ContainLuminous
                                     | IConfigManage::ContainChromatism
                                     | IConfigManage::ContainGrade
                                     | IConfigManage::ContainAdjust
                                     | IConfigManage::ContainQuality);
         d->configManage->setSpecCalibrateCollection(specs);
         d->configManage->setElecCalibrateCollection(elecs);
+        d->configManage->setLuminousCalibrateCollection(luminouss);
         d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
@@ -134,16 +149,21 @@ void HBuilder2000DC::buildTestData()
     auto other = d->dataFactory->createTestData("HTestData");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
     auto elec = d->dataFactory->createTestElec("HTestElec");
-    elec->setSuccessor(other);
-    elec->setCalibrate(d->configManage->elecCalibrateCollection());
-    elec->setParam(OutputVoltage, 10);
-    spec->setSuccessor(elec);
+    auto luminous = d->dataFactory->createTestLuminous("HTestLuminous");
+
+    spec->setSuccessor(other);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    data->setSuccessor(spec);
+    elec->setSuccessor(spec);
+    elec->setCalibrate(d->configManage->elecCalibrateCollection());
+    elec->setData("[输出电压]", 10);
+    luminous->setSuccessor(elec);
+    luminous->setCalibrate(d->configManage->luminousCalibrateCollection());
+    data->setSuccessor(luminous);
     HAppContext::setContextPointer("ITestData", data);
-    HAppContext::setContextPointer("ITestOther", other);
-    HAppContext::setContextPointer("ITestSpec", spec);
+    HAppContext::setContextPointer("ITestLuminous", luminous);
     HAppContext::setContextPointer("ITestElec", elec);
+    HAppContext::setContextPointer("ITestSpec", spec);
+    HAppContext::setContextPointer("ITestOther", other);
 }
 
 void HBuilder2000DC::buildDevice()
@@ -151,21 +171,21 @@ void HBuilder2000DC::buildDevice()
     Q_D(HBuilder2000DC);
 //    // 模拟设备
 //    auto device = d->communicateFactory->createDevice("HSlSimulation");
-//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
 //    protocol->setDevice(device);
     // 真实设备
-    auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
+    auto protocol1 = d->communicateFactory->createProtocol(deployItem("Protocol"));
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
-    protocols->insert("Spec", protocol);
-    protocols->insert("Elec", protocol2);
+    protocols->insert("Spec", protocol1);
+    protocols->insert("Else", protocol2);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
 void HBuilder2000DC::buildThread()
 {
     Q_D(HBuilder2000DC);
-    auto thread = d->controllerFactory->createThread("HSpecElecThread");
+    auto thread = d->controllerFactory->createThread("HIntegrateThread");
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
     threads->insert("1", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
@@ -174,7 +194,7 @@ void HBuilder2000DC::buildThread()
 void HBuilder2000DC::buildModel()
 {
     Q_D(HBuilder2000DC);
-    d->model = d->controllerFactory->createModel("HSpecElecModel");
+    d->model = d->controllerFactory->createModel("HIntegrateModel");
     HAppContext::setContextPointer("IModel", d->model);
 }
 
@@ -193,7 +213,7 @@ void HBuilder2000DC::buildDatabase()
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
-    auto print = d->sqlFactory->createPrint("HSpecElecSqlPrint");
+    auto print = d->sqlFactory->createPrint("HIntegrateSqlPrint");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
     model->setField(d->sqlField);
     model->setTable("Spec");
@@ -223,6 +243,7 @@ void HBuilder2000DC::buildMenu()
     auto database = new QMenu(tr("数据库(&D)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("电定标(&E)..."), "HElecCalibrateHandler"));
+    calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));

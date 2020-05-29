@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HIntegrateSqlPrint.h \
+    $$PWD/HIntegrateSqlPrint_p.h \
     $$PWD/ISqlDatabase.h \
     $$PWD/ISqlTableModel.h \
     $$PWD/HSqlDatabase.h \
@@ -17,6 +19,7 @@ HEADERS += \
     $$PWD/HSpecElecSqlPrint_p.h
 
 SOURCES +=  \
+    $$PWD/HIntegrateSqlPrint.cpp \
     $$PWD/HSqlDatabase.cpp \
     $$PWD/HSqlTableModel.cpp \
     $$PWD/HSqlHandle.cpp \

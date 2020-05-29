@@ -44,6 +44,12 @@ void HElecCalibrateItem::writeContent(QDataStream &s)
     s << d->relation;
 }
 
+void HElecCalibrateItem::restoreDefault()
+{
+    Q_D(HElecCalibrateItem);
+    d->relation = QPolygonF() << QPointF(0, 10) << QPointF(6000, 100);
+}
+
 void HElecCalibrateItem::setRelation(QPolygonF value)
 {
     Q_D(HElecCalibrateItem);
@@ -66,12 +72,6 @@ double HElecCalibrateItem::toReal(double value)
 {
     Q_D(HElecCalibrateItem);
     return HMath::interpolate(value, d->relation);
-}
-
-void HElecCalibrateItem::restoreDefault()
-{
-    Q_D(HElecCalibrateItem);
-    d->relation = QPolygonF() << QPointF(0, 10) << QPointF(6000, 100);
 }
 
 HE_DATA_END_NAMESPACE

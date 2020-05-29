@@ -1,6 +1,5 @@
 #include "HDelayThread_p.h"
 #include "IModel.h"
-#include "HeCore/HAppContext.h"
 #include <QtCore/QWaitCondition>
 #include <QtCore/QMutexLocker>
 #include <QtCore/QDebug>

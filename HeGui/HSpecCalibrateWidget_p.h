@@ -4,10 +4,6 @@
 #include "HSpecCalibrateWidget.h"
 #include "HAbstractTestWidget_p.h"
 
-HE_DATA_BEGIN_NAMESPACE
-class ITestSpec;
-HE_DATA_END_NAMESPACE
-
 HE_GUI_BEGIN_NAMESPACE
 
 class HSpecSampleChartView;
@@ -20,13 +16,7 @@ class ITestDetailWidget;
 class HSpecCalibrateWidgetPrivate : public HAbstractTestWidgetPrivate
 {
 public:
-    HSpecCalibrateWidgetPrivate();
-
-public:
-    ITestSpec *testSpec = nullptr;
     ISpecCalibrate *calibrate = nullptr;
-
-public:
     HSpecSampleChartView *sampleView = nullptr;
     HSpecFittingChartView *ccdView = nullptr;
     HSpecEnergyWidget *energyWidget = nullptr;

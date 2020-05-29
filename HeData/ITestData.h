@@ -36,6 +36,8 @@ public:
     virtual QStringList toString(QStringList type) = 0;
     // 获取数据-按Html表格方式
     virtual QString toHtmlTable(QStringList type, QColor bgcolor) = 0;
+    // 处理操作
+    virtual QVariant handleOperation(QString type, QVariant value = QVariant()) = 0;
 };
 
 HE_DATA_END_NAMESPACE

@@ -15,6 +15,8 @@ public:
     using HAbstractDataItem::HAbstractDataItem;
 
 public:
+    // 还原默认
+    virtual void restoreDefault() = 0;
     // 设置关联数据
     virtual void setRelation(QPolygonF value) = 0;
     // 获取关联数据

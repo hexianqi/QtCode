@@ -225,12 +225,16 @@ void HTestWidget2000::refreshWidget()
     Q_D(HTestWidget2000);
     auto mode = d->testSetWidget->testMode();
     auto append = mode == 0 || mode >= 3;
+    auto point = d->testData->data("[色坐标]").toPointF();
     saveRecord(append);
     d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
-    d->cieWidget->addPoint(d->testData->data("[色坐标]").toPointF());
     d->resultWidget->refreshResult(0, append);
+    if (append)
+        d->cieWidget->addPoint(point);
+    else
+        d->cieWidget->setPointFocus(point);
 }
 
 void HTestWidget2000::postProcess()

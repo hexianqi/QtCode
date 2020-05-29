@@ -26,11 +26,11 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
+    void restoreDefault() override;
     void setRelation(QPolygonF value) override;
     QPolygonF relation() override;
     double toFiction(double value) override;
     double toReal(double value) override;
-    void restoreDefault();
 
 protected:
     HElecCalibrateItem(HElecCalibrateItemPrivate &);

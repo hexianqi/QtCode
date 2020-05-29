@@ -28,7 +28,7 @@ public:
 public:
     // 计算色容差
     virtual double calcSdcm(double tc, QPointF xy) = 0;
-    // 使用数据
+    // 使用的数据
     virtual QVariantMap toMap() = 0;
 };
 

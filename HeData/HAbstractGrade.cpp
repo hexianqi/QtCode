@@ -25,7 +25,6 @@ void HAbstractGrade::readContent(QDataStream &s)
 {
     Q_D(HAbstractGrade);
     quint32 version;
-
     s >> version;
     HStreamHelper::read<QString, HeData::IGradeItem>(s, d->datas, [=](QString type) { return d->factory->createGradeItem(type); });
 }

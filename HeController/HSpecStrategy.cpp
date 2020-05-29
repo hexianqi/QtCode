@@ -2,7 +2,6 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/IProtocol.h"
-#include "HeCommunicate/IProtocolCollection.h"
 #include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -16,7 +15,6 @@ HSpecStrategyPrivate::HSpecStrategyPrivate()
                   << ACT_GET_INTEGRAL_TIME
                   << ACT_GET_SPECTRUM
                   << ACT_GET_RAM;
-    protocol = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
 }
 

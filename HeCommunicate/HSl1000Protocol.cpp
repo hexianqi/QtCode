@@ -15,18 +15,21 @@ HSl1000ProtocolPrivate::HSl1000ProtocolPrivate()
     device = new HSlCodecDevice;
     device->setPort(port, 4, true);
     device->setDeviceID(0x01);
-    device->addActionParam(ACT_CHECK_DEVICE,               QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x00);
-    device->addActionParam(ACT_SET_SOURCE_MODE,            QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x05);
-    device->addActionParam(ACT_SET_OUTPUT_VOLTAGE,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x06);
-    device->addActionParam(ACT_SET_OUTPUT_CURRENT,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x07);
-    device->addActionParam(ACT_SET_GEARS_OUTPUT_CURRENT,   QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x08);
-    device->addActionParam(ACT_SET_REVERSE_VOLTAGE,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x09);
-    device->addActionParam(ACT_GET_ELEC_PARAM,             QList<uchar>() << 0x00 << 0x06 << 0x01 << 0x11);
-    device->addActionParam(ACT_GET_MEASURED_VOLTAGE,       QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x12);
-    device->addActionParam(ACT_GET_MEASURED_CURRENT,       QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x13);
-    device->addActionParam(ACT_GET_REVERSE_CURRENT,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x14);
-    device->addActionParam(ACT_RESET_STATE_TRIGGER,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x0F);
-    device->addActionParam(ACT_QUERY_STATE_TRIGGER,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x15);
+    device->addActionParam(ACT_CHECK_DEVICE,                QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x00);
+    device->addActionParam(ACT_SET_SOURCE_MODE,             QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x05);
+    device->addActionParam(ACT_SET_OUTPUT_VOLTAGE,          QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x06);
+    device->addActionParam(ACT_SET_OUTPUT_CURRENT,          QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x07);
+    device->addActionParam(ACT_SET_GEARS_OUTPUT_CURRENT,    QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x08);
+    device->addActionParam(ACT_SET_REVERSE_VOLTAGE,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x09);
+    device->addActionParam(ACT_GET_ELEC_DATA,               QList<uchar>() << 0x00 << 0x06 << 0x01 << 0x11);
+    device->addActionParam(ACT_GET_MEASURED_VOLTAGE,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x12);
+    device->addActionParam(ACT_GET_MEASURED_CURRENT,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x13);
+    device->addActionParam(ACT_GET_REVERSE_CURRENT,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x14);
+    device->addActionParam(ACT_RESET_STATE_TRIGGER,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x0F);
+    device->addActionParam(ACT_QUERY_STATE_TRIGGER,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x15);
+    device->addActionParam(ACT_SET_LUMINOUS_TYPE,           QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x05);
+    device->addActionParam(ACT_SET_LUMINOUS_GEARS,          QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x06);
+    device->addActionParam(ACT_GET_LUMINOUS_DATA,           QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x11);
 }
 
 HSl1000Protocol::HSl1000Protocol() :

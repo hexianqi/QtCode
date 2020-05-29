@@ -20,10 +20,11 @@ void HMainWindow2000DC::initImportExport()
     Q_D(HMainWindow2000DC);
     HAbstractMainWindow::initImportExport();
     d->importExport.insert(tr("1.光谱定标数据(&S)..."),   IConfigManage::ContainSpec);
-    d->importExport.insert(tr("2.电数据(&G)..."),         IConfigManage::ContainElec);
-    d->importExport.insert(tr("3.分级数据(&G)..."),       IConfigManage::ContainGrade);
-    d->importExport.insert(tr("4.调整数据(&A)..."),       IConfigManage::ContainAdjust);
-    d->importExport.insert(tr("5.色容差数据(&C)..."),     IConfigManage::ContainChromatism);
+    d->importExport.insert(tr("2.电定标数据(&G)..."),     IConfigManage::ContainElec);
+    d->importExport.insert(tr("3.光定标数据(&G)..."),     IConfigManage::ContainLuminous);
+    d->importExport.insert(tr("4.色容差数据(&C)..."),     IConfigManage::ContainChromatism);
+    d->importExport.insert(tr("5.分级数据(&G)..."),       IConfigManage::ContainGrade);
+    d->importExport.insert(tr("6.调整数据(&A)..."),       IConfigManage::ContainAdjust);
 }
 
 void HMainWindow2000DC::initBuilder()

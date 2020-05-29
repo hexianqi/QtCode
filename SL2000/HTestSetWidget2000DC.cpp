@@ -1,18 +1,10 @@
 #include "HTestSetWidget2000DC_p.h"
 #include "ui_HTestSetWidget2000DC.h"
-#include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
-#include "HeData/ITestSpec.h"
-#include "HeData/ITestElec.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QTimer>
 #include <QtCore/QDebug>
-
-HTestSetWidget2000DCPrivate::HTestSetWidget2000DCPrivate()
-{
-    testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-    testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
-}
 
 HTestSetWidget2000DC::HTestSetWidget2000DC(QWidget *parent) :
     HAbstractTestSetWidget(*new HTestSetWidget2000DCPrivate, parent),
@@ -94,7 +86,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
 
     if (b)
     {
-        d->testSpec->clearCache();
+        d->testData->handleOperation("<清空光谱采样缓存>");
         if (d->testMode == 0)
         {
             d->model->addAction(ACT_SINGLE_TEST);
@@ -106,7 +98,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
         else
         {
             d->model->addAction(ACT_GET_REVERSE_CURRENT);
-            d->testElec->setData("[电源模式]", 1);
+            d->testData->setData("[电源模式]", 1);
             d->model->addAction(ACT_SET_SOURCE_MODE);
             if (d->testMode == 1)
             {
@@ -128,7 +120,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
     {
         if (d->testMode >= 1 && d->testMode <= 3)
         {
-            d->testElec->setData("[电源模式]", 0);
+            d->testData->setData("[电源模式]", 0);
             d->model->addAction(ACT_SET_SOURCE_MODE);
             d->timerContinue->stop();
             d->timerInterval->stop();
@@ -142,28 +134,28 @@ void HTestSetWidget2000DC::on_doubleSpinBox_1_valueChanged(double value)
     Q_D(HTestSetWidget2000DC);
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
-    d->testSpec->setIntegralTime(value);
+    d->testData->setData("[积分时间]", value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
 void HTestSetWidget2000DC::on_doubleSpinBox_2_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testElec->setParam(OutputVoltage, value);
+    d->testData->setData("[输出电压]", value);
     d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
 }
 
 void HTestSetWidget2000DC::on_doubleSpinBox_3_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testElec->setParam(OutputCurrent, value);
+    d->testData->setData("[输出电流]", value);
     d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HTestSetWidget2000DC::on_doubleSpinBox_4_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testElec->setParam(ReverseVoltage, value);
+    d->testData->setData("[反向电压]", value);
     d->model->addAction(ACT_SET_REVERSE_VOLTAGE);
 }
 
@@ -189,7 +181,7 @@ void HTestSetWidget2000DC::on_comboBox_1_currentIndexChanged(int value)
 void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testElec->setGears(OutputCurrent, value);
+    d->testData->setData("[输出电流_档位]", value);
     d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
 }
 
@@ -209,7 +201,7 @@ bool HTestSetWidget2000DC::adjustIntegralTime()
     Q_D(HTestSetWidget2000DC);
     if (!d->integralTimeAuto)
         return false;
-    if (!d->testSpec->adjustIntegralTime())
+    if (!d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
     return true;

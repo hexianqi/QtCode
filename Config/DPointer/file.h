@@ -2,8 +2,12 @@
 **      %{CurrentDate:yyyy-MM-dd}  %{CN}
 ***************************************************************************************************/
 
+@if '%{Cpp:PragmaOnce}'
+#pragma once
+@else
 #ifndef %{GUARD}
 #define %{GUARD}
+@endif
 
 @if '%{Base}'
 #include "%{Base}.h"
@@ -54,4 +58,6 @@ protected:
 
 %{EN}
 
-#endif // %{GUARD}\
+@if ! '%{Cpp:PragmaOnce}'
+#endif // %{GUARD}
+@endif

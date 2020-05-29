@@ -69,7 +69,7 @@ HDaXinDevicePrivate::HDaXinDevicePrivate()
     actionParams.insert(ACT_SET_SOURCE_REVERSE,     QList<uchar>() << 0x00 << 0x02 << 0x31);
     actionParams.insert(ACT_SET_SOURCE_IO,          QList<uchar>() << 0x00 << 0x02 << 0x32);
     actionParams.insert(ACT_GET_SOURCE_STATE,       QList<uchar>() << 0x00 << 0x01 << 0x27);
-    actionParams.insert(ACT_GET_ELEC_PARAM,         QList<uchar>() << 0x00 << 0x05 << 0x28);
+    actionParams.insert(ACT_GET_ELEC_DATA,         QList<uchar>() << 0x00 << 0x05 << 0x28);
     da = 0x00;
     sa = 0xFB;
 }

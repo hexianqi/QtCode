@@ -17,6 +17,7 @@ class IExcelStream;
 class ITestData;
 class ITestSpec;
 class ITestElec;
+class ITestLuminous;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
@@ -24,6 +25,9 @@ class IElecCalibrate;
 class IElecCalibrateCollection;
 class IElecCalibrateItem;
 class IElecCalibrateItemCollection;
+class ILuminousCalibrate;
+class ILuminousCalibrateCollection;
+class ILuminousCalibrateItem;
 class IChromatism;
 class IChromatismCollection;
 class IChromatismItem;
@@ -53,6 +57,8 @@ public:
     virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建电测试数据
     virtual ITestElec *createTestElec(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光测试数据
+    virtual ITestLuminous *createTestLuminous(QString type, QVariantMap param = QVariantMap()) = 0;
 
 public:
     // 创建配置管理
@@ -69,6 +75,12 @@ public:
     virtual IElecCalibrateItemCollection *createElecCalibrateItemCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建电校准数据子项
     virtual IElecCalibrateItem *createElecCalibrateItem(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光校准数据集
+    virtual ILuminousCalibrateCollection *createLuminousCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光校准数据
+    virtual ILuminousCalibrate *createLuminousCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建光校准数据子项
+    virtual ILuminousCalibrateItem *createLuminousCalibrateItem(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建色容差数据集
     virtual IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建色容差数据
