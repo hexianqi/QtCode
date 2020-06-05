@@ -3,6 +3,7 @@
 #include "HeCore/HCore.h"
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
+#include <QtWidgets/QHeaderView>
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -100,6 +101,7 @@ void HLuminousCalibrateItemWidget::initWidget()
         ui->tableWidget->setHorizontalHeaderLabels(headers);
         ui->tableWidget->setItemDelegate(delegate);
         ui->tableWidget->setRowCount(d_ptr->data->totalGears());
+        ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     }
     ui->label_003->setText(HCore::toUnit(d_ptr->types.at(0)));
 }

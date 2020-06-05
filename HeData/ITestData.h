@@ -30,6 +30,8 @@ public:
     virtual QVariant data(QString type) = 0;
     // 挑选数据
     virtual QVariantMap select(QStringList type) = 0;
+    // 复制数据
+    virtual QVariantMap cloneData() = 0;
     // 获取数据-按字符串格式
     virtual QString toString(QString type) = 0;
     // 获取数据-按字符串格式

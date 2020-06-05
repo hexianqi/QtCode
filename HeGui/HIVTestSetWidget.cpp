@@ -39,7 +39,7 @@ void HIVTestSetWidget::handleAction(HActionType action)
     if (action == ACT_SET_OUTPUT_CURRENT)
     {
         ui->doubleSpinBox_4->setValue(d->current);
-        d->model->addAction(ACT_GET_MEASURED_VOLTAGE);
+        d->model->addAction(ACT_GET_MEASURED_VOLTAGE, 100);
     }
     if (action == ACT_GET_MEASURED_VOLTAGE)
     {
@@ -101,6 +101,7 @@ void HIVTestSetWidget::init()
     ui->doubleSpinBox_2->setValue(d->to);
     ui->doubleSpinBox_3->setValue(d->interval);
     ui->doubleSpinBox_4->setValue(d->current);
+    ui->doubleSpinBox_4->setReadOnly(true);
 }
 
 HE_GUI_END_NAMESPACE

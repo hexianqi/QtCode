@@ -1,32 +1,32 @@
-#include "HSlDevice_p.h"
+#include "HSlDevice1_p.h"
 #include "IPort.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-HSlDevice::HSlDevice() :
-    HAbstractDevice(*new HSlDevicePrivate)
+HSlDevice1::HSlDevice1() :
+    HAbstractDevice(*new HSlDevice1Private)
 {
 }
 
-HSlDevice::HSlDevice(HSlDevicePrivate &p) :
+HSlDevice1::HSlDevice1(HSlDevice1Private &p) :
     HAbstractDevice(p)
 {
 }
 
-HSlDevice::~HSlDevice()
+HSlDevice1::~HSlDevice1()
 {
     qDebug() << __func__;
 }
 
-QString HSlDevice::typeName()
+QString HSlDevice1::typeName()
 {
-    return "HSlDevice";
+    return "HSlDevice1";
 }
 
-HErrorType HSlDevice::setData(HActionType action, QVector<uchar> value, int delay)
+HErrorType HSlDevice1::setData(HActionType action, QVector<uchar> value, int delay)
 {
-    Q_D(HSlDevice);
+    Q_D(HSlDevice1);
     auto param = d->actionParams.value(action);
     if (param.size() < 4)
         return E_DEVICE_ACTION_PARAM_ERROR;
@@ -49,9 +49,9 @@ HErrorType HSlDevice::setData(HActionType action, QVector<uchar> value, int dela
     return E_OK;
 }
 
-HErrorType HSlDevice::getData(HActionType action, QVector<uchar> &value, int delay)
+HErrorType HSlDevice1::getData(HActionType action, QVector<uchar> &value, int delay)
 {
-    Q_D(HSlDevice);
+    Q_D(HSlDevice1);
     auto param = d->actionParams.value(action);
     if (param.size() < 4)
         return E_DEVICE_ACTION_PARAM_ERROR;

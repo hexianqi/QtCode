@@ -104,18 +104,21 @@ QVariant HTestData::data(QString type)
     return d_ptr->data(type);
 }
 
-QVariant HTestData::handleOperation(QString type, QVariant value)
-{
-    if (d_ptr->successor != nullptr)
-        return d_ptr->successor->handleOperation(type, value);
-    return false;
-}
-
 QVariantMap HTestData::select(QStringList type)
 {
     QVariantMap r;
     for (const auto &t : type)
         r.insert(t, data(t));
+    return r;
+}
+
+QVariantMap HTestData::cloneData()
+{
+    if (d_ptr->successor == nullptr)
+        return d_ptr->datas;
+    auto r = d_ptr->successor->cloneData();
+    for (auto i = d_ptr->datas.begin(); i != d_ptr->datas.end(); i++)
+        r.insert(i.key(), i.value());
     return r;
 }
 
@@ -144,6 +147,13 @@ QString HTestData::toHtmlTable(QStringList type, QColor bgcolor)
                         "</tr>").arg(HCore::toCaption(t), toString(t), HCore::toUnit(t));
     }
     return QString("<table align = center border = 0 width = 300 cellspacing = 5 cellpadding = 5 bgcolor = %1 style = table-layout:fixed;>%2</table>").arg(bgcolor.name(), text);
+}
+
+QVariant HTestData::handleOperation(QString type, QVariant value)
+{
+    if (d_ptr->successor != nullptr)
+        return d_ptr->successor->handleOperation(type, value);
+    return false;
 }
 
 HE_DATA_END_NAMESPACE

@@ -1,8 +1,11 @@
 #include "HTestWidget2000DC_p.h"
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
+#include "HeCore/HAppContext.h"
+#include "HeData/ITestData.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include <QtWidgets/QMenu>
+#include <QtCore/QSettings>
 #include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
@@ -37,6 +40,7 @@ HTestWidget2000DC::HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *paren
 HTestWidget2000DC::~HTestWidget2000DC()
 {
     qDebug() << __func__;
+    writeSettings();
 }
 
 QString HTestWidget2000DC::typeName()
@@ -52,4 +56,43 @@ void HTestWidget2000DC::handleAction(HActionType action)
         refreshWidget();
     }
     HTestWidget2000::handleAction(action);
+}
+
+void HTestWidget2000DC::createAction()
+{
+    Q_D(HTestWidget2000DC);
+    HTestWidget2000::createAction();
+    d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
+    d->actionProbe->setCheckable(true);
+    d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
+    connect(d->actionProbe, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用光探头]", b); });
+}
+
+void HTestWidget2000DC::createMenu()
+{
+    Q_D(HTestWidget2000DC);
+    HTestWidget2000::createMenu();
+    d->menus.at(0)->insertAction(d->actionAdjust, d->actionProbe);
+}
+
+void HTestWidget2000DC::readSettings()
+{
+    Q_D(HTestWidget2000DC);
+    HTestWidget2000::readSettings();
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("TestWidget");
+    d->testData->setData("[使用光探头]", settings->value("Probe", false));
+    settings->endGroup();
+}
+
+void HTestWidget2000DC::writeSettings()
+{
+    Q_D(HTestWidget2000DC);
+    HTestWidget2000::writeSettings();
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("TestWidget");
+    settings->setValue("Probe", d->testData->data("[使用光探头]"));
+    settings->endGroup();
 }

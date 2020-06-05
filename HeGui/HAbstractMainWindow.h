@@ -63,6 +63,7 @@ protected:
     virtual void initBuilder() = 0;
     virtual void initModel();
     virtual void initCentralWidget();
+    virtual void initWindow();
 
 protected:
     QScopedPointer<HAbstractMainWindowPrivate> d_ptr;

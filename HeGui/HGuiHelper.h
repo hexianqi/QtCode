@@ -18,12 +18,6 @@ class HE_GUI_EXPORT HGuiHelper
 {
 public:
     static QMainWindow *decoratorInMainWindow(ITestWidget *widget, QWidget *parent = nullptr);
-//    static QString copy(QTableView *widget, bool withHeader = false);
-//    static QString copy(QTableWidget *widget, bool withHeader = false);
-//    static QString paste(QTableView *widget);
-//    static QString paste(QTableWidget *widget);
-//    static QString selectedParameter(QWidget *parent, QStringList optional);
-//    static QAction *addSeparator(QWidget *widget);
 };
 
 HE_GUI_END_NAMESPACE

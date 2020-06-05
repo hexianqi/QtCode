@@ -1,6 +1,6 @@
 #include "HCcd554bProtocol_p.h"
 #include "HUsbPortCy.h"
-#include "HSlDevice.h"
+#include "HSlDevice1.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -11,7 +11,7 @@ HCcd554bProtocolPrivate::HCcd554bProtocolPrivate()
     param.insert("timeOut", 5000);
     auto port = new HUsbPortCy;
     port->initialize(param);
-    device = new HSlDevice;
+    device = new HSlDevice1;
     device->setPort(port, 0, false);
     device->setDeviceID(0x81);
     device->addActionParam(ACT_CHECK_DEVICE,        QList<uchar>() << 0x00 << 0x02 << 0x03 << 0x00);

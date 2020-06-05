@@ -23,6 +23,7 @@ public:
 protected:
     void initImportExport() override;
     void initBuilder() override;
+    void initWindow() override;
 };
 
 #endif // HMAINWINDOW2000DC_H

@@ -37,6 +37,12 @@
      <property name="spacing">
       <number>9</number>
      </property>
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
      <item>
       <spacer name="horizontalSpacer_1">
        <property name="orientation">

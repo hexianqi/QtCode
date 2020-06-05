@@ -8,6 +8,9 @@ class HTestWidget2000DCPrivate : public HTestWidget2000Private
 {
 public:
     HTestWidget2000DCPrivate();
+
+public:
+    QAction *actionProbe = nullptr;
 };
 
 #endif // HTESTWIDGET2000DC_P_H

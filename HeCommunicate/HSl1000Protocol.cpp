@@ -1,6 +1,6 @@
 #include "HSl1000Protocol_p.h"
 #include "HSerialPort.h"
-#include "HSlCodecDevice.h"
+#include "HSlDevice3.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -12,7 +12,7 @@ HSl1000ProtocolPrivate::HSl1000ProtocolPrivate()
     param.insert("baudRate", 115200);
     auto port = new HSerialPort;
     port->initialize(param);
-    device = new HSlCodecDevice;
+    device = new HSlDevice3;
     device->setPort(port, 4, true);
     device->setDeviceID(0x01);
     device->addActionParam(ACT_CHECK_DEVICE,                QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x00);

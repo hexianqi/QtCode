@@ -44,7 +44,7 @@ void HSpecCalibrateSetWidget::handleAction(HActionType action)
         if (!d->testState)
             break;
         adjustIntegralTime();
-        d->model->addAction(ACT_GET_SPECTRUM, 50);
+        d->model->addAction(ACT_GET_SPECTRUM, 100);
         break;
     default:
         break;

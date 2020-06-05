@@ -23,122 +23,58 @@ QString HBigProtocol::typeName()
     return "HBigProtocol";
 }
 
-HErrorType HBigProtocol::setData(HActionType action, int value, int delay)
+QVector<uchar> HBigProtocol::toVector(int value)
 {
-    auto data = QVector<uchar>() << uchar(value / 256) << uchar(value % 256);
-    return setData(action, data, delay);
+    return QVector<uchar>() << uchar(value / 256) << uchar(value % 256);
 }
 
-HErrorType HBigProtocol::setData(HActionType action, uchar value, int delay)
+QVector<uchar> HBigProtocol::toVector(uint value)
 {
-    return HAbstractProtocol::setData(action, value, delay);
+    return QVector<uchar>() << ((value >> 24) & 0xFF)
+                            << ((value >> 16) & 0xFF)
+                            << ((value >>  8) & 0xFF)
+                            << ((value >>  0) & 0xFF);
 }
 
-HErrorType HBigProtocol::setData(HActionType action, uint value, int delay)
+int HBigProtocol::toInt(QVector<uchar> value)
 {
-    auto data = QVector<uchar>() << ((value >> 24) & 0xFF)
-                                 << ((value >> 16) & 0xFF)
-                                 << ((value >>  8) & 0xFF)
-                                 << ((value >>  0) & 0xFF);
-    return setData(action, data, delay);
+    if (value.size() < 2)
+        return 0;
+    return value.at(0) * 256 + value.at(1);
 }
 
-HErrorType HBigProtocol::setData(HActionType action, QVector<int> value, int delay)
+uint HBigProtocol::toUInt(QVector<uchar> value)
 {
-    QVector<uchar> data;
-    for (auto i : value)
-        data << uchar(i / 256) << uchar(i % 256);
-    return setData(action, data, delay);
+    if (value.size() < 4)
+        return 0;
+    return uint((value.at(0) << 24) + (value.at(1) << 16) + (value.at(2) << 8) + value.at(3));
 }
 
-HErrorType HBigProtocol::setData(HActionType action, QVector<uchar> value, int delay)
+QVector<int> HBigProtocol::toVectorInt(QVector<uchar> value, int size)
 {
-    return HAbstractProtocol::setData(action, value, delay);
+    QVector<int> result;
+    auto n = size == 0 ? value.size() / 2 : qMin(size, value.size() / 2);
+    for (int i = 0; i < n; i++)
+        result << value.at(2 * i) * 256 + value.at(2 * i + 1);
+    return result;
 }
 
-HErrorType HBigProtocol::setData(HActionType action, QVector<uint> value, int delay)
+QVector<uint> HBigProtocol::toVectorUInt(QVector<uchar> value, int size)
 {
-    QVector<uchar> data;
-    for (auto i : value)
-    {
-        data << ((i >> 24) & 0xFF)
-             << ((i >> 16) & 0xFF)
-             << ((i >>  8) & 0xFF)
-             << ((i >>  0) & 0xFF);
-    }
-    return setData(action, data, delay);
+    QVector<uint> result;
+    auto n = size == 0 ? value.size() / 4 : qMin(size, value.size() / 4);
+    for (int i = 0; i < n; i++)
+        result << uint((value.at(4 * i) << 24) + (value.at(4 * i + 1) << 16) + (value.at(4 * i + 2) << 8) + value.at(4 * i + 3));
+    return result;
 }
 
-HErrorType HBigProtocol::getData(HActionType action, int &value, int delay)
+QVector<double> HBigProtocol::toVectorDouble(QVector<uchar> value, int size)
 {
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = data[0] * 256 + data[1];
-    return E_OK;
-}
-
-HErrorType HBigProtocol::getData(HActionType action, uchar &value, int delay)
-{
-    return HAbstractProtocol::getData(action, value, delay);
-}
-
-HErrorType HBigProtocol::getData(HActionType action, uint &value, int delay)
-{
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = uint((data[0] << 24) + (data[1] << 16) + (data[2] << 8) + data[3]);
-    return E_OK;
-}
-
-HErrorType HBigProtocol::getData(HActionType action, QVector<int> &value, int delay)
-{
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    if (value.isEmpty())
-        value.resize(data.size() / 2);
-    auto size = qMin(value.size(), data.size() / 2);
-    for (int i = 0; i < size; i++)
-        value[i] = data[2 * i] * 256 + data[2 * i + 1];
-    return E_OK;
-}
-
-HErrorType HBigProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
-{
-    return HAbstractProtocol::getData(action, value, delay);;
-}
-
-HErrorType HBigProtocol::getData(HActionType action, QVector<uint> &value, int delay)
-{
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    if (value.isEmpty())
-        value.resize(data.size() / 4);
-    auto size = qMin(value.size(), data.size() / 4);
-    for (int i = 0; i < size; i++)
-        value[i] = uint((data[4 * i] << 24) + (data[4 * i + 1] << 16) + (data[4 * i + 2] << 8) + data[4 * i + 3]);
-    return E_OK;
-}
-
-HErrorType HBigProtocol::getData(HActionType action, QVector<double> &value, int delay)
-{
-    QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    if (value.isEmpty())
-        value.resize(data.size() / 2);
-    auto size = qMin(value.size(), data.size() / 2);
-    for (int i = 0; i < size; i++)
-        value[i] = data[2 * i] * 256 + data[2 * i + 1];
-    return E_OK;
+    QVector<double> result;
+    auto n = size == 0 ? value.size() / 2 : qMin(size, value.size() / 2);
+    for (int i = 0; i < n; i++)
+        result << value.at(2 * i) * 256 + value.at(2 * i + 1);
+    return result;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

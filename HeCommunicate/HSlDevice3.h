@@ -2,22 +2,21 @@
 **      2018-06-19  HSlCodecDevice SL设备类（带编码）。
 ***************************************************************************************************/
 
-#ifndef HSLCODECDEVICE_H
-#define HSLCODECDEVICE_H
+#pragma once
 
-#include "HSlDevice.h"
+#include "HSlDevice1.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HSlCodecDevicePrivate;
+class HSlDevice3Private;
 
-class HSlCodecDevice : public HSlDevice
+class HSlDevice3 : public HSlDevice1
 {
-    Q_DECLARE_PRIVATE(HSlCodecDevice)
+    Q_DECLARE_PRIVATE(HSlDevice3)
 
 public:
-    explicit HSlCodecDevice();
-    ~HSlCodecDevice() override;
+    explicit HSlDevice3();
+    ~HSlDevice3() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -28,5 +27,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSLCODECDEVICE_H

@@ -1,40 +1,32 @@
 /***************************************************************************************************
-**      2019-07-10  HSlSimulation
+**      2019-04-08  HSlDevice SL设备类。
 ***************************************************************************************************/
 
-#ifndef HSLSIMULATION_H
-#define HSLSIMULATION_H
+#pragma once
 
 #include "HAbstractDevice.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HSlSimulationPrivate;
+class HSlDevice1Private;
 
-class HSlSimulation : public HAbstractDevice
+class HSlDevice1 : public HAbstractDevice
 {
-    Q_DECLARE_PRIVATE(HSlSimulation)
+    Q_DECLARE_PRIVATE(HSlDevice1)
 
 public:
-    explicit HSlSimulation();
-    ~HSlSimulation() override;
+    explicit HSlDevice1();
+    ~HSlDevice1() override;
 
 public:
     QString typeName() override;
 
 public:
-    HErrorType open() override;
-    HErrorType close() override;
     HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
     HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HSlSimulation(HSlSimulationPrivate &);
-
-protected:
-    double simulate(double v);
+    HSlDevice1(HSlDevice1Private &);
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSLSIMULATION_H

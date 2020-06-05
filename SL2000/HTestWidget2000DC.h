@@ -26,6 +26,10 @@ protected:
 
 protected:
     void handleAction(HActionType action) override;
+    void createAction() override;
+    void createMenu() override;
+    void readSettings();
+    void writeSettings();
 };
 
 #endif // HTESTWIDGET2000DC_H

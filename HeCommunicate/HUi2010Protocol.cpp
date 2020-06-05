@@ -22,7 +22,7 @@ HUi2010ProtocolPrivate::HUi2010ProtocolPrivate()
     device = new HPowerFactorDevice;
     device->setPort(port, 4, true);
     device->addActionParam(ACT_CHECK_DEVICE,    QList<uchar>() << 0x00 << 0x14 << 0x33);
-    device->addActionParam(ACT_GET_ELEC_DATA,  QList<uchar>() << 0x00 << 0x14 << 0x33);
+    device->addActionParam(ACT_GET_ELEC_DATA,   QList<uchar>() << 0x00 << 0x14 << 0x33);
 }
 
 HUi2010Protocol::HUi2010Protocol() :

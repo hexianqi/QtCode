@@ -56,7 +56,7 @@ void HAbstractMainWindow::openWidget(QWidget *w)
     w->setAttribute(Qt::WA_ShowModal, true);
     w->setAttribute(Qt::WA_DeleteOnClose, true);
     w->show();
-    d_ptr->testWidget->start();
+    connect(w, &QWidget::destroyed, d_ptr->testWidget, &ITestWidget::start);
 }
 
 QString HAbstractMainWindow::summary()
@@ -78,8 +78,7 @@ void HAbstractMainWindow::initialize()
     initBuilder();
     initModel();
     initCentralWidget();
-    updatetWindowTitle();
-    setWindowIcon(QIcon(":/image/Icon.ico"));
+    initWindow();
 }
 
 void HAbstractMainWindow::initImportExport()
@@ -176,13 +175,13 @@ void HAbstractMainWindow::initMenu()
 void HAbstractMainWindow::initToolBar()
 {
     addToolBar(d_ptr->toolBarLogo);
-    setIconSize(QSize(40,40));
+    setIconSize(QSize(40, 40));
     setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
 
 void HAbstractMainWindow::initStatusBar()
 {
-    statusBar()->setStyleSheet(QString("QStatusBar::item{border: 0px}"));
+    statusBar()->setStyleSheet("QStatusBar::item { border: 0px }");
 }
 
 void HAbstractMainWindow::initModel()
@@ -204,6 +203,12 @@ void HAbstractMainWindow::initCentralWidget()
     for (auto toolBar : d_ptr->testWidget->toolBars())
         insertToolBar(d_ptr->toolBarLogo, toolBar);
     d_ptr->testWidget->start();
+}
+
+void HAbstractMainWindow::initWindow()
+{
+    updatetWindowTitle();
+    setWindowIcon(QIcon(":/image/Icon.ico"));
 }
 
 void HAbstractMainWindow::showDeviceFailed(const QString &text)

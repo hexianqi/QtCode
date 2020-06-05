@@ -116,7 +116,7 @@ void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
 //    // 模拟设备
-//    auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
 //    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
 //    protocol->setDevice(device);
     // 真实设备
@@ -227,7 +227,7 @@ void HBuilder2000::buildTestWidget()
 //    QVariantMap param;
 //    param.insert("timeOut", 1000);
 //    auto port = d->communicateFactory->createPort("HUsbPortCy", param);
-//    auto device = d->communicateFactory->createDevice("HSlDevice");
+//    auto device = d->communicateFactory->createDevice("HSlDevice1");
 //    auto devices = d->communicateFactory->createDeviceCollection("HDeviceCollection");
 //    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
@@ -273,7 +273,7 @@ void HBuilder2000::buildTestWidget()
 //void HBuilder2000::buildDevice()
 //{
 //    Q_D(HBuilder2000);
-//    auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
 //    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
 //    auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
 //    protocol->setDevice(device);

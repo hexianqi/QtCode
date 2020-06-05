@@ -7,6 +7,7 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QHeaderView>
 #include <QtCharts/QValueAxis>
 #include <QtCore/QDebug>
 
@@ -66,6 +67,8 @@ void HIVTestWidget::createWidget()
     auto layout = new QGridLayout(this);
     auto tabWidget = new QTabWidget;
     d->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("电流(mA)") << tr("电压(V)"));
+    d->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    d->tableWidget->verticalHeader()->setVisible(false);
     d->chartView->axisX()->setLabelFormat("%.2f mA");
     d->chartView->axisY()->setLabelFormat("%.2f V");
     tabWidget->addTab(d->chartView, tr("测试图形"));

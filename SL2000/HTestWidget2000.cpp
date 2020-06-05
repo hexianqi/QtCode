@@ -315,6 +315,8 @@ void HTestWidget2000::readSettings()
 void HTestWidget2000::writeSettings()
 {
     Q_D(HTestWidget2000);
+    if (!d->modified)
+        return;
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
@@ -322,4 +324,5 @@ void HTestWidget2000::writeSettings()
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
     settings->setValue("Offset", d->testData->data("[CCD偏差]"));
     settings->endGroup();
+    d->modified = false;
 }

@@ -33,3 +33,9 @@ void HMainWindow2000DC::initBuilder()
     d->builder = new HBuilder2000DC(this);
     d->builder->buildAll();
 }
+
+void HMainWindow2000DC::initWindow()
+{
+    HAbstractMainWindow::initWindow();
+    setIconSize(QSize(60, 60));
+}

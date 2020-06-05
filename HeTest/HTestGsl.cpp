@@ -137,7 +137,7 @@ QList<QPolygonF> HTestGsl::multiFit()
     {
         auto y = qExp(x);
         auto sigma = 0.1 * y;
-        auto dy = ((qrand() % 10) - 5) / 50.0;
+        auto dy = QRandomGenerator::global()->bounded(-5, 5) / 50.0;
         p1 << QPointF(x, y * (1 + dy));
         w << sigma;
     }
@@ -184,7 +184,7 @@ QList<QPolygonF> HTestGsl::multiFit2()
     for (double x = 0.1; x < 2; x+= 0.1)
     {
         auto y = qExp(x);
-        auto dy = ((qrand() % 10) - 5) / 50.0;
+        auto dy = QRandomGenerator::global()->bounded(-5, 5) / 50.0;
         p1 << QPointF(x, y * (1 + dy));
     }
     list << p1;

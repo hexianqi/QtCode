@@ -38,6 +38,9 @@ public:
     QAction *actionGetRam = nullptr;
     QAction *actionImportCurve = nullptr;
     QAction *actionExportCurve = nullptr;
+
+public:
+    bool modified = true;
 };
 
 #endif // HTESTWIDGET2000_P_H

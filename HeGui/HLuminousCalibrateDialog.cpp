@@ -90,7 +90,7 @@ void HLuminousCalibrateDialog::handleAction(HActionType action)
         if (!d_ptr->test || d_ptr->currentWidget == nullptr)
             break;
         d_ptr->currentWidget->updateData(d_ptr->testData->data("[光采样值]").toDouble(), d_ptr->gears);
-        d_ptr->model->addAction(ACT_GET_LUMINOUS_DATA, 500);
+        d_ptr->model->addAction(ACT_GET_LUMINOUS_DATA, 300);
         break;
     }
 }
@@ -112,7 +112,7 @@ void HLuminousCalibrateDialog::setTest(bool b)
     d_ptr->testData->setData("[电源模式]", b ? 1 : 0);
     d_ptr->model->addAction(ACT_SET_SOURCE_MODE);
     if (b)
-        d_ptr->model->addAction(ACT_GET_LUMINOUS_DATA, 500);
+        d_ptr->model->addAction(ACT_GET_LUMINOUS_DATA, 300);
 }
 
 void HLuminousCalibrateDialog::done(int result)

@@ -2,10 +2,11 @@
 #include "HSerialPort.h"
 #include "HUsbPortCy.h"
 #include "HDeviceCollection.h"
-#include "HSlSimulation.h"
-#include "HSlDevice.h"
+#include "HSpecSimulateDevice.h"
+#include "HSlSimulateDevice.h"
+#include "HSlDevice1.h"
 #include "HSlDevice2.h"
-#include "HSlCodecDevice.h"
+#include "HSlDevice3.h"
 #include "HDaXinDevice.h"
 #include "HPowerFactorDevice.h"
 #include "HLittleProtocol.h"
@@ -84,10 +85,11 @@ void HCommunicateFactory::registerClass()
 {
     HFactory::registerClass<HSerialPort>("HSerialPort");
     HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
-    HFactory::registerClass<HSlSimulation>("HSlSimulation");
-    HFactory::registerClass<HSlDevice>("HSlDevice");
+    HFactory::registerClass<HSpecSimulateDevice>("HSpecSimulateDevice");
+    HFactory::registerClass<HSlSimulateDevice>("HSlSimulateDevice");
+    HFactory::registerClass<HSlDevice1>("HSlDevice1");
     HFactory::registerClass<HSlDevice2>("HSlDevice2");
-    HFactory::registerClass<HSlCodecDevice>("HSlCodecDevice");
+    HFactory::registerClass<HSlDevice3>("HSlDevice3");
     HFactory::registerClass<HDaXinDevice>("HDaXinDevice");
     HFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
     HFactory::registerClass<HLittleProtocol>("HLittleProtocol");

@@ -34,7 +34,7 @@ void HControlFactoryWidget::init()
     qss << "QComboBox { min-height: 25px; min-width: 60px; }"
         << "QComboBox QAbstractItemView::item { min-height: 25px; min-width: 60px; }";
     d_ptr->factory = new HControlFactory(this);
-    ui->comboBox->setView(new QListView());
+    ui->comboBox->setView(new QListView);
     ui->comboBox->addItems(d_ptr->factory->supportedWidgets());
     ui->comboBox->setStyleSheet(qss.join("\n"));
     HControlHelper::translucentWidget(this, QStringList());

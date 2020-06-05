@@ -22,25 +22,17 @@ public:
 public:
     QString typeName() override;
 
-public:
-    HErrorType setData(HActionType action, int value, int delay = 0) override;
-    HErrorType setData(HActionType action, uchar value, int delay = 0) override;
-    HErrorType setData(HActionType action, uint value, int delay = 0) override;
-    HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
-    HErrorType setData(HActionType action, QVector<int> value, int delay = 0) override;
-    HErrorType setData(HActionType action, QVector<uint> value, int delay = 0) override;
-
-public:
-    HErrorType getData(HActionType action, int &value, int delay = 0) override;
-    HErrorType getData(HActionType action, uchar &value, int delay = 0) override;
-    HErrorType getData(HActionType action, uint &value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<int> &value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<uint> &value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<double> &value, int delay = 0) override;
-
 protected:
     HLittleProtocol(HLittleProtocolPrivate &);
+
+protected:
+    QVector<uchar> toVector(int value) override;
+    QVector<uchar> toVector(uint value) override;
+    int toInt(QVector<uchar> value) override;
+    uint toUInt(QVector<uchar> value) override;
+    QVector<int> toVectorInt(QVector<uchar> value, int size) override;
+    QVector<uint> toVectorUInt(QVector<uchar> value, int size) override;
+    QVector<double> toVectorDouble(QVector<uchar> value, int size) override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

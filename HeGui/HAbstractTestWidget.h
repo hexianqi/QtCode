@@ -31,7 +31,7 @@ public:
 protected:
     HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent = nullptr);
 
-protected:
+protected slots:
     void closeEvent(QCloseEvent *) override;
     virtual bool setTest(bool b) = 0;
     virtual void handleAction(HActionType action) = 0;

@@ -16,7 +16,7 @@ HUi2008ProtocolPrivate::HUi2008ProtocolPrivate()
     device = new HPowerFactorDevice;
     device->setPort(port, 4, true);
     device->addActionParam(ACT_CHECK_DEVICE,    QList<uchar>() << 0x00 << 0x15 << 0x3F);
-    device->addActionParam(ACT_GET_ELEC_DATA,  QList<uchar>() << 0x00 << 0x15 << 0x3F);
+    device->addActionParam(ACT_GET_ELEC_DATA,   QList<uchar>() << 0x00 << 0x15 << 0x3F);
 }
 
 HUi2008Protocol::HUi2008Protocol() :

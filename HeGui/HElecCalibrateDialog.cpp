@@ -77,15 +77,15 @@ void HElecCalibrateDialog::handleAction(HActionType action)
     {
     case ACT_GET_MEASURED_VOLTAGE:
         d_ptr->currentWidget->updateData(d_ptr->testData->data("[实测电压_F]").toDouble());
-        d_ptr->model->addAction(action);
+        d_ptr->model->addAction(action, 300);
         break;
     case ACT_GET_MEASURED_CURRENT:
         d_ptr->currentWidget->updateData(d_ptr->testData->data("[实测电流_F]").toDouble());
-        d_ptr->model->addAction(action);
+        d_ptr->model->addAction(action, 300);
         break;
     case ACT_GET_REVERSE_CURRENT:
         d_ptr->currentWidget->updateData(d_ptr->testData->data("[反向漏流_F]").toDouble());
-        d_ptr->model->addAction(action);
+        d_ptr->model->addAction(action, 300);
         break;
     }
 }

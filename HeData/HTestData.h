@@ -29,6 +29,7 @@ public:
     void addData(QVariantMap value) override;
     QVariant data(QString type) override;
     QVariantMap select(QStringList type) override;
+    QVariantMap cloneData() override;
     QString toString(QString type) override;
     QStringList toString(QStringList type) override;
     QString toHtmlTable(QStringList type, QColor bgcolor) override;

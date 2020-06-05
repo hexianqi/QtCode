@@ -50,6 +50,9 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
     case ACT_SET_GEARS_OUTPUT_CURRENT:
         ui->comboBox_2->setCurrentIndex(d->testData->data("[输出电流_档位]").toInt());
         break;
+    case ACT_SET_LUMINOUS_GEARS:
+        ui->comboBox_3->setCurrentIndex(d->testData->data("[光档位]").toInt());
+        break;
     case ACT_QUERY_STATE_TRIGGER:
         if (!d->testState)
             break;
@@ -185,6 +188,13 @@ void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
     d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
 }
 
+void HTestSetWidget2000DC::on_comboBox_3_currentIndexChanged(int value)
+{
+    Q_D(HTestSetWidget2000DC);
+    d->testData->setData("[光档位]", value);
+    d->model->addAction(ACT_SET_LUMINOUS_GEARS);
+}
+
 void HTestSetWidget2000DC::continueTest()
 {
     setTestState(false);
@@ -220,6 +230,7 @@ void HTestSetWidget2000DC::init()
     ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
     ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  ") << tr("  分选测试  "));
     ui->comboBox_2->addItems(QStringList() << tr("  1档  ") << tr("  2档  "));
+    ui->comboBox_3->addItems(QStringList() << tr("  1档  ") << tr("  2档  ") << tr("  3档  ") << tr("  4档  ") << tr("  5档  "));
     d->timerContinue = new QTimer(this);
     d->timerInterval = new QTimer(this);
     connect(d->timerContinue, &QTimer::timeout, this, &HTestSetWidget2000DC::continueTest);

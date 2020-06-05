@@ -61,6 +61,7 @@
 #include "HNavigationPanel.h"
 
 #include <QtCore/QTimer>
+#include <QtCore/QRandomGenerator>
 #include <QtWidgets/QTableWidget>
 #include <QtGui/QStandardItemModel>
 
@@ -353,8 +354,8 @@ void HDemoWidget::addRuler()
     auto timer = new QTimer(this);
     timer->setInterval(2000);
     connect(timer, &QTimer::timeout, this, [=] {
-        b->setValue(qrand() % 100);
-        t->setValue(qrand() % 100); });
+        b->setValue(QRandomGenerator::global()->bounded(100));
+        t->setValue(QRandomGenerator::global()->bounded(100)); });
     timer->start();
     l->addWidget(b, 0, 0);
     l->addWidget(t, 0, 1);
