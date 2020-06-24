@@ -21,11 +21,11 @@ public:
     ~HTcpClient() override;
 
 signals:
-    void sentData(const QString &ip, int port, const QByteArray &data);
-    void receiveData(const QString &ip, int port, const QByteArray &data);
+    void sentData(const QString &address, int port, const QByteArray &data);
+    void receiveData(const QString &address, int port, const QByteArray &data);
 
 public:
-    QString ip();
+    QString address();
     int port();
 
 public slots:

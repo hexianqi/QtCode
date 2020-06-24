@@ -19,7 +19,7 @@ HTcpClient::HTcpClient(HTcpClientPrivate &p, QObject *parent) :
 
 HTcpClient::~HTcpClient() = default;
 
-QString HTcpClient::ip()
+QString HTcpClient::address()
 {
     return peerAddress().toString().replace("::ffff:", "");
 }
@@ -32,7 +32,7 @@ int HTcpClient::port()
 void HTcpClient::sendData(const QByteArray &value)
 {
     if (write(value) != -1)
-        emit sentData(ip(), port(), value);
+        emit sentData(address(), port(), value);
 }
 
 void HTcpClient::handleReadyRead()
@@ -40,7 +40,7 @@ void HTcpClient::handleReadyRead()
     auto data = readAll();
     if (data.length() <= 0)
         return;
-    emit receiveData(ip(), port(), data);
+    emit receiveData(address(), port(), data);
 }
 
 void HTcpClient::init()

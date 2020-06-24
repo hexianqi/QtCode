@@ -32,10 +32,10 @@ void HUdpClientWidget::sendData()
         return;
 
     auto data = toByteArray(text);
-    if (d->socket->writeDatagram(data, QHostAddress(d->serverIP), d->serverPort) == -1)
+    if (d->socket->writeDatagram(data, QHostAddress(d->serverAddress), d->serverPort) == -1)
         append(0, tr("发送失败"));
     else
-        append(0, QString("[%1:%2] %3").arg(d->serverIP).arg(d->serverPort).arg(text));
+        append(0, QString("[%1:%2] %3").arg(d->serverAddress).arg(d->serverPort).arg(text));
 }
 
 void HUdpClientWidget::clearData()
@@ -95,14 +95,14 @@ void HUdpClientWidget::init()
     ui->checkBox_104->setChecked(d->autoSend);
     ui->spinBox_101->setValue(d->interval);
     ui->spinBox_102->setValue(d->serverPort);
-    ui->lineEdit_101->setText(d->serverIP);
+    ui->lineEdit_101->setText(d->serverAddress);
     connect(ui->checkBox_101, &QCheckBox::clicked, this, &HUdpClientWidget::setHexSend);
     connect(ui->checkBox_102, &QCheckBox::clicked, this, &HUdpClientWidget::setHexReceive);
     connect(ui->checkBox_103, &QCheckBox::clicked, this, &HUdpClientWidget::setAscii);
     connect(ui->checkBox_104, &QCheckBox::clicked, this, &HUdpClientWidget::setAutoSend);
     connect(ui->spinBox_101, SIGNAL(valueChanged(int)), this, SLOT(setInterval(int)));
     connect(ui->spinBox_102, SIGNAL(valueChanged(int)), this, SLOT(setServerPort(int)));
-    connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerIP(ui->lineEdit_101->text()); });
+    connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerAddress(ui->lineEdit_101->text()); });
     connect(ui->pushButton_102, &QPushButton::clicked, this, &HUdpClientWidget::clearData);
     connect(ui->pushButton_201, &QPushButton::clicked, this, &HUdpClientWidget::sendData);
     connect(d->socket, &QUdpSocket::readyRead, this, &HUdpClientWidget::handleReadyRead);

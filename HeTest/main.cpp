@@ -3,6 +3,7 @@
 #include "HTestChart.h"
 #include "HTestPlugin.h"
 #include "HTestGsl.h"
+#include "HTestMedia.h"
 #include "HeCore/HCore.h"
 #include "HeAlgorithm/HChromaticity.h"
 #include "HeExample/HeControl/HDemoWidget.h"
@@ -14,7 +15,7 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 #include <functional>
-#include <QImageReader>
+
 
 HE_CORE_USE_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
@@ -45,11 +46,8 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    QObject obj;
-    obj.setProperty("测试属性", "测试值");
-    qDebug() << obj.property("测试属性").toString();
-
-
+    HTestMedia::audioEncoder("", "");
+    return 0;
 
 //    HControlFactoryWidget cw;
 //    cw.show();

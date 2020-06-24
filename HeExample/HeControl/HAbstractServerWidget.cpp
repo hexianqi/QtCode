@@ -15,10 +15,10 @@ HAbstractServerWidget::HAbstractServerWidget(HAbstractServerWidgetPrivate &p, QW
 {
 }
 
-QString HAbstractServerWidget::listenIP() const
+QString HAbstractServerWidget::listenAddress() const
 {
     Q_D(const HAbstractServerWidget);
-    return d->listenIP;
+    return d->listenAddress;
 }
 
 int HAbstractServerWidget::listenPort() const
@@ -27,12 +27,12 @@ int HAbstractServerWidget::listenPort() const
     return d->listenPort;
 }
 
-void HAbstractServerWidget::setListenIP(const QString &value)
+void HAbstractServerWidget::setListenAddress(const QString &value)
 {
     Q_D(HAbstractServerWidget);
-    if (d->listenIP == value)
+    if (d->listenAddress == value)
         return;
-    d->listenIP = value;
+    d->listenAddress = value;
 }
 
 void HAbstractServerWidget::setListenPort(int value)
@@ -43,16 +43,16 @@ void HAbstractServerWidget::setListenPort(int value)
     d->listenPort = value;
 }
 
-void HAbstractServerWidget::handleSentData(const QString &ip, int port, const QByteArray &data)
+void HAbstractServerWidget::handleSentData(const QString &address, int port, const QByteArray &data)
 {
     auto text = fromByteArray(data);
-    append(0, QString("[%1:%2] %3").arg(ip).arg(port).arg(text));
+    append(0, QString("[%1:%2] %3").arg(address).arg(port).arg(text));
 }
 
-void HAbstractServerWidget::handleReceiveData(const QString &ip, int port, const QByteArray &data)
+void HAbstractServerWidget::handleReceiveData(const QString &address, int port, const QByteArray &data)
 {
     auto text = fromByteArray(data);
-    append(1, QString("[%1:%2] %3").arg(ip).arg(port).arg(text));
+    append(1, QString("[%1:%2] %3").arg(address).arg(port).arg(text));
 }
 
 void HAbstractServerWidget::readSettings()
@@ -62,7 +62,7 @@ void HAbstractServerWidget::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    d->listenIP = settings->value("ListenIP", "127.0.0.1").toString();
+    d->listenAddress = settings->value("ListenAddress", "127.0.0.1").toString();
     d->listenPort = settings->value("ListenPort", 6000).value<int>();
     settings->endGroup();
 }
@@ -74,7 +74,7 @@ void HAbstractServerWidget::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    settings->setValue("ListenIP", d->listenIP);
+    settings->setValue("ListenAddress", d->listenAddress);
     settings->setValue("ListenPort", d->listenPort);
     settings->endGroup();
 }

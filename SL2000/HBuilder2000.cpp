@@ -115,12 +115,14 @@ void HBuilder2000::buildTestData()
 void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
-//    // 模拟设备
-//    auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
-//    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-//    protocol->setDevice(device);
-    // 真实设备
+#ifdef SIMULATE // 模拟设备
+
+    auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
+    auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+    protocol->setDevice(device);
+#else
     auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
+#endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
     HAppContext::setContextPointer("IProtocolCollection", protocols);

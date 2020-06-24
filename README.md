@@ -14,4 +14,4 @@ Qt 一些相关代码。
     一去丶二三里        https://blog.csdn.net/liang19890820
     Qt学习之路2         https://www.devbean.net/
     Qt中文网            http://www.qtcn.org
-	公孙二狗			https://qtdebug.com/
+    公孙二狗		https://qtdebug.com/

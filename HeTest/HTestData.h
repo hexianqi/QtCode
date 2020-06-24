@@ -4,9 +4,10 @@
 class HTestData
 {
 public:
-    static void testVector();
     static void testJson();
     static void testTemplateName();
+    static void testByteArray();
+    static void testWriteMode();
 };
 
 #endif // HTESTDATA_H

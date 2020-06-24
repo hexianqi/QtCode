@@ -21,11 +21,11 @@ public:
     ~HUdpClient() override;
 
 signals:
-    void sentData(const QString &ip, int port, const QByteArray &data);
-    void receiveData(const QString &ip, int port, const QByteArray &data);
+    void sentData(const QString &address, int port, const QByteArray &data);
+    void receiveData(const QString &address, int port, const QByteArray &data);
 
 public slots:
-    void sendData(const QString &ip, int port, const QByteArray &value);
+    void sendData(const QString &address, int port, const QByteArray &value);
 
 protected:
     HUdpClient(HUdpClientPrivate &p, QObject *parent = nullptr);

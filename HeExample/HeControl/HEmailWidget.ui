@@ -63,7 +63,7 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <property name="verticalSpacing">
+     <property name="spacing">
       <number>12</number>
      </property>
      <item row="0" column="0">

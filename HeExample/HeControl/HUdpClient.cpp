@@ -19,10 +19,10 @@ HUdpClient::HUdpClient(HUdpClientPrivate &p, QObject *parent) :
 
 HUdpClient::~HUdpClient() = default;
 
-void HUdpClient::sendData(const QString &ip, int port, const QByteArray &value)
+void HUdpClient::sendData(const QString &address, int port, const QByteArray &value)
 {
-    if (writeDatagram(value, QHostAddress(ip), port) != -1)
-        emit sentData(ip, port, value);
+    if (writeDatagram(value, QHostAddress(address), port) != -1)
+        emit sentData(address, port, value);
 }
 
 void HUdpClient::handleReadyRead()

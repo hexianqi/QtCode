@@ -52,7 +52,7 @@ void HTcpClientWidget::on_pushButton_101_clicked()
     if (!d->connected)
     {
         d->socket->abort();
-        d->socket->connectToHost(d->serverIP, d->serverPort);
+        d->socket->connectToHost(d->serverAddress, d->serverPort);
     }
     else
         d->socket->abort();
@@ -119,14 +119,14 @@ void HTcpClientWidget::init()
     ui->checkBox_104->setChecked(d->autoSend);
     ui->spinBox_101->setValue(d->interval);
     ui->spinBox_102->setValue(d->serverPort);
-    ui->lineEdit_101->setText(d->serverIP);
+    ui->lineEdit_101->setText(d->serverAddress);
     connect(ui->checkBox_101, &QCheckBox::clicked, this, &HTcpClientWidget::setHexSend);
     connect(ui->checkBox_102, &QCheckBox::clicked, this, &HTcpClientWidget::setHexReceive);
     connect(ui->checkBox_103, &QCheckBox::clicked, this, &HTcpClientWidget::setAscii);
     connect(ui->checkBox_104, &QCheckBox::clicked, this, &HTcpClientWidget::setAutoSend);
     connect(ui->spinBox_101, SIGNAL(valueChanged(int)), this, SLOT(setInterval(int)));
     connect(ui->spinBox_102, SIGNAL(valueChanged(int)), this, SLOT(setServerPort(int)));
-    connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerIP(ui->lineEdit_101->text()); });
+    connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerAddress(ui->lineEdit_101->text()); });
     connect(ui->pushButton_103, &QPushButton::clicked, this, &HTcpClientWidget::clearData);
     connect(ui->pushButton_201, &QPushButton::clicked, this, &HTcpClientWidget::sendData);
     connect(d->socket, &QTcpSocket::connected, this, &HTcpClientWidget::handleConnected);

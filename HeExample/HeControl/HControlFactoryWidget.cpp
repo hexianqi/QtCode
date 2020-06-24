@@ -39,6 +39,7 @@ void HControlFactoryWidget::init()
     ui->comboBox->setStyleSheet(qss.join("\n"));
     HControlHelper::translucentWidget(this, QStringList());
     resize(800, 600);
+
 }
 
 HE_CONTROL_END_NAMESPACE

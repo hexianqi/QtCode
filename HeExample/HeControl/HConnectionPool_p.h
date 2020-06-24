@@ -4,6 +4,8 @@
 #include "HConnectionPool.h"
 #include <QtCore/QQueue>
 
+class QWaitCondition;
+
 HE_CONTROL_BEGIN_NAMESPACE
 
 class HConnectionPoolPrivate
@@ -15,6 +17,8 @@ public:
     QSqlDatabase createConnection(const QString &connectionName);
 
 public:
+    QMutex *mutex;
+    QWaitCondition *waitConnection;
     QQueue<QString> usedConnectionNames;   // 已使用的数据库连接名
     QQueue<QString> unusedConnectionNames; // 未使用的数据库连接名
 

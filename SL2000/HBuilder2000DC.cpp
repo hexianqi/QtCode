@@ -169,16 +169,17 @@ void HBuilder2000DC::buildTestData()
 void HBuilder2000DC::buildDevice()
 {
     Q_D(HBuilder2000DC);
-    // 模拟设备
+#ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto device2 = d->communicateFactory->createDevice("HSlSimulateDevice");
     auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol1->setDevice(device1);
     protocol2->setDevice(device2);
-//    // 真实设备
-//    auto protocol1 = d->communicateFactory->createProtocol(deployItem("Protocol"));
-//    auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
+#else
+    auto protocol1 = d->communicateFactory->createProtocol(deployItem("Protocol"));
+    auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
+#endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
     protocols->insert("Else", protocol2);

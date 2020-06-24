@@ -9,6 +9,9 @@ HLunarCalendarItemPrivate::HLunarCalendarItemPrivate()
     selectType = HLunarCalendarItem::SelectType_Rect;
     date = QDate::currentDate();
     dayType = HLunarCalendarItem::DayType_MonthCurrent;
+    dayNames = QStringList() << "*" << "初一" << "初二" << "初三" << "初四" << "初五" << "初六" << "初七" << "初八" << "初九" << "初十"
+                             << "十一" << "十二" << "十三" << "十四" << "十五" << "十六" << "十七" << "十八" << "十九" << "二十"
+                             << "廿一" << "廿二" << "廿三" << "廿四" << "廿五" << "廿六" << "廿七" << "廿八" << "廿九" << "三十";
 }
 
 HLunarCalendarItem::HLunarCalendarItem(QWidget *parent) :
@@ -486,14 +489,11 @@ void HLunarCalendarItem::drawLunar(QPainter *painter)
     auto color = d_ptr->currentLunarColor;
     auto font = this->font();
     font.setPixelSize(side / 5);
-    auto listDayName = QStringList() << "*" << "初一" << "初二" << "初三" << "初四" << "初五" << "初六" << "初七" << "初八" << "初九" << "初十"
-                                     << "十一" << "十二" << "十三" << "十四" << "十五" << "十六" << "十七" << "十八" << "十九" << "二十"
-                                     << "廿一" << "廿二" << "廿三" << "廿四" << "廿五" << "廿六" << "廿七" << "廿八" << "廿九" << "三十";
-    if (d_ptr->select)
+     if (d_ptr->select)
         color = d_ptr->selectLunarColor;
     else if (d_ptr->hover)
         color = d_ptr->hoverLunarColor;
-    else if (!listDayName.contains(d_ptr->lunar) && d_ptr->dayType != DayType_MonthPre && d_ptr->dayType != DayType_MonthNext)
+    else if (!d_ptr->dayNames.contains(d_ptr->lunar) && d_ptr->dayType != DayType_MonthPre && d_ptr->dayType != DayType_MonthNext)
         color = d_ptr->lunarColor;
     else if (d_ptr->dayType == DayType_MonthPre || d_ptr->dayType == DayType_MonthNext)
         color = d_ptr->otherLunarColor;

@@ -30,7 +30,7 @@ bool HTcpServer::start()
 {
     if (isRunning())
         return true;
-    auto addr = d_ptr->listenIP.isEmpty() ? QHostAddress::AnyIPv4 : QHostAddress(d_ptr->listenIP);
+    auto addr = d_ptr->listenAddress.isEmpty() ? QHostAddress::AnyIPv4 : QHostAddress(d_ptr->listenAddress);
     return listen(addr, d_ptr->listenPort);
 }
 
@@ -42,11 +42,11 @@ void HTcpServer::stop()
     close();
 }
 
-void HTcpServer::setListenIP(const QString &value)
+void HTcpServer::setListenAddress(const QString &value)
 {
-    if (d_ptr->listenIP == value)
+    if (d_ptr->listenAddress == value)
         return;
-    d_ptr->listenIP = value;
+    d_ptr->listenAddress = value;
     if (isRunning())
     {
         stop();
@@ -72,9 +72,9 @@ void HTcpServer::sendData(const QByteArray &data)
         c->sendData(data);
 }
 
-void HTcpServer::sendData(const QString &ip, int port, const QByteArray &data)
+void HTcpServer::sendData(const QString &address, int port, const QByteArray &data)
 {
-    auto key = QString("%1:%2").arg(ip).arg(port);
+    auto key = QString("%1:%2").arg(address).arg(port);
     if (!d_ptr->clients.contains(key))
         return;
     d_ptr->clients.value(key)->sendData(data);
@@ -86,9 +86,9 @@ void HTcpServer::disconnectClient()
         c->disconnectFromHost();
 }
 
-void HTcpServer::disconnectClient(const QString &ip, int port)
+void HTcpServer::disconnectClient(const QString &address, int port)
 {
-    auto key = QString("%1:%2").arg(ip).arg(port);
+    auto key = QString("%1:%2").arg(address).arg(port);
     if (!d_ptr->clients.contains(key))
         return;
     d_ptr->clients.value(key)->disconnectFromHost();
@@ -103,8 +103,8 @@ void HTcpServer::incomingConnection(int handle)
     connect(client, &HTcpClient::disconnected, this, &HTcpServer::handleClientDisconnected);
     connect(client, &HTcpClient::sentData, this, &HTcpServer::sentData);
     connect(client, &HTcpClient::receiveData, this, &HTcpServer::receiveData);
-    d_ptr->clients.insert(QString("%1:%2").arg(client->ip()).arg(client->port()), client);
-    emit clientConnected(client->ip(), client->port());
+    d_ptr->clients.insert(QString("%1:%2").arg(client->address()).arg(client->port()), client);
+    emit clientConnected(client->address(), client->port());
 }
 
 void HTcpServer::handleClientDisconnected()
@@ -112,10 +112,10 @@ void HTcpServer::handleClientDisconnected()
     auto client = qobject_cast<HTcpClient *>(sender());
     if (client == nullptr)
         return;
-    auto key = QString("%1:%2").arg(client->ip()).arg(client->port());
+    auto key = QString("%1:%2").arg(client->address()).arg(client->port());
     if (!d_ptr->clients.contains(key))
         return;
-    emit clientDisconnected(client->ip(), client->port());
+    emit clientDisconnected(client->address(), client->port());
     d_ptr->clients.remove(key);
 }
 

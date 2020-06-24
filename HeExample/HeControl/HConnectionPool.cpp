@@ -8,11 +8,10 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-QMutex __mutex;
-QWaitCondition __waitConnection;
-
 HConnectionPoolPrivate::HConnectionPoolPrivate()
 {
+    mutex = new QMutex;
+    waitConnection = new QWaitCondition;
     auto config = HDBConfig::instance();
     databaseType        = config->type();
     databaseName        = config->name();
@@ -75,21 +74,21 @@ void HConnectionPool::closeConnection(const QSqlDatabase &db)
     auto connectionName = db.connectionName();
     if (d_ptr->usedConnectionNames.contains(connectionName))
     {
-        QMutexLocker locker(&__mutex);
+        QMutexLocker locker(d_ptr->mutex);
         d_ptr->usedConnectionNames.removeOne(connectionName);
         d_ptr->unusedConnectionNames.enqueue(connectionName);
-        __waitConnection.wakeOne();
+        d_ptr->waitConnection->wakeOne();
     }
 }
 
 QString HConnectionPool::getConnectionName()
 {
-    QMutexLocker locker(&__mutex);
+    QMutexLocker locker(d_ptr->mutex);
     auto connectionCount = d_ptr->usedConnectionNames.size() + d_ptr->unusedConnectionNames.size();
     // 如果连接已经用完，等待 waitInterval 毫秒看看是否有可用连接，最长等待 maxWaitTime 毫秒
     for (int i = 0; i < d_ptr->maxWaitTime && connectionCount == d_ptr->maxConnectionCount && d_ptr->unusedConnectionNames.isEmpty(); i += d_ptr->waitInterval)
     {
-        __waitConnection.wait(&__mutex, d_ptr->waitInterval);
+        d_ptr->waitConnection->wait(d_ptr->mutex, d_ptr->waitInterval);
         connectionCount = d_ptr->usedConnectionNames.size() + d_ptr->unusedConnectionNames.size();
     }
     if (!d_ptr->unusedConnectionNames.isEmpty())

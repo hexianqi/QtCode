@@ -17,14 +17,12 @@ SOURCES += \
 #此句不加将会遇到一些连接错误
 DEFINES     += GSL_DLL
 
-3RDPARTY    = $$absolute_path("../../../libgsl", $$[QT_INSTALL_DATA])
+GslPath     = $$absolute_path("../../../modules/gsl/win32", $$[QT_INSTALL_DATA])
 
-LIBS        += \
-            -L$$3RDPARTY/lib -lgsl \
-            -L$$3RDPARTY/lib -lgslcblas
+LIBS        +=  -L$$GslPath/lib -lgsl -lgslcblas
 
-INCLUDEPATH += $$3RDPARTY/include
-DEPENDPATH  += $$3RDPARTY/include
+INCLUDEPATH += $$GslPath/include
+DEPENDPATH  += $$GslPath/include
 
 include(gsl_sf.pri)
 include(gsl_interp.pri)

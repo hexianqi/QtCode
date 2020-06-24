@@ -15,10 +15,10 @@
   <style name="Occurrences.Unused" foreground="#808000"/>
   <style name="Occurrences.Rename" foreground="#000000" background="#ff6464"/>
   <style name="Number" foreground="#000080"/>
-  <style name="String" foreground="#ff5500"/>
+  <style name="String" foreground="#ff7f00"/>
   <style name="Type" foreground="#ff0000"/>
   <style name="Local"/>
-  <style name="Global" foreground="#ce5c00"/>
+  <style name="Global" foreground="#8b008b"/>
   <style name="Field" foreground="#ff00ff"/>
   <style name="Static" foreground="#00ff00"/>
   <style name="VirtualMethod" foreground="#00aaff"/>
@@ -27,7 +27,8 @@
   <style name="PrimitiveType" foreground="#0000ff"/>
   <style name="Operator" foreground="#000000"/>
   <style name="Overloaded Operator" foreground="#00677c"/>
-  <style name="Preprocessor" foreground="#00ff7f"/>
+  <style name="Punctuation"/>
+  <style name="Preprocessor" foreground="#ff69b4"/>
   <style name="Label" foreground="#800000"/>
   <style name="Comment" foreground="#008000"/>
   <style name="Doxygen.Comment" foreground="#000080"/>

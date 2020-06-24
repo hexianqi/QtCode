@@ -37,8 +37,7 @@ RESOURCES   = \
             HeControl.qrc \
             qss.qrc
 
-INCLUDEPATH += \
-            ../..
+INCLUDEPATH += ../..
 
 Debug {
     TARGET = HeControld
@@ -59,12 +58,14 @@ unix {
     INSTALLS += target
 }
 
+include(_canpool.pri)
 include(_liudianwu.pri)
 include(_ww.pri)
 include(event.pri)
 include(helper.pri)
 include(iconFont.pri)
 include(layout.pri)
+include(multimedia.pri)
 include(network.pri)
 include(service.pri)
 include(sql.pri)

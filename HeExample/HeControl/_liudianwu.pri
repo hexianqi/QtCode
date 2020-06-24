@@ -11,9 +11,9 @@ SOURCES += \
     $$PWD/HAbstractProgress.cpp \
     $$PWD/HAnimationProgress.cpp
 
-include(_ldw_button.pri)
-include(_ldw_calendar.pri)
-include(_ldw_else.pri)
+include(_liudianwu_button.pri)
+include(_liudianwu_calendar.pri)
+include(_liudianwu_else.pri)
 
 include(button.pri)
 include(circular.pri)

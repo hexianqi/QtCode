@@ -12,7 +12,7 @@ class HUdpServerPrivate
 {
 public:
     bool isRunning = false;
-    QString listenIP = "0.0.0.0";
+    QString listenAddress = "0.0.0.0";
     int listenPort = 6000;
     QSet<QString> clients;
     QUdpSocket *socket;

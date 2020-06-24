@@ -15,18 +15,18 @@ class HAbstractClientWidget : public HAbstractNetworkWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HAbstractClientWidget)
-    Q_PROPERTY(QString serverIP READ serverIP WRITE setServerIP)
+    Q_PROPERTY(QString serverAddress READ serverAddress WRITE setServerAddress)
     Q_PROPERTY(int serverPort READ serverPort WRITE setServerPort)
 
 public:
     explicit HAbstractClientWidget(QWidget *parent = nullptr);
 
 public:
-    QString serverIP() const;
+    QString serverAddress() const;
     int serverPort() const;
 
 public slots:
-    void setServerIP(const QString &value);
+    void setServerAddress(const QString &value);
     void setServerPort(int value);
 
 protected:

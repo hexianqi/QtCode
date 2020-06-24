@@ -9,7 +9,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HAbstractServerWidgetPrivate : public HAbstractNetworkWidgetPrivate
 {
 public:
-    QString listenIP = "127.0.0.1";
+    QString listenAddress = "127.0.0.1";
     int listenPort = 6000;
 };
 

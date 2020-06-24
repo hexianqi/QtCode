@@ -44,7 +44,7 @@ bool HBackgroundEventFilter::addWatched(QObject *p)
     // 添加背景窗体并把现有的控件移动到窗体内
     if (!widget->findChild<QWidget *>("background"))
     {
-        auto background = new QWidget(widget);
+        auto background = new QWidget(widget->parentWidget());
         background->setObjectName("background");
         background->setLayout(widget->layout());
         auto l = new QHBoxLayout(widget);

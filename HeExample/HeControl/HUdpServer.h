@@ -21,10 +21,10 @@ public:
     ~HUdpServer() override;
 
 signals:
-    void clientConnected(const QString &ip, int port);
-    void clientDisconnected(const QString &ip, int port);
-    void sentData(const QString &ip, int port, const QByteArray &data);
-    void receiveData(const QString &ip, int port, const QByteArray &data);
+    void clientConnected(const QString &address, int port);
+    void clientDisconnected(const QString &address, int port);
+    void sentData(const QString &address, int port, const QByteArray &data);
+    void receiveData(const QString &address, int port, const QByteArray &data);
 
 public slots:
     // 是否运行
@@ -33,8 +33,8 @@ public slots:
     bool start();
     // 停止服务
     void stop();
-    // 设置监听IP
-    void setListenIP(const QString &value);
+    // 设置监听地址
+    void setListenAddress(const QString &value);
     // 设置监听端口
     void setListenPort(int value);
     // 发送数据

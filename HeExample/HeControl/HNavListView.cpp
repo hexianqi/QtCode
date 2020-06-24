@@ -1,4 +1,5 @@
 #include "HNavListView_p.h"
+#include "HIconFontFactory.h"
 #include <QtCore/QFile>
 #include <QtGui/QPainter>
 #include <QtGui/QFont>
@@ -38,8 +39,7 @@ void HNavListModel::readData(const QString &fileName)
         return;
 
     _treeNodes.clear();
-    auto root = doc.documentElement().firstChildElement("layout");
-    auto childs = root.childNodes();
+    auto childs = doc.documentElement().firstChildElement("layout").childNodes();
     for (int i = 0; i != childs.count(); i++)
     {
         auto node = new HTreeNode;
@@ -166,11 +166,10 @@ QVariant HNavListModel::data(const QModelIndex &index, int role) const
     auto row = index.row();
     if (row >= _listNodes.size() || index.row() < 0)
         return QVariant();
-
     if (role == Qt::DisplayRole)
         return _listNodes[row]->text;
     if (role == Qt::UserRole)
-        return QVariant::fromValue(_listNodes[row]->node);
+        return QVariant::fromValue(_listNodes.at(row)->node);
     return QVariant();
 }
 
@@ -202,10 +201,9 @@ void HNavListModel::refreshList()
 HNavListDelegate::HNavListDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
+    auto factory = new HIconFontFactory(this);
+    _iconFont = factory->createFont("pe-icon-set-weather");
     _view = qobject_cast<HNavListView *>(parent);
-    auto fontId = QFontDatabase::addApplicationFont(":/image/fonts/pe-icon-set-weather.ttf");
-    auto fontName = QFontDatabase::applicationFontFamilies(fontId).at(0);
-    _iconFont = QFont(fontName);
 }
 
 QSize HNavListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const

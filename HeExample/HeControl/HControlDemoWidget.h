@@ -33,6 +33,7 @@ private:
     void addWw();
     void addDemo();
     void addTool();
+    void addFFmpeg();
     void addElse();
 
     // LiuDianWu

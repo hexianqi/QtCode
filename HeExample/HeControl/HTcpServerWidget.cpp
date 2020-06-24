@@ -65,7 +65,7 @@ void HTcpServerWidget::on_pushButton_101_clicked()
     }
     else
     {
-        d->server->setListenIP(d->listenIP);
+        d->server->setListenAddress(d->listenAddress);
         d->server->setListenPort(d->listenPort);
         if (d->server->start())
         {
@@ -97,18 +97,18 @@ void HTcpServerWidget::on_pushButton_104_clicked()
         d->server->disconnectClient();
 }
 
-void HTcpServerWidget::handleClientConnected(const QString &ip, int port)
+void HTcpServerWidget::handleClientConnected(const QString &address, int port)
 {
-    auto text = QString("%1:%2").arg(ip).arg(port);
+    auto text = QString("%1:%2").arg(address).arg(port);
     ui->listWidget_101->addItem(text);
     ui->label_102->setText(tr("共 %1 个客户端").arg(ui->listWidget_101->count()));
-    append(1, tr("[%1:%2] 客户端上线").arg(ip).arg(port));
+    append(1, tr("[%1:%2] 客户端上线").arg(address).arg(port));
 }
 
-void HTcpServerWidget::handleClientDisconnected(const QString &ip, int port)
+void HTcpServerWidget::handleClientDisconnected(const QString &address, int port)
 {
     int row = -1;
-    QString text = QString("%1:%2").arg(ip).arg(port);
+    QString text = QString("%1:%2").arg(address).arg(port);
     for (int i = 0; i < ui->listWidget_101->count(); i++)
     {
         if (ui->listWidget_101->item(i)->text() == text)
@@ -121,7 +121,7 @@ void HTcpServerWidget::handleClientDisconnected(const QString &ip, int port)
     {
         ui->listWidget_101->takeItem(row);
         ui->label_102->setText(tr("共 %1 个客户端").arg(ui->listWidget_101->count()));
-        append(1, tr("[%1:%2] 客户端下线").arg(ip).arg(port));
+        append(1, tr("[%1:%2] 客户端下线").arg(address).arg(port));
     }
 }
 
@@ -154,14 +154,14 @@ void HTcpServerWidget::init()
     ui->checkBox_104->setChecked(d->autoSend);
     ui->comboBox_101->addItems(HNetworkHelper::localIP());
     ui->comboBox_101->addItem("0.0.0.0");
-    ui->comboBox_101->setCurrentText(d->listenIP);
+    ui->comboBox_101->setCurrentText(d->listenAddress);
     ui->spinBox_101->setValue(d->interval);
     ui->spinBox_102->setValue(d->listenPort);
     connect(ui->checkBox_101, &QCheckBox::clicked, this, &HTcpServerWidget::setHexSend);
     connect(ui->checkBox_102, &QCheckBox::clicked, this, &HTcpServerWidget::setHexReceive);
     connect(ui->checkBox_103, &QCheckBox::clicked, this, &HTcpServerWidget::setAscii);
     connect(ui->checkBox_104, &QCheckBox::clicked, this, &HTcpServerWidget::setAutoSend);
-    connect(ui->comboBox_101, &QComboBox::currentTextChanged, this, &HTcpServerWidget::setListenIP);
+    connect(ui->comboBox_101, &QComboBox::currentTextChanged, this, &HTcpServerWidget::setListenAddress);
     connect(ui->spinBox_101, SIGNAL(valueChanged(int)), this, SLOT(setInterval(int)));
     connect(ui->spinBox_102, SIGNAL(valueChanged(int)), this, SLOT(setListenPort(int)));
     connect(ui->pushButton_103, &QPushButton::clicked, this, &HTcpServerWidget::clearData);

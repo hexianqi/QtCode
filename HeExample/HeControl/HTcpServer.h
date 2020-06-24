@@ -33,16 +33,16 @@ public slots:
     bool start();
     // 停止服务
     void stop();
-    // 设置监听IP
-    void setListenIP(const QString &value);
+    // 设置监听地址
+    void setListenAddress(const QString &value);
     // 设置监听端口
     void setListenPort(int value);
     // 发送数据
     void sendData(const QByteArray &data);
-    void sendData(const QString &ip, int port, const QByteArray &data);
+    void sendData(const QString &address, int port, const QByteArray &data);
     // 断开连接
     void disconnectClient();
-    void disconnectClient(const QString &ip, int port);
+    void disconnectClient(const QString &address, int port);
 
 protected:
     HTcpServer(HTcpServerPrivate &p, QObject *parent = nullptr);

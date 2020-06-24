@@ -34,7 +34,7 @@ public:
     QColor otherBackground = QColor(240, 240, 240);     // 其他月背景颜色
     QColor selectBackground = QColor(208, 47, 18);      // 选中日期背景颜色
     QColor hoverBackground = QColor(204, 183, 180);     // 悬停日期背景颜色
-
+    QStringList dayNames;                               // 农历日期
     bool hover = false;                                 // 鼠标是否悬停
     bool pressed = false;                               // 鼠标是否按下
 };

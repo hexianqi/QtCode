@@ -16,10 +16,10 @@ HAbstractClientWidget::HAbstractClientWidget(HAbstractClientWidgetPrivate &p, QW
 {
 }
 
-QString HAbstractClientWidget::serverIP() const
+QString HAbstractClientWidget::serverAddress() const
 {
     Q_D(const HAbstractClientWidget);
-    return d->serverIP;
+    return d->serverAddress;
 }
 
 int HAbstractClientWidget::serverPort() const
@@ -28,12 +28,12 @@ int HAbstractClientWidget::serverPort() const
     return d->serverPort;
 }
 
-void HAbstractClientWidget::setServerIP(const QString &value)
+void HAbstractClientWidget::setServerAddress(const QString &value)
 {
     Q_D(HAbstractClientWidget);
-    if (d->serverIP == value)
+    if (d->serverAddress == value)
         return;
-    d->serverIP = value;
+    d->serverAddress = value;
 }
 
 void HAbstractClientWidget::setServerPort(int value)
@@ -51,7 +51,7 @@ void HAbstractClientWidget::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    d->serverIP = settings->value("ServerIP", "127.0.0.1").toString();
+    d->serverAddress = settings->value("ServerAddress", "127.0.0.1").toString();
     d->serverPort = settings->value("ServerPort", 6000).value<int>();
     settings->endGroup();
 }
@@ -63,7 +63,7 @@ void HAbstractClientWidget::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup(groupName());
-    settings->setValue("ServerIP", d->serverIP);
+    settings->setValue("ServerAddress", d->serverAddress);
     settings->setValue("ServerPort", d->serverPort);
     settings->endGroup();
 }

@@ -32,7 +32,7 @@ bool HUdpServer::start()
 {
     if (isRunning())
         return true;
-    auto addr = d_ptr->listenIP.isEmpty() ? QHostAddress::AnyIPv4 : QHostAddress(d_ptr->listenIP);
+    auto addr = d_ptr->listenAddress.isEmpty() ? QHostAddress::AnyIPv4 : QHostAddress(d_ptr->listenAddress);
     d_ptr->isRunning = d_ptr->socket->bind(addr, d_ptr->listenPort);
     return d_ptr->isRunning;
 }
@@ -46,11 +46,11 @@ void HUdpServer::stop()
     d_ptr->socket->abort();
 }
 
-void HUdpServer::setListenIP(const QString &value)
+void HUdpServer::setListenAddress(const QString &value)
 {
-    if (d_ptr->listenIP == value)
+    if (d_ptr->listenAddress == value)
         return;
-    d_ptr->listenIP = value;
+    d_ptr->listenAddress = value;
     if (isRunning())
     {
         stop();
