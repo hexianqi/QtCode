@@ -1,15 +1,18 @@
 HEADERS += \
     $$PWD/HFFmpeg.h \
-    $$PWD/HFFmpegHelper.h \
-    $$PWD/HFFmpegThread.h \
-    $$PWD/HFFmpegThread_p.h \
-    $$PWD/HFFmpegWidget.h \
-    $$PWD/HFFmpegWidget_p.h
+    $$PWD/HFFmpegSupportWidget.h \
+    $$PWD/HFFmpegSupportWidget_p.h \
+    $$PWD/HFFmpegThread.h \     # 参考
+    $$PWD/HFFmpegThread_p.h \   # 参考
+    $$PWD/HFFmpegUtil.h \
+    $$PWD/HFFmpegWidget.h \     # 参考
+    $$PWD/HFFmpegWidget_p.h     # 参考
 
 SOURCES += \
-    $$PWD/HFFmpegHelper.cpp \
-    $$PWD/HFFmpegThread.cpp \
-    $$PWD/HFFmpegWidget.cpp
+    $$PWD/HFFmpegSupportWidget.cpp \
+    $$PWD/HFFmpegThread.cpp \   # 参考
+    $$PWD/HFFmpegUtil.cpp \
+    $$PWD/HFFmpegWidget.cpp     # 参考
 
 
 FFmpegPath  = $$absolute_path("../../../modules/ffmpeg/win32", $$[QT_INSTALL_DATA])
@@ -30,3 +33,5 @@ DEPENDPATH  += $$FFmpegPath/include
 #    system(xcopy $$src_file $$dst_file /y /s/q/e)
 #    system(xcopy $$src_file $$target_file /y /s/q/e)
 #}
+
+FORMS +=

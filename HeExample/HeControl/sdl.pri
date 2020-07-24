@@ -1,15 +1,9 @@
-#HEADERS += \
-#    $$PWD/HFFmpeg.h \
-#    $$PWD/HFFmpegHelper.h \
-#    $$PWD/HFFmpegThread.h \
-#    $$PWD/HFFmpegThread_p.h \
-#    $$PWD/HFFmpegWidget.h \
-#    $$PWD/HFFmpegWidget_p.h
+HEADERS += \
+    $$PWD/HSDLControl.h \
+    $$PWD/HSDLControl_p.h
 
-#SOURCES += \
-#    $$PWD/HFFmpegHelper.cpp \
-#    $$PWD/HFFmpegThread.cpp \
-#    $$PWD/HFFmpegWidget.cpp
+SOURCES += \
+    $$PWD/HSDLControl.cpp
 
 
 SDLPath     = $$absolute_path("../../../modules/SDL2/win32", $$[QT_INSTALL_DATA])

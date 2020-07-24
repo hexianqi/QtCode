@@ -26,7 +26,8 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-            HTestMedia.cpp \
+            HTestMedia_ff.cpp \
+            HTestMedia_vlc.cpp \
             main.cpp \
             MainWindow.cpp \
             HTestAlgorithm.cpp \
@@ -53,13 +54,15 @@ RESOURCES   += \
 GslPath     = $$absolute_path("../../../modules/gsl/win32", $$[QT_INSTALL_DATA])
 FFmpegPath  = $$absolute_path("../../../modules/ffmpeg/win32", $$[QT_INSTALL_DATA])
 SDLPath     = $$absolute_path("../../../modules/SDL2/win32", $$[QT_INSTALL_DATA])
+VLCPath     = $$absolute_path("../../../modules/vlc/win32", $$[QT_INSTALL_DATA])
 
 INCLUDEPATH += \
             .. \
             ../HeExample \
             $$GslPath/include \
             $$FFmpegPath/include \
-            $$SDLPath/include
+            $$SDLPath/include \
+            $$VLCPath/include
 
 Debug {
 #    CONFIG  += console
@@ -69,7 +72,8 @@ Debug {
             -L$$DESTDIR -lHePlugind \
             -L$$DESTDIR -lHeControld \
             -L$$FFmpegPath/lib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale \
-            -L$$SDLPath/lib -lSDL2
+            -L$$SDLPath/lib -lSDL2 \
+            -L$$VLCPath/lib -lvlccore -lvlc
 }
 
 Release {

@@ -16,7 +16,6 @@
 #include <QtCharts/QChartView>
 #include <functional>
 
-
 HE_CORE_USE_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
 HE_CONTROL_USE_NAMESPACE
@@ -46,7 +45,10 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HTestMedia::audioEncoder("", "");
+//    HTestMedia::videoPlayer_SU("media\\Titanic.ts");
+//    return 0;
+
+    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
     return 0;
 
 //    HControlFactoryWidget cw;
@@ -55,7 +57,7 @@ int main(int argc, char *argv[])
 //    dw.show();
 
 //    MainWindow window;
-//    window.setCentralWidget(new HControlWidget);
+//    window.setCentralWidget(&videoWidget);
 //    window.resize(800, 600);
 //    window.grabGesture(Qt::PanGesture);
 //    window.grabGesture(Qt::PinchGesture);
