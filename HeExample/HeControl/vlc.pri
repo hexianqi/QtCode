@@ -1,10 +1,15 @@
-#HEADERS += \
-#    $$PWD/HSDLControl.h \
-#    $$PWD/HSDLControl_p.h
+HEADERS += \
+    $$PWD/HVlcPlayer.h \
+    $$PWD/HVlcPlayerControl.h \
+    $$PWD/HVlcPlayerControl_p.h \
+    $$PWD/HVlcPlayer_p.h
 
-#SOURCES += \
-#    $$PWD/HSDLControl.cpp
+SOURCES += \
+    $$PWD/HVlcPlayer.cpp \
+    $$PWD/HVlcPlayerControl.cpp
 
+FORMS += \
+    $$PWD/HVlcPlayer.ui
 
 VLCPath     = $$absolute_path("../../../modules/vlc/win32", $$[QT_INSTALL_DATA])
 

@@ -61,11 +61,11 @@
         <file>qss/lightblue.png</file>
         <file>qss/psblack.png</file>
         <file>qss/stepButton.css</file>
-        <file>qss/StepButton/active.png</file>
-        <file>qss/StepButton/active-pre.png</file>
-        <file>qss/StepButton/last.png</file>
-        <file>qss/StepButton/last-active.png</file>
-        <file>qss/StepButton/normal.png</file>
+        <file>qss/stepButton/active.png</file>
+        <file>qss/stepButton/active-pre.png</file>
+        <file>qss/stepButton/last.png</file>
+        <file>qss/stepButton/last-active.png</file>
+        <file>qss/stepButton/normal.png</file>
         <file>qss/groupButton.css</file>
         <file>qss/groupButton.png</file>
         <file>qss/stepButton.png</file>

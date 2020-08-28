@@ -2,6 +2,7 @@
 #include "HFFConfig.h"
 #include "HFFCmdUtil.h"
 #include "HFFTypes.h"
+#include "HFFmpeg.h"
 #include "HFFPlayerService.h"
 #include "HFFStreamsControl.h"
 #include "HFFDataControl.h"
@@ -9,9 +10,7 @@
 #include <QtCore/QThread>
 
 extern "C" {
-////#include "libavcodec/avfft.h"
 #include "libavutil/bprint.h"
-////#include "libavutil/display.h"
 }
 
 using namespace std;

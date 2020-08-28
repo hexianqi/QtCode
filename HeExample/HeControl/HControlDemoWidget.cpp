@@ -34,7 +34,7 @@ void HControlDemoWidget::init()
     addWw();
     addDemo();
     addTool();
-    addFFmpeg();
+    addMedia();
     addElse();
 }
 
@@ -44,7 +44,7 @@ void HControlDemoWidget::initWidget()
     auto splitter = new QSplitter;
     auto nav = new HNavigationWidget;
     auto stacked = new QStackedWidget;
-    auto keys = QStringList() << tr("ludianwu") << tr("ww") << tr("DEMO") << tr("工具") << tr("FFmpeg")<< tr("其他");
+    auto keys = QStringList() << tr("ludianwu") << tr("ww") << tr("DEMO") << tr("工具") << tr("媒体")<< tr("其他");
 
     for (const auto &key : keys)
     {

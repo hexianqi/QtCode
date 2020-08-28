@@ -1,4 +1,5 @@
 #include "HFFCmdUtil.h"
+#include "HFFmpeg.h"
 
 extern "C" {
 #include "libavutil/display.h"

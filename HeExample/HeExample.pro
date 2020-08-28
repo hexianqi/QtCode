@@ -1,6 +1,6 @@
 TEMPLATE    = subdirs
 
 SUBDIRS     += \
-            HeDesignPattern \
-            HeControl \
-            HeReference
+            HeControl \         # 控件
+            HeDesignPattern \   # 设计模式
+            HeReference         # 参考

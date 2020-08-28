@@ -15,6 +15,7 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 #include <functional>
+#include <QDateTime>
 
 HE_CORE_USE_NAMESPACE
 HE_ALGORITHM_USE_NAMESPACE
@@ -45,11 +46,36 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
+
+
+
+//    for (int i = 0; i < 10000; i++)
+//        list << QString::number(i);
+
+
+    QList<QVariantMap> records;
+
+    for (int i = 0; i < 100000000; i++)
+    {
+        QStringList list;
+        QVariantMap map;
+        auto value = QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss.zzz");
+        qDebug() << i << value;
+        for (int j = 0; j < 1000; j++)
+            list << value;
+        map.insert("test", list.join(" "));
+        if (!records.isEmpty())
+            records.removeFirst();
+        records.prepend(map);
+    }
+    qDebug() << "Finish";
+    return 0;
+
 //    HTestMedia::videoPlayer_SU("media\\Titanic.ts");
 //    return 0;
 
-    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
-    return 0;
+//    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
+//    return 0;
 
 //    HControlFactoryWidget cw;
 //    cw.show();

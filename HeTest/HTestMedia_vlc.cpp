@@ -1,12 +1,30 @@
 #include "HTestMedia.h"
 #include <vlc/vlc.h>
+#include <QtWidgets/QFileDialog>
 #include <QtCore/QDebug>
 
 bool HTestMedia::videoPlayer_vlc(QString fileName)
 {
+    fileName = QFileDialog::getOpenFileUrl(nullptr, "打开文件", QUrl(), "All files (*.*)").toString();
+    if (fileName.isEmpty())
+        return false;
+
+//    QUrl url;
+//    QFileDialog fileDialog;
+//    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+//    fileDialog.setWindowTitle("Open Files");
+//    fileDialog.setFilter("All files (*.*)");
+//    fileDialog.setDirectory(".");
+//    if (fileDialog.exec() == QDialog::Accepted)
+//        url = fileDialog.selectedUrls().first();
+
+    auto data = fileName.toUtf8();
+    auto path = data.constData();
+    qDebug() << path;
+
     auto instance = libvlc_new(0, nullptr);
-    auto media = libvlc_media_new_path(instance, fileName.toStdString().c_str());
-    // media = libvlc_media_new_location(instance, rtspMrl);
+    auto media = libvlc_media_new_path(instance, fileName.toUtf8().constData());
+//    auto media = libvlc_media_new_location(instance, path);
 
     auto player = libvlc_media_player_new_from_media(media);
 

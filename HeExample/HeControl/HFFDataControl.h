@@ -5,7 +5,6 @@
 #pragma once
 
 #include "HControlGlobal.h"
-//#include "HFFmpeg.h"
 #include <QtCore/QObject>
 
 struct AVPacket;

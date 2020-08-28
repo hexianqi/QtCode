@@ -1,7 +1,9 @@
 #pragma once
 
 #include "HControlGlobal.h"
-#include "HFFmpeg.h"
+extern "C" {
+#include "libavformat/avformat.h"
+}
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -24,9 +26,11 @@ AVDictionary **setup_find_stream_info_opts(AVFormatContext *ctx, AVDictionary *c
 bool is_realtime(AVFormatContext *ctx);
 
 double get_rotation(AVStream *st);
+
 int64_t get_valid_channel_layout(int64_t channel_layout, int channels);
 
 bool cmp_audio_fmts(AVSampleFormat fmt1, int64_t channel_count1, AVSampleFormat fmt2, int64_t channel_count2);
+
 int cmp_mod(int a, int b);
 
 HE_CONTROL_END_NAMESPACE

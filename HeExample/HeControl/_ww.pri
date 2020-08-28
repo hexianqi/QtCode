@@ -5,10 +5,6 @@ HEADERS += \
     $$PWD/HLedWidget_p.h \
     $$PWD/HNumPad.h \
     $$PWD/HNumPad_p.h \
-    $$PWD/HRichTextButton.h \
-    $$PWD/HRichTextButton_p.h \
-    $$PWD/HRichTextEdit.h \
-    $$PWD/HRichTextEdit_p.h \
     $$PWD/HNavigationSlider.h \
     $$PWD/HNavigationSlider_p.h \
     $$PWD/HTipWidget.h \
@@ -17,12 +13,11 @@ HEADERS += \
 SOURCES += \
     $$PWD/HLedWidget.cpp \
     $$PWD/HNumPad.cpp \
-    $$PWD/HRichTextButton.cpp \
-    $$PWD/HRichTextEdit.cpp \
     $$PWD/HNavigationSlider.cpp \
     $$PWD/HTipWidget.cpp
 
 include(_ww_color.pri)
 include(_ww_lineEdit.pri)
 include(_ww_panel.pri)
+include(_ww_richText.pri)
 include(_ww_spinBox.pri)

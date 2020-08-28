@@ -1,6 +1,9 @@
 #include "HDrawHelper.h"
 #include <QtGui/QPainter>
 #include <QtGui/QImage>
+#include <QtGui/QScreen>
+#include <QtSvg/QSvgRenderer>
+#include <QtWidgets/QApplication>
 
 HE_CONTROL_BEGIN_NAMESPACE
 
@@ -101,6 +104,19 @@ QFont HDrawHelper::adjustFontSize(QPainter *painter, const QString &text, double
     auto textWidth = fm.width(text);
     font.setPointSizeF(font.pointSize() * width / textWidth);
     return font;
+}
+
+QPixmap HDrawHelper::loadSvgToPixmap(const QString &path, QSize size)
+{
+    auto ratio = QApplication::primaryScreen()->devicePixelRatio();
+    auto pixmap = QPixmap(size * ratio);
+    pixmap.fill( Qt::transparent );
+
+    QSvgRenderer renderer(path);
+    QPainter painter(&pixmap);
+    renderer.render(&painter);
+    pixmap.setDevicePixelRatio(ratio);
+    return pixmap;
 }
 
 HE_CONTROL_END_NAMESPACE

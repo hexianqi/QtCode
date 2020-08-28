@@ -52,7 +52,7 @@ void HGroupButton::init()
     d_ptr->layout->setSpacing(0);
     d_ptr->buttonGroup = new QButtonGroup(this);
     d_ptr->buttonGroup->setExclusive(true);
-    setStyleSheet(HStyleHelper::loadStyle(":/qss/stepButton.css"));
+    setStyleSheet(HStyleHelper::loadStyle(":/qss/groupButton.css"));
 }
 
 HE_CONTROL_END_NAMESPACE

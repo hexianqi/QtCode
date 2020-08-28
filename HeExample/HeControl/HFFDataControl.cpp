@@ -2,6 +2,7 @@
 #include "HFFConfig.h"
 #include "HFFCmdUtil.h"
 #include "HFFTypes.h"
+#include "HFFmpeg.h"
 
 using namespace std;
 
