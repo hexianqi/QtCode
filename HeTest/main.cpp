@@ -1,24 +1,22 @@
 #include "MainWindow.h"
 #include "HTestAlgorithm.h"
 #include "HTestChart.h"
-#include "HTestPlugin.h"
+#include "HTestData.h"
 #include "HTestGsl.h"
 #include "HTestMedia.h"
+#include "HTestOpenGL.h"
+#include "HTestPlugin.h"
 #include "HeCore/HCore.h"
-#include "HeAlgorithm/HChromaticity.h"
-#include "HeExample/HeControl/HDemoWidget.h"
-#include "HeExample/HeControl/HControlFactoryWidget.h"
-#include "HeExample/HeControl/HControlDemoWidget.h"
+#include "HeControl/HDemoWidget.h"
+#include "HeControl/HControlFactoryWidget.h"
+#include "HeControl/HControlDemoWidget.h"
 #include <QtCore/QDebug>
-#include <QtGui/QPolygonF>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
-#include <functional>
-#include <QDateTime>
 
 HE_CORE_USE_NAMESPACE
-HE_ALGORITHM_USE_NAMESPACE
+
 HE_CONTROL_USE_NAMESPACE
 
 void testGslChart()
@@ -28,52 +26,16 @@ void testGslChart()
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 }
 
-void exportCieUcs()
-{
-    auto chromaticity = new HChromaticity();
-
-    chromaticity->exportCieUcs("test1", QPointF( 2300,  5000),  2.0);
-    chromaticity->exportCieUcs("test2", QPointF( 5000, 10000),  5.0);
-    chromaticity->exportCieUcs("test3", QPointF(10000, 15000), 10.0);
-    chromaticity->exportCieUcs("test4", QPointF(15000, 20000), 20.0);
-    chromaticity->exportCieUcs("test5", QPointF(20000, 25000), 50.0);
-}
-
 int main(int argc, char *argv[])
 {
     qDebug() << HCore::toCommand(HLogType::ForePurple);
+    QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-
-
-
-//    for (int i = 0; i < 10000; i++)
-//        list << QString::number(i);
-
-
-    QList<QVariantMap> records;
-
-    for (int i = 0; i < 100000000; i++)
-    {
-        QStringList list;
-        QVariantMap map;
-        auto value = QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss.zzz");
-        qDebug() << i << value;
-        for (int j = 0; j < 1000; j++)
-            list << value;
-        map.insert("test", list.join(" "));
-        if (!records.isEmpty())
-            records.removeFirst();
-        records.prepend(map);
-    }
-    qDebug() << "Finish";
-    return 0;
-
-//    HTestMedia::videoPlayer_SU("media\\Titanic.ts");
-//    return 0;
-
+    auto w = HTestOpenGL::test1();
+    w->show();
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 

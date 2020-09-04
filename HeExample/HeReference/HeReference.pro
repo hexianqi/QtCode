@@ -3,7 +3,7 @@
 # Project created by QtCreator 2019-06-04T15:19:23
 #
 #-------------------------------------------------
-QT          += core-private
+QT          += core-private widgets
 
 TEMPLATE    = lib
 
@@ -43,7 +43,8 @@ unix {
     INSTALLS += target
 }
 
-include(reflect.pri)
-
 DISTFILES   += \
             Note
+
+include(opengl.pri)
+include(reflect.pri)

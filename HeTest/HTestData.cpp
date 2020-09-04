@@ -4,6 +4,7 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QFile>
 #include <QtCore/QDataStream>
+#include <QtCore/QDateTime>
 #include <QtCore/QDebug>
 #include <cxxabi.h>
 
@@ -119,4 +120,34 @@ void HTestData::testWriteMode()
     s2.readRawData((char *)(&num), sizeof(int));
     qDebug() << "num_2 = " << num;
     file2.close();
+}
+
+QString testData()
+{
+    QStringList list;
+    auto value = QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss.zzz");
+    for (int j = 0; j < 1000; j++)
+        list << value;
+    return list.join(",");
+}
+
+QVariantMap toRecord()
+{
+    QVariantMap data;
+    for (int i = 0; i < 100; i++)
+        data.insert(QString("test %1").arg(i), testData());
+    return data;
+}
+
+void HTestData::testListVariantMap()
+{
+    QList<QVariantMap> records;
+    for (int i = 0; i < 100000000; i++)
+    {
+        qDebug() << i;
+        if (!records.isEmpty())
+            records.removeFirst();
+        records.prepend(toRecord());
+    }
+    qDebug() << "Finish";
 }

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core gui charts widgets
+QT          += core gui charts widgets opengl
 
 TEMPLATE    = app
 
@@ -28,6 +28,7 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 SOURCES     += \
             HTestMedia_ff.cpp \
             HTestMedia_vlc.cpp \
+            HTestOpenGL.cpp \
             main.cpp \
             MainWindow.cpp \
             HTestAlgorithm.cpp \
@@ -38,6 +39,7 @@ SOURCES     += \
 
 HEADERS     += \
             HTestMedia.h \
+            HTestOpenGL.h \
             MainWindow.h \
             HTestAlgorithm.h \
             HTestPlugin.h \
@@ -71,6 +73,7 @@ Debug {
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHePlugind \
             -L$$DESTDIR -lHeControld \
+            -L$$DESTDIR -lHeReferenced \
             -L$$FFmpegPath/lib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale \
             -L$$SDLPath/lib -lSDL2 \
             -L$$VLCPath/lib -lvlccore -lvlc
