@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HSpecCalibrateSet2Widget.h \
+    $$PWD/HSpecCalibrateSet2Widget_p.h \
     $$PWD/HSpecSampleWidget.h \
     $$PWD/HSpecSampleWidget_p.h \
     $$PWD/HSpecEnergyWidget.h \
@@ -29,6 +31,7 @@ HEADERS += \
     $$PWD/HSpecTcHandler_p.h
 
 SOURCES += \
+    $$PWD/HSpecCalibrateSet2Widget.cpp \
     $$PWD/HSpecSampleWidget.cpp \
     $$PWD/HSpecEnergyWidget.cpp \
     $$PWD/HSpecSettingDialog.cpp \
@@ -45,6 +48,7 @@ SOURCES += \
     $$PWD/HSpecTcHandler.cpp
 
 FORMS += \
+    $$PWD/HSpecCalibrateSet2Widget.ui \
     $$PWD/HSpecSettingDialog.ui \
     $$PWD/HSpecFittingLinearWidget.ui \
     $$PWD/HSpecDetailWidget.ui \

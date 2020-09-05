@@ -3,6 +3,7 @@
 #include "IProductInfo.h"
 #include "HProductInfoDialog.h"
 #include "HSqlFindDialog.h"
+#include "HeCore/HCore.h"
 #include <QtCore/QDateTime>
 #include <QtSql/QSqlRecord>
 #include <QtCore/QDebug>
@@ -74,7 +75,12 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
         if (d_ptr->productInfo->contains(f))
             r.setValue(f, d_ptr->productInfo->data(f));
         else if (value.contains(f))
-            r.setValue(f, value.value(f));
+        {
+            if (f == "EnergyGraph")
+                r.setValue(f, toString(value.value(f).value<QPolygonF>()));
+            else
+                r.setValue(f, value.value(f));
+        }
         else if (f == "TestDateTime")
             r.setValue(f, QDateTime::currentDateTime());
         else if (f == "TestDate")
@@ -86,6 +92,7 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
     if (!d_ptr->model->insertRecord(-1, r))
         return false;
     d_ptr->productInfo->saveOnce();
+    d_ptr->model->select();
     d_ptr->model->resetCurrentRow(d_ptr->model->rowCount() - 1);
     return true;
 }
@@ -96,6 +103,7 @@ void HSqlHandle::removeRecord()
     if (d_ptr->model->removeRow(row))
     {
         d_ptr->model->submitAll();
+        d_ptr->model->select();
         d_ptr->model->resetCurrentRow(row);
     }
 }
@@ -105,6 +113,7 @@ void HSqlHandle::removeRecord(int row, int count)
     if (d_ptr->model->removeRows(row, count))
     {
         d_ptr->model->submitAll();
+        d_ptr->model->select();
         d_ptr->model->resetCurrentRow(row);
     }
 }
@@ -133,6 +142,14 @@ void HSqlHandle::setFilter(const QString &value)
     d_ptr->model->setFilter(value);
     d_ptr->model->select();
     d_ptr->model->resetCurrentRow(0);
+}
+
+QString HSqlHandle::toString(QPolygonF value)
+{
+    QStringList list;
+    for (auto p : value)
+        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
+    return list.join(",");
 }
 
 HE_SQL_END_NAMESPACE

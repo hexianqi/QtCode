@@ -1,5 +1,6 @@
 #include "HSpecFitting_p.h"
 #include <QtCore/QDataStream>
+#include <QtDebug>
 
 HE_DATA_BEGIN_NAMESPACE
 

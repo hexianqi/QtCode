@@ -1,6 +1,7 @@
 #include "HSqlPainterHelper.h"
 #include <QtGui/QPainter>
 #include <QtWidgets/QWidget>
+#include <QtDebug>
 
 HE_SQL_BEGIN_NAMESPACE
 
@@ -13,6 +14,14 @@ QPointF HSqlPainterHelper::drawText(QPainter *painter, QRectF rect, const QStrin
 {
     rect = painter->boundingRect(rect, flags, text);
     painter->drawText(rect, flags, text);
+    return rect.bottomRight();
+}
+
+QPointF HSqlPainterHelper::drawLogo(QPainter *painter, QRectF rect)
+{
+    QPixmap pixmap(":/image/Logo.png");
+    qDebug() << "drawLogo";
+    painter->drawPixmap(rect, pixmap, pixmap.rect());
     return rect.bottomRight();
 }
 

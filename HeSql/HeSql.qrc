@@ -7,5 +7,6 @@
         <file>image/PrintPreview.png</file>
         <file>image/Remove.png</file>
         <file>image/Reset.png</file>
+        <file>image/Logo.png</file>
     </qresource>
 </RCC>

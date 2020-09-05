@@ -24,7 +24,7 @@ void HSqlTableView::setModel(ISqlTableModel *model)
     HTableView::setModel(model);
     auto field = model->field();
     auto display = HSql::toType(field);
-    field.removeAll("ID");
+    //field.removeAll("ID");
     field.removeAll("EnergyGraph");
     auto optional = HSql::toType(field);
     d->optionalExtend->setDisplay(display);

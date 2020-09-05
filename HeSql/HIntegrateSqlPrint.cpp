@@ -84,7 +84,7 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
     text = tr(" 实测电压：%1 V   实测电流：%2 mA  电功率：%3 W").arg(toString("MeasuredVoltage"), toString("MeasuredCurrent"), toString("ElecPower"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 反向电压：%1 V   反向漏流：%2 mA  光效率：%3").arg(toString("ReverseVoltage"), toString("ReverseCurrent"));
+    text = tr(" 反向电压：%1 V   反向漏流：%2 mA").arg(toString("ReverseVoltage"), toString("ReverseCurrent"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     // 颜色参数
@@ -107,14 +107,14 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
     text = tr(" 显色指数：Ra = %1").arg(toString("Ra"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    if (rx.size() > 13)
+    if (rx.size() > 14)
     {
-        text = tr("  R1 = %1    R2 = %2    R3 = %3    R4 = %4    R5 = %5    R6 = %6    R7 = %7")
-                   .arg(rx[0], rx[1], rx[2], rx[3], rx[4], rx[5], rx[6]);
+        text = tr("  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8")
+                .arg(rx[0], rx[1], rx[2], rx[3], rx[4], rx[5], rx[6], rx[7]);
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
-        text = tr("  R8 = %1    R9 = %2    R10 = %3   R11 = %4   R12 = %5   R13 = %6   R14 = %7")
-                   .arg(rx[7], rx[8], rx[9], rx[10], rx[11], rx[12], rx[13]);
+        text = tr("  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7")
+                .arg(rx[8], rx[9], rx[10], rx[11], rx[12], rx[13], rx[14]);
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }

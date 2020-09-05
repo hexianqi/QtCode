@@ -192,9 +192,10 @@ void HAbstractSqlPrint::printPages(QPrinter *printer)
 double HAbstractSqlPrint::paintHeader(QPainter *painter, const QString &text)
 {
     painter->setFont(QFont("宋体", 12));
-    HSqlPainterHelper::drawText(painter, 20, 0, text);
-    painter->drawLine(0, 25, painter->viewport().width(), 25);
-    return 40;
+    HSqlPainterHelper::drawText(painter, 20, 5, text);
+    HSqlPainterHelper::drawLogo(painter, QRectF(painter->viewport().width() - 180, 0, 162, 30));
+    painter->drawLine(0, 35, painter->viewport().width(), 35);
+    return 50;
 }
 
 double HAbstractSqlPrint::paintFooter(QPainter *painter, const QString &text)

@@ -191,6 +191,8 @@ void HAdjustEditWidget::openEditDialog()
     dlg.setTestSetWidget(new HSimpleTestSetWidget);
     dlg.setData(d_ptr->data);
     dlg.exec();
+    initSelected();
+    showData();
 }
 
 HE_GUI_END_NAMESPACE

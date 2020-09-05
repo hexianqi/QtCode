@@ -90,7 +90,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("BlueRatio",           "[蓝色比]");
     hashFieldType.insert("Ra",                  "[显色指数]");
     hashFieldType.insert("Rx",                  "[显色指数Rx]");
-    hashFieldType.insert("EnergyGraph",         "[光谱能量数据]");
+    hashFieldType.insert("EnergyGraph",         "[光谱能量曲线]");
 
     hashFieldType.insert("OutputVoltage",       "[输出电压]");
     hashFieldType.insert("OutputCurrent",       "[输出电流]");

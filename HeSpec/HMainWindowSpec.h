@@ -19,6 +19,8 @@ public:
 protected:
     void initImportExport() override;
     void initBuilder() override;
+    void importCurve();
+    void exportCurve();
 };
 
 #endif // HMAINWINDOWSPEC_H

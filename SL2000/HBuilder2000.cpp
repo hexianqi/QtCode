@@ -116,7 +116,6 @@ void HBuilder2000::buildDevice()
 {
     Q_D(HBuilder2000);
 #ifdef SIMULATE // 模拟设备
-
     auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol->setDevice(device);

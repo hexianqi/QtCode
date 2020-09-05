@@ -40,7 +40,7 @@ public:
         ContainNone          = 0x00000000,
         ContainSpec          = 0x00000001,
         ContainElec          = 0x00000002,
-        ContainLuminous      = 0x00000003,
+        ContainLuminous      = 0x00000004,
         ContainChromatism    = 0x00000100,
         ContainGrade         = 0x00010000,
         ContainQuality       = 0x00020000,

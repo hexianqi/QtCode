@@ -12,9 +12,17 @@
 #include "HeData/IFileStream.h"
 #include "HeData/ITestSpec.h"
 #include "HeData/ISpecCalibrateCollection.h"
+#include "HeData/ISpecCalibrate.h"
 #include "HeGui/HSpecCalibrateWidget.h"
 #include "HeGui/HSpecCalibrateSetWidget.h"
 #include <QtCore/QDebug>
+
+HBuilderSpecPrivate::HBuilderSpecPrivate(IMainWindow *p) :
+    HAbstractBuilderPrivate(p)
+{
+    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
+    deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
+}
 
 HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
     HAbstractBuilder(*new HBuilderSpecPrivate(parent), parent)
@@ -42,9 +50,11 @@ void HBuilderSpec::buildConfigManage()
     if (!d->configManage->fileStream()->readFile(d->configFileName))
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
-        if (!specs->fileStream()->readFile(":/Dat/Spectrum.hcs"))
+        if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
         {
+            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
+            spec->setFitting(fit);
             specs->insert("1", spec);
         }
         d->configManage->setContain(IConfigManage::ContainSpec);
@@ -70,14 +80,15 @@ void HBuilderSpec::buildTestData()
 void HBuilderSpec::buildDevice()
 {
     Q_D(HBuilderSpec);
-    // 设备模拟
-    // auto device = d->communicateFactory->createDevice("HSlSimulation");
-    // auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-    // protocol->setDevice(device);
-    // 第一版设备554b
-    auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
-    // 第二版设备1305
-    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+//    // 设备模拟
+//    // auto device = d->communicateFactory->createDevice("HSlSimulation");
+//    // auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+//    // protocol->setDevice(device);
+//    // 第一版设备554b
+//    auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
+//    // 第二版设备1305
+//    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+    auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
