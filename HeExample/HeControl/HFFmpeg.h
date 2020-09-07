@@ -8,22 +8,20 @@
 
 // 引入ffmpeg头文件
 extern "C" {
-#include "libavutil/opt.h"
-#include "libavutil/time.h"
-#include "libavutil/frame.h"
-#include "libavutil/pixdesc.h"
-#include "libavutil/avassert.h"
-#include "libavutil/imgutils.h"
-#include "libavutil/ffversion.h"
 #include "libavcodec/avcodec.h"
+#include "libavcodec/avfft.h"
+#include "libavdevice/avdevice.h"
 #include "libavfilter/avfilter.h"
 #include "libavformat/avformat.h"
+#include "libavutil/avassert.h"
+#include "libavutil/ffversion.h"
+#include "libavutil/frame.h"
+#include "libavutil/imgutils.h"
+#include "libavutil/opt.h"
+#include "libavutil/pixdesc.h"
+#include "libavutil/time.h"
 #include "libswscale/swscale.h"
-
-#ifdef ffmpegdevice
-#include "libavdevice/avdevice.h"
-#endif
-
+#include "libswresample/swresample.h"
 #ifndef gcc45
 #include "libavutil/hwcontext.h"
 #include "libavutil/hwcontext_qsv.h"

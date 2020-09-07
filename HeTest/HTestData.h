@@ -8,6 +8,7 @@ public:
     static void testTemplateName();
     static void testByteArray();
     static void testWriteMode();
+    static void testListVariantMap();
 };
 
 #endif // HTESTDATA_H

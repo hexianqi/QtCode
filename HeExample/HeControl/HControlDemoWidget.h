@@ -33,7 +33,7 @@ private:
     void addWw();
     void addDemo();
     void addTool();
-    void addFFmpeg();
+    void addMedia();
     void addElse();
 
     // LiuDianWu
@@ -56,6 +56,10 @@ private:
     void addWwTaskPanel();
     void addWwTipWidget();
     void addWwElse();
+
+    // media
+    void addFFPlayer();
+    void addVlcPlayer();
 
     // Else
     void addMultHeaderTableView();

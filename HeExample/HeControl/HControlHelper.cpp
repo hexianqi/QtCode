@@ -53,6 +53,14 @@ QString HControlHelper::runTime(const QDateTime &start, const QDateTime &end)
     return tr("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
 }
 
+QString HControlHelper::secsToTime(qlonglong value)
+{
+    int hh  = value / 3600;
+    int mm  = (value % 3600) / 60;
+    int ss  = (value % 60);
+    return QString("%1:%2:%3").arg(hh, 2, 10, QChar('0')).arg(mm, 2, 10,  QChar('0')).arg(ss, 2, 10,  QChar('0'));
+}
+
 void HControlHelper::centerWidget(QWidget *widget)
 {
     auto size = QApplication::primaryScreen()->availableSize();

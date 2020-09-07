@@ -43,7 +43,8 @@ Debug {
     TARGET = HeControld
     LIBS    += \
             -L$$DESTDIR -lHeCored \
-            -L$$DESTDIR -lHeFiled
+            -L$$DESTDIR -lHeFiled \
+            -L$$DESTDIR -lHePlugind
 }
 
 Release {
@@ -51,6 +52,7 @@ Release {
     LIBS    += \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeFile \
+            -L$$DESTDIR -lHePlugin
 }
 
 unix {
@@ -65,12 +67,14 @@ include(event.pri)
 include(helper.pri)
 include(iconFont.pri)
 include(layout.pri)
+include(media.pri)
 include(multimedia.pri)
 include(network.pri)
 include(service.pri)
 include(sql.pri)
 include(style.pri)
-include(table.pri)
 include(test.pri)
 include(tools.pri)
 include(widget.pri)
+include($$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser/qtpropertybrowser.pri)
+

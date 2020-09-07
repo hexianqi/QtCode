@@ -126,5 +126,11 @@
         <file>image/ludianwu/check_on_1.png</file>
         <file>image/ludianwu/check_on_2.png</file>
         <file>image/ludianwu/check_on_3.png</file>
+        <file>image/svg/volume-slider-inside.svg</file>
+        <file>image/svg/volume-slider-outside.svg</file>
+        <file>image/svg/volume-high.svg</file>
+        <file>image/svg/volume-low.svg</file>
+        <file>image/svg/volume-medium.svg</file>
+        <file>image/svg/volume-muted.svg</file>
     </qresource>
 </RCC>

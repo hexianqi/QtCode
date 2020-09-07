@@ -12,7 +12,6 @@ HEADERS += \
     $$PWD/HFlatStyle.h \
     $$PWD/HFlatStyle_p.h
 
-
 SOURCES += \
     $$PWD/HStyleFactory.cpp \
     $$PWD/HAbstractCustomStyle.cpp \

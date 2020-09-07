@@ -9,23 +9,23 @@
 
 .StepButton[status="middle"] {
     /* repeat: 水平平铺，stretch: 垂直拉伸 */
-    border-image: url(:/qss/step/normal.png) 0 22 0 0 repeat stretch;
+    border-image: url(:/qss/stepButton/normal.png) 0 22 0 0 repeat stretch;
 }
 
 .StepButton[status="last"] {
-    border-image: url(:/qss/step/last.png) 0 22 0 0 repeat stretch;
+    border-image: url(:/qss/stepButton/last.png) 0 22 0 0 repeat stretch;
 }
 
 .StepButton[status="active-middle"] {
-    border-image: url(:/qss/step/active.png) 0 22 0 0 repeat stretch;
+    border-image: url(:/qss/stepButton/active.png) 0 22 0 0 repeat stretch;
 }
 
 .StepButton[status="active-last"] {
-    border-image: url(:/qss/step/last-active.png) 0 22 0 0 repeat stretch;
+    border-image: url(:/qss/stepButton/last-active.png) 0 22 0 0 repeat stretch;
 }
 
 .StepButton[status="active-prev"] {
-    border-image: url(:/qss/step/active-pre.png) 0 22 0 0 repeat stretch;
+    border-image: url(:/qss/stepButton/active-pre.png) 0 22 0 0 repeat stretch;
 }
 
 .QWidget {

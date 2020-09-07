@@ -13,7 +13,7 @@ HEADERS += \
     $$PWD/HControlFactoryWidget_p.h
 
 SOURCES += \
-    $$PWD/HControlDemoWidget_FFmpeg.cpp \
+    $$PWD/HControlDemoWidget_media.cpp \
     $$PWD/HStyleWidget.cpp \    
     $$PWD/HFlatStyleWidget.cpp \
     $$PWD/HDemoWidget.cpp \

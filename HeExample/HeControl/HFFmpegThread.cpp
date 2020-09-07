@@ -1,5 +1,5 @@
 #include "HFFmpegThread_p.h"
-#include "HFFmpegHelper.h"
+#include "HFFmpegUtil.h"
 #include <QtGui/QImage>
 #include <QtCore/QtDebug>
 
@@ -7,7 +7,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 HFFmpegThreadPrivate::HFFmpegThreadPrivate()
 {
-    HFFmpegHelper::initLib();
+    HFFmpegUtil::initLib();
 }
 
 HFFmpegThread::HFFmpegThread(QObject *parent) :

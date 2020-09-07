@@ -15,6 +15,7 @@ class QColor;
 class QPen;
 class QPainter;
 class QImage;
+class QPixmap;
 class QFont;
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -36,6 +37,8 @@ public:
     static QImage createFontImage(const QFont &font, const QChar &c, QSize size, const QPen &pen, int flags = Qt::AlignCenter);
     // 自动调节文字大小
     static QFont adjustFontSize(QPainter *, const QString &text, double width);
+    // 加载svg图片
+    static QPixmap loadSvgToPixmap(const QString& path, QSize size);
 };
 
 HE_CONTROL_END_NAMESPACE
