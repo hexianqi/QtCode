@@ -1,4 +1,4 @@
-#include "HSpecCalibrateSet2Widget_p.h"
+#include "HSpecCalibrateSetWidget2_p.h"
 #include "ui_HSpecCalibrateSet2Widget.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeController/IModel.h"
@@ -8,33 +8,33 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HSpecCalibrateSet2Widget::HSpecCalibrateSet2Widget(QWidget *parent) :
-    HAbstractTestSetWidget(*new HSpecCalibrateSet2WidgetPrivate, parent),
-    ui(new Ui::HSpecCalibrateSet2Widget)
+HSpecCalibrateSetWidget2::HSpecCalibrateSetWidget2(QWidget *parent) :
+    HAbstractTestSetWidget(*new HSpecCalibrateSetWidget2Private, parent),
+    ui(new Ui::HSpecCalibrateSetWidget2)
 {
     ui->setupUi(this);
     init();
 }
 
-HSpecCalibrateSet2Widget::~HSpecCalibrateSet2Widget()
+HSpecCalibrateSetWidget2::~HSpecCalibrateSetWidget2()
 {
     qDebug() << __func__;
     delete ui;
 }
 
-void HSpecCalibrateSet2Widget::initialize(QVariantMap /*param*/)
+void HSpecCalibrateSetWidget2::initialize(QVariantMap /*param*/)
 {
 
 }
 
-QString HSpecCalibrateSet2Widget::typeName()
+QString HSpecCalibrateSetWidget2::typeName()
 {
-    return "HSpecCalibrateSet2Widget";
+    return "HSpecCalibrateSetWidget2";
 }
 
-void HSpecCalibrateSet2Widget::handleAction(HActionType action)
+void HSpecCalibrateSetWidget2::handleAction(HActionType action)
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
@@ -51,9 +51,9 @@ void HSpecCalibrateSet2Widget::handleAction(HActionType action)
     }
 }
 
-bool HSpecCalibrateSet2Widget::setTestState(bool b)
+bool HSpecCalibrateSetWidget2::setTestState(bool b)
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     if (!HAbstractTestSetWidget::setTestState(b))
         return false;
     ui->checkBox_02->setChecked(b);
@@ -65,9 +65,9 @@ bool HSpecCalibrateSet2Widget::setTestState(bool b)
     return true;
 }
 
-bool HSpecCalibrateSet2Widget::setTestMode(int value)
+bool HSpecCalibrateSetWidget2::setTestMode(int value)
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     if (!HAbstractTestSetWidget::setTestMode(value))
         return false;
 
@@ -82,9 +82,9 @@ bool HSpecCalibrateSet2Widget::setTestMode(int value)
     return true;
 }
 
-void HSpecCalibrateSet2Widget::setIntegralTimeAuto(bool b)
+void HSpecCalibrateSetWidget2::setIntegralTimeAuto(bool b)
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     if (d->integralTimeAuto == b)
         return;
     d->integralTimeAuto = b;
@@ -92,47 +92,47 @@ void HSpecCalibrateSet2Widget::setIntegralTimeAuto(bool b)
     ui->doubleSpinBox_01->setEnabled(!b);
 }
 
-void HSpecCalibrateSet2Widget::on_doubleSpinBox_01_valueChanged(double value)
+void HSpecCalibrateSetWidget2::on_doubleSpinBox_01_valueChanged(double value)
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
     d->testData->setData("[积分时间]", value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
-void HSpecCalibrateSet2Widget::on_checkBox_01_clicked(bool b)
+void HSpecCalibrateSetWidget2::on_checkBox_01_clicked(bool b)
 {
     setIntegralTimeAuto(b);
 }
 
-void HSpecCalibrateSet2Widget::on_checkBox_02_clicked(bool b)
+void HSpecCalibrateSetWidget2::on_checkBox_02_clicked(bool b)
 {
     setTestState(b);
 }
 
-void HSpecCalibrateSet2Widget::on_checkBox_03_clicked(bool b)
+void HSpecCalibrateSetWidget2::on_checkBox_03_clicked(bool b)
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     d->testData->setData("[电源模式]", b ? 1 : 0);
     d->model->addAction(ACT_SET_SOURCE_MODE);
 }
 
-void HSpecCalibrateSet2Widget::on_radioButton_01_clicked()
+void HSpecCalibrateSetWidget2::on_radioButton_01_clicked()
 {
     setTestMode(0);
 }
 
-void HSpecCalibrateSet2Widget::on_radioButton_02_clicked()
+void HSpecCalibrateSetWidget2::on_radioButton_02_clicked()
 {
     setTestState(false);
     HCoreHelper::msleep(100);
     setTestMode(1);
 }
 
-bool HSpecCalibrateSet2Widget::adjustIntegralTime()
+bool HSpecCalibrateSetWidget2::adjustIntegralTime()
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     if (!d->integralTimeAuto)
         return false;
     if (!d->testData->handleOperation("<匹配积分时间>").toBool())
@@ -141,9 +141,9 @@ bool HSpecCalibrateSet2Widget::adjustIntegralTime()
     return true;
 }
 
-void HSpecCalibrateSet2Widget::init()
+void HSpecCalibrateSetWidget2::init()
 {
-    Q_D(HSpecCalibrateSet2Widget);
+    Q_D(HSpecCalibrateSetWidget2);
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_01);
     ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
 }

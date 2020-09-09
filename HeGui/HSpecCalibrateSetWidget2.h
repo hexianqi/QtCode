@@ -2,27 +2,26 @@
 **      2019-04-11  HSpecCalibrateSet2Widget 光谱校准设置窗体（带电）。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATESET2WIDGET_H
-#define HSPECCALIBRATESET2WIDGET_H
+#pragma once
 
 #include "HAbstractTestSetWidget.h"
 
 namespace Ui {
-class HSpecCalibrateSet2Widget;
+class HSpecCalibrateSetWidget2;
 }
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HSpecCalibrateSet2WidgetPrivate;
+class HSpecCalibrateSetWidget2Private;
 
-class HSpecCalibrateSet2Widget : public HAbstractTestSetWidget
+class HSpecCalibrateSetWidget2 : public HAbstractTestSetWidget
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HSpecCalibrateSet2Widget)
+    Q_DECLARE_PRIVATE(HSpecCalibrateSetWidget2)
 
 public:
-    explicit HSpecCalibrateSet2Widget(QWidget *parent = nullptr);
-    ~HSpecCalibrateSet2Widget();
+    explicit HSpecCalibrateSetWidget2(QWidget *parent = nullptr);
+    ~HSpecCalibrateSetWidget2();
 
 public:
     void initialize(QVariantMap param) override;
@@ -49,9 +48,7 @@ private:
     void init();
 
 private:
-    Ui::HSpecCalibrateSet2Widget *ui;
+    Ui::HSpecCalibrateSetWidget2 *ui;
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATESET2WIDGET_H

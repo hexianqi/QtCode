@@ -19,6 +19,10 @@ class HE_GUI_EXPORT HTestWidget2 : public HTestWidget
 public:
     explicit HTestWidget2(QWidget *parent = nullptr);
 
+public:
+    void start() override;
+    void stop() override;
+
 protected:
     HTestWidget2(HTestWidget2Private &p, QWidget *parent = nullptr);
 

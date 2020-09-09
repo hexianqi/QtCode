@@ -3,6 +3,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IExcelStream.h"
 #include "HeData/ITestData.h"
+#include "HeController/IMemento.h"
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlPrint.h"
 #include "HeSql/HSql.h"
@@ -15,6 +16,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 HTestWidget2Private::HTestWidget2Private()
 {
+    memento = HAppContext::getContextPointer<IMemento>("IMementoTest");
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
     sqlPrint = HAppContext::getContextPointer<ISqlPrint>("ISqlPrint");
 }
@@ -29,11 +31,29 @@ HTestWidget2::HTestWidget2(HTestWidget2Private &p, QWidget *parent) :
 {
 }
 
+void HTestWidget2::start()
+{
+    Q_D(HTestWidget2);
+    HTestWidget::start();
+    if (d->memento)
+        d->memento->restore();
+}
+
+void HTestWidget2::stop()
+{
+    Q_D(HTestWidget2);
+    HTestWidget::stop();
+    if (d->memento)
+        d->memento->save();
+}
+
 void HTestWidget2::closeEvent(QCloseEvent *event)
 {
     qDebug() << __func__;
     Q_D(HTestWidget2);
     stop();
+    if (d->memento)
+        d->memento->writeFile();
     if (!d->records.isEmpty())
     {
         if (QMessageBox::question(this, tr("保存数据"), tr("是否保存到数据库？")) == QMessageBox::Yes)

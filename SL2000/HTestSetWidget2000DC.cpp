@@ -45,7 +45,7 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
         ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
         break;
     case ACT_SET_REVERSE_VOLTAGE:
-        ui->doubleSpinBox_3->setValue(d->testData->data("[反向电压]").toDouble());
+        ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
         break;
     case ACT_SET_GEARS_OUTPUT_CURRENT:
         ui->comboBox_2->setCurrentIndex(d->testData->data("[输出电流_档位]").toInt());
@@ -64,6 +64,11 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
     case ACT_SINGLE_TEST:
         if (!d->testState)
             break;
+        if (adjustIntegralTime())
+        {
+            d->model->addAction(ACT_SINGLE_TEST);
+            break;
+        }
         if (d->testMode == 4)
             d->model->addAction(ACT_QUERY_STATE_TRIGGER);
         else
@@ -185,7 +190,9 @@ void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
     d->testData->setData("[输出电流_档位]", value);
+    d->testData->setData("[实测电流_档位]", value);
     d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+    d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HTestSetWidget2000DC::on_comboBox_3_currentIndexChanged(int value)

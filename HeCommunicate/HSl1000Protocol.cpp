@@ -20,6 +20,7 @@ HSl1000ProtocolPrivate::HSl1000ProtocolPrivate()
     device->addActionParam(ACT_SET_OUTPUT_VOLTAGE,          QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x06);
     device->addActionParam(ACT_SET_OUTPUT_CURRENT,          QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x07);
     device->addActionParam(ACT_SET_GEARS_OUTPUT_CURRENT,    QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x08);
+    device->addActionParam(ACT_SET_GEARS_MEASURED_CURRENT,  QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x08);
     device->addActionParam(ACT_SET_REVERSE_VOLTAGE,         QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x09);
     device->addActionParam(ACT_GET_ELEC_DATA,               QList<uchar>() << 0x00 << 0x06 << 0x01 << 0x11);
     device->addActionParam(ACT_GET_MEASURED_VOLTAGE,        QList<uchar>() << 0x00 << 0x02 << 0x01 << 0x12);

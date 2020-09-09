@@ -57,7 +57,7 @@ void HSpecElecModel::syncTestData(quint32 type)
     }
 }
 
-void HSpecElecModel::syncMachine(quint32 type)
+void HSpecElecModel::syncDevice(quint32 type)
 {
     if ((type & IConfigManage::ContainSpec) != 0u)
         addAction(ACT_SET_INTEGRAL_TIME);

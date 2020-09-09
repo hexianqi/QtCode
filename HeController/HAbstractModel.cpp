@@ -45,7 +45,7 @@ void HAbstractModel::start()
 
     initDelayThread();
     initWorkThread();
-    syncMachine(d_ptr->configManage->contain());
+    syncDeviceWhole();
     d_ptr->initialized = true;
 }
 
@@ -65,6 +65,11 @@ void HAbstractModel::addAction(HActionType action, ulong delay)
 
     for (auto t : d_ptr->threads->values())
         t->addAction(action);
+}
+
+void HAbstractModel::syncDeviceWhole()
+{
+    syncDevice(d_ptr->configManage->contain());
 }
 
 bool HAbstractModel::openFile()

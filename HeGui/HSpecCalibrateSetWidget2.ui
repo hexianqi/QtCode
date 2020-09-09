@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HSpecCalibrateSet2Widget</class>
- <widget class="QWidget" name="HSpecCalibrateSet2Widget">
+ <class>HSpecCalibrateSetWidget2</class>
+ <widget class="QWidget" name="HSpecCalibrateSetWidget2">
   <property name="geometry">
    <rect>
     <x>0</x>

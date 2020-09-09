@@ -45,6 +45,7 @@ void HSpecCalibrateDialog::init()
     d_ptr->widget->setCalibrate(calibrate);
     d_ptr->widget->start();
     layout->addWidget(d_ptr->widget);
+    setMinimumSize(745, 436);
     setWindowTitle(tr("光谱参数定标"));
 }
 

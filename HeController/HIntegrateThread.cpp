@@ -18,7 +18,6 @@ HIntegrateThreadPrivate::HIntegrateThreadPrivate()
     protocolElse = protocolCollection->value("Else");
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
     protocols << protocolSpec << protocolElse;
-
 }
 
 HIntegrateThread::HIntegrateThread(QObject *parent) :
@@ -59,6 +58,7 @@ HErrorType HIntegrateThread::handleAction(HActionType action)
         error = d->strategyElec->handle(ACT_GET_ELEC_DATA);
         if (error != E_OK)
             return error;
+        msleep(d->testData->data("[光谱采样延时]").toInt());
         error = d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
         if (error != E_OK)
             return error;

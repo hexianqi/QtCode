@@ -6,6 +6,10 @@
 #include "HeData/HDataGlobal.h"
 #include "HeSql/ISqlTableModel.h"
 
+HE_CONTROLLER_BEGIN_NAMESPACE
+class IMemento;
+HE_CONTROLLER_END_NAMESPACE
+
 HE_SQL_BEGIN_NAMESPACE
 class ISqlHandle;
 class ISqlPrint;
@@ -20,6 +24,7 @@ public:
     HTestWidget2Private();
 
 public:
+    IMemento *memento = nullptr;
     ISqlHandle *sqlHandle = nullptr;
     ISqlPrint *sqlPrint = nullptr;
 

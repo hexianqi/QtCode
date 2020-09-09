@@ -21,6 +21,7 @@
 #include "HeCommunicate/IDevice.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
+#include "HeController/IMemento.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
@@ -50,7 +51,7 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
                              << "Ra" << "Rx" << "EnergyGraph";
-    HAppContext::setContextValue("SpecCalibrateType", "HSpecCalibrateSet2Widget");
+    HAppContext::setContextValue("SpecCalibrateType",   "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
@@ -99,7 +100,7 @@ void HBuilder2000DC::buildConfigManage()
         param[2].insert("itemClassName",    "HElecCalibrateItem");
         param[2].insert("itemTypeList",     QStringList() << "[实测电压]");
         param[3].insert("itemClassName",    "HElecCalibrateItem");
-        param[3].insert("itemTypeList",     QStringList() << "[实测电流]");
+        param[3].insert("itemTypeList",     QStringList() << "[实测电流1]" << "[实测电流2]");
         param[4].insert("itemClassName",    "HElecCalibrateItem");
         param[4].insert("itemTypeList",     QStringList() << "[反向电压]");
         param[5].insert("itemClassName",    "HElecCalibrateItem");
@@ -270,7 +271,13 @@ void HBuilder2000DC::buildMenu()
 
 void HBuilder2000DC::buildTestWidget()
 {
+    Q_D(HBuilder2000DC);
+    auto memento = d->controllerFactory->createMemento("HMemento");
+    memento->setItems(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
+    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
+    HAppContext::setContextPointer("IMementoTest", memento);
+
     ITestWidget *widget = new HTestWidget2000DC;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

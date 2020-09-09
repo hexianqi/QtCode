@@ -48,7 +48,7 @@ void HSpecModel::syncTestData(quint32 type)
         addAction(ACT_RESET_GRADE);
 }
 
-void HSpecModel::syncMachine(quint32 type)
+void HSpecModel::syncDevice(quint32 type)
 {
     if ((type & IConfigManage::ContainSpec) != 0u)
         addAction(ACT_SET_INTEGRAL_TIME);
