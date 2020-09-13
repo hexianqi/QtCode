@@ -26,12 +26,11 @@ void HElecCalibrateItem1Widget::showData()
     auto poly = d->data->relation();
     auto type = d->data->data("[项类型]").toString();
     auto typeF = HCore::typeAddition(type, "F");
-    auto typeR = HCore::typeAddition(type, "R");
     HPluginHelper::initWidget(typeF, ui->doubleSpinBox_1);
     HPluginHelper::initWidget(typeF, ui->doubleSpinBox_2);
-    HPluginHelper::initWidget(typeR, ui->doubleSpinBox_3);
-    HPluginHelper::initWidget(typeR, ui->doubleSpinBox_4);
-    HPluginHelper::initWidget(typeR, ui->doubleSpinBox_5);
+    HPluginHelper::initWidget(type, ui->doubleSpinBox_3);
+    HPluginHelper::initWidget(type, ui->doubleSpinBox_4);
+    HPluginHelper::initWidget(type, ui->doubleSpinBox_5);
     ui->doubleSpinBox_1->setValue(poly[0].x());
     ui->doubleSpinBox_2->setValue(poly[1].x());
     ui->doubleSpinBox_3->setValue(poly[0].y());

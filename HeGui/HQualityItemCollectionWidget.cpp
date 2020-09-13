@@ -113,7 +113,7 @@ void HQualityItemCollectionWidget::on_pushButton_2_clicked()
 
 void HQualityItemCollectionWidget::on_tableWidget_cellDoubleClicked(int row, int column)
 {
-    if (d_ptr->data == nullptr || column < 2)
+    if (d_ptr->data == nullptr || column < 3)
         return;
     auto item = ui->tableWidget->item(row, column);
     QColorDialog dlg(item->backgroundColor(), this);

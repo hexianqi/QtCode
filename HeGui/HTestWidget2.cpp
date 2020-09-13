@@ -101,6 +101,8 @@ void HTestWidget2::clearResult()
 void HTestWidget2::printPreview()
 {
     Q_D(HTestWidget2);
+    if (d->records.isEmpty())
+        return;
     d->sqlHandle->addRecord(toRecord(), false);
     d->sqlPrint->printPreview();
 }

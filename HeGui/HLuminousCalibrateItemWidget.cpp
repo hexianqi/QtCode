@@ -33,7 +33,6 @@ void HLuminousCalibrateItemWidget::setData(ILuminousCalibrateItem *p, QString ty
     d_ptr->type = type;
     d_ptr->types << p->data("[项类型]").toString();
     d_ptr->types << HCore::typeAddition(d_ptr->types.first(), "F");
-    d_ptr->types << HCore::typeAddition(d_ptr->types.first(), "R");
     initWidget();
     showData();
 }
@@ -41,7 +40,7 @@ void HLuminousCalibrateItemWidget::setData(ILuminousCalibrateItem *p, QString ty
 void HLuminousCalibrateItemWidget::updateData(double value, int gears)
 {
     auto text1 = HCore::toString(d_ptr->types.at(1), value);
-    auto text2 = HCore::toString(d_ptr->types.at(2), d_ptr->data->toReal(value, gears));
+    auto text2 = HCore::toString(d_ptr->types.at(0), d_ptr->data->toReal(value, gears));
     ui->lineEdit_1->setText(text1);
     ui->lineEdit_2->setText(text2);
     ui->tableWidget->item(gears, d_ptr->column)->setText(text1);
@@ -54,11 +53,11 @@ void HLuminousCalibrateItemWidget::showData()
         QStringList list;
         auto poly = d_ptr->data->relation(i);
         for (int j = 0; j < poly.size(); j++)
-            list << HCore::toString(d_ptr->types.at(1), poly[j].x()) << HCore::toString(d_ptr->types.at(2), poly[j].y());
+            list << HCore::toString(d_ptr->types.at(1), poly[j].x()) << HCore::toString(d_ptr->types.at(0), poly[j].y());
         ui->tableWidget->setRow(i, list);
     }
     ui->lineEdit_1->setText(HCore::toString(d_ptr->types.at(1), 0.0));
-    ui->lineEdit_2->setText(HCore::toString(d_ptr->types.at(2), 0.0));
+    ui->lineEdit_2->setText(HCore::toString(d_ptr->types.at(0), 0.0));
 }
 
 void HLuminousCalibrateItemWidget::saveData(int gears)
@@ -93,7 +92,7 @@ void HLuminousCalibrateItemWidget::initWidget()
         for (int i = 0; i < d_ptr->data->relation(0).size(); i++)
         {
             headers << tr("采样值%1").arg(i+1) << tr("标准值%1").arg(i+1);
-            types << d_ptr->types.at(1) << d_ptr->types.at(2);
+            types << d_ptr->types.at(1) << d_ptr->types.at(0);
         }
         auto delegate = new HDoubleSpinBoxDelegate(this);
         delegate->setType(types);

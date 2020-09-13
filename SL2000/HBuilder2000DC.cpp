@@ -278,6 +278,6 @@ void HBuilder2000DC::buildTestWidget()
     HAppContext::setContextPointer("IMementoTest", memento);
 
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

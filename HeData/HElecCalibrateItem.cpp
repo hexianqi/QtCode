@@ -71,7 +71,7 @@ double HElecCalibrateItem::toFiction(double value)
 double HElecCalibrateItem::toReal(double value)
 {
     Q_D(HElecCalibrateItem);
-    return HMath::interpolate(value, d->relation);
+    return qMax(0.0, HMath::interpolate(value, d->relation));
 }
 
 HE_DATA_END_NAMESPACE

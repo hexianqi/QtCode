@@ -105,6 +105,8 @@ bool HTestSetWidget2000DC::setTestState(bool b)
         }
         else
         {
+            d->testData->setData("[电源模式]", 2);
+            d->model->addAction(ACT_SET_SOURCE_MODE);
             d->model->addAction(ACT_GET_REVERSE_CURRENT);
             d->testData->setData("[电源模式]", 1);
             d->model->addAction(ACT_SET_SOURCE_MODE);
@@ -128,10 +130,10 @@ bool HTestSetWidget2000DC::setTestState(bool b)
     {
         if (d->testMode >= 1 && d->testMode <= 3)
         {
-            d->testData->setData("[电源模式]", 0);
-            d->model->addAction(ACT_SET_SOURCE_MODE);
             d->timerContinue->stop();
             d->timerInterval->stop();
+            d->testData->setData("[电源模式]", 0);
+            d->model->addAction(ACT_SET_SOURCE_MODE, 200);
         }
     }
     return true;
@@ -235,7 +237,7 @@ void HTestSetWidget2000DC::init()
     ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
     ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
     ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  ") << tr("  分选测试  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));// << tr("  分选测试  "));
     ui->comboBox_2->addItems(QStringList() << tr("  1档  ") << tr("  2档  "));
     ui->comboBox_3->addItems(QStringList() << tr("  1档  ") << tr("  2档  ") << tr("  3档  ") << tr("  4档  ") << tr("  5档  "));
     d->timerContinue = new QTimer(this);

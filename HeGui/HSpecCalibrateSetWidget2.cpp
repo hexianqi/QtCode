@@ -1,5 +1,5 @@
 #include "HSpecCalibrateSetWidget2_p.h"
-#include "ui_HSpecCalibrateSet2Widget.h"
+#include "ui_HSpecCalibrateSetWidget2.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeController/IModel.h"
 #include "HeData/ITestData.h"
