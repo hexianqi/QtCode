@@ -8,6 +8,9 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HVlcPlayerControlPrivate
 {
 public:
+    HVlcPlayerControlPrivate();
+
+public:
     bool opened = false;
     bool fullScreen = false;
     HVlcPlayerControl::State state = HVlcPlayerControl::Stopped;
@@ -19,6 +22,8 @@ public:
     libvlc_event_manager_t *mediaManager = nullptr;     // 媒体事件管理器
     libvlc_event_manager_t *playerManager = nullptr;    // 播放事件管理器
     libvlc_callback_t callback = nullptr;               // 回调函数
+    QList<libvlc_event_e> mediaEvents;                  // 媒体事件
+    QList<libvlc_event_e> playerEvents;                 // 播放事件
 };
 
 HE_CONTROL_END_NAMESPACE

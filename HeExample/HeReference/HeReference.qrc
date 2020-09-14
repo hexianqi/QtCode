@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/huesatradialpicker.png</file>
+        <file>image/awesomeface.png</file>
+        <file>glsl/coordinate_systems.frag</file>
+        <file>glsl/coordinate_systems.vert</file>
+        <file>glsl/texture1.frag</file>
+        <file>glsl/texture1.vert</file>
+        <file>glsl/texture2.frag</file>
+        <file>glsl/texture2.vert</file>
+        <file>glsl/colors.frag</file>
+        <file>glsl/colors.vert</file>
+        <file>glsl/light_cube.frag</file>
+        <file>glsl/light_cube.vert</file>
+    </qresource>
+</RCC>

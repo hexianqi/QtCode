@@ -34,8 +34,10 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    auto w = HTestOpenGL::test1();
-    w->show();
+    return HTestOpenGL::testGlfw();
+
+//    auto w = HTestOpenGL::test1();
+//    w->show();
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 

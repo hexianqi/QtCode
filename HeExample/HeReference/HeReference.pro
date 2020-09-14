@@ -48,3 +48,6 @@ DISTFILES   += \
 
 include(opengl.pri)
 include(reflect.pri)
+
+RESOURCES += \
+    HeReference.qrc
