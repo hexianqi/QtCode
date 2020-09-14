@@ -23,6 +23,7 @@ public:
 public:
     void setData(QString type, QVariant value) override;
     bool setCalibrate(ILuminousCalibrateCollection *) override;
+    QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 protected:
     HTestLuminous(HTestLuminousPrivate &);
@@ -32,6 +33,7 @@ protected:
     void setType(QString value);
     void setGears(int value);
     void setSample(double value);
+    bool matchGears();
 };
 
 HE_DATA_END_NAMESPACE

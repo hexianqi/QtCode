@@ -64,14 +64,23 @@ void HSpecEnergyWidget::refreshWidget()
 
 void HSpecEnergyWidget::addProgressBar(const QString &type)
 {
-    auto bar = new HProgressBar;
+    if (d_ptr->progressBars.contains(type))
+        return;
+    auto bar = new HProgressBar(this);
     bar->setOrientation(Qt::Vertical);
     bar->setRange(0, 100);
     bar->setValue(0);
     bar->setToolTip(HCore::toCaption(type));
     bar->setProperty("showType", type);
-    d_ptr->progressBars.append(bar);
+    d_ptr->progressBars.insert(type, bar);
     d_ptr->progressLayout->addWidget(bar);
+}
+
+void HSpecEnergyWidget::setProgressBarVisible(const QString &type, bool b)
+{
+    if (!d_ptr->progressBars.contains(type))
+        return;
+    d_ptr->progressBars.value(type)->setVisible(b);
 }
 
 void HSpecEnergyWidget::init()

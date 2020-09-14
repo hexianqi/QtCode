@@ -24,6 +24,7 @@ public:
     void initCoordinate();
     void refreshWidget();
     void addProgressBar(const QString &type);
+    void setProgressBarVisible(const QString &type, bool b);
 
 protected:
     HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *parent = nullptr);

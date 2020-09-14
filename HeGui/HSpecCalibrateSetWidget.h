@@ -34,7 +34,7 @@ public:
     bool setTestMode(int value) override;
 
 protected slots:
-    void setIntegralTimeAuto(bool b);
+    void setAutoIntegralTime(bool b);
     void on_doubleSpinBox_01_valueChanged(double value);
     void on_checkBox_01_clicked(bool b);
     void on_checkBox_02_clicked(bool b);

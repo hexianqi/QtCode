@@ -143,6 +143,10 @@ bool HTestSpecPrivate::calcSpec()
     if(specData->Energy.isEmpty())
         return false;
     specFacade->calcSpectrum(specData);
+    auto visionFlux = specData->VisionFlux;
+    auto visionEfficien = specData->VisionEfficien;
+    auto luminousFlux = calibrate->calcLuminous(visionFlux / data("[积分时间]").toDouble());
+    auto luminousPower = visionEfficien < 0.00001 ? 0.0 : 1000 * luminousFlux / visionEfficien;
     // 测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
@@ -151,8 +155,10 @@ bool HTestSpecPrivate::calcSpec()
         specData->Energy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
         specFacade->calcSpectrum(specData);
     }
-    specData->LuminousFlux = calibrate->calcLuminous(specData->VisionFlux / data("[积分时间]").toDouble());
-    specData->LuminousPower = specData->VisionEfficien < 0.00001 ? 0.0 : 1000 * specData->LuminousFlux / specData->VisionEfficien;
+    addData("[明视觉光通量]", visionFlux);
+    addData("[明视觉光效率]", visionEfficien);
+    addData("[光谱光通量]", luminousFlux);
+    addData("[光功率]", luminousPower);
     addData("[峰值波长]", specData->PeakWave);
     addData("[峰值带宽]", specData->Bandwidth);
     addData("[主波长]", specData->DominantWave);
@@ -168,15 +174,11 @@ bool HTestSpecPrivate::calcSpec()
     addData("[色坐标up]", specData->CoordinateUvp.x());
     addData("[色坐标vp]", specData->CoordinateUvp.y());
     addData("[Duv]", specData->Duv);
-    addData("[明视觉光通量]", specData->VisionFlux);
-    addData("[明视觉光效率]", specData->VisionFlux);
     addData("[红色比]", specData->RedRatio);
     addData("[蓝色比]", specData->BlueRatio);
     addData("[绿色比]", specData->GreenRatio);
     addData("[显色指数]", specData->RenderingIndexAvg);
     addData("[显色指数Rx]", renderingIndex());
-    addData("[光谱光通量]", specData->LuminousFlux);
-    addData("[光功率]", specData->LuminousPower);
     return true;
 }
 

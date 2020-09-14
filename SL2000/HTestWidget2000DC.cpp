@@ -58,6 +58,13 @@ void HTestWidget2000DC::handleAction(HActionType action)
     HTestWidget2000::handleAction(action);
 }
 
+void HTestWidget2000DC::init()
+{
+    Q_D(HTestWidget2000DC);
+    HTestWidget2000::init();
+    setProbe(d->testData->data("[使用光探头]").toBool());
+}
+
 void HTestWidget2000DC::createAction()
 {
     Q_D(HTestWidget2000DC);
@@ -65,7 +72,7 @@ void HTestWidget2000DC::createAction()
     d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
-    connect(d->actionProbe, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用光探头]", b); });
+    connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
 }
 
 void HTestWidget2000DC::createMenu()
@@ -73,6 +80,14 @@ void HTestWidget2000DC::createMenu()
     Q_D(HTestWidget2000DC);
     HTestWidget2000::createMenu();
     d->menus.at(0)->insertAction(d->actionAdjust, d->actionProbe);
+}
+
+void HTestWidget2000DC::setProbe(bool b)
+{
+    Q_D(HTestWidget2000DC);
+    d->testData->setData("[使用光探头]", b);
+    d->energyWidget->setProgressBarVisible("[光采样比率]", b);
+    d->testSetWidget->handleOperation("<启用光挡位>", b);
 }
 
 void HTestWidget2000DC::readSettings()

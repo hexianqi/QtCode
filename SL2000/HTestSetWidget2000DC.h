@@ -25,6 +25,7 @@ public:
     QString typeName() override;
 
 public:
+    QVariant handleOperation(QString type, QVariant value = QVariant()) override;
     void handleAction(HActionType action) override;
     bool setTestState(bool b) override;
 
@@ -35,13 +36,13 @@ protected slots:
     void on_doubleSpinBox_4_valueChanged(double value);
     void on_checkBox_1_clicked(bool b);
     void on_comboBox_1_currentIndexChanged(int value);
-    void on_comboBox_2_currentIndexChanged(int value);
     void on_comboBox_3_currentIndexChanged(int value);
     void continueTest();
     void intervalTest();
 
 protected:
     bool adjustIntegralTime();
+    bool adjustLuminousGears();
 
 private:
     void init();

@@ -7,7 +7,7 @@
 class HTestSetWidget2000Private : public HAbstractTestSetWidgetPrivate
 {
 public:
-    bool integralTimeAuto = false;
+    bool autoIntegralTime = false;
 };
 
 #endif // HTESTSETWIDGET2000_P_H

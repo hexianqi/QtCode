@@ -78,9 +78,9 @@ void HTestSetWidget2000::on_doubleSpinBox_1_valueChanged(double value)
 void HTestSetWidget2000::on_checkBox_1_clicked(bool b)
 {
     Q_D(HTestSetWidget2000);
-    if (d->integralTimeAuto == b)
+    if (d->autoIntegralTime == b)
         return;
-    d->integralTimeAuto = b;
+    d->autoIntegralTime = b;
     ui->checkBox_1->setChecked(b);
     ui->doubleSpinBox_1->setEnabled(!b);
 }
@@ -93,7 +93,7 @@ void HTestSetWidget2000::on_comboBox_1_currentIndexChanged(int value)
 bool HTestSetWidget2000::adjustIntegralTime()
 {
     Q_D(HTestSetWidget2000);
-    if (!d->integralTimeAuto)
+    if (!d->autoIntegralTime)
         return false;
     if (!d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;

@@ -8,7 +8,7 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecCalibrateSetWidget2Private : public HAbstractTestSetWidgetPrivate
 {
 public:
-    bool integralTimeAuto = false;
+    bool autoIntegralTime = false;
 };
 
 HE_GUI_END_NAMESPACE

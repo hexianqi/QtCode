@@ -9,7 +9,7 @@ HE_GUI_BEGIN_NAMESPACE
 class HSimpleTestSetWidgetPrivate : public HAbstractTestSetWidgetPrivate
 {
 public:
-    bool integralTimeAuto = false;
+    bool autoIntegralTime = false;
 };
 
 HE_GUI_END_NAMESPACE

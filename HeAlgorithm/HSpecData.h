@@ -42,9 +42,6 @@ public:
     double RedRatio;
     double GreenRatio;
     double BlueRatio;
-    // 其他
-    double LuminousFlux;
-    double LuminousPower;
 };
 
 HE_ALGORITHM_END_NAMESPACE

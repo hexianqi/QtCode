@@ -24,7 +24,7 @@ public:
     ITestData *testData = nullptr;
     HSpecDiagramWidget *specWidget = nullptr;
     QHBoxLayout *progressLayout = nullptr;
-    QList<HProgressBar *> progressBars;
+    QHash<QString, HProgressBar *> progressBars;
     QStringList toolTipTypes;
 };
 

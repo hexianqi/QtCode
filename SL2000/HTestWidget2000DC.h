@@ -26,8 +26,10 @@ protected:
 
 protected:
     void handleAction(HActionType action) override;
+    void init() override;
     void createAction() override;
     void createMenu() override;
+    void setProbe(bool b);
     void readSettings();
     void writeSettings();
 };

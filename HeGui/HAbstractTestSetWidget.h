@@ -19,6 +19,7 @@ public:
     explicit HAbstractTestSetWidget(QWidget *parent = nullptr);
 
 public:
+    QVariant handleOperation(QString type, QVariant value = QVariant()) override;
     bool setTestState(bool b) override;
     bool testState() override;
     bool setTestMode(int value) override;

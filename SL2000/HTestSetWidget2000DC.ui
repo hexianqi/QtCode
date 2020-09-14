@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>548</width>
+    <width>461</width>
     <height>90</height>
    </rect>
   </property>
@@ -63,19 +63,6 @@
     <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
      <property name="alignment">
       <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QCheckBox" name="checkBox_1">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>自动积分</string>
      </property>
     </widget>
    </item>
@@ -204,50 +191,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="label_003">
-     <property name="minimumSize">
-      <size>
-       <width>72</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>测量模式：</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-     <property name="buddy">
-      <cstring>comboBox_1</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QComboBox" name="comboBox_1"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="label_006">
-     <property name="minimumSize">
-      <size>
-       <width>72</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>电流档位：</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-     <property name="buddy">
-      <cstring>comboBox_1</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QComboBox" name="comboBox_2"/>
-   </item>
    <item row="2" column="1">
     <widget class="QLabel" name="label_7">
      <property name="minimumSize">
@@ -268,7 +211,46 @@
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QComboBox" name="comboBox_3"/>
+    <widget class="QComboBox" name="comboBox_3">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label_003">
+     <property name="minimumSize">
+      <size>
+       <width>72</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>测量模式：</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox_1</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QComboBox" name="comboBox_1"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QCheckBox" name="checkBox_1">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>自动积分</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
