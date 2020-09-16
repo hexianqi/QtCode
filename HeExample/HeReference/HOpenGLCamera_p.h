@@ -20,7 +20,7 @@ public:
     // camera options
     float movementSpeed = 25.f;
     float mouseSensitivity = 0.1f;
-    float zoom = 15.0f;
+    float zoom = 45.0f;
 };
 
 HE_REFERENCE_END_NAMESPACE

@@ -23,6 +23,11 @@ public:
     ~HLearnGLFW() override;
 
 public:
+    void setUseCamera(bool);
+    void setLightPosLoop(bool);
+    void setLightColorLoop(bool);
+
+public:
     int testTriangle();
     int testTexture();
     int testTexture2();
@@ -30,12 +35,24 @@ public:
     int testCoordinate2();
     int testCamera();
     int testCamera2();
+    int testColor();
+    int testLight();
+    int testMaterials();
+    int testLightMaps();
+    int testLightCasterDirectional();
+    int testLightCasterPoint();
+    int testLightCasterSpot();
+    int testLightMult();
 
 protected:
     void initGlfw();
     bool initFlad();
     bool createWindow();
+    void perFrameTime();
     void processInput(GLFWwindow *window);
+    unsigned int loadTexture(char const * path);
+    QVector3D lightPos();
+    QVector3D lightColor();
 
 protected:
     QScopedPointer<HLearnGLFWPrivate> d_ptr;

@@ -1,13 +1,16 @@
 #include "HLearnGLFW_p.h"
 #include <QtCore/QtMath>
+#include <QtGui/QImage>
+#include <QtCore/QDebug>
 #include <iostream>
 
 HE_REFERENCE_BEGIN_NAMESPACE
 
 // camera
-QVector3D cameraPos   = QVector3D(0.0f, 0.0f,  3.0f);
+QVector3D cameraPos   = QVector3D(0.0f, 0.0f,  5.0f);
 QVector3D cameraFront = QVector3D(0.0f, 0.0f, -1.0f);
 QVector3D cameraUp    = QVector3D(0.0f, 1.0f,  0.0f);
+
 // timing
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -19,6 +22,7 @@ float lastX =  800.0f / 2.0;
 float lastY =  600.0 / 2.0;
 float fov   =  45.0f;
 
+bool useCamera = false;
 HOpenGLCamera *camera = nullptr;
 
 // whenever the window size changed (by OS or user resize) this callback function executes
@@ -43,57 +47,100 @@ void mouse_callback(GLFWwindow */*window*/, double xpos, double ypos)
     lastX = xpos;
     lastY = ypos;
 
-    if (!camera)
-    {
-        auto sensitivity = 0.1f; // change this value to your liking
-        xoffset *= sensitivity;
-        yoffset *= sensitivity;
+    if (useCamera && camera)
+        return camera->processMouseMovement(xoffset, yoffset);
 
-        yaw += xoffset;
-        pitch += yoffset;
+    auto sensitivity = 0.1f; // change this value to your liking
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
 
-        // make sure that when pitch is out of bounds, screen doesn't get flipped
-        if (pitch > 89.0f)
-            pitch = 89.0f;
-        if (pitch < -89.0f)
-            pitch = -89.0f;
+    yaw += xoffset;
+    pitch += yoffset;
 
-        QVector3D front;
-        front.setX(cos(qDegreesToRadians(yaw)) * cos(qDegreesToRadians(pitch)));
-        front.setY(sin(qDegreesToRadians(pitch)));
-        front.setZ(sin(qDegreesToRadians(yaw)) * cos(qDegreesToRadians(pitch)));
-        cameraFront = front.normalized();
-    }
-    else
-    {
-        camera->processMouseMovement(xoffset, yoffset);
-    }
+    // make sure that when pitch is out of bounds, screen doesn't get flipped
+    if (pitch > 89.0f)
+        pitch = 89.0f;
+    if (pitch < -89.0f)
+        pitch = -89.0f;
+
+    QVector3D front;
+    front.setX(cos(qDegreesToRadians(yaw)) * cos(qDegreesToRadians(pitch)));
+    front.setY(sin(qDegreesToRadians(pitch)));
+    front.setZ(sin(qDegreesToRadians(yaw)) * cos(qDegreesToRadians(pitch)));
+    cameraFront = front.normalized();
 }
 
 void scroll_callback(GLFWwindow */*window*/, double xoffset, double yoffset)
 {
-    if (!camera)
-    {
-        fov -= (float)yoffset;
-        if (fov < 1.0f)
-            fov = 1.0f;
-        if (fov > 45.0f)
-            fov = 45.0f;
-    }
-    else
-        camera->processMouseScroll(xoffset, yoffset);
+    if (useCamera && camera)
+        return camera->processMouseScroll(xoffset, yoffset);
+
+    fov -= (float)yoffset;
+    if (fov < 1.0f)
+        fov = 1.0f;
+    if (fov > 45.0f)
+        fov = 45.0f;
+}
+
+HLearnGLFWPrivate::HLearnGLFWPrivate()
+{
+    cubePositions << QVector3D( 0.0f,  0.0f,  0.0f)
+                  << QVector3D( 2.0f,  5.0f, -15.0f)
+                  << QVector3D(-1.5f, -2.2f, -2.5f)
+                  << QVector3D(-3.8f, -2.0f, -12.3f)
+                  << QVector3D( 2.4f, -0.4f, -3.5f)
+                  << QVector3D(-1.7f,  3.0f, -7.5f)
+                  << QVector3D( 1.3f, -2.0f, -2.5f)
+                  << QVector3D( 1.5f,  2.0f, -2.5f)
+                  << QVector3D( 1.5f,  0.2f, -1.5f)
+                  << QVector3D(-1.3f,  1.0f, -1.5f);
+
+    attenuations.insert(   7, QVector3D(1.0, 0.7, 1.8));
+    attenuations.insert(  13, QVector3D(1.0, 0.35, 0.44));
+    attenuations.insert(  20, QVector3D(1.0, 0.22, 0.20));
+    attenuations.insert(  32, QVector3D(1.0, 0.14, 0.07));
+    attenuations.insert(  50, QVector3D(1.0, 0.09, 0.032));
+    attenuations.insert(  65, QVector3D(1.0, 0.07, 0.017));
+    attenuations.insert( 100, QVector3D(1.0, 0.045, 0.0075));
+    attenuations.insert( 160, QVector3D(1.0, 0.027, 0.0028));
+    attenuations.insert( 200, QVector3D(1.0, 0.022, 0.0019));
+    attenuations.insert( 325, QVector3D(1.0, 0.014, 0.0007));
+    attenuations.insert( 600, QVector3D(1.0, 0.007, 0.0002));
+    attenuations.insert(3250, QVector3D(1.0, 0.0014, 0.000007));
 }
 
 HLearnGLFW::HLearnGLFW(QObject *parent) :
     QObject(parent),
     d_ptr(new HLearnGLFWPrivate)
 {
-
+    setUseCamera(true);
 }
 
 HLearnGLFW::~HLearnGLFW()
 {
 
+}
+
+void HLearnGLFW::setUseCamera(bool b)
+{
+    if (useCamera == b)
+        return;
+    useCamera = b;
+    if (b && camera == nullptr)
+    {
+        camera = new HOpenGLCamera(this);
+        camera->setPosition(cameraPos);
+    }
+}
+
+void HLearnGLFW::setLightPosLoop(bool b)
+{
+    d_ptr->lightPosLoop = b;
+}
+
+void HLearnGLFW::setLightColorLoop(bool b)
+{
+    d_ptr->lightColorLoop = b;
 }
 
 // initialize and configure
@@ -128,8 +175,15 @@ bool HLearnGLFW::createWindow()
     glfwSetFramebufferSizeCallback(d_ptr->window, framebuffer_size_callback);
     glfwSetCursorPosCallback(d_ptr->window, mouse_callback);
     glfwSetScrollCallback(d_ptr->window, scroll_callback);
-    glfwSetInputMode(d_ptr->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+//    glfwSetInputMode(d_ptr->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     return true;
+}
+
+void HLearnGLFW::perFrameTime()
+{
+    auto currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -138,7 +192,18 @@ void HLearnGLFW::processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-    if (!camera)
+    if (useCamera && camera)
+    {
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+            camera->processKeyboard(HOpenGLCamera::FORWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+            camera->processKeyboard(HOpenGLCamera::BACKWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+            camera->processKeyboard(HOpenGLCamera::LEFT, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+            camera->processKeyboard(HOpenGLCamera::RIGHT, deltaTime);
+    }
+    else
     {
         auto cameraSpeed = 2.5 * deltaTime;
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -150,17 +215,46 @@ void HLearnGLFW::processInput(GLFWwindow *window)
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
             cameraPos += QVector3D::normal(cameraFront, cameraUp) * cameraSpeed;
     }
+}
+
+unsigned int HLearnGLFW::loadTexture(const char *path)
+{
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+
+    auto image = QImage(path);
+    image = image.convertToFormat(QImage::Format_RGBA8888);
+    image = image.mirrored();
+    auto data = image.constBits();
+    if (data)
+    {
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    }
     else
     {
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-            camera->processKeyboard(HOpenGLCamera::FORWARD, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            camera->processKeyboard(HOpenGLCamera::BACKWARD, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-            camera->processKeyboard(HOpenGLCamera::LEFT, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-            camera->processKeyboard(HOpenGLCamera::RIGHT, deltaTime);
+        std::cout << "Failed to load texture" << std::endl;
     }
+    return textureID;
+}
+
+QVector3D HLearnGLFW::lightPos()
+{
+    if (d_ptr->lightPosLoop)
+        return QVector3D(1.0f + sin(glfwGetTime()) * 2.0f,  sin(glfwGetTime() / 2.0f) * 1.0f, d_ptr->lightPos.z());
+    return d_ptr->lightPos;
+}
+
+QVector3D HLearnGLFW::lightColor()
+{
+    if (d_ptr->lightColorLoop)
+        return QVector3D(sin(glfwGetTime() * 2.0f), sin(glfwGetTime() * 0.7f), sin(glfwGetTime() * 1.3f));
+    return d_ptr->lightColor;
 }
 
 HE_REFERENCE_END_NAMESPACE

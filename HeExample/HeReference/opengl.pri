@@ -13,6 +13,11 @@ SOURCES += \
     $$PWD/HLearnGLFW_Camera.cpp \
     $$PWD/HLearnGLFW_Color.cpp \
     $$PWD/HLearnGLFW_Coordinate.cpp \
+    $$PWD/HLearnGLFW_Light.cpp \
+    $$PWD/HLearnGLFW_LightCaster.cpp \
+    $$PWD/HLearnGLFW_LightMaps.cpp \
+    $$PWD/HLearnGLFW_LightMult.cpp \
+    $$PWD/HLearnGLFW_Materials.cpp \
     $$PWD/HLearnGLFW_Texture.cpp \
     $$PWD/HLearnGLFW_Triangle.cpp \
     $$PWD/HOpenGLCamera.cpp \

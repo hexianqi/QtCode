@@ -22,7 +22,7 @@ HE_CONTROL_USE_NAMESPACE
 void testGslChart()
 {
     auto p = HTestGsl::interpEval();
-    HTestChart::diffChart(p[0], p[1])->show();
+    HTestChart::lineChart(p)->show();
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 }
 
@@ -36,8 +36,6 @@ int main(int argc, char *argv[])
 
     return HTestOpenGL::testGlfw();
 
-//    auto w = HTestOpenGL::test1();
-//    w->show();
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 

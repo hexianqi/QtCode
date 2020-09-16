@@ -21,7 +21,6 @@ int HLearnGLFW::testTexture()
     auto program = new HOpenGLShaderProgram(this);
     program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture1.vert");
     program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture1.frag");
-    program->link();
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
@@ -53,27 +52,7 @@ int HLearnGLFW::testTexture()
     glEnableVertexAttribArray(2);
 
     // load and create a texture
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // load image, create texture and generate mipmaps
-    QImage image(":/image/huesatradialpicker.png");
-    auto data = image.mirrored().constBits();
-    if (data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
+    auto texture = loadTexture(":/image/awesomeface.png");
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -118,7 +97,6 @@ int HLearnGLFW::testTexture2()
     auto program = new HOpenGLShaderProgram(this);
     program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture2.vert");
     program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture2.frag");
-    program->link();
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
@@ -150,56 +128,12 @@ int HLearnGLFW::testTexture2()
     glEnableVertexAttribArray(2);
 
     // load and create a texture
-    unsigned int texture1, texture2;;
-    // texture 1
-    glGenTextures(1, &texture1);
-    glBindTexture(GL_TEXTURE_2D, texture1);
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // load image, create texture and generate mipmaps
-    QImage image1(":/image/huesatradialpicker.png");
-    auto image11 = image1.mirrored();
-    auto data1 = image11.constBits();
-    if (data1)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image1.width(), image1.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data1);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    // texture 2
-    glGenTextures(1, &texture2);
-    glBindTexture(GL_TEXTURE_2D, texture2);
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // load image, create texture and generate mipmaps
-    QImage image2(":/image/awesomeface.png");
-    auto image21 = image2.mirrored();
-    auto data2 = image21.constBits();
-    if (data2)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image2.width(), image2.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data2);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-
+    auto texture1 = loadTexture(":/image/huesatradialpicker.png");
+    auto texture2 = loadTexture(":/image/awesomeface.png");
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
     program->bind(); // don't forget to activate/use the shader before setting uniforms!
-    glUniform1i(program->uniformLocation("texture1"), 0);
-    glUniform1i(program->uniformLocation("texture2"), 1);
+    program->setUniformValue("texture1", 0);
+    program->setUniformValue("texture2", 1);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))

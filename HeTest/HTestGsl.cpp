@@ -41,7 +41,7 @@ QPolygonF readTestTc15()
     int i,n;
     QString str;
 
-    QFile file(":/dat/testTc.dat");
+    QFile file(":/dat/PhotopicVision.dat");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
 
@@ -88,8 +88,9 @@ void HTestGsl::polySolve()
 QList<QPolygonF> HTestGsl::interpEval()
 {
     auto p1 = readTestTc15();
-    auto p2 = HInterp::eval(p1, p1.first().x() - 20, p1.last().x() + 50, 5, HInterp::Akima);
-    return QList<QPolygonF>() << p1 << p2;
+    auto p2 = HInterp::eval(p1, p1.first().x() - 20, p1.last().x() + 50, 5, HInterp::Linera);
+    auto p3 = HInterp::eval(p1, p1.first().x() - 20, p1.last().x() + 50, 5, HInterp::Cspline);
+    return QList<QPolygonF>() << p1 << p2 << p3;
 }
 
 QList<QPolygonF> HTestGsl::linearFit()

@@ -30,6 +30,8 @@ public:
     ~HOpenGLCamera() override;
 
 public:
+    QVector3D position() const;
+    QVector3D front() const;
     float zoom() const;
     QMatrix4x4 viewMatrix() const;
 

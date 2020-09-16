@@ -1,4 +1,4 @@
-﻿#include "HTestOpenGL.h"
+#include "HTestOpenGL.h"
 #include "HeReference/HOpenGLWidget_1.h"
 #include "HeReference/HLearnGLFW.h"
 
@@ -12,6 +12,7 @@ QWidget *HTestOpenGL::test1()
 int HTestOpenGL::testGlfw()
 {
     HLearnGLFW g;
-    return g.testCoordinate2();
-    return g.test1();
+    g.setLightColorLoop(true);
+    g.setLightPosLoop(true);
+    return g.testLightMult();
 }

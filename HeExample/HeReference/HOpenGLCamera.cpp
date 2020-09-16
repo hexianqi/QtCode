@@ -14,6 +14,16 @@ HOpenGLCamera::~HOpenGLCamera()
 {
 }
 
+QVector3D HOpenGLCamera::position() const
+{
+    return d_ptr->position;
+}
+
+QVector3D HOpenGLCamera::front() const
+{
+    return d_ptr->front;
+}
+
 float HOpenGLCamera::zoom() const
 {
     return d_ptr->zoom;
@@ -22,7 +32,7 @@ float HOpenGLCamera::zoom() const
 QMatrix4x4 HOpenGLCamera::viewMatrix() const
 {
     QMatrix4x4 r;
-    r.lookAt(d_ptr->position, d_ptr->position + d_ptr->front, d_ptr->up);
+    r.lookAt(d_ptr->position, d_ptr->position + d_ptr->front, d_ptr->worldUp);
     return r;
 }
 

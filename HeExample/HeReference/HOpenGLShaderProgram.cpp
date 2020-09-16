@@ -1,6 +1,8 @@
 #include "HOpenGLShaderProgram_p.h"
 #include "GLFW/glfw3.h"
 #include <QtCore/QFile>
+#include <QtGui/QColor>
+#include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
 
 HE_REFERENCE_BEGIN_NAMESPACE
@@ -366,6 +368,220 @@ int HOpenGLShaderProgram::attributeLocation(const QString &name) const
     return attributeLocation(name.toLatin1().constData());
 }
 
+void HOpenGLShaderProgram::enableAttributeArray(int location)
+{
+    if (location != -1)
+        glEnableVertexAttribArray(location);
+}
+
+void HOpenGLShaderProgram::enableAttributeArray(const char *name)
+{
+    enableAttributeArray(attributeLocation(name));
+}
+
+void HOpenGLShaderProgram::disableAttributeArray(int location)
+{
+    if (location != -1)
+        glDisableVertexAttribArray(location);
+}
+
+void HOpenGLShaderProgram::disableAttributeArray(const char *name)
+{
+    disableAttributeArray(attributeLocation(name));
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, GLfloat value)
+{
+    if (location != -1)
+        glVertexAttrib1fv(location, &value);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, GLfloat x, GLfloat y)
+{
+    if (location != -1)
+    {
+        GLfloat values[2] = {x, y};
+        glVertexAttrib2fv(location, values);
+    }
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, GLfloat x, GLfloat y, GLfloat z)
+{
+    if (location != -1)
+    {
+        GLfloat values[3] = {x, y, z};
+        glVertexAttrib3fv(location, values);
+    }
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+    if (location != -1)
+    {
+        GLfloat values[4] = {x, y, z, w};
+        glVertexAttrib4fv(location, values);
+    }
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, const QVector2D &value)
+{
+    if (location != -1)
+        glVertexAttrib2fv(location, reinterpret_cast<const GLfloat *>(&value));
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, const QVector3D &value)
+{
+    if (location != -1)
+        glVertexAttrib3fv(location, reinterpret_cast<const GLfloat *>(&value));
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, const QVector4D &value)
+{
+    if (location != -1)
+        glVertexAttrib4fv(location, reinterpret_cast<const GLfloat *>(&value));
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, const QColor &value)
+{
+    setAttributeValue(location, value.redF(), value.greenF(), value.blueF(), value.alphaF());
+}
+
+void HOpenGLShaderProgram::setAttributeValue(int location, const GLfloat *values, int columns, int rows)
+{
+    if (rows < 1 || rows > 4)
+    {
+        qWarning("HOpenGLShaderProgram::setAttributeValue: rows %d not supported", rows);
+        return;
+    }
+    if (location != -1)
+    {
+        while (columns-- > 0)
+        {
+            if (rows == 1)
+                glVertexAttrib1fv(location, values);
+            else if (rows == 2)
+                glVertexAttrib2fv(location, values);
+            else if (rows == 3)
+                glVertexAttrib3fv(location, values);
+            else
+                glVertexAttrib4fv(location, values);
+            values += rows;
+            ++location;
+        }
+    }
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, GLfloat value)
+{
+    setAttributeValue(attributeLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, GLfloat x, GLfloat y)
+{
+    setAttributeValue(attributeLocation(name), x, y);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, GLfloat x, GLfloat y, GLfloat z)
+{
+    setAttributeValue(attributeLocation(name), x, y, z);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+    setAttributeValue(attributeLocation(name), x, y, z, w);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, const QVector2D &value)
+{
+    setAttributeValue(attributeLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, const QVector3D &value)
+{
+    setAttributeValue(attributeLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, const QVector4D &value)
+{
+    setAttributeValue(attributeLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, const QColor &value)
+{
+    setAttributeValue(attributeLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setAttributeValue(const char *name, const GLfloat *values, int columns, int rows)
+{
+    setAttributeValue(attributeLocation(name), values, columns, rows);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(int location, const GLfloat *values, int tupleSize, int stride)
+{
+    if (location != -1)
+        glVertexAttribPointer(location, tupleSize, GL_FLOAT, GL_FALSE, stride, values);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(int location, const QVector2D *values, int stride)
+{
+    if (location != -1)
+        glVertexAttribPointer(location, 2, GL_FLOAT, GL_FALSE, stride, values);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(int location, const QVector3D *values, int stride)
+{
+    if (location != -1)
+        glVertexAttribPointer(location, 3, GL_FLOAT, GL_FALSE, stride, values);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(int location, const QVector4D *values, int stride)
+{
+    if (location != -1)
+        glVertexAttribPointer(location, 4, GL_FLOAT, GL_FALSE, stride, values);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(int location, GLenum type, const void *values, int tupleSize, int stride)
+{
+    if (location != -1)
+        glVertexAttribPointer(location, tupleSize, type, GL_TRUE, stride, values);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(const char *name, const GLfloat *values, int tupleSize, int stride)
+{
+    setAttributeArray(attributeLocation(name), values, tupleSize, stride);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(const char *name, const QVector2D *values, int stride)
+{
+    setAttributeArray(attributeLocation(name), values, stride);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(const char *name, const QVector3D *values, int stride)
+{
+    setAttributeArray(attributeLocation(name), values, stride);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(const char *name, const QVector4D *values, int stride)
+{
+    setAttributeArray(attributeLocation(name), values, stride);
+}
+
+void HOpenGLShaderProgram::setAttributeArray(const char *name, GLenum type, const void *values, int tupleSize, int stride)
+{
+    setAttributeArray(attributeLocation(name), type, values, tupleSize, stride);
+}
+
+void HOpenGLShaderProgram::setAttributeBuffer(int location, GLenum type, int offset, int tupleSize, int stride)
+{
+    if (location != -1)
+        glVertexAttribPointer(location, tupleSize, type, GL_TRUE, stride, reinterpret_cast<const void *>(qintptr(offset)));
+}
+
+void HOpenGLShaderProgram::setAttributeBuffer(const char *name, GLenum type, int offset, int tupleSize, int stride)
+{
+    setAttributeBuffer(attributeLocation(name), type, offset, tupleSize, stride);
+}
+
 int HOpenGLShaderProgram::uniformLocation(const char *name) const
 {
     if (d_ptr->linked && d_ptr->programId)
@@ -384,6 +600,211 @@ int HOpenGLShaderProgram::uniformLocation(const QString &name) const
     return uniformLocation(name.toLatin1().constData());
 }
 
+void HOpenGLShaderProgram::setUniformValue(int location, GLint value)
+{
+    if (location != -1)
+        glUniform1i(location, value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, GLuint value)
+{
+    if (location != -1)
+        glUniform1i(location, value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, GLfloat value)
+{
+    if (location != -1)
+        glUniform1fv(location, 1, &value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, GLfloat x, GLfloat y)
+{
+    if (location != -1)
+    {
+        GLfloat values[2] = {x, y};
+        glUniform2fv(location, 1, values);
+    }
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, GLfloat x, GLfloat y, GLfloat z)
+{
+    if (location != -1)
+    {
+        GLfloat values[3] = {x, y, z};
+        glUniform3fv(location, 1, values);
+    }
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+    if (location != -1)
+    {
+        GLfloat values[4] = {x, y, z, w};
+        glUniform4fv(location, 1, values);
+    }
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, const QVector2D &value)
+{
+    if (location != -1)
+        glUniform2fv(location, 1, reinterpret_cast<const GLfloat *>(&value));
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, const QVector3D &value)
+{
+    if (location != -1)
+        glUniform3fv(location, 1, reinterpret_cast<const GLfloat *>(&value));
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, const QVector4D &value)
+{
+    if (location != -1)
+        glUniform4fv(location, 1, reinterpret_cast<const GLfloat *>(&value));
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, const QColor &value)
+{
+    setUniformValue(location, value.redF(), value.greenF(), value.blueF(), value.alphaF());
+}
+
+void HOpenGLShaderProgram::setUniformValue(int location, const QMatrix4x4 &value)
+{
+    glUniformMatrix4fv(location, 1, GL_FALSE, value.constData());
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, GLint value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, GLuint value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, GLfloat value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, GLfloat x, GLfloat y)
+{
+    setUniformValue(uniformLocation(name), x, y);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, GLfloat x, GLfloat y, GLfloat z)
+{
+    setUniformValue(uniformLocation(name), x, y, z);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+    setUniformValue(uniformLocation(name), x, y, z, w);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, const QVector2D &value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, const QVector3D &value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, const QVector4D &value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, const QColor &value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValue(const char *name, const QMatrix4x4 &value)
+{
+    setUniformValue(uniformLocation(name), value);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(int location, const GLint *values, int count)
+{
+    if (location != -1)
+        glUniform1iv(location, count, values);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(int location, const GLuint *values, int count)
+{
+    if (location != -1)
+        glUniform1iv(location, count, reinterpret_cast<const GLint *>(values));
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(int location, const GLfloat *values, int count, int tupleSize)
+{
+    if (location != -1)
+    {
+        if (tupleSize == 1)
+            glUniform1fv(location, count, values);
+        else if (tupleSize == 2)
+            glUniform2fv(location, count, values);
+        else if (tupleSize == 3)
+            glUniform3fv(location, count, values);
+        else if (tupleSize == 4)
+            glUniform4fv(location, count, values);
+        else
+            qWarning("HOpenGLShaderProgram::setUniformValue: size %d not supported", tupleSize);
+    }
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(int location, const QVector2D *values, int count)
+{
+    if (location != -1)
+        glUniform2fv(location, count, reinterpret_cast<const GLfloat *>(values));
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(int location, const QVector3D *values, int count)
+{
+    if (location != -1)
+        glUniform3fv(location, count, reinterpret_cast<const GLfloat *>(values));
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(int location, const QVector4D *values, int count)
+{
+    if (location != -1)
+        glUniform4fv(location, count, reinterpret_cast<const GLfloat *>(values));
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(const char *name, const GLint *values, int count)
+{
+    setUniformValueArray(uniformLocation(name), values, count);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(const char *name, const GLuint *values, int count)
+{
+    setUniformValueArray(uniformLocation(name), values, count);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(const char *name, const GLfloat *values, int count, int tupleSize)
+{
+    setUniformValueArray(uniformLocation(name), values, count, tupleSize);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(const char *name, const QVector2D *values, int count)
+{
+    setUniformValueArray(uniformLocation(name), values, count);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(const char *name, const QVector3D *values, int count)
+{
+    setUniformValueArray(uniformLocation(name), values, count);
+}
+
+void HOpenGLShaderProgram::setUniformValueArray(const char *name, const QVector4D *values, int count)
+{
+    setUniformValueArray(uniformLocation(name), values, count);
+}
+
 bool HOpenGLShaderProgram::init()
 {
     if (d_ptr->programId)
@@ -391,7 +812,7 @@ bool HOpenGLShaderProgram::init()
     d_ptr->programId = glCreateProgram();
     if (!d_ptr->programId)
     {
-        qWarning("QOpenGLShaderProgram: could not create shader program");
+        qWarning("HOpenGLShaderProgram: could not create shader program");
         return false;
     }
     return true;

@@ -30,6 +30,9 @@ HEADERS     += \
             HDPointer.h \
             HDPointer_p.h
 
+RESOURCES   += \
+            HeReference.qrc
+
 Debug {
     TARGET = HeReferenced
 }
@@ -49,5 +52,4 @@ DISTFILES   += \
 include(opengl.pri)
 include(reflect.pri)
 
-RESOURCES += \
-    HeReference.qrc
+

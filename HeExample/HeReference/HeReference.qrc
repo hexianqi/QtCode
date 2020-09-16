@@ -10,7 +10,27 @@
         <file>glsl/texture2.vert</file>
         <file>glsl/colors.frag</file>
         <file>glsl/colors.vert</file>
-        <file>glsl/light_cube.frag</file>
-        <file>glsl/light_cube.vert</file>
+        <file>glsl/light_basic.frag</file>
+        <file>glsl/light_basic.vert</file>
+        <file>glsl/light_basic2.frag</file>
+        <file>glsl/light_basic2.vert</file>
+        <file>glsl/light_basic3.frag</file>
+        <file>glsl/light_basic3.vert</file>
+        <file>glsl/materials.frag</file>
+        <file>glsl/materials.vert</file>
+        <file>glsl/light_maps.frag</file>
+        <file>glsl/light_maps.vert</file>
+        <file>image/container.png</file>
+        <file>image/container_specular.png</file>
+        <file>glsl/light_casters_directional.frag</file>
+        <file>glsl/light_casters_directional.vert</file>
+        <file>glsl/light_source.frag</file>
+        <file>glsl/light_source.vert</file>
+        <file>glsl/light_casters_point.frag</file>
+        <file>glsl/light_casters_point.vert</file>
+        <file>glsl/light_casters_spot.frag</file>
+        <file>glsl/light_casters_spot.vert</file>
+        <file>glsl/light_multiple.frag</file>
+        <file>glsl/light_multiple.vert</file>
     </qresource>
 </RCC>
