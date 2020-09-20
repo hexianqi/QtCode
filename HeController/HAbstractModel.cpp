@@ -111,8 +111,8 @@ bool HAbstractModel::exportFile(quint32 type)
 
 void HAbstractModel::setConfigFile(const QString &fileName)
 {
-    d_ptr->configFileName = fileName;
-    HAppContext::setContextValue("ConfigFileName", fileName);
+//    d_ptr->configFileName = fileName;
+//    HAppContext::setContextValue("ConfigFileName", fileName);
 }
 
 void HAbstractModel::initDelayThread()

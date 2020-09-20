@@ -71,6 +71,21 @@ HErrorType HIntegrateThread::handleAction(HActionType action)
         handleData();
         return E_OK;
     case ACT_GET_SPECTRUM_ELEC:
+        if (d->testData->data("[预配置测试]").toBool())
+        {
+            d->testData->setData("[电源模式]", 2);
+            error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
+            if (error != E_OK)
+                return error;
+            error = d->strategyElec->handle(ACT_GET_REVERSE_CURRENT);
+            if (error != E_OK)
+                return error;
+            d->testData->setData("[电源模式]", 1);
+            error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
+            if (error != E_OK)
+                return error;
+            d->testData->setData("[预配置测试]", false);
+        }
         error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
         if (error != E_OK)
             return error;
