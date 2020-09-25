@@ -1,8 +1,6 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLShaderProgram.h"
-#include <QtGui/QImage>
 #include <QtGui/QMatrix4x4>
-#include <iostream>
 #include <QtCore/QDebug>
 
 HE_REFERENCE_BEGIN_NAMESPACE
@@ -29,56 +27,11 @@ int HLearnGLFW::testColor()
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vert");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.frag");
 
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    float vertices[] = {
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-
-        -0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
-
-        -0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f
-    };
-
     unsigned int VBO, VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices1.size(), d_ptr->cubeVertices1.data(), GL_STATIC_DRAW);
     glBindVertexArray(VAOs[0]);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -100,7 +53,7 @@ int HLearnGLFW::testColor()
 
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), 800.0f / 600.0f, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         lightingShader->bind();
         lightingShader->setUniformValue("objectColor", 1.0f, 0.5f, 0.31f);
@@ -116,6 +69,7 @@ int HLearnGLFW::testColor()
         model.translate(lightPos());
         model.scale(0.2f);
         lightSourceShader->bind();
+        lightSourceShader->setUniformValue("lightColor", lightColor());
         lightSourceShader->setUniformValue("projection", projection);
         lightSourceShader->setUniformValue("view", view);
         lightSourceShader->setUniformValue("model", model);

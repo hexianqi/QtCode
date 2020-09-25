@@ -14,5 +14,5 @@ int HTestOpenGL::testGlfw()
     HLearnGLFW g;
     g.setLightColorLoop(true);
     g.setLightPosLoop(true);
-    return g.testLightMult();
+    return g.testCubemaps2();
 }

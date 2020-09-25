@@ -1,7 +1,5 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLShaderProgram.h"
-#include <QtGui/QImage>
-#include <iostream>
 #include <QtCore/QDebug>
 
 HE_REFERENCE_BEGIN_NAMESPACE

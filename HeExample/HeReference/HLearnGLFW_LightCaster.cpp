@@ -2,7 +2,6 @@
 #include "HOpenGLShaderProgram.h"
 #include <QtCore/QtMath>
 #include <QtGui/QMatrix4x4>
-#include <iostream>
 #include <QtCore/QDebug>
 
 HE_REFERENCE_BEGIN_NAMESPACE
@@ -22,62 +21,15 @@ int HLearnGLFW::testLightCasterDirectional()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_casters_directional.vert");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_casters_directional.frag");
+    auto shader = new HOpenGLShaderProgram(this);
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_casters_directional.vert");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_casters_directional.frag");
 
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    float vertices[] = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
-    };
-
-    qDebug() << sizeof(vertices);
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices4.size(), d_ptr->cubeVertices4.data(), GL_STATIC_DRAW);
     glBindVertexArray(VAO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -91,9 +43,9 @@ int HLearnGLFW::testLightCasterDirectional()
     auto texture2 = loadTexture(":/image/container_specular.png");
 
     // shader configuration
-    lightingShader->bind();
-    lightingShader->setUniformValue("material.diffuse", 0);
-    lightingShader->setUniformValue("material.specular", 1);
+    shader->bind();
+    shader->setUniformValue("material.diffuse", 0);
+    shader->setUniformValue("material.specular", 1);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -111,18 +63,18 @@ int HLearnGLFW::testLightCasterDirectional()
         auto ambientColor = lightColor * 0.8f;  // low influence
         // draw boxes
         QMatrix4x4 projection, view;
-        projection.perspective(camera->zoom(), 800.0f / 600.0f, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         // be sure to activate shader when setting uniforms/drawing objects
-        lightingShader->bind();
-        lightingShader->setUniformValue("light.direction", -0.2f, -1.0f, -0.3f);
-        lightingShader->setUniformValue("light.ambient", ambientColor);
-        lightingShader->setUniformValue("light.diffuse", diffuseColor);
-        lightingShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("material.shininess", 32.0f);
-        lightingShader->setUniformValue("viewPos", camera->position());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
+        shader->bind();
+        shader->setUniformValue("light.direction", -0.2f, -1.0f, -0.3f);
+        shader->setUniformValue("light.ambient", ambientColor);
+        shader->setUniformValue("light.diffuse", diffuseColor);
+        shader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+        shader->setUniformValue("material.shininess", 32.0f);
+        shader->setUniformValue("viewPos", camera->position());
+        shader->setUniformValue("projection", projection);
+        shader->setUniformValue("view", view);
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
@@ -136,7 +88,7 @@ int HLearnGLFW::testLightCasterDirectional()
             model.rotate(glfwGetTime(), 1.0f, 0.0f);
             model.translate(d_ptr->cubePositions.at(i));
             model.rotate(20.0f * i, 1.0f, 0.3f, 0.5f);
-            lightingShader->setUniformValue("model", model);
+            shader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -174,57 +126,11 @@ int HLearnGLFW::testLightCasterPoint()
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,   ":/glsl/light_source.vert");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment, ":/glsl/light_source.frag");
 
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    float vertices[] = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
-    };
-
     unsigned int VBO, VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices4.size(), d_ptr->cubeVertices4.data(), GL_STATIC_DRAW);
     glBindVertexArray(VAOs[0]);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -263,7 +169,7 @@ int HLearnGLFW::testLightCasterPoint()
         auto diffuseColor = lightColor * 0.5f;
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), 800.0f / 600.0f, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         // be sure to activate shader when setting uniforms/drawing objects
         lightingShader->bind();
@@ -336,61 +242,16 @@ int HLearnGLFW::testLightCasterSpot()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_casters_spot.vert");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_casters_spot.frag");
-
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    float vertices[] = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
-    };
+    auto shader = new HOpenGLShaderProgram(this);
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_casters_spot.vert");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_casters_spot.frag");
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices4.size(), d_ptr->cubeVertices4.data(), GL_STATIC_DRAW);
+
     glBindVertexArray(VAO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -404,9 +265,9 @@ int HLearnGLFW::testLightCasterSpot()
     auto texture2 = loadTexture(":/image/container_specular.png");
 
     // shader configuration
-    lightingShader->bind();
-    lightingShader->setUniformValue("material.diffuse", 0);
-    lightingShader->setUniformValue("material.specular", 1);
+    shader->bind();
+    shader->setUniformValue("material.diffuse", 0);
+    shader->setUniformValue("material.specular", 1);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -424,24 +285,24 @@ int HLearnGLFW::testLightCasterSpot()
         auto ambientColor = lightColor * 0.1f;
         // draw boxes
         QMatrix4x4 projection, view;
-        projection.perspective(camera->zoom(), 800.0f / 600.0f, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         // be sure to activate shader when setting uniforms/drawing objects
-        lightingShader->bind();
-        lightingShader->setUniformValue("light.position", camera->position());
-        lightingShader->setUniformValue("light.direction", camera->front());
-        lightingShader->setUniformValue("light.cutOff", (GLfloat)cos(qDegreesToRadians(12.5)));
-        lightingShader->setUniformValue("light.outerCutOff", (GLfloat)cos(qDegreesToRadians(17.5)));
-        lightingShader->setUniformValue("light.ambient", ambientColor);
-        lightingShader->setUniformValue("light.diffuse", diffuseColor);
-        lightingShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("light.constant", 1.0f);
-        lightingShader->setUniformValue("light.linear", 0.09f);
-        lightingShader->setUniformValue("light.quadratic", 0.032f);
-        lightingShader->setUniformValue("material.shininess", 32.0f);
-        lightingShader->setUniformValue("viewPos", camera->position());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
+        shader->bind();
+        shader->setUniformValue("light.position", camera->position());
+        shader->setUniformValue("light.direction", camera->front());
+        shader->setUniformValue("light.cutOff", (GLfloat)cos(qDegreesToRadians(12.5)));
+        shader->setUniformValue("light.outerCutOff", (GLfloat)cos(qDegreesToRadians(17.5)));
+        shader->setUniformValue("light.ambient", ambientColor);
+        shader->setUniformValue("light.diffuse", diffuseColor);
+        shader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+        shader->setUniformValue("light.constant", 1.0f);
+        shader->setUniformValue("light.linear", 0.09f);
+        shader->setUniformValue("light.quadratic", 0.032f);
+        shader->setUniformValue("material.shininess", 32.0f);
+        shader->setUniformValue("viewPos", camera->position());
+        shader->setUniformValue("projection", projection);
+        shader->setUniformValue("view", view);
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
@@ -455,7 +316,7 @@ int HLearnGLFW::testLightCasterSpot()
             model.rotate(glfwGetTime(), 1.0f, 0.0f);
             model.translate(d_ptr->cubePositions.at(i));
             model.rotate(20.0f * i, 1.0f, 0.3f, 0.5f);
-            lightingShader->setUniformValue("model", model);
+            shader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

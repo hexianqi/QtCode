@@ -32,5 +32,32 @@
         <file>glsl/light_casters_spot.vert</file>
         <file>glsl/light_multiple.frag</file>
         <file>glsl/light_multiple.vert</file>
+        <file>image/marble.jpg</file>
+        <file>image/metal.png</file>
+        <file>glsl/stencil.frag</file>
+        <file>glsl/stencil.vert</file>
+        <file>glsl/stencil_single_color.frag</file>
+        <file>image/grass.png</file>
+        <file>glsl/blending.frag</file>
+        <file>glsl/blending.vert</file>
+        <file>image/window.png</file>
+        <file>glsl/blending2.frag</file>
+        <file>glsl/blending2.vert</file>
+        <file>glsl/framebuffers.frag</file>
+        <file>glsl/framebuffers.vert</file>
+        <file>glsl/framebuffers_screen.frag</file>
+        <file>glsl/framebuffers_screen.vert</file>
+        <file>image/skybox/back.jpg</file>
+        <file>image/skybox/bottom.jpg</file>
+        <file>image/skybox/front.jpg</file>
+        <file>image/skybox/left.jpg</file>
+        <file>image/skybox/right.jpg</file>
+        <file>image/skybox/top.jpg</file>
+        <file>glsl/cubemaps.frag</file>
+        <file>glsl/cubemaps.vert</file>
+        <file>glsl/skybox.frag</file>
+        <file>glsl/skybox.vert</file>
+        <file>glsl/cubemaps2.frag</file>
+        <file>glsl/cubemaps2.vert</file>
     </qresource>
 </RCC>

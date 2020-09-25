@@ -43,6 +43,12 @@ public:
     int testLightCasterPoint();
     int testLightCasterSpot();
     int testLightMult();
+    int testStencil();
+    int testBlending();
+    int testBlending2();
+    int testFramebuffers();
+    int testCubemaps();
+    int testCubemaps2();
 
 protected:
     void initGlfw();
@@ -51,6 +57,7 @@ protected:
     void perFrameTime();
     void processInput(GLFWwindow *window);
     unsigned int loadTexture(char const * path);
+    unsigned int loadCubemap(QStringList paths);
     QVector3D lightPos();
     QVector3D lightColor();
 
