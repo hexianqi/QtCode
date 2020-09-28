@@ -10,6 +10,7 @@ HSqlTableModel::HSqlTableModel(QObject *parent, QSqlDatabase db) :
     ISqlTableModel(parent, db),
     d_ptr(new HSqlTableModelPrivate)
 {
+    init();
 }
 
 
@@ -17,6 +18,7 @@ HSqlTableModel::HSqlTableModel(HSqlTableModelPrivate &p, QObject *parent, QSqlDa
     ISqlTableModel(parent, db),
     d_ptr(&p)
 {
+    init();
 }
 
 HSqlTableModel::~HSqlTableModel()
@@ -55,7 +57,7 @@ void HSqlTableModel::setTable(const QString &tableName)
             return;
     }
     QSqlTableModel::setTable(tableName);
-    setSort(0, Qt::AscendingOrder);
+    setSort(0, Qt::DescendingOrder);
     select();
 }
 
@@ -107,6 +109,11 @@ QVariant HSqlTableModel::headerData(int section, Qt::Orientation orientation, in
             return HSql::toCaptionUnit(d_ptr->fields.at(section));
     }
     return QSqlTableModel::headerData(section, orientation, role);
+}
+
+void HSqlTableModel::init()
+{
+    setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
 HE_SQL_END_NAMESPACE

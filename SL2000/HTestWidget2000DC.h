@@ -25,10 +25,10 @@ protected:
     HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *parent = nullptr);
 
 protected:
-    void handleAction(HActionType action) override;
     void init() override;
     void createAction() override;
     void createMenu() override;
+    void postProcess() override;
     void setProbe(bool b);
     void readSettings();
     void writeSettings();

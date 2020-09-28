@@ -31,11 +31,10 @@ protected:
     void createAction() override;
     void exportExcel() override;
     void clearResult() override;
-    virtual void printPreview();
+    virtual void removeResult(int index, int count);
+    virtual void exportResult(int index, int count);
     virtual void exportDatabase();
-    virtual void exportDatabase(int index, int count = -1);
-    virtual void exportDatabase2() = 0;
-    QVariantMap toRecord();
+    virtual void printPreview();
     void saveRecord(bool append);
 };
 

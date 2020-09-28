@@ -131,11 +131,6 @@ void HIntegrateThread::handleData()
     Q_D(HIntegrateThread);
     if (!d->testData->data("[使用光探头]").toBool() || d->testData->data("[光测试类型]").toString() != "[光通量]")
         d->testData->setData("[光通量]", d->testData->data("[光谱光通量]"));
-    auto f = d->testData->data("[光通量]").toDouble();
-    auto p = d->testData->data("[电功率]").toDouble();
-    auto e = d->testData->data("[明视觉光效率]").toDouble();
-    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
-    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
 }
 
 void HIntegrateThread::init()

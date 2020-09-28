@@ -24,6 +24,7 @@ public:
 signals:
     void stateChanged(bool b);
     void modeChanged(int value);
+    void resultChanged(HActionType);
 
 public:
     // 处理操作

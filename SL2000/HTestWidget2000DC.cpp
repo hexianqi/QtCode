@@ -48,16 +48,6 @@ QString HTestWidget2000DC::typeName()
     return "HTestWidget2000DC";
 }
 
-void HTestWidget2000DC::handleAction(HActionType action)
-{
-    if (action == ACT_SINGLE_TEST || action == ACT_GET_SPECTRUM_ELEC)
-    {
-        postProcess();
-        refreshWidget();
-    }
-    HTestWidget2000::handleAction(action);
-}
-
 void HTestWidget2000DC::init()
 {
     Q_D(HTestWidget2000DC);
@@ -80,6 +70,18 @@ void HTestWidget2000DC::createMenu()
     Q_D(HTestWidget2000DC);
     HTestWidget2000::createMenu();
     d->menus.at(0)->insertAction(d->actionAdjust, d->actionProbe);
+}
+
+void HTestWidget2000DC::postProcess()
+{
+    Q_D(HTestWidget2000DC);
+    HTestWidget2000::postProcess();
+    auto f = d->testData->data("[光通量]").toDouble();
+    auto p = d->testData->data("[实测电压]").toDouble() * d->testData->data("[实测电流]").toDouble() / 1000.0;
+    auto e = d->testData->data("[明视觉光效率]").toDouble();
+    d->testData->setData("[电功率]" , p);
+    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
 }
 
 void HTestWidget2000DC::setProbe(bool b)

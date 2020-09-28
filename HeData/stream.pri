@@ -10,3 +10,9 @@ HEADERS += \
 SOURCES += \
     $$PWD/HExcelStream.cpp \
     $$PWD/HFileStream.cpp
+
+QXlsxPath   = $$absolute_path("../../../modules/QXlsx", $$[QT_INSTALL_DATA])
+
+INCLUDEPATH += $$QXlsxPath/include
+
+LIBS        += -L$$QXlsxPath/lib -lQXlsx

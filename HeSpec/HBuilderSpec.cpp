@@ -122,7 +122,6 @@ void HBuilderSpec::buildTestWidget()
 {
     Q_D(HBuilderSpec);
     auto widget = new HSpecCalibrateWidget;
-    widget->setTestSetWidget(new HSpecCalibrateSetWidget);
     widget->setCalibrate(d->configManage->specCalibrate("1"));
     HAppContext::setContextPointer("ITestWidget", widget);
 }

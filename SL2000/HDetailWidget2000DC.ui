@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1085</width>
+    <width>972</width>
     <height>168</height>
    </rect>
   </property>
@@ -34,12 +34,12 @@
     <widget class="QLabel" name="label_4">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;反向漏流：&lt;/span&gt;</string>
+      <string>反向漏流：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -50,16 +50,12 @@
     <widget class="QLabel" name="label_023">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;蓝色比：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>蓝色比：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -70,16 +66,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_021">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;红色比：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>红色比：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -95,11 +87,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;%&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>%</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -126,12 +114,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_014">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;光功率：&lt;/span&gt;</string>
+      <string>光功率：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -158,16 +146,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_022">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;绿色比：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>绿色比：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -178,12 +162,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_011">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;色坐标(u',v')：&lt;/span&gt;</string>
+      <string>色坐标u'v'：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -194,12 +178,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_2">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;实测电压&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>实测电压：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -258,12 +242,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_031">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;色温：&lt;/span&gt;</string>
+      <string>色温：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -295,7 +279,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
+      <string>nm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -322,12 +306,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_002">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;峰值波长：&lt;/span&gt;</string>
+      <string>峰值波长：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -338,12 +322,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_001">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;主波长：&lt;/span&gt;</string>
+      <string>主波长：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -375,7 +359,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
+      <string>nm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -386,12 +370,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_3">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;实测电流：&lt;/span&gt;</string>
+      <string>实测电流：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -418,12 +402,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_012">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;色坐标(x,y)：&lt;/span&gt;</string>
+      <string>色坐标xy：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -439,11 +423,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;%&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>%</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -459,11 +439,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;%&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>%</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -511,7 +487,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;mW&lt;/font&gt;</string>
+      <string>mW</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -538,12 +514,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_013">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;Duv：&lt;/span&gt;</string>
+      <string>Duv：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -559,7 +535,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;K&lt;/sup&gt;&lt;/font&gt;</string>
+      <string>K</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -570,12 +546,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_032">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;色纯度：&lt;/span&gt;</string>
+      <string>色纯度：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -586,12 +562,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_052">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数Rx：&lt;/span&gt;</string>
+      <string>显色指数R9：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -618,12 +594,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_306">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;色容差&lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>色容差：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -650,34 +626,15 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_051">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数Ra：&lt;/span&gt;</string>
+      <string>显色指数Ra：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="4" colspan="4">
-    <widget class="QLineEdit" name="lineEdit_042">
-     <property name="minimumSize">
-      <size>
-       <width>400</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -690,11 +647,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;SDCM&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>SDCM</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -710,7 +663,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
+      <string>nm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -737,12 +690,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_5">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;电功率：&lt;/span&gt;</string>
+      <string>电功率：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -758,7 +711,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;lm&lt;/font&gt;</string>
+      <string>lm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -769,12 +722,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_004">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;光通量：&lt;/span&gt;</string>
+      <string>光通量：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -817,12 +770,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_003">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;峰值带宽：&lt;/span&gt;</string>
+      <string>峰值带宽：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -849,12 +802,12 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="label_15">
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>78</width>
        <height>0</height>
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;光效率：&lt;/span&gt;</string>
+      <string>光效率：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -886,7 +839,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;V&lt;/font&gt;</string>
+      <string>V</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -902,7 +855,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;mA&lt;/font&gt;</string>
+      <string>mA</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -918,7 +871,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;uA&lt;/font&gt;</string>
+      <string>uA</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -934,7 +887,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;W&lt;/font&gt;</string>
+      <string>W</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -950,10 +903,61 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;lm/W&lt;/font&gt;</string>
+      <string>lm/W</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="6">
+    <widget class="QLabel" name="label_53">
+     <property name="minimumSize">
+      <size>
+       <width>78</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>显色指数Rx：</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="4">
+    <widget class="QLineEdit" name="lineEdit_042">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="7" colspan="4">
+    <widget class="QLineEdit" name="lineEdit_043">
+     <property name="minimumSize">
+      <size>
+       <width>400</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

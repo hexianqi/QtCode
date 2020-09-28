@@ -74,6 +74,7 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             d->model->addAction(ACT_SINGLE_TEST, 100);
         break;
     case ACT_SINGLE_TEST:
+        emit resultChanged(action);
         if (!d->testState)
             break;
         adjust = adjustIntegralTime();
@@ -89,6 +90,7 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             setTestState(false);
         break;
     case ACT_GET_SPECTRUM_ELEC:
+        emit resultChanged(action);
         if (!d->testState)
             break;
         adjustIntegralTime();

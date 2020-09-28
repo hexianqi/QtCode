@@ -370,6 +370,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[色纯度]",                       new HDataFormatInfo("[色纯度]", 0, 100, 3));
     hashDataFormatInfo.insert("[色温]",                         new HDataFormatInfo("[色温]", "K", 1400, 25000));
     hashDataFormatInfo.insert("[显色指数]",                     new HDataFormatInfo("[显色指数]", 0, 100, 2));
+    hashDataFormatInfo.insert("[显色指数R9]",                   new HDataFormatInfo("[显色指数R9]", 0, 100, 2));
     hashDataFormatInfo.insert("[显色指数Rx]",                   new HDataFormatInfo("[显色指数Rx]", 0, 100, 1));
     hashDataFormatInfo.insert("[色坐标]",                       new HDataFormatInfo("[色坐标]", 0, 1, 4, 0.001));
     hashDataFormatInfo.insert("[色坐标uv]",                     new HDataFormatInfo("[色坐标uv]", 0, 1, 4, 0.001));

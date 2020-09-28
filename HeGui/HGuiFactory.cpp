@@ -2,6 +2,8 @@
 #include "HSimpleTestSetWidget.h"
 #include "HSpecCalibrateSetWidget.h"
 #include "HSpecCalibrateSetWidget2.h"
+#include "HAdjustSetWidget.h"
+#include "HAdjustSetWidget2.h"
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HSpecCalibrateHandler.h"
@@ -83,7 +85,8 @@ void HGuiFactory::registerClass()
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget2>("HSpecCalibrateSetWidget2");
-
+    HWidgetFactory::registerClass<HAdjustSetWidget>("HAdjustSetWidget");
+    HWidgetFactory::registerClass<HAdjustSetWidget2>("HAdjustSetWidget2");
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HSpecLuminousHandler>("HSpecLuminousHandler");

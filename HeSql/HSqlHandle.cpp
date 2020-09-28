@@ -92,7 +92,7 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
     if (!d_ptr->model->insertRecord(-1, r))
         return false;
     d_ptr->productInfo->saveOnce();
-    d_ptr->model->select();
+    d_ptr->model->submitAll();
     d_ptr->model->resetCurrentRow(d_ptr->model->rowCount() - 1);
     return true;
 }
@@ -103,7 +103,6 @@ void HSqlHandle::removeRecord()
     if (d_ptr->model->removeRow(row))
     {
         d_ptr->model->submitAll();
-        d_ptr->model->select();
         d_ptr->model->resetCurrentRow(row);
     }
 }
@@ -113,7 +112,6 @@ void HSqlHandle::removeRecord(int row, int count)
     if (d_ptr->model->removeRows(row, count))
     {
         d_ptr->model->submitAll();
-        d_ptr->model->select();
         d_ptr->model->resetCurrentRow(row);
     }
 }

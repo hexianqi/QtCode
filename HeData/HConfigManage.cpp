@@ -295,8 +295,7 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     auto data = test->select(set.toList());
     if (d_ptr->adjusts != nullptr && test->data("[使用调整]").toBool())
     {
-        data = d_ptr->adjusts->correct(data);
-        test->setData(data);
+        test->setData(d_ptr->adjusts->correct(data));
     }
     if (d_ptr->chromatisms != nullptr)
     {

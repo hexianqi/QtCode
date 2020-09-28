@@ -24,10 +24,8 @@ public:
     QString typeName() override;
 
 protected:
-    bool setTest(bool b) override;
     void handleAction(HActionType action) override;
     void clearResult() override;
-    void exportDatabase2() override;
 
 protected:
     void init() override;
@@ -38,9 +36,12 @@ protected:
 
 protected:
     void handleStateChanged(bool b);
+    void handleResultChanged();
+    virtual void postProcess();
+    virtual void refreshWidget(bool append);
     void resetGrade();
-    void refreshWidget();
-    void postProcess();
+    void removeResult2();
+    void exportDatabase2();
     void importCurve();
     void exportCurve();
     void readSettings();

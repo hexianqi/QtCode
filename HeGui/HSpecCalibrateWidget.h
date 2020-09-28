@@ -37,15 +37,14 @@ public:
 
 public:
     void setCalibrate(ISpecCalibrate *);
-    void setTestSetWidget(ITestSetWidget *);
 
 protected:
-    bool setTest(bool b) override;
     void handleAction(HActionType action) override;
 
 protected slots:
     void handleStateChanged(bool b);
     void handleModeChanged(int value);
+    void handleResultChanged();
     void handleFitStateChanged(bool b);
     void on_tabWidget_1_currentChanged(int index);
     void on_pushButton_1_clicked();

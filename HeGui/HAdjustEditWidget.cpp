@@ -1,15 +1,18 @@
 #include "HAdjustEditWidget_p.h"
 #include "ui_HAdjustEditWidget.h"
-#include "HAdjustEditDialog.h"
-#include "HSimpleTestSetWidget.h"
+#include "IGuiFactory.h"
+#include "ITestSetWidget.h"
+#include "HSpecEnergyWidget.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IAdjust.h"
 #include "HeData/IAdjustItem.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
+#include "HeController/IModel.h"
 #include <QtWidgets/QAction>
 #include <QtCore/QDebug>
 
@@ -19,6 +22,15 @@ HAdjustEditWidgetPrivate::HAdjustEditWidgetPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
     optionals = HAppContext::getContextValue<QStringList>("AdjustOptionals");
+    model = HAppContext::getContextPointer<IModel>("IModel");
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
+
+    auto f = HAppContext::getContextPointer<IGuiFactory>("IGuiFactory");
+    auto t = HAppContext::getContextValue<QString>("AdjustSetWidgetType");
+    if (t.isEmpty())
+        t = "HAdjustSetWidget";
+    energyWidget = new HSpecEnergyWidget;
+    testSetWidget = f->createTestSetWidget(t);
 }
 
 HAdjustEditWidget::HAdjustEditWidget(QWidget *parent) :
@@ -33,6 +45,7 @@ HAdjustEditWidget::HAdjustEditWidget(QWidget *parent) :
 HAdjustEditWidget::~HAdjustEditWidget()
 {
     qDebug() << __func__;
+    disconnect(d_ptr->model, &IModel::actionFinished, this, &HAdjustEditWidget::handleAction);
     delete ui;
 }
 
@@ -95,21 +108,6 @@ void HAdjustEditWidget::showData()
     }
 }
 
-void HAdjustEditWidget::setEnableEdit(bool b)
-{
-    d_ptr->actionEdit->setVisible(b);
-}
-
-void HAdjustEditWidget::setTestData(const QStringList &value)
-{
-    ui->tableWidget->setColumn(2, value);
-}
-
-QStringList HAdjustEditWidget::selecteds()
-{
-    return d_ptr->selecteds;
-}
-
 void HAdjustEditWidget::initSelected()
 {
     d_ptr->selecteds = d_ptr->data->keys();
@@ -124,6 +122,22 @@ void HAdjustEditWidget::initSelected()
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->pushButton_4->setEnabled(!d_ptr->selecteds.isEmpty());
+}
+
+void HAdjustEditWidget::handleAction(HActionType action)
+{
+    d_ptr->testSetWidget->handleAction(action);
+}
+
+void HAdjustEditWidget::handleStateChanged(bool b)
+{
+    ui->groupBox_2->setEnabled(!b);
+}
+
+void HAdjustEditWidget::handleResultChanged()
+{
+    d_ptr->energyWidget->refreshWidget();
+    ui->tableWidget->setColumn(2, d_ptr->testData->toString(d_ptr->selecteds));
 }
 
 void HAdjustEditWidget::on_pushButton_1_clicked()
@@ -171,28 +185,18 @@ void HAdjustEditWidget::on_pushButton_4_clicked()
 
 void HAdjustEditWidget::init()
 {
-    d_ptr->actionEdit = new QAction(tr("编辑(&E)..."), this);
-    setContextMenuPolicy(Qt::ActionsContextMenu);
-    addAction(d_ptr->actionEdit);
-    connect(d_ptr->actionEdit, &QAction::triggered, this, &HAdjustEditWidget::openEditDialog);
-
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType("[调整比率]");
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("项类型") << tr("调整比率") << tr("测试值") << tr("标准值"));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->tableWidget->setItemDelegateForColumn(1, delegate);
-}
-
-void HAdjustEditWidget::openEditDialog()
-{
-    if (d_ptr->data == nullptr)
-        return;
-    HAdjustEditDialog dlg;
-    dlg.setTestSetWidget(new HSimpleTestSetWidget);
-    dlg.setData(d_ptr->data);
-    dlg.exec();
-    initSelected();
-    showData();
+    ui->groupBox_1->layout()->addWidget(d_ptr->energyWidget);
+    ui->groupBox_3->layout()->addWidget(d_ptr->testSetWidget);
+    ui->splitter_1->setStretchFactor(0, 1);
+    ui->splitter_2->setStretchFactor(0, 1);
+    connect(d_ptr->model, &IModel::actionFinished, this, &HAdjustEditWidget::handleAction);
+    connect(d_ptr->testSetWidget, &ITestSetWidget::stateChanged, this, &HAdjustEditWidget::handleStateChanged);
+    connect(d_ptr->testSetWidget, &ITestSetWidget::resultChanged, this, &HAdjustEditWidget::handleResultChanged);
 }
 
 HE_GUI_END_NAMESPACE

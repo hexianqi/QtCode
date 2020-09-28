@@ -1,5 +1,6 @@
 #include "HSpecCalibrateWidget_p.h"
 #include "ui_HSpecCalibrateWidget.h"
+#include "IGuiFactory.h"
 #include "ITestSetWidget.h"
 #include "HSpecDetailWidget.h"
 #include "HSpecEnergyWidget.h"
@@ -11,6 +12,7 @@
 #include "HSpecSettingDialog.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeController/IModel.h"
+#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestData.h"
 #include "HeData/ISpecCalibrate.h"
@@ -24,6 +26,20 @@
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
+
+HSpecCalibrateWidgetPrivate::HSpecCalibrateWidgetPrivate()
+{
+    auto factory = HAppContext::getContextPointer<IGuiFactory>("IGuiFactory");
+    auto type = HAppContext::getContextValue<QString>("SpecCalibrateSetWidgetType");
+    if (type.isEmpty())
+        type = "HSpecCalibrateSetWidget";
+    sampleView = new HSpecSampleChartView;
+    ccdView = new HSpecFittingChartView;
+    energyWidget = new HSpecEnergyWidget;
+    pelsWaveWidget = new HSpecPelsWaveWidget;
+    detailWidget = new HSpecDetailWidget;
+    testSetWidget = factory->createTestSetWidget(type);
+}
 
 HSpecCalibrateWidget::HSpecCalibrateWidget(QWidget *parent) :
     HAbstractTestWidget(*new HSpecCalibrateWidgetPrivate, parent),
@@ -72,28 +88,11 @@ void HSpecCalibrateWidget::setCalibrate(ISpecCalibrate *p)
     refreshCcdView();
 }
 
-void HSpecCalibrateWidget::setTestSetWidget(ITestSetWidget *p)
-{
-    Q_D(HSpecCalibrateWidget);
-    d->testSetWidget = p;
-    ui->splitter_2->addWidget(d->testSetWidget);
-    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HSpecCalibrateWidget::handleStateChanged);
-    connect(d->testSetWidget, &ITestSetWidget::modeChanged, this, &HSpecCalibrateWidget::handleModeChanged);
-}
-
-bool HSpecCalibrateWidget::setTest(bool b)
-{
-    Q_D(HSpecCalibrateWidget);
-    return d->testSetWidget->setTestState(b);
-}
-
 void HSpecCalibrateWidget::handleAction(HActionType action)
 {
     Q_D(HSpecCalibrateWidget);
-    if (action == ACT_GET_SPECTRUM)
-        refreshSpecWidget();
     d->fittingWidget->handleAction(action);
-    d->testSetWidget->handleAction(action);
+    HAbstractTestWidget::handleAction(action);
 }
 
 void HSpecCalibrateWidget::handleStateChanged(bool b)
@@ -111,6 +110,11 @@ void HSpecCalibrateWidget::handleModeChanged(int value)
         d->testData->handleOperation("<使用标准光谱曲线>");
         refreshSpecWidget();
     }
+}
+
+void HSpecCalibrateWidget::handleResultChanged()
+{
+    refreshSpecWidget();
 }
 
 void HSpecCalibrateWidget::handleFitStateChanged(bool b)
@@ -217,18 +221,17 @@ void HSpecCalibrateWidget::refreshSpecWidget()
 void HSpecCalibrateWidget::init()
 {
     Q_D(HSpecCalibrateWidget);
-    d->sampleView = new HSpecSampleChartView;
-    d->ccdView = new HSpecFittingChartView;
-    d->energyWidget = new HSpecEnergyWidget;
-    d->pelsWaveWidget = new HSpecPelsWaveWidget;
-    d->detailWidget = new HSpecDetailWidget;
     ui->tabWidget_1->addTab(d->sampleView, d->sampleView->windowTitle());
     ui->tabWidget_1->addTab(d->energyWidget, d->energyWidget->windowTitle());
     ui->tabWidget_1->addTab(d->ccdView, d->ccdView->windowTitle());
     ui->tabWidget_2->addTab(d->pelsWaveWidget, d->pelsWaveWidget->windowTitle());
     ui->tabWidget_2->addTab(d->detailWidget, d->detailWidget->windowTitle());
-    ui->splitter_2->setStretchFactor(0,1);
     ui->splitter_1->setStretchFactor(0,1);
+    ui->splitter_2->addWidget(d->testSetWidget);
+    ui->splitter_2->setStretchFactor(0,1);
+    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HSpecCalibrateWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::modeChanged, this, &HSpecCalibrateWidget::handleModeChanged);
+    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HSpecCalibrateWidget::handleResultChanged);
 }
 
 HE_GUI_END_NAMESPACE

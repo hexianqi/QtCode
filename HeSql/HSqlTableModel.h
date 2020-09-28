@@ -42,6 +42,9 @@ protected:
     HSqlTableModel(HSqlTableModelPrivate &p, QObject *parent = nullptr, QSqlDatabase db = QSqlDatabase());
 
 protected:
+    void init();
+
+protected:
     QScopedPointer<HSqlTableModelPrivate> d_ptr;
 };
 

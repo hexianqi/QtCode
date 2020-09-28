@@ -31,7 +31,6 @@ public:
 public:
     QAction *actionPrintPreview = nullptr;
     QAction *actionExportDatabase = nullptr;
-    QAction *actionExportDatabase2 = nullptr;
 
 public:
     QStringList displays;

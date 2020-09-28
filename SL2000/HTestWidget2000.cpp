@@ -73,12 +73,6 @@ QString HTestWidget2000::typeName()
     return "HTestWidget2000";
 }
 
-bool HTestWidget2000::setTest(bool b)
-{
-    Q_D(HTestWidget2000);
-    return d->testSetWidget->setTestState(b);
-}
-
 void HTestWidget2000::handleAction(HActionType action)
 {
     Q_D(HTestWidget2000);
@@ -94,12 +88,7 @@ void HTestWidget2000::handleAction(HActionType action)
             resetGrade();
         return;
     }
-    if (action == ACT_GET_SPECTRUM)
-    {
-        postProcess();
-        refreshWidget();
-    }
-    d->testSetWidget->handleAction(action);
+    HAbstractTestWidget::handleAction(action);
 }
 
 void HTestWidget2000::clearResult()
@@ -108,13 +97,6 @@ void HTestWidget2000::clearResult()
     HTestWidget2::clearResult();
     d->cieWidget->clearPoint();
     d->resultWidget->clearResult();
-}
-
-void HTestWidget2000::exportDatabase2()
-{
-    Q_D(HTestWidget2000);
-    for (const auto &range : d->resultWidget->selectedRanges())
-        exportDatabase(range.topRow(), range.rowCount());
 }
 
 void HTestWidget2000::init()
@@ -127,6 +109,12 @@ void HTestWidget2000::createAction()
 {
     Q_D(HTestWidget2000);
     HTestWidget2::createAction();
+    d->actionRemove = new QAction(tr("删除记录(&R)"), this);
+    d->actionRemove->setIcon(QIcon(":/image/Remove.png"));
+    d->actionRemove->setIconText(tr("删除记录"));
+    d->actionExportDatabase2 = new QAction(tr("保存数据库(&D)"), this);
+    d->actionExportDatabase2->setIcon(QIcon(":/image/DbComit.png"));
+    d->actionExportDatabase2->setIconText(tr("保存数据库"));
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
@@ -134,6 +122,8 @@ void HTestWidget2000::createAction()
     d->actionGetRam = new QAction(tr("从设备读取数据(&G)"), this);
     d->actionImportCurve = new QAction(tr("导入标准曲线(&I)"), this);
     d->actionExportCurve = new QAction(tr("导出标准曲线(&E)"), this);
+    connect(d->actionRemove, &QAction::triggered, this, &HTestWidget2000::removeResult2);
+    connect(d->actionExportDatabase2, &QAction::triggered, this, &HTestWidget2000::exportDatabase2);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
     connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
     connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
@@ -152,6 +142,7 @@ void HTestWidget2000::createWidget()
     auto splitter2 = new QSplitter(Qt::Vertical);
     d->resultWidget->setDisplay(d->displays);
     d->resultWidget->setSelected(d->tableSelecteds);
+    d->resultWidget->addAction(d->actionRemove);
     d->resultWidget->addAction(d->actionClear);
     d->resultWidget->addAction(d->actionExportDatabase2);
     tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
@@ -171,6 +162,7 @@ void HTestWidget2000::createWidget()
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HTestWidget2000::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget2000::handleResultChanged);
 }
 
 void HTestWidget2000::createMenu()
@@ -213,20 +205,26 @@ void HTestWidget2000::handleStateChanged(bool b)
     d->actionExportDatabase2->setEnabled(!b);
 }
 
-void HTestWidget2000::resetGrade()
+void HTestWidget2000::handleResultChanged()
 {
     Q_D(HTestWidget2000);
-    auto p = d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>();
-    d->cieWidget->setGrade(p);
+    auto append = d->testSetWidget->testMode() == 0 || d->testSetWidget->testMode() >= 3;
+    postProcess();
+    refreshWidget(append);
+    saveRecord(append);
 }
 
-void HTestWidget2000::refreshWidget()
+void HTestWidget2000::postProcess()
 {
     Q_D(HTestWidget2000);
-    auto mode = d->testSetWidget->testMode();
-    auto append = mode == 0 || mode >= 3;
+    d->configManage->postProcess(d->testData, d->displays);
+    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+}
+
+void HTestWidget2000::refreshWidget(bool append)
+{
+    Q_D(HTestWidget2000);
     auto point = d->testData->data("[色坐标]").toPointF();
-    saveRecord(append);
     d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
@@ -237,11 +235,29 @@ void HTestWidget2000::refreshWidget()
         d->cieWidget->setPointFocus(point);
 }
 
-void HTestWidget2000::postProcess()
+void HTestWidget2000::resetGrade()
 {
     Q_D(HTestWidget2000);
-    d->configManage->postProcess(d->testData, d->displays);
-    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+    auto p = d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>();
+    d->cieWidget->setGrade(p);
+}
+
+void HTestWidget2000::removeResult2()
+{
+    Q_D(HTestWidget2000);
+    auto ranges = d->resultWidget->selectedRanges();
+    for (const auto &range : ranges)
+    {
+        removeResult(range.topRow(), range.rowCount());
+        d->resultWidget->removeRows(range.topRow(), range.rowCount());
+    }
+}
+
+void HTestWidget2000::exportDatabase2()
+{
+    Q_D(HTestWidget2000);
+    for (const auto &range : d->resultWidget->selectedRanges())
+        exportResult(range.topRow(), range.rowCount());
 }
 
 void HTestWidget2000::importCurve()
