@@ -8,7 +8,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 HTestWidgetPrivate::HTestWidgetPrivate()
 {
-    excelStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createExcelStream("HExcelStream");
+    stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
 }
 
 HTestWidget::HTestWidget(QWidget *parent) :

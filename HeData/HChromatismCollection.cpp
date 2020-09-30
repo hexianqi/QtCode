@@ -1,7 +1,8 @@
 #include "HChromatismCollection_p.h"
 #include "IDataFactory.h"
 #include "IChromatism.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
+#include "IMultStream.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
@@ -11,12 +12,14 @@ HE_DATA_BEGIN_NAMESPACE
 HChromatismCollectionPrivate::HChromatismCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00020101);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Chromatism files (*.hcc)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00020101);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Chromatism files (*.hcc)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    multStream = factory->createMultStream("HMultStream");
+    multStream->addStream("hcc", dataStream);
 }
 
 void HChromatismCollectionPrivate::readContent(QDataStream &s)

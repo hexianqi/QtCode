@@ -1,24 +1,23 @@
 /***************************************************************************************************
-**      2018-07-09  HFileStream 文件流类。
+**      2020-09-29  HDataStream
 ***************************************************************************************************/
 
-#ifndef HFILESTREAM_H
-#define HFILESTREAM_H
+#pragma once
 
-#include "IFileStream.h"
-#include <QtCore/QObject>
+#include "IDataStream.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HFileStreamPrivate;
+class HDataStreamPrivate;
 
-class HFileStream : public QObject, public IFileStream
+class HDataStream : public IDataStream
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HDataStream)
 
 public:
-    explicit HFileStream(QObject *parent = nullptr);
-    ~HFileStream() override;
+    explicit HDataStream(QObject *parent = nullptr);
+    ~HDataStream() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -27,27 +26,18 @@ public:
 public:
     void setMagicNumber(quint32 value) override;
     void setFileVersion(quint32 value) override;
-    void setFileFilter(QString value) override;
     void setReadContent(std::function<void(QDataStream &)> func) override;
     void setWriteContent(std::function<void(QDataStream &)> func) override;
-    quint32 fileVersion() override;
-    QString fileFilter() override;
 
 public:
-    bool openFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = nullptr) override;
-    bool saveAsFile(QString caption = QString(), QString dir = ".", QString *selectedFileName = nullptr) override;
     bool readFile(QString fileName) override;
     bool writeFile(QString fileName) override;
     bool readContent(QDataStream &) override;
     bool writeContent(QDataStream &) override;
 
 protected:
-    HFileStream(HFileStreamPrivate &p, QObject *parent = nullptr);
-
-protected:
-    QScopedPointer<HFileStreamPrivate> d_ptr;
+    HDataStream(HDataStreamPrivate &p, QObject *parent = nullptr);
 };
 
 HE_DATA_END_NAMESPACE
 
-#endif // HFILESTREAM_H

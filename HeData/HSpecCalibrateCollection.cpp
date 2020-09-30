@@ -1,7 +1,7 @@
 #include "HSpecCalibrateCollection_p.h"
 #include "IDataFactory.h"
 #include "ISpecCalibrate.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
@@ -10,12 +10,12 @@ HE_DATA_BEGIN_NAMESPACE
 HSpecCalibrateCollectionPrivate::HSpecCalibrateCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00020001);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Spec calibrate files (*.hcs)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00020001);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Spec calibrate files (*.hcs)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
 }
 
 void HSpecCalibrateCollectionPrivate::readContent(QDataStream &s)
@@ -46,10 +46,10 @@ QString HSpecCalibrateCollection::typeName()
     return "HSpecCalibrateCollection";
 }
 
-IFileStream *HSpecCalibrateCollection::fileStream()
+IDataStream *HSpecCalibrateCollection::dataStream()
 {
     Q_D(HSpecCalibrateCollection);
-    return d->fileStream;
+    return d->dataStream;
 }
 
 HE_DATA_END_NAMESPACE

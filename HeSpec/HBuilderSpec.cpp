@@ -9,7 +9,7 @@
 #include "HeController/IThreadCollection.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
-#include "HeData/IFileStream.h"
+#include "HeData/IDataStream.h"
 #include "HeData/ITestSpec.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/ISpecCalibrate.h"
@@ -47,10 +47,10 @@ void HBuilderSpec::buildConfigManage()
 {
     Q_D(HBuilderSpec);
     d->configManage = d->dataFactory->createConfigManage("HConfigManage");
-    if (!d->configManage->fileStream()->readFile(d->configFileName))
+    if (!d->configManage->stream()->readFile(d->configFileName))
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
-        if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
+        if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
         {
             auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");

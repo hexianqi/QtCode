@@ -6,6 +6,7 @@
 HE_DATA_BEGIN_NAMESPACE
 
 class IDataFactory;
+class IDataStream;
 
 class HConfigManagePrivate
 {
@@ -19,7 +20,7 @@ public:
 public:
     quint32 contain = 0;
     IDataFactory *factory = nullptr;
-    IFileStream *fileStream = nullptr;
+    IDataStream *stream = nullptr;
     ISpecCalibrateCollection *specCalibrates = nullptr;
     IElecCalibrateCollection *elecCalibrates = nullptr;
     ILuminousCalibrateCollection *luminousCalibrates = nullptr;

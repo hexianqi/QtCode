@@ -15,8 +15,6 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 
-#include "xlsxdocument.h"
-
 HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_USE_NAMESPACE
@@ -36,14 +34,8 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-
-        QXlsx::Document document("1.xlsx");
-        document.write(2, 3, QString("Hello world!!!"));
-        document.saveAs("1.xlsx");
-        return 0;
-
-//    auto w = HTestOpenGL::test1();
-//    w->show();
+    auto w = HTestOpenGL::test1();
+    w->show();
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 

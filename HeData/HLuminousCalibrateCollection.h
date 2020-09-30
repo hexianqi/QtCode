@@ -22,7 +22,7 @@ public:
     QString typeName() override;
 
 public:
-    IFileStream *fileStream() override;
+    IDataStream *dataStream() override;
 
 protected:
     HLuminousCalibrateCollection(HLuminousCalibrateCollectionPrivate &);

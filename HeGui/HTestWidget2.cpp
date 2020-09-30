@@ -1,7 +1,7 @@
 #include "HTestWidget2_p.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HAppContext.h"
-#include "HeData/IExcelStream.h"
+#include "HeData/ITextStream.h"
 #include "HeData/ITestData.h"
 #include "HeController/IMemento.h"
 #include "HeSql/ISqlHandle.h"
@@ -84,8 +84,8 @@ void HTestWidget2::exportExcel()
     QString text;
     text += HCore::toCaptionUnit(d->displays).join("\t") + "\n";
     text += d->testData->toString(d->displays).join("\t") + "\n";
-    d->excelStream->setWriteContent(text);
-    d->excelStream->saveAsFile();
+    d->stream->setContent(text);
+    d->stream->saveAsFile();
 }
 
 void HTestWidget2::clearResult()

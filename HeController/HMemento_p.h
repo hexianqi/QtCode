@@ -4,7 +4,7 @@
 #include "HeData/HDataGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class IFileStream;
+class IDataStream;
 class ITestData;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
@@ -25,7 +25,7 @@ public:
 public:
     IModel *model = nullptr;
     ITestData *testData = nullptr;
-    IFileStream *fileStream = nullptr;
+    IDataStream *stream = nullptr;
     QString fileName;
     QStringList items;
     QVariantMap datas;

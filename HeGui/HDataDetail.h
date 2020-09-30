@@ -8,7 +8,7 @@
 #include "IDataDetail.h"
 #include "IDataEditWidget.h"
 #include "HeData/IDataCollection.h"
-#include "HeData/IFileStream.h"
+#include "HeData/IMultStream.h"
 
 HE_DATA_USE_NAMESPACE
 
@@ -96,7 +96,7 @@ void HDataDetail<T>::start()
 template <typename T>
 void HDataDetail<T>::importFile()
 {
-    if (d_ptr->datas->fileStream()->openFile())
+    if (d_ptr->datas->multStream()->openFile())
         emit sourceChanged(d_ptr->datas->keys(), d_ptr->datas->useIndex());
 }
 
@@ -104,7 +104,7 @@ template <typename T>
 void HDataDetail<T>::exportFile()
 {
     saveData();
-    d_ptr->datas->fileStream()->saveAsFile();
+    d_ptr->datas->multStream()->saveAsFile();
 }
 
 template <typename T>

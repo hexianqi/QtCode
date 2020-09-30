@@ -5,7 +5,7 @@
 #include "HeData/HDataGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class IExcelStream;
+class ITextStream;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -18,7 +18,7 @@ public:
 
 public:
     ISqlTableModel *model = nullptr;
-    IExcelStream *excelStream = nullptr;
+    ITextStream *stream = nullptr;
     QStringList fieldExportExcels;
 };
 

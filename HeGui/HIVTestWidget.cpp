@@ -1,6 +1,6 @@
 #include "HIVTestWidget_p.h"
 #include "HIVTestSetWidget.h"
-#include "HeData/IExcelStream.h"
+#include "HeData/ITextStream.h"
 #include "HePlugin/HEntireTableWidget.h"
 #include "HePlugin/HDynamicChartView.h"
 #include "HeData/ITestData.h"
@@ -97,8 +97,8 @@ void HIVTestWidget::exportExcel()
     text += tr("ID\t电流(mA)\t电压(V)") + "\n";
     for (int i = 0; i < d->data.count(); i++)
         text += QString("%1\t%2\t%3\n").arg(i+1).arg(d->data[i].x()).arg(d->data[i].y());
-    d->excelStream->setWriteContent(text);
-    d->excelStream->saveAsFile();
+    d->stream->setContent(text);
+    d->stream->saveAsFile();
 }
 
 void HIVTestWidget::handleStateChanged(bool b)

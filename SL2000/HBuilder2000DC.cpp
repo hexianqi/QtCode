@@ -3,7 +3,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
-#include "HeData/IFileStream.h"
+#include "HeData/IDataStream.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/IElecCalibrate.h"
@@ -82,10 +82,10 @@ void HBuilder2000DC::buildConfigManage()
 {
     Q_D(HBuilder2000DC);
     d->configManage = d->dataFactory->createConfigManage("HConfigManage");
-    if (!d->configManage->fileStream()->readFile(d->configFileName))
+    if (!d->configManage->stream()->readFile(d->configFileName))
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
-        if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
+        if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
         {
             auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
@@ -125,7 +125,7 @@ void HBuilder2000DC::buildConfigManage()
         luminouss->insert("模块1", luminous);
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
-        chromatisms->fileStream()->readFile(":/dat/Chromatism.hcc");
+        chromatisms->dataStream()->readFile(":/dat/Chromatism.hcc");
 
         d->configManage->setContain(IConfigManage::ContainSpec
                                     | IConfigManage::ContainElec

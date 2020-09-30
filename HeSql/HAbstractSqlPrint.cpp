@@ -4,7 +4,7 @@
 #include "HSqlPainterHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
-#include "HeData/IExcelStream.h"
+#include "HeData/ITextStream.h"
 #include <QtCore/QPointF>
 #include <QtCore/QDateTime>
 #include <QtWidgets/QFileDialog>
@@ -20,7 +20,8 @@ HE_SQL_BEGIN_NAMESPACE
 
 HAbstractSqlPrintPrivate::HAbstractSqlPrintPrivate()
 {
-    excelStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createExcelStream("HExcelStream");
+    stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
+    stream->setFileFilter("Excel files (*.xls)");
 }
 
 HAbstractSqlPrint::HAbstractSqlPrint(QObject *parent) :
@@ -55,8 +56,8 @@ void HAbstractSqlPrint::exportExcel()
 {
     if (!isValid())
         return;
-    d_ptr->excelStream->setWriteContent(textForExcel());
-    d_ptr->excelStream->saveAsFile();
+    d_ptr->stream->setContent(textForExcel());
+    d_ptr->stream->saveAsFile();
 }
 
 void HAbstractSqlPrint::exportExcel(int index, int count)
@@ -66,8 +67,8 @@ void HAbstractSqlPrint::exportExcel(int index, int count)
 
     auto surplus = d_ptr->model->rowCount() - index;
     count = count == -1 ? surplus : qBound(0, count, surplus);
-    d_ptr->excelStream->setWriteContent(textForExcel(index, count));
-    d_ptr->excelStream->saveAsFile();
+    d_ptr->stream->setContent(textForExcel(index, count));
+    d_ptr->stream->saveAsFile();
 }
 
 void HAbstractSqlPrint::exportPdf()

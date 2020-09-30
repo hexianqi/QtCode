@@ -1,7 +1,7 @@
 #include "HElecCalibrateCollection_p.h"
 #include "IDataFactory.h"
 #include "IElecCalibrate.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
@@ -10,12 +10,12 @@ HE_DATA_BEGIN_NAMESPACE
 HElecCalibrateCollectionPrivate::HElecCalibrateCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00020002);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Elec calibrate files (*.hce)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00020002);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Elec calibrate files (*.hce)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
 }
 
 void HElecCalibrateCollectionPrivate::readContent(QDataStream &s)
@@ -46,10 +46,10 @@ QString HElecCalibrateCollection::typeName()
     return "HElecCalibrateCollection";
 }
 
-IFileStream *HElecCalibrateCollection::fileStream()
+IDataStream *HElecCalibrateCollection::dataStream()
 {
     Q_D(HElecCalibrateCollection);
-    return d->fileStream;
+    return d->dataStream;
 }
 
 HE_DATA_END_NAMESPACE

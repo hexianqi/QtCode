@@ -1,7 +1,8 @@
 #include "HAdjustCollection_p.h"
 #include "IDataFactory.h"
 #include "IAdjust.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
+#include "IMultStream.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
@@ -10,12 +11,14 @@ HE_DATA_BEGIN_NAMESPACE
 HAdjustCollectionPrivate::HAdjustCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00040001);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Adjust files (*.hca)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00040001);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Adjust files (*.hca)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    multStream = factory->createMultStream("HMultStream");
+    multStream->addStream("hca", dataStream);
 }
 
 void HAdjustCollectionPrivate::readContent(QDataStream &s)

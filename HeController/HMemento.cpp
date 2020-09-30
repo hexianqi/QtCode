@@ -2,7 +2,7 @@
 #include "IModel.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
-#include "HeData/IFileStream.h"
+#include "HeData/IDataStream.h"
 #include "HeData/ITestData.h"
 #include <QtCore/QDataStream>
 
@@ -12,12 +12,12 @@ HMementoPrivate::HMementoPrivate()
 {
     model = HAppContext::getContextPointer<IModel>("IModel");
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
-    fileStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x01010001);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("memento files (*.tmp)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createDataStream("HDataStream");
+    stream->setMagicNumber(0x01010001);
+    stream->setFileVersion(0x01010101);
+    stream->setFileFilter("memento files (*.tmp)");
+    stream->setReadContent([=](QDataStream &s) { readContent(s); });
+    stream->setWriteContent([=](QDataStream &s) { writeContent(s); });
 }
 
 void HMementoPrivate::readContent(QDataStream &s)
@@ -65,12 +65,12 @@ QString HMemento::typeName()
 bool HMemento::readFile(QString fileName)
 {
     d_ptr->fileName = fileName;
-    return d_ptr->fileStream->readFile(fileName);
+    return d_ptr->stream->readFile(fileName);
 }
 
 bool HMemento::writeFile()
 {
-    return d_ptr->fileStream->writeFile(d_ptr->fileName);
+    return d_ptr->stream->writeFile(d_ptr->fileName);
 }
 
 void HMemento::setItems(QStringList value)

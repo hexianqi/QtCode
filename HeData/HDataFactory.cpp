@@ -1,6 +1,8 @@
 #include "HDataFactory_p.h"
-#include "HExcelStream.h"
-#include "HFileStream.h"
+#include "HDataStream.h"
+#include "HTextStream.h"
+#include "HXlsxStream.h"
+#include "HMultStream.h"
 #include "HTestSpec.h"
 #include "HTestElec.h"
 #include "HTestLuminous.h"
@@ -63,18 +65,34 @@ QString HDataFactory::typeName()
     return "HDataFactory";
 }
 
-IFileStream *HDataFactory::createFileStream(QString type, QVariantMap param)
+IDataStream *HDataFactory::createDataStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    auto p = new HFileStream(this);
+    auto p = new HDataStream(this);
     p->initialize(param);
     return p;
 }
 
-IExcelStream *HDataFactory::createExcelStream(QString type, QVariantMap param)
+ITextStream *HDataFactory::createTextStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    auto p = new HExcelStream(this);
+    auto p = new HTextStream(this);
+    p->initialize(param);
+    return p;
+}
+
+IXlsxStream *HDataFactory::createXlsxStream(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HXlsxStream(this);
+    p->initialize(param);
+    return p;
+}
+
+IMultStream *HDataFactory::createMultStream(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HMultStream(this);
     p->initialize(param);
     return p;
 }

@@ -24,8 +24,10 @@ public:
     QString typeName() override;
 
 public:
-    IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) override;
-    IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) override;
+    IDataStream *createDataStream(QString type, QVariantMap param = QVariantMap()) override;
+    ITextStream *createTextStream(QString type, QVariantMap param = QVariantMap()) override;
+    IXlsxStream *createXlsxStream(QString type, QVariantMap param = QVariantMap()) override;
+    IMultStream *createMultStream(QString type, QVariantMap param = QVariantMap()) override;
 
 public:
     ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
