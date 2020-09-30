@@ -10,6 +10,11 @@
 
 HE_CORE_USE_NAMESPACE
 
+namespace QXlsx {
+class Worksheet;
+}
+using namespace QXlsx;
+
 HE_DATA_BEGIN_NAMESPACE
 
 class IAdjustItem;
@@ -22,8 +27,10 @@ public:
 public:
     // 读取内容
     virtual void readContent(QDataStream &) = 0;
+    virtual void readContent(Worksheet *) = 0;
     // 写入内容
     virtual void writeContent(QDataStream &) = 0;
+    virtual void writeContent(Worksheet *) = 0;
 
 public:
     // 还原默认

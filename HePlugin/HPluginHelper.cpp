@@ -273,3 +273,59 @@ bool HPluginHelper::getInputText(QWidget *parent, const QString &label, QString 
     text = dlg.textValue();
     return true;
 }
+
+//void FlightPlanWid::readExcel(QString path)
+//{
+//    QXlsx::Document xlsx(path);
+//    QXlsx::Workbook *workBook = xlsx.workbook();
+//    QXlsx::Worksheet *workSheet = static_cast<QXlsx::Worksheet*>(workBook->sheet(0));
+//    ui.tableWidget->setRowCount(workSheet->dimension().rowCount());
+//    ui.tableWidget->setColumnCount(23);
+//    QString value;
+//    for (int i = 6; i <= workSheet->dimension().rowCount(); i++)
+//    {
+//        for (int j = 1; j <= workSheet->dimension().columnCount(); j++)
+//        {
+//            QXlsx::Cell *cell = workSheet->cellAt(i, j);
+//            if (cell==NULL) continue;
+//            if (cell->isDateTime())//日期
+//            {
+//                if (cell->dateTime().date().year()==1899) continue;
+//                value = cell->dateTime().toString("yyyy/MM/dd hh:mm");
+//            }
+//            else
+//            {
+//                value = cell->value().toString();
+//            }
+//            setItemValue(i - 6, j - 1, value);
+//        }
+//    }
+//    for (int i = ui.tableWidget->rowCount() - 1; i >= 0; i--)//删除末尾空白行
+//    {
+//        QTableWidgetItem *item = ui.tableWidget->item(i, 0);
+//        if (item==NULL)
+//            ui.tableWidget->removeRow(i);
+//        else break;
+//    }
+//}
+
+//void FlightPlanWid::saveBtnClickedSlot()
+//{
+//    if (currentScriptIndex == -1) return;
+//    QXlsx::Document xlsx;
+//    QString value;
+//    for (int i = 0; i < ui.tableWidget->rowCount(); i++)
+//    {
+//        for (int j = 0; j < ui.tableWidget->columnCount(); j++)
+//        {
+//            QTableWidgetItem *item = ui.tableWidget->item(i, j);
+//            if (item == NULL)
+//                value = "";
+//            else
+//                value = item->text();
+//            xlsx.write(i + 1, j + 1, value);
+//        }
+//    }
+//    if (xlsx.saveAs("./Data/Saved/" + ui.nameEdt->text() + ".xlsx"))
+//        QMessageBox::information(this, "保存", "保存成功！", QMessageBox::Ok);
+//}

@@ -6,12 +6,12 @@
 #pragma once
 
 #include "HAbstractStream.h"
-#include "xlsxglobal.h"
 #include <functional>
 
-QT_BEGIN_NAMESPACE_XLSX
+namespace QXlsx {
 class Document;
-QT_END_NAMESPACE_XLSX
+}
+using namespace QXlsx;
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -22,13 +22,13 @@ public:
 
 public:
     // 设置读取内容函数
-    virtual void setReadContent(std::function<void(QXlsx::Document *)> func) = 0;
+    virtual void setReadContent(std::function<void(Document *)> func) = 0;
     // 设置写入内容函数
-    virtual void setWriteContent(std::function<void(QXlsx::Document *)> func) = 0;
+    virtual void setWriteContent(std::function<void(Document *)> func) = 0;
     // 读取内容
-    virtual bool readContent(QXlsx::Document *) = 0;
+    virtual bool readContent(Document *) = 0;
     // 写入内容
-    virtual bool writeContent(QXlsx::Document *) = 0;
+    virtual bool writeContent(Document *) = 0;
 };
 
 HE_DATA_END_NAMESPACE

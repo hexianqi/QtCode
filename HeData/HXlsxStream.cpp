@@ -8,7 +8,6 @@ HXlsxStreamPrivate::HXlsxStreamPrivate()
     fileFilter = "Excel files (*.xlsx)";
 }
 
-
 HXlsxStream::HXlsxStream(QObject *parent) :
     IXlsxStream(*new HXlsxStreamPrivate, parent)
 {
@@ -28,13 +27,13 @@ QString HXlsxStream::typeName()
     return "HXlsxStream";
 }
 
-void HXlsxStream::setReadContent(std::function<void (QXlsx::Document *)> func)
+void HXlsxStream::setReadContent(std::function<void (Document *)> func)
 {
     Q_D(HXlsxStream);
     d->readContent = func;
 }
 
-void HXlsxStream::setWriteContent(std::function<void (QXlsx::Document *)> func)
+void HXlsxStream::setWriteContent(std::function<void (Document *)> func)
 {
     Q_D(HXlsxStream);
     d->writeContent = func;
@@ -44,7 +43,7 @@ bool HXlsxStream::readFile(QString fileName)
 {
     if (fileName.isEmpty())
         return false;
-    QXlsx::Document doc(fileName);
+    Document doc(fileName, this);
     if (!doc.isLoadPackage())
         return false;
     return readContent(&doc);
@@ -54,13 +53,13 @@ bool HXlsxStream::writeFile(QString fileName)
 {
     if (fileName.isEmpty())
         return false;
-    QXlsx::Document doc(fileName);
-    if (!doc.isLoadPackage())
+    Document doc(this);
+    if (!writeContent(&doc))
         return false;
-    return writeContent(&doc);
+    return doc.saveAs(fileName);
 }
 
-bool HXlsxStream::readContent(QXlsx::Document *p)
+bool HXlsxStream::readContent(Document *p)
 {
     Q_D(HXlsxStream);
     if (d->readContent == nullptr)
@@ -69,7 +68,7 @@ bool HXlsxStream::readContent(QXlsx::Document *p)
     return true;
 }
 
-bool HXlsxStream::writeContent(QXlsx::Document *p)
+bool HXlsxStream::writeContent(Document *p)
 {
     Q_D(HXlsxStream);
     if (d->writeContent == nullptr)

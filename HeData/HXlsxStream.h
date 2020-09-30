@@ -23,14 +23,14 @@ public:
     QString typeName() override;
 
 public:
-    void setReadContent(std::function<void(QXlsx::Document *)> func) override;
-    void setWriteContent(std::function<void(QXlsx::Document *)> func) override;
+    void setReadContent(std::function<void(Document *)> func) override;
+    void setWriteContent(std::function<void(Document *)> func) override;
 
 public:
     bool readFile(QString fileName) override;
     bool writeFile(QString fileName) override;
-    bool readContent(QXlsx::Document *) override;
-    bool writeContent(QXlsx::Document *) override;
+    bool readContent(Document *) override;
+    bool writeContent(Document *) override;
 
 protected:
     HXlsxStream(HXlsxStreamPrivate &p, QObject *parent = nullptr);
