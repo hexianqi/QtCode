@@ -21,27 +21,30 @@ int HLearnGLFW::testLightMaps()
 
     // build and compile our shader program
     auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_maps.vert");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_maps.frag");
+    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_maps.vs");
+    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_maps.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vert");
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.frag");
+    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
+    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
 
     unsigned int VBO, VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices4.size(), d_ptr->cubeVertices4.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeNormalSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeNormalSize, d_ptr->cubeNormal.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeNormalSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
     glBindVertexArray(VAOs[0]);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize + d_ptr->cubeNormalSize));
     glEnableVertexAttribArray(2);
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     // load and create a texture

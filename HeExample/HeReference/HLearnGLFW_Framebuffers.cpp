@@ -24,11 +24,11 @@ int HLearnGLFW::testFramebuffers()
 
     // build and compile our shader program
     auto shader1 = new HOpenGLShaderProgram(this);
-    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/framebuffers.vert");
-    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/framebuffers.frag");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/framebuffers.vs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/framebuffers.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
-    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/framebuffers_screen.vert");
-    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/framebuffers_screen.frag");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/framebuffers_screen.vs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/framebuffers_screen.fs");
 
     float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
                             // positions   // texCoords
@@ -47,18 +47,22 @@ int HLearnGLFW::testFramebuffers()
 
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices2.size(), d_ptr->cubeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
 
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->planeVertices2.size(), d_ptr->planeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->planePositionSize + d_ptr->planeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->planePositionSize, d_ptr->planePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->planePositionSize, d_ptr->planeTextureSize, d_ptr->planeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->planePositionSize));
     glEnableVertexAttribArray(1);
 
     glBindVertexArray(VAOs[2]);

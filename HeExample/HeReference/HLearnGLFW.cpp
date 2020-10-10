@@ -97,7 +97,7 @@ HLearnGLFWPrivate::HLearnGLFWPrivate()
     attenuations.insert( 600, QVector3D(1.0, 0.007, 0.0002));
     attenuations.insert(3250, QVector3D(1.0, 0.0014, 0.000007));
 
-    cubeVertices1 = {
+    cubePosition = {
         -0.5f, -0.5f, -0.5f,
          0.5f, -0.5f, -0.5f,
          0.5f,  0.5f, -0.5f,
@@ -140,177 +140,157 @@ HLearnGLFWPrivate::HLearnGLFWPrivate()
         -0.5f,  0.5f,  0.5f,
         -0.5f,  0.5f, -0.5f
     };
+    cubePositionSize = sizeof(float) * cubePosition.size();
 
-    cubeVertices2 = {
-        // positions          // texture coords
+    cubeTexture = {
         // Back face
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+        0.0f, 0.0f, // bottom-left
+        1.0f, 1.0f, // top-right
+        1.0f, 0.0f, // bottom-right
+        1.0f, 1.0f, // top-right
+        0.0f, 0.0f, // bottom-left
+        0.0f, 1.0f, // top-left
         // Front face
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+        0.0f, 0.0f, // bottom-left
+        1.0f, 0.0f, // bottom-right
+        1.0f, 1.0f, // top-right
+        1.0f, 1.0f, // top-right
+        0.0f, 1.0f, // top-left
+        0.0f, 0.0f, // bottom-left
         // Left face
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
+        1.0f, 0.0f, // top-right
+        1.0f, 1.0f, // top-left
+        0.0f, 1.0f, // bottom-left
+        0.0f, 1.0f, // bottom-left
+        0.0f, 0.0f, // bottom-right
+        1.0f, 0.0f, // top-right
         // Right face
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+        1.0f, 0.0f, // top-left
+        0.0f, 1.0f, // bottom-right
+        1.0f, 1.0f, // top-right
+        0.0f, 1.0f, // bottom-right
+        1.0f, 0.0f, // top-left
+        0.0f, 0.0f, // bottom-left
         // Bottom face
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
+        0.0f, 1.0f, // top-right
+        1.0f, 1.0f, // top-left
+        1.0f, 0.0f, // bottom-left
+        1.0f, 0.0f, // bottom-left
+        0.0f, 0.0f, // bottom-right
+        0.0f, 1.0f, // top-right
         // Top face
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left
+        0.0f, 1.0f, // top-left
+        1.0f, 0.0f, // bottom-right
+        1.0f, 1.0f, // top-right
+        1.0f, 0.0f, // bottom-right
+        0.0f, 1.0f, // top-left
+        0.0f, 0.0f  // bottom-left
     };
+    cubeTextureSize = sizeof(float) * cubeTexture.size();
 
-    cubeVertices3 = {
-        // positions          // normal
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    cubeNormal = {
+        0.0f,  0.0f, -1.0f,
+        0.0f,  0.0f, -1.0f,
+        0.0f,  0.0f, -1.0f,
+        0.0f,  0.0f, -1.0f,
+        0.0f,  0.0f, -1.0f,
+        0.0f,  0.0f, -1.0f,
 
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+        0.0f,  0.0f,  1.0f,
+        0.0f,  0.0f,  1.0f,
+        0.0f,  0.0f,  1.0f,
+        0.0f,  0.0f,  1.0f,
+        0.0f,  0.0f,  1.0f,
+        0.0f,  0.0f,  1.0f,
 
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+       -1.0f,  0.0f,  0.0f,
+       -1.0f,  0.0f,  0.0f,
+       -1.0f,  0.0f,  0.0f,
+       -1.0f,  0.0f,  0.0f,
+       -1.0f,  0.0f,  0.0f,
+       -1.0f,  0.0f,  0.0f,
 
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,
 
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+        0.0f, -1.0f,  0.0f,
+        0.0f, -1.0f,  0.0f,
+        0.0f, -1.0f,  0.0f,
+        0.0f, -1.0f,  0.0f,
+        0.0f, -1.0f,  0.0f,
+        0.0f, -1.0f,  0.0f,
 
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+        0.0f,  1.0f,  0.0f,
+        0.0f,  1.0f,  0.0f,
+        0.0f,  1.0f,  0.0f,
+        0.0f,  1.0f,  0.0f,
+        0.0f,  1.0f,  0.0f,
+        0.0f,  1.0f,  0.0f
     };
+    cubeNormalSize = sizeof(float) * cubeNormal.size();
 
-    cubeVertices4 = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
+    cubeWorldPosition << QVector3D( 0.0f,  0.0f,  0.0f)
+                       << QVector3D( 2.0f,  5.0f, -15.0f)
+                       << QVector3D(-1.5f, -2.2f, -2.5f)
+                       << QVector3D(-3.8f, -2.0f, -12.3f)
+                       << QVector3D( 2.4f, -0.4f, -3.5f)
+                       << QVector3D(-1.7f,  3.0f, -7.5f)
+                       << QVector3D( 1.3f, -2.0f, -2.5f)
+                       << QVector3D( 1.5f,  2.0f, -2.5f)
+                       << QVector3D( 1.5f,  0.2f, -1.5f)
+                       << QVector3D(-1.3f,  1.0f, -1.5f);
 
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+    planePosition = {
+         5.0f, -0.5f,  5.0f,
+        -5.0f, -0.5f,  5.0f,
+        -5.0f, -0.5f, -5.0f,
 
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
+         5.0f, -0.5f,  5.0f,
+        -5.0f, -0.5f, -5.0f,
+         5.0f, -0.5f, -5.0f
     };
+    planePositionSize = sizeof(float) * planePosition.size();
 
-    cubePositions << QVector3D( 0.0f,  0.0f,  0.0f)
-                  << QVector3D( 2.0f,  5.0f, -15.0f)
-                  << QVector3D(-1.5f, -2.2f, -2.5f)
-                  << QVector3D(-3.8f, -2.0f, -12.3f)
-                  << QVector3D( 2.4f, -0.4f, -3.5f)
-                  << QVector3D(-1.7f,  3.0f, -7.5f)
-                  << QVector3D( 1.3f, -2.0f, -2.5f)
-                  << QVector3D( 1.5f,  2.0f, -2.5f)
-                  << QVector3D( 1.5f,  0.2f, -1.5f)
-                  << QVector3D(-1.3f,  1.0f, -1.5f);
+    // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
+    planeTexture = {
+        2.0f, 0.0f,
+        0.0f, 0.0f,
+        0.0f, 2.0f,
 
-    planeVertices2 = {
-        // positions          // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-         5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-        -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
-        -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-
-         5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-        -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-         5.0f, -0.5f, -5.0f,  2.0f, 2.0f
+        2.0f, 0.0f,
+        0.0f, 2.0f,
+        2.0f, 2.0f
     };
+    planeTextureSize = sizeof(float) * planeTexture.size();
 
-    transparentVertices2 = {
-        // positions         // texture Coords (swapped y coordinates because texture is flipped upside down)
-        0.0f,  0.5f,  0.0f,  0.0f,  1.0f,
-        0.0f, -0.5f,  0.0f,  0.0f,  0.0f,
-        1.0f, -0.5f,  0.0f,  1.0f,  0.0f,
+    transparentPosition = {
+        0.0f,  0.5f,  0.0f,
+        0.0f, -0.5f,  0.0f,
+        1.0f, -0.5f,  0.0f,
 
-        0.0f,  0.5f,  0.0f,  0.0f,  1.0f,
-        1.0f, -0.5f,  0.0f,  1.0f,  0.0f,
-        1.0f,  0.5f,  0.0f,  1.0f,  1.0f
+        0.0f,  0.5f,  0.0f,
+        1.0f, -0.5f,  0.0f,
+        1.0f,  0.5f,  0.0f
     };
+    transparentPositionSize = sizeof(float) * transparentPosition.size();
 
-    skyboxVertices1 = {
+    // texture Coords (swapped y coordinates because texture is flipped upside down)
+    transparentTexture = {
+        0.0f,  1.0f,
+        0.0f,  0.0f,
+        1.0f,  0.0f,
+
+        0.0f,  1.0f,
+        1.0f,  0.0f,
+        1.0f,  1.0f
+    };
+    transparentTextureSize = sizeof(float) * transparentTexture.size();
+
+    skyboxPosition = {
         -1.0f,  1.0f, -1.0f,
         -1.0f, -1.0f, -1.0f,
          1.0f, -1.0f, -1.0f,
@@ -353,6 +333,7 @@ HLearnGLFWPrivate::HLearnGLFWPrivate()
         -1.0f, -1.0f,  1.0f,
          1.0f, -1.0f,  1.0f
     };
+    skyboxPositionSize = sizeof(float) * skyboxPosition.size();
 
 }
 

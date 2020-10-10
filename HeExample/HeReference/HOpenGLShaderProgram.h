@@ -20,7 +20,8 @@ public:
     enum ShaderTypeBit
     {
         Vertex                 = 0x0001,
-        Fragment               = 0x0002
+        Fragment               = 0x0002,
+        Geometry               = 0x0004
     };
     Q_DECLARE_FLAGS(ShaderType, ShaderTypeBit)
 
@@ -85,12 +86,12 @@ public:
     void free();
 
 public:
-    void bindAttributeLocation(const char *name, int location);
-    void bindAttributeLocation(const QByteArray &name, int location);
-    void bindAttributeLocation(const QString &name, int location);
     int attributeLocation(const char *name) const;
     int attributeLocation(const QByteArray &name) const;
     int attributeLocation(const QString &name) const;
+    void bindAttributeLocation(const char *name, int location);
+    void bindAttributeLocation(const QByteArray &name, int location);
+    void bindAttributeLocation(const QString &name, int location);
     void enableAttributeArray(int location);
     void enableAttributeArray(const char *name);
     void disableAttributeArray(int location);
@@ -127,6 +128,9 @@ public:
     void setAttributeBuffer(const char *name, GLenum type, int offset, int tupleSize, int stride = 0);
 
 public:
+    void bindUniformBlock(const char *name, int block);
+    void bindUniformBlock(const QByteArray &name, int block);
+    void bindUniformBlock(const QString &name, int block);
     int uniformLocation(const char *name) const;
     int uniformLocation(const QByteArray &name) const;
     int uniformLocation(const QString &name) const;

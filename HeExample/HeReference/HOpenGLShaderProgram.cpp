@@ -93,6 +93,8 @@ bool HOpenGLShader::create()
         d_ptr->shaderId = glCreateShader(GL_VERTEX_SHADER);
     else if (d_ptr->shaderType == Fragment)
         d_ptr->shaderId = glCreateShader(GL_FRAGMENT_SHADER);
+    else if (d_ptr->shaderType == Geometry)
+        d_ptr->shaderId = glCreateShader(GL_GEOMETRY_SHADER);
     if (!d_ptr->shaderId)
     {
         qWarning("HOpenGLShader: could not create shader");
@@ -116,13 +118,34 @@ bool HOpenGLShader::compile()
         return true;
 
     // Compilation failed, try to provide some information about the failure
+    const char *types[] = {
+        "Fragment",
+        "Vertex",
+        "Geometry",
+        "Tessellation Control",
+        "Tessellation Evaluation",
+        "Compute",
+        ""
+    };
     GLint infoLogLength = 0;
     GLint sourceCodeLength = 0;
     GLint temp;
     char *logBuffer = nullptr;
     char *sourceCodeBuffer = nullptr;
     auto name = objectName();
-    auto type = d_ptr->shaderType == Vertex ? "Vertex" : "Fragment";
+    auto type = types[6];
+    switch (d_ptr->shaderType)
+    {
+    case Fragment:
+        type = types[0];
+        break;
+    case Vertex:
+        type = types[1];
+        break;
+    case Geometry:
+        type = types[2];
+        break;
+    }
     // Get the compilation info log
     glGetShaderiv(d_ptr->shaderId, GL_INFO_LOG_LENGTH, &infoLogLength);
     if (infoLogLength > 1)
@@ -332,24 +355,6 @@ void HOpenGLShaderProgram::free()
         glDeleteProgram(d_ptr->programId);
 }
 
-void HOpenGLShaderProgram::bindAttributeLocation(const char *name, int location)
-{
-    if (!init() || !d_ptr->programId)
-        return;
-    glBindAttribLocation(d_ptr->programId, location, name);
-    d_ptr->linked = false;
-}
-
-void HOpenGLShaderProgram::bindAttributeLocation(const QByteArray &name, int location)
-{
-    bindAttributeLocation(name.constData(), location);
-}
-
-void HOpenGLShaderProgram::bindAttributeLocation(const QString &name, int location)
-{
-    bindAttributeLocation(name.toLatin1().constData(), location);
-}
-
 int HOpenGLShaderProgram::attributeLocation(const char *name) const
 {
     if (d_ptr->linked && d_ptr->programId)
@@ -366,6 +371,25 @@ int HOpenGLShaderProgram::attributeLocation(const QByteArray &name) const
 int HOpenGLShaderProgram::attributeLocation(const QString &name) const
 {
     return attributeLocation(name.toLatin1().constData());
+}
+
+
+void HOpenGLShaderProgram::bindAttributeLocation(const char *name, int location)
+{
+    if (!init() || !d_ptr->programId)
+        return;
+    glBindAttribLocation(d_ptr->programId, location, name);
+    d_ptr->linked = false;
+}
+
+void HOpenGLShaderProgram::bindAttributeLocation(const QByteArray &name, int location)
+{
+    bindAttributeLocation(name.constData(), location);
+}
+
+void HOpenGLShaderProgram::bindAttributeLocation(const QString &name, int location)
+{
+    bindAttributeLocation(name.toLatin1().constData(), location);
 }
 
 void HOpenGLShaderProgram::enableAttributeArray(int location)
@@ -580,6 +604,24 @@ void HOpenGLShaderProgram::setAttributeBuffer(int location, GLenum type, int off
 void HOpenGLShaderProgram::setAttributeBuffer(const char *name, GLenum type, int offset, int tupleSize, int stride)
 {
     setAttributeBuffer(attributeLocation(name), type, offset, tupleSize, stride);
+}
+
+void HOpenGLShaderProgram::bindUniformBlock(const char *name, int block)
+{
+    if (!init() || !d_ptr->programId)
+        return;
+    auto index = glGetUniformBlockIndex(d_ptr->programId, name);
+    glUniformBlockBinding(d_ptr->programId, index, block);
+}
+
+void HOpenGLShaderProgram::bindUniformBlock(const QByteArray &name, int block)
+{
+    bindUniformBlock(name.constData(), block);
+}
+
+void HOpenGLShaderProgram::bindUniformBlock(const QString &name, int block)
+{
+    bindUniformBlock(name.toLatin1().constData(), block);
 }
 
 int HOpenGLShaderProgram::uniformLocation(const char *name) const

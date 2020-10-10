@@ -21,17 +21,17 @@ int HLearnGLFW::testColor()
 
     // build and compile our shader program
     auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/colors.vert");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/colors.frag");
+    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/colors.vs");
+    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/colors.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vert");
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.frag");
+    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
+    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
 
     unsigned int VBO, VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices1.size(), d_ptr->cubeVertices1.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubePosition.data(), GL_STATIC_DRAW);
     glBindVertexArray(VAOs[0]);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);

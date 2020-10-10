@@ -16,6 +16,7 @@ SOURCES += \
     $$PWD/HLearnGLFW_Coordinate.cpp \
     $$PWD/HLearnGLFW_Cubemaps.cpp \
     $$PWD/HLearnGLFW_Framebuffers.cpp \
+    $$PWD/HLearnGLFW_Geometry.cpp \
     $$PWD/HLearnGLFW_Light.cpp \
     $$PWD/HLearnGLFW_LightCaster.cpp \
     $$PWD/HLearnGLFW_LightMaps.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
     $$PWD/HLearnGLFW_Stencil.cpp \
     $$PWD/HLearnGLFW_Texture.cpp \
     $$PWD/HLearnGLFW_Triangle.cpp \
+    $$PWD/HLearnGLFW_Ubo.cpp \
     $$PWD/HOpenGLCamera.cpp \
     $$PWD/HOpenGLShaderProgram.cpp \
     $$PWD/HOpenGLWidget_1.cpp \

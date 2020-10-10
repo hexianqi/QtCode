@@ -24,17 +24,23 @@ public:
     bool lightColorLoop = false;
     QVector3D lightPos = QVector3D(1.2f, 1.0f, 2.0f);
     QVector3D lightColor = QVector3D(1.0f, 1.0f, 1.0f);
-    QVector<float> cubeVertices1;                   // positions
-    QVector<float> cubeVertices2;                   // positions + texture coords
-    QVector<float> cubeVertices3;                   // positions + normal
-    QVector<float> cubeVertices4;                   // positions + normal + texture coords
-    QList<QVector3D> cubePositions;                 // world space positions of our cubes
-//    QVector<float> planeVertices1;                   // positions
-    QVector<float> planeVertices2;                  // positions + texture coords
-    QVector<float> transparentVertices2;            // positions + texture coords
-    QVector<float> skyboxVertices1;                 // positions
-
-
+    QVector<float> cubePosition;                // cube positions
+    QVector<float> cubeTexture;                 // cube texture
+    QVector<float> cubeNormal;                  // cube normal
+    QList<QVector3D> cubeWorldPosition;         // cube world space positions
+    QVector<float> planePosition;               // plane positions
+    QVector<float> planeTexture;                // plane texture
+    QVector<float> transparentPosition;         // transparent positions
+    QVector<float> transparentTexture;          // transparent texture
+    QVector<float> skyboxPosition;              // skybox positions
+    int cubePositionSize = 0;
+    int cubeTextureSize = 0;
+    int cubeNormalSize = 0;
+    int planePositionSize = 0;
+    int planeTextureSize = 0;
+    int transparentPositionSize = 0;
+    int transparentTextureSize = 0;
+    int skyboxPositionSize = 0;
 };
 
 // camera

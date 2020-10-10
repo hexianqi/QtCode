@@ -24,27 +24,27 @@ int HLearnGLFW::testCubemaps()
 
     // build and compile our shader program
     auto shader1 = new HOpenGLShaderProgram(this);
-    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/cubemaps.vert");
-    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/cubemaps.frag");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/cubemaps.vs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/cubemaps.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
-    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/skybox.vert");
-    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/skybox.frag");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/skybox.vs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/skybox.fs");
 
     unsigned int VBOs[2], VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(2, VBOs);
-
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices2.size(), d_ptr->cubeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
-
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->skyboxVertices1.size(), d_ptr->skyboxVertices1.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->skyboxPositionSize, d_ptr->skyboxPosition.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
@@ -129,27 +129,27 @@ int HLearnGLFW::testCubemaps2()
 
     // build and compile our shader program
     auto shader1 = new HOpenGLShaderProgram(this);
-    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/cubemaps2.vert");
-    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/cubemaps2.frag");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/cubemaps2.vs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/cubemaps2.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
-    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/skybox.vert");
-    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/skybox.frag");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/skybox.vs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/skybox.fs");
 
     unsigned int VBOs[2], VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(2, VBOs);
-
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices3.size(), d_ptr->cubeVertices3.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeNormalSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeNormalSize, d_ptr->cubeNormal.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
-
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->skyboxVertices1.size(), d_ptr->skyboxVertices1.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->skyboxPositionSize, d_ptr->skyboxPosition.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
@@ -164,8 +164,8 @@ int HLearnGLFW::testCubemaps2()
     // shader configuration
     shader1->bind();
     shader1->setUniformValue("texture1", 0);
-//    shader2->bind();
-//    shader2->setUniformValue("texture1", 0);
+    shader2->bind();
+    shader2->setUniformValue("texture1", 0);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))

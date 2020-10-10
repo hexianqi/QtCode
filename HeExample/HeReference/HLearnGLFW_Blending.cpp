@@ -21,8 +21,8 @@ int HLearnGLFW::testBlending()
 
     // build and compile our shader program
     auto shader = new HOpenGLShaderProgram(this);
-    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blending.vert");
-    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blending.frag");
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blending.vs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blending.fs");
 
     unsigned int VBOs[3], VAOs[3];
     glGenVertexArrays(3, VAOs);
@@ -30,26 +30,30 @@ int HLearnGLFW::testBlending()
 
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices2.size(), d_ptr->cubeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
-
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->planeVertices2.size(), d_ptr->planeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->planePositionSize + d_ptr->planeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->planePositionSize, d_ptr->planePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->planePositionSize, d_ptr->planeTextureSize, d_ptr->planeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->planePositionSize));
     glEnableVertexAttribArray(1);
-
     glBindVertexArray(VAOs[2]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->transparentVertices2.size(), d_ptr->transparentVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize + d_ptr->transparentTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->transparentPositionSize, d_ptr->transparentPosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize, d_ptr->transparentTextureSize, d_ptr->transparentTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->transparentPositionSize));
     glEnableVertexAttribArray(1);
     glBindVertexArray(0);
 
@@ -145,8 +149,8 @@ int HLearnGLFW::testBlending2()
 
     // build and compile our shader program
     auto shader = new HOpenGLShaderProgram(this);
-    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blending2.vert");
-    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blending2.frag");
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blending2.vs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blending2.fs");
 
     unsigned int VBOs[3], VAOs[3];
     glGenVertexArrays(3, VAOs);
@@ -154,26 +158,32 @@ int HLearnGLFW::testBlending2()
 
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices2.size(), d_ptr->cubeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
 
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->planeVertices2.size(), d_ptr->planeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->planePositionSize + d_ptr->planeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->planePositionSize, d_ptr->planePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->planePositionSize, d_ptr->planeTextureSize, d_ptr->planeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->planePositionSize));
     glEnableVertexAttribArray(1);
 
     glBindVertexArray(VAOs[2]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->transparentVertices2.size(), d_ptr->transparentVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize + d_ptr->transparentTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->transparentPositionSize, d_ptr->transparentPosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize, d_ptr->transparentTextureSize, d_ptr->transparentTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->transparentPositionSize));
     glEnableVertexAttribArray(1);
     glBindVertexArray(0);
 

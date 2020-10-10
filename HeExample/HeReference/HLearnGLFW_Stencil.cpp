@@ -25,33 +25,32 @@ int HLearnGLFW::testStencil()
 
     // build and compile our shader program
     auto shader1 = new HOpenGLShaderProgram(this);
-    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/stencil.vert");
-    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/stencil.frag");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/stencil.vs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/stencil.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
-    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,   ":/glsl/stencil.vert");
-    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment, ":/glsl/stencil_single_color.frag");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,   ":/glsl/stencil.vs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment, ":/glsl/stencil_single_color.fs");
 
     unsigned int VBOs[2], VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(2, VBOs);
-
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices2.size(), d_ptr->cubeVertices2.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubePosition.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
     glBindVertexArray(0);
-
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->planeVertices2.size(), d_ptr->planeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->planePositionSize + d_ptr->planeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->planePositionSize, d_ptr->planePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->planePositionSize, d_ptr->planeTextureSize, d_ptr->planeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->planePositionSize));
     glEnableVertexAttribArray(1);
-    glBindVertexArray(0);
 
     // load and create a texture
     auto texture1 = loadTexture(":/image/marble.jpg");

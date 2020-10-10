@@ -17,8 +17,8 @@ int HLearnGLFW::testTexture()
 
     // build and compile our shader program
     auto program = new HOpenGLShaderProgram(this);
-    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture1.vert");
-    program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture1.frag");
+    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture1.vs");
+    program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture1.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
@@ -93,8 +93,8 @@ int HLearnGLFW::testTexture2()
 
     // build and compile our shader program
     auto program = new HOpenGLShaderProgram(this);
-    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture2.vert");
-    program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture2.frag");
+    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture2.vs");
+    program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture2.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {

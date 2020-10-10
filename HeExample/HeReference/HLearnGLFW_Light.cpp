@@ -21,25 +21,27 @@ int HLearnGLFW::testLight()
 
     // build and compile our shader program
     auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_basic.vert");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_basic.frag");
+    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_basic.vs");
+    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_basic.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vert");
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.frag");
+    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
+    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
 
     unsigned int VBO, VAOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices3.size(), d_ptr->cubeVertices3.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeNormalSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeNormalSize, d_ptr->cubeNormal.data());
     glBindVertexArray(VAOs[0]);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
     glBindVertexArray(VAOs[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     // render loop

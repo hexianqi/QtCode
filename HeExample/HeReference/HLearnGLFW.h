@@ -49,6 +49,8 @@ public:
     int testFramebuffers();
     int testCubemaps();
     int testCubemaps2();
+    int testUbo();
+    int testGeometry();
 
 protected:
     void initGlfw();

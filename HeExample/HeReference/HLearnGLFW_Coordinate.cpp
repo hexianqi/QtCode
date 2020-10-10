@@ -18,8 +18,8 @@ int HLearnGLFW::testCoordinate()
 
     // build and compile our shader program
     auto shader = new HOpenGLShaderProgram(this);
-    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/coordinate_systems.vert");
-    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/coordinate_systems.frag");
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/coordinate_systems.vs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/coordinate_systems.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
@@ -114,18 +114,20 @@ int HLearnGLFW::testCoordinate2()
 
     // build and compile our shader program
     auto shader = new HOpenGLShaderProgram(this);
-    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/coordinate_systems.vert");
-    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/coordinate_systems.frag");
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/coordinate_systems.vs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/coordinate_systems.fs");
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * d_ptr->cubeVertices2.size(), d_ptr->cubeVertices2.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
+    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
     glEnableVertexAttribArray(1);
 
     // load and create a texture
@@ -160,12 +162,12 @@ int HLearnGLFW::testCoordinate2()
         shader->bind();
         shader->setUniformValue("projection", projection);
         shader->setUniformValue("view", view);
-        for (int i = 0; i < d_ptr->cubePositions.size(); i++)
+        for (int i = 0; i < d_ptr->cubeWorldPosition.size(); i++)
         {
             // calculate the model matrix for each object and pass it to shader before drawing
             QMatrix4x4 model;
             model.rotate(glfwGetTime(), 1.0f, 0.0f);
-            model.translate(d_ptr->cubePositions.at(i));
+            model.translate(d_ptr->cubeWorldPosition.at(i));
             model.rotate(20.0f * i, 1.0f, 0.3f, 0.5f);
             shader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
