@@ -17,7 +17,7 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[光通量]" << "[光功率]" << "[光效率]"
                              << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
                              << "[色温]" << "[色纯度]"
-                             << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
+                             << "[色坐标]" << "[色坐标uvp]" << "[Duv]"
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
                              << "[显色指数]" <<"[显色指数Rx]";
     testSetWidget = new HTestSetWidget2000DC;
@@ -70,18 +70,6 @@ void HTestWidget2000DC::createMenu()
     Q_D(HTestWidget2000DC);
     HTestWidget2000::createMenu();
     d->menus.at(0)->insertAction(d->actionAdjust, d->actionProbe);
-}
-
-void HTestWidget2000DC::postProcess()
-{
-    Q_D(HTestWidget2000DC);
-    HTestWidget2000::postProcess();
-    auto f = d->testData->data("[光通量]").toDouble();
-    auto p = d->testData->data("[实测电压]").toDouble() * d->testData->data("[实测电流]").toDouble() / 1000.0;
-    auto e = d->testData->data("[明视觉光效率]").toDouble();
-    d->testData->setData("[电功率]" , p);
-    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
-    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
 }
 
 void HTestWidget2000DC::setProbe(bool b)

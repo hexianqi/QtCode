@@ -1,4 +1,5 @@
 #include "HPluginHelper.h"
+#include "xlsxdocument.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
 #include <QtCore/QtMath>
@@ -7,8 +8,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
-#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QInputDialog>
+#include <QtWidgets/QFileDialog>
+
+using namespace QXlsx;
 
 HE_CORE_USE_NAMESPACE
 
@@ -20,49 +24,10 @@ QAction *HPluginHelper::addSeparator(QWidget *widget)
     return action;
 }
 
-QString HPluginHelper::copy(QTableWidget *widget, bool withHeader)
-{
-    int row,column;
-    QString text,header;
-
-    auto ranges = widget->selectedRanges();
-    if (ranges.isEmpty())
-        return QString();
-
-    auto range = ranges.first();
-    for (row = range.topRow(); row <= range.bottomRow(); ++row)
-    {
-        if (widget->isRowHidden(row))
-            continue;
-        for (column = range.leftColumn(); column <= range.rightColumn(); column++)
-        {
-            if (widget->isColumnHidden(column))
-                continue;
-            text += widget->item(row, column)->text() + "\t";
-        }
-        text += "\n";
-    }
-
-    if (withHeader)
-    {
-        for (column = range.leftColumn(); column <= range.rightColumn(); column++)
-        {
-            if (widget->isColumnHidden(column))
-                continue;
-            header += widget->model()->headerData(column, Qt::Horizontal).toString() + "\t";
-        }
-        text = header + "\n" + text;
-    }
-
-    text.replace("\t\n", "\n");
-    QApplication::clipboard()->setText(text);
-    return text;
-}
-
 QString HPluginHelper::copy(QTableView *widget, bool withHeader)
 {
-    int row,column;
-    QString text,header;
+    int row, column;
+    QString text, header;
 
     auto selection = widget->selectionModel()->selection();
     if (selection.isEmpty())
@@ -98,61 +63,11 @@ QString HPluginHelper::copy(QTableView *widget, bool withHeader)
     return text;
 }
 
-QString HPluginHelper::paste(QTableWidget *widget)
-{
-    int i,j,m,n;
-    int row,column,rowCount,columnCount;
-    QStringList rowText,columnText;
-    QTableWidgetItem *item;
-
-    auto text = QApplication::clipboard()->text();
-    auto ranges = widget->selectedRanges();
-    if (ranges.isEmpty())
-        return text;
-
-    rowText = text.split('\n', QString::SkipEmptyParts);
-
-    auto range = ranges.first();
-    if (range.rowCount() * range.columnCount() == 1)
-    {
-        rowCount = widget->rowCount() - range.topRow();
-        columnCount = widget->columnCount() - range.leftColumn();
-    }
-    else
-    {
-        rowCount = range.rowCount();
-        columnCount = range.columnCount();
-    }
-    for (m = 0, i = 0; i < rowCount; i++)
-    {
-        row = range.topRow() + i;
-        if (widget->isRowHidden(row))
-            continue;
-        if (m >= rowText.count())
-            break;
-        columnText = rowText[m].split('\t');
-        for (n = 0, j = 0; j < columnCount; j++)
-        {
-            column = range.leftColumn() + j;
-            if (widget->isColumnHidden(column))
-                continue;
-            if (n >= columnText.count())
-                break;
-            item = widget->item(row, column);
-            if (item->flags() & Qt::ItemIsEditable)
-                item->setText(columnText[n]);
-            n++;
-        }
-        m++;
-    }
-    return text;
-}
-
 QString HPluginHelper::paste(QTableView *widget)
 {
-    int i,j,m,n;
-    int row,column,rowCount,columnCount;
-    QStringList rowText,columnText;
+    int i, j, m, n;
+    int row, column, rowCount, columnCount;
+    QStringList columnText;
     QModelIndex index;
 
     auto text = QApplication::clipboard()->text();
@@ -160,9 +75,7 @@ QString HPluginHelper::paste(QTableView *widget)
     if (selection.isEmpty())
         return text;
 
-    rowText = text.split('\n');
-    rowText.removeLast();
-
+    auto rowText = text.split('\n', QString::SkipEmptyParts);
     auto range = selection.first();
     if (range.width() * range.height() == 1)
     {
@@ -198,6 +111,64 @@ QString HPluginHelper::paste(QTableView *widget)
         m++;
     }
     return text;
+}
+
+bool HPluginHelper::exportExcel(QAbstractItemModel *model)
+{
+    auto fileName = QFileDialog::getSaveFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    if (fileName.isEmpty())
+        return false;
+
+    int i, j;
+    Document doc;
+    for (i = 0; i < model->rowCount(); i++)
+        doc.write(i + 2, 1, model->headerData(i, Qt::Vertical));
+    for (j = 0; j < model->columnCount(); j++)
+        doc.write(1, j + 2, model->headerData(j, Qt::Horizontal));
+    for (i = 0; i < model->rowCount(); i++)
+    {
+        for (j = 0; j < model->columnCount(); j++)
+        {
+            auto index = model->index(i, j);
+            if (!index.isValid())
+                continue;
+            Format format;
+            if (index.data(Qt::BackgroundColorRole).isValid())
+                format.setPatternBackgroundColor(index.data(Qt::BackgroundColorRole).value<QColor>());
+            doc.write(i + 2, j + 2, index.data().toString(), format);
+        }
+    }
+    return doc.saveAs(fileName);
+}
+
+bool HPluginHelper::importExcel(QAbstractItemModel *model)
+{
+    auto fileName = QFileDialog::getOpenFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    if (fileName.isEmpty())
+        return false;
+    Document doc(fileName);
+    if (!doc.isLoadPackage())
+        return false;
+    auto range = doc.dimension();
+    auto rowCount = range.rowCount();
+    auto colCount = range.columnCount();
+    if (rowCount < 2 || colCount < 2)
+        return false;
+
+    for (int i = 2; i <= rowCount; i++)
+    {
+        for (int j = 2; j <= colCount; j++)
+        {
+            auto cell = doc.cellAt(i, j);
+            auto index = model->index(i - 2, j - 2);
+            if (!index.isValid() || cell == nullptr)
+                continue;
+            if (cell->format().patternBackgroundColor().isValid())
+                model->setData(index, cell->format().patternBackgroundColor(), Qt::BackgroundColorRole);
+            model->setData(index, cell->value());
+        }
+    }
+    return true;
 }
 
 void HPluginHelper::initWidget(const QString &type, QSpinBox *widget)
@@ -273,59 +244,3 @@ bool HPluginHelper::getInputText(QWidget *parent, const QString &label, QString 
     text = dlg.textValue();
     return true;
 }
-
-//void FlightPlanWid::readExcel(QString path)
-//{
-//    QXlsx::Document xlsx(path);
-//    QXlsx::Workbook *workBook = xlsx.workbook();
-//    QXlsx::Worksheet *workSheet = static_cast<QXlsx::Worksheet*>(workBook->sheet(0));
-//    ui.tableWidget->setRowCount(workSheet->dimension().rowCount());
-//    ui.tableWidget->setColumnCount(23);
-//    QString value;
-//    for (int i = 6; i <= workSheet->dimension().rowCount(); i++)
-//    {
-//        for (int j = 1; j <= workSheet->dimension().columnCount(); j++)
-//        {
-//            QXlsx::Cell *cell = workSheet->cellAt(i, j);
-//            if (cell==NULL) continue;
-//            if (cell->isDateTime())//日期
-//            {
-//                if (cell->dateTime().date().year()==1899) continue;
-//                value = cell->dateTime().toString("yyyy/MM/dd hh:mm");
-//            }
-//            else
-//            {
-//                value = cell->value().toString();
-//            }
-//            setItemValue(i - 6, j - 1, value);
-//        }
-//    }
-//    for (int i = ui.tableWidget->rowCount() - 1; i >= 0; i--)//删除末尾空白行
-//    {
-//        QTableWidgetItem *item = ui.tableWidget->item(i, 0);
-//        if (item==NULL)
-//            ui.tableWidget->removeRow(i);
-//        else break;
-//    }
-//}
-
-//void FlightPlanWid::saveBtnClickedSlot()
-//{
-//    if (currentScriptIndex == -1) return;
-//    QXlsx::Document xlsx;
-//    QString value;
-//    for (int i = 0; i < ui.tableWidget->rowCount(); i++)
-//    {
-//        for (int j = 0; j < ui.tableWidget->columnCount(); j++)
-//        {
-//            QTableWidgetItem *item = ui.tableWidget->item(i, j);
-//            if (item == NULL)
-//                value = "";
-//            else
-//                value = item->text();
-//            xlsx.write(i + 1, j + 1, value);
-//        }
-//    }
-//    if (xlsx.saveAs("./Data/Saved/" + ui.nameEdt->text() + ".xlsx"))
-//        QMessageBox::information(this, "保存", "保存成功！", QMessageBox::Ok);
-//}

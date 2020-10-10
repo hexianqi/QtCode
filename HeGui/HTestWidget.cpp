@@ -36,7 +36,7 @@ void HTestWidget::createAction()
     d->actionStart = new QAction(tr("测量(&S)"), this);
     d->actionStart->setIcon(QIcon(":/image/Start02.png"));
     d->actionStart->setIconText(tr("测量"));
-    d->actionStart->setShortcut(Qt::Key_F3);
+    d->actionStart->setShortcut(Qt::Key_Space);
     d->actionStop = new QAction(tr("停止(&T)"), this);
     d->actionStop->setIcon(QIcon(":/image/Stop02.png"));
     d->actionStop->setIconText(tr("停止"));

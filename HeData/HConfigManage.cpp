@@ -292,10 +292,30 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     set = supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
     set = supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
     set = supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
-    auto data = test->select(set.toList());
+    auto list = set.toList();
+    auto data = test->select(list);
     if (d_ptr->adjusts != nullptr && test->data("[使用调整]").toBool())
     {
-        test->setData(d_ptr->adjusts->correct(data));
+        auto value = d_ptr->adjusts->correct(data);
+        test->setData(value);
+        if ((value.contains("[色坐标x]") || value.contains("[色坐标y]")) && list.contains("[色坐标]"))
+            test->setData("[色坐标]", QPointF(test->data("[色坐标x]").toDouble(), test->data("[色坐标y]").toDouble()));
+        if ((value.contains("[色坐标u]") || value.contains("[色坐标v]")) && list.contains("[色坐标uv]"))
+            test->setData("[色坐标uv]", QPointF(test->data("[色坐标u]").toDouble(), test->data("[色坐标v]").toDouble()));
+        if ((value.contains("[色坐标up]") || value.contains("[色坐标vp]")) && list.contains("[色坐标uvp]"))
+            test->setData("[色坐标uvp]", QPointF(test->data("[色坐标up]").toDouble(), test->data("[色坐标vp]").toDouble()));
+        if ((value.contains("[实测电压]") || value.contains("[实测电流]")) && list.contains("[电功率]"))
+        {
+            auto p = test->data("[实测电压]").toDouble() * test->data("[实测电流]").toDouble() / 1000.0;
+            auto f = test->data("[光通量]").toDouble();
+            auto e = test->data("[明视觉光效率]").toDouble();
+            test->setData("[电功率]" , p);
+            if (list.contains("[光效率]"))
+                test->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+            if (list.contains("[光功率]"))
+                test->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
+        }
+        data = test->select(list);
     }
     if (d_ptr->chromatisms != nullptr)
     {

@@ -28,7 +28,6 @@ protected:
     void init() override;
     void createAction() override;
     void createMenu() override;
-    void postProcess() override;
     void setProbe(bool b);
     void readSettings();
     void writeSettings();

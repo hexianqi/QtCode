@@ -33,6 +33,7 @@ void HTableWidget::removeRows(int row, int count)
 void HTableWidget::setEditTriggers(EditTriggers triggers)
 {
     d_ptr->actionPaste->setVisible(triggers != QAbstractItemView::NoEditTriggers);
+    d_ptr->actionImport->setVisible(triggers != QAbstractItemView::NoEditTriggers);
     QTableWidget::setEditTriggers(triggers);
 }
 
@@ -56,10 +57,16 @@ void HTableWidget::init()
     d_ptr->actionPaste = new QAction(tr("粘贴(&V)"), this);
     d_ptr->actionPaste->setIcon(QIcon(":/image/Paste.png"));
     d_ptr->actionPaste->setShortcut(QKeySequence::Paste);
+    d_ptr->actionExport = new QAction(tr("导出表(&E)"), this);
+    d_ptr->actionImport = new QAction(tr("导入表(&I)"), this);
     addAction(d_ptr->actionCopy);
     addAction(d_ptr->actionPaste);
+    addAction(d_ptr->actionExport);
+    addAction(d_ptr->actionImport);
     connect(d_ptr->actionCopy, &QAction::triggered, this, [=] { HPluginHelper::copy(this); });
     connect(d_ptr->actionPaste, &QAction::triggered, this, [=] { HPluginHelper::paste(this); });
+    connect(d_ptr->actionExport, &QAction::triggered, this, [=] { HPluginHelper::exportExcel(model()); });
+    connect(d_ptr->actionImport, &QAction::triggered, this, [=] { HPluginHelper::importExcel(model()); });
     horizontalHeader()->setDefaultSectionSize(80);
     horizontalHeader()->setHighlightSections(false);
     horizontalHeader()->setMinimumSectionSize(60);

@@ -42,7 +42,6 @@ public:
     void showData() override;
 
 protected:
-    void initSelected();
     void handleAction(HActionType action);
     void handleStateChanged(bool b);
     void handleResultChanged();
@@ -55,6 +54,7 @@ protected slots:
 
 private:
     void init();
+    void initSelected();
 
 private:
     QScopedPointer<HAdjustEditWidgetPrivate> d_ptr;

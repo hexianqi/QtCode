@@ -12,10 +12,10 @@ class QStringList;
 class QAction;
 class QWidget;
 class QTableView;
-class QTableWidget;
 class QSpinBox;
 class QDoubleSpinBox;
 class QInputDialog;
+class QAbstractItemModel;
 
 class QDESIGNER_WIDGET_EXPORT HPluginHelper
 {
@@ -24,12 +24,12 @@ public:
     static QAction *addSeparator(QWidget *);
 
 public:
-    // 复制
-    static QString copy(QTableWidget *, bool withHeader = false);
+    // 复制粘贴
     static QString copy(QTableView *, bool withHeader = false);
-    // 粘贴
-    static QString paste(QTableWidget *);
     static QString paste(QTableView *);
+    // 导出导入Excel
+    static bool exportExcel(QAbstractItemModel *);
+    static bool importExcel(QAbstractItemModel *);
 
 public:
     static void initWidget(const QString &type, QSpinBox *);

@@ -84,7 +84,7 @@ QStringList HQualityItem::toStringList()
 {
     auto t = data("[项类型]").toString();
     auto p = data("[有效范围]").toPointF();
-    return QStringList() << HCore::toCaption(t) << HCore::toString(t, p.x()) << HCore::toString(t, p.y()) << data("[不足颜色]").value<QColor>().name() << data("[超出颜色]").value<QColor>().name();
+    return QStringList() << HCore::toString(t, p.x()) << HCore::toString(t, p.y()) << data("[不足颜色]").value<QColor>().name() << data("[超出颜色]").value<QColor>().name();
 }
 
 HE_DATA_END_NAMESPACE

@@ -8,6 +8,8 @@ class QDESIGNER_WIDGET_EXPORT HTableWidgetPrivate
 public:
     QAction *actionCopy;
     QAction *actionPaste;
+    QAction *actionExport;
+    QAction *actionImport;
 };
 
 #endif // HTABLEWIDGET_P_H

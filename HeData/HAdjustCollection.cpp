@@ -23,7 +23,7 @@ HAdjustCollectionPrivate::HAdjustCollectionPrivate()
     xlsxStream->setWriteContent([=](Document *p) { writeContent(p); });
     multStream = factory->createMultStream("HMultStream");
     multStream->addStream("hca", dataStream);
-    multStream->addStream("xlsx", xlsxStream);
+//    multStream->addStream("xlsx", xlsxStream);
 }
 
 void HAdjustCollectionPrivate::readContent(QDataStream &s)
