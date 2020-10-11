@@ -417,7 +417,7 @@ bool HCie1931Widget::drawPoint(QPainter *painter)
 
     if (!d->pointFocus.isNull())
     {
-        auto text = QString("(%1, %2)").arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4);
+        auto text = QString("%1, %2").arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4);
         auto t = d->coordinate->mapToPosition(d->pointFocus, d->plotArea);
         painter->setPen(QPen(d->colorPointFocus, 2));
         painter->drawLine(QLineF(t.x(), t.y() - 3, t.x(), t.y() + 3));
@@ -433,21 +433,24 @@ void HCie1931Widget::handlePlotAreaChanged(QRectF value)
 {
     Q_D(HCie1931Widget);
     d->tracking->setValidRegion(value);
-    d->label->setGeometry(value.left() + 10, value.top() + 10, value.width() - 20, fontMetrics().height());
+    d->label->setGeometry(value.left() + 10, value.top() - 20, value.width() - 20, fontMetrics().height());
 }
 
 void HCie1931Widget::handlePositionChanged(QPointF pos)
 {
     Q_D(HCie1931Widget);
     auto p = d->coordinate->mapToValue(pos, d->plotArea);
-    d->label->setText(QString("(%1, %2)").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
+    d->label->setText(QString("%1, %2").arg(p.x(), 0, 'f', 4).arg(p.y(), 0, 'f', 4));
 }
 
 void HCie1931Widget::init()
 {
     Q_D(HCie1931Widget);
+    auto f = font();
+    f.setPointSize(10);
     d->tracking = new HPositionTracking(this);
     d->label = new QLabel(this);
+    d->label->setFont(f);
     auto enableCIE = new QAction(tr("色品图(&E)"));
     enableCIE->setCheckable(true);
     enableCIE->setChecked(isDrawCIE());

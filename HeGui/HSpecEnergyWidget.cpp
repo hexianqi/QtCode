@@ -14,7 +14,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 HSpecEnergyWidgetPrivate::HSpecEnergyWidgetPrivate()
 {
-    toolTipTypes = QStringList() << "[峰值波长]" << "[主波长]" << "[色温]" << "[色坐标]" << "[显色指数]";
+    toolTipTypes = QStringList() << "[峰值波长]" << "[主波长]" << "[色温]" << "[色坐标]" << "[显色指数Ra]";
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 

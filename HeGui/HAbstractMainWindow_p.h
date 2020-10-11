@@ -24,7 +24,7 @@ public:
     HAbstractMainWindowPrivate(HAbstractMainWindow *);
 
 public:
-    bool showLogo = false;
+    bool showLogo = true;
 
 public:
     HAbstractMainWindow *q_ptr = nullptr;

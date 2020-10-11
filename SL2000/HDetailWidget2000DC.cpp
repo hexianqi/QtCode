@@ -45,7 +45,7 @@ void HDetailWidget2000DC::refreshWidget()
     ui->lineEdit_031->setText(d->testData->toString("[色温]"));
     ui->lineEdit_032->setText(d->testData->toString("[色纯度]"));
     ui->lineEdit_033->setText(d->testData->toString("[色容差]"));
-    ui->lineEdit_041->setText(d->testData->toString("[显色指数]"));
+    ui->lineEdit_041->setText(d->testData->toString("[显色指数Ra]"));
     ui->lineEdit_042->setText(d->testData->toString("[显色指数R9]"));
     ui->lineEdit_043->setText(d->testData->toString("[显色指数Rx]"));
     ui->lineEdit_051->setText(d->testData->toString("[实测电压]"));

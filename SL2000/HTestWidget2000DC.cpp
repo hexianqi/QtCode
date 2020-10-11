@@ -19,7 +19,7 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[色温]" << "[色纯度]"
                              << "[色坐标]" << "[色坐标uvp]" << "[Duv]"
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                             << "[显色指数]" <<"[显色指数Rx]";
+                             << "[显色指数Ra]" << "[显色指数R9]" <<"[显色指数Rx]";
     testSetWidget = new HTestSetWidget2000DC;
     detailWidget = new HDetailWidget2000DC;
     energyWidget->addProgressBar("[光采样比率]");

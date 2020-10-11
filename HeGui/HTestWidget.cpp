@@ -1,6 +1,7 @@
 #include "HTestWidget_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
+#include "HeData/ITextStream.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QToolBar>
 
@@ -9,6 +10,7 @@ HE_GUI_BEGIN_NAMESPACE
 HTestWidgetPrivate::HTestWidgetPrivate()
 {
     stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
+    stream->setFileFilter("Excel files (*.xls)");
 }
 
 HTestWidget::HTestWidget(QWidget *parent) :

@@ -34,7 +34,7 @@ HTestWidget2000Private::HTestWidget2000Private()
                              << "[色温]" << "[色纯度]"
                              << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                             << "[显色指数]" <<"[显色指数Rx]";
+                             << "[显色指数Ra]" <<"[显色指数Rx]";
 
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     energyWidget = new HSpecEnergyWidget;

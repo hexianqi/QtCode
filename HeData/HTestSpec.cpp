@@ -177,7 +177,7 @@ bool HTestSpecPrivate::calcSpec()
     addData("[红色比]", specData->RedRatio);
     addData("[蓝色比]", specData->BlueRatio);
     addData("[绿色比]", specData->GreenRatio);
-    addData("[显色指数]", specData->RenderingIndexAvg);
+    addData("[显色指数Ra]", specData->RenderingIndexAvg);
     addData("[显色指数R9]", specData->RenderingIndex.at(8));
     addData("[显色指数Rx]", renderingIndex());
     return true;
