@@ -35,10 +35,10 @@ void HGradeSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
         return;
     HSelectDialog dlg(d->mainWindow);
     dlg.setOptionals(data->keys());
-    dlg.setSelected(data->useIndex());
+    dlg.setCurrentText(data->useIndex());
     if (!dlg.exec())
         return;
-    data->setUseIndex(dlg.selected());
+    data->setUseIndex(dlg.currentText());
     d->model->addAction(ACT_RESET_GRADE);
 }
 

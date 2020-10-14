@@ -32,21 +32,22 @@ QString HTestSetWidget2000::typeName()
 void HTestSetWidget2000::handleAction(HActionType action)
 {
     Q_D(HTestSetWidget2000);
+    bool append = false;
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
         ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
         break;
     case ACT_GET_SPECTRUM:
-        emit resultChanged(action);
+        append = !adjustIntegralTime() && d->testMode == 0;
+        emit resultChanged(action, append);
         if (!d->testState)
             break;
-        if (d->testMode == 0)
+        if (append)
         {
             setTestState(false);
             break;
         }
-        adjustIntegralTime();
         d->model->addAction(ACT_GET_SPECTRUM, 100);
         break;
     default:

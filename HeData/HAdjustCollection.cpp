@@ -4,7 +4,7 @@
 #include "IDataStream.h"
 #include "IMultStream.h"
 #include "HStreamHelper.h"
-#include "xlsxdocument.h"
+#include "QXlsx/xlsxdocument.h"
 #include "HeCore/HAppContext.h"
 
 HE_DATA_BEGIN_NAMESPACE

@@ -22,7 +22,7 @@ int HSequentialGrade::calcLevel(QVariantMap value, QString *text)
         return -1;
 
     QSet<int> set;
-    for (const auto &i : keys())
+    for (auto i : keys())
     {
         if (!value.contains(i))
             return -1;
@@ -31,7 +31,7 @@ int HSequentialGrade::calcLevel(QVariantMap value, QString *text)
         if (set.isEmpty())
             return 0;
     }
-    return set.toList().at(0);
+    return set.toList().first() + 1;
 }
 
 HE_DATA_END_NAMESPACE

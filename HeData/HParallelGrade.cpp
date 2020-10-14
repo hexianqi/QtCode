@@ -29,10 +29,10 @@ int HParallelGrade::calcLevel(QVariantMap value, QString *text)
         auto index = i.value()->indexOf(value.value(i.key()));
         if (index.isEmpty())
             return 0;
-        auto priority = i.value()->data("[优先级]").toInt();
-        if (map.contains(priority))
+        auto priority = i.value()->data("[优先级]").toInt() * 100;
+        while (map.contains(priority))
             priority++;
-        map.insert(priority, QPoint(index.toList().at(0), i.value()->count()));
+        map.insert(priority, QPoint(index.toList().first(), i.value()->count()));
     }
     int j = 0;
     int sum = 0;

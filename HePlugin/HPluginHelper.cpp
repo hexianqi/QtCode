@@ -1,7 +1,7 @@
 #include "HPluginHelper.h"
-#include "xlsxdocument.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
+#include "QXlsx/xlsxdocument.h"
 #include <QtCore/QtMath>
 #include <QtGui/QClipboard>
 #include <QtGui/QScreen>
@@ -120,7 +120,7 @@ bool HPluginHelper::exportExcel(QAbstractItemModel *model)
         return false;
 
     int i, j;
-    Document doc;
+    Document doc(model);
     for (i = 0; i < model->rowCount(); i++)
         doc.write(i + 2, 1, model->headerData(i, Qt::Vertical));
     for (j = 0; j < model->columnCount(); j++)
@@ -146,7 +146,7 @@ bool HPluginHelper::importExcel(QAbstractItemModel *model)
     auto fileName = QFileDialog::getOpenFileName(nullptr, "", ".", "Excel files (*.xlsx)");
     if (fileName.isEmpty())
         return false;
-    Document doc(fileName);
+    Document doc(fileName, model);
     if (!doc.isLoadPackage())
         return false;
     auto range = doc.dimension();

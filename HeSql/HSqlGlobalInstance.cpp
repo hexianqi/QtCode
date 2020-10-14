@@ -112,6 +112,9 @@ void HSqlGlobalInstance::initFieldCreateStyle()
 {
     hashFieldCreateStyle.clear();
     hashFieldCreateStyle.insert("ID",                   "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL");
+    hashFieldCreateStyle.insert("TableName",            "TableName nchar(50)");
+    hashFieldCreateStyle.insert("Version",              "Version integer");
+
     hashFieldCreateStyle.insert("Manufacturer",         "Manufacturer nchar(50)");
     hashFieldCreateStyle.insert("ProductName",          "ProductName nchar(50)");
     hashFieldCreateStyle.insert("ProductModel",         "ProductModel nchar(50)");

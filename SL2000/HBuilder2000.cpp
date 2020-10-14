@@ -41,7 +41,7 @@ HBuilder2000Private::HBuilder2000Private(IMainWindow *p) :
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "Rx" << "EnergyGraph";
+                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
@@ -160,8 +160,7 @@ void HBuilder2000::buildDatabase()
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
     auto print = d->sqlFactory->createPrint("HSpecSqlPrint");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    model->setField(d->sqlField);
-    model->setTable("Spec");
+    model->setTableField("Spec", d->sqlField);
     info->setRelationTableName("Spec");
     handle->setModel(model);
     handle->setProductInfo(info);
@@ -171,7 +170,7 @@ void HBuilder2000::buildDatabase()
     browser->setModel(model);
     browser->setRecordHandle(handle);
     browser->setRecordPrint(print);
-    db->insertTableModel("Spec", model);
+    db->insertTableModel(model);
     HAppContext::setContextPointer("ISqlHandle", handle);
     HAppContext::setContextPointer("ISqlPrint", print);
     HAppContext::setContextPointer("ISqlBrowser", browser);

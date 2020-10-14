@@ -36,7 +36,7 @@ protected:
 
 protected:
     void handleStateChanged(bool b);
-    void handleResultChanged();
+    void handleResultChanged(HActionType, bool);
     virtual void postProcess();
     virtual void refreshWidget(bool append);
     void resetGrade();

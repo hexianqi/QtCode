@@ -40,7 +40,7 @@ void HAdjustSetWidget2::handleAction(HActionType action)
         ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
         break;
     case ACT_GET_SPECTRUM:
-        emit resultChanged(action);
+        emit resultChanged(action, false);
         if (!d->testState)
             break;
         adjustIntegralTime();

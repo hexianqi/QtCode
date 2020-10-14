@@ -74,11 +74,11 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             d->model->addAction(ACT_SINGLE_TEST, 100);
         break;
     case ACT_SINGLE_TEST:
-        emit resultChanged(action);
-        if (!d->testState)
-            break;
         adjust = adjustIntegralTime();
         adjust = adjustLuminousGears() || adjust;
+        emit resultChanged(action, !adjust);
+        if (!d->testState)
+            break;
         if (adjust)
         {
             d->model->addAction(ACT_SINGLE_TEST);
@@ -90,7 +90,7 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             setTestState(false);
         break;
     case ACT_GET_SPECTRUM_ELEC:
-        emit resultChanged(action);
+        emit resultChanged(action, d->testMode == 3);
         if (!d->testState)
             break;
         adjustIntegralTime();

@@ -43,7 +43,7 @@ QString HIntegrateSqlPrint::textForExcel()
     out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << endl;
     out << toWhole("CC_xy")             << "\t" << toWhole("CC_uvp")            << "\t" << toWhole("Duv")                   << endl;
     out << toWhole("RedRatio")          << "\t" << toWhole("GreenRadio")        << "\t" << toWhole("BlueRatio")             << endl;
-    out << toWhole("Ra")                << "\t" << toWhole("Rx")                << endl;
+    out << toWhole("Ra")                << "\t" << toWhole("R9")                << "\t" << toWhole("Rx")                << endl;
     out << endl;
     out << tr("光谱数据")                           << endl;
     out << tr("波长(nm)\t能量百分比(%)")            << endl;

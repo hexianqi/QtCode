@@ -2,7 +2,7 @@
 #include "IDataFactory.h"
 #include "IAdjustItem.h"
 #include "HStreamHelper.h"
-#include "xlsxworksheet.h"
+#include "QXlsx/xlsxworksheet.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 

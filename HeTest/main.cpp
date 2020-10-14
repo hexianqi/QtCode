@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
+    qDebug() << QString("SELECT * FROM sqlite_master WHERE LOWER(name) = '%1' AND LOWER(sql) LIKE '%%2%'").arg("table").arg("column");
+
     auto w = HTestOpenGL::test1();
     w->show();
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");

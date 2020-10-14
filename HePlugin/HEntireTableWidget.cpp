@@ -28,20 +28,30 @@ void HEntireTableWidget::setVerticalHeaderLabels(const QStringList &value)
 
 void HEntireTableWidget::setRow(int row, const QStringList &value)
 {
-    if (row < 0 || row >= rowCount())
+    setRow(row, 0, value);
+}
+
+void HEntireTableWidget::setRow(int row, int column, const QStringList &value)
+{
+    if (row < 0 || row >= rowCount() || column < 0 || column >= colorCount())
         return;
 
     for (int i = 0; i < value.size(); i++)
-        item(row, i)->setText(value[i]);
+        item(row, column + i)->setText(value[i]);
 }
 
 void HEntireTableWidget::setColumn(int column, const QStringList &value)
 {
-    if (column < 0 || column >= columnCount())
+    setColumn(0, column, value);
+}
+
+void HEntireTableWidget::setColumn(int row, int column, const QStringList &value)
+{
+    if (row < 0 || row >= rowCount() || column < 0 || column >= columnCount())
         return;
 
     for (int i = 0; i < value.size(); i++)
-        item(i, column)->setText(value[i]);
+        item(row + i, column)->setText(value[i]);
 }
 
 void HEntireTableWidget::insertRow(int row, const QStringList &value)

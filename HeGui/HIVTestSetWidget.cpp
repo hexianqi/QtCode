@@ -43,7 +43,7 @@ void HIVTestSetWidget::handleAction(HActionType action)
     }
     if (action == ACT_GET_MEASURED_VOLTAGE)
     {
-        emit resultChanged(action);
+        emit resultChanged(action, true);
         d->current += d->interval;
         if (d->current <= d->to)
         {

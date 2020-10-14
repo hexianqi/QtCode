@@ -205,10 +205,8 @@ void HTestWidget2000::handleStateChanged(bool b)
     d->actionExportDatabase2->setEnabled(!b);
 }
 
-void HTestWidget2000::handleResultChanged()
+void HTestWidget2000::handleResultChanged(HActionType, bool append)
 {
-    Q_D(HTestWidget2000);
-    auto append = d->testSetWidget->testMode() == 0 || d->testSetWidget->testMode() >= 3;
     postProcess();
     refreshWidget(append);
     saveRecord(append);

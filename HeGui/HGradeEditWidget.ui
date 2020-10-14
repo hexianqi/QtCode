@@ -6,25 +6,74 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>239</height>
+    <width>435</width>
+    <height>283</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="9">
-    <widget class="HEntireTableWidget" name="tableWidget">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
+   <item row="1" column="6">
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="text">
+      <string>修 改</string>
      </property>
-     <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>100</number>
-     </attribute>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="2" column="3">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>删 除</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="8">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>配置</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="HEntireTableWidget" name="tableWidget_1">
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>100</number>
+         </attribute>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>预览</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="HEntireTableWidget" name="tableWidget_2">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>100</number>
+         </attribute>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="6">
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="text">
+      <string>保 存</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="2">
     <spacer name="horizontalSpacer_1">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -37,14 +86,7 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="label_001">
-     <property name="text">
-      <string>&lt;font color=#FF0000&gt;总分级数目： 0&lt;/font&gt;</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
+   <item row="1" column="2" rowspan="2">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -57,6 +99,13 @@
      </property>
     </spacer>
    </item>
+   <item row="1" column="1" rowspan="2">
+    <widget class="QLabel" name="label_001">
+     <property name="text">
+      <string>&lt;font color=#FF0000&gt;总分级数目： 0&lt;/font&gt;</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="3">
     <widget class="QPushButton" name="pushButton_1">
      <property name="text">
@@ -64,7 +113,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
+   <item row="1" column="4" rowspan="2">
     <spacer name="horizontalSpacer_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -77,34 +126,7 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="5">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="text">
-      <string>删 除</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="6">
-    <spacer name="horizontalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="7">
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="text">
-      <string>修 改</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="8">
+   <item row="1" column="7" rowspan="2">
     <spacer name="horizontalSpacer_9">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

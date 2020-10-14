@@ -1,5 +1,5 @@
 #include "HXlsxStream_p.h"
-#include "xlsxdocument.h"
+#include "QXlsx/xlsxdocument.h"
 
 HE_DATA_BEGIN_NAMESPACE
 

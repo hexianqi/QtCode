@@ -29,6 +29,7 @@
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlPrint.h"
 #include "HeSql/IProductInfo.h"
+#include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
@@ -50,12 +51,12 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "Rx" << "EnergyGraph";
+                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("QualityOptionals",            QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
 }
 
 HBuilder2000DC::HBuilder2000DC(IMainWindow *parent) :
@@ -97,11 +98,11 @@ void HBuilder2000DC::buildConfigManage()
         param[0].insert("itemClassName",    "HElecCalibrateItem");
         param[0].insert("itemTypeList",     QStringList() << "[输出电压]");
         param[1].insert("itemClassName",    "HElecCalibrateItem");
-        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]");
+        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]" << "[输出电流3]");
         param[2].insert("itemClassName",    "HElecCalibrateItem");
         param[2].insert("itemTypeList",     QStringList() << "[实测电压]");
         param[3].insert("itemClassName",    "HElecCalibrateItem");
-        param[3].insert("itemTypeList",     QStringList() << "[实测电流1]" << "[实测电流2]");
+        param[3].insert("itemTypeList",     QStringList() << "[实测电流1]" << "[实测电流2]" << "[实测电流3]");
         param[4].insert("itemClassName",    "HElecCalibrateItem");
         param[4].insert("itemTypeList",     QStringList() << "[反向电压]");
         param[5].insert("itemClassName",    "HElecCalibrateItem");
@@ -217,13 +218,20 @@ void HBuilder2000DC::buildDatabase()
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
+    if (db->contains("Spec"))
+    {
+        // 1.1.1.2 添加列R9
+        if (HSqlHelper::getVersion("Spec") < 0x01010102)
+            HSqlHelper::addColumn("Spec", "R9");
+    }
+    HSqlHelper::setVersion("Spec", 0x01010102);
+
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
     auto print = d->sqlFactory->createPrint("HIntegrateSqlPrint");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    model->setField(d->sqlField);
-    model->setTable("Spec");
+    model->setTableField("Spec", d->sqlField);
     info->setRelationTableName("Spec");
     handle->setModel(model);
     handle->setProductInfo(info);
@@ -233,7 +241,7 @@ void HBuilder2000DC::buildDatabase()
     browser->setModel(model);
     browser->setRecordHandle(handle);
     browser->setRecordPrint(print);
-    db->insertTableModel("Spec", model);
+    db->insertTableModel(model);
     HAppContext::setContextPointer("ISqlHandle", handle);
     HAppContext::setContextPointer("ISqlPrint", print);
     HAppContext::setContextPointer("ISqlBrowser", browser);
@@ -279,6 +287,6 @@ void HBuilder2000DC::buildTestWidget()
     HAppContext::setContextPointer("IMementoTest", memento);
 
     ITestWidget *widget = new HTestWidget2000DC;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

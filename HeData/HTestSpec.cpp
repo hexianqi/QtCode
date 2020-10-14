@@ -199,7 +199,7 @@ QString HTestSpecPrivate::energy()
 {
     QStringList list;
     for (auto p : specData->EnergyPercent)
-        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
+        list << HCore::toString("[光谱波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
     return list.join(",");
 }
 
