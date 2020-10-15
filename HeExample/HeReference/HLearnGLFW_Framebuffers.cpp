@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
@@ -75,8 +76,8 @@ int HLearnGLFW::testFramebuffers()
     glBindVertexArray(0);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/container.png");
-    auto texture2 = loadTexture(":/image/metal.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
 
     // shader configuration
     shader1->bind();
@@ -85,9 +86,9 @@ int HLearnGLFW::testFramebuffers()
     shader2->setUniformValue("texture1", 0);
 
     // framebuffer configuration
-    unsigned int fbo;
-    glGenFramebuffers(1, &fbo);
-    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    unsigned int FBO;
+    glGenFramebuffers(1, &FBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, FBO);
     // create a color attachment texture
     unsigned int texture3;
     glGenTextures(1, &texture3);
@@ -97,19 +98,19 @@ int HLearnGLFW::testFramebuffers()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture3, 0);
     // create a renderbuffer object for depth and stencil attachment (we won't be sampling these)
-    unsigned int rbo;
-    glGenRenderbuffers(1, &rbo);
-    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+    unsigned int RBO;
+    glGenRenderbuffers(1, &RBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, RBO);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, d_ptr->width, d_ptr->height); // use a single renderbuffer object for both a depth AND stencil buffer.
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); // now actually attach it
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO); // now actually attach it
     // now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << endl;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     // draw as wireframe
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+    if (d_ptr->lineMode)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
     {
@@ -120,14 +121,14 @@ int HLearnGLFW::testFramebuffers()
 
         // render
         // bind to framebuffer and draw scene as we normally would to color texture
-        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+        glBindFramebuffer(GL_FRAMEBUFFER, FBO);
         glEnable(GL_DEPTH_TEST); // enable depth testing (is disabled for rendering screen-space quad)
         // make sure we clear the framebuffer's content
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // set uniforms
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         shader1->bind();
         shader1->setUniformValue("projection", projection);

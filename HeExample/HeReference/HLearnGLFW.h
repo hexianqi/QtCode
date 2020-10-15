@@ -23,9 +23,11 @@ public:
     ~HLearnGLFW() override;
 
 public:
+    void setEnableCursor(bool);
     void setUseCamera(bool);
     void setLightPosLoop(bool);
     void setLightColorLoop(bool);
+    void setLineMode(bool);
 
 public:
     int testTriangle();
@@ -43,6 +45,7 @@ public:
     int testLightCasterPoint();
     int testLightCasterSpot();
     int testLightMult();
+    int testModel();
     int testStencil();
     int testBlending();
     int testBlending2();
@@ -51,6 +54,11 @@ public:
     int testCubemaps2();
     int testUbo();
     int testGeometry();
+    int testGeometryExplode();
+    int testGeometryNormals();
+    int testInstancing();
+    int testInstancing2();
+    int testAntiAliasing();
 
 protected:
     void initGlfw();
@@ -58,8 +66,6 @@ protected:
     bool createWindow();
     void perFrameTime();
     void processInput(GLFWwindow *window);
-    unsigned int loadTexture(char const * path);
-    unsigned int loadCubemap(QStringList paths);
     QVector3D lightPos();
     QVector3D lightColor();
 

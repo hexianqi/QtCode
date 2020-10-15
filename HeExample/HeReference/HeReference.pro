@@ -5,6 +5,8 @@
 #-------------------------------------------------
 QT          += core-private widgets
 
+CONFIG      += resources_big
+
 TEMPLATE    = lib
 
 DESTDIR     = "../../Dest"
@@ -31,7 +33,8 @@ HEADERS     += \
             HDPointer_p.h
 
 RESOURCES   += \
-            HeReference.qrc
+            HeReference.qrc \
+            OpenGL.qrc
 
 Debug {
     TARGET = HeReferenced

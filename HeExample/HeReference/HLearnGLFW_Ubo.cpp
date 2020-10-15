@@ -54,9 +54,11 @@ int HLearnGLFW::testUbo()
 
     // Now actually create the buffer
     QMatrix4x4 projection;
-    projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+    projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
     glGenBuffers(1, &UBO);
     glBindBuffer(GL_UNIFORM_BUFFER, UBO);
+    // glBufferData(GL_UNIFORM_BUFFER, sizeof(QMatrix4x4) * 2, nullptr, GL_STATIC_DRAW);
+    // QMatrix4x4 带flagBits无法转换成GLSL中的mat4
     glBufferData(GL_UNIFORM_BUFFER, sizeof(float) * 16 * 2, nullptr, GL_STATIC_DRAW);
     glBindBuffer(GL_UNIFORM_BUFFER, 0);
     // define the range of the buffer that links to a uniform binding point

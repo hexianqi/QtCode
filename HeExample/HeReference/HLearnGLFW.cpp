@@ -1,6 +1,5 @@
 #include "HLearnGLFW_p.h"
 #include <QtCore/QtMath>
-#include <QtGui/QImage>
 #include <QtCore/QDebug>
 #include <iostream>
 
@@ -346,7 +345,11 @@ HLearnGLFW::HLearnGLFW(QObject *parent) :
 
 HLearnGLFW::~HLearnGLFW()
 {
+}
 
+void HLearnGLFW::setEnableCursor(bool b)
+{
+    d_ptr->enableCursor = b;
 }
 
 void HLearnGLFW::setUseCamera(bool b)
@@ -371,6 +374,11 @@ void HLearnGLFW::setLightColorLoop(bool b)
     d_ptr->lightColorLoop = b;
 }
 
+void HLearnGLFW::setLineMode(bool b)
+{
+    d_ptr->lineMode = b;
+}
+
 // initialize and configure
 void HLearnGLFW::initGlfw()
 {
@@ -378,6 +386,7 @@ void HLearnGLFW::initGlfw()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
 }
 
 // load all OpenGL function pointers
@@ -388,6 +397,7 @@ bool HLearnGLFW::initFlad()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return false;
     }
+    glEnable(GL_MULTISAMPLE);
     return true;
 }
 
@@ -403,7 +413,7 @@ bool HLearnGLFW::createWindow()
     glfwSetFramebufferSizeCallback(d_ptr->window, framebuffer_size_callback);
     glfwSetCursorPosCallback(d_ptr->window, mouse_callback);
     glfwSetScrollCallback(d_ptr->window, scroll_callback);
-    glfwSetInputMode(d_ptr->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(d_ptr->window, GLFW_CURSOR, d_ptr->enableCursor ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
     return true;
 }
 
@@ -443,58 +453,6 @@ void HLearnGLFW::processInput(GLFWwindow *window)
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
             cameraPos += QVector3D::normal(cameraFront, cameraUp) * cameraSpeed;
     }
-}
-
-unsigned int HLearnGLFW::loadTexture(const char *path)
-{
-    unsigned int textureID;
-    glGenTextures(1, &textureID);
-
-    auto image = QImage(path);
-    image = image.convertToFormat(QImage::Format_RGBA8888);
-    image = image.mirrored();
-    auto data = image.constBits();
-    if (data)
-    {
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    return textureID;
-}
-// loads a cubemap texture from 6 individual texture faces
-// order: +X (right) -X (left) +Y (top) -Y (bottom) +Z (front) -Z (back)
-unsigned int HLearnGLFW::loadCubemap(QStringList paths)
-{
-    unsigned int textureID;
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-
-    for (int i = 0; i < paths.size(); i++)
-    {
-        auto image = QImage(paths.at(i));
-        image = image.convertToFormat(QImage::Format_RGBA8888);
-//        image = image.mirrored();
-        auto data = image.constBits();
-        if (data)
-            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-        else
-            std::cout << "Failed to load texture" << std::endl;
-    }
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-    return textureID;
 }
 
 QVector3D HLearnGLFW::lightPos()

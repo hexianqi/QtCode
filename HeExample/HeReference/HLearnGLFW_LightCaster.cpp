@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtCore/QtMath>
 #include <QtGui/QMatrix4x4>
@@ -42,8 +43,8 @@ int HLearnGLFW::testLightCasterDirectional()
     glEnableVertexAttribArray(2);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/container.png");
-    auto texture2 = loadTexture(":/image/container_specular.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/container_specular.png");
 
     // shader configuration
     shader->bind();
@@ -66,7 +67,7 @@ int HLearnGLFW::testLightCasterDirectional()
         auto ambientColor = lightColor * 0.8f;  // low influence
         // draw boxes
         QMatrix4x4 projection, view;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         // be sure to activate shader when setting uniforms/drawing objects
         shader->bind();
@@ -122,9 +123,9 @@ int HLearnGLFW::testLightCasterPoint()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_casters_point.vs");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_casters_point.fs");
+    auto materialShader = new HOpenGLShaderProgram(this);
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_casters_point.vs");
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_casters_point.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,   ":/glsl/light_source.vs");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment, ":/glsl/light_source.fs");
@@ -150,13 +151,13 @@ int HLearnGLFW::testLightCasterPoint()
     glEnableVertexAttribArray(0);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/container.png");
-    auto texture2 = loadTexture(":/image/container_specular.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/container_specular.png");
 
     // shader configuration
-    lightingShader->bind();
-    lightingShader->setUniformValue("material.diffuse", 0);
-    lightingShader->setUniformValue("material.specular", 1);
+    materialShader->bind();
+    materialShader->setUniformValue("material.diffuse", 0);
+    materialShader->setUniformValue("material.specular", 1);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -175,22 +176,22 @@ int HLearnGLFW::testLightCasterPoint()
         auto diffuseColor = lightColor * 0.5f;
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         // be sure to activate shader when setting uniforms/drawing objects
-        lightingShader->bind();
-        lightingShader->setUniformValue("light.position", lightPos);
-        lightingShader->setUniformValue("light.ambient", ambientColor);
-        lightingShader->setUniformValue("light.diffuse", diffuseColor);
-        lightingShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("light.constant", 1.0f);
-        lightingShader->setUniformValue("light.linear", 0.09f);
-        lightingShader->setUniformValue("light.quadratic", 0.032f);
-        lightingShader->setUniformValue("material.shininess", 32.0f);
-        lightingShader->setUniformValue("viewPos", camera->position());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
-        lightingShader->setUniformValue("model", model);
+        materialShader->bind();
+        materialShader->setUniformValue("light.position", lightPos);
+        materialShader->setUniformValue("light.ambient", ambientColor);
+        materialShader->setUniformValue("light.diffuse", diffuseColor);
+        materialShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("light.constant", 1.0f);
+        materialShader->setUniformValue("light.linear", 0.09f);
+        materialShader->setUniformValue("light.quadratic", 0.032f);
+        materialShader->setUniformValue("material.shininess", 32.0f);
+        materialShader->setUniformValue("viewPos", camera->position());
+        materialShader->setUniformValue("projection", projection);
+        materialShader->setUniformValue("view", view);
+        materialShader->setUniformValue("model", model);
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
@@ -204,7 +205,7 @@ int HLearnGLFW::testLightCasterPoint()
             model.rotate(glfwGetTime(), 1.0f, 0.0f);
             model.translate(d_ptr->cubeWorldPosition.at(i));
             model.rotate(20.0f * i, 1.0f, 0.3f, 0.5f);
-            lightingShader->setUniformValue("model", model);
+            materialShader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
@@ -269,8 +270,8 @@ int HLearnGLFW::testLightCasterSpot()
     glEnableVertexAttribArray(2);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/container.png");
-    auto texture2 = loadTexture(":/image/container_specular.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/container_specular.png");
 
     // shader configuration
     shader->bind();
@@ -293,7 +294,7 @@ int HLearnGLFW::testLightCasterSpot()
         auto ambientColor = lightColor * 0.1f;
         // draw boxes
         QMatrix4x4 projection, view;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         // be sure to activate shader when setting uniforms/drawing objects
         shader->bind();

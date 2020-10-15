@@ -1,5 +1,4 @@
 #include "HOpenGLShaderProgram_p.h"
-#include "GLFW/glfw3.h"
 #include <QtCore/QFile>
 #include <QtGui/QColor>
 #include <QtGui/QMatrix4x4>

@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
@@ -53,8 +54,8 @@ int HLearnGLFW::testStencil()
     glEnableVertexAttribArray(1);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/marble.jpg");
-    auto texture2 = loadTexture(":/image/metal.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/marble.jpg");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
 
     // shader configuration
     shader1->bind();
@@ -72,7 +73,7 @@ int HLearnGLFW::testStencil()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         // set uniforms
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         model.setToIdentity();
         shader2->bind();

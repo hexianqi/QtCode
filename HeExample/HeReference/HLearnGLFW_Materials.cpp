@@ -20,9 +20,9 @@ int HLearnGLFW::testMaterials()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/materials.vs");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/materials.fs");
+    auto materialShader = new HOpenGLShaderProgram(this);
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/materials.vs");
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/materials.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
@@ -61,21 +61,21 @@ int HLearnGLFW::testMaterials()
         auto ambientColor = diffuseColor * 0.2f;    // low influence
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
-        lightingShader->bind();
-        lightingShader->setUniformValue("light.position", lightPos);
-        lightingShader->setUniformValue("light.ambient", ambientColor);
-        lightingShader->setUniformValue("light.diffuse", diffuseColor);
-        lightingShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
-        lightingShader->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
-        lightingShader->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
-        lightingShader->setUniformValue("material.shininess", 32.0f);
-        lightingShader->setUniformValue("viewPos", camera->position());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
-        lightingShader->setUniformValue("model", model);
+        materialShader->bind();
+        materialShader->setUniformValue("light.position", lightPos);
+        materialShader->setUniformValue("light.ambient", ambientColor);
+        materialShader->setUniformValue("light.diffuse", diffuseColor);
+        materialShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
+        materialShader->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
+        materialShader->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
+        materialShader->setUniformValue("material.shininess", 32.0f);
+        materialShader->setUniformValue("viewPos", camera->position());
+        materialShader->setUniformValue("projection", projection);
+        materialShader->setUniformValue("view", view);
+        materialShader->setUniformValue("model", model);
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 

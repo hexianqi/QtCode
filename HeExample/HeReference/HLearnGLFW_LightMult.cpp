@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtCore/QtMath>
 #include <QtGui/QMatrix4x4>
@@ -21,9 +22,9 @@ int HLearnGLFW::testLightMult()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_multiple.vs");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_multiple.fs");
+    auto materialShader = new HOpenGLShaderProgram(this);
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_multiple.vs");
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_multiple.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,   ":/glsl/light_source.vs");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment, ":/glsl/light_source.fs");
@@ -54,13 +55,13 @@ int HLearnGLFW::testLightMult()
     glEnableVertexAttribArray(0);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/container.png");
-    auto texture2 = loadTexture(":/image/container_specular.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/container_specular.png");
 
     // shader configuration
-    lightingShader->bind();
-    lightingShader->setUniformValue("material.diffuse", 0);
-    lightingShader->setUniformValue("material.specular", 1);
+    materialShader->bind();
+    materialShader->setUniformValue("material.diffuse", 0);
+    materialShader->setUniformValue("material.specular", 1);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -74,57 +75,57 @@ int HLearnGLFW::testLightMult()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         auto lightColor = this->lightColor();
-        lightingShader->bind();
-        lightingShader->setUniformValue("dirLight.direction", -0.2f, -1.0f, -0.3f);
-        lightingShader->setUniformValue("dirLight.ambient", lightColor * 0.05f);
-        lightingShader->setUniformValue("dirLight.diffuse", lightColor * 0.4f);
-        lightingShader->setUniformValue("dirLight.specular", 0.5f, 0.5f, 0.5f);
-        lightingShader->setUniformValue("pointLights[0].position", lightPositions[0]);
-        lightingShader->setUniformValue("pointLights[0].ambient", lightColor * 0.05f);
-        lightingShader->setUniformValue("pointLights[0].diffuse", lightColor * 0.8f);
-        lightingShader->setUniformValue("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("pointLights[0].constant", 1.0f);
-        lightingShader->setUniformValue("pointLights[0].linear", 0.09f);
-        lightingShader->setUniformValue("pointLights[0].quadratic", 0.032f);
-        lightingShader->setUniformValue("pointLights[1].position", lightPositions[1]);
-        lightingShader->setUniformValue("pointLights[1].ambient", lightColor * 0.05f);
-        lightingShader->setUniformValue("pointLights[1].diffuse", lightColor * 0.8f);
-        lightingShader->setUniformValue("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("pointLights[1].constant", 1.0f);
-        lightingShader->setUniformValue("pointLights[1].linear", 0.09f);
-        lightingShader->setUniformValue("pointLights[1].quadratic", 0.032f);
-        lightingShader->setUniformValue("pointLights[2].position", lightPositions[2]);
-        lightingShader->setUniformValue("pointLights[2].ambient", lightColor * 0.05f);
-        lightingShader->setUniformValue("pointLights[2].diffuse", lightColor * 0.8f);
-        lightingShader->setUniformValue("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("pointLights[2].constant", 1.0f);
-        lightingShader->setUniformValue("pointLights[2].linear", 0.09f);
-        lightingShader->setUniformValue("pointLights[2].quadratic", 0.032f);
-        lightingShader->setUniformValue("pointLights[3].position", lightPositions[3]);
-        lightingShader->setUniformValue("pointLights[3].ambient", lightColor * 0.05f);
-        lightingShader->setUniformValue("pointLights[3].diffuse", lightColor * 0.8f);
-        lightingShader->setUniformValue("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("pointLights[3].constant", 1.0f);
-        lightingShader->setUniformValue("pointLights[3].linear", 0.09f);
-        lightingShader->setUniformValue("pointLights[3].quadratic", 0.032f);
-        lightingShader->setUniformValue("spotLight.position", camera->position());
-        lightingShader->setUniformValue("spotLight.direction", camera->front());
-        lightingShader->setUniformValue("spotLight.ambient", 0.0f, 0.0f, 0.0f);
-        lightingShader->setUniformValue("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("spotLight.specular", 1.0f, 1.0f, 1.0f);
-        lightingShader->setUniformValue("spotLight.constant", 1.0f);
-        lightingShader->setUniformValue("spotLight.linear", 0.09f);
-        lightingShader->setUniformValue("spotLight.quadratic", 0.032f);
-        lightingShader->setUniformValue("spotLight.cutOff", (GLfloat)cos(qDegreesToRadians(12.5)));
-        lightingShader->setUniformValue("spotLight.outerCutOff", (GLfloat)cos(qDegreesToRadians(15.0)));
-        lightingShader->setUniformValue("material.shininess", 32.0f);
-        lightingShader->setUniformValue("viewPos", camera->position());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
-        lightingShader->setUniformValue("model", model);
+        materialShader->bind();
+        materialShader->setUniformValue("dirLight.direction", -0.2f, -1.0f, -0.3f);
+        materialShader->setUniformValue("dirLight.ambient", lightColor * 0.05f);
+        materialShader->setUniformValue("dirLight.diffuse", lightColor * 0.4f);
+        materialShader->setUniformValue("dirLight.specular", 0.5f, 0.5f, 0.5f);
+        materialShader->setUniformValue("pointLights[0].position", lightPositions[0]);
+        materialShader->setUniformValue("pointLights[0].ambient", lightColor * 0.05f);
+        materialShader->setUniformValue("pointLights[0].diffuse", lightColor * 0.8f);
+        materialShader->setUniformValue("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("pointLights[0].constant", 1.0f);
+        materialShader->setUniformValue("pointLights[0].linear", 0.09f);
+        materialShader->setUniformValue("pointLights[0].quadratic", 0.032f);
+        materialShader->setUniformValue("pointLights[1].position", lightPositions[1]);
+        materialShader->setUniformValue("pointLights[1].ambient", lightColor * 0.05f);
+        materialShader->setUniformValue("pointLights[1].diffuse", lightColor * 0.8f);
+        materialShader->setUniformValue("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("pointLights[1].constant", 1.0f);
+        materialShader->setUniformValue("pointLights[1].linear", 0.09f);
+        materialShader->setUniformValue("pointLights[1].quadratic", 0.032f);
+        materialShader->setUniformValue("pointLights[2].position", lightPositions[2]);
+        materialShader->setUniformValue("pointLights[2].ambient", lightColor * 0.05f);
+        materialShader->setUniformValue("pointLights[2].diffuse", lightColor * 0.8f);
+        materialShader->setUniformValue("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("pointLights[2].constant", 1.0f);
+        materialShader->setUniformValue("pointLights[2].linear", 0.09f);
+        materialShader->setUniformValue("pointLights[2].quadratic", 0.032f);
+        materialShader->setUniformValue("pointLights[3].position", lightPositions[3]);
+        materialShader->setUniformValue("pointLights[3].ambient", lightColor * 0.05f);
+        materialShader->setUniformValue("pointLights[3].diffuse", lightColor * 0.8f);
+        materialShader->setUniformValue("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("pointLights[3].constant", 1.0f);
+        materialShader->setUniformValue("pointLights[3].linear", 0.09f);
+        materialShader->setUniformValue("pointLights[3].quadratic", 0.032f);
+        materialShader->setUniformValue("spotLight.position", camera->position());
+        materialShader->setUniformValue("spotLight.direction", camera->front());
+        materialShader->setUniformValue("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+        materialShader->setUniformValue("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("spotLight.specular", 1.0f, 1.0f, 1.0f);
+        materialShader->setUniformValue("spotLight.constant", 1.0f);
+        materialShader->setUniformValue("spotLight.linear", 0.09f);
+        materialShader->setUniformValue("spotLight.quadratic", 0.032f);
+        materialShader->setUniformValue("spotLight.cutOff", (GLfloat)cos(qDegreesToRadians(12.5)));
+        materialShader->setUniformValue("spotLight.outerCutOff", (GLfloat)cos(qDegreesToRadians(15.0)));
+        materialShader->setUniformValue("material.shininess", 32.0f);
+        materialShader->setUniformValue("viewPos", camera->position());
+        materialShader->setUniformValue("projection", projection);
+        materialShader->setUniformValue("view", view);
+        materialShader->setUniformValue("model", model);
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
@@ -138,7 +139,7 @@ int HLearnGLFW::testLightMult()
             model.rotate(glfwGetTime(), 1.0f, 0.0f);
             model.translate(d_ptr->cubeWorldPosition.at(i));
             model.rotate(20.0f * i, 1.0f, 0.3f, 0.5f);
-            lightingShader->setUniformValue("model", model);
+            materialShader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 

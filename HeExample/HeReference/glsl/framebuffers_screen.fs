@@ -7,18 +7,18 @@ uniform sampler2D texture1;
 
 void main()
 {
-     FragColor = texture2D(texture1, TexCoords);
+     FragColor = texture(texture1, TexCoords);
 
 //    // Inversion
-//    FragColor = vec4(vec3(1.0 - texture2D(texture1, TexCoords)), 1.0);
+//    FragColor = vec4(vec3(1.0 - texture(texture1, TexCoords)), 1.0);
 
 //    // Grayscale
-//    FragColor = texture2D(texture1, TexCoords);
+//    FragColor = texture(texture1, TexCoords);
 //    float average = (FragColor.r + FragColor.g + FragColor.b) / 3.0;
 //    FragColor = vec4(average, average, average, 1.0);
 
 //    // Weighted
-//    FragColor = texture2D(texture1, TexCoords);
+//    FragColor = texture(texture1, TexCoords);
 //    float average = 0.2126 * FragColor.r + 0.7152 * FragColor.g + 0.0722 * FragColor.b;
 //    FragColor = vec4(average, average, average, 1.0);
 
@@ -52,7 +52,7 @@ void main()
 //            1, 1, 1);
 //    vec3 col = vec3(0.0);
 //    for(int i = 0; i < 9; i++)
-//        col += vec3(texture2D(texture1, TexCoords.st + offsets[i])) * kernel[i];
+//        col += vec3(texture(texture1, TexCoords.st + offsets[i])) * kernel[i];
 //    FragColor = vec4(col, 1.0);
 }
 

@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
@@ -64,9 +65,9 @@ int HLearnGLFW::testBlending()
                                          << QVector3D( 0.5f, 0.0f, -0.6f);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/marble.jpg");
-    auto texture2 = loadTexture(":/image/metal.png");
-    auto texture3 = loadTexture(":/image/grass.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/marble.jpg");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
+    auto texture3 = HOpenGLHelper::loadTexture(":/image/grass.png");
 
     // shader configuration
     shader->bind();
@@ -84,7 +85,7 @@ int HLearnGLFW::testBlending()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // set uniforms
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         shader->bind();
         shader->setUniformValue("projection", projection);
@@ -194,9 +195,9 @@ int HLearnGLFW::testBlending2()
                                       << QVector3D( 0.5f, 0.0f, -0.6f);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/marble.jpg");
-    auto texture2 = loadTexture(":/image/metal.png");
-    auto texture3 = loadTexture(":/image/window.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/marble.jpg");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
+    auto texture3 = HOpenGLHelper::loadTexture(":/image/window.png");
 
     // shader configuration
     shader->bind();
@@ -221,7 +222,7 @@ int HLearnGLFW::testBlending2()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // set uniforms
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         shader->bind();
         shader->setUniformValue("projection", projection);

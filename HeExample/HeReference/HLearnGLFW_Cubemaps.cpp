@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
@@ -50,13 +51,13 @@ int HLearnGLFW::testCubemaps()
     glBindVertexArray(0);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/container.png");
-    auto texture2 = loadCubemap(QStringList() << ":/image/skybox/right.jpg"
-                                              << ":/image/skybox/left.jpg"
-                                              << ":/image/skybox/top.jpg"
-                                              << ":/image/skybox/bottom.jpg"
-                                              << ":/image/skybox/front.jpg"
-                                              << ":/image/skybox/back.jpg");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture2 = HOpenGLHelper::loadCubemap(QStringList() << ":/textures/skybox/right.jpg"
+                                                             << ":/textures/skybox/left.jpg"
+                                                             << ":/textures/skybox/top.jpg"
+                                                             << ":/textures/skybox/bottom.jpg"
+                                                             << ":/textures/skybox/front.jpg"
+                                                             << ":/textures/skybox/back.jpg");
     // shader configuration
     shader1->bind();
     shader1->setUniformValue("texture1", 0);
@@ -75,7 +76,7 @@ int HLearnGLFW::testCubemaps()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // set uniforms
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         shader1->bind();
         shader1->setUniformValue("projection", projection);
@@ -155,12 +156,12 @@ int HLearnGLFW::testCubemaps2()
     glBindVertexArray(0);
 
     // load and create a texture
-    auto texture = loadCubemap(QStringList() << ":/image/skybox/right.jpg"
-                                             << ":/image/skybox/left.jpg"
-                                             << ":/image/skybox/top.jpg"
-                                             << ":/image/skybox/bottom.jpg"
-                                             << ":/image/skybox/front.jpg"
-                                             << ":/image/skybox/back.jpg");
+    auto texture = HOpenGLHelper::loadCubemap(QStringList() << ":/textures/skybox/right.jpg"
+                                                            << ":/textures/skybox/left.jpg"
+                                                            << ":/textures/skybox/top.jpg"
+                                                            << ":/textures/skybox/bottom.jpg"
+                                                            << ":/textures/skybox/front.jpg"
+                                                            << ":/textures/skybox/back.jpg");
     // shader configuration
     shader1->bind();
     shader1->setUniformValue("texture1", 0);
@@ -179,7 +180,7 @@ int HLearnGLFW::testCubemaps2()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // set uniforms
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         shader1->bind();
         shader1->setUniformValue("projection", projection);

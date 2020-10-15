@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtCore/QDebug>
 
@@ -17,7 +18,7 @@ int HLearnGLFW::testTexture()
 
     // build and compile our shader program
     auto program = new HOpenGLShaderProgram(this);
-    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture1.vs");
+    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture.vs");
     program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture1.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -50,7 +51,7 @@ int HLearnGLFW::testTexture()
     glEnableVertexAttribArray(2);
 
     // load and create a texture
-    auto texture = loadTexture(":/image/awesomeface.png");
+    auto texture = HOpenGLHelper::loadTexture(":/image/awesomeface.png");
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -93,7 +94,7 @@ int HLearnGLFW::testTexture2()
 
     // build and compile our shader program
     auto program = new HOpenGLShaderProgram(this);
-    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture2.vs");
+    program->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/texture.vs");
     program->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/texture2.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -126,8 +127,8 @@ int HLearnGLFW::testTexture2()
     glEnableVertexAttribArray(2);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/huesatradialpicker.png");
-    auto texture2 = loadTexture(":/image/awesomeface.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/huesatradialpicker.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/awesomeface.png");
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
     program->bind(); // don't forget to activate/use the shader before setting uniforms!
     program->setUniformValue("texture1", 0);

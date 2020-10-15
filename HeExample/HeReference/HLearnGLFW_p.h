@@ -16,12 +16,18 @@ public:
     HLearnGLFWPrivate();
 
 public:
+    bool lightPosLoop = false;
+    bool lightColorLoop = false;
+    bool enableCursor = true;
+    bool lineMode = false;
+
+public:
     GLFWwindow *window = nullptr;
     int width = 800;
     int height = 600;
     QMap<int, QVector3D> attenuations;
-    bool lightPosLoop = false;
-    bool lightColorLoop = false;
+
+public:
     QVector3D lightPos = QVector3D(1.2f, 1.0f, 2.0f);
     QVector3D lightColor = QVector3D(1.0f, 1.0f, 1.0f);
     QVector<float> cubePosition;                // cube positions

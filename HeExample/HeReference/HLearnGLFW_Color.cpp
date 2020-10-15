@@ -20,9 +20,9 @@ int HLearnGLFW::testColor()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/colors.vs");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/colors.fs");
+    auto materialShader = new HOpenGLShaderProgram(this);
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/colors.vs");
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/colors.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
@@ -53,14 +53,14 @@ int HLearnGLFW::testColor()
 
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
-        lightingShader->bind();
-        lightingShader->setUniformValue("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader->setUniformValue("lightColor", lightColor());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
-        lightingShader->setUniformValue("model", model);
+        materialShader->bind();
+        materialShader->setUniformValue("objectColor", 1.0f, 0.5f, 0.31f);
+        materialShader->setUniformValue("lightColor", lightColor());
+        materialShader->setUniformValue("projection", projection);
+        materialShader->setUniformValue("view", view);
+        materialShader->setUniformValue("model", model);
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 

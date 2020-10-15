@@ -14,5 +14,6 @@ int HTestOpenGL::testGlfw()
     HLearnGLFW g;
     g.setLightColorLoop(true);
     g.setLightPosLoop(true);
-    return g.testGeometry();
+//    g.setLineMode(true);
+    return g.testAntiAliasing();
 }

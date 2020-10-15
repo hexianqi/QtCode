@@ -20,9 +20,9 @@ int HLearnGLFW::testLight()
     glEnable(GL_DEPTH_TEST);
 
     // build and compile our shader program
-    auto lightingShader = new HOpenGLShaderProgram(this);
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_basic.vs");
-    lightingShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_basic.fs");
+    auto materialShader = new HOpenGLShaderProgram(this);
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_basic.vs");
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_basic.fs");
     auto lightSourceShader = new HOpenGLShaderProgram(this);
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
     lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
@@ -56,18 +56,18 @@ int HLearnGLFW::testLight()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // draw boxes
         QMatrix4x4 projection, view, model;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
         auto lightPos = this->lightPos();
         auto lightColor = this->lightColor();
-        lightingShader->bind();
-        lightingShader->setUniformValue("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader->setUniformValue("lightColor", lightColor);
-        lightingShader->setUniformValue("lightPos", lightPos);
-        lightingShader->setUniformValue("viewPos", camera->position());
-        lightingShader->setUniformValue("projection", projection);
-        lightingShader->setUniformValue("view", view);
-        lightingShader->setUniformValue("model", model);
+        materialShader->bind();
+        materialShader->setUniformValue("objectColor", 1.0f, 0.5f, 0.31f);
+        materialShader->setUniformValue("lightColor", lightColor);
+        materialShader->setUniformValue("lightPos", lightPos);
+        materialShader->setUniformValue("viewPos", camera->position());
+        materialShader->setUniformValue("projection", projection);
+        materialShader->setUniformValue("view", view);
+        materialShader->setUniformValue("model", model);
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 

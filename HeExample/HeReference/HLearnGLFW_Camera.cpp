@@ -1,4 +1,5 @@
 #include "HLearnGLFW_p.h"
+#include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
@@ -38,8 +39,8 @@ int HLearnGLFW::testCamera()
     glEnableVertexAttribArray(1);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/huesatradialpicker.png");
-    auto texture2 = loadTexture(":/image/awesomeface.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/huesatradialpicker.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/awesomeface.png");
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
     shader->bind();
     shader->setUniformValue("texture1", 0);
@@ -63,7 +64,7 @@ int HLearnGLFW::testCamera()
         // render boxes
         glBindVertexArray(VAO);
         QMatrix4x4 projection, view;
-        projection.perspective(fov, d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(fov, 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view.lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
         shader->bind();
         shader->setUniformValue("projection", projection);
@@ -123,8 +124,8 @@ int HLearnGLFW::testCamera2()
     glEnableVertexAttribArray(1);
 
     // load and create a texture
-    auto texture1 = loadTexture(":/image/huesatradialpicker.png");
-    auto texture2 = loadTexture(":/image/awesomeface.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/image/huesatradialpicker.png");
+    auto texture2 = HOpenGLHelper::loadTexture(":/image/awesomeface.png");
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
     shader->bind();
     shader->setUniformValue("texture1", 0);
@@ -148,7 +149,7 @@ int HLearnGLFW::testCamera2()
         // render boxes
         glBindVertexArray(VAO);
         QMatrix4x4 projection;
-        projection.perspective(camera->zoom(), d_ptr->width / d_ptr->height, 0.1f, 100.0f);
+        projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         shader->bind();
         shader->setUniformValue("projection", projection);
         shader->setUniformValue("view", camera->viewMatrix());
