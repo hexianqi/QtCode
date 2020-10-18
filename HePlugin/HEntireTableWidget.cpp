@@ -33,7 +33,7 @@ void HEntireTableWidget::setRow(int row, const QStringList &value)
 
 void HEntireTableWidget::setRow(int row, int column, const QStringList &value)
 {
-    if (row < 0 || row >= rowCount() || column < 0 || column >= colorCount())
+    if (row < 0 || row >= rowCount() || column < 0 || column >= columnCount())
         return;
 
     for (int i = 0; i < value.size(); i++)

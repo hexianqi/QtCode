@@ -10,6 +10,7 @@ HTestElecPrivate::HTestElecPrivate()
 {
     addData("[电模块]", 0);
     addData("[电源模式]", 0);
+    addData("[输出电流_档位数]", 0);
     addData("[输出电压_档位]", 0);
     addData("[输出电流_档位]", 0);
     addData("[实测电压_档位]", 0);
@@ -94,6 +95,7 @@ void HTestElec::setModule(int value)
     value = qBound(0, value, d->collection->size() - 1);
     d->calibrate = d->collection->itemAt(value);
     d->setData("[电模块]", value);
+    d->setData("[输出电流_档位数]", d->calibrate->itemCollection(OutputCurrent)->size());
 }
 
 void HTestElec::setGears(HElecType type, int value)

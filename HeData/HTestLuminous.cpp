@@ -7,6 +7,7 @@ HE_DATA_BEGIN_NAMESPACE
 HTestLuminousPrivate::HTestLuminousPrivate()
 {
     addData("[光模块]", 0);
+    addData("[光档位数]", 0);
     addData("[光测试类型]", "[光通量]");
     addData("[光通道]", 2);
     addData("[光档位]", 0);
@@ -65,6 +66,7 @@ void HTestLuminous::setModule(int value)
     value = qBound(0, value, d->collection->size() - 1);
     d->calibrate = d->collection->itemAt(value);
     d->setData("[光模块]", value);
+    d->setData("[光档位数]", d->calibrate->totalGears());
     for (auto k : d->calibrate->keys())
         d->addData(k, 0);
 }
