@@ -244,25 +244,36 @@ HLearnGLFWPrivate::HLearnGLFWPrivate()
                        << QVector3D(-1.3f,  1.0f, -1.5f);
 
     planePosition = {
-         5.0f, -0.5f,  5.0f,
-        -5.0f, -0.5f,  5.0f,
-        -5.0f, -0.5f, -5.0f,
+         25.0f, -0.5f,  25.0f,
+        -25.0f, -0.5f,  25.0f,
+        -25.0f, -0.5f, -25.0f,
 
-         5.0f, -0.5f,  5.0f,
-        -5.0f, -0.5f, -5.0f,
-         5.0f, -0.5f, -5.0f
+         25.0f, -0.5f,  25.0f,
+        -25.0f, -0.5f, -25.0f,
+         25.0f, -0.5f, -25.0f
     };
     planePositionSize = sizeof(float) * planePosition.size();
 
+    planeNormal = {
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f
+    };
+    planeNormalSize = sizeof(float) * planeNormal.size();
+
     // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
     planeTexture = {
-        2.0f, 0.0f,
-        0.0f, 0.0f,
-        0.0f, 2.0f,
+       25.0f,  0.0f,
+        0.0f,  0.0f,
+        0.0f, 25.0f,
 
-        2.0f, 0.0f,
-        0.0f, 2.0f,
-        2.0f, 2.0f
+       25.0f,  0.0f,
+        0.0f, 25.0f,
+       25.0f, 25.0f
     };
     planeTextureSize = sizeof(float) * planeTexture.size();
 
@@ -333,6 +344,24 @@ HLearnGLFWPrivate::HLearnGLFWPrivate()
          1.0f, -1.0f,  1.0f
     };
     skyboxPositionSize = sizeof(float) * skyboxPosition.size();
+
+
+    quadPosition = {
+        -1.0f,  1.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,
+         1.0f,  1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f
+    };
+    quadPositionSize = sizeof(float) * quadPosition.size();
+
+    // texture Coords (swapped y coordinates because texture is flipped upside down)
+    quadTexture = {
+        0.0f,  1.0f,
+        0.0f,  0.0f,
+        1.0f,  1.0f,
+        1.0f,  0.0f
+    };
+    quadTextureSize = sizeof(float) * quadTexture.size();
 
 }
 
@@ -409,6 +438,7 @@ bool HLearnGLFW::createWindow()
         std::cout << "Failed to create GLFW window" << std::endl;
         return false;
     }
+    glfwSetWindowPos(d_ptr->window, 50, 300);
     glfwMakeContextCurrent(d_ptr->window);
     glfwSetFramebufferSizeCallback(d_ptr->window, framebuffer_size_callback);
     glfwSetCursorPosCallback(d_ptr->window, mouse_callback);
@@ -429,6 +459,74 @@ void HLearnGLFW::processInput(GLFWwindow *window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS && !d_ptr->blinnKeyPressed)
+    {
+        d_ptr->blinn = !d_ptr->blinn;
+        d_ptr->blinnKeyPressed = true;
+        qDebug() << "blinn:" << d_ptr->blinn;
+    }
+    if (glfwGetKey(window, GLFW_KEY_B) == GLFW_RELEASE)
+    {
+        d_ptr->blinnKeyPressed = false;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && !d_ptr->gammaKeyPressed)
+    {
+        d_ptr->gamma = !d_ptr->gamma;
+        d_ptr->gammaKeyPressed = true;
+        qDebug() << "gamma:" << d_ptr->gamma;
+    }
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_RELEASE)
+    {
+        d_ptr->gammaKeyPressed = false;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS && !d_ptr->shadowsKeyPressed)
+    {
+        d_ptr->shadows = !d_ptr->shadows;
+        d_ptr->shadowsKeyPressed = true;
+        qDebug() << "shadows:" << d_ptr->shadows;
+    }
+    if (glfwGetKey(window, GLFW_KEY_O) == GLFW_RELEASE)
+    {
+        d_ptr->shadowsKeyPressed = false;
+    }
+    if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS && !d_ptr->hdrKeyPressed)
+    {
+        d_ptr->hdr = !d_ptr->hdr;
+        d_ptr->hdrKeyPressed = true;
+        qDebug() << "hdr:" << d_ptr->hdr;
+    }
+    if (glfwGetKey(window, GLFW_KEY_H) == GLFW_RELEASE)
+    {
+        d_ptr->hdrKeyPressed = false;
+    }
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+    {
+        d_ptr->heightScale = qMax(0.0f, d_ptr->heightScale - 0.0005f);
+        d_ptr->exposure = qMax(0.0f, d_ptr->exposure - 0.001f);
+        qDebug() << "heightScale:" << d_ptr->heightScale;
+        qDebug() << "exposure:" << d_ptr->exposure;
+    }
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+    {
+        d_ptr->heightScale = qMin(1.0f, d_ptr->heightScale + 0.0005f);
+        d_ptr->exposure = qMin(100.0f, d_ptr->exposure + 0.001f);
+        qDebug() << "heightScale:" << d_ptr->heightScale;
+        qDebug() << "exposure:" << d_ptr->exposure;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS && !d_ptr->bloomKeyPressed)
+    {
+        d_ptr->bloom = !d_ptr->bloom;
+        d_ptr->bloomKeyPressed = true;
+        qDebug() << "bloom:" << d_ptr->bloom;
+    }
+    if (glfwGetKey(window, GLFW_KEY_L) == GLFW_RELEASE)
+    {
+        d_ptr->bloomKeyPressed = false;
+    }
 
     if (useCamera && camera)
     {

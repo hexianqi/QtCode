@@ -17,19 +17,24 @@ SOURCES += \
     $$PWD/HLearnGLFW.cpp \
     $$PWD/HLearnGLFW_AntiAliasing.cpp \
     $$PWD/HLearnGLFW_Blending.cpp \
+    $$PWD/HLearnGLFW_Bloom.cpp \
     $$PWD/HLearnGLFW_Camera.cpp \
     $$PWD/HLearnGLFW_Color.cpp \
     $$PWD/HLearnGLFW_Coordinate.cpp \
     $$PWD/HLearnGLFW_Cubemaps.cpp \
+    $$PWD/HLearnGLFW_DeferredShading.cpp \
     $$PWD/HLearnGLFW_Framebuffers.cpp \
     $$PWD/HLearnGLFW_Geometry.cpp \
+    $$PWD/HLearnGLFW_HDR.cpp \
     $$PWD/HLearnGLFW_Instancing.cpp \
     $$PWD/HLearnGLFW_Light.cpp \
-    $$PWD/HLearnGLFW_LightCaster.cpp \
-    $$PWD/HLearnGLFW_LightMaps.cpp \
-    $$PWD/HLearnGLFW_LightMult.cpp \
+    $$PWD/HLearnGLFW_LightAdvanced.cpp \
     $$PWD/HLearnGLFW_Materials.cpp \
     $$PWD/HLearnGLFW_Model.cpp \
+    $$PWD/HLearnGLFW_Normal.cpp \
+    $$PWD/HLearnGLFW_Parallax.cpp \
+    $$PWD/HLearnGLFW_SSAO.cpp \
+    $$PWD/HLearnGLFW_Shadow.cpp \
     $$PWD/HLearnGLFW_Stencil.cpp \
     $$PWD/HLearnGLFW_Texture.cpp \
     $$PWD/HLearnGLFW_Triangle.cpp \

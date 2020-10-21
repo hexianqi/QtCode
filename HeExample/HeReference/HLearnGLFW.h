@@ -12,6 +12,7 @@ class GLFWwindow;
 
 HE_REFERENCE_BEGIN_NAMESPACE
 
+class HOpenGLShaderProgram;
 class HLearnGLFWPrivate;
 
 class HE_REFERENCE_EXPORT HLearnGLFW : public QObject
@@ -45,6 +46,8 @@ public:
     int testLightCasterPoint();
     int testLightCasterSpot();
     int testLightMult();
+    int testLightBlinn();
+    int testLightGamma();
     int testModel();
     int testStencil();
     int testBlending();
@@ -59,6 +62,16 @@ public:
     int testInstancing();
     int testInstancing2();
     int testAntiAliasing();
+    int testShadowMappingDepth();
+    int testShadowMappingBase();
+    int testShadowMapping();
+    int testShadowPoint();
+    int testNormalMapping();
+    int testParallaxMapping();
+    int testHDR();
+    int testBloom();
+    int testDeferredShading();
+    int testSSAO();
 
 protected:
     void initGlfw();
@@ -68,6 +81,13 @@ protected:
     void processInput(GLFWwindow *window);
     QVector3D lightPos();
     QVector3D lightColor();
+
+protected:
+    void renderScene(HOpenGLShaderProgram *shader, int type = 0);
+    void renderCube();
+    void renderQuad();
+    void renderQuad2();
+
 
 protected:
     QScopedPointer<HLearnGLFWPrivate> d_ptr;

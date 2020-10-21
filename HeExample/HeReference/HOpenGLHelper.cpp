@@ -5,7 +5,7 @@
 
 HE_REFERENCE_BEGIN_NAMESPACE
 
-unsigned int HOpenGLHelper::loadTexture(const QString &fileName)
+unsigned int HOpenGLHelper::loadTexture(const QString &fileName, bool gamma)
 {
     unsigned int textureID;
     glGenTextures(1, &textureID);
@@ -17,7 +17,7 @@ unsigned int HOpenGLHelper::loadTexture(const QString &fileName)
     if (data)
     {
         glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, gamma ? GL_SRGB_ALPHA : GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

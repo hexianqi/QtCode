@@ -13,7 +13,7 @@ HE_REFERENCE_BEGIN_NAMESPACE
 class HOpenGLHelper
 {
 public:
-    static unsigned int loadTexture(const QString &fileName);
+    static unsigned int loadTexture(const QString &fileName, bool gamma = false);
     static unsigned int loadCubemap(const QStringList &fileNames);
 };
 

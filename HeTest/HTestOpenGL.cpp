@@ -12,8 +12,9 @@ QWidget *HTestOpenGL::test1()
 int HTestOpenGL::testGlfw()
 {
     HLearnGLFW g;
-    g.setLightColorLoop(true);
+//    g.setLightColorLoop(true);
     g.setLightPosLoop(true);
 //    g.setLineMode(true);
-    return g.testAntiAliasing();
+    g.setEnableCursor(false);
+    return g.testSSAO();
 }

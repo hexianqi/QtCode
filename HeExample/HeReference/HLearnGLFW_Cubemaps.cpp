@@ -51,7 +51,7 @@ int HLearnGLFW::testCubemaps()
     glBindVertexArray(0);
 
     // load and create a texture
-    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/textures/container.png");
     auto texture2 = HOpenGLHelper::loadCubemap(QStringList() << ":/textures/skybox/right.jpg"
                                                              << ":/textures/skybox/left.jpg"
                                                              << ":/textures/skybox/top.jpg"

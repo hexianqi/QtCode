@@ -76,7 +76,7 @@ int HLearnGLFW::testFramebuffers()
     glBindVertexArray(0);
 
     // load and create a texture
-    auto texture1 = HOpenGLHelper::loadTexture(":/image/container.png");
+    auto texture1 = HOpenGLHelper::loadTexture(":/textures/container.png");
     auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
 
     // shader configuration

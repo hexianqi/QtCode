@@ -78,5 +78,64 @@
         <file>glsl/aa_post.vs</file>
         <file>glsl/anti_aliasing.fs</file>
         <file>glsl/anti_aliasing.vs</file>
+        <file>textures/wood.png</file>
+        <file>glsl/light_blinn.fs</file>
+        <file>glsl/light_blinn.vs</file>
+        <file>glsl/light_gamma.fs</file>
+        <file>glsl/light_gamma.vs</file>
+        <file>glsl/debug_quad.vs</file>
+        <file>glsl/debug_quad_depth.fs</file>
+        <file>glsl/shadow_mapping_depth.fs</file>
+        <file>glsl/shadow_mapping_depth.vs</file>
+        <file>glsl/shadow_mapping.fs</file>
+        <file>glsl/shadow_mapping.vs</file>
+        <file>glsl/shadow_mapping2.fs</file>
+        <file>glsl/shadow_mapping2.vs</file>
+        <file>glsl/shadow_point.fs</file>
+        <file>glsl/shadow_point.vs</file>
+        <file>glsl/shadow_point_depth.fs</file>
+        <file>glsl/shadow_point_depth.gs</file>
+        <file>glsl/shadow_point_depth.vs</file>
+        <file>glsl/shadow_point2.fs</file>
+        <file>glsl/shadow_point2.vs</file>
+        <file>glsl/normal_mapping.fs</file>
+        <file>glsl/normal_mapping.vs</file>
+        <file>textures/brickwall.jpg</file>
+        <file>textures/brickwall_normal.jpg</file>
+        <file>glsl/parallax_mapping.fs</file>
+        <file>glsl/parallax_mapping.vs</file>
+        <file>textures/bricks2.jpg</file>
+        <file>textures/bricks2_disp.jpg</file>
+        <file>textures/bricks2_normal.jpg</file>
+        <file>glsl/parallax_mapping2.fs</file>
+        <file>glsl/parallax_mapping2.vs</file>
+        <file>glsl/parallax_mapping3.fs</file>
+        <file>glsl/parallax_mapping3.vs</file>
+        <file>glsl/hdr.fs</file>
+        <file>glsl/hdr.vs</file>
+        <file>glsl/lighting.fs</file>
+        <file>glsl/lighting.vs</file>
+        <file>textures/container.png</file>
+        <file>textures/container_specular.png</file>
+        <file>textures/container_specular_color.png</file>
+        <file>glsl/bloom.fs</file>
+        <file>glsl/bloom.vs</file>
+        <file>glsl/bloom_final.fs</file>
+        <file>glsl/bloom_final.vs</file>
+        <file>glsl/blur.fs</file>
+        <file>glsl/blur.vs</file>
+        <file>glsl/light_box.fs</file>
+        <file>glsl/deferred_light_box.fs</file>
+        <file>glsl/deferred_light_box.vs</file>
+        <file>glsl/deferred_shading.fs</file>
+        <file>glsl/deferred_shading.vs</file>
+        <file>glsl/g_buffer.fs</file>
+        <file>glsl/g_buffer.vs</file>
+        <file>glsl/ssao.fs</file>
+        <file>glsl/ssao.vs</file>
+        <file>glsl/ssao_blur.fs</file>
+        <file>glsl/ssao_geometry.fs</file>
+        <file>glsl/ssao_geometry.vs</file>
+        <file>glsl/ssao_lighting.fs</file>
     </qresource>
 </RCC>
