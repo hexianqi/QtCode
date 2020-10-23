@@ -26,6 +26,12 @@ public:
     virtual void writeContent(QDataStream &) = 0;
 
 public:
+    // 设置数据
+    virtual void setData(QString name, QVariant value) = 0;
+    // 获取数据
+    virtual QVariant data(QString name) = 0;
+
+public:
     // 获取某类型所有分级
     virtual QVariant levels(QString type) = 0;
     // 计算levels

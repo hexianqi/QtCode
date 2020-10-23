@@ -14,6 +14,7 @@ public:
 
 public:
     IDataFactory *factory = nullptr;
+    QVariantMap datas;
 };
 
 HE_DATA_END_NAMESPACE

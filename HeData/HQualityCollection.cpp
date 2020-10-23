@@ -27,14 +27,14 @@ void HQualityCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IQuality>(s, datas, [=](QString type) { return factory->createQuality(type); });
+    HStreamHelper::read<QString, HeData::IQuality>(s, items, [=](QString type) { return factory->createQuality(type); });
     s >> useIndex;
 }
 
 void HQualityCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IQuality>(s, datas);
+    HStreamHelper::write<QString, HeData::IQuality>(s, items);
     s << useIndex;
 }
 

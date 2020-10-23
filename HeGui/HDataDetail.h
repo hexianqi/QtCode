@@ -111,6 +111,8 @@ template <typename T>
 void HDataDetail<T>::addItem(QString name)
 {
     auto data = d_ptr->widget->createData();
+    if (data == nullptr)
+        return;
     d_ptr->datas->insert(name, data);
     emit sourceChanged(d_ptr->datas->keys(), name);
 }

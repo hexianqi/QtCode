@@ -12,8 +12,6 @@
 #include <QtWidgets/QInputDialog>
 #include <QtWidgets/QFileDialog>
 
-using namespace QXlsx;
-
 HE_CORE_USE_NAMESPACE
 
 QAction *HPluginHelper::addSeparator(QWidget *widget)
@@ -120,7 +118,7 @@ bool HPluginHelper::exportExcel(QAbstractItemModel *model)
         return false;
 
     int i, j;
-    Document doc(model);
+    QXlsx::Document doc(model);
     for (i = 0; i < model->rowCount(); i++)
         doc.write(i + 2, 1, model->headerData(i, Qt::Vertical));
     for (j = 0; j < model->columnCount(); j++)
@@ -132,7 +130,7 @@ bool HPluginHelper::exportExcel(QAbstractItemModel *model)
             auto index = model->index(i, j);
             if (!index.isValid())
                 continue;
-            Format format;
+            QXlsx::Format format;
             if (index.data(Qt::BackgroundColorRole).isValid())
                 format.setPatternBackgroundColor(index.data(Qt::BackgroundColorRole).value<QColor>());
             doc.write(i + 2, j + 2, index.data().toString(), format);
@@ -146,7 +144,7 @@ bool HPluginHelper::importExcel(QAbstractItemModel *model)
     auto fileName = QFileDialog::getOpenFileName(nullptr, "", ".", "Excel files (*.xlsx)");
     if (fileName.isEmpty())
         return false;
-    Document doc(fileName, model);
+    QXlsx::Document doc(fileName, model);
     if (!doc.isLoadPackage())
         return false;
     auto range = doc.dimension();

@@ -27,14 +27,14 @@ void HChromatismCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IChromatism>(s, datas, [=](QString type) { return factory->createChromatism(type); });
+    HStreamHelper::read<QString, HeData::IChromatism>(s, items, [=](QString type) { return factory->createChromatism(type); });
     s >> useIndex;
 }
 
 void HChromatismCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IChromatism>(s, datas);
+    HStreamHelper::write<QString, HeData::IChromatism>(s, items);
     s << useIndex;
 }
 

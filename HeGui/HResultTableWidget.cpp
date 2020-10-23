@@ -54,12 +54,16 @@ void HResultTableWidget::clearResult()
     setRowCount(0);
 }
 
-void HResultTableWidget::refreshResult(int row, bool append)
+void HResultTableWidget::refreshResult(bool append)
 {
     Q_D(HResultTableWidget);
     auto value = d->testData->toString(d->displays);
-    if (append || row >= rowCount())
+    int row = rowCount() - 1;
+    if (append || row < 0)
+    {
+        row++;
         insertRow(row, value);
+    }
     else
         setRow(row, value);
 
@@ -70,6 +74,7 @@ void HResultTableWidget::refreshResult(int row, bool append)
         if (column != -1)
             item(row, column)->setBackgroundColor(i.value().value<QColor>());
     }
+    scrollToBottom();
 }
 
 QStringList HResultTableWidget::selected()

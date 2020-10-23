@@ -22,13 +22,13 @@ void HElecCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IElecCalibrate>(s, datas, [=](QString type) { return factory->createElecCalibrate(type); });
+    HStreamHelper::read<QString, HeData::IElecCalibrate>(s, items, [=](QString type) { return factory->createElecCalibrate(type); });
 }
 
 void HElecCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IElecCalibrate>(s, datas);
+    HStreamHelper::write<QString, HeData::IElecCalibrate>(s, items);
 }
 
 HElecCalibrateCollection::HElecCalibrateCollection() :

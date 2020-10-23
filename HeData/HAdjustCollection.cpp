@@ -30,13 +30,13 @@ void HAdjustCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IAdjust>(s, datas, [=](QString type) { return factory->createAdjust(type); });
+    HStreamHelper::read<QString, HeData::IAdjust>(s, items, [=](QString type) { return factory->createAdjust(type); });
     s >> useIndex;
 }
 
 void HAdjustCollectionPrivate::readContent(Document *p)
 {
-    datas.clear();
+    items.clear();
     useIndex = p->currentSheet()->sheetName();
     for (auto sheetName : p->sheetNames())
     {
@@ -45,20 +45,20 @@ void HAdjustCollectionPrivate::readContent(Document *p)
             continue;
         auto item = factory->createAdjust("HAdjust");
         item->readContent(sheet);
-        datas.insert(sheetName, item);
+        items.insert(sheetName, item);
     }
 }
 
 void HAdjustCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IAdjust>(s, datas);
+    HStreamHelper::write<QString, HeData::IAdjust>(s, items);
     s << useIndex;
 }
 
 void HAdjustCollectionPrivate::writeContent(Document *p)
 {
-    for (auto i = datas.begin(); i != datas.end(); i++)
+    for (auto i = items.begin(); i != items.end(); i++)
     {
         p->addSheet(i.key());
         i.value()->writeContent(p->currentWorksheet());

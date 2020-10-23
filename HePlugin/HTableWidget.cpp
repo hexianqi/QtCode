@@ -19,6 +19,34 @@ HTableWidget::HTableWidget(HTableWidgetPrivate &p, QWidget *parent) :
 
 HTableWidget::~HTableWidget() = default;
 
+QTableWidgetItem *HTableWidget::item(int row, int column)
+{
+    auto item = QTableWidget::item(row, column);
+    if (!item)
+    {
+        item = new QTableWidgetItem;
+        item->setTextAlignment(Qt::AlignCenter);
+        setItem(row, column, item);
+    }
+    return item;
+}
+
+void HTableWidget::setEditTriggers(EditTriggers triggers)
+{
+    d_ptr->actionPaste->setVisible(triggers != QAbstractItemView::NoEditTriggers);
+    d_ptr->actionImport->setVisible(d_ptr->exportImport && triggers != QAbstractItemView::NoEditTriggers);
+    QTableWidget::setEditTriggers(triggers);
+}
+
+void HTableWidget::setExportImport(bool b)
+{
+    if (d_ptr->exportImport == b)
+        return;
+    d_ptr->exportImport = b;
+    d_ptr->actionExport->setVisible(b);
+    d_ptr->actionImport->setVisible(b && editTriggers() != QAbstractItemView::NoEditTriggers);
+}
+
 void HTableWidget::removeRows(int row, int count)
 {
     if (count < 1 || row < 0)
@@ -30,23 +58,26 @@ void HTableWidget::removeRows(int row, int count)
         removeRow(row);
 }
 
-void HTableWidget::setEditTriggers(EditTriggers triggers)
+void HTableWidget::copy()
 {
-    d_ptr->actionPaste->setVisible(triggers != QAbstractItemView::NoEditTriggers);
-    d_ptr->actionImport->setVisible(triggers != QAbstractItemView::NoEditTriggers);
-    QTableWidget::setEditTriggers(triggers);
+    HPluginHelper::copy(this);
 }
 
-QTableWidgetItem *HTableWidget::item(int row, int column)
+void HTableWidget::paste()
 {
-    auto item = QTableWidget::item(row, column);
-    if (!item)
-    {
-        item = new QTableWidgetItem;
-        item->setTextAlignment(Qt::AlignCenter);
-        setItem(row, column, item);
-    }
-    return item;
+    if (!HPluginHelper::paste(this).isEmpty())
+        emit contentChanged();
+}
+
+void HTableWidget::exportExcel()
+{
+    HPluginHelper::exportExcel(model());
+}
+
+void HTableWidget::importExcel()
+{
+    if (HPluginHelper::importExcel(model()))
+        emit contentChanged();
 }
 
 void HTableWidget::init()
@@ -63,10 +94,10 @@ void HTableWidget::init()
     addAction(d_ptr->actionPaste);
     addAction(d_ptr->actionExport);
     addAction(d_ptr->actionImport);
-    connect(d_ptr->actionCopy, &QAction::triggered, this, [=] { HPluginHelper::copy(this); });
-    connect(d_ptr->actionPaste, &QAction::triggered, this, [=] { HPluginHelper::paste(this); });
-    connect(d_ptr->actionExport, &QAction::triggered, this, [=] { HPluginHelper::exportExcel(model()); });
-    connect(d_ptr->actionImport, &QAction::triggered, this, [=] { HPluginHelper::importExcel(model()); });
+    connect(d_ptr->actionCopy, &QAction::triggered, this, &HTableWidget::copy);
+    connect(d_ptr->actionPaste, &QAction::triggered, this, &HTableWidget::paste);
+    connect(d_ptr->actionExport, &QAction::triggered, this, &HTableWidget::exportExcel);
+    connect(d_ptr->actionImport, &QAction::triggered, this, &HTableWidget::importExcel);
     horizontalHeader()->setDefaultSectionSize(80);
     horizontalHeader()->setHighlightSections(false);
     horizontalHeader()->setMinimumSectionSize(60);

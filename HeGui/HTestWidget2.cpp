@@ -135,11 +135,11 @@ void HTestWidget2::saveRecord(bool append)
 {
     Q_D(HTestWidget2);
     if (!append && !d->records.isEmpty())
-        d->records.removeFirst();
+        d->records.removeLast();
     QVariantMap data;
     for (const auto &f : d->sqlHandle->field())
         data.insert(f, d->testData->data(HSql::toType(f)));
-    d->records.prepend(data);
+    d->records.append(data);
 }
 
 HE_GUI_END_NAMESPACE

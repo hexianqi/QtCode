@@ -22,7 +22,7 @@ int HParallelGrade::calcLevel(QVariantMap value, QString *text)
         return -1;
 
     QMap<int, QPoint> map;
-    for (auto i = d->datas.begin(); i != d->datas.end(); i++)
+    for (auto i = d->items.begin(); i != d->items.end(); i++)
     {
         if (!value.contains(i.key()))
             return -1;

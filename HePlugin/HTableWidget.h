@@ -18,12 +18,22 @@ public:
     explicit HTableWidget(QWidget *parent = nullptr);
     ~HTableWidget() override;
 
-public slots:
-    void removeRows(int row, int count);
+signals:
+    void contentChanged();
+
+public:
+    QTableWidgetItem *item(int row, int column);
 
 public:
     void setEditTriggers(EditTriggers triggers);
-    QTableWidgetItem *item(int row, int column);
+    void setExportImport(bool b);
+
+public slots:
+    void removeRows(int row, int count);
+    void copy();
+    void paste();
+    void exportExcel();
+    void importExcel();
 
 protected:
     HTableWidget(HTableWidgetPrivate &p, QWidget *parent = nullptr);

@@ -26,14 +26,29 @@ void HAbstractGrade::readContent(QDataStream &s)
     Q_D(HAbstractGrade);
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IGradeItem>(s, d->datas, [=](QString type) { return d->factory->createGradeItem(type); });
+    HStreamHelper::read<QString, HeData::IGradeItem>(s, d->items, [=](QString type) { return d->factory->createGradeItem(type); });
+    if (version >= 2)
+        s >> d->datas;
 }
 
 void HAbstractGrade::writeContent(QDataStream &s)
 {
     Q_D(HAbstractGrade);
-    s << quint32(1);
-    HStreamHelper::write<QString, HeData::IGradeItem>(s, d->datas);
+    s << quint32(2);
+    HStreamHelper::write<QString, HeData::IGradeItem>(s, d->items);
+    s << d->datas;
+}
+
+void HAbstractGrade::setData(QString name, QVariant value)
+{
+    Q_D(HAbstractGrade);
+    d->datas.insert(name, value);
+}
+
+QVariant HAbstractGrade::data(QString name)
+{
+    Q_D(HAbstractGrade);
+    return d->datas.value(name);
 }
 
 QVariant HAbstractGrade::levels(QString type)

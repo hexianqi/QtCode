@@ -22,13 +22,13 @@ void HLuminousCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::ILuminousCalibrate>(s, datas, [=](QString type) { return factory->createLuminousCalibrate(type); });
+    HStreamHelper::read<QString, HeData::ILuminousCalibrate>(s, items, [=](QString type) { return factory->createLuminousCalibrate(type); });
 }
 
 void HLuminousCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::ILuminousCalibrate>(s, datas);
+    HStreamHelper::write<QString, HeData::ILuminousCalibrate>(s, items);
 }
 
 HLuminousCalibrateCollection::HLuminousCalibrateCollection() :

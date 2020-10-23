@@ -26,14 +26,14 @@ void HGradeCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IGrade>(s, datas, [=](QString type) { return factory->createGrade(type); });
+    HStreamHelper::read<QString, HeData::IGrade>(s, items, [=](QString type) { return factory->createGrade(type); });
     s >> useIndex;
 }
 
 void HGradeCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IGrade>(s, datas);
+    HStreamHelper::write<QString, HeData::IGrade>(s, items);
     s << useIndex;
 }
 

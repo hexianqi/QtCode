@@ -18,8 +18,18 @@ public:
     explicit HTableView(QWidget *parent = nullptr);
     ~HTableView() override;
 
+signals:
+    void contentChanged();
+
 public:
     void setEditTriggers(EditTriggers triggers);
+    void setExportImport(bool b);
+
+public slots:
+    void copy();
+    void paste();
+    void exportExcel();
+    void importExcel();
 
 protected:
     HTableView(HTableViewPrivate &p, QWidget *parent = nullptr);

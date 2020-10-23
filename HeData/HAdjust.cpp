@@ -34,7 +34,7 @@ void HAdjust::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IAdjustItem>(s, d->datas, [=](QString type) { return d->factory->createAdjustItem(type); });
+    HStreamHelper::read<QString, HeData::IAdjustItem>(s, d->items, [=](QString type) { return d->factory->createAdjustItem(type); });
 }
 
 void HAdjust::readContent(Worksheet *p)
@@ -66,7 +66,7 @@ void HAdjust::writeContent(QDataStream &s)
 {
     Q_D(HAdjust);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IAdjustItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IAdjustItem>(s, d->items);
 }
 
 void HAdjust::writeContent(Worksheet *p)

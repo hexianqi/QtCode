@@ -10,6 +10,7 @@ public:
     QAction *actionPaste;
     QAction *actionExport;
     QAction *actionImport;
+    bool exportImport = true;
 };
 
 #endif // HTABLEWIDGET_P_H
