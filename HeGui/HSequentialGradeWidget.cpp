@@ -152,18 +152,18 @@ void HSequentialGradeWidget::on_spinBox_1_valueChanged(int value)
 
 void HSequentialGradeWidget::exportExcel()
 {
-    auto fileName = QFileDialog::getSaveFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    auto fileName = QFileDialog::getSaveFileName(this, "", ".", "Excel files (*.xlsx)");
     if (fileName.isEmpty())
         return;
 
     auto model = ui->tableWidget_1->model();
     int i, j;
     QXlsx::Document doc(this);
-    doc.write(5, 2, tr("BIN"));
+    doc.write(5, 1, tr("BIN"));
     for (j = 0; j < model->columnCount(); j++)
-        doc.write(5, j + 3, model->headerData(j, Qt::Horizontal));
+        doc.write(5, j + 2, model->headerData(j, Qt::Horizontal));
     for (i = 0; i < model->rowCount(); i++)
-        doc.write(i + 6, 2, model->headerData(i, Qt::Vertical));
+        doc.write(i + 6, 1, model->headerData(i, Qt::Vertical));
 
     for (i = 0; i < model->rowCount(); i++)
     {
@@ -172,7 +172,7 @@ void HSequentialGradeWidget::exportExcel()
             auto index = model->index(i, j);
             if (!index.isValid())
                 continue;
-            doc.write(i + 6, j + 3, index.data().toString());
+            doc.write(i + 6, j + 2, index.data().toString());
         }
     }
     doc.saveAs(fileName);
@@ -180,7 +180,7 @@ void HSequentialGradeWidget::exportExcel()
 
 void HSequentialGradeWidget::importExcel()
 {
-    auto fileName = QFileDialog::getOpenFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    auto fileName = QFileDialog::getOpenFileName(this, "", ".", "Excel files (*.xlsx)");
     if (fileName.isEmpty())
         return;
 
@@ -191,15 +191,15 @@ void HSequentialGradeWidget::importExcel()
     auto range = doc.dimension();
     auto rowCount = range.rowCount();
     auto colCount = range.columnCount();
-    if (rowCount < 6 || colCount < 3)
+    if (rowCount < 6 || colCount < 2)
         return;
 
     for (int i = 6; i <= rowCount; i++)
     {
-        for (int j = 3; j <= colCount; j++)
+        for (int j = 2; j <= colCount; j++)
         {
             auto cell = doc.cellAt(i, j);
-            auto index = model->index(i - 6, j - 3);
+            auto index = model->index(i - 6, j - 2);
             if (!index.isValid() || cell == nullptr)
                 continue;
             model->setData(index, cell->value());

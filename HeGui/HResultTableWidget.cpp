@@ -91,7 +91,7 @@ void HResultTableWidget::init()
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     horizontalHeader()->setDefaultSectionSize(100);
-    verticalHeader()->setVisible(false);
+//    verticalHeader()->setVisible(false);
 }
 
 HE_GUI_END_NAMESPACE

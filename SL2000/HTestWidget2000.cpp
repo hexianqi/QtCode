@@ -226,7 +226,7 @@ void HTestWidget2000::refreshWidget(bool append)
     d->energyWidget->refreshWidget();
     d->detailWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
-    d->resultWidget->refreshResult(0, append);
+    d->resultWidget->refreshResult(append);
     if (append)
         d->cieWidget->addPoint(point);
     else
