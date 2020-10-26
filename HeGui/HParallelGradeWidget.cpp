@@ -24,7 +24,9 @@ void HParallelGradeWidget::clearData()
 {
     HAbstractGradeWidget::clearData();
     ui->tableWidget_1->clear();
+    ui->tableWidget_1->setRowCount(0);
     ui->tableWidget_2->clear();
+    ui->tableWidget_2->setRowCount(0);
     ui->label_001->setText(tr("<font color=#FF0000>总分级数目： %1</font>").arg(0));
 }
 
@@ -98,7 +100,7 @@ bool HParallelGradeWidget::showData()
 
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(types);
-    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, [=]{ d_ptr->modified = true; });
+    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HParallelGradeWidget::setModified);
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->label_001->setText(tr("<font color=#FF0000>总分级数目： %1</font>").arg(total));
@@ -175,9 +177,15 @@ void HParallelGradeWidget::on_pushButton_4_clicked()
     showPreview();
 }
 
+void HParallelGradeWidget::setModified()
+{
+    Q_D(HParallelGradeWidget);
+    d->modified = true;
+}
+
 void HParallelGradeWidget::init()
 {
-    connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, [=] { d_ptr->modified = true; });
+    connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, &HParallelGradeWidget::setModified);
 }
 
 HE_GUI_END_NAMESPACE

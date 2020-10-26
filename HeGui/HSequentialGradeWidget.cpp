@@ -30,6 +30,7 @@ void HSequentialGradeWidget::clearData()
 {
     HAbstractGradeWidget::clearData();
     ui->tableWidget_1->clear();
+    ui->tableWidget_1->setRowCount(0);
     ui->spinBox_1->setValue(0);
 }
 
@@ -107,11 +108,12 @@ bool HSequentialGradeWidget::showData()
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(types);
     delegate->setOrigin(QPoint(1, 0));
-    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, [=]{ d_ptr->modified = true; });
+    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HSequentialGradeWidget::setModified);
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->tableWidget_1->setHorizontalHeaderLabels(headers);
     ui->tableWidget_1->setItemDelegate(delegate);
+    ui->tableWidget_1->setRowCount(total);
     ui->spinBox_1->setValue(total);
 
     for (int i = 0; i < ui->tableWidget_1->rowCount(); i++)
@@ -145,9 +147,9 @@ void HSequentialGradeWidget::on_pushButton_4_clicked()
     saveData();
 }
 
-void HSequentialGradeWidget::on_spinBox_1_valueChanged(int value)
+void HSequentialGradeWidget::on_pushButton_5_clicked()
 {
-    ui->tableWidget_1->setRowCount(value);
+    ui->tableWidget_1->setRowCount(ui->spinBox_1->value());
 }
 
 void HSequentialGradeWidget::exportExcel()
@@ -159,7 +161,7 @@ void HSequentialGradeWidget::exportExcel()
     auto model = ui->tableWidget_1->model();
     int i, j;
     QXlsx::Document doc(this);
-    doc.write(5, 1, tr("BIN"));
+    doc.write(5, 1, "BIN");
     for (j = 0; j < model->columnCount(); j++)
         doc.write(5, j + 2, model->headerData(j, Qt::Horizontal));
     for (i = 0; i < model->rowCount(); i++)
@@ -175,6 +177,8 @@ void HSequentialGradeWidget::exportExcel()
             doc.write(i + 6, j + 2, index.data().toString());
         }
     }
+    doc.write(i, 1, "200");
+    doc.write(i + 1, 1, "400");
     doc.saveAs(fileName);
 }
 
@@ -184,27 +188,64 @@ void HSequentialGradeWidget::importExcel()
     if (fileName.isEmpty())
         return;
 
-    auto model = ui->tableWidget_1->model();
+    int i, j;
     QXlsx::Document doc(fileName, this);
     if (!doc.isLoadPackage())
         return;
     auto range = doc.dimension();
-    auto rowCount = range.rowCount();
-    auto colCount = range.columnCount();
-    if (rowCount < 6 || colCount < 2)
-        return;
-
-    for (int i = 6; i <= rowCount; i++)
+    auto t = range.firstRow();
+    auto b = range.lastRow();
+    auto l = range.firstColumn();
+    auto r = range.lastColumn();
+    for (i = range.firstRow(); i <= range.lastRow(); i++)
     {
-        for (int j = 2; j <= colCount; j++)
+        for (j = range.firstColumn(); j <= range.lastColumn(); j++)
         {
             auto cell = doc.cellAt(i, j);
-            auto index = model->index(i - 6, j - 2);
-            if (!index.isValid() || cell == nullptr)
+            if (cell == nullptr)
                 continue;
-            model->setData(index, cell->value());
+            if (cell->value().toString() == "BIN")
+            {
+                t = i + 1;
+                l = j + 1;
+            }
         }
     }
+
+    int pre = 0;
+    int cur = 0;
+    for (i = t; i <= range.lastRow(); i++)
+    {
+        auto cell = doc.cellAt(i, l - 1);
+        if (cell == nullptr)
+            continue;
+        cur = cell->value().toInt();
+        if (pre == 200 && cur == 400)
+        {
+            b = i - 2;
+            break;
+        }
+        pre = cur;
+    }
+
+    ui->spinBox_1->setValue(b - t + 1);
+    ui->tableWidget_1->setRowCount(b - t + 1);
+    for (i = t; i <= b; i++)
+    {
+        for (j = l; j <= r; j++)
+        {
+            auto cell = doc.cellAt(i, j);
+            if (cell == nullptr)
+                continue;
+            ui->tableWidget_1->item(i - t, j - l)->setData(Qt::DisplayRole, cell->value());
+        }
+    }
+}
+
+void HSequentialGradeWidget::setModified()
+{
+    Q_D(HSequentialGradeWidget);
+    d->modified = true;
 }
 
 void HSequentialGradeWidget::init()
@@ -218,7 +259,8 @@ void HSequentialGradeWidget::init()
     ui->tableWidget_1->addAction(d->actionImport);
     connect(d->actionExport, &QAction::triggered, this, &HSequentialGradeWidget::exportExcel);
     connect(d->actionImport, &QAction::triggered, this, &HSequentialGradeWidget::importExcel);
-    connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, [=] { d_ptr->modified = true; });
+    connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, &HSequentialGradeWidget::setModified);
+    connect(ui->tableWidget_1, &QTableWidget::itemChanged, this, &HSequentialGradeWidget::setModified);
 }
 
 HE_GUI_END_NAMESPACE

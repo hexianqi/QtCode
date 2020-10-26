@@ -37,6 +37,7 @@ protected slots:
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void on_pushButton_4_clicked();
+    void setModified();
 
 private:
     void init();

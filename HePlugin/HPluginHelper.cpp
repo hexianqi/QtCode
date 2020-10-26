@@ -148,17 +148,19 @@ bool HPluginHelper::importExcel(QAbstractItemModel *model)
     if (!doc.isLoadPackage())
         return false;
     auto range = doc.dimension();
-    auto rowCount = range.rowCount();
-    auto colCount = range.columnCount();
-    if (rowCount < 2 || colCount < 2)
+    auto t = range.firstRow() + 1;
+    auto b = range.lastRow();
+    auto l = range.firstColumn() + 1;
+    auto r = range.lastColumn();
+    if (range.rowCount() < 2 || range.columnCount() < 2)
         return false;
 
-    for (int i = 2; i <= rowCount; i++)
+    for (int i = t; i <= b; i++)
     {
-        for (int j = 2; j <= colCount; j++)
+        for (int j = l; j <= r; j++)
         {
             auto cell = doc.cellAt(i, j);
-            auto index = model->index(i - 2, j - 2);
+            auto index = model->index(i - t, j - l);
             if (!index.isValid() || cell == nullptr)
                 continue;
             if (cell->format().patternBackgroundColor().isValid())

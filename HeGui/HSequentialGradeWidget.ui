@@ -17,42 +17,14 @@
    <property name="verticalSpacing">
     <number>12</number>
    </property>
-   <item row="1" column="7">
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="text">
-      <string>修 改</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="4">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="text">
-      <string>删 除</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="pushButton_1">
-     <property name="text">
-      <string>添 加</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="9">
-    <widget class="HEntireTableWidget" name="tableWidget_1">
-     <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>100</number>
-     </attribute>
-    </widget>
-   </item>
-   <item row="2" column="7">
+   <item row="2" column="8">
     <widget class="QPushButton" name="pushButton_4">
      <property name="text">
       <string>保 存</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="6" rowspan="2">
+   <item row="1" column="7" rowspan="2">
     <spacer name="horizontalSpacer_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -65,18 +37,12 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="3" rowspan="2">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="2" column="5">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>删 除</string>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
+    </widget>
    </item>
    <item row="1" column="0" rowspan="2">
     <spacer name="horizontalSpacer_1">
@@ -86,6 +52,46 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2" rowspan="2">
+    <widget class="QSpinBox" name="spinBox_1">
+     <property name="minimumSize">
+      <size>
+       <width>72</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="10">
+    <widget class="HEntireTableWidget" name="tableWidget_1">
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>100</number>
+     </attribute>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QPushButton" name="pushButton_1">
+     <property name="text">
+      <string>添 加</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4" rowspan="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
        <height>20</height>
       </size>
      </property>
@@ -101,20 +107,14 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="2" rowspan="2">
-    <widget class="QSpinBox" name="spinBox_1">
-     <property name="minimumSize">
-      <size>
-       <width>72</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+   <item row="1" column="8">
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="text">
+      <string>修 改</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="8" rowspan="2">
+   <item row="1" column="9" rowspan="2">
     <spacer name="horizontalSpacer_9">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -126,6 +126,13 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="1" column="3" rowspan="2">
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="text">
+      <string>设 置</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
