@@ -100,7 +100,7 @@ bool HParallelGradeWidget::showData()
 
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(types);
-    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HParallelGradeWidget::setModified);
+    connect(delegate, &HDoubleSpinBoxDelegate::closeEditor, this, &HParallelGradeWidget::setModified);
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->label_001->setText(tr("<font color=#FF0000>总分级数目： %1</font>").arg(total));

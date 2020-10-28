@@ -12,9 +12,11 @@ HProductInfoPrivate::HProductInfoPrivate()
     datas.insert("ProductModel",    "Model");
     datas.insert("TestInstitute",   "");
     datas.insert("Tester",          "");
+    datas.insert("Note",            "");
     datas.insert("SampleNumber",    1);
     datas.insert("Temperature",     25.0);
     datas.insert("Humidity",        60.0);
+    datas.insert("Enable",          true);
     datas.insert("Editable",        true);
     datas.insert("Increase",        true);
 }
@@ -74,7 +76,12 @@ QVariant HProductInfo::data(QString type)
 
 bool HProductInfo::contains(QString type)
 {
-    return d_ptr->datas.contains(type);
+    return enable() && d_ptr->datas.contains(type);
+}
+
+bool HProductInfo::enable()
+{
+    return data("Enable").toBool();
 }
 
 bool HProductInfo::increase()

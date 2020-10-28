@@ -29,7 +29,7 @@ public:
     void setData(IProductInfo *);
 
 protected:
-    void done(int result);
+    void done(int result) override;
     void showData();
     void saveData();
 

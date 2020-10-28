@@ -180,6 +180,7 @@ bool HTestSpecPrivate::calcSpec()
     addData("[显色指数Ra]", specData->RenderingIndexAvg);
     addData("[显色指数R9]", specData->RenderingIndex.at(8));
     addData("[显色指数Rx]", renderingIndex());
+    addData("[光谱能量曲线]", specData->EnergyPercent);
     return true;
 }
 
@@ -197,8 +198,9 @@ QString HTestSpecPrivate::renderingIndex()
 
 QString HTestSpecPrivate::energy()
 {
+    auto poly = data("[光谱能量曲线]").value<QPolygonF>();
     QStringList list;
-    for (auto p : specData->EnergyPercent)
+    for (auto p : poly)
         list << HCore::toString("[光谱波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
     return list.join(",");
 }
@@ -231,14 +233,12 @@ void HTestSpec::setData(QString type, QVariant value)
     return ITestSpec::setData(type, value);
 }
 
-QVariant HTestSpec::data(QString type)
+QString HTestSpec::toString(QString type)
 {
     Q_D(HTestSpec);
     if (type == "[光谱能量数据]")
         return d->energy();
-    if (type == "[光谱能量曲线]")
-        return QVariant::fromValue(d->specData->EnergyPercent);
-    return HTestData::data(type);
+    return HTestData::toString(type);
 }
 
 QVariant HTestSpec::handleOperation(QString type, QVariant value)

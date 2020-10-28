@@ -159,7 +159,7 @@ void HGradeItem2DDialog::showData()
     ui->spinBox_01->setValue(d->data->data("[优先级]").toInt());
     ui->tableWidget->setHorizontalHeaderLabels(d->data->headers());
     ui->tableWidget->setItemDelegate(delegate);
-    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HGradeItem2DDialog::setGradeFocus);
+    connect(delegate, &HDoubleSpinBoxDelegate::closeEditor, this, &HGradeItem2DDialog::setGradeFocus);
     showLevels(levels);
 }
 

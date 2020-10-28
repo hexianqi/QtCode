@@ -122,6 +122,13 @@ QVariantMap HTestData::cloneData()
     return r;
 }
 
+ITestData *HTestData::clone()
+{
+    auto p = new HTestData;
+    p->setData(cloneData());
+    return p;
+}
+
 QString HTestData::toString(QString type)
 {
     return HCore::toString(type, data(type));

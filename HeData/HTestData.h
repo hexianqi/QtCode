@@ -30,6 +30,7 @@ public:
     QVariant data(QString type) override;
     QVariantMap select(QStringList type) override;
     QVariantMap cloneData() override;
+    ITestData *clone() override;
     QString toString(QString type) override;
     QStringList toString(QStringList type) override;
     QString toHtmlTable(QStringList type, QColor bgcolor) override;

@@ -35,7 +35,7 @@ public:
 public:
     QStringList displays;
     QStringList tableSelecteds;
-    QList<QVariantMap> records;
+    QList<ITestData *> results;
 };
 
 HE_GUI_END_NAMESPACE

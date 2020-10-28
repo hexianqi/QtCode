@@ -31,6 +31,7 @@ protected:
     void setProbe(bool b);
     void readSettings();
     void writeSettings();
+    void editProductInfo();
 };
 
 #endif // HTESTWIDGET2000DC_H

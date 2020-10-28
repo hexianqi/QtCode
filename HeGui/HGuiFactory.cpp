@@ -4,6 +4,7 @@
 #include "HSpecCalibrateSetWidget2.h"
 #include "HAdjustSetWidget.h"
 #include "HAdjustSetWidget2.h"
+#include "HTestDataEditDialog.h"
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HSpecCalibrateHandler.h"
@@ -61,6 +62,14 @@ ITestSetWidget *HGuiFactory::createTestSetWidget(QString type, QWidget *parent, 
     return HWidgetFactory::createWidget<ITestSetWidget>(type, param, parent);
 }
 
+ITestDataEditDialog *HGuiFactory::createTestDataEditDialog(QString type, QWidget *parent, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HTestDataEditDialog(parent);
+    p->initialize(param);
+    return p;
+}
+
 IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 {
     auto p = HObjectFactory::createObject<IGuiHandler>(type, param, this);
@@ -87,6 +96,7 @@ void HGuiFactory::registerClass()
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget2>("HSpecCalibrateSetWidget2");
     HWidgetFactory::registerClass<HAdjustSetWidget>("HAdjustSetWidget");
     HWidgetFactory::registerClass<HAdjustSetWidget2>("HAdjustSetWidget2");
+
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HSpecLuminousHandler>("HSpecLuminousHandler");

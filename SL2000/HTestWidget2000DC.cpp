@@ -4,13 +4,15 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
 #include "HeGui/HSpecEnergyWidget.h"
+#include "HeGui/HResultTableWidget.h"
+#include "HeGui/HTestDataEditDialog.h"
 #include <QtWidgets/QMenu>
 #include <QtCore/QSettings>
 #include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
-    displays = QStringList() << "[测量日期]" << "[测量时间]"
+    displays = QStringList() << "[测量日期]" << "[测量时间]" << "[产品型号]" << "[备注]"
                              << "[分级]"
                              << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]"
                              << "[色容差]"
@@ -62,7 +64,10 @@ void HTestWidget2000DC::createAction()
     d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
+    d->actionProductInfo = new QAction(tr("产品信息修改(&P)"), this);
+    d->resultWidget->addAction(d->actionProductInfo);
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
+    connect(d->actionProductInfo, &QAction::triggered, this, &HTestWidget2000DC::editProductInfo);
 }
 
 void HTestWidget2000DC::createMenu()
@@ -89,6 +94,16 @@ void HTestWidget2000DC::readSettings()
     settings->beginGroup("TestWidget");
     d->testData->setData("[使用光探头]", settings->value("Probe", false));
     settings->endGroup();
+    settings->beginGroup("ProductInfo");
+    d->testData->setData("[制造厂商]", settings->value("Manufacturer", "Manufacturer"));
+    d->testData->setData("[产品名称]", settings->value("ProductName", "Name"));
+    d->testData->setData("[产品型号]", settings->value("ProductModel", "Model"));
+    d->testData->setData("[测试员]", settings->value("Tester", ""));
+    d->testData->setData("[备注]", settings->value("Note", ""));
+    d->testData->setData("[样品编号]", settings->value("SampleNumber", 1));
+    d->testData->setData("[环境温度]", settings->value("Temperature", 25.0));
+    d->testData->setData("[环境湿度]", settings->value("Humidity", 60.0));
+    settings->endGroup();
 }
 
 void HTestWidget2000DC::writeSettings()
@@ -100,4 +115,26 @@ void HTestWidget2000DC::writeSettings()
     settings->beginGroup("TestWidget");
     settings->setValue("Probe", d->testData->data("[使用光探头]"));
     settings->endGroup();
+    settings->beginGroup("ProductInfo");
+    settings->setValue("Manufacturer", d->testData->data("[制造厂商]"));
+    settings->setValue("ProductName", d->testData->data("[产品名称]"));
+    settings->setValue("ProductModel", d->testData->data("[产品型号]"));
+    settings->setValue("Tester", d->testData->data("[测试员]"));
+    settings->setValue("Note", d->testData->data("[备注]"));
+    settings->setValue("SampleNumber", d->testData->data("[样品编号]"));
+    settings->setValue("Temperature", d->testData->data("[环境温度]"));
+    settings->setValue("Humidity", d->testData->data("[环境湿度]"));
+    settings->endGroup();
+}
+
+void HTestWidget2000DC::editProductInfo()
+{
+    Q_D(HTestWidget2000DC);
+    auto row = d->resultWidget->currentRow();
+    auto data = d->results.at(row);
+    ITestDataEditDialog *dlg = new HTestDataEditDialog(this);
+    dlg->setData(data);
+    if (dlg->exec() != QDialog::Accepted)
+        return;
+    d->resultWidget->setRow(row, data->toString(d->displays));
 }

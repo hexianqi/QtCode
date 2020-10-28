@@ -75,6 +75,7 @@ unix {
 include(builder.pri)
 include(collection.pri)
 include(chartView.pri)
+include(dialog.pri)
 include(elec.pri)
 include(handler.pri)
 include(luminous.pri)

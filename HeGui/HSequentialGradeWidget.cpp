@@ -108,7 +108,7 @@ bool HSequentialGradeWidget::showData()
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(types);
     delegate->setOrigin(QPoint(1, 0));
-    connect(delegate, &HDoubleSpinBoxDelegate::editingFinished, this, &HSequentialGradeWidget::setModified);
+    connect(delegate, &HDoubleSpinBoxDelegate::closeEditor, this, &HSequentialGradeWidget::setModified);
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
     ui->tableWidget_1->setHorizontalHeaderLabels(headers);
@@ -240,6 +240,7 @@ void HSequentialGradeWidget::importExcel()
             ui->tableWidget_1->item(i - t, j - l)->setData(Qt::DisplayRole, cell->value());
         }
     }
+    setModified();
 }
 
 void HSequentialGradeWidget::setModified()
@@ -254,13 +255,12 @@ void HSequentialGradeWidget::init()
     HPluginHelper::initWidget("[分级数]", ui->spinBox_1);
     d->actionExport = new QAction(tr("导出表(&E)"), this);
     d->actionImport = new QAction(tr("导入表(&I)"), this);
-    ui->tableWidget_1->setExportImport(false);
+    ui->tableWidget_1->setActionContain(HTableWidget::ActionCopy | HTableWidget::ActionPaste);
     ui->tableWidget_1->addAction(d->actionExport);
     ui->tableWidget_1->addAction(d->actionImport);
     connect(d->actionExport, &QAction::triggered, this, &HSequentialGradeWidget::exportExcel);
     connect(d->actionImport, &QAction::triggered, this, &HSequentialGradeWidget::importExcel);
     connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, &HSequentialGradeWidget::setModified);
-    connect(ui->tableWidget_1, &QTableWidget::itemChanged, this, &HSequentialGradeWidget::setModified);
 }
 
 HE_GUI_END_NAMESPACE

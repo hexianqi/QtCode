@@ -54,11 +54,12 @@ void HTestWidget2::closeEvent(QCloseEvent *event)
     stop();
     if (d->memento)
         d->memento->writeFile();
-    if (!d->records.isEmpty())
+    if (!d->results.isEmpty())
     {
         if (QMessageBox::question(this, tr("保存数据"), tr("是否保存到数据库？")) == QMessageBox::Yes)
-            exportResult(0, d->records.count());
+            exportResult(0, d->results.count());
     }
+    clearResult();
     event->accept();
 }
 
@@ -81,9 +82,11 @@ void HTestWidget2::createAction()
 void HTestWidget2::exportExcel()
 {
     Q_D(HTestWidget2);
+    if (d->results.isEmpty())
+        return;
     QString text;
     text += HCore::toCaptionUnit(d->displays).join("\t") + "\n";
-    text += d->testData->toString(d->displays).join("\t") + "\n";
+    text += d->results.last()->toString(d->displays).join("\t") + "\n";
     d->stream->setContent(text);
     d->stream->saveAsFile();
 }
@@ -91,7 +94,17 @@ void HTestWidget2::exportExcel()
 void HTestWidget2::clearResult()
 {
     Q_D(HTestWidget2);
-    d->records.clear();
+    qDeleteAll(d->results);
+    d->results.clear();
+}
+
+void HTestWidget2::saveResult(bool append)
+{
+    Q_D(HTestWidget2);
+    if (append || d->results.isEmpty())
+        d->results.append(d->testData->clone());
+    else
+        d->results.last()->setData(d->testData->cloneData());
 }
 
 void HTestWidget2::removeResult(int index, int count)
@@ -99,9 +112,12 @@ void HTestWidget2::removeResult(int index, int count)
     Q_D(HTestWidget2);
     if (count < 1 || index < 0)
         return;
-    count = qMin(d->records.size() - index, count);
+    count = qMin(d->results.size() - index, count);
     for (int i = 0; i < count; i++)
-        d->records.removeAt(index);
+    {
+        auto data = d->results.takeAt(index);
+        delete data;
+    }
 }
 
 void HTestWidget2::exportResult(int index, int count)
@@ -109,37 +125,35 @@ void HTestWidget2::exportResult(int index, int count)
     Q_D(HTestWidget2);
     if (count < 1 || index < 0)
         return;
-    count = qMin(d->records.size() - index, count);
+    count = qMin(d->results.size() - index, count);
     for (int i = 0; i < count; i++)
-        d->sqlHandle->addRecord(d->records.at(index + i), false);
+        d->sqlHandle->addRecord(toRecord(index + i), false);
 }
 
 void HTestWidget2::exportDatabase()
 {
     Q_D(HTestWidget2);
-    if (d->records.isEmpty())
+    if (d->results.isEmpty())
         return;
-    d->sqlHandle->addRecord(d->records.first());
+    d->sqlHandle->addRecord(toRecord(d->results.length() - 1));
 }
 
 void HTestWidget2::printPreview()
 {
     Q_D(HTestWidget2);
-    if (d->records.isEmpty())
+    if (d->results.isEmpty())
         return;
-    d->sqlHandle->addRecord(d->records.first(), false);
+    d->sqlHandle->addRecord(toRecord(d->results.length() - 1), false);
     d->sqlPrint->printPreview();
 }
 
-void HTestWidget2::saveRecord(bool append)
+QVariantMap HTestWidget2::toRecord(int index)
 {
     Q_D(HTestWidget2);
-    if (!append && !d->records.isEmpty())
-        d->records.removeLast();
-    QVariantMap data;
+    QVariantMap record;
     for (const auto &f : d->sqlHandle->field())
-        data.insert(f, d->testData->data(HSql::toType(f)));
-    d->records.append(data);
+        record.insert(f, d->results.at(index)->data(HSql::toType(f)));
+    return record;
 }
 
 HE_GUI_END_NAMESPACE

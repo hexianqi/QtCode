@@ -24,7 +24,7 @@ public:
 
 public:
     void setData(QString type, QVariant value) override;
-    QVariant data(QString type) override;
+    QString toString(QString type) override;
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 public:
