@@ -28,8 +28,7 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-HBuilder2000Private::HBuilder2000Private(IMainWindow *p) :
-    HAbstractBuilderPrivate(p)
+HBuilder2000Private::HBuilder2000Private()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
@@ -47,8 +46,8 @@ HBuilder2000Private::HBuilder2000Private(IMainWindow *p) :
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
 }
 
-HBuilder2000::HBuilder2000(IMainWindow *parent) :
-    HAbstractBuilder(*new HBuilder2000Private(parent), parent)
+HBuilder2000::HBuilder2000(QObject *parent) :
+    HAbstractBuilder(*new HBuilder2000Private, parent)
 {
 }
 

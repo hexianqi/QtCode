@@ -170,6 +170,7 @@ QPointF HSpecSqlPrint::drawChartSpec(QPainter *painter, QRectF rect, QPolygonF p
         d->specWidget = new HSpecDiagramWidget;
         d->specWidget->setMargins(40, 25, 25, 35);
         d->specWidget->setBrushBackground(Qt::white);
+        d->specWidget->setDrawRibbon(d->ribbon);
     }
     if (!poly.isEmpty())
         d->specWidget->setWaveRange(QPointF(poly.first().x(), poly.last().x()));

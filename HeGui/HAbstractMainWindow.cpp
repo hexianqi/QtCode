@@ -2,6 +2,7 @@
 #include "ITestWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
+#include <QtCore/QSettings>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenuBar>
@@ -14,6 +15,9 @@ HE_GUI_BEGIN_NAMESPACE
 HAbstractMainWindowPrivate::HAbstractMainWindowPrivate(HAbstractMainWindow *p) :
     q_ptr(p)
 {
+    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(QApplication::applicationName()));
+    HAppContext::setContextValue("ConfigFileName", QString("%1.cfg").arg(QApplication::applicationName()));
+    HAppContext::setContextPointer("IMainWindow", p);
     logo.load(":/image/Logo.png");
 }
 
@@ -33,6 +37,7 @@ HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HC
 
 HAbstractMainWindow::~HAbstractMainWindow()
 {
+    writeSettings();
     d_ptr->testWidget->close();
     save(false);
 }
@@ -66,6 +71,7 @@ QString HAbstractMainWindow::summary()
 
 void HAbstractMainWindow::initialize()
 {
+    readSettings();
     initImportExport();
     createAction();
     createActionGroup();
@@ -209,6 +215,24 @@ void HAbstractMainWindow::initWindow()
 {
     updatetWindowTitle();
     setWindowIcon(QIcon(":/image/Icon.ico"));
+}
+
+void HAbstractMainWindow::readSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("MainWindow");
+    d_ptr->showLogo = settings->value("Logo", true).toBool();
+    settings->endGroup();
+}
+
+void HAbstractMainWindow::writeSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("MainWindow");
+    settings->setValue("Logo", d_ptr->showLogo);
+    settings->endGroup();
 }
 
 void HAbstractMainWindow::showDeviceFailed(const QString &text)

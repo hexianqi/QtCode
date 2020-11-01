@@ -13,7 +13,7 @@ class HBuilder2000 : public HAbstractBuilder
     Q_DECLARE_PRIVATE(HBuilder2000)
 
 public:
-    explicit HBuilder2000(IMainWindow *parent = nullptr);
+    explicit HBuilder2000(QObject *parent = nullptr);
     ~HBuilder2000() override;
 
 public:

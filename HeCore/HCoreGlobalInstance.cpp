@@ -348,7 +348,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱波长间隔]",                 new HDataFormatInfo("[光谱波长间隔]", "nm", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱采样等待时间]",             new HDataFormatInfo("[光谱采样等待时间]", 0, 1000));
     hashDataFormatInfo.insert("[光谱平均次数]",                 new HDataFormatInfo("[光谱平均次数]", 1, 32));
-    hashDataFormatInfo.insert("[光谱采样延时]",                 new HDataFormatInfo("[光谱采样延时]", "ms", 0, 600));
+    hashDataFormatInfo.insert("[光谱采样延时]",                 new HDataFormatInfo("[光谱采样延时]", "ms", 0, 10000));
     hashDataFormatInfo.insert("[光谱保留像元]",                 new HDataFormatInfo("[光谱保留像元]", 0, 2047));
     hashDataFormatInfo.insert("[光谱固定暗底]",                 new HDataFormatInfo("[光谱固定暗底]", 0, 9999.9, 1));
     hashDataFormatInfo.insert("[光谱左右暗底]",                 new HDataFormatInfo("[光谱左右暗底]", 0, 9999.9, 1));

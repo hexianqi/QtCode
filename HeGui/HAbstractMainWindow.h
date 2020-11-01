@@ -65,6 +65,9 @@ protected:
     virtual void initCentralWidget();
     virtual void initWindow();
 
+    void readSettings();
+    void writeSettings();
+
 protected:
     QScopedPointer<HAbstractMainWindowPrivate> d_ptr;
 };

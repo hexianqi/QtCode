@@ -204,11 +204,8 @@ void HSequentialGradeWidget::importExcel()
             auto cell = doc.cellAt(i, j);
             if (cell == nullptr)
                 continue;
-            if (cell->value().toString() == "BIN")
-            {
-                t = i + 1;
+            if (cell->value().toString().trimmed().compare("BIN", Qt::CaseInsensitive) == 0)
                 l = j + 1;
-            }
         }
     }
 
@@ -220,6 +217,8 @@ void HSequentialGradeWidget::importExcel()
         if (cell == nullptr)
             continue;
         cur = cell->value().toInt();
+        if (pre == 1 && cur == 2)
+            t = i - 1;
         if (pre == 200 && cur == 400)
         {
             b = i - 2;

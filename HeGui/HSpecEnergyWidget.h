@@ -34,6 +34,8 @@ protected:
 
 private:
     void init();
+    void readSettings();
+    void writeSettings();
 };
 
 HE_GUI_END_NAMESPACE

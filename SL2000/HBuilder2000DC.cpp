@@ -37,8 +37,7 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
-    HAbstractBuilderPrivate(p)
+HBuilder2000DCPrivate::HBuilder2000DCPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
@@ -59,8 +58,8 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
     HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
 }
 
-HBuilder2000DC::HBuilder2000DC(IMainWindow *parent) :
-    HAbstractBuilder(*new HBuilder2000DCPrivate(parent), parent)
+HBuilder2000DC::HBuilder2000DC(QObject *parent) :
+    HAbstractBuilder(*new HBuilder2000DCPrivate, parent)
 {
 }
 
@@ -287,6 +286,6 @@ void HBuilder2000DC::buildTestWidget()
     HAppContext::setContextPointer("IMementoTest", memento);
 
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

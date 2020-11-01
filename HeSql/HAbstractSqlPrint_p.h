@@ -17,6 +17,11 @@ public:
     HAbstractSqlPrintPrivate();
 
 public:
+    bool ribbon = true;
+    bool paintTitle = true;
+    bool paintLogo = true;
+
+public:
     ISqlTableModel *model = nullptr;
     ITextStream *stream = nullptr;
     QStringList fieldExportExcels;

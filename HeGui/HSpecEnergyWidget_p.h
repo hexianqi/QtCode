@@ -21,6 +21,7 @@ public:
     HSpecEnergyWidgetPrivate();
 
 public:
+    bool ribbon = true;
     ITestData *testData = nullptr;
     HSpecDiagramWidget *specWidget = nullptr;
     QHBoxLayout *progressLayout = nullptr;
