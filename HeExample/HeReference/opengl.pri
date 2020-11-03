@@ -11,7 +11,8 @@ HEADERS += \
     $$PWD/HOpenGLShaderProgram.h \
     $$PWD/HOpenGLShaderProgram_p.h \
     $$PWD/HOpenGLWidget_1.h \
-    $$PWD/HOpenGLWidget_1_p.h
+    $$PWD/HOpenGLWidget_1_p.h \
+    $$PWD/stb_image.h
 
 SOURCES += \
     $$PWD/HLearnGLFW.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     $$PWD/HLearnGLFW_Materials.cpp \
     $$PWD/HLearnGLFW_Model.cpp \
     $$PWD/HLearnGLFW_Normal.cpp \
+    $$PWD/HLearnGLFW_PBR.cpp \
     $$PWD/HLearnGLFW_Parallax.cpp \
     $$PWD/HLearnGLFW_SSAO.cpp \
     $$PWD/HLearnGLFW_Shadow.cpp \
@@ -45,7 +47,8 @@ SOURCES += \
     $$PWD/HOpenGLModel.cpp \
     $$PWD/HOpenGLShaderProgram.cpp \
     $$PWD/HOpenGLWidget_1.cpp \
-    $$PWD/glad.c
+    $$PWD/glad.c \
+    $$PWD/stb_image.cpp
 
 GladPath    = $$absolute_path("../../../modules/glad", $$[QT_INSTALL_DATA])
 GlfwPath    = $$absolute_path("../../../modules/glfw/win32", $$[QT_INSTALL_DATA])

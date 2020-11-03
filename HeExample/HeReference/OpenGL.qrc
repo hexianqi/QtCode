@@ -137,5 +137,51 @@
         <file>glsl/ssao_geometry.fs</file>
         <file>glsl/ssao_geometry.vs</file>
         <file>glsl/ssao_lighting.fs</file>
+        <file>glsl/pbr.fs</file>
+        <file>glsl/pbr.vs</file>
+        <file>glsl/pbr2.fs</file>
+        <file>glsl/pbr2.vs</file>
+        <file>textures/pbr/rusted_iron/albedo.png</file>
+        <file>textures/pbr/rusted_iron/ao.png</file>
+        <file>textures/pbr/rusted_iron/metallic.png</file>
+        <file>textures/pbr/rusted_iron/normal.png</file>
+        <file>textures/pbr/rusted_iron/roughness.png</file>
+        <file>glsl/background.fs</file>
+        <file>glsl/background.vs</file>
+        <file>glsl/cubemap.vs</file>
+        <file>glsl/equirectangular_to_cubemap.fs</file>
+        <file>glsl/pbr3.fs</file>
+        <file>glsl/pbr3.vs</file>
+        <file>textures/hdr/newport_loft.hdr</file>
+        <file>glsl/irradiance_convolution.fs</file>
+        <file>glsl/pbr4.fs</file>
+        <file>glsl/pbr4.vs</file>
+        <file>glsl/brdf.fs</file>
+        <file>glsl/brdf.vs</file>
+        <file>glsl/pbr5.fs</file>
+        <file>glsl/pbr5.vs</file>
+        <file>glsl/prefilter.fs</file>
+        <file>glsl/pbr6.fs</file>
+        <file>glsl/pbr6.vs</file>
+        <file>textures/pbr/plastic/albedo.png</file>
+        <file>textures/pbr/plastic/ao.png</file>
+        <file>textures/pbr/plastic/metallic.png</file>
+        <file>textures/pbr/plastic/normal.png</file>
+        <file>textures/pbr/plastic/roughness.png</file>
+        <file>textures/pbr/gold/albedo.png</file>
+        <file>textures/pbr/gold/ao.png</file>
+        <file>textures/pbr/gold/metallic.png</file>
+        <file>textures/pbr/gold/normal.png</file>
+        <file>textures/pbr/gold/roughness.png</file>
+        <file>textures/pbr/grass/albedo.png</file>
+        <file>textures/pbr/grass/ao.png</file>
+        <file>textures/pbr/grass/metallic.png</file>
+        <file>textures/pbr/grass/normal.png</file>
+        <file>textures/pbr/grass/roughness.png</file>
+        <file>textures/pbr/wall/albedo.png</file>
+        <file>textures/pbr/wall/ao.png</file>
+        <file>textures/pbr/wall/metallic.png</file>
+        <file>textures/pbr/wall/normal.png</file>
+        <file>textures/pbr/wall/roughness.png</file>
     </qresource>
 </RCC>

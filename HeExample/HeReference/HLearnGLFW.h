@@ -72,6 +72,12 @@ public:
     int testBloom();
     int testDeferredShading();
     int testSSAO();
+    int testPBR();
+    int testPBR2();
+    int testPBR3();
+    int testPBR4();
+    int testPBR5();
+    int testPBR6();
 
 protected:
     void initGlfw();
@@ -87,7 +93,7 @@ protected:
     void renderCube();
     void renderQuad();
     void renderQuad2();
-
+    void renderSphere();
 
 protected:
     QScopedPointer<HLearnGLFWPrivate> d_ptr;

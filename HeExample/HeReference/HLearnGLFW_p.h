@@ -54,6 +54,7 @@ public:
     QVector<float> skyboxPosition;              // skybox positions
     QVector<float> quadPosition;                // quad positions
     QVector<float> quadTexture;                 // quad texture
+
     int cubePositionSize = 0;
     int cubeTextureSize = 0;
     int cubeNormalSize = 0;
@@ -70,6 +71,8 @@ public:
     unsigned int cubeVAO = 0;
     unsigned int quadVAO = 0;
     unsigned int planeVAO = 0;
+    unsigned int sphereVAO = 0;
+    int sphereIndexCount = 0;
 };
 
 // camera

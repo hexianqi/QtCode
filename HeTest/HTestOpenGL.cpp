@@ -16,5 +16,5 @@ int HTestOpenGL::testGlfw()
     g.setLightPosLoop(true);
 //    g.setLineMode(true);
     g.setEnableCursor(false);
-    return g.testSSAO();
+    return g.testPBR6();
 }
