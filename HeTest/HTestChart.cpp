@@ -36,7 +36,7 @@ QChartView *HTestChart::zoomChart()
 
 QChartView *HTestChart::lineChart(QList<QPolygonF> polys)
 {
-    auto chartView = new QChartView;
+    auto chartView = new HZoomChartView;
     auto chart = new QChart();
     auto marker = new HMarkerChartExtend(chart, chartView);
     if (!polys.isEmpty())

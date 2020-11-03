@@ -46,6 +46,24 @@ HE_CONTROL_BEGIN_NAMESPACE
 //    }
 //}
 
+HVlcPlayerControlPrivate::HVlcPlayerControlPrivate()
+{
+    mediaEvents << libvlc_MediaParsedChanged;
+    playerEvents << libvlc_MediaPlayerOpening
+                 << libvlc_MediaPlayerBuffering
+                 << libvlc_MediaPlayerPlaying
+                 << libvlc_MediaPlayerPaused
+                 << libvlc_MediaPlayerStopped
+                 << libvlc_MediaPlayerEncounteredError
+                 << libvlc_MediaPlayerMuted
+                 << libvlc_MediaPlayerUnmuted
+                 << libvlc_MediaPlayerAudioVolume
+                 << libvlc_MediaPlayerLengthChanged
+                 << libvlc_MediaPlayerTimeChanged
+                 << libvlc_MediaPlayerPositionChanged;
+}
+
+
 HVlcPlayerControl::HVlcPlayerControl(QObject *parent) :
     QObject(parent),
     d_ptr(new HVlcPlayerControlPrivate)
@@ -174,6 +192,7 @@ void HVlcPlayerControl::close()
 {
     if (!d_ptr->opened)
         return;
+
     if (d_ptr->player != nullptr)
     {
         libvlc_media_player_stop(d_ptr->player);
@@ -274,29 +293,23 @@ void HVlcPlayerControl::attachWindow()
 
 void HVlcPlayerControl::attachEvents()
 {
-    QList<libvlc_event_e> players;
-    players << libvlc_MediaPlayerOpening
-            << libvlc_MediaPlayerBuffering
-            << libvlc_MediaPlayerPlaying
-            << libvlc_MediaPlayerPaused
-            << libvlc_MediaPlayerStopped
-            << libvlc_MediaPlayerEncounteredError
-            << libvlc_MediaPlayerMuted
-            << libvlc_MediaPlayerUnmuted
-            << libvlc_MediaPlayerAudioVolume
-            << libvlc_MediaPlayerLengthChanged
-            << libvlc_MediaPlayerTimeChanged
-            << libvlc_MediaPlayerPositionChanged;
-
     if (d_ptr->callback == nullptr)
     {
         HCallback<void(const libvlc_event_t *, void *)>::func = std::bind(&HVlcPlayerControl::handleEvents, this, std::placeholders::_1, std::placeholders::_2);
         d_ptr->callback = (HCallback<void(const libvlc_event_t *, void *)>::callback);
     }
-
-    libvlc_event_attach(d_ptr->mediaManager, libvlc_MediaParsedChanged, d_ptr->callback, nullptr);
-    for(auto e : players)
+    for(auto e : d_ptr->mediaEvents)
+        libvlc_event_attach(d_ptr->mediaManager, e, d_ptr->callback, this);
+    for(auto e : d_ptr->playerEvents)
         libvlc_event_attach(d_ptr->playerManager, e, d_ptr->callback, this);
+}
+
+void HVlcPlayerControl::detachEvents()
+{
+    for(auto e : d_ptr->mediaEvents)
+        libvlc_event_detach(d_ptr->mediaManager, e, d_ptr->callback, this);
+    for(auto e : d_ptr->playerEvents)
+        libvlc_event_detach(d_ptr->playerManager, e, d_ptr->callback, this);
 }
 
 void HVlcPlayerControl::handleEvents(const libvlc_event_t *event, void */*data*/)
@@ -416,7 +429,7 @@ void HVlcPlayerControl::updateTracksInfo()
         libvlc_media_tracks_release(tracks, count);
 
 //    // 当前音频声道
-//    qDebug() << "channels: " << libvlc_audio_get_channel(d_ptr->player);
+    //    qDebug() << "channels: " << libvlc_audio_get_channel(d_ptr->player);
 }
 
 HE_CONTROL_END_NAMESPACE

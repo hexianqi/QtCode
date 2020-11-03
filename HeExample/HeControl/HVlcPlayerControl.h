@@ -67,6 +67,7 @@ protected:
     bool initInstance();
     void attachWindow();
     void attachEvents();
+    void detachEvents();
     void handleEvents(const libvlc_event_t *, void *);
     void updateMediaInfo();
     void updateMetaInfo();

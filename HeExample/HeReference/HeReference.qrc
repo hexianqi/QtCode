@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/huesatradialpicker.png</file>
+        <file>image/awesomeface.png</file>
+        <file>image/marble.jpg</file>
+        <file>image/metal.png</file>
+        <file>image/grass.png</file>
+        <file>image/window.png</file>
+    </qresource>
+</RCC>

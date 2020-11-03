@@ -1,4 +1,5 @@
 D指针使用注意：私有类中如果有虚函数，则此类必须继承于QObject，否则无法运行。
 
 OpenGL:
-    在QApplication a(argc, argv);之前要先调用QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
+    01.在QApplication a(argc, argv);之前要先调用QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
+    02.使用glad需将src源文件直接添加现有项到当前工程中。
