@@ -29,6 +29,7 @@ public:
     void setData(QVariantMap value) override;
     QVariant data(QString type) override;
     bool contains(QString type) override;
+    bool enable() override;
     bool increase() override;
     bool editable() override;
     void saveOnce() override;

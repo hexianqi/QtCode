@@ -15,6 +15,17 @@ class QDESIGNER_WIDGET_EXPORT HTableView : public QTableView
     Q_OBJECT
 
 public:
+    enum ActionContain
+    {
+        ActionCopy      = 0x01,
+        ActionPaste     = 0x02,
+        ActionExport    = 0x04,
+        ActionImport    = 0x08,
+        ActionAll       = 0xffffffff
+    };
+    Q_DECLARE_FLAGS(ActionContains, ActionContain)
+
+public:
     explicit HTableView(QWidget *parent = nullptr);
     ~HTableView() override;
 
@@ -23,7 +34,7 @@ signals:
 
 public:
     void setEditTriggers(EditTriggers triggers);
-    void setExportImport(bool b);
+    void setActionContain(quint32);
 
 public slots:
     void copy();

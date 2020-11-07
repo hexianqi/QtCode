@@ -93,7 +93,7 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
         return false;
     d_ptr->productInfo->saveOnce();
     d_ptr->model->submitAll();
-    d_ptr->model->resetCurrentRow(d_ptr->model->rowCount() - 1);
+    d_ptr->model->resetCurrentRow(0);
     return true;
 }
 

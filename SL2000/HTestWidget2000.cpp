@@ -209,7 +209,7 @@ void HTestWidget2000::handleResultChanged(HActionType, bool append)
 {
     postProcess();
     refreshWidget(append);
-    saveRecord(append);
+    saveResult(append);
 }
 
 void HTestWidget2000::postProcess()

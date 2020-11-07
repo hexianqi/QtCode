@@ -21,18 +21,26 @@ HTableView::~HTableView() = default;
 
 void HTableView::setEditTriggers(EditTriggers triggers)
 {
-    d_ptr->actionPaste->setVisible(triggers != QAbstractItemView::NoEditTriggers);
-    d_ptr->actionImport->setVisible(d_ptr->exportImport && triggers != QAbstractItemView::NoEditTriggers);
+    d_ptr->actions.value(ActionPaste)->setEnabled(triggers != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionPaste));
+    d_ptr->actions.value(ActionPaste)->setVisible(triggers != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionPaste));
+    d_ptr->actions.value(ActionImport)->setEnabled(triggers != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionImport));
+    d_ptr->actions.value(ActionImport)->setVisible(triggers != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionImport));
     QTableView::setEditTriggers(triggers);
 }
 
-void HTableView::setExportImport(bool b)
+void HTableView::setActionContain(quint32 value)
 {
-    if (d_ptr->exportImport == b)
+    if (d_ptr->actionContain == value)
         return;
-    d_ptr->exportImport = b;
-    d_ptr->actionExport->setVisible(b);
-    d_ptr->actionImport->setVisible(b && editTriggers() != QAbstractItemView::NoEditTriggers);
+    d_ptr->actionContain = value;
+    d_ptr->actions.value(ActionCopy)->setEnabled(d_ptr->actionContain & ActionCopy);
+    d_ptr->actions.value(ActionCopy)->setVisible(d_ptr->actionContain & ActionCopy);
+    d_ptr->actions.value(ActionExport)->setEnabled(d_ptr->actionContain & ActionExport);
+    d_ptr->actions.value(ActionExport)->setVisible(d_ptr->actionContain & ActionExport);
+    d_ptr->actions.value(ActionPaste)->setEnabled(editTriggers() != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionPaste));
+    d_ptr->actions.value(ActionPaste)->setVisible(editTriggers() != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionPaste));
+    d_ptr->actions.value(ActionImport)->setEnabled(editTriggers() != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionImport));
+    d_ptr->actions.value(ActionImport)->setVisible(editTriggers() != QAbstractItemView::NoEditTriggers && (d_ptr->actionContain & ActionImport));
 }
 
 void HTableView::copy()
@@ -48,33 +56,35 @@ void HTableView::paste()
 
 void HTableView::exportExcel()
 {
-    HPluginHelper::exportExcel(model());
+    HPluginHelper::exportExcel(this);
 }
 
 void HTableView::importExcel()
 {
-    if (HPluginHelper::importExcel(model()))
+    if (HPluginHelper::importExcel(this))
         emit contentChanged();
 }
 
 void HTableView::init()
 {
-    d_ptr->actionCopy = new QAction(tr("复制(&C)"), this);
-    d_ptr->actionCopy->setIcon(QIcon(":/image/Copy.png"));
-    d_ptr->actionCopy->setShortcut(QKeySequence::Copy);
-    d_ptr->actionPaste = new QAction(tr("粘贴(&V)"), this);
-    d_ptr->actionPaste->setIcon(QIcon(":/image/Paste.png"));
-    d_ptr->actionPaste->setShortcut(QKeySequence::Paste);
-    d_ptr->actionExport = new QAction(tr("导出表(&E)"), this);
-    d_ptr->actionImport = new QAction(tr("导入表(&I)"), this);
-    addAction(d_ptr->actionCopy);
-    addAction(d_ptr->actionPaste);
-    addAction(d_ptr->actionExport);
-    addAction(d_ptr->actionImport);
-    connect(d_ptr->actionCopy, &QAction::triggered, this, &HTableView::copy);
-    connect(d_ptr->actionPaste, &QAction::triggered, this, &HTableView::paste);
-    connect(d_ptr->actionExport, &QAction::triggered, this, &HTableView::exportExcel);
-    connect(d_ptr->actionImport, &QAction::triggered, this, &HTableView::importExcel);
+    auto actionCopy = new QAction(tr("复制(&C)"), this);
+    actionCopy->setIcon(QIcon(":/image/Copy.png"));
+    actionCopy->setShortcut(QKeySequence::Copy);
+    auto actionPaste = new QAction(tr("粘贴(&V)"), this);
+    actionPaste->setIcon(QIcon(":/image/Paste.png"));
+    actionPaste->setShortcut(QKeySequence::Paste);
+    auto actionExport = new QAction(tr("导出表(&E)"), this);
+    auto actionImport = new QAction(tr("导入表(&I)"), this);
+    connect(actionCopy, &QAction::triggered, this, &HTableView::copy);
+    connect(actionPaste, &QAction::triggered, this, &HTableView::paste);
+    connect(actionExport, &QAction::triggered, this, &HTableView::exportExcel);
+    connect(actionImport, &QAction::triggered, this, &HTableView::importExcel);
+    d_ptr->actions.insert(ActionCopy, actionCopy);
+    d_ptr->actions.insert(ActionPaste, actionPaste);
+    d_ptr->actions.insert(ActionExport, actionExport);
+    d_ptr->actions.insert(ActionImport, actionImport);
+    for (auto i : d_ptr->actions)
+        addAction(i);
     horizontalHeader()->setDefaultSectionSize(80);
     horizontalHeader()->setHighlightSections(false);
     horizontalHeader()->setMinimumSectionSize(60);

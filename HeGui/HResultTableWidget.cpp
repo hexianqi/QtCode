@@ -63,6 +63,7 @@ void HResultTableWidget::refreshResult(bool append)
     {
         row++;
         insertRow(row, value);
+        scrollToBottom();
     }
     else
         setRow(row, value);
@@ -74,7 +75,6 @@ void HResultTableWidget::refreshResult(bool append)
         if (column != -1)
             item(row, column)->setBackgroundColor(i.value().value<QColor>());
     }
-    scrollToBottom();
 }
 
 QStringList HResultTableWidget::selected()
@@ -91,7 +91,6 @@ void HResultTableWidget::init()
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     horizontalHeader()->setDefaultSectionSize(100);
-//    verticalHeader()->setVisible(false);
 }
 
 HE_GUI_END_NAMESPACE

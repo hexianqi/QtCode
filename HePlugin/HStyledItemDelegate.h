@@ -18,9 +18,6 @@ public:
     explicit HStyledItemDelegate(QObject *parent = nullptr);
     ~HStyledItemDelegate() override;
 
-signals:
-    void editingFinished();
-
 public:
     void setOrientation(Qt::Orientation value);
     void setOrigin(QPoint value);

@@ -25,6 +25,8 @@ public:
     virtual QVariant data(QString type) = 0;
     // 是否包含
     virtual bool contains(QString type) = 0;
+    // 是否启用
+    virtual bool enable() = 0;
     // 是否自增
     virtual bool increase() = 0;
     // 是否编辑

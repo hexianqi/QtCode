@@ -28,8 +28,8 @@ public:
     static QString copy(QTableView *, bool withHeader = false);
     static QString paste(QTableView *);
     // 导出导入Excel
-    static bool exportExcel(QAbstractItemModel *);
-    static bool importExcel(QAbstractItemModel *);
+    static bool exportExcel(QTableView *);
+    static bool importExcel(QTableView *);
 
 public:
     static void initWidget(const QString &type, QSpinBox *);
