@@ -76,6 +76,7 @@ void HTestDataEditDialog::init()
     HPluginHelper::initWidget("[样品编号]", ui->spinBox_01);
     HPluginHelper::initWidget("[环境温度]", ui->doubleSpinBox_01);
     HPluginHelper::initWidget("[环境湿度]", ui->doubleSpinBox_02);
+    setWindowTitle(tr("产品信息编辑"));
 }
 
 HE_GUI_END_NAMESPACE

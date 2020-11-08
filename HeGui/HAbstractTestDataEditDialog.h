@@ -10,7 +10,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HAbstractTestDataEditDialogPrivate;
 
-class HAbstractTestDataEditDialog : public ITestDataEditDialog
+class HE_GUI_EXPORT HAbstractTestDataEditDialog : public ITestDataEditDialog
 {
     Q_OBJECT
 

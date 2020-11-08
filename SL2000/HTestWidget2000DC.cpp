@@ -12,7 +12,7 @@
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
-    displays = QStringList() << "[测量日期]" << "[测量时间]" << "[产品型号]" << "[备注]"
+    displays = QStringList() << "[测量日期]" << "[测量时间]" << "[制造厂商]" << "[产品型号]" << "[测试员]" << "[样品编号]" << "[备注]" << "[环境温度]" << "[环境湿度]"
                              << "[分级]"
                              << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]"
                              << "[色容差]"
@@ -54,6 +54,7 @@ void HTestWidget2000DC::init()
 {
     Q_D(HTestWidget2000DC);
     HTestWidget2000::init();
+    connect(d->resultWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget2000DC::editProductInfo);
     setProbe(d->testData->data("[使用光探头]").toBool());
 }
 
@@ -132,9 +133,9 @@ void HTestWidget2000DC::editProductInfo()
     Q_D(HTestWidget2000DC);
     auto row = d->resultWidget->currentRow();
     auto data = d->results.at(row);
-    ITestDataEditDialog *dlg = new HTestDataEditDialog(this);
-    dlg->setData(data);
-    if (dlg->exec() != QDialog::Accepted)
+    HTestDataEditDialog dlg(this);
+    dlg.setData(data);
+    if (dlg.exec() != QDialog::Accepted)
         return;
     d->resultWidget->setRow(row, data->toString(d->displays));
 }
