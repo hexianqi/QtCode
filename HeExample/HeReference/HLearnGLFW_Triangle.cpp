@@ -103,15 +103,12 @@ int HLearnGLFW::testTriangle()
     glGenVertexArrays(2, VAOs); // we can also generate multiple VAOs or buffers at the same time
     glGenBuffers(2, VBOs);
     // first triangle setup
-    // --------------------
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	// Vertex attributes stay the same
     glEnableVertexAttribArray(0);
-    // glBindVertexArray(0); // no need to unbind at all as we directly bind a different VAO the next few lines
     // second triangle setup
-    // ---------------------
     glBindVertexArray(VAOs[1]);	// note that we bind to a different VAO now
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);	// and a different VBO
     glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
@@ -131,7 +128,6 @@ int HLearnGLFW::testTriangle()
         // render
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        // draw our first triangle
         glUseProgram(shaderProgramOrange);
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0, 3);

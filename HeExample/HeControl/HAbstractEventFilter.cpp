@@ -49,7 +49,7 @@ bool HAbstractEventFilter::eventFilter(QObject *watched, QEvent *event)
         return false;
     if (!hasWatched(watched))
         return false;
-    if (handleInternal(watched, event))
+    if (handleEvent(watched, event))
         return true;
     if (hasHandler(event->type()))
         return d_ptr->handlers.value(event->type())(event);

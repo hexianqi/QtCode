@@ -1,81 +1,71 @@
 <RCC>
     <qresource prefix="/">
-        <file>glsl/advanced_glsl.vs</file>
+        <file>glsl/ubo.vs</file>
         <file>glsl/blending.fs</file>
         <file>glsl/blending.vs</file>
         <file>glsl/blending2.fs</file>
         <file>glsl/blending2.vs</file>
-        <file>glsl/colors.fs</file>
-        <file>glsl/colors.vs</file>
-        <file>glsl/colors_blue.fs</file>
-        <file>glsl/colors_green.fs</file>
-        <file>glsl/colors_red.fs</file>
-        <file>glsl/colors_yellow.fs</file>
+        <file>glsl/light_object.fs</file>
+        <file>glsl/light_object.vs</file>
+        <file>glsl/ubo_blue.fs</file>
+        <file>glsl/ubo_green.fs</file>
+        <file>glsl/ubo_red.fs</file>
+        <file>glsl/ubo_yellow.fs</file>
         <file>glsl/coordinate_systems.fs</file>
         <file>glsl/coordinate_systems.vs</file>
-        <file>glsl/cubemaps.fs</file>
-        <file>glsl/cubemaps.vs</file>
-        <file>glsl/cubemaps2.fs</file>
-        <file>glsl/cubemaps2.vs</file>
-        <file>glsl/framebuffers.fs</file>
-        <file>glsl/framebuffers.vs</file>
-        <file>glsl/framebuffers_screen.fs</file>
-        <file>glsl/framebuffers_screen.vs</file>
+        <file>glsl/environment_maps.fs</file>
+        <file>glsl/environment_maps.vs</file>
+        <file>glsl/framebuffer.fs</file>
+        <file>glsl/framebuffer.vs</file>
         <file>glsl/geometry_explode.gs</file>
         <file>glsl/geometry_explode.vs</file>
         <file>glsl/geometry_normal.fs</file>
         <file>glsl/geometry_normal.gs</file>
         <file>glsl/geometry_normal.vs</file>
-        <file>glsl/geometry_shader.fs</file>
-        <file>glsl/geometry_shader.gs</file>
-        <file>glsl/geometry_shader.vs</file>
+        <file>glsl/geometry_house.fs</file>
+        <file>glsl/geometry_house.gs</file>
+        <file>glsl/geometry_house.vs</file>
         <file>glsl/instancing.fs</file>
         <file>glsl/instancing.vs</file>
-        <file>glsl/light_basic.fs</file>
-        <file>glsl/light_basic.vs</file>
-        <file>glsl/light_basic2.fs</file>
-        <file>glsl/light_basic2.vs</file>
-        <file>glsl/light_basic3.fs</file>
-        <file>glsl/light_basic3.vs</file>
-        <file>glsl/light_casters_directional.fs</file>
-        <file>glsl/light_casters_directional.vs</file>
-        <file>glsl/light_casters_point.fs</file>
-        <file>glsl/light_casters_point.vs</file>
-        <file>glsl/light_casters_spot.fs</file>
-        <file>glsl/light_casters_spot.vs</file>
+        <file>glsl/light_phong.fs</file>
+        <file>glsl/light_phong.vs</file>
+        <file>glsl/light_phong2.fs</file>
+        <file>glsl/light_phong2.vs</file>
+        <file>glsl/light_gouraud.fs</file>
+        <file>glsl/light_gouraud.vs</file>
+        <file>glsl/light_caster_directional.fs</file>
+        <file>glsl/light_caster_directional.vs</file>
+        <file>glsl/light_caster_point.fs</file>
+        <file>glsl/light_caster_point.vs</file>
+        <file>glsl/light_caster_spot.fs</file>
+        <file>glsl/light_caster_spot.vs</file>
         <file>glsl/light_maps.fs</file>
         <file>glsl/light_maps.vs</file>
-        <file>glsl/light_multiple.fs</file>
-        <file>glsl/light_multiple.vs</file>
+        <file>glsl/light_caster_multi.fs</file>
+        <file>glsl/light_caster_multi.vs</file>
         <file>glsl/light_source.fs</file>
         <file>glsl/light_source.vs</file>
-        <file>glsl/materials.fs</file>
-        <file>glsl/materials.vs</file>
-        <file>glsl/model.fs</file>
-        <file>glsl/model.vs</file>
+        <file>glsl/light_materials.fs</file>
+        <file>glsl/light_materials.vs</file>
+        <file>glsl/model_show.fs</file>
+        <file>glsl/model_show.vs</file>
         <file>glsl/model_light.fs</file>
         <file>glsl/model_light.vs</file>
         <file>glsl/skybox.fs</file>
         <file>glsl/skybox.vs</file>
-        <file>glsl/stencil.fs</file>
-        <file>glsl/stencil.vs</file>
-        <file>glsl/stencil_single_color.fs</file>
-        <file>glsl/texture1.fs</file>
-        <file>glsl/texture.vs</file>
-        <file>glsl/texture2.fs</file>
+        <file>glsl/test_stencil_single_color.vs</file>
+        <file>glsl/test_stencil_single_color.fs</file>
+        <file>glsl/texture_color.fs</file>
+        <file>glsl/texture_color.vs</file>
+        <file>glsl/texture_blend.fs</file>
         <file>textures/skybox/back.jpg</file>
         <file>textures/skybox/bottom.jpg</file>
         <file>textures/skybox/front.jpg</file>
         <file>textures/skybox/left.jpg</file>
         <file>textures/skybox/right.jpg</file>
         <file>textures/skybox/top.jpg</file>
-        <file>glsl/asteroids.vs</file>
-        <file>glsl/planet.vs</file>
+        <file>glsl/model_instance.vs</file>
         <file>glsl/geometry_explode.fs</file>
-        <file>glsl/asteroids.fs</file>
-        <file>glsl/planet.fs</file>
-        <file>glsl/aa_post.fs</file>
-        <file>glsl/aa_post.vs</file>
         <file>glsl/anti_aliasing.fs</file>
         <file>glsl/anti_aliasing.vs</file>
         <file>textures/wood.png</file>
@@ -83,7 +73,7 @@
         <file>glsl/light_blinn.vs</file>
         <file>glsl/light_gamma.fs</file>
         <file>glsl/light_gamma.vs</file>
-        <file>glsl/debug_quad.vs</file>
+        <file>glsl/debug_quad_depth.vs</file>
         <file>glsl/debug_quad_depth.fs</file>
         <file>glsl/shadow_mapping_depth.fs</file>
         <file>glsl/shadow_mapping_depth.vs</file>
@@ -107,10 +97,7 @@
         <file>textures/bricks2.jpg</file>
         <file>textures/bricks2_disp.jpg</file>
         <file>textures/bricks2_normal.jpg</file>
-        <file>glsl/parallax_mapping2.fs</file>
-        <file>glsl/parallax_mapping2.vs</file>
         <file>glsl/parallax_mapping3.fs</file>
-        <file>glsl/parallax_mapping3.vs</file>
         <file>glsl/hdr.fs</file>
         <file>glsl/hdr.vs</file>
         <file>glsl/lighting.fs</file>
@@ -122,15 +109,13 @@
         <file>glsl/bloom.vs</file>
         <file>glsl/bloom_final.fs</file>
         <file>glsl/bloom_final.vs</file>
-        <file>glsl/blur.fs</file>
-        <file>glsl/blur.vs</file>
-        <file>glsl/light_box.fs</file>
-        <file>glsl/deferred_light_box.fs</file>
-        <file>glsl/deferred_light_box.vs</file>
+        <file>glsl/gaussian_blur.fs</file>
+        <file>glsl/gaussian_blur.vs</file>
+        <file>glsl/bloom_light.fs</file>
         <file>glsl/deferred_shading.fs</file>
         <file>glsl/deferred_shading.vs</file>
-        <file>glsl/g_buffer.fs</file>
-        <file>glsl/g_buffer.vs</file>
+        <file>glsl/deferred_shading_gbuffer.fs</file>
+        <file>glsl/deferred_shading_gbuffer.vs</file>
         <file>glsl/ssao.fs</file>
         <file>glsl/ssao.vs</file>
         <file>glsl/ssao_blur.fs</file>
@@ -140,29 +125,23 @@
         <file>glsl/pbr.fs</file>
         <file>glsl/pbr.vs</file>
         <file>glsl/pbr2.fs</file>
-        <file>glsl/pbr2.vs</file>
         <file>textures/pbr/rusted_iron/albedo.png</file>
         <file>textures/pbr/rusted_iron/ao.png</file>
         <file>textures/pbr/rusted_iron/metallic.png</file>
         <file>textures/pbr/rusted_iron/normal.png</file>
         <file>textures/pbr/rusted_iron/roughness.png</file>
-        <file>glsl/background.fs</file>
-        <file>glsl/background.vs</file>
+        <file>glsl/skybox2.fs</file>
+        <file>glsl/skybox2.vs</file>
         <file>glsl/cubemap.vs</file>
-        <file>glsl/equirectangular_to_cubemap.fs</file>
-        <file>glsl/pbr3.fs</file>
-        <file>glsl/pbr3.vs</file>
+        <file>glsl/cubemap_from_equirectangular.fs</file>
         <file>textures/hdr/newport_loft.hdr</file>
-        <file>glsl/irradiance_convolution.fs</file>
+        <file>glsl/cubemap_irradiance_convolution.fs</file>
         <file>glsl/pbr4.fs</file>
-        <file>glsl/pbr4.vs</file>
         <file>glsl/brdf.fs</file>
         <file>glsl/brdf.vs</file>
         <file>glsl/pbr5.fs</file>
-        <file>glsl/pbr5.vs</file>
-        <file>glsl/prefilter.fs</file>
+        <file>glsl/cubemap_prefilter.fs</file>
         <file>glsl/pbr6.fs</file>
-        <file>glsl/pbr6.vs</file>
         <file>textures/pbr/plastic/albedo.png</file>
         <file>textures/pbr/plastic/ao.png</file>
         <file>textures/pbr/plastic/metallic.png</file>
@@ -183,5 +162,48 @@
         <file>textures/pbr/wall/metallic.png</file>
         <file>textures/pbr/wall/normal.png</file>
         <file>textures/pbr/wall/roughness.png</file>
+        <file>textures/awesomeface.png</file>
+        <file>textures/matrix.jpg</file>
+        <file>textures/marble.jpg</file>
+        <file>textures/metal.png</file>
+        <file>glsl/test_depth_view.fs</file>
+        <file>glsl/test_depth_view.vs</file>
+        <file>textures/grass.png</file>
+        <file>textures/window.png</file>
+        <file>glsl/texture_obj.fs</file>
+        <file>glsl/texture_obj.vs</file>
+        <file>glsl/parallax_mapping2.fs</file>
+        <file>glsl/text.fs</file>
+        <file>glsl/text.vs</file>
+        <file>fonts/Antonio-Bold.ttf</file>
+        <file>fonts/Antonio-Light.ttf</file>
+        <file>fonts/Antonio-Regular.ttf</file>
+        <file>fonts/OCRAEXT.TTF</file>
+        <file>glsl/sprite.fs</file>
+        <file>glsl/sprite.vs</file>
+        <file>textures/background.jpg</file>
+        <file>textures/block.png</file>
+        <file>textures/block_solid.png</file>
+        <file>levels/four.lvl</file>
+        <file>levels/one.lvl</file>
+        <file>levels/three.lvl</file>
+        <file>levels/two.lvl</file>
+        <file>textures/paddle.png</file>
+        <file>glsl/particle.fs</file>
+        <file>glsl/particle.vs</file>
+        <file>textures/particle.png</file>
+        <file>glsl/post_processing.fs</file>
+        <file>glsl/post_processing.vs</file>
+        <file>textures/powerup_chaos.png</file>
+        <file>textures/powerup_confuse.png</file>
+        <file>textures/powerup_increase.png</file>
+        <file>textures/powerup_passthrough.png</file>
+        <file>textures/powerup_speed.png</file>
+        <file>textures/powerup_sticky.png</file>
+        <file>audio/bleep.mp3</file>
+        <file>audio/bleep.wav</file>
+        <file>audio/breakout.mp3</file>
+        <file>audio/powerup.wav</file>
+        <file>audio/solid.wav</file>
     </qresource>
 </RCC>

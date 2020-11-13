@@ -18,7 +18,7 @@ QString HMoveEventFilter::typeName()
     return "HMoveEventFilter";
 }
 
-bool HMoveEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
+bool HMoveEventFilter::handleMousePressEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
     if (event->button() != Qt::LeftButton)
@@ -31,7 +31,7 @@ bool HMoveEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
     return true;
 }
 
-bool HMoveEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
+bool HMoveEventFilter::handleMouseReleaseEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
     if (event->button() != Qt::LeftButton || !d->pressed)
@@ -41,7 +41,7 @@ bool HMoveEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
     return true;
 }
 
-bool HMoveEventFilter::mouseMoveEvent(QWidget *widget, QMouseEvent *event)
+bool HMoveEventFilter::handleMouseMoveEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HMoveEventFilter);
     if (!d->pressed)

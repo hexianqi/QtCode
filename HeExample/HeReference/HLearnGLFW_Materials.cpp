@@ -1,5 +1,6 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLShaderProgram.h"
+#include "HGeometryEngine.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
 
@@ -21,28 +22,11 @@ int HLearnGLFW::testMaterials()
 
     // build and compile our shader program
     auto materialShader = new HOpenGLShaderProgram(this);
-    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/materials.vs");
-    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/materials.fs");
-    auto lightSourceShader = new HOpenGLShaderProgram(this);
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
-    lightSourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
-
-    unsigned int VBO, VAOs[2];
-    glGenVertexArrays(2, VAOs);
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeNormalSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeNormalSize, d_ptr->cubeNormal.data());
-    glBindVertexArray(VAOs[0]);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)(d_ptr->cubePositionSize));
-    glEnableVertexAttribArray(1);
-    glBindVertexArray(VAOs[1]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_materials.vs");
+    materialShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_materials.fs");
+    auto sourceShader = new HOpenGLShaderProgram(this);
+    sourceShader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/light_source.vs");
+    sourceShader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_source.fs");
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -54,51 +38,44 @@ int HLearnGLFW::testMaterials()
         // render
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // light properties
+        // properties
         auto lightPos = this->lightPos();
         auto lightColor = this->lightColor();
-        auto diffuseColor = lightColor * 0.5f;      // decrease the influence
-        auto ambientColor = diffuseColor * 0.2f;    // low influence
-        // draw boxes
+        auto lightAmbient = lightColor * 0.1f;
+        auto lightDiffuse = lightColor * 0.5f;
         QMatrix4x4 projection, view, model;
         projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
+        // draw boxes
         materialShader->bind();
+        materialShader->setUniformValue("projection", projection);
+        materialShader->setUniformValue("view", view);
+        materialShader->setUniformValue("model", model);
+        materialShader->setUniformValue("viewPos", camera->position());
         materialShader->setUniformValue("light.position", lightPos);
-        materialShader->setUniformValue("light.ambient", ambientColor);
-        materialShader->setUniformValue("light.diffuse", diffuseColor);
+        materialShader->setUniformValue("light.ambient", lightAmbient);
+        materialShader->setUniformValue("light.diffuse", lightDiffuse);
         materialShader->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
         materialShader->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
         materialShader->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
         materialShader->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
         materialShader->setUniformValue("material.shininess", 32.0f);
-        materialShader->setUniformValue("viewPos", camera->position());
-        materialShader->setUniformValue("projection", projection);
-        materialShader->setUniformValue("view", view);
-        materialShader->setUniformValue("model", model);
-        glBindVertexArray(VAOs[0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
+        d_ptr->engine->renderCube(materialShader);
         // draw light source
         model.setToIdentity();
         model.translate(lightPos);
-        model.scale(0.2f);
-        lightSourceShader->bind();
-        lightSourceShader->setUniformValue("projection", projection);
-        lightSourceShader->setUniformValue("view", view);
-        lightSourceShader->setUniformValue("model", model);
-        lightSourceShader->setUniformValue("lightColor", lightColor);
-        glBindVertexArray(VAOs[1]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
+        model.scale(0.2);
+        sourceShader->bind();
+        sourceShader->setUniformValue("projection", projection);
+        sourceShader->setUniformValue("view", view);
+        sourceShader->setUniformValue("model", model);
+        sourceShader->setUniformValue("lightColor", lightColor);
+        d_ptr->engine->renderSphere(sourceShader);
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(d_ptr->window);
         glfwPollEvents();
     }
 
-    // optional: de-allocate all resources once they've outlived their purpose:
-    glDeleteVertexArrays(2, VAOs);
-    glDeleteBuffers(1, &VBO);
     // glfw: terminate, clearing all previously allocated GLFW resources.
     glfwTerminate();
     return 0;

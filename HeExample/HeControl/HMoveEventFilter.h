@@ -24,9 +24,9 @@ public:
     QString typeName() override;
 
 protected:
-    bool mousePressEvent(QWidget *, QMouseEvent *) override;
-    bool mouseReleaseEvent(QWidget *, QMouseEvent *) override;
-    bool mouseMoveEvent(QWidget *, QMouseEvent *) override;
+    bool handleMousePressEvent(QWidget *, QMouseEvent *) override;
+    bool handleMouseReleaseEvent(QWidget *, QMouseEvent *) override;
+    bool handleMouseMoveEvent(QWidget *, QMouseEvent *) override;
 };
 
 HE_CONTROL_END_NAMESPACE

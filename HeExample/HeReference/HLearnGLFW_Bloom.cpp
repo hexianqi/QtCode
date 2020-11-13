@@ -1,6 +1,7 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
+#include "HGeometryEngine.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
 
@@ -26,10 +27,10 @@ int HLearnGLFW::testBloom()
     shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/bloom.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
     shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/bloom.vs");
-    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/light_box.fs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/bloom_light.fs");
     auto shader3 = new HOpenGLShaderProgram(this);
-    shader3->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blur.vs");
-    shader3->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blur.fs");
+    shader3->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/gaussian_blur.vs");
+    shader3->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/gaussian_blur.fs");
     auto shader4 = new HOpenGLShaderProgram(this);
     shader4->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/bloom_final.vs");
     shader4->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/bloom_final.fs");
@@ -39,33 +40,17 @@ int HLearnGLFW::testBloom()
     auto texture2 = HOpenGLHelper::loadTexture(":/textures/container.png", true);
 
     // configure (floating point) framebuffers
-    // ---------------------------------------
-    unsigned int hdrFBO;
+    unsigned int hdrFBO, rboDepth, colorBuffers[2];
+    unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+    colorBuffers[0] = HOpenGLHelper::createTextureF(d_ptr->width, d_ptr->height);
+    colorBuffers[1] = HOpenGLHelper::createTextureF(d_ptr->width, d_ptr->height);
+    rboDepth = HOpenGLHelper::createRenderDepth(d_ptr->width, d_ptr->height);
     glGenFramebuffers(1, &hdrFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
-    // create 2 floating point color buffers (1 for normal rendering, other for brightness treshold values)
-    unsigned int colorBuffers[2];
-    glGenTextures(2, colorBuffers);
-    for (unsigned int i = 0; i < 2; i++)
-    {
-        glBindTexture(GL_TEXTURE_2D, colorBuffers[i]);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, d_ptr->width, d_ptr->height, 0, GL_RGBA, GL_FLOAT, nullptr);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // we clamp to the edge as the blur filter would otherwise sample repeated texture values!
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, colorBuffers[i], 0);
-    }
-    // create and attach depth buffer (renderbuffer)
-    unsigned int rboDepth;
-    glGenRenderbuffers(1, &rboDepth);
-    glBindRenderbuffer(GL_RENDERBUFFER, rboDepth);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, d_ptr->width, d_ptr->height);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorBuffers[0], 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, colorBuffers[1], 0);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboDepth);
-    // tell OpenGL which color attachments we'll use (of this framebuffer) for rendering
-    unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
     glDrawBuffers(2, attachments);
-    // finally check if framebuffer is complete
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         qDebug() << "Framebuffer not complete!";
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -77,13 +62,8 @@ int HLearnGLFW::testBloom()
     glGenTextures(2, pingpongColorbuffers);
     for (unsigned int i = 0; i < 2; i++)
     {
+        pingpongColorbuffers[i] = HOpenGLHelper::createTextureF(d_ptr->width, d_ptr->height);
         glBindFramebuffer(GL_FRAMEBUFFER, pingpongFBO[i]);
-        glBindTexture(GL_TEXTURE_2D, pingpongColorbuffers[i]);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, d_ptr->width, d_ptr->height, 0, GL_RGBA, GL_FLOAT, nullptr);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); // we clamp to the edge as the blur filter would otherwise sample repeated texture values!
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pingpongColorbuffers[i], 0);
         // also check if framebuffers are complete (no need for depth buffer)
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -103,9 +83,9 @@ int HLearnGLFW::testBloom()
 
     // shader configuration
     shader1->bind();
-    shader1->setUniformValue("diffuseTexture", 0);
+    shader1->setUniformValue("texture1", 0);
     shader3->bind();
-    shader3->setUniformValue("image", 0);
+    shader3->setUniformValue("texture1", 0);
     shader4->bind();
     shader4->setUniformValue("scene", 0);
     shader4->setUniformValue("bloomBlur", 1);
@@ -127,9 +107,9 @@ int HLearnGLFW::testBloom()
         view = camera->viewMatrix();
         glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        // create one large cube that acts as the floor
         model.translate(0.0f, -1.0f, 0.0f);
-        model.scale(12.5f, 0.5f, 12.5f);
+        model.scale(25.0f, 2.0f, 25.0f);
         shader1->bind();
         shader1->setUniformValue("projection", projection);
         shader1->setUniformValue("view", view);
@@ -142,40 +122,40 @@ int HLearnGLFW::testBloom()
         }
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
+        // then create multiple cubes as the scenery
         glBindTexture(GL_TEXTURE_2D, texture2);
         model.setToIdentity();
         model.translate(0.0f, 1.5f, 0.0);
         model.scale(0.5f);
         shader1->setUniformValue("model", model);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
         model.setToIdentity();
         model.translate(2.0f, 0.0f, 1.0);
         model.scale(0.5f);
         shader1->setUniformValue("model", model);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
         model.setToIdentity();
         model.translate(-1.0f, -1.0f, 2.0);
         model.rotate(60.0f, 1.0, 0.0, 1.0);
         shader1->setUniformValue("model", model);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
         model.setToIdentity();
         model.translate(0.0f, 2.7f, 4.0);
         model.rotate(23.0f, 1.0, 0.0, 1.0);
         model.scale(1.25);
         shader1->setUniformValue("model", model);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
         model.setToIdentity();
         model.translate(-2.0f, 1.0f, -3.0);
         model.rotate(124.0f, 1.0, 0.0, 1.0);
         shader1->setUniformValue("model", model);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
         model.setToIdentity();
         model.translate(-3.0f, 0.0f, 0.0);
         model.scale(0.5f);
         shader1->setUniformValue("model", model);
-        renderCube();
-
+        d_ptr->engine->renderCube(shader1);
         // finally show all the light sources as bright cubes
         shader2->bind();
         shader2->setUniformValue("projection", projection);
@@ -187,7 +167,7 @@ int HLearnGLFW::testBloom()
             model.scale(0.25f);
             shader2->setUniformValue("model", model);
             shader2->setUniformValue("lightColor", lightColors[i]);
-            renderCube();
+            d_ptr->engine->renderSphere(shader2);
         }
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -200,7 +180,7 @@ int HLearnGLFW::testBloom()
             glBindFramebuffer(GL_FRAMEBUFFER, pingpongFBO[horizontal]);
             shader3->setUniformValue("horizontal", horizontal);
             glBindTexture(GL_TEXTURE_2D, first_iteration ? colorBuffers[1] : pingpongColorbuffers[!horizontal]);  // bind texture of other framebuffer (or scene if first iteration)
-            renderQuad();
+            d_ptr->engine->renderScreen(shader3);
             horizontal = !horizontal;
             if (first_iteration)
                 first_iteration = false;
@@ -216,7 +196,7 @@ int HLearnGLFW::testBloom()
         shader4->bind();
         shader4->setUniformValue("bloom", d_ptr->bloom);
         shader4->setUniformValue("exposure", d_ptr->exposure);
-        renderQuad();
+        d_ptr->engine->renderScreen(shader4);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(d_ptr->window);

@@ -22,9 +22,9 @@ int HLearnGLFW::testGeometry()
 
     // build and compile our shader program
     auto shader = new HOpenGLShaderProgram(this);
-    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/geometry_shader.vs");
-    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/geometry_shader.fs");
-    shader->addShaderFromSourceFile(HOpenGLShader::Geometry,   ":/glsl/geometry_shader.gs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/geometry_house.vs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/geometry_house.fs");
+    shader->addShaderFromSourceFile(HOpenGLShader::Geometry,   ":/glsl/geometry_house.gs");
 
     float points[] = {
         -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // top-left
@@ -140,8 +140,8 @@ int HLearnGLFW::testGeometryNormals()
 
     // build and compile our shader program
     auto shader1 = new HOpenGLShaderProgram(this);
-    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/model.vs");
-    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/model.fs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/model_show.vs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/model_show.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
     shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/geometry_normal.vs");
     shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/geometry_normal.fs");

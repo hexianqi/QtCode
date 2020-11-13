@@ -38,9 +38,9 @@ public:
 public:
     void setPosition(const QVector3D &);
     void setUpVector(const QVector3D &);
-    void processKeyboard(Movement direction, float deltaTime);
-    void processMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
-    void processMouseScroll(float xoffset, float yoffset);
+    void handleKeyboard(Movement direction, float deltaTime);
+    void handleMouseMovement(float xpos, float ypos, bool constrainPitch = true);
+    void handleMouseScroll(float xoffset, float yoffset);
 
 protected:
     void updateVectors();

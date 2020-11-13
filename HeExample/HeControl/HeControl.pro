@@ -6,6 +6,8 @@
 
 QT          += widgets serialport network xml svg concurrent sql
 
+CONFIG      += resources_big
+
 TEMPLATE    = lib
 
 DESTDIR     = "../../Dest"
@@ -70,6 +72,7 @@ include(layout.pri)
 include(media.pri)
 include(multimedia.pri)
 include(network.pri)
+include(openGL.pri)
 include(service.pri)
 include(sql.pri)
 include(style.pri)

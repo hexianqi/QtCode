@@ -8,26 +8,26 @@ HE_REFERENCE_BEGIN_NAMESPACE
 void HOpenGLMeshPrivate::setup()
 {
     // create buffers/arrays
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-    glBindVertexArray(VAO);
+    glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
+    glGenBuffers(1, &ebo);
     // load data into vertex buffers
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
     // set the vertex attribute pointers
-    glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
-    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Normal));
-    glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(1);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoords));
-    glEnableVertexAttribArray(3);
+    glEnableVertexAttribArray(2);
     glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Tangent));
-    glEnableVertexAttribArray(4);
+    glEnableVertexAttribArray(3);
     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Bitangent));
+    glEnableVertexAttribArray(4);
     glBindVertexArray(0);
 }
 
@@ -43,11 +43,14 @@ HOpenGLMesh::HOpenGLMesh(QVector<Vertex> vertices, QVector<unsigned int> indices
 
 HOpenGLMesh::~HOpenGLMesh()
 {
+    glDeleteVertexArrays(1, &d_ptr->vao);
+    glDeleteBuffers(1, &d_ptr->vbo);
+    glDeleteBuffers(1, &d_ptr->ebo);
 }
 
 void HOpenGLMesh::setInstancedMatrix(int location)
 {
-    glBindVertexArray(d_ptr->VAO);
+    glBindVertexArray(d_ptr->vao);
     for (int i = 0; i < 4; i++)
     {
         glEnableVertexAttribArray(location + i);
@@ -86,7 +89,7 @@ void HOpenGLMesh::draw(HOpenGLShaderProgram *shader, int amount)
     }
 
     // draw mesh
-    glBindVertexArray(d_ptr->VAO);
+    glBindVertexArray(d_ptr->vao);
     if (amount > 0)
         glDrawElementsInstanced(GL_TRIANGLES, d_ptr->indices.size(), GL_UNSIGNED_INT, 0, amount);
     else

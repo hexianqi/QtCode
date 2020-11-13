@@ -7,6 +7,7 @@
 #include <QtCore/QDir>
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
+#include <QTemporaryFile>
 
 HE_REFERENCE_BEGIN_NAMESPACE
 
@@ -18,31 +19,29 @@ HOpenGLModel::HOpenGLModel(QObject *parent) :
 
 HOpenGLModel::~HOpenGLModel()
 {
+    clear();
 }
 
 bool HOpenGLModel::load(const QString &fileName)
 {
-    // read file via ASSIMP
+    clear();
     Assimp::Importer importer;
     auto scene = importer.ReadFile(fileName.toStdString(), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
-    // check for errors
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
         qDebug() << "ERROR::ASSIMP:: " << importer.GetErrorString();
         return false;
     }
-    // retrieve the directory path of the filepath
     d_ptr->directory = fileName.left(fileName.lastIndexOf(QDir::separator()));
-    // process ASSIMP's root node recursively
     processNode(scene->mRootNode, scene);
     return true;
 }
 
 void HOpenGLModel::setInstancedMatrix(int location, QVector<QMatrix4x4> mat)
 {
-    unsigned int VBO;
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    unsigned int vbo;
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
     // QMatrix4x4 带flagBits无法转换成GLSL中的mat4
     // glBufferData(GL_ARRAY_BUFFER, mat.size() * sizeof(QMatrix4x4), mat[0].constData(), GL_STATIC_DRAW);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 16 * mat.size(), nullptr, GL_STATIC_DRAW);
@@ -57,6 +56,12 @@ void HOpenGLModel::draw(HOpenGLShaderProgram *shade, int amount)
 {
     for (auto i : d_ptr->meshes)
         i->draw(shade, amount);
+}
+
+void HOpenGLModel::clear()
+{
+    qDeleteAll(d_ptr->meshes);
+    d_ptr->meshes.clear();
 }
 
 void HOpenGLModel::processNode(aiNode *node, const aiScene *scene)
@@ -92,11 +97,15 @@ HOpenGLMesh *HOpenGLModel::processMesh(aiMesh *mesh, const aiScene *scene)
             // a vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
             // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
             vertex.TexCoords = QVector2D(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
-            vertex.Tangent = QVector3D(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
-            vertex.Bitangent = QVector3D(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
+
         }
         else
             vertex.TexCoords = QVector2D(0.0f, 0.0f);
+        if (mesh->HasTangentsAndBitangents())
+        {
+            vertex.Tangent = QVector3D(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
+            vertex.Bitangent = QVector3D(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
+        }
         vertices << vertex;
     }
     // now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
@@ -134,16 +143,15 @@ QVector<Texture> HOpenGLModel::processMaterial(aiMaterial *mat, int type, const 
         aiString str;
         mat->GetTexture((aiTextureType)type, i, &str);
         QString name = str.C_Str();
-        if (!d_ptr->textureCache.contains(name))
+        if (!d_ptr->textures.contains(name))
         {
             auto fileName = d_ptr->directory + QDir::separator() + name;
             Texture texture;
             texture.Id = HOpenGLHelper::loadTexture(fileName);
             texture.Type = typeName;
-            texture.FileName = name;
-            d_ptr->textureCache.insert(name, texture);
+            d_ptr->textures.insert(name, texture);
         }
-        textures << d_ptr->textureCache.value(name);
+        textures << d_ptr->textures.value(name);
     }
     return textures;
 }

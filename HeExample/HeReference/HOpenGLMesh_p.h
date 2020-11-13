@@ -14,9 +14,9 @@ public:
     QVector<Vertex>       vertices;
     QVector<unsigned int> indices;
     QVector<Texture>      textures;
-    unsigned int VAO;
-    unsigned int VBO;
-    unsigned int EBO;
+    unsigned int vao;
+    unsigned int vbo;
+    unsigned int ebo;
 };
 
 HE_REFERENCE_END_NAMESPACE

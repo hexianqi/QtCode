@@ -105,11 +105,11 @@ int HLearnGLFW::testInstancing2()
 
     // build and compile our shader program
     auto shader1 = new HOpenGLShaderProgram(this);
-    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/asteroids.vs");
-    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/asteroids.fs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/model_instance.vs");
+    shader1->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/model_show.fs");
     auto shader2 = new HOpenGLShaderProgram(this);
-    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/planet.vs");
-    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/planet.fs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/model_show.vs");
+    shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/model_show.fs");
 
     // generate a large list of semi-random model transformation matrices
     int amount = 10000;

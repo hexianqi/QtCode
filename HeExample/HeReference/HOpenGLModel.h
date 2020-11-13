@@ -25,10 +25,11 @@ public:
 
 public:
     bool load(const QString &fileName);
-    void setInstancedMatrix(int location, QVector<QMatrix4x4> mat);
     void draw(HOpenGLShaderProgram *, int amount = 0);
+    void setInstancedMatrix(int location, QVector<QMatrix4x4> mat);
 
 protected:
+    void clear();
     void processNode(aiNode *node, const aiScene *scene);
     HOpenGLMesh *processMesh(aiMesh *mesh, const aiScene *scene);
     QVector<Texture> processMaterial(aiMaterial *mat, int type, const QString &typeName);

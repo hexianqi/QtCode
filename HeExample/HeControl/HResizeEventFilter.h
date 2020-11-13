@@ -30,12 +30,12 @@ protected:
     HResizeEventFilter(HResizeEventFilterPrivate &p, QObject *parent = nullptr);
 
 protected:
-    bool handleInternal(QObject *, QEvent *) override;
-    bool mousePressEvent(QWidget *, QMouseEvent *) override;
-    bool mouseReleaseEvent(QWidget *, QMouseEvent *) override;
-    bool mouseMoveEvent(QWidget *, QMouseEvent *) override;
-    bool resizeEvent(QWidget *, QEvent *);
-    bool hoverMoveEvent(QWidget *, QEvent *);
+    bool handleEvent(QObject *, QEvent *) override;
+    bool handleMousePressEvent(QWidget *, QMouseEvent *) override;
+    bool handleMouseReleaseEvent(QWidget *, QMouseEvent *) override;
+    bool handleMouseMoveEvent(QWidget *, QMouseEvent *) override;
+    bool handleResizeEvent(QWidget *, QEvent *);
+    bool handleHoverMoveEvent(QWidget *, QEvent *);
 };
 
 HE_CONTROL_END_NAMESPACE

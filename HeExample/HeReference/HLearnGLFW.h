@@ -36,8 +36,6 @@ public:
     int testTexture2();
     int testCoordinate();
     int testCoordinate2();
-    int testCamera();
-    int testCamera2();
     int testColor();
     int testLight();
     int testMaterials();
@@ -45,10 +43,11 @@ public:
     int testLightCasterDirectional();
     int testLightCasterPoint();
     int testLightCasterSpot();
-    int testLightMult();
+    int testLightCasterMult();
     int testLightBlinn();
     int testLightGamma();
     int testModel();
+    int testDepth();
     int testStencil();
     int testBlending();
     int testBlending2();
@@ -78,6 +77,7 @@ public:
     int testPBR4();
     int testPBR5();
     int testPBR6();
+    int testText();
 
 protected:
     void initGlfw();
@@ -88,12 +88,12 @@ protected:
     QVector3D lightPos();
     QVector3D lightColor();
 
-protected:
-    void renderScene(HOpenGLShaderProgram *shader, int type = 0);
-    void renderCube();
-    void renderQuad();
-    void renderQuad2();
-    void renderSphere();
+public:
+    unsigned int loadCubemapFromHdr(const QString &fileName, int width, int height, int magFilter = 0x2601);
+    unsigned int createCubemapIrradiance(unsigned int texture, int width, int height);
+    unsigned int createCubemapPrefilter(unsigned int texture, int width, int height);
+    unsigned int createCubemap(HOpenGLShaderProgram *, unsigned int target, unsigned int texture, int width, int height, int magFilter = 0x2601);
+    unsigned int createTextureBrdf(int width, int height);
 
 protected:
     QScopedPointer<HLearnGLFWPrivate> d_ptr;

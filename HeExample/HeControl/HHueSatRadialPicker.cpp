@@ -159,21 +159,25 @@ void HHueSatRadialPicker::buildPixmap()
 
     auto image1 = QImage(size(), QImage::Format_ARGB32);
     image1.fill(Qt::transparent);
-    QPainter painter1(&image1);
+    QPainter painter1;
+    painter1.begin(&image1);
     painter1.setRenderHint(QPainter::Antialiasing, true);
     painter1.setBrush(d_ptr->conicalGradient);
     painter1.setPen(palette().color(QPalette::Shadow));
     painter1.drawEllipse(center, radius, radius);
+    painter1.end();
 
     auto image2 = QImage(size(), QImage::Format_ARGB32);
     image2.fill(Qt::transparent);
-    QPainter painter2(&image2);
+    QPainter painter2;
+    painter2.begin(&image2);
     painter2.setRenderHint(QPainter::Antialiasing, true);
     painter2.setBrush(d_ptr->radialGradient);
     painter2.setPen(palette().color(QPalette::Shadow));
     painter2.drawEllipse(center, radius, radius);
     painter2.setCompositionMode(QPainter::CompositionMode_DestinationOver);
     painter2.drawImage(0, 0, image1);
+    painter2.end();
     d_ptr->pixmap = QPixmap::fromImage(image2);
 }
 

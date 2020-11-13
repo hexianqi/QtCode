@@ -21,18 +21,18 @@ bool HAbstractMouseEventFilter::addWatched(QObject *p)
     return HAbstractEventFilter::addWatched(p);
 }
 
-bool HAbstractMouseEventFilter::handleInternal(QObject *watched, QEvent *event)
+bool HAbstractMouseEventFilter::handleEvent(QObject *watched, QEvent *event)
 {
     auto w = dynamic_cast<QWidget *>(watched);
     auto e = dynamic_cast<QMouseEvent *>(event);
     if (w == nullptr || e == nullptr)
         return false;
     if (e->type() == QEvent::MouseButtonPress)
-        return mousePressEvent(w, e);
+        return handleMousePressEvent(w, e);
     if (e->type() == QEvent::MouseButtonRelease)
-        return mouseReleaseEvent(w, e);
+        return handleMouseReleaseEvent(w, e);
     if (e->type() == QEvent::MouseMove)
-        return mouseMoveEvent(w, e);
+        return handleMouseMoveEvent(w, e);
     return false;
 }
 

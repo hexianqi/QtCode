@@ -1,6 +1,7 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
+#include "HGeometryEngine.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
 
@@ -30,19 +31,13 @@ int HLearnGLFW::testHDR()
     shader2->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/hdr.fs");
 
     // configure floating point framebuffer
-    unsigned int FBO, RBO, colorBuffer;
-    glGenFramebuffers(1, &FBO);
-    glGenTextures(1, &colorBuffer);
-    glBindTexture(GL_TEXTURE_2D, colorBuffer);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, d_ptr->width, d_ptr->height, 0, GL_RGBA, GL_FLOAT, nullptr);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glGenRenderbuffers(1, &RBO);
-    glBindRenderbuffer(GL_RENDERBUFFER, RBO);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, d_ptr->width, d_ptr->height);
-    glBindFramebuffer(GL_FRAMEBUFFER, FBO);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorBuffer, 0);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, RBO);
+    auto texturebuffer = HOpenGLHelper::createTextureF(d_ptr->width, d_ptr->height);
+    auto rbo = HOpenGLHelper::createRenderDepth(d_ptr->width, d_ptr->height);
+    unsigned int fbo;
+    glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texturebuffer, 0);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo);
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         qDebug() << "Framebuffer not complete!";
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -62,9 +57,9 @@ int HLearnGLFW::testHDR()
     auto texture = HOpenGLHelper::loadTexture(":/textures/wood.png", true);
     // shader configuration
     shader1->bind();
-    shader1->setUniformValue("diffuseTexture", 0);
+    shader1->setUniformValue("texture1", 0);
     shader2->bind();
-    shader2->setUniformValue("hdrBuffer", 0);
+    shader2->setUniformValue("texture1", 0);
 
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
@@ -81,15 +76,16 @@ int HLearnGLFW::testHDR()
         QMatrix4x4 projection, view, model;
         projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
-
-        glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+        model.translate(0.0f, 0.0f, 25.0);
+        model.scale(5.0f, 5.0f, 55.0f);
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shader1->bind();
         shader1->setUniformValue("projection", projection);
         shader1->setUniformValue("view", view);
-        shader1->setUniformValue("viewPos", camera->position());
         shader1->setUniformValue("model", model);
-        shader1->setUniformValue("inverse_normals", true);
+        shader1->setUniformValue("viewPos", camera->position());
+        shader1->setUniformValue("inverseNormals", true);
         for (int i = 0; i < lightPositions.size(); i++)
         {
             shader1->setUniformValue(tr("lights[%1].Position").arg(i).toStdString().c_str(), lightPositions[i]);
@@ -97,7 +93,7 @@ int HLearnGLFW::testHDR()
         }
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
-        renderCube();
+        d_ptr->engine->renderCube(shader1);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
         // 2. now render floating point color buffer to 2D quad and tonemap HDR colors to default framebuffer's (clamped) color range
@@ -106,8 +102,8 @@ int HLearnGLFW::testHDR()
         shader2->setUniformValue("hdr", d_ptr->hdr);
         shader2->setUniformValue("exposure", d_ptr->exposure);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, colorBuffer);
-        renderQuad();
+        glBindTexture(GL_TEXTURE_2D, texturebuffer);
+        d_ptr->engine->renderScreen(shader2);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(d_ptr->window);

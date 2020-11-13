@@ -18,9 +18,12 @@ public:
     float yaw = -90.0f;
     float pitch = 0.0f;
     // camera options
-    float movementSpeed = 25.f;
-    float mouseSensitivity = 0.1f;
+    float moveSpeed = 25.f;
+    float sensitivity = 0.1f;
     float zoom = 45.0f;
+    bool firstMouse = true;
+    float lastX =  800.0f / 2.0;
+    float lastY =  600.0 / 2.0;
 };
 
 HE_REFERENCE_END_NAMESPACE

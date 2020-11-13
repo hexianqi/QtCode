@@ -28,10 +28,10 @@ protected:
     HAbstractMouseEventFilter(HAbstractMouseEventFilterPrivate &p, QObject *parent = nullptr);
 
 protected:
-    bool handleInternal(QObject *, QEvent *) override;
-    virtual bool mousePressEvent(QWidget *, QMouseEvent *) = 0;
-    virtual bool mouseReleaseEvent(QWidget *, QMouseEvent *) = 0;
-    virtual bool mouseMoveEvent(QWidget *, QMouseEvent *) = 0;
+    bool handleEvent(QObject *, QEvent *) override;
+    virtual bool handleMousePressEvent(QWidget *, QMouseEvent *) = 0;
+    virtual bool handleMouseReleaseEvent(QWidget *, QMouseEvent *) = 0;
+    virtual bool handleMouseMoveEvent(QWidget *, QMouseEvent *) = 0;
 };
 
 HE_CONTROL_END_NAMESPACE

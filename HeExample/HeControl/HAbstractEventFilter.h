@@ -34,7 +34,7 @@ protected:
 protected:
     virtual bool hasWatched(QObject *);
     virtual bool hasHandler(QEvent::Type t);
-    virtual bool handleInternal(QObject *, QEvent *) = 0;
+    virtual bool handleEvent(QObject *, QEvent *) = 0;
 
 protected:
     QScopedPointer<HAbstractEventFilterPrivate> d_ptr;

@@ -11,7 +11,7 @@ class HOpenGLModelPrivate
 public:
     QString directory;
     QVector<HOpenGLMesh *> meshes;
-    QHash<QString, Texture> textureCache;
+    QHash<QString, Texture> textures;
 };
 
 HE_REFERENCE_END_NAMESPACE

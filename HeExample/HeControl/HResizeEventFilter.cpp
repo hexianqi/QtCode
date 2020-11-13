@@ -32,19 +32,19 @@ bool HResizeEventFilter::addWatched(QObject *p)
     return true;
 }
 
-bool HResizeEventFilter::handleInternal(QObject *watched, QEvent *event)
+bool HResizeEventFilter::handleEvent(QObject *watched, QEvent *event)
 {
     auto w = qobject_cast<QWidget *>(watched);
     if (w == nullptr)
         return false;
     if (event->type() == QEvent::Resize)
-        return resizeEvent(w, event);
+        return handleResizeEvent(w, event);
     if (event->type() == QEvent::HoverMove)
-        return hoverMoveEvent(w, event);
-    return HAbstractMouseEventFilter::handleInternal(watched, event);
+        return handleHoverMoveEvent(w, event);
+    return HAbstractMouseEventFilter::handleEvent(watched, event);
 }
 
-bool HResizeEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
+bool HResizeEventFilter::handleMousePressEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HResizeEventFilter);
     if (event->button() != Qt::LeftButton)
@@ -74,7 +74,7 @@ bool HResizeEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
     return true;
 }
 
-bool HResizeEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
+bool HResizeEventFilter::handleMouseReleaseEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HResizeEventFilter);
     if (event->button() != Qt::LeftButton || !d->pressed)
@@ -92,12 +92,12 @@ bool HResizeEventFilter::mouseReleaseEvent(QWidget *widget, QMouseEvent *event)
     return true;
 }
 
-bool HResizeEventFilter::mouseMoveEvent(QWidget *, QMouseEvent *)
+bool HResizeEventFilter::handleMouseMoveEvent(QWidget *, QMouseEvent *)
 {
     return false;
 }
 
-bool HResizeEventFilter::resizeEvent(QWidget *widget, QEvent *)
+bool HResizeEventFilter::handleResizeEvent(QWidget *widget, QEvent *)
 {
     Q_D(HResizeEventFilter);
     auto width = widget->width();
@@ -113,7 +113,7 @@ bool HResizeEventFilter::resizeEvent(QWidget *widget, QEvent *)
     return false;
 }
 
-bool HResizeEventFilter::hoverMoveEvent(QWidget *widget, QEvent *event)
+bool HResizeEventFilter::handleHoverMoveEvent(QWidget *widget, QEvent *event)
 {
     Q_D(HResizeEventFilter);
     auto e = dynamic_cast<QHoverEvent *>(event);

@@ -29,7 +29,6 @@ struct Texture
 {
     unsigned int Id;
     QString Type;
-    QString FileName;
 };
 
 class HOpenGLShaderProgram;

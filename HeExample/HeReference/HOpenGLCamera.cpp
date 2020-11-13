@@ -53,9 +53,9 @@ void HOpenGLCamera::setUpVector(const QVector3D &value)
 }
 
 // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
-void HOpenGLCamera::processKeyboard(Movement direction, float deltaTime)
+void HOpenGLCamera::handleKeyboard(Movement direction, float deltaTime)
 {
-    auto velocity = d_ptr->movementSpeed * deltaTime;
+    auto velocity = d_ptr->moveSpeed * deltaTime;
     if (direction == FORWARD)
         d_ptr->position += d_ptr->front * velocity;
     if (direction == BACKWARD)
@@ -69,13 +69,21 @@ void HOpenGLCamera::processKeyboard(Movement direction, float deltaTime)
     // d_ptr->position.setY(0.0f); // <-- this one-liner keeps the user at the ground level (xz plane)
 }
 
-void HOpenGLCamera::processMouseMovement(float xoffset, float yoffset, bool constrainPitch)
+void HOpenGLCamera::handleMouseMovement(float xpos, float ypos, bool constrainPitch)
 {
-    xoffset *= d_ptr->mouseSensitivity;
-    yoffset *= d_ptr->mouseSensitivity;
-    d_ptr->yaw   += xoffset;
-    d_ptr->pitch += yoffset;
+    if (d_ptr->firstMouse)
+    {
+        d_ptr->lastX = xpos;
+        d_ptr->lastY = ypos;
+        d_ptr->firstMouse = false;
+    }
 
+    auto xoffset = xpos - d_ptr->lastX;
+    auto yoffset = d_ptr->lastY - ypos; // reversed since y-coordinates go from bottom to top
+    d_ptr->lastX = xpos;
+    d_ptr->lastY = ypos;
+    d_ptr->yaw   += xoffset * d_ptr->sensitivity;
+    d_ptr->pitch += yoffset * d_ptr->sensitivity;
     // make sure that when pitch is out of bounds, screen doesn't get flipped
     if (constrainPitch)
     {
@@ -88,13 +96,9 @@ void HOpenGLCamera::processMouseMovement(float xoffset, float yoffset, bool cons
     updateVectors();
 }
 
-void HOpenGLCamera::processMouseScroll(float /*xoffset*/, float yoffset)
+void HOpenGLCamera::handleMouseScroll(float /*xoffset*/, float yoffset)
 {
-    d_ptr->zoom -= (float)yoffset;
-    if (d_ptr->zoom < 1.0f)
-        d_ptr->zoom = 1.0f;
-    if (d_ptr->zoom > 45.0f)
-        d_ptr->zoom = 45.0f;
+    d_ptr->zoom = qBound(1.0f, d_ptr->zoom - yoffset, 45.0f);
 }
 
 void HOpenGLCamera::updateVectors()

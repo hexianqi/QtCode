@@ -8,7 +8,6 @@
 #include "HControlGlobal.h"
 
 class QDomElement;
-class QColor;
 
 HE_CONTROL_BEGIN_NAMESPACE
 

@@ -1,6 +1,7 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
+#include "HGeometryEngine.h"
 #include <QtGui/QMatrix4x4>
 #include <QtCore/QDebug>
 
@@ -24,55 +25,19 @@ int HLearnGLFW::testBlending()
     auto shader = new HOpenGLShaderProgram(this);
     shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blending.vs");
     shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blending.fs");
-
-    unsigned int VBOs[3], VAOs[3];
-    glGenVertexArrays(3, VAOs);
-    glGenBuffers(3, VBOs);
-
-    glBindVertexArray(VAOs[0]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
-    glEnableVertexAttribArray(1);
-    glBindVertexArray(VAOs[1]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->planePositionSize + d_ptr->planeTextureSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->planePositionSize, d_ptr->planePosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->planePositionSize, d_ptr->planeTextureSize, d_ptr->planeTexture.data());
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->planePositionSize));
-    glEnableVertexAttribArray(1);
-    glBindVertexArray(VAOs[2]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize + d_ptr->transparentTextureSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->transparentPositionSize, d_ptr->transparentPosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize, d_ptr->transparentTextureSize, d_ptr->transparentTexture.data());
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->transparentPositionSize));
-    glEnableVertexAttribArray(1);
-    glBindVertexArray(0);
-
+    // load and create a texture
+    auto texture1 = HOpenGLHelper::loadTexture(":/textures/marble.jpg");
+    auto texture2 = HOpenGLHelper::loadTexture(":/textures/metal.png");
+    auto texture3 = HOpenGLHelper::loadTexture(":/textures/grass.png");
+    // vegetation locations
     auto vegetation = QList<QVector3D>() << QVector3D(-1.5f, 0.0f, -0.48f)
                                          << QVector3D( 1.5f, 0.0f,  0.51f)
                                          << QVector3D( 0.0f, 0.0f,  0.7f)
                                          << QVector3D(-0.3f, 0.0f, -2.3f)
                                          << QVector3D( 0.5f, 0.0f, -0.6f);
-
-    // load and create a texture
-    auto texture1 = HOpenGLHelper::loadTexture(":/image/marble.jpg");
-    auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
-    auto texture3 = HOpenGLHelper::loadTexture(":/image/grass.png");
-
     // shader configuration
     shader->bind();
     shader->setUniformValue("texture1", 0);
-
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
     {
@@ -80,53 +45,45 @@ int HLearnGLFW::testBlending()
         perFrameTime();
         // input
         processInput(d_ptr->window);
-        // clear
+        // render
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // set uniforms
+        // properties
         QMatrix4x4 projection, view, model;
         projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
+        // draw cubes
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
         shader->bind();
         shader->setUniformValue("projection", projection);
         shader->setUniformValue("view", view);
-        // cubes
-        glBindVertexArray(VAOs[0]);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
         model.setToIdentity();
         model.translate(-1.0f, 0.0f, -1.0f);
         shader->setUniformValue("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        d_ptr->engine->renderCube(shader);
         model.setToIdentity();
         model.translate(2.0f, 0.0f, 0.0f);
         shader->setUniformValue("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        // floor
-        glBindVertexArray(VAOs[1]);
+        d_ptr->engine->renderCube(shader);
+        // draw floor
         glBindTexture(GL_TEXTURE_2D, texture2);
         model.setToIdentity();
         shader->setUniformValue("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-        // vegetation
-        glBindVertexArray(VAOs[2]);
+        d_ptr->engine->renderPlane(shader);
+        // draw vegetation
         glBindTexture(GL_TEXTURE_2D, texture3);
         for (int i = 0; i < vegetation.size(); i++)
         {
             model.setToIdentity();
             model.translate(vegetation.at(i));
             shader->setUniformValue("model", model);
-            glDrawArrays(GL_TRIANGLES, 0, 6);
+            d_ptr->engine->renderRect(shader);
         }
-
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(d_ptr->window);
         glfwPollEvents();
     }
-
-    // optional: de-allocate all resources once they've outlived their purpose:
-    glDeleteVertexArrays(3, VAOs);
-    glDeleteBuffers(3, VBOs);
     // glfw: terminate, clearing all previously allocated GLFW resources.
     glfwTerminate();
     return 0;
@@ -152,57 +109,19 @@ int HLearnGLFW::testBlending2()
     auto shader = new HOpenGLShaderProgram(this);
     shader->addShaderFromSourceFile(HOpenGLShader::Vertex,     ":/glsl/blending2.vs");
     shader->addShaderFromSourceFile(HOpenGLShader::Fragment,   ":/glsl/blending2.fs");
-
-    unsigned int VBOs[3], VAOs[3];
-    glGenVertexArrays(3, VAOs);
-    glGenBuffers(3, VBOs);
-
-    glBindVertexArray(VAOs[0]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize + d_ptr->cubeTextureSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->cubePositionSize, d_ptr->cubePosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->cubePositionSize, d_ptr->cubeTextureSize, d_ptr->cubeTexture.data());
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->cubePositionSize));
-    glEnableVertexAttribArray(1);
-
-    glBindVertexArray(VAOs[1]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->planePositionSize + d_ptr->planeTextureSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->planePositionSize, d_ptr->planePosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->planePositionSize, d_ptr->planeTextureSize, d_ptr->planeTexture.data());
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->planePositionSize));
-    glEnableVertexAttribArray(1);
-
-    glBindVertexArray(VAOs[2]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);
-    glBufferData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize + d_ptr->transparentTextureSize, nullptr, GL_STATIC_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, d_ptr->transparentPositionSize, d_ptr->transparentPosition.data());
-    glBufferSubData(GL_ARRAY_BUFFER, d_ptr->transparentPositionSize, d_ptr->transparentTextureSize, d_ptr->transparentTexture.data());
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(d_ptr->transparentPositionSize));
-    glEnableVertexAttribArray(1);
-    glBindVertexArray(0);
-
+    // load and create a texture
+    auto texture1 = HOpenGLHelper::loadTexture(":/textures/marble.jpg");
+    auto texture2 = HOpenGLHelper::loadTexture(":/textures/metal.png");
+    auto texture3 = HOpenGLHelper::loadTexture(":/textures/window.png");
+    // windows locations
     auto windows = QList<QVector3D>() << QVector3D(-1.5f, 0.0f, -0.48f)
                                       << QVector3D( 1.5f, 0.0f,  0.51f)
                                       << QVector3D( 0.0f, 0.0f,  0.7f)
                                       << QVector3D(-0.3f, 0.0f, -2.3f)
                                       << QVector3D( 0.5f, 0.0f, -0.6f);
-
-    // load and create a texture
-    auto texture1 = HOpenGLHelper::loadTexture(":/image/marble.jpg");
-    auto texture2 = HOpenGLHelper::loadTexture(":/image/metal.png");
-    auto texture3 = HOpenGLHelper::loadTexture(":/image/window.png");
-
     // shader configuration
     shader->bind();
     shader->setUniformValue("texture1", 0);
-
     // render loop
     while (!glfwWindowShouldClose(d_ptr->window))
     {
@@ -210,60 +129,51 @@ int HLearnGLFW::testBlending2()
         perFrameTime();
         // input
         processInput(d_ptr->window);
-        // sort the transparent windows before rendering
         std::map<float, QVector3D> sorted;
         for (int i = 0; i < windows.size(); i++)
         {
             auto distance = camera->position().distanceToPoint(windows.at(i));
             sorted[distance] = windows[i];
         }
-        // clear
+        // render
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // set uniforms
+        // properties
         QMatrix4x4 projection, view, model;
         projection.perspective(camera->zoom(), 1.0 * d_ptr->width / d_ptr->height, 0.1f, 100.0f);
         view = camera->viewMatrix();
+        // draw cubes
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
         shader->bind();
         shader->setUniformValue("projection", projection);
         shader->setUniformValue("view", view);
-        // cubes
-        glBindVertexArray(VAOs[0]);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
         model.setToIdentity();
         model.translate(-1.0f, 0.0f, -1.0f);
         shader->setUniformValue("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        d_ptr->engine->renderCube(shader);
         model.setToIdentity();
         model.translate(2.0f, 0.0f, 0.0f);
         shader->setUniformValue("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        // floor
-        glBindVertexArray(VAOs[1]);
+        d_ptr->engine->renderCube(shader);
+        // draw floor
         glBindTexture(GL_TEXTURE_2D, texture2);
         model.setToIdentity();
         shader->setUniformValue("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-        // windows
-        glBindVertexArray(VAOs[2]);
+        d_ptr->engine->renderPlane(shader);
+        // draw vegetation
         glBindTexture(GL_TEXTURE_2D, texture3);
         for (auto i = sorted.rbegin(); i != sorted.rend(); i++)
         {
             model.setToIdentity();
             model.translate(i->second);
             shader->setUniformValue("model", model);
-            glDrawArrays(GL_TRIANGLES, 0, 6);
+            d_ptr->engine->renderRect(shader);
         }
-
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(d_ptr->window);
         glfwPollEvents();
     }
-
-    // optional: de-allocate all resources once they've outlived their purpose:
-    glDeleteVertexArrays(3, VAOs);
-    glDeleteBuffers(3, VBOs);
     // glfw: terminate, clearing all previously allocated GLFW resources.
     glfwTerminate();
     return 0;

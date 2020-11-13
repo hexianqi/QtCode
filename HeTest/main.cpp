@@ -10,6 +10,8 @@
 #include "HeControl/HDemoWidget.h"
 #include "HeControl/HControlFactoryWidget.h"
 #include "HeControl/HControlDemoWidget.h"
+#include "HeControl/HOpenGLDemoWidget.h"
+#include "HeControl/HBreakoutWidget.h"
 #include <QtCore/QDebug>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
@@ -34,7 +36,7 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    return HTestOpenGL::testGlfw();
+//    return HTestOpenGL::testGlfw();
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
@@ -43,6 +45,11 @@ int main(int argc, char *argv[])
 //    cw.show();
 //    HControlDemoWidget dw;
 //    dw.show();
+
+    HBreakoutWidget ow;
+    ow.move(50, 300);
+    ow.resize(800, 600);
+    ow.show();
 
 //    MainWindow window;
 //    window.setCentralWidget(&videoWidget);

@@ -82,7 +82,7 @@ void HBackgroundEventFilter::setBackgroundStretched(bool b)
     updateBackground();
 }
 
-bool HBackgroundEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event)
+bool HBackgroundEventFilter::handleMousePressEvent(QWidget *widget, QMouseEvent *event)
 {
     Q_D(HBackgroundEventFilter);
     if (event->button() != Qt::LeftButton)
@@ -97,7 +97,7 @@ bool HBackgroundEventFilter::mousePressEvent(QWidget *widget, QMouseEvent *event
     return false;
 }
 
-bool HBackgroundEventFilter::mouseReleaseEvent(QWidget *, QMouseEvent *event)
+bool HBackgroundEventFilter::handleMouseReleaseEvent(QWidget *, QMouseEvent *event)
 {
     Q_D(HBackgroundEventFilter);
     if (event->button() != Qt::LeftButton || !d->pressed)
@@ -106,7 +106,7 @@ bool HBackgroundEventFilter::mouseReleaseEvent(QWidget *, QMouseEvent *event)
     return false;
 }
 
-bool HBackgroundEventFilter::mouseMoveEvent(QWidget *, QMouseEvent *)
+bool HBackgroundEventFilter::handleMouseMoveEvent(QWidget *, QMouseEvent *)
 {
     return false;
 }
