@@ -31,7 +31,7 @@ HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent) 
 
 void HAbstractBuilder::buildAll()
 {
-    openDeploy();
+    readSettings();
     buildFactory();
     buildConfigManage();
     buildTestData();
@@ -41,10 +41,10 @@ void HAbstractBuilder::buildAll()
     buildDatabase();
     buildMenu();
     buildTestWidget();
-    saveDeploy();
+    writeSettings();
 }
 
-void HAbstractBuilder::openDeploy()
+void HAbstractBuilder::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
@@ -54,7 +54,7 @@ void HAbstractBuilder::openDeploy()
     settings->endGroup();
 }
 
-void HAbstractBuilder::saveDeploy()
+void HAbstractBuilder::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);

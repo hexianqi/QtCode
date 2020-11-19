@@ -30,7 +30,6 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
     HTestWidget2000(*new HTestWidget2000DCPrivate, parent)
 {
-    readSettings();
     init();
 }
 
@@ -42,7 +41,6 @@ HTestWidget2000DC::HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *paren
 HTestWidget2000DC::~HTestWidget2000DC()
 {
     qDebug() << __func__;
-    writeSettings();
 }
 
 QString HTestWidget2000DC::typeName()
@@ -76,14 +74,6 @@ void HTestWidget2000DC::createMenu()
     Q_D(HTestWidget2000DC);
     HTestWidget2000::createMenu();
     d->menus.at(0)->insertAction(d->actionAdjust, d->actionProbe);
-}
-
-void HTestWidget2000DC::setProbe(bool b)
-{
-    Q_D(HTestWidget2000DC);
-    d->testData->setData("[使用光探头]", b);
-    d->energyWidget->setProgressBarVisible("[光采样比率]", b);
-    d->testSetWidget->handleOperation("<启用光挡位>", b);
 }
 
 void HTestWidget2000DC::readSettings()
@@ -126,6 +116,14 @@ void HTestWidget2000DC::writeSettings()
     settings->setValue("Temperature", d->testData->data("[环境温度]"));
     settings->setValue("Humidity", d->testData->data("[环境湿度]"));
     settings->endGroup();
+}
+
+void HTestWidget2000DC::setProbe(bool b)
+{
+    Q_D(HTestWidget2000DC);
+    d->testData->setData("[使用光探头]", b);
+    d->energyWidget->setProgressBarVisible("[光采样比率]", b);
+    d->testSetWidget->handleOperation("<启用光挡位>", b);
 }
 
 void HTestWidget2000DC::editProductInfo()

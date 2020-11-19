@@ -27,8 +27,8 @@ protected:
     HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual void openDeploy();
-    virtual void saveDeploy();
+    virtual void readSettings();
+    virtual void writeSettings();
     virtual void buildFactory();
     virtual void buildConfigManage() = 0;
     virtual void buildTestData() = 0;

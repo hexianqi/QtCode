@@ -8,6 +8,7 @@
 #include "HeData/ISpecCalibrate.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HCie1931Widget.h"
+#include "HeGui/HGuiHelper.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HSpecChromatismChartView.h"
 #include "HeGui/HResultTableWidget.h"
@@ -48,7 +49,6 @@ HTestWidget2000Private::HTestWidget2000Private()
 HTestWidget2000::HTestWidget2000(QWidget *parent) :
     HTestWidget2(*new HTestWidget2000Private, parent)
 {
-    readSettings();
     init();
 }
 
@@ -60,7 +60,6 @@ HTestWidget2000::HTestWidget2000(HTestWidget2000Private &p, QWidget *parent) :
 HTestWidget2000::~HTestWidget2000()
 {
     qDebug() << __func__;
-    writeSettings();
 }
 
 void HTestWidget2000::initialize(QVariantMap /*param*/)
@@ -101,8 +100,18 @@ void HTestWidget2000::clearResult()
 
 void HTestWidget2000::init()
 {
+    readSettings();
     HTestWidget2::init();
     resetGrade();
+}
+
+void HTestWidget2000::closeEvent(QCloseEvent *event)
+{
+    HTestWidget2::closeEvent(event);
+    Q_D(HTestWidget2000);
+    if (d->cieDialog != nullptr)
+        d->cieDialog->close();
+    writeSettings();
 }
 
 void HTestWidget2000::createAction()
@@ -163,6 +172,7 @@ void HTestWidget2000::createWidget()
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HTestWidget2000::handleStateChanged);
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget2000::handleResultChanged);
+    connect(d->cieWidget, &HCie1931Widget::mouseDoubleClicked, this, &HTestWidget2000::openCieWidget);
 }
 
 void HTestWidget2000::createMenu()
@@ -193,6 +203,62 @@ void HTestWidget2000::createToolBar()
     d->toolBars << toolBar1 << toolBar2;
 }
 
+void HTestWidget2000::readSettings()
+{
+    Q_D(HTestWidget2000);
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("TestWidget");
+    d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
+    d->testData->setData("[使用调整]", settings->value("Adjust", false));
+    d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
+    settings->endGroup();
+}
+
+void HTestWidget2000::writeSettings()
+{
+    Q_D(HTestWidget2000);
+    if (!d->modified)
+        return;
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("TestWidget");
+    settings->setValue("TableSelected", d->resultWidget->selected());
+    settings->setValue("Adjust", d->testData->data("[使用调整]"));
+    settings->setValue("Offset", d->testData->data("[CCD偏差]"));
+    settings->endGroup();
+    d->modified = false;
+}
+
+void HTestWidget2000::postProcess()
+{
+    Q_D(HTestWidget2000);
+    d->configManage->postProcess(d->testData, d->displays);
+    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+}
+
+void HTestWidget2000::refreshWidget(bool append)
+{
+    Q_D(HTestWidget2000);
+    auto point = d->testData->data("[色坐标]").toPointF();
+    d->energyWidget->refreshWidget();
+    d->detailWidget->refreshWidget();
+    d->chromatismWidget->refreshWidget();
+    d->resultWidget->refreshResult(append);
+    if (append)
+    {
+        d->cieWidget->addPoint(point);
+        if (d->cieWidget2 != nullptr)
+            d->cieWidget2->addPoint(point);
+    }
+    else
+    {
+        d->cieWidget->setPointFocus(point);
+        if (d->cieWidget2 != nullptr)
+            d->cieWidget2->setPointFocus(point);
+    }
+}
+
 void HTestWidget2000::handleStateChanged(bool b)
 {
     Q_D(HTestWidget2000);
@@ -212,25 +278,15 @@ void HTestWidget2000::handleResultChanged(HActionType, bool append)
     saveResult(append);
 }
 
-void HTestWidget2000::postProcess()
+void HTestWidget2000::openCieWidget()
 {
     Q_D(HTestWidget2000);
-    d->configManage->postProcess(d->testData, d->displays);
-    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
-}
-
-void HTestWidget2000::refreshWidget(bool append)
-{
-    Q_D(HTestWidget2000);
-    auto point = d->testData->data("[色坐标]").toPointF();
-    d->energyWidget->refreshWidget();
-    d->detailWidget->refreshWidget();
-    d->chromatismWidget->refreshWidget();
-    d->resultWidget->refreshResult(append);
-    if (append)
-        d->cieWidget->addPoint(point);
-    else
-        d->cieWidget->setPointFocus(point);
+    if (d->cieWidget2 == nullptr)
+    {
+        d->cieWidget2 = new HCie1931Widget;
+        d->cieDialog = HGuiHelper::decoratorInDialog(d->cieWidget2, this);
+    }
+    d->cieDialog->show();
 }
 
 void HTestWidget2000::resetGrade()
@@ -312,31 +368,4 @@ void HTestWidget2000::exportCurve()
         s << QString::number(v, 'f', 1) << endl;
     file.close();
     QMessageBox::information(this, "", tr("\n导出成功！\n"));
-}
-
-void HTestWidget2000::readSettings()
-{
-    Q_D(HTestWidget2000);
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup("TestWidget");
-    d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
-    d->testData->setData("[使用调整]", settings->value("Adjust", false));
-    d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
-    settings->endGroup();
-}
-
-void HTestWidget2000::writeSettings()
-{
-    Q_D(HTestWidget2000);
-    if (!d->modified)
-        return;
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup("TestWidget");
-    settings->setValue("TableSelected", d->resultWidget->selected());
-    settings->setValue("Adjust", d->testData->data("[使用调整]"));
-    settings->setValue("Offset", d->testData->data("[CCD偏差]"));
-    settings->endGroup();
-    d->modified = false;
 }

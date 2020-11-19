@@ -29,23 +29,25 @@ protected:
 
 protected:
     void init() override;
+    void closeEvent(QCloseEvent *) override;
     void createAction() override;
     void createWidget() override;
     void createMenu() override;
     void createToolBar() override;
 
 protected:
-    void handleStateChanged(bool b);
-    void handleResultChanged(HActionType, bool);
+    virtual void readSettings();
+    virtual void writeSettings();
     virtual void postProcess();
     virtual void refreshWidget(bool append);
+    void handleStateChanged(bool b);
+    void handleResultChanged(HActionType, bool);
+    void openCieWidget();
     void resetGrade();
     void removeResult2();
     void exportDatabase2();
     void importCurve();
     void exportCurve();
-    void readSettings();
-    void writeSettings();
 };
 
 #endif // HTESTWIDGET2000_H

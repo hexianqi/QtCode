@@ -27,8 +27,10 @@ public:
     HSpecEnergyWidget *energyWidget = nullptr;
     HSpecChromatismChartView *chromatismWidget = nullptr;
     HCie1931Widget *cieWidget = nullptr;
+    HCie1931Widget *cieWidget2 = nullptr;
     HResultTableWidget *resultWidget = nullptr;
     ITestDetailWidget *detailWidget = nullptr;
+    QDialog *cieDialog = nullptr;
 
 public:
     QAction *actionRemove = nullptr;

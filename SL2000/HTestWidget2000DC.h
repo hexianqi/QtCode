@@ -28,9 +28,9 @@ protected:
     void init() override;
     void createAction() override;
     void createMenu() override;
+    void readSettings() override;
+    void writeSettings() override;
     void setProbe(bool b);
-    void readSettings();
-    void writeSettings();
     void editProductInfo();
 };
 
