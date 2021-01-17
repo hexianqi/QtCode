@@ -43,12 +43,12 @@ void HTestSetWidget2000::handleAction(HActionType action)
         emit resultChanged(action, append);
         if (!d->testState)
             break;
-        if (append)
+        if (append || (d->testMode == 2 && d->testData->data("[光谱采样溢出状态]").toInt() == 0))
         {
             setTestState(false);
             break;
         }
-        d->model->addAction(ACT_GET_SPECTRUM, 100);
+        d->model->addAction(ACT_GET_SPECTRUM, 10);
         break;
     default:
         break;
@@ -108,5 +108,5 @@ void HTestSetWidget2000::init()
     Q_D(HTestSetWidget2000);
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_1);
     ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  捕获测试  "));
 }
