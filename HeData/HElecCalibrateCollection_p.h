@@ -18,7 +18,7 @@ public:
 
 public:
     IDataFactory *factory = nullptr;
-    IFileStream *fileStream = nullptr;
+    IDataStream *dataStream = nullptr;
 };
 
 HE_DATA_END_NAMESPACE

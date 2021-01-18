@@ -1,5 +1,7 @@
 #include "HGuiHelper.h"
 #include "ITestWidget.h"
+#include <QtWidgets/QLayout>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 
@@ -16,6 +18,16 @@ QMainWindow *HGuiHelper::decoratorInMainWindow(ITestWidget *widget, QWidget *par
         main->addToolBar(toolBar);
     widget->start();
     return main;
+}
+
+QDialog *HGuiHelper::decoratorInDialog(QWidget *widget, QWidget *parent)
+{
+    auto dlg = new QDialog(parent);
+    auto layout = new QGridLayout(dlg);
+    layout->addWidget(widget);
+    dlg->setWindowTitle(widget->windowTitle());
+    dlg->setWindowIcon(widget->windowIcon());
+    return dlg;
 }
 
 HE_GUI_END_NAMESPACE

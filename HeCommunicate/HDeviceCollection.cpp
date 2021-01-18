@@ -45,7 +45,7 @@ bool HDeviceCollection::isSupport(HActionType action)
     Q_D(HDeviceCollection);
     if (d->additionals.contains(action))
         return true;
-    for (auto v : d->datas)
+    for (auto v : d->items)
     {
         if (v->isSupport(action))
             return true;

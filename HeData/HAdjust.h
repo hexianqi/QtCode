@@ -24,7 +24,9 @@ public:
 
 public:
     void readContent(QDataStream &) override;
+    void readContent(Worksheet *) override;
     void writeContent(QDataStream &) override;
+    void writeContent(Worksheet *) override;
 
 public:
     void restoreDefault() override;

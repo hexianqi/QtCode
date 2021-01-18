@@ -16,13 +16,15 @@ class ITestDetailWidget;
 class HSpecCalibrateWidgetPrivate : public HAbstractTestWidgetPrivate
 {
 public:
+    HSpecCalibrateWidgetPrivate();
+
+public:
     ISpecCalibrate *calibrate = nullptr;
     HSpecSampleChartView *sampleView = nullptr;
     HSpecFittingChartView *ccdView = nullptr;
     HSpecEnergyWidget *energyWidget = nullptr;
     HSpecPelsWaveWidget *pelsWaveWidget = nullptr;
     HSpecFittingWidget *fittingWidget = nullptr;
-    ITestSetWidget *testSetWidget = nullptr;
     ITestDetailWidget *detailWidget = nullptr;
 
 public:

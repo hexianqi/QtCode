@@ -8,6 +8,7 @@
 #include "HeData/ISpecCalibrate.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HCie1931Widget.h"
+#include "HeGui/HGuiHelper.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HSpecChromatismChartView.h"
 #include "HeGui/HResultTableWidget.h"
@@ -34,7 +35,7 @@ HTestWidget2000Private::HTestWidget2000Private()
                              << "[色温]" << "[色纯度]"
                              << "[色坐标]" << ("[色坐标uvp]") << "[Duv]"
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                             << "[显色指数]" <<"[显色指数Rx]";
+                             << "[显色指数Ra]" <<"[显色指数Rx]";
 
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     energyWidget = new HSpecEnergyWidget;
@@ -48,7 +49,6 @@ HTestWidget2000Private::HTestWidget2000Private()
 HTestWidget2000::HTestWidget2000(QWidget *parent) :
     HTestWidget2(*new HTestWidget2000Private, parent)
 {
-    readSettings();
     init();
 }
 
@@ -60,7 +60,6 @@ HTestWidget2000::HTestWidget2000(HTestWidget2000Private &p, QWidget *parent) :
 HTestWidget2000::~HTestWidget2000()
 {
     qDebug() << __func__;
-    writeSettings();
 }
 
 void HTestWidget2000::initialize(QVariantMap /*param*/)
@@ -71,12 +70,6 @@ void HTestWidget2000::initialize(QVariantMap /*param*/)
 QString HTestWidget2000::typeName()
 {
     return "HTestWidget2000";
-}
-
-bool HTestWidget2000::setTest(bool b)
-{
-    Q_D(HTestWidget2000);
-    return d->testSetWidget->setTestState(b);
 }
 
 void HTestWidget2000::handleAction(HActionType action)
@@ -94,12 +87,7 @@ void HTestWidget2000::handleAction(HActionType action)
             resetGrade();
         return;
     }
-    if (action == ACT_GET_SPECTRUM)
-    {
-        postProcess();
-        refreshWidget();
-    }
-    d->testSetWidget->handleAction(action);
+    HAbstractTestWidget::handleAction(action);
 }
 
 void HTestWidget2000::clearResult()
@@ -110,23 +98,32 @@ void HTestWidget2000::clearResult()
     d->resultWidget->clearResult();
 }
 
-void HTestWidget2000::exportDatabase2()
-{
-    Q_D(HTestWidget2000);
-    for (const auto &range : d->resultWidget->selectedRanges())
-        exportDatabase(range.topRow(), range.rowCount());
-}
-
 void HTestWidget2000::init()
 {
+    readSettings();
     HTestWidget2::init();
     resetGrade();
+}
+
+void HTestWidget2000::closeEvent(QCloseEvent *event)
+{
+    HTestWidget2::closeEvent(event);
+    Q_D(HTestWidget2000);
+    if (d->cieDialog != nullptr)
+        d->cieDialog->close();
+    writeSettings();
 }
 
 void HTestWidget2000::createAction()
 {
     Q_D(HTestWidget2000);
     HTestWidget2::createAction();
+    d->actionRemove = new QAction(tr("删除记录(&R)"), this);
+    d->actionRemove->setIcon(QIcon(":/image/Remove.png"));
+    d->actionRemove->setIconText(tr("删除记录"));
+    d->actionExportDatabase2 = new QAction(tr("保存数据库(&D)"), this);
+    d->actionExportDatabase2->setIcon(QIcon(":/image/DbComit.png"));
+    d->actionExportDatabase2->setIconText(tr("保存数据库"));
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
@@ -134,6 +131,8 @@ void HTestWidget2000::createAction()
     d->actionGetRam = new QAction(tr("从设备读取数据(&G)"), this);
     d->actionImportCurve = new QAction(tr("导入标准曲线(&I)"), this);
     d->actionExportCurve = new QAction(tr("导出标准曲线(&E)"), this);
+    connect(d->actionRemove, &QAction::triggered, this, &HTestWidget2000::removeResult2);
+    connect(d->actionExportDatabase2, &QAction::triggered, this, &HTestWidget2000::exportDatabase2);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
     connect(d->actionSetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_SET_RAM); });
     connect(d->actionGetRam, &QAction::triggered, this, [=]{ d->model->addAction(ACT_GET_RAM); });
@@ -152,6 +151,7 @@ void HTestWidget2000::createWidget()
     auto splitter2 = new QSplitter(Qt::Vertical);
     d->resultWidget->setDisplay(d->displays);
     d->resultWidget->setSelected(d->tableSelecteds);
+    d->resultWidget->addAction(d->actionRemove);
     d->resultWidget->addAction(d->actionClear);
     d->resultWidget->addAction(d->actionExportDatabase2);
     tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
@@ -171,6 +171,8 @@ void HTestWidget2000::createWidget()
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HTestWidget2000::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget2000::handleResultChanged);
+    connect(d->cieWidget, &HCie1931Widget::mouseDoubleClicked, this, &HTestWidget2000::openCieWidget);
 }
 
 void HTestWidget2000::createMenu()
@@ -201,6 +203,62 @@ void HTestWidget2000::createToolBar()
     d->toolBars << toolBar1 << toolBar2;
 }
 
+void HTestWidget2000::readSettings()
+{
+    Q_D(HTestWidget2000);
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("TestWidget");
+    d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
+    d->testData->setData("[使用调整]", settings->value("Adjust", false));
+    d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
+    settings->endGroup();
+}
+
+void HTestWidget2000::writeSettings()
+{
+    Q_D(HTestWidget2000);
+    if (!d->modified)
+        return;
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("TestWidget");
+    settings->setValue("TableSelected", d->resultWidget->selected());
+    settings->setValue("Adjust", d->testData->data("[使用调整]"));
+    settings->setValue("Offset", d->testData->data("[CCD偏差]"));
+    settings->endGroup();
+    d->modified = false;
+}
+
+void HTestWidget2000::postProcess()
+{
+    Q_D(HTestWidget2000);
+    d->configManage->postProcess(d->testData, d->displays);
+    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+}
+
+void HTestWidget2000::refreshWidget(bool append)
+{
+    Q_D(HTestWidget2000);
+    auto point = d->testData->data("[色坐标]").toPointF();
+    d->energyWidget->refreshWidget();
+    d->detailWidget->refreshWidget();
+    d->chromatismWidget->refreshWidget();
+    d->resultWidget->refreshResult(append);
+    if (append)
+    {
+        d->cieWidget->addPoint(point);
+        if (d->cieWidget2 != nullptr)
+            d->cieWidget2->addPoint(point);
+    }
+    else
+    {
+        d->cieWidget->setPointFocus(point);
+        if (d->cieWidget2 != nullptr)
+            d->cieWidget2->setPointFocus(point);
+    }
+}
+
 void HTestWidget2000::handleStateChanged(bool b)
 {
     Q_D(HTestWidget2000);
@@ -213,6 +271,24 @@ void HTestWidget2000::handleStateChanged(bool b)
     d->actionExportDatabase2->setEnabled(!b);
 }
 
+void HTestWidget2000::handleResultChanged(HActionType, bool append)
+{
+    postProcess();
+    refreshWidget(append);
+    saveResult(append);
+}
+
+void HTestWidget2000::openCieWidget()
+{
+    Q_D(HTestWidget2000);
+    if (d->cieWidget2 == nullptr)
+    {
+        d->cieWidget2 = new HCie1931Widget;
+        d->cieDialog = HGuiHelper::decoratorInDialog(d->cieWidget2, this);
+    }
+    d->cieDialog->show();
+}
+
 void HTestWidget2000::resetGrade()
 {
     Q_D(HTestWidget2000);
@@ -220,28 +296,22 @@ void HTestWidget2000::resetGrade()
     d->cieWidget->setGrade(p);
 }
 
-void HTestWidget2000::refreshWidget()
+void HTestWidget2000::removeResult2()
 {
     Q_D(HTestWidget2000);
-    auto mode = d->testSetWidget->testMode();
-    auto append = mode == 0 || mode >= 3;
-    auto point = d->testData->data("[色坐标]").toPointF();
-    saveRecord(append);
-    d->energyWidget->refreshWidget();
-    d->detailWidget->refreshWidget();
-    d->chromatismWidget->refreshWidget();
-    d->resultWidget->refreshResult(0, append);
-    if (append)
-        d->cieWidget->addPoint(point);
-    else
-        d->cieWidget->setPointFocus(point);
+    auto ranges = d->resultWidget->selectedRanges();
+    for (const auto &range : ranges)
+    {
+        removeResult(range.topRow(), range.rowCount());
+        d->resultWidget->removeRows(range.topRow(), range.rowCount());
+    }
 }
 
-void HTestWidget2000::postProcess()
+void HTestWidget2000::exportDatabase2()
 {
     Q_D(HTestWidget2000);
-    d->configManage->postProcess(d->testData, d->displays);
-    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+    for (const auto &range : d->resultWidget->selectedRanges())
+        exportResult(range.topRow(), range.rowCount());
 }
 
 void HTestWidget2000::importCurve()
@@ -298,31 +368,4 @@ void HTestWidget2000::exportCurve()
         s << QString::number(v, 'f', 1) << endl;
     file.close();
     QMessageBox::information(this, "", tr("\n导出成功！\n"));
-}
-
-void HTestWidget2000::readSettings()
-{
-    Q_D(HTestWidget2000);
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup("TestWidget");
-    d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
-    d->testData->setData("[使用调整]", settings->value("Adjust", false));
-    d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
-    settings->endGroup();
-}
-
-void HTestWidget2000::writeSettings()
-{
-    Q_D(HTestWidget2000);
-    if (!d->modified)
-        return;
-    auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->beginGroup("TestWidget");
-    settings->setValue("TableSelected", d->resultWidget->selected());
-    settings->setValue("Adjust", d->testData->data("[使用调整]"));
-    settings->setValue("Offset", d->testData->data("[CCD偏差]"));
-    settings->endGroup();
-    d->modified = false;
 }

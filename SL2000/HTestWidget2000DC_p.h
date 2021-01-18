@@ -11,6 +11,7 @@ public:
 
 public:
     QAction *actionProbe = nullptr;
+    QAction *actionProductInfo = nullptr;
 };
 
 #endif // HTESTWIDGET2000DC_P_H

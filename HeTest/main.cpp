@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+﻿#include "MainWindow.h"
 #include "HTestAlgorithm.h"
 #include "HTestChart.h"
 #include "HTestData.h"
@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
-
-//    return HTestOpenGL::testGlfw();
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;

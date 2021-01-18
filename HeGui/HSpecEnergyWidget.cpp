@@ -5,6 +5,7 @@
 #include "HeData/ITestData.h"
 #include "HePlugin/HProgressBar.h"
 #include "HePlugin/HSpecDiagramWidget.h"
+#include <QtCore/QSettings>
 #include <QtGui/QIcon>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QGridLayout>
@@ -14,7 +15,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 HSpecEnergyWidgetPrivate::HSpecEnergyWidgetPrivate()
 {
-    toolTipTypes = QStringList() << "[峰值波长]" << "[主波长]" << "[色温]" << "[色坐标]" << "[显色指数]";
+    toolTipTypes = QStringList() << "[峰值波长]" << "[主波长]" << "[色温]" << "[色坐标]" << "[显色指数Ra]";
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
@@ -34,6 +35,7 @@ HSpecEnergyWidget::HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *paren
 
 HSpecEnergyWidget::~HSpecEnergyWidget()
 {
+    writeSettings();
     qDebug() << __func__;
 }
 
@@ -64,19 +66,30 @@ void HSpecEnergyWidget::refreshWidget()
 
 void HSpecEnergyWidget::addProgressBar(const QString &type)
 {
-    auto bar = new HProgressBar;
+    if (d_ptr->progressBars.contains(type))
+        return;
+    auto bar = new HProgressBar(this);
     bar->setOrientation(Qt::Vertical);
     bar->setRange(0, 100);
     bar->setValue(0);
     bar->setToolTip(HCore::toCaption(type));
     bar->setProperty("showType", type);
-    d_ptr->progressBars.append(bar);
+    d_ptr->progressBars.insert(type, bar);
     d_ptr->progressLayout->addWidget(bar);
+}
+
+void HSpecEnergyWidget::setProgressBarVisible(const QString &type, bool b)
+{
+    if (!d_ptr->progressBars.contains(type))
+        return;
+    d_ptr->progressBars.value(type)->setVisible(b);
 }
 
 void HSpecEnergyWidget::init()
 {
+    readSettings();
     d_ptr->specWidget = new HSpecDiagramWidget;
+    d_ptr->specWidget->setDrawRibbon(d_ptr->ribbon);
     auto margins = d_ptr->specWidget->margins();
     d_ptr->progressLayout = new QHBoxLayout;
     d_ptr->progressLayout->setSpacing(2);
@@ -91,6 +104,24 @@ void HSpecEnergyWidget::init()
     setAutoFillBackground(true);
     setWindowIcon(QIcon(":/image/Spectrum.png"));
     setWindowTitle(tr("相对光谱能量分布"));
+}
+
+void HSpecEnergyWidget::readSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("SpecEnergyWidget");
+    d_ptr->ribbon = settings->value("Ribbon", true).toBool();
+    settings->endGroup();
+}
+
+void HSpecEnergyWidget::writeSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("SpecEnergyWidget");
+    settings->setValue("Ribbon", d_ptr->ribbon);
+    settings->endGroup();
 }
 
 HE_GUI_END_NAMESPACE

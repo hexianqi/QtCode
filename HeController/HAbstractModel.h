@@ -24,6 +24,7 @@ public:
 public:
     void start() override;
     void addAction(HActionType action, ulong delay = 0) override;
+    void syncDeviceWhole() override;
 
 public:
     bool openFile() override;

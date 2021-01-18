@@ -83,7 +83,7 @@ void HListCollectionDialog::handleSourceChanged(const QStringList &names, const 
 void HListCollectionDialog::init()
 {
     d_ptr->model = new QStringListModel(this);
-    ui->listView->setStyleSheet("QListView::item { height:30px }");
+    ui->listView->setStyleSheet("QListView::item { height:25px }");
     ui->listView->setModel(d_ptr->model);
     ui->splitter->setStretchFactor(1, 10);
     connect(ui->listView->selectionModel(), &QItemSelectionModel::currentChanged, this, &HListCollectionDialog::setCurrentIndex);

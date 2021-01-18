@@ -13,7 +13,7 @@ template <typename T>
 class HCollectionPrivate
 {
 public:
-    QMap<QString, T *> datas;
+    QMap<QString, T *> items;
 };
 
 template <typename T>
@@ -78,49 +78,49 @@ void HCollection<T>::initialize(QVariantMap param)
 template <typename T>
 void HCollection<T>::clear()
 {
-    d_ptr->datas.clear();
+    d_ptr->items.clear();
 }
 
 template <typename T>
 bool HCollection<T>::contains(QString key)
 {
-    return d_ptr->datas.contains(key);
+    return d_ptr->items.contains(key);
 }
 
 template <typename T>
 int HCollection<T>::size()
 {
-    return d_ptr->datas.size();
+    return d_ptr->items.size();
 }
 
 template<typename T>
 bool HCollection<T>::isEmpty()
 {
-    return d_ptr->datas.isEmpty();
+    return d_ptr->items.isEmpty();
 }
 
 template <typename T>
 void HCollection<T>::insert(QString key, T *value)
 {
-    d_ptr->datas.insert(key, value);
+    d_ptr->items.insert(key, value);
 }
 
 template <typename T>
 int HCollection<T>::remove(QString key)
 {
-    return d_ptr->datas.remove(key);
+    return d_ptr->items.remove(key);
 }
 
 template <typename T>
 T *HCollection<T>::first()
 {
-    return d_ptr->datas.first();
+    return d_ptr->items.first();
 }
 
 template <typename T>
 T *HCollection<T>::value(QString key)
 {
-    return d_ptr->datas.value(key, nullptr);
+    return d_ptr->items.value(key, nullptr);
 }
 
 template <typename T>
@@ -140,13 +140,13 @@ T *HCollection<T>::itemAt(int index)
 template <typename T>
 QStringList HCollection<T>::keys()
 {
-    return d_ptr->datas.keys();
+    return d_ptr->items.keys();
 }
 
 template <typename T>
 QList<T *> HCollection<T>::values()
 {
-    return d_ptr->datas.values();
+    return d_ptr->items.values();
 }
 
 HE_CORE_END_NAMESPACE

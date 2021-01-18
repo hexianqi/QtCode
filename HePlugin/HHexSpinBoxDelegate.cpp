@@ -20,7 +20,6 @@ QWidget *HHexSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionVi
     auto type = toType(index);
     auto editor = new HHexSpinBox(parent);
     HPluginHelper::initWidget(type, editor);
-    connect(editor, &HHexSpinBox::editingFinished, this, &HStyledItemDelegate::editingFinished);
     return editor;
 }
 

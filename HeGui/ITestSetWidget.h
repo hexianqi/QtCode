@@ -24,8 +24,11 @@ public:
 signals:
     void stateChanged(bool b);
     void modeChanged(int value);
+    void resultChanged(HActionType, bool);
 
 public:
+    // 处理操作
+    virtual QVariant handleOperation(QString type, QVariant value = QVariant()) = 0;
     // 处理动作
     virtual void handleAction(HActionType action) = 0;
     // 设置测试状态

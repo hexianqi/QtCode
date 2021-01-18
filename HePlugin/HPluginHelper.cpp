@@ -1,14 +1,16 @@
 #include "HPluginHelper.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
+#include "QXlsx/xlsxdocument.h"
 #include <QtCore/QtMath>
 #include <QtGui/QClipboard>
 #include <QtGui/QScreen>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
-#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QInputDialog>
+#include <QtWidgets/QFileDialog>
 
 HE_CORE_USE_NAMESPACE
 
@@ -20,75 +22,36 @@ QAction *HPluginHelper::addSeparator(QWidget *widget)
     return action;
 }
 
-QString HPluginHelper::copy(QTableWidget *widget, bool withHeader)
-{
-    int row,column;
-    QString text,header;
-
-    auto ranges = widget->selectedRanges();
-    if (ranges.isEmpty())
-        return QString();
-
-    auto range = ranges.first();
-    for (row = range.topRow(); row <= range.bottomRow(); ++row)
-    {
-        if (widget->isRowHidden(row))
-            continue;
-        for (column = range.leftColumn(); column <= range.rightColumn(); column++)
-        {
-            if (widget->isColumnHidden(column))
-                continue;
-            text += widget->item(row, column)->text() + "\t";
-        }
-        text += "\n";
-    }
-
-    if (withHeader)
-    {
-        for (column = range.leftColumn(); column <= range.rightColumn(); column++)
-        {
-            if (widget->isColumnHidden(column))
-                continue;
-            header += widget->model()->headerData(column, Qt::Horizontal).toString() + "\t";
-        }
-        text = header + "\n" + text;
-    }
-
-    text.replace("\t\n", "\n");
-    QApplication::clipboard()->setText(text);
-    return text;
-}
-
 QString HPluginHelper::copy(QTableView *widget, bool withHeader)
 {
-    int row,column;
-    QString text,header;
-
     auto selection = widget->selectionModel()->selection();
     if (selection.isEmpty())
-        return text;
+        return "";
 
+    int row, col;
+    QString text, header;
+    auto model = widget->model();
     auto range = selection.first();
     for (row = range.top(); row <= range.bottom(); row++)
     {
         if (widget->isRowHidden(row))
             continue;
-        for (column = range.left(); column <= range.right(); column++)
+        for (col = range.left(); col <= range.right(); col++)
         {
-            if (widget->isColumnHidden(column))
+            if (widget->isColumnHidden(col))
                 continue;
-            text += widget->model()->index(row, column).data().toString() + "\t";
+            text += model->index(row, col).data().toString() + "\t";
         }
         text += "\n";
     }
 
     if (withHeader)
     {
-        for (column = range.left(); column <= range.right(); column++)
+        for (col = range.left(); col <= range.right(); col++)
         {
-            if (widget->isColumnHidden(column))
+            if (widget->isColumnHidden(col))
                 continue;
-            header += widget->model()->headerData(column, Qt::Horizontal).toString() + "\t";
+            header += model->headerData(col, Qt::Horizontal).toString() + "\t";
         }
         text = header + "\n" + text;
     }
@@ -98,81 +61,29 @@ QString HPluginHelper::copy(QTableView *widget, bool withHeader)
     return text;
 }
 
-QString HPluginHelper::paste(QTableWidget *widget)
-{
-    int i,j,m,n;
-    int row,column,rowCount,columnCount;
-    QStringList rowText,columnText;
-    QTableWidgetItem *item;
-
-    auto text = QApplication::clipboard()->text();
-    auto ranges = widget->selectedRanges();
-    if (ranges.isEmpty())
-        return text;
-
-    rowText = text.split('\n', QString::SkipEmptyParts);
-
-    auto range = ranges.first();
-    if (range.rowCount() * range.columnCount() == 1)
-    {
-        rowCount = widget->rowCount() - range.topRow();
-        columnCount = widget->columnCount() - range.leftColumn();
-    }
-    else
-    {
-        rowCount = range.rowCount();
-        columnCount = range.columnCount();
-    }
-    for (m = 0, i = 0; i < rowCount; i++)
-    {
-        row = range.topRow() + i;
-        if (widget->isRowHidden(row))
-            continue;
-        if (m >= rowText.count())
-            break;
-        columnText = rowText[m].split('\t');
-        for (n = 0, j = 0; j < columnCount; j++)
-        {
-            column = range.leftColumn() + j;
-            if (widget->isColumnHidden(column))
-                continue;
-            if (n >= columnText.count())
-                break;
-            item = widget->item(row, column);
-            if (item->flags() & Qt::ItemIsEditable)
-                item->setText(columnText[n]);
-            n++;
-        }
-        m++;
-    }
-    return text;
-}
-
 QString HPluginHelper::paste(QTableView *widget)
 {
-    int i,j,m,n;
-    int row,column,rowCount,columnCount;
-    QStringList rowText,columnText;
-    QModelIndex index;
-
     auto text = QApplication::clipboard()->text();
     auto selection = widget->selectionModel()->selection();
     if (selection.isEmpty())
         return text;
 
-    rowText = text.split('\n');
-    rowText.removeLast();
-
+    int i, j, m, n;
+    int row, col, rowCount, colCount;
+    QStringList colText;
+    QModelIndex index;
+    auto model = widget->model();
+    auto rowText = text.split('\n', QString::SkipEmptyParts);
     auto range = selection.first();
     if (range.width() * range.height() == 1)
     {
-        rowCount = widget->model()->rowCount() - range.top();
-        columnCount = widget->model()->columnCount() - range.left();
+        rowCount = model->rowCount() - range.top();
+        colCount = model->columnCount() - range.left();
     }
     else
     {
         rowCount = range.height();
-        columnCount = range.width();
+        colCount = range.width();
     }
 
     for (m = 0, i = 0; i < rowCount; i++)
@@ -182,22 +93,110 @@ QString HPluginHelper::paste(QTableView *widget)
             continue;
         if (m >= rowText.count())
             break;
-        columnText = rowText[m].split('\t');
-        for (n = 0, j = 0; j < columnCount; j++)
+        colText = rowText[m].split('\t');
+        for (n = 0, j = 0; j < colCount; j++)
         {
-            column = range.left() + j;
-            if (widget->isColumnHidden(column))
+            col = range.left() + j;
+            if (widget->isColumnHidden(col))
                 continue;
-            if (n >= columnText.count())
+            if (n >= colText.count())
                 break;
-            index = widget->model()->index(row, column);
+            index = model->index(row, col);
             if (index.flags() & Qt::ItemIsEditable)
-                widget->model()->setData(index, columnText[n]);
+                model->setData(index, colText[n]);
             n++;
         }
         m++;
     }
     return text;
+}
+
+bool HPluginHelper::exportExcel(QTableView *widget)
+{
+    auto fileName = QFileDialog::getSaveFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    if (fileName.isEmpty())
+        return false;
+
+    int i, j, row, col;
+    QXlsx::Document doc(widget);
+    auto model = widget->model();
+    i = 2;
+    for (row = 0; row < model->rowCount(); row++)
+    {
+        if (widget->isRowHidden(row))
+            continue;
+        doc.write(i++, 1, model->headerData(row, Qt::Vertical));
+    }
+    j = 2;
+    for (col = 0; col < model->columnCount(); col++)
+    {
+        if (widget->isColumnHidden(col))
+            continue;
+        doc.write(1, j++, model->headerData(col, Qt::Horizontal));
+    }
+    i = 2;
+    for (row = 0; row < model->rowCount(); row++)
+    {
+        if (widget->isRowHidden(row))
+            continue;
+        j = 2;
+        for (col = 0; col < model->columnCount(); col++)
+        {
+            if (widget->isColumnHidden(col))
+                continue;
+            auto index = model->index(row, col);
+            if (!index.isValid())
+                continue;
+            QXlsx::Format format;
+            if (index.data(Qt::BackgroundColorRole).isValid())
+                format.setPatternBackgroundColor(index.data(Qt::BackgroundColorRole).value<QColor>());
+            doc.write(i, j++, index.data().toString(), format);
+        }
+        i++;
+    }
+    return doc.saveAs(fileName);
+}
+
+bool HPluginHelper::importExcel(QTableView *widget)
+{
+    auto fileName = QFileDialog::getOpenFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    if (fileName.isEmpty())
+        return false;
+    QXlsx::Document doc(fileName, widget);
+    if (!doc.isLoadPackage())
+        return false;
+
+    int i, j, row, col;
+    auto model = widget->model();
+    auto range = doc.dimension();
+    auto t = range.firstRow() + 1;
+    auto b = range.lastRow();
+    auto l = range.firstColumn() + 1;
+    auto r = range.lastColumn();
+    if (range.rowCount() < 2 || range.columnCount() < 2)
+        return false;
+
+    i = t;
+    for (row = 0; row < model->rowCount() && i <= b; row++)
+    {
+        if (widget->isRowHidden(row))
+            continue;
+        j = l;
+        for (col = 0; col < model->columnCount() && j <= r; col++)
+        {
+            if (widget->isColumnHidden(col))
+                continue;
+            auto cell = doc.cellAt(i, j++);
+            auto index = model->index(row, col);
+            if (!index.isValid() || cell == nullptr)
+                continue;
+            if (cell->format().patternBackgroundColor().isValid())
+                model->setData(index, cell->format().patternBackgroundColor(), Qt::BackgroundColorRole);
+            model->setData(index, cell->value());
+        }
+        i++;
+    }
+    return true;
 }
 
 void HPluginHelper::initWidget(const QString &type, QSpinBox *widget)

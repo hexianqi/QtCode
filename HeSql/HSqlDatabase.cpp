@@ -1,6 +1,7 @@
 #include "HSqlDatabase_p.h"
+#include "ISqlTableModel.h"
+#include "HSqlHelper.h"
 #include <QtWidgets/QMessageBox>
-#include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlError>
 #include <QtCore/QDebug>
 
@@ -34,7 +35,7 @@ QString HSqlDatabase::typeName()
     return "HSqlDatabase";
 }
 
-bool HSqlDatabase::openDatabase(QString dbName)
+bool HSqlDatabase::openDatabase(const QString &dbName)
 {
     if (dbName.isEmpty())
         return false;
@@ -45,27 +46,33 @@ bool HSqlDatabase::openDatabase(QString dbName)
         return true;
     }
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(dbName);
-    if (!db.open())
+    d_ptr->db = QSqlDatabase::addDatabase("QSQLITE");
+    d_ptr->db.setDatabaseName(dbName);
+    if (!d_ptr->db.open())
     {
-        QMessageBox::warning(nullptr, tr("打开数据库失败"), db.lastError().text());
+        QMessageBox::warning(nullptr, tr("打开数据库失败"), d_ptr->db.lastError().text());
         return false;
     }
     return true;
 }
 
-void HSqlDatabase::insertTableModel(QString name, ISqlTableModel *model)
+bool HSqlDatabase::contains(const QString &tableName)
 {
-    d_ptr->tableModels.insert(name, model);
+    Q_ASSERT_X(d_ptr->db.isValid() && d_ptr->db.isOpen(), "containTable", "database is invalid or closed.");
+    return d_ptr->db.tables().contains(tableName);
 }
 
-ISqlTableModel *HSqlDatabase::tableModel(QString name)
+void HSqlDatabase::insertTableModel(ISqlTableModel *model)
+{
+    d_ptr->tableModels.insert(model->tableName(), model);
+}
+
+ISqlTableModel *HSqlDatabase::tableModel(const QString &tableName)
 {
     if (d_ptr->tableModels.isEmpty())
         return nullptr;
-    if (d_ptr->tableModels.contains(name))
-        return d_ptr->tableModels.value(name);
+    if (d_ptr->tableModels.contains(tableName))
+        return d_ptr->tableModels.value(tableName);
     return d_ptr->tableModels.first();
 }
 

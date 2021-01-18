@@ -22,7 +22,7 @@ public:
     QString typeName() override;
 
 public:
-    IFileStream *fileStream() override;
+    IStream *stream() override;
     void setContain(quint32 value) override;
     quint32 contain() override;
     void setSpecCalibrateCollection(ISpecCalibrateCollection *) override;

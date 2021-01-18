@@ -18,17 +18,17 @@ class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
     Q_OBJECT
 
 public:
-    explicit HAbstractBuilder(IMainWindow *parent = nullptr);
+    explicit HAbstractBuilder(QObject *parent = nullptr);
 
 public:
     void buildAll() override;
 
 protected:
-    HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *parent = nullptr);
+    HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent = nullptr);
 
 protected:
-    virtual void openDeploy();
-    virtual void saveDeploy();
+    virtual void readSettings();
+    virtual void writeSettings();
     virtual void buildFactory();
     virtual void buildConfigManage() = 0;
     virtual void buildTestData() = 0;

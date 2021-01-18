@@ -18,11 +18,13 @@ class ISqlDatabase : public IInitializeable
 {
 public:
     // 打开数据库
-    virtual bool openDatabase(QString dbName) = 0;
+    virtual bool openDatabase(const QString &dbName) = 0;
+    // 是否包含表格
+    virtual bool contains(const QString &tableName) = 0;
     // 添加数据库表格模型
-    virtual void insertTableModel(QString name, ISqlTableModel *model) = 0;
+    virtual void insertTableModel(ISqlTableModel *model) = 0;
     // 获取数据库表格模型
-    virtual ISqlTableModel *tableModel(QString name) = 0;
+    virtual ISqlTableModel *tableModel(const QString &tableName) = 0;
 };
 
 HE_SQL_END_NAMESPACE

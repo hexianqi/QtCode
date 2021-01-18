@@ -25,7 +25,7 @@ public:
     void setDisplay(const QStringList &value);
     void setSelected(const QStringList &value);
     void clearResult();
-    void refreshResult(int row, bool append);
+    void refreshResult(bool append);
 
 public:
     QStringList selected();

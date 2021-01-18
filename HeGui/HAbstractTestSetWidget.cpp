@@ -22,6 +22,11 @@ HAbstractTestSetWidget::HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p,
 {
 }
 
+QVariant HAbstractTestSetWidget::handleOperation(QString /*type*/, QVariant /*value*/)
+{
+    return false;
+}
+
 bool HAbstractTestSetWidget::setTestState(bool b)
 {
     if (d_ptr->testState == b)

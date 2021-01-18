@@ -5,7 +5,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/IConfigManage.h"
-#include "HeData/IFileStream.h"
+#include "HeData/IStream.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -45,7 +45,7 @@ void HAbstractModel::start()
 
     initDelayThread();
     initWorkThread();
-    syncMachine(d_ptr->configManage->contain());
+    syncDeviceWhole();
     d_ptr->initialized = true;
 }
 
@@ -67,10 +67,15 @@ void HAbstractModel::addAction(HActionType action, ulong delay)
         t->addAction(action);
 }
 
+void HAbstractModel::syncDeviceWhole()
+{
+    syncDevice(d_ptr->configManage->contain());
+}
+
 bool HAbstractModel::openFile()
 {
     QString fileName;
-    if (!d_ptr->configManage->fileStream()->openFile("", ".", &fileName))
+    if (!d_ptr->configManage->stream()->openFile("", ".", &fileName))
         return false;
     setConfigFile(fileName);
     syncTestData(d_ptr->configManage->contain());
@@ -79,13 +84,13 @@ bool HAbstractModel::openFile()
 
 bool HAbstractModel::saveFile()
 {
-    return d_ptr->configManage->fileStream()->writeFile(d_ptr->configFileName);
+    return d_ptr->configManage->stream()->writeFile(d_ptr->configFileName);
 }
 
 bool HAbstractModel::saveAsFile()
 {
     QString fileName;
-    if (!d_ptr->configManage->fileStream()->saveAsFile("", ".", &fileName))
+    if (!d_ptr->configManage->stream()->saveAsFile("", ".", &fileName))
         return false;
     setConfigFile(fileName);
     return true;
@@ -104,10 +109,10 @@ bool HAbstractModel::exportFile(quint32 type)
     return d_ptr->configManage->exportPart(type);
 }
 
-void HAbstractModel::setConfigFile(const QString &fileName)
+void HAbstractModel::setConfigFile(const QString &/*fileName*/)
 {
-    d_ptr->configFileName = fileName;
-    HAppContext::setContextValue("ConfigFileName", fileName);
+//    d_ptr->configFileName = fileName;
+//    HAppContext::setContextValue("ConfigFileName", fileName);
 }
 
 void HAbstractModel::initDelayThread()

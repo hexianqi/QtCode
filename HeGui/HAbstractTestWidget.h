@@ -33,8 +33,8 @@ protected:
 
 protected slots:
     void closeEvent(QCloseEvent *) override;
-    virtual bool setTest(bool b) = 0;
-    virtual void handleAction(HActionType action) = 0;
+    virtual bool setTest(bool b);
+    virtual void handleAction(HActionType action);
 
 protected:
     QScopedPointer<HAbstractTestWidgetPrivate> d_ptr;

@@ -24,12 +24,10 @@ signals:
     void currentRowChanged(int);
 
 public:
-    // 设置字段
-    virtual void setField(QStringList value) = 0;
     // 字段
     virtual QStringList field() = 0;
     // 设置表格
-    virtual void setTable(const QString &tableName) = 0;
+    virtual void setTableField(const QString &tableName, const QStringList &fields) = 0;
 
 public:
     // 是否有效

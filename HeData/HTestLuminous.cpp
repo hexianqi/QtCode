@@ -7,6 +7,7 @@ HE_DATA_BEGIN_NAMESPACE
 HTestLuminousPrivate::HTestLuminousPrivate()
 {
     addData("[光模块]", 0);
+    addData("[光档位数]", 0);
     addData("[光测试类型]", "[光通量]");
     addData("[光通道]", 2);
     addData("[光档位]", 0);
@@ -52,12 +53,20 @@ bool HTestLuminous::setCalibrate(ILuminousCalibrateCollection *p)
     return true;
 }
 
+QVariant HTestLuminous::handleOperation(QString type, QVariant value)
+{
+    if (type == "<匹配光档位>")
+        return matchGears();
+    return HTestData::handleOperation(type, value);
+}
+
 void HTestLuminous::setModule(int value)
 {
     Q_D(HTestLuminous);
     value = qBound(0, value, d->collection->size() - 1);
     d->calibrate = d->collection->itemAt(value);
     d->setData("[光模块]", value);
+    d->setData("[光档位数]", d->calibrate->totalGears());
     for (auto k : d->calibrate->keys())
         d->addData(k, 0);
 }
@@ -86,6 +95,26 @@ void HTestLuminous::setSample(double value)
     d->setData("[光采样值]", value);
     d->setData("[光采样比率]", value / 655.35);
     d->setData(type, d->calibrate->toReal(value, type, gears));
+}
+
+bool HTestLuminous::matchGears()
+{
+    Q_D(HTestLuminous);
+
+    auto sample = data("[光采样值]").toDouble();
+    if (sample >= 6000 && sample <= 61000)
+        return false;
+
+    auto gears = data("[光档位]").toInt();
+    if (sample < 6000)
+        gears += 1;
+    if (sample > 61000)
+        gears -= 1;
+    if (gears < 0 || gears >= d->calibrate->totalGears())
+        return false;
+
+    d->setData("[光档位]", gears);
+    return true;
 }
 
 HE_DATA_END_NAMESPACE

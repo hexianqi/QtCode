@@ -230,7 +230,7 @@ void HElecCalibrateDialog::init()
             createItem(item, type, value, parent);
         value += 0x00010000;
     }
-    ui->treeWidget->setStyleSheet("QTreeWidget::item { height:30px }");
+    ui->treeWidget->setStyleSheet("QTreeWidget::item { height:25px }");
     ui->treeWidget->expandAll();
     ui->treeWidget->setCurrentItem(ui->treeWidget->topLevelItem(0));
     ui->splitter->setStretchFactor(1, 10);

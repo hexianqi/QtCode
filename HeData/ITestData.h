@@ -16,6 +16,9 @@ HE_DATA_BEGIN_NAMESPACE
 class ITestData : public IInitializeable
 {
 public:
+    virtual ~ITestData() = default;
+
+public:
     // 设置后继者
     virtual void setSuccessor(ITestData *) = 0;
     // 设置数据
@@ -32,6 +35,8 @@ public:
     virtual QVariantMap select(QStringList type) = 0;
     // 复制数据
     virtual QVariantMap cloneData() = 0;
+    // 创建当前实例副本的新对象。
+    virtual ITestData *clone() = 0;
     // 获取数据-按字符串格式
     virtual QString toString(QString type) = 0;
     // 获取数据-按字符串格式

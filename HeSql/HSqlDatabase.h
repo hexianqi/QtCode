@@ -24,9 +24,10 @@ public:
     QString typeName() override;
 
 public:
-    bool openDatabase(QString dbName) override;
-    void insertTableModel(QString name, ISqlTableModel *model) override;
-    ISqlTableModel *tableModel(QString name) override;
+    bool openDatabase(const QString &dbName) override;
+    bool contains(const QString &tableName) override;
+    void insertTableModel(ISqlTableModel *model) override;
+    ISqlTableModel *tableModel(const QString &tableName) override;
 
 protected:
     HSqlDatabase(HSqlDatabasePrivate &p, QObject *parent = nullptr);

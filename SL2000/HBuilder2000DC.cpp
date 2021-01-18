@@ -3,7 +3,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
-#include "HeData/IFileStream.h"
+#include "HeData/IDataStream.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/IElecCalibrate.h"
@@ -21,6 +21,7 @@
 #include "HeCommunicate/IDevice.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
+#include "HeController/IMemento.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
@@ -28,6 +29,7 @@
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlPrint.h"
 #include "HeSql/IProductInfo.h"
+#include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
@@ -35,8 +37,7 @@
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
-    HAbstractBuilderPrivate(p)
+HBuilder2000DCPrivate::HBuilder2000DCPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
@@ -49,15 +50,16 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate(IMainWindow *p) :
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "Rx" << "EnergyGraph";
-    HAppContext::setContextValue("SpecCalibrateType", "HSpecCalibrateSet2Widget");
-    HAppContext::setContextValue("GradeOptionals",      QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标]");
-    HAppContext::setContextValue("QualityOptionals",    QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数]" << "[色坐标x]" << "[色坐标y]");
+                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
+    HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
+    HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
+    HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
+    HAppContext::setContextValue("QualityOptionals",            QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
 }
 
-HBuilder2000DC::HBuilder2000DC(IMainWindow *parent) :
-    HAbstractBuilder(*new HBuilder2000DCPrivate(parent), parent)
+HBuilder2000DC::HBuilder2000DC(QObject *parent) :
+    HAbstractBuilder(*new HBuilder2000DCPrivate, parent)
 {
 }
 
@@ -80,10 +82,10 @@ void HBuilder2000DC::buildConfigManage()
 {
     Q_D(HBuilder2000DC);
     d->configManage = d->dataFactory->createConfigManage("HConfigManage");
-    if (!d->configManage->fileStream()->readFile(d->configFileName))
+    if (!d->configManage->stream()->readFile(d->configFileName))
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
-        if (!specs->fileStream()->readFile(":/dat/Spectrum.hcs"))
+        if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
         {
             auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
             auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
@@ -95,11 +97,11 @@ void HBuilder2000DC::buildConfigManage()
         param[0].insert("itemClassName",    "HElecCalibrateItem");
         param[0].insert("itemTypeList",     QStringList() << "[输出电压]");
         param[1].insert("itemClassName",    "HElecCalibrateItem");
-        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]");
+        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]" << "[输出电流3]");
         param[2].insert("itemClassName",    "HElecCalibrateItem");
         param[2].insert("itemTypeList",     QStringList() << "[实测电压]");
         param[3].insert("itemClassName",    "HElecCalibrateItem");
-        param[3].insert("itemTypeList",     QStringList() << "[实测电流]");
+        param[3].insert("itemTypeList",     QStringList() << "[实测电流1]" << "[实测电流2]" << "[实测电流3]");
         param[4].insert("itemClassName",    "HElecCalibrateItem");
         param[4].insert("itemTypeList",     QStringList() << "[反向电压]");
         param[5].insert("itemClassName",    "HElecCalibrateItem");
@@ -123,7 +125,7 @@ void HBuilder2000DC::buildConfigManage()
         luminouss->insert("模块1", luminous);
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
-        chromatisms->fileStream()->readFile(":/dat/Chromatism.hcc");
+        chromatisms->dataStream()->readFile(":/dat/Chromatism.hcc");
 
         d->configManage->setContain(IConfigManage::ContainSpec
                                     | IConfigManage::ContainElec
@@ -215,13 +217,20 @@ void HBuilder2000DC::buildDatabase()
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
+    if (db->contains("Spec"))
+    {
+        // 1.1.1.2 添加列R9
+        if (HSqlHelper::getVersion("Spec") < 0x01010102)
+            HSqlHelper::addColumn("Spec", "R9");
+    }
+    HSqlHelper::setVersion("Spec", 0x01010102);
+
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
     auto print = d->sqlFactory->createPrint("HIntegrateSqlPrint");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    model->setField(d->sqlField);
-    model->setTable("Spec");
+    model->setTableField("Spec", d->sqlField);
     info->setRelationTableName("Spec");
     handle->setModel(model);
     handle->setProductInfo(info);
@@ -231,7 +240,7 @@ void HBuilder2000DC::buildDatabase()
     browser->setModel(model);
     browser->setRecordHandle(handle);
     browser->setRecordPrint(print);
-    db->insertTableModel("Spec", model);
+    db->insertTableModel(model);
     HAppContext::setContextPointer("ISqlHandle", handle);
     HAppContext::setContextPointer("ISqlPrint", print);
     HAppContext::setContextPointer("ISqlBrowser", browser);
@@ -270,6 +279,12 @@ void HBuilder2000DC::buildMenu()
 
 void HBuilder2000DC::buildTestWidget()
 {
+    Q_D(HBuilder2000DC);
+    auto memento = d->controllerFactory->createMemento("HMemento");
+    memento->setItems(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
+    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
+    HAppContext::setContextPointer("IMementoTest", memento);
+
     ITestWidget *widget = new HTestWidget2000DC;
 //    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);

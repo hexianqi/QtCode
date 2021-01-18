@@ -6,8 +6,8 @@
 class QDESIGNER_WIDGET_EXPORT HTableViewPrivate
 {
 public:
-    QAction *actionCopy;
-    QAction *actionPaste;
+    quint32 actionContain = HTableView::ActionAll;
+    QHash<quint32, QAction *> actions;
 };
 
 #endif // HTABLEVIEW_P_H

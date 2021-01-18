@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>286</width>
-    <height>337</height>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>产品信息编辑</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_2">
    <property name="verticalSpacing">
     <number>9</number>
    </property>
@@ -265,38 +265,52 @@
     </widget>
    </item>
    <item row="8" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="verticalSpacing">
       <number>9</number>
      </property>
-     <item>
-      <spacer name="horizontalSpacer_01">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+     <item row="0" column="1">
+      <widget class="QCheckBox" name="checkBox_03">
+       <property name="text">
+        <string>启用</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>0</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
+      </widget>
      </item>
-     <item>
+     <item row="1" column="1">
       <widget class="QCheckBox" name="checkBox_01">
        <property name="text">
         <string>保存前弹出此对话框</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="checkBox_02">
+       <property name="text">
+        <string>保存后编号自动增加</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" rowspan="3">
       <spacer name="horizontalSpacer_09">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>0</width>
+         <width>13</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0" rowspan="3">
+      <spacer name="horizontalSpacer_01">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>13</width>
          <height>20</height>
         </size>
        </property>
@@ -305,46 +319,6 @@
     </layout>
    </item>
    <item row="9" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <property name="spacing">
-      <number>9</number>
-     </property>
-     <item>
-      <spacer name="horizontalSpacer_11">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>0</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox_02">
-       <property name="text">
-        <string>保存后编号自动增加</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_19">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>0</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item row="10" column="0" colspan="2">
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <property name="spacing">
       <number>9</number>

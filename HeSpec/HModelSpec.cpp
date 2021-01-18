@@ -49,7 +49,7 @@ void HModelSpec::syncTestData(quint32 type)
     }
 }
 
-void HModelSpec::syncMachine(quint32 type)
+void HModelSpec::syncDevice(quint32 type)
 {
     if (type & IConfigManage::ContainSpec)
         addAction(ACT_SET_INTEGRAL_TIME);

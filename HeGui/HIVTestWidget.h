@@ -25,16 +25,13 @@ public:
     QString typeName() override;
 
 protected:
-    bool setTest(bool b) override;
-    void handleAction(HActionType action) override;
-
-protected:
     void createWidget() override;
     void createMenu() override;
     void createToolBar() override;
     void clearResult() override;
     void exportExcel() override;
     void handleStateChanged(bool b);
+    void handleResultChanged();
 };
 
 HE_GUI_END_NAMESPACE

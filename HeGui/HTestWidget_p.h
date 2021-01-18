@@ -5,7 +5,7 @@
 #include "HAbstractTestWidget_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class IExcelStream;
+class ITextStream;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -17,7 +17,7 @@ public:
     HTestWidgetPrivate();
 
 public:
-    IExcelStream *excelStream = nullptr;
+    ITextStream *stream = nullptr;
 
 public:
     QAction *actionStart = nullptr;

@@ -7,23 +7,88 @@
 
 HE_SQL_BEGIN_NAMESPACE
 
+bool checkQuery(QSqlQuery *query)
+{
+    qDebug() << "==> SQL Query: " << query->lastQuery();
+    if (query->lastError().type() == QSqlError::NoError)
+    {
+        qDebug() << "==> SQL Query: OK";
+        return true;
+    }
+    qDebug() << "==> SQL Error: " << query->lastError().text().trimmed();
+    return false;
+}
+
+bool createVersionManage(QSqlDatabase db)
+{
+    if (db.tables().contains("VersionManage", Qt::CaseInsensitive))
+        return true;
+    return HSqlHelper::createTable("VersionManage", QStringList() << "ID" << "TableName" << "Version", db);
+}
+
 bool HSqlHelper::createTable(const QString &tableName, const QStringList &field, QSqlDatabase db)
 {
     if (tableName.isEmpty())
         return false;
 
+    if (!db.isValid())
+        db = QSqlDatabase::database();
+
     QSqlQuery query(db);
     if (db.tables().contains(tableName, Qt::CaseInsensitive))
         query.exec("DROP TABLE " + tableName);
     auto sql = QString("CREATE TABLE %1 (%2)").arg(tableName, HSql::toCreateStyle(field).join(','));
+    return query.exec(sql);
+}
+
+bool HSqlHelper::addColumn(const QString &tableName, const QString &field, QSqlDatabase db)
+{
+    if (!db.isValid())
+        db = QSqlDatabase::database();
+
+    QSqlQuery query(db);
+    auto sql = QString("SELECT * FROM sqlite_master WHERE name = '%1' COLLATE NOCASE AND sql LIKE '%%2%' COLLATE NOCASE").arg(tableName, field);
     query.exec(sql);
-    if (query.lastError().type() != QSqlError::NoError)
-    {
-        qDebug() << "==> SQL Query: " << query.lastQuery();
-        qDebug() << "==> SQL Error: " << query.lastError().text().trimmed();
+    if (query.next())
+        return true;
+
+    sql = QString("ALTER TABLE %1 ADD COLUMN %2").arg(tableName, HSql::toCreateStyle(field));
+    return query.exec(sql);
+}
+
+bool HSqlHelper::setVersion(const QString &tableName, int version, QSqlDatabase db)
+{
+    if (!db.isValid())
+        db = QSqlDatabase::database();
+
+    if (!createVersionManage(db))
         return false;
-    }
-    return true;
+
+    QSqlQuery query(db);
+    auto sql = QString("SELECT Version FROM VersionManage WHERE TableName = '%1'").arg(tableName);
+    query.exec(sql);
+    if (query.next())
+        sql = QString("UPDATE VersionManage SET Version = %2 WHERE TableName = '%1'").arg(tableName).arg(version);
+    else
+        sql = QString("INSERT INTO VersionManage (TableName, Version) VALUES ('%1', %2)").arg(tableName).arg(version);
+    return query.exec(sql);
+}
+
+int HSqlHelper::getVersion(const QString &tableName, QSqlDatabase db)
+{
+    if (!db.isValid())
+        db = QSqlDatabase::database();
+
+    if (!createVersionManage(db))
+        return 0;
+
+    QSqlQuery query(db);
+    auto sql = QString("SELECT Version FROM VersionManage WHERE TableName = '%1'").arg(tableName);
+    query.exec(sql);
+    if (query.next())
+        return query.value(0).toInt();
+    sql = QString("INSERT INTO VersionManage (TableName, Version) VALUES ('%1', %2)").arg(tableName).arg(0x01010101);
+    return query.exec(sql) ? 0x01010101 : 0;
 }
 
 HE_SQL_END_NAMESPACE

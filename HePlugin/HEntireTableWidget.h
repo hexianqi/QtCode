@@ -22,7 +22,9 @@ public:
     void setHorizontalHeaderLabels(const QStringList &);
     void setVerticalHeaderLabels(const QStringList &);
     void setRow(int row, const QStringList &value);
+    void setRow(int row, int column, const QStringList &value);
     void setColumn(int column, const QStringList &value);
+    void setColumn(int row, int column, const QStringList &value);
     void insertRow(int row, const QStringList &value = QStringList());
 
 protected:

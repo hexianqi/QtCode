@@ -20,7 +20,6 @@ QWidget *HDoubleSpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptio
     auto type = toType(index);
     auto editor = new QDoubleSpinBox(parent);
     HPluginHelper::initWidget(type, editor);
-    connect(editor, &QDoubleSpinBox::editingFinished, this, &HStyledItemDelegate::editingFinished);
     return editor;
 }
 

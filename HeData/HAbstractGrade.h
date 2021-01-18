@@ -24,6 +24,10 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
+    void setData(QString name, QVariant value) override;
+    QVariant data(QString name) override;
+
+public:
     QVariant levels(QString type) override;
 
 protected:

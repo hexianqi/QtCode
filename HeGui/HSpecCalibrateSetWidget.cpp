@@ -41,6 +41,7 @@ void HSpecCalibrateSetWidget::handleAction(HActionType action)
         ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
         break;
     case ACT_GET_SPECTRUM:
+        emit resultChanged(action, false);
         if (!d->testState)
             break;
         adjustIntegralTime();
@@ -72,9 +73,9 @@ bool HSpecCalibrateSetWidget::setTestMode(int value)
         return false;
 
     if (d->testMode == 2)
-        setIntegralTimeAuto(false);
+        setAutoIntegralTime(false);
 
-    ui->doubleSpinBox_01->setEnabled(d->testMode == 0 && !d->integralTimeAuto);
+    ui->doubleSpinBox_01->setEnabled(d->testMode == 0 && !d->autoIntegralTime);
     ui->checkBox_01->setEnabled(d->testMode == 0);
     ui->checkBox_02->setEnabled(d->testMode == 0);
     ui->radioButton_01->setEnabled(d->testMode != 2);
@@ -82,12 +83,12 @@ bool HSpecCalibrateSetWidget::setTestMode(int value)
     return true;
 }
 
-void HSpecCalibrateSetWidget::setIntegralTimeAuto(bool b)
+void HSpecCalibrateSetWidget::setAutoIntegralTime(bool b)
 {
     Q_D(HSpecCalibrateSetWidget);
-    if (d->integralTimeAuto == b)
+    if (d->autoIntegralTime == b)
         return;
-    d->integralTimeAuto = b;
+    d->autoIntegralTime = b;
     ui->checkBox_01->setChecked(b);
     ui->doubleSpinBox_01->setEnabled(!b);
 }
@@ -103,7 +104,7 @@ void HSpecCalibrateSetWidget::on_doubleSpinBox_01_valueChanged(double value)
 
 void HSpecCalibrateSetWidget::on_checkBox_01_clicked(bool b)
 {
-    setIntegralTimeAuto(b);
+    setAutoIntegralTime(b);
 }
 
 void HSpecCalibrateSetWidget::on_checkBox_02_clicked(bool b)
@@ -126,7 +127,7 @@ void HSpecCalibrateSetWidget::on_radioButton_02_clicked()
 bool HSpecCalibrateSetWidget::adjustIntegralTime()
 {
     Q_D(HSpecCalibrateSetWidget);
-    if (!d->integralTimeAuto)
+    if (!d->autoIntegralTime)
         return false;
     if (!d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;

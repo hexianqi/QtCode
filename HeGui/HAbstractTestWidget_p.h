@@ -17,12 +17,15 @@ HE_CONTROLLER_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
+class ITestSetWidget;
+
 class HE_GUI_EXPORT HAbstractTestWidgetPrivate
 {
 public:
     HAbstractTestWidgetPrivate();
 
 public:
+    ITestSetWidget *testSetWidget = nullptr;
     IModel *model;
     ITestData *testData;
     QList<QMenu *> menus;

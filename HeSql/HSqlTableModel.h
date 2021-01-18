@@ -24,9 +24,8 @@ public:
     QString typeName() override;
 
 public:
-    void setField(QStringList value) override;
     QStringList field() override;
-    void setTable(const QString &tableName) override;
+    void setTableField(const QString &tableName, const QStringList &fields) override;
 
 public:
     bool isValid(int row) override;
@@ -40,6 +39,10 @@ public:
 
 protected:
     HSqlTableModel(HSqlTableModelPrivate &p, QObject *parent = nullptr, QSqlDatabase db = QSqlDatabase());
+
+protected:
+    void init();
+    void updateField();
 
 protected:
     QScopedPointer<HSqlTableModelPrivate> d_ptr;

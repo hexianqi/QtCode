@@ -37,7 +37,7 @@ class IGuiFactory;
 class HE_GUI_EXPORT HAbstractBuilderPrivate
 {
 public:
-    HAbstractBuilderPrivate(IMainWindow *);
+    HAbstractBuilderPrivate();
 
 public:
     IMainWindow *mainWindow = nullptr;

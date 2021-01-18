@@ -40,6 +40,7 @@ void HSimpleTestSetWidget::handleAction(HActionType action)
         ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
         break;
     case ACT_GET_SPECTRUM:
+        emit resultChanged(action, false);
         if (!d->testState)
             break;
         adjustIntegralTime();
@@ -76,9 +77,9 @@ void HSimpleTestSetWidget::on_doubleSpinBox_01_valueChanged(double value)
 void HSimpleTestSetWidget::on_checkBox_01_clicked(bool b)
 {
     Q_D(HSimpleTestSetWidget);
-    if (d->integralTimeAuto == b)
+    if (d->autoIntegralTime == b)
         return;
-    d->integralTimeAuto = b;
+    d->autoIntegralTime = b;
     ui->checkBox_01->setChecked(b);
     ui->doubleSpinBox_01->setEnabled(!b);
 }
@@ -91,7 +92,7 @@ void HSimpleTestSetWidget::on_checkBox_02_clicked(bool b)
 bool HSimpleTestSetWidget::adjustIntegralTime()
 {
     Q_D(HSimpleTestSetWidget);
-    if (!d->integralTimeAuto)
+    if (!d->autoIntegralTime)
         return false;
     if (!d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;

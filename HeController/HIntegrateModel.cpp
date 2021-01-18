@@ -65,7 +65,7 @@ void HIntegrateModel::syncTestData(quint32 type)
     }
 }
 
-void HIntegrateModel::syncMachine(quint32 type)
+void HIntegrateModel::syncDevice(quint32 type)
 {
     if ((type & IConfigManage::ContainSpec) != 0u)
         addAction(ACT_SET_INTEGRAL_TIME);

@@ -48,14 +48,14 @@ void HElecCalibrateItemCollection::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IElecCalibrateItem>(s, d->datas, [=](QString type) { return d->factory->createElecCalibrateItem(type); });
+    HStreamHelper::read<QString, HeData::IElecCalibrateItem>(s, d->items, [=](QString type) { return d->factory->createElecCalibrateItem(type); });
 }
 
 void HElecCalibrateItemCollection::writeContent(QDataStream &s)
 {
     Q_D(HElecCalibrateItemCollection);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IElecCalibrateItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IElecCalibrateItem>(s, d->items);
 }
 
 HE_DATA_END_NAMESPACE

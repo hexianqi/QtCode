@@ -1,14 +1,5 @@
 /***************************************************************************************************
 **      2018-06-19  IConfigManage 配置管理接口。
-**                      class                       MagicNumber     Filter
-**                  IConfigManage                   0x00010001      *.cfg
-**                  ISpecCalibrateCollection        0x00020001      *.hcs
-**                  IElecCalibrateCollection        0x00020002      *.hce
-**                  ILuminousCalibrateCollection    0x00020003      *.hcl
-**                  IChromatismCollection           0x00020101      *.hcc
-**                  IGradeCollection                0x00030001      *.hcg
-**                  IQualityCollection              0x00030101      *.hcq
-**                  IAdjustCollection               0x00040001      *.hca
 ***************************************************************************************************/
 
 #ifndef ICONFIGMANAGE_H
@@ -21,7 +12,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IFileStream;
+class IStream;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
 class IElecCalibrateCollection;
@@ -50,8 +41,8 @@ public:
     Q_DECLARE_FLAGS(ContainTypes, ContainType)
 
 public:
-    // 获取文件流
-    virtual IFileStream *fileStream() = 0;
+    // 获取流
+    virtual IStream *stream() = 0;
     // 设置包含内容
     virtual void setContain(quint32 value) = 0;
     // 获取包含内容

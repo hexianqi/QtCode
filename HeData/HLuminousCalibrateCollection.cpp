@@ -1,7 +1,7 @@
 #include "HLuminousCalibrateCollection_p.h"
 #include "IDataFactory.h"
 #include "ILuminousCalibrate.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
@@ -10,25 +10,25 @@ HE_DATA_BEGIN_NAMESPACE
 HLuminousCalibrateCollectionPrivate::HLuminousCalibrateCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00020003);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Luminous calibrate files (*.hcl)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00020003);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Luminous calibrate files (*.hcl)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
 }
 
 void HLuminousCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::ILuminousCalibrate>(s, datas, [=](QString type) { return factory->createLuminousCalibrate(type); });
+    HStreamHelper::read<QString, HeData::ILuminousCalibrate>(s, items, [=](QString type) { return factory->createLuminousCalibrate(type); });
 }
 
 void HLuminousCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::ILuminousCalibrate>(s, datas);
+    HStreamHelper::write<QString, HeData::ILuminousCalibrate>(s, items);
 }
 
 HLuminousCalibrateCollection::HLuminousCalibrateCollection() :
@@ -46,10 +46,10 @@ QString HLuminousCalibrateCollection::typeName()
     return "HLuminousCalibrateCollection";
 }
 
-IFileStream *HLuminousCalibrateCollection::fileStream()
+IDataStream *HLuminousCalibrateCollection::dataStream()
 {
     Q_D(HLuminousCalibrateCollection);
-    return d->fileStream;
+    return d->dataStream;
 }
 
 HE_DATA_END_NAMESPACE

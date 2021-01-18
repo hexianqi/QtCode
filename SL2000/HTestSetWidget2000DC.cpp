@@ -30,9 +30,20 @@ QString HTestSetWidget2000DC::typeName()
     return "HTestSetWidget2000DC";
 }
 
+QVariant HTestSetWidget2000DC::handleOperation(QString type, QVariant value)
+{
+    if (type == "<启用光挡位>")
+    {
+        ui->comboBox_3->setEnabled(value.toBool());
+        return true;
+    }
+    return HAbstractTestSetWidget::handleOperation(type, value);
+}
+
 void HTestSetWidget2000DC::handleAction(HActionType action)
 {
     Q_D(HTestSetWidget2000DC);
+    bool adjust = false;
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
@@ -45,13 +56,14 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
         ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
         break;
     case ACT_SET_REVERSE_VOLTAGE:
-        ui->doubleSpinBox_3->setValue(d->testData->data("[反向电压]").toDouble());
+        ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
         break;
     case ACT_SET_GEARS_OUTPUT_CURRENT:
         ui->comboBox_2->setCurrentIndex(d->testData->data("[输出电流_档位]").toInt());
         break;
     case ACT_SET_LUMINOUS_GEARS:
-        ui->comboBox_3->setCurrentIndex(d->testData->data("[光档位]").toInt());
+        if (ui->comboBox_3->isEnabled() && !d->autoLuminousGears)
+            ui->comboBox_3->setCurrentIndex(d->testData->data("[光档位]").toInt() + 1);
         break;
     case ACT_QUERY_STATE_TRIGGER:
         if (!d->testState)
@@ -62,6 +74,14 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             d->model->addAction(ACT_SINGLE_TEST, 100);
         break;
     case ACT_SINGLE_TEST:
+        adjust = adjustIntegralTime();
+        adjust = adjustLuminousGears() || adjust;
+        if (adjust)
+        {
+            d->model->addAction(ACT_SINGLE_TEST);
+            break;
+        }
+        emit resultChanged(action, true);
         if (!d->testState)
             break;
         if (d->testMode == 4)
@@ -70,9 +90,11 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             setTestState(false);
         break;
     case ACT_GET_SPECTRUM_ELEC:
+        emit resultChanged(action, d->testMode == 3);
         if (!d->testState)
             break;
         adjustIntegralTime();
+        adjustLuminousGears();
         if (d->testMode == 1 || d->testMode == 2)
             d->model->addAction(ACT_GET_SPECTRUM_ELEC, 100);
         break;
@@ -100,9 +122,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
         }
         else
         {
-            d->model->addAction(ACT_GET_REVERSE_CURRENT);
-            d->testData->setData("[电源模式]", 1);
-            d->model->addAction(ACT_SET_SOURCE_MODE);
+            d->testData->setData("[预配置测试]", true);
             if (d->testMode == 1)
             {
                 d->model->addAction(ACT_GET_SPECTRUM_ELEC);
@@ -123,10 +143,10 @@ bool HTestSetWidget2000DC::setTestState(bool b)
     {
         if (d->testMode >= 1 && d->testMode <= 3)
         {
-            d->testData->setData("[电源模式]", 0);
-            d->model->addAction(ACT_SET_SOURCE_MODE);
             d->timerContinue->stop();
             d->timerInterval->stop();
+            d->testData->setData("[电源模式]", 0);
+            d->model->addAction(ACT_SET_SOURCE_MODE, 200);
         }
     }
     return true;
@@ -165,9 +185,9 @@ void HTestSetWidget2000DC::on_doubleSpinBox_4_valueChanged(double value)
 void HTestSetWidget2000DC::on_checkBox_1_clicked(bool b)
 {
     Q_D(HTestSetWidget2000DC);
-    if (d->integralTimeAuto == b)
+    if (d->autoIntegralTime == b)
         return;
-    d->integralTimeAuto = b;
+    d->autoIntegralTime = b;
     ui->checkBox_1->setChecked(b);
     ui->doubleSpinBox_1->setEnabled(!b);
 }
@@ -185,13 +205,21 @@ void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
     d->testData->setData("[输出电流_档位]", value);
+    d->testData->setData("[实测电流_档位]", value);
     d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+    d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HTestSetWidget2000DC::on_comboBox_3_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testData->setData("[光档位]", value);
+    if (value == 0)
+    {
+        d->autoLuminousGears = true;
+        return;
+    }
+    d->autoLuminousGears = false;
+    d->testData->setData("[光档位]", value - 1);
     d->model->addAction(ACT_SET_LUMINOUS_GEARS);
 }
 
@@ -209,17 +237,25 @@ void HTestSetWidget2000DC::intervalTest()
 bool HTestSetWidget2000DC::adjustIntegralTime()
 {
     Q_D(HTestSetWidget2000DC);
-    if (!d->integralTimeAuto)
-        return false;
-    if (!d->testData->handleOperation("<匹配积分时间>").toBool())
+    if (!d->autoIntegralTime || !d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    return true;
+}
+
+bool HTestSetWidget2000DC::adjustLuminousGears()
+{
+    Q_D(HTestSetWidget2000DC);
+    if (!ui->comboBox_3->isEnabled() || !d->autoLuminousGears || !d->testData->handleOperation("<匹配光档位>").toBool())
+        return false;
+    d->model->addAction(ACT_SET_LUMINOUS_GEARS);
     return true;
 }
 
 void HTestSetWidget2000DC::init()
 {
     Q_D(HTestSetWidget2000DC);
+    int i;
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_1);
     HPluginHelper::initWidget("[输出电压]", ui->doubleSpinBox_2);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox_3);
@@ -228,9 +264,13 @@ void HTestSetWidget2000DC::init()
     ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
     ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
     ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  ") << tr("  分选测试  "));
-    ui->comboBox_2->addItems(QStringList() << tr("  1档  ") << tr("  2档  "));
-    ui->comboBox_3->addItems(QStringList() << tr("  1档  ") << tr("  2档  ") << tr("  3档  ") << tr("  4档  ") << tr("  5档  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));// << tr("  分选测试  "));
+
+    for (i = 0; i < d->testData->data("[输出电流_档位数]").toInt(); i++)
+        ui->comboBox_2->addItem(tr("  %1档  ").arg(i+1));
+    ui->comboBox_3->addItem(tr("  自动  "));
+    for (i = 0; i < d->testData->data("[光档位数]").toInt(); i++)
+        ui->comboBox_3->addItem(tr("  %1档  ").arg(i+1));
     d->timerContinue = new QTimer(this);
     d->timerInterval = new QTimer(this);
     connect(d->timerContinue, &QTimer::timeout, this, &HTestSetWidget2000DC::continueTest);

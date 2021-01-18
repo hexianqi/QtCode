@@ -18,5 +18,7 @@
         <file>image/Left.png</file>
         <file>image/Right.png</file>
         <file>image/Up.png</file>
+        <file>image/table_redo.png</file>
+        <file>image/table_undo.png</file>
     </qresource>
 </RCC>

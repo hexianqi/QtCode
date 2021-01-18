@@ -7,7 +7,8 @@
 class HTestSetWidget2000DCPrivate : public HAbstractTestSetWidgetPrivate
 {
 public:
-    bool integralTimeAuto = false;
+    bool autoIntegralTime = false;
+    bool autoLuminousGears = true;
     QTimer *timerContinue = nullptr;
     QTimer *timerInterval = nullptr;
 };

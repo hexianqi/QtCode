@@ -12,8 +12,10 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IFileStream;
-class IExcelStream;
+class IDataStream;
+class ITextStream;
+class IXlsxStream;
+class IMultStream;
 class ITestData;
 class ITestSpec;
 class ITestElec;
@@ -45,10 +47,14 @@ class HSpecFitting;
 class IDataFactory : public IInitializeable
 {
 public:
-    // 创建文件流
-    virtual IFileStream *createFileStream(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建Excel文件流
-    virtual IExcelStream *createExcelStream(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建数据流
+    virtual IDataStream *createDataStream(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建文本流
+    virtual ITextStream *createTextStream(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建Xlsx流
+    virtual IXlsxStream *createXlsxStream(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建组合流
+    virtual IMultStream *createMultStream(QString type, QVariantMap param = QVariantMap()) = 0;
 
 public:
     // 创建测试数据

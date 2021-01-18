@@ -14,7 +14,6 @@ HE_GUI_BEGIN_NAMESPACE
 class HSpecEnergyWidget;
 class HSpecChromatismChartView;
 class HResultTableWidget;
-class ITestSetWidget;
 class ITestDetailWidget;
 HE_GUI_END_NAMESPACE
 
@@ -28,11 +27,14 @@ public:
     HSpecEnergyWidget *energyWidget = nullptr;
     HSpecChromatismChartView *chromatismWidget = nullptr;
     HCie1931Widget *cieWidget = nullptr;
+    HCie1931Widget *cieWidget2 = nullptr;
     HResultTableWidget *resultWidget = nullptr;
-    ITestSetWidget *testSetWidget = nullptr;
     ITestDetailWidget *detailWidget = nullptr;
+    QDialog *cieDialog = nullptr;
 
 public:
+    QAction *actionRemove = nullptr;
+    QAction *actionExportDatabase2 = nullptr;
     QAction *actionAdjust = nullptr;
     QAction *actionSetRam = nullptr;
     QAction *actionGetRam = nullptr;

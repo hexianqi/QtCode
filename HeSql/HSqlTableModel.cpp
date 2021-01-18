@@ -10,6 +10,7 @@ HSqlTableModel::HSqlTableModel(QObject *parent, QSqlDatabase db) :
     ISqlTableModel(parent, db),
     d_ptr(new HSqlTableModelPrivate)
 {
+    init();
 }
 
 
@@ -17,6 +18,7 @@ HSqlTableModel::HSqlTableModel(HSqlTableModelPrivate &p, QObject *parent, QSqlDa
     ISqlTableModel(parent, db),
     d_ptr(&p)
 {
+    init();
 }
 
 HSqlTableModel::~HSqlTableModel()
@@ -34,28 +36,22 @@ QString HSqlTableModel::typeName()
     return "HSqlTableModel";
 }
 
-void HSqlTableModel::setField(QStringList value)
-{
-    if (d_ptr->fields == value)
-        return;
-    d_ptr->fields = value;
-}
-
 QStringList HSqlTableModel::field()
 {
     return d_ptr->fields;
 }
 
-void HSqlTableModel::setTable(const QString &tableName)
+void HSqlTableModel::setTableField(const QString &tableName, const QStringList &fields)
 {
     auto db = database();
     if (!db.tables().contains(tableName, Qt::CaseInsensitive))
     {
-        if (!HSqlHelper::createTable(tableName, d_ptr->fields, db))
+        if (!HSqlHelper::createTable(tableName, fields, db))
             return;
     }
     QSqlTableModel::setTable(tableName);
-    setSort(0, Qt::AscendingOrder);
+    updateField();
+    setSort(0, Qt::DescendingOrder);
     select();
 }
 
@@ -107,6 +103,19 @@ QVariant HSqlTableModel::headerData(int section, Qt::Orientation orientation, in
             return HSql::toCaptionUnit(d_ptr->fields.at(section));
     }
     return QSqlTableModel::headerData(section, orientation, role);
+}
+
+void HSqlTableModel::init()
+{
+    setEditStrategy(QSqlTableModel::OnManualSubmit);
+}
+
+void HSqlTableModel::updateField()
+{
+    d_ptr->fields.clear();
+    auto r = record();
+    for (int i = 0; i < r.count(); ++i)
+        d_ptr->fields << r.fieldName(i);
 }
 
 HE_SQL_END_NAMESPACE

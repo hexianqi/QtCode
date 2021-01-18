@@ -21,12 +21,15 @@ public:
     ~HSelectDialog();
 
 public:
-    void setLabelText(const QString &);
-    void setOptionals(const QStringList &);
-    void setSelected(const QString &);
+    QString currentText() const;
+    QVariant currentData() const;
 
 public:
-    QString selected();
+    void setLabelText(const QString &);
+    void setOptionals(const QStringList &);
+    void setOptionals(const QVariantMap &);
+    void setCurrentText(const QString &);
+    void setCurrentIndex(int index);
 
 private:
     Ui::HSelectDialog *ui;

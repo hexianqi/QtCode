@@ -80,7 +80,7 @@ int HGradeItem2D::count()
 
 QStringList HGradeItem2D::headers()
 {
-    return QStringList() << "x1" << "y1" << "x2" << "y2" << "x3" << "y3" << "x4" << "y4";
+    return QStringList() << "x0" << "y0" << "x1" << "y1" << "x2" << "y2" << "x3" << "y3";
 }
 
 QStringList HGradeItem2D::types()

@@ -32,6 +32,7 @@ protected:
     void setModule(int value);
     void setGears(HElecType type, int value);
     void setParam(HElecType type, double value);
+    void calcRelation(HElecType type);
 };
 
 HE_DATA_END_NAMESPACE

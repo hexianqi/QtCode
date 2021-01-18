@@ -88,7 +88,8 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("RedRatio",            "[红色比]");
     hashFieldType.insert("GreenRadio",          "[绿色比]");
     hashFieldType.insert("BlueRatio",           "[蓝色比]");
-    hashFieldType.insert("Ra",                  "[显色指数]");
+    hashFieldType.insert("Ra",                  "[显色指数Ra]");
+    hashFieldType.insert("R9",                  "[显色指数R9]");
     hashFieldType.insert("Rx",                  "[显色指数Rx]");
     hashFieldType.insert("EnergyGraph",         "[光谱能量曲线]");
 
@@ -111,6 +112,9 @@ void HSqlGlobalInstance::initFieldCreateStyle()
 {
     hashFieldCreateStyle.clear();
     hashFieldCreateStyle.insert("ID",                   "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL");
+    hashFieldCreateStyle.insert("TableName",            "TableName nchar(50)");
+    hashFieldCreateStyle.insert("Version",              "Version integer");
+
     hashFieldCreateStyle.insert("Manufacturer",         "Manufacturer nchar(50)");
     hashFieldCreateStyle.insert("ProductName",          "ProductName nchar(50)");
     hashFieldCreateStyle.insert("ProductModel",         "ProductModel nchar(50)");
@@ -145,6 +149,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("GreenRadio",           "GreenRadio numeric(18, 1)");
     hashFieldCreateStyle.insert("BlueRatio",            "BlueRatio numeric(18, 1)");
     hashFieldCreateStyle.insert("Ra",                   "Ra numeric(18, 2)");
+    hashFieldCreateStyle.insert("R9",                   "R9 numeric(18, 2)");
     hashFieldCreateStyle.insert("Rx",                   "Rx nchar(200)");
     hashFieldCreateStyle.insert("EnergyGraph",          "EnergyGraph ntext");
 

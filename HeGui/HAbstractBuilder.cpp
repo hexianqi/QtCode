@@ -11,22 +11,19 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-HAbstractBuilderPrivate::HAbstractBuilderPrivate(IMainWindow *p)
+HAbstractBuilderPrivate::HAbstractBuilderPrivate()
 {
-    mainWindow = p;
-    configFileName = QString("%1.cfg").arg(QApplication::applicationName());
-    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(QApplication::applicationName()));
-    HAppContext::setContextValue("ConfigFileName", configFileName);
-    HAppContext::setContextPointer("IMainWindow", mainWindow);
+    mainWindow = HAppContext::getContextPointer<IMainWindow>("IMainWindow");
+    configFileName = HAppContext::getContextValue<QString>("ConfigFileName");
 }
 
-HAbstractBuilder::HAbstractBuilder(IMainWindow *parent) :
+HAbstractBuilder::HAbstractBuilder(QObject *parent) :
     QObject(parent),
-    d_ptr(new HAbstractBuilderPrivate(parent))
+    d_ptr(new HAbstractBuilderPrivate)
 {
 }
 
-HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *parent) :
+HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)
 {
@@ -34,7 +31,7 @@ HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, IMainWindow *pare
 
 void HAbstractBuilder::buildAll()
 {
-    openDeploy();
+    readSettings();
     buildFactory();
     buildConfigManage();
     buildTestData();
@@ -44,10 +41,10 @@ void HAbstractBuilder::buildAll()
     buildDatabase();
     buildMenu();
     buildTestWidget();
-    saveDeploy();
+    writeSettings();
 }
 
-void HAbstractBuilder::openDeploy()
+void HAbstractBuilder::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
@@ -57,7 +54,7 @@ void HAbstractBuilder::openDeploy()
     settings->endGroup();
 }
 
-void HAbstractBuilder::saveDeploy()
+void HAbstractBuilder::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);

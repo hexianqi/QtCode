@@ -33,14 +33,14 @@ void HChromatism::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IChromatismItem>(s, d->datas, [=](QString type) { return d->factory->createChromatismItem(type); });
+    HStreamHelper::read<QString, HeData::IChromatismItem>(s, d->items, [=](QString type) { return d->factory->createChromatismItem(type); });
 }
 
 void HChromatism::writeContent(QDataStream &s)
 {
     Q_D(HChromatism);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IChromatismItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::IChromatismItem>(s, d->items);
 }
 
 double HChromatism::calcSdcm(double tc, QPointF xy)
@@ -62,7 +62,7 @@ bool HChromatism::matching(double tc)
     Q_D(HChromatism);
     d->selectItem = nullptr;
     auto t = 65535.0;
-    for (auto i : d->datas)
+    for (auto i : d->items)
     {
         if (!i->data("[使用]").toBool())
             continue;

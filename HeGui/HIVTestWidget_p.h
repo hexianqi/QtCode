@@ -9,15 +9,12 @@ class HDynamicChartView;
 
 HE_GUI_BEGIN_NAMESPACE
 
-class ITestSetWidget;
-
 class HIVTestWidgetPrivate : public HTestWidgetPrivate
 {
 public:
     HIVTestWidgetPrivate();
 
 public:
-    ITestSetWidget *testSetWidget;
     HEntireTableWidget *tableWidget;
     HDynamicChartView *chartView;
 

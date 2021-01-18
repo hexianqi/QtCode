@@ -29,8 +29,6 @@ void HSpecData::clear()
     GreenRatio = 0.0;
     BlueRatio = 0.0;
     VisionFlux = 0.0;
-    LuminousFlux = 0.0;
-    LuminousPower = 0.0;
 }
 
 HE_ALGORITHM_END_NAMESPACE

@@ -34,7 +34,7 @@ QString HCore::toComment(HErrorType type)
 HDataFormatInfo *HCore::toFormatInfo(const QString &type)
 {
     if (!hashDataFormatInfo.contains(type))
-        return new HDataFormatInfo();
+        hashDataFormatInfo.insert(type, new HDataFormatInfo(type));
     return hashDataFormatInfo.value(type);
 }
 
@@ -48,9 +48,9 @@ QString HCore::toString(const QString &type, const QVariant &value)
 {
     auto vt = value.type();
     if (vt == QVariant::PointF)
-        return QString("(%1,%2)").arg(toString(type, value.toPointF().x()), toString(type, value.toPointF().y()));
+        return QString("%1, %2").arg(toString(type, value.toPointF().x()), toString(type, value.toPointF().y()));
     if (vt == QVariant::Point)
-        return QString("(%1,%2)").arg(toString(type, value.toPoint().x()), toString(type, value.toPoint().y()));
+        return QString("%1, %2").arg(toString(type, value.toPoint().x()), toString(type, value.toPoint().y()));
     if (vt == QVariant::Double)
         return toString(type, value.toDouble());
     if (vt == QVariant::Int)
@@ -259,23 +259,11 @@ void HCoreGlobalInstance::initActionComment()
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
 
 //    hashActionComment.insert(ACT_SET_ELEC_MODULE,                QStringList() << tr("ACT_SET_ELEC_MODULE") << tr("设置电学参数模块"));
-//    hashActionComment.insert(ACT_SET_SOURCE_MODE,                QStringList() << tr("ACT_SET_SOURCE_MODE") << tr("设置电源模式"));
-//    hashActionComment.insert(ACT_SET_SOURCE_VOLTAGE,             QStringList() << tr("ACT_SET_SOURCE_VOLTAGE") << tr("设置电源电压"));
-//    hashActionComment.insert(ACT_SET_FORWARD_CURRENT_GEARS,      QStringList() << tr("ACT_SET_FORWARD_CURRENT_GEARS") << tr("设置电流档位"));
-//    hashActionComment.insert(ACT_SET_FORWARD_CURRENT,            QStringList() << tr("ACT_SET_FORWARD_CURRENT") << tr("设置正向电流"));
-//    hashActionComment.insert(ACT_SET_REVERSE_VOLTAGE,            QStringList() << tr("ACT_SET_REVERSE_VOLTAGE") << tr("设置反向电压"));
-//    hashActionComment.insert(ACT_SET_FORWARD_CURRENT2,           QStringList() << tr("ACT_SET_FORWARD_CURRENT2") << tr("设置正向电流"));
-//    hashActionComment.insert(ACT_SET_FORWARD_CURRENT_CODE1,      QStringList() << tr("ACT_SET_FORWARD_CURRENT_CODE1") << tr("设置正向电流"));
-//    hashActionComment.insert(ACT_SET_FORWARD_CURRENT_CODE2,      QStringList() << tr("ACT_SET_FORWARD_CURRENT_CODE2") << tr("设置正向电流"));
 //    hashActionComment.insert(ACT_SET_ELEC_CODE,                  QStringList() << tr("ACT_SET_ELEC_CODE") << tr("设置开关编码"));
 //    hashActionComment.insert(ACT_GET_ELEC,                       QStringList() << tr("ACT_GET_ELEC") << tr("获取电参数"));
-//    hashActionComment.insert(ACT_GET_FORWARD_VOLTAGE,            QStringList() << tr("ACT_GET_FORWARD_VOLTAGE") << tr("获取正向电压"));
-//    hashActionComment.insert(ACT_GET_REVERSE_CURRENT,            QStringList() << tr("ACT_GET_REVERSE_CURRENT") << tr("获取反向漏流"));
 //    hashActionComment.insert(ACT_GET_FEEDBACK_CURRENT,           QStringList() << tr("ACT_GET_FEEDBACK_CURRENT") << tr("获取回溯电流"));
 
-
 //    hashActionComment.insert(ACT_GET_ANGULAR_DISTRIBUTION,       QStringList() << tr("ACT_GET_ANGULAR_DISTRIBUTION") << tr("获取角度分布数据"));
-
 
 //    hashActionComment.insert(ACT_RESET_MOTOR,                    QStringList() << tr("ACT_RESET_MOTOR") << tr("电机复位"));
 
@@ -295,8 +283,6 @@ void HCoreGlobalInstance::initActionComment()
 
 //    hashActionComment.insert(ACT_GET_LAMPS_ELEC,             QStringList() << tr("ACT_GET_LAMPS_ELEC") << tr("获取灯具电量参数"));
 
-
-
 //    hashActionComment.insert(ACT_PLC_RESET_MOTOR,            QStringList() << tr("ACT_PLC_RESET_MOTOR") << tr("电机复位"));
 //    hashActionComment.insert(ACT_PLC_SEND_DATA,              QStringList() << tr("ACT_PLC_SEND_DATA") << tr("发送数据"));
 //    hashActionComment.insert(ACT_PLC_FLUSH_DELAY,            QStringList() << tr("ACT_PLC_FLUSH_DELAY") << tr("设置吹气延时"));
@@ -314,12 +300,7 @@ void HCoreGlobalInstance::initActionComment()
 //    hashActionComment.insert(ACT_COB_SET_MOTOR_STEP,         QStringList() << tr("ACT_COB_SET_MOTOR_STEP") << tr("电机移动"));
 //    hashActionComment.insert(ACT_COB_QUERY_STATE,            QStringList() << tr("ACT_COB_QUERY_STATE") << tr("查询状态"));
 
-//
 //    hashActionComment.insert(ACT_SET_MOTOR_ANGULAR,          QStringList() << tr("ACT_SET_MOTOR_ANGULAR") << tr("设置电机角度"));
-
-//
-//    hashActionComment.insert(ACT_GET_ELEC_LUMINOUS_SPECTRUM,     QStringList() << tr("ACT_GET_ELEC_LUMINOUS_SPECTRUM") << tr("获取光色电数据"));
-//    hashActionComment.insert(ACT_GET_LUMINOUS_SPECTRUM,          QStringList() << tr("ACT_GET_LUMINOUS_SPECTRUM") << tr("获取光色数据"));
 }
 
 void HCoreGlobalInstance::initErrorComment()
@@ -359,7 +340,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.clear();
     hashDataFormatInfo.insert("",                               new HDataFormatInfo());
     hashDataFormatInfo.insert("[]",                             new HDataFormatInfo("[]"));
-    hashDataFormatInfo.insert("[_F]",                           new HDataFormatInfo("[_F]", 0, 65535));
     // 光谱参数
     hashDataFormatInfo.insert("[标准色温]",                     new HDataFormatInfo("[标准色温]", "K", 2300, 4000, 2));
     hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 4000, 1));
@@ -368,7 +348,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱波长间隔]",                 new HDataFormatInfo("[光谱波长间隔]", "nm", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱采样等待时间]",             new HDataFormatInfo("[光谱采样等待时间]", 0, 1000));
     hashDataFormatInfo.insert("[光谱平均次数]",                 new HDataFormatInfo("[光谱平均次数]", 1, 32));
-    hashDataFormatInfo.insert("[光谱采样延时]",                 new HDataFormatInfo("[光谱采样延时]", 0, 600));
+    hashDataFormatInfo.insert("[光谱采样延时]",                 new HDataFormatInfo("[光谱采样延时]", "ms", 0, 10000));
     hashDataFormatInfo.insert("[光谱保留像元]",                 new HDataFormatInfo("[光谱保留像元]", 0, 2047));
     hashDataFormatInfo.insert("[光谱固定暗底]",                 new HDataFormatInfo("[光谱固定暗底]", 0, 9999.9, 1));
     hashDataFormatInfo.insert("[光谱左右暗底]",                 new HDataFormatInfo("[光谱左右暗底]", 0, 9999.9, 1));
@@ -378,7 +358,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱拟合取样次数]",             new HDataFormatInfo("[光谱拟合取样次数]", 30, 500));
     hashDataFormatInfo.insert("[光谱拟合有效范围]",             new HDataFormatInfo("[光谱拟合有效范围]", 0, 65535));
     hashDataFormatInfo.insert("[光谱拟合多项式项数]",           new HDataFormatInfo("[光谱拟合多项式项数]", 2, 20));
-    //hashDataFormatInfo.insert("[光谱拟合系数]",                 new HDataFormatInfo("[光谱拟合系数]", 0, 65535));
     hashDataFormatInfo.insert("[标准光谱光通量]",               new HDataFormatInfo("[标准光谱光通量]", "lm", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
     // 光谱数据
@@ -389,7 +368,8 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[主波长]",                       new HDataFormatInfo("[主波长]", "nm", 360, 780, 1));
     hashDataFormatInfo.insert("[色纯度]",                       new HDataFormatInfo("[色纯度]", 0, 100, 3));
     hashDataFormatInfo.insert("[色温]",                         new HDataFormatInfo("[色温]", "K", 1400, 25000));
-    hashDataFormatInfo.insert("[显色指数]",                     new HDataFormatInfo("[显色指数]", 0, 100, 2));
+    hashDataFormatInfo.insert("[显色指数Ra]",                   new HDataFormatInfo("[显色指数Ra]", 0, 100, 2));
+    hashDataFormatInfo.insert("[显色指数R9]",                   new HDataFormatInfo("[显色指数R9]", 0, 100, 2));
     hashDataFormatInfo.insert("[显色指数Rx]",                   new HDataFormatInfo("[显色指数Rx]", 0, 100, 1));
     hashDataFormatInfo.insert("[色坐标]",                       new HDataFormatInfo("[色坐标]", 0, 1, 4, 0.001));
     hashDataFormatInfo.insert("[色坐标uv]",                     new HDataFormatInfo("[色坐标uv]", 0, 1, 4, 0.001));
@@ -415,33 +395,21 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[轴A]",                          new HDataFormatInfo("[轴A]", 0, 1000000, 1));
     hashDataFormatInfo.insert("[轴B]",                          new HDataFormatInfo("[轴B]", 0, 1000000, 1));
     // 电参数
-    hashDataFormatInfo.insert("[输出电压]",                     new HDataFormatInfo("[输出电压]", "V", 0, 400, 2));
-    hashDataFormatInfo.insert("[输出电流]",                     new HDataFormatInfo("[输出电流]", "mA", 0, 5000, 2));
-    hashDataFormatInfo.insert("[输出电流1]",                    new HDataFormatInfo("[输出电流1]", "mA", 0, 5000, 2));
-    hashDataFormatInfo.insert("[输出电流2]",                    new HDataFormatInfo("[输出电流2]", "mA", 0, 5000, 2));
-    hashDataFormatInfo.insert("[反向电压]",                     new HDataFormatInfo("[反向电压]", "V", 0, 400, 2));
-    hashDataFormatInfo.insert("[实测电压]",                     new HDataFormatInfo("[实测电压]", "V", 0, 400, 2));
-    hashDataFormatInfo.insert("[实测电流]",                     new HDataFormatInfo("[实测电流]", "mA", 0, 5000, 2));
-    hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 2));
-    hashDataFormatInfo.insert("[电功率]",                       new HDataFormatInfo("[电功率]", "W", 0, 500, 2));
+    hashDataFormatInfo.insert("[输出电压]",                     new HDataFormatInfo("[输出电压]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[输出电流]",                     new HDataFormatInfo("[输出电流]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[输出电流1]",                    new HDataFormatInfo("[输出电流1]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[输出电流2]",                    new HDataFormatInfo("[输出电流2]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[输出电流3]",                    new HDataFormatInfo("[输出电流3]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[反向电压]",                     new HDataFormatInfo("[反向电压]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[实测电压]",                     new HDataFormatInfo("[实测电压]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[实测电流]",                     new HDataFormatInfo("[实测电流]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[实测电流1]",                    new HDataFormatInfo("[实测电流1]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[实测电流2]",                    new HDataFormatInfo("[实测电流2]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[实测电流3]",                    new HDataFormatInfo("[实测电流3]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 3));
+    hashDataFormatInfo.insert("[电功率]",                       new HDataFormatInfo("[电功率]", "W", 0, 500, 3));
     hashDataFormatInfo.insert("[电阻]",                         new HDataFormatInfo("[电阻]", "Ω", 0, 10, 3));
     hashDataFormatInfo.insert("[功率因数]",                     new HDataFormatInfo("[功率因数]", 0, 1, 3));
-    hashDataFormatInfo.insert("[输出电压_F]",                   new HDataFormatInfo("[输出电压_F]"));
-    hashDataFormatInfo.insert("[输出电流_F]",                   new HDataFormatInfo("[输出电流_F]"));
-    hashDataFormatInfo.insert("[输出电流1_F]",                  new HDataFormatInfo("[输出电流1_F]"));
-    hashDataFormatInfo.insert("[输出电流2_F]",                  new HDataFormatInfo("[输出电流2_F]"));
-    hashDataFormatInfo.insert("[反向电压_F]",                   new HDataFormatInfo("[反向电压_F]"));
-    hashDataFormatInfo.insert("[实测电压_F]",                   new HDataFormatInfo("[实测电压_F]"));
-    hashDataFormatInfo.insert("[实测电流_F]",                   new HDataFormatInfo("[实测电流_F]"));
-    hashDataFormatInfo.insert("[反向漏流_F]",                   new HDataFormatInfo("[反向漏流_F]"));
-    hashDataFormatInfo.insert("[输出电压_R]",                   new HDataFormatInfo("[输出电压_R]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[输出电流_R]",                   new HDataFormatInfo("[输出电流_R]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[输出电流1_R]",                  new HDataFormatInfo("[输出电流1_R]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[输出电流2_R]",                  new HDataFormatInfo("[输出电流2_R]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[反向电压_R]",                   new HDataFormatInfo("[反向电压_R]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[实测电压_R]",                   new HDataFormatInfo("[实测电压_R]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[实测电流_R]",                   new HDataFormatInfo("[实测电流_R]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[反向漏流_R]",                   new HDataFormatInfo("[反向漏流_R]", "uA",0, 500, 3));
     // 光参数
     hashDataFormatInfo.insert("[光采样值]",                     new HDataFormatInfo("[光采样值]"));
     hashDataFormatInfo.insert("[光采样比率]",                   new HDataFormatInfo("[光采样比率]",  "%", 0, 100, 1));
@@ -451,76 +419,22 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光照度]",                       new HDataFormatInfo("[光照度]", "lx", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光功率]",                       new HDataFormatInfo("[光功率]", "mW", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光效率]",                       new HDataFormatInfo("[光效率]", "lm/W", 0, 99999, 2, 100));
-    hashDataFormatInfo.insert("[光通量_F]",                     new HDataFormatInfo("[光通量_F]"));
-    hashDataFormatInfo.insert("[光强度_F]",                     new HDataFormatInfo("[光强度_F]"));
-    hashDataFormatInfo.insert("[光亮度_F]",                     new HDataFormatInfo("[光亮度_F]"));
-    hashDataFormatInfo.insert("[光照度_F]",                     new HDataFormatInfo("[光照度_F]"));
-    hashDataFormatInfo.insert("[光通量_R]",                     new HDataFormatInfo("[光通量_R]", "lm", 0, 99999, 3, 100));
-    hashDataFormatInfo.insert("[光强度_R]",                     new HDataFormatInfo("[光强度_R]", "mcd", 0, 99999, 3, 100));
-    hashDataFormatInfo.insert("[光亮度_R]",                     new HDataFormatInfo("[光亮度_R]", "cd/m<sup>2</sup>", 0, 99999, 3, 100));
-    hashDataFormatInfo.insert("[光照度_R]",                     new HDataFormatInfo("[光照度_R]", "lx", 0, 99999, 3, 100));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
     hashDataFormatInfo.insert("[环境湿度]",                     new HDataFormatInfo("[环境湿度]", "%", 0, 100, 1));
     // 分级参数
     hashDataFormatInfo.insert("[分级]",                         new HDataFormatInfo("[分级]", 0, 99999));
-    hashDataFormatInfo.insert("[优先级]",                       new HDataFormatInfo("[优先级]", 0, 99999));
+    hashDataFormatInfo.insert("[优先级]",                       new HDataFormatInfo("[优先级]", 1, 99999));
     hashDataFormatInfo.insert("[分级数]",                       new HDataFormatInfo("[分级数]", 0, 99999));
     hashDataFormatInfo.insert("[偏移量]",                       new HDataFormatInfo("[偏移量]", -0.5, 0.5, 4, 0.001));
     // 调整参数
     hashDataFormatInfo.insert("[调整比率]",                     new HDataFormatInfo("[调整比率]", "%", 10, 1000, 1));
     hashDataFormatInfo.insert("[自吸收系数]",                   new HDataFormatInfo("[自吸收系数]", 0, 100, 2));
 
-            //    //电参数
-//    hashFormatInfo.insert(tr("[电源电压_Fi]"),                     FTypeInfo(tr("[电源电压_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[反向电压_Fi]"),                     FTypeInfo(tr("[反向电压_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_Fi]"),                     FTypeInfo(tr("[正向电流_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_1_Fi]"),                   FTypeInfo(tr("[正向电流_1_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_2_Fi]"),                   FTypeInfo(tr("[正向电流_2_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_3_Fi]"),                   FTypeInfo(tr("[正向电流_3_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_L2_1_Fi]"),                FTypeInfo(tr("[正向电流_L2_1_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_L2_2_Fi]"),                FTypeInfo(tr("[正向电流_L2_2_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_L2_3_Fi]"),                FTypeInfo(tr("[正向电流_L2_3_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电流_L2_4_Fi]"),                FTypeInfo(tr("[正向电流_L2_4_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[正向电压_Fi]"),                     FTypeInfo(tr("[正向电压_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[反向漏流_Fi]"),                     FTypeInfo(tr("[反向漏流_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[回溯电流_Fi]"),                     FTypeInfo(tr("[回溯电流_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[回溯电流_1_Fi]"),                   FTypeInfo(tr("[回溯电流_1_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[回溯电流_2_Fi]"),                   FTypeInfo(tr("[回溯电流_2_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[回溯电流_3_Fi]"),                   FTypeInfo(tr("[回溯电流_1_Fi]"), 0, 65535));
-//    hashFormatInfo.insert(tr("[电源电压_Re]"),                     FTypeInfo(tr("[电源电压_Re]"), tr("V"), 0, 400, 3));
-//    hashFormatInfo.insert(tr("[反向电压_Re]"),                     FTypeInfo(tr("[反向电压_Re]"), tr("V"), 0, 400, 3));
-//    hashFormatInfo.insert(tr("[正向电流_Re]"),                     FTypeInfo(tr("[正向电流_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_1_Re]"),                   FTypeInfo(tr("[正向电流_1_Re]"), tr("uA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_2_Re]"),                   FTypeInfo(tr("[正向电流_2_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_3_Re]"),                   FTypeInfo(tr("[正向电流_3_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_L2_1_Re]"),                FTypeInfo(tr("[正向电流_L2_1_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_L2_2_Re]"),                FTypeInfo(tr("[正向电流_L2_2_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_L2_3_Re]"),                FTypeInfo(tr("[正向电流_L2_3_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_L2_4_Re]"),                FTypeInfo(tr("[正向电流_L2_4_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电压_Re]"),                     FTypeInfo(tr("[正向电压_Re]"), tr("V"), 0, 400, 3));
-//    hashFormatInfo.insert(tr("[反向漏流_Re]"),                     FTypeInfo(tr("[反向漏流_Re]"), tr("uA"),0, 500, 3));
-//    hashFormatInfo.insert(tr("[回溯电流_Re]"),                     FTypeInfo(tr("[回溯电流_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[回溯电流_1_Re]"),                   FTypeInfo(tr("[回溯电流_1_Re]"), tr("uA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[回溯电流_2_Re]"),                   FTypeInfo(tr("[回溯电流_2_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[回溯电流_3_Re]"),                   FTypeInfo(tr("[回溯电流_3_Re]"), tr("mA"), 0, 5000, 3));
-//    hashFormatInfo.insert(tr("[正向电流_1]"),                      FTypeInfo(tr("[正向电流_1]"), tr("uA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电流_2]"),                      FTypeInfo(tr("[正向电流_2]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电流_3]"),                      FTypeInfo(tr("[正向电流_3]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电流_L2_1]"),                   FTypeInfo(tr("[正向电流_L2_1]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电流_L2_2]"),                   FTypeInfo(tr("[正向电流_L2_2]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电流_L2_3]"),                   FTypeInfo(tr("[正向电流_L2_3]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[正向电流_L2_4]"),                   FTypeInfo(tr("[正向电流_L2_4]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[回溯电流_1]"),                      FTypeInfo(tr("[回溯电流_1]"), tr("uA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[回溯电流_2]"),                      FTypeInfo(tr("[回溯电流_2]"), tr("mA"), 0, 5000, 2));
-//    hashFormatInfo.insert(tr("[回溯电流_3]"),                      FTypeInfo(tr("[回溯电流_3]"), tr("mA"), 0, 5000, 2));
 //    //交流电参数
 //    hashFormatInfo.insert(tr("[交流电压]"),                        FTypeInfo(tr("[交流电压]"), tr("V"), 0, 500, 2));
 //    hashFormatInfo.insert(tr("[交流电流]"),                        FTypeInfo(tr("[交流电流]"), tr("A"), 0, 50, 3));
-//
-//    //光度参数
-
 
 //    //光强角度分布参数
 //    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));
@@ -534,13 +448,9 @@ void HCoreGlobalInstance::initDataFormatInfo()
 //    hashFormatInfo.insert(tr("[左1/5光强度角]"),                   FTypeInfo(tr("[左1/5光强度角]"), tr("°"), 0, 360, 1));
 //    hashFormatInfo.insert(tr("[右1/5光强度角]"),                   FTypeInfo(tr("[右1/5光强度角]"), tr("°"), 0, 360, 1));
 //    hashFormatInfo.insert(tr("[理论光通量]"),                      FTypeInfo(tr("[理论光通量]"), tr("lm"), 0, 99999, 2, 100));
-//    //光谱能量参数
 
-//    hashFormatInfo.insert(tr("[循环采样间隔]"),                    FTypeInfo(tr("[循环采样间隔]"), 0, 20000));
-//
-//
-////    //电机参数
-////    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
+//    //电机参数
+//    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
 //    //其他参数
 //    hashFormatInfo.insert(tr("[ID]"),                              FTypeInfo(tr("[ID]"), 0, 65536));
 //    hashFormatInfo.insert(tr("[总数]"),                            FTypeInfo(tr("[总数]"), 0, 65536));
@@ -556,7 +466,6 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.clear();
     hashDataCaption.insert("",                                  tr(""));
     hashDataCaption.insert("[]",                                tr(""));
-    hashDataCaption.insert("[_Fi]",                             tr("_虚拟"));
     hashDataCaption.insert("[光谱像元]",                        tr("像元"));
     hashDataCaption.insert("[光谱波长]",                        tr("波长"));
     hashDataCaption.insert("[色坐标]",                          tr("色坐标xy"));

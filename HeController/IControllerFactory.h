@@ -14,8 +14,9 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class IThread;
 class IThreadCollection;
-class IActionStrategy;
 class IModel;
+class IActionStrategy;
+class IMemento;
 
 class IControllerFactory : public IInitializeable
 {
@@ -28,6 +29,8 @@ public:
     virtual IModel *createModel(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建动作处理策略
     virtual IActionStrategy *createStrategy(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) = 0;
+    // 创建备忘录
+    virtual IMemento *createMemento(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

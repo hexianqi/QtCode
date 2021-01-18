@@ -55,6 +55,10 @@ protected:
     virtual void paintBody(QPainter *painter, double y1, double y2, int page) = 0;
 
 protected:
+    void readSettings();
+    void writeSettings();
+
+protected:
     QScopedPointer<HAbstractSqlPrintPrivate> d_ptr;
 };
 

@@ -19,6 +19,10 @@ class HE_GUI_EXPORT HTestWidget2 : public HTestWidget
 public:
     explicit HTestWidget2(QWidget *parent = nullptr);
 
+public:
+    void start() override;
+    void stop() override;
+
 protected:
     HTestWidget2(HTestWidget2Private &p, QWidget *parent = nullptr);
 
@@ -27,12 +31,12 @@ protected:
     void createAction() override;
     void exportExcel() override;
     void clearResult() override;
-    virtual void printPreview();
+    virtual void saveResult(bool append);
+    virtual void removeResult(int index, int count);
+    virtual void exportResult(int index, int count);
     virtual void exportDatabase();
-    virtual void exportDatabase(int index, int count = -1);
-    virtual void exportDatabase2() = 0;
-    QVariantMap toRecord();
-    void saveRecord(bool append);
+    virtual void printPreview();
+    QVariantMap toRecord(int index);
 };
 
 HE_GUI_END_NAMESPACE

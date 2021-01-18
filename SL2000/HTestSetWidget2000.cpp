@@ -32,21 +32,23 @@ QString HTestSetWidget2000::typeName()
 void HTestSetWidget2000::handleAction(HActionType action)
 {
     Q_D(HTestSetWidget2000);
+    bool append = false;
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
         ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
         break;
     case ACT_GET_SPECTRUM:
+        append = !adjustIntegralTime() && d->testMode == 0;
+        emit resultChanged(action, append);
         if (!d->testState)
             break;
-        if (d->testMode == 0)
+        if (append || (d->testMode == 2 && d->testData->data("[光谱采样溢出状态]").toInt() == 0))
         {
             setTestState(false);
             break;
         }
-        adjustIntegralTime();
-        d->model->addAction(ACT_GET_SPECTRUM, 100);
+        d->model->addAction(ACT_GET_SPECTRUM, 10);
         break;
     default:
         break;
@@ -78,9 +80,9 @@ void HTestSetWidget2000::on_doubleSpinBox_1_valueChanged(double value)
 void HTestSetWidget2000::on_checkBox_1_clicked(bool b)
 {
     Q_D(HTestSetWidget2000);
-    if (d->integralTimeAuto == b)
+    if (d->autoIntegralTime == b)
         return;
-    d->integralTimeAuto = b;
+    d->autoIntegralTime = b;
     ui->checkBox_1->setChecked(b);
     ui->doubleSpinBox_1->setEnabled(!b);
 }
@@ -93,7 +95,7 @@ void HTestSetWidget2000::on_comboBox_1_currentIndexChanged(int value)
 bool HTestSetWidget2000::adjustIntegralTime()
 {
     Q_D(HTestSetWidget2000);
-    if (!d->integralTimeAuto)
+    if (!d->autoIntegralTime)
         return false;
     if (!d->testData->handleOperation("<匹配积分时间>").toBool())
         return false;
@@ -106,5 +108,5 @@ void HTestSetWidget2000::init()
     Q_D(HTestSetWidget2000);
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_1);
     ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  捕获测试  "));
 }

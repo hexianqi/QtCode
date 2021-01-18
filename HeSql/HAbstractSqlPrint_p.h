@@ -5,7 +5,7 @@
 #include "HeData/HDataGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
-class IExcelStream;
+class ITextStream;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
@@ -17,8 +17,13 @@ public:
     HAbstractSqlPrintPrivate();
 
 public:
+    bool ribbon = true;
+    bool paintTitle = true;
+    bool paintLogo = true;
+
+public:
     ISqlTableModel *model = nullptr;
-    IExcelStream *excelStream = nullptr;
+    ITextStream *stream = nullptr;
     QStringList fieldExportExcels;
 };
 

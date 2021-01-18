@@ -17,6 +17,7 @@ public:
     IElecCalibrateCollection *collection = nullptr;
     IElecCalibrate *calibrate = nullptr;
     QMap<HElecType, int> gears;
+    QMap<HElecType, double> values;
 };
 
 HE_DATA_END_NAMESPACE

@@ -1,6 +1,6 @@
 #include "HIVTestWidget_p.h"
 #include "HIVTestSetWidget.h"
-#include "HeData/IExcelStream.h"
+#include "HeData/ITextStream.h"
 #include "HePlugin/HEntireTableWidget.h"
 #include "HePlugin/HDynamicChartView.h"
 #include "HeData/ITestData.h"
@@ -42,25 +42,6 @@ QString HIVTestWidget::typeName()
     return "HIVTestWidget";
 }
 
-bool HIVTestWidget::setTest(bool b)
-{
-    Q_D(HIVTestWidget);
-    return d->testSetWidget->setTestState(b);
-}
-
-void HIVTestWidget::handleAction(HActionType action)
-{
-    Q_D(HIVTestWidget);
-    if (action == ACT_GET_MEASURED_VOLTAGE)
-    {
-        auto point = QPointF(d->testData->data("[输出电流]").toDouble(), d->testData->data("[实测电压]").toDouble());
-        d->data.append(point);
-        d->chartView->addPoint(point);
-        d->tableWidget->insertRow(0, QStringList() << QString::number(d->data.count()) << d->testData->toString("[输出电流]") << d->testData->toString("[实测电压]"));
-    }
-    d->testSetWidget->handleAction(action);
-}
-
 void HIVTestWidget::createWidget()
 {
     Q_D(HIVTestWidget);
@@ -75,6 +56,7 @@ void HIVTestWidget::createWidget()
     tabWidget->addTab(d->tableWidget, tr("结果列表"));
     layout->addWidget(tabWidget, 1, 0, 1, 2);
     connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HIVTestWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HIVTestWidget::handleResultChanged);
 }
 
 void HIVTestWidget::createMenu()
@@ -115,8 +97,8 @@ void HIVTestWidget::exportExcel()
     text += tr("ID\t电流(mA)\t电压(V)") + "\n";
     for (int i = 0; i < d->data.count(); i++)
         text += QString("%1\t%2\t%3\n").arg(i+1).arg(d->data[i].x()).arg(d->data[i].y());
-    d->excelStream->setWriteContent(text);
-    d->excelStream->saveAsFile();
+    d->stream->setContent(text);
+    d->stream->saveAsFile();
 }
 
 void HIVTestWidget::handleStateChanged(bool b)
@@ -128,6 +110,15 @@ void HIVTestWidget::handleStateChanged(bool b)
     d->actionClear->setEnabled(!b);
     if (b)
         clearResult();
+}
+
+void HIVTestWidget::handleResultChanged()
+{
+    Q_D(HIVTestWidget);
+    auto point = QPointF(d->testData->data("[输出电流]").toDouble(), d->testData->data("[实测电压]").toDouble());
+    d->data.append(point);
+    d->chartView->addPoint(point);
+    d->tableWidget->insertRow(0, QStringList() << QString::number(d->data.count()) << d->testData->toString("[输出电流]") << d->testData->toString("[实测电压]"));
 }
 
 HE_GUI_END_NAMESPACE

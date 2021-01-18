@@ -6,6 +6,7 @@
 #define HADJUSTEDITWIDGET_H
 
 #include "IDataEditWidget.h"
+#include "HeCore/HActionType.h"
 #include "HeData/HDataGlobal.h"
 
 namespace Ui {
@@ -39,14 +40,11 @@ public:
     void clearData() override;
     void saveData() override;
     void showData() override;
-    void setEnableEdit(bool b);
-    void setTestData(const QStringList &value);
-
-public:
-    QStringList selecteds();
 
 protected:
-    void initSelected();
+    void handleAction(HActionType action);
+    void handleStateChanged(bool b);
+    void handleResultChanged();
 
 protected slots:
     void on_pushButton_1_clicked();
@@ -56,7 +54,7 @@ protected slots:
 
 private:
     void init();
-    void openEditDialog();
+    void initSelected();
 
 private:
     QScopedPointer<HAdjustEditWidgetPrivate> d_ptr;

@@ -24,27 +24,30 @@ public:
     QString typeName() override;
 
 protected:
-    bool setTest(bool b) override;
     void handleAction(HActionType action) override;
     void clearResult() override;
-    void exportDatabase2() override;
 
 protected:
     void init() override;
+    void closeEvent(QCloseEvent *) override;
     void createAction() override;
     void createWidget() override;
     void createMenu() override;
     void createToolBar() override;
 
 protected:
+    virtual void readSettings();
+    virtual void writeSettings();
+    virtual void postProcess();
+    virtual void refreshWidget(bool append);
     void handleStateChanged(bool b);
+    void handleResultChanged(HActionType, bool);
+    void openCieWidget();
     void resetGrade();
-    void refreshWidget();
-    void postProcess();
+    void removeResult2();
+    void exportDatabase2();
     void importCurve();
     void exportCurve();
-    void readSettings();
-    void writeSettings();
 };
 
 #endif // HTESTWIDGET2000_H

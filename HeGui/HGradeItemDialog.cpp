@@ -100,14 +100,14 @@ void HGradeItemDialog::showData()
 void HGradeItemDialog::saveData()
 {
     Q_D(HGradeItemDialog);
-    QList<QPointF> l;
+    QList<QPointF> list;
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
         auto x = ui->tableWidget->item(i, 0)->text().toDouble();
         auto y = ui->tableWidget->item(i, 1)->text().toDouble();
-        l << QPointF(x, y);
+        list << QPointF(x, y);
     }
-    d->data->setLevels(QVariant::fromValue(l));
+    d->data->setLevels(QVariant::fromValue(list));
     d->data->setData("[优先级]", ui->spinBox_01->value());
 }
 

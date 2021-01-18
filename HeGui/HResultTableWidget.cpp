@@ -54,12 +54,17 @@ void HResultTableWidget::clearResult()
     setRowCount(0);
 }
 
-void HResultTableWidget::refreshResult(int row, bool append)
+void HResultTableWidget::refreshResult(bool append)
 {
     Q_D(HResultTableWidget);
     auto value = d->testData->toString(d->displays);
-    if (append || row >= rowCount())
+    int row = rowCount() - 1;
+    if (append || row < 0)
+    {
+        row++;
         insertRow(row, value);
+        scrollToBottom();
+    }
     else
         setRow(row, value);
 
@@ -86,7 +91,6 @@ void HResultTableWidget::init()
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     horizontalHeader()->setDefaultSectionSize(100);
-    verticalHeader()->setVisible(false);
 }
 
 HE_GUI_END_NAMESPACE

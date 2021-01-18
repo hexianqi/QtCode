@@ -4,9 +4,10 @@
 #include "HSqlPainterHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
-#include "HeData/IExcelStream.h"
+#include "HeData/ITextStream.h"
 #include <QtCore/QPointF>
 #include <QtCore/QDateTime>
+#include <QtCore/QSettings>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QApplication>
 #include <QtGui/QScreen>
@@ -20,22 +21,28 @@ HE_SQL_BEGIN_NAMESPACE
 
 HAbstractSqlPrintPrivate::HAbstractSqlPrintPrivate()
 {
-    excelStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createExcelStream("HExcelStream");
+    stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
+    stream->setFileFilter("Excel files (*.xls)");
 }
 
 HAbstractSqlPrint::HAbstractSqlPrint(QObject *parent) :
     ISqlPrint(parent),
     d_ptr(new HAbstractSqlPrintPrivate)
 {
+    readSettings();
 }
 
 HAbstractSqlPrint::HAbstractSqlPrint(HAbstractSqlPrintPrivate &p, QObject *parent) :
     ISqlPrint(parent),
     d_ptr(&p)
 {
+    readSettings();
 }
 
-HAbstractSqlPrint::~HAbstractSqlPrint() = default;
+HAbstractSqlPrint::~HAbstractSqlPrint()
+{
+    writeSettings();
+}
 
 void HAbstractSqlPrint::setModel(ISqlTableModel *p)
 {
@@ -55,8 +62,8 @@ void HAbstractSqlPrint::exportExcel()
 {
     if (!isValid())
         return;
-    d_ptr->excelStream->setWriteContent(textForExcel());
-    d_ptr->excelStream->saveAsFile();
+    d_ptr->stream->setContent(textForExcel());
+    d_ptr->stream->saveAsFile();
 }
 
 void HAbstractSqlPrint::exportExcel(int index, int count)
@@ -66,8 +73,8 @@ void HAbstractSqlPrint::exportExcel(int index, int count)
 
     auto surplus = d_ptr->model->rowCount() - index;
     count = count == -1 ? surplus : qBound(0, count, surplus);
-    d_ptr->excelStream->setWriteContent(textForExcel(index, count));
-    d_ptr->excelStream->saveAsFile();
+    d_ptr->stream->setContent(textForExcel(index, count));
+    d_ptr->stream->saveAsFile();
 }
 
 void HAbstractSqlPrint::exportPdf()
@@ -192,8 +199,10 @@ void HAbstractSqlPrint::printPages(QPrinter *printer)
 double HAbstractSqlPrint::paintHeader(QPainter *painter, const QString &text)
 {
     painter->setFont(QFont("宋体", 12));
-    HSqlPainterHelper::drawText(painter, 20, 5, text);
-    HSqlPainterHelper::drawLogo(painter, QRectF(painter->viewport().width() - 180, 0, 162, 30));
+    if (d_ptr->paintTitle)
+        HSqlPainterHelper::drawText(painter, 20, 5, text);
+    if (d_ptr->paintLogo)
+        HSqlPainterHelper::drawLogo(painter, QRectF(painter->viewport().width() - 180, 0, 162, 30));
     painter->drawLine(0, 35, painter->viewport().width(), 35);
     return 50;
 }
@@ -211,6 +220,28 @@ double HAbstractSqlPrint::paintTitle(QPainter *painter, const QString &text, dou
 {
     painter->setFont(QFont(tr("宋体"), 16, QFont::Bold));
     return HSqlPainterHelper::drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;
+}
+
+void HAbstractSqlPrint::readSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("Print");
+    d_ptr->ribbon = settings->value("Ribbon", true).toBool();
+    d_ptr->paintTitle = settings->value("Title", true).toBool();
+    d_ptr->paintLogo = settings->value("Logo", true).toBool();
+    settings->endGroup();
+}
+
+void HAbstractSqlPrint::writeSettings()
+{
+    auto fileName = HAppContext::getContextValue<QString>("Settings");
+    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->beginGroup("Print");
+    settings->setValue("Ribbon", d_ptr->ribbon);
+    settings->setValue("Title", d_ptr->paintTitle);
+    settings->setValue("Logo", d_ptr->paintLogo);
+    settings->endGroup();
 }
 
 HE_SQL_END_NAMESPACE

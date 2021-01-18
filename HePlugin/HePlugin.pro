@@ -22,20 +22,26 @@ HEADERS     += \
 
 RESOURCES   = HePlugin.qrc
 
-INCLUDEPATH += ..
+QXlsxPath   = $$absolute_path("../../../modules/QXlsx", $$[QT_INSTALL_DATA])
+
+INCLUDEPATH += \
+            .. \
+            $$QXlsxPath/include
 
 Debug {
     TARGET  = HePlugind
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithmd \
-            -L$$DESTDIR -lHeCored
+            -L$$DESTDIR -lHeCored \
+            -L$$QXlsxPath/lib -lQXlsx
 }
 
 Release {
     TARGET  = HePlugin
     LIBS    += \
             -L$$DESTDIR -lHeAlgorithm \
-            -L$$DESTDIR -lHeCore
+            -L$$DESTDIR -lHeCore \
+            -L$$QXlsxPath/lib -lQXlsx
 }
 
 include(chart.pri)

@@ -31,14 +31,14 @@ void HLuminousCalibrate::readContent(QDataStream &s)
     Q_D(HLuminousCalibrate);
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::ILuminousCalibrateItem>(s, d->datas, [=](QString type) { return d->factory->createLuminousCalibrateItem(type); });
+    HStreamHelper::read<QString, HeData::ILuminousCalibrateItem>(s, d->items, [=](QString type) { return d->factory->createLuminousCalibrateItem(type); });
 }
 
 void HLuminousCalibrate::writeContent(QDataStream &s)
 {
     Q_D(HLuminousCalibrate);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::ILuminousCalibrateItem>(s, d->datas);
+    HStreamHelper::write<QString, HeData::ILuminousCalibrateItem>(s, d->items);
 }
 
 void HLuminousCalibrate::setTotalGears(int value)

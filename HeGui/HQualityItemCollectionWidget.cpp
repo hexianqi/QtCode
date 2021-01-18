@@ -1,6 +1,7 @@
 #include "HQualityItemCollectionWidget_p.h"
 #include "ui_HQualityItemCollectionWidget.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCore.h"
 #include "HeCore/HCoreHelper.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IQualityItem.h"
@@ -55,13 +56,14 @@ void HQualityItemCollectionWidget::showData()
     for (const auto &key : d_ptr->data->keys())
     {
         auto value = d_ptr->data->item(key);
-        auto item = ui->tableWidget->item(r, 0);
+        auto item = new QTableWidgetItem;
         item->setData(Qt::UserRole, key);
-        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-        item = ui->tableWidget->item(r, 3);
+        item->setData(Qt::DisplayRole, HCore::toCaption(key));
+        ui->tableWidget->setVerticalHeaderItem(r, item);
+        item = ui->tableWidget->item(r, 2);
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         item->setBackgroundColor(value->data("[不足颜色]").value<QColor>());
-        item = ui->tableWidget->item(r, 4);
+        item = ui->tableWidget->item(r, 3);
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         item->setBackgroundColor(value->data("[超出颜色]").value<QColor>());
         ui->tableWidget->setRow(r, value->toStringList());
@@ -76,11 +78,11 @@ void HQualityItemCollectionWidget::saveData()
 
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
-        auto key = ui->tableWidget->item(i, 0)->data(Qt::UserRole).toString();
+        auto key = ui->tableWidget->verticalHeaderItem(i)->data(Qt::UserRole).toString();
         auto value = d_ptr->data->item(key);
-        value->setData("[有效范围]", QPointF(ui->tableWidget->item(i, 1)->text().toDouble(), ui->tableWidget->item(i, 2)->text().toDouble()));
-        value->setData("[不足颜色]", ui->tableWidget->item(i, 3)->backgroundColor());
-        value->setData("[超出颜色]", ui->tableWidget->item(i, 4)->backgroundColor());
+        value->setData("[有效范围]", QPointF(ui->tableWidget->item(i, 0)->text().toDouble(), ui->tableWidget->item(i, 1)->text().toDouble()));
+        value->setData("[不足颜色]", ui->tableWidget->item(i, 2)->backgroundColor());
+        value->setData("[超出颜色]", ui->tableWidget->item(i, 3)->backgroundColor());
     }
 }
 
@@ -126,8 +128,8 @@ void HQualityItemCollectionWidget::on_tableWidget_cellDoubleClicked(int row, int
 
 void HQualityItemCollectionWidget::init()
 {
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("项类型") << tr("MIN") << tr("MAX") << tr("不足颜色") << tr("超出颜色")) ;
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("MIN") << tr("MAX") << tr("不足颜色") << tr("超出颜色")) ;
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void HQualityItemCollectionWidget::initSelected()
@@ -137,8 +139,8 @@ void HQualityItemCollectionWidget::initSelected()
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(d_ptr->selecteds);
     delegate->setOrientation(Qt::Vertical);
+    ui->tableWidget->setItemDelegateForColumn(0, delegate);
     ui->tableWidget->setItemDelegateForColumn(1, delegate);
-    ui->tableWidget->setItemDelegateForColumn(2, delegate);
     ui->tableWidget->setRowCount(d_ptr->selecteds.size());
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
 }

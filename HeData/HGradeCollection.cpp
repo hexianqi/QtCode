@@ -1,6 +1,7 @@
 #include "HGradeCollection_p.h"
 #include "IDataFactory.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
+#include "IMultStream.h"
 #include "IGrade.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
@@ -10,12 +11,14 @@ HE_DATA_BEGIN_NAMESPACE
 HGradeCollectionPrivate::HGradeCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00030001);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Grade files (*.hcg)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00030001);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Grade files (*.hcg)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    multStream = factory->createMultStream("HMultStream");
+    multStream->addStream("hcg", dataStream);
 }
 
 void HGradeCollectionPrivate::readContent(QDataStream &s)
@@ -23,14 +26,14 @@ void HGradeCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IGrade>(s, datas, [=](QString type) { return factory->createGrade(type); });
+    HStreamHelper::read<QString, HeData::IGrade>(s, items, [=](QString type) { return factory->createGrade(type); });
     s >> useIndex;
 }
 
 void HGradeCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IGrade>(s, datas);
+    HStreamHelper::write<QString, HeData::IGrade>(s, items);
     s << useIndex;
 }
 

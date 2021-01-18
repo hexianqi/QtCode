@@ -1,7 +1,8 @@
 #include "HQualityCollection_p.h"
 #include "IDataFactory.h"
 #include "IQuality.h"
-#include "IFileStream.h"
+#include "IDataStream.h"
+#include "IMultStream.h"
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtGui/QColor>
@@ -11,12 +12,14 @@ HE_DATA_BEGIN_NAMESPACE
 HQualityCollectionPrivate::HQualityCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    fileStream = factory->createFileStream("HFileStream");
-    fileStream->setMagicNumber(0x00030101);
-    fileStream->setFileVersion(0x01010101);
-    fileStream->setFileFilter("Quality files (*.hcq)");
-    fileStream->setReadContent([=](QDataStream &s) { readContent(s); });
-    fileStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    dataStream = factory->createDataStream("HDataStream");
+    dataStream->setMagicNumber(0x00030101);
+    dataStream->setFileVersion(0x01010101);
+    dataStream->setFileFilter("Quality files (*.hcq)");
+    dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
+    dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
+    multStream = factory->createMultStream("HMultStream");
+    multStream->addStream("hcq", dataStream);
 }
 
 void HQualityCollectionPrivate::readContent(QDataStream &s)
@@ -24,14 +27,14 @@ void HQualityCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IQuality>(s, datas, [=](QString type) { return factory->createQuality(type); });
+    HStreamHelper::read<QString, HeData::IQuality>(s, items, [=](QString type) { return factory->createQuality(type); });
     s >> useIndex;
 }
 
 void HQualityCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IQuality>(s, datas);
+    HStreamHelper::write<QString, HeData::IQuality>(s, items);
     s << useIndex;
 }
 

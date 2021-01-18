@@ -18,7 +18,8 @@ class HDataCollectionPrivate : public HCollectionPrivate<T>
 {
 public:
     IDataFactory *factory = nullptr;
-    IFileStream *fileStream = nullptr;
+    IDataStream *dataStream = nullptr;
+    IMultStream *multStream = nullptr;
     QString useIndex;
 };
 
@@ -31,7 +32,8 @@ public:
     HDataCollection();
 
 public:
-    IFileStream *fileStream() override;
+    IDataStream *dataStream() override;
+    IMultStream *multStream() override;
     void setUseIndex(QString value) override;
     QString useIndex() override;
 
@@ -52,10 +54,17 @@ HDataCollection<T>::HDataCollection(HDataCollectionPrivate<T> &p) :
 }
 
 template<typename T>
-IFileStream *HDataCollection<T>::fileStream()
+IDataStream *HDataCollection<T>::dataStream()
 {
     H_D(HDataCollection, T);
-    return d->fileStream;
+    return d->dataStream;
+}
+
+template<typename T>
+IMultStream *HDataCollection<T>::multStream()
+{
+    H_D(HDataCollection, T);
+    return d->multStream;
 }
 
 template<typename T>

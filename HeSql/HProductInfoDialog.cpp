@@ -46,6 +46,7 @@ void HProductInfoDialog::showData()
     ui->doubleSpinBox_02->setValue(d_ptr->data->data("Humidity").toDouble());
     ui->checkBox_01->setChecked(d_ptr->data->data("Editable").toBool());
     ui->checkBox_02->setChecked(d_ptr->data->data("Increase").toBool());
+    ui->checkBox_03->setChecked(d_ptr->data->data("Enable").toBool());
 }
 
 void HProductInfoDialog::saveData()
@@ -60,6 +61,7 @@ void HProductInfoDialog::saveData()
     d_ptr->data->setData("Humidity", ui->doubleSpinBox_02->value());
     d_ptr->data->setData("Editable", ui->checkBox_01->isChecked());
     d_ptr->data->setData("Increase", ui->checkBox_02->isChecked());
+    d_ptr->data->setData("Enable", ui->checkBox_03->isChecked());
 }
 
 void HProductInfoDialog::init()

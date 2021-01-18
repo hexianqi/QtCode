@@ -9,6 +9,7 @@
 #include "HSpecStrategy.h"
 #include "HElecStrategy.h"
 #include "HLuminousStrategy.h"
+#include "HMemento.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
@@ -65,6 +66,14 @@ IActionStrategy *HControllerFactory::createStrategy(QString type, QObject *paren
     if (parent == nullptr)
         parent = this;
     return HObjectFactory::createObject<IActionStrategy>(type, param, parent);
+}
+
+IMemento *HControllerFactory::createMemento(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HMemento;
+    p->initialize(param);
+    return p;
 }
 
 void HControllerFactory::registerClass()
