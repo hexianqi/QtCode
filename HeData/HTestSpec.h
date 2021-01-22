@@ -28,7 +28,7 @@ public:
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 public:
-    void setCalibrate(ISpecCalibrate *) override;
+    bool setCalibrate(void *) override;
     bool setSample(QVector<double> value, bool avg = false) override;
     void setFitting(bool b) override;
 

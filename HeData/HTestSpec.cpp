@@ -264,10 +264,14 @@ QVariant HTestSpec::handleOperation(QString type, QVariant value)
     return HTestData::handleOperation(type, value);
 }
 
-void HTestSpec::setCalibrate(ISpecCalibrate *p)
+bool HTestSpec::setCalibrate(void *p)
 {
     Q_D(HTestSpec);
-    d->setCalibrate(p);
+    auto c = static_cast<ISpecCalibrate *>(p);
+    if (c == nullptr)
+        return false;
+    d->setCalibrate(c);
+    return true;
 }
 
 bool HTestSpec::setSample(QVector<double> value, bool avg)

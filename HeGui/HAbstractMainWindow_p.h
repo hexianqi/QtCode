@@ -53,7 +53,6 @@ public:
     QMenu *menuFile = nullptr;
     QMenu *menuImport = nullptr;
     QMenu *menuExport = nullptr;
-    QMenu *menuDatabase = nullptr;
     QMenu *menuHelp = nullptr;
 
 public:

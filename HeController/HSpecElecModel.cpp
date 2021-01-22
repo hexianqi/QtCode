@@ -2,15 +2,14 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestSpec.h"
-#include "HeData/ITestElec.h"
 #include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 HSpecElecModelPrivate::HSpecElecModelPrivate()
 {
+    testElec = HAppContext::getContextPointer<ITestData>("ITestElec");
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-    testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
 }
 
 HSpecElecModel::HSpecElecModel(QObject *parent) :

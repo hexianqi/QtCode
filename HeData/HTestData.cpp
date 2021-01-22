@@ -79,6 +79,11 @@ void HTestData::setSuccessor(ITestData *p)
     d_ptr->successor = p;
 }
 
+bool HTestData::setCalibrate(void *)
+{
+    return false;
+}
+
 void HTestData::setData(QString type, QVariant value)
 {
     d_ptr->setData(type, value);

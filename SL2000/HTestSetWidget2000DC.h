@@ -38,8 +38,6 @@ protected slots:
     void on_comboBox_1_currentIndexChanged(int value);
     void on_comboBox_2_currentIndexChanged(int value);
     void on_comboBox_3_currentIndexChanged(int value);
-    void continueTest();
-    void intervalTest();
 
 protected:
     bool adjustIntegralTime();

@@ -3,7 +3,6 @@
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
 #include <QtGui/QCloseEvent>
-#include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -50,7 +49,6 @@ void HAbstractTestWidget::stop()
 
 void HAbstractTestWidget::closeEvent(QCloseEvent *event)
 {
-    qDebug() << __func__;
     stop();
     event->accept();
 }

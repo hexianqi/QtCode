@@ -5,13 +5,14 @@
 #ifndef HTESTELEC_H
 #define HTESTELEC_H
 
-#include "ITestElec.h"
+#include "HDataType.h"
+#include "HTestData.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HTestElecPrivate;
 
-class HTestElec : public ITestElec
+class HTestElec : public HTestData
 {
     Q_DECLARE_PRIVATE(HTestElec)
 
@@ -22,8 +23,8 @@ public:
     QString typeName() override;
 
 public:
+    bool setCalibrate(void *) override;
     void setData(QString type, QVariant value) override;
-    bool setCalibrate(IElecCalibrateCollection *) override;
 
 protected:
     HTestElec(HTestElecPrivate &);

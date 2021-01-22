@@ -32,8 +32,6 @@ public:
 public:
     ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) override;
     ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) override;
-    ITestElec *createTestElec(QString type, QVariantMap param = QVariantMap()) override;
-    ITestLuminous *createTestLuminous(QString type, QVariantMap param = QVariantMap()) override;
 
 public:
     IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) override;

@@ -1,6 +1,8 @@
 HEADERS += \
     $$PWD/HAbstractTestDataEditDialog.h \
     $$PWD/HAbstractTestDataEditDialog_p.h \
+    $$PWD/HSpecTestWidget.h \
+    $$PWD/HSpecTestWidget_p.h \
     $$PWD/HTestDataEditDialog.h \
     $$PWD/HTestDataEditDialog_p.h \
     $$PWD/ITestDataEditDialog.h \
@@ -21,8 +23,6 @@ HEADERS += \
     $$PWD/HIVTestWidget_p.h \
     $$PWD/HIVTestSetWidget.h \
     $$PWD/HIVTestSetWidget_p.h \
-    $$PWD/HTestWidget2.h \
-    $$PWD/HTestWidget2_p.h \
     $$PWD/HTestWidget.h \
     $$PWD/HTestWidget_p.h
 
@@ -35,8 +35,8 @@ SOURCES += \
     $$PWD/HSimpleTestSetWidget.cpp \
     $$PWD/HIVTestWidget.cpp \
     $$PWD/HIVTestSetWidget.cpp \
+    $$PWD/HSpecTestWidget.cpp \
     $$PWD/HTestDataEditDialog.cpp \
-    $$PWD/HTestWidget2.cpp \
     $$PWD/HTestWidget.cpp
 
 FORMS += \

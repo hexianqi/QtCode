@@ -11,7 +11,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HAbstractActionStrategyPrivate;
 
-class HAbstractActionStrategy : public IActionStrategy
+class HE_CONTROLLER_EXPORT HAbstractActionStrategy : public IActionStrategy
 {
     Q_OBJECT
 

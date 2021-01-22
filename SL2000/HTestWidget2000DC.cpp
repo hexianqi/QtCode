@@ -3,11 +3,12 @@
 #include "HDetailWidget2000DC.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
+#include "HeGui/ITestResult.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HResultTableWidget.h"
 #include "HeGui/HTestDataEditDialog.h"
-#include <QtWidgets/QMenu>
 #include <QtCore/QSettings>
+#include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
@@ -22,25 +23,22 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[色坐标x]" << "[色坐标y]" << "[色坐标up]" << "[色坐标vp]" << "[Duv]"
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
                              << "[显色指数Ra]" << "[显色指数R9]" <<"[显色指数Rx]";
-    testSetWidget = new HTestSetWidget2000DC;
-    detailWidget = new HDetailWidget2000DC;
-    energyWidget->addProgressBar("[光采样比率]");
 }
 
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
-    HTestWidget2000(*new HTestWidget2000DCPrivate, parent)
+    HSpecTestWidget(*new HTestWidget2000DCPrivate, parent)
 {
     init();
-}
-
-HTestWidget2000DC::HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *parent) :
-    HTestWidget2000(p, parent)
-{
 }
 
 HTestWidget2000DC::~HTestWidget2000DC()
 {
     qDebug() << __func__;
+}
+
+void HTestWidget2000DC::initialize(QVariantMap /*param*/)
+{
+
 }
 
 QString HTestWidget2000DC::typeName()
@@ -51,35 +49,50 @@ QString HTestWidget2000DC::typeName()
 void HTestWidget2000DC::init()
 {
     Q_D(HTestWidget2000DC);
-    HTestWidget2000::init();
-    connect(d->resultWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget2000DC::editProductInfo);
+    HSpecTestWidget::init();
     setProbe(d->testData->data("[使用光探头]").toBool());
 }
 
 void HTestWidget2000DC::createAction()
 {
     Q_D(HTestWidget2000DC);
-    HTestWidget2000::createAction();
+    HSpecTestWidget::createAction();
     d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
     d->actionProductInfo = new QAction(tr("产品信息修改(&P)"), this);
-    d->resultWidget->addAction(d->actionProductInfo);
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
     connect(d->actionProductInfo, &QAction::triggered, this, &HTestWidget2000DC::editProductInfo);
+}
+
+void HTestWidget2000DC::createWidget()
+{
+    Q_D(HTestWidget2000DC);
+    d->testSetWidget = new HTestSetWidget2000DC;
+    d->detailWidget = new HDetailWidget2000DC;
+    HSpecTestWidget::createWidget();
 }
 
 void HTestWidget2000DC::createMenu()
 {
     Q_D(HTestWidget2000DC);
-    HTestWidget2000::createMenu();
-    d->menus.at(0)->insertAction(d->actionAdjust, d->actionProbe);
+    HSpecTestWidget::createMenu();
+    d->menus.at(0)->addAction(d->actionProbe);
+}
+
+void HTestWidget2000DC::initWidget()
+{
+    Q_D(HTestWidget2000DC);
+    HSpecTestWidget::initWidget();
+    d->energyWidget->addProgressBar("[光采样比率]");
+    d->tableWidget->addAction(d->actionProductInfo);
+    connect(d->tableWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget2000DC::editProductInfo);
 }
 
 void HTestWidget2000DC::readSettings()
 {
     Q_D(HTestWidget2000DC);
-    HTestWidget2000::readSettings();
+    HSpecTestWidget::readSettings();
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
@@ -100,7 +113,7 @@ void HTestWidget2000DC::readSettings()
 void HTestWidget2000DC::writeSettings()
 {
     Q_D(HTestWidget2000DC);
-    HTestWidget2000::writeSettings();
+    HSpecTestWidget::writeSettings();
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
@@ -129,11 +142,11 @@ void HTestWidget2000DC::setProbe(bool b)
 void HTestWidget2000DC::editProductInfo()
 {
     Q_D(HTestWidget2000DC);
-    auto row = d->resultWidget->currentRow();
-    auto data = d->results.at(row);
+    auto row = d->tableWidget->currentRow();
+    auto data = d->testResult->at(row);
     HTestDataEditDialog dlg(this);
     dlg.setData(data);
     if (dlg.exec() != QDialog::Accepted)
         return;
-    d->resultWidget->setRow(row, data->toString(d->displays));
+    d->tableWidget->setRow(row, data->toString(d->displays));
 }

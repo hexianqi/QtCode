@@ -2,17 +2,15 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestSpec.h"
-#include "HeData/ITestElec.h"
-#include "HeData/ITestLuminous.h"
 #include <QtCore/QDebug>
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
 HIntegrateModelPrivate::HIntegrateModelPrivate()
 {
+    testElec = HAppContext::getContextPointer<ITestData>("ITestElec");
+    testLuminous = HAppContext::getContextPointer<ITestData>("ITestLuminous");
     testSpec = HAppContext::getContextPointer<ITestSpec>("ITestSpec");
-    testElec = HAppContext::getContextPointer<ITestElec>("ITestElec");
-    testLuminous = HAppContext::getContextPointer<ITestLuminous>("ITestLuminous");
 }
 
 HIntegrateModel::HIntegrateModel(QObject *parent) :

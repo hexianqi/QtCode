@@ -19,7 +19,7 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class IActionStrategy : public QObject, public IInitializeable
+class HE_CONTROLLER_EXPORT IActionStrategy : public QObject, public IInitializeable
 {
     Q_OBJECT
 

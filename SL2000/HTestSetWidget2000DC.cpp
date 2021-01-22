@@ -223,17 +223,6 @@ void HTestSetWidget2000DC::on_comboBox_3_currentIndexChanged(int value)
     d->model->addAction(ACT_SET_LUMINOUS_GEARS);
 }
 
-void HTestSetWidget2000DC::continueTest()
-{
-    setTestState(false);
-}
-
-void HTestSetWidget2000DC::intervalTest()
-{
-    Q_D(HTestSetWidget2000DC);
-    d->model->addAction(ACT_GET_SPECTRUM_ELEC);
-}
-
 bool HTestSetWidget2000DC::adjustIntegralTime()
 {
     Q_D(HTestSetWidget2000DC);
@@ -273,7 +262,7 @@ void HTestSetWidget2000DC::init()
         ui->comboBox_3->addItem(tr("  %1档  ").arg(i+1));
     d->timerContinue = new QTimer(this);
     d->timerInterval = new QTimer(this);
-    connect(d->timerContinue, &QTimer::timeout, this, &HTestSetWidget2000DC::continueTest);
-    connect(d->timerInterval, &QTimer::timeout, this, &HTestSetWidget2000DC::intervalTest);
+    connect(d->timerContinue, &QTimer::timeout, this, [=] { setTestState(false); });
+    connect(d->timerInterval, &QTimer::timeout, this, [=] { d->model->addAction(ACT_GET_SPECTRUM_ELEC); });
 }
 

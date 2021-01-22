@@ -1,4 +1,12 @@
 HEADERS += \
+    $$PWD/HExportCurveHandler.h \
+    $$PWD/HExportCurveHandler_p.h \
+    $$PWD/HExportDeviceHandler.h \
+    $$PWD/HExportDeviceHandler_p.h \
+    $$PWD/HImportCurveHandler.h \
+    $$PWD/HImportCurveHandler_p.h \
+    $$PWD/HImportDeviceHandler.h \
+    $$PWD/HImportDeviceHandler_p.h \
     $$PWD/HLuminousCalibrateHandler.h \
     $$PWD/HLuminousCalibrateHandler_p.h \
     $$PWD/IGuiHandler.h \
@@ -39,6 +47,10 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
+    $$PWD/HExportCurveHandler.cpp \
+    $$PWD/HExportDeviceHandler.cpp \
+    $$PWD/HImportCurveHandler.cpp \
+    $$PWD/HImportDeviceHandler.cpp \
     $$PWD/HLuminousCalibrateHandler.cpp \
     $$PWD/HTestHandler.cpp \
     $$PWD/HGradeEditHandler.cpp \

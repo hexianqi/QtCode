@@ -4,13 +4,13 @@
 
 #pragma once
 
-#include "ITestLuminous.h"
+#include "HTestData.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HTestLuminousPrivate;
 
-class HTestLuminous : public ITestLuminous
+class HTestLuminous : public HTestData
 {
     Q_DECLARE_PRIVATE(HTestLuminous)
 
@@ -21,8 +21,8 @@ public:
     QString typeName() override;
 
 public:
+    bool setCalibrate(void *) override;
     void setData(QString type, QVariant value) override;
-    bool setCalibrate(ILuminousCalibrateCollection *) override;
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 protected:

@@ -5,8 +5,8 @@
 #include "HAbstractModel_p.h"
 
 HE_DATA_BEGIN_NAMESPACE
+class ITestData;
 class ITestSpec;
-class ITestElec;
 HE_DATA_END_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -17,8 +17,8 @@ public:
     HSpecElecModelPrivate();
 
 public:
+    ITestData *testElec = nullptr;
     ITestSpec *testSpec = nullptr;
-    ITestElec *testElec = nullptr;
 };
 
 HE_CONTROLLER_END_NAMESPACE

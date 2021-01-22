@@ -13,7 +13,7 @@ class HBuilderSpec : public HAbstractBuilder
     Q_DECLARE_PRIVATE(HBuilderSpec)
 
 public:
-    explicit HBuilderSpec(IMainWindow *parent = nullptr);
+    explicit HBuilderSpec(QObject *parent = nullptr);
     ~HBuilderSpec() override;
 
 public:
@@ -26,6 +26,7 @@ protected:
     void buildDevice() override;
     void buildThread() override;
     void buildModel() override;
+    void buildMemento() override;
     void buildDatabase() override;
     void buildMenu() override;
     void buildTestWidget() override;

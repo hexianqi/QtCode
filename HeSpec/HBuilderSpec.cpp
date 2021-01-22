@@ -13,19 +13,22 @@
 #include "HeData/ITestSpec.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/ISpecCalibrate.h"
+#include "HeGui/IGuiFactory.h"
+#include "HeGui/IMainWindow.h"
+#include "HeGui/HAction.h"
 #include "HeGui/HSpecCalibrateWidget.h"
 #include "HeGui/HSpecCalibrateSetWidget.h"
+#include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
-HBuilderSpecPrivate::HBuilderSpecPrivate(IMainWindow *p) :
-    HAbstractBuilderPrivate(p)
+HBuilderSpecPrivate::HBuilderSpecPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 }
 
-HBuilderSpec::HBuilderSpec(IMainWindow *parent) :
-    HAbstractBuilder(*new HBuilderSpecPrivate(parent), parent)
+HBuilderSpec::HBuilderSpec(QObject *parent) :
+    HAbstractBuilder(*new HBuilderSpecPrivate, parent)
 {
 }
 
@@ -80,15 +83,13 @@ void HBuilderSpec::buildTestData()
 void HBuilderSpec::buildDevice()
 {
     Q_D(HBuilderSpec);
-//    // 设备模拟
-//    // auto device = d->communicateFactory->createDevice("HSlSimulation");
-//    // auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-//    // protocol->setDevice(device);
-//    // 第一版设备554b
-//    auto protocol = d->communicateFactory->createProtocol("HCcd1305Protocol");
-//    // 第二版设备1305
-//    // auto protocol = d->communicateFactory->createProtocol("HCcd554bProtocol");
+#ifdef SIMULATE // 模拟设备
+     auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
+     auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
+     protocol->setDevice(device);
+#else
     auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
+#endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
@@ -110,12 +111,23 @@ void HBuilderSpec::buildModel()
     HAppContext::setContextPointer("IModel", d->model);
 }
 
+void HBuilderSpec::buildMemento()
+{
+}
+
 void HBuilderSpec::buildDatabase()
 {
 }
 
 void HBuilderSpec::buildMenu()
 {
+    Q_D(HBuilderSpec);
+    auto device = new QMenu(tr("设备配置(&T)"));
+    device->addAction(d->guiFactory->createAction(tr("导入设备数据(&G)..."), "HImportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出设备数据(&S)..."), "HExportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
+    d->mainWindow->insertMenu(device);
 }
 
 void HBuilderSpec::buildTestWidget()

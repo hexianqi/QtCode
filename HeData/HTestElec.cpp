@@ -34,12 +34,12 @@ HTestElecPrivate::HTestElecPrivate()
 }
 
 HTestElec::HTestElec() :
-    ITestElec(*new HTestElecPrivate)
+    HTestData(*new HTestElecPrivate)
 {
 }
 
 HTestElec::HTestElec(HTestElecPrivate &p) :
-    ITestElec(p)
+    HTestData(p)
 {
 }
 
@@ -76,15 +76,16 @@ void HTestElec::setData(QString type, QVariant value)
         return setParam(MeasuredCurrent, value.toDouble());
     if (type == "[反向漏流_F]")
         return setParam(ReverseCurrent, value.toDouble());
-    return ITestElec::setData(type, value);
+    return HTestData::setData(type, value);
 }
 
-bool HTestElec::setCalibrate(IElecCalibrateCollection *p)
+bool HTestElec::setCalibrate(void *p)
 {
     Q_D(HTestElec);
-    if (p->size() < 1)
+    auto c = static_cast<IElecCalibrateCollection *>(p);
+    if (c == nullptr || c->size() < 1)
         return false;
-    d->collection = p;
+    d->collection = c;
     setModule(0);
     return true;
 }

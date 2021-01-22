@@ -12,7 +12,7 @@ HE_DATA_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HAbstractActionStrategyPrivate
+class HE_CONTROLLER_EXPORT HAbstractActionStrategyPrivate
 {
 public:
     HAbstractActionStrategyPrivate();

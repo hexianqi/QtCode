@@ -16,18 +16,29 @@ HTestLuminousPrivate::HTestLuminousPrivate()
 }
 
 HTestLuminous::HTestLuminous() :
-    ITestLuminous(*new HTestLuminousPrivate)
+    HTestData(*new HTestLuminousPrivate)
 {
 }
 
 HTestLuminous::HTestLuminous(HTestLuminousPrivate &p) :
-    ITestLuminous(p)
+    HTestData(p)
 {
 }
 
 QString HTestLuminous::typeName()
 {
     return "HTestLuminous";
+}
+
+bool HTestLuminous::setCalibrate(void *p)
+{
+    Q_D(HTestLuminous);
+    auto c = static_cast<ILuminousCalibrateCollection *>(p);
+    if (c == nullptr || c->size() < 1)
+        return false;
+    d->collection = c;
+    setModule(0);
+    return true;
 }
 
 void HTestLuminous::setData(QString type, QVariant value)
@@ -40,17 +51,7 @@ void HTestLuminous::setData(QString type, QVariant value)
         return setGears(value.toInt());
     if (type == "[光采样值]")
         return setSample(value.toInt());
-    return ITestLuminous::setData(type, value);
-}
-
-bool HTestLuminous::setCalibrate(ILuminousCalibrateCollection *p)
-{
-    Q_D(HTestLuminous);
-    if (p->size() < 1)
-        return false;
-    d->collection = p;
-    setModule(0);
-    return true;
+    return HTestData::setData(type, value);
 }
 
 QVariant HTestLuminous::handleOperation(QString type, QVariant value)

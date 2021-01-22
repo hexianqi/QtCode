@@ -10,8 +10,6 @@
 #include "HeData/IElecCalibrateCollection.h"
 #include "HeData/IChromatismCollection.h"
 #include "HeData/ITestSpec.h"
-#include "HeData/ITestElec.h"
-#include "HeData/ITestLuminous.h"
 #include "HeData/ILuminousCalibrate.h"
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HeData/ILuminousCalibrateCollection.h"
@@ -149,9 +147,9 @@ void HBuilder2000DC::buildTestData()
     Q_D(HBuilder2000DC);
     auto data = d->dataFactory->createTestData("HTestData");
     auto other = d->dataFactory->createTestData("HTestData");
+    auto elec = d->dataFactory->createTestData("HTestElec");
+    auto luminous = d->dataFactory->createTestData("HTestLuminous");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
-    auto elec = d->dataFactory->createTestElec("HTestElec");
-    auto luminous = d->dataFactory->createTestLuminous("HTestLuminous");
 
     spec->setSuccessor(other);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
@@ -261,6 +259,7 @@ void HBuilder2000DC::buildMenu()
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
     auto quality = new QMenu(tr("品质(&Q)"));
+    auto device = new QMenu(tr("设备配置(&T)"));
     auto test = new QMenu(tr("其他测试(&E)"));
     auto database = new QMenu(tr("数据库(&D)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
@@ -274,6 +273,10 @@ void HBuilder2000DC::buildMenu()
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导入设备数据(&G)..."), "HImportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出设备数据(&S)..."), "HExportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
@@ -281,6 +284,7 @@ void HBuilder2000DC::buildMenu()
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
+    d->mainWindow->insertMenu(device);
     d->mainWindow->insertMenu(test);
     d->mainWindow->insertMenu(database);
 }
@@ -288,6 +292,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

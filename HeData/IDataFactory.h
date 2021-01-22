@@ -18,8 +18,6 @@ class IXlsxStream;
 class IMultStream;
 class ITestData;
 class ITestSpec;
-class ITestElec;
-class ITestLuminous;
 class IConfigManage;
 class ISpecCalibrate;
 class ISpecCalibrateCollection;
@@ -61,10 +59,6 @@ public:
     virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱测试数据
     virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建电测试数据
-    virtual ITestElec *createTestElec(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光测试数据
-    virtual ITestLuminous *createTestLuminous(QString type, QVariantMap param = QVariantMap()) = 0;
 
 public:
     // 创建配置管理

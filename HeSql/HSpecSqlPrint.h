@@ -11,7 +11,7 @@ HE_SQL_BEGIN_NAMESPACE
 
 class HSpecSqlPrintPrivate;
 
-class HSpecSqlPrint : public HAbstractSqlPrint
+class HE_SQL_EXPORT HSpecSqlPrint : public HAbstractSqlPrint
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecSqlPrint)

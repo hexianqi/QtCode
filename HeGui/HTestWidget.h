@@ -28,6 +28,7 @@ protected:
     virtual void createWidget() = 0;
     virtual void createMenu() = 0;
     virtual void createToolBar() = 0;
+    virtual void initWidget() = 0;
     virtual void initToolBar();
     virtual void clearResult() = 0;
     virtual void exportExcel() = 0;

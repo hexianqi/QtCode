@@ -28,6 +28,7 @@ protected:
     void createWidget() override;
     void createMenu() override;
     void createToolBar() override;
+    void initWidget() override;
     void clearResult() override;
     void exportExcel() override;
     void handleStateChanged(bool b);

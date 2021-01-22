@@ -6,6 +6,7 @@
 HE_DATA_BEGIN_NAMESPACE
 
 class ILuminousCalibrate;
+class ILuminousCalibrateCollection;
 
 class HTestLuminousPrivate : public HTestDataPrivate
 {

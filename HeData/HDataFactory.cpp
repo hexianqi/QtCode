@@ -99,32 +99,13 @@ IMultStream *HDataFactory::createMultStream(QString type, QVariantMap param)
 
 ITestData *HDataFactory::createTestData(QString type, QVariantMap param)
 {
-    Q_UNUSED(type)
-    auto p = new HTestData;
-    p->initialize(param);
-    return p;
+    return HFactory::createObject<ITestData>(type, param);
 }
 
 ITestSpec *HDataFactory::createTestSpec(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     auto p = new HTestSpec;
-    p->initialize(param);
-    return p;
-}
-
-ITestElec *HDataFactory::createTestElec(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HTestElec;
-    p->initialize(param);
-    return p;
-}
-
-ITestLuminous *HDataFactory::createTestLuminous(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HTestLuminous;
     p->initialize(param);
     return p;
 }
@@ -312,6 +293,10 @@ void HDataFactory::registerClass()
     HFactory::registerClass<HGradeItem2D>("HGradeItem2D");
     HFactory::registerClass<HSpecFittingLinear>("HSpecFittingLinear");
     HFactory::registerClass<HSpecFittingPolynom>("HSpecFittingPolynom");
+
+    HFactory::registerClass<HTestData>("HTestData");
+    HFactory::registerClass<HTestElec>("HTestElec");
+    HFactory::registerClass<HTestLuminous>("HTestLuminous");
 }
 
 HE_DATA_END_NAMESPACE

@@ -7,6 +7,7 @@
 HE_DATA_BEGIN_NAMESPACE
 
 class IElecCalibrate;
+class IElecCalibrateCollection;
 
 class HTestElecPrivate : public HTestDataPrivate
 {

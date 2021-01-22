@@ -10,7 +10,7 @@ HE_DATA_END_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HSpecModelPrivate : public HAbstractModelPrivate
+class HE_CONTROLLER_EXPORT HSpecModelPrivate : public HAbstractModelPrivate
 {
 public:
     HSpecModelPrivate();

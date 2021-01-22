@@ -11,7 +11,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HSpecModelPrivate;
 
-class HSpecModel : public HAbstractModel
+class HE_CONTROLLER_EXPORT HSpecModel : public HAbstractModel
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecModel)

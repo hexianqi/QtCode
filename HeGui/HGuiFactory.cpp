@@ -23,6 +23,10 @@
 #include "HSqlBrowserHandler.h"
 #include "HProductInfoEditHandler.h"
 #include "HIVTestHandler.h"
+#include "HImportCurveHandler.h"
+#include "HExportCurveHandler.h"
+#include "HImportDeviceHandler.h"
+#include "HExportDeviceHandler.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
@@ -114,6 +118,10 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HProductInfoEditHandler>("HProductInfoEditHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
     HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
+    HObjectFactory::registerClass<HImportDeviceHandler>("HImportDeviceHandler");
+    HObjectFactory::registerClass<HExportDeviceHandler>("HExportDeviceHandler");
+    HObjectFactory::registerClass<HImportCurveHandler>("HImportCurveHandler");
+    HObjectFactory::registerClass<HExportCurveHandler>("HExportCurveHandler");
 }
 
 HE_GUI_END_NAMESPACE

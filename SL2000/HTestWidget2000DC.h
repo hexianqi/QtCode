@@ -2,14 +2,15 @@
 **      2019-10-24  HTestWidget2000DC
 ***************************************************************************************************/
 
-#ifndef HTESTWIDGET2000DC_H
-#define HTESTWIDGET2000DC_H
+#pragma once
 
-#include "HTestWidget2000.h"
+#include "HeGui/HSpecTestWidget.h"
+
+HE_GUI_USE_NAMESPACE
 
 class HTestWidget2000DCPrivate;
 
-class HTestWidget2000DC : public HTestWidget2000
+class HTestWidget2000DC : public HSpecTestWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HTestWidget2000DC)
@@ -19,19 +20,17 @@ public:
     ~HTestWidget2000DC() override;
 
 public:
+    void initialize(QVariantMap param) override;
     QString typeName() override;
-
-protected:
-    HTestWidget2000DC(HTestWidget2000DCPrivate &p, QWidget *parent = nullptr);
 
 protected:
     void init() override;
     void createAction() override;
+    void createWidget() override;
     void createMenu() override;
+    void initWidget() override;
     void readSettings() override;
     void writeSettings() override;
     void setProbe(bool b);
     void editProductInfo();
 };
-
-#endif // HTESTWIDGET2000DC_H

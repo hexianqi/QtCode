@@ -22,6 +22,7 @@
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlPrint.h"
 #include "HeSql/IProductInfo.h"
+#include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
@@ -164,6 +165,8 @@ void HBuilder2000::buildDatabase()
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
+    HSqlHelper::setVersion("Spec", 0x01010101);
+
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
@@ -192,6 +195,7 @@ void HBuilder2000::buildMenu()
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
     auto quality = new QMenu(tr("品质(&Q)"));
+    auto device = new QMenu(tr("设备配置(&T)"));
     auto database = new QMenu(tr("数据库(&D)"));
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&S)..."), "HSpecLuminousHandler"));
@@ -202,12 +206,17 @@ void HBuilder2000::buildMenu()
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导入设备数据(&G)..."), "HImportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出设备数据(&S)..."), "HExportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
+    d->mainWindow->insertMenu(device);
     d->mainWindow->insertMenu(database);
 }
 

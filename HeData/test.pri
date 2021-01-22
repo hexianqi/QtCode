@@ -1,8 +1,6 @@
 HEADERS += \
     $$PWD/ITestData.h \
     $$PWD/ITestSpec.h \
-    $$PWD/ITestElec.h \
-    $$PWD/ITestLuminous.h \
     $$PWD/HTestData.h \
     $$PWD/HTestData_p.h \
     $$PWD/HTestSpec.h \

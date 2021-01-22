@@ -75,7 +75,6 @@ void HAbstractMainWindow::initialize()
     readSettings();
     initImportExport();
     createAction();
-    createActionGroup();
     createMenu();
     createToolBar();
     createToolBarLogo();
@@ -112,15 +111,6 @@ void HAbstractMainWindow::createAction()
     d_ptr->actionExit->setIconText(tr("\n退出"));
     d_ptr->actionExit->setShortcut(tr("Ctrl+Q"));
     d_ptr->actionAbout = new QAction(tr("关于(&A)..."), this);
-    connect(d_ptr->actionOpen, &QAction::triggered, this, &HAbstractMainWindow::open);
-    connect(d_ptr->actionSave, &QAction::triggered, this, &HAbstractMainWindow::save);
-    connect(d_ptr->actionSaveAs, &QAction::triggered, this, &HAbstractMainWindow::saveAs);
-    connect(d_ptr->actionExit, &QAction::triggered, this, &HAbstractMainWindow::close);
-    connect(d_ptr->actionAbout, &QAction::triggered, this, &HAbstractMainWindow::about);
-}
-
-void HAbstractMainWindow::createActionGroup()
-{
     d_ptr->actionGroupImport = new QActionGroup(this);
     d_ptr->actionGroupExport = new QActionGroup(this);
     for (auto i = d_ptr->importExport.begin(); i != d_ptr->importExport.end(); i++)
@@ -128,6 +118,11 @@ void HAbstractMainWindow::createActionGroup()
         d_ptr->actionGroupImport->addAction(i.key())->setData(i.value());
         d_ptr->actionGroupExport->addAction(i.key())->setData(i.value());
     }
+    connect(d_ptr->actionOpen, &QAction::triggered, this, &HAbstractMainWindow::open);
+    connect(d_ptr->actionSave, &QAction::triggered, this, &HAbstractMainWindow::save);
+    connect(d_ptr->actionSaveAs, &QAction::triggered, this, &HAbstractMainWindow::saveAs);
+    connect(d_ptr->actionExit, &QAction::triggered, this, &HAbstractMainWindow::close);
+    connect(d_ptr->actionAbout, &QAction::triggered, this, &HAbstractMainWindow::about);
     connect(d_ptr->actionGroupImport, &QActionGroup::triggered, this, &HAbstractMainWindow::importFile);
     connect(d_ptr->actionGroupExport, &QActionGroup::triggered, this, &HAbstractMainWindow::exportFile);
 }

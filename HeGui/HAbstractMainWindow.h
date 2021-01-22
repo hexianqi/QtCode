@@ -53,7 +53,6 @@ protected:
     virtual void initialize() override;
     virtual void initImportExport();
     virtual void createAction();
-    virtual void createActionGroup();
     virtual void createMenu();
     virtual void createToolBar();
     virtual void createToolBarLogo();

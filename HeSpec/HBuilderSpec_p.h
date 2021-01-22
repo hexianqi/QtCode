@@ -7,7 +7,7 @@
 class HBuilderSpecPrivate : public HAbstractBuilderPrivate
 {
 public:
-    HBuilderSpecPrivate(IMainWindow *);
+    HBuilderSpecPrivate();
 };
 
 #endif // HBUILDERSPEC_P_H
