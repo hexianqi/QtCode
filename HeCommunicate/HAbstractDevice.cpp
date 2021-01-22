@@ -1,5 +1,6 @@
 #include "HAbstractDevice_p.h"
 #include "IPort.h"
+#include "HeCore/HException.h"
 #include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -61,56 +62,56 @@ void HAbstractDevice::addActionParam(HActionType action, QList<uchar> value)
     d_ptr->actionParams.insert(action, value);
 }
 
-HErrorType HAbstractDevice::open()
+bool HAbstractDevice::open()
 {
     if (d_ptr->port == nullptr)
-        return E_PORT_INVALID;
-
+        throw HException(E_PORT_INVALID);
     close();
-    auto error = open(d_ptr->portNum);
-    if (error == E_OK || !d_ptr->portNumScan)
-        return error;
+    if (!d_ptr->portNumScan)
+        return open(d_ptr->portNum);
 
     for (int i = 0; i < 10; i++)
     {
-        error = open(i);
-        if (error == E_OK)
+        try
         {
-            d_ptr->portNum = i;
-            return E_OK;
+            if (open(i))
+            {
+                d_ptr->portNum = i;
+                return true;
+            }
+        }
+        catch (HException &)
+        {
         }
     }
-    return E_DEVICE_NOT_FOUND;
+    throw HException(E_DEVICE_NOT_FOUND);
 }
 
-HErrorType HAbstractDevice::close()
+bool HAbstractDevice::close()
 {
     if (d_ptr->port != nullptr)
-        d_ptr->port->close();
-    return E_OK;
+        return d_ptr->port->close();
+    return true;
 }
 
-HErrorType HAbstractDevice::open(int num)
+bool HAbstractDevice::open(int num)
 {
-    auto error = d_ptr->port->open(num);
-    if (error != E_OK)
-        return error;
-
-    error = check();
-    if (error != E_OK)
+    if (!d_ptr->port->open(num))
+        return false;
+    if (!check())
         d_ptr->port->close();
-    return error;
+    return true;
 }
 
-HErrorType HAbstractDevice::check()
+bool HAbstractDevice::check()
 {
     QVector<uchar> data;
     return getData(ACT_CHECK_DEVICE, data);
 }
 
-HErrorType HAbstractDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
+void HAbstractDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
-    return d_ptr->port->transport(downData, upData, delay);
+    d_ptr->port->transport(downData, upData, delay);
 }
 
 HE_COMMUNICATE_END_NAMESPACE

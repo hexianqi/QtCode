@@ -34,14 +34,12 @@ QString HUi2008Protocol::typeName()
     return "HUi2008Protocol";
 }
 
-HErrorType HUi2008Protocol::getData(HActionType action, QVector<double> &value, int delay)
+bool HUi2008Protocol::getData(HActionType action, QVector<double> &value, int delay)
 {
     int i,j,n,d;
     double t;
     QVector<uchar> data;
-    auto error = HLittleProtocol::getData(action, data, delay);
-    if (error != E_OK)
-        return error;
+    HLittleProtocol::getData(action, data, delay);
     if (value.isEmpty())
         value.resize(data.size() / 4);
     auto size = qMin(value.size(), data.size() / 4);
@@ -63,7 +61,7 @@ HErrorType HUi2008Protocol::getData(HActionType action, QVector<double> &value, 
         }
         value[i] = t * qPow(0.1, 3 - n);
     }
-    return E_OK;
+    return true;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

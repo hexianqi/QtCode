@@ -8,7 +8,6 @@
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
-#include "HeCore/HErrorType.h"
 
 HE_CORE_USE_NAMESPACE
 
@@ -32,13 +31,13 @@ public:
 
 public:
     // 打开
-    virtual HErrorType open() = 0;
+    virtual bool open() = 0;
     // 关闭
-    virtual HErrorType close() = 0;
+    virtual bool close() = 0;
     // 设置数据
-    virtual HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) = 0;
+    virtual bool setData(HActionType action, QVector<uchar> value, int delay = 0) = 0;
     // 获取数据
-    virtual HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) = 0;
+    virtual bool getData(HActionType action, QVector<uchar> &value, int delay = 0) = 0;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

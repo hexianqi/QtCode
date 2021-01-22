@@ -1,4 +1,5 @@
 #include "HUsbPortCy_p.h"
+#include "HeCore/HException.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_USE_NAMESPACE
@@ -79,42 +80,31 @@ QString HUsbPortCy::portType()
     return "USB";
 }
 
-HErrorType HUsbPortCy::openPort(int portNum)
+bool HUsbPortCy::openPort(int portNum)
 {
     Q_D(HUsbPortCy);
     if (!d->isLoaded)
-        return E_PORT_NO_DLL;
+        throw HException(E_PORT_NO_DLL);
     if (!Open(portNum))
-        return E_PORT_INVALID_HANDLE;
+        throw HException(E_PORT_INVALID_HANDLE);
     SetTimeout(d->timeOut);
-    return E_OK;
+    return true;
 }
 
-HErrorType HUsbPortCy::closePort()
+bool HUsbPortCy::closePort()
 {
     Q_D(HUsbPortCy);
-    Close();
-    return E_OK;
+    return Close();
 }
 
-HErrorType HUsbPortCy::writeData(uchar *data, int maxSize)
+int HUsbPortCy::writeData(uchar *data, int maxSize)
 {
     Q_D(HUsbPortCy);
-    auto ret = WriteData(data, maxSize);
-    if (ret < maxSize)
-        return E_PORT_WRITE_DATA_LESS;
-    if (ret != maxSize)
-        return E_PORT_WRITE_FAILED;
-    return E_OK;
+    return WriteData(data, maxSize);
 }
 
-HErrorType HUsbPortCy::readData(uchar *data, int maxSize)
+int HUsbPortCy::readData(uchar *data, int maxSize)
 {
     Q_D(HUsbPortCy);
-    auto ret = ReadData(data, maxSize);
-    if (ret < maxSize)
-        return E_PORT_READ_DATA_LESS;
-    if (ret != maxSize)
-        return E_PORT_READ_FAILED;
-    return E_OK;
+    return ReadData(data, maxSize);
 }

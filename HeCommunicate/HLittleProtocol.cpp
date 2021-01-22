@@ -36,6 +36,11 @@ QVector<uchar> HLittleProtocol::toVector(uint value)
                             << ((value >> 24) & 0xFF);
 }
 
+QVector<uchar> HLittleProtocol::toVector(double value)
+{
+    return toVector(int(value));
+}
+
 int HLittleProtocol::toInt(QVector<uchar> value)
 {
     if (value.size() < 2)
@@ -50,7 +55,7 @@ uint HLittleProtocol::toUInt(QVector<uchar> value)
     return uint(value.at(0) + (value.at(1) << 8) + (value.at(2) << 16) + (value.at(3) << 24));
 }
 
-QVector<int> HLittleProtocol::toVectorInt(QVector<uchar> value, int size)
+QVector<int> HLittleProtocol::toInt(QVector<uchar> value, int size)
 {
     QVector<int> result;
     auto n = size == 0 ? value.size() / 2 : qMin(size, value.size() / 2);
@@ -59,7 +64,7 @@ QVector<int> HLittleProtocol::toVectorInt(QVector<uchar> value, int size)
     return result;
 }
 
-QVector<uint> HLittleProtocol::toVectorUInt(QVector<uchar> value, int size)
+QVector<uint> HLittleProtocol::toUInt(QVector<uchar> value, int size)
 {
     QVector<uint> result;
     auto n = size == 0 ? value.size() / 4 : qMin(size, value.size() / 4);
@@ -68,7 +73,7 @@ QVector<uint> HLittleProtocol::toVectorUInt(QVector<uchar> value, int size)
     return result;
 }
 
-QVector<double> HLittleProtocol::toVectorDouble(QVector<uchar> value, int size)
+QVector<double> HLittleProtocol::toDouble(QVector<uchar> value, int size)
 {
     QVector<double> result;
     auto n = size == 0 ? value.size() / 2 : qMin(size, value.size() / 2);

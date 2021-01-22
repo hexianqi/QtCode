@@ -35,6 +35,7 @@ protected:
     virtual void buildDevice() = 0;
     virtual void buildThread() = 0;
     virtual void buildModel() = 0;
+    virtual void buildMemento() = 0;
     virtual void buildDatabase() = 0;
     virtual void buildMenu() = 0;
     virtual void buildTestWidget() = 0;

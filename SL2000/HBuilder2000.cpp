@@ -14,6 +14,7 @@
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
+#include "HeController/IMemento.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
@@ -140,6 +141,15 @@ void HBuilder2000::buildModel()
     Q_D(HBuilder2000);
     d->model = d->controllerFactory->createModel("HSpecModel");
     HAppContext::setContextPointer("IModel", d->model);
+}
+
+void HBuilder2000::buildMemento()
+{
+    Q_D(HBuilder2000);
+    auto memento = d->controllerFactory->createMemento("HMemento");
+    memento->setItems(QStringList() << "[积分时间]");
+    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
+    HAppContext::setContextPointer("IMementoTest", memento);
 }
 
 void HBuilder2000::buildDatabase()

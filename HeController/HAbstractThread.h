@@ -6,7 +6,6 @@
 #define HABSTRACTTHREAD_H
 
 #include "IThread.h"
-#include "HeCore/HErrorType.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -34,7 +33,7 @@ protected:
 protected:
     void run() override;
     virtual bool checkAction(HActionType action);
-    virtual HErrorType handleAction(HActionType action);
+    virtual bool handleAction(HActionType action);
     virtual bool isSupport(HActionType action);
 
 protected:

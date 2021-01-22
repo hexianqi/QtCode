@@ -1,6 +1,7 @@
 #include "HAbstractMainWindow_p.h"
 #include "ITestWidget.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCore.h"
 #include "HeController/IModel.h"
 #include <QtCore/QSettings>
 #include <QtWidgets/QApplication>
@@ -235,9 +236,10 @@ void HAbstractMainWindow::writeSettings()
     settings->endGroup();
 }
 
-void HAbstractMainWindow::showDeviceFailed(const QString &text)
+void HAbstractMainWindow::showDeviceFailed(const QString &port, const QString &text)
 {
-    QMessageBox::critical(this, "", text);
+    auto msg = tr("\n“%1”设备连接失败！错误原因“%2”。\n").arg(port, text);
+    QMessageBox::critical(this, "", msg);
 #ifndef QT_DEBUG
  //   close();
 #endif
@@ -246,7 +248,8 @@ void HAbstractMainWindow::showDeviceFailed(const QString &text)
 void HAbstractMainWindow::showActionFailed(HActionType action, const QString &text)
 {
     Q_UNUSED(action);
-    QMessageBox::warning(this, "", text);
+    auto msg = tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action), text);
+    QMessageBox::warning(this, "", msg);
 }
 
 void HAbstractMainWindow::updateStatusBar(QStringList list)

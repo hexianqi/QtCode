@@ -3,7 +3,7 @@
 #include "IThreadCollection.h"
 #include "HDelayThread.h"
 #include "HeCore/HAppContext.h"
-#include "HeCore/HCore.h"
+
 #include "HeData/IConfigManage.h"
 #include "HeData/IStream.h"
 
@@ -45,7 +45,7 @@ void HAbstractModel::start()
 
     initDelayThread();
     initWorkThread();
-    syncDeviceWhole();
+    syncDeviceAll();
     d_ptr->initialized = true;
 }
 
@@ -67,7 +67,7 @@ void HAbstractModel::addAction(HActionType action, ulong delay)
         t->addAction(action);
 }
 
-void HAbstractModel::syncDeviceWhole()
+void HAbstractModel::syncDeviceAll()
 {
     syncDevice(d_ptr->configManage->contain());
 }
@@ -135,7 +135,7 @@ void HAbstractModel::initWorkThread()
         connect(t, &IThread::startFailed, this, &HAbstractModel::threadStartFailed);
         connect(t, &IThread::startFinished, this, [=]{ emit threadStateChanged(t->threadInfo(), 1); });
         connect(t, &IThread::stopFinished, this, [=]{ emit threadStateChanged(t->threadInfo(), 0); });
-        connect(t, &IThread::actionFailed, this, &HAbstractModel::handleActionFailed);
+        connect(t, &IThread::actionFailed, this, &HAbstractModel::actionFailed);
         connect(t, &IThread::actionFinished, this, &HAbstractModel::actionFinished);
         list << t->threadInfo();
     }
@@ -148,11 +148,6 @@ void HAbstractModel::stopWorkThread()
 {
     for (auto t : d_ptr->threads->values())
         t->stop();
-}
-
-void HAbstractModel::handleActionFailed(HActionType action, HErrorType error)
-{
-    emit actionFailed(action, tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action), HCore::toComment(error)));
 }
 
 HE_CONTROLLER_END_NAMESPACE

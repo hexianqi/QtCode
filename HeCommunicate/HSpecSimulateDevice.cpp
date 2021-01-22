@@ -25,15 +25,15 @@ QString HSpecSimulateDevice::typeName()
     return "HSpecSimulateDevice";
 }
 
-HErrorType HSpecSimulateDevice::setData(HActionType action, QVector<uchar> value, int /*delay*/)
+bool HSpecSimulateDevice::setData(HActionType action, QVector<uchar> value, int /*delay*/)
 {
     Q_D(HSpecSimulateDevice);
     if (action == ACT_SET_INTEGRAL_TIME)
         d->intergalTime = (value[0] + (value[1] << 8) + (value[2] << 16) + (value[3] << 24)) / 1000.0;
-    return E_OK;
+    return true;
 }
 
-HErrorType HSpecSimulateDevice::getData(HActionType action, QVector<uchar> &value, int /*delay*/)
+bool HSpecSimulateDevice::getData(HActionType action, QVector<uchar> &value, int /*delay*/)
 {
     if (action == ACT_GET_SPECTRUM)
     {
@@ -45,7 +45,7 @@ HErrorType HSpecSimulateDevice::getData(HActionType action, QVector<uchar> &valu
             value << uchar(v / 256);
         }
     }
-    return E_OK;
+    return true;
 }
 
 double HSpecSimulateDevice::simulate(double value)

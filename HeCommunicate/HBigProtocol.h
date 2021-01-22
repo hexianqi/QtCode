@@ -28,11 +28,12 @@ protected:
 protected:
     QVector<uchar> toVector(int value) override;
     QVector<uchar> toVector(uint value) override;
+    QVector<uchar> toVector(double value) override;
     int toInt(QVector<uchar> value) override;
     uint toUInt(QVector<uchar> value) override;
-    QVector<int> toVectorInt(QVector<uchar> value, int size) override;
-    QVector<uint> toVectorUInt(QVector<uchar> value, int size) override;
-    QVector<double> toVectorDouble(QVector<uchar> value, int size) override;
+    QVector<int> toInt(QVector<uchar> value, int size) override;
+    QVector<uint> toUInt(QVector<uchar> value, int size) override;
+    QVector<double> toDouble(QVector<uchar> value, int size) override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

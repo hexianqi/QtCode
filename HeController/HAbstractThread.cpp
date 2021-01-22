@@ -2,6 +2,7 @@
 #include "IActionStrategy.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HException.h"
 #include "HeCommunicate/IProtocol.h"
 #include <QtCore/QSettings>
 #include <QtCore/QWaitCondition>
@@ -97,14 +98,14 @@ bool HAbstractThread::checkAction(HActionType action)
     return action < 0x00000100 || isSupport(action);
 }
 
-HErrorType HAbstractThread::handleAction(HActionType action)
+bool HAbstractThread::handleAction(HActionType action)
 {
     for (auto v : d_ptr->strategys)
     {
         if (v->isSupport(action))
             return v->handle(action);
     }
-    return E_THREAD_NO_HANDLE;
+    throw HException(E_THREAD_NO_HANDLE);
 }
 
 bool HAbstractThread::isSupport(HActionType action)
@@ -122,7 +123,6 @@ bool HAbstractThread::isSupport(HActionType action)
 void HAbstractThread::debugMode()
 {
     HActionType action;
-    HErrorType error;
 
     openProtocol();
     forever
@@ -130,10 +130,15 @@ void HAbstractThread::debugMode()
         action = d_ptr->dequeueAction();
         if (action == ACT_EXIT)
             break;
-        error = handleAction(action);
-        if (error != E_OK)
-            emit actionFailed(action, error);
-        emit actionFinished(action);
+        try
+        {
+            if (handleAction(action))
+                emit actionFinished(action);
+        }
+        catch (HException &e)
+        {
+            emit actionFailed(action, e.message());
+        }
     }
     closeProtocol();
 }
@@ -153,31 +158,32 @@ void HAbstractThread::normalMode()
 {
     int i;
     HActionType action;
-    HErrorType error;
 
     if (!openProtocol())
         return;
 
-    error = E_OK;
     forever
     {
         action = d_ptr->dequeueAction();
         if (action == ACT_EXIT)
             break;
-        for (i = 0; i < d_ptr->retry; i++)
+
+        for (i = d_ptr->retry; i >= 0; i--)
         {
-            error = handleAction(action);
-            if (error == E_OK)
+            try
             {
-                emit actionFinished(action);
-                break;
+                if (handleAction(action))
+                {
+                    emit actionFinished(action);
+                    break;
+                }
+            }
+            catch (HException &e)
+            {
+                if (i == 0)
+                    emit actionFailed(action, e.message());
             }
             msleep(d_ptr->sleepTime);
-        }
-        if (i >= d_ptr->retry)
-        {
-            emit actionFailed(action, error);
-            break;
         }
     }
     closeProtocol();
@@ -188,15 +194,18 @@ bool HAbstractThread::openProtocol()
     QList<IProtocol *> list;
     for (auto p : d_ptr->protocols)
     {
-        auto error = p->open();
-        if (error != E_OK)
+        try
+        {
+            p->open();
+            list.append(p);
+        }
+        catch (HException &e)
         {
             for (auto item : list)
                 item->close();
-            emit startFailed(tr("\n“%1”设备连接失败！错误原因“%2”。\n").arg(p->portType(), HCore::toComment(error)));
+            emit startFailed(p->portType(), e.message());
             return false;
         }
-        list.append(p);
     }
     emit startFinished();
     return true;

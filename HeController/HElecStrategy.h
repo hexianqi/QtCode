@@ -24,7 +24,7 @@ public:
     QString typeName() override;
 
 public:
-    HErrorType handle(HActionType action) override;
+    bool handle(HActionType action) override;
 
 protected:
     HElecStrategy(HElecStrategyPrivate &p, QObject *parent = nullptr);

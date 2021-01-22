@@ -1,5 +1,6 @@
 #include "HAbstractPort_p.h"
 #include "HeCore/HCoreHelper.h"
+#include "HeCore/HException.h"
 #include <QtCore/QVector>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -32,59 +33,59 @@ void HAbstractPort::setTimeOut(int value)
     d_ptr->timeOut = value;
 }
 
-HErrorType HAbstractPort::open(int portNum)
+bool HAbstractPort::open(int portNum)
 {
     if (isConnected())
-        return E_PORT_OPENED;
-    auto error = openPort(portNum);
-    if (error != E_OK)
-        return error;
+        return true;
+    if (!openPort(portNum))
+        return false;
     d_ptr->portNum = portNum;
     d_ptr->connected = true;
     clear();
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractPort::close()
+bool HAbstractPort::close()
 {
     if (!d_ptr->connected)
-        return E_PORT_CLOSED;
+        return true;
 
-    auto error = closePort();
-    if (error != E_OK)
-        return error;
+    if (!closePort())
+        return false;
     d_ptr->connected = false;
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractPort::clear()
+bool HAbstractPort::clear()
 {
     if (!d_ptr->connected)
-        return E_PORT_CLOSED;
+        return false;
     QVector<uchar> data(100);
     read(data);
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractPort::write(QVector<uchar> data)
+int HAbstractPort::write(QVector<uchar> data)
 {
     return writeData(data.data(), data.size());
 }
 
-HErrorType HAbstractPort::read(QVector<uchar> &data)
+int HAbstractPort::read(QVector<uchar> &data)
 {
     return readData(data.data(), data.size());
 }
 
-HErrorType HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
+bool HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay)
 {
-    auto error = write(downData);
-    if (error != E_OK)
-        return error;
-
+    auto size1 = downData.size();
+    auto size2 = upData.size();
+    if (write(downData) < size1)
+        throw HException(E_PORT_WRITE_DATA_LESS);
     if (delay > 10)
         HCoreHelper::msleep(delay);
-    return read(upData);
+    if (read(upData) < size2)
+        throw HException(E_PORT_READ_DATA_LESS);
+    return true;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

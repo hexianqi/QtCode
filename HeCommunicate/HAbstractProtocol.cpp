@@ -1,5 +1,6 @@
 #include "HAbstractProtocol_p.h"
 #include "IDevice.h"
+#include "HeCore/HException.h"
 #include <QtCore/QMutex>
 #include <QtCore/QVector>
 
@@ -41,40 +42,46 @@ void HAbstractProtocol::setDevice(IDevice *p)
     d_ptr->device = p;
 }
 
-HErrorType HAbstractProtocol::open()
+bool HAbstractProtocol::open()
 {
     QMutexLocker locker(d_ptr->mutex);
     if (d_ptr->device == nullptr)
-        return E_DEVICE_INVALID;
+        throw HException(E_DEVICE_INVALID);
     return d_ptr->device->open();
 }
 
-HErrorType HAbstractProtocol::close()
+bool HAbstractProtocol::close()
 {
     if (d_ptr->device != nullptr)
-        d_ptr->device->close();
-    return E_OK;
+        return d_ptr->device->close();
+    return true;
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, int value, int delay)
+bool HAbstractProtocol::setData(HActionType action, int value, int delay)
 {
     auto data = toVector(value);
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, uchar value, int delay)
+bool HAbstractProtocol::setData(HActionType action, uchar value, int delay)
 {
     auto data = QVector<uchar>() << value;
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, uint value, int delay)
+bool HAbstractProtocol::setData(HActionType action, uint value, int delay)
 {
     auto data = toVector(value);
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<int> value, int delay)
+bool HAbstractProtocol::setData(HActionType action, double value, int delay)
+{
+    auto data = toVector(value);
+    return setData(action, data, delay);
+}
+
+bool HAbstractProtocol::setData(HActionType action, QVector<int> value, int delay)
 {
     QVector<uchar> data;
     for (auto i : value)
@@ -82,12 +89,12 @@ HErrorType HAbstractProtocol::setData(HActionType action, QVector<int> value, in
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<uchar> value, int delay)
+bool HAbstractProtocol::setData(HActionType action, QVector<uchar> value, int delay)
 {
     return d_ptr->device->setData(action, value, delay);
 }
 
-HErrorType HAbstractProtocol::setData(HActionType action, QVector<uint> value, int delay)
+bool HAbstractProtocol::setData(HActionType action, QVector<uint> value, int delay)
 {
     QVector<uchar> data;
     for (auto i : value)
@@ -95,69 +102,65 @@ HErrorType HAbstractProtocol::setData(HActionType action, QVector<uint> value, i
     return setData(action, data, delay);
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, int &value, int delay)
+bool HAbstractProtocol::setData(HActionType action, QVector<double> value, int delay)
 {
     QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
+    for (auto i : value)
+        data << toVector(i);
+    return setData(action, data, delay);
+}
+
+bool HAbstractProtocol::getData(HActionType action, int &value, int delay)
+{
+    QVector<uchar> data;
+    getData(action, data, delay);
     value = toInt(data);
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, uchar &value, int delay)
+bool HAbstractProtocol::getData(HActionType action, uchar &value, int delay)
 {
     QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
+    getData(action, data, delay);
     value = data.first();
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, uint &value, int delay)
+bool HAbstractProtocol::getData(HActionType action, uint &value, int delay)
 {
     QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
+    getData(action, data, delay);
     value = toUInt(data);
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<int> &value, int delay)
+bool HAbstractProtocol::getData(HActionType action, QVector<int> &value, int delay)
 {
     QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = toVectorInt(data, value.size());
-    return E_OK;
+    getData(action, data, delay);
+    value = toInt(data, value.size());
+    return true;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
+bool HAbstractProtocol::getData(HActionType action, QVector<uchar> &value, int delay)
 {
     return d_ptr->device->getData(action, value, delay);
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<uint> &value, int delay)
+bool HAbstractProtocol::getData(HActionType action, QVector<uint> &value, int delay)
 {
     QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = toVectorUInt(data, value.size());
-    return E_OK;
+    getData(action, data, delay);
+    value = toUInt(data, value.size());
+    return true;
 }
 
-HErrorType HAbstractProtocol::getData(HActionType action, QVector<double> &value, int delay)
+bool HAbstractProtocol::getData(HActionType action, QVector<double> &value, int delay)
 {
     QVector<uchar> data;
-    auto error = getData(action, data, delay);
-    if (error != E_OK)
-        return error;
-    value = toVectorDouble(data, value.size());
-    return E_OK;
+    getData(action, data, delay);
+    value = toDouble(data, value.size());
+    return true;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

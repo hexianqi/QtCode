@@ -7,7 +7,6 @@
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include "HeCore/HErrorType.h"
 
 HE_CORE_USE_NAMESPACE
 
@@ -23,17 +22,17 @@ public:
     // 设置超时
     virtual void setTimeOut(int value) = 0;
     // 打开
-    virtual HErrorType open(int portNum = 1) = 0;
+    virtual bool open(int portNum = 1) = 0;
     // 关闭
-    virtual HErrorType close() = 0;
+    virtual bool close() = 0;
     // 清空缓存
-    virtual HErrorType clear() = 0;
+    virtual bool clear() = 0;
     // 写数据
-    virtual HErrorType write(QVector<uchar> data) = 0;
+    virtual int write(QVector<uchar> data) = 0;
     // 读数据
-    virtual HErrorType read(QVector<uchar> &data) = 0;
+    virtual int read(QVector<uchar> &data) = 0;
     // 传输数据
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) = 0;
+    virtual bool transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) = 0;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

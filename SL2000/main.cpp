@@ -1,7 +1,6 @@
 #include "HMainWindow2000.h"
 #include "HMainWindow2000DC.h"
 #include <QtWidgets/QApplication>
-#include <QtDebug>
 
 int main(int argc, char *argv[])
 {

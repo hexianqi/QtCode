@@ -28,16 +28,16 @@ public:
     void addActionParam(HActionType action, QList<uchar> value) override;
 
 public:
-    HErrorType open() override;
-    HErrorType close() override;
+    bool open() override;
+    bool close() override;
 
 protected:
     HAbstractDevice(HAbstractDevicePrivate &);
 
 protected:
-    virtual HErrorType open(int num);
-    virtual HErrorType check();
-    virtual HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
+    virtual bool open(int num);
+    virtual bool check();
+    virtual void transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 
 protected:
     QScopedPointer<HAbstractDevicePrivate> d_ptr;

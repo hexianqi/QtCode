@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HDaXinProtocol.h \
+    $$PWD/HDaXinProtocol_p.h \
     $$PWD/IProtocol.h \
     $$PWD/IProtocolCollection.h \
     $$PWD/HProtocolCollection.h \
@@ -21,6 +23,7 @@ HEADERS += \
     $$PWD/HSl1000Protocol_p.h
 
 SOURCES += \
+    $$PWD/HDaXinProtocol.cpp \
     $$PWD/HProtocolCollection.cpp \
     $$PWD/HUi2008Protocol.cpp \
     $$PWD/HUi2010Protocol.cpp \

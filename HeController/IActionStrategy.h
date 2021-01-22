@@ -8,7 +8,6 @@
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
-#include "HeCore/HErrorType.h"
 #include "HeCommunicate/HCommunicateGlobal.h"
 
 HE_CORE_USE_NAMESPACE
@@ -33,7 +32,7 @@ public:
     // 是否支持动作
     virtual bool isSupport(HActionType action) = 0;
     // 处理动作
-    virtual HErrorType handle(HActionType action) = 0;
+    virtual bool handle(HActionType action) = 0;
 };
 
 HE_CONTROLLER_END_NAMESPACE

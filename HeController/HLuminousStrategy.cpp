@@ -32,10 +32,9 @@ QString HLuminousStrategy::typeName()
     return "HLuminousStrategy";
 }
 
-HErrorType HLuminousStrategy::handle(HActionType action)
+bool HLuminousStrategy::handle(HActionType action)
 {
     Q_D(HLuminousStrategy);
-    HErrorType error;
     int sample;
 
     switch(action)
@@ -45,12 +44,11 @@ HErrorType HLuminousStrategy::handle(HActionType action)
     case ACT_SET_LUMINOUS_GEARS:
         return d->protocol->setData(action, d->testData->data("[光档位]").toInt() + 1);
     case ACT_GET_LUMINOUS_DATA:
-        error = d->protocol->getData(action, sample);
-        if (error == E_OK)
-            d->testData->setData("[光采样值]", sample);
-        return error;
+        d->protocol->getData(action, sample);
+        d->testData->setData("[光采样值]", sample);
+        return true;
     }
-    return E_OK;
+    return false;
 }
 
 HE_CONTROLLER_END_NAMESPACE

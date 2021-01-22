@@ -18,8 +18,8 @@ public:
     explicit HAbstractSimulateDevice();
 
 public:
-    HErrorType open() override;
-    HErrorType close() override;
+    bool open() override;
+    bool close() override;
 
 protected:
     HAbstractSimulateDevice(HAbstractSimulateDevicePrivate &);

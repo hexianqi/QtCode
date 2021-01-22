@@ -30,8 +30,8 @@ protected:
     HSpecElecThread(HSpecElecThreadPrivate &p, QObject *parent = nullptr);
 
 protected:
-    HErrorType handleAction(HActionType action) override;
-    HErrorType getSpectrum(int n = 1);
+    bool handleAction(HActionType action) override;
+    void getSpectrum(int n = 1);
     void handleData();
 
 private:

@@ -1,5 +1,6 @@
 #include "HDaXinDevice_p.h"
 #include "HSerialPort.h"
+#include "HeCore/HException.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -89,12 +90,12 @@ QString HDaXinDevice::typeName()
     return "HDaXinDevice";
 }
 
-HErrorType HDaXinDevice::setData(HActionType action, QVector<uchar> value, int delay)
+bool HDaXinDevice::setData(HActionType action, QVector<uchar> value, int delay)
 {
     Q_D(HDaXinDevice);
     auto param = d->actionParams.value(action);
     if (param.size() < 3)
-        return E_DEVICE_ACTION_PARAM_ERROR;
+        throw HException(E_DEVICE_ACTION_PARAM_ERROR);
 
     auto size = value.size();
     auto upData = QVector<uchar>(10);
@@ -106,9 +107,7 @@ HErrorType HDaXinDevice::setData(HActionType action, QVector<uchar> value, int d
     downData.prepend(0xA5);
     downData << uchar(crc / 256) << uchar(crc % 256);
 
-    auto error = transport(downData, upData, delay);
-    if (error != E_OK)
-        return error;
+    transport(downData, upData, delay);
 
     if (upData.size() < 10
             || upData[0] != 0xA5
@@ -119,27 +118,26 @@ HErrorType HDaXinDevice::setData(HActionType action, QVector<uchar> value, int d
             || upData[5] != 00
             || upData[6] != 01
             || upData[7] != 00)
-        return E_DEVICE_DATA_RETURN_ERROR;
-    return E_OK;
+        throw HException(E_DEVICE_DATA_RETURN_ERROR);
+    return true;
 }
 
-HErrorType HDaXinDevice::getData(HActionType action, QVector<uchar> &value, int delay)
+bool HDaXinDevice::getData(HActionType action, QVector<uchar> &value, int delay)
 {
     Q_D(HDaXinDevice);
     auto param = d->actionParams.value(action);
     if (param.size() < 3)
-        return E_DEVICE_ACTION_PARAM_ERROR;
+        throw HException(E_DEVICE_ACTION_PARAM_ERROR);
 
-    auto upData = QVector<uchar>(9 + param[0] * 256 + param[1]);
+    auto size = param[0] * 256 + param[1];
+    auto upData = QVector<uchar>(9 + size);
     auto downData =  QVector<uchar>() << d->da << d->sa << param[2] << 0x80 << 0x00;
     auto crc = crc16(downData);
     downData.prepend(0x5A);
     downData.prepend(0xA5);
     downData << uchar(crc / 256) << uchar(crc % 256);
 
-    auto error = transport(downData, upData, delay);
-    if (error != E_OK)
-        return error;
+    transport(downData, upData, delay);
 
     if (upData.size() < 10
             || upData[0] != 0xA5
@@ -148,19 +146,15 @@ HErrorType HDaXinDevice::getData(HActionType action, QVector<uchar> &value, int 
             || upData[3] != d->da
             || upData[4] != param[2]
             || upData[5] != 00)
-        return E_DEVICE_DATA_RETURN_ERROR;
-    upData.removeLast();
-    upData.removeLast();
-    value = upData.mid(7);
-    return E_OK;
+        throw HException(E_DEVICE_DATA_RETURN_ERROR);
+    value = upData.mid(7, size);
+    return true;
 }
 
-HErrorType HDaXinDevice::check()
+bool HDaXinDevice::check()
 {
-    auto error = setData(ACT_SET_SOURCE_OPERATION, QVector<uchar>() << 0x00);
-    if (error != E_OK)
-        return error;
-    return setData(ACT_SET_OUTPUT_CURRENT, QVector<uchar>() << 0x00 << 0x00);
+    return setData(ACT_SET_SOURCE_OPERATION, QVector<uchar>() << 0x00) &&
+           setData(ACT_SET_OUTPUT_CURRENT, QVector<uchar>() << 0x00 << 0x00);
 }
 
 HE_COMMUNICATE_END_NAMESPACE

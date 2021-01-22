@@ -28,10 +28,10 @@ protected:
     HUsbPortCy7c68013(HUsbPortCy7c68013Private &);
 
 protected:
-    HErrorType openPort(int portNum) override;
-    HErrorType closePort() override;
-    HErrorType writeData(uchar *data, int maxSize) override;
-    HErrorType readData(uchar *data, int maxSize) override;
+    bool openPort(int portNum) override;
+    bool closePort() override;
+    int writeData(uchar *data, int maxSize) override;
+    int readData(uchar *data, int maxSize) override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

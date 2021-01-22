@@ -1,5 +1,6 @@
 #include "HSpecStrategy_p.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HException.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/IProtocol.h"
 #include <QtCore/QDebug>
@@ -38,13 +39,12 @@ QString HSpecStrategy::typeName()
     return "HSpecStrategy";
 }
 
-HErrorType HSpecStrategy::handle(HActionType action)
+bool HSpecStrategy::handle(HActionType action)
 {
     Q_D(HSpecStrategy);
     uint i;
     QVector<uchar> ubuff;
     QVector<double> dbuff;
-    HErrorType error;
 
     switch(action)
     {
@@ -55,27 +55,22 @@ HErrorType HSpecStrategy::handle(HActionType action)
     case ACT_SET_SPECTRUM_SAMPLE_DELAY:
         return d->protocol->setData(action, d->testSpec->data("[光谱采样延时]").toInt());
     case ACT_GET_INTEGRAL_TIME:
-        error = d->protocol->getData(action, i);
-        if (error == E_OK)
-            d->testSpec->setData("[积分时间]", i / 500.0);
-        return error;
+        d->protocol->getData(action, i);
+        d->testSpec->setData("[积分时间]", i / 500.0);
+        return true;
     case ACT_GET_SPECTRUM:
-        error = d->protocol->getData(action, dbuff);//d->testSpec->data("[光谱采样等待时间]").toInt());
-        if (error == E_OK)
-            d->testSpec->setSample(dbuff, true);
-        return error;
+        d->protocol->getData(action, dbuff);//d->testSpec->data("[光谱采样等待时间]").toInt());
+        d->testSpec->setSample(dbuff, true);
+        return true;
     case ACT_SET_RAM:
         return d->protocol->setData(action, d->testSpec->getRam());
     case ACT_GET_RAM:
-        error = d->protocol->getData(action, ubuff);
-        if (error == E_OK)
-        {
-            if (!d->testSpec->setRam(ubuff))
-                error = E_DEVICE_DATA_RETURN_ERROR;
-        }
-        return error;
+        d->protocol->getData(action, ubuff);
+        if (!d->testSpec->setRam(ubuff))
+            throw HException(E_DEVICE_DATA_RETURN_ERROR);
+        return true;
     }
-    return E_OK;
+    return false;
 }
 
 HE_CONTROLLER_END_NAMESPACE

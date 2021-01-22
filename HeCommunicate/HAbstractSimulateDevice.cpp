@@ -12,14 +12,14 @@ HAbstractSimulateDevice::HAbstractSimulateDevice(HAbstractSimulateDevicePrivate 
 {
 }
 
-HErrorType HAbstractSimulateDevice::open()
+bool HAbstractSimulateDevice::open()
 {
-    return E_OK;
+    return true;
 }
 
-HErrorType HAbstractSimulateDevice::close()
+bool HAbstractSimulateDevice::close()
 {
-    return E_OK;
+    return true;
 }
 
 HE_COMMUNICATE_END_NAMESPACE

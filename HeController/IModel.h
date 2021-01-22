@@ -22,9 +22,9 @@ public:
 
 signals:
     void threadInitFinished(QStringList list);
-    void threadStartFailed(QString text);
-    void threadStateChanged(QString name, int state);
-    void actionFailed(HActionType action, QString text);
+    void threadStartFailed(const QString &port, const QString &text);
+    void threadStateChanged(const QString &name, int state);
+    void actionFailed(HActionType action, const QString &text);
     void actionFinished(HActionType action);
 
 public:
@@ -32,7 +32,7 @@ public:
     virtual void addAction(HActionType action, ulong delay = 0) = 0;
     virtual void syncTestData(quint32 type) = 0;
     virtual void syncDevice(quint32 type) = 0;
-    virtual void syncDeviceWhole() = 0;
+    virtual void syncDeviceAll() = 0;
 
 public:
     virtual bool openFile() = 0;

@@ -32,7 +32,7 @@ protected:
     HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);
 
 protected slots:
-    void showDeviceFailed(const QString &text);
+    void showDeviceFailed(const QString &port, const QString &text);
     void showActionFailed(HActionType action, const QString &text);
     void updateStatusBar(QStringList list);
     void updateLabel(const QString &name, int state);

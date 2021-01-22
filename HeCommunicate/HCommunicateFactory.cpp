@@ -16,6 +16,7 @@
 #include "HSl1000Protocol.h"
 #include "HUi2008Protocol.h"
 #include "HUi2010Protocol.h"
+#include "HDaXinProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
 #include <QtCore/QDebug>
@@ -99,6 +100,7 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HSl1000Protocol>("HSl1000Protocol");
     HFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
     HFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");
+    HFactory::registerClass<HDaXinProtocol>("HDaXinProtocol");
 }
 
 HE_COMMUNICATE_END_NAMESPACE

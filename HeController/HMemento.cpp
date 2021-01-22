@@ -90,7 +90,7 @@ void HMemento::restore()
     if (d_ptr->datas.isEmpty())
         return;
     d_ptr->testData->setData(d_ptr->datas);
-    d_ptr->model->syncDeviceWhole();
+    d_ptr->model->syncDeviceAll();
 }
 
 HE_CONTROLLER_END_NAMESPACE

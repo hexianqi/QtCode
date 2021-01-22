@@ -47,83 +47,56 @@ QString HIntegrateThread::threadInfo()
     return tr("综合线程");
 }
 
-HErrorType HIntegrateThread::handleAction(HActionType action)
+bool HIntegrateThread::handleAction(HActionType action)
 {
     Q_D(HIntegrateThread);
-    HErrorType error;
 
     switch(action)
     {
     case ACT_SINGLE_TEST:
-        error = d->strategyElec->handle(ACT_GET_ELEC_DATA);
-        if (error != E_OK)
-            return error;
+        d->strategyElec->handle(ACT_GET_ELEC_DATA);
         msleep(d->testData->data("[光谱采样延时]").toInt());
-        error = d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
-        if (error != E_OK)
-            return error;
-        error = getSpectrum(d->testData->data("[光谱平均次数]").toInt());
-        if (error != E_OK)
-            return error;
-        error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
-        if (error != E_OK)
-            return error;
+        d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
+        getSpectrum(d->testData->data("[光谱平均次数]").toInt());
+        d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
-        return E_OK;
+        return true;
     case ACT_GET_SPECTRUM_ELEC:
         if (d->testData->data("[预配置测试]").toBool())
         {
             d->testData->setData("[电源模式]", 2);
-            error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
-            if (error != E_OK)
-                return error;
-            error = d->strategyElec->handle(ACT_GET_REVERSE_CURRENT);
-            if (error != E_OK)
-                return error;
+            d->strategyElec->handle(ACT_SET_SOURCE_MODE);
+            d->strategyElec->handle(ACT_GET_REVERSE_CURRENT);
             d->testData->setData("[电源模式]", 1);
-            error = d->strategyElec->handle(ACT_SET_SOURCE_MODE);
-            if (error != E_OK)
-                return error;
+            d->strategyElec->handle(ACT_SET_SOURCE_MODE);
             d->testData->setData("[预配置测试]", false);
         }
-        error = d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
-        if (error != E_OK)
-            return error;
-        error = d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
-        if (error != E_OK)
-            return error;
-        error = d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
-        if (error != E_OK)
-            return error;
-        error = d->strategySpec->handle(ACT_GET_SPECTRUM);
-        if (error != E_OK)
-            return error;
+        d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
+        d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
+        d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
+        d->strategySpec->handle(ACT_GET_SPECTRUM);
         handleData();
-        return E_OK;
+        return true;
     }
     return HAbstractThread::handleAction(action);
 }
 
-HErrorType HIntegrateThread::getSpectrum(int n)
+void HIntegrateThread::getSpectrum(int n)
 {
     Q_D(HIntegrateThread);
     int i,j;
-    HErrorType error;
     QVector<double> sample1, samples2;
 
     n = qMin(1, n);
     for (i = 0; i < n; i++)
     {
-        error = d->protocolSpec->getData(ACT_GET_SPECTRUM, samples2);
-        if (error != E_OK)
-            return error;
+        d->protocolSpec->getData(ACT_GET_SPECTRUM, samples2);
         if (sample1.size() < samples2.size())
             sample1.resize(samples2.size());
         for (j = 0; j < samples2.size(); j++)
             sample1[j] += 1.0 * samples2.at(j) / n;
     }
     d->testData->setData("[光谱采样值]", QVariant::fromValue(sample1));
-    return E_OK;
 }
 
 void HIntegrateThread::handleData()
@@ -150,6 +123,5 @@ void HIntegrateThread::init()
     d->strategyLuminous->setProtocol(d->protocolElse);
     d->strategys << d->strategySpec << d->strategyElec << d->strategyLuminous;
 }
-
 
 HE_CONTROLLER_END_NAMESPACE

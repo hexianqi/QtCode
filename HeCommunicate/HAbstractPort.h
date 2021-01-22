@@ -23,21 +23,21 @@ public:
 public:
     bool isConnected() override;
     void setTimeOut(int value) override;
-    HErrorType open(int portNum = 1) override;
-    HErrorType close() override;
-    HErrorType clear() override;
-    HErrorType write(QVector<uchar> data) override;
-    HErrorType read(QVector<uchar> &data) override;
-    HErrorType transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
+    bool open(int portNum = 1) override;
+    bool close() override;
+    bool clear() override;
+    int write(QVector<uchar> data) override;
+    int read(QVector<uchar> &data) override;
+    bool transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
 
 protected:
     HAbstractPort(HAbstractPortPrivate &);
 
 protected:
-    virtual HErrorType openPort(int portNum) = 0;
-    virtual HErrorType closePort() = 0;
-    virtual HErrorType writeData(uchar *data, int maxSize) = 0;
-    virtual HErrorType readData(uchar *data, int maxSize) = 0;
+    virtual bool openPort(int portNum) = 0;
+    virtual bool closePort() = 0;
+    virtual int writeData(uchar *data, int maxSize) = 0;
+    virtual int readData(uchar *data, int maxSize) = 0;
 
 protected:
     QScopedPointer<HAbstractPortPrivate> d_ptr;

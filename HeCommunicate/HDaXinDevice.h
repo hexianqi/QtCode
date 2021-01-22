@@ -23,11 +23,11 @@ public:
     QString typeName() override;
 
 public:
-    HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
+    bool setData(HActionType action, QVector<uchar> value, int delay = 0) override;
+    bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HErrorType check() override;
+    bool check() override;
 };
 
 HE_COMMUNICATE_END_NAMESPACE

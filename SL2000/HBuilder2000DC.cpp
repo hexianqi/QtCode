@@ -18,7 +18,6 @@
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include "HeCommunicate/IDevice.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
 #include "HeController/IMemento.h"
@@ -205,6 +204,15 @@ void HBuilder2000DC::buildModel()
     HAppContext::setContextPointer("IModel", d->model);
 }
 
+void HBuilder2000DC::buildMemento()
+{
+    Q_D(HBuilder2000DC);
+    auto memento = d->controllerFactory->createMemento("HMemento");
+    memento->setItems(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
+    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
+    HAppContext::setContextPointer("IMementoTest", memento);
+}
+
 void HBuilder2000DC::buildDatabase()
 {
     Q_D(HBuilder2000DC);
@@ -279,13 +287,7 @@ void HBuilder2000DC::buildMenu()
 
 void HBuilder2000DC::buildTestWidget()
 {
-    Q_D(HBuilder2000DC);
-    auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setItems(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
-    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
-    HAppContext::setContextPointer("IMementoTest", memento);
-
     ITestWidget *widget = new HTestWidget2000DC;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

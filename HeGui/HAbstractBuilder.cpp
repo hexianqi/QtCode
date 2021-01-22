@@ -38,6 +38,7 @@ void HAbstractBuilder::buildAll()
     buildDevice();
     buildThread();
     buildModel();
+    buildMemento();
     buildDatabase();
     buildMenu();
     buildTestWidget();

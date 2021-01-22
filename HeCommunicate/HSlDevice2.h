@@ -23,17 +23,17 @@ public:
     QString typeName() override;
 
 public:
-    HErrorType setData(HActionType action, QVector<uchar> value, int delay = 0) override;
-    HErrorType getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
+    bool setData(HActionType action, QVector<uchar> value, int delay = 0) override;
+    bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
     HSlDevice2(HSlDevice2Private &);
 
 protected:
-    HErrorType setDataOnce(uchar cmd, QVector<uchar> value, int delay = 0);
-    HErrorType getDataOnce(int size, uchar cmd, uchar block, QVector<uchar> &value, int delay = 0);
-    HErrorType setDataBatch(QList<uchar> param, QVector<uchar> value, int delay = 0);
-    HErrorType getDataBatch(QList<uchar> param, QVector<uchar> &value, int delay = 0);
+    bool setDataOnce(uchar cmd, QVector<uchar> value, int delay = 0);
+    bool getDataOnce(int size, uchar cmd, uchar block, QVector<uchar> &value, int delay = 0);
+    bool setDataBatch(QList<uchar> param, QVector<uchar> value, int delay = 0);
+    bool getDataBatch(QList<uchar> param, QVector<uchar> &value, int delay = 0);
 };
 
 HE_COMMUNICATE_END_NAMESPACE

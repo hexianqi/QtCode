@@ -23,7 +23,7 @@ public:
     QString typeName() override;
 
 public:
-    HErrorType handle(HActionType action) override;
+    bool handle(HActionType action) override;
 
 protected:
     HLuminousStrategy(HLuminousStrategyPrivate &p, QObject *parent = nullptr);

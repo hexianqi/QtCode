@@ -1,4 +1,5 @@
 #include "HUsbPortLpc214_p.h"
+#include "HeCore/HException.h"
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_USE_NAMESPACE
@@ -42,15 +43,15 @@ void HUsbPortLpc214Private::unloadDLL()
 }
 #endif
 
-HUsbPortLpc214::HUsbPortLpc214()
-    : HAbstractPort(*new HUsbPortLpc214Private)
+HUsbPortLpc214::HUsbPortLpc214() :
+    HAbstractPort(*new HUsbPortLpc214Private)
 {
     Q_D(HUsbPortLpc214);
     d->loadDll();
 }
 
-HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p)
-    : HAbstractPort(p)
+HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p) :
+    HAbstractPort(p)
 {
     Q_D(HUsbPortLpc214);
     d->loadDll();
@@ -73,35 +74,25 @@ QString HUsbPortLpc214::portType()
     return "USB";
 }
 
-HErrorType HUsbPortLpc214::openPort(int portNum)
+bool HUsbPortLpc214::openPort(int portNum)
 {
     Q_UNUSED(portNum)
-    return E_OK;
+    return true;
 }
 
-HErrorType HUsbPortLpc214::closePort()
+bool HUsbPortLpc214::closePort()
 {
-    return E_OK;
+    return true;
 }
 
-HErrorType HUsbPortLpc214::writeData(uchar *data, int maxSize)
-{
-    Q_D(HUsbPortLpc214);
-    auto ret = WriteData214x(1, data, maxSize, d->timeOut);
-    if (ret < maxSize)
-        return E_PORT_WRITE_DATA_LESS;
-    if (ret != maxSize)
-        return E_PORT_WRITE_FAILED;
-    return E_OK;
-}
-
-HErrorType HUsbPortLpc214::readData(uchar *data, int maxSize)
+int HUsbPortLpc214::writeData(uchar *data, int maxSize)
 {
     Q_D(HUsbPortLpc214);
-    auto ret = ReadData214x(2, data, maxSize, d->timeOut);
-    if (ret < maxSize)
-        return E_PORT_READ_DATA_LESS;
-    if (ret != maxSize)
-        return E_PORT_READ_FAILED;
-    return E_OK;
+    return WriteData214x(1, data, maxSize, d->timeOut);
+}
+
+int HUsbPortLpc214::readData(uchar *data, int maxSize)
+{
+    Q_D(HUsbPortLpc214);
+    return ReadData214x(2, data, maxSize, d->timeOut);
 }

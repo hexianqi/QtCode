@@ -24,12 +24,12 @@ QString HSlSimulateDevice::typeName()
     return "HSlSimulateDevice";
 }
 
-HErrorType HSlSimulateDevice::setData(HActionType /*action*/, QVector<uchar> /*value*/, int /*delay*/)
+bool HSlSimulateDevice::setData(HActionType /*action*/, QVector<uchar> /*value*/, int /*delay*/)
 {
-    return E_OK;
+    return true;
 }
 
-HErrorType HSlSimulateDevice::getData(HActionType action, QVector<uchar> &value, int /*delay*/)
+bool HSlSimulateDevice::getData(HActionType action, QVector<uchar> &value, int /*delay*/)
 {
     value.clear();
     if (action == ACT_QUERY_STATE_TRIGGER)
@@ -45,7 +45,7 @@ HErrorType HSlSimulateDevice::getData(HActionType action, QVector<uchar> &value,
     {
         value << simulate(255) << simulate(255);
     }
-    return E_OK;
+    return true;
 }
 
 uchar HSlSimulateDevice::simulate(int value)

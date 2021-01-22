@@ -30,6 +30,7 @@ protected:
     void buildDevice() override;
     void buildThread() override;
     void buildModel() override;
+    void buildMemento() override;
     void buildDatabase() override;
     void buildMenu() override;
     void buildTestWidget() override;

@@ -1,29 +1,30 @@
 /***************************************************************************************************
-**      2018-06-19  HSlCodecDevice SL设备类（带编码）。
+**      2021-01-18  HDaXinProtocol
 ***************************************************************************************************/
 
 #pragma once
 
-#include "HSlDevice1.h"
+#include "HBigProtocol.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HSlDevice3Private;
+class HDaXinProtocolPrivate;
 
-class HSlDevice3 : public HSlDevice1
+class HDaXinProtocol : public HBigProtocol
 {
-    Q_DECLARE_PRIVATE(HSlDevice3)
+    Q_DECLARE_PRIVATE(HDaXinProtocol)
 
 public:
-    explicit HSlDevice3();
-    ~HSlDevice3() override;
+    explicit HDaXinProtocol();
+    ~HDaXinProtocol() override;
 
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
 
 protected:
-    void transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
+    HDaXinProtocol(HDaXinProtocolPrivate &);
 };
 
 HE_COMMUNICATE_END_NAMESPACE
+

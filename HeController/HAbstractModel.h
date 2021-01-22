@@ -6,7 +6,6 @@
 #define HABSTRACTMODEL_H
 
 #include "IModel.h"
-#include "HeCore/HErrorType.h"
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -24,7 +23,7 @@ public:
 public:
     void start() override;
     void addAction(HActionType action, ulong delay = 0) override;
-    void syncDeviceWhole() override;
+    void syncDeviceAll() override;
 
 public:
     bool openFile() override;
@@ -42,7 +41,6 @@ protected:
     void stopDelayThread();
     void initWorkThread();
     void stopWorkThread();
-    void handleActionFailed(HActionType action, HErrorType error);
 
 protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;

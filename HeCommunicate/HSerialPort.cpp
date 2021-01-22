@@ -1,6 +1,7 @@
 #include "HSerialPort_p.h"
-#include <QtCore/QDebug>
+#include "HeCore/HException.h"
 #include <windows.h>
+#include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
@@ -42,11 +43,9 @@ void HSerialPort::setBaudRate(ulong value)
     d->baudRate = value;
 }
 
-HErrorType HSerialPort::openPort(int portNum)
+bool HSerialPort::openPort(int portNum)
 {
     Q_D(HSerialPort);
-    if (d->connected)
-        return E_PORT_OPENED;
 
     DCB dcb;
     auto name = QString("COM%1").arg(portNum).toStdWString().c_str();
@@ -59,64 +58,59 @@ HErrorType HSerialPort::openPort(int portNum)
 
     d->handle = CreateFileW(name, GENERIC_READ|GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (d->handle == INVALID_HANDLE_VALUE)
-        return E_PORT_INVALID_HANDLE;
+        throw HException(E_PORT_INVALID_HANDLE);
 
-    SetupComm(d->handle, 10240, 10240);
-    SetCommTimeouts(d->handle, &timeOuts);
-
-    if (!GetCommState(d->handle, &dcb))
+    try
     {
-        CloseHandle(d->handle);
-        return E_PORT_INVALID_HANDLE;
+        SetupComm(d->handle, 10240, 10240);
+        SetCommTimeouts(d->handle, &timeOuts);
+        if (!GetCommState(d->handle, &dcb))
+            throw HException(E_PORT_INVALID_HANDLE);
+        dcb.BaudRate = d->baudRate;
+        dcb.ByteSize = 8;
+        dcb.StopBits = 0;
+        dcb.fParity = 1;
+        dcb.fBinary = 1;
+        dcb.Parity = 0;
+        if (!SetCommState(d->handle, &dcb))
+            throw HException(E_PORT_INVALID_HANDLE);
+        return true;
     }
-    dcb.BaudRate = d->baudRate;
-    dcb.ByteSize = 8;
-    dcb.StopBits = 0;
-    dcb.fParity = 1;
-    dcb.fBinary = 1;
-    dcb.Parity = 0;
-    if (!SetCommState(d->handle, &dcb))
+    catch (HException &e)
     {
-        CloseHandle(d->handle);
-        return E_PORT_INVALID_HANDLE;
+        closePort();
+        e.raise();
+        return false;
     }
-    return E_OK;
 }
 
-HErrorType HSerialPort::closePort()
+bool HSerialPort::closePort()
 {
     Q_D(HSerialPort);
-    CloseHandle(d->handle);
-    return E_OK;
+    return CloseHandle(d->handle);
 }
 
-HErrorType HSerialPort::writeData(uchar *buff, int size)
+int HSerialPort::writeData(uchar *buff, int size)
 {
     Q_D(HSerialPort);
     ulong ret;
-    auto num = ulong(size);
 
 //    FlushFileBuffers(d->hDevice);
     PurgeComm(d->handle, PURGE_TXCLEAR);
     PurgeComm(d->handle, PURGE_RXCLEAR);
-    if (!WriteFile(d->handle, buff, num, &ret, nullptr))
-        return E_PORT_WRITE_FAILED;
-    if (ret < num)
-        return E_PORT_WRITE_DATA_LESS;
-    return E_OK;
+    if (!WriteFile(d->handle, buff, size, &ret, nullptr))
+        throw HException(E_PORT_WRITE_FAILED);
+    return ret;
 }
 
-HErrorType HSerialPort::readData(uchar *buff, int size)
+int HSerialPort::readData(uchar *buff, int size)
 {
     Q_D(HSerialPort);
     ulong ret;
-    auto num = ulong(size);
 
-    if (!ReadFile(d->handle, buff, num, &ret, nullptr))
-        return E_PORT_READ_FAILED;
-    if (ret < num)
-        return E_PORT_READ_DATA_LESS;
-    return E_OK;
+    if (!ReadFile(d->handle, buff, size, &ret, nullptr))
+        throw HException(E_PORT_READ_FAILED);
+    return ret;
 }
 
 HE_COMMUNICATE_END_NAMESPACE
