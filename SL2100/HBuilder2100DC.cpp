@@ -35,7 +35,7 @@
 HBuilder2100DCPrivate::HBuilder2100DCPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
-    deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
+    deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
     sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
                              << "Temperature" << "Humidity" << "TestDate" << "TestTime"
@@ -124,18 +124,23 @@ void HBuilder2100DC::buildDevice()
     Q_D(HBuilder2100DC);
 #ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
-    auto device2 = d->communicateFactory->createDevice("HSlSimulateDevice");
+    auto device2 = d->communicateFactory->createDevice("HSimulateDevice");
+    auto device3 = d->communicateFactory->createDevice("HSimulateDevice");
     auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
+    auto protocol3 = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol1->setDevice(device1);
     protocol2->setDevice(device2);
+    protocol3->setDevice(device3);
 #else
-    auto protocol1 = d->communicateFactory->createProtocol(deployItem("Protocol"));
+    auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
     auto protocol2 = d->communicateFactory->createProtocol("HDaXinProtocol");
+    auto protocol3 = d->communicateFactory->createProtocol("HSl1000Protocol");
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
-    protocols->insert("Else", protocol2);
+    protocols->insert("Elec", protocol2);
+    protocols->insert("Else", protocol3);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 

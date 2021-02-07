@@ -36,7 +36,7 @@ QString HSpecThread::typeName()
 
 QString HSpecThread::threadInfo()
 {
-    return tr("光谱线程");
+    return tr("线程");
 }
 
 void HSpecThread::init()

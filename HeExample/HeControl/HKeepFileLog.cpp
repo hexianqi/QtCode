@@ -26,7 +26,7 @@ HKeepFileLog::~HKeepFileLog()
 bool HKeepFileLog::readContent(QStringList &value)
 {
     Q_D(HKeepFileLog);
-    reopenFileIfNeeded();
+    reopenIfNeeded();
     value.clear();
     if (!d->file->reset())
         return false;
@@ -38,7 +38,7 @@ bool HKeepFileLog::readContent(QStringList &value)
 bool HKeepFileLog::writeContent(QStringList value)
 {
     Q_D(HKeepFileLog);
-    reopenFileIfNeeded();
+    reopenIfNeeded();
     d->file->resize(0);
     QTextStream s(d->file);
     for (const auto &v : value)
@@ -49,7 +49,7 @@ bool HKeepFileLog::writeContent(QStringList value)
 bool HKeepFileLog::appendContent(QStringList value)
 {
     Q_D(HKeepFileLog);
-    reopenFileIfNeeded();
+    reopenIfNeeded();
     QTextStream s(d->file);
     for (const auto &v : value)
         s << v << endl;
@@ -63,15 +63,15 @@ void HKeepFileLog::init()
     d->fileName = "";
 }
 
-void HKeepFileLog::reopenFileIfNeeded()
+void HKeepFileLog::reopenIfNeeded()
 {
     Q_D(HKeepFileLog);
     auto name = fileName();
     if (name == d->fileName)
         return;
-    d->fileName = name;
     if (d->file->isOpen())
         d->file->close();
+    d->fileName = name;
     d->file->setFileName(name);
     d->file->open(QIODevice::ReadWrite | QIODevice::Append | QFile::Text);
 }

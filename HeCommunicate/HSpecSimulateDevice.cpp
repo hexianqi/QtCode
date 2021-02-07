@@ -6,12 +6,12 @@
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 HSpecSimulateDevice::HSpecSimulateDevice() :
-    HAbstractSimulateDevice(*new HSpecSimulateDevicePrivate)
+    HAbstractDevice(*new HSpecSimulateDevicePrivate)
 {
 }
 
 HSpecSimulateDevice::HSpecSimulateDevice(HSpecSimulateDevicePrivate &p) :
-    HAbstractSimulateDevice(p)
+    HAbstractDevice(p)
 {
 }
 
@@ -23,6 +23,16 @@ HSpecSimulateDevice::~HSpecSimulateDevice()
 QString HSpecSimulateDevice::typeName()
 {
     return "HSpecSimulateDevice";
+}
+
+bool HSpecSimulateDevice::open()
+{
+    return true;
+}
+
+bool HSpecSimulateDevice::close()
+{
+    return true;
 }
 
 bool HSpecSimulateDevice::setData(HActionType action, QVector<uchar> value, int /*delay*/)

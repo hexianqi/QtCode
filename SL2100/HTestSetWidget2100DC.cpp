@@ -44,6 +44,14 @@ void HTestSetWidget2100DC::handleAction(HActionType action)
     case ACT_SET_OUTPUT_CURRENT:
         ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
         break;
+    case ACT_QUERY_STATE_TRIGGER:
+        if (!d->testState)
+            break;
+        if (d->testData->data("[触发状态]").toInt() != 1)
+            d->model->addAction(ACT_QUERY_STATE_TRIGGER, 50);
+        else
+            d->model->addAction(ACT_SINGLE_TEST, 100);
+        break;
     case ACT_SINGLE_TEST:
         if (adjustIntegralTime())
         {
@@ -53,7 +61,10 @@ void HTestSetWidget2100DC::handleAction(HActionType action)
         emit resultChanged(action, true);
         if (!d->testState)
             break;
-        setTestState(false);
+        if (d->testMode == 4)
+            d->model->addAction(ACT_QUERY_STATE_TRIGGER);
+        else
+            setTestState(false);
         break;
     case ACT_GET_SPECTRUM_ELEC:
         emit resultChanged(action, d->testMode == 3);
@@ -76,13 +87,17 @@ bool HTestSetWidget2100DC::setTestState(bool b)
 
     if (b)
     {
+        d->testData->handleOperation("<清空光谱采样缓存>");
         if (d->testMode == 0)
         {
             d->model->addAction(ACT_SINGLE_TEST);
         }
+        else if (d->testMode == 4)
+        {
+            d->model->addAction(ACT_QUERY_STATE_TRIGGER);
+        }
         else
         {
-            d->testData->handleOperation("<清空光谱采样缓存>");
             d->testData->setData("[电源模式]", 1);
             d->model->addAction(ACT_SET_SOURCE_MODE);
             if (d->testMode == 1)
@@ -173,10 +188,11 @@ void HTestSetWidget2100DC::init()
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_1);
     HPluginHelper::initWidget("[输出电压]", ui->doubleSpinBox_2);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox_3);
+    HPluginHelper::initWidget("[测试间隔]", ui->spinBox_1);
     ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
     ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
     ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  ") << tr("  触发测试  "));
     d->timerContinue = new QTimer(this);
     d->timerInterval = new QTimer(this);
     connect(d->timerContinue, &QTimer::timeout, this, [=] { setTestState(false); });

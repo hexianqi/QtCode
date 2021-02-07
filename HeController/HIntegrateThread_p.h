@@ -17,9 +17,9 @@ public:
     HIntegrateThreadPrivate();
 
 public:
+    ITestData *testData = nullptr;
     IProtocol *protocolSpec = nullptr;
     IProtocol *protocolElse = nullptr;
-    ITestData *testData = nullptr;
     IActionStrategy *strategySpec = nullptr;
     IActionStrategy *strategyElec = nullptr;
     IActionStrategy *strategyLuminous = nullptr;

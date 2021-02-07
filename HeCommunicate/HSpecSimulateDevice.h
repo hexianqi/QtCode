@@ -4,13 +4,13 @@
 
 #pragma once
 
-#include "HAbstractSimulateDevice.h"
+#include "HAbstractDevice.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
 class HSpecSimulateDevicePrivate;
 
-class HSpecSimulateDevice : public HAbstractSimulateDevice
+class HSpecSimulateDevice : public HAbstractDevice
 {
     Q_DECLARE_PRIVATE(HSpecSimulateDevice)
 
@@ -20,6 +20,10 @@ public:
 
 public:
     QString typeName() override;
+
+public:
+    bool open() override;
+    bool close() override;
 
 public:
     bool setData(HActionType action, QVector<uchar> value, int delay = 0) override;

@@ -9,7 +9,6 @@
 #include "HeData/IChromatismCollection.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
-#include "HeCommunicate/IDevice.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
@@ -33,7 +32,7 @@
 HBuilder2000Private::HBuilder2000Private()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
-    deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
+    deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
     sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
                              << "Temperature" << "Humidity" << "TestDate" << "TestTime"
@@ -121,7 +120,7 @@ void HBuilder2000::buildDevice()
     auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol->setDevice(device);
 #else
-    auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
+    auto protocol = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);

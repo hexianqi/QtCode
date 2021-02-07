@@ -30,7 +30,7 @@ protected:
 
 private:
     void init();
-    void reopenFileIfNeeded();
+    void reopenIfNeeded();
 };
 
 HE_CONTROL_END_NAMESPACE

@@ -24,7 +24,7 @@
 HBuilderSpecPrivate::HBuilderSpecPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
-    deploy.insert("Protocol",       "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
+    deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 }
 
 HBuilderSpec::HBuilderSpec(QObject *parent) :
@@ -88,7 +88,7 @@ void HBuilderSpec::buildDevice()
      auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
      protocol->setDevice(device);
 #else
-    auto protocol = d->communicateFactory->createProtocol(deployItem("Protocol"));
+    auto protocol = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol);

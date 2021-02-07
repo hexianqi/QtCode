@@ -11,11 +11,12 @@ HThread2100DCPrivate::HThread2100DCPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
                   << ACT_GET_SPECTRUM_ELEC;
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
+    protocolElec = protocolCollection->value("Elec");
     protocolElse = protocolCollection->value("Else");
-    testData = HAppContext::getContextPointer<ITestData>("ITestData");
-    protocols << protocolSpec << protocolElse;
+    protocols << protocolSpec << protocolElec << protocolElse;
 }
 
 HThread2100DC::HThread2100DC(QObject *parent) :
@@ -36,7 +37,7 @@ QString HThread2100DC::typeName()
 
 QString HThread2100DC::threadInfo()
 {
-    return tr("综合线程");
+    return tr("线程");
 }
 
 bool HThread2100DC::handleAction(HActionType action)
@@ -48,6 +49,7 @@ bool HThread2100DC::handleAction(HActionType action)
     case ACT_SINGLE_TEST:
         d->testData->setData("[电源模式]", 1);
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
+        msleep(1000);
         d->strategyElec->handle(ACT_GET_ELEC_DATA);
         msleep(d->testData->data("[光谱采样延时]").toInt());
         getSpectrum(d->testData->data("[光谱平均次数]").toInt());
@@ -95,8 +97,10 @@ void HThread2100DC::init()
     Q_D(HThread2100DC);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
+    d->strategyElse = factory->createStrategy("HElecStrategy", this);
     d->strategyElec = new HDaXinStrategy(this);
     d->strategySpec->setProtocol(d->protocolSpec);
-    d->strategyElec->setProtocol(d->protocolElse);
-    d->strategys << d->strategySpec << d->strategyElec;
+    d->strategyElec->setProtocol(d->protocolElec);
+    d->strategyElse->setProtocol(d->protocolElse);
+    d->strategys << d->strategySpec << d->strategyElec << d->strategyElse;
 }

@@ -18,6 +18,8 @@ DESTDIR     = "../Dest"
 # deprecated API in order to know how to port your code away from it.
 DEFINES     += \
             QT_DEPRECATED_WARNINGS \
+#            SL2000 \
+#            SL2000AC \
             SL2000DC \
             SIMULATE
 
@@ -55,10 +57,13 @@ Release {
 }
 
 include(SL2000.pri)
+include(SL2000AC.pri)
 include(SL2000DC.pri)
 
 if (contains(DEFINES, SL2000)) {
     TARGET_NAME = SL2000
+} else : if (contains(DEFINES, SL2000AC)) {
+    TARGET_NAME = SL2000AC
 } else : if (contains(DEFINES, SL2000DC)) {
     TARGET_NAME = SL2000DC
 } else {

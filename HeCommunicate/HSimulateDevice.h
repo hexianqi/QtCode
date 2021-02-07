@@ -1,32 +1,36 @@
 /***************************************************************************************************
-**      2020-06-02  HSlSimulateDevice
+**      2020-06-02  HSimulateDevice
 ***************************************************************************************************/
 
 #pragma once
 
-#include "HAbstractSimulateDevice.h"
+#include "HAbstractDevice.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HSlSimulateDevicePrivate;
+class HSimulateDevicePrivate;
 
-class HSlSimulateDevice : public HAbstractSimulateDevice
+class HSimulateDevice : public HAbstractDevice
 {
-    Q_DECLARE_PRIVATE(HSlSimulateDevice)
+    Q_DECLARE_PRIVATE(HSimulateDevice)
 
 public:
-    explicit HSlSimulateDevice();
-    ~HSlSimulateDevice() override;
+    explicit HSimulateDevice();
+    ~HSimulateDevice() override;
 
 public:
     QString typeName() override;
+
+public:
+    bool open() override;
+    bool close() override;
 
 public:
     bool setData(HActionType action, QVector<uchar> value, int delay = 0) override;
     bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HSlSimulateDevice(HSlSimulateDevicePrivate &);
+    HSimulateDevice(HSimulateDevicePrivate &);
 
 protected:
     uchar simulate(int value);

@@ -409,6 +409,10 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 3));
     hashDataFormatInfo.insert("[电功率]",                       new HDataFormatInfo("[电功率]", "W", 0, 500, 3));
     hashDataFormatInfo.insert("[电阻]",                         new HDataFormatInfo("[电阻]", "Ω", 0, 10, 3));
+    // 交流电参数
+    hashDataFormatInfo.insert("[交流电压]",                     new HDataFormatInfo("[交流电压]", "V", 0, 500, 2));
+    hashDataFormatInfo.insert("[交流电流]",                     new HDataFormatInfo("[交流电流]", "A", 0, 50, 3));
+    hashDataFormatInfo.insert("[交流电功率]",                   new HDataFormatInfo("[交流电功率]", "W", 0, 500, 3));
     hashDataFormatInfo.insert("[功率因数]",                     new HDataFormatInfo("[功率因数]", 0, 1, 3));
     // 光参数
     hashDataFormatInfo.insert("[光采样值]",                     new HDataFormatInfo("[光采样值]"));
@@ -431,10 +435,10 @@ void HCoreGlobalInstance::initDataFormatInfo()
     // 调整参数
     hashDataFormatInfo.insert("[调整比率]",                     new HDataFormatInfo("[调整比率]", "%", 10, 1000, 1));
     hashDataFormatInfo.insert("[自吸收系数]",                   new HDataFormatInfo("[自吸收系数]", 0, 100, 2));
+    // 测试参数
+    hashDataFormatInfo.insert("[测试时间]",                     new HDataFormatInfo("[测试时间]", "ms", 200, 30000, 1));
+    hashDataFormatInfo.insert("[测试间隔]",                     new HDataFormatInfo("[测试间隔]", "s", 1, 3600, 1));
 
-//    //交流电参数
-//    hashFormatInfo.insert(tr("[交流电压]"),                        FTypeInfo(tr("[交流电压]"), tr("V"), 0, 500, 2));
-//    hashFormatInfo.insert(tr("[交流电流]"),                        FTypeInfo(tr("[交流电流]"), tr("A"), 0, 50, 3));
 
 //    //光强角度分布参数
 //    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));

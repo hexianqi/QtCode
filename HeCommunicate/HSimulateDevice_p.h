@@ -1,11 +1,11 @@
 #pragma once
 
-#include "HAbstractSimulateDevice.h"
+#include "HSimulateDevice.h"
 #include "HAbstractDevice_p.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HAbstractSimulateDevicePrivate : public HAbstractDevicePrivate
+class HSimulateDevicePrivate : public HAbstractDevicePrivate
 {
 
 };

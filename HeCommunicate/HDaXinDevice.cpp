@@ -1,5 +1,5 @@
 #include "HDaXinDevice_p.h"
-#include "HSerialPort.h"
+#include "IPort.h"
 #include "HeCore/HException.h"
 #include <QtCore/QDebug>
 
@@ -54,23 +54,6 @@ quint16 crc16(const QVector<uchar> &data)
 
 HDaXinDevicePrivate::HDaXinDevicePrivate()
 {
-    QVariantMap param;
-    param.insert("timeOut", 1000);
-    param.insert("baudRate", 38400);
-    port = new HSerialPort();
-    port->initialize(param);
-    actionParams.insert(ACT_SET_OUTPUT_VOLTAGE,     QList<uchar>() << 0x00 << 0x02 << 0x20);
-    actionParams.insert(ACT_SET_OUTPUT_CURRENT,     QList<uchar>() << 0x00 << 0x02 << 0x21);
-    actionParams.insert(ACT_SET_OVER_VOLTAGE,       QList<uchar>() << 0x00 << 0x02 << 0x22);
-    actionParams.insert(ACT_SET_OVER_CURRENT,       QList<uchar>() << 0x00 << 0x02 << 0x23);
-    actionParams.insert(ACT_SET_SOURCE_MODE,        QList<uchar>() << 0x00 << 0x02 << 0x24);
-    actionParams.insert(ACT_SET_SOURCE_ADDR,        QList<uchar>() << 0x00 << 0x02 << 0x25);
-    actionParams.insert(ACT_SET_SOURCE_OPERATION,   QList<uchar>() << 0x00 << 0x02 << 0x26);
-    actionParams.insert(ACT_SET_SOURCE_FORWARD,     QList<uchar>() << 0x00 << 0x02 << 0x30);
-    actionParams.insert(ACT_SET_SOURCE_REVERSE,     QList<uchar>() << 0x00 << 0x02 << 0x31);
-    actionParams.insert(ACT_SET_SOURCE_IO,          QList<uchar>() << 0x00 << 0x02 << 0x32);
-    actionParams.insert(ACT_GET_SOURCE_STATE,       QList<uchar>() << 0x00 << 0x01 << 0x27);
-    actionParams.insert(ACT_GET_ELEC_DATA,          QList<uchar>() << 0x00 << 0x05 << 0x28);
     da = 0x00;
     sa = 0xFB;
 }

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "HSpecSimulateDevice.h"
-#include "HAbstractSimulateDevice_p.h"
+#include "HAbstractDevice_p.h"
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 
-class HSpecSimulateDevicePrivate : public HAbstractSimulateDevicePrivate
+class HSpecSimulateDevicePrivate : public HAbstractDevicePrivate
 {
 public:
     double intergalTime = 1;

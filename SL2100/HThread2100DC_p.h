@@ -15,11 +15,13 @@ public:
     HThread2100DCPrivate();
 
 public:
-    IProtocol *protocolSpec = nullptr;
-    IProtocol *protocolElse = nullptr;
     ITestData *testData = nullptr;
+    IProtocol *protocolSpec = nullptr;
+    IProtocol *protocolElec = nullptr;
+    IProtocol *protocolElse = nullptr;
     IActionStrategy *strategySpec = nullptr;
     IActionStrategy *strategyElec = nullptr;
+    IActionStrategy *strategyElse = nullptr;
 };
 
 

@@ -52,6 +52,7 @@ void HSqlGlobalInstance::initFieldType()
 {
     hashFieldType.clear();
     hashFieldType.insert("ID",                  "[ID]");
+    // 产品信息
     hashFieldType.insert("Manufacturer",        "[制造厂商]");
     hashFieldType.insert("ProductName",         "[产品名称]");
     hashFieldType.insert("ProductModel",        "[产品型号]");
@@ -59,17 +60,19 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("Tester",              "[测试员]");
     hashFieldType.insert("TestInstitute",       "[测试单位]");
     hashFieldType.insert("Note",                "[备注]");
+    // 环境
     hashFieldType.insert("Temperature",         "[环境温度]");
     hashFieldType.insert("Humidity",            "[环境湿度]");
+    // 时间
     hashFieldType.insert("TestDateTime",        "[测量日期时间]");
     hashFieldType.insert("TestDate",            "[测量日期]");
     hashFieldType.insert("TestTime",            "[测量时间]");
-
+    // 光
     hashFieldType.insert("LuminousFluxSpec",    "[光谱光通量]");
     hashFieldType.insert("LuminousFlux",        "[光通量]");
     hashFieldType.insert("LuminousPower",       "[光功率]");
     hashFieldType.insert("LuminousEfficiency",  "[光效率]");
-
+    // 光谱
     hashFieldType.insert("PeakWave",            "[峰值波长]");
     hashFieldType.insert("PeakBandwidth",       "[峰值带宽]");
     hashFieldType.insert("DominantWave",        "[主波长]");
@@ -92,7 +95,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("R9",                  "[显色指数R9]");
     hashFieldType.insert("Rx",                  "[显色指数Rx]");
     hashFieldType.insert("EnergyGraph",         "[光谱能量曲线]");
-
+    // 电
     hashFieldType.insert("OutputVoltage",       "[输出电压]");
     hashFieldType.insert("OutputCurrent",       "[输出电流]");
     hashFieldType.insert("MeasuredVoltage",     "[实测电压]");
@@ -100,12 +103,11 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("ReverseVoltage",      "[反向电压]");
     hashFieldType.insert("ReverseCurrent",      "[反向漏流]");
     hashFieldType.insert("ElecPower",           "[电功率]");
-
-//    hashFieldType.insert("ACCurrent",                    "[交流电流]");
-//    hashFieldType.insert("ACVoltage",                    "[交流电压]");
-//    hashFieldType.insert("ACPower",                      "[交流电功率]");
-//    hashFieldType.insert("ACFactor",                     "[功率因素]");
-
+    // 交流电
+    hashFieldType.insert("ACVoltage",           "[交流电压]");
+    hashFieldType.insert("ACCurrent",           "[交流电流]");
+    hashFieldType.insert("ACPower",             "[交流电功率]");
+    hashFieldType.insert("ACFactor",            "[功率因素]");
 }
 
 void HSqlGlobalInstance::initFieldCreateStyle()
@@ -114,7 +116,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("ID",                   "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL");
     hashFieldCreateStyle.insert("TableName",            "TableName nchar(50)");
     hashFieldCreateStyle.insert("Version",              "Version integer");
-
+    // 产品信息
     hashFieldCreateStyle.insert("Manufacturer",         "Manufacturer nchar(50)");
     hashFieldCreateStyle.insert("ProductName",          "ProductName nchar(50)");
     hashFieldCreateStyle.insert("ProductModel",         "ProductModel nchar(50)");
@@ -122,17 +124,19 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("Tester",               "Tester nchar(50)");
     hashFieldCreateStyle.insert("TestInstitute",        "TestInstitute nchar(50)");
     hashFieldCreateStyle.insert("Note",                 "Note nchar(500)");
+    // 环境
     hashFieldCreateStyle.insert("Temperature",          "Temperature numeric(18, 1)");
     hashFieldCreateStyle.insert("Humidity",             "Humidity numeric(18, 1)");
+    // 时间
     hashFieldCreateStyle.insert("TestDateTime",         "TestDateTime datetime");
     hashFieldCreateStyle.insert("TestDate",             "TestDate date");
     hashFieldCreateStyle.insert("TestTime",             "TestTime time");
-
+    // 光
     hashFieldCreateStyle.insert("LuminousFluxSpec",     "LuminousFluxSpec numeric(18, 2)");
     hashFieldCreateStyle.insert("LuminousFlux",         "LuminousFlux numeric(18, 2)");
     hashFieldCreateStyle.insert("LuminousPower",        "LuminousPower numeric(18, 2)");
     hashFieldCreateStyle.insert("LuminousEfficiency",   "LuminousEfficiency numeric(18, 2)");
-
+    // 光谱
     hashFieldCreateStyle.insert("PeakWave",             "PeakWave numeric(18, 1)");
     hashFieldCreateStyle.insert("PeakBandwidth",        "PeakBandwidth numeric(18, 1)");
     hashFieldCreateStyle.insert("DominantWave",         "DominantWave numeric(18, 1)");
@@ -152,7 +156,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("R9",                   "R9 numeric(18, 2)");
     hashFieldCreateStyle.insert("Rx",                   "Rx nchar(200)");
     hashFieldCreateStyle.insert("EnergyGraph",          "EnergyGraph ntext");
-
+    // 电
     hashFieldCreateStyle.insert("OutputVoltage",        "OutputVoltage numeric(18, 2)");
     hashFieldCreateStyle.insert("OutputCurrent",        "OutputCurrent numeric(18, 2)");
     hashFieldCreateStyle.insert("MeasuredVoltage",      "MeasuredVoltage numeric(18, 2)");
@@ -160,10 +164,11 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("ReverseVoltage",       "ReverseVoltage numeric(18, 2)");
     hashFieldCreateStyle.insert("ReverseCurrent",       "ReverseCurrent numeric(18, 2)");
     hashFieldCreateStyle.insert("ElecPower",            "ElecPower numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ACCurrent",             "ACCurrent numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ACVoltage",             "ACVoltage numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ACPower",               "ACPower numeric(18, 2)");
-//    hashFieldCreateStyle.insert("ACFactor",              "ACFactor numeric(18, 2)");
+    // 交流电
+    hashFieldCreateStyle.insert("ACCurrent",             "ACCurrent numeric(18, 2)");
+    hashFieldCreateStyle.insert("ACVoltage",             "ACVoltage numeric(18, 2)");
+    hashFieldCreateStyle.insert("ACPower",               "ACPower numeric(18, 2)");
+    hashFieldCreateStyle.insert("ACFactor",              "ACFactor numeric(18, 2)");
 }
 
 HE_SQL_END_NAMESPACE

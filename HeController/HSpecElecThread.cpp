@@ -13,10 +13,10 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
                   << ACT_GET_SPECTRUM_ELEC;
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElse = protocolCollection->value("Else");
-    testData = HAppContext::getContextPointer<ITestData>("ITestData");
     protocols << protocolSpec << protocolElse;
 }
 
@@ -44,7 +44,7 @@ QString HSpecElecThread::typeName()
 
 QString HSpecElecThread::threadInfo()
 {
-    return tr("光谱&电线程");
+    return tr("线程");
 }
 
 bool HSpecElecThread::handleAction(HActionType action)
