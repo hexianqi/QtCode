@@ -85,10 +85,10 @@ void HTestWidget2::exportExcel()
     if (d->results.isEmpty())
         return;
     QString text;
-    text += HCore::toCaptionUnit(d->displays).join("\t") + "\n";
-    text += d->results.last()->toString(d->displays).join("\t") + "\n";
+    text += "Index\t" + HCore::toCaptionUnit(d->displays).join("\t") + "\n";
+    text += "1\t" + d->results.last()->toString(d->displays).join("\t") + "\n";
     d->stream->setContent(text);
-    d->stream->saveAsFile();
+    d->stream->saveAsFile("", "");
 }
 
 void HTestWidget2::clearResult()

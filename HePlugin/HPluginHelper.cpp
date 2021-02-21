@@ -113,13 +113,14 @@ QString HPluginHelper::paste(QTableView *widget)
 
 bool HPluginHelper::exportExcel(QTableView *widget)
 {
-    auto fileName = QFileDialog::getSaveFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    auto fileName = QFileDialog::getSaveFileName(nullptr, "", "", "Excel files (*.xlsx)");
     if (fileName.isEmpty())
         return false;
 
     int i, j, row, col;
     QXlsx::Document doc(widget);
     auto model = widget->model();
+    doc.write(1, 1, "Index");
     i = 2;
     for (row = 0; row < model->rowCount(); row++)
     {
@@ -159,7 +160,7 @@ bool HPluginHelper::exportExcel(QTableView *widget)
 
 bool HPluginHelper::importExcel(QTableView *widget)
 {
-    auto fileName = QFileDialog::getOpenFileName(nullptr, "", ".", "Excel files (*.xlsx)");
+    auto fileName = QFileDialog::getOpenFileName(nullptr, "", "", "Excel files (*.xlsx)");
     if (fileName.isEmpty())
         return false;
     QXlsx::Document doc(fileName, widget);
