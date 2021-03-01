@@ -192,6 +192,11 @@ void HTestSetWidget2000DC::on_checkBox_1_clicked(bool b)
     ui->doubleSpinBox_1->setEnabled(!b);
 }
 
+void HTestSetWidget2000DC::on_checkBox_2_clicked(bool b)
+{
+    setSaveMode(b ? 1 : 0);
+}
+
 void HTestSetWidget2000DC::on_comboBox_1_currentIndexChanged(int value)
 {
     if (setTestMode(value))

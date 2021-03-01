@@ -39,6 +39,7 @@ public:
     QAction *actionPrintPreviewLast = nullptr;
     QAction *actionExportDatabaseLast = nullptr;
     QAction *actionExportDatabase = nullptr;
+    QAction *actionExportPath = nullptr;
     QAction *actionRemove = nullptr;
     QAction *actionAdjust = nullptr;
 
@@ -51,6 +52,7 @@ public:
     bool modified = true;
     QStringList displays;
     QStringList tableSelecteds;
+    QString exportPathName;
 };
 
 HE_GUI_END_NAMESPACE

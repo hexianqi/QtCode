@@ -35,6 +35,7 @@ public:
     bool writeFile(QString fileName) override;
     bool readContent(QTextStream &) override;
     bool writeContent(QTextStream &) override;
+    bool appendFile(QString fileName) override;
 
 protected:
     HTextStream(HTextStreamPrivate &p, QObject *parent = nullptr);

@@ -27,6 +27,9 @@ public:
     ITextStream *stream = nullptr;
     ITestData *testData = nullptr;
     QList<ITestData *> results;
+    QString pathName;
+    QString fileName;
+    int index = 1;
 };
 
 HE_GUI_END_NAMESPACE

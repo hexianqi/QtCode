@@ -110,4 +110,19 @@ bool HTextStream::writeContent(QTextStream &s)
     return false;
 }
 
+bool HTextStream::appendFile(QString fileName)
+{
+    if (fileName.isEmpty())
+        return false;
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text | QIODevice::Append))
+        return false;
+
+    QTextStream s(&file);
+    auto r = writeContent(s);
+    file.close();
+    return r;
+}
+
 HE_DATA_END_NAMESPACE

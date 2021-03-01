@@ -229,8 +229,8 @@ void HSpecCalibrateWidget::init()
     ui->splitter_1->setStretchFactor(0,1);
     ui->splitter_2->addWidget(d->testSetWidget);
     ui->splitter_2->setStretchFactor(0,1);
-    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HSpecCalibrateWidget::handleStateChanged);
-    connect(d->testSetWidget, &ITestSetWidget::modeChanged, this, &HSpecCalibrateWidget::handleModeChanged);
+    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HSpecCalibrateWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::testModeChanged, this, &HSpecCalibrateWidget::handleModeChanged);
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HSpecCalibrateWidget::handleResultChanged);
 }
 

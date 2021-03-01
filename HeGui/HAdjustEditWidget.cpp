@@ -180,7 +180,7 @@ void HAdjustEditWidget::init()
     ui->splitter_1->setStretchFactor(0, 1);
     ui->splitter_2->setStretchFactor(0, 1);
     connect(d_ptr->model, &IModel::actionFinished, this, &HAdjustEditWidget::handleAction);
-    connect(d_ptr->testSetWidget, &ITestSetWidget::stateChanged, this, &HAdjustEditWidget::handleStateChanged);
+    connect(d_ptr->testSetWidget, &ITestSetWidget::testStateChanged, this, &HAdjustEditWidget::handleStateChanged);
     connect(d_ptr->testSetWidget, &ITestSetWidget::resultChanged, this, &HAdjustEditWidget::handleResultChanged);
 }
 

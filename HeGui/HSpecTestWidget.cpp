@@ -17,6 +17,7 @@
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QToolBar>
@@ -126,11 +127,13 @@ void HSpecTestWidget::createAction()
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
+    d->actionExportPath = new QAction(tr("配置导出目录(&D)"), this);
     connect(d->actionPrintPreviewLast, &QAction::triggered, d->testResult, &ITestResult::printPreviewLast);
     connect(d->actionExportDatabaseLast, &QAction::triggered, d->testResult, &ITestResult::exportDatabaseLast);
     connect(d->actionExportDatabase, &QAction::triggered, this, &HSpecTestWidget::exportDatabase);
     connect(d->actionRemove, &QAction::triggered, this, &HSpecTestWidget::removeResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
+    connect(d->actionExportPath, &QAction::triggered, this, &HSpecTestWidget::setExportPath);
 }
 
 void HSpecTestWidget::createWidget()
@@ -147,6 +150,7 @@ void HSpecTestWidget::createMenu()
     Q_D(HSpecTestWidget);
     auto menu = new QMenu(tr("测试配置(&T)"));
     menu->addAction(d->actionAdjust);
+    menu->addAction(d->actionExportPath);
     d->menus << menu;
 }
 
@@ -195,7 +199,7 @@ void HSpecTestWidget::initWidget()
     splitter2->setHandleWidth(15);
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
-    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HSpecTestWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HSpecTestWidget::handleStateChanged);
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HSpecTestWidget::handleResultChanged);
     connect(d->cieWidget, &HCie1931Widget::mouseDoubleClicked, this, &HSpecTestWidget::openCieDialog);
 }
@@ -221,6 +225,8 @@ void HSpecTestWidget::readSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
+    d->exportPathName = settings->value("ExportPathName", ".").toString();
+    d->testResult->setPathName(d->exportPathName);
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
     d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
     settings->endGroup();
@@ -235,6 +241,7 @@ void HSpecTestWidget::writeSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->beginGroup("TestWidget");
     settings->setValue("TableSelected", d->tableWidget->selected());
+    settings->setValue("ExportPathName", d->exportPathName);
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
     settings->setValue("Offset", d->testData->data("[CCD偏差]"));
     settings->endGroup();
@@ -288,6 +295,8 @@ void HSpecTestWidget::handleResultChanged(HActionType, bool append)
     postProcess();
     refreshWidget(append);
     d->testResult->save(append);
+    if (append && d->testSetWidget->saveMode() == 1)
+        d->testResult->exportExcelAppend(d->displays);
 }
 
 void HSpecTestWidget::openCieDialog()
@@ -326,6 +335,13 @@ void HSpecTestWidget::removeResult()
         d->testResult->remove(range.topRow(), range.rowCount());
         d->tableWidget->removeRows(range.topRow(), range.rowCount());
     }
+}
+
+void HSpecTestWidget::setExportPath()
+{
+    Q_D(HSpecTestWidget);
+    d->exportPathName = QFileDialog::getExistingDirectory(this, tr("导出目录"), ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    d->testResult->setPathName(d->exportPathName);
 }
 
 HE_GUI_END_NAMESPACE

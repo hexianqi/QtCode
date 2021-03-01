@@ -7,6 +7,8 @@
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlPrint.h"
 #include "HeSql/HSql.h"
+#include <QtCore/QDir>
+#include <QtCore/QDateTime>
 #include <QtCore/QDebug>
 
 HE_GUI_BEGIN_NAMESPACE
@@ -67,6 +69,8 @@ void HTestResult::clear()
 {
     qDeleteAll(d_ptr->results);
     d_ptr->results.clear();
+    d_ptr->fileName.clear();
+    d_ptr->index = 1;
 }
 
 void HTestResult::save(bool append)
@@ -87,6 +91,11 @@ void HTestResult::remove(int index, int count)
         auto data = d_ptr->results.takeAt(index);
         delete data;
     }
+}
+
+void HTestResult::setPathName(const QString &value)
+{
+    d_ptr->pathName = value;
 }
 
 void HTestResult::printPreviewLast()
@@ -125,10 +134,10 @@ void HTestResult::exportExcel(QStringList types, int index, int count)
     count = qMin(size() - index, count);
     QStringList list;
     for (int i = 0; i < count; i++)
-        list << d_ptr->results.at(i)->toString(types).join("\t");
-    list.prepend(HCore::toCaptionUnit(types).join("\t"));
+        list << QString("%1\t").arg(index+i) + d_ptr->results.at(i)->toString(types).join("\t");
+    list.prepend("Index\t" + HCore::toCaptionUnit(types).join("\t"));
     d_ptr->stream->setContent(list.join("\n"));
-    d_ptr->stream->saveAsFile();
+    d_ptr->stream->saveAsFile("", "");
 }
 
 void HTestResult::exportExcelLast(QStringList types)
@@ -139,7 +148,27 @@ void HTestResult::exportExcelLast(QStringList types)
     text += HCore::toCaptionUnit(types).join("\t") + "\n";
     text += d_ptr->results.last()->toString(types).join("\t") + "\n";
     d_ptr->stream->setContent(text);
-    d_ptr->stream->saveAsFile();
+    d_ptr->stream->saveAsFile("", "");
+}
+
+void HTestResult::exportExcelAppend(QStringList types)
+{
+    if (isEmpty())
+        return;
+    QString text;
+    if (d_ptr->fileName.isEmpty())
+    {
+        auto path = d_ptr->pathName.isEmpty() ? "AutoSave" : d_ptr->pathName;
+        QDir dir(path);
+        if (!dir.exists())
+            dir.mkpath(path);
+        d_ptr->fileName = dir.path() + dir.separator() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".xls";
+        text += "Index\t" + HCore::toCaptionUnit(types).join("\t") + "\n";
+    }
+    text += QString("%1\t").arg(d_ptr->index) + d_ptr->results.last()->toString(types).join("\t") + "\n";
+    d_ptr->stream->setContent(text);
+    d_ptr->stream->appendFile(d_ptr->fileName);
+    d_ptr->index++;
 }
 
 QVariantMap HTestResult::toRecord(int index)

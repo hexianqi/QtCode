@@ -35,6 +35,7 @@ protected slots:
     void on_doubleSpinBox_3_valueChanged(double value);
     void on_doubleSpinBox_4_valueChanged(double value);
     void on_checkBox_1_clicked(bool b);
+    void on_checkBox_2_clicked(bool b);
     void on_comboBox_1_currentIndexChanged(int value);
     void on_comboBox_2_currentIndexChanged(int value);
     void on_comboBox_3_currentIndexChanged(int value);

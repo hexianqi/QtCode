@@ -36,6 +36,8 @@ public:
     virtual void save(bool append = true) = 0;
     // 删除
     virtual void remove(int index, int count) = 0;
+    // 设置保存路径
+    virtual void setPathName(const QString &) = 0;
     // 打印预览
     virtual void printPreviewLast() = 0;
     // 导出到数据库
@@ -45,6 +47,7 @@ public:
     // 导出到Excel
     virtual void exportExcel(QStringList types, int index, int count) = 0;
     virtual void exportExcelLast(QStringList types) = 0;
+    virtual void exportExcelAppend(QStringList types) = 0;
 };
 
 HE_GUI_END_NAMESPACE

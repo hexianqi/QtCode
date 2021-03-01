@@ -84,7 +84,7 @@ void HIVTestWidget::initWidget()
     tabWidget->addTab(d->chartView, tr("测试图形"));
     tabWidget->addTab(d->tableWidget, tr("结果列表"));
     layout->addWidget(tabWidget, 1, 0, 1, 2);
-    connect(d->testSetWidget, &ITestSetWidget::stateChanged, this, &HIVTestWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HIVTestWidget::handleStateChanged);
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HIVTestWidget::handleResultChanged);
 }
 

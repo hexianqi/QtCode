@@ -32,7 +32,7 @@ bool HAbstractTestSetWidget::setTestState(bool b)
     if (d_ptr->testState == b)
         return false;
     d_ptr->testState = b;
-    emit stateChanged(b);
+    emit testStateChanged(b);
     return true;
 }
 
@@ -46,13 +46,27 @@ bool HAbstractTestSetWidget::setTestMode(int value)
     if (d_ptr->testMode == value)
         return false;
     d_ptr->testMode = value;
-    emit modeChanged(value);
+    emit testModeChanged(value);
     return true;
 }
 
 int HAbstractTestSetWidget::testMode()
 {
     return d_ptr->testMode;
+}
+
+bool HAbstractTestSetWidget::setSaveMode(int value)
+{
+    if (d_ptr->saveMode == value)
+        return false;
+    d_ptr->saveMode = value;
+    emit saveModeChanged(value);
+    return true;
+}
+
+int HAbstractTestSetWidget::saveMode()
+{
+    return d_ptr->saveMode;
 }
 
 HE_GUI_END_NAMESPACE

@@ -29,12 +29,14 @@ public:
     void clear() override;
     void save(bool append = true) override;
     void remove(int index, int count) override;
+    void setPathName(const QString &) override;
     void printPreviewLast() override;
     void exportDatabase(int index, int count) override;
     void exportDatabaseLast() override;
     void exportDatabaseAll() override;
     void exportExcel(QStringList types, int index, int count) override;
     void exportExcelLast(QStringList types) override;
+    void exportExcelAppend(QStringList types) override;
 
 protected:
     HTestResult(HTestResultPrivate &p, QObject *parent = nullptr);

@@ -22,8 +22,9 @@ public:
     using QWidget::QWidget;
 
 signals:
-    void stateChanged(bool b);
-    void modeChanged(int value);
+    void testStateChanged(bool b);
+    void testModeChanged(int value);
+    void saveModeChanged(int value);
     void resultChanged(HActionType, bool);
 
 public:
@@ -39,6 +40,10 @@ public:
     virtual bool setTestMode(int value) = 0;
     // 获取测试模式
     virtual int testMode() = 0;
+    // 设置保存模式
+    virtual bool setSaveMode(int value) = 0;
+    // 获取保存模式
+    virtual int saveMode() = 0;
 };
 
 HE_GUI_END_NAMESPACE

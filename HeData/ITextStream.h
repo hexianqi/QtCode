@@ -29,6 +29,8 @@ public:
     virtual bool readContent(QTextStream &) = 0;
     // 写入内容
     virtual bool writeContent(QTextStream &) = 0;
+    // 追加内容
+    virtual bool appendFile(QString fileName) = 0;
 };
 
 HE_DATA_END_NAMESPACE

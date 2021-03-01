@@ -24,6 +24,8 @@ public:
     bool testState() override;
     bool setTestMode(int value) override;
     int testMode() override;
+    bool setSaveMode(int value) override;
+    int saveMode() override;
 
 protected:
     HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p, QWidget *parent = nullptr);

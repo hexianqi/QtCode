@@ -49,6 +49,7 @@ protected:
     void resetGrade();
     void exportDatabase();
     void removeResult();
+    void setExportPath();
 };
 
 HE_GUI_END_NAMESPACE

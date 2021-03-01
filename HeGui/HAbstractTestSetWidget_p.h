@@ -27,6 +27,7 @@ public:
     ITestData *testData;
     bool testState = false;
     int testMode = 0;
+    int saveMode = 0;
 };
 
 HE_GUI_END_NAMESPACE
