@@ -70,18 +70,15 @@ bool HAbstractDevice::open()
     if (!d_ptr->portNumScan)
         return open(d_ptr->portNum);
 
-    for (int i = 0; i < 10; i++)
+    if (tryOpen(d_ptr->portNum))
+        return true;
+
+    for (int i = 1; i < 10; i++)
     {
-        try
+        if (tryOpen(i))
         {
-            if (open(i))
-            {
-                d_ptr->portNum = i;
-                return true;
-            }
-        }
-        catch (HException &)
-        {
+            d_ptr->portNum = i;
+            return true;
         }
     }
     throw HException(E_DEVICE_NOT_FOUND);
@@ -98,9 +95,30 @@ bool HAbstractDevice::open(int num)
 {
     if (!d_ptr->port->open(num))
         return false;
-    if (!check())
+    try
+    {
+        if (check())
+            return true;
+    }
+    catch (HException &e)
+    {
         d_ptr->port->close();
-    return true;
+        e.raise();
+    }
+    return false;
+}
+
+bool HAbstractDevice::tryOpen(int num)
+{
+    try
+    {
+        if (open(num))
+            return true;
+    }
+    catch (HException &)
+    {
+    }
+    return false;
 }
 
 bool HAbstractDevice::check()

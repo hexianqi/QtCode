@@ -36,6 +36,7 @@ protected:
 
 protected:
     virtual bool open(int num);
+    virtual bool tryOpen(int num);
     virtual bool check();
     virtual void transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 
