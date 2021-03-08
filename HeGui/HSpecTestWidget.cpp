@@ -14,6 +14,7 @@
 #include "HePlugin/HCie1931Widget.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QSettings>
+#include <QtCore/QTimer>
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMessageBox>
@@ -64,9 +65,15 @@ void HSpecTestWidget::stop()
 void HSpecTestWidget::init()
 {
     Q_D(HSpecTestWidget);
-    d->testResult = new HTestResult(this);
     readSettings();
     HTestWidget::init();
+    d->testResult = new HTestResult(this);
+    d->testResult->setExportTypes(d->displays);
+    d->testResult->setExportPathName(d->exportPathName);
+    d->testResult->setSyncFileName(d->syncFileName);
+    d->timer = new QTimer(this);
+    d->timer->setInterval(d->syncInterval * 1000);
+    connect(d->timer, &QTimer::timeout, this, [=] { d->testResult->syncFile(); });
     resetGrade();
 }
 
@@ -128,12 +135,14 @@ void HSpecTestWidget::createAction()
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
     d->actionExportPath = new QAction(tr("配置导出目录(&D)"), this);
+    d->actionSyncFile = new QAction(tr("配置同步文件(&F)"), this);
     connect(d->actionPrintPreviewLast, &QAction::triggered, d->testResult, &ITestResult::printPreviewLast);
     connect(d->actionExportDatabaseLast, &QAction::triggered, d->testResult, &ITestResult::exportDatabaseLast);
     connect(d->actionExportDatabase, &QAction::triggered, this, &HSpecTestWidget::exportDatabase);
     connect(d->actionRemove, &QAction::triggered, this, &HSpecTestWidget::removeResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
     connect(d->actionExportPath, &QAction::triggered, this, &HSpecTestWidget::setExportPath);
+    connect(d->actionSyncFile, &QAction::triggered, this, &HSpecTestWidget::setSyncFile);
 }
 
 void HSpecTestWidget::createWidget()
@@ -151,6 +160,7 @@ void HSpecTestWidget::createMenu()
     auto menu = new QMenu(tr("测试配置(&T)"));
     menu->addAction(d->actionAdjust);
     menu->addAction(d->actionExportPath);
+    menu->addAction(d->actionSyncFile);
     d->menus << menu;
 }
 
@@ -200,6 +210,7 @@ void HSpecTestWidget::initWidget()
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HSpecTestWidget::handleStateChanged);
+    connect(d->testSetWidget, &ITestSetWidget::saveModeChanged, this, &HSpecTestWidget::handleSaveModeChanged);
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HSpecTestWidget::handleResultChanged);
     connect(d->cieWidget, &HCie1931Widget::mouseDoubleClicked, this, &HSpecTestWidget::openCieDialog);
 }
@@ -207,7 +218,7 @@ void HSpecTestWidget::initWidget()
 void HSpecTestWidget::exportExcel()
 {
     Q_D(HSpecTestWidget);
-    d->testResult->exportExcelLast(d->displays);
+    d->testResult->exportExcelLast();
 }
 
 void HSpecTestWidget::clearResult()
@@ -226,7 +237,8 @@ void HSpecTestWidget::readSettings()
     settings->beginGroup("TestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
     d->exportPathName = settings->value("ExportPathName", ".").toString();
-    d->testResult->setPathName(d->exportPathName);
+    d->syncFileName = settings->value("SyncFileName", "aaa.tmp").toString();
+    d->syncInterval = settings->value("SyncInterval", 20).toInt();
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
     d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
     settings->endGroup();
@@ -242,6 +254,8 @@ void HSpecTestWidget::writeSettings()
     settings->beginGroup("TestWidget");
     settings->setValue("TableSelected", d->tableWidget->selected());
     settings->setValue("ExportPathName", d->exportPathName);
+    settings->setValue("SyncFileName", d->syncFileName);
+    settings->setValue("SyncInterval", d->syncInterval);
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
     settings->setValue("Offset", d->testData->data("[CCD偏差]"));
     settings->endGroup();
@@ -289,14 +303,28 @@ void HSpecTestWidget::handleStateChanged(bool b)
     d->actionExportDatabaseLast->setEnabled(!b);
 }
 
+void HSpecTestWidget::handleSaveModeChanged(int value)
+{
+    Q_D(HSpecTestWidget);
+    if (value == 2)
+        d->timer->start();
+    else
+        d->timer->stop();
+}
+
 void HSpecTestWidget::handleResultChanged(HActionType, bool append)
 {
     Q_D(HSpecTestWidget);
     postProcess();
     refreshWidget(append);
     d->testResult->save(append);
-    if (append && d->testSetWidget->saveMode() == 1)
-        d->testResult->exportExcelAppend(d->displays);
+    if (d->testSetWidget->saveMode() == 1)
+    {
+        if (append)
+            d->testResult->exportExcelAppend();
+    }
+    if (d->testSetWidget->saveMode() == 2)
+        d->timer->start();
 }
 
 void HSpecTestWidget::openCieDialog()
@@ -341,7 +369,14 @@ void HSpecTestWidget::setExportPath()
 {
     Q_D(HSpecTestWidget);
     d->exportPathName = QFileDialog::getExistingDirectory(this, tr("导出目录"), ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-    d->testResult->setPathName(d->exportPathName);
+    d->testResult->setExportPathName(d->exportPathName);
+}
+
+void HSpecTestWidget::setSyncFile()
+{
+    Q_D(HSpecTestWidget);
+    d->exportPathName = QFileDialog::getSaveFileName(this, tr("同步文件"));
+    d->testResult->setSyncFileName(d->exportPathName);
 }
 
 HE_GUI_END_NAMESPACE

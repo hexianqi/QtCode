@@ -43,13 +43,15 @@ protected:
     virtual void writeSettings();
     virtual void postProcess();
     virtual void refreshWidget(bool append);
-    void handleStateChanged(bool b);
+    void handleStateChanged(bool);
+    void handleSaveModeChanged(int);
     void handleResultChanged(HActionType, bool);
     void openCieDialog();
     void resetGrade();
     void exportDatabase();
     void removeResult();
     void setExportPath();
+    void setSyncFile();
 };
 
 HE_GUI_END_NAMESPACE

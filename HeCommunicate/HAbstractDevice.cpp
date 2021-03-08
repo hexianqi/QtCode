@@ -93,10 +93,10 @@ bool HAbstractDevice::close()
 
 bool HAbstractDevice::open(int num)
 {
-    if (!d_ptr->port->open(num))
-        return false;
     try
     {
+        if (!d_ptr->port->open(num))
+            return false;
         if (check())
             return true;
     }

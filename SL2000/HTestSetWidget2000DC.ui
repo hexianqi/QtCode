@@ -283,7 +283,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>自动保存</string>
+      <string>自动同步</string>
      </property>
     </widget>
    </item>

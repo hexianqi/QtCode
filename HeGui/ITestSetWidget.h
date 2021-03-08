@@ -40,7 +40,7 @@ public:
     virtual bool setTestMode(int value) = 0;
     // 获取测试模式
     virtual int testMode() = 0;
-    // 设置保存模式
+    // 设置保存模式[0:关闭；1:追加；2:同步]
     virtual bool setSaveMode(int value) = 0;
     // 获取保存模式
     virtual int saveMode() = 0;

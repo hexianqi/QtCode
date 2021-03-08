@@ -148,5 +148,6 @@ void HTestWidget2000DC::editProductInfo()
     dlg.setData(data);
     if (dlg.exec() != QDialog::Accepted)
         return;
+    d->testResult->setModified();
     d->tableWidget->setRow(row, data->toString(d->displays));
 }

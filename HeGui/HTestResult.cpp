@@ -67,10 +67,13 @@ int HTestResult::size()
 
 void HTestResult::clear()
 {
+    if (isEmpty())
+        return;
     qDeleteAll(d_ptr->results);
     d_ptr->results.clear();
-    d_ptr->fileName.clear();
+    d_ptr->exportFileName.clear();
     d_ptr->index = 1;
+    d_ptr->modified = true;
 }
 
 void HTestResult::save(bool append)
@@ -79,6 +82,7 @@ void HTestResult::save(bool append)
         d_ptr->results.append(d_ptr->testData->clone());
     else
         d_ptr->results.last()->setData(d_ptr->testData->cloneData());
+    d_ptr->modified = true;
 }
 
 void HTestResult::remove(int index, int count)
@@ -93,9 +97,24 @@ void HTestResult::remove(int index, int count)
     }
 }
 
-void HTestResult::setPathName(const QString &value)
+void HTestResult::setModified(bool b)
 {
-    d_ptr->pathName = value;
+    d_ptr->modified = b;
+}
+
+void HTestResult::setExportTypes(QStringList value)
+{
+    d_ptr->exportTypes = value;
+}
+
+void HTestResult::setExportPathName(const QString &value)
+{
+    d_ptr->exportPathName = value;
+}
+
+void HTestResult::setSyncFileName(const QString &value)
+{
+    d_ptr->syncFileName = value;
 }
 
 void HTestResult::printPreviewLast()
@@ -127,48 +146,62 @@ void HTestResult::exportDatabaseAll()
     exportDatabase(0, size());
 }
 
-void HTestResult::exportExcel(QStringList types, int index, int count)
+void HTestResult::exportExcel(int index, int count)
 {
     if (isEmpty() || count < 1 || index < 0)
         return;
     count = qMin(size() - index, count);
     QStringList list;
     for (int i = 0; i < count; i++)
-        list << QString("%1\t").arg(index+i) + d_ptr->results.at(i)->toString(types).join("\t");
-    list.prepend("Index\t" + HCore::toCaptionUnit(types).join("\t"));
+        list << QString("%1\t").arg(index + i) + d_ptr->results.at(i)->toString(d_ptr->exportTypes).join("\t");
+    list.prepend("Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t"));
     d_ptr->stream->setContent(list.join("\n"));
     d_ptr->stream->saveAsFile("", "");
 }
 
-void HTestResult::exportExcelLast(QStringList types)
+void HTestResult::exportExcelLast()
 {
     if (isEmpty())
         return;
     QString text;
-    text += HCore::toCaptionUnit(types).join("\t") + "\n";
-    text += d_ptr->results.last()->toString(types).join("\t") + "\n";
+    text += HCore::toCaptionUnit(d_ptr->exportTypes).join("\t") + "\n";
+    text += d_ptr->results.last()->toString(d_ptr->exportTypes).join("\t") + "\n";
     d_ptr->stream->setContent(text);
     d_ptr->stream->saveAsFile("", "");
 }
 
-void HTestResult::exportExcelAppend(QStringList types)
+void HTestResult::exportExcelAppend()
 {
     if (isEmpty())
         return;
     QString text;
-    if (d_ptr->fileName.isEmpty())
+    if (d_ptr->exportFileName.isEmpty())
     {
-        auto path = d_ptr->pathName.isEmpty() ? "AutoSave" : d_ptr->pathName;
+        auto path = d_ptr->exportPathName.isEmpty() ? "AutoSave" : d_ptr->exportPathName;
         QDir dir(path);
         if (!dir.exists())
             dir.mkpath(path);
-        d_ptr->fileName = dir.path() + dir.separator() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".xls";
-        text += "Index\t" + HCore::toCaptionUnit(types).join("\t") + "\n";
+        d_ptr->exportFileName = dir.path() + dir.separator() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".xls";
+        text += "Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t") + "\n";
     }
-    text += QString("%1\t").arg(d_ptr->index) + d_ptr->results.last()->toString(types).join("\t") + "\n";
+    text += QString("%1\t").arg(d_ptr->index) + d_ptr->results.last()->toString(d_ptr->exportTypes).join("\t") + "\n";
     d_ptr->stream->setContent(text);
-    d_ptr->stream->appendFile(d_ptr->fileName);
+    d_ptr->stream->appendFile(d_ptr->exportFileName);
     d_ptr->index++;
+}
+
+void HTestResult::syncFile()
+{
+    if (d_ptr->syncFileName.isEmpty() || !d_ptr->modified)
+        return;
+
+    QStringList list;
+    for (int i = 0; i < size(); i++)
+        list << QString("%1\t").arg(i + 1) + d_ptr->results.at(i)->toString(d_ptr->exportTypes).join("\t");
+    list.prepend("Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t"));
+    d_ptr->stream->setContent(list.join("\n"));
+    d_ptr->stream->writeFile(d_ptr->syncFileName);
+    d_ptr->modified = false;
 }
 
 QVariantMap HTestResult::toRecord(int index)
