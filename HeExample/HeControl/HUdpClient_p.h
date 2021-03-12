@@ -1,5 +1,4 @@
-#ifndef HUDPCLIENT_P_H
-#define HUDPCLIENT_P_H
+#pragma once
 
 #include "HUdpClient.h"
 
@@ -10,5 +9,3 @@ class HUdpClientPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPCLIENT_P_H

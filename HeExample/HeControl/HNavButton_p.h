@@ -1,5 +1,4 @@
-#ifndef HNAVBUTTON_P_H
-#define HNAVBUTTON_P_H
+#pragma once
 
 #include "HNavButton.h"
 
@@ -41,5 +40,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVBUTTON_P_H

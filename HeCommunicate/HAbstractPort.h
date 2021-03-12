@@ -2,8 +2,7 @@
 **      2018-06-19  HAbstractPort 抽象端口类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTPORT_H
-#define HABSTRACTPORT_H
+#pragma once
 
 #include "IPort.h"
 
@@ -44,5 +43,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HABSTRACTPORT_H

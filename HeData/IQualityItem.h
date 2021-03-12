@@ -2,8 +2,7 @@
 **      2019-05-05  IQualityItem 品质数据项接口。
 ***************************************************************************************************/
 
-#ifndef IQUALITYITEM_H
-#define IQUALITYITEM_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -26,5 +25,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IQUALITYITEM_H

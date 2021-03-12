@@ -1,5 +1,4 @@
-#ifndef HBUTTONPROGRESSBAR_P_H
-#define HBUTTONPROGRESSBAR_P_H
+#pragma once
 
 #include "HButtonProgressBar.h"
 #include "HAbstractProgress_p.h"
@@ -23,5 +22,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUTTONPROGRESSBAR_P_H

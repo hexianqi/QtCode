@@ -2,8 +2,7 @@
 **      2019-05-05  IQuality 品质数据接口。
 ***************************************************************************************************/
 
-#ifndef IQUALITY_H
-#define IQUALITY_H
+#pragma once
 
 #include "HDataType.h"
 #include "HeCore/IInitializeable.h"
@@ -36,5 +35,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IQUALITY_H

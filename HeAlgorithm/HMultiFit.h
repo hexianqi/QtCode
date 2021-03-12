@@ -3,8 +3,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/lls.html
 ***************************************************************************************************/
 
-#ifndef HMULTIFIT_H
-#define HMULTIFIT_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtGui/QPolygonF>
@@ -35,5 +34,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HMULTIFIT_H

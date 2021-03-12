@@ -2,8 +2,7 @@
 **      2019-04-26  IGradeItem 调整数据项接口。
 ***************************************************************************************************/
 
-#ifndef IADJUSTITEM_H
-#define IADJUSTITEM_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -24,5 +23,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IADJUSTITEM_H

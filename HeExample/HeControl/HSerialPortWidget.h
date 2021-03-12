@@ -2,8 +2,7 @@
 **      2019-06-03  HSerialPortWidget 串口调试工具。
 ***************************************************************************************************/
 
-#ifndef HSERIALPORTWIDGET_H
-#define HSERIALPORTWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -53,5 +52,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSERIALPORTWIDGET_H

@@ -2,8 +2,7 @@
 **      2019-03-27  HSpecFitting 光谱拟合数据类。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTING_H
-#define HSPECFITTING_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -41,5 +40,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECFITTING_H

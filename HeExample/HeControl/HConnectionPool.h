@@ -2,8 +2,7 @@
 **      2019-12-18  HConnectionPool
 ***************************************************************************************************/
 
-#ifndef HCONNECTIONPOOL_H
-#define HCONNECTIONPOOL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/HSingleton2.h"
@@ -37,5 +36,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONNECTIONPOOL_H

@@ -2,8 +2,7 @@
 **      2019-04-09  HResultTableWidget 结果表。
 ***************************************************************************************************/
 
-#ifndef HRESULTTABLEWIDGET_H
-#define HRESULTTABLEWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HePlugin/HEntireTableWidget.h"
@@ -38,5 +37,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HRESULTTABLEWIDGET_H

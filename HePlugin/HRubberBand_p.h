@@ -1,5 +1,4 @@
-#ifndef HRUBBERBAND_P_H
-#define HRUBBERBAND_P_H
+#pragma once
 
 #include "HRubberBand.h"
 #include "HAbstractMouseStrategy_p.h"
@@ -16,4 +15,3 @@ public:
     QPoint origin;
 };
 
-#endif // HRUBBERBAND_P_H

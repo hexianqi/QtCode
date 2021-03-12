@@ -2,8 +2,7 @@
 **      2018-06-19  HSpectrumData 光谱数据接口。
 ***************************************************************************************************/
 
-#ifndef HSPECDATA_H
-#define HSPECDATA_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtGui/QPolygonF>
@@ -45,5 +44,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HSPECDATA_H

@@ -2,8 +2,7 @@
 **      2019-10-21  HTestElec
 ***************************************************************************************************/
 
-#ifndef HTESTELEC_H
-#define HTESTELEC_H
+#pragma once
 
 #include "HDataType.h"
 #include "HTestData.h"
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HTESTELEC_H

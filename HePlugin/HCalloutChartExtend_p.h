@@ -1,5 +1,4 @@
-#ifndef HCALLOUTCHARTEXTEND_P_H
-#define HCALLOUTCHARTEXTEND_P_H
+#pragma once
 
 #include "HCalloutChartExtend.h"
 #include "HAbstractChartExtend_p.h"
@@ -15,5 +14,3 @@ public:
     HCalloutChartItem *tooltip = nullptr;
     QList<HCalloutChartItem *> callouts;
 };
-
-#endif // HCALLOUTCHARTEXTEND_P_H

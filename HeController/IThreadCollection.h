@@ -2,8 +2,7 @@
 **      2018-06-19  IThreadCollection 线程集合接口。
 ***************************************************************************************************/
 
-#ifndef ITHREADCOLLECTION_H
-#define ITHREADCOLLECTION_H
+#pragma once
 
 #include "HControllerGlobal.h"
 #include "HeCore/HCollection.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // ITHREADCOLLECTION_H

@@ -1,5 +1,4 @@
-#ifndef HSIMPLETESTSETWIDGET_H
-#define HSIMPLETESTSETWIDGET_H
+#pragma once
 
 #include "HAbstractTestSetWidget.h"
 
@@ -44,5 +43,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSIMPLETESTSETWIDGET_H

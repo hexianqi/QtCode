@@ -2,8 +2,7 @@
 **      2019-04-26  IAdjust 调整数据接口。
 ***************************************************************************************************/
 
-#ifndef IADJUST_H
-#define IADJUST_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -40,5 +39,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IADJUST_H

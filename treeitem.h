@@ -48,8 +48,7 @@
 **
 ****************************************************************************/
 
-#ifndef TREEITEM_H
-#define TREEITEM_H
+#pragma once
 
 #include <QList>
 #include <QVariant>
@@ -77,5 +76,3 @@ private:
     QList<QVariant> itemData;
     TreeItem *parentItem;
 };
-
-#endif

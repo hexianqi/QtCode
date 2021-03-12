@@ -2,8 +2,7 @@
 **      2019-07-24  IShaderEffect 特效
 ***************************************************************************************************/
 
-#ifndef ISHADEREFFECT_H
-#define ISHADEREFFECT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ISHADEREFFECT_H

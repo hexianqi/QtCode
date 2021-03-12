@@ -2,8 +2,7 @@
 **      2019-05-21  HSpecChromatismChartView 色容差图表。
 ***************************************************************************************************/
 
-#ifndef HSPECCHROMATISMCHARTVIEW_H
-#define HSPECCHROMATISMCHARTVIEW_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HePlugin/HChromatismChartView.h"
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCHROMATISMCHARTVIEW_H

@@ -2,8 +2,7 @@
 **      2019-07-16  HTcpClient TCP客户端。
 ***************************************************************************************************/
 
-#ifndef HTCPCLIENT_H
-#define HTCPCLIENT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtNetwork/QTcpSocket>
@@ -45,5 +44,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPCLIENT_H

@@ -15,8 +15,7 @@
 **                  12:自适应窗体拉伸,刻度尺和文字自动缩放
 ***************************************************************************************************/
 
-#ifndef HRINGPROGRESSBAR_H
-#define HRINGPROGRESSBAR_H
+#pragma once
 
 #include "HAnimationProgress.h"
 
@@ -103,5 +102,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRINGPROGRESSBAR_H

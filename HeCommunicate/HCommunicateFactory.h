@@ -2,8 +2,7 @@
 **      2018-06-19  HCommunicateFactory 通讯器工厂类。
 ***************************************************************************************************/
 
-#ifndef HCOMMUNICATEFACTORY_H
-#define HCOMMUNICATEFACTORY_H
+#pragma once
 
 #include "ICommunicateFactory.h"
 
@@ -41,5 +40,3 @@ private:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCOMMUNICATEFACTORY_H

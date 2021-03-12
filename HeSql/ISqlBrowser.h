@@ -2,8 +2,7 @@
 **      2019-05-09  ISqlBrowser 数据库浏览器接口。
 ***************************************************************************************************/
 
-#ifndef ISQLBROWSER_H
-#define ISQLBROWSER_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -35,6 +34,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-
-#endif // ISQLBROWSER_H

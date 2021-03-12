@@ -72,7 +72,7 @@ HOpenGLTexture2D *HResourceManager::loadTexture(const QString &name, const QStri
     return __textures[name];
 }
 
-void HResourceManager::play(const QString &name)
+void HResourceManager::play(const QString &/*name*/)
 {
 //    QtConcurrent::run([=] {
 //        __player->stop();

@@ -2,8 +2,7 @@
 **      2019-08-01  HColorComboBox
 ***************************************************************************************************/
 
-#ifndef HCOLORCOMBOBOX_H
-#define HCOLORCOMBOBOX_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QComboBox>
@@ -63,5 +62,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORCOMBOBOX_H

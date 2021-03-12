@@ -2,8 +2,7 @@
 **      2019-10-24  HSpecElecThread
 ***************************************************************************************************/
 
-#ifndef HSPECELECTHREAD_H
-#define HSPECELECTHREAD_H
+#pragma once
 
 #include "HAbstractThread.h"
 
@@ -39,5 +38,3 @@ private:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECELECTHREAD_H

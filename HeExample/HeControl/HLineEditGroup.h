@@ -2,8 +2,7 @@
 **      2019-12-20  HLineEditGroup 行编辑器组(编辑完成自动移动焦点)。
 ***************************************************************************************************/
 
-#ifndef HLINEEDITGROUP_H
-#define HLINEEDITGROUP_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -38,5 +37,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLINEEDITGROUP_H

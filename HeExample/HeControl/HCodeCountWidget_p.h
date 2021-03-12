@@ -1,5 +1,4 @@
-#ifndef HCODECOUNTWIDGET_P_H
-#define HCODECOUNTWIDGET_P_H
+#pragma once
 
 #include "HCodeCountWidget.h"
 
@@ -10,5 +9,3 @@ class HCodeCountWidgetPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCODECOUNTWIDGET_P_H

@@ -2,8 +2,7 @@
 **      2019-03-28  ITestSetWidget 测试设置窗体接口。
 ***************************************************************************************************/
 
-#ifndef ITESTSETWIDGET_H
-#define ITESTSETWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -47,5 +46,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // ITESTSETWIDGET_H

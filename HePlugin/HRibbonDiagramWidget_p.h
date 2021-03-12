@@ -1,5 +1,4 @@
-#ifndef HRIBBONDIAGRAMWIDGET_P_H
-#define HRIBBONDIAGRAMWIDGET_P_H
+#pragma once
 
 #include "HRibbonDiagramWidget.h"
 #include "HCartesianWidget_p.h"
@@ -15,5 +14,3 @@ public:
      bool drawRibbon = true;
      QAction *actionRibbon = nullptr;
 };
-
-#endif // HRIBBONDIAGRAMWIDGET_P_H

@@ -1,5 +1,4 @@
-#ifndef HABSTRACTMOUSEEVENTFILTER_P_H
-#define HABSTRACTMOUSEEVENTFILTER_P_H
+#pragma once
 
 #include "HAbstractMouseEventFilter.h"
 #include "HAbstractEventFilter_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTMOUSEEVENTFILTER_P_H

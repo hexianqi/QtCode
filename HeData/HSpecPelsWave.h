@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecPelsWave 像元波长数据类。
 ***************************************************************************************************/
 
-#ifndef HSPECPELSWAVE_H
-#define HSPECPELSWAVE_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -38,5 +37,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECPELSWAVE_H

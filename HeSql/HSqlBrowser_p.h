@@ -1,5 +1,4 @@
-#ifndef HSQLBROWSER_P_H
-#define HSQLBROWSER_P_H
+#pragma once
 
 #include "HSqlBrowser.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLBROWSER_P_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HMath 常用的数值计算公式类。
 ***************************************************************************************************/
 
-#ifndef HMATH_H
-#define HMATH_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 
@@ -31,5 +30,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HMATH_H

@@ -2,8 +2,7 @@
 **      2019-12-11  HAbstractServerWidget
 ***************************************************************************************************/
 
-#ifndef HABSTRACTSERVERWIDGET_H
-#define HABSTRACTSERVERWIDGET_H
+#pragma once
 
 #include "HAbstractNetworkWidget.h"
 
@@ -43,5 +42,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTSERVERWIDGET_H

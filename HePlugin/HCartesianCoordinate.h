@@ -2,8 +2,7 @@
 **      2018-06-19  HCartesianCoordinate 笛卡尔坐标系。
 ***************************************************************************************************/
 
-#ifndef HCARTESIANCOORDINATE_H
-#define HCARTESIANCOORDINATE_H
+#pragma once
 
 #include <QtCore/QObject>
 
@@ -53,5 +52,3 @@ protected:
 protected:
     QScopedPointer<HCartesianCoordinatePrivate> d_ptr;
 };
-
-#endif // HCARTESIANCOORDINATE_H

@@ -1,5 +1,4 @@
-#ifndef HCHROMATICITY_P_H
-#define HCHROMATICITY_P_H
+#pragma once
 
 #include "HChromaticity.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HCHROMATICITY_P_H

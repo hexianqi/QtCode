@@ -2,8 +2,7 @@
 **      2019-07-18  HNetworkWidget
 ***************************************************************************************************/
 
-#ifndef HNETWORKWIDGET_H
-#define HNETWORKWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -31,5 +30,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNETWORKWIDGET_H

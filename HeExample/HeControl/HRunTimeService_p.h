@@ -1,5 +1,4 @@
-#ifndef HRUNTIMESERVICE_P_H
-#define HRUNTIMESERVICE_P_H
+#pragma once
 
 #include "HRunTimeService.h"
 #include <QDateTime>
@@ -20,5 +19,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRUNTIMESERVICE_P_H

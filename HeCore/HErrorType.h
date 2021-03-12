@@ -2,8 +2,7 @@
 **      2018-06-19  HErrorType 错误类型。
 ***************************************************************************************************/
 
-#ifndef HERRORTYPE_H
-#define HERRORTYPE_H
+#pragma once
 
 #include "HCoreGlobal.h"
 
@@ -41,5 +40,3 @@ enum HErrorType
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HERRORTYPE_H

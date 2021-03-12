@@ -2,8 +2,7 @@
 **      2019-12-25  HMimeMessage
 ***************************************************************************************************/
 
-#ifndef HMIMEMESSAGE_H
-#define HMIMEMESSAGE_H
+#pragma once
 
 #include "HMimePart.h"
 
@@ -63,5 +62,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEMESSAGE_H

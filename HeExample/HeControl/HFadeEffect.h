@@ -2,8 +2,7 @@
 **      2019-07-24  HFadeEffect
 ***************************************************************************************************/
 
-#ifndef HFADEEFFECT_H
-#define HFADEEFFECT_H
+#pragma once
 
 #include "HAbstractShaderEffect.h"
 
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFADEEFFECT_H

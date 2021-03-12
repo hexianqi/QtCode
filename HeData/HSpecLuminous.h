@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecLuminous 光谱光通量数据类。
 ***************************************************************************************************/
 
-#ifndef HSPECLUMINOUS_H
-#define HSPECLUMINOUS_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -38,5 +37,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECLUMINOUS_H

@@ -8,8 +8,7 @@
 **                  5:可设置倒三角长度/位置/颜色
 ***************************************************************************************************/
 
-#ifndef HNAVLABEL_H
-#define HNAVLABEL_H
+#pragma once
 
 #include "HControlType.h"
 #include <QtWidgets/QLabel>
@@ -82,5 +81,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVLABEL_H

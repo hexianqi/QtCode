@@ -2,8 +2,7 @@
 **      2019-10-02  HTestSpecDemo
 ***************************************************************************************************/
 
-#ifndef HTESTSPECDEMO_H
-#define HTESTSPECDEMO_H
+#pragma once
 
 #include "HeData/HTestSpec.h"
 
@@ -27,5 +26,3 @@ public:
 protected:
     HTestSpecDemo(HTestSpecDemoPrivate &);
 };
-
-#endif // HTESTSPECDEMO_H

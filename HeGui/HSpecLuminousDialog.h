@@ -2,8 +2,7 @@
 **      2020-03-23  HSpecLuminousDialog 光谱光通量调整对话框。
 ***************************************************************************************************/
 
-#ifndef HSPECLUMINOUSDIALOG_H
-#define HSPECLUMINOUSDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeData/HDataGlobal.h"
@@ -53,5 +52,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECLUMINOUSDIALOG_H

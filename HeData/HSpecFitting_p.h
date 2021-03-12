@@ -1,5 +1,4 @@
-#ifndef HSPECFITTING_P_H
-#define HSPECFITTING_P_H
+#pragma once
 
 #include "HSpecFitting.h"
 #include "HAbstractDataItem_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECFITTING_P_H

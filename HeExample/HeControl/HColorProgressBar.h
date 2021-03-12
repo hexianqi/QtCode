@@ -2,8 +2,7 @@
 **      2019-06-19  HColorProgressBar 带颜色进度条控件。
 ***************************************************************************************************/
 
-#ifndef HCOLORPROGRESSBAR_H
-#define HCOLORPROGRESSBAR_H
+#pragma once
 
 #include "HAbstractProgress.h"
 
@@ -89,5 +88,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORPROGRESSBAR_H

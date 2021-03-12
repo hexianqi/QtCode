@@ -2,8 +2,7 @@
 **      2019-04-12  HSpecFittingTest 光谱拟合数据类（测试）。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTINGTEST_H
-#define HSPECFITTINGTEST_H
+#pragma once
 
 #include "HSpecFitting.h"
 
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECFITTINGTEST_H

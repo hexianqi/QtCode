@@ -2,8 +2,7 @@
 **      2019-06-21  HWheelCircular 轮子
 ***************************************************************************************************/
 
-#ifndef HWHEELCIRCULAR_H
-#define HWHEELCIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -58,5 +57,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HWHEELCIRCULAR_H

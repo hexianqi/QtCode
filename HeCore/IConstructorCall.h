@@ -2,8 +2,7 @@
 **      2019-03-04  IConstructorCall 构造函数中调用虚函数接口。
 ***************************************************************************************************/
 
-#ifndef ICONSTRUCTORCALL_H
-#define ICONSTRUCTORCALL_H
+#pragma once
 
 #include "HCoreGlobal.h"
 
@@ -17,6 +16,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-
-#endif // ICONSTRUCTORCALL_H

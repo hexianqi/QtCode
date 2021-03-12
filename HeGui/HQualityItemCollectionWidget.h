@@ -1,5 +1,4 @@
-#ifndef HQUALITYITEMCOLLECTIONWIDGET_H
-#define HQUALITYITEMCOLLECTIONWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeData/HDataGlobal.h"
@@ -47,5 +46,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYITEMCOLLECTIONWIDGET_H

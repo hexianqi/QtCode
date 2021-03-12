@@ -1,5 +1,4 @@
-#ifndef HEGUI_GLOBAL_H
-#define HEGUI_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_GUI_BEGIN_NAMESPACE
 HE_GUI_END_NAMESPACE
-
-#endif // HEGUI_GLOBAL_H

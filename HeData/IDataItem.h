@@ -2,9 +2,7 @@
 **      2019-03-27  IDataItem  数据子项接口。
 ***************************************************************************************************/
 
-
-#ifndef IDATAITEM_H
-#define IDATAITEM_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -33,5 +31,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IDATAITEM_H

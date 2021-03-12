@@ -1,5 +1,4 @@
-#ifndef HQUALITYEDITHANDLER_P_H
-#define HQUALITYEDITHANDLER_P_H
+#pragma once
 
 #include "HQualityEditHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -11,5 +10,3 @@ class HQualityEditHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYEDITHANDLER_P_H

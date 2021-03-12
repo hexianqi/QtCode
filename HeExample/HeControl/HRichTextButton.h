@@ -2,8 +2,7 @@
 **      2019-08-08  HRichTextButton
 ***************************************************************************************************/
 
-#ifndef HRICHTEXTBUTTON_H
-#define HRICHTEXTBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QAbstractButton>
@@ -55,5 +54,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRICHTEXTBUTTON_H

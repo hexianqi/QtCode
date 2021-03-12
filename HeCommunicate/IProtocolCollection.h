@@ -2,8 +2,7 @@
 **      2018-06-19  IProtocolCollection 协议集合接口。
 ***************************************************************************************************/
 
-#ifndef IPROTOCOLCOLLECTION_H
-#define IPROTOCOLCOLLECTION_H
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/HCollection.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // IPROTOCOLCOLLECTION_H

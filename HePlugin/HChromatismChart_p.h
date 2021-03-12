@@ -1,5 +1,4 @@
-#ifndef HCHROMATISMCHART_P_H
-#define HCHROMATISMCHART_P_H
+#pragma once
 
 #include "HChromatismChart.h"
 #include "HChart_p.h"
@@ -19,5 +18,3 @@ public:
     QScatterSeries *focus = nullptr;
     QScatterSeries *center = nullptr;
 };
-
-#endif // HCHROMATISMCHART_P_H

@@ -2,8 +2,7 @@
 **      2019-05-30  状态模式
 ***************************************************************************************************/
 
-#ifndef HSTATE_H
-#define HSTATE_H
+#pragma once
 
 class TrafficLights;
 
@@ -69,6 +68,3 @@ public:
 private:
     IState* _state;
 };
-
-
-#endif // HSTATE_H

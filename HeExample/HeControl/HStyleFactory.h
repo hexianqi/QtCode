@@ -2,8 +2,7 @@
 **      2019-06-12  HStyleFactory 样式工厂。
 ***************************************************************************************************/
 
-#ifndef HSTYLEFACTORY_H
-#define HSTYLEFACTORY_H
+#pragma once
 
 #include "IStyleFactory.h"
 
@@ -39,5 +38,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTYLEFACTORY_H

@@ -2,8 +2,7 @@
 **      2019-06-06  IEventFilter 事件过滤器。
 ***************************************************************************************************/
 
-#ifndef IEVENTFILTER_H
-#define IEVENTFILTER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -36,5 +35,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // IEVENTFILTER_H

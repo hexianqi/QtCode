@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/zang141588761/article/details/53483645
 ***************************************************************************************************/
 
-#ifndef HINTERPRETER_H
-#define HINTERPRETER_H
+#pragma once
 
 #include <string>
 #include <map>
@@ -228,5 +227,3 @@ private:
 private:
     AbstractExpression *_expression;
 };
-
-#endif // HINTERPRETER_H

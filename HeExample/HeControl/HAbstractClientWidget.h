@@ -2,8 +2,7 @@
 **      2019-12-11  HAbstractClientWidget
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCLIENTWIDGET_H
-#define HABSTRACTCLIENTWIDGET_H
+#pragma once
 
 #include "HAbstractNetworkWidget.h"
 
@@ -38,5 +37,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTCLIENTWIDGET_H

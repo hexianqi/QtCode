@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecThread 光谱线程类。
 ***************************************************************************************************/
 
-#ifndef HSPECTHREAD_H
-#define HSPECTHREAD_H
+#pragma once
 
 #include "HAbstractThread.h"
 
@@ -34,5 +33,3 @@ private:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECTHREAD_H

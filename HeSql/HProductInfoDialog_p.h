@@ -1,5 +1,4 @@
-#ifndef HPRODUCTINFODIALOG_P_H
-#define HPRODUCTINFODIALOG_P_H
+#pragma once
 
 #include "HProductInfoDialog.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HPRODUCTINFODIALOG_P_H

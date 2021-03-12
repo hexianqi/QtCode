@@ -1,5 +1,4 @@
-#ifndef HSQLFACTORY_P_H
-#define HSQLFACTORY_P_H
+#pragma once
 
 #include "HSqlFactory.h"
 
@@ -11,5 +10,3 @@ class HSqlFactoryPrivate
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLFACTORY_P_H

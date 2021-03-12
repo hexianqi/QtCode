@@ -1,5 +1,4 @@
-#ifndef HSEQUENTIALGRADE_P_H
-#define HSEQUENTIALGRADE_P_H
+#pragma once
 
 #include "HSequentialGrade.h"
 #include "HAbstractGrade_p.h"
@@ -11,5 +10,3 @@ class HSequentialGradePrivate : public HAbstractGradePrivate
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSEQUENTIALGRADE_P_H

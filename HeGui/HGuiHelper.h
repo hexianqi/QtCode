@@ -2,8 +2,7 @@
 **      2019-03-01  HGuiHelper Gui帮助类。
 ***************************************************************************************************/
 
-#ifndef HGUIHELPER_H
-#define HGUIHELPER_H
+#pragma once
 
 #include "HGuiGlobal.h"
 
@@ -23,5 +22,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGUIHELPER_H

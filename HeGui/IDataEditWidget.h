@@ -2,8 +2,7 @@
 **      2019-04-30  IDataEditWidget 数据编辑窗体接口。
 ***************************************************************************************************/
 
-#ifndef IDATAEDITWIDGET_H
-#define IDATAEDITWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -33,5 +32,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // IDATAEDITWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef HCCD1305PROTOCOL_P_H
-#define HCCD1305PROTOCOL_P_H
+#pragma once
 
 #include "HCcd1305Protocol.h"
 #include "HBigProtocol_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCCD1305PROTOCOL_P_H

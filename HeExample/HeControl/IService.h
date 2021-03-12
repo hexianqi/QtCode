@@ -2,8 +2,7 @@
 **      2019-06-10  IService 服务接口。
 ***************************************************************************************************/
 
-#ifndef ISERVICE_H
-#define ISERVICE_H
+#pragma once
 
 #include "HControlGlobal.h"
 
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ISERVICE_H

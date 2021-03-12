@@ -1,5 +1,4 @@
-#ifndef HCIRCULARFACTORY_P_H
-#define HCIRCULARFACTORY_P_H
+#pragma once
 
 #include "HCircularFactory.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCULARFACTORY_P_H

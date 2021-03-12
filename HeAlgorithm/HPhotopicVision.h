@@ -2,9 +2,7 @@
 **      2018-06-19  HPhotopicVision 明视觉比例系数计算类。
 ***************************************************************************************************/
 
-
-#ifndef HPHOTOPICVISION_H
-#define HPHOTOPICVISION_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtGui/QPolygonF>
@@ -29,5 +27,3 @@ protected:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HPHOTOPICVISION_H

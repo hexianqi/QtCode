@@ -2,8 +2,7 @@
 **      2019-05-13  HSqlFindDialog 数据库查询对话框。
 ***************************************************************************************************/
 
-#ifndef HSQLFINDDIALOG_H
-#define HSQLFINDDIALOG_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include <QtWidgets/QDialog>
@@ -44,5 +43,3 @@ private:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLFINDDIALOG_H

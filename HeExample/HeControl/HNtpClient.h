@@ -2,8 +2,7 @@
 **      2019-12-27  HNtpClient
 ***************************************************************************************************/
 
-#ifndef HNTPCLIENT_H
-#define HNTPCLIENT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -42,5 +41,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNTPCLIENT_H

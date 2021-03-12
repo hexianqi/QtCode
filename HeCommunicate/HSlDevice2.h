@@ -2,8 +2,7 @@
 **      2019-05-21  HSlDevice2 SL设备类（第2版）。
 ***************************************************************************************************/
 
-#ifndef HSLDEVICE2_H
-#define HSLDEVICE2_H
+#pragma once
 
 #include "HAbstractDevice.h"
 
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSLDEVICE2_H

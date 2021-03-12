@@ -1,5 +1,4 @@
-#ifndef HCONTROLDEMOWIDGET_P_H
-#define HCONTROLDEMOWIDGET_P_H
+#pragma once
 
 #include "HControlDemoWidget.h"
 
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLDEMOWIDGET_P_H

@@ -2,8 +2,7 @@
 **      2020-03-18  HPngAmend PNG警告去除工具
 ***************************************************************************************************/
 
-#ifndef HPNGAMEND_H
-#define HPNGAMEND_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -38,5 +37,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPNGAMEND_H

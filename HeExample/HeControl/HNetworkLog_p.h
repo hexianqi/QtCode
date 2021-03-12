@@ -1,5 +1,4 @@
-#ifndef HNETWORKLOG_P_H
-#define HNETWORKLOG_P_H
+#pragma once
 
 #include "HNetworkLog.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNETWORKLOG_P_H

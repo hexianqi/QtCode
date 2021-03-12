@@ -2,8 +2,7 @@
 **      2019-04-02  HChartView 自定义图表视图。
 ***************************************************************************************************/
 
-#ifndef HCHARTVIEW_H
-#define HCHARTVIEW_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCharts/QChartView>
@@ -27,5 +26,3 @@ protected:
 protected:
     QScopedPointer<HChartViewPrivate> d_ptr;
 };
-
-#endif // HCHARTVIEW_H

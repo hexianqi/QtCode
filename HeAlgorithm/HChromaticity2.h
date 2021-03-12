@@ -3,22 +3,21 @@
 **                  与第一版区别在于显色指数计算方式。
 ***************************************************************************************************/
 
-#ifndef HCHROMATICITYV2_H
-#define HCHROMATICITYV2_H
+#pragma once
 
 #include "HChromaticity.h"
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-class HChromaticityV2Private;
+class HChromaticity2Private;
 
-class HChromaticityV2 : public HChromaticity
+class HChromaticity2 : public HChromaticity
 {
-    Q_DECLARE_PRIVATE(HChromaticityV2)
+    Q_DECLARE_PRIVATE(HChromaticity2)
 
 public:
-    explicit HChromaticityV2();
-    ~HChromaticityV2() override;
+    explicit HChromaticity2();
+    ~HChromaticity2() override;
 
 public:
     void calcSpectrum(HSpecData *) override;
@@ -27,9 +26,7 @@ protected:
     QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc) override;
 
 protected:
-    HChromaticityV2(HChromaticityV2Private &);
+    HChromaticity2(HChromaticity2Private &);
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HCHROMATICITYV2_H

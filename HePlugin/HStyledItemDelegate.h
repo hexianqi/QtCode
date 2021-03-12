@@ -2,8 +2,7 @@
 **      2019-03-22  HItemDelegate 编辑功能条目代理类。
 ***************************************************************************************************/
 
-#ifndef HSTYLEDITEMDELEGATE_H
-#define HSTYLEDITEMDELEGATE_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QStyledItemDelegate>
@@ -34,5 +33,3 @@ protected:
 protected:
     QScopedPointer<HStyledItemDelegatePrivate> d_ptr;
 };
-
-#endif // HSTYLEDITEMDELEGATE_H

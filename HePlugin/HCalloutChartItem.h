@@ -2,8 +2,7 @@
 **      2019-04-03  HGraphicsCalloutItem    标注图样项。
 ***************************************************************************************************/
 
-#ifndef HCALLOUTCHARTITEM_H
-#define HCALLOUTCHARTITEM_H
+#pragma once
 
 #include "HGraphicsItem.h"
 #include <QtCharts/QChartGlobal>
@@ -40,5 +39,3 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
 };
-
-#endif // HCALLOUTCHARTITEM_H

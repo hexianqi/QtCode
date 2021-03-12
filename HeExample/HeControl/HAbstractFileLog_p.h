@@ -1,5 +1,4 @@
-#ifndef HABSTRACTFILELOG_P_H
-#define HABSTRACTFILELOG_P_H
+#pragma once
 
 #include "HAbstractFileLog.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTFILELOG_P_H

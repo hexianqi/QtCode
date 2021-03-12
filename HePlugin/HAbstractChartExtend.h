@@ -2,8 +2,7 @@
 **      2018-07-05  HAbstractChartExtend 抽象图表扩展。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCHARTEXTEND_H
-#define HABSTRACTCHARTEXTEND_H
+#pragma once
 
 #include "IChartExtend.h"
 #include <QtUiPlugin/QDesignerExportWidget>
@@ -42,5 +41,3 @@ protected:
 protected:
     QScopedPointer<HAbstractChartExtendPrivate> d_ptr;
 };
-
-#endif // HABSTRACTCHARTEXTEND_H

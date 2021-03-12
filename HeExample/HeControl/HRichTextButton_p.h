@@ -1,5 +1,4 @@
-#ifndef HRICHTEXTBUTTON_P_H
-#define HRICHTEXTBUTTON_P_H
+#pragma once
 
 #include "HRichTextButton.h"
 
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRICHTEXTBUTTON_P_H

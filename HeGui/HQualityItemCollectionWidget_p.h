@@ -1,5 +1,4 @@
-#ifndef HQUALITYITEMCOLLECTIONWIDGET_P_H
-#define HQUALITYITEMCOLLECTIONWIDGET_P_H
+#pragma once
 
 #include "HQualityItemCollectionWidget.h"
 
@@ -23,5 +22,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYITEMCOLLECTIONWIDGET_P_H

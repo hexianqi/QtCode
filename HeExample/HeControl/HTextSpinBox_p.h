@@ -1,5 +1,4 @@
-#ifndef HTEXTSPINBOX_P_H
-#define HTEXTSPINBOX_P_H
+#pragma once
 
 #include "HTextSpinBox.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTEXTSPINBOX_P_H

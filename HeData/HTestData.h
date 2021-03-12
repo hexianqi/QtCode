@@ -2,8 +2,7 @@
 **      2018-06-19  HTestData 测试数据类。
 ***************************************************************************************************/
 
-#ifndef HTESTDATA_H
-#define HTESTDATA_H
+#pragma once
 
 #include "ITestData.h"
 
@@ -45,5 +44,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HTESTDATA_H

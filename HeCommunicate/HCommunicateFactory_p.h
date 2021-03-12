@@ -1,5 +1,4 @@
-#ifndef HCOMMUNICATEFACTORY_P_H
-#define HCOMMUNICATEFACTORY_P_H
+#pragma once
 
 #include "HCommunicateFactory.h"
 
@@ -10,5 +9,3 @@ class HCommunicateFactoryPrivate
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCOMMUNICATEFACTORY_P_H

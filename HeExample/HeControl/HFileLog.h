@@ -2,8 +2,7 @@
 **      2019-07-12  HFileLog 文件日志。
 ***************************************************************************************************/
 
-#ifndef HFILELOG_H
-#define HFILELOG_H
+#pragma once
 
 #include "HAbstractFileLog.h"
 
@@ -29,5 +28,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFILELOG_H

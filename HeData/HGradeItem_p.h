@@ -1,5 +1,4 @@
-#ifndef HGRADEITEM_P_H
-#define HGRADEITEM_P_H
+#pragma once
 
 #include "HGradeItem.h"
 #include "HAbstractDataItem_p.h"
@@ -16,5 +15,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HGRADEITEM_P_H

@@ -1,5 +1,4 @@
-#ifndef HIMAGECALENDAR_P_H
-#define HIMAGECALENDAR_P_H
+#pragma once
 
 #include "HImageCalendar.h"
 #include <QMap>
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIMAGECALENDAR_P_H

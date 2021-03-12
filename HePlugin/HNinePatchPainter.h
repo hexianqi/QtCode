@@ -3,8 +3,7 @@
 **                  https://qtdebug.com/qtbook-paint-nine-patch-painter/
 ***************************************************************************************************/
 
-#ifndef HNINEPATCHPAINTER_H
-#define HNINEPATCHPAINTER_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCore/QScopedPointer>
@@ -40,5 +39,3 @@ protected:
 protected:
     QScopedPointer<HNinePatchPainterPrivate> d_ptr;
 };
-
-#endif // HNINEPATCHPAINTER_H

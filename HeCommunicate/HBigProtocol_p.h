@@ -1,5 +1,4 @@
-#ifndef HBIGPROTOCOL_P_H
-#define HBIGPROTOCOL_P_H
+#pragma once
 
 #include "HBigProtocol.h"
 #include "HAbstractProtocol_p.h"
@@ -11,5 +10,3 @@ class HBigProtocolPrivate : public HAbstractProtocolPrivate
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HBIGPROTOCOL_P_H

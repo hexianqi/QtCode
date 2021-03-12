@@ -2,8 +2,7 @@
 **      2019-05-21  HSpecChromatismWidget 光谱色容差窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECCHROMATISMWIDGET_H
-#define HSPECCHROMATISMWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include <QtWidgets/QWidget>
@@ -38,5 +37,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCHROMATISMWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef HARCGAUGE_P_H
-#define HARCGAUGE_P_H
+#pragma once
 
 #include "HArcGauge.h"
 #include "HCircleGauge_p.h"
@@ -12,10 +11,8 @@ public:
     HArcGaugePrivate();
 
 public:
-    QColor arcColor = QColor(50, 50, 50);    
+    QColor arcColor = QColor(50, 50, 50);
     HControlType::PointerStyle pointerStyle = HControlType::PointerStyle_Circle;
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HARCGAUGE_P_H

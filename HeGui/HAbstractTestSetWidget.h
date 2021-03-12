@@ -2,8 +2,7 @@
 **      2019-03-28  HAbstractTestSetWidget 抽象测试设置窗体类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTTESTSETWIDGET_H
-#define HABSTRACTTESTSETWIDGET_H
+#pragma once
 
 #include "ITestSetWidget.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTTESTSETWIDGET_H

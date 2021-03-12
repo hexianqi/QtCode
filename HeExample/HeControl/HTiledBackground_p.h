@@ -1,5 +1,4 @@
-#ifndef HTILEDBACKGROUND_P_H
-#define HTILEDBACKGROUND_P_H
+#pragma once
 
 #include "HTiledBackground.h"
 
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTILEDBACKGROUND_P_H

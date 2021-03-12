@@ -1,5 +1,4 @@
-#ifndef HGRADEITEMDIALOG_P_H
-#define HGRADEITEMDIALOG_P_H
+#pragma once
 
 #include "HGradeItemDialog.h"
 #include "HAbstractGradeItemDialog_p.h"
@@ -11,5 +10,3 @@ class HGradeItemDialogPrivate : public HAbstractGradeItemDialogPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEITEMDIALOG_P_H

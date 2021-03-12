@@ -2,8 +2,7 @@
 **      2019-05-27  HPowerFactorDevice 功率因素计。
 ***************************************************************************************************/
 
-#ifndef HPOWERFACTORDEVICE_H
-#define HPOWERFACTORDEVICE_H
+#pragma once
 
 #include "HAbstractDevice.h"
 
@@ -28,5 +27,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HPOWERFACTORDEVICE_H

@@ -1,5 +1,4 @@
-#ifndef HMINIGAUGE_P_H
-#define HMINIGAUGE_P_H
+#pragma once
 
 #include "HMiniGauge.h"
 #include "HCircleGauge_p.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMINIGAUGE_P_H

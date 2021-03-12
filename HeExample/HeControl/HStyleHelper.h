@@ -2,8 +2,7 @@
 **      2020-04-01  HStyleHelper 样式帮助类。
 ***************************************************************************************************/
 
-#ifndef HSTYLEHELPER_H
-#define HSTYLEHELPER_H
+#pragma once
 
 #include "HControlGlobal.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTYLEHELPER_H

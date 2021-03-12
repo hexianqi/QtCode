@@ -2,8 +2,7 @@
 **      2019-03-21  HTableWidget 带复制粘贴上下文菜单的表格类。
 ***************************************************************************************************/
 
-#ifndef HTABLEWIDGET_H
-#define HTABLEWIDGET_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QTableWidget>
@@ -55,5 +54,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HTABLEWIDGET_H

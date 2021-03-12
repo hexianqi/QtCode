@@ -2,8 +2,7 @@
 **      2019-06-25  HAbstractProgressBar 抽象进度控件。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTPROGRESS_H
-#define HABSTRACTPROGRESS_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -53,5 +52,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTPROGRESS_H

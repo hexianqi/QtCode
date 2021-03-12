@@ -2,8 +2,7 @@
 **      2019-08-08  HNumPad
 ***************************************************************************************************/
 
-#ifndef HNUMPAD_H
-#define HNUMPAD_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -43,5 +42,3 @@ private slots:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNUMPAD_H

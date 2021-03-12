@@ -2,8 +2,7 @@
 **      2019-04-11  HSpecCalibrateDialog 光谱校准对话框。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATEDIALOG_H
-#define HSPECCALIBRATEDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include <QtWidgets/QDialog>
@@ -31,5 +30,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATEDIALOG_H

@@ -1,5 +1,4 @@
-#ifndef HSPECDETAILWIDGET_P_H
-#define HSPECDETAILWIDGET_P_H
+#pragma once
 
 #include "HSpecDetailWidget.h"
 #include "HAbstractTestDetailWidget_p.h"
@@ -11,5 +10,3 @@ class HSpecDetailWidgetPrivate : public HAbstractTestDetailWidgetPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECDETAILWIDGET_P_H

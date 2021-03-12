@@ -2,8 +2,7 @@
 **      2020-03-31  HDBBean
 ***************************************************************************************************/
 
-#ifndef HDBBEAN_H
-#define HDBBEAN_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QThread>
@@ -55,5 +54,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDBBEAN_H

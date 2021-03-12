@@ -2,8 +2,7 @@
 **      2019-03-27  HSpecFittingLinearWidget 拟合配置窗体（线性）。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTINGLINEARWIDGET_H
-#define HSPECFITTINGLINEARWIDGET_H
+#pragma once
 
 #include "HSpecFittingWidget.h"
 
@@ -40,5 +39,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGLINEARWIDGET_H

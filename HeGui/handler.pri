@@ -1,4 +1,8 @@
 HEADERS += \
+    $$PWD/HAdjust2EditHandler.h \
+    $$PWD/HAdjust2EditHandler_p.h \
+    $$PWD/HAdjust2SelectHandler.h \
+    $$PWD/HAdjust2SelectHandler_p.h \
     $$PWD/HExportCurveHandler.h \
     $$PWD/HExportCurveHandler_p.h \
     $$PWD/HExportDeviceHandler.h \
@@ -42,11 +46,15 @@ HEADERS += \
     $$PWD/HIVTestHandler_p.h \
     $$PWD/HSpecLuminousHandler.h \
     $$PWD/HSpecLuminousHandler_p.h \
+    $$PWD/HSpecTcHandler.h \
+    $$PWD/HSpecTcHandler_p.h \
     $$PWD/HAbstractConfigHandler.h \
     $$PWD/HAbstractConfigHandler_p.h
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
+    $$PWD/HAdjust2EditHandler.cpp \
+    $$PWD/HAdjust2SelectHandler.cpp \
     $$PWD/HExportCurveHandler.cpp \
     $$PWD/HExportDeviceHandler.cpp \
     $$PWD/HImportCurveHandler.cpp \
@@ -67,4 +75,5 @@ SOURCES += \
     $$PWD/HElecCalibrateHandler.cpp \
     $$PWD/HIVTestHandler.cpp \
     $$PWD/HSpecLuminousHandler.cpp \
+    $$PWD/HSpecTcHandler.cpp \
     $$PWD/HAbstractConfigHandler.cpp

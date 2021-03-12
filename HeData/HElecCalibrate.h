@@ -2,8 +2,7 @@
 **      2019-10-15  HElecCalibrate 电校准数据类。
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATE_H
-#define HELECCALIBRATE_H
+#pragma once
 
 #include "IElecCalibrate.h"
 
@@ -41,5 +40,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATE_H

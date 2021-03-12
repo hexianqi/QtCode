@@ -9,8 +9,7 @@
 **                  6:发出单击和双击信号
 ***************************************************************************************************/
 
-#ifndef HDEFENCEBUTTON_H
-#define HDEFENCEBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -91,5 +90,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDEFENCEBUTTON_H

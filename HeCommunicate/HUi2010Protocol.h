@@ -2,8 +2,7 @@
 **      2019-05-27  HUi2010Protocol UI2010协议。
 ***************************************************************************************************/
 
-#ifndef HUI2010PROTOCOL_H
-#define HUI2010PROTOCOL_H
+#pragma once
 
 #include "HLittleProtocol.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUI2010PROTOCOL_H

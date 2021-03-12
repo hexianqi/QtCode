@@ -1,5 +1,4 @@
-#ifndef HLINECIRCULAR_P_H
-#define HLINECIRCULAR_P_H
+#pragma once
 
 #include "HLineCircular.h"
 #include "HAbstractCircular_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLINECIRCULAR_P_H

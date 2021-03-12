@@ -2,8 +2,7 @@
 **      2019-04-16  HGradeCollection 分级数据集合类。
 ***************************************************************************************************/
 
-#ifndef HGRADECOLLECTION_H
-#define HGRADECOLLECTION_H
+#pragma once
 
 #include "IGradeCollection.h"
 
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HGRADECOLLECTION_H

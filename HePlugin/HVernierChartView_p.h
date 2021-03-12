@@ -1,5 +1,4 @@
-#ifndef HVERNIERCHARTVIEW_P_H
-#define HVERNIERCHARTVIEW_P_H
+#pragma once
 
 #include "HVernierChartView.h"
 #include "HZoomChartView_p.h"
@@ -15,6 +14,3 @@ public:
     QGraphicsSimpleTextItem *textRight;
     int decimals = 2;
 };
-
-
-#endif // HVERNIERCHARTVIEW_P_H

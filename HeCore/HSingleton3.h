@@ -1,5 +1,4 @@
-#ifndef HSINGLETON3_H
-#define HSINGLETON3_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <QScopedPointer>
@@ -45,5 +44,3 @@ public:                                             \
     }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HSINGLETON3_H

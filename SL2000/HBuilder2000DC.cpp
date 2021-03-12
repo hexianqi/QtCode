@@ -6,13 +6,13 @@
 #include "HeData/IDataStream.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/ISpecCalibrateCollection.h"
+#include "HeData/IChromatismCollection.h"
 #include "HeData/IElecCalibrate.h"
 #include "HeData/IElecCalibrateCollection.h"
-#include "HeData/IChromatismCollection.h"
-#include "HeData/ITestSpec.h"
 #include "HeData/ILuminousCalibrate.h"
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HeData/ILuminousCalibrateCollection.h"
+#include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
@@ -57,6 +57,11 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate()
 
 HBuilder2000DC::HBuilder2000DC(QObject *parent) :
     HAbstractBuilder(*new HBuilder2000DCPrivate, parent)
+{
+}
+
+HBuilder2000DC::HBuilder2000DC(HBuilder2000DCPrivate &p, QObject *parent) :
+    HAbstractBuilder(p, parent)
 {
 }
 

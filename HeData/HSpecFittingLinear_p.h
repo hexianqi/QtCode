@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGLINEAR_P_H
-#define HSPECFITTINGLINEAR_P_H
+#pragma once
 
 #include "HSpecFittingLinear.h"
 #include "HSpecFitting_p.h"
@@ -11,5 +10,3 @@ class HSpecFittingLinearPrivate : public HSpecFittingPrivate
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECFITTINGLINEAR_P_H

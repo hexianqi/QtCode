@@ -13,8 +13,7 @@
 **                  10:可设置用户设定目标值
 ***************************************************************************************************/
 
-#ifndef HTHERMOMETERRULER_H
-#define HTHERMOMETERRULER_H
+#pragma once
 
 #include "HAnimationProgress.h"
 
@@ -107,5 +106,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTHERMOMETERRULER_H

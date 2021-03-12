@@ -2,8 +2,7 @@
 **      2019-12-25  HQuotedPrintable
 ***************************************************************************************************/
 
-#ifndef HQUOTEDPRINTABLE_H
-#define HQUOTEDPRINTABLE_H
+#pragma once
 
 #include "HControlGlobal.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HQUOTEDPRINTABLE_H

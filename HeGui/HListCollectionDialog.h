@@ -2,8 +2,7 @@
 **      2019-04-19  HListCollectionDialog 集合配置对话框（列表模式）。
 ***************************************************************************************************/
 
-#ifndef HLISTCOLLECTIONDIALOG_H
-#define HLISTCOLLECTIONDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include <QtWidgets/QDialog>
@@ -52,5 +51,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HLISTCOLLECTIONDIALOG_H

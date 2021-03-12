@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QtWidgets/QMainWindow>
 
@@ -30,5 +29,3 @@ private:
     int _testValue;
     QVector<int> _testVector;
 };
-
-#endif // MAINWINDOW_H

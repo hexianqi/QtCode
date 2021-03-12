@@ -1,5 +1,4 @@
-#ifndef HMOVEEFFECT_P_H
-#define HMOVEEFFECT_P_H
+#pragma once
 
 #include "HMoveEffect.h"
 #include "HAbstractShaderEffect_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMOVEEFFECT_P_H

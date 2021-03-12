@@ -9,8 +9,7 @@
 **                  5:可设置鱼的停留位置旋转角度
 ***************************************************************************************************/
 
-#ifndef HMAGICFISH_H
-#define HMAGICFISH_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -86,5 +85,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMAGICFISH_H

@@ -2,8 +2,7 @@
 **      2019-03-22  HEntireTableWidget 可以整行整列添加数据的表格类。
 ***************************************************************************************************/
 
-#ifndef HENTIRETABLEWIDGET_H
-#define HENTIRETABLEWIDGET_H
+#pragma once
 
 #include "HTableWidget.h"
 
@@ -33,5 +32,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HENTIRETABLEWIDGET_H

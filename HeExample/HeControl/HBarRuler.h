@@ -9,8 +9,7 @@
 **                  6：支持负数刻度值
 ***************************************************************************************************/
 
-#ifndef HBARRULER_H
-#define HBARRULER_H
+#pragma once
 
 #include "HAbstractProgress.h"
 
@@ -80,7 +79,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBARRULER_H
-
-

@@ -2,8 +2,7 @@
 **      2019-08-05  HHueSatRadialPicker
 ***************************************************************************************************/
 
-#ifndef HHUESATRADIALPICKER_H
-#define HHUESATRADIALPICKER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -59,5 +58,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHUESATRADIALPICKER_H

@@ -2,8 +2,7 @@
 **      2019-12-12  HIconFontFactory
 ***************************************************************************************************/
 
-#ifndef HICONFONTFACTORY_H
-#define HICONFONTFACTORY_H
+#pragma once
 
 #include "IIconFontFactory.h"
 
@@ -38,5 +37,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HICONFONTFACTORY_H

@@ -1,5 +1,4 @@
-#ifndef HSQLBROWSERHANDLER_P_H
-#define HSQLBROWSERHANDLER_P_H
+#pragma once
 
 #include "HSqlBrowserHandler.h"
 #include "HAbstractGuiHandler_p.h"
@@ -11,5 +10,3 @@ class HSqlBrowserHandlerPrivate : public HAbstractGuiHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSQLBROWSERHANDLER_P_H

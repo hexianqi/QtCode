@@ -2,8 +2,7 @@
 **      2019-03-22  HSpecSettingDialog 光谱配置对话框。
 ***************************************************************************************************/
 
-#ifndef HSPECSETTINGDIALOG_H
-#define HSPECSETTINGDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeData/HDataGlobal.h"
@@ -52,5 +51,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECSETTINGDIALOG_H

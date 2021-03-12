@@ -1,5 +1,4 @@
-#ifndef HSHADEWIDGET_P_H
-#define HSHADEWIDGET_P_H
+#pragma once
 
 #include "HShadeWidget.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSHADEWIDGET_P_H

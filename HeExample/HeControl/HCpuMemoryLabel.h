@@ -5,8 +5,7 @@
 **                  2:全平台通用,包括windows,linux,ARM
 ***************************************************************************************************/
 
-#ifndef HCPUMEMORYLABEL_H
-#define HCPUMEMORYLABEL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QLabel>
@@ -54,5 +53,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCPUMEMORYLABEL_H

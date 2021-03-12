@@ -1,5 +1,4 @@
-#ifndef HCHROMATISMEDITWIDGET_P_H
-#define HCHROMATISMEDITWIDGET_P_H
+#pragma once
 
 #include "HChromatismEditWidget.h"
 
@@ -20,5 +19,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HCHROMATISMEDITWIDGET_P_H

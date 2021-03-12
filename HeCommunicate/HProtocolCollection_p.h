@@ -1,5 +1,4 @@
-#ifndef HPROTOCOLCOLLECTION_P_H
-#define HPROTOCOLCOLLECTION_P_H
+#pragma once
 
 #include "HProtocolCollection.h"
 
@@ -10,5 +9,3 @@ class HProtocolCollectionPrivate : public HCollectionPrivate<IProtocol>
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HPROTOCOLCOLLECTION_P_H

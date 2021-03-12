@@ -2,8 +2,7 @@
 **      2019-10-23  HMainWindow2000DC
 ***************************************************************************************************/
 
-#ifndef HMAINWINDOW2000DC_H
-#define HMAINWINDOW2000DC_H
+#pragma once
 
 #include "HeGui/HAbstractMainWindow.h"
 
@@ -25,5 +24,3 @@ protected:
     void initBuilder() override;
     void initWindow() override;
 };
-
-#endif // HMAINWINDOW2000DC_H

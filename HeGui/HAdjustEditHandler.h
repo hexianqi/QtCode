@@ -2,8 +2,7 @@
 **      2019-04-29  HAdjustEditHandler 调整编辑处理者类。
 ***************************************************************************************************/
 
-#ifndef HADJUSTEDITHANDLER_H
-#define HADJUSTEDITHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HADJUSTEDITHANDLER_H

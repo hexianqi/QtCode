@@ -1,5 +1,4 @@
-#ifndef HSPECSAMPLECHARTVIEW_P_H
-#define HSPECSAMPLECHARTVIEW_P_H
+#pragma once
 
 #include "HSpecSampleChartView.h"
 #include "HeData/HDataGlobal.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECSAMPLECHARTVIEW_P_H

@@ -1,5 +1,4 @@
-#ifndef HMIMEHTML_P_H
-#define HMIMEHTML_P_H
+#pragma once
 
 #include "HMimeHtml.h"
 #include "HMimeText_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEHTML_P_H

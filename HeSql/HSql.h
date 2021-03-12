@@ -2,8 +2,7 @@
 **      2019-04-12  SQL各种转换函数。
 ***************************************************************************************************/
 
-#ifndef HSQL_H
-#define HSQL_H
+#pragma once
 
 #include "HSqlGlobal.h"
 
@@ -30,5 +29,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQL_H

@@ -1,5 +1,4 @@
-#ifndef HTESTCHART_H
-#define HTESTCHART_H
+#pragma once
 
 #include <QtCore/QPointF>
 #include <QtGui/QPolygonF>
@@ -18,5 +17,3 @@ public:
     static QChartView *diffChart(const QPolygonF &p1, const QPolygonF &p2);
     static QChartView *vernierChart(const QPolygonF &p1, const QPolygonF &p2);
 };
-
-#endif // HTESTCHART_H

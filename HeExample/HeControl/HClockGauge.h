@@ -9,8 +9,7 @@
 **                  6:增加设置系统时间公共槽函数,支持任意操作系统
 ***************************************************************************************************/
 
-#ifndef HCLOCKGAUGE_H
-#define HCLOCKGAUGE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -91,5 +90,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCLOCKGAUGE_H

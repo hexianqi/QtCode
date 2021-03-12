@@ -1,5 +1,4 @@
-#ifndef HTHREADDEMO_P_H
-#define HTHREADDEMO_P_H
+#pragma once
 
 #include "HThreadDemo.h"
 #include "HeController/HAbstractThread_p.h"
@@ -17,5 +16,3 @@ public:
     HProtocolDemo *protocol;
     HTestSpecDemo *testSpec;
 };
-
-#endif // HTHREADDEMO_P_H

@@ -2,8 +2,7 @@
 **      2019-05-20  IChromatismCollection 色容差数据集合接口。
 ***************************************************************************************************/
 
-#ifndef ICHROMATISMCOLLECTION_H
-#define ICHROMATISMCOLLECTION_H
+#pragma once
 
 #include "HDataCollection.h"
 
@@ -24,5 +23,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ICHROMATISMCOLLECTION_H

@@ -1,5 +1,4 @@
-#ifndef HSPECLUMINOUS_P_H
-#define HSPECLUMINOUS_P_H
+#pragma once
 
 #include "HSpecLuminous.h"
 #include "HAbstractDataItem_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECLUMINOUS_P_H

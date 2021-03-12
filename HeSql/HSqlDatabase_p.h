@@ -1,5 +1,4 @@
-#ifndef HSQLDATABASE_P_H
-#define HSQLDATABASE_P_H
+#pragma once
 
 #include "HSqlDatabase.h"
 #include <QtSql/QSqlDatabase>
@@ -14,5 +13,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLDATABASE_P_H

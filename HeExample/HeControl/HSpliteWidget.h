@@ -3,8 +3,7 @@
 **                  http://www.qtcn.org/bbs/read-htm-tid-65929-ds-1.html#tpc
 ***************************************************************************************************/
 
-#ifndef HSPLITEWIDGET_H
-#define HSPLITEWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -44,5 +43,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSPLITEWIDGET_H

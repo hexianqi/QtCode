@@ -1,5 +1,4 @@
-#ifndef IEFFECTFACTORY_H
-#define IEFFECTFACTORY_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -24,5 +23,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // IEFFECTFACTORY_H

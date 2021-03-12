@@ -1,5 +1,4 @@
-#ifndef HABSTRACTCHARTEXTEND_P_H
-#define HABSTRACTCHARTEXTEND_P_H
+#pragma once
 
 #include "HAbstractChartExtend.h"
 
@@ -12,4 +11,3 @@ public:
     QChart *chart = nullptr;
 };
 
-#endif // HABSTRACTCHARTEXTEND_P_H

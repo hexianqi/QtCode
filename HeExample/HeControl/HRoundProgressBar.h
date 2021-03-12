@@ -2,8 +2,7 @@
 **      2019-06-25  HRoundProgressBar 圆形进度条。
 ***************************************************************************************************/
 
-#ifndef HROUNDPROGRESSBAR_H
-#define HROUNDPROGRESSBAR_H
+#pragma once
 
 #include "HAbstractProgress.h"
 
@@ -77,5 +76,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HROUNDPROGRESSBAR_H

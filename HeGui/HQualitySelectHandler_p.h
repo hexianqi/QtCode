@@ -1,5 +1,4 @@
-#ifndef HQUALITYSELECTHANDLER_P_H
-#define HQUALITYSELECTHANDLER_P_H
+#pragma once
 
 #include "HQualitySelectHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -11,7 +10,3 @@ class HQualitySelectHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-
-
-#endif // HQUALITYSELECTHANDLER_P_H

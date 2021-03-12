@@ -1,6 +1,7 @@
 #include "HMainWindow2000.h"
 #include "HMainWindow2000AC.h"
 #include "HMainWindow2000DC.h"
+#include "HMainWindow2000F.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
@@ -17,6 +18,9 @@ int main(int argc, char *argv[])
 #elif SL2000DC
     QApplication::setApplicationName("SL2000DC");
     HMainWindow2000DC w;
+#elif SL2000F
+    QApplication::setApplicationName("SL2000F");
+    HMainWindow2000F w;
 #endif
     w.show();
     return QApplication::exec();

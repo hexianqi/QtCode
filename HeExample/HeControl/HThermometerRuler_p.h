@@ -1,5 +1,4 @@
-#ifndef HTHERMOMETERRULER_P_H
-#define HTHERMOMETERRULER_P_H
+#pragma once
 
 #include "HThermometerRuler.h"
 #include "HAnimationProgress_p.h"
@@ -31,5 +30,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTHERMOMETERRULER_P_H

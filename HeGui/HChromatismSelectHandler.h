@@ -2,8 +2,7 @@
 **      2019-05-20  HChromatismSelectHandler 色容差数据选择处理者类。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMSELECTHANDLER_H
-#define HCHROMATISMSELECTHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HCHROMATISMSELECTHANDLER_H

@@ -1,5 +1,4 @@
-#ifndef HDETAILWIDGET2000_H
-#define HDETAILWIDGET2000_H
+#pragma once
 
 #include "HeGui/HAbstractTestDetailWidget.h"
 
@@ -30,5 +29,3 @@ public:
 private:
     Ui::HDetailWidget2000 *ui;
 };
-
-#endif // HDETAILWIDGET2000_H

@@ -2,8 +2,7 @@
 **      2019-05-15  HSqlBrowserHandler 数据库浏览器处理者类。
 ***************************************************************************************************/
 
-#ifndef HSQLBROWSERHANDLER_H
-#define HSQLBROWSERHANDLER_H
+#pragma once
 
 #include "HAbstractGuiHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSQLBROWSERHANDLER_H

@@ -1,5 +1,4 @@
-#ifndef HTESTHANDLER_P_H
-#define HTESTHANDLER_P_H
+#pragma once
 
 #include "HTestHandler.h"
 #include "HAbstractGuiHandler_p.h"
@@ -12,5 +11,3 @@ class HTestHandlerPrivate : public HAbstractGuiHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HTESTHANDLER_P_H

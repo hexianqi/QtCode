@@ -1,5 +1,4 @@
-#ifndef HSPECCALIBRATEHANDLER_P_H
-#define HSPECCALIBRATEHANDLER_P_H
+#pragma once
 
 #include "HSpecCalibrateHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -11,5 +10,3 @@ class HSpecCalibrateHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATEHANDLER_P_H

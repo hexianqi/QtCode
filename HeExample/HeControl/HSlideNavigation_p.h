@@ -1,5 +1,4 @@
-#ifndef HSLIDENAVIGATION_P_H
-#define HSLIDENAVIGATION_P_H
+#pragma once
 
 #include "HSlideNavigation.h"
 
@@ -38,5 +37,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSLIDENAVIGATION_P_H

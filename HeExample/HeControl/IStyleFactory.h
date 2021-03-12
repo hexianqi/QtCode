@@ -2,8 +2,7 @@
 **      2019-06-12  IStyleFactory 样式工厂接口。
 ***************************************************************************************************/
 
-#ifndef ISTYLEFACTORY_H
-#define ISTYLEFACTORY_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ISTYLEFACTORY_H

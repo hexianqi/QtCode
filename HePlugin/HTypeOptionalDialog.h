@@ -2,8 +2,7 @@
 **      2019-04-10  HTypeOptionalDialog 类型选择对话框。
 ***************************************************************************************************/
 
-#ifndef HTYPEOPTIONALDIALOG_H
-#define HTYPEOPTIONALDIALOG_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QDialog>
@@ -40,5 +39,3 @@ private:
     QScopedPointer<HTypeOptionalDialogPrivate> d_ptr;
     Ui::HTypeOptionalDialog *ui;
 };
-
-#endif // HTYPEOPTIONALDIALOG_H

@@ -2,8 +2,7 @@
 **      2018-06-19  ITestData 测试数据接口。
 ***************************************************************************************************/
 
-#ifndef ITESTDATA_H
-#define ITESTDATA_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -50,5 +49,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ITESTDATA_H

@@ -1,7 +1,7 @@
 #include "HSpecFacade_p.h"
 #include "HSpecData.h"
 #include "HChromaticity.h"
-#include "HChromaticityV2.h"
+#include "HChromaticity2.h"
 #include "HPhotopicVision.h"
 #include <QtCore/QtMath>
 #include <QtCore/QDebug>
@@ -63,7 +63,7 @@ void calcSpectrumEnergy(HSpecData *data)
 
 HSpecFacadePrivate::HSpecFacadePrivate()
 {
-    chromaticity = std::shared_ptr<IChromaticity>(new HChromaticityV2());
+    chromaticity = std::shared_ptr<IChromaticity>(new HChromaticity2());
     photopicVision = std::make_shared<HPhotopicVision>();
 }
 
@@ -74,7 +74,7 @@ void HSpecFacadePrivate::setChromaticity(int type)
     if (type == 0)
         chromaticity.reset(new HChromaticity);
     if (type == 1)
-        chromaticity.reset(new HChromaticityV2);
+        chromaticity.reset(new HChromaticity2);
 }
 
 HSpecFacade::HSpecFacade() :

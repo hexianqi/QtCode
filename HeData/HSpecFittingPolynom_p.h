@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGPOLYNOM_P_H
-#define HSPECFITTINGPOLYNOM_P_H
+#pragma once
 
 #include "HSpecFittingPolynom.h"
 #include "HSpecFitting_p.h"
@@ -14,6 +13,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-
-#endif // HSPECFITTINGPOLYNOM_P_H

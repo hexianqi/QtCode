@@ -1,5 +1,4 @@
-#ifndef HRESIZEEVENTFILTER_P_H
-#define HRESIZEEVENTFILTER_P_H
+#pragma once
 
 #include "HResizeEventFilter.h"
 #include "HAbstractMouseEventFilter_p.h"
@@ -31,5 +30,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRESIZEEVENTFILTER_P_H

@@ -2,8 +2,7 @@
 **      2019-08-02  HConfigPanel
 ***************************************************************************************************/
 
-#ifndef HCONFIGPANEL_H
-#define HCONFIGPANEL_H
+#pragma once
 
 #include "HAbstractMultiPanel.h"
 
@@ -53,5 +52,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONFIGPANEL_H

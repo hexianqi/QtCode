@@ -13,8 +13,7 @@
 **                  10:可设置是否显示指示器
 ***************************************************************************************************/
 
-#ifndef HKNOBGAUGE_H
-#define HKNOBGAUGE_H
+#pragma once
 
 #include "HControlType.h"
 #include "HAnimationProgress.h"
@@ -104,5 +103,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HKNOBGAUGE_H

@@ -1,5 +1,4 @@
-#ifndef HINFINITECIRCULAR_P_H
-#define HINFINITECIRCULAR_P_H
+#pragma once
 
 #include "HInfiniteCircular.h"
 #include "HAbstractCircular_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HINFINITECIRCULAR_P_H

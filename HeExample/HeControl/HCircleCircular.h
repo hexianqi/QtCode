@@ -2,8 +2,7 @@
 **      2019-06-19  HCircleCircular 圈状
 ***************************************************************************************************/
 
-#ifndef HCIRCLECIRCULAR_H
-#define HCIRCLECIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCLECIRCULAR_H

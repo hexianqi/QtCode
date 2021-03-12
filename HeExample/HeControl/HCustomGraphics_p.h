@@ -1,5 +1,4 @@
-#ifndef HCUSTOMGRAPHICS_P_H
-#define HCUSTOMGRAPHICS_P_H
+#pragma once
 
 #include "HCustomGraphics.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCUSTOMGRAPHICS_P_H

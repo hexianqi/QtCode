@@ -2,8 +2,7 @@
 **      2019-05-14  IProductInfo 产品信息接口。
 ***************************************************************************************************/
 
-#ifndef IPRODUCTINFO_H
-#define IPRODUCTINFO_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -36,5 +35,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // IPRODUCTINFO_H

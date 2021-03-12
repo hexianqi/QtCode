@@ -29,8 +29,7 @@
 **                  注意: JSON 文件要使用 UTF-8 编码。
 ***************************************************************************************************/
 
-#ifndef HJSON_H
-#define HJSON_H
+#pragma once
 
 #include "HFileGlobal.h"
 #include <QtCore/QScopedPointer>
@@ -80,5 +79,3 @@ protected:
 };
 
 HE_FILE_END_NAMESPACE
-
-#endif // HJSON_H

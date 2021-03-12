@@ -25,7 +25,10 @@
 #include "HGradeItem.h"
 #include "HGradeItem2D.h"
 #include "HAdjust.h"
+#include "HAdjust2.h"
+#include "HAdjustItemCollection.h"
 #include "HAdjustCollection.h"
+#include "HAdjust2Collection.h"
 #include "HAdjustItem.h"
 #include "HQuality.h"
 #include "HQualityCollection.h"
@@ -240,10 +243,34 @@ IAdjustCollection *HDataFactory::createAdjustCollection(QString type, QVariantMa
     return p;
 }
 
+IAdjust2Collection *HDataFactory::createAdjust2Collection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HAdjust2Collection;
+    p->initialize(param);
+    return p;
+}
+
 IAdjust *HDataFactory::createAdjust(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     auto p = new HAdjust;
+    p->initialize(param);
+    return p;
+}
+
+IAdjust2 *HDataFactory::createAdjust2(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HAdjust2;
+    p->initialize(param);
+    return p;
+}
+
+IAdjustItemCollection *HDataFactory::createAdjustItemCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HAdjustItemCollection;
     p->initialize(param);
     return p;
 }

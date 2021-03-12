@@ -1,6 +1,4 @@
-#ifndef HSPECSETTING_P_H
-#define HSPECSETTING_P_H
-
+#pragma once
 #include "HSpecSetting.h"
 #include "HAbstractDataItem_p.h"
 
@@ -11,5 +9,3 @@ class HSpecSettingPrivate : public HAbstractDataItemPrivate
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECSETTING_P_H

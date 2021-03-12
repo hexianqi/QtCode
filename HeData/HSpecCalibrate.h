@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecCalibrate 光谱校准数据类。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATE_H
-#define HSPECCALIBRATE_H
+#pragma once
 
 #include "ISpecCalibrate.h"
 
@@ -54,5 +53,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECCALIBRATE_H

@@ -3,8 +3,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/interp.html
 ***************************************************************************************************/
 
-#ifndef HINTERP2D_H
-#define HINTERP2D_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtCore/QVector>
@@ -36,5 +35,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HINTERP2D_H

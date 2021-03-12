@@ -11,8 +11,7 @@
 **                  8:可设置背景颜色为画刷颜色
 ***************************************************************************************************/
 
-#ifndef HNAVBUTTON_H
-#define HNAVBUTTON_H
+#pragma once
 
 #include "HControlType.h"
 #include <QtWidgets/QPushButton>
@@ -138,5 +137,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVBUTTON_H

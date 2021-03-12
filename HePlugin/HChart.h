@@ -2,8 +2,7 @@
 **      2019-04-11  HChart 自定义D指针图表。
 ***************************************************************************************************/
 
-#ifndef HCHART_H
-#define HCHART_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCharts/QChart>
@@ -26,5 +25,3 @@ protected:
 protected:
     QScopedPointer<HChartPrivate> d_ptr;
 };
-
-#endif // HCHART_H

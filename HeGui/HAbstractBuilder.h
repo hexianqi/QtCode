@@ -2,8 +2,7 @@
 **      2019-03-01  HAbstractBuilder 抽象创建者类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTBUILDER_H
-#define HABSTRACTBUILDER_H
+#pragma once
 
 #include "IBuilder.h"
 #include <QtCore/QObject>
@@ -48,5 +47,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTBUILDER_H

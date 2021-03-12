@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/70850367
 ***************************************************************************************************/
 
-#ifndef HFACADE_H
-#define HFACADE_H
+#pragma once
 
 // 订单团队
 class OrderTeam
@@ -96,5 +95,3 @@ private:
     Vendor _vendor;
     Courier _courier;
 };
-
-#endif // HFACADE_H

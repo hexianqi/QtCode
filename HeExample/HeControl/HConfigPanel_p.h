@@ -1,5 +1,4 @@
-#ifndef HCONFIGPANEL_P_H
-#define HCONFIGPANEL_P_H
+#pragma once
 
 #include "HConfigPanel.h"
 #include "HAbstractMultiPanel_p.h"
@@ -35,5 +34,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONFIGPANEL_P_H

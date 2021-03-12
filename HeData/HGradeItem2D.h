@@ -2,8 +2,7 @@
 **      2019-04-18  HGradeItem2D 分级数据项（二维）。
 ***************************************************************************************************/
 
-#ifndef HGRADEITEM2D_H
-#define HGRADEITEM2D_H
+#pragma once
 
 #include "IGradeItem.h"
 
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HGRADEITEM2D_H

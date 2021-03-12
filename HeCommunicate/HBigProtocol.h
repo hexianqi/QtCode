@@ -2,8 +2,7 @@
 **      2019-05-28  HBigProtocol 高位编址协议类（高字节在前）。
 ***************************************************************************************************/
 
-#ifndef HBIGPROTOCOL_H
-#define HBIGPROTOCOL_H
+#pragma once
 
 #include "HAbstractProtocol.h"
 
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HBIGPROTOCOL_H

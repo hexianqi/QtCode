@@ -2,8 +2,7 @@
 **      2019-04-16  IGradeCollection 分级数据集合接口。
 ***************************************************************************************************/
 
-#ifndef IGRADECOLLECTION_H
-#define IGRADECOLLECTION_H
+#pragma once
 
 #include "HDataCollection.h"
 
@@ -24,5 +23,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IGRADECOLLECTION_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HControllerFactory 控制器工厂类。
 ***************************************************************************************************/
 
-#ifndef HCONTROLLERFACTORY_H
-#define HCONTROLLERFACTORY_H
+#pragma once
 
 #include "IControllerFactory.h"
 
@@ -41,5 +40,3 @@ private:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HCONTROLLERFACTORY_H

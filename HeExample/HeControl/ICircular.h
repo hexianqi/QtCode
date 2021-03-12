@@ -2,8 +2,7 @@
 **      2019-06-19  ICircular 等待策略。
 ***************************************************************************************************/
 
-#ifndef ICIRCULAR_H
-#define ICIRCULAR_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -30,5 +29,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ICIRCULAR_H

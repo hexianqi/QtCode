@@ -1,5 +1,4 @@
-#ifndef HTESTWIDGETDEMO_P_H
-#define HTESTWIDGETDEMO_P_H
+#pragma once
 
 #include "HTestWidgetDemo.h"
 #include "HeGui/HTestWidget2_p.h"
@@ -32,5 +31,3 @@ public:
     ITestDetailWidget *detailWidget;
     ITestSetWidget *testSetWidget;
 };
-
-#endif // HTESTWIDGETDEMO_P_H

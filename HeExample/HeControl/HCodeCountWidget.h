@@ -3,8 +3,7 @@
 **                  https://gitee.com/feiyangqingyun/QWidgetDemo
 ***************************************************************************************************/
 
-#ifndef HCODECOUNTWIDGET_H
-#define HCODECOUNTWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -44,5 +43,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCODECOUNTWIDGET_H

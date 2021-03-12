@@ -2,8 +2,7 @@
 **      2018-06-19  HProtocolCollection 协议集合类。
 ***************************************************************************************************/
 
-#ifndef HPROTOCOLCOLLECTION_H
-#define HPROTOCOLCOLLECTION_H
+#pragma once
 
 #include "IProtocolCollection.h"
 
@@ -27,5 +26,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HPROTOCOLCOLLECTION_H

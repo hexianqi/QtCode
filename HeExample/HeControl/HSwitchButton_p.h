@@ -1,5 +1,4 @@
-#ifndef HSWITCHBUTTON_P_H
-#define HSWITCHBUTTON_P_H
+#pragma once
 
 #include "HSwitchButton.h"
 
@@ -31,5 +30,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSWITCHBUTTON_P_H

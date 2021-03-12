@@ -1,5 +1,4 @@
-#ifndef HGRADECOLLECTION_P_H
-#define HGRADECOLLECTION_P_H
+#pragma once
 
 #include "HGradeCollection.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HGRADECOLLECTION_P_H

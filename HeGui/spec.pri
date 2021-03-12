@@ -26,9 +26,7 @@ HEADERS += \
     $$PWD/HSpecFittingPolynomWidget.h \
     $$PWD/HSpecFittingPolynomWidget_p.h \
     $$PWD/HSpecLuminousDialog.h \
-    $$PWD/HSpecLuminousDialog_p.h \
-    $$PWD/HSpecTcHandler.h \
-    $$PWD/HSpecTcHandler_p.h
+    $$PWD/HSpecLuminousDialog_p.h
 
 SOURCES += \
     $$PWD/HSpecCalibrateSetWidget2.cpp \
@@ -44,8 +42,7 @@ SOURCES += \
     $$PWD/HSpecCalibrateDialog.cpp \
     $$PWD/HSpecChromatismWidget.cpp \
     $$PWD/HSpecFittingPolynomWidget.cpp \
-    $$PWD/HSpecLuminousDialog.cpp \
-    $$PWD/HSpecTcHandler.cpp
+    $$PWD/HSpecLuminousDialog.cpp
 
 FORMS += \
     $$PWD/HSpecCalibrateSetWidget2.ui \

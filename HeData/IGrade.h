@@ -2,8 +2,7 @@
 **      2019-04-16  IGrade 分级数据接口。
 ***************************************************************************************************/
 
-#ifndef IGRADE_H
-#define IGRADE_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -39,5 +38,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IGRADE_H

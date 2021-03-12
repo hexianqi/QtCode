@@ -1,5 +1,4 @@
-#ifndef HSQLHANDLE_P_H
-#define HSQLHANDLE_P_H
+#pragma once
 
 #include "HSqlHandle.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLHANDLE_P_H

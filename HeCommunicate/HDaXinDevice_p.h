@@ -1,5 +1,4 @@
-#ifndef HDAXINDEVICE_P_H
-#define HDAXINDEVICE_P_H
+#pragma once
 
 #include "HDaXinDevice.h"
 #include "HAbstractDevice_p.h"
@@ -17,5 +16,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HDAXINDEVICE_P_H

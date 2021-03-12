@@ -2,8 +2,7 @@
 **      2018-06-19  HXmlBuilder XML构建器。
 ***************************************************************************************************/
 
-#ifndef HXMLBUILDER_H
-#define HXMLBUILDER_H
+#pragma once
 
 #include "HFileGlobal.h"
 #include <QtCore/QVariant>
@@ -24,5 +23,3 @@ public:
 };
 
 HE_FILE_END_NAMESPACE
-
-#endif // HXMLBUILDER_H

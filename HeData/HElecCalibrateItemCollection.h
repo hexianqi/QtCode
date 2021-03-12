@@ -2,8 +2,7 @@
 **      2019-10-17  HElecCalibrateItemCollection
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATEITEMCOLLECTION_H
-#define HELECCALIBRATEITEMCOLLECTION_H
+#pragma once
 
 #include "IElecCalibrateItemCollection.h"
 
@@ -32,5 +31,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEMCOLLECTION_H

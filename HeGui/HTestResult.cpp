@@ -7,6 +7,7 @@
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlPrint.h"
 #include "HeSql/HSql.h"
+#include "QXlsx/xlsxdocument.h"
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
 #include <QtCore/QDebug>
@@ -18,8 +19,26 @@ HTestResultPrivate::HTestResultPrivate()
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
     sqlPrint = HAppContext::getContextPointer<ISqlPrint>("ISqlPrint");
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
-    stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
-    stream->setFileFilter("Excel files (*.xls)");
+    textStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
+    textStream->setFileFilter("Excel files (*.xls)");
+    xlsxStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createXlsxStream("HXlsxStream");
+    xlsxStream->setWriteContent([=](Document *p) { writeContent(p); });
+}
+
+void HTestResultPrivate::writeContent(Document *p)
+{
+    int i, j;
+    auto data = QStringList() << "Index" << HCore::toCaptionUnit(exportTypes);
+    for (i = 0; i < data.size(); i++)
+        p->write(1, i + 1, data.at(i));
+    for (i = 0; i < results.size(); i++)
+    {
+        data.clear();
+        data.append(QString::number(i + 1));
+        data.append(results.at(i)->toString(exportTypes));
+        for (j = 0; j < data.size(); j++)
+            p->write(i + 2, j + 1, data.at(j));
+    }
 }
 
 HTestResult::HTestResult(QObject *parent) :
@@ -115,6 +134,7 @@ void HTestResult::setExportPathName(const QString &value)
 void HTestResult::setSyncFileName(const QString &value)
 {
     d_ptr->syncFileName = value;
+    d_ptr->modified = true;
 }
 
 void HTestResult::printPreviewLast()
@@ -155,8 +175,8 @@ void HTestResult::exportExcel(int index, int count)
     for (int i = 0; i < count; i++)
         list << QString("%1\t").arg(index + i) + d_ptr->results.at(i)->toString(d_ptr->exportTypes).join("\t");
     list.prepend("Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t"));
-    d_ptr->stream->setContent(list.join("\n"));
-    d_ptr->stream->saveAsFile("", "");
+    d_ptr->textStream->setContent(list.join("\n"));
+    d_ptr->textStream->saveAsFile("", "");
 }
 
 void HTestResult::exportExcelLast()
@@ -166,8 +186,8 @@ void HTestResult::exportExcelLast()
     QString text;
     text += HCore::toCaptionUnit(d_ptr->exportTypes).join("\t") + "\n";
     text += d_ptr->results.last()->toString(d_ptr->exportTypes).join("\t") + "\n";
-    d_ptr->stream->setContent(text);
-    d_ptr->stream->saveAsFile("", "");
+    d_ptr->textStream->setContent(text);
+    d_ptr->textStream->saveAsFile("", "");
 }
 
 void HTestResult::exportExcelAppend()
@@ -185,8 +205,8 @@ void HTestResult::exportExcelAppend()
         text += "Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t") + "\n";
     }
     text += QString("%1\t").arg(d_ptr->index) + d_ptr->results.last()->toString(d_ptr->exportTypes).join("\t") + "\n";
-    d_ptr->stream->setContent(text);
-    d_ptr->stream->appendFile(d_ptr->exportFileName);
+    d_ptr->textStream->setContent(text);
+    d_ptr->textStream->appendFile(d_ptr->exportFileName);
     d_ptr->index++;
 }
 
@@ -195,13 +215,8 @@ void HTestResult::syncFile()
     if (d_ptr->syncFileName.isEmpty() || !d_ptr->modified)
         return;
 
-    QStringList list;
-    for (int i = 0; i < size(); i++)
-        list << QString("%1\t").arg(i + 1) + d_ptr->results.at(i)->toString(d_ptr->exportTypes).join("\t");
-    list.prepend("Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t"));
-    d_ptr->stream->setContent(list.join("\n"));
-    d_ptr->stream->writeFile(d_ptr->syncFileName);
-    d_ptr->modified = false;
+    if (d_ptr->xlsxStream->writeFile(d_ptr->syncFileName))
+        d_ptr->modified = false;
 }
 
 QVariantMap HTestResult::toRecord(int index)

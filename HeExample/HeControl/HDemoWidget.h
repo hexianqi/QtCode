@@ -2,8 +2,7 @@
 **      2019-06-25  HDemoWidget 演示窗体。
 ***************************************************************************************************/
 
-#ifndef HDEMOWIDGET_H
-#define HDEMOWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -53,5 +52,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDEMOWIDGET_H

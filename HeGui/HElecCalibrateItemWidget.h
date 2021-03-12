@@ -2,8 +2,7 @@
 **      2019-10-21  HElecCalibrateItemWidget 电校准配置窗体。
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATEITEMWIDGET_H
-#define HELECCALIBRATEITEMWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeData/HDataType.h"
@@ -48,5 +47,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEMWIDGET_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecCalibrateCollection 光谱校准数据集合类。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATECOLLECTION_H
-#define HSPECCALIBRATECOLLECTION_H
+#pragma once
 
 #include "ISpecCalibrateCollection.h"
 
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECCALIBRATECOLLECTION_H

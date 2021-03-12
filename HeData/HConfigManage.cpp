@@ -8,6 +8,7 @@
 #include "IChromatismCollection.h"
 #include "IGradeCollection.h"
 #include "IAdjustCollection.h"
+#include "IAdjust2Collection.h"
 #include "IQualityCollection.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
@@ -81,6 +82,12 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         adjusts = factory->createAdjustCollection(type);
         adjusts->dataStream()->readContent(s);
     }
+    if (contain & IConfigManage::ContainAdjust2)
+    {
+        s >> type;
+        adjusts2 = factory->createAdjust2Collection(type);
+        adjusts2->dataStream()->readContent(s);
+    }
     if (contain & IConfigManage::ContainQuality)
     {
         s >> type;
@@ -122,6 +129,11 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     {
         s << adjusts->typeName();
         adjusts->dataStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainAdjust2)
+    {
+        s << adjusts2->typeName();
+        adjusts2->dataStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainQuality)
     {
@@ -231,7 +243,17 @@ void HConfigManage::setAdjustCollection(IAdjustCollection *p)
 
 IAdjustCollection *HConfigManage::adjustCollection()
 {
-    return  d_ptr->adjusts;
+    return d_ptr->adjusts;
+}
+
+void HConfigManage::setAdjust2Collection(IAdjust2Collection *p)
+{
+    d_ptr->adjusts2 = p;
+}
+
+IAdjust2Collection *HConfigManage::adjust2Collection()
+{
+    return d_ptr->adjusts2;
 }
 
 void HConfigManage::setQualityCollection(IQualityCollection *p)
@@ -260,6 +282,8 @@ bool HConfigManage::importPart(quint32 value)
         return d_ptr->grades->dataStream()->openFile();
     if (value & ContainAdjust)
         return d_ptr->adjusts->dataStream()->openFile();
+    if (value & ContainAdjust2)
+        return d_ptr->adjusts2->dataStream()->openFile();
     if (value & ContainQuality)
         return d_ptr->qualitys->dataStream()->openFile();
     return false;
@@ -281,6 +305,8 @@ bool HConfigManage::exportPart(quint32 value)
         return d_ptr->grades->dataStream()->saveAsFile();
     if (value & ContainAdjust)
         return d_ptr->adjusts->dataStream()->saveAsFile();
+    if (value & ContainAdjust2)
+        return d_ptr->adjusts2->dataStream()->saveAsFile();
     if (value & ContainQuality)
         return d_ptr->qualitys->dataStream()->saveAsFile();
     return false;
@@ -292,36 +318,26 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     set = supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
     set = supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
     set = supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
-    auto list = set.toList();
-    auto data = test->select(list);
-    if (d_ptr->adjusts != nullptr && test->data("[使用调整]").toBool())
+    optional = set.toList();
+    auto data = test->select(optional);
+
+    if (test->data("[使用调整]").toBool())
     {
-        auto value = d_ptr->adjusts->correct(data);
-        test->setData(value);
-        if ((value.contains("[色坐标x]") || value.contains("[色坐标y]")) && list.contains("[色坐标]"))
-            test->setData("[色坐标]", QPointF(test->data("[色坐标x]").toDouble(), test->data("[色坐标y]").toDouble()));
-        if ((value.contains("[色坐标u]") || value.contains("[色坐标v]")) && list.contains("[色坐标uv]"))
-            test->setData("[色坐标uv]", QPointF(test->data("[色坐标u]").toDouble(), test->data("[色坐标v]").toDouble()));
-        if ((value.contains("[色坐标up]") || value.contains("[色坐标vp]")) && list.contains("[色坐标uvp]"))
-            test->setData("[色坐标uvp]", QPointF(test->data("[色坐标up]").toDouble(), test->data("[色坐标vp]").toDouble()));
-        if ((value.contains("[实测电压]") || value.contains("[实测电流]")) && list.contains("[电功率]"))
-        {
-            auto p = test->data("[实测电压]").toDouble() * test->data("[实测电流]").toDouble() / 1000.0;
-            auto f = test->data("[光通量]").toDouble();
-            auto e = test->data("[明视觉光效率]").toDouble();
-            test->setData("[电功率]" , p);
-            if (list.contains("[光效率]"))
-                test->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
-            if (list.contains("[光功率]"))
-                test->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
-        }
-        data = test->select(list);
+        QVariantMap value;
+        if (d_ptr->adjusts != nullptr)
+            value = d_ptr->adjusts->correct(data);
+        else if (d_ptr->adjusts2 != nullptr)
+            value = d_ptr->adjusts2->correct(test->data("[色温]").toDouble(), data);
+        if (!value.isEmpty())
+            data = unify(test, value, optional);
     }
+
     if (d_ptr->chromatisms != nullptr)
     {
         test->setData("[色容差]", d_ptr->chromatisms->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
         test->setData("[色容差标准]", d_ptr->chromatisms->toMap());
     }
+
     if (d_ptr->grades != nullptr)
     {
         QString text;
@@ -329,6 +345,7 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
         test->setData("[分级]", level);
         test->setData("[分级别名]", text);
     }
+
     if (d_ptr->qualitys != nullptr)
     {
         QVariantMap colors;
@@ -338,6 +355,29 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
         test->setData("[品质颜色]", color);
         test->setData("[品质不符合颜色]", colors);
     }
+}
+
+QVariantMap HConfigManage::unify(ITestData *test, QVariantMap value, QStringList optional)
+{
+    test->setData(value);
+    if (optional.contains("[色坐标]") && (value.contains("[色坐标x]") || value.contains("[色坐标y]")))
+        test->setData("[色坐标]", QPointF(test->data("[色坐标x]").toDouble(), test->data("[色坐标y]").toDouble()));
+    if (optional.contains("[色坐标uv]") && (value.contains("[色坐标u]") || value.contains("[色坐标v]")))
+        test->setData("[色坐标uv]", QPointF(test->data("[色坐标u]").toDouble(), test->data("[色坐标v]").toDouble()));
+    if (optional.contains("[色坐标uvp]") && (value.contains("[色坐标up]") || value.contains("[色坐标vp]")))
+        test->setData("[色坐标uvp]", QPointF(test->data("[色坐标up]").toDouble(), test->data("[色坐标vp]").toDouble()));
+    if (optional.contains("[电功率]") && (value.contains("[实测电压]") || value.contains("[实测电流]")))
+    {
+        auto p = test->data("[实测电压]").toDouble() * test->data("[实测电流]").toDouble() / 1000.0;
+        auto f = test->data("[光通量]").toDouble();
+        auto e = test->data("[明视觉光效率]").toDouble();
+        test->setData("[电功率]" , p);
+        if (optional.contains("[光效率]"))
+            test->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+        if (optional.contains("[光功率]"))
+            test->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
+    }
+    return test->select(optional);
 }
 
 HE_DATA_END_NAMESPACE

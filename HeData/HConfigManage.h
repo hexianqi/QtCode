@@ -2,8 +2,7 @@
 **      2018-06-19  HConfigManage 配置管理类。
 ***************************************************************************************************/
 
-#ifndef HCONFIGMANAGE_H
-#define HCONFIGMANAGE_H
+#pragma once
 
 #include "IConfigManage.h"
 
@@ -37,6 +36,8 @@ public:
     IGradeCollection *gradeCollection() override;
     void setAdjustCollection(IAdjustCollection *) override;
     IAdjustCollection *adjustCollection() override;
+    void setAdjust2Collection(IAdjust2Collection *) override;
+    IAdjust2Collection *adjust2Collection() override;
     void setQualityCollection(IQualityCollection *) override;
     IQualityCollection *qualityCollection() override;
 
@@ -51,9 +52,10 @@ protected:
     HConfigManage(HConfigManagePrivate &);
 
 protected:
+    QVariantMap unify(ITestData *test, QVariantMap value, QStringList optional);
+
+protected:
     QScopedPointer<HConfigManagePrivate> d_ptr;
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCONFIGMANAGE_H

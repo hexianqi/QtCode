@@ -1,5 +1,4 @@
-#ifndef HABSTRACTNETWORKWIDGET_P_H
-#define HABSTRACTNETWORKWIDGET_P_H
+#pragma once
 
 #include "HAbstractNetworkWidget.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTNETWORKWIDGET_P_H

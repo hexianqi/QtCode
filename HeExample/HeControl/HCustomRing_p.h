@@ -1,5 +1,4 @@
-#ifndef HCUSTOMRING_P_H
-#define HCUSTOMRING_P_H
+#pragma once
 
 #include "HCustomRing.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCUSTOMRING_P_H

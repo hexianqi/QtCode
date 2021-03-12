@@ -1,5 +1,4 @@
-#ifndef HCHART_P_H
-#define HCHART_P_H
+#pragma once
 
 #include "HChart.h"
 
@@ -8,4 +7,3 @@ class HChartPrivate
 
 };
 
-#endif // HCHART_P_H

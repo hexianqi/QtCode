@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEITEMCOLLECTION_P_H
-#define HELECCALIBRATEITEMCOLLECTION_P_H
+#pragma once
 
 #include "HElecCalibrateItemCollection.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEMCOLLECTION_P_H

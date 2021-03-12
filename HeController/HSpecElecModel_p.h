@@ -1,5 +1,4 @@
-#ifndef HSPECELECMODEL_P_H
-#define HSPECELECMODEL_P_H
+#pragma once
 
 #include "HSpecElecModel.h"
 #include "HAbstractModel_p.h"
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECELECMODEL_P_H

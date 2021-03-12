@@ -1,5 +1,4 @@
-#ifndef HABSTRACTMODEL_P_H
-#define HABSTRACTMODEL_P_H
+#pragma once
 
 #include "HAbstractModel.h"
 #include "HeData/HDataGlobal.h"
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HABSTRACTMODEL_P_H

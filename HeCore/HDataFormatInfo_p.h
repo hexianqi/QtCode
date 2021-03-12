@@ -1,5 +1,4 @@
-#ifndef HDATAFORMATINFO_P_H
-#define HDATAFORMATINFO_P_H
+#pragma once
 
 #include "HDataFormatInfo.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HDATAFORMATINFO_P_H

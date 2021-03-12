@@ -1,5 +1,4 @@
-#ifndef HSPECPELSWAVE_P_H
-#define HSPECPELSWAVE_P_H
+#pragma once
 
 #include "HSpecPelsWave.h"
 #include "HAbstractDataItem_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECPELSWAVE_P_H

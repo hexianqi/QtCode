@@ -2,8 +2,7 @@
 **      2019-06-20  HPieCircular 饼状
 ***************************************************************************************************/
 
-#ifndef HPIECIRCULAR_H
-#define HPIECIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -45,5 +44,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPIECIRCULAR_H

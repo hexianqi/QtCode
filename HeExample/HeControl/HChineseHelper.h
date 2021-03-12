@@ -2,8 +2,7 @@
 **      2019-12-20  HChineseHelper 中文帮助类。
 ***************************************************************************************************/
 
-#ifndef HCHINESEHELPER_H
-#define HCHINESEHELPER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/HSingleton3.h"
@@ -36,5 +35,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCHINESEHELPER_H

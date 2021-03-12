@@ -1,5 +1,4 @@
-#ifndef HDEFENCEBUTTON_P_H
-#define HDEFENCEBUTTON_P_H
+#pragma once
 
 #include "HDefenceButton.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDEFENCEBUTTON_P_H

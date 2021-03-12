@@ -1,5 +1,4 @@
-#ifndef HIMAGESWITCH_P_H
-#define HIMAGESWITCH_P_H
+#pragma once
 
 #include "HImageSwitch.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIMAGESWITCH_P_H

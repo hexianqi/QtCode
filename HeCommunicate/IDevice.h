@@ -2,8 +2,7 @@
 **      2018-06-19  IDevice 设备接口。
 ***************************************************************************************************/
 
-#ifndef IDEVICE_H
-#define IDEVICE_H
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -41,5 +40,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // IDEVICE_H

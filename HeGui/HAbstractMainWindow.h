@@ -2,8 +2,7 @@
 **      2019-03-01  HAbstractMainWindow 主窗口。
 ***************************************************************************************************/
 
-#ifndef HMAINWINDOW_H
-#define HMAINWINDOW_H
+#pragma once
 
 #include "IMainWindow.h"
 #include "HeCore/HActionType.h"
@@ -72,5 +71,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HMAINWINDOW_H

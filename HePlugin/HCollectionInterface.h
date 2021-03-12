@@ -2,8 +2,7 @@
 **      2018-06-19  HCollectionInterface 集合接口。
 ***************************************************************************************************/
 
-#ifndef HCOLLECTIONINTERFACE_H
-#define HCOLLECTIONINTERFACE_H
+#pragma once
 
 #include <QtDesigner>
 #include <qplugin.h>
@@ -22,5 +21,3 @@ public:
 private:
     QList<QDesignerCustomWidgetInterface*> _widgets;
 };
-
-#endif

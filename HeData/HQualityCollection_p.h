@@ -1,5 +1,4 @@
-#ifndef HQUALITYCOLLECTION_P_H
-#define HQUALITYCOLLECTION_P_H
+#pragma once
 
 #include "HQualityCollection.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITYCOLLECTION_P_H

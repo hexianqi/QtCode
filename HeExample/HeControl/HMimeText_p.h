@@ -1,5 +1,4 @@
-#ifndef HMIMETEXT_P_H
-#define HMIMETEXT_P_H
+#pragma once
 
 #include "HMimeText.h"
 #include "HMimePart_p.h"
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMETEXT_P_H

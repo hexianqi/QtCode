@@ -2,8 +2,7 @@
 **      2018-07-03  HCie1931Chart CIE1931图表。
 ***************************************************************************************************/
 
-#ifndef HCIE1931CHART_H
-#define HCIE1931CHART_H
+#pragma once
 
 #include "HSingleAxisChart.h"
 
@@ -53,5 +52,3 @@ private:
     void readSeries();
     void updateHorseshoeBrush();
 };
-
-#endif // HCIE1931CHART_H

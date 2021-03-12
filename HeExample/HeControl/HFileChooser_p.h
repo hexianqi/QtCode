@@ -1,6 +1,4 @@
-#ifndef HFILECHOOSER_P_H
-#define HFILECHOOSER_P_H
-
+#pragma once
 #include "HFileChooser.h"
 #include "HButtonLineEdit_p.h"
 
@@ -18,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFILECHOOSER_P_H

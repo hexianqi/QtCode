@@ -1,5 +1,4 @@
-#ifndef HSERIALPORT_P_H
-#define HSERIALPORT_P_H
+#pragma once
 
 #include "HAbstractPort_p.h"
 #include "HSerialPort.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSERIALPORT_P_H

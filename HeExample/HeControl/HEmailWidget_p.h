@@ -1,5 +1,4 @@
-#ifndef HEMAILWIDGET_P_H
-#define HEMAILWIDGET_P_H
+#pragma once
 
 #include "HEmailWidget.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HEMAILWIDGET_P_H

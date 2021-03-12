@@ -2,8 +2,7 @@
 **      2019-06-27  HAnimationProgress 动画进度
 ***************************************************************************************************/
 
-#ifndef HANIMATIONPROGRESS_H
-#define HANIMATIONPROGRESS_H
+#pragma once
 
 #include "HAbstractProgress.h"
 
@@ -41,5 +40,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HANIMATIONPROGRESS_H

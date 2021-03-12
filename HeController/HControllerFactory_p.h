@@ -1,5 +1,4 @@
-#ifndef HCONTROLLERFACTORY_P_H
-#define HCONTROLLERFACTORY_P_H
+#pragma once
 
 #include "HControllerFactory.h"
 
@@ -10,6 +9,3 @@ class HControllerFactoryPrivate
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-
-#endif // HCONTROLLERFACTORY_P_H

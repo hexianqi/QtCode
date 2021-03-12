@@ -1,5 +1,4 @@
-#ifndef HPANELGAUGE_P_H
-#define HPANELGAUGE_P_H
+#pragma once
 
 #include "HPanelGauge.h"
 #include "HCircleGauge_p.h"
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPANELGAUGE_P_H

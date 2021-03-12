@@ -1,5 +1,4 @@
-#ifndef HCLOCKGAUGE_P_H
-#define HCLOCKGAUGE_P_H
+#pragma once
 
 #include "HClockGauge.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCLOCKGAUGE_P_H

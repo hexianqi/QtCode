@@ -2,8 +2,7 @@
 **      2019-07-11  HCircleGauge 圆形仪表盘
 ***************************************************************************************************/
 
-#ifndef HCIRCLEGAUGE_H
-#define HCIRCLEGAUGE_H
+#pragma once
 
 #include "HAnimationProgress.h"
 
@@ -73,5 +72,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCLEGAUGE_H

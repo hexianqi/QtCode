@@ -2,8 +2,7 @@
 **      2019-07-22  HSpecFittingPolynomWidget 拟合配置窗体（多项式）。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTINGPOLYNOMWIDGET_H
-#define HSPECFITTINGPOLYNOMWIDGET_H
+#pragma once
 
 #include "HSpecFittingWidget.h"
 
@@ -40,5 +39,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGPOLYNOMWIDGET_H

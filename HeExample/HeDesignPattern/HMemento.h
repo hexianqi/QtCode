@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/79292435
 ***************************************************************************************************/
 
-#ifndef HMEMENTO_H
-#define HMEMENTO_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -59,5 +58,3 @@ private:
     vector<DateTime *> _history;
 };
 
-
-#endif // HMEMENTO_H

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "HTestResult.h"
-
+#include "HeData/IXlsxStream.h"
 #include "HeSql/HSqlGlobal.h"
 
 HE_DATA_BEGIN_NAMESPACE
@@ -22,9 +22,13 @@ public:
     HTestResultPrivate();
 
 public:
+    void writeContent(Document *);
+
+public:
     ISqlHandle *sqlHandle = nullptr;
     ISqlPrint *sqlPrint = nullptr;
-    ITextStream *stream = nullptr;
+    ITextStream *textStream = nullptr;
+    IXlsxStream *xlsxStream = nullptr;
     ITestData *testData = nullptr;
     QList<ITestData *> results;
     QStringList exportTypes;

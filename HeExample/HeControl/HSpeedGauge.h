@@ -10,8 +10,7 @@
 **                  7:自适应窗体拉伸,刻度尺和文字自动缩放
 ***************************************************************************************************/
 
-#ifndef HSPEEDGAUGE_H
-#define HSPEEDGAUGE_H
+#pragma once
 
 #include "HCircleGauge.h"
 
@@ -65,5 +64,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSPEEDGAUGE_H

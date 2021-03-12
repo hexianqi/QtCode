@@ -1,5 +1,4 @@
-#ifndef HSTYLEWIDGET_P_H
-#define HSTYLEWIDGET_P_H
+#pragma once
 
 #include "HStyleWidget.h"
 
@@ -10,5 +9,3 @@ class HStyleWidgetPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTYLEWIDGET_P_H

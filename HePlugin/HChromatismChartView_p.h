@@ -1,5 +1,4 @@
-#ifndef HCHROMATISMCHARTVIEW_P_H
-#define HCHROMATISMCHARTVIEW_P_H
+#pragma once
 
 #include "HChromatismChartView.h"
 #include "HZoomChartView_p.h"
@@ -21,5 +20,3 @@ public:
     QPointF pointFocus;
     double sdcmFocus = 0.0;
 };
-
-#endif // HCHROMATISMCHARTVIEW_P_H

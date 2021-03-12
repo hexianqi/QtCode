@@ -8,8 +8,7 @@
 **                  5:可设置按钮颜色模式
 ***************************************************************************************************/
 
-#ifndef HMULTISTYLEBUTTON_H
-#define HMULTISTYLEBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -121,5 +120,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORBUTTON_H

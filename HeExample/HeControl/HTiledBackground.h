@@ -5,8 +5,7 @@
 **                  2:可设置大小
 ***************************************************************************************************/
 
-#ifndef HTILEDBACKGROUND_H
-#define HTILEDBACKGROUND_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -54,12 +53,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTILEDBACKGROUND_H
-
-
-//protected:
-//    void drawBg();
-//
-
-

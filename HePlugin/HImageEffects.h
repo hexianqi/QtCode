@@ -3,8 +3,7 @@
 **                  https://qtdebug.com/qtbook-paint-image/
 ***************************************************************************************************/
 
-#ifndef HIMAGEEFFECTS_H
-#define HIMAGEEFFECTS_H
+#pragma once
 
 class QImage;
 
@@ -28,7 +27,4 @@ public:
     // 饱和度
     static QImage saturation(QImage image, int delta);
 
-
 };
-
-#endif // HIMAGEEFFECTS_H

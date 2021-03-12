@@ -1,5 +1,4 @@
-#ifndef HSPECCALIBRATEWIDGET_P_H
-#define HSPECCALIBRATEWIDGET_P_H
+#pragma once
 
 #include "HSpecCalibrateWidget.h"
 #include "HAbstractTestWidget_p.h"
@@ -32,5 +31,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATEWIDGET_P_H

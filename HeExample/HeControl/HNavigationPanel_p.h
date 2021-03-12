@@ -1,5 +1,4 @@
-#ifndef HNAVIGATIONPANEL_P_H
-#define HNAVIGATIONPANEL_P_H
+#pragma once
 
 #include "HNavigationPanel.h"
 #include "HAbstractMultiPanel_p.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVIGATIONPANEL_P_H

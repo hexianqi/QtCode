@@ -2,8 +2,7 @@
 **      2018-06-19  HMultiton 多个单例模板。
 ***************************************************************************************************/
 
-#ifndef HMULTITON_H
-#define HMULTITON_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <string>
@@ -58,5 +57,3 @@ template <typename T, typename K>
 std::unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
 
 HE_CORE_END_NAMESPACE
-
-#endif // HMULTITON_H

@@ -2,8 +2,7 @@
 **      2019-10-09  HLogType 日志类型。
 ***************************************************************************************************/
 
-#ifndef HLOGTYPE_H
-#define HLOGTYPE_H
+#pragma once
 
 #include "HCoreGlobal.h"
 
@@ -34,5 +33,3 @@ enum HLogType
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HLOGTYPE_H

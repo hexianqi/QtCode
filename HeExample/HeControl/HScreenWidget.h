@@ -6,8 +6,7 @@
 **                  3:支持图片另存为
 ***************************************************************************************************/
 
-#ifndef HSCREENWIDGET_H
-#define HSCREENWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QDialog>
@@ -49,5 +48,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSCREENWIDGET_H

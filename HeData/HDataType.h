@@ -1,5 +1,4 @@
-#ifndef HDATATYPE_H
-#define HDATATYPE_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include <QtCore/QMetaType>
@@ -43,5 +42,3 @@ enum HQualityReport
 HE_DATA_END_NAMESPACE
 
 Q_DECLARE_METATYPE(HeData::HQualityReport);
-
-#endif // HDATATYPE_H

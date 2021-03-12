@@ -2,8 +2,7 @@
 **      2019-08-09  HTaskWidget
 ***************************************************************************************************/
 
-#ifndef HTASKWIDGET_H
-#define HTASKWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -46,5 +45,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTASKWIDGET_H

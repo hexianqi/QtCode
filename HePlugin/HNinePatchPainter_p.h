@@ -1,5 +1,4 @@
-#ifndef HNINEPATCHPAINTER_P_H
-#define HNINEPATCHPAINTER_P_H
+#pragma once
 
 #include "HNinePatchPainter.h"
 #include <QtCore/QMargins>
@@ -24,5 +23,3 @@ public:
     QPixmap bottomLeftPixmap;  // 左下角的子图
     QPixmap centerPixmap;      // 中间的子图
 };
-
-#endif // HNINEPATCHPAINTER_P_H

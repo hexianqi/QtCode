@@ -2,8 +2,7 @@
 **      2019-09-19  HModelSpec
 ***************************************************************************************************/
 
-#ifndef HMODELSPEC_H
-#define HMODELSPEC_H
+#pragma once
 
 #include "HeController/HAbstractModel.h"
 
@@ -28,5 +27,3 @@ protected:
     void syncTestData(quint32 type) override;
     void syncDevice(quint32 type) override;
 };
-
-#endif // HMODELSPEC_H

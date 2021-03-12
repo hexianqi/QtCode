@@ -9,8 +9,7 @@
 **                  6:可设置边框圆角角度/背景进度圆角角度/头部圆角角度
 ***************************************************************************************************/
 
-#ifndef HBATTERY_H
-#define HBATTERY_H
+#pragma once
 
 #include "HAnimationProgress.h"
 
@@ -70,5 +69,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBATTERY_H

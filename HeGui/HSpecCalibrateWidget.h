@@ -2,8 +2,7 @@
 **      2019-04-11  HSpecCalibrateWidget 光谱校准窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATEWIDGET_H
-#define HSPECCALIBRATEWIDGET_H
+#pragma once
 
 #include "HAbstractTestWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -66,5 +65,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATEWIDGET_H

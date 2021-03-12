@@ -2,8 +2,7 @@
 **      2019-08-02  HFileChooser
 ***************************************************************************************************/
 
-#ifndef HFILECHOOSER_H
-#define HFILECHOOSER_H
+#pragma once
 
 #include "HButtonLineEdit.h"
 #include <QtWidgets/QFileDialog>
@@ -59,5 +58,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFILECHOOSER_H

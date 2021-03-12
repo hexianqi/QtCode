@@ -1,5 +1,4 @@
-#ifndef HFILELOG_P_H
-#define HFILELOG_P_H
+#pragma once
 
 #include "HFileLog.h"
 #include "HAbstractFileLog_p.h"
@@ -12,5 +11,3 @@ class HFileLogPrivate : public HAbstractFileLogPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFILELOG_P_H

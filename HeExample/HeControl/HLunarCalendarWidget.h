@@ -11,8 +11,7 @@
 **                  8:支持1901年-2099年范围
 ***************************************************************************************************/
 
-#ifndef HLUNARCALENDARWIDGET_H
-#define HLUNARCALENDARWIDGET_H
+#pragma once
 
 #include "HLunarCalendarItem.h"
 
@@ -149,5 +148,3 @@ private slots:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLUNARCALENDARWIDGET_H

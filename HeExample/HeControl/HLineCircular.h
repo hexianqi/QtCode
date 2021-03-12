@@ -2,8 +2,7 @@
 **      2019-06-20  HLineCircular 线状
 ***************************************************************************************************/
 
-#ifndef HLINECIRCULAR_H
-#define HLINECIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLINECIRCULAR_H

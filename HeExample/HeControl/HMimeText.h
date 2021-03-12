@@ -2,8 +2,7 @@
 **      2019-12-26  HMimeText
 ***************************************************************************************************/
 
-#ifndef HMIMETEXT_H
-#define HMIMETEXT_H
+#pragma once
 
 #include "HMimePart.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMETEXT_H

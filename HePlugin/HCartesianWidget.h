@@ -2,8 +2,7 @@
 **      2018-06-19  HCartesianWidget 笛卡尔坐标系窗口部件。支持缩放。
 ***************************************************************************************************/
 
-#ifndef HCARTESIANWIDGET_H
-#define HCARTESIANWIDGET_H
+#pragma once
 
 #include "HDiagramWidget.h"
 
@@ -58,5 +57,3 @@ protected slots:
 private:
     void init();
 };
-
-#endif // HCARTESIANWIDGET_H

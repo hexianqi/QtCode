@@ -1,5 +1,4 @@
-#ifndef HTASKPANEL_P_H
-#define HTASKPANEL_P_H
+#pragma once
 
 #include "HTaskPanel.h"
 #include "HAbstractMultiPanel_p.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTASKPANEL_P_H

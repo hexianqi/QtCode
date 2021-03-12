@@ -2,8 +2,7 @@
 **      2019-07-19  IQssStyle Qss样式接口。
 ***************************************************************************************************/
 
-#ifndef IQSSSTYLE_H
-#define IQSSSTYLE_H
+#pragma once
 
 #include "IStyle.h"
 
@@ -28,5 +27,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // IQSSSTYLE_H

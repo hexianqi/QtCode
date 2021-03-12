@@ -2,8 +2,7 @@
 **      2019-08-27  HNavTreeView
 ***************************************************************************************************/
 
-#ifndef HNAVTREEVIEW_H
-#define HNAVTREEVIEW_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QTreeView>
@@ -62,5 +61,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVTREEVIEW_H

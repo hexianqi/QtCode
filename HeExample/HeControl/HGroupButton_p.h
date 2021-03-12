@@ -1,5 +1,4 @@
-#ifndef HGROUPBUTTON_P_H
-#define HGROUPBUTTON_P_H
+#pragma once
 
 #include "HGroupButton.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HGROUPBUTTON_P_H

@@ -1,5 +1,4 @@
-#ifndef HABSTRACTDATAITEM_P_H
-#define HABSTRACTDATAITEM_P_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HABSTRACTDATAITEM_P_H

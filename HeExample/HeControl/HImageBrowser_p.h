@@ -1,5 +1,4 @@
-#ifndef HIMAGEBROWSER_P_H
-#define HIMAGEBROWSER_P_H
+#pragma once
 
 #include "HImageBrowser.h"
 
@@ -31,5 +30,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIMAGEBROWSER_P_H

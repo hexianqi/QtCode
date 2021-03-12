@@ -2,8 +2,7 @@
 **      2020-01-13  HTipWidget
 ***************************************************************************************************/
 
-#ifndef HTIPWIDGET_H
-#define HTIPWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QFrame>
@@ -73,5 +72,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTIPWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef HADJUSTITEM_P_H
-#define HADJUSTITEM_P_H
+#pragma once
 
 #include "HAdjustItem.h"
 #include "HAbstractDataItem_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HADJUSTITEM_P_H

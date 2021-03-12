@@ -1,5 +1,4 @@
-#ifndef HRESULTTABLEWIDGET_P_H
-#define HRESULTTABLEWIDGET_P_H
+#pragma once
 
 #include "HResultTableWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HRESULTTABLEWIDGET_P_H

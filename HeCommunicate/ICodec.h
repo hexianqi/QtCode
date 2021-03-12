@@ -2,8 +2,7 @@
 **      2019-04-08  ICodec 编码器。
 ***************************************************************************************************/
 
-#ifndef ICODEC_H
-#define ICODEC_H
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // ICODEC_H

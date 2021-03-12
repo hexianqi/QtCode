@@ -1,5 +1,4 @@
-#ifndef HPARALLELGRADE_P_H
-#define HPARALLELGRADE_P_H
+#pragma once
 
 #include "HParallelGrade.h"
 #include "HAbstractGrade_p.h"
@@ -11,5 +10,3 @@ class HParallelGradePrivate : public HAbstractGradePrivate
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HPARALLELGRADE_P_H

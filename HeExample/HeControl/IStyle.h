@@ -2,8 +2,7 @@
 **      2019-07-19  IStyle 样式接口。
 ***************************************************************************************************/
 
-#ifndef ISTYLE_H
-#define ISTYLE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -25,5 +24,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ISTYLE_H

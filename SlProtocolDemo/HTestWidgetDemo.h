@@ -2,8 +2,7 @@
 **      2019-09-17  HTestWidgetDemo
 ***************************************************************************************************/
 
-#ifndef HTESTWIDGETDEMO_H
-#define HTESTWIDGETDEMO_H
+#pragma once
 
 #include "HeData/HDataGlobal.h"
 #include "HeGui/HTestWidget2.h"
@@ -48,5 +47,3 @@ protected:
     void refreshCcdView();
     void refreshSpecWidget();
 };
-
-#endif // HTESTWIDGETDEMO_H

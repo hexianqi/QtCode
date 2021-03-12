@@ -1,5 +1,4 @@
-#ifndef HSPECCALIBRATEDIALOG_P_H
-#define HSPECCALIBRATEDIALOG_P_H
+#pragma once
 
 #include "HSpecCalibrateDialog.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATEDIALOG_P_H

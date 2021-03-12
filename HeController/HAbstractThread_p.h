@@ -1,5 +1,4 @@
-#ifndef HABSTRACTTHREAD_P_H
-#define HABSTRACTTHREAD_P_H
+#pragma once
 
 #include "HAbstractThread.h"
 #include "HeCommunicate/HCommunicateGlobal.h"
@@ -42,5 +41,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HABSTRACTTHREAD_P_H

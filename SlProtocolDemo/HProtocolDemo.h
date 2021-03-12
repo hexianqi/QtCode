@@ -2,8 +2,7 @@
 **      2019-09-12  HProtocolDemo
 ***************************************************************************************************/
 
-#ifndef HPROTOCOLDEMO_H
-#define HPROTOCOLDEMO_H
+#pragma once
 
 #include "HeCommunicate/IProtocol.h"
 
@@ -49,5 +48,3 @@ public:
 protected:
     QScopedPointer<HProtocolDemoPrivate> d_ptr;
 };
-
-#endif // HPROTOCOLDEMO_H

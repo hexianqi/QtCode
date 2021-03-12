@@ -12,8 +12,7 @@
 **                  9:可控制启动报警和停止报警,报警时闪烁
 ***************************************************************************************************/
 
-#ifndef HLIGHTBUTTON_H
-#define HLIGHTBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -97,5 +96,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLIGHTBUTTON_H

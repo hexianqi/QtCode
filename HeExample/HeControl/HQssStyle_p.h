@@ -1,5 +1,4 @@
-#ifndef HQSSSTYLE_P_H
-#define HQSSSTYLE_P_H
+#pragma once
 
 #include "HQssStyle.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HQSSSTYLE_P_H

@@ -11,8 +11,7 @@
 **                  8:支持设置是否等分显示左右值
 ***************************************************************************************************/
 
-#ifndef HMINIGAUGE_H
-#define HMINIGAUGE_H
+#pragma once
 
 #include "HControlType.h"
 #include "HCircleGauge.h"
@@ -73,12 +72,7 @@ private:
 
 HE_CONTROL_END_NAMESPACE
 
-#endif // HMINIGAUGE_H
-
-
 //    Q_PROPERTY(int step READ getStep WRITE setStep)
-
-
 
 //protected:
 //    void mousePressEvent(QMouseEvent *);
@@ -183,5 +177,3 @@ HE_CONTROL_END_NAMESPACE
 //Q_SIGNALS:
 //    void valueChanged(double value);
 //};
-
-//#endif // GAUGEMINI_H

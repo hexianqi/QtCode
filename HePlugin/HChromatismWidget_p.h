@@ -1,9 +1,7 @@
-#ifndef HCHROMATISMWIDGET_P_H
-#define HCHROMATISMWIDGET_P_H
+#pragma once
 
 #include "HChromatismWidget.h"
 #include "HCartesianWidget_p.h"
-
 
 class HChromatismWidgetPrivate : public HCartesianWidgetPrivate
 {
@@ -27,5 +25,3 @@ public:
     double axisB = 0.0;
     double sdcmFocus = 0.0;
 };
-
-#endif // HCHROMATISMWIDGET_P_H

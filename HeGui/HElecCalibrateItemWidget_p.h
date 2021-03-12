@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEITEMWIDGET_P_H
-#define HELECCALIBRATEITEMWIDGET_P_H
+#pragma once
 
 #include "HElecCalibrateItemWidget.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEMWIDGET_P_H

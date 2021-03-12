@@ -2,8 +2,7 @@
 **      2019-07-12  HNetworkLog 网络日志（只监控一个IP）。
 ***************************************************************************************************/
 
-#ifndef HNETWORKLOG_H
-#define HNETWORKLOG_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/HSingleton3.h"
@@ -36,5 +35,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNETWORKLOG_H

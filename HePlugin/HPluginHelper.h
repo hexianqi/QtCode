@@ -2,8 +2,7 @@
 **      2018-06-19  HPluginHelper 插件帮助类。
 ***************************************************************************************************/
 
-#ifndef HPLUGINHELPER_H
-#define HPLUGINHELPER_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 
@@ -44,5 +43,3 @@ public:
     // 获取输入文本
     static bool getInputText(QWidget *parent, const QString &label, QString &text);
 };
-
-#endif // HPLUGINHELPER_H

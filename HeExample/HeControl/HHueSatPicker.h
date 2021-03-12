@@ -2,8 +2,7 @@
 **      2019-08-05  HHueSatPicker
 ***************************************************************************************************/
 
-#ifndef HHUESATPICKER_H
-#define HHUESATPICKER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QFrame>
@@ -77,5 +76,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHUESATPICKER_H

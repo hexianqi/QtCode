@@ -6,8 +6,7 @@
 **                  3:可设置圆角角度+背景颜色
 ***************************************************************************************************/
 
-#ifndef HBUTTONPROGRESSBAR_H
-#define HBUTTONPROGRESSBAR_H
+#pragma once
 
 #include "HAbstractProgress.h"
 
@@ -63,5 +62,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUTTONPROGRESSBAR_H

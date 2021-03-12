@@ -1,5 +1,4 @@
-#ifndef HMOVEEVENTFILTER_P_H
-#define HMOVEEVENTFILTER_P_H
+#pragma once
 
 #include "HMoveEventFilter.h"
 #include "HAbstractMouseEventFilter_p.h"
@@ -12,5 +11,3 @@ class HMoveEventFilterPrivate : public HAbstractMouseEventFilterPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMOVEEVENTFILTER_P_H

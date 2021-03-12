@@ -1,5 +1,4 @@
-#ifndef HABSTRACTDEVICE_P_H
-#define HABSTRACTDEVICE_P_H
+#pragma once
 
 #include "HAbstractDevice.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HABSTRACTDEVICE_P_H

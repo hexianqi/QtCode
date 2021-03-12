@@ -1,5 +1,4 @@
-#ifndef HABSTRACTCONFIGHANDLER_P_H
-#define HABSTRACTCONFIGHANDLER_P_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 #include "HAbstractGuiHandler_p.h"
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTCONFIGHANDLER_P_H

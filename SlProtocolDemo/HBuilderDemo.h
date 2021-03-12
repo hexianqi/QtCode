@@ -2,8 +2,7 @@
 **      2019-09-12  HBuilderDemo
 ***************************************************************************************************/
 
-#ifndef HBUILDERDEMO_H
-#define HBUILDERDEMO_H
+#pragma once
 
 #include "HeGui/HAbstractBuilder.h"
 
@@ -34,5 +33,3 @@ protected:
     void buildMenu() override;
     void buildTestWidget() override;
 };
-
-#endif // HBUILDERDEMO_H

@@ -20,7 +20,8 @@ DEFINES     += \
             QT_DEPRECATED_WARNINGS \
 #            SL2000 \
 #            SL2000AC \
-            SL2000DC \
+#            SL2000DC \
+            SL2000F \
             SIMULATE
 
 # You can also make your code fail to compile if you use deprecated APIs.
@@ -59,6 +60,7 @@ Release {
 include(SL2000.pri)
 #include(SL2000AC.pri)
 include(SL2000DC.pri)
+include(SL2000F.pri)
 
 if (contains(DEFINES, SL2000)) {
     TARGET_NAME = SL2000
@@ -66,6 +68,8 @@ if (contains(DEFINES, SL2000)) {
     TARGET_NAME = SL2000AC
 } else : if (contains(DEFINES, SL2000DC)) {
     TARGET_NAME = SL2000DC
+} else : if (contains(DEFINES, SL2000F)) {
+    TARGET_NAME = SL2000F
 } else {
     TARGET_NAME = Test
 }

@@ -237,7 +237,7 @@ void HSpecTestWidget::readSettings()
     settings->beginGroup("TestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
     d->exportPathName = settings->value("ExportPathName", ".").toString();
-    d->syncFileName = settings->value("SyncFileName", "aaa.tmp").toString();
+    d->syncFileName = settings->value("SyncFileName", "temp.xlsx").toString();
     d->syncInterval = settings->value("SyncInterval", 20).toInt();
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
     d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
@@ -375,7 +375,7 @@ void HSpecTestWidget::setExportPath()
 void HSpecTestWidget::setSyncFile()
 {
     Q_D(HSpecTestWidget);
-    d->exportPathName = QFileDialog::getSaveFileName(this, tr("同步文件"));
+    d->exportPathName = QFileDialog::getSaveFileName(this, tr("同步文件"), ".", "Excel files (*.xlsx)");
     d->testResult->setSyncFileName(d->exportPathName);
 }
 

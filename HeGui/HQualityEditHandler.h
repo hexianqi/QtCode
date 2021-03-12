@@ -2,8 +2,7 @@
 **      2019-05-07  HQualityEditHandler 品质数据编辑处理者类。
 ***************************************************************************************************/
 
-#ifndef HQUALITYEDITHANDLER_H
-#define HQUALITYEDITHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYEDITHANDLER_H

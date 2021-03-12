@@ -2,8 +2,7 @@
 **      2019-05-05  IQualityItemCollection 品质数据项集合接口。
 ***************************************************************************************************/
 
-#ifndef IQUALITYITEMCOLLECTION_H
-#define IQUALITYITEMCOLLECTION_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -35,5 +34,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IQUALITYITEMCOLLECTION_H

@@ -2,8 +2,7 @@
 **      2019-04-12  ISqlDatabase Sql数据库接口。
 ***************************************************************************************************/
 
-#ifndef ISQLDATABASE_H
-#define ISQLDATABASE_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // ISQLDATABASE_H

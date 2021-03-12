@@ -2,8 +2,7 @@
 **      2018-06-19  IInvoker 调用者接口。
 ***************************************************************************************************/
 
-#ifndef IINVOKER_H
-#define IINVOKER_H
+#pragma once
 
 #include "HeCore/IInitializeable.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // IINVOKER_H

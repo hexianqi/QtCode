@@ -1,6 +1,4 @@
-#ifndef HTESTPLUGIN_H
-#define HTESTPLUGIN_H
-
+#pragma once
 class QWidget;
 
 class HTestPlugin
@@ -9,4 +7,3 @@ public:
     static QWidget *testCIE1931View();
 };
 
-#endif // HTESTPLUGIN_H

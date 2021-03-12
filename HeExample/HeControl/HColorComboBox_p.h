@@ -1,5 +1,4 @@
-#ifndef HCOLORCOMBOBOX_P_H
-#define HCOLORCOMBOBOX_P_H
+#pragma once
 
 #include "HColorComboBox.h"
 
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORCOMBOBOX_P_H

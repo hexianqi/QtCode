@@ -1,5 +1,4 @@
-#ifndef HDPOINTER_P_H
-#define HDPOINTER_P_H
+#pragma once
 
 #include <private/qobject_p.h>
 #include "HDPointer.h"
@@ -18,5 +17,3 @@ public:
 };
 
 HE_REFERENCE_END_NAMESPACE
-
-#endif // HDPOINTER_P_H

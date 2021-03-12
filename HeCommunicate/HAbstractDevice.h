@@ -2,8 +2,7 @@
 **      2018-06-19  HAbstractDevice 抽象设备类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTDEVICE_H
-#define HABSTRACTDEVICE_H
+#pragma once
 
 #include "IDevice.h"
 
@@ -45,5 +44,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HABSTRACTDEVICE_H

@@ -1,5 +1,4 @@
-#ifndef HLUNARCALENDARITEM_P_H
-#define HLUNARCALENDARITEM_P_H
+#pragma once
 
 #include "HLunarCalendarItem.h"
 
@@ -40,5 +39,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLUNARCALENDARITEM_P_H

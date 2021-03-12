@@ -2,8 +2,7 @@
 **      2019-05-14  HProductInfoDialog 产品信息配置对话框。
 ***************************************************************************************************/
 
-#ifndef HPRODUCTINFODIALOG_H
-#define HPRODUCTINFODIALOG_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include <QtWidgets/QDialog>
@@ -44,5 +43,3 @@ private:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HPRODUCTINFODIALOG_H

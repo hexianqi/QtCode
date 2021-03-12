@@ -2,8 +2,7 @@
 **      2019-04-01  HSpecFittingChartView 光谱拟合图表。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTINGCHARTVIEW_H
-#define HSPECFITTINGCHARTVIEW_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HePlugin/HZoomChartView.h"
@@ -34,5 +33,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGCHARTVIEW_H

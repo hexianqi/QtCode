@@ -2,8 +2,7 @@
 **      2019-12-12  IIconFontFactory 图标字体接口。
 ***************************************************************************************************/
 
-#ifndef IICONFONTFACTORY_H
-#define IICONFONTFACTORY_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // IICONFONTFACTORY_H

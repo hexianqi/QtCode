@@ -2,8 +2,7 @@
 **      2019-11-29  HIVTestWidget
 ***************************************************************************************************/
 
-#ifndef HIVTESTWIDGET_H
-#define HIVTESTWIDGET_H
+#pragma once
 
 #include "HTestWidget.h"
 
@@ -36,5 +35,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HIVTESTWIDGET_H

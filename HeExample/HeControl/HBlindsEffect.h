@@ -2,8 +2,7 @@
 **      2019-07-24  HBlindsEffect 百叶窗
 ***************************************************************************************************/
 
-#ifndef HBLINDSEFFECT_H
-#define HBLINDSEFFECT_H
+#pragma once
 
 #include "HAbstractShaderEffect.h"
 #include "HControlType.h"
@@ -42,5 +41,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBLINDSEFFECT_H

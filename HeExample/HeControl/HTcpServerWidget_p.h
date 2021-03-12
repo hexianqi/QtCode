@@ -1,5 +1,4 @@
-#ifndef HTCPSERVERWIDGET_P_H
-#define HTCPSERVERWIDGET_P_H
+#pragma once
 
 #include "HTcpServerWidget.h"
 #include "HAbstractServerWidget_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPSERVERWIDGET_P_H

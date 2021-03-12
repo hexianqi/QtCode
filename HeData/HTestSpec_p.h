@@ -1,5 +1,4 @@
-#ifndef HTESTSPEC_P_H
-#define HTESTSPEC_P_H
+#pragma once
 
 #include "HTestSpec.h"
 #include "HTestData_p.h"
@@ -55,5 +54,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HTESTSPEC_P_H

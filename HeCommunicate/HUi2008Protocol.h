@@ -2,8 +2,7 @@
 **      2019-05-27  HUi2008Protocol UI2008协议。
 ***************************************************************************************************/
 
-#ifndef HUI2008PROTOCOL_H
-#define HUI2008PROTOCOL_H
+#pragma once
 
 #include "HLittleProtocol.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUI2008PROTOCOL_H

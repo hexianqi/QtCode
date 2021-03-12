@@ -1,5 +1,4 @@
-#ifndef HCARTESIANWIDGET_P_H
-#define HCARTESIANWIDGET_P_H
+#pragma once
 
 #include "HCartesianWidget.h"
 #include "HDiagramWidget_p.h"
@@ -13,5 +12,3 @@ public:
     QString unitX;
     QString unitY;
 };
-
-#endif // HCARTESIANWIDGET_P_H

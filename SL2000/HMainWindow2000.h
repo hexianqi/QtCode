@@ -1,5 +1,4 @@
-#ifndef HMAINWINDOW2100_H
-#define HMAINWINDOW2100_H
+#pragma once
 
 #include "HeGui/HAbstractMainWindow.h"
 
@@ -21,4 +20,3 @@ protected:
     void initBuilder() override;
 };
 
-#endif // HMAINWINDOW2100_H

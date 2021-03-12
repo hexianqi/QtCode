@@ -3,8 +3,7 @@
 **                  https://gitee.com/feiyangqingyun/QWidgetDemo
 ***************************************************************************************************/
 
-#ifndef HQSSCREATOR_H
-#define HQSSCREATOR_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QMainWindow>
@@ -41,5 +40,3 @@ private slots:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HQSSCREATOR_H

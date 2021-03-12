@@ -2,8 +2,7 @@
 **      2019-04-17  HAbstractGrade 抽象分级数据类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTGRADE_H
-#define HABSTRACTGRADE_H
+#pragma once
 
 #include "IGrade.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HABSTRACTGRADE_H

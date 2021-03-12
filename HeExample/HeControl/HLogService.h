@@ -3,8 +3,7 @@
 **                  http://www.qtcn.org/bbs/read-htm-tid-85387-ds-1.html#tpc
 ***************************************************************************************************/
 
-#ifndef HLOGSERVICE_H
-#define HLOGSERVICE_H
+#pragma once
 
 #include "IService.h"
 #include "HeCore/HSingleton3.h"
@@ -42,5 +41,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLOGSERVICE_H

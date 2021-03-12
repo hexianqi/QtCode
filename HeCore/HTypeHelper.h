@@ -2,8 +2,7 @@
 **      2018-06-19  HTypeHelper 元类型帮助类。
 ***************************************************************************************************/
 
-#ifndef HTYPEHELPER_H
-#define HTYPEHELPER_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <QtCore/QVariant>
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HTYPEHELPER_H

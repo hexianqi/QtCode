@@ -2,8 +2,7 @@
 **      2019-03-27  HSpecFittingWidget 拟合配置窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTINGWIDGET_H
-#define HSPECFITTINGWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/HActionType.h"
@@ -59,5 +58,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGWIDGET_H

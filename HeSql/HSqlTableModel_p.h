@@ -1,5 +1,4 @@
-#ifndef HSQLTABLEMODEL_P_H
-#define HSQLTABLEMODEL_P_H
+#pragma once
 
 #include "HSqlTableModel.h"
 
@@ -13,5 +12,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLTABLEMODEL_P_H

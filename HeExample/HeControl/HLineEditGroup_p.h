@@ -1,5 +1,4 @@
-#ifndef HLINEEDITGROUP_P_H
-#define HLINEEDITGROUP_P_H
+#pragma once
 
 #include "HLineEditGroup.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLINEEDITGROUP_P_H

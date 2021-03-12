@@ -2,8 +2,7 @@
 **      2019-12-13  HResizeEventFilter
 ***************************************************************************************************/
 
-#ifndef HRESIZEEVENTFILTER_H
-#define HRESIZEEVENTFILTER_H
+#pragma once
 
 #include "HAbstractMouseEventFilter.h"
 
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRESIZEEVENTFILTER_H

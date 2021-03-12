@@ -1,6 +1,4 @@
-#ifndef HPERCENTGAUGE_P_H
-#define HPERCENTGAUGE_P_H
-
+#pragma once
 #include "HPercentGauge.h"
 #include "HCircleGauge_p.h"
 
@@ -11,7 +9,7 @@ class HPercentGaugePrivate : public HCircleGaugePrivate
 public:
     HPercentGaugePrivate();
 
-public:    
+public:
     QColor baseColor = QColor(34, 163, 169, 255);
     QColor arcColor = QColor(34, 163, 169, 255);
     QColor titleColor = QColor(34, 163, 169, 255);
@@ -19,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPERCENTGAUGE_P_H

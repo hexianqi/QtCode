@@ -2,8 +2,7 @@
 **      2019-07-24  HEffectFactory
 ***************************************************************************************************/
 
-#ifndef HEFFECTFACTORY_H
-#define HEFFECTFACTORY_H
+#pragma once
 
 #include "IEffectFactory.h"
 
@@ -39,5 +38,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HEFFECTFACTORY_H

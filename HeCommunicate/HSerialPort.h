@@ -2,8 +2,7 @@
 **      2018-06-19  HSerialPort 串口端口类。
 ***************************************************************************************************/
 
-#ifndef HSERIALPORT_H
-#define HSERIALPORT_H
+#pragma once
 
 #include "HAbstractPort.h"
 
@@ -38,5 +37,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSERIALPORT_H

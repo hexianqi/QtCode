@@ -2,8 +2,7 @@
 **      2019-12-25  HMimeMultiPart
 ***************************************************************************************************/
 
-#ifndef HMIMEMULTIPART_H
-#define HMIMEMULTIPART_H
+#pragma once
 
 #include "HMimePart.h"
 
@@ -47,5 +46,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEMULTIPART_H

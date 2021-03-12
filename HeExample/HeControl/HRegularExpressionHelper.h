@@ -2,8 +2,7 @@
 **      2019-12-17  HRegularExpressionHelper 正则表达式帮助类。
 ***************************************************************************************************/
 
-#ifndef HREGULAREXPRESSIONHELPER_H
-#define HREGULAREXPRESSIONHELPER_H
+#pragma once
 
 #include "HControlGlobal.h"
 
@@ -24,5 +23,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HREGULAREXPRESSIONHELPER_H

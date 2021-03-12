@@ -2,8 +2,7 @@
 **      2018-06-19  HCollection 集合模板。
 ***************************************************************************************************/
 
-#ifndef HCOLLECTION_H
-#define HCOLLECTION_H
+#pragma once
 
 #include "ICollection.h"
 
@@ -150,5 +149,3 @@ QList<T *> HCollection<T>::values()
 }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HCOLLECTION_H

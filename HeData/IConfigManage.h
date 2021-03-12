@@ -2,8 +2,7 @@
 **      2018-06-19  IConfigManage 配置管理接口。
 ***************************************************************************************************/
 
-#ifndef ICONFIGMANAGE_H
-#define ICONFIGMANAGE_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -20,6 +19,7 @@ class ILuminousCalibrateCollection;
 class IChromatismCollection;
 class IGradeCollection;
 class IAdjustCollection;
+class IAdjust2Collection;
 class IQualityCollection;
 class ITestData;
 
@@ -36,6 +36,7 @@ public:
         ContainGrade         = 0x00010000,
         ContainQuality       = 0x00020000,
         ContainAdjust        = 0x01000000,
+        ContainAdjust2       = 0x02000000,
         ContainAll           = 0xFFFFFFFF
     };
     Q_DECLARE_FLAGS(ContainTypes, ContainType)
@@ -69,8 +70,10 @@ public:
     virtual IGradeCollection *gradeCollection() = 0;
     // 设置调整数据集
     virtual void setAdjustCollection(IAdjustCollection *) = 0;
+    virtual void setAdjust2Collection(IAdjust2Collection *) = 0;
     // 获取调整数据集
     virtual IAdjustCollection *adjustCollection() = 0;
+    virtual IAdjust2Collection *adjust2Collection() = 0;
     // 设置品质数据集
     virtual void setQualityCollection(IQualityCollection *) = 0;
     // 获取品质数据集
@@ -88,5 +91,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ICONFIGMANAGE_H

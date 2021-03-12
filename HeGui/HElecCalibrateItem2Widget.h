@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEITEM2WIDGET_H
-#define HELECCALIBRATEITEM2WIDGET_H
+#pragma once
 
 #include "HElecCalibrateItemWidget.h"
 
@@ -34,7 +33,4 @@ private:
     Ui::HElecCalibrateItem2Widget *ui;
 };
 
-
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEM2WIDGET_H

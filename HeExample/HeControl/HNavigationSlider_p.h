@@ -1,5 +1,4 @@
-#ifndef HNAVIGATIONSLIDER_P_H
-#define HNAVIGATIONSLIDER_P_H
+#pragma once
 
 #include "HNavigationSlider.h"
 
@@ -20,5 +19,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVIGATIONSLIDER_P_H

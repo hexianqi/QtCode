@@ -6,8 +6,7 @@
 **                  3:可设置背景颜色
 ***************************************************************************************************/
 
-#ifndef HFADERCOLORPANEL_H
-#define HFADERCOLORPANEL_H
+#pragma once
 
 #include "HAbstractColorPanel.h"
 
@@ -51,28 +50,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFADERCOLORPANEL_H
-
-//private:
-//    QHBoxLayout *layout;
-//    QSpacerItem *spacer1;
-//    QSpacerItem *spacer2;
-//    QList<ColorPanelBar *> items;
-
-//private slots:
-//    void colorChanged(const QColor &color, double value, double percent);
-
-//public:
-//    //设置柱状条间隔
-//    void setBarSpace(int barSpace);
-//    //设置分组间隔
-//    void setGroupSpace(int groupSpace);
-//    //设置背景颜色
-//    void setBgColor(const QColor &bgColor);
-
-//Q_SIGNALS:
-//    void colorChanged(const QColor &color, double hue, double sat, double bright);
-//};
-
-//#endif // COLORPANELFADER_H

@@ -3,8 +3,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/specfunc.html
 ***************************************************************************************************/
 
-#ifndef HBESSELCYLINDRIAL_H
-#define HBESSELCYLINDRIAL_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 
@@ -46,5 +45,3 @@ public: // 不规则修正
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HBESSELCYLINDRIAL_H

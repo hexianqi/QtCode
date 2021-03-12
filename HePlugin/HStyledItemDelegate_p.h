@@ -1,5 +1,4 @@
-#ifndef HSTYLEDITEMDELEGATE_P_H
-#define HSTYLEDITEMDELEGATE_P_H
+#pragma once
 
 #include "HStyledItemDelegate.h"
 
@@ -10,5 +9,3 @@ public:
     Qt::Orientation orientation = Qt::Horizontal;
     QStringList typeList;
 };
-
-#endif // HSTYLEDITEMDELEGATE_P_H

@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/78533179
 ***************************************************************************************************/
 
-#ifndef HPROXY_H
-#define HPROXY_H
+#pragma once
 
 // 电信运营商
 class ITelco
@@ -37,5 +36,3 @@ public:
 private:
     CMCC *_CMCC;
 };
-
-#endif // HPROXY_H

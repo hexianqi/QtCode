@@ -1,5 +1,4 @@
-#ifndef HLUNARCALENDARINFO_P_H
-#define HLUNARCALENDARINFO_P_H
+#pragma once
 
 #include "HLunarCalendarInfo.h"
 #include <QtCore/QMap>
@@ -25,5 +24,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLUNARCALENDARINFO_P_H

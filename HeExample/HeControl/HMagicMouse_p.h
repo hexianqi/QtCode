@@ -1,5 +1,4 @@
-#ifndef HMAGICMOUSE_P_H
-#define HMAGICMOUSE_P_H
+#pragma once
 
 #include "HMagicMouse.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMAGICMOUSE_P_H

@@ -2,8 +2,7 @@
 **      2018-06-19  ICollection 集合模板接口。
 ***************************************************************************************************/
 
-#ifndef ICOLLECTION_H
-#define ICOLLECTION_H
+#pragma once
 
 #include "IInitializeable.h"
 
@@ -40,5 +39,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // ICOLLECTION_H

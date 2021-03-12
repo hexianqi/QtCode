@@ -3,8 +3,7 @@
 **                  https://qtdebug.com/qtbook-custom-widget-steps/
 ***************************************************************************************************/
 
-#ifndef HSTEPBUTTTON_H
-#define HSTEPBUTTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -38,5 +37,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTEPBUTTTON_H

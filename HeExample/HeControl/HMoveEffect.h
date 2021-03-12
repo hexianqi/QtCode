@@ -2,8 +2,7 @@
 **      2019-07-25  HMoveEffect 移动特效
 ***************************************************************************************************/
 
-#ifndef HMOVEEFFECT_H
-#define HMOVEEFFECT_H
+#pragma once
 
 #include "HAbstractShaderEffect.h"
 #include "HControlType.h"
@@ -40,5 +39,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMOVEEFFECT_H

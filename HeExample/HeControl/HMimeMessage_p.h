@@ -1,5 +1,4 @@
-#ifndef HMIMEMESSAGE_P_H
-#define HMIMEMESSAGE_P_H
+#pragma once
 
 #include "HMimeMessage.h"
 #include <QtCore/QList>
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEMESSAGE_P_H

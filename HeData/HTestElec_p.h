@@ -1,5 +1,4 @@
-#ifndef HTESTELEC_P_H
-#define HTESTELEC_P_H
+#pragma once
 
 #include "HTestElec.h"
 #include "HTestData_p.h"
@@ -22,5 +21,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HTESTELEC_P_H

@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATECOLLECTION_P_H
-#define HELECCALIBRATECOLLECTION_P_H
+#pragma once
 
 #include "HElecCalibrateCollection.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATECOLLECTION_P_H

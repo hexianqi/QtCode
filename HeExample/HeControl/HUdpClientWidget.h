@@ -2,8 +2,7 @@
 **      2019-12-10  HUdpClientWidget UDP客户端
 ***************************************************************************************************/
 
-#ifndef HUDPCLIENTWIDGET_H
-#define HUDPCLIENTWIDGET_H
+#pragma once
 
 #include "HAbstractClientWidget.h"
 
@@ -44,5 +43,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPCLIENTWIDGET_H

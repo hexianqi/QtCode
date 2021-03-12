@@ -5,8 +5,7 @@
 **                  2:可自定义开关图片
 ***************************************************************************************************/
 
-#ifndef HIMAGESWITCH_H
-#define HIMAGESWITCH_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -59,5 +58,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIMAGESWITCH_H

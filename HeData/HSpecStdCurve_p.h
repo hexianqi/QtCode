@@ -1,5 +1,4 @@
-#ifndef HSPECSTDCURVE_P_H
-#define HSPECSTDCURVE_P_H
+#pragma once
 
 #include "HSpecStdCurve.h"
 #include "HAbstractDataItem_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECSTDCURVE_P_H

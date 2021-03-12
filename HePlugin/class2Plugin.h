@@ -1,5 +1,4 @@
-#ifndef CLASS2PLUGIN_H
-#define CLASS2PLUGIN_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
@@ -27,5 +26,3 @@ public:
 private:
     bool _initialized;
 };
-
-#endif

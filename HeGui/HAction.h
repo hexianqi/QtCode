@@ -2,8 +2,7 @@
 **      2019-03-01  HAction 调用者动作类。
 ***************************************************************************************************/
 
-#ifndef HACTION_H
-#define HACTION_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInvoker.h"
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HACTION_H

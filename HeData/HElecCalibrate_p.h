@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATE_P_H
-#define HELECCALIBRATE_P_H
+#pragma once
 
 #include "HElecCalibrate.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATE_P_H

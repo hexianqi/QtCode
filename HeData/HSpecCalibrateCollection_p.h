@@ -1,5 +1,4 @@
-#ifndef HSPECCALIBRATECOLLECTION_P_H
-#define HSPECCALIBRATECOLLECTION_P_H
+#pragma once
 
 #include "HSpecCalibrateCollection.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECCALIBRATECOLLECTION_P_H

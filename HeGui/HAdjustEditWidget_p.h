@@ -1,5 +1,4 @@
-#ifndef HADJUSTEDITWIDGET_P_H
-#define HADJUSTEDITWIDGET_P_H
+#pragma once
 
 #include "HAdjustEditWidget.h"
 #include "HeController/HControllerGlobal.h"
@@ -39,5 +38,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HADJUSTEDITWIDGET_P_H

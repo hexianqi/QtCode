@@ -1,5 +1,4 @@
-#ifndef HNTPCLIENT_P_H
-#define HNTPCLIENT_P_H
+#pragma once
 
 #include "HNtpClient.h"
 
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNTPCLIENT_P_H

@@ -2,8 +2,7 @@
 **      2019-04-23  HGradeItemDialog 分级数据编辑对话框。
 ***************************************************************************************************/
 
-#ifndef HGRADEITEMDIALOG_H
-#define HGRADEITEMDIALOG_H
+#pragma once
 
 #include "HAbstractGradeItemDialog.h"
 
@@ -43,5 +42,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEITEMDIALOG_H

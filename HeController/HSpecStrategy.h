@@ -2,8 +2,7 @@
 **      2019-10-24  HSpecStrategy 光谱动作策略。
 ***************************************************************************************************/
 
-#ifndef HSPECSTRATEGY_H
-#define HSPECSTRATEGY_H
+#pragma once
 
 #include "HAbstractActionStrategy.h"
 
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECSTRATEGY_H

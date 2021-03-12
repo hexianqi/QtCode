@@ -1,5 +1,4 @@
-#ifndef HGRADESELECTHANDLER_P_H
-#define HGRADESELECTHANDLER_P_H
+#pragma once
 
 #include "HGradeSelectHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -11,5 +10,3 @@ class HGradeSelectHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADESELECTHANDLER_P_H

@@ -1,5 +1,4 @@
-#ifndef HSIMPLETESTSETWIDGET_P_H
-#define HSIMPLETESTSETWIDGET_P_H
+#pragma once
 
 #include "HSimpleTestSetWidget.h"
 #include "HAbstractTestSetWidget_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSIMPLETESTSETWIDGET_P_H

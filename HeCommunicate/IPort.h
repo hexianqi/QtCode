@@ -2,8 +2,7 @@
 **      2018-06-19  IPort 端口接口。
 ***************************************************************************************************/
 
-#ifndef IPORT_H
-#define IPORT_H
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -36,5 +35,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // IPORT_H

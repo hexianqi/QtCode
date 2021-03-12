@@ -13,8 +13,7 @@
 **                  10:可设置节点展开模式 单击+双击+禁用
 ***************************************************************************************************/
 
-#ifndef HNAVLISTVIEW_H
-#define HNAVLISTVIEW_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QListView>
@@ -101,7 +100,7 @@ public:
     int lineWidth() const;
     QColor lineColor() const;
     bool isTriangleVisible() const;
-    bool isTriangleLeft() const;    
+    bool isTriangleLeft() const;
     int triangleWidth() const;
     QColor triangleColor() const;
     int parentMargin() const;
@@ -141,7 +140,7 @@ public slots:
     void setLineWidth(int value);
     void setLineColor(const QColor &value);
     void setTriangleVisible(bool b);
-    void setTriangleLeft(bool b);   
+    void setTriangleLeft(bool b);
     void setTriangleWidth(int value);
     void setTriangleColor(const QColor &value);
     void setParentMargin(int value);
@@ -179,5 +178,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVLISTVIEW_H

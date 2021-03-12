@@ -1,5 +1,4 @@
-#ifndef HADJUSTSELECTHANDLER_P_H
-#define HADJUSTSELECTHANDLER_P_H
+#pragma once
 
 #include "HAdjustSelectHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -11,5 +10,3 @@ class HAdjustSelectHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HADJUSTSELECTHANDLER_P_H

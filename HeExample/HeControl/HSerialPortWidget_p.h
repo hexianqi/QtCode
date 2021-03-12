@@ -1,5 +1,4 @@
-#ifndef HSERIALPORTWIDGET_P_H
-#define HSERIALPORTWIDGET_P_H
+#pragma once
 
 #include "HSerialPortWidget.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSERIALPORTWIDGET_P_H

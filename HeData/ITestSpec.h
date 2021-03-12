@@ -2,8 +2,7 @@
 **      2018-06-19  ITestSpec 测试光谱数据接口。
 ***************************************************************************************************/
 
-#ifndef ITESTSPEC_H
-#define ITESTSPEC_H
+#pragma once
 
 #include "HTestData.h"
 
@@ -42,5 +41,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ITESTSPECTRUM_H

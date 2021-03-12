@@ -1,5 +1,4 @@
-#ifndef HANIMATIONPROGRESS_P_H
-#define HANIMATIONPROGRESS_P_H
+#pragma once
 
 #include "HAnimationProgress.h"
 #include "HAbstractProgress_p.h"
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HANIMATIONPROGRESS_P_H

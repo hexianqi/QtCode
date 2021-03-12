@@ -2,8 +2,7 @@
 **      2019-09-16  HModelDemo
 ***************************************************************************************************/
 
-#ifndef HMODELDEMO_H
-#define HMODELDEMO_H
+#pragma once
 
 #include "HeController/HAbstractModel.h"
 
@@ -28,5 +27,3 @@ protected:
     void syncTestData(quint32 type) override;
     void syncMachine(quint32 type) override;
 };
-
-#endif // HMODELDEMO_H

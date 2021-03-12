@@ -2,8 +2,7 @@
 **      2019-05-07  HCoreHelper 帮助类。
 ***************************************************************************************************/
 
-#ifndef HCOREHELPER_H
-#define HCOREHELPER_H
+#pragma once
 
 #include "HCoreGlobal.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HCOREHELPER_H

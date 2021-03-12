@@ -3,8 +3,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/interp.html
 ***************************************************************************************************/
 
-#ifndef HINTERP_H
-#define HINTERP_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtGui/QPolygonF>
@@ -40,5 +39,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HINTERP_H

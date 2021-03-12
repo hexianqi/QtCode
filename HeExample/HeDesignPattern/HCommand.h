@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/62060457
 ***************************************************************************************************/
 
-#ifndef HCOMMAND_H
-#define HCOMMAND_H
+#pragma once
 
 #include <list>
 
@@ -73,5 +72,3 @@ public:
 private:
     list<Command *> _cmds;
 };
-
-#endif // HCOMMAND_H

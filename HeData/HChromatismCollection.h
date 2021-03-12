@@ -2,8 +2,7 @@
 **      2019-05-20  HChromatismCollection 色容差数据集合。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMCOLLECTION_H
-#define HCHROMATISMCOLLECTION_H
+#pragma once
 
 #include "IChromatismCollection.h"
 
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCHROMATISMCOLLECTION_H

@@ -2,8 +2,7 @@
 **      2019-04-30  HAdjustEditWidget 调整数据编辑窗体。
 ***************************************************************************************************/
 
-#ifndef HADJUSTEDITWIDGET_H
-#define HADJUSTEDITWIDGET_H
+#pragma once
 
 #include "IDataEditWidget.h"
 #include "HeCore/HActionType.h"
@@ -62,5 +61,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HADJUSTEDITWIDGET_H

@@ -2,8 +2,7 @@
 **      2019-11-22  HSpecElecSqlPrint 光谱加电数据库打印。
 ***************************************************************************************************/
 
-#ifndef HSPECELECSQLPRINT_H
-#define HSPECELECSQLPRINT_H
+#pragma once
 
 #include "HSpecSqlPrint.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSPECELECSQLPRINT_H

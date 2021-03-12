@@ -1,5 +1,4 @@
-#ifndef HPNGAMEND_P_H
-#define HPNGAMEND_P_H
+#pragma once
 
 #include "HPngAmend.h"
 #include <QtCore/QFutureWatcher>
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPNGAMENDWIDGET_P_H

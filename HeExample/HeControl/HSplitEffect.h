@@ -2,8 +2,7 @@
 **      2019-07-25  HSplitEffect
 ***************************************************************************************************/
 
-#ifndef HSPLITEFFECT_H
-#define HSPLITEFFECT_H
+#pragma once
 
 #include "HAbstractShaderEffect.h"
 
@@ -49,5 +48,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSPLITEFFECT_H

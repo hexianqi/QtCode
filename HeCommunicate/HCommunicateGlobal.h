@@ -1,5 +1,4 @@
-#ifndef HCOMMUNICATE_GLOBAL_H
-#define HCOMMUNICATE_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCOMMUNICATE_GLOBAL_H

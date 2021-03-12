@@ -12,8 +12,7 @@
 **                  9:精准计算圆角角度,解决了QSS中border-radius当进度小于圆角角度出现方形的BUG
 ***************************************************************************************************/
 
-#ifndef HTRISTATEPROGRESSBAR_H
-#define HTRISTATEPROGRESSBAR_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -95,5 +94,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTRISTATEPROGRESSBAR_H

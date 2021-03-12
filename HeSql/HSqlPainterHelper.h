@@ -2,8 +2,7 @@
 **      2019-05-15  HSqlPainterHelper SQL绘图帮助类。
 ***************************************************************************************************/
 
-#ifndef HSQLPAINTERHELPER_H
-#define HSQLPAINTERHELPER_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include <qnamespace.h>
@@ -21,9 +20,7 @@ public:
     static QPointF drawText(QPainter *painter, double x, double y, const QString &text, int flags = Qt::AlignLeft);
     static QPointF drawText(QPainter *painter, QRectF rect, const QString &text, int flags = Qt::AlignLeft);
     static QPointF drawLogo(QPainter *painter, QRectF rect);
-    static QPointF drawChart(QPainter *painter, QRectF rect, const QString &title, QWidget *widget);    
+    static QPointF drawChart(QPainter *painter, QRectF rect, const QString &title, QWidget *widget);
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLPAINTERHELPER_H

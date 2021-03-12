@@ -2,8 +2,7 @@
 **      2019-07-31  HColorModel
 ***************************************************************************************************/
 
-#ifndef HCOLORMODEL_H
-#define HCOLORMODEL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtGui/QStandardItemModel>
@@ -30,5 +29,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORMODEL_H

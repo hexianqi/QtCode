@@ -1,5 +1,4 @@
-#ifndef HTABLEVIEW_P_H
-#define HTABLEVIEW_P_H
+#pragma once
 
 #include "HTableView.h"
 
@@ -9,5 +8,3 @@ public:
     quint32 actionContain = HTableView::ActionAll;
     QHash<quint32, QAction *> actions;
 };
-
-#endif // HTABLEVIEW_P_H

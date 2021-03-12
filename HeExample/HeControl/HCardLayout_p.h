@@ -1,5 +1,4 @@
-#ifndef HCARDLAYOUT_P_H
-#define HCARDLAYOUT_P_H
+#pragma once
 
 #include "HCardLayout.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCARDLAYOUT_P_H

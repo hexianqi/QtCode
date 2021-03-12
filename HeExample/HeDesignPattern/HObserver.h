@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/61925314
 ***************************************************************************************************/
 
-#ifndef HOBSERVER_H
-#define HOBSERVER_H
+#pragma once
 
 #include <string>
 #include <list>
@@ -62,5 +61,3 @@ private:
     list<IObserver *> _observers;   // 观察者列表
     float _price;                 // 价格
 };
-
-#endif // HOBSERVER_H

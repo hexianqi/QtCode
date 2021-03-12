@@ -1,5 +1,4 @@
-#ifndef HABSTRACTMOUSESTRATEGY_P_H
-#define HABSTRACTMOUSESTRATEGY_P_H
+#pragma once
 
 #include "HAbstractMouseStrategy.h"
 #include <QtCore/QRectF>
@@ -14,5 +13,3 @@ public:
     QRectF validRegion;
     bool enable = true;
 };
-
-#endif // HABSTRACTMOUSESTRATEGY_P_H

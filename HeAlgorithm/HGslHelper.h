@@ -2,8 +2,7 @@
 **      2018-06-20  HGslHelper GSL帮助类。
 ***************************************************************************************************/
 
-#ifndef HGSLHELPER_H
-#define HGSLHELPER_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include "gsl/gsl_matrix.h"
@@ -25,5 +24,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HGSLHELPER_H

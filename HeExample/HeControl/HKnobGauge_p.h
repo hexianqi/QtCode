@@ -1,5 +1,4 @@
-#ifndef HKNOBGAUGE_P_H
-#define HKNOBGAUGE_P_H
+#pragma once
 
 #include "HKnobGauge.h"
 #include "HAnimationProgress_p.h"
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HKNOBGAUGE_P_H

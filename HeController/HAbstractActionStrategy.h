@@ -2,8 +2,7 @@
 **      2019-10-24  HAbstractActionStrategy
 ***************************************************************************************************/
 
-#ifndef HABSTRACTACTIONSTRATEGY_H
-#define HABSTRACTACTIONSTRATEGY_H
+#pragma once
 
 #include "IActionStrategy.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HABSTRACTACTIONSTRATEGY_H

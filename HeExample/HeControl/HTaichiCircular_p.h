@@ -1,5 +1,4 @@
-#ifndef HTAICHICIRCULAR_P_H
-#define HTAICHICIRCULAR_P_H
+#pragma once
 
 #include "HTaichiCircular.h"
 #include "HAbstractCircular_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTAICHICIRCULAR_P_H

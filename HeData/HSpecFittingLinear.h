@@ -2,8 +2,7 @@
 **      2019-03-27  HSpecFittingLinear 光谱拟合数据类（线性）。
 ***************************************************************************************************/
 
-#ifndef HSPECFITTINGLINEAR_H
-#define HSPECFITTINGLINEAR_H
+#pragma once
 
 #include "HSpecFitting.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECFITTINGLINEAR_H

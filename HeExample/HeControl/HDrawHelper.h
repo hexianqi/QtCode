@@ -2,8 +2,7 @@
 **      2019-07-11  HDrawHelper 绘制帮助类。
 ***************************************************************************************************/
 
-#ifndef HDRAWHELPER_H
-#define HDRAWHELPER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <qnamespace.h>
@@ -42,5 +41,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDRAWHELPER_H

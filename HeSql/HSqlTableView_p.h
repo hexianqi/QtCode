@@ -1,5 +1,4 @@
-#ifndef HSQLTABLEVIEW_P_H
-#define HSQLTABLEVIEW_P_H
+#pragma once
 
 #include "HSqlTableView.h"
 #include "HePlugin/HTableView_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLTABLEVIEW_P_H

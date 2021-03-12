@@ -1,5 +1,4 @@
-#ifndef HTCPCLIENT_P_H
-#define HTCPCLIENT_P_H
+#pragma once
 
 #include "HTcpClient.h"
 
@@ -10,5 +9,3 @@ class HTcpClientPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPCLIENT_P_H

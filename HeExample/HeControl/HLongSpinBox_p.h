@@ -1,5 +1,4 @@
-#ifndef HLONGSPINBOX_P_H
-#define HLONGSPINBOX_P_H
+#pragma once
 
 #include "HLongSpinBox.h"
 
@@ -33,5 +32,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLONGSPINBOX_P_H

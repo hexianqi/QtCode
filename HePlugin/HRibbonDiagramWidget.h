@@ -1,5 +1,4 @@
-#ifndef HRIBBONDIAGRAMWIDGET_H
-#define HRIBBONDIAGRAMWIDGET_H
+#pragma once
 
 #include "HCartesianWidget.h"
 
@@ -30,5 +29,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HRIBBONDIAGRAMWIDGET_H

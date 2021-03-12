@@ -1,5 +1,4 @@
-#ifndef HFADERCOLORPANEL_P_H
-#define HFADERCOLORPANEL_P_H
+#pragma once
 
 #include "HFaderColorPanel.h"
 #include "HAbstractColorPanel_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFADERCOLORPANEL_P_H

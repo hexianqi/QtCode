@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGPOLYNOMWIDGET_P_H
-#define HSPECFITTINGPOLYNOMWIDGET_P_H
+#pragma once
 
 #include "HSpecFittingPolynomWidget.h"
 #include "HSpecFittingWidget_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGPOLYNOMWIDGET_P_H

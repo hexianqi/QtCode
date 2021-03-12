@@ -1,5 +1,4 @@
-#ifndef HNAVTREEVIEW_P_H
-#define HNAVTREEVIEW_P_H
+#pragma once
 
 #include "HNavTreeView.h"
 #include <QtWidgets/QStyledItemDelegate>
@@ -43,5 +42,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVTREEVIEW_P_H

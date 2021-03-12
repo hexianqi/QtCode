@@ -3,8 +3,7 @@
 **                  https://qtdebug.com/qtbook-custom-widget-abnormity-buttons/
 ***************************************************************************************************/
 
-#ifndef HABNORMITYBUTTON_H
-#define HABNORMITYBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -32,5 +31,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABNORMITYBUTTON_H

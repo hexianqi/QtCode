@@ -1,5 +1,4 @@
-#ifndef HDELAYTHREAD_P_H
-#define HDELAYTHREAD_P_H
+#pragma once
 
 #include "HDelayThread.h"
 #include <QtCore/QQueue>
@@ -28,5 +27,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HDELAYTHREAD_P_H

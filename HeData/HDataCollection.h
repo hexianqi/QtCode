@@ -2,8 +2,7 @@
 **      2019-10-16
 ***************************************************************************************************/
 
-#ifndef HDATACOLLECTION_H
-#define HDATACOLLECTION_H
+#pragma once
 
 #include "IDataCollection.h"
 
@@ -84,5 +83,3 @@ QString HDataCollection<T>::useIndex()
 }
 
 HE_DATA_END_NAMESPACE
-
-#endif // HDATACOLLECTION_H

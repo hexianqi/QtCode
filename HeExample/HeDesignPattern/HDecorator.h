@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/66973836
 ***************************************************************************************************/
 
-#ifndef HDECORATOR_H
-#define HDECORATOR_H
+#pragma once
 
 #include <string>
 
@@ -93,5 +92,3 @@ public:
     string name() override;
     double cost() override;
 };
-
-#endif // HDECORATOR_H

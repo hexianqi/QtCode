@@ -2,8 +2,7 @@
 **      2018-06-19  IProtocol 协议接口。
 ***************************************************************************************************/
 
-#ifndef IPROTOCOL_H
-#define IPROTOCOL_H
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -48,5 +47,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // IPROTOCOL_H

@@ -1,33 +1,33 @@
-#include "HChromaticityV2_p.h"
+#include "HChromaticity2_p.h"
 #include "HSpecData.h"
 #include "HSpecHelper.h"
 #include <QtCore/QDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
-HChromaticityV2Private::HChromaticityV2Private()
+HChromaticity2Private::HChromaticity2Private()
 {
     cieUcs = std::make_shared<HCieUcs>();
 }
 
-HChromaticityV2::HChromaticityV2() :
-    HChromaticity(*new HChromaticityV2Private)
+HChromaticity2::HChromaticity2() :
+    HChromaticity(*new HChromaticity2Private)
 {
 }
 
-HChromaticityV2::HChromaticityV2(HChromaticityV2Private &p) :
+HChromaticity2::HChromaticity2(HChromaticity2Private &p) :
     HChromaticity(p)
 {
 }
 
-HChromaticityV2::~HChromaticityV2()
+HChromaticity2::~HChromaticity2()
 {
     qDebug() << __func__;
 }
 
-void HChromaticityV2::calcSpectrum(HSpecData *data)
+void HChromaticity2::calcSpectrum(HSpecData *data)
 {
-    Q_D(HChromaticityV2);
+    Q_D(HChromaticity2);
     if (data->Energy.isEmpty())
         return;
 
@@ -42,9 +42,9 @@ void HChromaticityV2::calcSpectrum(HSpecData *data)
     data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
 }
 
-QVector<double> HChromaticityV2::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc)
+QVector<double> HChromaticity2::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc)
 {
-    Q_D(HChromaticityV2);
+    Q_D(HChromaticity2);
     auto ucs = d->cieUcs->findCieUcs(tc);
     if (ucs.Tc < 2300)
         ucs = calcCieUcs(tc);

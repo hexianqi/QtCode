@@ -4,8 +4,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/bspline.html
 ***************************************************************************************************/
 
-#ifndef HBSPLINES_H
-#define HBSPLINES_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HBSPLINES_H

@@ -2,8 +2,7 @@
 **      2019-08-20  HIconFontWidget 图标字体窗体演示。
 ***************************************************************************************************/
 
-#ifndef HICONFONTWIDGET_H
-#define HICONFONTWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -30,5 +29,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HICONFONTWIDGET_H

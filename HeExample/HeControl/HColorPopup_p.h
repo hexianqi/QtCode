@@ -1,5 +1,4 @@
-#ifndef HCOLORPOPUP_P_H
-#define HCOLORPOPUP_P_H
+#pragma once
 
 #include "HColorPopup.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORPOPUP_P_H

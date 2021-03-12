@@ -2,8 +2,7 @@
 **      2019-04-08  HSpecSampleChartView 光谱采样图表。
 ***************************************************************************************************/
 
-#ifndef HSPECSAMPLECHARTVIEW_H
-#define HSPECSAMPLECHARTVIEW_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HePlugin/HVernierChartView.h"
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECSAMPLECHARTVIEW_H

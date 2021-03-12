@@ -2,8 +2,7 @@
 **      2018-06-19  HActionType 动作类型。
 ***************************************************************************************************/
 
-#ifndef HACTIONTYPE_H
-#define HACTIONTYPE_H
+#pragma once
 
 #include "HCoreGlobal.h"
 
@@ -123,5 +122,3 @@ using HActionType = long long;
 //#define     ACT_RESET_CIRCUIT                       0xF0000004
 
 HE_CORE_END_NAMESPACE
-
-#endif // HACTIONTYPE_H

@@ -2,8 +2,7 @@
 **      2019-04-09  HSpecModel 光谱模型类。
 ***************************************************************************************************/
 
-#ifndef HSPECMODEL_H
-#define HSPECMODEL_H
+#pragma once
 
 #include "HAbstractModel.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECMODEL_H

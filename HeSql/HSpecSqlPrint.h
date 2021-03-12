@@ -2,8 +2,7 @@
 **      2019-05-16  HSpecSqlPrint 光谱数据库打印。
 ***************************************************************************************************/
 
-#ifndef HSPECSQLPRINT_H
-#define HSPECSQLPRINT_H
+#pragma once
 
 #include "HAbstractSqlPrint.h"
 
@@ -40,5 +39,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSPECSQLPRINT_H

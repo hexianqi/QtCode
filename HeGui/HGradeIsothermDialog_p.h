@@ -1,5 +1,4 @@
-#ifndef HGRADEISOTHERMDIALOG_P_H
-#define HGRADEISOTHERMDIALOG_P_H
+#pragma once
 
 #include "HGradeIsothermDialog.h"
 
@@ -15,5 +14,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEISOTHERMDIALOG_P_H

@@ -3,10 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/79077715
 ***************************************************************************************************/
 
-#ifndef HCHAIN_H
-#define HCHAIN_H
-
-
+#pragma once
 
 // 抽象处理者
 class IHandler
@@ -43,5 +40,3 @@ class CEO : public IHandler
 public:
     void handleRequest(float days) override;
 };
-
-#endif // HCHAIN_H

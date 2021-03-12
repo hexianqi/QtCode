@@ -1,5 +1,4 @@
-#ifndef HSQLSTATEMENT_P_H
-#define HSQLSTATEMENT_P_H
+#pragma once
 
 #include "HSqlStatement.h"
 #include <QtCore/QHash>
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSQLSTATEMENT_P_H

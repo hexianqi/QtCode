@@ -1,5 +1,4 @@
-#ifndef HESQL_GLOBAL_H
-#define HESQL_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_SQL_BEGIN_NAMESPACE
 HE_SQL_END_NAMESPACE
-
-#endif // HESQL_GLOBAL_H

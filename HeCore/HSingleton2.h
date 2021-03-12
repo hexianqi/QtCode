@@ -29,8 +29,7 @@
 **                      推荐实现方式: 可以在单例类的构造函数中给qApp的aboutToQuit信号绑定一个槽函数，在里面处理善后工作、释放资源等。
 ***************************************************************************************************/
 
-#ifndef HSINGLETON2_H
-#define HSINGLETON2_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <QMutex>
@@ -95,5 +94,3 @@ public:                                             \
     }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HSINGLETON2_H

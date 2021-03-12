@@ -2,8 +2,7 @@
 **      2019-03-22  HHexSpinBox 16进制调节框类。
 ***************************************************************************************************/
 
-#ifndef HHEXSPINBOX_H
-#define HHEXSPINBOX_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QSpinBox>
@@ -32,5 +31,3 @@ private:
 protected:
     QScopedPointer<HHexSpinBoxPrivate> d_ptr;
 };
-
-#endif // HHEXSPINBOX_H

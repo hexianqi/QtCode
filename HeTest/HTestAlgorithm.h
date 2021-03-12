@@ -1,5 +1,4 @@
-#ifndef HTESTALGORITHM_H
-#define HTESTALGORITHM_H
+#pragma once
 
 class HTestAlgorithm
 {
@@ -7,5 +6,3 @@ public:
     static void testRegister();
     static void testChromaticity();
 };
-
-#endif // HTESTALGORITHM_H

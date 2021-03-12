@@ -1,5 +1,4 @@
-#ifndef HBUTTONCOLORPANEL_P_H
-#define HBUTTONCOLORPANEL_P_H
+#pragma once
 
 #include "HButtonColorPanel.h"
 #include "HAbstractColorPanel_p.h"
@@ -24,5 +23,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUTTONCOLORPANEL_P_H

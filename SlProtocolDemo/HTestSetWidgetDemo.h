@@ -1,5 +1,4 @@
-#ifndef HTESTSETWIDGETDEMO_H
-#define HTESTSETWIDGETDEMO_H
+#pragma once
 
 #include "HeGui/HAbstractTestSetWidget.h"
 
@@ -42,5 +41,3 @@ private:
 private:
     Ui::HTestSetWidgetDemo *ui;
 };
-
-#endif // HTESTSETWIDGETDEMO_H

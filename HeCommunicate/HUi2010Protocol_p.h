@@ -1,5 +1,4 @@
-#ifndef HUI2010PROTOCOL_P_H
-#define HUI2010PROTOCOL_P_H
+#pragma once
 
 #include "HUi2010Protocol.h"
 #include "HLittleProtocol_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUI2010PROTOCOL_P_H

@@ -2,8 +2,7 @@
 **      2019-08-08  HResetLineEdit
 ***************************************************************************************************/
 
-#ifndef HRESETLINEEDIT_H
-#define HRESETLINEEDIT_H
+#pragma once
 
 #include "HButtonLineEdit.h"
 
@@ -36,5 +35,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRESETLINEEDIT_H

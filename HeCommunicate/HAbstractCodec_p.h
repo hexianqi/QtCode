@@ -1,5 +1,4 @@
-#ifndef HABSTRACTCODEC_P_H
-#define HABSTRACTCODEC_P_H
+#pragma once
 
 #include "HAbstractCodec.h"
 
@@ -10,5 +9,3 @@ class HAbstractCodecPrivate
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HABSTRACTCODEC_P_H

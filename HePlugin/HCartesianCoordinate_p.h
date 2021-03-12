@@ -1,5 +1,4 @@
-#ifndef HCARTESIANCOORDINATE_P_H
-#define HCARTESIANCOORDINATE_P_H
+#pragma once
 
 #include "HCartesianCoordinate.h"
 #include <QtCore/QRectF>
@@ -11,5 +10,3 @@ public:
     int tickX;
     int tickY;
 };
-
-#endif // HCARTESIANCOORDINATE_P_H

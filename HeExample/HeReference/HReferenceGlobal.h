@@ -1,5 +1,4 @@
-#ifndef HEREFERENCE_GLOBAL_H
-#define HEREFERENCE_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_REFERENCE_BEGIN_NAMESPACE
 HE_REFERENCE_END_NAMESPACE
-
-#endif // HEREFERENCE_GLOBAL_H

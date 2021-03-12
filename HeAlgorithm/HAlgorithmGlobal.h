@@ -1,5 +1,4 @@
-#ifndef HALGORITHMGLOBAL_H
-#define HALGORITHMGLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HALGORITHMGLOBAL_H

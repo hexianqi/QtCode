@@ -1,5 +1,4 @@
-#ifndef HWHEELCIRCULAR_P_H
-#define HWHEELCIRCULAR_P_H
+#pragma once
 
 #include "HWheelCircular.h"
 #include "HAbstractCircular_p.h"
@@ -18,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HWHEELCIRCULAR_P_H

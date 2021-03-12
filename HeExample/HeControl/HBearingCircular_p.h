@@ -1,5 +1,4 @@
-#ifndef HBEARINGCIRCULAR_P_H
-#define HBEARINGCIRCULAR_P_H
+#pragma once
 
 #include "HBearingCircular.h"
 #include "HAbstractCircular_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBEARINGCIRCULAR_P_H

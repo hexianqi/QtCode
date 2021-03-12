@@ -2,8 +2,7 @@
 **      2018-06-19  IThread 线程接口。
 ***************************************************************************************************/
 
-#ifndef ITHREAD_H
-#define ITHREAD_H
+#pragma once
 
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -38,5 +37,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // ITHREAD_H

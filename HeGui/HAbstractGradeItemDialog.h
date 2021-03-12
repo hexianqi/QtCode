@@ -2,9 +2,7 @@
 **      2019-04-23  HAbstractGradeItemDialog 抽象分级数据编辑对话框。
 ***************************************************************************************************/
 
-
-#ifndef HABSTRACTGRADEITEMDIALOG_H
-#define HABSTRACTGRADEITEMDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeData/HDataGlobal.h"
@@ -44,5 +42,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTGRADEITEMDIALOG_H

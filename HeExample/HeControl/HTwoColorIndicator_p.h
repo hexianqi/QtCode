@@ -1,5 +1,4 @@
-#ifndef HTWOCOLORINDICATOR_P_H
-#define HTWOCOLORINDICATOR_P_H
+#pragma once
 
 #include "HTwoColorIndicator.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTWOCOLORINDICATOR_P_H

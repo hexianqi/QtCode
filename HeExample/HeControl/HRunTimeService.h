@@ -2,8 +2,7 @@
 **      2019-06-10  HRunTimeService 运行时间服务。
 ***************************************************************************************************/
 
-#ifndef HRUNTIMESERVICE_H
-#define HRUNTIMESERVICE_H
+#pragma once
 
 #include "IService.h"
 #include "HeCore/HSingleton2.h"
@@ -41,5 +40,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRUNTIMESERVICE_H

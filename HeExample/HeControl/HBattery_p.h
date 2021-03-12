@@ -1,5 +1,4 @@
-#ifndef HBATTERY_P_H
-#define HBATTERY_P_H
+#pragma once
 
 #include "HBattery.h"
 #include "HAnimationProgress_p.h"
@@ -22,4 +21,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-#endif // HBATTERY_P_H

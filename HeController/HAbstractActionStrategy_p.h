@@ -1,5 +1,4 @@
-#ifndef HABSTRACTACTIONSTRATEGY_P_H
-#define HABSTRACTACTIONSTRATEGY_P_H
+#pragma once
 
 #include "HAbstractActionStrategy.h"
 #include "HeData/HDataGlobal.h"
@@ -24,5 +23,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HABSTRACTACTIONSTRATEGY_P_H

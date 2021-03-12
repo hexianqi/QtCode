@@ -1,5 +1,4 @@
-#ifndef HSPECCHROMATISMCHARTVIEW_P_H
-#define HSPECCHROMATISMCHARTVIEW_P_H
+#pragma once
 
 #include "HSpecChromatismChartView.h"
 #include "HePlugin/HChromatismChartView_p.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCHROMATISMCHARTVIEW_P_H

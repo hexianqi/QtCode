@@ -1,5 +1,4 @@
-#ifndef HCHROMATISMEDITHANDLER_P_H
-#define HCHROMATISMEDITHANDLER_P_H
+#pragma once
 
 #include "HChromatismEditHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -12,5 +11,3 @@ class HChromatismEditHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HCHROMATISMEDITHANDLER_P_H

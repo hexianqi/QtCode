@@ -1,5 +1,4 @@
-#ifndef HTCPCLIENTWIDGET_P_H
-#define HTCPCLIENTWIDGET_P_H
+#pragma once
 
 #include "HTcpClientWidget.h"
 #include "HAbstractClientWidget_p.h"
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPCLIENTWIDGET_P_H

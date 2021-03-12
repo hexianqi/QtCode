@@ -2,8 +2,7 @@
 **      2019-06-19  HCircularProgress 等待进度条。
 ***************************************************************************************************/
 
-#ifndef HCIRCULARPROGRESS_H
-#define HCIRCULARPROGRESS_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -54,5 +53,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCULARPROGRESS_H

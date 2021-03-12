@@ -2,8 +2,7 @@
 **      2019-12-23  HSmtpClient SMTP客户端。
 ***************************************************************************************************/
 
-#ifndef HSMTPCLIENT_H
-#define HSMTPCLIENT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -92,5 +91,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSMTPCLIENT_H

@@ -10,8 +10,7 @@
 **                  7:可设置是否显示动画过渡效果
 ***************************************************************************************************/
 
-#ifndef HSWITCHBUTTON_H
-#define HSWITCHBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -115,5 +114,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSWITCHBUTTON_H

@@ -2,8 +2,7 @@
 **      2019-04-04  HCalloutChartExtend 图表扩展 - 带标注。
 ***************************************************************************************************/
 
-#ifndef HCALLOUTCHARTEXTEND_H
-#define HCALLOUTCHARTEXTEND_H
+#pragma once
 
 #include "HAbstractChartExtend.h"
 #include <QtCore/QPointF>
@@ -38,5 +37,3 @@ protected slots:
     void handleSeriesClicked(QPointF point);
     void handleSeriesHovered(QPointF point, bool state);
 };
-
-#endif // HCALLOUTCHARTEXTEND_H

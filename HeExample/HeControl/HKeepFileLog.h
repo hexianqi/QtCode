@@ -2,8 +2,7 @@
 **      2019-07-12  HKeepFileLog 文件日志（文件一直打开）
 ***************************************************************************************************/
 
-#ifndef HKEEPFILELOG_H
-#define HKEEPFILELOG_H
+#pragma once
 
 #include "HAbstractFileLog.h"
 
@@ -34,5 +33,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HKEEPFILELOG_H

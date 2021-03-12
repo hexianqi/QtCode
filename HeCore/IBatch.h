@@ -2,8 +2,7 @@
 **      2019-05-24  IBatch 批处理接口。
 ***************************************************************************************************/
 
-#ifndef IBATCH_H
-#define IBATCH_H
+#pragma once
 
 #include "HeCore/IInitializeable.h"
 
@@ -23,5 +22,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // IBATCH_H

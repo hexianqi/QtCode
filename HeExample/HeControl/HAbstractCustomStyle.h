@@ -2,8 +2,7 @@
 **      2019-06-12  HAbstractCustomStyle 抽象样式。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCUSTOMSTYLE_H
-#define HABSTRACTCUSTOMSTYLE_H
+#pragma once
 
 #include "ICustomStyle.h"
 
@@ -34,5 +33,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTCUSTOMSTYLE_H

@@ -2,8 +2,7 @@
 **      2019-08-08  HRichTextEdit
 ***************************************************************************************************/
 
-#ifndef HRICHTEXTEDIT_H
-#define HRICHTEXTEDIT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtGui/QIcon>
@@ -69,5 +68,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRICHTEXTEDIT_H

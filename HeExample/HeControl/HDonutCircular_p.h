@@ -1,5 +1,4 @@
-#ifndef HDONUTCIRCULAR_P_H
-#define HDONUTCIRCULAR_P_H
+#pragma once
 
 #include "HDonutCircular.h"
 #include "HAbstractCircular_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDONUTCIRCULAR_P_H

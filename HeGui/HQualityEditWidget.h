@@ -2,8 +2,7 @@
 **      2019-05-06  HQualityEditWidget 品质数据编辑窗体。
 ***************************************************************************************************/
 
-#ifndef HQUALITYEDITWIDGET_H
-#define HQUALITYEDITWIDGET_H
+#pragma once
 
 #include "IDataEditWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -58,5 +57,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYEDITWIDGET_H

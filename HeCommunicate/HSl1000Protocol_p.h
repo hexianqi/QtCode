@@ -1,5 +1,4 @@
-#ifndef HSL1000PROTOCOL_P_H
-#define HSL1000PROTOCOL_P_H
+#pragma once
 
 #include "HSl1000Protocol.h"
 #include "HLittleProtocol_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSL1000PROTOCOL_P_H

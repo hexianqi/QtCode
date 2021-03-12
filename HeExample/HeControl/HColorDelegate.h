@@ -2,8 +2,7 @@
 **      2019-08-01  HColorDelegate
 ***************************************************************************************************/
 
-#ifndef HCOLORDELEGATE_H
-#define HCOLORDELEGATE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QAbstractItemDelegate>
@@ -23,5 +22,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORDELEGATE_H

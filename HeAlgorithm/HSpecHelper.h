@@ -2,8 +2,7 @@
 **      2018-06-19  HSpectrum 常用的光谱计算公式类。
 ***************************************************************************************************/
 
-#ifndef HSPECHELPER_H
-#define HSPECHELPER_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 
@@ -32,5 +31,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HSPECHELPER_H

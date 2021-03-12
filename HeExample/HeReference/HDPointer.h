@@ -2,8 +2,7 @@
 **      2018-06-19  HDPointer D指针范例。
 ***************************************************************************************************/
 
-#ifndef HDPOINTER_H
-#define HDPOINTER_H
+#pragma once
 
 #include "HReferenceGlobal.h"
 #include <QtCore/QObject>
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_REFERENCE_END_NAMESPACE
-
-#endif // HDPOINTER_H

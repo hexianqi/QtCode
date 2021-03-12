@@ -2,8 +2,7 @@
 **      2018-06-19  HUsbPortCy USB端口类。
 ***************************************************************************************************/
 
-#ifndef HUSBPORTCY_H
-#define HUSBPORTCY_H
+#pragma once
 
 #include "HAbstractPort.h"
 
@@ -34,5 +33,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUSBPORTCY_H

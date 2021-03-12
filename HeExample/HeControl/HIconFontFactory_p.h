@@ -1,5 +1,4 @@
-#ifndef HICONFONTFACTORY_P_H
-#define HICONFONTFACTORY_P_H
+#pragma once
 
 #include "HIconFontFactory.h"
 
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HICONFONTFACTORY_P_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HDataFormatInfo 数据格式信息类。
 ***************************************************************************************************/
 
-#ifndef HDATAFORMATINFO_H
-#define HDATAFORMATINFO_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <QtCore/QSharedDataPointer>
@@ -58,5 +57,3 @@ protected:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HDATAFORMATINFO_H

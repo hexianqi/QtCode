@@ -39,7 +39,7 @@ void HAdjustSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     if (!dlg.exec())
         return;
     data->setUseIndex(dlg.currentText());
-    d->model->addAction(ACT_RESET_GRADE);
+    d->model->addAction(ACT_RESET_ADJUST);
 }
 
 HE_GUI_END_NAMESPACE

@@ -2,8 +2,7 @@
 **      2019-03-22  HHexSpinBoxDelegate 编辑功能(16进制调节框)条目代理基类。
 ***************************************************************************************************/
 
-#ifndef HHEXSPINBOXDELEGATE_H
-#define HHEXSPINBOXDELEGATE_H
+#pragma once
 
 #include "HStyledItemDelegate.h"
 
@@ -26,5 +25,3 @@ protected:
     HHexSpinBoxDelegate(HHexSpinBoxDelegatePrivate &p, QObject *parent = nullptr);
 };
 
-
-#endif // HHEXSPINBOXDELEGATE_H

@@ -1,5 +1,4 @@
-#ifndef HSPECSQLPRINT_P_H
-#define HSPECSQLPRINT_P_H
+#pragma once
 
 #include "HSpecSqlPrint.h"
 #include "HAbstractSqlPrint_p.h"
@@ -17,5 +16,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSPECSQLPRINT_P_H

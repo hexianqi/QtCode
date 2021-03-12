@@ -1,5 +1,4 @@
-#ifndef HSPECSETTINGDIALOG_P_H
-#define HSPECSETTINGDIALOG_P_H
+#pragma once
 
 #include "HSpecSettingDialog.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECSETTINGDIALOG_P_H

@@ -1,5 +1,4 @@
-#ifndef HIPADDRESS_P_H
-#define HIPADDRESS_P_H
+#pragma once
 
 #include "HIPAddress.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIPADDRESS_P_H

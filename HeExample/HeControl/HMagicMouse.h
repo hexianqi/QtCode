@@ -6,8 +6,7 @@
 **                  2:可设置停留位置旋转角度
 ***************************************************************************************************/
 
-#ifndef HMAGICMOUSE_H
-#define HMAGICMOUSE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -68,5 +67,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMAGICMOUSE_H

@@ -2,8 +2,7 @@
 **      2019-12-27  HLunarCalendarItem
 ***************************************************************************************************/
 
-#ifndef HLUNARCALENDARITEM_H
-#define HLUNARCALENDARITEM_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QDate>
@@ -144,5 +143,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLUNARCALENDARITEM_H

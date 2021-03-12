@@ -1,5 +1,4 @@
-#ifndef HCONTROLWIDGET_P_H
-#define HCONTROLWIDGET_P_H
+#pragma once
 
 #include "HControlFactoryWidget.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLWIDGET_P_H

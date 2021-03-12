@@ -1,5 +1,4 @@
-#ifndef HFILEGLOBAL_H
-#define HFILEGLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_FILE_BEGIN_NAMESPACE
 HE_FILE_END_NAMESPACE
-
-#endif // HFILEGLOBAL_H

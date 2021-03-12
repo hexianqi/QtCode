@@ -2,8 +2,7 @@
 **      2018-06-19  HRegister 注册机类。
 ***************************************************************************************************/
 
-#ifndef HREGISTER_H
-#define HREGISTER_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtCore/QObject>
@@ -47,5 +46,3 @@ protected:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HREGISTER_H

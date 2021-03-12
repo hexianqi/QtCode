@@ -6,8 +6,7 @@
 **                  3:可设置背景颜色
 ***************************************************************************************************/
 
-#ifndef HLIGHTPOINT_H
-#define HLIGHTPOINT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -55,5 +54,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLIGHTPOINT_H

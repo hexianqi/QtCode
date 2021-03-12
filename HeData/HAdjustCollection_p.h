@@ -1,5 +1,4 @@
-#ifndef HADJUSTCOLLECTION_P_H
-#define HADJUSTCOLLECTION_P_H
+#pragma once
 
 #include "HAdjustCollection.h"
 #include "IXlsxStream.h"
@@ -19,5 +18,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HADJUSTCOLLECTION_P_H

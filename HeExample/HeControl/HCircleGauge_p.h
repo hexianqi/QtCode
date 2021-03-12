@@ -1,5 +1,4 @@
-#ifndef HCIRCLEGAUGE_P_H
-#define HCIRCLEGAUGE_P_H
+#pragma once
 
 #include "HCircleGauge.h"
 #include "HAnimationProgress_p.h"
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCLEGAUGE_P_H

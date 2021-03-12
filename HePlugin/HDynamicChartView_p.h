@@ -1,5 +1,4 @@
-#ifndef HDYNAMICCHARTVIEW_P_H
-#define HDYNAMICCHARTVIEW_P_H
+#pragma once
 
 #include "HDynamicChartView.h"
 #include "HZoomChartView_p.h"
@@ -25,5 +24,3 @@ public:
     HMarkerChartExtend *marker;
     HCalloutChartExtend *callout;
 };
-
-#endif // HDYNAMICCHARTVIEW_P_H

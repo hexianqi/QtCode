@@ -2,8 +2,7 @@
 **      2018-06-19  HDiagramWidget 图表窗口部件。
 ***************************************************************************************************/
 
-#ifndef HDIAGRAMWIDGET_H
-#define HDIAGRAMWIDGET_H
+#pragma once
 
 #include <QtWidgets/QWidget>
 #include <QtUiPlugin/QDesignerExportWidget>
@@ -93,5 +92,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HDIAGRAMWIDGET_H

@@ -2,8 +2,7 @@
 **      2019-04-12  HSqlDatabase Sql数据库类。
 ***************************************************************************************************/
 
-#ifndef HSQLDATABASE_H
-#define HSQLDATABASE_H
+#pragma once
 
 #include "ISqlDatabase.h"
 
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLDATABASE_H

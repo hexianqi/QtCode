@@ -1,6 +1,4 @@
-#ifndef HHUESATPICKER_P_H
-#define HHUESATPICKER_P_H
-
+#pragma once
 #include "HHueSatPicker.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -19,5 +17,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHUESATPICKER_P_H

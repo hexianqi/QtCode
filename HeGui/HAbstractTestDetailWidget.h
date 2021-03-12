@@ -2,8 +2,7 @@
 **      2019-03-26  HAbstractTestDetailWidget 抽象详情窗体类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTTESTDETAILWIDGET_H
-#define HABSTRACTTESTDETAILWIDGET_H
+#pragma once
 
 #include "ITestDetailWidget.h"
 
@@ -27,5 +26,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTTESTDETAILWIDGET_H

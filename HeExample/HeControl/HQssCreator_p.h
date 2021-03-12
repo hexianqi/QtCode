@@ -1,5 +1,4 @@
-#ifndef HQSSCREATOR_P_H
-#define HQSSCREATOR_P_H
+#pragma once
 
 #include "HQssCreator.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HQSSCREATOR_P_H

@@ -1,5 +1,4 @@
-#ifndef HRESETLINEEDIT_P_H
-#define HRESETLINEEDIT_P_H
+#pragma once
 
 #include "HResetLineEdit.h"
 #include "HButtonLineEdit_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRESETLINEEDIT_P_H

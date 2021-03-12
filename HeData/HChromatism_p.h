@@ -1,5 +1,4 @@
-#ifndef HCHROMATISM_P_H
-#define HCHROMATISM_P_H
+#pragma once
 
 #include "HChromatism.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCHROMATISM_P_H

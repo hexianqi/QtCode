@@ -1,5 +1,4 @@
-#ifndef HSMTPCLIENT_P_H
-#define HSMTPCLIENT_P_H
+#pragma once
 
 #include "HSmtpClient.h"
 
@@ -26,5 +25,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSMTPCLIENT_P_H

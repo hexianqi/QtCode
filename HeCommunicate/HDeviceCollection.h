@@ -2,8 +2,7 @@
 **      2018-06-19  HDeviceCollection 设备集合类。
 ***************************************************************************************************/
 
-#ifndef HDEVICECOLLECTION_H
-#define HDEVICECOLLECTION_H
+#pragma once
 
 #include "IDeviceCollection.h"
 
@@ -32,5 +31,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HDEVICECOLLECTION_H

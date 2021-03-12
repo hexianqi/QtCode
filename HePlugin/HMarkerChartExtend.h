@@ -2,8 +2,7 @@
 **      2018-07-05  HMarkerChartExtend 图表扩展 - 图例标记可选。
 ***************************************************************************************************/
 
-#ifndef HMARKERCHARTEXTEND_H
-#define HMARKERCHARTEXTEND_H
+#pragma once
 
 #include "HAbstractChartExtend.h"
 
@@ -30,5 +29,3 @@ protected:
 protected:
     HMarkerChartExtend(HMarkerChartExtendPrivate &p, QObject *parent = nullptr);
 };
-
-#endif // HMARKERCHARTEXTEND_H

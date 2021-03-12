@@ -2,8 +2,7 @@
 **      2019-09-09  HInfiniteCircular 无限状
 ***************************************************************************************************/
 
-#ifndef HINFINITECIRCULAR_H
-#define HINFINITECIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -42,5 +41,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HINFINITECIRCULAR_H

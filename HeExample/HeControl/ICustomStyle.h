@@ -2,8 +2,7 @@
 **      2019-06-12  ICustomStyle 定制样式接口。
 ***************************************************************************************************/
 
-#ifndef ICUSTOMSTYLE_H
-#define ICUSTOMSTYLE_H
+#pragma once
 
 #include "IStyle.h"
 
@@ -34,5 +33,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ICUSTOMSTYLE_H

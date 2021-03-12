@@ -1,5 +1,4 @@
-#ifndef HPROTOCOLDEMO_P_H
-#define HPROTOCOLDEMO_P_H
+#pragma once
 
 #include "HProtocolDemo.h"
 
@@ -39,5 +38,3 @@ public:
     bool isLoaded = false;
     QMutex *mutex = nullptr;
 };
-
-#endif // HPROTOCOLDEMO_P_H

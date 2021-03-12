@@ -2,8 +2,7 @@
 **      2018-06-19  HCommunicateFactory 通讯器工厂接口。
 ***************************************************************************************************/
 
-#ifndef ICOMMUNICATEFACTORY_H
-#define ICOMMUNICATEFACTORY_H
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -34,5 +33,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // ICOMMUNICATEFACTORY_H

@@ -1,5 +1,4 @@
-#ifndef HANTLINE_P_H
-#define HANTLINE_P_H
+#pragma once
 
 #include "HAntLine.h"
 
@@ -23,5 +22,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HANTLINE_P_H

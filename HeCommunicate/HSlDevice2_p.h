@@ -1,5 +1,4 @@
-#ifndef HSLDEVICE2_P_H
-#define HSLDEVICE2_P_H
+#pragma once
 
 #include "HSlDevice2.h"
 #include "HAbstractDevice_p.h"
@@ -11,5 +10,3 @@ class HSlDevice2Private : public HAbstractDevicePrivate
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSLDEVICE2_P_H

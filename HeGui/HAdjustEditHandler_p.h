@@ -1,5 +1,4 @@
-#ifndef HADJUSTEDITHANDLER_P_H
-#define HADJUSTEDITHANDLER_P_H
+#pragma once
 
 #include "HAdjustEditHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -11,5 +10,3 @@ class HAdjustEditHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HADJUSTEDITHANDLER_P_H

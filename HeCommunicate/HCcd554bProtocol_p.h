@@ -1,5 +1,4 @@
-#ifndef HCCD554BPROTOCOL_P_H
-#define HCCD554BPROTOCOL_P_H
+#pragma once
 
 #include "HCcd554bProtocol.h"
 #include "HLittleProtocol_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCCD554BPROTOCOL_P_H

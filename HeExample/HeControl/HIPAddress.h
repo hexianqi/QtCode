@@ -9,8 +9,7 @@
 **                  6:可设置背景色/边框颜色/边框圆角角度
 ***************************************************************************************************/
 
-#ifndef HIPADDRESS_H
-#define HIPADDRESS_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -65,5 +64,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIPADDRESS_H

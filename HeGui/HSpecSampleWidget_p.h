@@ -1,5 +1,4 @@
-#ifndef HSPECSAMPLEWIDGET_P_H
-#define HSPECSAMPLEWIDGET_P_H
+#pragma once
 
 #include "HSpecSampleWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -27,5 +26,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECSAMPLEWIDGET_P_H

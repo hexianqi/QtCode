@@ -2,8 +2,7 @@
 **      2019-04-11  HSpecDetailWidget 光谱详情窗体类。
 ***************************************************************************************************/
 
-#ifndef HSPECDETAILWIDGET_H
-#define HSPECDETAILWIDGET_H
+#pragma once
 
 #include "HAbstractTestDetailWidget.h"
 
@@ -36,5 +35,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECDETAILWIDGET_H

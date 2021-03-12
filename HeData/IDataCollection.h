@@ -2,8 +2,7 @@
 **      2019-04-26  IDataCollection 数据集接口。
 ***************************************************************************************************/
 
-#ifndef IDATACOLLECTION_H
-#define IDATACOLLECTION_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -33,5 +32,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IDATACOLLECTION_H

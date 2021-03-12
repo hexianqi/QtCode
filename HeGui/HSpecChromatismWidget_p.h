@@ -1,5 +1,4 @@
-#ifndef HSPECCHROMATISMWIDGET_P_H
-#define HSPECCHROMATISMWIDGET_P_H
+#pragma once
 
 #include "HSpecChromatismWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -31,5 +30,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCHROMATISMWIDGET_P_H

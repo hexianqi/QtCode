@@ -1,5 +1,4 @@
-#ifndef HIVTESTWIDGET_P_H
-#define HIVTESTWIDGET_P_H
+#pragma once
 
 #include "HIVTestWidget.h"
 #include "HTestWidget_p.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HIVTESTWIDGET_P_H

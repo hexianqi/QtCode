@@ -1,5 +1,4 @@
-#ifndef HUSBPORTCY7C68013_P_H
-#define HUSBPORTCY7C68013_P_H
+#pragma once
 
 #include "HUsbPortCy7c68013.h"
 #include "HAbstractPort_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUSBPORTCY7C68013_P_H

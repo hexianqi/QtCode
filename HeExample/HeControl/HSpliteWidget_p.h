@@ -1,5 +1,4 @@
-#ifndef HSPLITEWIDGET_P_H
-#define HSPLITEWIDGET_P_H
+#pragma once
 
 #include "HSpliteWidget.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSPLITEWIDGET_P_H

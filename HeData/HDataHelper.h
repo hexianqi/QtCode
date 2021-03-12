@@ -2,8 +2,7 @@
 **      2019-05-22  HDataHelper 数据帮助类。
 ***************************************************************************************************/
 
-#ifndef HDATAHELPER_H
-#define HDATAHELPER_H
+#pragma once
 
 #include "HDataGlobal.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HDATAHELPER_H

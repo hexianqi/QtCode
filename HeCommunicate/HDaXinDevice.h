@@ -2,8 +2,7 @@
 **      2019-05-27  HDaXinDevice DaXin设备类。
 ***************************************************************************************************/
 
-#ifndef HDAXINDEVICE_H
-#define HDAXINDEVICE_H
+#pragma once
 
 #include "HAbstractDevice.h"
 
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HDAXINDEVICE_H

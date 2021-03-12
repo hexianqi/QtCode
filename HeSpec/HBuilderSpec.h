@@ -1,5 +1,4 @@
-#ifndef HBUILDERSPEC_H
-#define HBUILDERSPEC_H
+#pragma once
 
 #include "HeGui/HAbstractBuilder.h"
 
@@ -31,5 +30,3 @@ protected:
     void buildMenu() override;
     void buildTestWidget() override;
 };
-
-#endif // HBUILDERSPEC_H

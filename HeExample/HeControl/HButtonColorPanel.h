@@ -7,8 +7,7 @@
 **                  4:可设置按钮边框宽度和边框颜色
 ***************************************************************************************************/
 
-#ifndef HBUTTONCOLORPANEL_H
-#define HBUTTONCOLORPANEL_H
+#pragma once
 
 #include "HAbstractColorPanel.h"
 
@@ -58,5 +57,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUTTONCOLORPANEL_H

@@ -1,5 +1,4 @@
-#ifndef HSPECTHREAD_P_H
-#define HSPECTHREAD_P_H
+#pragma once
 
 #include "HSpecThread.h"
 #include "HAbstractThread_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECTHREAD_P_H

@@ -3,8 +3,7 @@
 **                  https://qtdebug.com/qtbook-custom-widget-group-buttons/
 ***************************************************************************************************/
 
-#ifndef HGROUPBUTTON_H
-#define HGROUPBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -35,5 +34,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HGROUPBUTTON_H

@@ -2,8 +2,7 @@
 **      2018-06-19  IChromaticity 色度参数计算接口。
 ***************************************************************************************************/
 
-#ifndef ICHROMATICITY_H
-#define ICHROMATICITY_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtCore/QLineF>
@@ -32,5 +31,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // ICHROMATICITY_H

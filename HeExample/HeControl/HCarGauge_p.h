@@ -1,5 +1,4 @@
-#ifndef HCARGAUGE_P_H
-#define HCARGAUGE_P_H
+#pragma once
 
 #include "HCarGauge.h"
 #include "HCircleGauge_p.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCARGAUGE_P_H

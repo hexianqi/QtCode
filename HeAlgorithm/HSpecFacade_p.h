@@ -1,5 +1,4 @@
-#ifndef HSPECFACADE_P_H
-#define HSPECFACADE_P_H
+#pragma once
 
 #include "HSpecFacade.h"
 #include <memory>
@@ -23,5 +22,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HSPECFACADE_P_H

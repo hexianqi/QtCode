@@ -1,5 +1,4 @@
-#ifndef HCOLORPROGRESSBAR_P_H
-#define HCOLORPROGRESSBAR_P_H
+#pragma once
 
 #include "HColorProgressBar.h"
 #include "HAbstractProgress_p.h"
@@ -24,5 +23,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORPROGRESSBAR_P_H

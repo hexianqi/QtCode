@@ -1,5 +1,4 @@
-#ifndef HDEVICECOLLECTION_P_H
-#define HDEVICECOLLECTION_P_H
+#pragma once
 
 #include "HDeviceCollection.h"
 #include <QtCore/QSet>
@@ -13,5 +12,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HDEVICECOLLECTION_P_H

@@ -2,8 +2,7 @@
 **      2019-08-09  HTaskHeader
 ***************************************************************************************************/
 
-#ifndef HTASKHEADER_H
-#define HTASKHEADER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QFrame>
@@ -44,5 +43,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTASKHEADER_H

@@ -1,5 +1,4 @@
-#ifndef HLITTLEPROTOCOL_P_H
-#define HLITTLEPROTOCOL_P_H
+#pragma once
 
 #include "HLittleProtocol.h"
 #include "HAbstractProtocol_p.h"
@@ -11,5 +10,3 @@ class HLittleProtocolPrivate : public HAbstractProtocolPrivate
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HLITTLEPROTOCOL_P_H

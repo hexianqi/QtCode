@@ -1,5 +1,4 @@
-#ifndef HGUIFACTORY_P_H
-#define HGUIFACTORY_P_H
+#pragma once
 
 #include "HGuiFactory.h"
 
@@ -11,5 +10,3 @@ class HGuiFactoryPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGUIFACTORY_P_H

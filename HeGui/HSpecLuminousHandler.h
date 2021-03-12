@@ -2,8 +2,7 @@
 **      2020-03-26  HSpecLuminousHandler 光通量自吸收配置处理者类。
 ***************************************************************************************************/
 
-#ifndef HSPECLUMINOUSHANDLER_H
-#define HSPECLUMINOUSHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECLUMINOUSHANDLER_H

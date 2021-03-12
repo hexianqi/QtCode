@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEDIALOG_P_H
-#define HELECCALIBRATEDIALOG_P_H
+#pragma once
 
 #include "HElecCalibrateDialog.h"
 #include "HeController/HControllerGlobal.h"
@@ -32,5 +31,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEDIALOG_P_H

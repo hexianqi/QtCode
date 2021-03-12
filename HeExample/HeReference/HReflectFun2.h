@@ -2,8 +2,7 @@
 **      2018-06-19  HReflectFun2 反射函数范例（不使用槽技术）。
 ***************************************************************************************************/
 
-#ifndef HREFLECTFUN2_H
-#define HREFLECTFUN2_H
+#pragma once
 
 #include "HReferenceGlobal.h"
 #include <QtCore/QObject>
@@ -51,5 +50,3 @@ private:
 };
 
 HE_REFERENCE_END_NAMESPACE
-
-#endif // HREFLECTFUN2_H

@@ -1,5 +1,4 @@
-#ifndef HDATAFACTORY_P_H
-#define HDATAFACTORY_P_H
+#pragma once
 
 #include "HDataFactory.h"
 
@@ -10,5 +9,3 @@ class HDataFactoryPrivate
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HDATAFACTORY_P_H

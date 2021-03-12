@@ -2,8 +2,7 @@
 **      2018-07-03  HAbstractVernierTracking 抽象游标追踪策略。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTVERNIERTRACKING_H
-#define HABSTRACTVERNIERTRACKING_H
+#pragma once
 
 #include "HAbstractMouseStrategy.h"
 #include <QtCore/QPointF>
@@ -41,5 +40,3 @@ public:
 protected:
     HAbstractVernierTracking(HAbstractVernierTrackingPrivate &p, QWidget *parent = nullptr);
 };
-
-#endif // HABSTRACTVERNIERTRACKING_H

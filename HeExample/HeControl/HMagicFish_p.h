@@ -1,5 +1,4 @@
-#ifndef HMAGICFISH_P_H
-#define HMAGICFISH_P_H
+#pragma once
 
 #include "HMagicFish.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMAGICFISH_P_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HTestSpec 测试光谱数据类。
 ***************************************************************************************************/
 
-#ifndef HTESTSPEC_H
-#define HTESTSPEC_H
+#pragma once
 
 #include "HTestData.h"
 #include "ITestSpec.h"
@@ -48,5 +47,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HTESTSPEC_H

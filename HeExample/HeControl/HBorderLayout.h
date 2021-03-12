@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/51519088
 ***************************************************************************************************/
 
-#ifndef HBORDERLAYOUT_H
-#define HBORDERLAYOUT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QLayout>
@@ -49,5 +48,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBORDERLAYOUT_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HAbstractThread 抽象线程类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTTHREAD_H
-#define HABSTRACTTHREAD_H
+#pragma once
 
 #include "IThread.h"
 
@@ -54,5 +53,3 @@ private:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HABSTRACTTHREAD_H

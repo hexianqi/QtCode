@@ -3,8 +3,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/complex.html
 ***************************************************************************************************/
 
-#ifndef HCOMPLEXNUMBER_H
-#define HCOMPLEXNUMBER_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include "gsl/gsl_complex.h"
@@ -22,5 +21,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HCOMPLEXNUMBER_H

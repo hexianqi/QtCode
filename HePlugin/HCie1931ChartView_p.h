@@ -1,5 +1,4 @@
-#ifndef HCIE1931CHARTVIEW_P_H
-#define HCIE1931CHARTVIEW_P_H
+#pragma once
 
 #include "HCie1931ChartView.h"
 #include "HZoomChartView_p.h"
@@ -15,5 +14,3 @@ public:
     QGraphicsSimpleTextItem *positionItem;
     QGraphicsSimpleTextItem *pointFocusItem;
 };
-
-#endif // HCIE1931CHARTVIEW_P_H

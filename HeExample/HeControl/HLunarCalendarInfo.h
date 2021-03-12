@@ -8,8 +8,7 @@
 **                  5:计算指定年月日农历信息,包括公历节日和农历节日及二十四节气
 ***************************************************************************************************/
 
-#ifndef HLUNARCALENDARINFO_H
-#define HLUNARCALENDARINFO_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -63,5 +62,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLUNARCALENDARINFO_H

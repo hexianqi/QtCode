@@ -1,5 +1,4 @@
-#ifndef HCHROMATISMCOLLECTION_P_H
-#define HCHROMATISMCOLLECTION_P_H
+#pragma once
 
 #include "HChromatismCollection.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCHROMATISMCOLLECTION_P_H

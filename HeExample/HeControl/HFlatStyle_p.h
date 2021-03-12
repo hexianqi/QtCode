@@ -1,5 +1,4 @@
-#ifndef HFLATSTYLE_P_H
-#define HFLATSTYLE_P_H
+#pragma once
 
 #include "HFlatStyle.h"
 #include "HAbstractCustomStyle_p.h"
@@ -12,5 +11,3 @@ class HFlatStylePrivate : public HAbstractCustomStylePrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFLATSTYLE_P_H

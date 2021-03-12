@@ -2,8 +2,7 @@
 **      2019-09-05  HPetalCircular 花瓣状
 ***************************************************************************************************/
 
-#ifndef HPETALCIRCULAR_H
-#define HPETALCIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPETALCIRCULAR_H

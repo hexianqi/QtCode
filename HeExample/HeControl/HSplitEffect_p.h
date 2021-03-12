@@ -1,5 +1,4 @@
-#ifndef HSPLITEFFECT_P_H
-#define HSPLITEFFECT_P_H
+#pragma once
 
 #include "HSplitEffect.h"
 #include "HAbstractShaderEffect_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSPLITEFFECT_P_H

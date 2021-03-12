@@ -1,5 +1,4 @@
-#ifndef HCALLOUTCHARTITEM_P_H
-#define HCALLOUTCHARTITEM_P_H
+#pragma once
 
 #include "HCalloutChartItem.h"
 #include "HGraphicsItem_p.h"
@@ -15,5 +14,3 @@ public:
     QRectF rect;
     QPointF anchor;
 };
-
-#endif // HCALLOUTCHARTITEM_P_H

@@ -16,8 +16,7 @@
 **                  调用 debug(true) 设置为调试模式，输出调试信息如 URL、参数等。
 ***************************************************************************************************/
 
-#ifndef HHTTPCLIENT_H
-#define HHTTPCLIENT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QVariant>
@@ -63,5 +62,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHTTPCLIENT_H

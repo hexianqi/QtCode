@@ -1,5 +1,4 @@
-#ifndef HABSTRACTBUILDER_P_H
-#define HABSTRACTBUILDER_P_H
+#pragma once
 
 #include "HAbstractBuilder.h"
 #include "HeCommunicate/HCommunicateGlobal.h"
@@ -53,5 +52,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTBUILDER_P_H

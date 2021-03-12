@@ -2,8 +2,7 @@
 **      2019-05-16  HChromatismWidget 色容差窗口部件。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMWIDGET_H
-#define HCHROMATISMWIDGET_H
+#pragma once
 
 #include "HCartesianWidget.h"
 
@@ -47,5 +46,3 @@ private:
     void init();
     void fixCoordinate(QPointF center, QPolygonF poly);
 };
-
-#endif // HCHROMATISMWIDGET_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HUsbPortLpc214 USB端口类。
 ***************************************************************************************************/
 
-#ifndef HUSBPORTLPC214_H
-#define HUSBPORTLPC214_H
+#pragma once
 
 #include "HAbstractPort.h"
 
@@ -34,5 +33,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUSBPORTLPC214_H

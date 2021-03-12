@@ -4,8 +4,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/71240662
 ***************************************************************************************************/
 
-#ifndef HCOMPOSITE_H
-#define HCOMPOSITE_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -45,9 +44,6 @@ public:
     void remove(TransparentComponent *) override;
     TransparentComponent *getChild(int index) override;
     void operation(int indent) override;
-
-private:
-    TransparentLeaf() = default;;
 };
 
 class TransparentComposite : public TransparentComponent
@@ -61,9 +57,6 @@ public:
     void remove(TransparentComponent *) override;
     TransparentComponent *getChild(int index) override;
     void operation(int indent) override;
-
-private:
-    TransparentComposite() = default;
 
 private:
     vector<TransparentComponent *> _elements;
@@ -93,9 +86,6 @@ public:
 
 public:
     void operation(int indent) override;
-
-private:
-    SafeLeaf() = default;
 };
 
 class SafeComposite : public SafeComponent
@@ -111,10 +101,5 @@ public:
     void operation(int indent) override;
 
 private:
-    SafeComposite() = default;
-
-private:
     vector<SafeComponent *> _elements;
 };
-
-#endif // HCOMPOSITE_H

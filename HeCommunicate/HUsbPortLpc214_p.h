@@ -1,5 +1,4 @@
-#ifndef HUSBPORTLPC214_P_H
-#define HUSBPORTLPC214_P_H
+#pragma once
 
 #include "HUsbPortLpc214.h"
 #include "HAbstractPort_p.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUSBPORTLPC214_P_H

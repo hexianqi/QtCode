@@ -2,8 +2,7 @@
 **      2019-12-16  HCcd554bProtocol
 ***************************************************************************************************/
 
-#ifndef HCCD554BPROTOCOL_H
-#define HCCD554BPROTOCOL_H
+#pragma once
 
 #include "HLittleProtocol.h"
 
@@ -28,5 +27,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCCD554BPROTOCOL_H

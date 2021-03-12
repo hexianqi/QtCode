@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/79242297
 ***************************************************************************************************/
 
-#ifndef HSTRATEGY_H
-#define HSTRATEGY_H
+#pragma once
 
 // 出行策略
 class IStrategy
@@ -48,5 +47,3 @@ public:
 private:
     IStrategy *_strategy;
 };
-
-#endif // HSTRATEGY_H

@@ -1,5 +1,4 @@
-#ifndef HRBTABLEHEADERVIEW_P_H
-#define HRBTABLEHEADERVIEW_P_H
+#pragma once
 
 #include "HRbTableHeaderView.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRBTABLEHEADERVIEW_P_H

@@ -2,8 +2,7 @@
 **      2019-04-30  HGradeEditWidget 分级数据编辑窗体。
 ***************************************************************************************************/
 
-#ifndef HGRADEEDITWIDGET_H
-#define HGRADEEDITWIDGET_H
+#pragma once
 
 #include "IDataEditWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -44,5 +43,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEEDITWIDGET_H

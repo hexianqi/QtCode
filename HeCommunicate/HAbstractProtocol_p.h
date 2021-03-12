@@ -1,5 +1,4 @@
-#ifndef HABSTRACTPROTOCOL_P_H
-#define HABSTRACTPROTOCOL_P_H
+#pragma once
 
 #include "HAbstractProtocol.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HABSTRACTPROTOCOL_P_H

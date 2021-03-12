@@ -2,8 +2,7 @@
 **      2019-11-29  HIVTestHandler
 ***************************************************************************************************/
 
-#ifndef HIVTESTHANDLER_H
-#define HIVTESTHANDLER_H
+#pragma once
 
 #include "HAbstractGuiHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HIVTESTHANDLER_H

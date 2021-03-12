@@ -2,8 +2,7 @@
 **      2018-07-03  HCIE1931View CIE1931视图。
 ***************************************************************************************************/
 
-#ifndef HCIE1931CHARTVIEW_H
-#define HCIE1931CHARTVIEW_H
+#pragma once
 
 #include "HZoomChartView.h"
 
@@ -37,5 +36,3 @@ protected slots:
     void handlePointFocusChanged(QPointF pos);
     void handlePositionChanged(QPointF pos);
 };
-
-#endif // HCIE1931CHARTVIEW_H

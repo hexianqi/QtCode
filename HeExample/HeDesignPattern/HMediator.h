@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/79242388
 ***************************************************************************************************/
 
-#ifndef HMEDIATOR_H
-#define HMEDIATOR_H
+#pragma once
 
 #include <list>
 #include <string>
@@ -63,5 +62,3 @@ public:
     void sendMessage(const IMediator &mediator, const string &message) const override;
     void receiveMessage(const IColleague *sender, const string &message) const override;
 };
-
-#endif // HMEDIATOR_H

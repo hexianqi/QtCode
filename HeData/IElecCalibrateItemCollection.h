@@ -2,8 +2,7 @@
 **      2019-10-16 IElecCalibrateItemCollection 电参数校准数据项集合。
 ***************************************************************************************************/
 
-#ifndef IELECCALIBRATEITEMCOLLECTION_H
-#define IELECCALIBRATEITEMCOLLECTION_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -27,5 +26,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IELECCALIBRATEITEMCOLLECTION_H

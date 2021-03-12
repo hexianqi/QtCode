@@ -2,8 +2,7 @@
 **      2019-04-28  HAdjust 调整数据。
 ***************************************************************************************************/
 
-#ifndef HADJUST_H
-#define HADJUST_H
+#pragma once
 
 #include "IAdjust.h"
 
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HADJUST_H

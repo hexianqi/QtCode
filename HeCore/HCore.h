@@ -2,8 +2,7 @@
 **      2018-06-19  各种转换函数。
 ***************************************************************************************************/
 
-#ifndef HCORE_H
-#define HCORE_H
+#pragma once
 
 #include "HLogType.h"
 #include "HActionType.h"
@@ -48,5 +47,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HCORE_H

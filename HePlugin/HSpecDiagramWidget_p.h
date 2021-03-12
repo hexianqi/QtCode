@@ -1,5 +1,4 @@
-#ifndef HSPECDIAGRAMWIDGET_P_H
-#define HSPECDIAGRAMWIDGET_P_H
+#pragma once
 
 #include "HSpecDiagramWidget.h"
 #include "HRibbonDiagramWidget_p.h"
@@ -20,5 +19,3 @@ public:
     QFont fontTopLeft;
     QBrush brushCenter;
 };
-
-#endif // HSPECDIAGRAMWIDGET_P_H

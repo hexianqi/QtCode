@@ -2,8 +2,7 @@
 **      2018-06-19  HVernierWidget 带游标图表窗口部件。
 ***************************************************************************************************/
 
-#ifndef HVERNIERWIDGET_H
-#define HVERNIERWIDGET_H
+#pragma once
 
 #include "HCartesianWidget.h"
 
@@ -52,5 +51,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HVERNIERWIDGET_H

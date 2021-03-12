@@ -1,5 +1,4 @@
-#ifndef HTESTSETWIDGET2000DC_H
-#define HTESTSETWIDGET2000DC_H
+#pragma once
 
 #include "HeGui/HAbstractTestSetWidget.h"
 
@@ -50,5 +49,3 @@ private:
 private:
     Ui::HTestSetWidget2000DC *ui;
 };
-
-#endif // HTESTSETWIDGET2000DC_H

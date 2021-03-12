@@ -1,6 +1,4 @@
-#ifndef HFADEEFFECT_P_H
-#define HFADEEFFECT_P_H
-
+#pragma once
 #include "HFadeEffect.h"
 #include "HAbstractShaderEffect_p.h"
 
@@ -11,5 +9,3 @@ class HFadeEffectPrivate : public HAbstractShaderEffectPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFADEEFFECT_P_H

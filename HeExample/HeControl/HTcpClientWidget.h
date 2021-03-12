@@ -2,8 +2,7 @@
 **      2019-07-17  HTcpClientWidget TCP客户端
 ***************************************************************************************************/
 
-#ifndef HTCPCLIENTWIDGET_H
-#define HTCPCLIENTWIDGET_H
+#pragma once
 
 #include "HAbstractClientWidget.h"
 
@@ -24,7 +23,7 @@ public:
     explicit HTcpClientWidget(QWidget *parent = nullptr);
     ~HTcpClientWidget() override;
 
-public slots:    
+public slots:
     void sendData() override;
     void clearData() override;
 
@@ -47,5 +46,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPCLIENTWIDGET_H

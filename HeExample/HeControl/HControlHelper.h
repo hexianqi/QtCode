@@ -2,8 +2,7 @@
 **      2019-06-04  HControlHelper 控件帮助类。
 ***************************************************************************************************/
 
-#ifndef HCONTROLHELPER_H
-#define HCONTROLHELPER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -38,5 +37,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLHELPER_H

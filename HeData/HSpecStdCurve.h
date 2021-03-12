@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecStdCurve 光谱标准曲线数据类。
 ***************************************************************************************************/
 
-#ifndef HSPECSTDCURVE_H
-#define HSPECSTDCURVE_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECSTDCURVE_H

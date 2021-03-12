@@ -1,5 +1,4 @@
-#ifndef HTASKHEADER_P_H
-#define HTASKHEADER_P_H
+#pragma once
 
 #include "HTaskHeader.h"
 #include <QtGui/QIcon>
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTASKHEADER_P_H

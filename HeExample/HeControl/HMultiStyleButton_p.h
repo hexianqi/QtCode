@@ -1,5 +1,4 @@
-#ifndef HMULTISTYLEBUTTON_P_H
-#define HMULTISTYLEBUTTON_P_H
+#pragma once
 
 #include "HMultiStyleButton.h"
 #include <QLabel>
@@ -33,5 +32,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMULTISTYLEBUTTON_P_H

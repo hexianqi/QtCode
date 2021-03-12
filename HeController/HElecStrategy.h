@@ -2,8 +2,7 @@
 **      2019-10-24  HElecStrategy 电动作策略。
 ***************************************************************************************************/
 
-#ifndef HELECSTRATEGY_H
-#define HELECSTRATEGY_H
+#pragma once
 
 #include "HAbstractActionStrategy.h"
 
@@ -31,5 +30,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HELECSTRATEGY_H

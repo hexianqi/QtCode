@@ -2,8 +2,7 @@
 **      2018-06-19  IHandler 处理者接口。
 ***************************************************************************************************/
 
-#ifndef IHANDLER_H
-#define IHANDLER_H
+#pragma once
 
 #include "HeCore/IInitializeable.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // IHANDLER_H

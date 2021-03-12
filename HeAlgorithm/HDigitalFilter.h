@@ -4,8 +4,7 @@
 **                  BUG: 头文件"gsl/gsl_movstat.h"中gsl_movstat_accum结构包含delete与关键字冲突。
 ***************************************************************************************************/
 
-#ifndef HDIGITALFILTER_H
-#define HDIGITALFILTER_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 
@@ -27,5 +26,3 @@ class HE_ALGORITHM_EXPORT HDigitalFilter
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HDIGITALFILTER_H

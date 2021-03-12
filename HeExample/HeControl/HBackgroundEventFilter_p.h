@@ -1,5 +1,4 @@
-#ifndef HBACKGROUNDEVENTFILTER_P_H
-#define HBACKGROUNDEVENTFILTER_P_H
+#pragma once
 
 #include "HBackgroundEventFilter.h"
 #include "HAbstractMouseEventFilter_p.h"
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBACKGROUNDEVENTFILTER_P_H

@@ -1,5 +1,4 @@
-#ifndef HABSTRACTGRADE_P_H
-#define HABSTRACTGRADE_P_H
+#pragma once
 
 #include "HAbstractGrade.h"
 
@@ -18,5 +17,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HABSTRACTGRADE_P_H

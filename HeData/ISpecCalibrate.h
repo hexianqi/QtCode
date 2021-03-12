@@ -2,8 +2,7 @@
 **      2018-06-19  ISpecCalibrate 光谱校准数据接口。
 ***************************************************************************************************/
 
-#ifndef ISPECCALIBRATE_H
-#define ISPECCALIBRATE_H
+#pragma once
 
 #include "HDataType.h"
 #include "HeCore/IInitializeable.h"
@@ -60,5 +59,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ISPECCALIBRATE_H

@@ -2,8 +2,7 @@
 **      2019-09-09  HBubbleCircular 气泡状
 ***************************************************************************************************/
 
-#ifndef HBUBBLECIRCULAR_H
-#define HBUBBLECIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUBBLECIRCULAR_H

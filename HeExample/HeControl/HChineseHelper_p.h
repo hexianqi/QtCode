@@ -1,5 +1,4 @@
-#ifndef HCHINESEHELPER_P_H
-#define HCHINESEHELPER_P_H
+#pragma once
 
 #include "HChineseHelper.h"
 #include <QtCore/QStringList>
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCHINESEHELPER_P_H

@@ -2,8 +2,7 @@
 **      2019-05-15  HProductInfoEditHandler 产品信息配置处理者类。
 ***************************************************************************************************/
 
-#ifndef HPRODUCTINFOEDITHANDLER_H
-#define HPRODUCTINFOEDITHANDLER_H
+#pragma once
 
 #include "HAbstractGuiHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HPRODUCTINFOEDITHANDLER_H

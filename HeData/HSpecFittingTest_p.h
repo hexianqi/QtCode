@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGTEST_P_H
-#define HSPECFITTINGTEST_P_H
+#pragma once
 
 #include "HSpecFittingTest.h"
 #include "HSpecFitting_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECFITTINGTEST_P_H

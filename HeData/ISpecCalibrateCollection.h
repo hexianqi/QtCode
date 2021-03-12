@@ -2,8 +2,7 @@
 **      2018-06-19  ISpecCalibrateCollection 光谱校准数据集合接口。
 ***************************************************************************************************/
 
-#ifndef ISPECCALIBRATECOLLECTION_H
-#define ISPECCALIBRATECOLLECTION_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ISPECCALIBRATECOLLECTION_H

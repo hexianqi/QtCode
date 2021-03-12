@@ -2,8 +2,7 @@
 **      2018-06-19  HPositionTracking 鼠标位置追踪策略。
 ***************************************************************************************************/
 
-#ifndef HPOSITIONTRACKING_H
-#define HPOSITIONTRACKING_H
+#pragma once
 
 #include "HAbstractMouseStrategy.h"
 #include <QtCore/QPointF>
@@ -29,5 +28,3 @@ public:
 protected:
     HPositionTracking(HPositionTrackingPrivate &p, QWidget *parent = nullptr);
 };
-
-#endif // HPOSITIONTRACKING_H

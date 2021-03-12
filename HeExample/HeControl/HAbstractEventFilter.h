@@ -2,8 +2,7 @@
 **      2019-09-03  HAbstractEventFilter
 ***************************************************************************************************/
 
-#ifndef HABSTRACTEVENTFILTER_H
-#define HABSTRACTEVENTFILTER_H
+#pragma once
 
 #include "IEventFilter.h"
 
@@ -41,5 +40,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTEVENTFILTER_H

@@ -1,5 +1,4 @@
-#ifndef HSCREENWIDGET_P_H
-#define HSCREENWIDGET_P_H
+#pragma once
 
 #include "HScreenWidget.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSCREENWIDGET_P_H

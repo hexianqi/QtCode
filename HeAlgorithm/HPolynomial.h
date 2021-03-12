@@ -4,8 +4,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/poly.html
 ***************************************************************************************************/
 
-#ifndef HPOLYNOMIAL_H
-#define HPOLYNOMIAL_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include "gsl/gsl_complex.h"
@@ -34,5 +33,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HPOLYNOMIAL_H

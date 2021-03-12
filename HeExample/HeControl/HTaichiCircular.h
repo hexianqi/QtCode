@@ -2,8 +2,7 @@
 **      2019-06-19  HTaichiCircular 太极。
 ***************************************************************************************************/
 
-#ifndef HTAICHICIRCULAR_H
-#define HTAICHICIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -42,5 +41,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTAICHICIRCULAR_H

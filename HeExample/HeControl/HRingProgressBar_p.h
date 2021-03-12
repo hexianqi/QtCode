@@ -1,5 +1,4 @@
-#ifndef HRINGPROGRESSBAR_P_H
-#define HRINGPROGRESSBAR_P_H
+#pragma once
 
 #include "HRingProgressBar.h"
 #include "HAnimationProgress_p.h"
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRINGPROGRESSBAR_P_H

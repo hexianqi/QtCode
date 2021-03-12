@@ -1,5 +1,4 @@
-#ifndef HGRADEITEM2D_P_H
-#define HGRADEITEM2D_P_H
+#pragma once
 
 #include "HGradeItem2D.h"
 #include "HAbstractDataItem_p.h"
@@ -16,5 +15,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HGRADEITEM2D_P_H

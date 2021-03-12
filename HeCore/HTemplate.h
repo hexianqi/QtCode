@@ -2,8 +2,7 @@
 **      2019-05-23  一些模板函数。
 ***************************************************************************************************/
 
-#ifndef HTEMPLATE_H
-#define HTEMPLATE_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <cxxabi.h>
@@ -18,5 +17,3 @@ char *className()
 }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HTEMPLATE_H

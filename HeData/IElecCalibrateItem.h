@@ -2,8 +2,7 @@
 **      2019-10-16  IElecCalibrateItem 电参数校准子项接口。
 ***************************************************************************************************/
 
-#ifndef IELECCALIBRATEITEM_H
-#define IELECCALIBRATEITEM_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -28,5 +27,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IELECCALIBRATEITEM_H

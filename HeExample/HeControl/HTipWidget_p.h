@@ -1,5 +1,4 @@
-#ifndef HTIPWIDGET_P_H
-#define HTIPWIDGET_P_H
+#pragma once
 
 #include "HTipWidget.h"
 #include <QtCore/QPersistentModelIndex>
@@ -30,5 +29,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTIPWIDGET_P_H

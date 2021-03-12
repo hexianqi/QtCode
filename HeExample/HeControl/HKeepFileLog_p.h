@@ -1,5 +1,4 @@
-#ifndef HKEEPFILELOG_P_H
-#define HKEEPFILELOG_P_H
+#pragma once
 
 #include "HKeepFileLog.h"
 #include "HAbstractFileLog_p.h"
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HKEEPFILELOG_P_H

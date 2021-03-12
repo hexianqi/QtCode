@@ -1,5 +1,4 @@
-#ifndef HBLINDSEFFECT_P_H
-#define HBLINDSEFFECT_P_H
+#pragma once
 
 #include "HBlindsEffect.h"
 #include "HAbstractShaderEffect_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBLINDSEFFECT_P_H

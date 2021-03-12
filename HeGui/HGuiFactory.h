@@ -2,8 +2,7 @@
 **      2019-03-01  HGuiFactory Gui工厂类。
 ***************************************************************************************************/
 
-#ifndef HGUIFACTORY_H
-#define HGUIFACTORY_H
+#pragma once
 
 #include "IGuiFactory.h"
 
@@ -40,5 +39,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGUIFACTORY_H

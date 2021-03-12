@@ -2,8 +2,7 @@
 **      2018-07-03  HZoomChartView 可缩放图表视图。
 ***************************************************************************************************/
 
-#ifndef HZOOMCHARTVIEW_H
-#define HZOOMCHARTVIEW_H
+#pragma once
 
 #include "HChartView.h"
 
@@ -29,5 +28,3 @@ protected:
 protected:
     virtual void init();
 };
-
-#endif // HZOOMCHARTVIEW_H

@@ -2,8 +2,7 @@
 **      2019-05-15  HAbstractSqlPrint 抽象数据库打印。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTSQLPRINT_H
-#define HABSTRACTSQLPRINT_H
+#pragma once
 
 #include "ISqlPrint.h"
 
@@ -63,5 +62,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HABSTRACTSQLPRINT_H

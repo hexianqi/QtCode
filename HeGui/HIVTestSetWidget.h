@@ -1,5 +1,4 @@
-#ifndef HIVTESTSETWIDGET_H
-#define HIVTESTSETWIDGET_H
+#pragma once
 
 #include "HAbstractTestSetWidget.h"
 
@@ -39,5 +38,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HIVTESTSETWIDGET_H

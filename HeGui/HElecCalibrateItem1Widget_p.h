@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEITEM1WIDGET_P_H
-#define HELECCALIBRATEITEM1WIDGET_P_H
+#pragma once
 
 #include "HElecCalibrateItem1Widget.h"
 #include "HElecCalibrateItemWidget_p.h"
@@ -11,5 +10,3 @@ class HElecCalibrateItem1WidgetPrivate : public HElecCalibrateItemWidgetPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEM1WIDGET_P_H

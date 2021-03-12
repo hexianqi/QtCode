@@ -1,5 +1,4 @@
-#ifndef HEMAILADDRESS_P_H
-#define HEMAILADDRESS_P_H
+#pragma once
 
 #include "HEmailAddress.h"
 
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HEMAILADDRESS_P_H

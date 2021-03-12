@@ -1,5 +1,4 @@
-#ifndef HABSTRACTPROGRESS_P_H
-#define HABSTRACTPROGRESS_P_H
+#pragma once
 
 #include "HAbstractProgress.h"
 
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTPROGRESS_P_H

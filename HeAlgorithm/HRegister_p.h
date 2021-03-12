@@ -1,5 +1,4 @@
-#ifndef HREGISTER_P_H
-#define HREGISTER_P_H
+#pragma once
 
 #include "HRegister.h"
 #include <QtCore/QString>
@@ -25,5 +24,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HREGISTER_P_H

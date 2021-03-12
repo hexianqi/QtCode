@@ -2,8 +2,7 @@
 **      2019-10-23  HStreamHelper 流帮助类。
 ***************************************************************************************************/
 
-#ifndef HSTREAMHELPER_H
-#define HSTREAMHELPER_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include <QtCore/QDataStream>
@@ -58,5 +57,3 @@ bool HStreamHelper::write(QDataStream &s, QMap<K, T *> data)
 }
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSTREAMHELPER_H

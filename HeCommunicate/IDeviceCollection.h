@@ -1,8 +1,8 @@
 /***************************************************************************************************
 **      2018-06-19  IDeviceCollection 设备集合接口。
 ***************************************************************************************************/
-#ifndef IDEVICECOLLECTION_H
-#define IDEVICECOLLECTION_H
+
+#pragma once
 
 #include "HCommunicateGlobal.h"
 #include "HeCore/HCollection.h"
@@ -27,5 +27,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // IDEVICECOLLECTION_H

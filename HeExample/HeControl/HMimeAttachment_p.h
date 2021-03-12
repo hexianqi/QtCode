@@ -1,5 +1,4 @@
-#ifndef HMIMEATTACHMENT_P_H
-#define HMIMEATTACHMENT_P_H
+#pragma once
 
 #include "HMimeAttachment.h"
 #include "HMimeFile_p.h"
@@ -12,5 +11,3 @@ class HMimeAttachmentPrivate : public HMimeFilePrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEATTACHMENT_P_H

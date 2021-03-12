@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/66968761
 ***************************************************************************************************/
 
-#ifndef HBUILDER_H
-#define HBUILDER_H
+#pragma once
 
 #include <string>
 
@@ -89,5 +88,3 @@ class Direcror
 public:
     void create(IBuilder *builder);
 };
-
-#endif // HBUILDER_H

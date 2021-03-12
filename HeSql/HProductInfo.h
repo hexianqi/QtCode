@@ -2,8 +2,7 @@
 **      2019-05-14  HProductInfo 产品信息。
 ***************************************************************************************************/
 
-#ifndef HPRODUCTINFO_H
-#define HPRODUCTINFO_H
+#pragma once
 
 #include "IProductInfo.h"
 
@@ -46,5 +45,3 @@ private:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HPRODUCTINFO_H

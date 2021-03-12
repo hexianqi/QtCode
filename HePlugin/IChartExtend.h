@@ -2,8 +2,7 @@
 **      2019-04-04  IChartExtend 图表扩展接口。
 ***************************************************************************************************/
 
-#ifndef ICHARTEXTEND_H
-#define ICHARTEXTEND_H
+#pragma once
 
 #include <QtCharts/QChartGlobal>
 
@@ -24,5 +23,3 @@ public:
     // 断开扩展
     virtual bool disconnectExtend() = 0;
 };
-
-#endif // ICHARTEXTEND_H

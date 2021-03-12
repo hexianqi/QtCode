@@ -2,8 +2,7 @@
 **      2020-04-06  HHttpTest
 ***************************************************************************************************/
 
-#ifndef HHTTPTEST_H
-#define HHTTPTEST_H
+#pragma once
 
 #include "HControlGlobal.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHTTPTEST_H

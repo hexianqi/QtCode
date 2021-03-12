@@ -1,5 +1,4 @@
-#ifndef HSPEEDGAUGE_P_H
-#define HSPEEDGAUGE_P_H
+#pragma once
 
 #include "HSpeedGauge.h"
 #include "HCircleGauge_p.h"
@@ -11,7 +10,7 @@ class HSpeedGaugePrivate : public HCircleGaugePrivate
 public:
     HSpeedGaugePrivate();
 
-public:    
+public:
     int ringWidth = 10;
     int ringStart = 25;
     int ringMid = 50;
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSPEEDGAUGE_P_H

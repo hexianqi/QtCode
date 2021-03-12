@@ -2,8 +2,7 @@
 **      2019-08-07  HNavigationPanel
 ***************************************************************************************************/
 
-#ifndef HNAVIGATIONPANEL_H
-#define HNAVIGATIONPANEL_H
+#pragma once
 
 #include "HAbstractMultiPanel.h"
 #include <functional>
@@ -56,5 +55,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVIGATIONPANEL_H

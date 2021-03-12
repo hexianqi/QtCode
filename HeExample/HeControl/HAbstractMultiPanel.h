@@ -2,8 +2,7 @@
 **      2019-08-09  HAbstractMultiPanel
 ***************************************************************************************************/
 
-#ifndef HABSTRACTMULTIPANEL_H
-#define HABSTRACTMULTIPANEL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtGui/QIcon>
@@ -58,5 +57,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTMULTIPANEL_H

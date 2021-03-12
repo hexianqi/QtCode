@@ -1,5 +1,4 @@
-#ifndef HSPECSTRATEGY_P_H
-#define HSPECSTRATEGY_P_H
+#pragma once
 
 #include "HSpecStrategy.h"
 #include "HAbstractActionStrategy_p.h"
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECSTRATEGY_P_H

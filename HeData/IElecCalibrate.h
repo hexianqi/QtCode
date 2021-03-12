@@ -2,8 +2,7 @@
 **      2019-10-15  IElecCalibrate 电参数校准数据接口。
 ***************************************************************************************************/
 
-#ifndef IELECCALIBRATE_H
-#define IELECCALIBRATE_H
+#pragma once
 
 #include "HDataType.h"
 #include "HeCore/IInitializeable.h"
@@ -39,5 +38,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IELECCALIBRATE_H

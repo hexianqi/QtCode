@@ -2,8 +2,7 @@
 **      2019-04-25  HGradeSelectHandler 分级数据选择处理者类。
 ***************************************************************************************************/
 
-#ifndef HGRADESELECTHANDLER_H
-#define HGRADESELECTHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADESELECTHANDLER_H

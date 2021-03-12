@@ -1,5 +1,4 @@
-#ifndef HUDPSERVERWIDGET_P_H
-#define HUDPSERVERWIDGET_P_H
+#pragma once
 
 #include "HUdpServerWidget.h"
 #include "HAbstractServerWidget_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPSERVERWIDGET_P_H

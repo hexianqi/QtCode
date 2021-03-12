@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/79629690
 ***************************************************************************************************/
 
-#ifndef HFLYWEIGHT_H
-#define HFLYWEIGHT_H
+#pragma once
 
 #include <string>
 #include <map>
@@ -65,5 +64,3 @@ private:
     // 存储 T/CT 对象（享元池）
     static map<string, IPlayer *> __map;
 };
-
-#endif // HFLYWEIGHT_H

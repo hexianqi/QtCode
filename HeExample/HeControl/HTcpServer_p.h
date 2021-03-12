@@ -1,5 +1,4 @@
-#ifndef HTCPSERVER_P_H
-#define HTCPSERVER_P_H
+#pragma once
 
 #include "HTcpServer.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPSERVER_P_H

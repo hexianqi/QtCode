@@ -2,8 +2,7 @@
 **      2018-06-19  HRubberBand 橡皮带策略。
 ***************************************************************************************************/
 
-#ifndef HRUBBERBAND_H
-#define HRUBBERBAND_H
+#pragma once
 
 #include "HAbstractMouseStrategy.h"
 #include <QtCore/QRectF>
@@ -33,5 +32,3 @@ public:
 protected:
     HRubberBand(HRubberBandPrivate &p, QWidget *parent = nullptr);
 };
-
-#endif // HRUBBERBAND_H

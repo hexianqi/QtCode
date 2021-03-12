@@ -1,5 +1,4 @@
-#ifndef HUDPCLIENTWIDGET_P_H
-#define HUDPCLIENTWIDGET_P_H
+#pragma once
 
 #include "HUdpClientWidget.h"
 #include "HAbstractClientWidget_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPCLIENTWIDGET_P_H

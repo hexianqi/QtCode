@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecSetting 光谱配置数据类。
 ***************************************************************************************************/
 
-#ifndef HSPECSETTING_H
-#define HSPECSETTING_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -55,5 +54,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSPECSETTING_H

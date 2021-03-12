@@ -1,5 +1,4 @@
-#ifndef HTABLEWIDGET_P_H
-#define HTABLEWIDGET_P_H
+#pragma once
 
 #include "HTableWidget.h"
 
@@ -9,5 +8,3 @@ public:
     quint32 actionContain = HTableWidget::ActionAll;
     QHash<quint32, QAction *> actions;
 };
-
-#endif // HTABLEWIDGET_P_H

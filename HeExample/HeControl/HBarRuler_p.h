@@ -1,5 +1,4 @@
-#ifndef HBARRULER_P_H
-#define HBARRULER_P_H
+#pragma once
 
 #include "HBarRuler.h"
 #include "HAbstractProgress_p.h"
@@ -25,5 +24,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBARRULER_P_H

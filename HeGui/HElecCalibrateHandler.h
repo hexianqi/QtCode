@@ -2,8 +2,7 @@
 **      2019-10-23  HElecCalibrateHandler 电定标处理者类。
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATEHANDLER_H
-#define HELECCALIBRATEHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEHANDLER_H

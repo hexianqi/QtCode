@@ -2,8 +2,7 @@
 **      2019-04-29  HAdjustSelectHandler 调整数据选择处理者类。
 ***************************************************************************************************/
 
-#ifndef HADJUSTSELECTHANDLER_H
-#define HADJUSTSELECTHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HADJUSTSELECTHANDLER_H

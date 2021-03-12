@@ -2,8 +2,7 @@
 **      2019-05-28  HAbstractProtocol 抽象协议类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTPROTOCOL_H
-#define HABSTRACTPROTOCOL_H
+#pragma once
 
 #include "IProtocol.h"
 
@@ -63,5 +62,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HABSTRACTPROTOCOL_H

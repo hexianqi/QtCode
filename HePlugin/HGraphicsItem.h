@@ -2,8 +2,7 @@
 **      2019-04-03  HGraphicsItem   自定义图样项。
 ***************************************************************************************************/
 
-#ifndef HGRAPHICSITEM_H
-#define HGRAPHICSITEM_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QGraphicsItem>
@@ -22,5 +21,3 @@ protected:
 protected:
     QScopedPointer<HGraphicsItemPrivate> d_ptr;
 };
-
-#endif // HGRAPHICSITEM_H

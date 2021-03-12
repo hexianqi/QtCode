@@ -2,8 +2,7 @@
 **      2019-07-31  HClearLineEdit
 ***************************************************************************************************/
 
-#ifndef HCLEARLINEEDIT_H
-#define HCLEARLINEEDIT_H
+#pragma once
 
 #include "HButtonLineEdit.h"
 
@@ -33,5 +32,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCLEARLINEEDIT_H

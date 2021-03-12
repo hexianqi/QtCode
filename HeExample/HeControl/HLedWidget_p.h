@@ -1,5 +1,4 @@
-#ifndef HLEDWIDGET_P_H
-#define HLEDWIDGET_P_H
+#pragma once
 
 #include "HLedWidget.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLEDWIDGET_P_H

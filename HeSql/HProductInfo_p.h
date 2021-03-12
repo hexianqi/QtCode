@@ -1,5 +1,4 @@
-#ifndef HPRODUCTINFO_P_H
-#define HPRODUCTINFO_P_H
+#pragma once
 
 #include "HProductInfo.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HPRODUCTINFO_P_H

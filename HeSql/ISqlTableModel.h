@@ -2,8 +2,7 @@
 **      2019-04-12  ISqlTableModel 数据库表格模型接口。
 ***************************************************************************************************/
 
-#ifndef ISQLTABLEMODEL_H
-#define ISQLTABLEMODEL_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -41,5 +40,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // ISQLTABLEMODEL_H

@@ -2,8 +2,7 @@
 **      2019-12-17  HBackgroundEventFilter
 ***************************************************************************************************/
 
-#ifndef HBACKGROUNDEVENTFILTER_H
-#define HBACKGROUNDEVENTFILTER_H
+#pragma once
 
 #include "HAbstractMouseEventFilter.h"
 
@@ -45,5 +44,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBACKGROUNDEVENTFILTER_H

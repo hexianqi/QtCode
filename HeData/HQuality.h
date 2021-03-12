@@ -2,8 +2,7 @@
 **      2019-05-05  HQuality 品质数据。
 ***************************************************************************************************/
 
-#ifndef HQUALITY_H
-#define HQUALITY_H
+#pragma once
 
 #include "IQuality.h"
 
@@ -41,5 +40,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITY_H

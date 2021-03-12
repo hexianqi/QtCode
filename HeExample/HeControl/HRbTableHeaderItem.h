@@ -2,8 +2,7 @@
 **      2019-05-31  HRbTableHeaderItem 多标题项
 ***************************************************************************************************/
 
-#ifndef HRBTABLEHEADERITEM_H
-#define HRBTABLEHEADERITEM_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QVariant>
@@ -45,5 +44,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRBTABLEHEADERITEM_H

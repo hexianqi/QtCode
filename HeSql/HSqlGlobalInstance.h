@@ -2,8 +2,7 @@
 **      2019-04-12  HSqlGlobalInstance 全局进程类。
 ***************************************************************************************************/
 
-#ifndef HSQLGLOBALINSTANCE_H
-#define HSQLGLOBALINSTANCE_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/HSingleton.h"
@@ -28,5 +27,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLGLOBALINSTANCE_H

@@ -2,8 +2,7 @@
 **      2019-03-26  ITestDetailWidget 测试详情窗体接口。
 ***************************************************************************************************/
 
-#ifndef ITESTDETAILWIDGET_H
-#define ITESTDETAILWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // ITESTDETAILWIDGET_H

@@ -2,8 +2,7 @@
 **      2019-10-24  IActionStrategy 动作处理接口。
 ***************************************************************************************************/
 
-#ifndef IACTIONSTRATEGY_H
-#define IACTIONSTRATEGY_H
+#pragma once
 
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -36,5 +35,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // IACTIONSTRATEGY_H

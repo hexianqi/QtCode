@@ -2,8 +2,7 @@
 **      2018-06-19  HThreadCollection 线程集合类。
 ***************************************************************************************************/
 
-#ifndef HTHREADCOLLECTION_H
-#define HTHREADCOLLECTION_H
+#pragma once
 
 #include "IThreadCollection.h"
 
@@ -27,5 +26,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HTHREADCOLLECTION_H

@@ -1,5 +1,4 @@
-#ifndef HMODELSPEC_P_H
-#define HMODELSPEC_P_H
+#pragma once
 
 #include "HModelSpec.h"
 #include "HeController/HAbstractModel_p.h"
@@ -26,5 +25,3 @@ public:
     ITestSpec *testSpec = nullptr;
     HSpecCalibrateWidget *testWidget = nullptr;
 };
-
-#endif // HMODELSPEC_P_H

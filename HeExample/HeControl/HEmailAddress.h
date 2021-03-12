@@ -2,8 +2,7 @@
 **      2019-12-25  HEmailAddress
 ***************************************************************************************************/
 
-#ifndef HEMAILADDRESS_H
-#define HEMAILADDRESS_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HEMAILADDRESS_H

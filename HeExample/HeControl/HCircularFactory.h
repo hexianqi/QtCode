@@ -2,8 +2,7 @@
 **      2019-06-20  HCircularFactory
 ***************************************************************************************************/
 
-#ifndef HCIRCULARFACTORY_H
-#define HCIRCULARFACTORY_H
+#pragma once
 
 #include "ICircularFactory.h"
 
@@ -39,5 +38,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCULARFACTORY_H

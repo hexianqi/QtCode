@@ -2,8 +2,7 @@
 **      2019-07-11
 ***************************************************************************************************/
 
-#ifndef HCONTROLTYPE_H
-#define HCONTROLTYPE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -51,5 +50,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLTYPE_H

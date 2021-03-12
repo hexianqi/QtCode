@@ -1,5 +1,4 @@
-#ifndef HBUILDER2000_H
-#define HBUILDER2000_H
+#pragma once
 
 #include "HeGui/HAbstractBuilder.h"
 
@@ -31,5 +30,3 @@ protected:
     void buildMenu() override;
     void buildTestWidget() override;
 };
-
-#endif // HBUILDER2000_H

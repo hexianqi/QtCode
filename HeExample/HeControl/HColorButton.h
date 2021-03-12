@@ -2,8 +2,7 @@
 **      2019-07-31  HColorButton
 ***************************************************************************************************/
 
-#ifndef HCOLORBUTTON_H
-#define HCOLORBUTTON_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QPushButton>
@@ -63,5 +62,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORBUTTON_H

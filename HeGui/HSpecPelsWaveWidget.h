@@ -2,8 +2,7 @@
 **      2019-03-22  HSpecPelsWaveWidget 像元波长配置窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECPELSWAVEWIDGET_H
-#define HSPECPELSWAVEWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HePlugin/HEntireTableWidget.h"
@@ -37,5 +36,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECPELSWAVEWIDGET_H

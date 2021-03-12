@@ -2,8 +2,7 @@
 **      2018-06-19  HDataFactory 数据工厂类。
 ***************************************************************************************************/
 
-#ifndef HDATAFACTORY_H
-#define HDATAFACTORY_H
+#pragma once
 
 #include "IDataFactory.h"
 
@@ -51,7 +50,10 @@ public:
     IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) override;
     IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustCollection *createAdjustCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IAdjust2Collection *createAdjust2Collection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) override;
+    IAdjust2 *createAdjust2(QString type, QVariantMap param = QVariantMap()) override;
+    IAdjustItemCollection *createAdjustItemCollection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) override;
     IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) override;
     IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) override;
@@ -69,5 +71,3 @@ private:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HDATAFACTORY_H

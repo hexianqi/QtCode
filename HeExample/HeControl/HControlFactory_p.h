@@ -1,5 +1,4 @@
-#ifndef HCONTROLFACTORY_P_H
-#define HCONTROLFACTORY_P_H
+#pragma once
 
 #include "HControlFactory.h"
 
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLFACTORY_P_H

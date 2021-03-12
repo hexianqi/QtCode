@@ -7,8 +7,7 @@
 **                      MyObject* object = HObjectFactory::createObject<MyObject>("MyObject");
 ***************************************************************************************************/
 
-#ifndef HOBJECTFACTORY_H
-#define HOBJECTFACTORY_H
+#pragma once
 
 #include "IInitializeable.h"
 #include <QtCore/QVariant>
@@ -72,5 +71,3 @@ QObject *HObjectFactory::constructorHelper(QObject *parent)
 }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HOBJECTFACTORY_H

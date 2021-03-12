@@ -1,5 +1,4 @@
-#ifndef HSCREENOBJECT_P_H
-#define HSCREENOBJECT_P_H
+#pragma once
 
 #include "HScreenObject.h"
 #include <QtGui/QPixmap>
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSCREENOBJECT_P_H

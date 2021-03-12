@@ -2,8 +2,7 @@
 **      2019-04-28  HAdjustItem 调整数据项。
 ***************************************************************************************************/
 
-#ifndef HADJUSTITEM_H
-#define HADJUSTITEM_H
+#pragma once
 
 #include "IAdjustItem.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HADJUSTITEM_H

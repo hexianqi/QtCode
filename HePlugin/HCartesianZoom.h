@@ -2,8 +2,7 @@
 **      2018-06-19  HCartesianZoom 缩放策略。
 ***************************************************************************************************/
 
-#ifndef HCARTESIANZOOM_H
-#define HCARTESIANZOOM_H
+#pragma once
 
 #include "HAbstractMouseStrategy.h"
 
@@ -45,5 +44,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HCARTESIANZOOM_H

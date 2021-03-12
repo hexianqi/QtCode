@@ -2,8 +2,7 @@
 **      2019-04-24  HGradeIsothermDialog 等温线分级对话框。
 ***************************************************************************************************/
 
-#ifndef HGRADEISOTHERMDIALOG_H
-#define HGRADEISOTHERMDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include <QtWidgets/QDialog>
@@ -43,5 +42,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEISOTHERMDIALOG_H

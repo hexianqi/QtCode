@@ -2,8 +2,7 @@
 **      2019-05-06  HQualityItemCollection 品质数据项集合。
 ***************************************************************************************************/
 
-#ifndef HQUALITYITEMCOLLECTION_H
-#define HQUALITYITEMCOLLECTION_H
+#pragma once
 
 #include "IQualityItemCollection.h"
 
@@ -36,5 +35,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITYITEMCOLLECTION_H

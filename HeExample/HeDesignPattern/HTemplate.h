@@ -2,8 +2,7 @@
 **      2019-05-30  模版方法模式
 ***************************************************************************************************/
 
-#ifndef HTEMPLATE_H
-#define HTEMPLATE_H
+#pragma once
 
 // 公司
 class Company
@@ -41,5 +40,3 @@ protected:
     void interview() override;
     void offer() override;
 };
-
-#endif // HTEMPLATE_H

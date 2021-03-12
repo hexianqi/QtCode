@@ -1,5 +1,4 @@
-#ifndef HTESTGSL_H
-#define HTESTGSL_H
+#pragma once
 
 #include <QtGui/QPolygonF>
 
@@ -13,5 +12,3 @@ public:
     static QList<QPolygonF> multiFit();
     static QList<QPolygonF> multiFit2();
 };
-
-#endif // HTESTGSL_H

@@ -2,8 +2,7 @@
 **      2019-04-19  IItemDetail 数据详情接口。
 ***************************************************************************************************/
 
-#ifndef IDATADETAIL_H
-#define IDATADETAIL_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -42,5 +41,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // IDATADETAIL_H

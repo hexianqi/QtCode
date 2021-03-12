@@ -1,5 +1,4 @@
-#ifndef HNAVLABEL_P_H
-#define HNAVLABEL_P_H
+#pragma once
 
 #include "HNavLabel.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVLABEL_P_H

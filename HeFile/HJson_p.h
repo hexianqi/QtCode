@@ -1,5 +1,4 @@
-#ifndef HJSON_P_H
-#define HJSON_P_H
+#pragma once
 
 #include "HJson.h"
 #include <QtCore/QJsonDocument>
@@ -22,5 +21,3 @@ public:
 };
 
 HE_FILE_END_NAMESPACE
-
-#endif // HJSON_P_H

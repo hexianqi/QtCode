@@ -1,5 +1,4 @@
-#ifndef HRICHTEXTEDIT_P_H
-#define HRICHTEXTEDIT_P_H
+#pragma once
 
 #include "HRichTextEdit.h"
 
@@ -35,5 +34,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRICHTEXTEDIT_P_H

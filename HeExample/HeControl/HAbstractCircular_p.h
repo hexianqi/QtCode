@@ -1,5 +1,4 @@
-#ifndef HABSTRACTCIRCULAR_P_H
-#define HABSTRACTCIRCULAR_P_H
+#pragma once
 
 #include "HAbstractCircular.h"
 
@@ -11,5 +10,3 @@ class HAbstractCircularPrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTCIRCULAR_P_H

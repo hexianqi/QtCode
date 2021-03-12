@@ -1,5 +1,4 @@
-#ifndef HTRISTATEPROGRESSBAR_P_H
-#define HTRISTATEPROGRESSBAR_P_H
+#pragma once
 
 #include "HTristateProgressBar.h"
 
@@ -26,5 +25,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTRISTATEPROGRESSBAR_P_H

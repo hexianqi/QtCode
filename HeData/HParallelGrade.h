@@ -2,8 +2,7 @@
 **      2019-04-17  HParallelGrade 并行分级数据类。
 ***************************************************************************************************/
 
-#ifndef HPARALLELGRADE_H
-#define HPARALLELGRADE_H
+#pragma once
 
 #include "HAbstractGrade.h"
 
@@ -26,5 +25,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HPARALLELGRADE_H

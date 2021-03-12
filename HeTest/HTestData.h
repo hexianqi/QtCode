@@ -1,5 +1,4 @@
-#ifndef HTESTDATA_H
-#define HTESTDATA_H
+#pragma once
 
 class HTestData
 {
@@ -10,5 +9,3 @@ public:
     static void testWriteMode();
     static void testListVariantMap();
 };
-
-#endif // HTESTDATA_H

@@ -2,8 +2,7 @@
 **      2020-03-31  HDBConfig 数据库配置(:/sql/dbconfig.json)
 ***************************************************************************************************/
 
-#ifndef HDBCONFIG_H
-#define HDBCONFIG_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/HSingleton3.h"
@@ -50,5 +49,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDBCONFIG_H

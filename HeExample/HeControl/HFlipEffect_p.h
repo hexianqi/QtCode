@@ -1,5 +1,4 @@
-#ifndef HFLIPEFFECT_P_H
-#define HFLIPEFFECT_P_H
+#pragma once
 
 #include "HFlipEffect.h"
 #include "HAbstractShaderEffect_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFLIPEFFECT_P_H

@@ -2,8 +2,7 @@
 **      2019-05-10  ISqlHandle 数据库记录处理接口。
 ***************************************************************************************************/
 
-#ifndef ISQLHANDLE_H
-#define ISQLHANDLE_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -47,5 +46,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // ISQLHANDLE_H

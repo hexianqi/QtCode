@@ -2,8 +2,7 @@
 **      2019-07-17  HTcpServerWidget TCP服务端
 ***************************************************************************************************/
 
-#ifndef HTCPSERVERWIDGET_H
-#define HTCPSERVERWIDGET_H
+#pragma once
 
 #include "HAbstractServerWidget.h"
 
@@ -47,5 +46,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPSERVERWIDGET_H

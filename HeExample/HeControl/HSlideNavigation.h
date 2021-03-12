@@ -2,8 +2,7 @@
 **      2019-06-24  HSlideNavigation 滑动导航
 ***************************************************************************************************/
 
-#ifndef HSLIDENAVIGATION_H
-#define HSLIDENAVIGATION_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -122,5 +121,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSLIDENAVIGATION_H

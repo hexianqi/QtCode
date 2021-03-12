@@ -2,8 +2,7 @@
 **      2019-04-17  IGradeItem  分级数据项接口。
 ***************************************************************************************************/
 
-#ifndef IGRADEITEM_H
-#define IGRADEITEM_H
+#pragma once
 
 #include "HAbstractDataItem.h"
 
@@ -32,5 +31,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IGRADEITEM_H

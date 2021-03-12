@@ -2,8 +2,7 @@
 **      2019-08-06  HLedWidget
 ***************************************************************************************************/
 
-#ifndef HLEDWIDGET_H
-#define HLEDWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -76,5 +75,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLEDWIDGET_H

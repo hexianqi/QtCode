@@ -2,8 +2,7 @@
 **      2019-03-25  HProgressBar 带颜色的进度条类。
 ***************************************************************************************************/
 
-#ifndef HPROGRESSBAR_H
-#define HPROGRESSBAR_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QProgressBar>
@@ -38,5 +37,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HPROGRESSBAR_H

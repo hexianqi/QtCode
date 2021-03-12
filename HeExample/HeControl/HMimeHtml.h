@@ -2,8 +2,7 @@
 **      2019-12-26  HMimeHtml
 ***************************************************************************************************/
 
-#ifndef HMIMEHTML_H
-#define HMIMEHTML_H
+#pragma once
 
 #include "HMimeText.h"
 
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEHTML_H

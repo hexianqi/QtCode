@@ -2,8 +2,7 @@
 **      2018-06-19  HVernierTracking 游标追踪策略。
 ***************************************************************************************************/
 
-#ifndef HVERNIERTRACKING_H
-#define HVERNIERTRACKING_H
+#pragma once
 
 #include "HAbstractVernierTracking.h"
 
@@ -25,5 +24,3 @@ public:
 protected:
     HVernierTracking(HVernierTrackingPrivate &p, QWidget *parent = nullptr);
 };
-
-#endif // HVERNIERTRACKING_H

@@ -1,5 +1,4 @@
-#ifndef HRBTABLEHEADERITEM_P_H
-#define HRBTABLEHEADERITEM_P_H
+#pragma once
 
 #include "HRbTableHeaderItem.h"
 
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRBTABLEHEADERITEM_P_H

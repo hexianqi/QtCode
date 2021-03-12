@@ -3,8 +3,7 @@
 **                  http://www.qtcn.org/bbs/read-htm-tid-65128.html
 ***************************************************************************************************/
 
-#ifndef HNAVIGATIONWIDGET_H
-#define HNAVIGATIONWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -46,5 +45,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVIGATIONWIDGET_H

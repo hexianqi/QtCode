@@ -1,5 +1,4 @@
-#ifndef HGRAPHICSVERNIERTRACKING_P_H
-#define HGRAPHICSVERNIERTRACKING_P_H
+#pragma once
 
 #include "HGraphicsVernierTracking.h"
 #include "HAbstractVernierTracking_p.h"
@@ -15,5 +14,3 @@ public:
     QGraphicsItem *gparent;
     QList<QGraphicsLineItem *> lines;
 };
-
-#endif // HGRAPHICSVERNIERTRACKING_P_H

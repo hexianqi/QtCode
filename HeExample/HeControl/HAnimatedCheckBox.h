@@ -3,8 +3,7 @@
 **                  https://qtdebug.com/qtbook-animated-checkbox/
 ***************************************************************************************************/
 
-#ifndef HANIMATEDCHECKBOX_H
-#define HANIMATEDCHECKBOX_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QCheckBox>
@@ -38,5 +37,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HANIMATEDCHECKBOX_H

@@ -2,8 +2,7 @@
 **      2019-03-28  HSpecSampleWidget 光谱采样窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECSAMPLEWIDGET_H
-#define HSPECSAMPLEWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HePlugin/HVernierWidget.h"
@@ -37,5 +36,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECSAMPLEWIDGET_H

@@ -2,8 +2,7 @@
 **      2019-06-04  HControlTester 测试类。
 ***************************************************************************************************/
 
-#ifndef HCONTROLFACTORY_H
-#define HCONTROLFACTORY_H
+#pragma once
 
 #include "IControlFactory.h"
 
@@ -37,5 +36,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLFACTORY_H

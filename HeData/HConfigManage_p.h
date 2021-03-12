@@ -1,5 +1,4 @@
-#ifndef HCONFIGMANAGE_P_H
-#define HCONFIGMANAGE_P_H
+#pragma once
 
 #include "HConfigManage.h"
 
@@ -27,9 +26,8 @@ public:
     IChromatismCollection *chromatisms = nullptr;
     IGradeCollection *grades = nullptr;
     IAdjustCollection *adjusts = nullptr;
+    IAdjust2Collection *adjusts2 = nullptr;
     IQualityCollection *qualitys = nullptr;
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCONFIGMANAGE_P_H

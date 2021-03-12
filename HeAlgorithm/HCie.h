@@ -7,8 +7,7 @@
 **                  HIsotherm   等温线数据计算类。
 ***************************************************************************************************/
 
-#ifndef HCIE_H
-#define HCIE_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtGui/QPolygonF>
@@ -173,5 +172,3 @@ protected:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HCIE_H

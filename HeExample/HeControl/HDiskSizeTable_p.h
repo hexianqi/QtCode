@@ -1,5 +1,4 @@
-#ifndef HDISKSIZETABLE_P_H
-#define HDISKSIZETABLE_P_H
+#pragma once
 
 #include "HDiskSizeTable.h"
 
@@ -23,5 +22,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDISKSIZETABLE_P_H

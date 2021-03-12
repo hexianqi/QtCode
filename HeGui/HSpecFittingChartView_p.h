@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGCHARTVIEW_P_H
-#define HSPECFITTINGCHARTVIEW_P_H
+#pragma once
 
 #include "HSpecFittingChartView.h"
 #include "HePlugin/HZoomChartView_p.h"
@@ -27,5 +26,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGCHARTVIEW_P_H

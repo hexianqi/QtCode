@@ -1,5 +1,4 @@
-#ifndef HUDPSERVER_P_H
-#define HUDPSERVER_P_H
+#pragma once
 
 #include "HUdpServer.h"
 #include <QtCore/QSet>
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPSERVER_P_H

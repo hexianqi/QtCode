@@ -2,8 +2,7 @@
 **      2019-05-21  HChromatismChartView 色容差视图。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMCHARTVIEW_H
-#define HCHROMATISMCHARTVIEW_H
+#pragma once
 
 #include "HZoomChartView.h"
 
@@ -31,6 +30,3 @@ protected slots:
 protected:
     void init() override;
 };
-
-
-#endif // HCHROMATISMCHARTVIEW_H

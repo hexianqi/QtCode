@@ -2,8 +2,7 @@
 **      2019-06-06  HAbstractMouseEventFilter 抽象鼠标事件过滤器。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTMOUSEEVENTFILTER_H
-#define HABSTRACTMOUSEEVENTFILTER_H
+#pragma once
 
 #include "HAbstractEventFilter.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTMOUSEEVENTFILTER_H

@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/66974516
 ***************************************************************************************************/
 
-#ifndef HADAPTER_H
-#define HADAPTER_H
+#pragma once
 
 // 俄罗斯提供的插座
 class IRussiaSocket
@@ -35,5 +34,3 @@ private:
     // 持有需要被适配的接口对象 - 自带的充电器
     OwnCharger *_charger;
 };
-
-#endif // HADAPTER_H

@@ -1,5 +1,4 @@
-#ifndef HABSTRACTTESTWIDGET_P_H
-#define HABSTRACTTESTWIDGET_P_H
+#pragma once
 
 #include "HAbstractTestWidget.h"
 #include "HeController/HControllerGlobal.h"
@@ -33,6 +32,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-
-#endif // HABSTRACTTESTWIDGET_P_H

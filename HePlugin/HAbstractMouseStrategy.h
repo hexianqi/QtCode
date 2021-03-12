@@ -2,8 +2,7 @@
 **      2018-06-19  HAbstractMouseStrategy 抽象鼠标策略。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTMOUSESTRATEGY_H
-#define HABSTRACTMOUSESTRATEGY_H
+#pragma once
 
 #include "IMouseStrategy.h"
 #include <QtCore/QObject>
@@ -33,5 +32,3 @@ protected:
 protected:
     QScopedPointer<HAbstractMouseStrategyPrivate> d_ptr;
 };
-
-#endif // HABSTRACTMOUSESTRATEGY_H

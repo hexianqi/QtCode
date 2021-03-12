@@ -1,5 +1,4 @@
-#ifndef HHTTPCLIENT_P_H
-#define HHTTPCLIENT_P_H
+#pragma once
 
 #include "HHttpClient.h"
 #include <QtCore/QUrlQuery>
@@ -55,5 +54,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHTTPCLIENT_P_H

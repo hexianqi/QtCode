@@ -3,8 +3,7 @@
 **                  http://www.gnu.org/software/gsl/doc/html/specfunc.html
 ***************************************************************************************************/
 
-#ifndef HAIRY_H
-#define HAIRY_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 
@@ -32,5 +31,3 @@ public:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HAIRY_H

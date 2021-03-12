@@ -11,8 +11,7 @@
 **                  8:支持直接字符串设置文字集合和百分比集合
 ***************************************************************************************************/
 
-#ifndef HCUSTOMRING_H
-#define HCUSTOMRING_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -110,46 +109,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCUSTOMRING_H
-
-
-//public:
-//    struct RingData {
-//        int offset;         //鼠标移上去往外边突出显示的偏移距离
-//        int percent;        //百分比
-//        QColor color;       //背景色
-//        QString text;       //文本
-//        QPainterPath path;  //区域路径
-
-//        RingData()
-//        {
-//            offset = 0;
-//            percent = 0;
-//            color = QColor(0, 192, 133);
-//            text = "";
-//        }
-//    };
-
-//private:
-//    QList<QColor> outPieColors; //饼图颜色集合,在设置字符串时候用
-//    QList<QColor> inPieColors;  //饼图颜色集合,在设置字符串时候用
-
-//    QList<RingData> outPieInfo; //外边饼图数据
-//    QList<RingData> inPieInfo;  //里边饼图数据
-
-//public Q_SLOTS:
-//    //显示标题+标题栏高度+标题字号+标题文字
-
-//    //设置颜色集合
-//    void setOutPieColors(const QList<QColor> &outPieColors);
-//    void setInPieColors(const QList<QColor> &inPieColors);
-
-//    //清空+设置饼图数据
-//    void clearOutPie();
-//    void clearInPie();
-//    void appendOutPie(const RingData &data);
-//    void appendInPie(const RingData &data);
-//};
-
-//#endif // CUSTOMRING_H

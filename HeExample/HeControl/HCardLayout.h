@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/51518841
 ***************************************************************************************************/
 
-#ifndef HCARDLAYOUT_H
-#define HCARDLAYOUT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QLayout>
@@ -37,5 +36,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCARDLAYOUT_H

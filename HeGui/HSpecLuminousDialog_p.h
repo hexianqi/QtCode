@@ -1,5 +1,4 @@
-#ifndef HSPECLUMINOUSDIALOG_P_H
-#define HSPECLUMINOUSDIALOG_P_H
+#pragma once
 
 #include "HSpecLuminousDialog.h"
 
@@ -13,5 +12,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECLUMINOUSDIALOG_P_H

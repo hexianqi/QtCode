@@ -2,8 +2,7 @@
 **      2019-07-18  HAbstractNetworkWidget 抽象网络窗体
 ***************************************************************************************************/
 
-#ifndef HABSTRACTNETWORKWIDGET_H
-#define HABSTRACTNETWORKWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -60,5 +59,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTNETWORKWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef HMULTTCPSERVER_P_H
-#define HMULTTCPSERVER_P_H
+#pragma once
 
 #include "HMultTcpServer.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMULTTCPSERVER_P_H

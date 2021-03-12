@@ -2,8 +2,7 @@
 **      2019-09-09  HBearingCircular 轴承状
 ***************************************************************************************************/
 
-#ifndef HBEARINGCIRCULAR_H
-#define HBEARINGCIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -42,5 +41,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBEARINGCIRCULAR_H

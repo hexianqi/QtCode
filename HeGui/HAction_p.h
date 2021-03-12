@@ -1,5 +1,4 @@
-#ifndef HACTION_P_H
-#define HACTION_P_H
+#pragma once
 
 #include "HAction.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HACTION_P_H

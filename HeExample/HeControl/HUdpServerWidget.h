@@ -2,8 +2,7 @@
 **      2019-07-17  HUdpServerWidget UDP服务端
 ***************************************************************************************************/
 
-#ifndef HUDPSERVERWIDGET_H
-#define HUDPSERVERWIDGET_H
+#pragma once
 
 #include "HAbstractServerWidget.h"
 
@@ -46,5 +45,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPSERVERWIDGET_H

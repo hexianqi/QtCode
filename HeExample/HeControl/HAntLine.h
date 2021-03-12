@@ -9,8 +9,7 @@
 **                  6:可设置蚂蚁线的形状
 ***************************************************************************************************/
 
-#ifndef HANTLINE_H
-#define HANTLINE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -76,5 +75,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HANTLINE_H

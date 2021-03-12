@@ -1,5 +1,4 @@
-#ifndef HABSTRACTCLIENTWIDGET_P_H
-#define HABSTRACTCLIENTWIDGET_P_H
+#pragma once
 
 #include "HAbstractClientWidget.h"
 #include "HAbstractNetworkWidget_p.h"
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTCLIENTWIDGET_P_H

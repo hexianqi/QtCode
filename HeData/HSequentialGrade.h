@@ -2,8 +2,7 @@
 **      2019-04-17  HSequentialGrade 连续分级数据。
 ***************************************************************************************************/
 
-#ifndef HSEQUENTIALGRADE_H
-#define HSEQUENTIALGRADE_H
+#pragma once
 
 #include "HAbstractGrade.h"
 
@@ -26,5 +25,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HSEQUENTIALGRADE_H

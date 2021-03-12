@@ -1,5 +1,4 @@
-#ifndef HABSTRACTCUSTOMSTYLE_P_H
-#define HABSTRACTCUSTOMSTYLE_P_H
+#pragma once
 
 #include "HAbstractCustomStyle.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTSTYLE_P_H

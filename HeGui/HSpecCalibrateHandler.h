@@ -2,8 +2,7 @@
 **      2019-04-25  HSpecCalibrateHandler 光谱定标处理者类。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATEHANDLER_H
-#define HSPECCALIBRATEHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATEHANDLER_H

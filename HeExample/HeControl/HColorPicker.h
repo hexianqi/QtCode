@@ -3,8 +3,7 @@
 **                  http://www.qtcn.org/bbs/read-htm-tid-46711.html
 ***************************************************************************************************/
 
-#ifndef HCOLORPICKERWIDGET_H
-#define HCOLORPICKERWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -37,5 +36,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORPICKERWIDGET_H

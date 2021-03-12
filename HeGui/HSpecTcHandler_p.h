@@ -1,6 +1,4 @@
-#ifndef HSPECTCHANDLER_P_H
-#define HSPECTCHANDLER_P_H
-
+#pragma once
 #include "HSpecTcHandler.h"
 #include "HAbstractConfigHandler_p.h"
 
@@ -12,5 +10,3 @@ class HSpecTcHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECTCHANDLER_P_H

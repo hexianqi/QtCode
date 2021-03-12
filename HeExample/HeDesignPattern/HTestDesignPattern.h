@@ -1,5 +1,4 @@
-#ifndef HTESTDESIGNPATTERN_H
-#define HTESTDESIGNPATTERN_H
+#pragma once
 
 class HTestDesignPattern
 {
@@ -29,5 +28,3 @@ public: // 行为性模式
     void testInterpreter();
     void testInterpreter2();
 };
-
-#endif // HTESTDESIGNPATTERN_H

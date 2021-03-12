@@ -2,8 +2,7 @@
 **      2019-04-08  HSlCodec Sl编码类。
 ***************************************************************************************************/
 
-#ifndef HSLCODEC_H
-#define HSLCODEC_H
+#pragma once
 
 #include "HAbstractCodec.h"
 
@@ -44,5 +43,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSLCODEC_H

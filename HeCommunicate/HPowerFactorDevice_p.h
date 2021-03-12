@@ -1,5 +1,4 @@
-#ifndef HPOWERFACTORDEVICE_P_H
-#define HPOWERFACTORDEVICE_P_H
+#pragma once
 
 #include "HPowerFactorDevice.h"
 #include "HAbstractDevice_p.h"
@@ -12,5 +11,3 @@ class HPowerFactorDevicePrivate : public HAbstractDevicePrivate
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HPOWERFACTORDEVICE_P_H

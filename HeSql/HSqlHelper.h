@@ -2,8 +2,7 @@
 **      2019-04-12  HSqlHelper SQL帮助类。
 ***************************************************************************************************/
 
-#ifndef HSQLHELPER_H
-#define HSQLHELPER_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include <QtSql/QSqlDatabase>
@@ -21,5 +20,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLHELPER_H

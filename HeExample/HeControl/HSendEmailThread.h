@@ -2,8 +2,7 @@
 **      2019-12-26  HSendEmailThread
 ***************************************************************************************************/
 
-#ifndef HSENDEMAILTHREAD_H
-#define HSENDEMAILTHREAD_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QThread>
@@ -44,5 +43,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSENDEMAILTHREAD_H

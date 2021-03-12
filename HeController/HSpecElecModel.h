@@ -2,8 +2,7 @@
 **      2019-10-24  HSpecElecModel
 ***************************************************************************************************/
 
-#ifndef HSPECELECMODEL_H
-#define HSPECELECMODEL_H
+#pragma once
 
 #include "HAbstractModel.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HSPECELECMODEL_H

@@ -2,8 +2,7 @@
 **      2019-06-06  HMoveEventFilter 移动事件过滤器。
 ***************************************************************************************************/
 
-#ifndef HMOVEEVENTFILTER_H
-#define HMOVEEVENTFILTER_H
+#pragma once
 
 #include "HAbstractMouseEventFilter.h"
 
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMOVEEVENTFILTER_H

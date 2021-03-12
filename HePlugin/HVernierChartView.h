@@ -2,8 +2,7 @@
 **      2019-04-02  HVernierChartView   带游标图表视图。
 ***************************************************************************************************/
 
-#ifndef HVERNIERCHARTVIEW_H
-#define HVERNIERCHARTVIEW_H
+#pragma once
 
 #include "HZoomChartView.h"
 
@@ -41,5 +40,3 @@ protected:
     void mouseReleaseEvent(QMouseEvent *) override;
     void handlePlotAreaChanged(QRectF value);
 };
-
-#endif // HVERNIERCHARTVIEW_H

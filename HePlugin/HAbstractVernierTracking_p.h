@@ -1,5 +1,4 @@
-#ifndef HABSTRACTVERNIERTRACKING_P_H
-#define HABSTRACTVERNIERTRACKING_P_H
+#pragma once
 
 #include "HAbstractVernierTracking.h"
 #include "HAbstractMouseStrategy_p.h"
@@ -17,5 +16,3 @@ public:
     int pos = -1;
     QVector<QPointF> verniers;
 };
-
-#endif // HABSTRACTVERNIERTRACKING_P_H

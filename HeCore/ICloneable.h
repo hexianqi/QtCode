@@ -2,8 +2,7 @@
 **      2019-05-17  ICloneable 支持克隆，即用与现有实例相同的值创建类的新实例。
 ***************************************************************************************************/
 
-#ifndef ICLONEABLE_H
-#define ICLONEABLE_H
+#pragma once
 
 #include "HCoreGlobal.h"
 
@@ -19,4 +18,3 @@ public:
 
 HE_CORE_END_NAMESPACE
 
-#endif // ICLONEABLE_H

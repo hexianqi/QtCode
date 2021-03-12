@@ -2,8 +2,7 @@
 **      2019-06-14  HFlatStyleWidget
 ***************************************************************************************************/
 
-#ifndef HFLATSTYLEWIDGET_H
-#define HFLATSTYLEWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -30,5 +29,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFLATSTYLEWIDGET_H

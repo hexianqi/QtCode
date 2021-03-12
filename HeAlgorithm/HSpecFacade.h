@@ -2,8 +2,7 @@
 **      2018-06-19  HSpectrumFacade 光谱计算外观类。
 ***************************************************************************************************/
 
-#ifndef HSPECFACADE_H
-#define HSPECFACADE_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtCore/QScopedPointer>
@@ -33,5 +32,3 @@ private:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HSPECFACADE_H

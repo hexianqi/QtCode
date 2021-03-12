@@ -2,8 +2,7 @@
 **      2019-05-09  HSqlBrowser 数据库浏览器。
 ***************************************************************************************************/
 
-#ifndef HSQLBROWSER_H
-#define HSQLBROWSER_H
+#pragma once
 
 #include "ISqlBrowser.h"
 
@@ -48,5 +47,3 @@ private:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLBROWSER_H

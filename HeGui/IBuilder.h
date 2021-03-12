@@ -2,8 +2,7 @@
 **      2019-03-21  IBuilder 创建者接口。
 ***************************************************************************************************/
 
-#ifndef IBUILDER_H
-#define IBUILDER_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -20,5 +19,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // IBUILDER_H

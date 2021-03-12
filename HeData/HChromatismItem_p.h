@@ -1,5 +1,4 @@
-#ifndef HCHROMATISMITEM_P_H
-#define HCHROMATISMITEM_P_H
+#pragma once
 
 #include "HChromatismItem.h"
 #include "HAbstractDataItem_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCHROMATISMITEM_P_H

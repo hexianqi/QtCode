@@ -1,5 +1,4 @@
-#ifndef HTYPEOPTIONALDIALOG_P_H
-#define HTYPEOPTIONALDIALOG_P_H
+#pragma once
 
 #include "HTypeOptionalDialog.h"
 
@@ -10,5 +9,3 @@ public:
     QStringList selecteds;
     QStringList unselecteds;
 };
-
-#endif // HTYPEOPTIONALDIALOG_P_H

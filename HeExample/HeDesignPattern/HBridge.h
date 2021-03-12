@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/66974516
 ***************************************************************************************************/
 
-#ifndef HBRIDGE_H
-#define HBRIDGE_H
+#pragma once
 
 // 电器
 class IElectricalEquipment
@@ -73,5 +72,3 @@ public:
     void on() override;
     void off() override;
 };
-
-#endif // HBRIDGE_H

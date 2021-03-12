@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEITEM_P_H
-#define HELECCALIBRATEITEM_P_H
+#pragma once
 
 #include "HElecCalibrateItem.h"
 #include "HAbstractDataItem_p.h"
@@ -17,5 +16,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEM_P_H

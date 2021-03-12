@@ -1,5 +1,4 @@
-#ifndef HPANELITEM_P_H
-#define HPANELITEM_P_H
+#pragma once
 
 #include "HPanelItem.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPANELITEM_P_H

@@ -2,8 +2,7 @@
 **      2019-05-31  HRbTableHeaderModel 多标题模型
 ***************************************************************************************************/
 
-#ifndef HRBTABLEHEADERMODEL_H
-#define HRBTABLEHEADERMODEL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QAbstractTableModel>
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRBTABLEHEADERMODEL_H

@@ -2,8 +2,7 @@
 **      2019-08-09  HTaskPanel
 ***************************************************************************************************/
 
-#ifndef HTASKPANEL_H
-#define HTASKPANEL_H
+#pragma once
 
 #include "HAbstractMultiPanel.h"
 
@@ -48,5 +47,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTASKPANEL_H

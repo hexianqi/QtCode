@@ -2,8 +2,7 @@
 **      2019-10-23  HBuilder2000DC
 ***************************************************************************************************/
 
-#ifndef HBUILDER2000DC_H
-#define HBUILDER2000DC_H
+#pragma once
 
 #include "HeGui/HAbstractBuilder.h"
 
@@ -25,6 +24,9 @@ public:
     QString typeName() override;
 
 protected:
+    HBuilder2000DC(HBuilder2000DCPrivate &p, QObject *parent = nullptr);
+
+protected:
     void buildConfigManage() override;
     void buildTestData() override;
     void buildDevice() override;
@@ -35,5 +37,3 @@ protected:
     void buildMenu() override;
     void buildTestWidget() override;
 };
-
-#endif // HBUILDER2000DC_H

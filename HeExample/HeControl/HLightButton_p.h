@@ -1,5 +1,4 @@
-#ifndef HLIGHTBUTTON_P_H
-#define HLIGHTBUTTON_P_H
+#pragma once
 
 #include "HLightButton.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLIGHTBUTTON_P_H

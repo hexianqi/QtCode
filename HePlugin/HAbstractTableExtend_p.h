@@ -1,5 +1,4 @@
-#ifndef HABSTRACTTABLEEXTEND_P_H
-#define HABSTRACTTABLEEXTEND_P_H
+#pragma once
 
 #include "HAbstractTableExtend.h"
 
@@ -8,5 +7,3 @@ class HAbstractTableExtendPrivate
 public:
     QTableView *view = nullptr;
 };
-
-#endif // HABSTRACTTABLEEXTEND_P_H

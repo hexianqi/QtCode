@@ -2,8 +2,7 @@
 **      2020-01-16  HDrawHelper 绘制帮助类。
 ***************************************************************************************************/
 
-#ifndef HIMAGEHELPER_H
-#define HIMAGEHELPER_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 
@@ -17,5 +16,3 @@ public:
     // 创建十字图像
     static QImage createCrossImage(QSize size, const QPen &pen);
 };
-
-#endif // HIMAGEHELPER_H

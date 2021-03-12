@@ -1,5 +1,4 @@
-#ifndef HTASKWIDGET_P_H
-#define HTASKWIDGET_P_H
+#pragma once
 
 #include "HTaskWidget.h"
 
@@ -17,10 +16,8 @@ public:
     QWidget *body;
     QWidget *animateWidget;
     QVBoxLayout *layout;
-    QTimeLine *timeLine;    
+    QTimeLine *timeLine;
     QPixmap pixmap;
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTASKWIDGET_P_H

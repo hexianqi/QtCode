@@ -2,8 +2,7 @@
 **      2019-06-19  ICircularFactory 工厂接口。
 ***************************************************************************************************/
 
-#ifndef ICIRCULARFACTORY_H
-#define ICIRCULARFACTORY_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ICIRCULARFACTORY_H

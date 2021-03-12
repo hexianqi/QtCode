@@ -2,8 +2,7 @@
 **      2019-05-05  HQualityCollection 品质数据集合类。
 ***************************************************************************************************/
 
-#ifndef HQUALITYCOLLECTION_H
-#define HQUALITYCOLLECTION_H
+#pragma once
 
 #include "IQualityCollection.h"
 
@@ -32,5 +31,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITYCOLLECTION_H

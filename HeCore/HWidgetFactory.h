@@ -7,8 +7,7 @@
 **                      MyWidget* object = HWidgetFactory::createWidget<MyWidget>("MyWidget");
 ***************************************************************************************************/
 
-#ifndef HWIDGETFACTORY_H
-#define HWIDGETFACTORY_H
+#pragma once
 
 #include "IInitializeable.h"
 #include <QtCore/QVariant>
@@ -72,5 +71,3 @@ QWidget *HWidgetFactory::constructorHelper(QWidget *parent)
 }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HWIDGETFACTORY_H

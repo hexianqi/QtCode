@@ -2,8 +2,7 @@
 **      2019-05-20  HChromatismEditHandler 色容差编辑处理者类。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMEDITHANDLER_H
-#define HCHROMATISMEDITHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HCHROMATISMEDITHANDLER_H

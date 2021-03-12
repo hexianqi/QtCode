@@ -1,5 +1,4 @@
-#ifndef HCPUMEMORYLABEL_P_H
-#define HCPUMEMORYLABEL_P_H
+#pragma once
 
 #include "HCpuMemoryLabel.h"
 
@@ -27,5 +26,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCPUMEMORYLABEL_P_H

@@ -2,8 +2,7 @@
 **      2019-04-09  IMainWindow 主窗口接口。
 ***************************************************************************************************/
 
-#ifndef IMAINWINDOW_H
-#define IMAINWINDOW_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include <QtWidgets/QMainWindow>
@@ -27,5 +26,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // IMAINWINDOW_H

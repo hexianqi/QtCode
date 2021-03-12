@@ -1,5 +1,4 @@
-#ifndef HCIRCULARPROGRESS_P_H
-#define HCIRCULARPROGRESS_P_H
+#pragma once
 
 #include "HCircularProgress.h"
 #include <QtCore/QMap>
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCIRCULARPROGRESS_P_H

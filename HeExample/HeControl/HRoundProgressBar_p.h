@@ -1,5 +1,4 @@
-#ifndef HROUNDPROGRESSBAR_P_H
-#define HROUNDPROGRESSBAR_P_H
+#pragma once
 
 #include "HRoundProgressBar.h"
 #include "HAbstractProgress_p.h"
@@ -30,5 +29,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HROUNDPROGRESSBAR_P_H

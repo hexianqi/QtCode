@@ -1,5 +1,4 @@
-#ifndef HGRADEEDITWIDGET_P_H
-#define HGRADEEDITWIDGET_P_H
+#pragma once
 
 #include "HGradeEditWidget.h"
 
@@ -26,5 +25,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEEDITWIDGET_P_H

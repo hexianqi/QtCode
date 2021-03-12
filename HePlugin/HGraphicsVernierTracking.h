@@ -2,8 +2,7 @@
 **      2018-07-03  HGraphicsVernierTracking Graphics游标追踪策略。
 ***************************************************************************************************/
 
-#ifndef HGRAPHICSVERNIERTRACKING_H
-#define HGRAPHICSVERNIERTRACKING_H
+#pragma once
 
 #include "HAbstractVernierTracking.h"
 
@@ -38,5 +37,3 @@ protected:
     void setLine(int pos);
     void setLines();
 };
-
-#endif // HGRAPHICSVERNIERTRACKING_H

@@ -1,5 +1,4 @@
-#ifndef HSINGLEAXISCHART_P_H
-#define HSINGLEAXISCHART_P_H
+#pragma once
 
 #include "HSingleAxisChart.h"
 #include "HChart_p.h"
@@ -10,5 +9,3 @@ public:
     QAbstractAxis *axisX = nullptr;
     QAbstractAxis *axisY = nullptr;
 };
-
-#endif // HSINGLEAXISCHART_P_H

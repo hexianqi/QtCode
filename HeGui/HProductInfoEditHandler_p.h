@@ -1,5 +1,4 @@
-#ifndef HPRODUCTINFOEDITHANDLER_P_H
-#define HPRODUCTINFOEDITHANDLER_P_H
+#pragma once
 
 #include "HProductInfoEditHandler.h"
 #include "HAbstractGuiHandler_p.h"
@@ -11,5 +10,3 @@ class HProductInfoEditHandlerPrivate : public HAbstractGuiHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HPRODUCTINFOEDITHANDLER_P_H

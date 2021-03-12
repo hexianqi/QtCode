@@ -2,8 +2,7 @@
 **      2019-12-11  HUdpServer
 ***************************************************************************************************/
 
-#ifndef HUDPSERVER_H
-#define HUDPSERVER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -60,5 +59,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPSERVER_H

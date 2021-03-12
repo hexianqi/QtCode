@@ -1,5 +1,4 @@
-#ifndef HDIAGRAMWIDGET_P_H
-#define HDIAGRAMWIDGET_P_H
+#pragma once
 
 #include "HDiagramWidget.h"
 
@@ -28,5 +27,3 @@ public:
     QHash<int, QColor> polygonColors;
     QHash<int, QPolygonF> polygons;
 };
-
-#endif // HDIAGRAMWIDGET_P_H

@@ -2,8 +2,7 @@
 **      2019-10-21  HElecCalibrateDialog 电校准对话框。
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATEDIALOG_H
-#define HELECCALIBRATEDIALOG_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/HActionType.h"
@@ -61,5 +60,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEDIALOG_H

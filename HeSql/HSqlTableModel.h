@@ -2,8 +2,7 @@
 **      2019-04-15  HSqlTableModel 数据库表格模型。
 ***************************************************************************************************/
 
-#ifndef HSQLTABLEMODEL_H
-#define HSQLTABLEMODEL_H
+#pragma once
 
 #include "ISqlTableModel.h"
 
@@ -49,5 +48,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLTABLEMODEL_H

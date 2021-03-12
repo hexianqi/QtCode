@@ -11,8 +11,7 @@
 **                  8:可自由拓展各种渐变色,各圆的半径
 ***************************************************************************************************/
 
-#ifndef HPERCENTGAUGE_H
-#define HPERCENTGAUGE_H
+#pragma once
 
 #include "HCircleGauge.h"
 
@@ -55,5 +54,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPERCENTGAUGE_H

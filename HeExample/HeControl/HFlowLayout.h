@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/51519015
 ***************************************************************************************************/
 
-#ifndef HFLOWLAYOUT_H
-#define HFLOWLAYOUT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QLayout>
@@ -49,5 +48,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFLOWLAYOUT_H

@@ -2,8 +2,7 @@
 **      2019-12-10  HUdpClient UDP客户端。
 ***************************************************************************************************/
 
-#ifndef HUDPCLIENT_H
-#define HUDPCLIENT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtNetwork/QUdpSocket>
@@ -41,5 +40,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HUDPCLIENT_H

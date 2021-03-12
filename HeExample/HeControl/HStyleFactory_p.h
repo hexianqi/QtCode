@@ -1,5 +1,4 @@
-#ifndef HSTYLEFACTORY_P_H
-#define HSTYLEFACTORY_P_H
+#pragma once
 
 #include "HStyleFactory.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTYLEFACTORY_P_H

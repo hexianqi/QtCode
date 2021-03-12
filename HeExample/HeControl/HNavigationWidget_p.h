@@ -1,6 +1,4 @@
-#ifndef HNAVIGATIONWIDGET_P_H
-#define HNAVIGATIONWIDGET_P_H
-
+#pragma once
 #include "HNavigationWidget.h"
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -16,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HNAVIGATIONWIDGET_P_H

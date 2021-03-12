@@ -2,8 +2,7 @@
 **      2019-04-18  HGradeItem 分级数据项。
 ***************************************************************************************************/
 
-#ifndef HGRADEITEM_H
-#define HGRADEITEM_H
+#pragma once
 
 #include "IGradeItem.h"
 
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HGRADEITEM_H

@@ -1,5 +1,4 @@
-#ifndef HCIE1931CHART_P_H
-#define HCIE1931CHART_P_H
+#pragma once
 
 #include "HCie1931Chart.h"
 #include "HSingleAxisChart_p.h"
@@ -29,5 +28,3 @@ public:
     bool enableGrade = true;
     bool enablePoint = true;
 };
-
-#endif // HCIE1931CHART_P_H

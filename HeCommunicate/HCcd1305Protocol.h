@@ -2,8 +2,7 @@
 **      2019-12-16  HCcd1305Protocol
 ***************************************************************************************************/
 
-#ifndef HCCD1305PROTOCOL_H
-#define HCCD1305PROTOCOL_H
+#pragma once
 
 #include "HBigProtocol.h"
 
@@ -28,5 +27,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HCCD1305PROTOCOL_H

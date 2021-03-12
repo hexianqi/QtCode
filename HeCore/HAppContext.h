@@ -13,8 +13,7 @@
 **                      auto factory = HAppContext::getContextPointer<ICommunicateFactory>("ICommunicateFactory");
 **********************************************************************************************************************/
 
-#ifndef HAPPCONTEXT_H
-#define HAPPCONTEXT_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <QtCore/QVariant>
@@ -57,5 +56,3 @@ T *HAppContext::getContextPointer(const QString &key)
 }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HAPPCONTEXT_H

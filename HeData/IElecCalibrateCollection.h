@@ -2,8 +2,7 @@
 **      2019-10-15  IElecCalibrateCollection 电校准数据集合接口。
 ***************************************************************************************************/
 
-#ifndef IELECCALIBRATECOLLECTION_H
-#define IELECCALIBRATECOLLECTION_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -26,5 +25,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IELECCALIBRATECOLLECTION_H

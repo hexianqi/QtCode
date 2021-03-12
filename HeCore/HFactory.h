@@ -2,8 +2,7 @@
 **      2018-06-19  HFactory 类反射工厂类。
 ***************************************************************************************************/
 
-#ifndef HFACTORY_H
-#define HFACTORY_H
+#pragma once
 
 #include "IInitializeable.h"
 #include <QtCore/QVariant>
@@ -65,5 +64,3 @@ void *HFactory::constructorHelper()
 }
 
 HE_CORE_END_NAMESPACE
-
-#endif // HFACTORY_H

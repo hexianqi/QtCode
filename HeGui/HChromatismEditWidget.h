@@ -2,8 +2,7 @@
 **      2019-05-20  HChromatismEditWidget 色容差数据编辑窗体。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMEDITWIDGET_H
-#define HCHROMATISMEDITWIDGET_H
+#pragma once
 
 #include "IDataEditWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -57,5 +56,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HCHROMATISMEDITWIDGET_H

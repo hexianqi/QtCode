@@ -2,8 +2,7 @@
 **      2018-06-19  IModel 模型接口。
 ***************************************************************************************************/
 
-#ifndef IMODEL_H
-#define IMODEL_H
+#pragma once
 
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -43,5 +42,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // IMODEL_H

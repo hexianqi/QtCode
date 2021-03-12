@@ -2,8 +2,7 @@
 **      2019-03-01  HAbstractGuiHandler 抽象Gui处理者类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTGUIHANDLER_H
-#define HABSTRACTGUIHANDLER_H
+#pragma once
 
 #include "IGuiHandler.h"
 
@@ -24,5 +23,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTGUIHANDLER_H

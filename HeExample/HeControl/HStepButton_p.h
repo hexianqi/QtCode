@@ -1,5 +1,4 @@
-#ifndef HSTEPBUTTTON_P_H
-#define HSTEPBUTTTON_P_H
+#pragma once
 
 #include "HStepButton.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTEPBUTTTON_P_H

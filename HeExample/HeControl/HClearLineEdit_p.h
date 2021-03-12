@@ -1,5 +1,4 @@
-#ifndef HCLEARLINEEDIT_P_H
-#define HCLEARLINEEDIT_P_H
+#pragma once
 
 #include "HClearLineEdit.h"
 #include "HButtonLineEdit_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCLEARLINEEDIT_P_H

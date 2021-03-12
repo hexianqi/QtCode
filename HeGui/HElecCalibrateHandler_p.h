@@ -1,5 +1,4 @@
-#ifndef HELECCALIBRATEHANDLER_P_H
-#define HELECCALIBRATEHANDLER_P_H
+#pragma once
 
 #include "HElecCalibrateHandler.h"
 #include "HAbstractConfigHandler_p.h"
@@ -12,5 +11,3 @@ class HElecCalibrateHandlerPrivate : public HAbstractConfigHandlerPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HELECCALIBRATEHANDLER_P_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HChromaticity 色度参数计算类。
 ***************************************************************************************************/
 
-#ifndef HLIGHTSOURCE_H
-#define HLIGHTSOURCE_H
+#pragma once
 
 #include "IChromaticity.h"
 #include "HCie.h"
@@ -48,5 +47,3 @@ protected:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HLIGHTSOURCE_H

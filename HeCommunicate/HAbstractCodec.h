@@ -2,8 +2,7 @@
 **      2019-04-08  HAbstractCodec 抽象编码类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCODEC_H
-#define HABSTRACTCODEC_H
+#pragma once
 
 #include "ICodec.h"
 
@@ -25,6 +24,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-
-#endif // HABSTRACTCODEC_H

@@ -5,8 +5,7 @@
 **                  2：可设置各种颜色
 ***************************************************************************************************/
 
-#ifndef HLEDNUMBER_H
-#define HLEDNUMBER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -76,5 +75,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLEDNUMBER_H

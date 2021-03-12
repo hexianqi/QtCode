@@ -2,8 +2,7 @@
 **      2019-11-29  HDynamicChartView
 ***************************************************************************************************/
 
-#ifndef HDYNAMICCHARTVIEW_H
-#define HDYNAMICCHARTVIEW_H
+#pragma once
 
 #include "HZoomChartView.h"
 
@@ -35,5 +34,3 @@ protected:
 protected:
     void init() override;
 };
-
-#endif // HDYNAMICCHARTVIEW_H

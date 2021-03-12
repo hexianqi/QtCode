@@ -1,5 +1,4 @@
-#ifndef HVERNIERWIDGET_P_H
-#define HVERNIERWIDGET_P_H
+#pragma once
 
 #include "HVernierWidget.h"
 #include "HCartesianWidget_p.h"
@@ -19,5 +18,3 @@ public:
     QGridLayout *layoutLabel = nullptr;
     int decimals = 2;
 };
-
-#endif // HVERNIERWIDGET_P_H

@@ -10,8 +10,7 @@
 **                  7:可设置中心点渐变颜色
 ***************************************************************************************************/
 
-#ifndef HCOMPASSGAUGE_H
-#define HCOMPASSGAUGE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -104,5 +103,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOMPASSGAUGE_H

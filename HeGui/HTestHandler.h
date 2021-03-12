@@ -2,8 +2,7 @@
 **      2019-03-01  HTestHandler 测试处理者类。
 ***************************************************************************************************/
 
-#ifndef HTESTHANDLER_H
-#define HTESTHANDLER_H
+#pragma once
 
 #include "HAbstractGuiHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HTESTHANDLER_H

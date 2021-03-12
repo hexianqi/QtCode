@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/79364406
 ***************************************************************************************************/
 
-#ifndef HVISITOR_H
-#define HVISITOR_H
+#pragma once
 
 #include <list>
 
@@ -74,5 +73,3 @@ public:
 private:
     list<IPlace *> _places;
 };
-
-#endif // HVISITOR_H

@@ -1,5 +1,4 @@
-#ifndef HCARTESIANZOOM_P_H
-#define HCARTESIANZOOM_P_H
+#pragma once
 
 #include "HCartesianZoom.h"
 #include "HAbstractMouseStrategy_p.h"
@@ -20,5 +19,3 @@ public:
     HRubberBand *rubberBand = nullptr;
     QVector<HCartesianCoordinate *> coordinates;
 };
-
-#endif // HCARTESIANZOOM_P_H

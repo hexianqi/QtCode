@@ -2,8 +2,7 @@
 **      2019-07-24  HFlipEffect 翻滚特效
 ***************************************************************************************************/
 
-#ifndef HFLIPEFFECT_H
-#define HFLIPEFFECT_H
+#pragma once
 
 #include "HAbstractShaderEffect.h"
 #include "HControlType.h"
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFLIPEFFECT_H

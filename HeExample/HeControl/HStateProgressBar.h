@@ -2,8 +2,7 @@
 **      2019-09-03  HStateProgressBar 状态进度条控件
 ***************************************************************************************************/
 
-#ifndef HSTATEPROGRESSBAR_H
-#define HSTATEPROGRESSBAR_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -80,5 +79,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTATEPROGRESSBAR_H

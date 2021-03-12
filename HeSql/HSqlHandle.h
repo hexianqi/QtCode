@@ -2,8 +2,7 @@
 **      2019-05-13  HSqlHandle 数据库记录处理。
 ***************************************************************************************************/
 
-#ifndef HSQLHANDLE_H
-#define HSQLHANDLE_H
+#pragma once
 
 #include "ISqlHandle.h"
 #include <QtCore/QObject>
@@ -50,5 +49,3 @@ protected:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLHANDLE_H

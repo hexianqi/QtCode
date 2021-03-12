@@ -2,8 +2,7 @@
 **      2019-05-09  HSqlTableView
 ***************************************************************************************************/
 
-#ifndef HSQLTABLEVIEW_H
-#define HSQLTABLEVIEW_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HePlugin/HTableView.h"
@@ -31,5 +30,3 @@ private:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLTABLEVIEW_H

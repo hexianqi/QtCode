@@ -2,8 +2,7 @@
 **      2019-06-20  HDonutCircular 环状
 ***************************************************************************************************/
 
-#ifndef HDONUTCIRCULAR_H
-#define HDONUTCIRCULAR_H
+#pragma once
 
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
@@ -45,5 +44,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDONUTCIRCULAR_H

@@ -2,8 +2,7 @@
 **      2019-05-17  IChromatism 色容差数据接口。
 ***************************************************************************************************/
 
-#ifndef ICHROMATISM_H
-#define ICHROMATISM_H
+#pragma once
 
 #include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
@@ -33,5 +32,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // ICHROMATISM_H

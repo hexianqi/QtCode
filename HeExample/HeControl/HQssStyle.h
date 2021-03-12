@@ -2,8 +2,7 @@
 **      2019-07-19  HQssStyle Qss样式
 ***************************************************************************************************/
 
-#ifndef HQSSSTYLE_H
-#define HQSSSTYLE_H
+#pragma once
 
 #include "IQssStyle.h"
 
@@ -41,5 +40,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HQSSSTYLE_H

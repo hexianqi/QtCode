@@ -2,8 +2,7 @@
 **      2019-04-25  HSelectDialog 选择对话框。
 ***************************************************************************************************/
 
-#ifndef HSELECTDIALOG_H
-#define HSELECTDIALOG_H
+#pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <QtWidgets/QDialog>
@@ -34,5 +33,3 @@ public:
 private:
     Ui::HSelectDialog *ui;
 };
-
-#endif // HSELECTDIALOG_H

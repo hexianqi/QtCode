@@ -1,5 +1,4 @@
-#ifndef HABSTRACTSQLPRINT_P_H
-#define HABSTRACTSQLPRINT_P_H
+#pragma once
 
 #include "HAbstractSqlPrint.h"
 #include "HeData/HDataGlobal.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HABSTRACTSQLPRINT_P_H

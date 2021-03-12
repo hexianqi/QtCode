@@ -2,8 +2,7 @@
 **      2019-12-20  HShadeWidget 遮罩层。
 ***************************************************************************************************/
 
-#ifndef HSHADEWIDGET_H
-#define HSHADEWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -40,5 +39,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSHADEWIDGET_H

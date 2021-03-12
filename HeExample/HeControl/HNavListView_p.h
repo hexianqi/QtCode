@@ -1,5 +1,4 @@
-#ifndef HNAVLISTVIEW_P_H
-#define HNAVLISTVIEW_P_H
+#pragma once
 
 #include "HNavListView.h"
 #include <QtWidgets/QStyledItemDelegate>
@@ -119,5 +118,3 @@ public:
 HE_CONTROL_END_NAMESPACE
 
 Q_DECLARE_METATYPE(HE_CONTROL_NAMESPACE::HNavListModel::HTreeNode *)
-
-#endif // HNAVLISTVIEW_P_H

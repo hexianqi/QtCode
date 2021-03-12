@@ -1,5 +1,4 @@
-#ifndef HHUESATRADIALPICKER_P_H
-#define HHUESATRADIALPICKER_P_H
+#pragma once
 
 #include "HHueSatRadialPicker.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HHUESATRADIALPICKER_P_H

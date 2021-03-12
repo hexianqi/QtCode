@@ -2,8 +2,7 @@
 **      2018-06-19  HAbstractModel 抽象模型类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTMODEL_H
-#define HABSTRACTMODEL_H
+#pragma once
 
 #include "IModel.h"
 
@@ -47,5 +46,3 @@ protected:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HABSTRACTMODEL_H

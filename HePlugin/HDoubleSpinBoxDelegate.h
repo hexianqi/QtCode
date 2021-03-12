@@ -2,8 +2,7 @@
 **      2019-03-22  HDoubleSpinBoxDelegate 编辑功能(双精度数字调节框)条目代理类。
 ***************************************************************************************************/
 
-#ifndef HDOUBLESPINBOXDELEGATE_H
-#define HDOUBLESPINBOXDELEGATE_H
+#pragma once
 
 #include "HStyledItemDelegate.h"
 
@@ -25,5 +24,3 @@ public:
 protected:
     HDoubleSpinBoxDelegate(HDoubleSpinBoxDelegatePrivate &p, QObject *parent = nullptr);
 };
-
-#endif // HDOUBLESPINBOXDELEGATE_H

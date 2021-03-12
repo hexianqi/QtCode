@@ -1,5 +1,4 @@
-#ifndef HCOMPASSGAUGE_P_H
-#define HCOMPASSGAUGE_P_H
+#pragma once
 
 #include "HCompassGauge.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOMPASSGAUGE_P_H

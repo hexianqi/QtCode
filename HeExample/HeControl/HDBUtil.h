@@ -5,8 +5,7 @@
 **                  可以简化操作数据库的类的代码，参考 HDBBean.cpp.
 ***************************************************************************************************/
 
-#ifndef HDBUTIL_H
-#define HDBUTIL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QVariantMap>
@@ -60,5 +59,3 @@ QList<T> HDBUtil::selectBeans(T mapToBean(const QVariantMap &), const QString &s
 }
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDBUTIL_H

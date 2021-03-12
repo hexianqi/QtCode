@@ -18,6 +18,8 @@
 #include "HGradeSelectHandler.h"
 #include "HAdjustEditHandler.h"
 #include "HAdjustSelectHandler.h"
+#include "HAdjust2EditHandler.h"
+#include "HAdjust2SelectHandler.h"
 #include "HQualityEditHandler.h"
 #include "HQualitySelectHandler.h"
 #include "HSqlBrowserHandler.h"
@@ -113,6 +115,8 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HGradeSelectHandler>("HGradeSelectHandler");
     HObjectFactory::registerClass<HAdjustEditHandler>("HAdjustEditHandler");
     HObjectFactory::registerClass<HAdjustSelectHandler>("HAdjustSelectHandler");
+    HObjectFactory::registerClass<HAdjust2EditHandler>("HAdjust2EditHandler");
+    HObjectFactory::registerClass<HAdjust2SelectHandler>("HAdjust2SelectHandler");
     HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
     HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
     HObjectFactory::registerClass<HProductInfoEditHandler>("HProductInfoEditHandler");

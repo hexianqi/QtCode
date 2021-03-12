@@ -2,8 +2,7 @@
 **      2018-06-19  HSpecDiagramWidget 光谱图表窗口部件。
 ***************************************************************************************************/
 
-#ifndef HSPECDIAGRAMWIDGET_H
-#define HSPECDIAGRAMWIDGET_H
+#pragma once
 
 #include "HRibbonDiagramWidget.h"
 
@@ -64,5 +63,3 @@ protected:
 private:
     void init();
 };
-
-#endif // HSPECDIAGRAMWIDGET_H

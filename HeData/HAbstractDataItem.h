@@ -2,8 +2,7 @@
 **      2018-07-10  HAbstractDataItem 抽象数据子项。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTDATAITEM_H
-#define HABSTRACTDATAITEM_H
+#pragma once
 
 #include "IDataItem.h"
 
@@ -34,5 +33,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HABSTRACTDATAITEM_H

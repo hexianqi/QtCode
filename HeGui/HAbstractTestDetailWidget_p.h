@@ -1,5 +1,4 @@
-#ifndef HABSTRACTTESTDETAILWIDGET_P_H
-#define HABSTRACTTESTDETAILWIDGET_P_H
+#pragma once
 
 #include "HAbstractTestDetailWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTTESTDETAILWIDGET_P_H

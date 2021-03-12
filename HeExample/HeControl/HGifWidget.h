@@ -8,8 +8,7 @@
 **                  5：录制区域可自由拖动选择
 ***************************************************************************************************/
 
-#ifndef HGIFWIDGET_H
-#define HGIFWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QDialog>
@@ -60,5 +59,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HGIFWIDGET_H

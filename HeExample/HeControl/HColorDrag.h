@@ -2,8 +2,7 @@
 **      2019-07-31  HColorDrag
 ***************************************************************************************************/
 
-#ifndef HCOLORDRAG_H
-#define HCOLORDRAG_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtGui/QDrag>
@@ -19,5 +18,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORDRAG_H

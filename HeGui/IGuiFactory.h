@@ -2,8 +2,7 @@
 **      2018-06-19  IGuiFactory Gui工厂接口。
 ***************************************************************************************************/
 
-#ifndef IGUIFACTORY_H
-#define IGUIFACTORY_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -31,5 +30,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // IGUIFACTORY_H

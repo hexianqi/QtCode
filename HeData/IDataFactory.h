@@ -2,9 +2,7 @@
 **      2018-06-19  IDataFactory 数据工厂接口。
 ***************************************************************************************************/
 
-#ifndef IDATAFACTORY_H
-#define IDATAFACTORY_H
-
+#pragma once
 #include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 
@@ -35,8 +33,11 @@ class IGrade;
 class IGradeCollection;
 class IGradeItem;
 class IAdjust;
+class IAdjust2;
 class IAdjustCollection;
+class IAdjust2Collection;
 class IAdjustItem;
+class IAdjustItemCollection;
 class IQuality;
 class IQualityCollection;
 class IQualityItem;
@@ -95,8 +96,12 @@ public:
     virtual IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建校正数据集
     virtual IAdjustCollection *createAdjustCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    virtual IAdjust2Collection *createAdjust2Collection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建校正数据
     virtual IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) = 0;
+    virtual IAdjust2 *createAdjust2(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建校正数据子项集
+    virtual IAdjustItemCollection *createAdjustItemCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建校正数据子项
     virtual IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建品质数据集
@@ -110,5 +115,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IDATAFACTORY_H

@@ -1,5 +1,4 @@
-#ifndef HEDATA_GLOBAL_H
-#define HEDATA_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -30,5 +29,3 @@ HE_DATA_END_NAMESPACE
     friend class Class##Private<T>;
 
 #define H_D(Class, T) Class##Private<T> * const d = d_func()
-
-#endif // HEDATA_GLOBAL_H

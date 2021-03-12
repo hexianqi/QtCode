@@ -2,8 +2,7 @@
 **      2019-07-12  HMultTcpServer 多客户端Tcp服务器
 ***************************************************************************************************/
 
-#ifndef HMULTTCPSERVER_H
-#define HMULTTCPSERVER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtNetwork/QTcpServer>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMULTTCPSERVER_H

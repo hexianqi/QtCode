@@ -1,5 +1,4 @@
-#ifndef HMAINWINDOWDEMO_H
-#define HMAINWINDOWDEMO_H
+#pragma once
 
 #include "HeGui/HAbstractMainWindow.h"
 
@@ -20,5 +19,3 @@ protected:
     void initImportExport() override;
     void initBuilder() override;
 };
-
-#endif // HMAINWINDOWDEMO_H

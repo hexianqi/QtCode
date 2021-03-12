@@ -2,8 +2,7 @@
 **      2020-01-02  HScreenObject
 ***************************************************************************************************/
 
-#ifndef HSCREENOBJECT_H
-#define HSCREENOBJECT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -54,5 +53,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSCREENOBJECT_H

@@ -1,5 +1,4 @@
-#ifndef HUSBPORTCY_P_H
-#define HUSBPORTCY_P_H
+#pragma once
 
 #include "HUsbPortCy.h"
 #include "HAbstractPort_p.h"
@@ -35,7 +34,4 @@ public:
 #endif
 };
 
-
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUSBPORTCY_P_H

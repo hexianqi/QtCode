@@ -1,5 +1,4 @@
-#ifndef HMIMEINLINEFILE_P_H
-#define HMIMEINLINEFILE_P_H
+#pragma once
 
 #include "HMimeInlineFile.h"
 #include "HMimeFile_p.h"
@@ -12,5 +11,3 @@ class HMimeInlineFilePrivate : public HMimeFilePrivate
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEINLINEFILE_P_H

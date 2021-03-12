@@ -5,8 +5,7 @@
 **                  https://blog.csdn.net/cjbct/article/details/79266057
 ***************************************************************************************************/
 
-#ifndef HLAZYSINGLETON_H
-#define HLAZYSINGLETON_H
+#pragma once
 
 #include<memory>
 
@@ -53,5 +52,3 @@ protected:
 protected:
     static std::shared_ptr<HEagerSingleton> __instance;
 };
-
-#endif // HLAZYSINGLETON_H

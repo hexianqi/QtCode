@@ -1,5 +1,4 @@
-#ifndef HCOLORBUTTON_P_H
-#define HCOLORBUTTON_P_H
+#pragma once
 
 #include "HColorButton.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORBUTTON_P_H

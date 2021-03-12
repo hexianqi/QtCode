@@ -1,5 +1,4 @@
-#ifndef HSLCODEC_P_H
-#define HSLCODEC_P_H
+#pragma once
 
 #include "HAbstractCodec_p.h"
 #include "HSlCodec.h"
@@ -18,5 +17,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSLCODEC_P_H

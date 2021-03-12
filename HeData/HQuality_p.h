@@ -1,5 +1,4 @@
-#ifndef HQUALITY_P_H
-#define HQUALITY_P_H
+#pragma once
 
 #include "HQuality.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITY_P_H

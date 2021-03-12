@@ -1,5 +1,4 @@
-#ifndef HELECSTRATEGY_P_H
-#define HELECSTRATEGY_P_H
+#pragma once
 
 #include "HElecStrategy.h"
 #include "HAbstractActionStrategy_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HELECSTRATEGY_P_H

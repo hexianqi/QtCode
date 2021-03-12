@@ -1,5 +1,4 @@
-#ifndef HCUSTOMCOMBOBOX_P_H
-#define HCUSTOMCOMBOBOX_P_H
+#pragma once
 
 #include "HCustomComboBox.h"
 
@@ -14,5 +13,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCUSTOMCOMBOBOX_P_H

@@ -1,5 +1,4 @@
-#ifndef HHEXSPINBOX_P_H
-#define HHEXSPINBOX_P_H
+#pragma once
 
 #include "HHexSpinBox.h"
 
@@ -8,5 +7,3 @@ class HHexSpinBoxPrivate
 public:
     QRegularExpressionValidator *validator;
 };
-
-#endif // HHEXSPINBOX_P_H

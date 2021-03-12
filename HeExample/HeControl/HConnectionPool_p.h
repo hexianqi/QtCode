@@ -1,5 +1,4 @@
-#ifndef HCONNECTIONPOOL_P_H
-#define HCONNECTIONPOOL_P_H
+#pragma once
 
 #include "HConnectionPool.h"
 #include <QtCore/QQueue>
@@ -36,5 +35,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONNECTIONPOOL_P_H

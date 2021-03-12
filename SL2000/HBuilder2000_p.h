@@ -1,5 +1,4 @@
-#ifndef HBUILDER2000_P_H
-#define HBUILDER2000_P_H
+#pragma once
 
 #include "HBuilder2000.h"
 #include "HeGui/HAbstractBuilder_p.h"
@@ -12,5 +11,3 @@ public:
 public:
     QStringList sqlField;
 };
-
-#endif // HBUILDER2000_P_H

@@ -2,8 +2,7 @@
 **      2019-03-04  IMouseStrategy 鼠标策略接口。
 ***************************************************************************************************/
 
-#ifndef IMOUSESTRATEGY_H
-#define IMOUSESTRATEGY_H
+#pragma once
 
 class QMouseEvent;
 class QRectF;
@@ -26,5 +25,3 @@ public:
     // 鼠标释放
     virtual bool mouseReleaseEvent(QMouseEvent *) = 0;
 };
-
-#endif // IMOUSESTRATEGY_H

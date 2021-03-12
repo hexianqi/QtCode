@@ -24,8 +24,7 @@
 **                  </sqls>
 ***************************************************************************************************/
 
-#ifndef HSQLSTATEMENT_H
-#define HSQLSTATEMENT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/HSingleton3.h"
@@ -60,5 +59,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSQLSTATEMENT_H

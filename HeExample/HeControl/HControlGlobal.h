@@ -1,5 +1,4 @@
-#ifndef HECONTROL_GLOBAL_H
-#define HECONTROL_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -23,5 +22,3 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 HE_CONTROL_END_NAMESPACE
-
-#endif // HECONTROL_GLOBAL_H

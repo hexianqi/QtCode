@@ -2,8 +2,7 @@
 **      2019-05-27  IMemento 备忘录接口。
 ***************************************************************************************************/
 
-#ifndef IMEMENTO_H
-#define IMEMENTO_H
+#pragma once
 
 #include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -37,5 +36,3 @@ public:
 };
 
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // IMEMENTO_H

@@ -1,5 +1,4 @@
-#ifndef HLOGSERVICE_P_H
-#define HLOGSERVICE_P_H
+#pragma once
 
 #include "HLogService.h"
 
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLOGSERVICE_P_H

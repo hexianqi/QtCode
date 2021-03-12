@@ -1,5 +1,4 @@
-#ifndef HBUBBLECIRCULAR_P_H
-#define HBUBBLECIRCULAR_P_H
+#pragma once
 
 #include "HBubbleCircular.h"
 #include "HAbstractCircular_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUBBLECIRCULAR_P_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HUsbPortCy7c68013 USB端口类。
 ***************************************************************************************************/
 
-#ifndef HUSBPORTCY7C68013_H
-#define HUSBPORTCY7C68013_H
+#pragma once
 
 #include "HAbstractPort.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HUSBPORTCY7C68013_H

@@ -2,8 +2,7 @@
 **      2019-07-24  HAbstractShaderEffect 抽象特效。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTSHADEREFFECT_H
-#define HABSTRACTSHADEREFFECT_H
+#pragma once
 
 #include "IShaderEffect.h"
 
@@ -27,5 +26,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTSHADEREFFECT_H

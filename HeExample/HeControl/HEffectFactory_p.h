@@ -1,5 +1,4 @@
-#ifndef HEFFECTFACTORY_P_H
-#define HEFFECTFACTORY_P_H
+#pragma once
 
 #include "HEffectFactory.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HEFFECTFACTORY_P_H

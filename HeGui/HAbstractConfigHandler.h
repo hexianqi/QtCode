@@ -2,8 +2,7 @@
 **      2020-03-26  HAbstractConfigHandler
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCONFIGHANDLER_H
-#define HABSTRACTCONFIGHANDLER_H
+#pragma once
 
 #include "HAbstractGuiHandler.h"
 
@@ -24,5 +23,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTCONFIGHANDLER_H

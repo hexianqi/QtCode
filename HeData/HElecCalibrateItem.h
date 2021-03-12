@@ -2,8 +2,7 @@
 **      2019-10-17  HElecCalibrateItem 电参数校准子项。
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATEITEM_H
-#define HELECCALIBRATEITEM_H
+#pragma once
 
 #include "IElecCalibrateItem.h"
 
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATEITEM_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HLittleProtocol 低位编址协议类（低字节在前）。
 ***************************************************************************************************/
 
-#ifndef HLITTLEPROTOCOL_H
-#define HLITTLEPROTOCOL_H
+#pragma once
 
 #include "HAbstractProtocol.h"
 
@@ -37,5 +36,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HLITTLEPROTOCOL_H

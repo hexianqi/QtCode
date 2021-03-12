@@ -1,5 +1,4 @@
-#ifndef HLUNARCALENDARWIDGET_P_H
-#define HLUNARCALENDARWIDGET_P_H
+#pragma once
 
 #include "HLunarCalendarWidget.h"
 
@@ -51,5 +50,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLUNARCALENDARWIDGET_P_H

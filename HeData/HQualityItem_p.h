@@ -1,5 +1,4 @@
-#ifndef HQUALITYITEM_P_H
-#define HQUALITYITEM_P_H
+#pragma once
 
 #include "HQualityItem.h"
 #include "HAbstractDataItem_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITYITEM_P_H

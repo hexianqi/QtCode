@@ -2,8 +2,7 @@
 **      2019-06-13  HControlWidget 控件测试窗体。
 ***************************************************************************************************/
 
-#ifndef HCONTROLWIDGET_H
-#define HCONTROLWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -36,5 +35,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCONTROLWIDGET_H

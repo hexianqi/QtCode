@@ -2,8 +2,7 @@
 **      2019-04-26  HAdjustCollection 调整数据集合类。
 ***************************************************************************************************/
 
-#ifndef HADJUSTCOLLECTION_H
-#define HADJUSTCOLLECTION_H
+#pragma once
 
 #include "IAdjustCollection.h"
 
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HADJUSTCOLLECTION_H

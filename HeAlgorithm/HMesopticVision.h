@@ -2,8 +2,7 @@
 **      2018-06-19  HMesopticVision 常用路灯不同亮度下的中间视觉照度与明视觉照度的比例系数计算类。
 ***************************************************************************************************/
 
-#ifndef HMESOPTICVISION_H
-#define HMESOPTICVISION_H
+#pragma once
 
 #include "HAlgorithmGlobal.h"
 #include <QtCore/QHash>
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_ALGORITHM_END_NAMESPACE
-
-#endif // HMESOPTICVISION_H

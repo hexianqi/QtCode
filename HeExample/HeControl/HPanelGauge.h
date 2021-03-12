@@ -11,8 +11,7 @@
 **                  8:可设置单位以及仪表盘名称
 ***************************************************************************************************/
 
-#ifndef HPANELGAUGE_H
-#define HPANELGAUGE_H
+#pragma once
 
 #include "HCircleGauge.h"
 
@@ -55,13 +54,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HPANELGAUGE_H
-
-//protected:
-//    void paintEvent(QPaintEvent *);
-//
-//
-//    void drawScaleNum(QPainter *painter);
-//    void drawPointer(QPainter *painter);
-//    void drawValue(QPainter *painter);

@@ -2,8 +2,7 @@
 **      2019-12-26  HMimeAttachment
 ***************************************************************************************************/
 
-#ifndef HMIMEATTACHMENT_H
-#define HMIMEATTACHMENT_H
+#pragma once
 
 #include "HMimeFile.h"
 
@@ -27,5 +26,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEATTACHMENT_H

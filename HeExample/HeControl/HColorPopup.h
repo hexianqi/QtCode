@@ -2,8 +2,7 @@
 **      2019-08-01  HColorPopup
 ***************************************************************************************************/
 
-#ifndef HCOLORPOPUP_H
-#define HCOLORPOPUP_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCOLORPOPUP_H

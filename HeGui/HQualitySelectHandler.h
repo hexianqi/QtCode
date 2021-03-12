@@ -2,8 +2,7 @@
 **      2019-05-07  HQualitySelectHandler 品质数据选择处理者类。
 ***************************************************************************************************/
 
-#ifndef HQUALITYSELECTHANDLER_H
-#define HQUALITYSELECTHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYSELECTHANDLER_H

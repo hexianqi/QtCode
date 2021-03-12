@@ -1,5 +1,4 @@
-#ifndef HQUALITYEDITWIDGET_P_H
-#define HQUALITYEDITWIDGET_P_H
+#pragma once
 
 #include "HQualityEditWidget.h"
 
@@ -31,5 +30,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HQUALITYEDITWIDGET_P_H

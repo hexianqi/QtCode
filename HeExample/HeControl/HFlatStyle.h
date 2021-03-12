@@ -3,8 +3,7 @@
 **                  https://gitee.com/feiyangqingyun/QWidgetDemo
 ***************************************************************************************************/
 
-#ifndef HFLATSTYLE_H
-#define HFLATSTYLE_H
+#pragma once
 
 #include "HAbstractCustomStyle.h"
 
@@ -89,5 +88,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HFLATSTYLE_H

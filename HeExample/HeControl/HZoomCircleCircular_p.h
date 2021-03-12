@@ -1,5 +1,4 @@
-#ifndef HZOOMCIRCLECIRCULAR_P_H
-#define HZOOMCIRCLECIRCULAR_P_H
+#pragma once
 
 #include "HZoomCircleCircular.h"
 #include "HAbstractCircular_p.h"
@@ -15,5 +14,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HZOOMCIRCLECIRCULAR_P_H

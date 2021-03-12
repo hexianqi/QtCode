@@ -12,8 +12,7 @@
 **                  9:指示器样式可选择 圆形指示器 指针指示器 圆角指针指示器 三角形指示器
 ***************************************************************************************************/
 
-#ifndef HARCGAUGE_H
-#define HARCGAUGE_H
+#pragma once
 
 #include "HControlType.h"
 #include "HCircleGauge.h"
@@ -55,5 +54,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HARCGAUGE_H

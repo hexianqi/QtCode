@@ -2,8 +2,7 @@
 **      2020-03-20  HTestWidget 测试窗体。
 ***************************************************************************************************/
 
-#ifndef HTESTWIDGET_H
-#define HTESTWIDGET_H
+#pragma once
 
 #include "HAbstractTestWidget.h"
 
@@ -35,5 +34,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HTESTWIDGET_H

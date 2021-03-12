@@ -1,5 +1,4 @@
-#ifndef HSPECENERGYWIDGET_P_H
-#define HSPECENERGYWIDGET_P_H
+#pragma once
 
 #include "HSpecEnergyWidget.h"
 #include "HeData/HDataGlobal.h"
@@ -30,5 +29,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECENERGYWIDGET_P_H

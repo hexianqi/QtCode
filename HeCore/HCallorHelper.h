@@ -2,8 +2,7 @@
 **      2019-03-04  HCallorHelper 访问者帮助类。
 ***************************************************************************************************/
 
-#ifndef HCALLORHELPER_H
-#define HCALLORHELPER_H
+#pragma once
 
 #include "IConstructorCall.h"
 
@@ -23,5 +22,3 @@ private:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // HCALLORHELPER_H

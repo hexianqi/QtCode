@@ -1,5 +1,4 @@
-#ifndef HLISTCOLLECTIONDIALOG_P_H
-#define HLISTCOLLECTIONDIALOG_P_H
+#pragma once
 
 #include "HListCollectionDialog.h"
 #include <QModelIndex>
@@ -19,5 +18,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HLISTCOLLECTIONDIALOG_P_H

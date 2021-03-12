@@ -1,5 +1,4 @@
-#ifndef HMODELDEMO_P_H
-#define HMODELDEMO_P_H
+#pragma once
 
 #include "HModelDemo.h"
 #include "HeController/HAbstractModel_p.h"
@@ -22,5 +21,3 @@ public:
     ITestSpec *testSpec = nullptr;
     HTestWidgetDemo *testWidget = nullptr;
 };
-
-#endif // HMODELDEMO_P_H

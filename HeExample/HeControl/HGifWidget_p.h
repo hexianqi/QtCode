@@ -1,5 +1,4 @@
-#ifndef HGIFWIDGET_P_H
-#define HGIFWIDGET_P_H
+#pragma once
 
 #include "HGifWidget.h"
 #include "include/gif.h"
@@ -24,5 +23,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HGIFWIDGET_P_H

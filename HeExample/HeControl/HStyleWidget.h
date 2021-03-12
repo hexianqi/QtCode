@@ -2,8 +2,7 @@
 **      2019-06-12  HStyleWidget 样式窗体。
 ***************************************************************************************************/
 
-#ifndef HSTYLEWIDGET_H
-#define HSTYLEWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -33,5 +32,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HSTYLEWIDGET_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HSingleton 单例模板。
 ***************************************************************************************************/
 
-#ifndef HSINGLETON_H
-#define HSINGLETON_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <memory>
@@ -52,5 +51,3 @@ template <typename T> T *HSingleton<T>::__instance = nullptr;
 #define H_FRIEND_SINGLETON(Class)    friend HSingleton<Class>;
 
 HE_CORE_END_NAMESPACE
-
-#endif // HSINGLETON_H

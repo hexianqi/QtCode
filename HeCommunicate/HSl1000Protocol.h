@@ -2,8 +2,7 @@
 **      2019-12-16  HSl1000Protocol
 ***************************************************************************************************/
 
-#ifndef HSL1000PROTOCOL_H
-#define HSL1000PROTOCOL_H
+#pragma once
 
 #include "HLittleProtocol.h"
 
@@ -28,5 +27,3 @@ protected:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-#endif // HSL1000PROTOCOL_H

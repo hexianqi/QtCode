@@ -9,8 +9,7 @@
 **                  6:可设置各种颜色
 ***************************************************************************************************/
 
-#ifndef HCUSTOMGRAPHICS_H
-#define HCUSTOMGRAPHICS_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -81,5 +80,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCUSTOMGRAPHICS_H

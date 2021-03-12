@@ -2,8 +2,7 @@
 **      2019-04-11  HSpecCalibrateSetWidget 光谱校准设置窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECCALIBRATESETWIDGET_H
-#define HSPECCALIBRATESETWIDGET_H
+#pragma once
 
 #include "HAbstractTestSetWidget.h"
 
@@ -52,5 +51,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECCALIBRATESETWIDGET_H

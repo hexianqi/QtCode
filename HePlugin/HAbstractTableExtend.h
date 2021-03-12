@@ -2,8 +2,7 @@
 **      2019-05-08  HAbstractTableExtend 抽象表格视图扩展。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTTABLEEXTEND_H
-#define HABSTRACTTABLEEXTEND_H
+#pragma once
 
 #include "ITableExtend.h"
 #include <QtUiPlugin/QDesignerExportWidget>
@@ -29,5 +28,3 @@ protected:
 protected:
     QScopedPointer<HAbstractTableExtendPrivate> d_ptr;
 };
-
-#endif // HABSTRACTTABLEEXTEND_H

@@ -2,8 +2,7 @@
 **      2019-07-15  HAbstractColorPanel 抽象颜色面板
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCOLORPANEL_H
-#define HABSTRACTCOLORPANEL_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -38,5 +37,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTCOLORPANEL_H

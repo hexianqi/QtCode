@@ -1,5 +1,4 @@
-#ifndef HANIMATEDCHECKBOX_P_H
-#define HANIMATEDCHECKBOX_P_H
+#pragma once
 
 #include "HAnimatedCheckBox.h"
 
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HANIMATEDCHECKBOX_P_H

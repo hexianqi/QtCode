@@ -2,8 +2,7 @@
 **      2019-03-01  IGuiHandler Gui处理者接口。
 ***************************************************************************************************/
 
-#ifndef IGUIHANDLER_H
-#define IGUIHANDLER_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include "HeCore/IHandler.h"
@@ -21,5 +20,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // IGUIHANDLER_H

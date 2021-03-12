@@ -2,8 +2,7 @@
 **      2019-07-17  HTcpServer TCP服务端。
 ***************************************************************************************************/
 
-#ifndef HTCPSERVER_H
-#define HTCPSERVER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtNetwork/QTcpServer>
@@ -56,5 +55,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HTCPSERVER_H

@@ -1,5 +1,4 @@
-#ifndef HMAINWINDOW_P_H
-#define HMAINWINDOW_P_H
+#pragma once
 
 #include "HAbstractMainWindow.h"
 #include "HeController/HControllerGlobal.h"
@@ -60,5 +59,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HMAINWINDOW_P_H

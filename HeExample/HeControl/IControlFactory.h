@@ -2,8 +2,7 @@
 **      2019-06-13  IControlFactory 控件工厂接口。
 ***************************************************************************************************/
 
-#ifndef ICONTROLFACTORY_H
-#define ICONTROLFACTORY_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -28,5 +27,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // ICONTROLFACTORY_H

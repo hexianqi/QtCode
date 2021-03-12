@@ -2,8 +2,7 @@
 **      2019-05-06  HQualityItem 品质数据项。
 ***************************************************************************************************/
 
-#ifndef HQUALITYITEM_H
-#define HQUALITYITEM_H
+#pragma once
 
 #include "IQualityItem.h"
 
@@ -36,5 +35,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HQUALITYITEM_H

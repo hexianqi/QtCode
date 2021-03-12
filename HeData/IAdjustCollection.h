@@ -2,8 +2,7 @@
 **      2019-04-26  IAdjustCollection 调整数据集合接口。
 ***************************************************************************************************/
 
-#ifndef IADJUSTCOLLECTION_H
-#define IADJUSTCOLLECTION_H
+#pragma once
 
 #include "HDataCollection.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IADJUSTCOLLECTION_H

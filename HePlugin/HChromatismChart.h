@@ -2,8 +2,7 @@
 **      2019-05-21  HChromatismChart 色容差图表。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMCHART_H
-#define HCHROMATISMCHART_H
+#pragma once
 
 #include "HChart.h"
 
@@ -27,5 +26,3 @@ public:
 private:
     void init();
 };
-
-#endif // HCHROMATISMCHART_H

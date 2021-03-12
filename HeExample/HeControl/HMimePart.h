@@ -2,8 +2,7 @@
 **      2019-12-25  HMimePart
 ***************************************************************************************************/
 
-#ifndef HMIMEPART_H
-#define HMIMEPART_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -63,5 +62,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HMIMEPART_H

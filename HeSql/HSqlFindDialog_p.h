@@ -1,5 +1,4 @@
-#ifndef HSQLFINDDIALOG_P_H
-#define HSQLFINDDIALOG_P_H
+#pragma once
 
 #include "HSqlFindDialog.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLFINDDIALOG_P_H

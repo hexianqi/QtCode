@@ -1,5 +1,4 @@
-#ifndef HRBTABLEHEADERMODEL_P_H
-#define HRBTABLEHEADERMODEL_P_H
+#pragma once
 
 #include "HRbTableHeaderModel.h"
 
@@ -20,5 +19,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRBTABLEHEADERMODEL_P_H

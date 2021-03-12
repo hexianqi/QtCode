@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGLINEARWIDGET_P_H
-#define HSPECFITTINGLINEARWIDGET_P_H
+#pragma once
 
 #include "HSpecFittingLinearWidget.h"
 #include "HSpecFittingWidget_p.h"
@@ -11,5 +10,3 @@ class HSpecFittingLinearWidgetPrivate : public HSpecFittingWidgetPrivate
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGLINEARWIDGET_P_H

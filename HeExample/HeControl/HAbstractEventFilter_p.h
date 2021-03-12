@@ -1,5 +1,4 @@
-#ifndef HABSTRACTEVENTFILTER_P_H
-#define HABSTRACTEVENTFILTER_P_H
+#pragma once
 
 #include "HAbstractEventFilter.h"
 #include <QtCore/QHash>
@@ -16,5 +15,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTEVENTFILTER_P_H

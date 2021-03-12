@@ -2,8 +2,7 @@
 **      2019-10-15  HElecCalibrateCollection 电校准数据集合类。
 ***************************************************************************************************/
 
-#ifndef HELECCALIBRATECOLLECTION_H
-#define HELECCALIBRATECOLLECTION_H
+#pragma once
 
 #include "IElecCalibrateCollection.h"
 
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HELECCALIBRATECOLLECTION_H

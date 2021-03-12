@@ -2,8 +2,7 @@
 **      2019-07-12  HAbstractFileLog 抽象文件日志。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTFILELOG_H
-#define HABSTRACTFILELOG_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtCore/QObject>
@@ -39,5 +38,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTFILELOG_H

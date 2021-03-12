@@ -2,8 +2,7 @@
 **      2019-04-12  HSqlFactory Sql工厂类。
 ***************************************************************************************************/
 
-#ifndef HSQLFACTORY_H
-#define HSQLFACTORY_H
+#pragma once
 
 #include "ISqlFactory.h"
 
@@ -42,5 +41,3 @@ private:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // HSQLFACTORY_H

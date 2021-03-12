@@ -1,5 +1,4 @@
-#ifndef HTESTSETWIDGETDEMO_P_H
-#define HTESTSETWIDGETDEMO_P_H
+#pragma once
 
 #include "HTestSetWidgetDemo.h"
 #include "HeGui/HAbstractTestSetWidget_p.h"
@@ -18,5 +17,3 @@ public:
     bool integralTimeAuto = false;
     bool energy = false;
 };
-
-#endif // HTESTSETWIDGETDEMO_P_H

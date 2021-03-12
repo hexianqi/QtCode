@@ -3,8 +3,7 @@
 **                  https://blog.csdn.net/liang19890820/article/details/66969965
 ***************************************************************************************************/
 
-#ifndef HPROTOTYPE_H
-#define HPROTOTYPE_H
+#pragma once
 
 #include <string>
 
@@ -38,5 +37,3 @@ public:
 private:
     string _name;
 };
-
-#endif // HPROTOTYPE_H

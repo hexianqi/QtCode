@@ -5,8 +5,7 @@
 **                  2:显示当前日期及农历
 ***************************************************************************************************/
 
-#ifndef HIMAGECALENDAR_H
-#define HIMAGECALENDAR_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -60,5 +59,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIMAGECALENDAR_H

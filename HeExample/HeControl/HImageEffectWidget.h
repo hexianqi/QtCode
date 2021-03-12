@@ -3,8 +3,7 @@
 **                  http://www.qtcn.org/bbs/read-htm-tid-85995-ds-1.html#tpc
 ***************************************************************************************************/
 
-#ifndef HIMAGEEFFECTWIDGET_H
-#define HIMAGEEFFECTWIDGET_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -62,8 +61,6 @@ private:
 
 HE_CONTROL_END_NAMESPACE
 
-#endif // HIMAGEEFFECTWIDGET_H
-
 
 //public:
 //    enum AnimationType {
@@ -114,4 +111,4 @@ HE_CONTROL_END_NAMESPACE
 
 //};
 
-//#endif // IMAGEANIMATION_H
+

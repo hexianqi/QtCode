@@ -2,8 +2,7 @@
 **      2019-05-20  HChromatismItem 色容差数据项。
 ***************************************************************************************************/
 
-#ifndef HCHROMATISMITEM_H
-#define HCHROMATISMITEM_H
+#pragma once
 
 #include "IChromatismItem.h"
 
@@ -33,5 +32,3 @@ protected:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HCHROMATISMITEM_H

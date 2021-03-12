@@ -2,8 +2,7 @@
 **      2019-03-25  HSpecEnergyWidget 光谱能量窗体。
 ***************************************************************************************************/
 
-#ifndef HSPECENERGYWIDGET_H
-#define HSPECENERGYWIDGET_H
+#pragma once
 
 #include "HGuiGlobal.h"
 #include <QtWidgets/QWidget>
@@ -39,5 +38,3 @@ private:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECENERGYWIDGET_H

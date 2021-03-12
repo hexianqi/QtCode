@@ -2,8 +2,7 @@
 **      2019-05-05  IQualityCollection 品质数据集合接口。
 ***************************************************************************************************/
 
-#ifndef IQUALITYCOLLECTION_H
-#define IQUALITYCOLLECTION_H
+#pragma once
 
 #include "HDataType.h"
 #include "HDataCollection.h"
@@ -27,5 +26,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // IQUALITYCOLLECTION_H

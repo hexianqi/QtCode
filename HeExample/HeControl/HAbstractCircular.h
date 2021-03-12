@@ -2,8 +2,7 @@
 **      2019-06-19  HAbstractCircular
 ***************************************************************************************************/
 
-#ifndef HABSTRACTCIRCULAR_H
-#define HABSTRACTCIRCULAR_H
+#pragma once
 
 #include "ICircular.h"
 
@@ -30,5 +29,3 @@ protected:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTCIRCULAR_H

@@ -2,8 +2,7 @@
 **      2019-05-13  ISqlPrint 数据库记录打印接口。
 ***************************************************************************************************/
 
-#ifndef ISQLPRINT_H
-#define ISQLPRINT_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -40,5 +39,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // ISQLPRINT_H

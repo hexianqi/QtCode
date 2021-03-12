@@ -1,5 +1,4 @@
-#ifndef HLEDNUMBER_P_H
-#define HLEDNUMBER_P_H
+#pragma once
 
 #include "HLedNumber.h"
 
@@ -22,5 +21,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLEDNUMBER_P_H

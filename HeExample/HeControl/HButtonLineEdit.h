@@ -2,8 +2,7 @@
 **      2019-07-31  HButtonLineEdit
 ***************************************************************************************************/
 
-#ifndef HBUTTONLINEEDIT_H
-#define HBUTTONLINEEDIT_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtGui/QIcon>
@@ -77,5 +76,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBUTTONLINEEDIT_H

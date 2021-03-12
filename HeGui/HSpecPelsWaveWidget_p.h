@@ -1,5 +1,4 @@
-#ifndef HSPECPELSWAVEWIDGET_P_H
-#define HSPECPELSWAVEWIDGET_P_H
+#pragma once
 
 #include "HSpecPelsWaveWidget.h"
 #include "HePlugin/HEntireTableWidget_p.h"
@@ -13,5 +12,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECPELSWAVEWIDGET_P_H

@@ -1,5 +1,4 @@
-#ifndef HBORDERLAYOUT_P_H
-#define HBORDERLAYOUT_P_H
+#pragma once
 
 #include "HBorderLayout.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HBORDERLAYOUT_P_H

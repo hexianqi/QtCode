@@ -2,8 +2,7 @@
 **      2019-08-06  HLongSpinBox
 ***************************************************************************************************/
 
-#ifndef HLONGSPINBOX_H
-#define HLONGSPINBOX_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QAbstractSpinBox>
@@ -70,5 +69,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HLONGSPINBOX_H

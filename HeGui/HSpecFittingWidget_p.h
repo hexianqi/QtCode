@@ -1,5 +1,4 @@
-#ifndef HSPECFITTINGWIDGET_P_H
-#define HSPECFITTINGWIDGET_P_H
+#pragma once
 
 #include "HSpecFittingWidget.h"
 #include "HeController/HControllerGlobal.h"
@@ -38,5 +37,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECFITTINGWIDGET_P_H

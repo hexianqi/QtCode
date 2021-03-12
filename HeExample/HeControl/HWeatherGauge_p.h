@@ -1,5 +1,4 @@
-#ifndef HWEATHERGAUGE_P_H
-#define HWEATHERGAUGE_P_H
+#pragma once
 
 #include "HWeatherGauge.h"
 #include "HCircleGauge_p.h"
@@ -35,5 +34,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HWEATHERGAUGE_P_H

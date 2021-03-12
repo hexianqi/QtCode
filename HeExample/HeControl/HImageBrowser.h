@@ -11,8 +11,7 @@
 **                  8:修正内存泄露BUG及其他BUG
 ***************************************************************************************************/
 
-#ifndef HIMAGEBROWSER_H
-#define HIMAGEBROWSER_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QWidget>
@@ -90,5 +89,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HIMAGEBROWSER_H

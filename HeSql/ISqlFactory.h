@@ -2,8 +2,7 @@
 **      2019-04-12  ISqlFactory 数据库工厂接口。
 ***************************************************************************************************/
 
-#ifndef ISQLFACTORY_H
-#define ISQLFACTORY_H
+#pragma once
 
 #include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
@@ -37,5 +36,3 @@ public:
 };
 
 HE_SQL_END_NAMESPACE
-
-#endif // ISQLFACTORY_H

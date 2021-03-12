@@ -2,8 +2,7 @@
 **      2019-05-08  HOptionalTableExtend 表格视图扩展 - 显示可选。
 ***************************************************************************************************/
 
-#ifndef HOPTIONALTABLEEXTEND_H
-#define HOPTIONALTABLEEXTEND_H
+#pragma once
 
 #include "HAbstractTableExtend.h"
 
@@ -32,5 +31,3 @@ protected:
     void editSelected();
     void setColumnHidden();
 };
-
-#endif // HOPTIONALTABLEEXTEND_H

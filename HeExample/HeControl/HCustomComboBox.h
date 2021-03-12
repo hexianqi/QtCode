@@ -6,8 +6,7 @@
 **                  3:可设置是否自动调整下拉框元素宽度,根据元素宽高自动调整
 ***************************************************************************************************/
 
-#ifndef HCUSTOMCOMBOBOX_H
-#define HCUSTOMCOMBOBOX_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QComboBox>
@@ -51,5 +50,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HCUSTOMCOMBOBOX_H

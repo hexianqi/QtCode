@@ -1,5 +1,4 @@
-#ifndef HABSTRACTPORT_P_H
-#define HABSTRACTPORT_P_H
+#pragma once
 
 #include "HAbstractPort.h"
 
@@ -14,6 +13,3 @@ public:
 };
 
 HE_COMMUNICATE_END_NAMESPACE
-
-
-#endif // HABSTRACTPORT_P_H

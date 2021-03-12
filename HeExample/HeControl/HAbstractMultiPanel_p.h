@@ -1,5 +1,4 @@
-#ifndef HABSTRACTMULTIPANEL_P_H
-#define HABSTRACTMULTIPANEL_P_H
+#pragma once
 
 #include "HAbstractMultiPanel.h"
 
@@ -12,5 +11,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HABSTRACTMULTIPANEL_P_H

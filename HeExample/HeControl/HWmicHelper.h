@@ -2,8 +2,7 @@
 **      2019-07-16  HWmicHelper WMIC帮助类。
 ***************************************************************************************************/
 
-#ifndef HWMICWRAPPER_H
-#define HWMICWRAPPER_H
+#pragma once
 
 #include "HControlGlobal.h"
 
@@ -21,5 +20,3 @@ public:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HWMICWRAPPER_H

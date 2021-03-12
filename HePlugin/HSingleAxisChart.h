@@ -2,8 +2,7 @@
 **      2018-07-03  HSingleAxisChart 单坐标系图表。
 ***************************************************************************************************/
 
-#ifndef HSINGLEAXISCHART_H
-#define HSINGLEAXISCHART_H
+#pragma once
 
 #include "HChart.h"
 
@@ -27,5 +26,3 @@ public:
 protected:
     HSingleAxisChart(HSingleAxisChartPrivate &p, QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
 };
-
-#endif // HSINGLEAXISCHART_H

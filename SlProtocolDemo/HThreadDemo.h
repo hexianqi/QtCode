@@ -2,8 +2,7 @@
 **      2019-09-12  HThreadDemo
 ***************************************************************************************************/
 
-#ifndef HTHREADDEMO_H
-#define HTHREADDEMO_H
+#pragma once
 
 #include "HeController/HAbstractThread.h"
 
@@ -29,5 +28,3 @@ public:
 protected:
     HErrorType handleAction(HActionType action) override;
 };
-
-#endif // HTHREADDEMO_H

@@ -2,8 +2,7 @@
 **      2020-04-08  HSpecTcHandler 色温配置处理者类。
 ***************************************************************************************************/
 
-#ifndef HSPECTCHANDLER_H
-#define HSPECTCHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HSPECTCHANDLER_H

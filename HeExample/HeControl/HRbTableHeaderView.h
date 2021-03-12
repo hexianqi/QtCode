@@ -2,8 +2,7 @@
 **      2019-05-31  HRbTableHeaderView 多标题视图
 ***************************************************************************************************/
 
-#ifndef HRBTABLEHEADERVIEW_H
-#define HRBTABLEHEADERVIEW_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QHeaderView>
@@ -58,5 +57,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HRBTABLEHEADERVIEW_H

@@ -2,8 +2,7 @@
 **      2019-04-03  HDelayThread    延时线程类。
 ***************************************************************************************************/
 
-#ifndef HDELAYTHREAD_H
-#define HDELAYTHREAD_H
+#pragma once
 
 #include "HControllerGlobal.h"
 #include "HeCore/HActionType.h"
@@ -36,7 +35,4 @@ protected:
     QScopedPointer<HDelayThreadPrivate> d_ptr;
 };
 
-
 HE_CONTROLLER_END_NAMESPACE
-
-#endif // HDELAYTHREAD_H

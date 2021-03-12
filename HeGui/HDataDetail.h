@@ -2,8 +2,7 @@
 **      2019-04-28  HAdjustDetail 数据详情模板。
 ***************************************************************************************************/
 
-#ifndef HDATADETAIL_H
-#define HDATADETAIL_H
+#pragma once
 
 #include "IDataDetail.h"
 #include "IDataEditWidget.h"
@@ -158,5 +157,3 @@ void HDataDetail<T>::setData(IDataCollection<T> *p)
 }
 
 HE_GUI_END_NAMESPACE
-
-#endif // HDATADETAIL_H

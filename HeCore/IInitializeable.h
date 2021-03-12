@@ -2,8 +2,7 @@
 **      2018-06-19  IInitializeable 可初始化接口。
 ***************************************************************************************************/
 
-#ifndef IINITIALIZEABLE_H
-#define IINITIALIZEABLE_H
+#pragma once
 
 #include "HCoreGlobal.h"
 #include <QtCore/QVariant>
@@ -20,5 +19,3 @@ public:
 };
 
 HE_CORE_END_NAMESPACE
-
-#endif // IINITIALIZEABLE_H

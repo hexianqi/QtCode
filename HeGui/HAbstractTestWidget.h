@@ -2,8 +2,7 @@
 **      2019-03-21  HAbstractTestWidget 抽象测试窗体类。
 ***************************************************************************************************/
 
-#ifndef HABSTRACTTESTWIDGET_H
-#define HABSTRACTTESTWIDGET_H
+#pragma once
 
 #include "ITestWidget.h"
 #include "HeCore/HActionType.h"
@@ -41,5 +40,3 @@ protected:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HABSTRACTTESTWIDGET_H

@@ -2,8 +2,7 @@
 **      2018-06-19  HXmlElement 重新封装的XML元素类，目的是为了简化XML查询操作。
 ***************************************************************************************************/
 
-#ifndef HXMLELEMENT_H
-#define HXMLELEMENT_H
+#pragma once
 
 #include "HFileGlobal.h"
 #include <QtCore/QScopedPointer>
@@ -61,5 +60,3 @@ private:
 };
 
 HE_FILE_END_NAMESPACE
-
-#endif // HXMLELEMENT_H

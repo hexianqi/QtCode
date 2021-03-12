@@ -1,5 +1,4 @@
-#ifndef HADJUST_P_H
-#define HADJUST_P_H
+#pragma once
 
 #include "HAdjust.h"
 
@@ -17,5 +16,3 @@ public:
 };
 
 HE_DATA_END_NAMESPACE
-
-#endif // HADJUST_P_H

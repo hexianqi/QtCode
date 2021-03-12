@@ -1,5 +1,4 @@
-#ifndef HTESTSETWIDGET2000DC_P_H
-#define HTESTSETWIDGET2000DC_P_H
+#pragma once
 
 #include "HTestSetWidget2000DC.h"
 #include "HeGui/HAbstractTestSetWidget_p.h"
@@ -12,5 +11,3 @@ public:
     QTimer *timerContinue = nullptr;
     QTimer *timerInterval = nullptr;
 };
-
-#endif // HTESTSETWIDGET2000DC_P_H

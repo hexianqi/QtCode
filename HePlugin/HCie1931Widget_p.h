@@ -1,5 +1,4 @@
-#ifndef HCIE1931WIDGET_P_H
-#define HCIE1931WIDGET_P_H
+#pragma once
 
 #include "HCie1931Widget.h"
 #include "HCartesianWidget_p.h"
@@ -38,5 +37,3 @@ public:
     QList<QPointF> points;
     QPointF pointFocus;
 };
-
-#endif // HCIE1931WIDGET_P_H

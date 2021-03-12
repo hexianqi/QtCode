@@ -2,8 +2,7 @@
 **      2019-04-25  HGradeEditHandler 分级数据编辑处理者类。
 ***************************************************************************************************/
 
-#ifndef HGRADEEDITHANDLER_H
-#define HGRADEEDITHANDLER_H
+#pragma once
 
 #include "HAbstractConfigHandler.h"
 
@@ -29,5 +28,3 @@ public:
 };
 
 HE_GUI_END_NAMESPACE
-
-#endif // HGRADEEDITHANDLER_H

@@ -7,8 +7,7 @@
 **                  4:增加U盘或者SD卡到达信号
 ***************************************************************************************************/
 
-#ifndef HDISKSIZETABLE_H
-#define HDISKSIZETABLE_H
+#pragma once
 
 #include "HControlGlobal.h"
 #include <QtWidgets/QTableWidget>
@@ -75,5 +74,3 @@ private:
 };
 
 HE_CONTROL_END_NAMESPACE
-
-#endif // HDISKSIZETABLE_H
