@@ -375,8 +375,8 @@ void HSpecTestWidget::setExportPath()
 void HSpecTestWidget::setSyncFile()
 {
     Q_D(HSpecTestWidget);
-    d->exportPathName = QFileDialog::getSaveFileName(this, tr("同步文件"), ".", "Excel files (*.xlsx)");
-    d->testResult->setSyncFileName(d->exportPathName);
+    d->syncFileName = QFileDialog::getSaveFileName(this, tr("同步文件"), ".", "Excel files (*.xlsx)");
+    d->testResult->setSyncFileName(d->syncFileName);
 }
 
 HE_GUI_END_NAMESPACE

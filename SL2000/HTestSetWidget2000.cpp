@@ -65,12 +65,14 @@ bool HTestSetWidget2000::setTestState(bool b)
         d->testData->handleOperation("<清空光谱采样缓存>");
         d->model->addAction(ACT_GET_SPECTRUM);
     }
+    ui->comboBox_1->setEnabled(!b);
     return true;
 }
 
-void HTestSetWidget2000::on_doubleSpinBox_1_valueChanged(double value)
+void HTestSetWidget2000::on_doubleSpinBox_1_editingFinished()
 {
     Q_D(HTestSetWidget2000);
+    auto value = ui->doubleSpinBox_1->value();
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
     d->testData->setData("[积分时间]", value);
