@@ -153,36 +153,32 @@ bool HTestSetWidget2000DC::setTestState(bool b)
     return true;
 }
 
-void HTestSetWidget2000DC::on_doubleSpinBox_1_editingFinished()
+void HTestSetWidget2000DC::on_doubleSpinBox_1_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    auto value = ui->doubleSpinBox_1->value();
     if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
         return;
     d->testData->setData("[积分时间]", value);
     d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
-void HTestSetWidget2000DC::on_doubleSpinBox_2_editingFinished()
+void HTestSetWidget2000DC::on_doubleSpinBox_2_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    auto value = ui->doubleSpinBox_2->value();
     d->testData->setData("[输出电压]", value);
     d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
 }
 
-void HTestSetWidget2000DC::on_doubleSpinBox_3_editingFinished()
+void HTestSetWidget2000DC::on_doubleSpinBox_3_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    auto value = ui->doubleSpinBox_3->value();
     d->testData->setData("[输出电流]", value);
     d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
-void HTestSetWidget2000DC::on_doubleSpinBox_4_editingFinished()
+void HTestSetWidget2000DC::on_doubleSpinBox_4_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    auto value = ui->doubleSpinBox_4->value();
     d->testData->setData("[反向电压]", value);
     d->model->addAction(ACT_SET_REVERSE_VOLTAGE);
 }
