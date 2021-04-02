@@ -10,13 +10,15 @@
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
+#include "HeController/IControllerFactory.h"
+#include "HeController/IThreadCollection.h"
 #include <QtCore/QDebug>
 
 HBuilder2000ACPrivate::HBuilder2000ACPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
-    deploy.insert("PFProtocol",     "HUi2008Protocol");      // HUi2008Protocol:UI2008; HUi2010Protocol:UI2010
+    deploy.insert("PfProtocol",     "HUi2008Protocol");     // HUi2008Protocol:UI2008; HUi2010Protocol:UI2010
 
     sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
                              << "Temperature" << "Humidity" << "TestDate" << "TestTime"
@@ -110,7 +112,7 @@ void HBuilder2000AC::buildDevice()
     protocol2->setDevice(device2);
 #else
     auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
-    auto protocol2 = d->communicateFactory->createProtocol(deployItem("PFProtocol"));
+    auto protocol2 = d->communicateFactory->createProtocol(deployItem("PfProtocol"));
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
@@ -120,5 +122,9 @@ void HBuilder2000AC::buildDevice()
 
 void HBuilder2000AC::buildThread()
 {
-
+//    Q_D(HBuilder2000AC);
+//    auto thread = d->controllerFactory->createThread("HIntegrateThread");
+//    auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
+//    threads->insert("1", thread);
+//    HAppContext::setContextPointer("IThreadCollection", threads);
 }

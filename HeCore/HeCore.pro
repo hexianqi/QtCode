@@ -12,6 +12,8 @@ DESTDIR     = "../Dest"
 
 DEFINES     += HE_BUILD_CORE_LIB
 
+TRANSLATIONS = HeCore_en.ts
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -32,7 +34,7 @@ HEADERS     += \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HCallorHelper.h \
-    HException.h
+            HException.h
 
 SOURCES     += \
             HCore.cpp \

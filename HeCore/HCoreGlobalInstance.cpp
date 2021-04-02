@@ -472,6 +472,7 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[]",                                tr(""));
     hashDataCaption.insert("[光谱像元]",                        tr("像元"));
     hashDataCaption.insert("[光谱波长]",                        tr("波长"));
+    hashDataCaption.insert("[光谱能量百分比]",                  tr("能量百分比"));
     hashDataCaption.insert("[色坐标]",                          tr("色坐标xy"));
     hashDataCaption.insert("[色坐标up]",                        tr("色坐标u'"));
     hashDataCaption.insert("[色坐标vp]",                        tr("色坐标v'"));

@@ -12,6 +12,8 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
+TRANSLATIONS = SL2000_en.ts
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -87,6 +89,6 @@ QMAKE_TARGET_PRODUCT = $$TARGET_NAME
 # 文件说明
 QMAKE_TARGET_DESCRIPTION = $$TARGET_NAME
 # 版权信息
-QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
+#QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
 # 中文（简体）
 RC_LANG = 0x0004

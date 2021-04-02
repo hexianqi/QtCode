@@ -35,6 +35,7 @@ HSpecTestWidgetPrivate::HSpecTestWidgetPrivate()
 HSpecTestWidget::HSpecTestWidget(QWidget *parent) :
     HTestWidget(*new HSpecTestWidgetPrivate, parent)
 {
+    init();
 }
 
 HSpecTestWidget::HSpecTestWidget(HSpecTestWidgetPrivate &p, QWidget *parent) :
@@ -66,7 +67,6 @@ void HSpecTestWidget::init()
 {
     Q_D(HSpecTestWidget);
     readSettings();
-    HTestWidget::init();
     d->testResult = new HTestResult(this);
     d->testResult->setExportTypes(d->displays);
     d->testResult->setExportPathName(d->exportPathName);
@@ -74,6 +74,7 @@ void HSpecTestWidget::init()
     d->timer = new QTimer(this);
     d->timer->setInterval(d->syncInterval * 1000);
     connect(d->timer, &QTimer::timeout, this, [=] { d->testResult->syncFile(); });
+    HTestWidget::init();
     resetGrade();
 }
 

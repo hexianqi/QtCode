@@ -184,8 +184,14 @@ void HTestResult::exportExcelLast()
     if (isEmpty())
         return;
     QString text;
+    QStringList list;
     text += HCore::toCaptionUnit(d_ptr->exportTypes).join("\t") + "\n";
     text += d_ptr->results.last()->toString(d_ptr->exportTypes).join("\t") + "\n";
+    text += HCore::toCaptionUnit("[光谱波长]") + "\t" + HCore::toCaptionUnit("[光谱能量百分比]") + "\n";
+    auto poly = d_ptr->results.last()->data("[光谱能量曲线]").value<QPolygonF>();
+    for (int i = 0; i < poly.size(); i += 10)
+        list << HCore::toString("[光谱波长]", poly[i].x()) + "\t" +  HCore::toString("[光谱能量百分比]", poly[i].y());
+    text += list.join("\n");
     d_ptr->textStream->setContent(text);
     d_ptr->textStream->saveAsFile("", "");
 }

@@ -9,6 +9,7 @@
 #include "HSpecStrategy.h"
 #include "HElecStrategy.h"
 #include "HLuminousStrategy.h"
+#include "HPowerFactorStrategy.h"
 #include "HMemento.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
@@ -87,6 +88,7 @@ void HControllerFactory::registerClass()
     HObjectFactory::registerClass<HSpecStrategy>("HSpecStrategy");
     HObjectFactory::registerClass<HElecStrategy>("HElecStrategy");
     HObjectFactory::registerClass<HLuminousStrategy>("HLuminousStrategy");
+    HObjectFactory::registerClass<HPowerFactorStrategy>("HPowerFactorStrategy");
 }
 
 HE_CONTROLLER_END_NAMESPACE
