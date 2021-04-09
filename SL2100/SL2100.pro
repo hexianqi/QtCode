@@ -4,8 +4,7 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
-#TRANSLATIONS    += \
-#                SL2100_en_US.ts
+TRANSLATIONS = SL2100_en.ts
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

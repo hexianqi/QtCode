@@ -60,7 +60,7 @@ Release {
 }
 
 include(SL2000.pri)
-#include(SL2000AC.pri)
+include(SL2000AC.pri)
 include(SL2000DC.pri)
 include(SL2000F.pri)
 
@@ -89,6 +89,6 @@ QMAKE_TARGET_PRODUCT = $$TARGET_NAME
 # 文件说明
 QMAKE_TARGET_DESCRIPTION = $$TARGET_NAME
 # 版权信息
-#QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
+QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
 # 中文（简体）
 RC_LANG = 0x0004

@@ -468,17 +468,61 @@ void HCoreGlobalInstance::initDataFormatInfo()
 void HCoreGlobalInstance::initDataCaption()
 {
     hashDataCaption.clear();
-    hashDataCaption.insert("",                                  tr(""));
-    hashDataCaption.insert("[]",                                tr(""));
-    hashDataCaption.insert("[光谱像元]",                        tr("像元"));
-    hashDataCaption.insert("[光谱波长]",                        tr("波长"));
-    hashDataCaption.insert("[光谱能量百分比]",                  tr("能量百分比"));
-    hashDataCaption.insert("[色坐标]",                          tr("色坐标xy"));
-    hashDataCaption.insert("[色坐标up]",                        tr("色坐标u'"));
-    hashDataCaption.insert("[色坐标vp]",                        tr("色坐标v'"));
-    hashDataCaption.insert("[色坐标uvp]",                       tr("色坐标u'v'"));
-    hashDataCaption.insert("[光谱光通量]",                      tr("光通量"));
-    hashDataCaption.insert("[测试日期时间]",                    tr("测试时间"));
+    hashDataCaption.insert("",                      tr(""));
+    hashDataCaption.insert("[]",                    tr(""));
+
+    hashDataCaption.insert("[光谱像元]",            tr("像元"));
+    hashDataCaption.insert("[光谱波长]",            tr("波长"));
+
+    hashDataCaption.insert("[峰值波长]",            tr("[峰值波长]"));
+    hashDataCaption.insert("[峰值带宽]",            tr("[峰值带宽]"));
+    hashDataCaption.insert("[主波长]",              tr("[主波长]"));
+    hashDataCaption.insert("[色纯度]",              tr("[色纯度]"));
+    hashDataCaption.insert("[色温]",                tr("[色温]"));
+    hashDataCaption.insert("[显色指数Ra]",          tr("[显色指数Ra]"));
+    hashDataCaption.insert("[显色指数R9]",          tr("[显色指数R9]"));
+    hashDataCaption.insert("[显色指数Rx]",          tr("[显色指数Rx]"));
+    hashDataCaption.insert("[色坐标]",              tr("[色坐标]"));
+    hashDataCaption.insert("[色坐标uv]",            tr("[色坐标uv]"));
+    hashDataCaption.insert("[色坐标uvp]",           tr("[色坐标uvp]"));
+    hashDataCaption.insert("[色坐标x]",             tr("[色坐标x]"));
+    hashDataCaption.insert("[色坐标y]",             tr("[色坐标y]"));
+    hashDataCaption.insert("[色坐标u]",             tr("[色坐标u]"));
+    hashDataCaption.insert("[色坐标v]",             tr("[色坐标v]"));
+    hashDataCaption.insert("[色坐标up]",            tr("[色坐标up]"));
+    hashDataCaption.insert("[色坐标vp]",            tr("[色坐标vp]"));
+    hashDataCaption.insert("[Duv]",                 tr("[Duv]"));
+    hashDataCaption.insert("[红色比]",              tr("[红色比]"));
+    hashDataCaption.insert("[蓝色比]",              tr("[蓝色比]"));
+    hashDataCaption.insert("[绿色比]",              tr("[绿色比]"));
+    hashDataCaption.insert("[光谱能量百分比]",      tr("[光谱能量百分比]"));
+    hashDataCaption.insert("[光谱光通量]",          tr("[光谱光通量]"));
+
+    hashDataCaption.insert("[色容差]",              tr("[色容差]"));
+
+    hashDataCaption.insert("[输出电压]",            tr("[输出电压]"));
+    hashDataCaption.insert("[输出电流]",            tr("[输出电流]"));
+    hashDataCaption.insert("[反向电压]",            tr("[反向电压]"));
+    hashDataCaption.insert("[实测电压]",            tr("[实测电压]"));
+    hashDataCaption.insert("[实测电流]",            tr("[实测电流]"));
+    hashDataCaption.insert("[反向漏流]",            tr("[反向漏流]"));
+    hashDataCaption.insert("[电功率]",              tr("[电功率]"));
+    hashDataCaption.insert("[交流电压]",            tr("[交流电压]"));
+    hashDataCaption.insert("[交流电流]",            tr("[交流电流]"));
+    hashDataCaption.insert("[交流电功率]",          tr("[交流电功率]"));
+    hashDataCaption.insert("[功率因数]",            tr("[功率因数]"));
+
+    hashDataCaption.insert("[光通量]",              tr("[光通量]"));
+    hashDataCaption.insert("[光强度]",              tr("[光强度]"));
+    hashDataCaption.insert("[光亮度]",              tr("[光亮度]"));
+    hashDataCaption.insert("[光照度]",              tr("[光照度]"));
+    hashDataCaption.insert("[光功率]",              tr("[光功率]"));
+    hashDataCaption.insert("[光效率]",              tr("[光效率]"));
+
+    hashDataCaption.insert("[测试日期时间]",        tr("测试时间"));
+    hashDataCaption.insert("[样品编号]",            tr("[样品编号]"));
+    hashDataCaption.insert("[环境温度]",            tr("[环境温度]"));
+    hashDataCaption.insert("[环境湿度]",            tr("[环境湿度]"));
 
 //    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
 //    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));
