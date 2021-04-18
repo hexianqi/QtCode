@@ -24,7 +24,7 @@ DEFINES     += \
 #            SL2000AC \
             SL2000DC \
 #            SL2000F \
-#            SIMULATE
+            SIMULATE
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -89,6 +89,6 @@ QMAKE_TARGET_PRODUCT = $$TARGET_NAME
 # 文件说明
 QMAKE_TARGET_DESCRIPTION = $$TARGET_NAME
 # 版权信息
-#QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
+QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
 # 中文（简体）
 RC_LANG = 0x0004
