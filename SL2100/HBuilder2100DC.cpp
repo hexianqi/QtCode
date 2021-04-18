@@ -40,7 +40,7 @@ HBuilder2100DCPrivate::HBuilder2100DCPrivate()
     sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
                              << "Temperature" << "Humidity" << "TestDate" << "TestTime"
                              << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ElecPower"
-                             << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency"
+                             << "LuminousFluxSpec" << "LuminousPower" << "LuminousEfficiency"
                              << "PeakWave" << "PeakBandwidth" << "DominantWave"
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
@@ -125,22 +125,17 @@ void HBuilder2100DC::buildDevice()
 #ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto device2 = d->communicateFactory->createDevice("HSimulateDevice");
-    auto device3 = d->communicateFactory->createDevice("HSimulateDevice");
     auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
-    auto protocol3 = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol1->setDevice(device1);
     protocol2->setDevice(device2);
-    protocol3->setDevice(device3);
 #else
     auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
     auto protocol2 = d->communicateFactory->createProtocol("HDaXinProtocol");
-    auto protocol3 = d->communicateFactory->createProtocol("HSl1000Protocol");
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
     protocols->insert("Elec", protocol2);
-    protocols->insert("Else", protocol3);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 

@@ -10,13 +10,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
 
-    QTranslator t1, t2, t3;
-    if (t1.load("HeCore_en"))
-        a.installTranslator(&t1);
-    if (t2.load("HeGui_en"))
-        a.installTranslator(&t2);
-    if (t3.load("SL2000_en"))
-        a.installTranslator(&t3);
+//    QTranslator t1, t2, t3;
+//    if (t1.load("HeCore_en"))
+//        a.installTranslator(&t1);
+//    if (t2.load("HeGui_en"))
+//        a.installTranslator(&t2);
+//    if (t3.load("SL2000_en"))
+//        a.installTranslator(&t3);
 
 #ifdef SL2000
     QApplication::setApplicationName("SL2000");

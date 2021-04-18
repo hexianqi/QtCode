@@ -60,7 +60,7 @@ Release {
 }
 
 include(SL2000.pri)
-#include(SL2000AC.pri)
+include(SL2000AC.pri)
 include(SL2000DC.pri)
 include(SL2000F.pri)
 

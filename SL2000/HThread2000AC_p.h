@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HThread2100DC.h"
+#include "HThread2000AC.h"
 #include "HeController/HAbstractThread_p.h"
 #include "HeData/HDataGlobal.h"
 
@@ -9,10 +9,10 @@ class ITestData;
 HE_DATA_END_NAMESPACE
 HE_DATA_USE_NAMESPACE
 
-class HThread2100DCPrivate : public HAbstractThreadPrivate
+class HThread2000ACPrivate : public HAbstractThreadPrivate
 {
 public:
-    HThread2100DCPrivate();
+    HThread2000ACPrivate();
 
 public:
     ITestData *testData = nullptr;
@@ -21,6 +21,3 @@ public:
     IActionStrategy *strategySpec = nullptr;
     IActionStrategy *strategyElec = nullptr;
 };
-
-
-

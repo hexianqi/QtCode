@@ -1,29 +1,29 @@
-#include "HSqlPrint2100DC_p.h"
+#include "HSqlPrint2000AC_p.h"
 #include "HeCore/HCore.h"
 #include <QtGui/QPainter>
 #include <QtCore/QDebug>
 
-HSqlPrint2100DC::HSqlPrint2100DC(QObject *parent) :
-    HSpecSqlPrint(*new HSqlPrint2100DCPrivate, parent)
+HSqlPrint2000AC::HSqlPrint2000AC(QObject *parent) :
+    HSpecSqlPrint(*new HSqlPrint2000ACPrivate, parent)
 {
 }
 
-HSqlPrint2100DC::HSqlPrint2100DC(HSqlPrint2100DCPrivate &p, QObject *parent) :
+HSqlPrint2000AC::HSqlPrint2000AC(HSqlPrint2000ACPrivate &p, QObject *parent) :
     HSpecSqlPrint(p, parent)
 {
 }
 
-HSqlPrint2100DC::~HSqlPrint2100DC()
+HSqlPrint2000AC::~HSqlPrint2000AC()
 {
     qDebug() << __func__;
 }
 
-QString HSqlPrint2100DC::typeName()
+QString HSqlPrint2000AC::typeName()
 {
-    return "HSqlPrint2100DC";
+    return "HSqlPrint2000AC";
 }
 
-QString HSqlPrint2100DC::textForExcel()
+QString HSqlPrint2000AC::textForExcel()
 {
     QString text;
     QTextStream out(&text);
@@ -33,8 +33,8 @@ QString HSqlPrint2100DC::textForExcel()
     out << toWhole("Tester")            << "\t" << toWhole("TestInstitute")     << "\t" << toWhole("SampleNumber")          << endl;
     out << toWhole("TestDate")          << "\t" << toWhole("TestTime")          << endl;
     out << toWhole("Temperature")       << "\t" << toWhole("Humidity")          << endl;
-    out << toWhole("OutputVoltage")     << "\t" << toWhole("OutputCurrent")     << endl;
-    out << toWhole("MeasuredVoltage")   << "\t" << toWhole("MeasuredCurrent")   << "\t" << toWhole("ElecPower")             << endl;
+    out << toWhole("ACVoltage")         << "\t" << toWhole("ACCurrent")         << endl;
+    out << toWhole("ACPower")           << "\t" << toWhole("ACFactor")          << endl;
     out << toWhole("LuminousFluxSpec")  << "\t" << toWhole("LuminousPower")     << "\t" << toWhole("LuminousEfficiency")    << endl;
     out << toWhole("PeakWave")          << "\t" << toWhole("PeakBandwidth")     << "\t" << toWhole("DominantWave")          << endl;
     out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << endl;
@@ -49,7 +49,7 @@ QString HSqlPrint2100DC::textForExcel()
     return text;
 }
 
-void HSqlPrint2100DC::paintPage(QPainter *painter, int page)
+void HSqlPrint2000AC::paintPage(QPainter *painter, int page)
 {
     auto y1 = paintHeader(painter, tr("松朗光色电综合测试报告"));
     y1 = paintTitle(painter, tr("光色电综合测试报告"), y1);
@@ -57,7 +57,7 @@ void HSqlPrint2100DC::paintPage(QPainter *painter, int page)
     paintBody(painter, y1, y2, page);
 }
 
-void HSqlPrint2100DC::paintBody(QPainter *painter, double y1, double y2, int /*page*/)
+void HSqlPrint2000AC::paintBody(QPainter *painter, double y1, double y2, int /*page*/)
 {
     auto gap = 8.0;
     auto font1 = QFont("宋体", 12, QFont::Bold);
@@ -75,10 +75,10 @@ void HSqlPrint2100DC::paintBody(QPainter *painter, double y1, double y2, int /*p
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("电参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 输出电压：%1 V    输出电流：%2 mA ").arg(toString("OutputVoltage"), toString("OutputCurrent"));
+    text = tr(" 交流电压：%1 V    交流电流：%2 A ").arg(toString("ACVoltage"), toString("ACCurrent"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W").arg(toString("MeasuredVoltage"), toString("MeasuredCurrent"), toString("ElecPower"));
+    text = tr(" 交流电功率：%1 W  功率因素：%2 ").arg(toString("ACPower"), toString("ACFactor"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     // 颜色参数
