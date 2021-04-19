@@ -5,6 +5,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QtCore/QtMath>
+#include <QDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -81,7 +82,8 @@ QPointF HCie1931::calcCoordinateUv(const QPolygonF &spd)
 double HCie1931::calcDuv(QPointF uv, double tc)
 {
     auto uvt = calcIsoCoordinateUv(tc);
-    return qSqrt(qPow(uvt.x() - uv.x(), 2) + qPow(uvt.y() - uv.y(), 2));
+    auto na = uvt.y() > uv.y() ? -1 : 1;
+    return na * qSqrt(qPow(uvt.x() - uv.x(), 2) + qPow(uvt.y() - uv.y(), 2));
 }
 
 QList<double> HCie1931::calcDominantWavePurity(QPointF xy)
@@ -396,7 +398,7 @@ HCieUcs::HCieUcs()
 void HCieUcs::calcColorTemperature(QPointF uv, double &tc, double &duv)
 {
     int i,n;
-    double t,min;
+    double s,t,min;
     auto u = uv.x();
     auto v = uv.y();
 
@@ -409,11 +411,12 @@ void HCieUcs::calcColorTemperature(QPointF uv, double &tc, double &duv)
         {
             min = t;
             n = i;
+            s = _cieUcs[i].vrt > v ? -1.0 : 1.0;
         }
     }
     if (n > 0)
     {
-        duv = qSqrt(min);
+        duv = s * qSqrt(min);
         tc = _cieUcs[n].Tc;
         return;
     }
@@ -426,9 +429,10 @@ void HCieUcs::calcColorTemperature(QPointF uv, double &tc, double &duv)
         {
             min = t;
             n = i;
+            s = _cieUcsP[i].vrt > v ? -1.0 : 1.0;
         }
     }
-    duv = qSqrt(min);
+    duv = s * qSqrt(min);
     tc = _cieUcsP[n].Tc;
 }
 
