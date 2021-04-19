@@ -14,6 +14,8 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
+#TRANSLATIONS = HeFile_en.ts
+
 DEFINES     += HE_BUILD_FILE_LIB
 
 # The following define makes your compiler emit warnings if you use

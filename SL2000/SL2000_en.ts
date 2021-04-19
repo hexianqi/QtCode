@@ -110,6 +110,89 @@
     </message>
 </context>
 <context>
+    <name>HBuilder2000AC</name>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="202"/>
+        <source>定标(&amp;C)</source>
+        <translation type="unfinished">&amp;Calibrate</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="203"/>
+        <source>分级(&amp;G)</source>
+        <translation type="unfinished">&amp;Grade</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="204"/>
+        <source>调整(&amp;A)</source>
+        <translation type="unfinished">&amp;Adjust</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="205"/>
+        <source>品质(&amp;Q)</source>
+        <translation type="unfinished">&amp;Quality</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="206"/>
+        <source>数据库(&amp;D)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="207"/>
+        <source>光谱定标(&amp;S)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="208"/>
+        <source>光通量自吸收配置(&amp;L)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="209"/>
+        <source>色温配置(&amp;T)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="210"/>
+        <source>分级数据配置(&amp;E)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="211"/>
+        <source>分级数据选择(&amp;S)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="212"/>
+        <source>调整数据配置(&amp;E)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="213"/>
+        <source>调整数据选择(&amp;S)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="214"/>
+        <source>品质数据配置(&amp;E)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="215"/>
+        <source>品质数据选择(&amp;S)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="216"/>
+        <source>产品信息配置(&amp;P)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HBuilder2000AC.cpp" line="217"/>
+        <source>数据库浏览(&amp;B)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HBuilder2000DC</name>
     <message>
         <location filename="HBuilder2000DC.cpp" line="263"/>
@@ -414,7 +497,7 @@
     <message>
         <location filename="HDetailWidget2000.ui" line="282"/>
         <source>峰值波长：</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Peak wave:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000.ui" line="314"/>
@@ -479,6 +562,178 @@
     <message>
         <location filename="HDetailWidget2000.ui" line="685"/>
         <source>色坐标u&apos;v&apos;：</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HDetailWidget2000AC</name>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="26"/>
+        <source>交流电压：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="58"/>
+        <source>V</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="74"/>
+        <source>交流电流：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="106"/>
+        <source>A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="122"/>
+        <source>交流电功率：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="154"/>
+        <source>W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="170"/>
+        <source>功率因数：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="202"/>
+        <source>主波长：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="234"/>
+        <location filename="HDetailWidget2000AC.ui" line="282"/>
+        <location filename="HDetailWidget2000AC.ui" line="330"/>
+        <source>nm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="250"/>
+        <source>峰值波长：</source>
+        <translation type="unfinished">Peak wave:</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="298"/>
+        <source>峰值带宽：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="346"/>
+        <source>光通量：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="378"/>
+        <source>lm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="394"/>
+        <source>色坐标xy：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="426"/>
+        <source>色坐标u&apos;v&apos;：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="458"/>
+        <source>Duv：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="490"/>
+        <source>光功率：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="522"/>
+        <source>mW</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="538"/>
+        <source>红色比：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="570"/>
+        <location filename="HDetailWidget2000AC.ui" line="618"/>
+        <location filename="HDetailWidget2000AC.ui" line="666"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="586"/>
+        <source>绿色比：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="634"/>
+        <source>蓝色比：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="682"/>
+        <source>光效率：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="714"/>
+        <source>lm/W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="730"/>
+        <source>色温：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="762"/>
+        <source>K</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="778"/>
+        <source>色纯度：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="810"/>
+        <source>色容差：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="842"/>
+        <source>SDCM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="858"/>
+        <source>显色指数Ra：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="890"/>
+        <source>显色指数R9：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2000AC.ui" line="922"/>
+        <source>显色指数Rx：</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -683,6 +938,29 @@
     </message>
 </context>
 <context>
+    <name>HMainWindow2000AC</name>
+    <message>
+        <location filename="HMainWindow2000AC.cpp" line="22"/>
+        <source>1.光谱定标数据(&amp;S)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HMainWindow2000AC.cpp" line="23"/>
+        <source>2.色容差数据(&amp;C)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HMainWindow2000AC.cpp" line="24"/>
+        <source>3.分级数据(&amp;G)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HMainWindow2000AC.cpp" line="25"/>
+        <source>4.调整数据(&amp;A)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HMainWindow2000DC</name>
     <message>
         <location filename="HMainWindow2000DC.cpp" line="22"/>
@@ -749,6 +1027,99 @@
     </message>
 </context>
 <context>
+    <name>HSqlPrint2000AC</name>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="31"/>
+        <source>测试数据</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="45"/>
+        <source>光谱数据</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="46"/>
+        <source>波长(nm)	能量百分比(%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="54"/>
+        <source>松朗光色电综合测试报告</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="55"/>
+        <source>光色电综合测试报告</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="56"/>
+        <source> - %1 - </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="75"/>
+        <source>电参数：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="78"/>
+        <source> 交流电压：%1 V    交流电流：%2 A </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="81"/>
+        <source> 交流电功率：%1 W  功率因素：%2 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="86"/>
+        <source>颜色参数：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="89"/>
+        <source> 色品坐标：x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="93"/>
+        <source> 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="97"/>
+        <source>色比：R = %1 ％  G = %2 ％  B = %3 ％    峰值波长：λp = %4 nm    峰值带宽：Δλd = %5 nm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="103"/>
+        <source> 显色指数：Ra = %1    R9 = %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="106"/>
+        <source>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="110"/>
+        <source>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="117"/>
+        <source>光度参数：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2000AC.cpp" line="120"/>
+        <source> 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HTestSetWidget2000</name>
     <message>
         <location filename="HTestSetWidget2000.ui" line="14"/>
@@ -783,6 +1154,49 @@
     <message>
         <location filename="HTestSetWidget2000.cpp" line="112"/>
         <source>  捕获测试  </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HTestSetWidget2000AC</name>
+    <message>
+        <location filename="HTestSetWidget2000AC.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.ui" line="26"/>
+        <source>积分时间：</source>
+        <translation type="unfinished">Integral time:</translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.ui" line="61"/>
+        <source>自动积分</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.ui" line="74"/>
+        <source>测量模式：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.ui" line="103"/>
+        <source>持续时间：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.ui" line="116"/>
+        <source>HH:mm:ss</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.cpp" line="116"/>
+        <source>  反复测试  </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HTestSetWidget2000AC.cpp" line="116"/>
+        <source>  持续测试  </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -900,6 +1314,14 @@
     <message>
         <location filename="HTestWidget2000DC.cpp" line="63"/>
         <source>产品信息修改(&amp;P)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HThread2000AC</name>
+    <message>
+        <location filename="HThread2000AC.cpp" line="39"/>
+        <source>线程</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

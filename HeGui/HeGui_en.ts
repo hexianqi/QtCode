@@ -860,7 +860,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HIVTestWidget.cpp" line="85"/>
         <source>结果列表</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">List</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="106"/>

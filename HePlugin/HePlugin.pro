@@ -8,6 +8,8 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
+TRANSLATIONS = HePlugin_en.ts
+
 SOURCES     += \
             class2Plugin.cpp \
             HCollectionInterface.cpp \

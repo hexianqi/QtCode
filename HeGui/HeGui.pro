@@ -12,9 +12,9 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
-DEFINES     += HE_BUILD_GUI_LIB
-
 TRANSLATIONS = HeGui_en.ts
+
+DEFINES     += HE_BUILD_GUI_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings

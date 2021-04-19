@@ -12,6 +12,8 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
+TRANSLATIONS = HeSql_en.ts
+
 DEFINES     += HE_BUILD_SQL_LIB
 
 # The following define makes your compiler emit warnings if you use

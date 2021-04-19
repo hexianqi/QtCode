@@ -12,6 +12,8 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
+TRANSLATIONS = HeController_en.ts
+
 DEFINES     += HE_BUILD_CONTROLLER_LIB
 
 # The following define makes your compiler emit warnings if you use

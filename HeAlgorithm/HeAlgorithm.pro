@@ -10,6 +10,8 @@ CONFIG      += c++11
 
 DESTDIR     = "../Dest"
 
+#TRANSLATIONS = HeAlgorithm_en.ts
+
 DEFINES     += HE_BUILD_ALGORITHM_LIB
 
 # The following define makes your compiler emit warnings if you use

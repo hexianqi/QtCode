@@ -10,9 +10,9 @@ TEMPLATE    = app
 
 CONFIG      += c++11
 
-DESTDIR     = "../Dest"
-
 TRANSLATIONS = SL2000_en.ts
+
+DESTDIR     = "../Dest"
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -24,7 +24,7 @@ DEFINES     += \
 #            SL2000AC \
             SL2000DC \
 #            SL2000F \
-#            SIMULATE
+            SIMULATE
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
