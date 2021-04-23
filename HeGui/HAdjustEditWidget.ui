@@ -130,7 +130,7 @@
       </widget>
       <widget class="QGroupBox" name="groupBox_3">
        <property name="title">
-        <string>测试参数设置</string>
+        <string>测试参数</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

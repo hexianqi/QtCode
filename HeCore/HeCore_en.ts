@@ -533,139 +533,139 @@
         <location filename="HCoreGlobalInstance.cpp" line="498"/>
         <source>光谱能量百分比</source>
         <oldsource>[光谱能量百分比]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum energy percentage</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="499"/>
         <location filename="HCoreGlobalInstance.cpp" line="515"/>
         <source>光通量</source>
         <oldsource>光谱光通量</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Luminous flux</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="501"/>
         <source>色容差</source>
         <oldsource>[色容差]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>SDCM</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="503"/>
         <source>输出电压</source>
         <oldsource>[输出电压]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Output voltage</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="504"/>
         <source>输出电流</source>
         <oldsource>[输出电流]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Output current</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="505"/>
         <source>反向电压</source>
         <oldsource>[反向电压]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Reverse voltage</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="506"/>
         <source>实测电压</source>
         <oldsource>[实测电压]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Measured voltage</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="507"/>
         <source>实测电流</source>
         <oldsource>[实测电流]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Measured current</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="508"/>
         <source>反向漏流</source>
         <oldsource>[反向漏流]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Reverse current</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="509"/>
         <source>电功率</source>
         <oldsource>[电功率]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Power</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="510"/>
         <source>交流电压</source>
         <oldsource>[交流电压]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>AC voltage</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="511"/>
         <source>交流电流</source>
         <oldsource>[交流电流]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>AC current</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="512"/>
         <source>交流电功率</source>
         <oldsource>[交流电功率]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>AC power</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="513"/>
         <source>功率因数</source>
         <oldsource>[功率因数]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Power factor</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="516"/>
         <source>光强度</source>
         <oldsource>[光强度]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Luminous intensity</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="517"/>
         <source>光亮度</source>
         <oldsource>[光亮度]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Brightness</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="518"/>
         <source>光照度</source>
         <oldsource>[光照度]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Illuminance</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="519"/>
         <source>光功率</source>
         <oldsource>[光功率]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Luminous power</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="520"/>
         <source>光效率</source>
         <oldsource>[光效率]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Luminous efficacy</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="522"/>
         <source>测试时间</source>
-        <translation type="unfinished"></translation>
+        <translation>Test time</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="523"/>
         <source>样品编号</source>
         <oldsource>[样品编号]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Sample number</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="524"/>
         <source>环境温度</source>
         <oldsource>[环境温度]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Environment temperature</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="525"/>
         <source>环境湿度</source>
         <oldsource>[环境湿度]</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Environment humidity</translation>
     </message>
 </context>
 </TS>

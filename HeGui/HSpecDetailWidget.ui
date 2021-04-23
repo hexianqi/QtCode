@@ -26,7 +26,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;峰值波长：&lt;/span&gt;</string>
+      <string>峰值波长：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -55,7 +55,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
+      <string>nm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -71,7 +71,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;主波长：&lt;/span&gt;</string>
+      <string>主波长：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -100,7 +100,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;nm&lt;/font&gt;</string>
+      <string>nm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -116,7 +116,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;色温：&lt;/span&gt;</string>
+      <string>色温：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -145,7 +145,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;font color=#000000&gt;K&lt;/font&gt;</string>
+      <string>K</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -161,7 +161,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;色坐标：&lt;/span&gt;</string>
+      <string>色坐标：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -190,7 +190,7 @@
       </size>
      </property>
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数：&lt;/span&gt;</string>
+      <string>显色指数：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -213,7 +213,7 @@
    <item row="5" column="0">
     <widget class="QLabel" name="label_006">
      <property name="text">
-      <string>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数Rx：&lt;/span&gt;</string>
+      <string>显色指数Rx：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

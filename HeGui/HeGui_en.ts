@@ -6,81 +6,85 @@
     <message>
         <location filename="HAbstractMainWindow.cpp" line="97"/>
         <source>打开(&amp;O)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Open...</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="99"/>
         <source>
 打开</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Open</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="101"/>
         <source>保存(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Save</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="103"/>
         <source>
 保存</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Save</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="105"/>
         <source>另存为(&amp;A)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Save &amp;as...</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="107"/>
         <source>
 另存为</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Save as</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="109"/>
         <source>退出(&amp;X)</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;xit</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="111"/>
         <source>
 退出</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Exit</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="112"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="113"/>
         <source>关于(&amp;A)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;About...</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="132"/>
         <source>文件(&amp;F)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="139"/>
         <source>导入(&amp;I)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Import</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="140"/>
         <source>导出(&amp;E)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Export</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="146"/>
         <source>帮助(&amp;H)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Help</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="156"/>
         <source>商标(&amp;L)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Logo</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="236"/>
@@ -116,7 +120,9 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
         <source>
 打开文件成功！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Open file successfully!
+</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="291"/>
@@ -124,47 +130,53 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
         <source>
 保存文件成功！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Save file successfully!
+</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="306"/>
         <source>
 导入成功！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Import success!
+</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="313"/>
         <source>
 导出成功！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Export success!
+</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="321"/>
         <source>&lt;h2&gt;%1&lt;/h2&gt;&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;%1&lt;/h2&gt;&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="322"/>
         <source>&lt;p&gt;版本 %1&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Version %1&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="323"/>
         <location filename="HAbstractMainWindow.cpp" line="325"/>
         <source>&lt;p&gt;%1&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;%1&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="324"/>
         <source>&lt;p&gt;版权所有：2017-2019 %1 保留所有权利。&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Copyright 2017-2019 %1 All Rights Reserved.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="HAbstractMainWindow.cpp" line="326"/>
         <source>关于 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>About %1</translation>
     </message>
 </context>
 <context>
@@ -172,7 +184,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HAdjust2EditHandler.cpp" line="39"/>
         <source>调整数据配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust</translation>
     </message>
 </context>
 <context>
@@ -180,79 +192,79 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HAdjust2EditWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="27"/>
         <source>调整项</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust item</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="36"/>
         <location filename="HAdjust2EditWidget.ui" line="175"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="43"/>
         <location filename="HAdjust2EditWidget.ui" line="115"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="93"/>
         <source>调整数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust data</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="145"/>
         <source>计 算</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="152"/>
         <source>恢复默认</source>
-        <translation type="unfinished"></translation>
+        <translation>Default</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="184"/>
         <source>使用</source>
-        <translation type="unfinished"></translation>
+        <translation>Used</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="191"/>
         <source>相关色温：</source>
-        <translation type="unfinished"></translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="214"/>
         <source>相对光谱能量分布</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum energy distribution</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.ui" line="223"/>
-        <source>测试参数设置</source>
-        <translation type="unfinished"></translation>
+        <source>测试参数</source>
+        <translation>Test parameter</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.cpp" line="222"/>
         <source>请输入名称：</source>
-        <translation type="unfinished"></translation>
+        <translation>Please enter name:</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.cpp" line="247"/>
         <source>调整比率</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust rate</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.cpp" line="247"/>
         <source>测试值</source>
-        <translation type="unfinished"></translation>
+        <translation>Test value</translation>
     </message>
     <message>
         <location filename="HAdjust2EditWidget.cpp" line="247"/>
         <source>标准值</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value</translation>
     </message>
 </context>
 <context>
@@ -260,7 +272,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HAdjustEditHandler.cpp" line="39"/>
         <source>调整数据配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust</translation>
     </message>
 </context>
 <context>
@@ -268,57 +280,57 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HAdjustEditWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="27"/>
         <source>相对光谱能量分布</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum energy distribution</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="43"/>
         <source>调整数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust data</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="75"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="95"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="115"/>
         <source>恢复默认</source>
-        <translation type="unfinished"></translation>
+        <translation>Default</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="125"/>
         <source>计 算</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.ui" line="133"/>
-        <source>测试参数设置</source>
-        <translation type="unfinished"></translation>
+        <source>测试参数</source>
+        <translation>Test parameter</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.cpp" line="175"/>
         <source>调整比率</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjust rate</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.cpp" line="175"/>
         <source>测试值</source>
-        <translation type="unfinished"></translation>
+        <translation>Test value</translation>
     </message>
     <message>
         <location filename="HAdjustEditWidget.cpp" line="175"/>
         <source>标准值</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value</translation>
     </message>
 </context>
 <context>
@@ -326,22 +338,22 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HAdjustSetWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget.ui" line="26"/>
         <source>积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time:</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget.ui" line="67"/>
         <source>自动积分</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget.ui" line="93"/>
         <source>连续采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop</translation>
     </message>
 </context>
 <context>
@@ -349,27 +361,27 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HAdjustSetWidget2.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget2.ui" line="26"/>
         <source>积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time:</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget2.ui" line="67"/>
         <source>自动积分</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget2.ui" line="93"/>
         <source>连续采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop</translation>
     </message>
     <message>
         <location filename="HAdjustSetWidget2.ui" line="119"/>
         <source>电源</source>
-        <translation type="unfinished"></translation>
+        <translation>On-off</translation>
     </message>
 </context>
 <context>
@@ -377,7 +389,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HChromatismEditHandler.cpp" line="39"/>
         <source>色容差数据配置</source>
-        <translation type="unfinished"></translation>
+        <translation>SDCM</translation>
     </message>
 </context>
 <context>
@@ -385,82 +397,82 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HChromatismEditWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.ui" line="40"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.ui" line="60"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.ui" line="80"/>
         <source>计算g</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate G</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.ui" line="100"/>
         <source>计算ab</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate AB</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="171"/>
         <source>标题</source>
-        <translation type="unfinished"></translation>
+        <translation>Title</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="171"/>
         <source>相关色温</source>
-        <translation type="unfinished"></translation>
+        <translation>Color temperature</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="171"/>
         <source>色容差</source>
-        <translation type="unfinished"></translation>
+        <translation>SDCM</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="171"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="171"/>
         <source>y</source>
-        <translation type="unfinished"></translation>
+        <translation>y</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="172"/>
         <source>g11(*10000)</source>
-        <translation type="unfinished"></translation>
+        <translation>g11(*10000)</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="172"/>
         <source>g12(*10000)</source>
-        <translation type="unfinished"></translation>
+        <translation>g12(*10000)</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="172"/>
         <source>g22(*10000)</source>
-        <translation type="unfinished"></translation>
+        <translation>g22(*10000)</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="173"/>
         <source>a(*0.0001)</source>
-        <translation type="unfinished"></translation>
+        <translation>a(*0.0001)</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="173"/>
         <source>b(*0.0001)</source>
-        <translation type="unfinished"></translation>
+        <translation>b(*0.0001)</translation>
     </message>
     <message>
         <location filename="HChromatismEditWidget.cpp" line="173"/>
         <source>θ</source>
-        <translation type="unfinished"></translation>
+        <translation>θ</translation>
     </message>
 </context>
 <context>
@@ -468,17 +480,17 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HElecCalibrateDialog.ui" line="68"/>
         <source>定 标</source>
-        <translation type="unfinished"></translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="HElecCalibrateDialog.ui" line="97"/>
         <source>退 出</source>
-        <translation type="unfinished"></translation>
+        <translation>Exit</translation>
     </message>
     <message>
         <location filename="HElecCalibrateDialog.cpp" line="238"/>
         <source>电参数定标</source>
-        <translation type="unfinished"></translation>
+        <translation>Electrical</translation>
     </message>
 </context>
 <context>
@@ -486,43 +498,43 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="20"/>
         <source>测试值：</source>
-        <translation type="unfinished"></translation>
+        <translation>Test value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="33"/>
         <source>测 试</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="40"/>
         <source>设置值1：</source>
-        <translation type="unfinished"></translation>
+        <translation>Set value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="53"/>
         <location filename="HElecCalibrateItem1Widget.ui" line="60"/>
         <source>设 置</source>
-        <translation type="unfinished"></translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="67"/>
         <source>标准值2：</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="80"/>
         <source>设置值2：</source>
-        <translation type="unfinished"></translation>
+        <translation>Set value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem1Widget.ui" line="93"/>
         <source>标准值1：</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value:</translation>
     </message>
 </context>
 <context>
@@ -530,52 +542,52 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="20"/>
         <source>采样值1：</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="36"/>
         <source>采样值2：</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="52"/>
         <source>标准值2：</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="65"/>
         <source>设置值：</source>
-        <translation type="unfinished"></translation>
+        <translation>Set value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="83"/>
         <source>设 置</source>
-        <translation type="unfinished"></translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="112"/>
         <source>连续采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="140"/>
         <source>标准值1：</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="156"/>
         <source>当前测试值：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current test value:</translation>
     </message>
     <message>
         <location filename="HElecCalibrateItem2Widget.ui" line="169"/>
         <source>当前采样值：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current sample value:</translation>
     </message>
 </context>
 <context>
@@ -583,21 +595,25 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HExportCurveHandler.cpp" line="34"/>
         <source>导出</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="HExportCurveHandler.cpp" line="44"/>
         <source>
 无效标准曲线数据！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Invalid standard curve data!
+</translation>
     </message>
     <message>
         <location filename="HExportCurveHandler.cpp" line="52"/>
         <source>
 导出成功！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Export success!
+</translation>
     </message>
 </context>
 <context>
@@ -605,7 +621,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HGradeEditHandler.cpp" line="39"/>
         <source>分级数据配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Grade</translation>
     </message>
 </context>
 <context>
@@ -613,57 +629,57 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HGradeEditWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="20"/>
         <source>修 改</source>
-        <translation type="unfinished"></translation>
+        <translation>Modify</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="27"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="38"/>
         <source>配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Config</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="52"/>
         <source>预览</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="72"/>
         <source>保 存</source>
-        <translation type="unfinished"></translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="105"/>
         <source>&lt;font color=#FF0000&gt;总分级数目： 0&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=#FF0000&gt;Total: 0&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.ui" line="112"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.cpp" line="44"/>
         <source>并行分级</source>
-        <translation type="unfinished"></translation>
+        <translation>Grade parallel</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.cpp" line="45"/>
         <source>连续分级</source>
-        <translation type="unfinished"></translation>
+        <translation>Grade sequential</translation>
     </message>
     <message>
         <location filename="HGradeEditWidget.cpp" line="48"/>
         <source>请选择分级类型：</source>
-        <translation type="unfinished"></translation>
+        <translation>Please choose grade type:</translation>
     </message>
 </context>
 <context>
@@ -671,39 +687,39 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HGradeIsothermDialog.ui" line="14"/>
         <source>等温线分级</source>
-        <translation type="unfinished"></translation>
+        <translation>Isotherm grade</translation>
     </message>
     <message>
         <location filename="HGradeIsothermDialog.ui" line="38"/>
         <source>确 定</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HGradeIsothermDialog.ui" line="58"/>
         <source>取 消</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="HGradeIsothermDialog.ui" line="96"/>
         <location filename="HGradeIsothermDialog.ui" line="125"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="HGradeIsothermDialog.ui" line="109"/>
         <source>色温：</source>
-        <translation type="unfinished"></translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HGradeIsothermDialog.ui" line="141"/>
         <source>偏移量：</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset:</translation>
     </message>
     <message>
         <location filename="HGradeIsothermDialog.ui" line="154"/>
         <location filename="HGradeIsothermDialog.ui" line="170"/>
         <source>分级数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Number:</translation>
     </message>
 </context>
 <context>
@@ -711,47 +727,47 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HGradeItem2DDialog.ui" line="14"/>
         <source>分级数据编辑</source>
-        <translation type="unfinished"></translation>
+        <translation>Graded data edit</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="52"/>
         <source>优先级：</source>
-        <translation type="unfinished"></translation>
+        <translation>Priority:</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="81"/>
         <source>分级数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Number:</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="114"/>
         <source>平均分级</source>
-        <translation type="unfinished"></translation>
+        <translation>Average</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="128"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="148"/>
         <source>计 算</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="185"/>
         <source>等温线分级</source>
-        <translation type="unfinished"></translation>
+        <translation>Isotherm grade</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="205"/>
         <source>确 定</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HGradeItem2DDialog.ui" line="225"/>
         <source>取 消</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel</translation>
     </message>
 </context>
 <context>
@@ -759,37 +775,37 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HGradeItemDialog.ui" line="14"/>
         <source>分级数据编辑</source>
-        <translation type="unfinished"></translation>
+        <translation>Graded data edit</translation>
     </message>
     <message>
         <location filename="HGradeItemDialog.ui" line="45"/>
         <source>优先级：</source>
-        <translation type="unfinished"></translation>
+        <translation>Priority:</translation>
     </message>
     <message>
         <location filename="HGradeItemDialog.ui" line="74"/>
         <source>分级数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Number:</translation>
     </message>
     <message>
         <location filename="HGradeItemDialog.ui" line="103"/>
         <source>平均分级</source>
-        <translation type="unfinished"></translation>
+        <translation>Average</translation>
     </message>
     <message>
         <location filename="HGradeItemDialog.ui" line="113"/>
         <source>计 算</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate</translation>
     </message>
     <message>
         <location filename="HGradeItemDialog.ui" line="150"/>
         <source>确 定</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HGradeItemDialog.ui" line="170"/>
         <source>取 消</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel</translation>
     </message>
 </context>
 <context>
@@ -797,27 +813,27 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HIVTestSetWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HIVTestSetWidget.ui" line="32"/>
         <source>起始电流：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current from:</translation>
     </message>
     <message>
         <location filename="HIVTestSetWidget.ui" line="64"/>
         <source>电流间隔：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current interval:</translation>
     </message>
     <message>
         <location filename="HIVTestSetWidget.ui" line="96"/>
         <source>终止电流：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current to:</translation>
     </message>
     <message>
         <location filename="HIVTestSetWidget.ui" line="128"/>
         <source>当前电流：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current:</translation>
     </message>
 </context>
 <context>
@@ -825,47 +841,47 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HIVTestWidget.cpp" line="28"/>
         <source>IV测试</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Test</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="62"/>
         <source>设置(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Set</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="63"/>
         <source>操作(&amp;O)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Operate</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="79"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="79"/>
         <source>电流(mA)</source>
-        <translation type="unfinished"></translation>
+        <translation>Current(mA)</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="79"/>
         <source>电压(V)</source>
-        <translation type="unfinished"></translation>
+        <translation>Voltage(V)</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="84"/>
         <source>测试图形</source>
-        <translation type="unfinished"></translation>
+        <translation>Figure</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="85"/>
         <source>结果列表</source>
-        <translation type="unfinished">List</translation>
+        <translation>List</translation>
     </message>
     <message>
         <location filename="HIVTestWidget.cpp" line="106"/>
         <source>ID	电流(mA)	电压(V)</source>
-        <translation type="unfinished"></translation>
+        <translation>ID\tCurrent(mA)\tVoltage(V)</translation>
     </message>
 </context>
 <context>
@@ -873,21 +889,25 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HImportCurveHandler.cpp" line="35"/>
         <source>导入</source>
-        <translation type="unfinished"></translation>
+        <translation>Import</translation>
     </message>
     <message>
         <location filename="HImportCurveHandler.cpp" line="50"/>
         <source>
 无效标准曲线数据！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Invalid standard curve data!
+</translation>
     </message>
     <message>
         <location filename="HImportCurveHandler.cpp" line="62"/>
         <source>
 导入成功！
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+Import success!
+</translation>
     </message>
 </context>
 <context>
@@ -895,37 +915,37 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HListCollectionDialog.ui" line="24"/>
         <source>配置名称</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="HListCollectionDialog.ui" line="36"/>
         <source>导入数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Import</translation>
     </message>
     <message>
         <location filename="HListCollectionDialog.ui" line="59"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HListCollectionDialog.ui" line="82"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HListCollectionDialog.ui" line="92"/>
         <source>导出数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="HListCollectionDialog.ui" line="120"/>
         <source>详细配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Detailed</translation>
     </message>
     <message>
         <location filename="HListCollectionDialog.cpp" line="42"/>
         <source>请输入名称：</source>
-        <translation type="unfinished"></translation>
+        <translation>Please enter name:</translation>
     </message>
 </context>
 <context>
@@ -933,32 +953,32 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HLuminousCalibrateDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateDialog.ui" line="50"/>
         <source>采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Sampling</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateDialog.ui" line="70"/>
         <source>输出电流：</source>
-        <translation type="unfinished"></translation>
+        <translation>Output current:</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateDialog.ui" line="146"/>
         <source>定 标</source>
-        <translation type="unfinished"></translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateDialog.ui" line="175"/>
         <source>退 出</source>
-        <translation type="unfinished"></translation>
+        <translation>Exit</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateDialog.cpp" line="168"/>
         <source>光参数定标</source>
-        <translation type="unfinished"></translation>
+        <translation>Light</translation>
     </message>
 </context>
 <context>
@@ -966,32 +986,32 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HLuminousCalibrateItemWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateItemWidget.ui" line="46"/>
         <source>当前采样值：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current sample value:</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateItemWidget.ui" line="97"/>
         <source>当前测试值：</source>
-        <translation type="unfinished"></translation>
+        <translation>Current test value:</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateItemWidget.ui" line="138"/>
         <source>&lt;font color=#000000&gt;cd/m&lt;sup&gt;2&lt;/sup&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=#000000&gt;cd/m&lt;sup&gt;2&lt;/sup&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateItemWidget.cpp" line="94"/>
         <source>采样值%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample value %1</translation>
     </message>
     <message>
         <location filename="HLuminousCalibrateItemWidget.cpp" line="94"/>
         <source>标准值%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard value %1</translation>
     </message>
 </context>
 <context>
@@ -999,48 +1019,48 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HParallelGradeWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="24"/>
         <source>配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Config</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="38"/>
         <source>预览</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="58"/>
         <source>&lt;font color=#FF0000&gt;总分级数目： 0&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=#FF0000&gt;Total: 0&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="65"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="72"/>
         <source>修 改</source>
-        <translation type="unfinished"></translation>
+        <translation>Modify</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="79"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.ui" line="86"/>
         <source>保 存</source>
-        <translation type="unfinished"></translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="HParallelGradeWidget.cpp" line="30"/>
         <location filename="HParallelGradeWidget.cpp" line="106"/>
         <source>&lt;font color=#FF0000&gt;总分级数目： %1&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=#FF0000&gt;Total: %1&lt;/font&gt;</translation>
     </message>
 </context>
 <context>
@@ -1048,7 +1068,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HQualityEditHandler.cpp" line="39"/>
         <source>品质数据配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Quality</translation>
     </message>
 </context>
 <context>
@@ -1056,37 +1076,37 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HQualityEditWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HQualityEditWidget.ui" line="27"/>
         <source>死灯判断</source>
-        <translation type="unfinished"></translation>
+        <translation>Damage</translation>
     </message>
     <message>
         <location filename="HQualityEditWidget.ui" line="36"/>
         <source>合格判断</source>
-        <translation type="unfinished"></translation>
+        <translation>qualified</translation>
     </message>
     <message>
         <location filename="HQualityEditWidget.ui" line="69"/>
         <source>无效数据：</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalid:</translation>
     </message>
     <message>
         <location filename="HQualityEditWidget.ui" line="114"/>
         <source>死灯：</source>
-        <translation type="unfinished"></translation>
+        <translation>Damage:</translation>
     </message>
     <message>
         <location filename="HQualityEditWidget.ui" line="159"/>
         <source>不合格：</source>
-        <translation type="unfinished"></translation>
+        <translation>Unqualified:</translation>
     </message>
     <message>
         <location filename="HQualityEditWidget.ui" line="204"/>
         <source>合格：</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualified:</translation>
     </message>
 </context>
 <context>
@@ -1094,37 +1114,37 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HQualityItemCollectionWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HQualityItemCollectionWidget.ui" line="36"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HQualityItemCollectionWidget.ui" line="56"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HQualityItemCollectionWidget.cpp" line="131"/>
         <source>MIN</source>
-        <translation type="unfinished"></translation>
+        <translation>MIN</translation>
     </message>
     <message>
         <location filename="HQualityItemCollectionWidget.cpp" line="131"/>
         <source>MAX</source>
-        <translation type="unfinished"></translation>
+        <translation>MAX</translation>
     </message>
     <message>
         <location filename="HQualityItemCollectionWidget.cpp" line="131"/>
         <source>不足颜色</source>
-        <translation type="unfinished"></translation>
+        <translation>Insufficient color</translation>
     </message>
     <message>
         <location filename="HQualityItemCollectionWidget.cpp" line="131"/>
         <source>超出颜色</source>
-        <translation type="unfinished"></translation>
+        <translation>Exceed color</translation>
     </message>
 </context>
 <context>
@@ -1132,47 +1152,47 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSequentialGradeWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="23"/>
         <source>保 存</source>
-        <translation type="unfinished"></translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="43"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="83"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="103"/>
         <source>总分级数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Total:</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="113"/>
         <source>修 改</source>
-        <translation type="unfinished"></translation>
+        <translation>Modify</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="133"/>
         <source>设 置</source>
-        <translation type="unfinished"></translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.cpp" line="255"/>
         <source>导出表(&amp;E)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Export table</translation>
     </message>
     <message>
         <location filename="HSequentialGradeWidget.cpp" line="256"/>
         <source>导入表(&amp;I)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Import table</translation>
     </message>
 </context>
 <context>
@@ -1180,22 +1200,22 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSimpleTestSetWidget.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HSimpleTestSetWidget.ui" line="35"/>
         <source>积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time:</translation>
     </message>
     <message>
         <location filename="HSimpleTestSetWidget.ui" line="76"/>
         <source>自动积分</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="HSimpleTestSetWidget.ui" line="102"/>
         <source>连续采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop</translation>
     </message>
 </context>
 <context>
@@ -1203,7 +1223,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecCalibrateDialog.cpp" line="37"/>
         <source>光谱参数定标</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum</translation>
     </message>
 </context>
 <context>
@@ -1211,32 +1231,32 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecCalibrateSetWidget.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget.ui" line="29"/>
         <source>积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time:</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget.ui" line="70"/>
         <source>自动积分</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget.ui" line="96"/>
         <source>连续采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget.ui" line="136"/>
         <source>采样数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget.ui" line="159"/>
         <source>标准数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -1244,37 +1264,37 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="20"/>
         <source>积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time:</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="61"/>
         <source>自动积分</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="87"/>
         <source>连续采样</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="113"/>
         <source>电源</source>
-        <translation type="unfinished"></translation>
+        <translation>On-off</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="153"/>
         <source>采样数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateSetWidget2.ui" line="176"/>
         <source>标准数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -1282,42 +1302,42 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="61"/>
         <source>光 谱 设 置</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="90"/>
         <source>波 长 定 标</source>
-        <translation type="unfinished"></translation>
+        <translation>Wavelength</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="119"/>
         <source>积 分 定 标</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="148"/>
         <source>光通量定标</source>
-        <translation type="unfinished"></translation>
+        <translation>Luminous flux</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="177"/>
         <source>保存标准曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Save curve</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.ui" line="206"/>
         <source>清 除</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear</translation>
     </message>
     <message>
         <location filename="HSpecCalibrateWidget.cpp" line="179"/>
         <source>标准光通量：</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard luminous flux:</translation>
     </message>
 </context>
 <context>
@@ -1325,22 +1345,22 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecChromatismChartView.cpp" line="63"/>
         <source>显示</source>
-        <translation type="unfinished"></translation>
+        <translation>Display</translation>
     </message>
     <message>
         <location filename="HSpecChromatismChartView.cpp" line="65"/>
         <source>配置(&amp;E)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configure...</translation>
     </message>
     <message>
         <location filename="HSpecChromatismChartView.cpp" line="66"/>
         <source>选择(&amp;S)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Select...</translation>
     </message>
     <message>
         <location filename="HSpecChromatismChartView.cpp" line="69"/>
         <source>色容差</source>
-        <translation type="unfinished"></translation>
+        <translation>SDCM</translation>
     </message>
 </context>
 <context>
@@ -1348,22 +1368,22 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecChromatismWidget.cpp" line="69"/>
         <source>显示</source>
-        <translation type="unfinished"></translation>
+        <translation>Display</translation>
     </message>
     <message>
         <location filename="HSpecChromatismWidget.cpp" line="75"/>
         <source>配置(&amp;E)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configure...</translation>
     </message>
     <message>
         <location filename="HSpecChromatismWidget.cpp" line="76"/>
         <source>选择(&amp;S)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Select...</translation>
     </message>
     <message>
         <location filename="HSpecChromatismWidget.cpp" line="79"/>
         <source>色容差</source>
-        <translation type="unfinished"></translation>
+        <translation>SDCM</translation>
     </message>
 </context>
 <context>
@@ -1371,47 +1391,47 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecDetailWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="29"/>
-        <source>&lt;span style=&quot; font-weight:600;&quot;&gt;峰值波长：&lt;/span&gt;</source>
+        <source>峰值波长：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="58"/>
         <location filename="HSpecDetailWidget.ui" line="103"/>
-        <source>&lt;font color=#000000&gt;nm&lt;/font&gt;</source>
+        <source>nm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="74"/>
-        <source>&lt;span style=&quot; font-weight:600;&quot;&gt;主波长：&lt;/span&gt;</source>
+        <source>主波长：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="119"/>
-        <source>&lt;span style=&quot; font-weight:600;&quot;&gt;色温：&lt;/span&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>色温：</source>
+        <translation type="unfinished">Color temperature:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="148"/>
-        <source>&lt;font color=#000000&gt;K&lt;/font&gt;</source>
+        <source>K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="164"/>
-        <source>&lt;span style=&quot; font-weight:600;&quot;&gt;色坐标：&lt;/span&gt;</source>
+        <source>色坐标：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="193"/>
-        <source>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数：&lt;/span&gt;</source>
+        <source>显色指数：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="216"/>
-        <source>&lt;span style=&quot; font-weight:600;&quot;&gt;显色指数Rx：&lt;/span&gt;</source>
+        <source>显色指数Rx：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1435,7 +1455,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecEnergyWidget.cpp" line="106"/>
         <source>相对光谱能量分布</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spectrum energy distribution</translation>
     </message>
 </context>
 <context>
@@ -1556,7 +1576,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecLuminousDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="50"/>
@@ -1571,27 +1591,27 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecLuminousDialog.ui" line="142"/>
         <source>添 加</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Add</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="168"/>
         <source>删 除</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Delete</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="214"/>
         <source>确 定</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OK</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="240"/>
         <source>取 消</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="36"/>
         <source>请输入名称：</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Please enter name:</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="47"/>
@@ -1673,17 +1693,17 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecSettingDialog.ui" line="35"/>
         <source>恢复默认</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Default</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="58"/>
         <source>确 定</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OK</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="81"/>
         <source>取 消</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="111"/>
@@ -1706,7 +1726,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
         <location filename="HSpecSettingDialog.ui" line="266"/>
         <location filename="HSpecSettingDialog.ui" line="401"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">-</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="194"/>
@@ -1849,12 +1869,12 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HSpecTestWidget.cpp" line="171"/>
         <source>设置(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Set</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="172"/>
         <source>操作(&amp;O)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Operate</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="201"/>
@@ -1882,7 +1902,7 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HTestDataEditDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="29"/>
@@ -1927,12 +1947,12 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
     <message>
         <location filename="HTestDataEditDialog.ui" line="288"/>
         <source>确 定</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OK</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="311"/>
         <source>取 消</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.cpp" line="79"/>

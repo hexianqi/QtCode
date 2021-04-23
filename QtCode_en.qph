@@ -1,0 +1,375 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="zh_CN" language="en_US">
+<phrase>
+    <source>相对光谱能量分布</source>
+    <target>Spectrum energy distribution</target>
+</phrase>
+<phrase>
+    <source>打开(&amp;O)...</source>
+    <target>&amp;Open...</target>
+</phrase>
+<phrase>
+    <source>保存(&amp;S)</source>
+    <target>&amp;Save</target>
+</phrase>
+<phrase>
+    <source>另存为(&amp;A)...</source>
+    <target>Save &amp;as...</target>
+</phrase>
+<phrase>
+    <source>退出(&amp;X)</source>
+    <target>E&amp;xit</target>
+</phrase>
+<phrase>
+    <source>关于(&amp;A)...</source>
+    <target>&amp;About...</target>
+</phrase>
+<phrase>
+    <source>文件(&amp;F)</source>
+    <target>&amp;File</target>
+</phrase>
+<phrase>
+    <source>导入(&amp;I)</source>
+    <target>&amp;Import</target>
+</phrase>
+<phrase>
+    <source>导出(&amp;E)</source>
+    <target>&amp;Export</target>
+</phrase>
+<phrase>
+    <source>调整项</source>
+    <target>Adjust item</target>
+</phrase>
+<phrase>
+    <source>添 加</source>
+    <target>Add</target>
+</phrase>
+<phrase>
+    <source>删 除</source>
+    <target>Delete</target>
+</phrase>
+<phrase>
+    <source>调整数据</source>
+    <target>Adjust data</target>
+</phrase>
+<phrase>
+    <source>计 算</source>
+    <target>Calculate</target>
+</phrase>
+<phrase>
+    <source>恢复默认</source>
+    <target>Default</target>
+</phrase>
+<phrase>
+    <source>使用</source>
+    <target>Used</target>
+</phrase>
+<phrase>
+    <source>测试参数</source>
+    <target>Test parameter</target>
+</phrase>
+<phrase>
+    <source>请输入名称：</source>
+    <target>Please enter name:</target>
+</phrase>
+<phrase>
+    <source>调整比率</source>
+    <target>Adjust rate</target>
+</phrase>
+<phrase>
+    <source>测试值</source>
+    <target>Test value</target>
+</phrase>
+<phrase>
+    <source>标准值</source>
+    <target>Standard value</target>
+</phrase>
+<phrase>
+    <source>Form</source>
+    <target>Form</target>
+</phrase>
+<phrase>
+    <source>线程</source>
+    <target>Thread</target>
+</phrase>
+<phrase>
+    <source>像元</source>
+    <target>Pels</target>
+</phrase>
+<phrase>
+    <source>波长</source>
+    <target>Wavelength</target>
+</phrase>
+<phrase>
+    <source>峰值波长</source>
+    <target>Peak wavelength</target>
+</phrase>
+<phrase>
+    <source>峰值带宽</source>
+    <target>Peak bandwidth</target>
+</phrase>
+<phrase>
+    <source>主波长</source>
+    <target>Dominant</target>
+</phrase>
+<phrase>
+    <source>色纯度</source>
+    <target>Colour purity</target>
+</phrase>
+<phrase>
+    <source>色温</source>
+    <target>Color temperature</target>
+</phrase>
+<phrase>
+    <source>显色指数Ra</source>
+    <target>Ra</target>
+</phrase>
+<phrase>
+    <source>色坐标</source>
+    <target>Color coordinate</target>
+</phrase>
+<phrase>
+    <source>红色比</source>
+    <target>Red ratio</target>
+</phrase>
+<phrase>
+    <source>蓝色比</source>
+    <target>Blue ratio</target>
+</phrase>
+<phrase>
+    <source>绿色比</source>
+    <target>Green ratio</target>
+</phrase>
+<phrase>
+    <source>光谱能量百分比</source>
+    <target>Spectrum energy percentage</target>
+</phrase>
+<phrase>
+    <source>光通量</source>
+    <target>Luminous flux</target>
+</phrase>
+<phrase>
+    <source>色容差</source>
+    <target>SDCM</target>
+</phrase>
+<phrase>
+    <source>输出电压</source>
+    <target>Output voltage</target>
+</phrase>
+<phrase>
+    <source>输出电流</source>
+    <target>Output current</target>
+</phrase>
+<phrase>
+    <source>反向电压</source>
+    <target>Reverse voltage</target>
+</phrase>
+<phrase>
+    <source>实测电压</source>
+    <target>Measured voltage</target>
+</phrase>
+<phrase>
+    <source>实测电流</source>
+    <target>Measured current</target>
+</phrase>
+<phrase>
+    <source>反向漏流</source>
+    <target>Reverse current</target>
+</phrase>
+<phrase>
+    <source>电功率</source>
+    <target>Power</target>
+</phrase>
+<phrase>
+    <source>交流电压</source>
+    <target>AC voltage</target>
+</phrase>
+<phrase>
+    <source>交流电流</source>
+    <target>AC current</target>
+</phrase>
+<phrase>
+    <source>交流电功率</source>
+    <target>AC power</target>
+</phrase>
+<phrase>
+    <source>功率因数</source>
+    <target>Power factor</target>
+</phrase>
+<phrase>
+    <source>光强度</source>
+    <target>Luminous intensity</target>
+</phrase>
+<phrase>
+    <source>光亮度</source>
+    <target>Brightness</target>
+</phrase>
+<phrase>
+    <source>光照度</source>
+    <target>Illuminance</target>
+</phrase>
+<phrase>
+    <source>光功率</source>
+    <target>Luminous power</target>
+</phrase>
+<phrase>
+    <source>光效率</source>
+    <target>Luminous efficacy</target>
+</phrase>
+<phrase>
+    <source>测试时间</source>
+    <target>Test time</target>
+</phrase>
+<phrase>
+    <source>样品编号</source>
+    <target>Sample number</target>
+</phrase>
+<phrase>
+    <source>环境温度</source>
+    <target>Environment temperature</target>
+</phrase>
+<phrase>
+    <source>环境湿度</source>
+    <target>Environment humidity</target>
+</phrase>
+<phrase>
+    <source>起始电流：</source>
+    <target>Current from:</target>
+</phrase>
+<phrase>
+    <source>电流间隔：</source>
+    <target>Current interval:</target>
+</phrase>
+<phrase>
+    <source>终止电流：</source>
+    <target>Current to:</target>
+</phrase>
+<phrase>
+    <source>当前电流：</source>
+    <target>Current:</target>
+</phrase>
+<phrase>
+    <source>IV测试</source>
+    <target>IV Test</target>
+</phrase>
+<phrase>
+    <source>设置(&amp;S)</source>
+    <target>&amp;Set</target>
+</phrase>
+<phrase>
+    <source>操作(&amp;O)</source>
+    <target>&amp;Operate</target>
+</phrase>
+<phrase>
+    <source>ID</source>
+    <target>ID</target>
+</phrase>
+<phrase>
+    <source>电压(V)</source>
+    <target>Voltage(V)</target>
+</phrase>
+<phrase>
+    <source>结果列表</source>
+    <target>List</target>
+</phrase>
+<phrase>
+    <source>导入</source>
+    <target>Import</target>
+</phrase>
+<phrase>
+    <source>
+无效标准曲线数据！
+</source>
+    <target>
+Invalid standard curve data!
+</target>
+</phrase>
+<phrase>
+    <source>
+导入成功！
+</source>
+    <target>
+Import success!
+</target>
+</phrase>
+<phrase>
+    <source>导入数据</source>
+    <target>Import</target>
+</phrase>
+<phrase>
+    <source>导出数据</source>
+    <target>Export</target>
+</phrase>
+<phrase>
+    <source>详细配置</source>
+    <target>Detailed</target>
+</phrase>
+<phrase>
+    <source>Dialog</source>
+    <target>Dialog</target>
+</phrase>
+<phrase>
+    <source>定 标</source>
+    <target>Set</target>
+</phrase>
+<phrase>
+    <source>退 出</source>
+    <target>Exit</target>
+</phrase>
+<phrase>
+    <source>光参数定标</source>
+    <target>Light</target>
+</phrase>
+<phrase>
+    <source>当前采样值：</source>
+    <target>Current sample value:</target>
+</phrase>
+<phrase>
+    <source>当前测试值：</source>
+    <target>Current test value:</target>
+</phrase>
+<phrase>
+    <source>预览</source>
+    <target>Preview</target>
+</phrase>
+<phrase>
+    <source>修 改</source>
+    <target>Modify</target>
+</phrase>
+<phrase>
+    <source>积分时间：</source>
+    <target>Integral time:</target>
+</phrase>
+<phrase>
+    <source>自动积分</source>
+    <target>Auto</target>
+</phrase>
+<phrase>
+    <source>连续采样</source>
+    <target>Loop</target>
+</phrase>
+<phrase>
+    <source>采样数据</source>
+    <target>Sample</target>
+</phrase>
+<phrase>
+    <source>标准数据</source>
+    <target>Standard</target>
+</phrase>
+<phrase>
+    <source>清 除</source>
+    <target>Clear</target>
+</phrase>
+<phrase>
+    <source>显示</source>
+    <target>Display</target>
+</phrase>
+<phrase>
+    <source>配置(&amp;E)...</source>
+    <target>&amp;Configure...</target>
+</phrase>
+<phrase>
+    <source>选择(&amp;S)...</source>
+    <target>&amp;Select...</target>
+</phrase>
+</QPH>
