@@ -1396,48 +1396,48 @@ Import success!
     <message>
         <location filename="HSpecDetailWidget.ui" line="29"/>
         <source>峰值波长：</source>
-        <translation type="unfinished"></translation>
+        <translation>Peak Wavelength:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="58"/>
         <location filename="HSpecDetailWidget.ui" line="103"/>
         <source>nm</source>
-        <translation type="unfinished"></translation>
+        <translation>nm</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="74"/>
         <source>主波长：</source>
-        <translation type="unfinished"></translation>
+        <translation>Dominant wavelength:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="119"/>
         <source>色温：</source>
-        <translation type="unfinished">Color temperature:</translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="148"/>
         <source>K</source>
-        <translation type="unfinished"></translation>
+        <translation>K</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="164"/>
         <source>色坐标：</source>
-        <translation type="unfinished"></translation>
+        <translation>Color coordinate:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="193"/>
         <source>显色指数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Ra:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.ui" line="216"/>
         <source>显色指数Rx：</source>
-        <translation type="unfinished"></translation>
+        <translation>Rx:</translation>
     </message>
     <message>
         <location filename="HSpecDetailWidget.cpp" line="14"/>
         <source>光谱数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum data</translation>
     </message>
 </context>
 <context>
@@ -1445,17 +1445,17 @@ Import success!
     <message>
         <location filename="HSpecEnergyWidget.cpp" line="61"/>
         <source>光谱采样数值太小!</source>
-        <translation type="unfinished"></translation>
+        <translation>The sampling value is too small!</translation>
     </message>
     <message>
         <location filename="HSpecEnergyWidget.cpp" line="63"/>
         <source>光谱采样数值太大!</source>
-        <translation type="unfinished"></translation>
+        <translation>The sampling value is too large!</translation>
     </message>
     <message>
         <location filename="HSpecEnergyWidget.cpp" line="106"/>
         <source>相对光谱能量分布</source>
-        <translation type="unfinished">Spectrum energy distribution</translation>
+        <translation>Spectrum energy distribution</translation>
     </message>
 </context>
 <context>
@@ -1463,27 +1463,27 @@ Import success!
     <message>
         <location filename="HSpecFittingChartView.cpp" line="32"/>
         <source>线%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Line %1</translation>
     </message>
     <message>
         <location filename="HSpecFittingChartView.cpp" line="59"/>
         <source>点%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Point %1</translation>
     </message>
     <message>
         <location filename="HSpecFittingChartView.cpp" line="103"/>
         <source>清除标注(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Clear label</translation>
     </message>
     <message>
         <location filename="HSpecFittingChartView.cpp" line="104"/>
         <source>清除曲线(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear &amp;series</translation>
     </message>
     <message>
         <location filename="HSpecFittingChartView.cpp" line="111"/>
         <source>CCD曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>CCD curve</translation>
     </message>
 </context>
 <context>
@@ -1491,22 +1491,22 @@ Import success!
     <message>
         <location filename="HSpecFittingLinearWidget.ui" line="26"/>
         <source>取样次数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Times:</translation>
     </message>
     <message>
         <location filename="HSpecFittingLinearWidget.ui" line="45"/>
         <source>基准像元位置：</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel position:</translation>
     </message>
     <message>
         <location filename="HSpecFittingLinearWidget.ui" line="70"/>
         <source>起始积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time from:</translation>
     </message>
     <message>
         <location filename="HSpecFittingLinearWidget.ui" line="95"/>
         <source>终止积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time to:</translation>
     </message>
 </context>
 <context>
@@ -1514,27 +1514,27 @@ Import success!
     <message>
         <location filename="HSpecFittingPolynomWidget.ui" line="23"/>
         <source>取样次数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Times:</translation>
     </message>
     <message>
         <location filename="HSpecFittingPolynomWidget.ui" line="42"/>
         <source>基准像元位置：</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel position:</translation>
     </message>
     <message>
         <location filename="HSpecFittingPolynomWidget.ui" line="67"/>
         <source>起始积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time from:</translation>
     </message>
     <message>
         <location filename="HSpecFittingPolynomWidget.ui" line="92"/>
         <source>终止积分时间：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time to:</translation>
     </message>
     <message>
         <location filename="HSpecFittingPolynomWidget.ui" line="111"/>
         <source>多项式项数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Polynomial:</translation>
     </message>
 </context>
 <context>
@@ -1542,33 +1542,33 @@ Import success!
     <message>
         <location filename="HSpecFittingWidget.cpp" line="82"/>
         <source>光谱采样数据溢出!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sampling data overflow!</translation>
     </message>
     <message>
         <location filename="HSpecFittingWidget.cpp" line="110"/>
         <location filename="HSpecFittingWidget.cpp" line="117"/>
         <source>提示</source>
-        <translation type="unfinished"></translation>
+        <translation>Tips</translation>
     </message>
     <message>
         <location filename="HSpecFittingWidget.cpp" line="110"/>
         <source>拟合完成！</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitting finish!</translation>
     </message>
     <message>
         <location filename="HSpecFittingWidget.cpp" line="122"/>
         <source>正在采样....</source>
-        <translation type="unfinished"></translation>
+        <translation>Sampling...</translation>
     </message>
     <message>
         <location filename="HSpecFittingWidget.cpp" line="122"/>
         <source>取消</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="HSpecFittingWidget.cpp" line="125"/>
         <source>光谱拟合</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum fitting</translation>
     </message>
 </context>
 <context>
@@ -1576,62 +1576,62 @@ Import success!
     <message>
         <location filename="HSpecLuminousDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="50"/>
         <source>启用</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="57"/>
         <source>选取：</source>
-        <translation type="unfinished"></translation>
+        <translation>Select:</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="142"/>
         <source>添 加</source>
-        <translation type="unfinished">Add</translation>
+        <translation>Add</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="168"/>
         <source>删 除</source>
-        <translation type="unfinished">Delete</translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="214"/>
         <source>确 定</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.ui" line="240"/>
         <source>取 消</source>
-        <translation type="unfinished">Cancel</translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="36"/>
         <source>请输入名称：</source>
-        <translation type="unfinished">Please enter name:</translation>
+        <translation>Please enter name:</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="47"/>
         <source>请选择参数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Please select parameters:</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="96"/>
         <source>名称</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="96"/>
         <source>自吸收系数</source>
-        <translation type="unfinished"></translation>
+        <translation>Self-absorption factor</translation>
     </message>
     <message>
         <location filename="HSpecLuminousDialog.cpp" line="97"/>
         <source>光通量自吸收配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Luminous flux self-absorption</translation>
     </message>
 </context>
 <context>
@@ -1639,17 +1639,17 @@ Import success!
     <message>
         <location filename="HSpecPelsWaveWidget.cpp" line="56"/>
         <source>像元</source>
-        <translation type="unfinished"></translation>
+        <translation>Pels</translation>
     </message>
     <message>
         <location filename="HSpecPelsWaveWidget.cpp" line="56"/>
         <source>波长</source>
-        <translation type="unfinished"></translation>
+        <translation>Wavelength</translation>
     </message>
     <message>
         <location filename="HSpecPelsWaveWidget.cpp" line="58"/>
         <source>光谱像元波长</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum pels wavelength</translation>
     </message>
 </context>
 <context>
@@ -1657,17 +1657,17 @@ Import success!
     <message>
         <location filename="HSpecSampleChartView.cpp" line="106"/>
         <source>原始曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Primitive</translation>
     </message>
     <message>
         <location filename="HSpecSampleChartView.cpp" line="109"/>
         <source>预处理曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Preproccess</translation>
     </message>
     <message>
         <location filename="HSpecSampleChartView.cpp" line="116"/>
         <source>光谱采样曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum sampling</translation>
     </message>
 </context>
 <context>
@@ -1675,17 +1675,17 @@ Import success!
     <message>
         <location filename="HSpecSampleWidget.cpp" line="105"/>
         <source>原始曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Primitive</translation>
     </message>
     <message>
         <location filename="HSpecSampleWidget.cpp" line="108"/>
         <source>预处理曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Preproccess</translation>
     </message>
     <message>
         <location filename="HSpecSampleWidget.cpp" line="119"/>
         <source>光谱采样曲线</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum sampling</translation>
     </message>
 </context>
 <context>
@@ -1693,32 +1693,32 @@ Import success!
     <message>
         <location filename="HSpecSettingDialog.ui" line="35"/>
         <source>恢复默认</source>
-        <translation type="unfinished">Default</translation>
+        <translation>Default</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="58"/>
         <source>确 定</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="81"/>
         <source>取 消</source>
-        <translation type="unfinished">Cancel</translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="111"/>
         <source>  常规</source>
-        <translation type="unfinished"></translation>
+        <translation>  General</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="116"/>
         <source>  预处理</source>
-        <translation type="unfinished"></translation>
+        <translation>  Preproccess</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="144"/>
         <source>积分时间范围：</source>
-        <translation type="unfinished"></translation>
+        <translation>Integral time:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="166"/>
@@ -1726,67 +1726,67 @@ Import success!
         <location filename="HSpecSettingDialog.ui" line="266"/>
         <location filename="HSpecSettingDialog.ui" line="401"/>
         <source>-</source>
-        <translation type="unfinished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="194"/>
         <source>波长范围：</source>
-        <translation type="unfinished"></translation>
+        <translation>Wavelength:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="244"/>
         <source>采样范围：</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="294"/>
         <source>采样延时：</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="319"/>
         <source>平均次数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Average time:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="344"/>
         <source>标准色温：</source>
-        <translation type="unfinished"></translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="379"/>
         <source>保留像元：</source>
-        <translation type="unfinished"></translation>
+        <translation>Reserve pixel:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="423"/>
         <source>固定暗底：</source>
-        <translation type="unfinished"></translation>
+        <translation>Fixed bottom:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="445"/>
         <source>左右暗底：</source>
-        <translation type="unfinished"></translation>
+        <translation>Deviation bottom:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="467"/>
         <source>平滑帧数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Smooth frames:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="489"/>
         <source>平滑次数：</source>
-        <translation type="unfinished"></translation>
+        <translation>Smooth times:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.ui" line="511"/>
         <source>平滑范围：</source>
-        <translation type="unfinished"></translation>
+        <translation>Smooth range:</translation>
     </message>
     <message>
         <location filename="HSpecSettingDialog.cpp" line="102"/>
         <source>光谱参数设置</source>
-        <translation type="unfinished"></translation>
+        <translation>Spectrum config</translation>
     </message>
 </context>
 <context>
@@ -1794,12 +1794,12 @@ Import success!
     <message>
         <location filename="HSpecTcHandler.cpp" line="39"/>
         <source>设置色温</source>
-        <translation type="unfinished"></translation>
+        <translation>Color temperature</translation>
     </message>
     <message>
         <location filename="HSpecTcHandler.cpp" line="39"/>
         <source>设置色温：</source>
-        <translation type="unfinished"></translation>
+        <translation>Color temperature:</translation>
     </message>
 </context>
 <context>
@@ -1807,74 +1807,74 @@ Import success!
     <message>
         <location filename="HSpecTestWidget.cpp" line="89"/>
         <source>保存数据</source>
-        <translation type="unfinished"></translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="89"/>
         <source>是否保存到数据库？</source>
-        <translation type="unfinished"></translation>
+        <translation>Save to database?</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="121"/>
         <source>打印预览(&amp;V)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Preview</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="123"/>
         <source>打印预览</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="125"/>
         <location filename="HSpecTestWidget.cpp" line="129"/>
         <source>保存数据库(&amp;D)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Save datebase</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="127"/>
         <location filename="HSpecTestWidget.cpp" line="131"/>
         <source>保存数据库</source>
-        <translation type="unfinished"></translation>
+        <translation>Save datebase</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="132"/>
         <source>删除记录(&amp;R)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Delete</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="134"/>
         <source>删除记录</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="135"/>
         <source>使用调整(&amp;A)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Enable adjust</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="138"/>
         <source>配置导出目录(&amp;D)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Export directory</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="139"/>
         <source>配置同步文件(&amp;F)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Synchronize file</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="161"/>
         <source>测试配置(&amp;T)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Test</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="171"/>
         <source>设置(&amp;S)</source>
-        <translation type="unfinished">&amp;Set</translation>
+        <translation>&amp;Set</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="172"/>
         <source>操作(&amp;O)</source>
-        <translation type="unfinished">&amp;Operate</translation>
+        <translation>&amp;Operate</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="201"/>
@@ -1889,12 +1889,12 @@ Import success!
     <message>
         <location filename="HSpecTestWidget.cpp" line="372"/>
         <source>导出目录</source>
-        <translation type="unfinished"></translation>
+        <translation>Export directory</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="379"/>
         <source>同步文件</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronize file</translation>
     </message>
 </context>
 <context>
@@ -1902,62 +1902,62 @@ Import success!
     <message>
         <location filename="HTestDataEditDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="29"/>
         <source>测试员：</source>
-        <translation type="unfinished"></translation>
+        <translation>Tester:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="71"/>
         <source>制造厂商：</source>
-        <translation type="unfinished"></translation>
+        <translation>Manufacturer:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="90"/>
         <source>产品名称：</source>
-        <translation type="unfinished"></translation>
+        <translation>Product name:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="122"/>
         <source>备注：</source>
-        <translation type="unfinished"></translation>
+        <translation>Note:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="151"/>
         <source>样品编号：</source>
-        <translation type="unfinished"></translation>
+        <translation>Sample number:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="170"/>
         <source>环境湿度：</source>
-        <translation type="unfinished"></translation>
+        <translation>Humidity:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="212"/>
         <source>产品型号：</source>
-        <translation type="unfinished"></translation>
+        <translation>Product model:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="244"/>
         <source>环境温度：</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperature:</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="288"/>
         <source>确 定</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.ui" line="311"/>
         <source>取 消</source>
-        <translation type="unfinished">Cancel</translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="HTestDataEditDialog.cpp" line="79"/>
         <source>产品信息编辑</source>
-        <translation type="unfinished"></translation>
+        <translation>Product info</translation>
     </message>
 </context>
 <context>
@@ -1965,7 +1965,7 @@ Import success!
     <message>
         <location filename="HTestHandler.cpp" line="31"/>
         <source>敬请期待</source>
-        <translation type="unfinished"></translation>
+        <translation>Expect</translation>
     </message>
 </context>
 <context>
@@ -1973,42 +1973,42 @@ Import success!
     <message>
         <location filename="HTestWidget.cpp" line="30"/>
         <source>测量(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Start</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="32"/>
         <source>测量</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="34"/>
         <source>停止(&amp;T)</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;top</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="36"/>
         <source>停止</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="39"/>
         <source>清除结果(&amp;R)...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Clear</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="41"/>
         <source>清除结果</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="42"/>
         <source>导出结果(&amp;E)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Export</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="44"/>
         <source>导出结果</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
 </context>
 </TS>

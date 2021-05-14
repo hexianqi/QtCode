@@ -372,4 +372,500 @@ Import success!
     <source>选择(&amp;S)...</source>
     <target>&amp;Select...</target>
 </phrase>
+<phrase>
+    <source>nm</source>
+    <target>nm</target>
+</phrase>
+<phrase>
+    <source>峰值波长：</source>
+    <target>Peak Wavelength:</target>
+</phrase>
+<phrase>
+    <source>主波长：</source>
+    <target>Dominant wavelength:</target>
+</phrase>
+<phrase>
+    <source>K</source>
+    <target>K</target>
+</phrase>
+<phrase>
+    <source>色坐标：</source>
+    <target>Color coordinate:</target>
+</phrase>
+<phrase>
+    <source>显色指数：</source>
+    <target>Ra:</target>
+</phrase>
+<phrase>
+    <source>显色指数Rx：</source>
+    <target>Rx:</target>
+</phrase>
+<phrase>
+    <source>光谱采样数值太大!</source>
+    <target>The sampling value is too large!</target>
+</phrase>
+<phrase>
+    <source>线%1</source>
+    <target>Line %1</target>
+</phrase>
+<phrase>
+    <source>点%1</source>
+    <target>Point %1</target>
+</phrase>
+<phrase>
+    <source>CCD曲线</source>
+    <target>CCD curve</target>
+</phrase>
+<phrase>
+    <source>取样次数：</source>
+    <target>Times:</target>
+</phrase>
+<phrase>
+    <source>基准像元位置：</source>
+    <target>Pixel position:</target>
+</phrase>
+<phrase>
+    <source>起始积分时间：</source>
+    <target>Integral time from:</target>
+</phrase>
+<phrase>
+    <source>终止积分时间：</source>
+    <target>Integral time to:</target>
+</phrase>
+<phrase>
+    <source>多项式项数：</source>
+    <target>Polynomial:</target>
+</phrase>
+<phrase>
+    <source>提示</source>
+    <target>Tips</target>
+</phrase>
+<phrase>
+    <source>取消</source>
+    <target>Cancel</target>
+</phrase>
+<phrase>
+    <source>光谱拟合</source>
+    <target>Spectrum fitting</target>
+</phrase>
+<phrase>
+    <source>启用</source>
+    <target>Enable </target>
+</phrase>
+<phrase>
+    <source>选取：</source>
+    <target>Select:</target>
+</phrase>
+<phrase>
+    <source>启用</source>
+    <target>Enable</target>
+</phrase>
+<phrase>
+    <source>名称</source>
+    <target>Name</target>
+</phrase>
+<phrase>
+    <source>光通量自吸收配置</source>
+    <target>Luminous flux self-absorption</target>
+</phrase>
+<phrase>
+    <source>  常规</source>
+    <target>General</target>
+</phrase>
+<phrase>
+    <source>积分时间范围：</source>
+    <target>Integral time:</target>
+</phrase>
+<phrase>
+    <source>测试员：</source>
+    <target>Tester:</target>
+</phrase>
+<phrase>
+    <source>产品名称：</source>
+    <target>Product name:</target>
+</phrase>
+<phrase>
+    <source>备注：</source>
+    <target>Note:</target>
+</phrase>
+<phrase>
+    <source>样品编号：</source>
+    <target>Sample number:</target>
+</phrase>
+<phrase>
+    <source>产品型号：</source>
+    <target>Product model:</target>
+</phrase>
+<phrase>
+    <source>环境温度：</source>
+    <target>Temperature:</target>
+</phrase>
+<phrase>
+    <source>还原(&amp;R)</source>
+    <target>&amp;Restore</target>
+</phrase>
+<phrase>
+    <source>确   定</source>
+    <target>OK</target>
+</phrase>
+<phrase>
+    <source>取   消</source>
+    <target>Cancel</target>
+</phrase>
+<phrase>
+    <source>电参数：</source>
+    <target>Elec:</target>
+</phrase>
+<phrase>
+    <source>制造厂商：</source>
+    <target>Manufacturer:</target>
+</phrase>
+<phrase>
+    <source>测试单位：</source>
+    <target>Test institute:</target>
+</phrase>
+<phrase>
+    <source>环境湿度：</source>
+    <target>Humidity:</target>
+</phrase>
+<phrase>
+    <source> - %1 - </source>
+    <target> - %1 - </target>
+</phrase>
+<phrase>
+    <source>光度参数：</source>
+    <target>Luminous:</target>
+</phrase>
+<phrase>
+    <source>测试数据</source>
+    <target>Test data</target>
+</phrase>
+<phrase>
+    <source>光谱数据</source>
+    <target>Spectrum data</target>
+</phrase>
+<phrase>
+    <source>波长(nm)	能量百分比(%)</source>
+    <target>Wavelength(nm)\t Energy(%)</target>
+</phrase>
+<phrase>
+    <source>颜色参数：</source>
+    <target>Spectrum:</target>
+</phrase>
+<phrase>
+    <source>CIE1931色品图</source>
+    <target>CIE1931</target>
+</phrase>
+<phrase>
+    <source>清 空</source>
+    <target>Clear</target>
+</phrase>
+<phrase>
+    <source>定标(&amp;C)</source>
+    <target>&amp;Calibrate</target>
+</phrase>
+<phrase>
+    <source>分级(&amp;G)</source>
+    <target>&amp;Grade</target>
+</phrase>
+<phrase>
+    <source>调整(&amp;A)</source>
+    <target>&amp;Adjust</target>
+</phrase>
+<phrase>
+    <source>品质(&amp;Q)</source>
+    <target>&amp;Quality</target>
+</phrase>
+<phrase>
+    <source>设备配置(&amp;T)</source>
+    <target>&amp;Device</target>
+</phrase>
+<phrase>
+    <source>数据库(&amp;D)</source>
+    <target>&amp;Database</target>
+</phrase>
+<phrase>
+    <source>光通量自吸收配置(&amp;S)...</source>
+    <target>&amp;Luminous flux self-absorption...</target>
+</phrase>
+<phrase>
+    <source>光谱定标(&amp;S)...</source>
+    <target>&amp;Calibrate Spectrum...</target>
+</phrase>
+<phrase>
+    <source>色温配置(&amp;T)...</source>
+    <target>&amp;Color temperature...</target>
+</phrase>
+<phrase>
+    <source>分级数据选择(&amp;S)...</source>
+    <target>Grade &amp;select...</target>
+</phrase>
+<phrase>
+    <source>分级数据配置(&amp;E)...</source>
+    <target>Grade &amp;edit...</target>
+</phrase>
+<phrase>
+    <source>调整数据配置(&amp;E)...</source>
+    <target>Adjust &amp;edit...</target>
+</phrase>
+<phrase>
+    <source>调整数据选择(&amp;S)...</source>
+    <target>Adjust &amp;select...</target>
+</phrase>
+<phrase>
+    <source>品质数据配置(&amp;E)...</source>
+    <target>Quality &amp;edit...</target>
+</phrase>
+<phrase>
+    <source>品质数据选择(&amp;S)...</source>
+    <target>Quality &amp;select...</target>
+</phrase>
+<phrase>
+    <source>从设备读取数据(&amp;G)...</source>
+    <target>&amp;Import from device...</target>
+</phrase>
+<phrase>
+    <source>写入数据到设备(&amp;S)...</source>
+    <target>&amp;Export to device...</target>
+</phrase>
+<phrase>
+    <source>导入标准曲线(&amp;I)...</source>
+    <target>Import &amp;curve...</target>
+</phrase>
+<phrase>
+    <source>产品信息配置(&amp;P)...</source>
+    <target>&amp;Product info edit...</target>
+</phrase>
+<phrase>
+    <source>数据库浏览(&amp;B)...</source>
+    <target>&amp;Browser...</target>
+</phrase>
+<phrase>
+    <source>光通量自吸收配置(&amp;L)...</source>
+    <target>&amp;Luminous flux self-absorption...</target>
+</phrase>
+<phrase>
+    <source>其他测试(&amp;E)</source>
+    <target>&amp;Else</target>
+</phrase>
+<phrase>
+    <source>电定标(&amp;E)...</source>
+    <target>Calibrate &amp;elec...</target>
+</phrase>
+<phrase>
+    <source>光定标(&amp;E)...</source>
+    <target>Calibrate &amp;luminous...</target>
+</phrase>
+<phrase>
+    <source>IV测试(&amp;I)...</source>
+    <target>&amp;IV test...</target>
+</phrase>
+<phrase>
+    <source>%</source>
+    <target>%</target>
+</phrase>
+<phrase>
+    <source>色纯度：</source>
+    <target>Colour purity:</target>
+</phrase>
+<phrase>
+    <source>mW</source>
+    <target>mW</target>
+</phrase>
+<phrase>
+    <source>光通量：</source>
+    <target>Luminous flux:</target>
+</phrase>
+<phrase>
+    <source>绿色比：</source>
+    <target>Green rate:</target>
+</phrase>
+<phrase>
+    <source>红色比：</source>
+    <target>Red rate:</target>
+</phrase>
+<phrase>
+    <source>蓝色比：</source>
+    <target>Blue rate:</target>
+</phrase>
+<phrase>
+    <source>lm</source>
+    <target>lm</target>
+</phrase>
+<phrase>
+    <source>峰值带宽：</source>
+    <target>Peak bandwidth:</target>
+</phrase>
+<phrase>
+    <source>色温：</source>
+    <target>color temperature:</target>
+</phrase>
+<phrase>
+    <source>显色指数Ra：</source>
+    <target>Ra:</target>
+</phrase>
+<phrase>
+    <source>光功率：</source>
+    <target>Luminous power:</target>
+</phrase>
+<phrase>
+    <source>Duv：</source>
+    <target>Duv:</target>
+</phrase>
+<phrase>
+    <source>色容差：</source>
+    <target>SDCM:</target>
+</phrase>
+<phrase>
+    <source>SDCM</source>
+    <target>SDCM</target>
+</phrase>
+<phrase>
+    <source>色坐标u&apos;v&apos;：</source>
+    <target>u&apos;v&apos;:</target>
+</phrase>
+<phrase>
+    <source>交流电压：</source>
+    <target>AC voltage:</target>
+</phrase>
+<phrase>
+    <source>V</source>
+    <target>V</target>
+</phrase>
+<phrase>
+    <source>交流电流：</source>
+    <target>AC current:</target>
+</phrase>
+<phrase>
+    <source>A</source>
+    <target>A</target>
+</phrase>
+<phrase>
+    <source>交流电功率：</source>
+    <target>AC power:</target>
+</phrase>
+<phrase>
+    <source>W</source>
+    <target>W</target>
+</phrase>
+<phrase>
+    <source>功率因数：</source>
+    <target>Power factor:</target>
+</phrase>
+<phrase>
+    <source>光效率：</source>
+    <target>Luminous efficacy:</target>
+</phrase>
+<phrase>
+    <source>lm/W</source>
+    <target>lm/W</target>
+</phrase>
+<phrase>
+    <source>显色指数R9：</source>
+    <target>R9:</target>
+</phrase>
+<phrase>
+    <source>实测电压：</source>
+    <target>Measured voltage:</target>
+</phrase>
+<phrase>
+    <source>实测电流：</source>
+    <target>Measured current:</target>
+</phrase>
+<phrase>
+    <source>uA</source>
+    <target>uA</target>
+</phrase>
+<phrase>
+    <source>反向漏流：</source>
+    <target>Reverse current:</target>
+</phrase>
+<phrase>
+    <source>电功率：</source>
+    <target>Power:</target>
+</phrase>
+<phrase>
+    <source>mA</source>
+    <target>mA</target>
+</phrase>
+<phrase>
+    <source>1.光谱定标数据(&amp;S)...</source>
+    <target>&amp;1.Spectrum...</target>
+</phrase>
+<phrase>
+    <source>2.分级数据(&amp;G)...</source>
+    <target>&amp;2.Grade...</target>
+</phrase>
+<phrase>
+    <source>3.调整数据(&amp;A)...</source>
+    <target>&amp;3.Adjust...</target>
+</phrase>
+<phrase>
+    <source>4.色容差数据(&amp;C)...</source>
+    <target>&amp;4.Chromatism...</target>
+</phrase>
+<phrase>
+    <source>测量模式：</source>
+    <target>Test mode:</target>
+</phrase>
+<phrase>
+    <source>  单次测试  </source>
+    <target>  Single  </target>
+</phrase>
+<phrase>
+    <source>  反复测试  </source>
+    <target>  Repeated  </target>
+</phrase>
+<phrase>
+    <source>  捕获测试  </source>
+    <target>  Capture  </target>
+</phrase>
+<phrase>
+    <source>持续时间：</source>
+    <target>Duration:</target>
+</phrase>
+<phrase>
+    <source>  持续测试  </source>
+    <target>  Duration  </target>
+</phrase>
+<phrase>
+    <source>反向电压：</source>
+    <target>Reverse voltage:</target>
+</phrase>
+<phrase>
+    <source>光档位：</source>
+    <target>Luminous gears:</target>
+</phrase>
+<phrase>
+    <source>测试间隔：</source>
+    <target>Interval:</target>
+</phrase>
+<phrase>
+    <source>输出电压：</source>
+    <target>Output voltage:</target>
+</phrase>
+<phrase>
+    <source>输出电流：</source>
+    <target>Output Current:</target>
+</phrase>
+<phrase>
+    <source>电流档位：</source>
+    <target>Current gears:</target>
+</phrase>
+<phrase>
+    <source>自动同步</source>
+    <target>Synchronize</target>
+</phrase>
+<phrase>
+    <source>  间隔测试  </source>
+    <target>  Interval  </target>
+</phrase>
+<phrase>
+    <source>  自动  </source>
+    <target>  Auto  </target>
+</phrase>
+<phrase>
+    <source>产品信息修改(&amp;P)</source>
+    <target>&amp;Product info edit</target>
+</phrase>
 </QPH>

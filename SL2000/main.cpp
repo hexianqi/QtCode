@@ -6,7 +6,6 @@
 #include <QtWidgets/QApplication>
 
 // 翻译时需要取消掉对应的命名空间
-
 #define HE_ENGLISH  1
 
 int main(int argc, char *argv[])
