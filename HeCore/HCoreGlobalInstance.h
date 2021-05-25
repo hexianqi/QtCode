@@ -14,6 +14,9 @@ class HE_CORE_EXPORT HCoreGlobalInstance : public QObject, public HSingleton<HCo
     Q_OBJECT
     H_FRIEND_SINGLETON(HCoreGlobalInstance)
 
+public:
+    void init();
+
 protected:
     HCoreGlobalInstance(QObject *parent = nullptr);
     ~HCoreGlobalInstance();
@@ -25,6 +28,9 @@ protected:
     void initDataFormatInfo();
     void initDataCaption();
     void initMimeType();
+
+private:
+    bool _initialized = false;
 };
 
 HE_CORE_END_NAMESPACE

@@ -8,7 +8,7 @@
 #  define HE_GUI_EXPORT Q_DECL_IMPORT
 #endif
 
-#define HE_GUI_NAMESPACE HeGui
+//#define HE_GUI_NAMESPACE HeGui
 
 #ifdef HE_GUI_NAMESPACE
 #  define HE_GUI_BEGIN_NAMESPACE namespace HE_GUI_NAMESPACE {

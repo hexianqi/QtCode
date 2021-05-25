@@ -151,6 +151,19 @@ QString HCore::fileNameFilter(const QString &name, const QStringList &mimeTypes)
 
 HCoreGlobalInstance *theInstance = HCoreGlobalInstance::instance();
 
+void HCoreGlobalInstance::init()
+{
+    if (_initialized)
+        return;
+    initLogCommand();
+    initActionComment();
+    initErrorComment();
+    initDataFormatInfo();
+    initDataCaption();
+    initMimeType();
+    _initialized = true;
+}
+
 HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
     QObject(parent)
 {
@@ -158,12 +171,6 @@ HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
     qRegisterMetaType<HLogType>("HLogType");
     qRegisterMetaType<HErrorType>("HErrorType");
     qRegisterMetaType<HActionType>("HActionType");
-    initLogCommand();
-    initActionComment();
-    initErrorComment();
-    initDataFormatInfo();
-    initDataCaption();
-    initMimeType();
 }
 
 HCoreGlobalInstance::~HCoreGlobalInstance()
@@ -520,9 +527,21 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[光效率]",              tr("光效率"));
 
     hashDataCaption.insert("[测试日期时间]",        tr("测试时间"));
+    hashDataCaption.insert("[测试日期]",            tr("测试日期"));
+    hashDataCaption.insert("[测试时间]",            tr("测试时间"));
+    hashDataCaption.insert("[测量日期时间]",        tr("测量时间"));
+    hashDataCaption.insert("[测量日期]",            tr("测量日期"));
+    hashDataCaption.insert("[测量时间]",            tr("测量时间"));
+    hashDataCaption.insert("[制造厂商]",            tr("制造厂商"));
+    hashDataCaption.insert("[产品型号]",            tr("产品型号"));
+    hashDataCaption.insert("[产品名称]",            tr("产品名称"));
+    hashDataCaption.insert("[测试单位]",            tr("测试单位"));
+    hashDataCaption.insert("[测试员]",              tr("测试员"));
+    hashDataCaption.insert("[备注]",                tr("备注"));
     hashDataCaption.insert("[样品编号]",            tr("样品编号"));
     hashDataCaption.insert("[环境温度]",            tr("环境温度"));
     hashDataCaption.insert("[环境湿度]",            tr("环境湿度"));
+    hashDataCaption.insert("[分级]",                tr("分级"));
 
 //    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
 //    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));

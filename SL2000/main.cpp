@@ -2,6 +2,8 @@
 #include "HMainWindow2000AC.h"
 #include "HMainWindow2000DC.h"
 #include "HMainWindow2000F.h"
+#include "HeCore/HCoreGlobalInstance.h"
+#include "HeSql/HSqlGlobalInstance.h"
 #include <QtCore/QTranslator>
 #include <QtWidgets/QApplication>
 
@@ -28,6 +30,9 @@ int main(int argc, char *argv[])
     if (t6.load("Translations\\SL2000_en"))
         a.installTranslator(&t6);
 #endif
+
+    HCoreGlobalInstance::instance()->init();
+    HSqlGlobalInstance::instance()->init();
 
 #ifdef SL2000
     QApplication::setApplicationName("SL2000");

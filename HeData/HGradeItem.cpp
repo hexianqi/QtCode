@@ -82,7 +82,7 @@ int HGradeItem::count()
 QStringList HGradeItem::headers()
 {
     auto c = HCore::toCaption(data("[项类型]").toString());
-    return QStringList() << c + "Min" << c + "Max";
+    return QStringList() << c + " Min" << c + " Max";
 }
 
 QStringList HGradeItem::types()

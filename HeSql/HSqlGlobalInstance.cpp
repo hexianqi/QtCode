@@ -35,12 +35,16 @@ QStringList HSql::toCreateStyle(const QStringList &field)
     return list;
 }
 
+void HSqlGlobalInstance::init()
+{
+    initFieldType();
+    initFieldCreateStyle();
+}
+
 HSqlGlobalInstance::HSqlGlobalInstance(QObject *parent) :
     QObject(parent)
 {
     qInfo() << "Start Sql Instance.";
-    initFieldType();
-    initFieldCreateStyle();
 }
 
 HSqlGlobalInstance::~HSqlGlobalInstance()

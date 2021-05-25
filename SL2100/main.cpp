@@ -1,4 +1,6 @@
 #include "HMainWindow2100DC.h"
+#include "HeCore/HCoreGlobalInstance.h"
+#include "HeSql/HSqlGlobalInstance.h"
 #include <QtWidgets/QApplication>
 #include <QtCore/QTranslator>
 
@@ -25,6 +27,9 @@ int main(int argc, char *argv[])
     if (t6.load("Translations\\SL2100_en"))
         a.installTranslator(&t6);
 #endif
+
+    HCoreGlobalInstance::instance()->init();
+    HSqlGlobalInstance::instance()->init();
 
 #ifdef SL2100DC
     QApplication::setApplicationName("SL2100DC");

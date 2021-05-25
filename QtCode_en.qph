@@ -868,4 +868,48 @@ Import success!
     <source>产品信息修改(&amp;P)</source>
     <target>&amp;Product info edit</target>
 </phrase>
+<phrase>
+    <source>HH:mm:ss</source>
+    <target>HH:mm:ss</target>
+</phrase>
+<phrase>
+    <source>测试日期</source>
+    <target>Test date</target>
+</phrase>
+<phrase>
+    <source>测量时间</source>
+    <target>Test time</target>
+</phrase>
+<phrase>
+    <source>制造厂商</source>
+    <target>Manufacturer</target>
+</phrase>
+<phrase>
+    <source>产品型号</source>
+    <target>Product model</target>
+</phrase>
+<phrase>
+    <source>测试员</source>
+    <target>Tester</target>
+</phrase>
+<phrase>
+    <source>备注</source>
+    <target>Note</target>
+</phrase>
+<phrase>
+    <source>测量日期</source>
+    <target>Test date</target>
+</phrase>
+<phrase>
+    <source>分级</source>
+    <target>Grade</target>
+</phrase>
+<phrase>
+    <source>产品名称</source>
+    <target>Product name</target>
+</phrase>
+<phrase>
+    <source>测试单位</source>
+    <target>Test institute</target>
+</phrase>
 </QPH>

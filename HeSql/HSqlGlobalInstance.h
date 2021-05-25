@@ -12,10 +12,13 @@ HE_CORE_USE_NAMESPACE
 
 HE_SQL_BEGIN_NAMESPACE
 
-class HSqlGlobalInstance : public QObject, public HSingleton<HSqlGlobalInstance>
+class HE_SQL_EXPORT HSqlGlobalInstance : public QObject, public HSingleton<HSqlGlobalInstance>
 {
     Q_OBJECT
     H_FRIEND_SINGLETON(HSqlGlobalInstance)
+
+public:
+    void init();
 
 protected:
     explicit HSqlGlobalInstance(QObject *parent = nullptr);

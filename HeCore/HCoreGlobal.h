@@ -8,7 +8,7 @@
 #  define HE_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
-#define HE_CORE_NAMESPACE HeCore
+//#define HE_CORE_NAMESPACE HeCore
 
 #ifdef HE_CORE_NAMESPACE
 #  define HE_CORE_BEGIN_NAMESPACE namespace HE_CORE_NAMESPACE {
