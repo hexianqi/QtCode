@@ -95,6 +95,7 @@ void HAbstractNetworkWidget::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup(groupName());
     d_ptr->hexSend = settings->value("HexSend", false).toBool();
     d_ptr->hexReceive = settings->value("HexReceive", false).toBool();
@@ -108,6 +109,7 @@ void HAbstractNetworkWidget::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup(groupName());
     settings->setValue("HexSend", d_ptr->hexSend);
     settings->setValue("HexReceive", d_ptr->hexReceive);

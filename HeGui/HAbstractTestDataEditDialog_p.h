@@ -10,6 +10,9 @@ public:
     HAbstractTestDataEditDialogPrivate();
 
 public:
+    ITestData *data();
+
+public:
     ITestData *data0 = nullptr;
     ITestData *data1 = nullptr;
 };

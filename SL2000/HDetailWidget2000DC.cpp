@@ -52,4 +52,7 @@ void HDetailWidget2000DC::refreshWidget()
     ui->lineEdit_052->setText(d->testData->toString("[实测电流]"));
     ui->lineEdit_053->setText(d->testData->toString("[反向漏流]"));
     ui->lineEdit_054->setText(d->testData->toString("[电功率]"));
+    ui->lineEdit_061->setText(d->testData->toString("[光量子数]"));
+    ui->lineEdit_062->setText(d->testData->toString("[光量子转换效率]"));
+    ui->lineEdit_063->setText(d->testData->toString("[光量子转换光效]"));
 }

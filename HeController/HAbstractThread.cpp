@@ -222,6 +222,7 @@ void HAbstractThread::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("Thread");
     d_ptr->runMode = settings->value("RunMode", 2).toInt();
     d_ptr->retry = settings->value("Retry", 3).toInt();
@@ -233,6 +234,7 @@ void HAbstractThread::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("Thread");
     settings->setValue("RunMode", d_ptr->runMode);
     settings->setValue("Retry", d_ptr->retry);

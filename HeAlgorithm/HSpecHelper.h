@@ -7,6 +7,7 @@
 #include "HAlgorithmGlobal.h"
 
 class QPointF;
+class QPolygonF;
 class QColor;
 
 HE_ALGORITHM_BEGIN_NAMESPACE
@@ -28,6 +29,8 @@ public:
     static QVector<double> g2abt(QVector<double> value);
     // 波长转颜色
     static QColor wave2color(double wave, double gamma = 0.8, double intensityMax = 255.0);
+    // 计算光量子
+    static QList<double> calcSpecEff(QPolygonF energy, double power, bool automatic, QPointF blue, QPointF yellow);
 };
 
 HE_ALGORITHM_END_NAMESPACE

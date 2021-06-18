@@ -49,6 +49,7 @@ void HAbstractBuilder::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("Builder");
     for (const auto &k : settings->allKeys())
         d_ptr->deploy.insert(k, settings->value(k));
@@ -59,6 +60,7 @@ void HAbstractBuilder::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("Builder");
     for (auto i = d_ptr->deploy.begin(); i != d_ptr->deploy.end(); i++)
         settings->setValue(i.key(), i.value());

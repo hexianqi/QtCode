@@ -33,7 +33,7 @@ QString HTestDataEditDialog::typeName()
 void HTestDataEditDialog::showData()
 {
     Q_D(HTestDataEditDialog);
-    auto data = d->data1 == nullptr ? d->data0 : d->data1;
+    auto data = d->data();
     ui->lineEdit_01->setText(data->data("[制造厂商]").toString());
     ui->lineEdit_02->setText(data->data("[产品名称]").toString());
     ui->lineEdit_03->setText(data->data("[产品型号]").toString());
@@ -77,6 +77,7 @@ void HTestDataEditDialog::init()
     HPluginHelper::initWidget("[环境温度]", ui->doubleSpinBox_01);
     HPluginHelper::initWidget("[环境湿度]", ui->doubleSpinBox_02);
     setWindowTitle(tr("产品信息编辑"));
+    showData();
 }
 
 HE_GUI_END_NAMESPACE

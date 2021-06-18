@@ -157,4 +157,83 @@ QColor HSpecHelper::wave2color(double wave, double gamma, double intensityMax)
     return {R, G, B, A};
 }
 
+// energy: 绝对光谱(W/nm)
+// power: 灯功率
+// automatic: 在波段设置基础上自动找寻波段
+// blue: 蓝光范围
+// yellow: 荧光范围
+QList<double> HSpecHelper::calcSpecEff(QPolygonF energy, double power, bool automatic, QPointF blue, QPointF yellow)
+{
+    if (energy.size() < 2)
+        return QList<double>() << 0.0 << 0.0 << 0.0;
+
+    int i;
+    auto interval = energy.at(1).x() - energy.at(0).x();
+    auto size = energy.size();
+
+    if (automatic) // 有点理想化 先找480前的最大值 再找480后的最大值 然后找中间的最小值
+    {
+        auto iMax1 = 0;
+        auto iMax2 = 0;
+        auto dMax1 = energy.first().y();
+        auto dMax2 = energy.first().y();
+
+        for (i = 0; i < size; i++)
+        {
+            if (energy.at(i).x() < 480 && energy.at(i).y() < dMax1)
+            {
+                iMax1 = i;
+                dMax1 = energy.at(i).y();
+            }
+
+            if (energy.at(i).x() > 480 && energy.at(i).y() < dMax2)
+            {
+                iMax2 = i;
+                dMax2 = energy.at(i).y();
+            }
+        }
+
+        auto iMin = iMax1;
+        auto dMin = dMax1;
+        for (i = iMax1; i < iMax2; i++)
+        {
+            if (dMin > energy.at(i).y())
+            {
+                iMin = i;
+                dMin = energy.at(i).y();
+            }
+        }
+        auto wave = iMin * interval + energy.first().x();
+        blue = QPointF(energy.first().x(), wave);
+        yellow = QPointF(wave, energy.last().x());
+    }
+
+    auto b1 = qBound(0, int((blue.x() - energy.first().x()) / interval + 0.5), size - 1);
+    auto b2 = qBound(0, int((blue.y() - energy.first().x()) / interval + 0.5), size - 1);
+    auto y1 = qBound(0, int((yellow.x() - energy.first().x()) / interval + 0.5), size - 1);
+    auto y2 = qBound(0, int((yellow.y() - energy.first().x()) / interval + 0.5), size - 1);
+    auto b = qMax(int((380.0 - energy.first().x()) / interval + 0.5), 0);
+    auto e = qMin(int((780.0 - energy.first().x()) / interval + 0.5), size - 1);
+    auto bp = 0.0;      // 蓝光功率
+    auto yb = 0.0;      // 荧光粉发光功率  黄光部分
+    auto mol = 0.0;     // 光量子数(umol/s)
+    auto eff1 = 0.0;    // 转换效率
+    auto eff2 = 0.0;    // 转换光效(lm/W)
+
+    // 计算光量子数
+    for (i = b; i <= e; i++)
+        mol += energy.at(i).y() * interval * ((6.51 - 3.17) / (780 - 380) * (energy.at(i).x() - 380) + 3.17);
+
+    //计算效率
+    for (i = b1; i <= b2; i++)
+        bp += energy.at(i).y() * interval;
+    for (i = y1; i <= y2; i++)
+        yb += energy.at(i).y() * interval;
+    if (bp > 0)
+        eff1 = yb / bp;     // 黄光/蓝光
+    if (power > 0)
+        eff2 = yb / power;  // 黄光/电功率
+    return QList<double>() << mol << eff1 << eff2;
+}
+
 HE_ALGORITHM_END_NAMESPACE

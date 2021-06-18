@@ -110,6 +110,7 @@ void HSpecEnergyWidget::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("SpecEnergyWidget");
     d_ptr->ribbon = settings->value("Ribbon", true).toBool();
     settings->endGroup();
@@ -119,6 +120,7 @@ void HSpecEnergyWidget::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("SpecEnergyWidget");
     settings->setValue("Ribbon", d_ptr->ribbon);
     settings->endGroup();

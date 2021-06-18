@@ -217,6 +217,7 @@ void HAbstractMainWindow::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("MainWindow");
     d_ptr->showLogo = settings->value("Logo", true).toBool();
     settings->endGroup();
@@ -226,6 +227,7 @@ void HAbstractMainWindow::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("MainWindow");
     settings->setValue("Logo", d_ptr->showLogo);
     settings->endGroup();

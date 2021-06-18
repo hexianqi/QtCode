@@ -235,6 +235,7 @@ void HSpecTestWidget::readSettings()
     Q_D(HSpecTestWidget);
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("TestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
     d->exportPathName = settings->value("ExportPathName", ".").toString();
@@ -252,6 +253,7 @@ void HSpecTestWidget::writeSettings()
         return;
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("TestWidget");
     settings->setValue("TableSelected", d->tableWidget->selected());
     settings->setValue("ExportPathName", d->exportPathName);

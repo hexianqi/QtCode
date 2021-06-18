@@ -104,6 +104,7 @@ void HProductInfo::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup(d_ptr->relationTableName + "Product");
     for (const auto &k : settings->allKeys())
         setData(k, settings->value(k));
@@ -114,6 +115,7 @@ void HProductInfo::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup(d_ptr->relationTableName + "Product");
     for (auto i = d_ptr->datas.begin(); i != d_ptr->datas.end(); i++)
         settings->setValue(i.key(), i.value());

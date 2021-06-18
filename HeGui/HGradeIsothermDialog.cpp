@@ -106,6 +106,7 @@ void HGradeIsothermDialog::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("GradeIsotherm");
     d_ptr->tc = settings->value("ColorTemperature", QPointF(2300, 6000)).toPointF();
     d_ptr->duv = settings->value("Duv", QPointF(-0.02, 0.02)).toPointF();
@@ -117,6 +118,7 @@ void HGradeIsothermDialog::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("GradeIsotherm");
     settings->setValue("ColorTemperature", d_ptr->tc);
     settings->setValue("Duv", d_ptr->duv);

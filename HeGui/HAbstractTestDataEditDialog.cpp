@@ -8,6 +8,11 @@ HAbstractTestDataEditDialogPrivate::HAbstractTestDataEditDialogPrivate()
     data0 = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
+ITestData *HAbstractTestDataEditDialogPrivate::data()
+{
+    return data1 == nullptr ? data0 : data1;
+}
+
 HAbstractTestDataEditDialog::HAbstractTestDataEditDialog(QWidget *parent) :
     ITestDataEditDialog(parent),
     d_ptr(new HAbstractTestDataEditDialogPrivate)

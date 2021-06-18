@@ -226,6 +226,7 @@ void HAbstractSqlPrint::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("Print");
     d_ptr->ribbon = settings->value("Ribbon", true).toBool();
     d_ptr->paintTitle = settings->value("Title", true).toBool();
@@ -237,6 +238,7 @@ void HAbstractSqlPrint::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
+    settings->setIniCodec("utf-8");
     settings->beginGroup("Print");
     settings->setValue("Ribbon", d_ptr->ribbon);
     settings->setValue("Title", d_ptr->paintTitle);
