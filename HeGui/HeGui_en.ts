@@ -1828,13 +1828,13 @@ Import success!
         <location filename="HSpecTestWidget.cpp" line="125"/>
         <location filename="HSpecTestWidget.cpp" line="129"/>
         <source>保存数据库(&amp;D)</source>
-        <translation>&amp;Save datebase</translation>
+        <translation>&amp;Save database</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="127"/>
         <location filename="HSpecTestWidget.cpp" line="131"/>
         <source>保存数据库</source>
-        <translation>Save datebase</translation>
+        <translation>Save database</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="132"/>

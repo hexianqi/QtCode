@@ -114,7 +114,7 @@
 </phrase>
 <phrase>
     <source>色纯度</source>
-    <target>Colour purity</target>
+    <target>Color purity</target>
 </phrase>
 <phrase>
     <source>色温</source>
@@ -666,7 +666,7 @@ Import success!
 </phrase>
 <phrase>
     <source>色纯度：</source>
-    <target>Colour purity:</target>
+    <target>Color purity:</target>
 </phrase>
 <phrase>
     <source>mW</source>
@@ -698,7 +698,7 @@ Import success!
 </phrase>
 <phrase>
     <source>色温：</source>
-    <target>color temperature:</target>
+    <target>Color temperature:</target>
 </phrase>
 <phrase>
     <source>显色指数Ra：</source>
@@ -754,7 +754,7 @@ Import success!
 </phrase>
 <phrase>
     <source>光效率：</source>
-    <target>Luminous efficacy:</target>
+    <target>Luminous efficiency:</target>
 </phrase>
 <phrase>
     <source>lm/W</source>

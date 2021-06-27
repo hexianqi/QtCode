@@ -472,7 +472,7 @@
     <message>
         <location filename="HDetailWidget2000.ui" line="138"/>
         <source>色纯度：</source>
-        <translation>Colour purity:</translation>
+        <translation>Color purity:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000.ui" line="170"/>
@@ -517,7 +517,7 @@
     <message>
         <location filename="HDetailWidget2000.ui" line="394"/>
         <source>色温：</source>
-        <translation>color temperature:</translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000.ui" line="458"/>
@@ -689,7 +689,7 @@
     <message>
         <location filename="HDetailWidget2000AC.ui" line="682"/>
         <source>光效率：</source>
-        <translation>Luminous efficacy:</translation>
+        <translation>Luminous efficiency:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000AC.ui" line="714"/>
@@ -699,7 +699,7 @@
     <message>
         <location filename="HDetailWidget2000AC.ui" line="730"/>
         <source>色温：</source>
-        <translation>color temperature:</translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000AC.ui" line="762"/>
@@ -709,7 +709,7 @@
     <message>
         <location filename="HDetailWidget2000AC.ui" line="778"/>
         <source>色纯度：</source>
-        <translation>Colour purity:</translation>
+        <translation>Color purity:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000AC.ui" line="810"/>
@@ -791,7 +791,7 @@
     <message>
         <location filename="HDetailWidget2000DC.ui" line="282"/>
         <source>色温：</source>
-        <translation>color temperature:</translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000DC.ui" line="298"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="HDetailWidget2000DC.ui" line="330"/>
         <source>色纯度：</source>
-        <translation>Colour purity:</translation>
+        <translation>Color purity:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000DC.ui" line="394"/>
@@ -826,7 +826,7 @@
     <message>
         <location filename="HDetailWidget2000DC.ui" line="474"/>
         <source>光效率：</source>
-        <translation>Luminous efficacy:</translation>
+        <translation>Luminous efficiency:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2000DC.ui" line="490"/>
@@ -1116,8 +1116,7 @@
     <message>
         <location filename="HSqlPrint2000AC.cpp" line="120"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W</source>
-        <translatorcomment> Luminous flux: %1 lm    Luminous power: %2   Luminous efficacy: %3 lm/W</translatorcomment>
-        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficacy: %3 lm/W</translation>
+        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
     </message>
 </context>
 <context>

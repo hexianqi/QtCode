@@ -132,7 +132,7 @@ void HBuilder2000AC::buildDevice()
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
-    protocols->insert("Pf", protocol2);
+    protocols->insert("Elec", protocol2);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 

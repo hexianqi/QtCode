@@ -5,7 +5,7 @@
 #include <QtCore/QTranslator>
 
 // 翻译时需要取消掉对应的命名空间
-#define HE_ENGLISH  1
+//#define HE_ENGLISH
 
 int main(int argc, char *argv[])
 {

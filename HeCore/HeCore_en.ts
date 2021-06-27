@@ -425,7 +425,7 @@
         <location filename="HCoreGlobalInstance.cpp" line="487"/>
         <source>色纯度</source>
         <oldsource>[色纯度]</oldsource>
-        <translation>Colour purity</translation>
+        <translation>Color&#xa0;purity</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="488"/>
@@ -642,7 +642,7 @@
         <location filename="HCoreGlobalInstance.cpp" line="527"/>
         <source>光效率</source>
         <oldsource>[光效率]</oldsource>
-        <translation>Luminous efficacy</translation>
+        <translation>Luminous efficiency</translation>
     </message>
     <message>
         <location filename="HCoreGlobalInstance.cpp" line="529"/>

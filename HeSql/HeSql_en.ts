@@ -110,7 +110,7 @@
     <message>
         <location filename="HIntegrateSqlPrint.cpp" line="126"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W</source>
-        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficacy: %3 lm/W</translation>
+        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
     </message>
 </context>
 <context>
@@ -281,7 +281,7 @@
     <message>
         <location filename="HSpecElecSqlPrint.cpp" line="126"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2   光效率：%3 lm/W</source>
-        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficacy: %3 lm/W</translation>
+        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
     </message>
 </context>
 <context>

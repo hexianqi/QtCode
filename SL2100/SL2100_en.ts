@@ -213,7 +213,7 @@
     <message>
         <location filename="HDetailWidget2100DC.ui" line="653"/>
         <source>光效率：</source>
-        <translation>Luminous efficacy:</translation>
+        <translation>Luminous efficiency:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2100DC.ui" line="669"/>
@@ -223,7 +223,7 @@
     <message>
         <location filename="HDetailWidget2100DC.ui" line="685"/>
         <source>色温：</source>
-        <translation>color temperature:</translation>
+        <translation>Color temperature:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2100DC.ui" line="717"/>
@@ -233,7 +233,7 @@
     <message>
         <location filename="HDetailWidget2100DC.ui" line="733"/>
         <source>色纯度：</source>
-        <translation>Colour purity:</translation>
+        <translation>Color purity:</translation>
     </message>
     <message>
         <location filename="HDetailWidget2100DC.ui" line="765"/>
