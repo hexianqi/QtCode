@@ -22,6 +22,9 @@ HTestSpecPrivate::HTestSpecPrivate()
     addData("[光谱采样帧溢出状态]", -1);
     addData("[光谱采样溢出状态]", 0);
     addData("[光谱采样比率]", 0.0);
+    addData("[自动查找波段]", false);
+    addData("[蓝光范围]", QPointF(380.0, 500.0));
+    addData("[荧光范围]", QPointF(500.0, 780.0));
 }
 
 void HTestSpecPrivate::setCalibrate(ISpecCalibrate *p)
@@ -147,6 +150,7 @@ bool HTestSpecPrivate::calcSpec()
     auto visionEfficien = specData->VisionEfficien;
     auto luminousFlux = calibrate->calcLuminous(visionFlux / data("[积分时间]").toDouble());
     auto luminousPower = visionEfficien < 0.00001 ? 0.0 : 1000 * luminousFlux / visionEfficien;
+    auto list = calibrate->calcSynthetic(specData->Energy, data("[积分时间]").toDouble(), data("[自动查找波段]").toBool(), data("[蓝光范围]").toPointF(), data("[荧光范围]").toPointF());
     // 测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
@@ -159,6 +163,10 @@ bool HTestSpecPrivate::calcSpec()
     addData("[明视觉光效率]", visionEfficien);
     addData("[光谱光通量]", luminousFlux);
     addData("[光功率]", luminousPower);
+    addData("[光合光子通量]", list.at(0));
+    addData("[光合有效辐通量]", list.at(1));
+    addData("[荧光效能]", list.at(2));
+    addData("[荧光蓝光比]", list.at(3));
     addData("[峰值波长]", specData->PeakWave);
     addData("[峰值带宽]", specData->Bandwidth);
     addData("[主波长]", specData->DominantWave);

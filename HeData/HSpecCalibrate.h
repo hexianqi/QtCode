@@ -36,6 +36,7 @@ public:
 public:
     QVector<double> preprocess(QVector<double> value, bool fitting = true) override;
     QPolygonF calcEnergy(QVector<double> value, double offset) override;
+    QList<double> calcSynthetic(QPolygonF energy, double time, bool find, QPointF blue, QPointF yellow) override;
     double calcLuminous(double value) override;
     int calcCommWaitTime(double &value) override;
     int checkIntegralTime(double value) override;

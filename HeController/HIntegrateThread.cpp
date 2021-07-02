@@ -1,15 +1,12 @@
 #include "HIntegrateThread_p.h"
 #include "IControllerFactory.h"
 #include "IActionStrategy.h"
-#include "HeAlgorithm/HSpecHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include <QtGui/QPolygonF>
 #include <QtCore/QDebug>
-
-HE_ALGORITHM_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
@@ -108,19 +105,13 @@ void HIntegrateThread::handleData()
     Q_D(HIntegrateThread);
     if (!d->testData->data("[使用光探头]").toBool() || d->testData->data("[光测试类型]").toString() != "[光通量]")
         d->testData->setData("[光通量]", d->testData->data("[光谱光通量]"));
-    auto f = d->testData->data("[光通量]").toDouble();
-    auto p = d->testData->data("[电功率]").toDouble();
-    auto e = d->testData->data("[明视觉光效率]").toDouble();
-    auto b = d->testData->data("[自动查找波段]").toBool();
-    auto poly = d->testData->data("[光谱能量曲线]").value<QPolygonF>();
-    auto blue = d->testData->data("[蓝光范围]").toPointF();
-    auto yellow = d->testData->data("[荧光范围]").toPointF();
-    auto list = HSpecHelper::calcSpecEff(poly, p, b, blue, yellow);
-    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
-    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
-    d->testData->setData("[光量子数]", list.at(0));
-    d->testData->setData("[光量子转换效率]", list.at(1));
-    d->testData->setData("[光量子转换光效]", list.at(2));
+//    auto f = d->testData->data("[光通量]").toDouble();
+//    auto p = d->testData->data("[电功率]").toDouble();
+//    auto e = d->testData->data("[明视觉光效率]").toDouble();
+//    auto y = d->testData->data("[荧光效能]").toDouble();
+//    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+//    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
+//    d->testData->setData("[荧光效能]", p < 0.00001 ? y :  y / p);
 }
 
 void HIntegrateThread::init()

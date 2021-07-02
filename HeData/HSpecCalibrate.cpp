@@ -156,6 +156,40 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value, double offset)
     return d_ptr->setting->interpEnergy(poly, offset);
 }
 
+QList<double> HSpecCalibrate::calcSynthetic(QPolygonF energy, double time, bool find, QPointF blue, QPointF yellow)
+{
+    if (find || blue.isNull() || yellow.isNull())
+    {
+        blue = QPointF(380.0, 500.0);
+        yellow = QPointF(500.0, 780.0);
+    }
+
+    auto sumBlue = 0.0;
+    auto sumYellow = 0.0;
+    auto sum400_700 = 0.0;
+    auto prf = 0.0;
+
+    for (auto i = 0; i < energy.size(); i += 10)
+    {
+        auto p = energy.at(i);
+        if (p.x() >= 400 && p.x() <= 700)
+        {
+            sum400_700 += p.y() * p.x();
+            prf += p.y();
+        }
+        if (p.x() >= blue.x() && p.x() <= blue.y())
+            sumBlue += p.y();
+        if (p.x() >= yellow.x() && p.x() <= yellow.y())
+            sumYellow += p.y();
+    }
+    auto k = d_ptr->luminous->data("[光谱光通量系数]").toDouble() / time;
+    auto efficacy = k * sumYellow;
+    auto ratio  = qFuzzyIsNull(sumBlue) ? 0.0 : sumYellow / sumBlue;
+    auto ppf = k * sum400_700 / 119.8;
+    prf = k * prf * 1000;
+    return QList<double>() << ppf << prf << efficacy << ratio;
+}
+
 double HSpecCalibrate::calcLuminous(double value)
 {
     return d_ptr->luminous->handle(value);

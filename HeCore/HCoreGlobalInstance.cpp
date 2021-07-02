@@ -430,10 +430,11 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光照度]",                       new HDataFormatInfo("[光照度]", "lx", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光功率]",                       new HDataFormatInfo("[光功率]", "mW", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光效率]",                       new HDataFormatInfo("[光效率]", "lm/W", 0, 99999, 2, 100));
-    // 光量子
-    hashDataFormatInfo.insert("[光量子数]",                     new HDataFormatInfo("[光量子数]", "umol/s", 0, 99999, 3));
-    hashDataFormatInfo.insert("[光量子转换效率]",               new HDataFormatInfo("[光量子转换效率]", "", 0, 99999, 3));
-    hashDataFormatInfo.insert("[光量子转换光效]",               new HDataFormatInfo("[光量子转换光效]", "lm/W", 0, 99999, 3));
+    // 光合
+    hashDataFormatInfo.insert("[光合光子通量]",                 new HDataFormatInfo("[光合光子通量]", "umol/s", 0, 99999, 3));
+    hashDataFormatInfo.insert("[光合有效辐通量]",               new HDataFormatInfo("[光合有效辐通量]", "mW", 0, 99999, 3));
+    hashDataFormatInfo.insert("[荧光效能]",                     new HDataFormatInfo("[荧光效能]", "", 0, 99999, 3));
+    hashDataFormatInfo.insert("[荧光蓝光比]",                   new HDataFormatInfo("[荧光蓝光比]", "", 0, 99999, 3));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
@@ -530,9 +531,10 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[光功率]",              tr("光功率"));
     hashDataCaption.insert("[光效率]",              tr("光效率"));
 
-    hashDataCaption.insert("[光量子数]",            tr("光量子数"));
-    hashDataCaption.insert("[光量子转换效率]",      tr("光量子转换效率"));
-    hashDataCaption.insert("[光量子转换光效]",      tr("光量子转换光效"));
+    hashDataCaption.insert("[光合光子通量]",        tr("光合光子通量"));
+    hashDataCaption.insert("[光合有效辐通量]",      tr("光合有效辐通量"));
+    hashDataCaption.insert("[荧光效能]",            tr("荧光效能"));
+    hashDataCaption.insert("[荧光蓝光比]",          tr("荧光蓝光比"));
 
     hashDataCaption.insert("[测试日期时间]",        tr("测试时间"));
     hashDataCaption.insert("[测试日期]",            tr("测试日期"));
