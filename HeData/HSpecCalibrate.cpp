@@ -169,7 +169,7 @@ QList<double> HSpecCalibrate::calcSynthetic(QPolygonF energy, double time, bool 
     auto sum400_700 = 0.0;
     auto prf = 0.0;
 
-    for (auto i = 0; i < energy.size(); i += 10)
+    for (auto i = 0; i < energy.size(); i++)
     {
         auto p = energy.at(i);
         if (p.x() >= 400 && p.x() <= 700)

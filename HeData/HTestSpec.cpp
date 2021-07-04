@@ -146,11 +146,12 @@ bool HTestSpecPrivate::calcSpec()
     if(specData->Energy.isEmpty())
         return false;
     specFacade->calcSpectrum(specData);
+    auto time = data("[积分时间]").toDouble();
     auto visionFlux = specData->VisionFlux;
     auto visionEfficien = specData->VisionEfficien;
-    auto luminousFlux = calibrate->calcLuminous(visionFlux / data("[积分时间]").toDouble());
+    auto luminousFlux = calibrate->calcLuminous(visionFlux / time);
     auto luminousPower = visionEfficien < 0.00001 ? 0.0 : 1000 * luminousFlux / visionEfficien;
-    auto list = calibrate->calcSynthetic(specData->Energy, data("[积分时间]").toDouble(), data("[自动查找波段]").toBool(), data("[蓝光范围]").toPointF(), data("[荧光范围]").toPointF());
+    auto list = calibrate->calcSynthetic(specData->Energy, time, data("[自动查找波段]").toBool(), data("[蓝光范围]").toPointF(), data("[荧光范围]").toPointF());
     // 测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
