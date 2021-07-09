@@ -47,7 +47,9 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate()
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
+                             << "Ra" << "R9" << "Rx"
+                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
+                             << "EnergyGraph";
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
@@ -233,8 +235,11 @@ void HBuilder2000DC::buildDatabase()
         // 1.1.1.2 添加列R9
         if (HSqlHelper::getVersion("Spec") < 0x01010102)
             HSqlHelper::addColumn("Spec", "R9");
+        // 1.1.1.3 添加列（光合）
+        if (HSqlHelper::getVersion("Spec") < 0x01010103)
+            HSqlHelper::addColumn("Spec", QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio");
     }
-    HSqlHelper::setVersion("Spec", 0x01010102);
+    HSqlHelper::setVersion("Spec", 0x01010103);
 
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");

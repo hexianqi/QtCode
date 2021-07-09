@@ -26,7 +26,7 @@ bool createVersionManage(QSqlDatabase db)
     return HSqlHelper::createTable("VersionManage", QStringList() << "ID" << "TableName" << "Version", db);
 }
 
-bool HSqlHelper::createTable(const QString &tableName, const QStringList &field, QSqlDatabase db)
+bool HSqlHelper::createTable(const QString &tableName, const QStringList &fields, QSqlDatabase db)
 {
     if (tableName.isEmpty())
         return false;
@@ -37,7 +37,7 @@ bool HSqlHelper::createTable(const QString &tableName, const QStringList &field,
     QSqlQuery query(db);
     if (db.tables().contains(tableName, Qt::CaseInsensitive))
         query.exec("DROP TABLE " + tableName);
-    auto sql = QString("CREATE TABLE %1 (%2)").arg(tableName, HSql::toCreateStyle(field).join(','));
+    auto sql = QString("CREATE TABLE %1 (%2)").arg(tableName, HSql::toCreateStyle(fields).join(','));
     return query.exec(sql);
 }
 
@@ -54,6 +54,23 @@ bool HSqlHelper::addColumn(const QString &tableName, const QString &field, QSqlD
 
     sql = QString("ALTER TABLE %1 ADD COLUMN %2").arg(tableName, HSql::toCreateStyle(field));
     return query.exec(sql);
+}
+
+void HSqlHelper::addColumn(const QString &tableName, const QStringList &fields, QSqlDatabase db)
+{
+    if (!db.isValid())
+        db = QSqlDatabase::database();
+
+    QSqlQuery query(db);
+    for (auto field : fields)
+    {
+        auto sql = QString("SELECT * FROM sqlite_master WHERE name = '%1' COLLATE NOCASE AND sql LIKE '%%2%' COLLATE NOCASE").arg(tableName, field);
+        query.exec(sql);
+        if (query.next())
+            continue;
+        sql = QString("ALTER TABLE %1 ADD COLUMN %2").arg(tableName, HSql::toCreateStyle(field));
+        query.exec(sql);
+    }
 }
 
 bool HSqlHelper::setVersion(const QString &tableName, int version, QSqlDatabase db)

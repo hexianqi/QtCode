@@ -347,6 +347,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.clear();
     hashDataFormatInfo.insert("",                               new HDataFormatInfo());
     hashDataFormatInfo.insert("[]",                             new HDataFormatInfo("[]"));
+    hashDataFormatInfo.insert("[百分比]",                       new HDataFormatInfo("[百分比]", "%", 0, 100, 1));
     // 光谱参数
     hashDataFormatInfo.insert("[标准色温]",                     new HDataFormatInfo("[标准色温]", "K", 2300, 4000, 2));
     hashDataFormatInfo.insert("[积分时间]",                     new HDataFormatInfo("[积分时间]", "ms", 1, 4000, 1));
@@ -369,7 +370,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
     // 光谱数据
     hashDataFormatInfo.insert("[光谱采样值]",                   new HDataFormatInfo("[光谱采样值]", 0.0, 65536.0, 1));
-    hashDataFormatInfo.insert("[光谱采样比率]",                 new HDataFormatInfo("[光谱采样比率]",  "%", 0, 100, 1));
+    hashDataFormatInfo.insert("[光谱采样比率]",                 hashDataFormatInfo.value("[百分比]"));
     hashDataFormatInfo.insert("[峰值波长]",                     new HDataFormatInfo("[峰值波长]", "nm", 200, 1100, 1));
     hashDataFormatInfo.insert("[峰值带宽]",                     new HDataFormatInfo("[峰值带宽]", "nm", 200, 1100, 1));
     hashDataFormatInfo.insert("[主波长]",                       new HDataFormatInfo("[主波长]", "nm", 360, 780, 1));
@@ -379,22 +380,22 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[显色指数R9]",                   new HDataFormatInfo("[显色指数R9]", 0, 100, 2));
     hashDataFormatInfo.insert("[显色指数Rx]",                   new HDataFormatInfo("[显色指数Rx]", 0, 100, 1));
     hashDataFormatInfo.insert("[色坐标]",                       new HDataFormatInfo("[色坐标]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标uv]",                     new HDataFormatInfo("[色坐标uv]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标uvp]",                    new HDataFormatInfo("[色坐标uvp]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标x]",                      new HDataFormatInfo("[色坐标x]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标y]",                      new HDataFormatInfo("[色坐标y]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标u]",                      new HDataFormatInfo("[色坐标u]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标v]",                      new HDataFormatInfo("[色坐标v]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标up]",                     new HDataFormatInfo("[色坐标up]", 0, 1, 4, 0.001));
-    hashDataFormatInfo.insert("[色坐标vp]",                     new HDataFormatInfo("[色坐标vp]", 0, 1, 4, 0.001));
+    hashDataFormatInfo.insert("[色坐标uv]",                     hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标uvp]",                    hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标x]",                      hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标y]",                      hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标u]",                      hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标v]",                      hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标up]",                     hashDataFormatInfo.value("[色坐标]"));
+    hashDataFormatInfo.insert("[色坐标vp]",                     hashDataFormatInfo.value("[色坐标]"));
     hashDataFormatInfo.insert("[Duv]",                          new HDataFormatInfo("[Duv]", 0, 0.5, 3, 0.01));
     hashDataFormatInfo.insert("[明视觉光通量]",                 new HDataFormatInfo("[明视觉光通量]", "lm", 0, 99999, 2, 1.0));
     hashDataFormatInfo.insert("[明视觉光效率]",                 new HDataFormatInfo("[明视觉光效率]", "lm/W", 0, 99999, 2, 1.0));
-    hashDataFormatInfo.insert("[红色比]",                       new HDataFormatInfo("[红色比]", "%", 0, 100, 1));
-    hashDataFormatInfo.insert("[蓝色比]",                       new HDataFormatInfo("[蓝色比]", "%", 0, 100, 1));
-    hashDataFormatInfo.insert("[绿色比]",                       new HDataFormatInfo("[绿色比]", "%", 0, 100, 1));
-    hashDataFormatInfo.insert("[光谱能量百分比]",               new HDataFormatInfo("[光谱能量百分比]", "%", 0, 100, 1));
     hashDataFormatInfo.insert("[光谱光通量]",                   new HDataFormatInfo("[光谱光通量]", "lm", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[红色比]",                       hashDataFormatInfo.value("[百分比]"));
+    hashDataFormatInfo.insert("[蓝色比]",                       hashDataFormatInfo.value("[百分比]"));
+    hashDataFormatInfo.insert("[绿色比]",                       hashDataFormatInfo.value("[百分比]"));
+    hashDataFormatInfo.insert("[光谱能量百分比]",               hashDataFormatInfo.value("[百分比]"));
     // 色容差参数
     hashDataFormatInfo.insert("[色容差]",                       new HDataFormatInfo("[色容差]", "SDCM", 0, 100, 1, 1));
     hashDataFormatInfo.insert("[参数G]",                        new HDataFormatInfo("[参数G]", 0, 1000000, 1));
@@ -402,24 +403,26 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[轴A]",                          new HDataFormatInfo("[轴A]", 0, 1000000, 1));
     hashDataFormatInfo.insert("[轴B]",                          new HDataFormatInfo("[轴B]", 0, 1000000, 1));
     // 电参数
-    hashDataFormatInfo.insert("[输出电压]",                     new HDataFormatInfo("[输出电压]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[输出电流]",                     new HDataFormatInfo("[输出电流]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[输出电流1]",                    new HDataFormatInfo("[输出电流1]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[输出电流2]",                    new HDataFormatInfo("[输出电流2]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[输出电流3]",                    new HDataFormatInfo("[输出电流3]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[反向电压]",                     new HDataFormatInfo("[反向电压]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[实测电压]",                     new HDataFormatInfo("[实测电压]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[实测电流]",                     new HDataFormatInfo("[实测电流]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[实测电流1]",                    new HDataFormatInfo("[实测电流1]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[实测电流2]",                    new HDataFormatInfo("[实测电流2]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[实测电流3]",                    new HDataFormatInfo("[实测电流3]", "mA", 0, 5000, 3));
-    hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 3));
+    hashDataFormatInfo.insert("[电压]",                         new HDataFormatInfo("[电压]", "V", 0, 400, 3));
+    hashDataFormatInfo.insert("[电流]",                         new HDataFormatInfo("[电流]", "mA", 0, 5000, 3));
     hashDataFormatInfo.insert("[电功率]",                       new HDataFormatInfo("[电功率]", "W", 0, 500, 3));
     hashDataFormatInfo.insert("[电阻]",                         new HDataFormatInfo("[电阻]", "Ω", 0, 10, 3));
+    hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 3));
+    hashDataFormatInfo.insert("[输出电压]",                     hashDataFormatInfo.value("[电压]"));
+    hashDataFormatInfo.insert("[输出电流]",                     hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[输出电流1]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[输出电流2]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[输出电流3]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[反向电压]",                     hashDataFormatInfo.value("[电压]"));
+    hashDataFormatInfo.insert("[实测电压]",                     hashDataFormatInfo.value("[电压]"));
+    hashDataFormatInfo.insert("[实测电流]",                     hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[实测电流1]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[实测电流2]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[实测电流3]",                    hashDataFormatInfo.value("[电流]"));
     // 交流电参数
     hashDataFormatInfo.insert("[交流电压]",                     new HDataFormatInfo("[交流电压]", "V", 0, 500, 2));
     hashDataFormatInfo.insert("[交流电流]",                     new HDataFormatInfo("[交流电流]", "A", 0, 50, 3));
-    hashDataFormatInfo.insert("[交流电功率]",                   new HDataFormatInfo("[交流电功率]", "W", 0, 500, 3));
+    hashDataFormatInfo.insert("[交流电功率]",                   hashDataFormatInfo.value("[电功率]"));
     hashDataFormatInfo.insert("[功率因数]",                     new HDataFormatInfo("[功率因数]", 0, 1, 3));
     // 光参数
     hashDataFormatInfo.insert("[光采样值]",                     new HDataFormatInfo("[光采样值]"));
@@ -431,8 +434,13 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光功率]",                       new HDataFormatInfo("[光功率]", "mW", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光效率]",                       new HDataFormatInfo("[光效率]", "lm/W", 0, 99999, 2, 100));
     // 光合
-    hashDataFormatInfo.insert("[光合光子通量]",                 new HDataFormatInfo("[光合光子通量]", "umol/s", 0, 99999, 3));
-    hashDataFormatInfo.insert("[光合有效辐通量]",               new HDataFormatInfo("[光合有效辐通量]", "mW", 0, 99999, 3));
+    hashDataFormatInfo.insert("[光量子]",                       new HDataFormatInfo("[光量子]", "umol/s", 0, 99999, 5));
+    hashDataFormatInfo.insert("[光量子(380-780)]",              hashDataFormatInfo.value("[光量子]"));
+    hashDataFormatInfo.insert("[光量子(400-700)]",              hashDataFormatInfo.value("[光量子]"));
+    hashDataFormatInfo.insert("[光量子(700-800)]",              hashDataFormatInfo.value("[光量子]"));
+    hashDataFormatInfo.insert("[光合光量子通量]",               new HDataFormatInfo("[光合光量子通量]", "umol/s", 0, 99999, 5));
+    hashDataFormatInfo.insert("[光合有效辐射通量]",             new HDataFormatInfo("[光合有效辐射通量]", "mW", 0, 99999, 3));
+    hashDataFormatInfo.insert("[光合光子通量效率]",             new HDataFormatInfo("[光合光子通量效率]", "umol/s/W", 0, 99999, 3));
     hashDataFormatInfo.insert("[荧光效能]",                     new HDataFormatInfo("[荧光效能]", "", 0, 99999, 3));
     hashDataFormatInfo.insert("[荧光蓝光比]",                   new HDataFormatInfo("[荧光蓝光比]", "", 0, 99999, 3));
     // 数据库参数
@@ -531,8 +539,13 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[光功率]",              tr("光功率"));
     hashDataCaption.insert("[光效率]",              tr("光效率"));
 
-    hashDataCaption.insert("[光合光子通量]",        tr("光合光子通量"));
-    hashDataCaption.insert("[光合有效辐通量]",      tr("光合有效辐通量"));
+    hashDataCaption.insert("[光量子]",              tr("光量子"));
+    hashDataCaption.insert("[光量子(380-780)]",     tr("光量子(380-780nm)"));
+    hashDataCaption.insert("[光量子(400-700)]",     tr("光量子(400-700nm)"));
+    hashDataCaption.insert("[光量子(700-800)]",     tr("光量子(700-800nm)"));
+    hashDataCaption.insert("[光合光量子通量]",      tr("光合光量子通量"));
+    hashDataCaption.insert("[光合有效辐射通量]",    tr("光合有效辐射通量"));
+    hashDataCaption.insert("[光合光子通量效率]",    tr("光合光子通量效率"));
     hashDataCaption.insert("[荧光效能]",            tr("荧光效能"));
     hashDataCaption.insert("[荧光蓝光比]",          tr("荧光蓝光比"));
 

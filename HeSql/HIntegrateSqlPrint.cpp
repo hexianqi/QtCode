@@ -43,6 +43,9 @@ QString HIntegrateSqlPrint::textForExcel()
     out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << endl;
     out << toWhole("CC_xy")             << "\t" << toWhole("CC_uvp")            << "\t" << toWhole("Duv")                   << endl;
     out << toWhole("RedRatio")          << "\t" << toWhole("GreenRadio")        << "\t" << toWhole("BlueRatio")             << endl;
+    out << toWhole("Photon380_780")     << "\t" << toWhole("Photon400_700")     << "\t" << toWhole("Photon700_800")         << endl;
+    out << toWhole("PPF")               << "\t" << toWhole("PRF")               << "\t" << toWhole("PPFE")                  << endl;
+    out << toWhole("FluorescenceEfficiency") << "\t" << toWhole("FluorescenceRatio")                                        << endl;
     out << toWhole("Ra")                << "\t" << toWhole("R9")                << "\t" << toWhole("Rx")                << endl;
     out << endl;
     out << tr("光谱数据")                           << endl;
@@ -124,6 +127,16 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
     y += h1;
     painter->setFont(font2);
     text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W").arg(toString("LuminousFlux"), toString("LuminousPower"), toString("LuminousEfficiency"));
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+    y += h2;
+
+    text = tr(" 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]").arg(toString("Photon380_780"), toString("Photon400_700"), toString("Photon700_800"));
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+    y += h2;
+    text = tr(" 光合光量子通量：%1 umol/s    光合有效辐射通量：%2  mW    光合光子通量效率：%3 umol/s/W").arg(toString("PPF"), toString("PRF"), toString("PPFE"));
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+    y += h2;
+    text = tr(" 荧光效能：%1    荧光蓝光比：%2").arg(toString("FluorescenceEfficiency"), toString("FluorescenceRatio"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
 
