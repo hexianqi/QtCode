@@ -40,13 +40,13 @@ QString HIntegrateSqlPrint::textForExcel()
     out << toWhole("ReverseVoltage")    << "\t" << toWhole("ReverseCurrent")    << endl;
     out << toWhole("LuminousFlux")      << "\t" << toWhole("LuminousPower")     << "\t" << toWhole("LuminousEfficiency")    << endl;
     out << toWhole("PeakWave")          << "\t" << toWhole("PeakBandwidth")     << "\t" << toWhole("DominantWave")          << endl;
-    out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << endl;
+    out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << "\t" << toWhole("SDCM")                  << endl;
     out << toWhole("CC_xy")             << "\t" << toWhole("CC_uvp")            << "\t" << toWhole("Duv")                   << endl;
     out << toWhole("RedRatio")          << "\t" << toWhole("GreenRadio")        << "\t" << toWhole("BlueRatio")             << endl;
+    out << toWhole("Ra")                << "\t" << toWhole("R9")                << "\t" << toWhole("Rx")                    << endl;
     out << toWhole("Photon380_780")     << "\t" << toWhole("Photon400_700")     << "\t" << toWhole("Photon700_800")         << endl;
     out << toWhole("PPF")               << "\t" << toWhole("PRF")               << "\t" << toWhole("PPFE")                  << endl;
-    out << toWhole("FluorescenceEfficiency") << "\t" << toWhole("FluorescenceRatio")                                        << endl;
-    out << toWhole("Ra")                << "\t" << toWhole("R9")                << "\t" << toWhole("Rx")                << endl;
+    out << toWhole("FluorescenceEfficiency")                                    << "\t" << toWhole("FluorescenceRatio")     << endl;
     out << endl;
     out << tr("光谱数据")                           << endl;
     out << tr("波长(nm)\t能量百分比(%)")            << endl;
@@ -99,8 +99,8 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
                .arg(toString("CC_x"), toString("CC_y"), toString("CC_up"), toString("CC_vp"), toString("Duv"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft |  Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3")
-               .arg(toString("ColorTemperature"), toString("DominantWave"), toString("ColorPurity"));
+    text = tr(" 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3    色容差：%4 SDCM")
+               .arg(toString("ColorTemperature"), toString("DominantWave"), toString("ColorPurity"), toString("SDCM"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr("色比：R = %1 ％  G = %2 ％  B = %3 ％    峰值波长：λp = %4 nm    峰值带宽：Δλd = %5 nm")
@@ -109,7 +109,7 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
     y += h2;
     if (rx.size() > 14)
     {
-        text = tr(" 显色指数：Ra = %1    R9 = %2").arg(toString("Ra"), rx[8]);
+        text = tr(" 显色指数：Ra = %1    R9 = %2").arg(toString("Ra"), toString("R9"));
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
         text = tr("  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8")
@@ -129,11 +129,10 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
     text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W").arg(toString("LuminousFlux"), toString("LuminousPower"), toString("LuminousEfficiency"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-
     text = tr(" 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]").arg(toString("Photon380_780"), toString("Photon400_700"), toString("Photon700_800"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 光合光量子通量：%1 umol/s    光合有效辐射通量：%2  mW    光合光子通量效率：%3 umol/s/W").arg(toString("PPF"), toString("PRF"), toString("PPFE"));
+    text = tr(" 光合光量子通量PPF：%1 umol/s    光合有效辐射通量PRF：%2  mW    光合光子通量效率Eff(PPF)：%3 umol/s/W").arg(toString("PPF"), toString("PRF"), toString("PPFE"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 荧光效能：%1    荧光蓝光比：%2").arg(toString("FluorescenceEfficiency"), toString("FluorescenceRatio"));

@@ -41,6 +41,44 @@ void HTestData::testJson()
     qDebug() << byte;
 }
 
+void HTestData::testJson2()
+{
+    // QPointF 无法转化成QJson
+    QVariantMap datas;
+    datas.insert("[项类型]", "Undefined");
+    datas.insert("[标题]", "");
+    datas.insert("[使用]", true);
+    datas.insert("[相关色温]", 0.0);
+    datas.insert("[标准Sdcm]", 5.0);
+    datas.insert("[中心点]", QVariantList() << 0.0 << 0.0);
+    datas.insert("[参数G]", QVariantList() << 3.1 << 3.2 << 3.3);
+    datas.insert("[旋转角]", 0.0);
+    datas.insert("[轴A]", 0.0);
+    datas.insert("[轴B]", 0.0);
+    datas.insert("[测试点]", QVariantList() << 1.0 << 2.0);
+    datas.insert("[测试Sdcm]", 3.0);
+
+    auto json = QJsonObject::fromVariantMap(datas);
+    auto str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+    auto v = QVariant(json);
+    auto str2 = v.toString();
+    auto doc = QJsonDocument::fromJson(str.toUtf8());
+    auto json2 = doc.object();
+    auto datas2 = json2.toVariantMap();
+    auto b1 = datas == datas2;
+    auto b2 = json == json2;
+    auto b3 = str == str2;
+    qDebug() << " data         " << datas;
+    qDebug() << " data2        " << datas2;
+    qDebug() << " data = data2 " << b1;
+    qDebug() << " json         " << json;
+    qDebug() << " json2        " << json2;
+    qDebug() << " json = json2 " << b2;
+    qDebug() << " string " << str;
+    qDebug() << " string2 " << str2;
+    qDebug() << " string = string2 " << b3;
+}
+
 void HTestData::testTemplateName()
 {
     NameTemplate<int> i;

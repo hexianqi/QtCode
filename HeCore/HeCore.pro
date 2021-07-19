@@ -34,7 +34,8 @@ HEADERS     += \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HCallorHelper.h \
-            HException.h
+            HException.h \
+            HThreadPool.h
 
 SOURCES     += \
             HCore.cpp \
@@ -43,7 +44,8 @@ SOURCES     += \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
             HCallorHelper.cpp \
-            HException.cpp
+            HException.cpp \
+            HThreadPool.cpp
 
 RESOURCES   += HeCore.qrc
 

@@ -29,7 +29,12 @@ void HChromatismChartView::setData(const QVariantMap &value)
     if (value.contains("[标准Sdcm]"))
         d->sdcmStd = value.value("[标准Sdcm]").toDouble();
     if (value.contains("[中心点]"))
-        d->pointCenter = value.value("[中心点]").toPointF();
+    {
+        QList<double> c;
+        for (const auto &v : value.value("[中心点]").toList())
+            c << v.toDouble();
+        d->pointCenter = QPointF(c[0], c[1]);
+    }
     if (value.contains("[旋转角]"))
         d->theta = value.value("[旋转角]").toDouble();
     if (value.contains("[轴A]"))
@@ -37,7 +42,12 @@ void HChromatismChartView::setData(const QVariantMap &value)
     if (value.contains("[轴B]"))
         d->axisB = value.value("[轴B]").toDouble();
     if (value.contains("[测试点]"))
-        d->pointFocus = value.value("[测试点]").toPointF();
+    {
+        QList<double> c;
+        for (const auto &v : value.value("[测试点]").toList())
+            c << v.toDouble();
+        d->pointFocus = QPointF(c[0], c[1]);
+    }
     if (value.contains("[测试Sdcm]"))
         d->sdcmFocus = value.value("[测试Sdcm]").toDouble();
 

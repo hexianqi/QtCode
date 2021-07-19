@@ -47,7 +47,7 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate()
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx"
+                             << "Ra" << "R9" << "Rx" << "SDCM"
                              << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
                              << "EnergyGraph";
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
@@ -232,14 +232,18 @@ void HBuilder2000DC::buildDatabase()
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
     if (db->contains("Spec"))
     {
+        auto version = HSqlHelper::getVersion("Spec");
         // 1.1.1.2 添加列R9
-        if (HSqlHelper::getVersion("Spec") < 0x01010102)
+        if (version < 0x01010102)
             HSqlHelper::addColumn("Spec", "R9");
         // 1.1.1.3 添加列（光合）
-        if (HSqlHelper::getVersion("Spec") < 0x01010103)
+        if (version < 0x01010103)
             HSqlHelper::addColumn("Spec", QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio");
+        // 1.1.1.4 添加列SDCM
+        if (version < 0x01010104)
+            HSqlHelper::addColumn("Spec", "SDCM");
     }
-    HSqlHelper::setVersion("Spec", 0x01010103);
+    HSqlHelper::setVersion("Spec", 0x01010104);
 
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");

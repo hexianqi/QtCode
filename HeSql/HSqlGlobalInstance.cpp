@@ -99,6 +99,8 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("Rx",                      "[显色指数Rx]");
     hashFieldType.insert("EnergyGraph",             "[光谱能量曲线]");
     hashFieldType.insert("LuminousFluxSpec",        "[光谱光通量]");
+    // 色容差
+    hashFieldType.insert("SDCM",                    "[色容差]");
     // 电
     hashFieldType.insert("OutputVoltage",           "[输出电压]");
     hashFieldType.insert("OutputCurrent",           "[输出电流]");
@@ -171,6 +173,8 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("R9",                       "R9 numeric(18, 2)");
     hashFieldCreateStyle.insert("Rx",                       "Rx nchar(200)");
     hashFieldCreateStyle.insert("EnergyGraph",              "EnergyGraph ntext");
+    // 色容差
+    hashFieldCreateStyle.insert("SDCM",                     "SDCM numeric(18, 1)");
     // 电
     hashFieldCreateStyle.insert("OutputVoltage",            "OutputVoltage numeric(18, 2)");
     hashFieldCreateStyle.insert("OutputCurrent",            "OutputCurrent numeric(18, 2)");

@@ -13,7 +13,10 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
+#include <QtCore/QJsonObject>
+#include <QtCore/QJsonDocument>
 #include <QtGui/QColor>
+
 #include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
@@ -336,6 +339,8 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     {
         test->setData("[色容差]", d_ptr->chromatisms->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
         test->setData("[色容差标准]", d_ptr->chromatisms->toMap());
+//        auto std = d_ptr->chromatisms->toMap();
+//        test->setData("[色容差标准Json]", QString(QJsonDocument(QJsonObject::fromVariantMap(std)).toJson(QJsonDocument::Compact)));
     }
 
     if (d_ptr->grades != nullptr)

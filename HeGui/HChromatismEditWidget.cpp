@@ -75,7 +75,7 @@ void HChromatismEditWidget::saveData()
         item->setData("[相关色温]", ui->tableWidget->item(i, 1)->text().toDouble());
         item->setData("[标准Sdcm]", ui->tableWidget->item(i, 2)->text().toDouble());
 
-        item->setData("[中心点]", QPointF(ui->tableWidget->item(i, 3)->text().toDouble(), ui->tableWidget->item(i, 4)->text().toDouble()));
+        item->setData("[中心点]", QVariantList() << ui->tableWidget->item(i, 3)->text().toDouble() << ui->tableWidget->item(i, 4)->text().toDouble());
         item->setData("[参数G]", QVariantList() << ui->tableWidget->item(i, 5)->text().toDouble() * 10000
                                                 << ui->tableWidget->item(i, 6)->text().toDouble() * 10000
                                                 << ui->tableWidget->item(i, 7)->text().toDouble() * 10000);
@@ -177,14 +177,16 @@ void HChromatismEditWidget::init()
 
 void HChromatismEditWidget::showTable(int row, const QString &key, IChromatismItem *value)
 {
-    QList<double> g;
+    QList<double> g, c;
     for (const auto &v : value->data("[参数G]").toList())
         g << v.toDouble();
+    for (const auto &v : value->data("[中心点]").toList())
+        c << v.toDouble();
     auto list =  QStringList() << value->data("[标题]").toString()
                                << HCore::toString("[色温]", value->data("[相关色温]"))
                                << HCore::toString("[色容差]", value->data("[标准Sdcm]"))
-                               << HCore::toString("[色坐标x]", value->data("[中心点]").toPointF().x())
-                               << HCore::toString("[色坐标y]", value->data("[中心点]").toPointF().y())
+                               << HCore::toString("[色坐标x]", c[0])
+                               << HCore::toString("[色坐标y]", c[1])
                                << HCore::toString("[参数G]", g[0] * 0.0001)
                                << HCore::toString("[参数G]", g[1] * 0.0001)
                                << HCore::toString("[参数G]", g[2] * 0.0001)

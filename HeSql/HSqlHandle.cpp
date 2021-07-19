@@ -72,15 +72,15 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
     {
         if (f == "ID")
             continue;
-        if (d_ptr->productInfo->contains(f))
-            r.setValue(f, d_ptr->productInfo->data(f));
-        else if (value.contains(f))
+        if (value.contains(f) && value.value(f).isValid())
         {
             if (f == "EnergyGraph")
                 r.setValue(f, toString(value.value(f).value<QPolygonF>()));
             else
                 r.setValue(f, value.value(f));
         }
+        else if (d_ptr->productInfo->contains(f))
+            r.setValue(f, d_ptr->productInfo->data(f));
         else if (f == "TestDateTime")
             r.setValue(f, QDateTime::currentDateTime());
         else if (f == "TestDate")
