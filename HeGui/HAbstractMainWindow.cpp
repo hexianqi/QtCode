@@ -43,6 +43,14 @@ HAbstractMainWindow::~HAbstractMainWindow()
     save(false);
 }
 
+void HAbstractMainWindow::setAuthority(int value)
+{
+    d_ptr->menuImport->menuAction()->setVisible(value >= 1);
+    d_ptr->menuExport->menuAction()->setVisible(value >= 1);
+    for (auto action : menuBar()->actions())
+        action->setVisible(value >= action->property("Authority").toInt());
+}
+
 QAction *HAbstractMainWindow::insertMenu(QMenu *menu)
 {
     return menuBar()->insertMenu(d_ptr->actionSeparator, menu);

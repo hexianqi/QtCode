@@ -23,6 +23,7 @@ public:
     ~HAbstractMainWindow() override;
 
 public:
+    void setAuthority(int) override;
     QAction *insertMenu(QMenu *) override;
     bool openDialog(QDialog *) override;
     void openWidget(QWidget *) override;

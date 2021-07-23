@@ -17,6 +17,8 @@ public:
     using QMainWindow::QMainWindow;
 
 public:
+    // 设置权限
+    virtual void setAuthority(int) = 0;
     // 插入菜单
     virtual QAction *insertMenu(QMenu *) = 0;
     // 打开对话框

@@ -29,6 +29,8 @@
 #include "HExportCurveHandler.h"
 #include "HImportDeviceHandler.h"
 #include "HExportDeviceHandler.h"
+#include "HLoginInHandler.h"
+#include "HLoginOutHandler.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
@@ -126,6 +128,8 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HExportDeviceHandler>("HExportDeviceHandler");
     HObjectFactory::registerClass<HImportCurveHandler>("HImportCurveHandler");
     HObjectFactory::registerClass<HExportCurveHandler>("HExportCurveHandler");
+    HObjectFactory::registerClass<HLoginInHandler>("HLoginInHandler");
+    HObjectFactory::registerClass<HLoginOutHandler>("HLoginOutHandler");
 }
 
 HE_GUI_END_NAMESPACE
