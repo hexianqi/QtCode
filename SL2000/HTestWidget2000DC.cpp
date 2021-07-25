@@ -7,7 +7,6 @@
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HResultTableWidget.h"
 #include "HeGui/HTestDataEditDialog.h"
-#include "HeGui/HQuantumEditDialog.h"
 #include <QtCore/QSettings>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
@@ -64,10 +63,8 @@ void HTestWidget2000DC::createAction()
     d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
-    d->actionQuantum = new QAction(tr("光量子配置(&P)"), this);
     d->actionProductInfo = new QAction(tr("产品信息修改(&P)"), this);
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
-    connect(d->actionQuantum, &QAction::triggered, this, &HTestWidget2000DC::editQuantum);
     connect(d->actionProductInfo, &QAction::triggered, this, &HTestWidget2000DC::editProductInfo);
 }
 
@@ -84,7 +81,6 @@ void HTestWidget2000DC::createMenu()
     Q_D(HTestWidget2000DC);
     HSpecTestWidget::createMenu();
     d->menus.at(0)->addAction(d->actionProbe);
-    d->menus.at(0)->addAction(d->actionQuantum);
 }
 
 void HTestWidget2000DC::initWidget()
@@ -105,15 +101,6 @@ void HTestWidget2000DC::readSettings()
     settings->setIniCodec("utf-8");
     settings->beginGroup("TestWidget");
     d->testData->setData("[使用光探头]", settings->value("Probe", false));
-    settings->endGroup();
-    settings->beginGroup("Quantum");
-    d->testData->setData("[自动查找波段]", settings->value("AutoFind", false));
-    auto b1 = settings->value("Blue1", 400).toDouble();
-    auto b2 = settings->value("Blue2", 450).toDouble();
-    auto y1 = settings->value("Yellow1", 450).toDouble();
-    auto y2 = settings->value("Yellow2", 780).toDouble();
-    d->testData->setData("[蓝光范围]", QPointF(b1, b2));
-    d->testData->setData("[荧光范围]", QPointF(y1, y2));
     settings->endGroup();
     settings->beginGroup("ProductInfo");
     d->testData->setData("[制造厂商]", settings->value("Manufacturer", "Manufacturer"));
@@ -137,15 +124,6 @@ void HTestWidget2000DC::writeSettings()
     settings->beginGroup("TestWidget");
     settings->setValue("Probe", d->testData->data("[使用光探头]"));
     settings->endGroup();
-    settings->beginGroup("Quantum");
-    settings->setValue("AutoFind", d->testData->data("[自动查找波段]"));
-    auto blue = d->testData->data("[蓝光范围]").toPointF();
-    auto yellow = d->testData->data("[荧光范围]").toPointF();
-    settings->setValue("Blue1", blue.x());
-    settings->setValue("Blue2", blue.y());
-    settings->setValue("Yellow1", yellow.x());
-    settings->setValue("Yellow2", yellow.y());
-    settings->endGroup();
     settings->beginGroup("ProductInfo");
     settings->setValue("Manufacturer", d->testData->data("[制造厂商]"));
     settings->setValue("ProductName", d->testData->data("[产品名称]"));
@@ -164,12 +142,6 @@ void HTestWidget2000DC::setProbe(bool b)
     d->testData->setData("[使用光探头]", b);
     d->energyWidget->setProgressBarVisible("[光采样比率]", b);
     d->testSetWidget->handleOperation("<启用光挡位>", b);
-}
-
-void HTestWidget2000DC::editQuantum()
-{
-    HQuantumEditDialog dlg(this);
-    dlg.exec();
 }
 
 void HTestWidget2000DC::editProductInfo()

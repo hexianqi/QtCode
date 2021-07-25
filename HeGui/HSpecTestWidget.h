@@ -50,6 +50,7 @@ protected:
     void resetGrade();
     void exportDatabase();
     void removeResult();
+    void editQuantum();
     void setExportPath();
     void setSyncFile();
 };

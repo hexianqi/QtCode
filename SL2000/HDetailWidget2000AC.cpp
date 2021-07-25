@@ -51,4 +51,12 @@ void HDetailWidget2000AC::refreshWidget()
     ui->lineEdit_052->setText(d->testData->toString("[交流电流]"));
     ui->lineEdit_053->setText(d->testData->toString("[交流电功率]"));
     ui->lineEdit_054->setText(d->testData->toString("[功率因数]"));
+    ui->lineEdit_061->setText(d->testData->toString("[光量子(380-780)]"));
+    ui->lineEdit_062->setText(d->testData->toString("[光量子(400-700)]"));
+    ui->lineEdit_063->setText(d->testData->toString("[光量子(700-800)]"));
+    ui->lineEdit_064->setText(d->testData->toString("[荧光蓝光比]"));
+    ui->lineEdit_071->setText(d->testData->toString("[光合光量子通量]"));
+    ui->lineEdit_072->setText(d->testData->toString("[光合有效辐射通量]"));
+    ui->lineEdit_073->setText(d->testData->toString("[光合光子通量效率]"));
+    ui->lineEdit_074->setText(d->testData->toString("[荧光效能]"));
 }

@@ -44,7 +44,9 @@ HBuilder2000ACPrivate::HBuilder2000ACPrivate()
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
+                             << "Ra" << "R9" << "Rx" << "SDCM"
+                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
+                             << "EnergyGraph";
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因素]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("QualityOptionals",            QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因素]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
@@ -173,7 +175,17 @@ void HBuilder2000AC::buildDatabase()
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
-    HSqlHelper::setVersion("Spec", 0x01010101);
+    if (db->contains("Spec"))
+    {
+        auto version = HSqlHelper::getVersion("Spec");
+        // 1.1.1.3 添加列（光合）
+        if (version < 0x01010103)
+            HSqlHelper::addColumn("Spec", QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio");
+        // 1.1.1.4 添加列SDCM
+        if (version < 0x01010104)
+            HSqlHelper::addColumn("Spec", "SDCM");
+    }
+    HSqlHelper::setVersion("Spec", 0x01010104);
 
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
@@ -203,7 +215,14 @@ void HBuilder2000AC::buildMenu()
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
     auto quality = new QMenu(tr("品质(&Q)"));
+    auto device = new QMenu(tr("设备配置(&T)"));
     auto database = new QMenu(tr("数据库(&D)"));
+    auto account = new QMenu(tr("账号管理(&M)"));
+    calibrate->menuAction()->setProperty("Authority", 1);
+    grade->menuAction()->setProperty("Authority", 1);
+    adjust->menuAction()->setProperty("Authority", 1);
+    quality->menuAction()->setProperty("Authority", 1);
+    device->menuAction()->setProperty("Authority", 1);
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
@@ -213,13 +232,22 @@ void HBuilder2000AC::buildMenu()
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
+    device->addAction(d->guiFactory->createAction(tr("从设备读取数据(&G)..."), "HImportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
+    device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
+    account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
+    account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
+    d->mainWindow->insertMenu(device);
     d->mainWindow->insertMenu(database);
+    d->mainWindow->insertMenu(account);
+    d->mainWindow->setAuthority(0);
 }
 
 void HBuilder2000AC::buildTestWidget()

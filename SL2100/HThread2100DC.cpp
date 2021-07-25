@@ -88,7 +88,11 @@ void HThread2100DC::handleData()
     Q_D(HThread2100DC);
     auto f = d->testData->data("[光谱光通量]").toDouble();
     auto p = d->testData->data("[电功率]").toDouble();
-    d->testData->setData("[光效率]", p < 0.0001 ? 0.0 :  f / p);
+    auto x = d->testData->data("[光合光子通量效率]").toDouble();
+    auto y = d->testData->data("[荧光效能]").toDouble();
+    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+    d->testData->setData("[光合光子通量效率]", p < 0.00001 ? x :  x / p);
+    d->testData->setData("[荧光效能]", p < 0.00001 ? y :  y / p);
 }
 
 void HThread2100DC::init()

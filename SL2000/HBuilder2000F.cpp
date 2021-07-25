@@ -109,6 +109,12 @@ void HBuilder2000F::buildMenu()
     auto device = new QMenu(tr("设备配置(&T)"));
     auto test = new QMenu(tr("其他测试(&E)"));
     auto database = new QMenu(tr("数据库(&D)"));
+    auto account = new QMenu(tr("账号管理(&M)"));
+    calibrate->menuAction()->setProperty("Authority", 1);
+    grade->menuAction()->setProperty("Authority", 1);
+    adjust->menuAction()->setProperty("Authority", 1);
+    quality->menuAction()->setProperty("Authority", 1);
+    device->menuAction()->setProperty("Authority", 1);
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("电定标(&E)..."), "HElecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
@@ -127,6 +133,8 @@ void HBuilder2000F::buildMenu()
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
+    account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
+    account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
@@ -134,4 +142,6 @@ void HBuilder2000F::buildMenu()
     d->mainWindow->insertMenu(device);
     d->mainWindow->insertMenu(test);
     d->mainWindow->insertMenu(database);
+    d->mainWindow->insertMenu(account);
+    d->mainWindow->setAuthority(0);
 }

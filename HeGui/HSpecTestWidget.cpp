@@ -6,6 +6,7 @@
 #include "HSpecEnergyWidget.h"
 #include "HSpecChromatismChartView.h"
 #include "HResultTableWidget.h"
+#include "HQuantumEditDialog.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
@@ -135,6 +136,7 @@ void HSpecTestWidget::createAction()
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
+    d->actionQuantum = new QAction(tr("光量子配置(&P)"), this);
     d->actionExportPath = new QAction(tr("配置导出目录(&D)"), this);
     d->actionSyncFile = new QAction(tr("配置同步文件(&F)"), this);
     connect(d->actionPrintPreviewLast, &QAction::triggered, d->testResult, &ITestResult::printPreviewLast);
@@ -142,6 +144,7 @@ void HSpecTestWidget::createAction()
     connect(d->actionExportDatabase, &QAction::triggered, this, &HSpecTestWidget::exportDatabase);
     connect(d->actionRemove, &QAction::triggered, this, &HSpecTestWidget::removeResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
+    connect(d->actionQuantum, &QAction::triggered, this, &HSpecTestWidget::editQuantum);
     connect(d->actionExportPath, &QAction::triggered, this, &HSpecTestWidget::setExportPath);
     connect(d->actionSyncFile, &QAction::triggered, this, &HSpecTestWidget::setSyncFile);
 }
@@ -160,6 +163,7 @@ void HSpecTestWidget::createMenu()
     Q_D(HSpecTestWidget);
     auto menu = new QMenu(tr("测试配置(&T)"));
     menu->addAction(d->actionAdjust);
+    menu->addAction(d->actionQuantum);
     menu->addAction(d->actionExportPath);
     menu->addAction(d->actionSyncFile);
     d->menus << menu;
@@ -244,6 +248,15 @@ void HSpecTestWidget::readSettings()
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
     d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
     settings->endGroup();
+    settings->beginGroup("Quantum");
+    d->testData->setData("[自动查找波段]", settings->value("AutoFind", false));
+    auto b1 = settings->value("Blue1", 400).toDouble();
+    auto b2 = settings->value("Blue2", 450).toDouble();
+    auto y1 = settings->value("Yellow1", 450).toDouble();
+    auto y2 = settings->value("Yellow2", 780).toDouble();
+    d->testData->setData("[蓝光范围]", QPointF(b1, b2));
+    d->testData->setData("[荧光范围]", QPointF(y1, y2));
+    settings->endGroup();
 }
 
 void HSpecTestWidget::writeSettings()
@@ -261,6 +274,15 @@ void HSpecTestWidget::writeSettings()
     settings->setValue("SyncInterval", d->syncInterval);
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
     settings->setValue("Offset", d->testData->data("[CCD偏差]"));
+    settings->endGroup();
+    settings->beginGroup("Quantum");
+    settings->setValue("AutoFind", d->testData->data("[自动查找波段]"));
+    auto blue = d->testData->data("[蓝光范围]").toPointF();
+    auto yellow = d->testData->data("[荧光范围]").toPointF();
+    settings->setValue("Blue1", blue.x());
+    settings->setValue("Blue2", blue.y());
+    settings->setValue("Yellow1", yellow.x());
+    settings->setValue("Yellow2", yellow.y());
     settings->endGroup();
     d->modified = false;
 }
@@ -366,6 +388,12 @@ void HSpecTestWidget::removeResult()
         d->testResult->remove(range.topRow(), range.rowCount());
         d->tableWidget->removeRows(range.topRow(), range.rowCount());
     }
+}
+
+void HSpecTestWidget::editQuantum()
+{
+    HQuantumEditDialog dlg(this);
+    dlg.exec();
 }
 
 void HSpecTestWidget::setExportPath()

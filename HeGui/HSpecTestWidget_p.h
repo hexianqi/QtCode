@@ -43,6 +43,7 @@ public:
     QAction *actionSyncFile = nullptr;
     QAction *actionRemove = nullptr;
     QAction *actionAdjust = nullptr;
+    QAction *actionQuantum = nullptr;
 
 public:
     IConfigManage *configManage = nullptr;

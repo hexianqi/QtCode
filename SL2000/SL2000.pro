@@ -22,9 +22,9 @@ DEFINES     += \
             QT_DEPRECATED_WARNINGS \
 #            SL2000 \
 #            SL2000AC \
-            SL2000DC \
-#            SL2000F \
-            SIMULATE
+#            SL2000DC \
+            SL2000F \
+#            SIMULATE
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.

@@ -10,6 +10,5 @@ public:
 
 public:
     QAction *actionProbe = nullptr;
-    QAction *actionQuantum = nullptr;
     QAction *actionProductInfo = nullptr;
 };

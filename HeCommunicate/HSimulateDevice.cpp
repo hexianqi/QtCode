@@ -48,7 +48,7 @@ bool HSimulateDevice::getData(HActionType action, QVector<uchar> &value, int /*d
     }
     else if (action == ACT_GET_ELEC_DATA)
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 10; i++)
             value << simulate(255);
     }
     else
