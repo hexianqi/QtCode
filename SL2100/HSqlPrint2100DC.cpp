@@ -37,10 +37,13 @@ QString HSqlPrint2100DC::textForExcel()
     out << toWhole("MeasuredVoltage")   << "\t" << toWhole("MeasuredCurrent")   << "\t" << toWhole("ElecPower")             << endl;
     out << toWhole("LuminousFluxSpec")  << "\t" << toWhole("LuminousPower")     << "\t" << toWhole("LuminousEfficiency")    << endl;
     out << toWhole("PeakWave")          << "\t" << toWhole("PeakBandwidth")     << "\t" << toWhole("DominantWave")          << endl;
-    out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << endl;
+    out << toWhole("ColorPurity")       << "\t" << toWhole("ColorTemperature")  << "\t" << toWhole("SDCM")                  << endl;
     out << toWhole("CC_xy")             << "\t" << toWhole("CC_uvp")            << "\t" << toWhole("Duv")                   << endl;
     out << toWhole("RedRatio")          << "\t" << toWhole("GreenRadio")        << "\t" << toWhole("BlueRatio")             << endl;
-    out << toWhole("Ra")                << "\t" << toWhole("R9")                << "\t" << toWhole("Rx")                << endl;
+    out << toWhole("Ra")                << "\t" << toWhole("R9")                << "\t" << toWhole("Rx")                    << endl;
+    out << toWhole("Photon380_780")     << "\t" << toWhole("Photon400_700")     << "\t" << toWhole("Photon700_800")         << endl;
+    out << toWhole("PPF")               << "\t" << toWhole("PRF")               << "\t" << toWhole("PPFE")                  << endl;
+    out << toWhole("FluorescenceEfficiency")                                    << "\t" << toWhole("FluorescenceRatio")     << endl;
     out << endl;
     out << tr("光谱数据")                           << endl;
     out << tr("波长(nm)\t能量百分比(%)")            << endl;
@@ -75,10 +78,10 @@ void HSqlPrint2100DC::paintBody(QPainter *painter, double y1, double y2, int /*p
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("电参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 输出电压：%1 V    输出电流：%2 mA ").arg(toString("OutputVoltage"), toString("OutputCurrent"));
+    text = tr(" 输出电压：%1V    输出电流：%2mA ").arg(toString("OutputVoltage"), toString("OutputCurrent"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W").arg(toString("MeasuredVoltage"), toString("MeasuredCurrent"), toString("ElecPower"));
+    text = tr(" 实测电压：%1V    实测电流：%2mA    电功率：%3W").arg(toString("MeasuredVoltage"), toString("MeasuredCurrent"), toString("ElecPower"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     // 颜色参数
@@ -90,11 +93,11 @@ void HSqlPrint2100DC::paintBody(QPainter *painter, double y1, double y2, int /*p
                .arg(toString("CC_x"), toString("CC_y"), toString("CC_up"), toString("CC_vp"), toString("Duv"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft |  Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3")
-               .arg(toString("ColorTemperature"), toString("DominantWave"), toString("ColorPurity"));
+    text = tr(" 相关色温：Tc = %1K    主波长：λd = %2nm    色纯度：Purity = %3    色容差：%4SDCM")
+               .arg(toString("ColorTemperature"), toString("DominantWave"), toString("ColorPurity"), toString("SDCM"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr("色比：R = %1 ％  G = %2 ％  B = %3 ％    峰值波长：λp = %4 nm    峰值带宽：Δλd = %5 nm")
+    text = tr("色比：R = %1％  G = %2％  B = %3％    峰值波长：λp = %4nm    峰值带宽：Δλd = %5nm")
                .arg(toString("RedRatio"), toString("GreenRadio"), toString("BlueRatio"), toString("PeakWave"), toString("PeakBandwidth"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
@@ -117,7 +120,16 @@ void HSqlPrint2100DC::paintBody(QPainter *painter, double y1, double y2, int /*p
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W").arg(toString("LuminousFluxSpec"), toString("LuminousPower"), toString("LuminousEfficiency"));
+    text = tr(" 光通量：Φ = %1lm    光功率：Φ e = %2    光效率：%3lm/W").arg(toString("LuminousFluxSpec"), toString("LuminousPower"), toString("LuminousEfficiency"));
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+    y += h2;
+    text = tr(" 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]").arg(toString("Photon380_780"), toString("Photon400_700"), toString("Photon700_800"));
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+    y += h2;
+    text = tr(" 光合光量子通量PPF：%1umol/s    光合有效辐射通量PRF：%2mW").arg(toString("PPF"), toString("PRF"));
+    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+    y += h2;
+    text = tr(" 光合光子通量效率Eff(PPF)：%1umol/s/W    荧光效能：%2    荧光蓝光比：%3").arg(toString("PPFE"), toString("FluorescenceEfficiency"), toString("FluorescenceRatio"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
 

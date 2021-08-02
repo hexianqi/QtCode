@@ -86,11 +86,11 @@
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(85, 0, 0);</string>
+       </property>
        <property name="text">
         <string>波 长 定 标</string>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -114,6 +114,9 @@
          <width>90</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 170, 255);</string>
        </property>
        <property name="text">
         <string>积 分 定 标</string>
@@ -144,6 +147,9 @@
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 255);</string>
+       </property>
        <property name="text">
         <string>光通量定标</string>
        </property>
@@ -173,6 +179,9 @@
          <height>30</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(85, 0, 255);</string>
+       </property>
        <property name="text">
         <string>保存标准曲线</string>
        </property>
@@ -201,6 +210,9 @@
          <width>90</width>
          <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);</string>
        </property>
        <property name="text">
         <string>清 除</string>

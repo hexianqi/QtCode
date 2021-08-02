@@ -45,7 +45,9 @@ HBuilder2100DCPrivate::HBuilder2100DCPrivate()
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
+                             << "Ra" << "R9" << "Rx" << "SDCM"
+                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
+                             << "EnergyGraph";
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[电功率]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
@@ -176,7 +178,17 @@ void HBuilder2100DC::buildDatabase()
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
-    HSqlHelper::setVersion("Spec", 0x01010101);
+    if (db->contains("Spec"))
+    {
+        auto version = HSqlHelper::getVersion("Spec");
+        // 1.1.1.3 添加列（光合）
+        if (version < 0x01010103)
+            HSqlHelper::addColumn("Spec", QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio");
+        // 1.1.1.4 添加列SDCM
+        if (version < 0x01010104)
+            HSqlHelper::addColumn("Spec", "SDCM");
+    }
+    HSqlHelper::setVersion("Spec", 0x01010104);
 
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto info = d->sqlFactory->createProductInfo("HProductInfo");
@@ -208,6 +220,11 @@ void HBuilder2100DC::buildMenu()
     auto quality = new QMenu(tr("品质(&Q)"));
     auto test = new QMenu(tr("其他测试(&E)"));
     auto database = new QMenu(tr("数据库(&D)"));
+    auto account = new QMenu(tr("账号管理(&M)"));
+    calibrate->menuAction()->setProperty("Authority", 1);
+    grade->menuAction()->setProperty("Authority", 1);
+    adjust->menuAction()->setProperty("Authority", 1);
+    quality->menuAction()->setProperty("Authority", 1);
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
@@ -220,12 +237,16 @@ void HBuilder2100DC::buildMenu()
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
+    account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
+    account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
     d->mainWindow->insertMenu(test);
     d->mainWindow->insertMenu(database);
+    d->mainWindow->insertMenu(account);
+    d->mainWindow->setAuthority(0);
 }
 
 void HBuilder2100DC::buildTestWidget()
