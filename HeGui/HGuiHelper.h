@@ -19,6 +19,7 @@ class HE_GUI_EXPORT HGuiHelper
 public:
     static QMainWindow *decoratorInMainWindow(ITestWidget *widget, QWidget *parent = nullptr);
     static QDialog *decoratorInDialog(QWidget *widget, QWidget *parent = nullptr);
+    static QString encodePassword(QString);
 };
 
 HE_GUI_END_NAMESPACE

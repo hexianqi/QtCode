@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/HChangePasswordDialog.h \
     $$PWD/HLoginDialog.h \
     $$PWD/HQuantumEditDialog.h \
     $$PWD/HQuantumEditDialog_p.h \
@@ -10,11 +11,13 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractTestDataEditDialog.cpp \
+    $$PWD/HChangePasswordDialog.cpp \
     $$PWD/HLoginDialog.cpp \
     $$PWD/HQuantumEditDialog.cpp \
     $$PWD/HTestDataEditDialog.cpp
 
 FORMS   +=  \
+    $$PWD/HChangePasswordDialog.ui \
     $$PWD/HLoginDialog.ui \
     $$PWD/HQuantumEditDialog.ui \
     $$PWD/HTestDataEditDialog.ui
