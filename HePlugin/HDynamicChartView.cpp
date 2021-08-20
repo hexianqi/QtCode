@@ -58,6 +58,30 @@ void HDynamicChartView::addPoint(QPointF point)
     }
 }
 
+void HDynamicChartView::replace(QVector<QPointF> points)
+{
+    Q_D(HDynamicChartView);
+    auto x1 = 0.0;
+    auto x2 = 1.0;
+    auto y1 = 0.0;
+    auto y2 = 1.0;
+    for (auto p : points)
+    {
+        if (p.x() < x1)
+            x1 = p.x();
+        if (p.x() > x2)
+            x2 = p.x();
+        if (p.y() < y1)
+            y1 = p.y();
+        if (p.y() > y2)
+            y2 = p.y();
+    }
+    d->lineSeries->replace(points);
+    d->scatterSeries->replace(points);
+    d->axisX->setRange(qFloor(x1) , qCeil(x2));
+    d->axisY->setRange(qFloor(y1) , qCeil(y2));
+}
+
 void HDynamicChartView::init()
 {
     Q_D(HDynamicChartView);

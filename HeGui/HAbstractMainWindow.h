@@ -66,6 +66,7 @@ protected:
 
     void readSettings();
     void writeSettings();
+    void updateAuthority(QList<QAction *> actions, int value);
 
 protected:
     QScopedPointer<HAbstractMainWindowPrivate> d_ptr;

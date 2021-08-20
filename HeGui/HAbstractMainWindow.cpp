@@ -45,10 +45,18 @@ HAbstractMainWindow::~HAbstractMainWindow()
 
 void HAbstractMainWindow::setAuthority(int value)
 {
-    d_ptr->menuImport->menuAction()->setVisible(value >= 1);
-    d_ptr->menuExport->menuAction()->setVisible(value >= 1);
-    for (auto action : menuBar()->actions())
-        action->setVisible(value >= action->property("Authority").toInt());
+    updateAuthority(menuBar()->actions(), value);
+}
+
+void HAbstractMainWindow::updateAuthority(QList<QAction *> actions, int value)
+{
+    for (auto action : actions)
+    {
+        action->setVisible(value >= action->property("authority").toInt());
+        auto menu = action->menu();
+        if (menu != nullptr)
+            updateAuthority(menu->actions(), value);
+    }
 }
 
 QAction *HAbstractMainWindow::insertMenu(QMenu *menu)
@@ -145,8 +153,10 @@ void HAbstractMainWindow::createMenu()
     {
         d_ptr->menuFile->addSeparator();
         d_ptr->menuImport = d_ptr->menuFile->addMenu(tr("导入(&I)"));
-        d_ptr->menuExport = d_ptr->menuFile->addMenu(tr("导出(&E)"));
+        d_ptr->menuImport->setProperty("Authority", 1);
         d_ptr->menuImport->addActions(d_ptr->actionGroupImport->actions());
+        d_ptr->menuExport = d_ptr->menuFile->addMenu(tr("导出(&E)"));
+        d_ptr->menuExport->setProperty("Authority", 1);
         d_ptr->menuExport->addActions(d_ptr->actionGroupExport->actions());
     }
     d_ptr->menuFile->addSeparator();

@@ -4,90 +4,90 @@
 <context>
     <name>HAbstractMainWindow</name>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="97"/>
+        <location filename="HAbstractMainWindow.cpp" line="113"/>
         <source>打开(&amp;O)...</source>
         <translation>&amp;Open...</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="99"/>
+        <location filename="HAbstractMainWindow.cpp" line="115"/>
         <source>
 打开</source>
         <translation>
 Open</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="101"/>
+        <location filename="HAbstractMainWindow.cpp" line="117"/>
         <source>保存(&amp;S)</source>
         <translation>&amp;Save</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="103"/>
+        <location filename="HAbstractMainWindow.cpp" line="119"/>
         <source>
 保存</source>
         <translation>
 Save</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="105"/>
+        <location filename="HAbstractMainWindow.cpp" line="121"/>
         <source>另存为(&amp;A)...</source>
         <translation>Save &amp;as...</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="107"/>
+        <location filename="HAbstractMainWindow.cpp" line="123"/>
         <source>
 另存为</source>
         <translation>
 Save as</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="109"/>
+        <location filename="HAbstractMainWindow.cpp" line="125"/>
         <source>退出(&amp;X)</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="111"/>
+        <location filename="HAbstractMainWindow.cpp" line="127"/>
         <source>
 退出</source>
         <translation>
 Exit</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="112"/>
+        <location filename="HAbstractMainWindow.cpp" line="128"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="113"/>
+        <location filename="HAbstractMainWindow.cpp" line="129"/>
         <source>关于(&amp;A)...</source>
         <translation>&amp;About...</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="132"/>
+        <location filename="HAbstractMainWindow.cpp" line="148"/>
         <source>文件(&amp;F)</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="139"/>
+        <location filename="HAbstractMainWindow.cpp" line="155"/>
         <source>导入(&amp;I)</source>
         <translation>&amp;Import</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="140"/>
+        <location filename="HAbstractMainWindow.cpp" line="158"/>
         <source>导出(&amp;E)</source>
         <translation>&amp;Export</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="146"/>
+        <location filename="HAbstractMainWindow.cpp" line="164"/>
         <source>帮助(&amp;H)</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="156"/>
+        <location filename="HAbstractMainWindow.cpp" line="174"/>
         <source>商标(&amp;L)</source>
         <translation>&amp;Logo</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="236"/>
+        <location filename="HAbstractMainWindow.cpp" line="256"/>
         <source>
 “%1”设备连接失败！错误原因“%2”。
 </source>
@@ -96,7 +96,7 @@ Exit</translation>
 </translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="246"/>
+        <location filename="HAbstractMainWindow.cpp" line="266"/>
         <source>
 指令“%1”错误！错误原因是“%2”
 </source>
@@ -105,18 +105,18 @@ Instruction &apos;%1&apos; is wrong! The reason for the error &apos;%2&apos;
 </translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="258"/>
-        <location filename="HAbstractMainWindow.cpp" line="268"/>
+        <location filename="HAbstractMainWindow.cpp" line="278"/>
+        <location filename="HAbstractMainWindow.cpp" line="288"/>
         <source>%1:&lt;font color=#FF0000&gt;关闭&lt;/font&gt;</source>
         <translation>%1:&lt;font color=#FF0000&gt;Close&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="268"/>
+        <location filename="HAbstractMainWindow.cpp" line="288"/>
         <source>%1:&lt;font color=#00FF00&gt;开启&lt;/font&gt;</source>
         <translation>%1:&lt;font color=#00FF00&gt;Open&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="282"/>
+        <location filename="HAbstractMainWindow.cpp" line="302"/>
         <source>
 打开文件成功！
 </source>
@@ -125,8 +125,8 @@ Open file successfully!
 </translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="291"/>
-        <location filename="HAbstractMainWindow.cpp" line="298"/>
+        <location filename="HAbstractMainWindow.cpp" line="311"/>
+        <location filename="HAbstractMainWindow.cpp" line="318"/>
         <source>
 保存文件成功！
 </source>
@@ -135,7 +135,7 @@ Save file successfully!
 </translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="306"/>
+        <location filename="HAbstractMainWindow.cpp" line="326"/>
         <source>
 导入成功！
 </source>
@@ -144,7 +144,7 @@ Import success!
 </translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="313"/>
+        <location filename="HAbstractMainWindow.cpp" line="333"/>
         <source>
 导出成功！
 </source>
@@ -153,28 +153,28 @@ Export success!
 </translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="321"/>
+        <location filename="HAbstractMainWindow.cpp" line="341"/>
         <source>&lt;h2&gt;%1&lt;/h2&gt;&lt;p&gt;</source>
         <translation>&lt;h2&gt;%1&lt;/h2&gt;&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="322"/>
+        <location filename="HAbstractMainWindow.cpp" line="342"/>
         <source>&lt;p&gt;版本 %1&lt;p&gt;</source>
         <translation>&lt;p&gt;Version %1&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="323"/>
-        <location filename="HAbstractMainWindow.cpp" line="325"/>
+        <location filename="HAbstractMainWindow.cpp" line="343"/>
+        <location filename="HAbstractMainWindow.cpp" line="345"/>
         <source>&lt;p&gt;%1&lt;p&gt;</source>
         <translation>&lt;p&gt;%1&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="324"/>
+        <location filename="HAbstractMainWindow.cpp" line="344"/>
         <source>&lt;p&gt;版权所有：2017-2019 %1 保留所有权利。&lt;p&gt;</source>
         <translation>&lt;p&gt;Copyright 2017-2019 %1 All Rights Reserved.&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="HAbstractMainWindow.cpp" line="326"/>
+        <location filename="HAbstractMainWindow.cpp" line="346"/>
         <source>关于 %1</source>
         <translation>About %1</translation>
     </message>
@@ -949,6 +949,60 @@ Import success!
     </message>
 </context>
 <context>
+    <name>HLoginDialog</name>
+    <message>
+        <location filename="HLoginDialog.ui" line="26"/>
+        <source>登入</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HLoginDialog.ui" line="44"/>
+        <source>用户名：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HLoginDialog.ui" line="76"/>
+        <source>密码：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HLoginDialog.ui" line="123"/>
+        <source>确 定</source>
+        <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <location filename="HLoginDialog.ui" line="146"/>
+        <source>取 消</source>
+        <translation type="unfinished">Cancel</translation>
+    </message>
+</context>
+<context>
+    <name>HLoginInHandler</name>
+    <message>
+        <location filename="HLoginInHandler.cpp" line="39"/>
+        <source>错误</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HLoginInHandler.cpp" line="39"/>
+        <source>用户名密码错误！</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HLoginOutHandler</name>
+    <message>
+        <location filename="HLoginOutHandler.cpp" line="31"/>
+        <source>提示</source>
+        <translation type="unfinished">Tips</translation>
+    </message>
+    <message>
+        <location filename="HLoginOutHandler.cpp" line="31"/>
+        <source>是否要登出？</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HLuminousCalibrateDialog</name>
     <message>
         <location filename="HLuminousCalibrateDialog.ui" line="14"/>
@@ -1148,6 +1202,50 @@ Import success!
     </message>
 </context>
 <context>
+    <name>HQuantumEditDialog</name>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="26"/>
+        <source>Dialog</source>
+        <translation type="unfinished">Dialog</translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="44"/>
+        <source>蓝光范围：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="66"/>
+        <location filename="HQuantumEditDialog.ui" line="116"/>
+        <source>-</source>
+        <translation type="unfinished">-</translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="94"/>
+        <source>荧光范围：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="150"/>
+        <source>确 定</source>
+        <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="173"/>
+        <source>取 消</source>
+        <translation type="unfinished">Cancel</translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.ui" line="213"/>
+        <source>自动查找</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HQuantumEditDialog.cpp" line="72"/>
+        <source>光量子配置</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HSequentialGradeWidget</name>
     <message>
         <location filename="HSequentialGradeWidget.ui" line="14"/>
@@ -1310,27 +1408,27 @@ Import success!
         <translation>Spectrum</translation>
     </message>
     <message>
-        <location filename="HSpecCalibrateWidget.ui" line="90"/>
+        <location filename="HSpecCalibrateWidget.ui" line="93"/>
         <source>波 长 定 标</source>
         <translation>Wavelength</translation>
     </message>
     <message>
-        <location filename="HSpecCalibrateWidget.ui" line="119"/>
+        <location filename="HSpecCalibrateWidget.ui" line="122"/>
         <source>积 分 定 标</source>
         <translation>Integral</translation>
     </message>
     <message>
-        <location filename="HSpecCalibrateWidget.ui" line="148"/>
+        <location filename="HSpecCalibrateWidget.ui" line="154"/>
         <source>光通量定标</source>
         <translation>Luminous flux</translation>
     </message>
     <message>
-        <location filename="HSpecCalibrateWidget.ui" line="177"/>
+        <location filename="HSpecCalibrateWidget.ui" line="186"/>
         <source>保存标准曲线</source>
         <translation>Save curve</translation>
     </message>
     <message>
-        <location filename="HSpecCalibrateWidget.ui" line="206"/>
+        <location filename="HSpecCalibrateWidget.ui" line="218"/>
         <source>清 除</source>
         <translation>Clear</translation>
     </message>
@@ -1805,94 +1903,99 @@ Import success!
 <context>
     <name>HSpecTestWidget</name>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="89"/>
+        <location filename="HSpecTestWidget.cpp" line="90"/>
         <source>保存数据</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="89"/>
+        <location filename="HSpecTestWidget.cpp" line="90"/>
         <source>是否保存到数据库？</source>
         <translation>Save to database?</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="121"/>
+        <location filename="HSpecTestWidget.cpp" line="122"/>
         <source>打印预览(&amp;V)</source>
         <translation>&amp;Preview</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="123"/>
+        <location filename="HSpecTestWidget.cpp" line="124"/>
         <source>打印预览</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="125"/>
-        <location filename="HSpecTestWidget.cpp" line="129"/>
+        <location filename="HSpecTestWidget.cpp" line="126"/>
+        <location filename="HSpecTestWidget.cpp" line="130"/>
         <source>保存数据库(&amp;D)</source>
         <translation>&amp;Save database</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="127"/>
-        <location filename="HSpecTestWidget.cpp" line="131"/>
+        <location filename="HSpecTestWidget.cpp" line="128"/>
+        <location filename="HSpecTestWidget.cpp" line="132"/>
         <source>保存数据库</source>
         <translation>Save database</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="132"/>
+        <location filename="HSpecTestWidget.cpp" line="133"/>
         <source>删除记录(&amp;R)</source>
         <translation>&amp;Delete</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="134"/>
+        <location filename="HSpecTestWidget.cpp" line="135"/>
         <source>删除记录</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="135"/>
+        <location filename="HSpecTestWidget.cpp" line="136"/>
         <source>使用调整(&amp;A)</source>
         <translation>&amp;Enable adjust</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="138"/>
+        <location filename="HSpecTestWidget.cpp" line="139"/>
+        <source>光量子配置(&amp;P)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="HSpecTestWidget.cpp" line="140"/>
         <source>配置导出目录(&amp;D)</source>
         <translation>&amp;Export directory</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="139"/>
+        <location filename="HSpecTestWidget.cpp" line="141"/>
         <source>配置同步文件(&amp;F)</source>
         <translation>&amp;Synchronize file</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="161"/>
+        <location filename="HSpecTestWidget.cpp" line="164"/>
         <source>测试配置(&amp;T)</source>
         <translation>&amp;Test</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="171"/>
+        <location filename="HSpecTestWidget.cpp" line="175"/>
         <source>设置(&amp;S)</source>
         <translation>&amp;Set</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="172"/>
+        <location filename="HSpecTestWidget.cpp" line="176"/>
         <source>操作(&amp;O)</source>
         <translation>&amp;Operate</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="201"/>
+        <location filename="HSpecTestWidget.cpp" line="205"/>
         <source>当次结果</source>
         <translation>Current</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="202"/>
+        <location filename="HSpecTestWidget.cpp" line="206"/>
         <source>结果列表</source>
         <translation>List</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="372"/>
+        <location filename="HSpecTestWidget.cpp" line="402"/>
         <source>导出目录</source>
         <translation>Export directory</translation>
     </message>
     <message>
-        <location filename="HSpecTestWidget.cpp" line="379"/>
+        <location filename="HSpecTestWidget.cpp" line="409"/>
         <source>同步文件</source>
         <translation>Synchronize file</translation>
     </message>
@@ -1992,8 +2095,9 @@ Import success!
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="39"/>
-        <source>清除结果(&amp;R)...</source>
-        <translation>&amp;Clear</translation>
+        <source>清除结果(&amp;R)</source>
+        <oldsource>清除结果(&amp;R)...</oldsource>
+        <translation type="unfinished">&amp;Clear</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="41"/>

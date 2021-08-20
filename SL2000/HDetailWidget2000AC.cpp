@@ -32,7 +32,7 @@ void HDetailWidget2000AC::refreshWidget()
     ui->lineEdit_001->setText(d->testData->toString("[主波长]"));
     ui->lineEdit_002->setText(d->testData->toString("[峰值波长]"));
     ui->lineEdit_003->setText(d->testData->toString("[峰值带宽]"));
-    ui->lineEdit_004->setText(d->testData->toString("[光通量]"));
+    ui->lineEdit_004->setText(d->testData->toString("[光谱光通量]"));
     ui->lineEdit_011->setText(d->testData->toString("[色坐标]"));
     ui->lineEdit_012->setText(d->testData->toString("[色坐标uvp]"));
     ui->lineEdit_013->setText(d->testData->toString("[Duv]"));

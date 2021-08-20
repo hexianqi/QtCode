@@ -36,7 +36,7 @@ void HTestWidget::createAction()
     d->actionStop->setIconText(tr("停止"));
     d->actionStop->setShortcut(Qt::Key_F4);
     d->actionStop->setEnabled(false);
-    d->actionClear = new QAction(tr("清除结果(&R)..."), this);
+    d->actionClear = new QAction(tr("清除结果(&R)"), this);
     d->actionClear->setIcon(QIcon(":/image/Clear.png"));
     d->actionClear->setIconText(tr("清除结果"));
     d->actionExportExcel = new QAction(tr("导出结果(&E)"), this);

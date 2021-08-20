@@ -41,7 +41,7 @@ bool HPowerFactorStrategy::handle(HActionType action)
             d->testData->setData("[交流电压]", data[0]);
             d->testData->setData("[交流电流]", data[1]);
             d->testData->setData("[交流电功率]", data[2]);
-            d->testData->setData("[功率因素]", data[3]);
+            d->testData->setData("[功率因数]", data[3]);
             return true;
         }
     }

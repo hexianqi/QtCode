@@ -269,6 +269,9 @@ void HBuilder2000DC::buildDatabase()
 void HBuilder2000DC::buildMenu()
 {
     Q_D(HBuilder2000DC);
+    QVariantMap param[2];
+    param[1].insert("authority", 1);
+    param[0].insert("property", param[1]);
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
@@ -277,11 +280,10 @@ void HBuilder2000DC::buildMenu()
     auto test = new QMenu(tr("其他测试(&E)"));
     auto database = new QMenu(tr("数据库(&D)"));
     auto account = new QMenu(tr("账号管理(&M)"));
-    calibrate->menuAction()->setProperty("Authority", 1);
-    grade->menuAction()->setProperty("Authority", 1);
-    adjust->menuAction()->setProperty("Authority", 1);
-    quality->menuAction()->setProperty("Authority", 1);
-    device->menuAction()->setProperty("Authority", 1);
+    calibrate->menuAction()->setProperty("authority", 1);
+    grade->menuAction()->setProperty("authority", 1);
+    quality->menuAction()->setProperty("authority", 1);
+    device->menuAction()->setProperty("authority", 1);
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("电定标(&E)..."), "HElecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
@@ -289,7 +291,7 @@ void HBuilder2000DC::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
-    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler"));
+    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
@@ -316,6 +318,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-//    widget->setVisible(false);
+    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

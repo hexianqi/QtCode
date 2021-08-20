@@ -4,7 +4,7 @@
 <context>
     <name>HIntegrateThread</name>
     <message>
-        <location filename="HIntegrateThread.cpp" line="47"/>
+        <location filename="HIntegrateThread.cpp" line="48"/>
         <source>线程</source>
         <translation>Thread</translation>
     </message>
