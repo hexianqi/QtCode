@@ -113,7 +113,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("ACVoltage",               "[交流电压]");
     hashFieldType.insert("ACCurrent",               "[交流电流]");
     hashFieldType.insert("ACPower",                 "[交流电功率]");
-    hashFieldType.insert("ACFactor",                "[功率因素]");
+    hashFieldType.insert("ACFactor",                "[功率因数]");
     // 光合
     hashFieldType.insert("Photon",                  "[光量子]");
     hashFieldType.insert("Photon380_780",           "[光量子(380-780)]");

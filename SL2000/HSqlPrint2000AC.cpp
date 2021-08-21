@@ -81,7 +81,7 @@ void HSqlPrint2000AC::paintBody(QPainter *painter, double y1, double y2, int /*p
     text = tr(" 交流电压：%1V    交流电流：%2A ").arg(toString("ACVoltage"), toString("ACCurrent"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
-    text = tr(" 交流电功率：%1W    功率因素：%2 ").arg(toString("ACPower"), toString("ACFactor"));
+    text = tr(" 交流电功率：%1W    功率因数：%2 ").arg(toString("ACPower"), toString("ACFactor"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     // 颜色参数

@@ -92,6 +92,7 @@ IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param)
 {
     auto p = new HAction(this);
+    p->initialize(param);
     p->setText(text);
     p->setHandler(createHandler(type, param));
     return p;

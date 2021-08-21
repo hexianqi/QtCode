@@ -214,7 +214,7 @@
 </phrase>
 <phrase>
     <source>光效率</source>
-    <target>Luminous efficacy</target>
+    <target>Luminous efficiency</target>
 </phrase>
 <phrase>
     <source>测试时间</source>
@@ -911,5 +911,25 @@ Import success!
 <phrase>
     <source>测试单位</source>
     <target>Test institute</target>
+</phrase>
+<phrase>
+    <source>光量子</source>
+    <target>Photon</target>
+</phrase>
+<phrase>
+    <source>光合光量子通量</source>
+    <target>PPF</target>
+</phrase>
+<phrase>
+    <source>光合光子通量效率</source>
+    <target>PPFE</target>
+</phrase>
+<phrase>
+    <source>光合有效辐射通量</source>
+    <target>PRF</target>
+</phrase>
+<phrase>
+    <source>荧光效能</source>
+    <target>Fluorescence efficiency</target>
 </phrase>
 </QPH>

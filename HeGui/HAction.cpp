@@ -23,6 +23,12 @@ void HAction::initialize(QVariantMap param)
         setHandler(FromVariant(IHandler, param.value("handler")));
     if (param.contains("data"))
         setData(param.value("data"));
+    if (param.contains("property"))
+    {
+        auto value = param.value("property").toMap();
+        for (auto i = value.begin(); i != value.end(); i++)
+            setProperty(i.key().toUtf8().constData(), i.value());
+    }
 }
 
 QString HAction::typeName()

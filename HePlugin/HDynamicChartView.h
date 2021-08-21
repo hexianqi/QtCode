@@ -26,7 +26,8 @@ public:
 
 public:
     void clear();
-    void addPoint(QPointF point);
+    void addPoint(QPointF);
+    void replace(QVector<QPointF>);
 
 protected:
     HDynamicChartView(HDynamicChartViewPrivate &p, QWidget *parent = nullptr);

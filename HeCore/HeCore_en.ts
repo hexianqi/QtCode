@@ -394,328 +394,373 @@
         <translation>Thread no handle</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="481"/>
+        <location filename="HCoreGlobalInstance.cpp" line="494"/>
         <source>像元</source>
         <translation>Pels</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="482"/>
+        <location filename="HCoreGlobalInstance.cpp" line="495"/>
         <source>波长</source>
         <translation>Wavelength</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="484"/>
+        <location filename="HCoreGlobalInstance.cpp" line="497"/>
         <source>峰值波长</source>
         <oldsource>[峰值波长]</oldsource>
         <translation>Peak wavelength</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="485"/>
+        <location filename="HCoreGlobalInstance.cpp" line="498"/>
         <source>峰值带宽</source>
         <oldsource>[峰值带宽]</oldsource>
         <translation>Peak bandwidth</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="486"/>
+        <location filename="HCoreGlobalInstance.cpp" line="499"/>
         <source>主波长</source>
         <oldsource>[主波长]</oldsource>
         <translation>Dominant</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="487"/>
+        <location filename="HCoreGlobalInstance.cpp" line="500"/>
         <source>色纯度</source>
         <oldsource>[色纯度]</oldsource>
         <translation>Color&#xa0;purity</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="488"/>
+        <location filename="HCoreGlobalInstance.cpp" line="501"/>
         <source>色温</source>
         <oldsource>[色温]</oldsource>
         <translation>Color temperature</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="489"/>
+        <location filename="HCoreGlobalInstance.cpp" line="502"/>
         <source>显色指数Ra</source>
         <oldsource>[显色指数Ra]</oldsource>
         <translation>Ra</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="490"/>
+        <location filename="HCoreGlobalInstance.cpp" line="503"/>
         <source>显色指数R9</source>
         <oldsource>[显色指数R9]</oldsource>
         <translation>R9</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="491"/>
+        <location filename="HCoreGlobalInstance.cpp" line="504"/>
         <source>显色指数Rx</source>
         <oldsource>[显色指数Rx]</oldsource>
         <translation>Rx</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="492"/>
+        <location filename="HCoreGlobalInstance.cpp" line="505"/>
         <source>色坐标</source>
         <oldsource>[色坐标]</oldsource>
         <translation>Color coordinate</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="493"/>
+        <location filename="HCoreGlobalInstance.cpp" line="506"/>
         <source>色坐标uv</source>
         <oldsource>[色坐标uv]</oldsource>
         <translation>Color coordinate (uv)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="494"/>
+        <location filename="HCoreGlobalInstance.cpp" line="507"/>
         <source>色坐标uvp</source>
         <oldsource>[色坐标uvp]</oldsource>
         <translation>Color coordinate (uv&apos;)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="495"/>
+        <location filename="HCoreGlobalInstance.cpp" line="508"/>
         <source>色坐标x</source>
         <oldsource>[色坐标x]</oldsource>
         <translation>Color coordinate (x)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="496"/>
+        <location filename="HCoreGlobalInstance.cpp" line="509"/>
         <source>色坐标y</source>
         <oldsource>[色坐标y]</oldsource>
         <translation>Color coordinate (y)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="497"/>
+        <location filename="HCoreGlobalInstance.cpp" line="510"/>
         <source>色坐标u</source>
         <oldsource>[色坐标u]</oldsource>
         <translation>Color coordinate (u)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="498"/>
+        <location filename="HCoreGlobalInstance.cpp" line="511"/>
         <source>色坐标v</source>
         <oldsource>[色坐标v]</oldsource>
         <translation>Color coordinate (v)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="499"/>
+        <location filename="HCoreGlobalInstance.cpp" line="512"/>
         <source>色坐标up</source>
         <oldsource>[色坐标up]</oldsource>
         <translation>Color coordinate (u&apos;)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="500"/>
+        <location filename="HCoreGlobalInstance.cpp" line="513"/>
         <source>色坐标vp</source>
         <oldsource>[色坐标vp]</oldsource>
         <translation>Color coordinate (v&apos;)</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="501"/>
+        <location filename="HCoreGlobalInstance.cpp" line="514"/>
         <source>Duv</source>
         <oldsource>[Duv]</oldsource>
         <translation>Duv</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="502"/>
+        <location filename="HCoreGlobalInstance.cpp" line="515"/>
         <source>红色比</source>
         <oldsource>[红色比]</oldsource>
         <translation>Red ratio</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="503"/>
+        <location filename="HCoreGlobalInstance.cpp" line="516"/>
         <source>蓝色比</source>
         <oldsource>[蓝色比]</oldsource>
         <translation>Blue ratio</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="504"/>
+        <location filename="HCoreGlobalInstance.cpp" line="517"/>
         <source>绿色比</source>
         <oldsource>[绿色比]</oldsource>
         <translation>Green ratio</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="505"/>
+        <location filename="HCoreGlobalInstance.cpp" line="518"/>
         <source>光谱能量百分比</source>
         <oldsource>[光谱能量百分比]</oldsource>
         <translation>Spectrum energy percentage</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="506"/>
-        <location filename="HCoreGlobalInstance.cpp" line="522"/>
+        <location filename="HCoreGlobalInstance.cpp" line="519"/>
+        <location filename="HCoreGlobalInstance.cpp" line="535"/>
         <source>光通量</source>
         <oldsource>光谱光通量</oldsource>
         <translation>Luminous flux</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="508"/>
+        <location filename="HCoreGlobalInstance.cpp" line="521"/>
         <source>色容差</source>
         <oldsource>[色容差]</oldsource>
         <translation>SDCM</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="510"/>
+        <location filename="HCoreGlobalInstance.cpp" line="523"/>
         <source>输出电压</source>
         <oldsource>[输出电压]</oldsource>
         <translation>Output voltage</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="511"/>
+        <location filename="HCoreGlobalInstance.cpp" line="524"/>
         <source>输出电流</source>
         <oldsource>[输出电流]</oldsource>
         <translation>Output current</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="512"/>
+        <location filename="HCoreGlobalInstance.cpp" line="525"/>
         <source>反向电压</source>
         <oldsource>[反向电压]</oldsource>
         <translation>Reverse voltage</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="513"/>
+        <location filename="HCoreGlobalInstance.cpp" line="526"/>
         <source>实测电压</source>
         <oldsource>[实测电压]</oldsource>
         <translation>Measured voltage</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="514"/>
+        <location filename="HCoreGlobalInstance.cpp" line="527"/>
         <source>实测电流</source>
         <oldsource>[实测电流]</oldsource>
         <translation>Measured current</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="515"/>
+        <location filename="HCoreGlobalInstance.cpp" line="528"/>
         <source>反向漏流</source>
         <oldsource>[反向漏流]</oldsource>
         <translation>Reverse current</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="516"/>
+        <location filename="HCoreGlobalInstance.cpp" line="529"/>
         <source>电功率</source>
         <oldsource>[电功率]</oldsource>
         <translation>Power</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="517"/>
+        <location filename="HCoreGlobalInstance.cpp" line="530"/>
         <source>交流电压</source>
         <oldsource>[交流电压]</oldsource>
         <translation>AC voltage</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="518"/>
+        <location filename="HCoreGlobalInstance.cpp" line="531"/>
         <source>交流电流</source>
         <oldsource>[交流电流]</oldsource>
         <translation>AC current</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="519"/>
+        <location filename="HCoreGlobalInstance.cpp" line="532"/>
         <source>交流电功率</source>
         <oldsource>[交流电功率]</oldsource>
         <translation>AC power</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="520"/>
+        <location filename="HCoreGlobalInstance.cpp" line="533"/>
         <source>功率因数</source>
         <oldsource>[功率因数]</oldsource>
         <translation>Power factor</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="523"/>
+        <location filename="HCoreGlobalInstance.cpp" line="536"/>
         <source>光强度</source>
         <oldsource>[光强度]</oldsource>
         <translation>Luminous intensity</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="524"/>
+        <location filename="HCoreGlobalInstance.cpp" line="537"/>
         <source>光亮度</source>
         <oldsource>[光亮度]</oldsource>
         <translation>Brightness</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="525"/>
+        <location filename="HCoreGlobalInstance.cpp" line="538"/>
         <source>光照度</source>
         <oldsource>[光照度]</oldsource>
         <translation>Illuminance</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="526"/>
+        <location filename="HCoreGlobalInstance.cpp" line="539"/>
         <source>光功率</source>
         <oldsource>[光功率]</oldsource>
         <translation>Luminous power</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="527"/>
+        <location filename="HCoreGlobalInstance.cpp" line="540"/>
         <source>光效率</source>
         <oldsource>[光效率]</oldsource>
         <translation>Luminous efficiency</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="529"/>
-        <location filename="HCoreGlobalInstance.cpp" line="531"/>
+        <location filename="HCoreGlobalInstance.cpp" line="542"/>
+        <source>光量子</source>
+        <translation>Photon</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="543"/>
+        <source>光量子(380-780nm)</source>
+        <translation>Photon(380-780nm)</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="544"/>
+        <source>光量子(400-700nm)</source>
+        <translation>Photon(400-700nm)</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="545"/>
+        <source>光量子(700-800nm)</source>
+        <translation>Photon(700-800nm)</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="546"/>
+        <source>光合光量子通量</source>
+        <translation>PPF</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="547"/>
+        <source>光合有效辐射通量</source>
+        <translation>PRF</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="548"/>
+        <source>光合光子通量效率</source>
+        <translation>PPFE</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="549"/>
+        <source>荧光效能</source>
+        <translation>Fluorescence efficiency</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="550"/>
+        <source>荧光蓝光比</source>
+        <translation>Fluorescence ratio</translation>
+    </message>
+    <message>
+        <location filename="HCoreGlobalInstance.cpp" line="552"/>
+        <location filename="HCoreGlobalInstance.cpp" line="554"/>
         <source>测试时间</source>
         <translation>Test time</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="530"/>
+        <location filename="HCoreGlobalInstance.cpp" line="553"/>
         <source>测试日期</source>
         <translation>Test date</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="533"/>
+        <location filename="HCoreGlobalInstance.cpp" line="556"/>
         <source>测量日期</source>
         <translation>Test date</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="532"/>
-        <location filename="HCoreGlobalInstance.cpp" line="534"/>
+        <location filename="HCoreGlobalInstance.cpp" line="555"/>
+        <location filename="HCoreGlobalInstance.cpp" line="557"/>
         <source>测量时间</source>
         <translation>Test time</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="535"/>
+        <location filename="HCoreGlobalInstance.cpp" line="558"/>
         <source>制造厂商</source>
         <translation>Manufacturer</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="536"/>
+        <location filename="HCoreGlobalInstance.cpp" line="559"/>
         <source>产品型号</source>
         <translation>Product model</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="537"/>
+        <location filename="HCoreGlobalInstance.cpp" line="560"/>
         <source>产品名称</source>
         <translation>Product name</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="538"/>
+        <location filename="HCoreGlobalInstance.cpp" line="561"/>
         <source>测试单位</source>
         <translation>Test institute</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="539"/>
+        <location filename="HCoreGlobalInstance.cpp" line="562"/>
         <source>测试员</source>
         <translation>Tester</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="540"/>
+        <location filename="HCoreGlobalInstance.cpp" line="563"/>
         <source>备注</source>
         <translation>Note</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="541"/>
+        <location filename="HCoreGlobalInstance.cpp" line="564"/>
         <source>样品编号</source>
         <oldsource>[样品编号]</oldsource>
         <translation>Sample number</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="542"/>
+        <location filename="HCoreGlobalInstance.cpp" line="565"/>
         <source>环境温度</source>
         <oldsource>[环境温度]</oldsource>
         <translation>Environment temperature</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="543"/>
+        <location filename="HCoreGlobalInstance.cpp" line="566"/>
         <source>环境湿度</source>
         <oldsource>[环境湿度]</oldsource>
         <translation>Environment humidity</translation>
     </message>
     <message>
-        <location filename="HCoreGlobalInstance.cpp" line="544"/>
+        <location filename="HCoreGlobalInstance.cpp" line="567"/>
         <source>分级</source>
         <translation>Grade</translation>
     </message>
