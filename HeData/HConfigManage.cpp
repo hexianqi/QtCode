@@ -16,7 +16,6 @@
 #include <QtCore/QJsonObject>
 #include <QtCore/QJsonDocument>
 #include <QtGui/QColor>
-
 #include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
@@ -324,17 +323,23 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     optional = set.toList();
     auto data = test->select(optional);
 
+    test->setData("[调整组]", "-");
     if (test->data("[使用调整]").toBool())
     {
         QVariantMap value;
         if (d_ptr->adjusts != nullptr)
+        {
             value = d_ptr->adjusts->correct(data);
+            test->setData("[调整组]", d_ptr->adjusts->useIndex());
+        }
         else if (d_ptr->adjusts2 != nullptr)
+        {
             value = d_ptr->adjusts2->correct(test->data("[色温]").toDouble(), data);
+            test->setData("[调整组]", d_ptr->adjusts2->useIndex());
+        }
         if (!value.isEmpty())
             data = unify(test, value, optional);
     }
-
     if (d_ptr->chromatisms != nullptr)
     {
         test->setData("[色容差]", d_ptr->chromatisms->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));

@@ -153,11 +153,11 @@ void HAbstractMainWindow::createMenu()
     {
         d_ptr->menuFile->addSeparator();
         d_ptr->menuImport = d_ptr->menuFile->addMenu(tr("导入(&I)"));
-        d_ptr->menuImport->setProperty("Authority", 1);
         d_ptr->menuImport->addActions(d_ptr->actionGroupImport->actions());
+        d_ptr->menuImport->menuAction()->setProperty("authority", 1);
         d_ptr->menuExport = d_ptr->menuFile->addMenu(tr("导出(&E)"));
-        d_ptr->menuExport->setProperty("Authority", 1);
         d_ptr->menuExport->addActions(d_ptr->actionGroupExport->actions());
+        d_ptr->menuExport->menuAction()->setProperty("authority", 1);
     }
     d_ptr->menuFile->addSeparator();
     d_ptr->menuFile->addAction(d_ptr->actionExit);
