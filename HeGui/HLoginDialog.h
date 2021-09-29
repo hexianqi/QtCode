@@ -17,12 +17,15 @@ public:
     explicit HLoginDialog(QWidget *parent = nullptr);
     ~HLoginDialog();
 
-public:
-    QString user() const { return _user; }
-    QString password() const { return _password; }
+protected slots:
+    void on_pushButton_03_clicked();
 
 protected:
     void done(int result) override;
+
+protected:
+    void readSettings();
+    void writeSettings();
 
 private:
     Ui::HLoginDialog *ui;

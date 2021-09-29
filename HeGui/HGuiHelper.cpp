@@ -1,5 +1,6 @@
 #include "HGuiHelper.h"
 #include "ITestWidget.h"
+#include <QtCore/QCryptographicHash>
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QMainWindow>
@@ -28,6 +29,13 @@ QDialog *HGuiHelper::decoratorInDialog(QWidget *widget, QWidget *parent)
     dlg->setWindowTitle(widget->windowTitle());
     dlg->setWindowIcon(widget->windowIcon());
     return dlg;
+}
+
+QString HGuiHelper::encodePassword(QString value)
+{
+    QCryptographicHash hash(QCryptographicHash::Md5);
+    hash.addData(value.toUtf8());
+    return hash.result().toBase64(QByteArray::Base64Encoding | QByteArray::OmitTrailingEquals);
 }
 
 HE_GUI_END_NAMESPACE
