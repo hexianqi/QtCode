@@ -385,6 +385,51 @@ Export success!
     </message>
 </context>
 <context>
+    <name>HChangePasswordDialog</name>
+    <message>
+        <location filename="HChangePasswordDialog.ui" line="26"/>
+        <source>修改密码</source>
+        <translation>Change Password</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.ui" line="38"/>
+        <source>旧密码：</source>
+        <translation>Old password:</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.ui" line="73"/>
+        <location filename="HChangePasswordDialog.ui" line="108"/>
+        <source>新密码：</source>
+        <translation>New password:</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.ui" line="155"/>
+        <source>确 定</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.ui" line="178"/>
+        <source>取 消</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.cpp" line="32"/>
+        <location filename="HChangePasswordDialog.cpp" line="38"/>
+        <source>错误</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.cpp" line="32"/>
+        <source>旧密码错误！</source>
+        <translation>The old password error!</translation>
+    </message>
+    <message>
+        <location filename="HChangePasswordDialog.cpp" line="38"/>
+        <source>新密码不相同！</source>
+        <translation>The new password is different!</translation>
+    </message>
+</context>
+<context>
     <name>HChromatismEditHandler</name>
     <message>
         <location filename="HChromatismEditHandler.cpp" line="39"/>
@@ -975,18 +1020,31 @@ Import success!
         <source>取 消</source>
         <translation>Cancel</translation>
     </message>
-</context>
-<context>
-    <name>HLoginInHandler</name>
     <message>
-        <location filename="HLoginInHandler.cpp" line="39"/>
+        <location filename="HLoginDialog.ui" line="169"/>
+        <source>修改密码</source>
+        <translation>Modify</translation>
+    </message>
+    <message>
+        <location filename="HLoginDialog.cpp" line="39"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="HLoginInHandler.cpp" line="39"/>
+        <location filename="HLoginDialog.cpp" line="39"/>
         <source>用户名密码错误！</source>
         <translation>The user name or password is incorrect!</translation>
+    </message>
+</context>
+<context>
+    <name>HLoginInHandler</name>
+    <message>
+        <source>错误</source>
+        <translation type="vanished">Error</translation>
+    </message>
+    <message>
+        <source>用户名密码错误！</source>
+        <translation type="vanished">The user name or password is incorrect!</translation>
     </message>
 </context>
 <context>

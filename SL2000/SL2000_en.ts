@@ -1517,12 +1517,12 @@
 <context>
     <name>HTestWidget2000DC</name>
     <message>
-        <location filename="HTestWidget2000DC.cpp" line="63"/>
+        <location filename="HTestWidget2000DC.cpp" line="64"/>
         <source>使用光探头(&amp;P)</source>
         <translation>&amp;Enable probe</translation>
     </message>
     <message>
-        <location filename="HTestWidget2000DC.cpp" line="66"/>
+        <location filename="HTestWidget2000DC.cpp" line="67"/>
         <source>产品信息修改(&amp;P)</source>
         <translation>&amp;Product info edit</translation>
     </message>

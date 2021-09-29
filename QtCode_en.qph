@@ -1004,4 +1004,20 @@ Import success!
     <source>荧光效能：</source>
     <target>Fluorescence efficiency:</target>
 </phrase>
+<phrase>
+    <source>旧密码：</source>
+    <target>Old password:</target>
+</phrase>
+<phrase>
+    <source>新密码：</source>
+    <target>New password:</target>
+</phrase>
+<phrase>
+    <source>旧密码错误！</source>
+    <target>The old password error!</target>
+</phrase>
+<phrase>
+    <source>新密码不相同！</source>
+    <target>The new password is different!</target>
+</phrase>
 </QPH>
