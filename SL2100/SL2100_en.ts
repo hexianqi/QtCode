@@ -4,94 +4,109 @@
 <context>
     <name>HBuilder2100DC</name>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="205"/>
+        <location filename="HBuilder2100DC.cpp" line="220"/>
         <source>定标(&amp;C)</source>
         <translation>&amp;Calibrate</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="206"/>
+        <location filename="HBuilder2100DC.cpp" line="221"/>
         <source>分级(&amp;G)</source>
         <translation>&amp;Grade</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="207"/>
+        <location filename="HBuilder2100DC.cpp" line="222"/>
         <source>调整(&amp;A)</source>
         <translation>&amp;Adjust</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="208"/>
+        <location filename="HBuilder2100DC.cpp" line="223"/>
         <source>品质(&amp;Q)</source>
         <translation>&amp;Quality</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="209"/>
+        <location filename="HBuilder2100DC.cpp" line="224"/>
         <source>其他测试(&amp;E)</source>
         <translation>&amp;Else</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="210"/>
+        <location filename="HBuilder2100DC.cpp" line="225"/>
         <source>数据库(&amp;D)</source>
         <translation>&amp;Database</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="211"/>
+        <location filename="HBuilder2100DC.cpp" line="226"/>
+        <source>账号管理(&amp;M)</source>
+        <translation>&amp;Account</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2100DC.cpp" line="230"/>
         <source>光谱定标(&amp;S)...</source>
         <translation>&amp;Calibrate Spectrum...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="212"/>
+        <location filename="HBuilder2100DC.cpp" line="231"/>
         <source>光通量自吸收配置(&amp;L)...</source>
         <translation>&amp;Luminous flux self-absorption...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="213"/>
+        <location filename="HBuilder2100DC.cpp" line="232"/>
         <source>色温配置(&amp;T)...</source>
         <translation>&amp;Color temperature...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="214"/>
+        <location filename="HBuilder2100DC.cpp" line="233"/>
         <source>分级数据配置(&amp;E)...</source>
         <translation>Grade &amp;edit...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="215"/>
+        <location filename="HBuilder2100DC.cpp" line="234"/>
         <source>分级数据选择(&amp;S)...</source>
         <translation>Grade &amp;select...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="216"/>
+        <location filename="HBuilder2100DC.cpp" line="235"/>
         <source>调整数据配置(&amp;E)...</source>
         <translation>Adjust &amp;edit...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="217"/>
+        <location filename="HBuilder2100DC.cpp" line="236"/>
         <source>调整数据选择(&amp;S)...</source>
         <translation>Adjust &amp;select...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="218"/>
+        <location filename="HBuilder2100DC.cpp" line="237"/>
         <source>品质数据配置(&amp;E)...</source>
         <translation>Quality &amp;edit...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="219"/>
+        <location filename="HBuilder2100DC.cpp" line="238"/>
         <source>品质数据选择(&amp;S)...</source>
         <translation>Quality &amp;select...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="220"/>
+        <location filename="HBuilder2100DC.cpp" line="239"/>
         <source>IV测试(&amp;I)...</source>
         <translation>&amp;IV test...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="221"/>
+        <location filename="HBuilder2100DC.cpp" line="240"/>
         <source>产品信息配置(&amp;P)...</source>
         <translation>&amp;Product info edit...</translation>
     </message>
     <message>
-        <location filename="HBuilder2100DC.cpp" line="222"/>
+        <location filename="HBuilder2100DC.cpp" line="241"/>
         <source>数据库浏览(&amp;B)...</source>
         <translation>&amp;Browser...</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2100DC.cpp" line="242"/>
+        <source>管理员登入(&amp;I)...</source>
+        <translation>Log&amp;in...</translation>
+    </message>
+    <message>
+        <location filename="HBuilder2100DC.cpp" line="243"/>
+        <source>注销(&amp;O)...</source>
+        <translation>Log&amp;out...</translation>
     </message>
 </context>
 <context>
@@ -102,161 +117,215 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="29"/>
+        <location filename="HDetailWidget2100DC.ui" line="53"/>
         <source>实测电压：</source>
         <translation>Measured voltage:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="61"/>
+        <location filename="HDetailWidget2100DC.ui" line="817"/>
         <source>V</source>
         <translation>V</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="77"/>
+        <location filename="HDetailWidget2100DC.ui" line="827"/>
         <source>实测电流：</source>
         <translation>Measured current:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="109"/>
+        <location filename="HDetailWidget2100DC.ui" line="853"/>
         <source>mA</source>
         <translation>mA</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="173"/>
+        <location filename="HDetailWidget2100DC.ui" line="863"/>
         <source>电功率：</source>
         <translation>Power:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="189"/>
+        <location filename="HDetailWidget2100DC.ui" line="889"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="205"/>
+        <location filename="HDetailWidget2100DC.ui" line="95"/>
         <source>主波长：</source>
         <translation>Dominant wavelength:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="237"/>
-        <location filename="HDetailWidget2100DC.ui" line="285"/>
-        <location filename="HDetailWidget2100DC.ui" line="333"/>
+        <location filename="HDetailWidget2100DC.ui" line="121"/>
+        <location filename="HDetailWidget2100DC.ui" line="157"/>
+        <location filename="HDetailWidget2100DC.ui" line="193"/>
         <source>nm</source>
         <translation>nm</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="253"/>
+        <location filename="HDetailWidget2100DC.ui" line="131"/>
         <source>峰值波长：</source>
         <translation>Peak Wavelength:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="301"/>
+        <location filename="HDetailWidget2100DC.ui" line="167"/>
         <source>峰值带宽：</source>
         <translation>Peak bandwidth:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="349"/>
+        <location filename="HDetailWidget2100DC.ui" line="203"/>
         <source>光通量：</source>
         <translation>Luminous flux:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="365"/>
+        <location filename="HDetailWidget2100DC.ui" line="213"/>
         <source>lm</source>
         <translation>lm</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="381"/>
+        <location filename="HDetailWidget2100DC.ui" line="223"/>
         <source>色坐标xy：</source>
         <translation>xy:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="413"/>
+        <location filename="HDetailWidget2100DC.ui" line="249"/>
         <source>色坐标u&apos;v&apos;：</source>
         <translation>u&apos;v&apos;:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="445"/>
+        <location filename="HDetailWidget2100DC.ui" line="275"/>
         <source>Duv：</source>
         <translation>Duv:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="477"/>
+        <location filename="HDetailWidget2100DC.ui" line="301"/>
         <source>光功率：</source>
         <translation>Luminous power:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="493"/>
+        <location filename="HDetailWidget2100DC.ui" line="23"/>
+        <location filename="HDetailWidget2100DC.ui" line="311"/>
         <source>mW</source>
         <translation>mW</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="509"/>
+        <location filename="HDetailWidget2100DC.ui" line="33"/>
+        <source>光合光子通量效率：</source>
+        <translation>PPFE:</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="43"/>
+        <source>umol/s/W</source>
+        <translation>umol/s/W</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="321"/>
         <source>红色比：</source>
         <translation>Red rate:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="541"/>
-        <location filename="HDetailWidget2100DC.ui" line="589"/>
-        <location filename="HDetailWidget2100DC.ui" line="637"/>
+        <location filename="HDetailWidget2100DC.ui" line="347"/>
+        <location filename="HDetailWidget2100DC.ui" line="383"/>
+        <location filename="HDetailWidget2100DC.ui" line="419"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="557"/>
+        <location filename="HDetailWidget2100DC.ui" line="357"/>
         <source>绿色比：</source>
         <translation>Green rate:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="605"/>
+        <location filename="HDetailWidget2100DC.ui" line="393"/>
         <source>蓝色比：</source>
         <translation>Blue rate:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="653"/>
+        <location filename="HDetailWidget2100DC.ui" line="429"/>
         <source>光效率：</source>
         <translation>Luminous efficiency:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="669"/>
+        <location filename="HDetailWidget2100DC.ui" line="439"/>
         <source>lm/W</source>
         <translation>lm/W</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="685"/>
+        <location filename="HDetailWidget2100DC.ui" line="449"/>
         <source>色温：</source>
         <translation>Color temperature:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="717"/>
+        <location filename="HDetailWidget2100DC.ui" line="475"/>
         <source>K</source>
         <translation>K</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="733"/>
+        <location filename="HDetailWidget2100DC.ui" line="485"/>
         <source>色纯度：</source>
         <translation>Color purity:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="765"/>
+        <location filename="HDetailWidget2100DC.ui" line="511"/>
         <source>色容差：</source>
         <translation>SDCM:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="797"/>
+        <location filename="HDetailWidget2100DC.ui" line="537"/>
         <source>SDCM</source>
         <translation>SDCM</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="813"/>
+        <location filename="HDetailWidget2100DC.ui" line="547"/>
         <source>显色指数Ra：</source>
         <translation>Ra:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="845"/>
+        <location filename="HDetailWidget2100DC.ui" line="573"/>
         <source>显色指数R9：</source>
         <translation>R9:</translation>
     </message>
     <message>
-        <location filename="HDetailWidget2100DC.ui" line="893"/>
+        <location filename="HDetailWidget2100DC.ui" line="615"/>
+        <source>光量子380-780：</source>
+        <translation>Photon(380-780):</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="641"/>
+        <source>光合有效辐射通量：</source>
+        <translation>PRF:</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="651"/>
+        <location filename="HDetailWidget2100DC.ui" line="703"/>
+        <location filename="HDetailWidget2100DC.ui" line="739"/>
+        <location filename="HDetailWidget2100DC.ui" line="775"/>
+        <source>umol/s</source>
+        <translation>umol/s</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="693"/>
+        <source>光合光量子通量：</source>
+        <translation>PPF:</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="729"/>
+        <source>光量子700-800：</source>
+        <translation>Photon(700-800):</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="765"/>
+        <source>光量子400-700：</source>
+        <translation>Photon(400-700):</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="899"/>
+        <source>荧光蓝光比：</source>
+        <translation>Fluorescence ratio:</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="925"/>
+        <source>荧光效能：</source>
+        <translation>Fluorescence efficiency:</translation>
+    </message>
+    <message>
+        <location filename="HDetailWidget2100DC.ui" line="951"/>
         <source>显色指数Rx：</source>
         <translation>Rx:</translation>
     </message>
@@ -292,89 +361,121 @@
         <translation>Test data</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="45"/>
+        <location filename="HSqlPrint2100DC.cpp" line="48"/>
         <source>光谱数据</source>
         <translation>Spectrum data</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="46"/>
+        <location filename="HSqlPrint2100DC.cpp" line="49"/>
         <source>波长(nm)	能量百分比(%)</source>
         <translation>Wavelength(nm)\t Energy(%)</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="54"/>
+        <location filename="HSqlPrint2100DC.cpp" line="57"/>
         <source>松朗光色电综合测试报告</source>
         <translation>Song lang test report</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="55"/>
+        <location filename="HSqlPrint2100DC.cpp" line="58"/>
         <source>光色电综合测试报告</source>
         <translation>Comprehensive Test Report</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="56"/>
+        <location filename="HSqlPrint2100DC.cpp" line="59"/>
         <source> - %1 - </source>
         <translation> - %1 - </translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="75"/>
+        <location filename="HSqlPrint2100DC.cpp" line="78"/>
         <source>电参数：</source>
         <translation>Elec:</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="78"/>
+        <location filename="HSqlPrint2100DC.cpp" line="96"/>
+        <source> 相关色温：Tc = %1K    主波长：λd = %2nm    色纯度：Purity = %3    色容差：%4SDCM</source>
+        <translation> Tc = %1K    λd = %2nm    Purity = %3    SDCM = %4</translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2100DC.cpp" line="100"/>
+        <source>色比：R = %1％  G = %2％  B = %3％    峰值波长：λp = %4nm    峰值带宽：Δλd = %5nm</source>
+        <translation>R = %1%  G = %2%  B = %3%    λp = %4nm    Δλd = %5nm</translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2100DC.cpp" line="123"/>
+        <source> 光通量：Φ = %1lm    光功率：Φ e = %2    光效率：%3lm/W</source>
+        <translation> Luminous flux: %1lm    Luminous power: %2   Luminous efficacy: %3lm/W</translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2100DC.cpp" line="126"/>
+        <source> 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]</source>
+        <translation> Photon(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]</translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2100DC.cpp" line="129"/>
+        <source> 光合光量子通量PPF：%1umol/s    光合有效辐射通量PRF：%2mW</source>
+        <translation> PPF：%1umol/s    PRF：%2mW</translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2100DC.cpp" line="132"/>
+        <source> 光合光子通量效率Eff(PPF)：%1umol/s/W    荧光效能：%2    荧光蓝光比：%3</source>
+        <translation> Eff(PPF)：%1umol/s/W  Fluorescence efficiency：%2  Fluorescence ratio：%3</translation>
+    </message>
+    <message>
         <source> 输出电压：%1 V    输出电流：%2 mA </source>
-        <translation> Output voltage: %1 V    Output Current: %2 mA </translation>
+        <translation type="vanished"> Output voltage: %1 V    Output Current: %2 mA </translation>
     </message>
     <message>
         <location filename="HSqlPrint2100DC.cpp" line="81"/>
-        <source> 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W</source>
-        <translation> Measured voltage: %1 V    Measured current: %2 mA    Elec power: %3 W</translation>
+        <source> 输出电压：%1V    输出电流：%2mA </source>
+        <oldsource> 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W</oldsource>
+        <translation> Output voltage: %1V    Output Current: %2mA </translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="86"/>
+        <location filename="HSqlPrint2100DC.cpp" line="84"/>
+        <source> 实测电压：%1V    实测电流：%2mA    电功率：%3W</source>
+        <translation> Measured voltage: %1V    Measured current: %2mA    Elec power: %3W</translation>
+    </message>
+    <message>
+        <location filename="HSqlPrint2100DC.cpp" line="89"/>
         <source>颜色参数：</source>
         <translation>Spectrum:</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="89"/>
+        <location filename="HSqlPrint2100DC.cpp" line="92"/>
         <source> 色品坐标：x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</source>
         <translation> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="93"/>
         <source> 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3</source>
-        <translation> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
+        <translation type="vanished"> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="97"/>
         <source>色比：R = %1 ％  G = %2 ％  B = %3 ％    峰值波长：λp = %4 nm    峰值带宽：Δλd = %5 nm</source>
-        <translation>R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
+        <translation type="vanished">R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="103"/>
+        <location filename="HSqlPrint2100DC.cpp" line="106"/>
         <source> 显色指数：Ra = %1    R9 = %2</source>
         <translation> Ra = %1    R9 = %2</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="106"/>
+        <location filename="HSqlPrint2100DC.cpp" line="109"/>
         <source>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</source>
         <translation>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="110"/>
+        <location filename="HSqlPrint2100DC.cpp" line="113"/>
         <source>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</source>
         <translation>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="117"/>
+        <location filename="HSqlPrint2100DC.cpp" line="120"/>
         <source>光度参数：</source>
         <translation>Luminous:</translation>
     </message>
     <message>
-        <location filename="HSqlPrint2100DC.cpp" line="120"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W</source>
-        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficacy: %3 lm/W</translation>
+        <translation type="vanished"> Luminous flux: %1 lm    Luminous power: %2   Luminous efficacy: %3 lm/W</translation>
     </message>
 </context>
 <context>

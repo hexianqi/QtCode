@@ -932,4 +932,76 @@ Import success!
     <source>荧光效能</source>
     <target>Fluorescence efficiency</target>
 </phrase>
+<phrase>
+    <source>登入</source>
+    <target>Login</target>
+</phrase>
+<phrase>
+    <source>用户名：</source>
+    <target>User:</target>
+</phrase>
+<phrase>
+    <source>密码：</source>
+    <target>Password:</target>
+</phrase>
+<phrase>
+    <source>错误</source>
+    <target>Error</target>
+</phrase>
+<phrase>
+    <source>蓝光范围：</source>
+    <target>Blue range:</target>
+</phrase>
+<phrase>
+    <source>账号管理(&amp;M)</source>
+    <target>&amp;Account</target>
+</phrase>
+<phrase>
+    <source>管理员登入(&amp;I)...</source>
+    <target>Log&amp;in...</target>
+</phrase>
+<phrase>
+    <source>注销(&amp;O)...</source>
+    <target>Log&amp;out...</target>
+</phrase>
+<phrase>
+    <source>光量子380-780：</source>
+    <target>Photon(380-780):</target>
+</phrase>
+<phrase>
+    <source>光量子400-700：</source>
+    <target>Photon(400-700):</target>
+</phrase>
+<phrase>
+    <source>光量子700-800：</source>
+    <target>Photon(700-800):</target>
+</phrase>
+<phrase>
+    <source>umol/s</source>
+    <target>umol/s</target>
+</phrase>
+<phrase>
+    <source>荧光蓝光比：</source>
+    <target>Fluorescence ratio:</target>
+</phrase>
+<phrase>
+    <source>光合光量子通量：</source>
+    <target>PPF:</target>
+</phrase>
+<phrase>
+    <source>光合有效辐射通量：</source>
+    <target>PRF:</target>
+</phrase>
+<phrase>
+    <source>光合光子通量效率：</source>
+    <target>PPFE:</target>
+</phrase>
+<phrase>
+    <source>umol/s/W</source>
+    <target>umol/s/W</target>
+</phrase>
+<phrase>
+    <source>荧光效能：</source>
+    <target>Fluorescence efficiency:</target>
+</phrase>
 </QPH>

@@ -23,94 +23,127 @@
         <translation>Test data</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="48"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="51"/>
         <source>光谱数据</source>
         <translation>Spectrum data</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="49"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="52"/>
         <source>波长(nm)	能量百分比(%)</source>
         <translation>Wavelength(nm)\t Energy(%)</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="57"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="60"/>
         <source>松朗光色电综合测试报告</source>
         <translation>Song lang test report</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="58"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="61"/>
         <source>光色电综合测试报告</source>
         <translation>Comprehensive Test Report</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="59"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="62"/>
         <source> - %1 - </source>
         <translation> - %1 - </translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="78"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="81"/>
         <source>电参数：</source>
         <translation>Elec:</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="81"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="102"/>
+        <source> 相关色温：Tc = %1K    主波长：λd = %2nm    色纯度：Purity = %3    色容差：%4SDCM</source>
+        <translation> Tc = %1K    λd = %2nm    Purity = %3    SDCM:%4</translation>
+    </message>
+    <message>
+        <location filename="HIntegrateSqlPrint.cpp" line="106"/>
+        <source> 色比：R = %1％  G = %2％  B = %3％    峰值波长：λp = %4nm    峰值带宽：Δλd = %5nm</source>
+        <translation> R = %1%  G = %2%  B = %3%    λp = %4nm    Δλd = %5nm</translation>
+    </message>
+    <message>
+        <location filename="HIntegrateSqlPrint.cpp" line="129"/>
+        <source> 光通量：Φ = %1lm    光功率：Φ e = %2    光效率：%3lm/W</source>
+        <translation> Luminous flux: %1lm    Luminous power: %2   Luminous efficiency: %3lm/W</translation>
+    </message>
+    <message>
+        <location filename="HIntegrateSqlPrint.cpp" line="132"/>
+        <source> 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]</source>
+        <translation> Photon(umol/s): %1[380-780nm]  %2[400-700nm]  %3[700-800nm]</translation>
+    </message>
+    <message>
+        <location filename="HIntegrateSqlPrint.cpp" line="135"/>
+        <source> 光合光量子通量PPF：%1umol/s    光合有效辐射通量PRF：%2mW</source>
+        <translation> PPF：%1umol/s    PRF：%2mW</translation>
+    </message>
+    <message>
+        <location filename="HIntegrateSqlPrint.cpp" line="138"/>
+        <source> 光合光子通量效率Eff(PPF)：%1umol/s/W    荧光效能：%2    荧光蓝光比：%3</source>
+        <translation> Eff(PPF)：%1umol/s/W  Fluorescence efficiency：%2  Fluorescence ratio：%3</translation>
+    </message>
+    <message>
         <source> 输出电压：%1 V    输出电流：%2 mA </source>
-        <translation> Output voltage: %1 V    Output Current: %2 mA </translation>
+        <translation type="vanished"> Output voltage: %1 V    Output Current: %2 mA </translation>
     </message>
     <message>
         <location filename="HIntegrateSqlPrint.cpp" line="84"/>
-        <source> 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W</source>
-        <translation> Measured voltage: %1 V    Measured current: %2 mA    Elec power: %3 W</translation>
+        <source> 输出电压：%1V    输出电流：%2mA </source>
+        <oldsource> 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W</oldsource>
+        <translation> Output voltage: %1V    Output Current: %2mA </translation>
     </message>
     <message>
         <location filename="HIntegrateSqlPrint.cpp" line="87"/>
-        <source> 反向电压：%1 V    反向漏流：%2 mA</source>
-        <translation> Reverse voltage: %1 V    Reverse current:%2 mA</translation>
+        <source> 实测电压：%1V    实测电流：%2mA    电功率：%3W</source>
+        <oldsource> 反向电压：%1 V    反向漏流：%2 mA</oldsource>
+        <translation> Measured voltage: %1V    Measured current: %2mA    Elec power: %3W</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="92"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="90"/>
+        <source> 反向电压：%1V    反向漏流：%2mA</source>
+        <translation> Reverse voltage: %1V    Reverse current:%2mA</translation>
+    </message>
+    <message>
+        <location filename="HIntegrateSqlPrint.cpp" line="95"/>
         <source>颜色参数：</source>
         <translation>Spectrum:</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="95"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="98"/>
         <source> 色品坐标：x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</source>
         <translation> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="99"/>
         <source> 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3</source>
-        <translation> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
+        <translation type="vanished"> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="103"/>
         <source>色比：R = %1 ％  G = %2 ％  B = %3 ％    峰值波长：λp = %4 nm    峰值带宽：Δλd = %5 nm</source>
-        <translation>R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
+        <translation type="vanished">R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="109"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="112"/>
         <source> 显色指数：Ra = %1    R9 = %2</source>
         <translation> Ra = %1    R9 = %2</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="112"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="115"/>
         <source>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</source>
         <translation>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="116"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="119"/>
         <source>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</source>
         <translation>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="123"/>
+        <location filename="HIntegrateSqlPrint.cpp" line="126"/>
         <source>光度参数：</source>
         <translation>Luminous:</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="126"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W</source>
-        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
+        <translation type="vanished"> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
     </message>
 </context>
 <context>

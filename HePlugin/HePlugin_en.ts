@@ -12,13 +12,13 @@
 <context>
     <name>HChromatismChartView</name>
     <message>
-        <location filename="HChromatismChartView.cpp" line="48"/>
+        <location filename="HChromatismChartView.cpp" line="58"/>
         <source>标准%1SDCM - 目标值x=%2,y=%3</source>
         <translation>Standard %1 SDCM - Target x=%2,y=%3</translation>
     </message>
     <message>
-        <location filename="HChromatismChartView.cpp" line="49"/>
         <location filename="HChromatismChartView.cpp" line="59"/>
+        <location filename="HChromatismChartView.cpp" line="69"/>
         <source>%2, %3
       %1SDCM</source>
         <translation>%2, %3
@@ -31,6 +31,8 @@
         <location filename="HChromatismWidget.cpp" line="172"/>
         <source>%1 SDCM		
 (%2, %3)</source>
+        <oldsource>%1 SDCM		
+(%2, %3)</oldsource>
         <translation>%1 SDCM		
 (%2, %3)</translation>
     </message>
@@ -116,12 +118,12 @@ Target x=%2,y=%3</translation>
 <context>
     <name>HDynamicChartView</name>
     <message>
-        <location filename="HDynamicChartView.cpp" line="65"/>
+        <location filename="HDynamicChartView.cpp" line="89"/>
         <source>线</source>
         <translation>Line</translation>
     </message>
     <message>
-        <location filename="HDynamicChartView.cpp" line="67"/>
+        <location filename="HDynamicChartView.cpp" line="91"/>
         <source>点</source>
         <translation>Point</translation>
     </message>

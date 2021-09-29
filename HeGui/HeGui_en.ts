@@ -953,27 +953,27 @@ Import success!
     <message>
         <location filename="HLoginDialog.ui" line="26"/>
         <source>登入</source>
-        <translation type="unfinished"></translation>
+        <translation>Login</translation>
     </message>
     <message>
         <location filename="HLoginDialog.ui" line="44"/>
         <source>用户名：</source>
-        <translation type="unfinished"></translation>
+        <translation>User:</translation>
     </message>
     <message>
         <location filename="HLoginDialog.ui" line="76"/>
         <source>密码：</source>
-        <translation type="unfinished"></translation>
+        <translation>Password:</translation>
     </message>
     <message>
         <location filename="HLoginDialog.ui" line="123"/>
         <source>确 定</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HLoginDialog.ui" line="146"/>
         <source>取 消</source>
-        <translation type="unfinished">Cancel</translation>
+        <translation>Cancel</translation>
     </message>
 </context>
 <context>
@@ -981,12 +981,12 @@ Import success!
     <message>
         <location filename="HLoginInHandler.cpp" line="39"/>
         <source>错误</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="HLoginInHandler.cpp" line="39"/>
         <source>用户名密码错误！</source>
-        <translation type="unfinished"></translation>
+        <translation>The user name or password is incorrect!</translation>
     </message>
 </context>
 <context>
@@ -994,12 +994,12 @@ Import success!
     <message>
         <location filename="HLoginOutHandler.cpp" line="31"/>
         <source>提示</source>
-        <translation type="unfinished">Tips</translation>
+        <translation>Tips</translation>
     </message>
     <message>
         <location filename="HLoginOutHandler.cpp" line="31"/>
         <source>是否要登出？</source>
-        <translation type="unfinished"></translation>
+        <translation>Whether to logout?</translation>
     </message>
 </context>
 <context>
@@ -1206,43 +1206,43 @@ Import success!
     <message>
         <location filename="HQuantumEditDialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.ui" line="44"/>
         <source>蓝光范围：</source>
-        <translation type="unfinished"></translation>
+        <translation>Blue range:</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.ui" line="66"/>
         <location filename="HQuantumEditDialog.ui" line="116"/>
         <source>-</source>
-        <translation type="unfinished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.ui" line="94"/>
         <source>荧光范围：</source>
-        <translation type="unfinished"></translation>
+        <translation>Fluorescent range:</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.ui" line="150"/>
         <source>确 定</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.ui" line="173"/>
         <source>取 消</source>
-        <translation type="unfinished">Cancel</translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.ui" line="213"/>
         <source>自动查找</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="HQuantumEditDialog.cpp" line="72"/>
         <source>光量子配置</source>
-        <translation type="unfinished"></translation>
+        <translation>Optical quantum config</translation>
     </message>
 </context>
 <context>
@@ -1952,7 +1952,7 @@ Import success!
     <message>
         <location filename="HSpecTestWidget.cpp" line="139"/>
         <source>光量子配置(&amp;P)</source>
-        <translation type="unfinished"></translation>
+        <translation>Optical &amp;quantum config</translation>
     </message>
     <message>
         <location filename="HSpecTestWidget.cpp" line="140"/>
@@ -2097,7 +2097,7 @@ Import success!
         <location filename="HTestWidget.cpp" line="39"/>
         <source>清除结果(&amp;R)</source>
         <oldsource>清除结果(&amp;R)...</oldsource>
-        <translation type="unfinished">&amp;Clear</translation>
+        <translation>&amp;Clear</translation>
     </message>
     <message>
         <location filename="HTestWidget.cpp" line="41"/>
