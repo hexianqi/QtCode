@@ -113,9 +113,8 @@ void HBuilder2100DC::buildTestData()
     auto data = d->dataFactory->createTestData("HTestData");
     auto other = d->dataFactory->createTestData("HTestData");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
-    spec->setSuccessor(other);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    data->setSuccessor(spec);
+    data->setSuccessor(spec)->setSuccessor(other);
     HAppContext::setContextPointer("ITestData", data);
     HAppContext::setContextPointer("ITestOther", other);
     HAppContext::setContextPointer("ITestSpec", spec);

@@ -158,19 +158,16 @@ void HBuilder2000DC::buildTestData()
     auto luminous = d->dataFactory->createTestData("HTestLuminous");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
 
-    spec->setSuccessor(other);
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    elec->setSuccessor(spec);
     elec->setCalibrate(d->configManage->elecCalibrateCollection());
     elec->setData("[输出电压]", 10);
-    luminous->setSuccessor(elec);
     luminous->setCalibrate(d->configManage->luminousCalibrateCollection());
-    data->setSuccessor(luminous);
+    data->setSuccessor(luminous)->setSuccessor(elec)->setSuccessor(spec)->setSuccessor(other);
     HAppContext::setContextPointer("ITestData", data);
+    HAppContext::setContextPointer("ITestOther", other);
     HAppContext::setContextPointer("ITestLuminous", luminous);
     HAppContext::setContextPointer("ITestElec", elec);
     HAppContext::setContextPointer("ITestSpec", spec);
-    HAppContext::setContextPointer("ITestOther", other);
 }
 
 void HBuilder2000DC::buildDevice()

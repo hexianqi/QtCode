@@ -9,6 +9,7 @@
 **                  IGradeCollection                0x00030001      *.hcg
 **                  IQualityCollection              0x00030101      *.hcq
 **                  IAdjustCollection               0x00040001      *.hca
+**                  IMemento                        0x01010001      *.tmp
 ***************************************************************************************************/
 
 #pragma once

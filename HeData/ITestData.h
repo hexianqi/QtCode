@@ -19,7 +19,7 @@ public:
 
 public:
     // 设置后继者
-    virtual void setSuccessor(ITestData *) = 0;
+    virtual ITestData *setSuccessor(ITestData *) = 0;
     // 设置校准数据
     virtual bool setCalibrate(void *) = 0;
     // 设置数据

@@ -74,9 +74,10 @@ QString HTestData::typeName()
     return "HTestData";
 }
 
-void HTestData::setSuccessor(ITestData *p)
+ITestData *HTestData::setSuccessor(ITestData *p)
 {
     d_ptr->successor = p;
+    return p;
 }
 
 bool HTestData::setCalibrate(void *)

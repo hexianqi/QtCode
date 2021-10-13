@@ -21,7 +21,7 @@ public:
     QString typeName() override;
 
 public:
-    void setSuccessor(ITestData *) override;
+    ITestData *setSuccessor(ITestData *) override;
     bool setCalibrate(void *) override;
     void setData(QString type, QVariant value) override;
     void setData(QVariantMap value) override;
