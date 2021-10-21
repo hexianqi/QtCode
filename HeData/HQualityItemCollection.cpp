@@ -22,6 +22,10 @@ HQualityItemCollection::HQualityItemCollection(HQualityItemCollectionPrivate &p)
 {
 }
 
+HQualityItemCollection::~HQualityItemCollection()
+{
+}
+
 QString HQualityItemCollection::typeName()
 {
     return "HQualityItemCollection";

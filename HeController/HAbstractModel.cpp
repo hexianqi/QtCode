@@ -38,6 +38,10 @@ HAbstractModel::~HAbstractModel()
     }
 }
 
+void HAbstractModel::initialize(QVariantMap /*param*/)
+{
+}
+
 void HAbstractModel::start()
 {
     if (d_ptr->initialized)

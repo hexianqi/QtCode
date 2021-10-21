@@ -9,12 +9,8 @@
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IMediaPlayerControl : public QObject
+class IMediaPlayerControl
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
 };
 
 HE_CONTROL_END_NAMESPACE

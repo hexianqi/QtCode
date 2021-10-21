@@ -1,4 +1,5 @@
 #include "HDataFactory_p.h"
+#include "HPrint.h"
 #include "HDataStream.h"
 #include "HTextStream.h"
 #include "HXlsxStream.h"
@@ -68,6 +69,14 @@ QString HDataFactory::typeName()
     return "HDataFactory";
 }
 
+IPrint *HDataFactory::createPrint(QString type, QVariantMap param)
+{
+    Q_UNUSED(type);
+    auto p = new HPrint(this);
+    p->initialize(param);
+    return p;
+}
+
 IDataStream *HDataFactory::createDataStream(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
@@ -116,7 +125,7 @@ ITestSpec *HDataFactory::createTestSpec(QString type, QVariantMap param)
 IConfigManage *HDataFactory::createConfigManage(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    auto p = new HConfigManage;
+    auto p = new HConfigManage(this);
     p->initialize(param);
     return p;
 }

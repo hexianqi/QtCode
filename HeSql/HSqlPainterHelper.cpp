@@ -20,7 +20,6 @@ QPointF HSqlPainterHelper::drawText(QPainter *painter, QRectF rect, const QStrin
 QPointF HSqlPainterHelper::drawLogo(QPainter *painter, QRectF rect)
 {
     QPixmap pixmap(":/image/Logo.png");
-    qDebug() << "drawLogo";
     painter->drawPixmap(rect, pixmap, pixmap.rect());
     return rect.bottomRight();
 }

@@ -14,5 +14,6 @@
         <file>image/Choose.png</file>
         <file>image/Icon.ico</file>
         <file>image/Import.png</file>
+        <file>image/Tag.png</file>
     </qresource>
 </RCC>

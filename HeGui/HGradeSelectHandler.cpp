@@ -18,10 +18,6 @@ HGradeSelectHandler::~HGradeSelectHandler()
     qDebug() << __func__;
 }
 
-void HGradeSelectHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HGradeSelectHandler::typeName()
 {
     return "HGradeSelectHandler";

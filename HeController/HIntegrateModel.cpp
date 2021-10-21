@@ -28,11 +28,6 @@ HIntegrateModel::~HIntegrateModel()
     qDebug() << __func__;
 }
 
-void HIntegrateModel::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HIntegrateModel::typeName()
 {
     return "HIntegrateModel";

@@ -10,11 +10,11 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HAbstractDataItemPrivate;
 
-class HAbstractDataItem : public IDataItem
+class HAbstractDataItem : public virtual IDataItem
 {
 public:
     explicit HAbstractDataItem();
-    virtual ~HAbstractDataItem() = default;
+    ~HAbstractDataItem();
 
 public:
     void initialize(QVariantMap param) override;

@@ -1,7 +1,6 @@
 #include "HCommunicateFactory_p.h"
 #include "HSerialPort.h"
 #include "HUsbPortCy.h"
-#include "HDeviceCollection.h"
 #include "HSpecSimulateDevice.h"
 #include "HSimulateDevice.h"
 #include "HSlDevice1.h"
@@ -59,14 +58,6 @@ IPort *HCommunicateFactory::createPort(QString type, QVariantMap param)
 IDevice *HCommunicateFactory::createDevice(QString type, QVariantMap param)
 {
     return HFactory::createObject<IDevice>(type, param);
-}
-
-IDeviceCollection *HCommunicateFactory::createDeviceCollection(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HDeviceCollection;
-    p->initialize(param);
-    return p;
 }
 
 IProtocol *HCommunicateFactory::createProtocol(QString type, QVariantMap param)

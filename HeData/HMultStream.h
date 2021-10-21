@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IMultStream.h"
+#include "HAbstractStream.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HMultStreamPrivate;
 
-class HMultStream : public IMultStream
+class HMultStream : public HAbstractStream, public virtual IMultStream
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HMultStream)
@@ -28,7 +29,7 @@ public:
 public:
     bool readFile(QString fileName) override;
     bool writeFile(QString fileName) override;
-    void addStream(QString suffix, IStream *, bool def = true) override;
+    void addStream(QString suffix, IStream *, bool focus = true) override;
 
 protected:
     HMultStream(HMultStreamPrivate &p, QObject *parent = nullptr);

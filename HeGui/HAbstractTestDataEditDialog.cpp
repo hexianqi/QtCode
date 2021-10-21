@@ -19,6 +19,11 @@ HAbstractTestDataEditDialog::HAbstractTestDataEditDialog(QWidget *parent) :
 {
 }
 
+void HAbstractTestDataEditDialog::initialize(QVariantMap /*param*/)
+{
+
+}
+
 HAbstractTestDataEditDialog::HAbstractTestDataEditDialog(HAbstractTestDataEditDialogPrivate &p, QWidget *parent) :
     ITestDataEditDialog(parent),
     d_ptr(&p)

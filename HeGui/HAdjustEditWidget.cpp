@@ -34,7 +34,7 @@ HAdjustEditWidgetPrivate::HAdjustEditWidgetPrivate()
 }
 
 HAdjustEditWidget::HAdjustEditWidget(QWidget *parent) :
-    IDataEditWidget(parent),
+    QWidget(parent),
     d_ptr(new HAdjustEditWidgetPrivate),
     ui(new Ui::HAdjustEditWidget)
 {
@@ -56,6 +56,11 @@ void HAdjustEditWidget::initialize(QVariantMap /*param*/)
 QString HAdjustEditWidget::typeName()
 {
     return "HAdjustEditWidget";
+}
+
+QWidget *HAdjustEditWidget::widget()
+{
+    return this;
 }
 
 IAdjust *HAdjustEditWidget::createData()

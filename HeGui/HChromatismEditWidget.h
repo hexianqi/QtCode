@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include "IDataEditWidget.h"
+#include "IDataEditer.h"
 #include "HeData/HDataGlobal.h"
+#include <QtWidgets/QWidget>
 
 namespace Ui {
 class HChromatismEditWidget;
@@ -21,7 +22,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HChromatismEditWidgetPrivate;
 
-class HChromatismEditWidget : public IDataEditWidget<IChromatism>
+class HChromatismEditWidget : public QWidget, public IDataEditer<IChromatism>
 {
     Q_OBJECT
 
@@ -34,6 +35,7 @@ public:
     QString typeName() override;
 
 public:
+    QWidget *widget() override;
     IChromatism *createData() override;
     void setData(IChromatism *) override;
     void clearData() override;

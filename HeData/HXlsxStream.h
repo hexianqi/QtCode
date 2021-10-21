@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IXlsxStream.h"
+#include "HAbstractStream.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HXlsxStreamPrivate;
 
-class HXlsxStream : public IXlsxStream
+class HXlsxStream : public HAbstractStream, public virtual IXlsxStream
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HXlsxStream)

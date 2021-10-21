@@ -26,5 +26,4 @@ public:
     static QImage cool(QImage image, int delta);
     // 饱和度
     static QImage saturation(QImage image, int delta);
-
 };

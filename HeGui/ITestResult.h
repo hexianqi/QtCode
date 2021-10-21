@@ -17,13 +17,8 @@ HE_DATA_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
-class ITestResult : public QObject, public IInitializeable
+class ITestResult : public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     virtual ITestData *at(int i) = 0;
     // 是否为空

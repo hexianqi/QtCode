@@ -47,6 +47,10 @@ HGradeCollection::HGradeCollection(HGradeCollectionPrivate &p) :
 {
 }
 
+HGradeCollection::~HGradeCollection()
+{
+}
+
 QString HGradeCollection::typeName()
 {
     return "HGradeCollection";

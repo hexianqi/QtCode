@@ -23,6 +23,10 @@ HAdjustItemCollection::HAdjustItemCollection(HAdjustItemCollectionPrivate &p) :
 {
 }
 
+HAdjustItemCollection::~HAdjustItemCollection()
+{
+}
+
 QString HAdjustItemCollection::typeName()
 {
     return "HAdjustItemCollection";

@@ -16,7 +16,7 @@ class HGradeCollection : public IGradeCollection
 
 public:
     explicit HGradeCollection();
-    virtual ~HGradeCollection() = default;
+    ~HGradeCollection();
 
 public:
     QString typeName() override;

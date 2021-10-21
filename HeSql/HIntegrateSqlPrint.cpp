@@ -126,7 +126,7 @@ void HIntegrateSqlPrint::paintBody(QPainter *painter, double y1, double y2, int 
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 光通量：Φ = %1lm    光功率：Φ e = %2    光效率：%3lm/W").arg(toString("LuminousFlux"), toString("LuminousPower"), toString("LuminousEfficiency"));
+    text = tr(" 光通量：Φ = %1lm    光功率：Φe = %2    光效率：%3lm/W").arg(toString("LuminousFlux"), toString("LuminousPower"), toString("LuminousEfficiency"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]").arg(toString("Photon380_780"), toString("Photon400_700"), toString("Photon700_800"));

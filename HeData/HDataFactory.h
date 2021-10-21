@@ -23,6 +23,9 @@ public:
     QString typeName() override;
 
 public:
+    IPrint *createPrint(QString type, QVariantMap param = QVariantMap()) override;
+
+public:
     IDataStream *createDataStream(QString type, QVariantMap param = QVariantMap()) override;
     ITextStream *createTextStream(QString type, QVariantMap param = QVariantMap()) override;
     IXlsxStream *createXlsxStream(QString type, QVariantMap param = QVariantMap()) override;

@@ -21,10 +21,6 @@ HSpecTcHandler::~HSpecTcHandler()
     qDebug() << __func__;
 }
 
-void HSpecTcHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HSpecTcHandler::typeName()
 {
     return "HSpecTcHandler";

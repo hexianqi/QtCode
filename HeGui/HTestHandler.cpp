@@ -15,11 +15,6 @@ HTestHandler::~HTestHandler()
     qDebug() << __func__;
 }
 
-void HTestHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HTestHandler::typeName()
 {
     return "HTestHandler";

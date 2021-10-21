@@ -19,11 +19,6 @@ HImportCurveHandler::~HImportCurveHandler()
     qDebug() << __func__;
 }
 
-void HImportCurveHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HImportCurveHandler::typeName()
 {
     return "HSpecCalibrateHandler";

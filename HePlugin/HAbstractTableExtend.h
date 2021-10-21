@@ -5,8 +5,8 @@
 #pragma once
 
 #include "ITableExtend.h"
-#include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCore/QObject>
+#include <QtUiPlugin/QDesignerExportWidget>
 
 class HAbstractTableExtendPrivate;
 

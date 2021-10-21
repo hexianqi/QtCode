@@ -48,6 +48,10 @@ HQualityCollection::HQualityCollection(HQualityCollectionPrivate &p) :
 {
 }
 
+HQualityCollection::~HQualityCollection()
+{
+}
+
 QString HQualityCollection::typeName()
 {
     return "HQualityCollection";

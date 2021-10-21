@@ -16,7 +16,7 @@ HQualityEditWidgetPrivate::HQualityEditWidgetPrivate()
 }
 
 HQualityEditWidget::HQualityEditWidget(QWidget *parent) :
-    IDataEditWidget(parent),
+    QWidget(parent),
     d_ptr(new HQualityEditWidgetPrivate),
     ui(new Ui::HQualityEditWidget)
 {
@@ -37,6 +37,11 @@ void HQualityEditWidget::initialize(QVariantMap /*param*/)
 QString HQualityEditWidget::typeName()
 {
     return "HQualityEditWidget";
+}
+
+QWidget *HQualityEditWidget::widget()
+{
+    return this;
 }
 
 IQuality *HQualityEditWidget::createData()

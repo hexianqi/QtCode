@@ -16,7 +16,7 @@ class HElecCalibrateCollection : public IElecCalibrateCollection
 
 public:
     explicit HElecCalibrateCollection();
-    virtual ~HElecCalibrateCollection() = default;
+    ~HElecCalibrateCollection();
 
 public:
     QString typeName() override;

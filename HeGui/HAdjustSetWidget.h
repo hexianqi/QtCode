@@ -20,7 +20,6 @@ public:
     ~HAdjustSetWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:

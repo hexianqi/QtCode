@@ -28,11 +28,6 @@ HOpenGLCamera::~HOpenGLCamera()
 {
 }
 
-void HOpenGLCamera::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HOpenGLCamera::typeName()
 {
     return "HOpenGLCamera";

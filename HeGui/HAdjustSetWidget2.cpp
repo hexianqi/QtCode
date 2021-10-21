@@ -21,11 +21,6 @@ HAdjustSetWidget2::~HAdjustSetWidget2()
     delete ui;
 }
 
-void HAdjustSetWidget2::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HAdjustSetWidget2::typeName()
 {
     return "HAdjustSetWidget2";

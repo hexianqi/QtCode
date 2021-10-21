@@ -40,7 +40,6 @@ private:
 using SampleHandler = EventHandler<HReflectFun2>;
 #define AddServiceHandler(parent, func) SampleHandler::AddHandler(parent, #func, &HReflectFun2::func)
 
-
 HReflectFun2::HReflectFun2(QObject *parent)
     : QObject(parent)
 {

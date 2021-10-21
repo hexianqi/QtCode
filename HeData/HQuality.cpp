@@ -25,6 +25,11 @@ HQuality::HQuality(HQualityPrivate &p) :
 {
 }
 
+HQuality::~HQuality()
+{
+
+}
+
 void HQuality::initialize(QVariantMap /*param*/)
 {
 }

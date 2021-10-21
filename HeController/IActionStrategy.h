@@ -18,13 +18,8 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HE_CONTROLLER_EXPORT IActionStrategy : public QObject, public IInitializeable
+class IActionStrategy : public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     // 设置协议
     virtual void setProtocol(IProtocol *) = 0;

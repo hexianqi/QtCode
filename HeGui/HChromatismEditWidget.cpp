@@ -20,7 +20,7 @@ HChromatismEditWidgetPrivate::HChromatismEditWidgetPrivate()
 }
 
 HChromatismEditWidget::HChromatismEditWidget(QWidget *parent) :
-    IDataEditWidget(parent),
+    QWidget(parent),
     d_ptr(new HChromatismEditWidgetPrivate),
     ui(new Ui::HChromatismEditWidget)
 {
@@ -41,6 +41,11 @@ void HChromatismEditWidget::initialize(QVariantMap /*param*/)
 QString HChromatismEditWidget::typeName()
 {
     return "HChromatismEditWidget";
+}
+
+QWidget *HChromatismEditWidget::widget()
+{
+    return this;
 }
 
 IChromatism *HChromatismEditWidget::createData()

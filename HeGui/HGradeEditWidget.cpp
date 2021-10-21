@@ -18,7 +18,7 @@ HGradeEditWidgetPrivate::HGradeEditWidgetPrivate()
 }
 
 HGradeEditWidget::HGradeEditWidget(QWidget *parent) :
-    IDataEditWidget(parent),
+    QWidget(parent),
     d_ptr(new HGradeEditWidgetPrivate)
 {
     init();
@@ -36,6 +36,11 @@ void HGradeEditWidget::initialize(QVariantMap /*param*/)
 QString HGradeEditWidget::typeName()
 {
     return "HGradeEditWidget";
+}
+
+QWidget *HGradeEditWidget::widget()
+{
+    return this;
 }
 
 IGrade *HGradeEditWidget::createData()

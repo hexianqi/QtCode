@@ -51,7 +51,7 @@ T *HObjectFactory::createObject(QString className, QObject *parent)
 {
     if (!__hashConstructor.contains(className))
         return nullptr;
-    return qobject_cast<T *>(__hashConstructor[className](parent));
+    return dynamic_cast<T *>(__hashConstructor[className](parent));
 }
 
 template <typename T>

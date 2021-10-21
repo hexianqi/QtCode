@@ -6,18 +6,25 @@ HE_GUI_BEGIN_NAMESPACE
 HAbstractGuiHandlerPrivate::HAbstractGuiHandlerPrivate()
 {
     mainWindow = HAppContext::getContextPointer<IMainWindow>("IMainWindow");
-
 }
 
 HAbstractGuiHandler::HAbstractGuiHandler(QObject *parent) :
-    IGuiHandler(parent),
+    QObject(parent),
     d_ptr(new HAbstractGuiHandlerPrivate)
 {
 }
 
 HAbstractGuiHandler::HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject *parent) :
-    IGuiHandler(parent),
+    QObject(parent),
     d_ptr(&p)
+{
+}
+
+HAbstractGuiHandler::~HAbstractGuiHandler()
+{
+}
+
+void HAbstractGuiHandler::initialize(QVariantMap /*param*/)
 {
 }
 

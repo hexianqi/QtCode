@@ -20,7 +20,6 @@ public:
     ~HTestSetWidget2000AC();
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:

@@ -4,9 +4,10 @@
 
 #pragma once
 
-#include "IDataEditWidget.h"
+#include "IDataEditer.h"
 #include "HeCore/HActionType.h"
 #include "HeData/HDataGlobal.h"
+#include <QtWidgets/QWidget>
 
 namespace Ui {
 class HAdjustEditWidget;
@@ -21,7 +22,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HAdjustEditWidgetPrivate;
 
-class HAdjustEditWidget : public IDataEditWidget<IAdjust>
+class HAdjustEditWidget : public QWidget, public IDataEditer<IAdjust>
 {
     Q_OBJECT
 
@@ -34,6 +35,7 @@ public:
     QString typeName() override;
 
 public:
+    QWidget *widget() override;
     IAdjust *createData() override;
     void setData(IAdjust *) override;
     void clearData() override;

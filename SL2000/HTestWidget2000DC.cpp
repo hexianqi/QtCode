@@ -2,6 +2,8 @@
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
 #include "HeCore/HAppContext.h"
+#include "HeData/IPrint.h"
+#include "HeData/IPrintTemplate.h"
 #include "HeData/ITestData.h"
 #include "HeGui/ITestResult.h"
 #include "HeGui/HSpecEnergyWidget.h"
@@ -27,6 +29,9 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
                              << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]" << "[荧光效能]" << "[荧光蓝光比]";
 
+
+    print = HAppContext::getContextPointer<IPrint>("IPrint");
+    printTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
 }
 
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
@@ -38,11 +43,6 @@ HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
 HTestWidget2000DC::~HTestWidget2000DC()
 {
     qDebug() << __func__;
-}
-
-void HTestWidget2000DC::initialize(QVariantMap /*param*/)
-{
-
 }
 
 QString HTestWidget2000DC::typeName()
@@ -65,8 +65,11 @@ void HTestWidget2000DC::createAction()
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
     d->actionProductInfo = new QAction(tr("产品信息修改(&P)"), this);
+    d->actionPrintTag = new QAction(tr("打印标签(&T)"), this);
+    d->actionPrintTag->setIcon(QIcon(":/image/Tag.png"));
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
     connect(d->actionProductInfo, &QAction::triggered, this, &HTestWidget2000DC::editProductInfo);
+    connect(d->actionPrintTag, &QAction::triggered, this, &HTestWidget2000DC::printTag);
 }
 
 void HTestWidget2000DC::createWidget()
@@ -90,6 +93,7 @@ void HTestWidget2000DC::initWidget()
     HSpecTestWidget::initWidget();
     d->energyWidget->addProgressBar("[光采样比率]");
     d->tableWidget->addAction(d->actionProductInfo);
+    d->tableWidget->addAction(d->actionPrintTag);
     connect(d->tableWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget2000DC::editProductInfo);
 }
 
@@ -156,4 +160,14 @@ void HTestWidget2000DC::editProductInfo()
         return;
     d->testResult->setModified();
     d->tableWidget->setRow(row, data->toString(d->displays));
+}
+
+void HTestWidget2000DC::printTag()
+{
+    Q_D(HTestWidget2000DC);
+    auto row = d->tableWidget->currentRow();
+    auto data = d->testResult->at(row)->cloneData();
+    d->printTemplate->setData(data);
+    d->print->setPrintTemplate(d->printTemplate);
+    d->print->print();
 }

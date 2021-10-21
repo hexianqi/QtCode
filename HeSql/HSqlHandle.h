@@ -5,7 +5,6 @@
 #pragma once
 
 #include "ISqlHandle.h"
-#include <QtCore/QObject>
 
 HE_SQL_BEGIN_NAMESPACE
 

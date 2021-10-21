@@ -139,8 +139,8 @@ void HSpecTestWidget::createAction()
     d->actionQuantum = new QAction(tr("光量子配置(&P)"), this);
     d->actionExportPath = new QAction(tr("配置导出目录(&D)"), this);
     d->actionSyncFile = new QAction(tr("配置同步文件(&F)"), this);
-    connect(d->actionPrintPreviewLast, &QAction::triggered, d->testResult, &ITestResult::printPreviewLast);
-    connect(d->actionExportDatabaseLast, &QAction::triggered, d->testResult, &ITestResult::exportDatabaseLast);
+    connect(d->actionPrintPreviewLast, &QAction::triggered, this, [=]{ d->testResult->printPreviewLast(); });
+    connect(d->actionExportDatabaseLast, &QAction::triggered, this, [=]{ d->testResult->exportDatabaseLast(); });
     connect(d->actionExportDatabase, &QAction::triggered, this, &HSpecTestWidget::exportDatabase);
     connect(d->actionRemove, &QAction::triggered, this, &HSpecTestWidget::removeResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });

@@ -15,7 +15,7 @@ class HQuality : public IQuality
 {
 public:
     explicit HQuality();
-    virtual ~HQuality() = default;
+    ~HQuality();
 
 public:
     void initialize(QVariantMap param) override;

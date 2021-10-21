@@ -18,6 +18,11 @@ HAbstractTestWidget::HAbstractTestWidget(QWidget *parent) :
 {
 }
 
+void HAbstractTestWidget::initialize(QVariantMap /*param*/)
+{
+
+}
+
 HAbstractTestWidget::~HAbstractTestWidget() = default;
 
 HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent) :

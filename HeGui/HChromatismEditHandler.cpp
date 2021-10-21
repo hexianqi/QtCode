@@ -20,10 +20,6 @@ HChromatismEditHandler::~HChromatismEditHandler()
     qDebug() << __func__;
 }
 
-void HChromatismEditHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HChromatismEditHandler::typeName()
 {
     return "HChromatismEditHandler";
@@ -33,7 +29,7 @@ void HChromatismEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HChromatismEditHandler);
     HDataDetail<IChromatism> detail;
-    detail.setEditWidget(new HChromatismEditWidget);
+    detail.setEditer(new HChromatismEditWidget);
     detail.setData(d->configManage->chromatismCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("色容差数据配置"));

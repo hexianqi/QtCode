@@ -21,11 +21,6 @@ HSimpleTestSetWidget::~HSimpleTestSetWidget()
     delete ui;
 }
 
-void HSimpleTestSetWidget::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HSimpleTestSetWidget::typeName()
 {
     return "HSimpleTestSetWidget";

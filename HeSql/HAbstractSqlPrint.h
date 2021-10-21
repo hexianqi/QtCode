@@ -22,6 +22,9 @@ public:
     ~HAbstractSqlPrint() override;
 
 public:
+    void initialize(QVariantMap param) override;
+
+public:
     void setModel(ISqlTableModel *) override;
     void setFieldExportExcel(QStringList value) override;
 

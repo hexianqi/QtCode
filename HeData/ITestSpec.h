@@ -4,17 +4,12 @@
 
 #pragma once
 
-#include "HTestData.h"
+#include "ITestData.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class ISpecCalibrate;
-
-class ITestSpec : public HTestData
+class ITestSpec : public virtual ITestData
 {
-public:
-    using HTestData::HTestData;
-
 public:
     // 设置采样数据
     virtual bool setSample(QVector<double> value, bool avg = false) = 0;

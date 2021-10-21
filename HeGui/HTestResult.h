@@ -10,7 +10,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HTestResultPrivate;
 
-class HTestResult : public ITestResult
+class HTestResult : public QObject, public ITestResult
 {
     Q_OBJECT
 

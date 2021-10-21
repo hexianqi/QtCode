@@ -3,13 +3,13 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HAbstractCustomStyle::HAbstractCustomStyle(QObject *parent) :
-    ICustomStyle(parent),
+    QObject(parent),
     d_ptr(new HAbstractCustomStylePrivate)
 {
 }
 
 HAbstractCustomStyle::HAbstractCustomStyle(HAbstractCustomStylePrivate &p, QObject *parent) :
-    ICustomStyle(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }

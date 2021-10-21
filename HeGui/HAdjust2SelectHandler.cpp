@@ -18,10 +18,6 @@ HAdjust2SelectHandler::~HAdjust2SelectHandler()
     qDebug() << __func__;
 }
 
-void HAdjust2SelectHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HAdjust2SelectHandler::typeName()
 {
     return "HAdjust2SelectHandler";

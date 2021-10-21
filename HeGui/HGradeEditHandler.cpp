@@ -20,10 +20,6 @@ HGradeEditHandler::~HGradeEditHandler()
     qDebug() << __func__;
 }
 
-void HGradeEditHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HGradeEditHandler::typeName()
 {
     return "HGradeEditHandler";
@@ -33,7 +29,7 @@ void HGradeEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HGradeEditHandler);
     HDataDetail<IGrade> detail;
-    detail.setEditWidget(new HGradeEditWidget);
+    detail.setEditer(new HGradeEditWidget);
     detail.setData(d->configManage->gradeCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("分级数据配置"));

@@ -4,18 +4,15 @@
 
 #pragma once
 
-#include "HAbstractStream.h"
+#include "IStream.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IMultStream : public HAbstractStream
+class IMultStream : public virtual IStream
 {
 public:
-    using HAbstractStream::HAbstractStream;
-
-public:
     // 添加流
-    virtual void addStream(QString suffix, IStream *, bool def = true) = 0;
+    virtual void addStream(QString suffix, IStream *, bool focus = true) = 0;
 };
 
 HE_DATA_END_NAMESPACE

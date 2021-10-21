@@ -16,6 +16,10 @@ HAbstractGrade::HAbstractGrade() :
 {
 }
 
+HAbstractGrade::~HAbstractGrade()
+{
+}
+
 HAbstractGrade::HAbstractGrade(HAbstractGradePrivate &p) :
     IGrade(p)
 {

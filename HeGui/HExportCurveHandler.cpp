@@ -18,11 +18,6 @@ HExportCurveHandler::~HExportCurveHandler()
     qDebug() << __func__;
 }
 
-void HExportCurveHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HExportCurveHandler::typeName()
 {
     return "HExportCurveHandler";

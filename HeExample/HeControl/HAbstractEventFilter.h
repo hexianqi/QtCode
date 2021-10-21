@@ -10,13 +10,16 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HAbstractEventFilterPrivate;
 
-class HAbstractEventFilter : public IEventFilter
+class HAbstractEventFilter : public QObject, public IEventFilter
 {
     Q_OBJECT
 
 public:
     explicit HAbstractEventFilter(QObject *parent = nullptr);
     ~HAbstractEventFilter() override;
+
+public:
+    void initialize(QVariantMap param) override;
 
 public:
     bool setEnable(bool b) override;

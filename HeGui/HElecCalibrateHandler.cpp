@@ -16,11 +16,6 @@ HElecCalibrateHandler::~HElecCalibrateHandler()
     qDebug() << __func__;
 }
 
-void HElecCalibrateHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HElecCalibrateHandler::typeName()
 {
     return "HElecCalibrateHandler";

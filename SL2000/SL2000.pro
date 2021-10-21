@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core gui widgets sql
+QT          += core gui widgets sql printsupport
 
 TEMPLATE    = app
 
@@ -24,7 +24,7 @@ DEFINES     += \
 #            SL2000AC \
             SL2000DC \
 #            SL2000F \
-#            SIMULATE
+            SIMULATE
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.

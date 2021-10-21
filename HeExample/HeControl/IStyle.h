@@ -11,13 +11,8 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IStyle : public QObject, public IInitializeable
+class IStyle : public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     // 样式表
     virtual QString toStyleSheet() = 0;

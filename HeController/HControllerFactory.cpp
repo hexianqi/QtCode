@@ -72,7 +72,7 @@ IActionStrategy *HControllerFactory::createStrategy(QString type, QObject *paren
 IMemento *HControllerFactory::createMemento(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    auto p = new HMemento;
+    auto p = new HMemento(this);
     p->initialize(param);
     return p;
 }

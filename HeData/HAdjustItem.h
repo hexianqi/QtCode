@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IAdjustItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HAdjustItemPrivate;
 
-class HAdjustItem : public IAdjustItem
+class HAdjustItem : public HAbstractDataItem, public virtual IAdjustItem
 {
     Q_DECLARE_PRIVATE(HAdjustItem)
 

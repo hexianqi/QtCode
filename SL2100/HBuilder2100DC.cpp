@@ -65,11 +65,6 @@ HBuilder2100DC::~HBuilder2100DC()
     qDebug() << __func__;
 }
 
-void HBuilder2100DC::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HBuilder2100DC::typeName()
 {
     return "HBuilder2100DC";

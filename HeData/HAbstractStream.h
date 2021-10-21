@@ -10,7 +10,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HAbstractStreamPrivate;
 
-class HAbstractStream : public QObject, public IStream
+class HAbstractStream : public QObject, public virtual IStream
 {
     Q_OBJECT
 

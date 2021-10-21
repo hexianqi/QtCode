@@ -14,13 +14,8 @@ HE_CONTROL_BEGIN_NAMESPACE
 class HGeometryEngine;
 class HGeometryEnginePrivate;
 
-class IShaderEngine : public QObject, public IInitializeable
+class IShaderEngine : public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     virtual void setData(QVariantMap value) = 0;
     virtual void draw(HGeometryEngine *, QVariantMap param = QVariantMap()) = 0;

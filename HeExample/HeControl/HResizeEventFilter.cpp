@@ -14,10 +14,6 @@ HResizeEventFilter::HResizeEventFilter(HResizeEventFilterPrivate &p, QObject *pa
 {
 }
 
-void HResizeEventFilter::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HResizeEventFilter::typeName()
 {
     return "HResizeEventFilter";

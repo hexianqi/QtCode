@@ -3,18 +3,24 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HAbstractEventFilter::HAbstractEventFilter(QObject *parent) :
-    IEventFilter(parent),
+    QObject(parent),
     d_ptr(new HAbstractEventFilterPrivate)
 {
 }
 
 HAbstractEventFilter::HAbstractEventFilter(HAbstractEventFilterPrivate &p, QObject *parent) :
-    IEventFilter(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }
 
 HAbstractEventFilter::~HAbstractEventFilter() = default;
+
+
+void HAbstractEventFilter::initialize(QVariantMap /*param*/)
+{
+
+}
 
 bool HAbstractEventFilter::setEnable(bool b)
 {

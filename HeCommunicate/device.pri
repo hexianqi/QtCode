@@ -2,9 +2,6 @@ HEADERS += \
     $$PWD/HSimulateDevice.h \
     $$PWD/HSimulateDevice_p.h \
     $$PWD/IDevice.h \
-    $$PWD/IDeviceCollection.h \
-    $$PWD/HDeviceCollection.h \
-    $$PWD/HDeviceCollection_p.h \
     $$PWD/HAbstractDevice.h \
     $$PWD/HAbstractDevice_p.h \
     $$PWD/HSlDevice1.h \
@@ -21,7 +18,6 @@ HEADERS += \
     $$PWD/HPowerFactorDevice_p.h
 
 SOURCES += \
-    $$PWD/HDeviceCollection.cpp \
     $$PWD/HAbstractDevice.cpp \
     $$PWD/HSimulateDevice.cpp \
     $$PWD/HSlDevice1.cpp \

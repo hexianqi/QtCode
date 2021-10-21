@@ -4,15 +4,12 @@
 
 #pragma once
 
-#include "HAbstractDataItem.h"
+#include "IDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class ILuminousCalibrateItem : public HAbstractDataItem
+class ILuminousCalibrateItem : public virtual IDataItem
 {
-public:
-    using HAbstractDataItem::HAbstractDataItem;
-
 public:
     // 设置总档位
     virtual void setTotalGears(int value) = 0;

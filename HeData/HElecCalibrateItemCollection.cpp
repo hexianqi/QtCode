@@ -21,6 +21,10 @@ HElecCalibrateItemCollection::HElecCalibrateItemCollection(HElecCalibrateItemCol
 {
 }
 
+HElecCalibrateItemCollection::~HElecCalibrateItemCollection()
+{
+}
+
 void HElecCalibrateItemCollection::initialize(QVariantMap param)
 {
     Q_D(HElecCalibrateItemCollection);

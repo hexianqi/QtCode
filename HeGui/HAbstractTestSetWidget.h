@@ -18,6 +18,9 @@ public:
     explicit HAbstractTestSetWidget(QWidget *parent = nullptr);
 
 public:
+    void initialize(QVariantMap param) override;
+
+public:
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
     bool setTestState(bool b) override;
     bool testState() override;

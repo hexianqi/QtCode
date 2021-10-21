@@ -16,11 +16,6 @@ HIVTestHandler::~HIVTestHandler()
     qDebug() << __func__;
 }
 
-void HIVTestHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HIVTestHandler::typeName()
 {
     return "HIVTestHandler";

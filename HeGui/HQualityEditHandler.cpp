@@ -20,10 +20,6 @@ HQualityEditHandler::~HQualityEditHandler()
     qDebug() << __func__;
 }
 
-void HQualityEditHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HQualityEditHandler::typeName()
 {
     return "HQualityEditHandler";
@@ -33,7 +29,7 @@ void HQualityEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualityEditHandler);
     HDataDetail<IQuality> detail;
-    detail.setEditWidget(new HQualityEditWidget);
+    detail.setEditer(new HQualityEditWidget);
     detail.setData(d->configManage->qualityCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("品质数据配置"));

@@ -12,12 +12,12 @@ HDataStreamPrivate::HDataStreamPrivate()
 }
 
 HDataStream::HDataStream(QObject *parent) :
-    IDataStream(*new HDataStreamPrivate, parent)
+    HAbstractStream(*new HDataStreamPrivate, parent)
 {
 }
 
 HDataStream::HDataStream(HDataStreamPrivate &p, QObject *parent) :
-    IDataStream(p, parent)
+    HAbstractStream(p, parent)
 {
 }
 
@@ -27,7 +27,7 @@ HDataStream::~HDataStream()
 
 void HDataStream::initialize(QVariantMap param)
 {
-    IDataStream::initialize(param);
+    HAbstractStream::initialize(param);
     if (param.contains("magicNumber"))
         setMagicNumber(param.value("magicNumber").toUInt());
     if (param.contains("fileVersion"))

@@ -13,13 +13,8 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IShaderEffect : public QObject, public IInitializeable
+class IShaderEffect : public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     // 绘制
     virtual void draw(QPainter *, double factor, const QRect &rect, const QPixmap &pixmap) = 0;

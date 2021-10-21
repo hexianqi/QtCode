@@ -28,27 +28,25 @@ HTestResultPrivate::HTestResultPrivate()
 void HTestResultPrivate::writeContent(Document *p)
 {
     int i, j;
-    auto data = QStringList() << "Index" << HCore::toCaptionUnit(exportTypes);
-    for (i = 0; i < data.size(); i++)
-        p->write(1, i + 1, data.at(i));
+    auto title = QStringList() << "Index" << HCore::toCaptionUnit(exportTypes);
+    for (i = 0; i < title.size(); i++)
+        p->write(1, i + 1, title.at(i));
     for (i = 0; i < results.size(); i++)
     {
-        data.clear();
-        data.append(QString::number(i + 1));
-        data.append(results.at(i)->toString(exportTypes));
+        auto data = QStringList() << QString::number(i + 1) << results.at(i)->toString(exportTypes);
         for (j = 0; j < data.size(); j++)
             p->write(i + 2, j + 1, data.at(j));
     }
 }
 
 HTestResult::HTestResult(QObject *parent) :
-    ITestResult(parent),
+    QObject(parent),
     d_ptr(new HTestResultPrivate)
 {
 }
 
 HTestResult::HTestResult(HTestResultPrivate &p, QObject *parent) :
-    ITestResult(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }
@@ -170,11 +168,12 @@ void HTestResult::exportExcel(int index, int count)
 {
     if (isEmpty() || count < 1 || index < 0)
         return;
-    count = qMin(size() - index, count);
+
     QStringList list;
+    count = qMin(size() - index, count);
+    list << "Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t");
     for (int i = 0; i < count; i++)
         list << QString("%1\t").arg(index + i) + d_ptr->results.at(i)->toString(d_ptr->exportTypes).join("\t");
-    list.prepend("Index\t" + HCore::toCaptionUnit(d_ptr->exportTypes).join("\t"));
     d_ptr->textStream->setContent(list.join("\n"));
     d_ptr->textStream->saveAsFile("", "");
 }
@@ -183,6 +182,7 @@ void HTestResult::exportExcelLast()
 {
     if (isEmpty())
         return;
+
     QString text;
     QStringList list;
     text += HCore::toCaptionUnit(d_ptr->exportTypes).join("\t") + "\n";

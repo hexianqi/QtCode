@@ -10,13 +10,13 @@ HAbstractActionStrategyPrivate::HAbstractActionStrategyPrivate()
 }
 
 HAbstractActionStrategy::HAbstractActionStrategy(QObject *parent) :
-    IActionStrategy(parent),
+    QObject(parent),
     d_ptr(new HAbstractActionStrategyPrivate)
 {
 }
 
 HAbstractActionStrategy::HAbstractActionStrategy(HAbstractActionStrategyPrivate &p, QObject *parent) :
-    IActionStrategy(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }

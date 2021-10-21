@@ -5,8 +5,8 @@
 #pragma once
 
 #include "IChartExtend.h"
-#include <QtUiPlugin/QDesignerExportWidget>
 #include <QtCore/QObject>
+#include <QtUiPlugin/QDesignerExportWidget>
 #include <functional>
 
 QT_CHARTS_BEGIN_NAMESPACE

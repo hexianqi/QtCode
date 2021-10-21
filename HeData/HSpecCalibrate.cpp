@@ -34,6 +34,10 @@ HSpecCalibrate::HSpecCalibrate(HSpecCalibratePrivate &p) :
 {
 }
 
+HSpecCalibrate::~HSpecCalibrate()
+{
+}
+
 void HSpecCalibrate::initialize(QVariantMap /*param*/)
 {
 }

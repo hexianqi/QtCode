@@ -4,15 +4,12 @@
 
 #pragma once
 
-#include "HAbstractDataItem.h"
+#include "IDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IAdjustItem : public HAbstractDataItem
+class IAdjustItem : public virtual IDataItem
 {
-public:
-    using HAbstractDataItem::HAbstractDataItem;
-
 public:
     // 还原默认
     virtual void restoreDefault() = 0;

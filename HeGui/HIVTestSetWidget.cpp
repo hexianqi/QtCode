@@ -21,11 +21,6 @@ HIVTestSetWidget::~HIVTestSetWidget()
     delete ui;
 }
 
-void HIVTestSetWidget::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HIVTestSetWidget::typeName()
 {
     return "HIVTestSetWidget";

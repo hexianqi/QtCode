@@ -20,11 +20,6 @@ HTestSetWidget2000AC::~HTestSetWidget2000AC()
     delete ui;
 }
 
-void HTestSetWidget2000AC::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HTestSetWidget2000AC::typeName()
 {
     return "HTestSetWidget2000AC";

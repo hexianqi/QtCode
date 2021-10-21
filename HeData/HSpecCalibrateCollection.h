@@ -16,7 +16,7 @@ class HSpecCalibrateCollection : public ISpecCalibrateCollection
 
 public:
     explicit HSpecCalibrateCollection();
-    virtual ~HSpecCalibrateCollection() = default;
+    ~HSpecCalibrateCollection();
 
 public:
     QString typeName() override;

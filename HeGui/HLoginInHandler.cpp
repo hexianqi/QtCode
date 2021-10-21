@@ -15,11 +15,6 @@ HLoginInHandler::~HLoginInHandler()
     qDebug() << __func__;
 }
 
-void HLoginInHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HLoginInHandler::typeName()
 {
     return "HLoginInHandler";

@@ -19,6 +19,9 @@ public:
     ~HAbstractTestDataEditDialog() override;
 
 public:
+    void initialize(QVariantMap param) override;
+
+public:
     void setData(ITestData *) override;
 
 protected:

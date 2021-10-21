@@ -22,11 +22,6 @@ HSpecCalibrateSetWidget::~HSpecCalibrateSetWidget()
     delete ui;
 }
 
-void HSpecCalibrateSetWidget::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HSpecCalibrateSetWidget::typeName()
 {
     return "HSpecCalibrateSetWidget";

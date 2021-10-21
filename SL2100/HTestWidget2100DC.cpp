@@ -30,11 +30,6 @@ HTestWidget2100DC::~HTestWidget2100DC()
     qDebug() << __func__;
 }
 
-void HTestWidget2100DC::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HTestWidget2100DC::typeName()
 {
     return "HTestWidget2100DC";

@@ -10,11 +10,13 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HConfigManagePrivate;
 
-class HConfigManage : public IConfigManage
+class HConfigManage : public QObject, public IConfigManage
 {
+    Q_OBJECT
+
 public:
-    explicit HConfigManage();
-    virtual ~HConfigManage();
+    explicit HConfigManage(QObject *parent = nullptr);
+    ~HConfigManage() override;
 
 public:
     void initialize(QVariantMap param) override;
@@ -49,7 +51,7 @@ public:
     void postProcess(ITestData *, QStringList optional) override;
 
 protected:
-    HConfigManage(HConfigManagePrivate &);
+    HConfigManage(HConfigManagePrivate &p, QObject *parent = nullptr);
 
 protected:
     QVariantMap unify(ITestData *test, QVariantMap value, QStringList optional);

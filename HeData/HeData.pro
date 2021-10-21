@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets
+QT          += widgets printsupport
 
 TEMPLATE    = lib
 
@@ -77,6 +77,7 @@ include(chromatism.pri)
 include(elec.pri)
 include(grade.pri)
 include(luminous.pri)
+include(print.pri)
 include(quality.pri)
 include(spec.pri)
 include(stream.pri)

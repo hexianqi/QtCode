@@ -12,16 +12,16 @@ IStream *HMultStreamPrivate::findStream(QString fileName)
         if (i.key().contains(suffix))
             return i.value();
     }
-    return defStream;
+    return defaultStream;
 }
 
 HMultStream::HMultStream(QObject *parent) :
-    IMultStream(*new HMultStreamPrivate, parent)
+    HAbstractStream(*new HMultStreamPrivate, parent)
 {
 }
 
 HMultStream::HMultStream(HMultStreamPrivate &p, QObject *parent) :
-    IMultStream(p, parent)
+    HAbstractStream(p, parent)
 {
 }
 
@@ -65,12 +65,12 @@ bool HMultStream::writeFile(QString fileName)
     return stream->writeFile(fileName);
 }
 
-void HMultStream::addStream(QString suffix, IStream *p, bool def)
+void HMultStream::addStream(QString suffix, IStream *p, bool focus)
 {
     Q_D(HMultStream);
     d->streams.insert(suffix, p);
-    if (def)
-        d->defStream = p;
+    if (focus)
+        d->defaultStream = p;
     d->fileFilter.clear();
 }
 

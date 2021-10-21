@@ -36,7 +36,7 @@ HAdjust2EditWidgetPrivate::HAdjust2EditWidgetPrivate()
 }
 
 HAdjust2EditWidget::HAdjust2EditWidget(QWidget *parent) :
-    IDataEditWidget(parent),
+    QWidget(parent),
     d_ptr(new HAdjust2EditWidgetPrivate),
     ui(new Ui::HAdjust2EditWidget)
 {
@@ -58,6 +58,11 @@ void HAdjust2EditWidget::initialize(QVariantMap /*param*/)
 QString HAdjust2EditWidget::typeName()
 {
     return "HAdjust2EditWidget";
+}
+
+QWidget *HAdjust2EditWidget::widget()
+{
+    return this;
 }
 
 IAdjust2 *HAdjust2EditWidget::createData()

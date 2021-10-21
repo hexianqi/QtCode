@@ -10,11 +10,6 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class IQssStyle : public IStyle
 {
-    Q_OBJECT
-
-public:
-    using IStyle::IStyle;
-
 public:
     // 调色板
     virtual QPalette toPalette() = 0;

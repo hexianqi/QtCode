@@ -10,13 +10,16 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HAbstractShaderEffectPrivate;
 
-class HAbstractShaderEffect : public IShaderEffect
+class HAbstractShaderEffect : public QObject, public IShaderEffect
 {
     Q_OBJECT
 
 public:
     explicit HAbstractShaderEffect(QObject *parent = nullptr);
     ~HAbstractShaderEffect() override;
+
+public:
+    void initialize(QVariantMap param) override;
 
 protected:
     HAbstractShaderEffect(HAbstractShaderEffectPrivate &p, QObject *parent = nullptr);

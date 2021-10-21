@@ -27,10 +27,6 @@ HSpecElecModel::~HSpecElecModel()
     qDebug() << __func__;
 }
 
-void HSpecElecModel::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HSpecElecModel::typeName()
 {
     return "HSpecElecModel";

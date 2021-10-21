@@ -23,6 +23,10 @@ HAdjust::HAdjust(HAdjustPrivate &p) :
 {
 }
 
+HAdjust::~HAdjust()
+{
+}
+
 QString HAdjust::typeName()
 {
     return "HAdjust";

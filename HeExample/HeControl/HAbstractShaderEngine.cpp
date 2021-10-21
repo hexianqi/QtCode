@@ -12,13 +12,13 @@ HAbstractShaderEnginePrivate::HAbstractShaderEnginePrivate()
 }
 
 HAbstractShaderEngine::HAbstractShaderEngine(QObject *parent) :
-    IShaderEngine(parent),
+    QObject(parent),
     d_ptr(new HAbstractShaderEnginePrivate)
 {
 }
 
 HAbstractShaderEngine::HAbstractShaderEngine(HAbstractShaderEnginePrivate &p, QObject *parent) :
-    IShaderEngine(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }
@@ -27,6 +27,11 @@ HAbstractShaderEngine::~HAbstractShaderEngine()
 {
     qDeleteAll(d_ptr->textures);
     d_ptr->textures.clear();
+}
+
+void HAbstractShaderEngine::initialize(QVariantMap /*param*/)
+{
+
 }
 
 void HAbstractShaderEngine::setData(QVariantMap /*value*/)

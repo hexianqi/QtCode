@@ -16,7 +16,7 @@ class HAdjustItemCollection : public IAdjustItemCollection
 
 public:
     explicit HAdjustItemCollection();
-    virtual ~HAdjustItemCollection() = default;
+    ~HAdjustItemCollection();
 
 public:
     QString typeName() override;

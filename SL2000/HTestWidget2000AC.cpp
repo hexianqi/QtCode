@@ -30,11 +30,6 @@ HTestWidget2000AC::~HTestWidget2000AC()
     qDebug() << __func__;
 }
 
-void HTestWidget2000AC::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HTestWidget2000AC::typeName()
 {
     return "HTestWidget2000AC";

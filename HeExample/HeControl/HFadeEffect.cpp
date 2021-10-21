@@ -13,11 +13,6 @@ HFadeEffect::HFadeEffect(HFadeEffectPrivate &p, QObject *parent) :
 {
 }
 
-void HFadeEffect::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HFadeEffect::typeName()
 {
     return "HFadeEffect";

@@ -5,9 +5,10 @@
 #pragma once
 
 #include "IDataDetail.h"
-#include "IDataEditWidget.h"
+#include "IDataEditer.h"
 #include "HeData/IDataCollection.h"
 #include "HeData/IMultStream.h"
+#include <QtWidgets/QWidget>
 
 HE_DATA_USE_NAMESPACE
 
@@ -17,7 +18,7 @@ template <typename T>
 class HDataDetailPrivate
 {
 public:
-    IDataEditWidget<T> *widget = nullptr;
+    IDataEditer<T> *editer = nullptr;
     IDataCollection<T> *datas = nullptr;
     T *data = nullptr;
 };
@@ -32,7 +33,7 @@ public:
 public:
     void initialize(QVariantMap param) override;
     QString typeName() override;
-    QWidget *editWidget() override;
+    QWidget *widget() override;
     void start() override;
     void importFile() override;
     void exportFile() override;
@@ -40,7 +41,7 @@ public:
     void delItem(QString name) override;
     void setCurrentItem(QString name) override;
     void saveData() override;
-    virtual void setEditWidget(IDataEditWidget<T> *);
+    virtual void setEditer(IDataEditer<T> *);
     virtual void setData(IDataCollection<T> *);
 
 protected:
@@ -80,9 +81,9 @@ QString HDataDetail<T>::typeName()
 }
 
 template<typename T>
-QWidget *HDataDetail<T>::editWidget()
+QWidget *HDataDetail<T>::widget()
 {
-    return d_ptr->widget;
+    return d_ptr->editer->widget();
 }
 
 template <typename T>
@@ -109,7 +110,7 @@ void HDataDetail<T>::exportFile()
 template <typename T>
 void HDataDetail<T>::addItem(QString name)
 {
-    auto data = d_ptr->widget->createData();
+    auto data = d_ptr->editer->createData();
     if (data == nullptr)
         return;
     d_ptr->datas->insert(name, data);
@@ -119,7 +120,7 @@ void HDataDetail<T>::addItem(QString name)
 template <typename T>
 void HDataDetail<T>::delItem(QString name)
 {
-    d_ptr->widget->clearData();
+    d_ptr->editer->clearData();
     if (d_ptr->datas->remove(name) > 0)
         emit sourceChanged(d_ptr->datas->keys(), name);
 }
@@ -130,21 +131,21 @@ void HDataDetail<T>::setCurrentItem(QString name)
     saveData();
     d_ptr->datas->setUseIndex(name);
     d_ptr->data = d_ptr->datas->value(name);
-    d_ptr->widget->setData(d_ptr->datas->value(name));
+    d_ptr->editer->setData(d_ptr->datas->value(name));
 }
 
 template<typename T>
 void HDataDetail<T>::saveData()
 {
-    d_ptr->widget->saveData();
+    d_ptr->editer->saveData();
 }
 
 template<typename T>
-void HDataDetail<T>::setEditWidget(IDataEditWidget<T> *p)
+void HDataDetail<T>::setEditer(IDataEditer<T> *p)
 {
-    if (d_ptr->widget == p)
+    if (d_ptr->editer == p)
         return;
-    d_ptr->widget = p;
+    d_ptr->editer = p;
 }
 
 template<typename T>

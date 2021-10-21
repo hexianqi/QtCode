@@ -16,7 +16,7 @@ class HAdjust2Collection : public IAdjust2Collection
 
 public:
     explicit HAdjust2Collection();
-    virtual ~HAdjust2Collection() = default;
+    ~HAdjust2Collection();
 
 public:
     QString typeName() override;

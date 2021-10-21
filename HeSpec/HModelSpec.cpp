@@ -27,11 +27,6 @@ HModelSpec::~HModelSpec()
     qDebug() << __func__;
 }
 
-void HModelSpec::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HModelSpec::typeName()
 {
     return "HModelSpec";

@@ -23,7 +23,7 @@ signals:
 
 public:
     // 编辑窗体
-    virtual QWidget *editWidget() = 0;
+    virtual QWidget *widget() = 0;
     // 启用
     virtual void start() = 0;
     // 导入文件

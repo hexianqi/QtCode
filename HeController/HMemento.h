@@ -10,7 +10,7 @@ HE_CONTROLLER_BEGIN_NAMESPACE
 
 class HMementoPrivate;
 
-class HMemento : public IMemento
+class HMemento : public QObject, public IMemento
 {
     Q_OBJECT
 

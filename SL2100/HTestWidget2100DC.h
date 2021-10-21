@@ -20,12 +20,10 @@ public:
     ~HTestWidget2100DC() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 protected:
     void createWidget() override;
-
 };
 
 

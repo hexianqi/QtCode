@@ -12,13 +12,13 @@ HQualityItemPrivate::HQualityItemPrivate()
 }
 
 HQualityItem::HQualityItem() :
-    IQualityItem(*new HQualityItemPrivate)
+    HAbstractDataItem(*new HQualityItemPrivate)
 {
     restoreDefault();
 }
 
 HQualityItem::HQualityItem(HQualityItemPrivate &p) :
-    IQualityItem(p)
+    HAbstractDataItem(p)
 {
 }
 

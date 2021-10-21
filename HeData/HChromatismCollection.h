@@ -16,7 +16,7 @@ class HChromatismCollection : public IChromatismCollection
 
 public:
     explicit HChromatismCollection();
-    virtual ~HChromatismCollection() = default;
+    ~HChromatismCollection();
 
 public:
     QString typeName() override;

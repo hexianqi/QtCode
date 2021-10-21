@@ -10,7 +10,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HAbstractCustomStylePrivate;
 
-class HAbstractCustomStyle : public ICustomStyle
+class HAbstractCustomStyle : public QObject, public ICustomStyle
 {
     Q_OBJECT
 

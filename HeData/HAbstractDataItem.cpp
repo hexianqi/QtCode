@@ -12,6 +12,10 @@ HAbstractDataItem::HAbstractDataItem(HAbstractDataItemPrivate &p) :
 {
 }
 
+HAbstractDataItem::~HAbstractDataItem()
+{
+}
+
 void HAbstractDataItem::initialize(QVariantMap param)
 {
     if (param.contains("datas"))

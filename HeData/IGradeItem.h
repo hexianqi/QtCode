@@ -4,15 +4,12 @@
 
 #pragma once
 
-#include "HAbstractDataItem.h"
+#include "IDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IGradeItem : public HAbstractDataItem
+class IGradeItem : public virtual IDataItem
 {
-public:
-    using HAbstractDataItem::HAbstractDataItem;
-
 public:
     // 设置分级
     virtual void setLevels(QVariant value) = 0;

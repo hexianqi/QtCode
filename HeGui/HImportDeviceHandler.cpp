@@ -13,11 +13,6 @@ HImportDeviceHandler::~HImportDeviceHandler()
 {
 }
 
-void HImportDeviceHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HImportDeviceHandler::typeName()
 {
     return "HImportDeviceHandler";

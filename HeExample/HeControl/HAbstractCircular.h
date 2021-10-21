@@ -19,6 +19,9 @@ public:
     ~HAbstractCircular() override;
 
 public:
+    void initialize(QVariantMap param) override;
+
+public:
     void draw(QPainter *, double factor, QVariantMap param = QVariantMap()) override;
 
 protected:

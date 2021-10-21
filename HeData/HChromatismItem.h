@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IChromatismItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HChromatismItemPrivate;
 
-class HChromatismItem : public IChromatismItem
+class HChromatismItem : public HAbstractDataItem, public virtual IChromatismItem
 {
     Q_DECLARE_PRIVATE(HChromatismItem)
 

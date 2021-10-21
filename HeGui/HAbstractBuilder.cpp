@@ -23,6 +23,11 @@ HAbstractBuilder::HAbstractBuilder(QObject *parent) :
 {
 }
 
+void HAbstractBuilder::initialize(QVariantMap /*param*/)
+{
+
+}
+
 HAbstractBuilder::HAbstractBuilder(HAbstractBuilderPrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)

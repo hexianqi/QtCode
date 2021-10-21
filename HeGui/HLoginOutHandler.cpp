@@ -15,11 +15,6 @@ HLoginOutHandler::~HLoginOutHandler()
     qDebug() << __func__;
 }
 
-void HLoginOutHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HLoginOutHandler::typeName()
 {
     return "HLoginOutHandler";

@@ -18,10 +18,6 @@ HQualitySelectHandler::~HQualitySelectHandler()
     qDebug() << __func__;
 }
 
-void HQualitySelectHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HQualitySelectHandler::typeName()
 {
     return "HQualitySelectHandler";

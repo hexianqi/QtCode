@@ -5,7 +5,6 @@
 #pragma once
 
 #include "IBuilder.h"
-#include <QtCore/QObject>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -18,6 +17,9 @@ class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
 
 public:
     explicit HAbstractBuilder(QObject *parent = nullptr);
+
+public:
+    void initialize(QVariantMap param) override;
 
 public:
     void buildAll() override;

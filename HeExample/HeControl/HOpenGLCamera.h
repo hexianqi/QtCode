@@ -20,7 +20,6 @@ public:
     ~HOpenGLCamera() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
     bool addWatched(QObject *) override;
 

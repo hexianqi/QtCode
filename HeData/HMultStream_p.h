@@ -12,7 +12,7 @@ public:
 
 public:
     QMap<QString, IStream *> streams;
-    IStream *defStream = nullptr;
+    IStream *defaultStream = nullptr;
 };
 
 HE_DATA_END_NAMESPACE

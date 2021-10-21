@@ -20,11 +20,6 @@ HSpecDetailWidget::~HSpecDetailWidget()
     delete ui;
 }
 
-void HSpecDetailWidget::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HSpecDetailWidget::typeName()
 {
     return "HDetailWidgetSpec";

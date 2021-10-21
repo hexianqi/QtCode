@@ -52,6 +52,7 @@ Debug {
     TARGET = HeSqld
     LIBS    += \
             -L$$DESTDIR -lHeCored \
+            -L$$DESTDIR -lHeDatad \
             -L$$DESTDIR -lHePlugind
 }
 
@@ -59,6 +60,7 @@ Release {
     TARGET  = HeSql
     LIBS    += \
             -L$$DESTDIR -lHeCore \
+            -L$$DESTDIR -lHeData \
             -L$$DESTDIR -lHePlugin
 }
 

@@ -48,6 +48,10 @@ HChromatismCollection::HChromatismCollection(HChromatismCollectionPrivate &p) :
 {
 }
 
+HChromatismCollection::~HChromatismCollection()
+{
+}
+
 QString HChromatismCollection::typeName()
 {
     return "HChromatismCollection";

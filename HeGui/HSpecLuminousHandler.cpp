@@ -18,11 +18,6 @@ HSpecLuminousHandler::~HSpecLuminousHandler()
     qDebug() << __func__;
 }
 
-void HSpecLuminousHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HSpecLuminousHandler::typeName()
 {
     return "HSpecLuminousHandler";

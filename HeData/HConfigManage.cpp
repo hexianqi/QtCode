@@ -144,12 +144,14 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     }
 }
 
-HConfigManage::HConfigManage() :
+HConfigManage::HConfigManage(QObject *parent) :
+    QObject(parent),
     d_ptr(new HConfigManagePrivate)
 {
 }
 
-HConfigManage::HConfigManage(HConfigManagePrivate &p) :
+HConfigManage::HConfigManage(HConfigManagePrivate &p, QObject *parent) :
+    QObject(parent),
     d_ptr(&p)
 {
 }

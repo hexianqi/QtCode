@@ -10,7 +10,7 @@ HE_DATA_BEGIN_NAMESPACE
 
 class HTestDataPrivate;
 
-class HE_DATA_EXPORT HTestData : public ITestData
+class HE_DATA_EXPORT HTestData : public virtual ITestData
 {
 public:
     explicit HTestData();

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "HAbstractStream.h"
+#include "IStream.h"
 #include <functional>
 
 namespace QXlsx {
@@ -15,11 +15,8 @@ using namespace QXlsx;
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IXlsxStream : public HAbstractStream
+class IXlsxStream : public virtual IStream
 {
-public:
-    using HAbstractStream::HAbstractStream;
-
 public:
     // 设置读取内容函数
     virtual void setReadContent(std::function<void(Document *)> func) = 0;

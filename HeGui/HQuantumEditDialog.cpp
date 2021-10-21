@@ -20,11 +20,6 @@ HQuantumEditDialog::~HQuantumEditDialog()
     delete ui;
 }
 
-void HQuantumEditDialog::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HQuantumEditDialog::typeName()
 {
     return "HQuantumEditDialog";

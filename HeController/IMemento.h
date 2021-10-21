@@ -11,13 +11,8 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 
-class HE_CONTROLLER_EXPORT IMemento : public QObject, public IInitializeable
+class IMemento : public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     // 读取文件
     virtual bool readFile(QString fileName) = 0;

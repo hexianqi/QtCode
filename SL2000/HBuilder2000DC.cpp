@@ -1,6 +1,8 @@
 #include "HBuilder2000DC_p.h"
+#include "HTagPrintTemplate2000DC.h"
 #include "HTestWidget2000DC.h"
 #include "HeCore/HAppContext.h"
+#include "HeData/IPrint.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IDataStream.h"
@@ -70,11 +72,6 @@ HBuilder2000DC::HBuilder2000DC(HBuilder2000DCPrivate &p, QObject *parent) :
 HBuilder2000DC::~HBuilder2000DC()
 {
     qDebug() << __func__;
-}
-
-void HBuilder2000DC::initialize(QVariantMap /*param*/)
-{
-
 }
 
 QString HBuilder2000DC::typeName()
@@ -168,6 +165,11 @@ void HBuilder2000DC::buildTestData()
     HAppContext::setContextPointer("ITestLuminous", luminous);
     HAppContext::setContextPointer("ITestElec", elec);
     HAppContext::setContextPointer("ITestSpec", spec);
+
+    auto temp = new HTagPrintTemplate2000DC(this);
+    auto print = d->dataFactory->createPrint("HPrint");
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ITagPrintTemplate", temp);
 }
 
 void HBuilder2000DC::buildDevice()

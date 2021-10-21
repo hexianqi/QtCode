@@ -12,13 +12,17 @@ HLuminousCalibrateItemPrivate::HLuminousCalibrateItemPrivate()
 }
 
 HLuminousCalibrateItem::HLuminousCalibrateItem() :
-    ILuminousCalibrateItem(*new HLuminousCalibrateItemPrivate)
+    HAbstractDataItem(*new HLuminousCalibrateItemPrivate)
 {
     setTotalGears(5);
 }
 
 HLuminousCalibrateItem::HLuminousCalibrateItem(HLuminousCalibrateItemPrivate &p) :
-    ILuminousCalibrateItem(p)
+    HAbstractDataItem(p)
+{
+}
+
+HLuminousCalibrateItem::~HLuminousCalibrateItem()
 {
 }
 

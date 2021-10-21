@@ -31,7 +31,6 @@ public:
     ~HSpecCalibrateWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:

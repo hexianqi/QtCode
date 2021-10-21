@@ -16,11 +16,6 @@ HDetailWidget2000AC::~HDetailWidget2000AC()
     delete ui;
 }
 
-void HDetailWidget2000AC::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HDetailWidget2000AC::typeName()
 {
     return "HDetailWidget2000AC";

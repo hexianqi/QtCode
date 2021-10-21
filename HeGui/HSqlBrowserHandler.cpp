@@ -16,10 +16,6 @@ HSqlBrowserHandler::~HSqlBrowserHandler()
     qDebug() << __func__;
 }
 
-void HSqlBrowserHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HSqlBrowserHandler::typeName()
 {
     return "HSqlBrowserHandler";

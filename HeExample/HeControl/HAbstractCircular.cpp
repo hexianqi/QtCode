@@ -17,6 +17,10 @@ HAbstractCircular::HAbstractCircular(HAbstractCircularPrivate &p, QObject *paren
 
 HAbstractCircular::~HAbstractCircular() = default;
 
+void HAbstractCircular::initialize(QVariantMap /*param*/)
+{
+}
+
 void HAbstractCircular::draw(QPainter *painter, double /*factor*/, QVariantMap param)
 {
     auto w = param.value("width", 100).toInt();

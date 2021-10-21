@@ -16,7 +16,7 @@ class HLuminousCalibrate : public ILuminousCalibrate
 
 public:
     explicit HLuminousCalibrate();
-    virtual ~HLuminousCalibrate() = default;
+    ~HLuminousCalibrate();
 
 public:
     QString typeName() override;

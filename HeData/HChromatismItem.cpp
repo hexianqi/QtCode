@@ -23,12 +23,12 @@ HChromatismItemPrivate::HChromatismItemPrivate()
 }
 
 HChromatismItem::HChromatismItem() :
-    IChromatismItem(*new HChromatismItemPrivate)
+    HAbstractDataItem(*new HChromatismItemPrivate)
 {
 }
 
 HChromatismItem::HChromatismItem(HChromatismItemPrivate &p) :
-    IChromatismItem(p)
+    HAbstractDataItem(p)
 {
 }
 

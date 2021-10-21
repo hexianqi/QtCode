@@ -17,11 +17,6 @@ HDetailWidget2100DC::~HDetailWidget2100DC()
     delete ui;
 }
 
-void HDetailWidget2100DC::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HDetailWidget2100DC::typeName()
 {
     return "HDetailWidget2100DC";

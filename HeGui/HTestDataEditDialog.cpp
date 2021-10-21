@@ -20,11 +20,6 @@ HTestDataEditDialog::~HTestDataEditDialog()
     delete ui;
 }
 
-void HTestDataEditDialog::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HTestDataEditDialog::typeName()
 {
     return "HTestDataEditDialog";

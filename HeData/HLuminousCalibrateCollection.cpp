@@ -41,6 +41,10 @@ HLuminousCalibrateCollection::HLuminousCalibrateCollection(HLuminousCalibrateCol
 {
 }
 
+HLuminousCalibrateCollection::~HLuminousCalibrateCollection()
+{
+}
+
 QString HLuminousCalibrateCollection::typeName()
 {
     return "HLuminousCalibrateCollection";

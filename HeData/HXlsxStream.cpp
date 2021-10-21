@@ -9,12 +9,12 @@ HXlsxStreamPrivate::HXlsxStreamPrivate()
 }
 
 HXlsxStream::HXlsxStream(QObject *parent) :
-    IXlsxStream(*new HXlsxStreamPrivate, parent)
+    HAbstractStream(*new HXlsxStreamPrivate, parent)
 {
 }
 
 HXlsxStream::HXlsxStream(HXlsxStreamPrivate &p, QObject *parent) :
-    IXlsxStream(p, parent)
+    HAbstractStream(p, parent)
 {
 }
 

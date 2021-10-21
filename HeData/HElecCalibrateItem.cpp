@@ -11,13 +11,13 @@ HElecCalibrateItemPrivate::HElecCalibrateItemPrivate()
 }
 
 HElecCalibrateItem::HElecCalibrateItem() :
-    IElecCalibrateItem(*new HElecCalibrateItemPrivate)
+    HAbstractDataItem(*new HElecCalibrateItemPrivate)
 {
     restoreDefault();
 }
 
 HElecCalibrateItem::HElecCalibrateItem(HElecCalibrateItemPrivate &p) :
-    IElecCalibrateItem(p)
+    HAbstractDataItem(p)
 {
 }
 

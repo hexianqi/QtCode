@@ -3,6 +3,7 @@
 ***************************************************************************************************/
 
 #pragma once
+
 #include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 
@@ -10,6 +11,7 @@ HE_CORE_USE_NAMESPACE
 
 HE_DATA_BEGIN_NAMESPACE
 
+class IPrint;
 class IDataStream;
 class ITextStream;
 class IXlsxStream;
@@ -45,6 +47,10 @@ class HSpecFitting;
 
 class IDataFactory : public IInitializeable
 {
+public:
+    // 创建打印
+    virtual IPrint *createPrint(QString type, QVariantMap param = QVariantMap()) = 0;
+
 public:
     // 创建数据流
     virtual IDataStream *createDataStream(QString type, QVariantMap param = QVariantMap()) = 0;

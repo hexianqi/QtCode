@@ -46,6 +46,10 @@ HAdjust2Collection::HAdjust2Collection(HAdjust2CollectionPrivate &p) :
 {
 }
 
+HAdjust2Collection::~HAdjust2Collection()
+{
+}
+
 QString HAdjust2Collection::typeName()
 {
     return "HAdjust2Collection";

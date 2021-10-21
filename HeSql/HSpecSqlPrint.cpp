@@ -25,11 +25,6 @@ HSpecSqlPrint::~HSpecSqlPrint()
     qDebug() << __func__;
 }
 
-void HSpecSqlPrint::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HSpecSqlPrint::typeName()
 {
     return "HSpecSqlPrint";

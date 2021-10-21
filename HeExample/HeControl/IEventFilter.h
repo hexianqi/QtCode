@@ -12,13 +12,8 @@ HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_BEGIN_NAMESPACE
 
-class IEventFilter: public QObject, public IInitializeable
+class IEventFilter: public IInitializeable
 {
-    Q_OBJECT
-
-public:
-    using QObject::QObject;
-
 public:
     // 设置是否启用
     virtual bool setEnable(bool b) = 0;

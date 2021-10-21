@@ -18,10 +18,6 @@ HChromatismSelectHandler::~HChromatismSelectHandler()
     qDebug() << __func__;
 }
 
-void HChromatismSelectHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HChromatismSelectHandler::typeName()
 {
     return "HChromatismSelectHandler";

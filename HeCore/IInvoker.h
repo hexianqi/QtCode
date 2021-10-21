@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HeCore/IInitializeable.h"
+#include "IInitializeable.h"
 
 HE_CORE_BEGIN_NAMESPACE
 

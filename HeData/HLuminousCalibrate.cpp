@@ -21,6 +21,10 @@ HLuminousCalibrate::HLuminousCalibrate(HLuminousCalibratePrivate &p) :
 {
 }
 
+HLuminousCalibrate::~HLuminousCalibrate()
+{
+}
+
 QString HLuminousCalibrate::typeName()
 {
     return "HLuminousCalibrate";

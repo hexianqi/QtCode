@@ -62,10 +62,6 @@ HBuilder2000AC::~HBuilder2000AC()
     qDebug() << __func__;
 }
 
-void HBuilder2000AC::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HBuilder2000AC::typeName()
 {
     return "HBuilder2000AC";

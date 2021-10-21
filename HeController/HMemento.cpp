@@ -34,13 +34,13 @@ void HMementoPrivate::writeContent(QDataStream &s)
 }
 
 HMemento::HMemento(QObject *parent) :
-    IMemento(parent),
+    QObject(parent),
     d_ptr(new HMementoPrivate)
 {
 }
 
 HMemento::HMemento(HMementoPrivate &p, QObject *parent) :
-    IMemento(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }

@@ -22,6 +22,11 @@ HAdjust2::HAdjust2(HAdjust2Private &p) :
 {
 }
 
+HAdjust2::~HAdjust2()
+{
+
+}
+
 QString HAdjust2::typeName()
 {
     return "HAdjust2";

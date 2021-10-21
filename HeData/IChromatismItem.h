@@ -4,15 +4,12 @@
 
 #pragma once
 
-#include "HAbstractDataItem.h"
+#include "IDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IChromatismItem : public HAbstractDataItem
+class IChromatismItem : public virtual IDataItem
 {
-public:
-    using HAbstractDataItem::HAbstractDataItem;
-
 public:
     // 计算色容差
     virtual double calcSdcm(QPointF xy) = 0;

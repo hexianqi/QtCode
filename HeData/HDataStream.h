@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IDataStream.h"
+#include "HAbstractStream.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HDataStreamPrivate;
 
-class HDataStream : public IDataStream
+class HDataStream : public HAbstractStream, public virtual IDataStream
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HDataStream)

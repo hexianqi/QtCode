@@ -16,7 +16,7 @@ class HAbstractGrade : public IGrade
 
 public:
     explicit HAbstractGrade();
-    virtual ~HAbstractGrade() = default;
+    ~HAbstractGrade();
 
 public:
     void readContent(QDataStream &) override;

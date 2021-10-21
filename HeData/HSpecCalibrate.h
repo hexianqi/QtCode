@@ -14,7 +14,7 @@ class HSpecCalibrate : public ISpecCalibrate
 {
 public:
     explicit HSpecCalibrate();
-    virtual ~HSpecCalibrate() = default;
+    ~HSpecCalibrate();
 
 public:
     void initialize(QVariantMap param) override;

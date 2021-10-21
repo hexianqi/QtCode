@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IElecCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HElecCalibrateItemPrivate;
 
-class HElecCalibrateItem : public IElecCalibrateItem
+class HElecCalibrateItem : public HAbstractDataItem, public virtual IElecCalibrateItem
 {
     Q_DECLARE_PRIVATE(HElecCalibrateItem)
 

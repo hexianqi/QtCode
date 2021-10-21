@@ -5,14 +5,14 @@
 HE_CONTROL_BEGIN_NAMESPACE
 
 HQssStyle::HQssStyle(QObject *parent) :
-    IQssStyle(parent),
+    QObject(parent),
     d_ptr(new HQssStylePrivate)
 {
     init();
 }
 
 HQssStyle::HQssStyle(HQssStylePrivate &p, QObject *parent) :
-    IQssStyle(parent),
+    QObject(parent),
     d_ptr(&p)
 {
     init();

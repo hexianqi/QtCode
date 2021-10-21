@@ -20,6 +20,9 @@ public:
     ~HAbstractModel() override;
 
 public:
+    void initialize(QVariantMap param) override;
+
+public:
     void start() override;
     void addAction(HActionType action, ulong delay = 0) override;
     void syncDeviceAll() override;

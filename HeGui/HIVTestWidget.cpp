@@ -33,11 +33,6 @@ HIVTestWidget::~HIVTestWidget()
     qDebug() << __func__;
 }
 
-void HIVTestWidget::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HIVTestWidget::typeName()
 {
     return "HIVTestWidget";

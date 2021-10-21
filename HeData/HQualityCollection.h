@@ -16,7 +16,7 @@ class HQualityCollection : public IQualityCollection
 
 public:
     explicit HQualityCollection();
-    virtual ~HQualityCollection() = default;
+    ~HQualityCollection();
 
 public:
     QString typeName() override;

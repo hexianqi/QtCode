@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include "IDataEditWidget.h"
+#include "IDataEditer.h"
 #include "HeData/HDataGlobal.h"
+#include <QtWidgets/QWidget>
 
 namespace Ui {
 class HQualityEditWidget;
@@ -20,7 +21,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HQualityEditWidgetPrivate;
 
-class HQualityEditWidget : public IDataEditWidget<IQuality>
+class HQualityEditWidget : public QWidget, public IDataEditer<IQuality>
 {
     Q_OBJECT
 
@@ -33,6 +34,7 @@ public:
     QString typeName() override;
 
 public:
+    QWidget *widget() override;
     IQuality *createData() override;
     void setData(IQuality *) override;
     void clearData() override;

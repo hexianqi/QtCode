@@ -20,7 +20,6 @@ public:
     ~HAdjust2EditHandler() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:

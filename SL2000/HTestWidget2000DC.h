@@ -20,7 +20,6 @@ public:
     ~HTestWidget2000DC() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 protected:
@@ -33,4 +32,5 @@ protected:
     void writeSettings() override;
     void setProbe(bool b);
     void editProductInfo();
+    void printTag();
 };

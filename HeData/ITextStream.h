@@ -4,18 +4,15 @@
 
 #pragma once
 
-#include "HAbstractStream.h"
+#include "IStream.h"
 #include <functional>
 
 class QTextStream;
 
 HE_DATA_BEGIN_NAMESPACE
 
-class ITextStream : public HAbstractStream
+class ITextStream : public virtual IStream
 {
-public:
-    using HAbstractStream::HAbstractStream;
-
 public:
     // 设置内容
     virtual void setContent(QString value) = 0;

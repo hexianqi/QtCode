@@ -20,7 +20,6 @@ public:
     ~HAdjust2SelectHandler() override;
 
 public:
-    void initialize(QVariantMap param) override;
     QString typeName() override;
 
 public:

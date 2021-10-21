@@ -16,10 +16,6 @@ HSpecCalibrateHandler::~HSpecCalibrateHandler()
     qDebug() << __func__;
 }
 
-void HSpecCalibrateHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HSpecCalibrateHandler::typeName()
 {
     return "HSpecCalibrateHandler";

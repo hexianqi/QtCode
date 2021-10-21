@@ -8,10 +8,10 @@
 #include <QtCore/QPointF>
 #include <QtCore/QDateTime>
 #include <QtCore/QSettings>
-#include <QtWidgets/QFileDialog>
 #include <QtWidgets/QApplication>
-#include <QtGui/QScreen>
+#include <QtWidgets/QFileDialog>
 #include <QtGui/QPainter>
+#include <QtGui/QScreen>
 #include <QtSql/QSqlRecord>
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
@@ -42,6 +42,11 @@ HAbstractSqlPrint::HAbstractSqlPrint(HAbstractSqlPrintPrivate &p, QObject *paren
 HAbstractSqlPrint::~HAbstractSqlPrint()
 {
     writeSettings();
+}
+
+void HAbstractSqlPrint::initialize(QVariantMap /*param*/)
+{
+
 }
 
 void HAbstractSqlPrint::setModel(ISqlTableModel *p)

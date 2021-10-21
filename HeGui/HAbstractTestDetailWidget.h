@@ -18,6 +18,9 @@ public:
     explicit HAbstractTestDetailWidget(QWidget *parent = nullptr);
     ~HAbstractTestDetailWidget() override;
 
+public:
+    void initialize(QVariantMap param) override;
+
 protected:
     HAbstractTestDetailWidget(HAbstractTestDetailWidgetPrivate &p, QWidget *parent = nullptr);
 

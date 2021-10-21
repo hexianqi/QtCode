@@ -5,12 +5,13 @@
 #pragma once
 
 #include "IGradeItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HGradeItemPrivate;
 
-class HGradeItem : public IGradeItem
+class HGradeItem : public HAbstractDataItem, public virtual IGradeItem
 {
     Q_DECLARE_PRIVATE(HGradeItem)
 

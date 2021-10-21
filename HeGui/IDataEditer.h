@@ -6,19 +6,19 @@
 
 #include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include <QtWidgets/QWidget>
+
+class QWidget;
 
 HE_CORE_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
 template <typename T>
-class IDataEditWidget : public QWidget, public IInitializeable
+class IDataEditer : public IInitializeable
 {
 public:
-    using QWidget::QWidget;
-
-public:
+    // 编辑窗体
+    virtual QWidget *widget() = 0;
     // 创建数据
     virtual T *createData() = 0;
     // 设置数据

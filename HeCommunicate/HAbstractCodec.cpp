@@ -7,11 +7,13 @@ HAbstractCodec::HAbstractCodec() :
 {
 }
 
-HAbstractCodec::~HAbstractCodec() = default;
+
 
 HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p) :
     d_ptr(&p)
 {
 }
+
+HAbstractCodec::~HAbstractCodec() = default;
 
 HE_COMMUNICATE_END_NAMESPACE

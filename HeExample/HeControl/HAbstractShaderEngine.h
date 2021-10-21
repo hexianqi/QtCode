@@ -11,13 +11,16 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HAbstractShaderEnginePrivate;
 
-class HAbstractShaderEngine : public IShaderEngine
+class HAbstractShaderEngine : public QObject, public IShaderEngine
 {
     Q_OBJECT
 
 public:
     explicit HAbstractShaderEngine(QObject *parent = nullptr);
     ~HAbstractShaderEngine() override;
+
+public:
+    void initialize(QVariantMap param) override;
 
 public:
     void setData(QVariantMap value) override;

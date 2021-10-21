@@ -20,10 +20,6 @@ HAdjust2EditHandler::~HAdjust2EditHandler()
     qDebug() << __func__;
 }
 
-void HAdjust2EditHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HAdjust2EditHandler::typeName()
 {
     return "HAdjust2EditHandler";
@@ -33,7 +29,7 @@ void HAdjust2EditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAdjust2EditHandler);
     HDataDetail<IAdjust2> detail;
-    detail.setEditWidget(new HAdjust2EditWidget);
+    detail.setEditer(new HAdjust2EditWidget);
     detail.setData(d->configManage->adjust2Collection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("调整数据配置"));

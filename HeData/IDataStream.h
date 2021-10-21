@@ -14,16 +14,13 @@
 
 #pragma once
 
-#include "HAbstractStream.h"
+#include "IStream.h"
 #include <functional>
 
 HE_DATA_BEGIN_NAMESPACE
 
-class IDataStream : public HAbstractStream
+class IDataStream : public virtual IStream
 {
-public:
-    using HAbstractStream::HAbstractStream;
-
 public:
     // 设置Magic数
     virtual void setMagicNumber(quint32 value) = 0;

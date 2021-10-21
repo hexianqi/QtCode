@@ -16,7 +16,7 @@ class HLuminousCalibrateCollection : public ILuminousCalibrateCollection
 
 public:
     explicit HLuminousCalibrateCollection();
-    virtual ~HLuminousCalibrateCollection() = default;
+    ~HLuminousCalibrateCollection();
 
 public:
     QString typeName() override;

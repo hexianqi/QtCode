@@ -14,11 +14,6 @@ HExportDeviceHandler::~HExportDeviceHandler()
     qDebug() << __func__;
 }
 
-void HExportDeviceHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HExportDeviceHandler::typeName()
 {
     return "HExportDeviceHandler";

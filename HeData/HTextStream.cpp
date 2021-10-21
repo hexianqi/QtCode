@@ -10,12 +10,12 @@ HTextStreamPrivate::HTextStreamPrivate()
 }
 
 HTextStream::HTextStream(QObject *parent) :
-    ITextStream(*new HTextStreamPrivate, parent)
+    HAbstractStream(*new HTextStreamPrivate, parent)
 {
 }
 
 HTextStream::HTextStream(HTextStreamPrivate &p, QObject *parent) :
-    ITextStream(p, parent)
+    HAbstractStream(p, parent)
 {
 }
 

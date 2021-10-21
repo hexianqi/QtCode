@@ -37,10 +37,6 @@ HBuilderSpec::~HBuilderSpec()
     qDebug() << __func__;
 }
 
-void HBuilderSpec::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HBuilderSpec::typeName()
 {
     return "HBuilderSpec";

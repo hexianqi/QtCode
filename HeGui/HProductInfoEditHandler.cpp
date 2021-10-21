@@ -16,10 +16,6 @@ HProductInfoEditHandler::~HProductInfoEditHandler()
     qDebug() << __func__;
 }
 
-void HProductInfoEditHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HProductInfoEditHandler::typeName()
 {
     return "HProductInfoEditHandler";

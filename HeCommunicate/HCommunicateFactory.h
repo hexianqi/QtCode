@@ -25,7 +25,6 @@ public:
 public:
     IPort *createPort(QString type, QVariantMap param = QVariantMap()) override;
     IDevice *createDevice(QString type, QVariantMap param = QVariantMap()) override;
-    IDeviceCollection *createDeviceCollection(QString type, QVariantMap param = QVariantMap()) override;
     IProtocol *createProtocol(QString type, QVariantMap param = QVariantMap()) override;
     IProtocolCollection *createProtocolCollection(QString type, QVariantMap param = QVariantMap()) override;
 

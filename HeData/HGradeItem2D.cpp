@@ -14,12 +14,12 @@ HGradeItem2DPrivate::HGradeItem2DPrivate()
 }
 
 HGradeItem2D::HGradeItem2D() :
-    IGradeItem(*new HGradeItem2DPrivate)
+    HAbstractDataItem(*new HGradeItem2DPrivate)
 {
 }
 
 HGradeItem2D::HGradeItem2D(HGradeItem2DPrivate &p) :
-    IGradeItem(p)
+    HAbstractDataItem(p)
 {
 }
 

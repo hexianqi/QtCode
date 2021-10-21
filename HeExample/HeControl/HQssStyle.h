@@ -10,7 +10,7 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class HQssStylePrivate;
 
-class HQssStyle : public IQssStyle
+class HQssStyle : public QObject, public IQssStyle
 {
     Q_OBJECT
 

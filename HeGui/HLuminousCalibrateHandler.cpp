@@ -16,11 +16,6 @@ HLuminousCalibrateHandler::~HLuminousCalibrateHandler()
     qDebug() << __func__;
 }
 
-void HLuminousCalibrateHandler::initialize(QVariantMap /*param*/)
-{
-
-}
-
 QString HLuminousCalibrateHandler::typeName()
 {
     return "HLuminousCalibrateHandler";

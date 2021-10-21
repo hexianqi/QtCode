@@ -212,12 +212,12 @@ QString HTestSpecPrivate::energy()
 }
 
 HTestSpec::HTestSpec() :
-    ITestSpec(*new HTestSpecPrivate)
+    HTestData(*new HTestSpecPrivate)
 {
 }
 
 HTestSpec::HTestSpec(HTestSpecPrivate &p) :
-    ITestSpec(p)
+    HTestData(p)
 {
 }
 
@@ -236,7 +236,7 @@ void HTestSpec::setData(QString type, QVariant value)
         setSample(value.value<QVector<double>>());
         return;
     }
-    return ITestSpec::setData(type, value);
+    return HTestData::setData(type, value);
 }
 
 QString HTestSpec::toString(QString type)

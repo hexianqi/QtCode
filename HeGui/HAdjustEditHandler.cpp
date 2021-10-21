@@ -20,10 +20,6 @@ HAdjustEditHandler::~HAdjustEditHandler()
     qDebug() << __func__;
 }
 
-void HAdjustEditHandler::initialize(QVariantMap /*param*/)
-{
-}
-
 QString HAdjustEditHandler::typeName()
 {
     return "HAdjustEditHandler";
@@ -33,7 +29,7 @@ void HAdjustEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAdjustEditHandler);
     HDataDetail<IAdjust> detail;
-    detail.setEditWidget(new HAdjustEditWidget);
+    detail.setEditer(new HAdjustEditWidget);
     detail.setData(d->configManage->adjustCollection());
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("调整数据配置"));

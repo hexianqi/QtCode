@@ -16,7 +16,7 @@ class HAdjust : public IAdjust
 
 public:
     explicit HAdjust();
-    virtual ~HAdjust() = default;
+    ~HAdjust();
 
 public:
     QString typeName() override;

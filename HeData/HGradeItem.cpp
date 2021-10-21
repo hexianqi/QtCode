@@ -14,14 +14,13 @@ HGradeItemPrivate::HGradeItemPrivate()
 }
 
 HGradeItem::HGradeItem() :
-    IGradeItem(*new HGradeItemPrivate)
+    HAbstractDataItem(*new HGradeItemPrivate)
 {
 }
 
 HGradeItem::HGradeItem(HGradeItemPrivate &p) :
-    IGradeItem(p)
+    HAbstractDataItem(p)
 {
-
 }
 
 QString HGradeItem::typeName()

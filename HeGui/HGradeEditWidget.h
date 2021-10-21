@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include "IDataEditWidget.h"
+#include "IDataEditer.h"
 #include "HeData/HDataGlobal.h"
+#include <QtWidgets/QWidget>
 
 HE_DATA_BEGIN_NAMESPACE
 class IGrade;
@@ -16,7 +17,7 @@ HE_GUI_BEGIN_NAMESPACE
 
 class HGradeEditWidgetPrivate;
 
-class HGradeEditWidget : public IDataEditWidget<IGrade>
+class HGradeEditWidget : public QWidget, public IDataEditer<IGrade>
 {
     Q_OBJECT
 
@@ -29,6 +30,7 @@ public:
     QString typeName() override;
 
 public:
+    QWidget *widget() override;
     IGrade *createData() override;
     void setData(IGrade *) override;
     void clearData() override;

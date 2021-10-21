@@ -11,13 +11,13 @@ HAdjustItemPrivate::HAdjustItemPrivate()
 }
 
 HAdjustItem::HAdjustItem() :
-    IAdjustItem(*new HAdjustItemPrivate)
+    HAbstractDataItem(*new HAdjustItemPrivate)
 {
     restoreDefault();
 }
 
 HAdjustItem::HAdjustItem(HAdjustItemPrivate &p) :
-    IAdjustItem(p)
+    HAbstractDataItem(p)
 {
 }
 

@@ -5,18 +5,19 @@
 #pragma once
 
 #include "ILuminousCalibrateItem.h"
+#include "HAbstractDataItem.h"
 
 HE_DATA_BEGIN_NAMESPACE
 
 class HLuminousCalibrateItemPrivate;
 
-class HLuminousCalibrateItem : public ILuminousCalibrateItem
+class HLuminousCalibrateItem : public HAbstractDataItem, public virtual ILuminousCalibrateItem
 {
     Q_DECLARE_PRIVATE(HLuminousCalibrateItem)
 
 public:
     explicit HLuminousCalibrateItem();
-    ~HLuminousCalibrateItem() = default;
+    ~HLuminousCalibrateItem();
 
 public:
     QString typeName() override;

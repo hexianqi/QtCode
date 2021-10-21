@@ -10,11 +10,6 @@ HE_CONTROL_BEGIN_NAMESPACE
 
 class ICustomStyle : public IStyle
 {
-    Q_OBJECT
-
-public:
-    using IStyle::IStyle;
-
 public:
     // 按钮样式
     virtual QString pushButton(QVariantMap param = QVariantMap()) = 0;
