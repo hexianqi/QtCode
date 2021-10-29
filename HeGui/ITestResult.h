@@ -20,7 +20,10 @@ HE_GUI_BEGIN_NAMESPACE
 class ITestResult : public IInitializeable
 {
 public:
+    //
     virtual ITestData *at(int i) = 0;
+    // 最后一次结果
+    virtual ITestData *last() = 0;
     // 是否为空
     virtual bool isEmpty() = 0;
     // 大小
@@ -39,8 +42,6 @@ public:
     virtual void setExportPathName(const QString &) = 0;
     // 设置同步文件名
     virtual void setSyncFileName(const QString &) = 0;
-    // 打印预览
-    virtual void printPreviewLast() = 0;
     // 导出到数据库
     virtual void exportDatabase(int index, int count) = 0;
     virtual void exportDatabaseLast() = 0;

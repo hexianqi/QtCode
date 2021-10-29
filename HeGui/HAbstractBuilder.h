@@ -33,6 +33,7 @@ protected:
     virtual void buildFactory();
     virtual void buildConfigManage() = 0;
     virtual void buildTestData() = 0;
+    virtual void buildTemplate() = 0;
     virtual void buildDevice() = 0;
     virtual void buildThread() = 0;
     virtual void buildModel() = 0;

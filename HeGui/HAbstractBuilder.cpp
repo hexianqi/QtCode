@@ -1,13 +1,12 @@
 #include "HAbstractBuilder_p.h"
 #include "IMainWindow.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCoreHelper.h"
 #include "HeCommunicate/HCommunicateFactory.h"
 #include "HeController/HControllerFactory.h"
 #include "HeData/HDataFactory.h"
 #include "HeGui/HGuiFactory.h"
 #include "HeSql/HSqlFactory.h"
-#include <QtCore/QSettings>
-#include <QtWidgets/QApplication>
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -40,6 +39,7 @@ void HAbstractBuilder::buildAll()
     buildFactory();
     buildConfigManage();
     buildTestData();
+    buildTemplate();
     buildDevice();
     buildThread();
     buildModel();
@@ -53,23 +53,13 @@ void HAbstractBuilder::buildAll()
 void HAbstractBuilder::readSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->setIniCodec("utf-8");
-    settings->beginGroup("Builder");
-    for (const auto &k : settings->allKeys())
-        d_ptr->deploy.insert(k, settings->value(k));
-    settings->endGroup();
+    HCoreHelper::readSettings(fileName, "Builder", d_ptr->deploy);
 }
 
 void HAbstractBuilder::writeSettings()
 {
     auto fileName = HAppContext::getContextValue<QString>("Settings");
-    auto settings = new QSettings(fileName, QSettings::IniFormat, this);
-    settings->setIniCodec("utf-8");
-    settings->beginGroup("Builder");
-    for (auto i = d_ptr->deploy.begin(); i != d_ptr->deploy.end(); i++)
-        settings->setValue(i.key(), i.value());
-    settings->endGroup();
+    HCoreHelper::writeSettings(fileName, "Builder", d_ptr->deploy);
 }
 
 void HAbstractBuilder::buildFactory()

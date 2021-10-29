@@ -85,6 +85,15 @@ bool HTestData::setCalibrate(void *)
     return false;
 }
 
+bool HTestData::contains(QString type)
+{
+    if (d_ptr->datas.contains(type))
+        return true;
+    if (d_ptr->successor == nullptr)
+        return false;
+    return d_ptr->successor->contains(type);
+}
+
 void HTestData::setData(QString type, QVariant value)
 {
     d_ptr->setData(type, value);

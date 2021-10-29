@@ -62,10 +62,10 @@ QStringList HSqlHandle::field()
     return d_ptr->model->field();
 }
 
-bool HSqlHandle::addRecord(QVariantMap value, bool edit)
+bool HSqlHandle::addRecord(QVariantMap value, bool /*edit*/)
 {
-    if (edit && d_ptr->productInfo->editable())
-        editProductInfo();
+//    if (edit && d_ptr->productInfo->editable())
+//        editProductInfo();
 
     auto r = d_ptr->model->record();
     for (const auto &f : field())
@@ -79,8 +79,8 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
             else
                 r.setValue(f, value.value(f));
         }
-        else if (d_ptr->productInfo->contains(f))
-            r.setValue(f, d_ptr->productInfo->data(f));
+//        else if (d_ptr->productInfo->contains(f))
+//            r.setValue(f, d_ptr->productInfo->data(f));
         else if (f == "TestDateTime")
             r.setValue(f, QDateTime::currentDateTime());
         else if (f == "TestDate")
@@ -91,7 +91,7 @@ bool HSqlHandle::addRecord(QVariantMap value, bool edit)
 
     if (!d_ptr->model->insertRecord(-1, r))
         return false;
-    d_ptr->productInfo->saveOnce();
+//    d_ptr->productInfo->saveOnce();
     d_ptr->model->submitAll();
     d_ptr->model->resetCurrentRow(0);
     return true;

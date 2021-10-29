@@ -21,7 +21,7 @@ public:
 
 public:
     // 设置保存项
-    virtual void setItems(QStringList) = 0;
+    virtual void setDataTypes(QStringList) = 0;
 
 public:
     // 保存

@@ -31,6 +31,5 @@ protected:
     void readSettings() override;
     void writeSettings() override;
     void setProbe(bool b);
-    void editProductInfo();
     void printTag();
 };

@@ -8,13 +8,13 @@
 #include "HeGui/ITestResult.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HResultTableWidget.h"
-#include "HeGui/HTestDataEditDialog.h"
 #include <QtCore/QSettings>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
+    productEditable = true;
     displays = QStringList() << "[调整组]"
                              << "[测量日期]" << "[测量时间]" << "[制造厂商]" << "[产品型号]" << "[测试员]" << "[样品编号]" << "[备注]" << "[环境温度]" << "[环境湿度]"
                              << "[分级]"
@@ -28,10 +28,7 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[显色指数Ra]" << "[显色指数R9]" <<"[显色指数Rx]"
                              << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
                              << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]" << "[荧光效能]" << "[荧光蓝光比]";
-
-
-    print = HAppContext::getContextPointer<IPrint>("IPrint");
-    printTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
+    tagPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
 }
 
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
@@ -64,11 +61,9 @@ void HTestWidget2000DC::createAction()
     d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
-    d->actionProductInfo = new QAction(tr("产品信息修改(&P)"), this);
     d->actionPrintTag = new QAction(tr("打印标签(&T)"), this);
     d->actionPrintTag->setIcon(QIcon(":/image/Tag.png"));
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
-    connect(d->actionProductInfo, &QAction::triggered, this, &HTestWidget2000DC::editProductInfo);
     connect(d->actionPrintTag, &QAction::triggered, this, &HTestWidget2000DC::printTag);
 }
 
@@ -92,9 +87,7 @@ void HTestWidget2000DC::initWidget()
     Q_D(HTestWidget2000DC);
     HSpecTestWidget::initWidget();
     d->energyWidget->addProgressBar("[光采样比率]");
-    d->tableWidget->addAction(d->actionProductInfo);
     d->tableWidget->addAction(d->actionPrintTag);
-    connect(d->tableWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget2000DC::editProductInfo);
 }
 
 void HTestWidget2000DC::readSettings()
@@ -106,16 +99,6 @@ void HTestWidget2000DC::readSettings()
     settings->setIniCodec("utf-8");
     settings->beginGroup("TestWidget");
     d->testData->setData("[使用光探头]", settings->value("Probe", false));
-    settings->endGroup();
-    settings->beginGroup("ProductInfo");
-    d->testData->setData("[制造厂商]", settings->value("Manufacturer", "Manufacturer"));
-    d->testData->setData("[产品名称]", settings->value("ProductName", "Name"));
-    d->testData->setData("[产品型号]", settings->value("ProductModel", "Model"));
-    d->testData->setData("[测试员]", settings->value("Tester", ""));
-    d->testData->setData("[备注]", settings->value("Note", ""));
-    d->testData->setData("[样品编号]", settings->value("SampleNumber", 1));
-    d->testData->setData("[环境温度]", settings->value("Temperature", 25.0));
-    d->testData->setData("[环境湿度]", settings->value("Humidity", 60.0));
     settings->endGroup();
 }
 
@@ -129,16 +112,6 @@ void HTestWidget2000DC::writeSettings()
     settings->beginGroup("TestWidget");
     settings->setValue("Probe", d->testData->data("[使用光探头]"));
     settings->endGroup();
-    settings->beginGroup("ProductInfo");
-    settings->setValue("Manufacturer", d->testData->data("[制造厂商]"));
-    settings->setValue("ProductName", d->testData->data("[产品名称]"));
-    settings->setValue("ProductModel", d->testData->data("[产品型号]"));
-    settings->setValue("Tester", d->testData->data("[测试员]"));
-    settings->setValue("Note", d->testData->data("[备注]"));
-    settings->setValue("SampleNumber", d->testData->data("[样品编号]"));
-    settings->setValue("Temperature", d->testData->data("[环境温度]"));
-    settings->setValue("Humidity", d->testData->data("[环境湿度]"));
-    settings->endGroup();
 }
 
 void HTestWidget2000DC::setProbe(bool b)
@@ -149,25 +122,15 @@ void HTestWidget2000DC::setProbe(bool b)
     d->testSetWidget->handleOperation("<启用光挡位>", b);
 }
 
-void HTestWidget2000DC::editProductInfo()
-{
-    Q_D(HTestWidget2000DC);
-    auto row = d->tableWidget->currentRow();
-    auto data = d->testResult->at(row);
-    HTestDataEditDialog dlg(this);
-    dlg.setData(data);
-    if (dlg.exec() != QDialog::Accepted)
-        return;
-    d->testResult->setModified();
-    d->tableWidget->setRow(row, data->toString(d->displays));
-}
-
 void HTestWidget2000DC::printTag()
 {
     Q_D(HTestWidget2000DC);
     auto row = d->tableWidget->currentRow();
-    auto data = d->testResult->at(row)->cloneData();
-    d->printTemplate->setData(data);
-    d->print->setPrintTemplate(d->printTemplate);
+    auto data = d->testResult->at(row);
+    if (data == nullptr)
+        return;
+
+    d->tagPrintTemplate->setData(data->select(d->tagPrintTemplate->dataTypes()));
+    d->print->setPrintTemplate(d->tagPrintTemplate);
     d->print->print();
 }

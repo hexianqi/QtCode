@@ -17,6 +17,8 @@ HEADERS += \
     $$PWD/HLoginOutHandler_p.h \
     $$PWD/HLuminousCalibrateHandler.h \
     $$PWD/HLuminousCalibrateHandler_p.h \
+    $$PWD/HProductEditHandler.h \
+    $$PWD/HProductEditHandler_p.h \
     $$PWD/IGuiHandler.h \
     $$PWD/HAbstractGuiHandler.h \
     $$PWD/HAbstractGuiHandler_p.h \
@@ -38,8 +40,6 @@ HEADERS += \
     $$PWD/HQualitySelectHandler_p.h \
     $$PWD/HSqlBrowserHandler.h \
     $$PWD/HSqlBrowserHandler_p.h \
-    $$PWD/HProductInfoEditHandler.h \
-    $$PWD/HProductInfoEditHandler_p.h \
     $$PWD/HChromatismEditHandler.h \
     $$PWD/HChromatismEditHandler_p.h \
     $$PWD/HChromatismSelectHandler.h \
@@ -66,6 +66,7 @@ SOURCES += \
     $$PWD/HLoginInHandler.cpp \
     $$PWD/HLoginOutHandler.cpp \
     $$PWD/HLuminousCalibrateHandler.cpp \
+    $$PWD/HProductEditHandler.cpp \
     $$PWD/HTestHandler.cpp \
     $$PWD/HGradeEditHandler.cpp \
     $$PWD/HSpecCalibrateHandler.cpp \
@@ -75,7 +76,6 @@ SOURCES += \
     $$PWD/HQualityEditHandler.cpp \
     $$PWD/HQualitySelectHandler.cpp \
     $$PWD/HSqlBrowserHandler.cpp \
-    $$PWD/HProductInfoEditHandler.cpp \
     $$PWD/HChromatismEditHandler.cpp \
     $$PWD/HChromatismSelectHandler.cpp \
     $$PWD/HElecCalibrateHandler.cpp \

@@ -49,10 +49,12 @@ protected:
     void openCieDialog();
     void resetGrade();
     void exportDatabase();
+    void printPreview();
     void removeResult();
-    void editQuantum();
     void setExportPath();
     void setSyncFile();
+    void editQuantum();
+    void editProduct();
 };
 
 HE_GUI_END_NAMESPACE

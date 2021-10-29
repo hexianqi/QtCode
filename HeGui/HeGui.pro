@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets charts
+QT          += widgets charts printsupport
 
 TEMPLATE    = lib
 

@@ -27,7 +27,7 @@ public:
     bool writeFile() override;
 
 public:
-    void setItems(QStringList) override;
+    void setDataTypes(QStringList) override;
 
 public:
     void save() override;

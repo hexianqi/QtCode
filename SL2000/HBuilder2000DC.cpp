@@ -1,5 +1,6 @@
 #include "HBuilder2000DC_p.h"
 #include "HTagPrintTemplate2000DC.h"
+#include "HSpecPrintTemplate2000DC.h"
 #include "HTestWidget2000DC.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IPrint.h"
@@ -96,17 +97,17 @@ void HBuilder2000DC::buildConfigManage()
 
         QVariantMap param[6];
         param[0].insert("itemClassName",    "HElecCalibrateItem");
-        param[0].insert("itemTypeList",     QStringList() << "[输出电压]");
+        param[0].insert("itemTypes",        QStringList() << "[输出电压]");
         param[1].insert("itemClassName",    "HElecCalibrateItem");
-        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]" << "[输出电流3]");
+        param[1].insert("itemTypes",        QStringList() << "[输出电流1]" << "[输出电流2]" << "[输出电流3]");
         param[2].insert("itemClassName",    "HElecCalibrateItem");
-        param[2].insert("itemTypeList",     QStringList() << "[实测电压]");
+        param[2].insert("itemTypes",        QStringList() << "[实测电压]");
         param[3].insert("itemClassName",    "HElecCalibrateItem");
-        param[3].insert("itemTypeList",     QStringList() << "[实测电流1]" << "[实测电流2]" << "[实测电流3]");
+        param[3].insert("itemTypes",        QStringList() << "[实测电流1]" << "[实测电流2]" << "[实测电流3]");
         param[4].insert("itemClassName",    "HElecCalibrateItem");
-        param[4].insert("itemTypeList",     QStringList() << "[反向电压]");
+        param[4].insert("itemTypes",        QStringList() << "[反向电压]");
         param[5].insert("itemClassName",    "HElecCalibrateItem");
-        param[5].insert("itemTypeList",     QStringList() << "[反向漏流]");
+        param[5].insert("itemTypes",        QStringList() << "[反向漏流]");
         auto elec = d->dataFactory->createElecCalibrate("HElecCalibrate");
         elec->setItemCollection(OutputVoltage,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[0]));
         elec->setItemCollection(OutputCurrent,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[1]));
@@ -150,7 +151,7 @@ void HBuilder2000DC::buildTestData()
 {
     Q_D(HBuilder2000DC);
     auto data = d->dataFactory->createTestData("HTestData");
-    auto other = d->dataFactory->createTestData("HTestData");
+    auto product = d->dataFactory->createTestData("HTestProduct");
     auto elec = d->dataFactory->createTestData("HTestElec");
     auto luminous = d->dataFactory->createTestData("HTestLuminous");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
@@ -159,17 +160,23 @@ void HBuilder2000DC::buildTestData()
     elec->setCalibrate(d->configManage->elecCalibrateCollection());
     elec->setData("[输出电压]", 10);
     luminous->setCalibrate(d->configManage->luminousCalibrateCollection());
-    data->setSuccessor(luminous)->setSuccessor(elec)->setSuccessor(spec)->setSuccessor(other);
+    data->setSuccessor(product)->setSuccessor(luminous)->setSuccessor(elec)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
-    HAppContext::setContextPointer("ITestOther", other);
+    HAppContext::setContextPointer("ITestProduct", product);
     HAppContext::setContextPointer("ITestLuminous", luminous);
     HAppContext::setContextPointer("ITestElec", elec);
     HAppContext::setContextPointer("ITestSpec", spec);
+}
 
-    auto temp = new HTagPrintTemplate2000DC(this);
+void HBuilder2000DC::buildTemplate()
+{
+    Q_D(HBuilder2000DC);
+    auto tag = new HTagPrintTemplate2000DC(this);
+    auto spec = new HSpecPrintTemplate2000DC(this);
     auto print = d->dataFactory->createPrint("HPrint");
     HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("ITagPrintTemplate", temp);
+    HAppContext::setContextPointer("ITagPrintTemplate", tag);
+    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
 }
 
 void HBuilder2000DC::buildDevice()
@@ -212,7 +219,7 @@ void HBuilder2000DC::buildMemento()
 {
     Q_D(HBuilder2000DC);
     auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setItems(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
+    memento->setDataTypes(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
     memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
     HAppContext::setContextPointer("IMementoTest", memento);
 }
@@ -299,7 +306,7 @@ void HBuilder2000DC::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));

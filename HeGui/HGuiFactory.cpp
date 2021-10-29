@@ -4,7 +4,8 @@
 #include "HSpecCalibrateSetWidget2.h"
 #include "HAdjustSetWidget.h"
 #include "HAdjustSetWidget2.h"
-#include "HTestDataEditDialog.h"
+#include "HProductEditDialog.h"
+#include "HQuantumEditDialog.h"
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HSpecCalibrateHandler.h"
@@ -23,7 +24,7 @@
 #include "HQualityEditHandler.h"
 #include "HQualitySelectHandler.h"
 #include "HSqlBrowserHandler.h"
-#include "HProductInfoEditHandler.h"
+#include "HProductEditHandler.h"
 #include "HIVTestHandler.h"
 #include "HImportCurveHandler.h"
 #include "HExportCurveHandler.h"
@@ -72,10 +73,7 @@ ITestSetWidget *HGuiFactory::createTestSetWidget(QString type, QWidget *parent, 
 
 ITestDataEditDialog *HGuiFactory::createTestDataEditDialog(QString type, QWidget *parent, QVariantMap param)
 {
-    Q_UNUSED(type)
-    auto p = new HTestDataEditDialog(parent);
-    p->initialize(param);
-    return p;
+    return HWidgetFactory::createWidget<ITestDataEditDialog>(type, param, parent);
 }
 
 IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
@@ -106,6 +104,9 @@ void HGuiFactory::registerClass()
     HWidgetFactory::registerClass<HAdjustSetWidget>("HAdjustSetWidget");
     HWidgetFactory::registerClass<HAdjustSetWidget2>("HAdjustSetWidget2");
 
+    HWidgetFactory::registerClass<HProductEditDialog>("HProductEditDialog");
+    HWidgetFactory::registerClass<HQuantumEditDialog>("HQuantumEditDialog");
+
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HSpecLuminousHandler>("HSpecLuminousHandler");
@@ -122,7 +123,7 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HAdjust2SelectHandler>("HAdjust2SelectHandler");
     HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
     HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
-    HObjectFactory::registerClass<HProductInfoEditHandler>("HProductInfoEditHandler");
+    HObjectFactory::registerClass<HProductEditHandler>("HProductEditHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
     HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
     HObjectFactory::registerClass<HImportDeviceHandler>("HImportDeviceHandler");

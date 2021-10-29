@@ -2,6 +2,7 @@
 #include "HThread2100DC.h"
 #include "HModel2100DC.h"
 #include "HSqlPrint2100DC.h"
+#include "HSpecPrintTemplate2100DC.h"
 #include "HTestWidget2100DC.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
@@ -106,12 +107,12 @@ void HBuilder2100DC::buildTestData()
 {
     Q_D(HBuilder2100DC);
     auto data = d->dataFactory->createTestData("HTestData");
-    auto other = d->dataFactory->createTestData("HTestData");
+    auto product = d->dataFactory->createTestData("HTestProduct");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    data->setSuccessor(spec)->setSuccessor(other);
+    data->setSuccessor(product)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
-    HAppContext::setContextPointer("ITestOther", other);
+    HAppContext::setContextPointer("ITestProduct", product);
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
@@ -135,6 +136,15 @@ void HBuilder2100DC::buildDevice()
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
+void HBuilder2100DC::buildTemplate()
+{
+    Q_D(HBuilder2100DC);
+    auto spec = new HSpecPrintTemplate2100DC(this);
+    auto print = d->dataFactory->createPrint("HPrint");
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+}
+
 void HBuilder2100DC::buildThread()
 {
     Q_D(HBuilder2100DC);
@@ -155,7 +165,7 @@ void HBuilder2100DC::buildMemento()
 {
     Q_D(HBuilder2100DC);
     auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setItems(QStringList() << "[积分时间]" << "[输出电压]" << "[输出电流]");
+    memento->setDataTypes(QStringList() << "[积分时间]" << "[输出电压]" << "[输出电流]");
     memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
     HAppContext::setContextPointer("IMementoTest", memento);
 }
@@ -231,7 +241,7 @@ void HBuilder2100DC::buildMenu()
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));

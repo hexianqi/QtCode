@@ -27,7 +27,7 @@ public:
     ITestData *testData = nullptr;
     IDataStream *stream = nullptr;
     QString fileName;
-    QStringList items;
+    QStringList types;
     QVariantMap datas;
 };
 

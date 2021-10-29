@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2019-05-15  HProductInfoEditHandler 产品信息配置处理者类。
+**      2019-05-15  HProductEditHandler 产品信息配置处理者类。
 ***************************************************************************************************/
 
 #pragma once
@@ -8,16 +8,16 @@
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HProductInfoEditHandlerPrivate;
+class HProductEditHandlerPrivate;
 
-class HProductInfoEditHandler : public HAbstractGuiHandler
+class HProductEditHandler : public HAbstractGuiHandler
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HProductInfoEditHandler)
+    Q_DECLARE_PRIVATE(HProductEditHandler)
 
 public:
-    explicit HProductInfoEditHandler(QObject *parent = nullptr);
-    ~HProductInfoEditHandler() override;
+    explicit HProductEditHandler(QObject *parent = nullptr);
+    ~HProductEditHandler() override;
 
 public:
     QString typeName() override;

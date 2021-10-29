@@ -49,17 +49,17 @@ void HBuilder2000F::buildConfigManage()
 
         QVariantMap param[6];
         param[0].insert("itemClassName",    "HElecCalibrateItem");
-        param[0].insert("itemTypeList",     QStringList() << "[输出电压]");
+        param[0].insert("itemTypes",        QStringList() << "[输出电压]");
         param[1].insert("itemClassName",    "HElecCalibrateItem");
-        param[1].insert("itemTypeList",     QStringList() << "[输出电流1]" << "[输出电流2]" << "[输出电流3]");
+        param[1].insert("itemTypes",        QStringList() << "[输出电流1]" << "[输出电流2]" << "[输出电流3]");
         param[2].insert("itemClassName",    "HElecCalibrateItem");
-        param[2].insert("itemTypeList",     QStringList() << "[实测电压]");
+        param[2].insert("itemTypes",        QStringList() << "[实测电压]");
         param[3].insert("itemClassName",    "HElecCalibrateItem");
-        param[3].insert("itemTypeList",     QStringList() << "[实测电流1]" << "[实测电流2]" << "[实测电流3]");
+        param[3].insert("itemTypes",        QStringList() << "[实测电流1]" << "[实测电流2]" << "[实测电流3]");
         param[4].insert("itemClassName",    "HElecCalibrateItem");
-        param[4].insert("itemTypeList",     QStringList() << "[反向电压]");
+        param[4].insert("itemTypes",        QStringList() << "[反向电压]");
         param[5].insert("itemClassName",    "HElecCalibrateItem");
-        param[5].insert("itemTypeList",     QStringList() << "[反向漏流]");
+        param[5].insert("itemTypes",        QStringList() << "[反向漏流]");
         auto elec = d->dataFactory->createElecCalibrate("HElecCalibrate");
         elec->setItemCollection(OutputVoltage,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[0]));
         elec->setItemCollection(OutputCurrent,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[1]));
@@ -133,7 +133,7 @@ void HBuilder2000F::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));

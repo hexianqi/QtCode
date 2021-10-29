@@ -8,7 +8,6 @@
 #include "HActionType.h"
 #include "HErrorType.h"
 
-class QObject;
 class QVariant;
 class QStringList;
 
@@ -40,10 +39,6 @@ public:
 
 public:
     static QString typeAddition(const QString &type, const QString &addition);
-
-public:
-    // 转储结构
-    static void dumpStructure(const QObject *obj, int spaceCount);
 };
 
 HE_CORE_END_NAMESPACE

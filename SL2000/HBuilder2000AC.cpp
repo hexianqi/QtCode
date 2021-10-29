@@ -1,6 +1,7 @@
 #include "HBuilder2000AC_p.h"
 #include "HThread2000AC.h"
 #include "HSqlPrint2000AC.h"
+#include "HSpecPrintTemplate2000AC.h"
 #include "HTestWidget2000AC.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
@@ -103,13 +104,22 @@ void HBuilder2000AC::buildTestData()
 {
     Q_D(HBuilder2000AC);
     auto data = d->dataFactory->createTestData("HTestData");
-    auto other = d->dataFactory->createTestData("HTestData");
+    auto product = d->dataFactory->createTestData("HTestProduct");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    data->setSuccessor(spec)->setSuccessor(other);
+    data->setSuccessor(product)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
+    HAppContext::setContextPointer("ITestProduct", product);
     HAppContext::setContextPointer("ITestSpec", spec);
-    HAppContext::setContextPointer("ITestOther", other);
+}
+
+void HBuilder2000AC::buildTemplate()
+{
+    Q_D(HBuilder2000AC);
+    auto spec = new HSpecPrintTemplate2000AC(this);
+    auto print = d->dataFactory->createPrint("HPrint");
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
 }
 
 void HBuilder2000AC::buildDevice()
@@ -152,7 +162,7 @@ void HBuilder2000AC::buildMemento()
 {
     Q_D(HBuilder2000AC);
     auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setItems(QStringList() << "[积分时间]");
+    memento->setDataTypes(QStringList() << "[积分时间]");
     memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
     HAppContext::setContextPointer("IMementoTest", memento);
 }
@@ -232,7 +242,7 @@ void HBuilder2000AC::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));

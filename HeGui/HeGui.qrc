@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>image/Exit.png</file>
-        <file>image/Logo.png</file>
         <file>image/Open.png</file>
         <file>image/Save.png</file>
         <file>image/SaveAs.png</file>
@@ -15,5 +14,6 @@
         <file>image/Icon.ico</file>
         <file>image/Import.png</file>
         <file>image/Tag.png</file>
+        <file>image/export.png</file>
     </qresource>
 </RCC>

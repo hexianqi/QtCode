@@ -1,11 +1,11 @@
 #pragma once
 
-#include "HTestDataEditDialog.h"
+#include "HProductEditDialog.h"
 #include "HAbstractTestDataEditDialog_p.h"
 
 HE_GUI_BEGIN_NAMESPACE
 
-class HTestDataEditDialogPrivate : public HAbstractTestDataEditDialogPrivate
+class HProductEditDialogPrivate : public HAbstractTestDataEditDialogPrivate
 {
 
 };

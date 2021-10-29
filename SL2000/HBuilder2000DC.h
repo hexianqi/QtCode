@@ -28,6 +28,7 @@ protected:
 protected:
     void buildConfigManage() override;
     void buildTestData() override;
+    void buildTemplate() override;
     void buildDevice() override;
     void buildThread() override;
     void buildModel() override;

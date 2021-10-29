@@ -28,10 +28,10 @@ HElecCalibrateItemCollection::~HElecCalibrateItemCollection()
 void HElecCalibrateItemCollection::initialize(QVariantMap param)
 {
     Q_D(HElecCalibrateItemCollection);
-    if (param.contains("itemClassName") && param.contains("itemTypeList"))
+    if (param.contains("itemClassName") && param.contains("itemTypes"))
     {
         auto name = param.value("itemClassName").toString();
-        auto types = param.value("itemTypeList").toStringList();
+        auto types = param.value("itemTypes").toStringList();
         for (const auto &type : types)
         {
             auto item = d->factory->createElecCalibrateItem(name);

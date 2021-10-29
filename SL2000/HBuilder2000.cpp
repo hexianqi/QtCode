@@ -25,6 +25,7 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
+#include "HeGui/HSpecPrintTemplate.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
@@ -98,13 +99,22 @@ void HBuilder2000::buildTestData()
 {
     Q_D(HBuilder2000);
     auto data = d->dataFactory->createTestData("HTestData");
-    auto other = d->dataFactory->createTestData("HTestData");
+    auto product = d->dataFactory->createTestData("HTestProduct");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    data->setSuccessor(spec)->setSuccessor(other);
+    data->setSuccessor(product)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
-    HAppContext::setContextPointer("ITestOther", other);
+    HAppContext::setContextPointer("ITestProduct", product);
     HAppContext::setContextPointer("ITestSpec", spec);
+}
+
+void HBuilder2000::buildTemplate()
+{
+    Q_D(HBuilder2000);
+    auto spec = new HSpecPrintTemplate(this);
+    auto print = d->dataFactory->createPrint("HPrint");
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
 }
 
 void HBuilder2000::buildDevice()
@@ -142,7 +152,7 @@ void HBuilder2000::buildMemento()
 {
     Q_D(HBuilder2000);
     auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setItems(QStringList() << "[积分时间]");
+    memento->setDataTypes(QStringList() << "[积分时间]");
     memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
     HAppContext::setContextPointer("IMementoTest", memento);
 }
@@ -204,7 +214,7 @@ void HBuilder2000::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductInfoEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);
@@ -217,7 +227,6 @@ void HBuilder2000::buildMenu()
 void HBuilder2000::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000;
-//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }
 

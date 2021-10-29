@@ -53,8 +53,8 @@ void HMemento::initialize(QVariantMap param)
 {
     if (param.contains("fileName"))
         d_ptr->fileName = param.value("fileName").toString();
-    if (param.contains("itemTypes"))
-        setItems(param.value("itemTypes").toStringList());
+    if (param.contains("dataTypes"))
+        setDataTypes(param.value("dataTypes").toStringList());
 }
 
 QString HMemento::typeName()
@@ -73,16 +73,16 @@ bool HMemento::writeFile()
     return d_ptr->stream->writeFile(d_ptr->fileName);
 }
 
-void HMemento::setItems(QStringList value)
+void HMemento::setDataTypes(QStringList value)
 {
-    if (d_ptr->items == value)
+    if (d_ptr->types == value)
         return;
-    d_ptr->items = value;
+    d_ptr->types = value;
 }
 
 void HMemento::save()
 {
-    d_ptr->datas = d_ptr->testData->select(d_ptr->items);
+    d_ptr->datas = d_ptr->testData->select(d_ptr->types);
 }
 
 void HMemento::restore()

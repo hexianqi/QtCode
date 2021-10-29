@@ -1,6 +1,8 @@
 HEADERS += \
     $$PWD/HSpecCalibrateSetWidget2.h \
     $$PWD/HSpecCalibrateSetWidget2_p.h \
+    $$PWD/HSpecPrintTemplate.h \
+    $$PWD/HSpecPrintTemplate_p.h \
     $$PWD/HSpecSampleWidget.h \
     $$PWD/HSpecSampleWidget_p.h \
     $$PWD/HSpecEnergyWidget.h \
@@ -30,6 +32,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HSpecCalibrateSetWidget2.cpp \
+    $$PWD/HSpecPrintTemplate.cpp \
     $$PWD/HSpecSampleWidget.cpp \
     $$PWD/HSpecEnergyWidget.cpp \
     $$PWD/HSpecSettingDialog.cpp \

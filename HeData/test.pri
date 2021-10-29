@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HTestProduct.h \
+    $$PWD/HTestProduct_p.h \
     $$PWD/ITestData.h \
     $$PWD/ITestSpec.h \
     $$PWD/HTestData.h \
@@ -12,6 +14,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HTestData.cpp \
+    $$PWD/HTestProduct.cpp \
     $$PWD/HTestSpec.cpp \
     $$PWD/HTestElec.cpp \
     $$PWD/HTestLuminous.cpp

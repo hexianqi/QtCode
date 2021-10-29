@@ -24,6 +24,7 @@ public:
 
 public:
     ITestData *at(int i) override;
+    ITestData *last() override;
     bool isEmpty() override;
     int size() override;
     void clear() override;
@@ -33,7 +34,6 @@ public:
     void setExportTypes(QStringList) override;
     void setExportPathName(const QString &) override;
     void setSyncFileName(const QString &) override;
-    void printPreviewLast() override;
     void exportDatabase(int index, int count) override;
     void exportDatabaseLast() override;
     void exportDatabaseAll() override;

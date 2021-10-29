@@ -22,6 +22,8 @@ public:
     virtual ITestData *setSuccessor(ITestData *) = 0;
     // 设置校准数据
     virtual bool setCalibrate(void *) = 0;
+    // 是否包含
+    virtual bool contains(QString type) = 0;
     // 设置数据
     virtual void setData(QString type, QVariant value) = 0;
     // 设置数据

@@ -5,7 +5,8 @@
 
 class HTagPrintTemplate2000DCPrivate : public HAbstractPrintTemplatePrivate
 {
-
+public:
+    HTagPrintTemplate2000DCPrivate();
 };
 
 

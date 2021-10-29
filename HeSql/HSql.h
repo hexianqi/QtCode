@@ -16,6 +16,8 @@ class HE_SQL_EXPORT HSql
 public:
     static QString toType(const QString &field);
     static QStringList toType(const QStringList &field);
+    static QString toField(const QString &type);
+    static QStringList toField(const QStringList &type);
     static QString toCreateStyle(const QString &field);
     static QStringList toCreateStyle(const QStringList &field);
 

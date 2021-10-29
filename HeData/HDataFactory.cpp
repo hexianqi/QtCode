@@ -6,6 +6,7 @@
 #include "HMultStream.h"
 #include "HTestSpec.h"
 #include "HTestElec.h"
+#include "HTestProduct.h"
 #include "HTestLuminous.h"
 #include "HConfigManage.h"
 #include "HSpecCalibrate.h"
@@ -331,6 +332,7 @@ void HDataFactory::registerClass()
     HFactory::registerClass<HSpecFittingPolynom>("HSpecFittingPolynom");
 
     HFactory::registerClass<HTestData>("HTestData");
+    HFactory::registerClass<HTestProduct>("HTestProduct");
     HFactory::registerClass<HTestElec>("HTestElec");
     HFactory::registerClass<HTestLuminous>("HTestLuminous");
 }

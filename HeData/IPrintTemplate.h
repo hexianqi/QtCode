@@ -19,6 +19,8 @@ public:
     using QObject::QObject;
 
 public:
+    // 数据项
+    virtual QStringList dataTypes() = 0;
     // 设置数据
     virtual void setData(QVariantMap) = 0;
 

@@ -66,13 +66,18 @@ void HBuilderSpec::buildTestData()
 {
     Q_D(HBuilderSpec);
     auto data = d->dataFactory->createTestData("HTestData");
-    auto other = d->dataFactory->createTestData("HTestData");
+    auto product = d->dataFactory->createTestData("HTestProduct");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
     spec->setCalibrate(d->configManage->specCalibrate("1"));
-    data->setSuccessor(spec)->setSuccessor(other);
+    data->setSuccessor(product)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
-    HAppContext::setContextPointer("ITestOther", other);
+    HAppContext::setContextPointer("ITestProduct", product);
     HAppContext::setContextPointer("ITestSpec", spec);
+}
+
+void HBuilderSpec::buildTemplate()
+{
+
 }
 
 void HBuilderSpec::buildDevice()

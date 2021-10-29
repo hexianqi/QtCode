@@ -22,6 +22,19 @@ QStringList HSql::toType(const QStringList &field)
     return list;
 }
 
+QString HSql::toField(const QString &type)
+{
+    return hashFieldType.key(type, type.mid(1, type.size() - 2));
+}
+
+QStringList HSql::toField(const QStringList &type)
+{
+    QStringList list;
+    for (const auto &t : type)
+        list << toField(t);
+    return list;
+}
+
 QString HSql::toCreateStyle(const QString &field)
 {
     return hashFieldCreateStyle.value(field, field + " [ntext]");
@@ -55,26 +68,26 @@ HSqlGlobalInstance::~HSqlGlobalInstance()
 void HSqlGlobalInstance::initFieldType()
 {
     hashFieldType.clear();
-    hashFieldType.insert("ID",                  "[ID]");
+    hashFieldType.insert("ID",                      "[ID]");
     // 产品信息
-    hashFieldType.insert("Manufacturer",        "[制造厂商]");
-    hashFieldType.insert("ProductName",         "[产品名称]");
-    hashFieldType.insert("ProductModel",        "[产品型号]");
-    hashFieldType.insert("SampleNumber",        "[样品编号]");
-    hashFieldType.insert("Tester",              "[测试员]");
-    hashFieldType.insert("TestInstitute",       "[测试单位]");
-    hashFieldType.insert("Note",                "[备注]");
+    hashFieldType.insert("Manufacturer",            "[制造厂商]");
+    hashFieldType.insert("ProductName",             "[产品名称]");
+    hashFieldType.insert("ProductModel",            "[产品型号]");
+    hashFieldType.insert("SampleNumber",            "[样品编号]");
+    hashFieldType.insert("Tester",                  "[测试员]");
+    hashFieldType.insert("TestInstitute",           "[测试单位]");
+    hashFieldType.insert("Note",                    "[备注]");
     // 环境
-    hashFieldType.insert("Temperature",         "[环境温度]");
-    hashFieldType.insert("Humidity",            "[环境湿度]");
+    hashFieldType.insert("Temperature",             "[环境温度]");
+    hashFieldType.insert("Humidity",                "[环境湿度]");
     // 时间
-    hashFieldType.insert("TestDateTime",        "[测量日期时间]");
-    hashFieldType.insert("TestDate",            "[测量日期]");
-    hashFieldType.insert("TestTime",            "[测量时间]");
+    hashFieldType.insert("TestDateTime",            "[测量日期时间]");
+    hashFieldType.insert("TestDate",                "[测量日期]");
+    hashFieldType.insert("TestTime",                "[测量时间]");
     // 光参数
-    hashFieldType.insert("LuminousFlux",        "[光通量]");
-    hashFieldType.insert("LuminousPower",       "[光功率]");
-    hashFieldType.insert("LuminousEfficiency",  "[光效率]");
+    hashFieldType.insert("LuminousFlux",            "[光通量]");
+    hashFieldType.insert("LuminousPower",           "[光功率]");
+    hashFieldType.insert("LuminousEfficiency",      "[光效率]");
     // 光谱
     hashFieldType.insert("PeakWave",                "[峰值波长]");
     hashFieldType.insert("PeakBandwidth",           "[峰值带宽]");

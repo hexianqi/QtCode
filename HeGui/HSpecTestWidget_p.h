@@ -7,6 +7,8 @@ class HCie1931Widget;
 
 HE_DATA_BEGIN_NAMESPACE
 class IConfigManage;
+class IPrint;
+class IPrintTemplate;
 HE_DATA_END_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -44,15 +46,19 @@ public:
     QAction *actionRemove = nullptr;
     QAction *actionAdjust = nullptr;
     QAction *actionQuantum = nullptr;
+    QAction *actionProductEidt = nullptr;
 
 public:
     IConfigManage *configManage = nullptr;
     IMemento *memento = nullptr;
+    IPrint *print = nullptr;
+    IPrintTemplate *specPrintTemplate = nullptr;
     ITestResult *testResult = nullptr;
 
 public:
     QTimer *timer = nullptr;
     bool modified = true;
+    bool productEditable = false;
     QStringList displays;
     QStringList tableSelecteds;
     QString exportPathName;

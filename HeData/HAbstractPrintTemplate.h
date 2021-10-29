@@ -22,6 +22,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
+    QStringList dataTypes() override;
     void setData(QVariantMap) override;
 
 protected:
@@ -29,6 +30,11 @@ protected:
 
 protected:
     virtual QString toString(QString type);
+    virtual QString toStringWhole(QString type);
+
+protected:
+    void readSettings();
+    void writeSettings();
 
 protected:
     QScopedPointer<HAbstractPrintTemplatePrivate> d_ptr;

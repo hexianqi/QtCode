@@ -67,9 +67,16 @@ QString HTestResult::typeName()
 
 ITestData *HTestResult::at(int i)
 {
-    if (i < 0 || i >= size())
+    if (i < 0 || i >= d_ptr->results.size())
         return nullptr;
     return d_ptr->results.at(i);
+}
+
+ITestData *HTestResult::last()
+{
+    if (d_ptr->results.isEmpty())
+        return nullptr;
+    return d_ptr->results.last();
 }
 
 bool HTestResult::isEmpty()
@@ -96,7 +103,10 @@ void HTestResult::clear()
 void HTestResult::save(bool append)
 {
     if (append || isEmpty())
+    {
+        d_ptr->testData->handleOperation("<编号自增>");
         d_ptr->results.append(d_ptr->testData->clone());
+    }
     else
         d_ptr->results.last()->setData(d_ptr->testData->cloneData());
     d_ptr->modified = true;
@@ -133,14 +143,6 @@ void HTestResult::setSyncFileName(const QString &value)
 {
     d_ptr->syncFileName = value;
     d_ptr->modified = true;
-}
-
-void HTestResult::printPreviewLast()
-{
-    if (isEmpty())
-        return;
-    d_ptr->sqlHandle->addRecord(toRecord(size() - 1), false);
-    d_ptr->sqlPrint->printPreview();
 }
 
 void HTestResult::exportDatabase(int index, int count)
@@ -220,7 +222,6 @@ void HTestResult::syncFile()
 {
     if (d_ptr->syncFileName.isEmpty() || !d_ptr->modified)
         return;
-
     if (d_ptr->xlsxStream->writeFile(d_ptr->syncFileName))
         d_ptr->modified = false;
 }
