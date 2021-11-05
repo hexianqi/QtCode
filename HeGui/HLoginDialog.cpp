@@ -6,6 +6,8 @@
 #include <QtCore/QSettings>
 #include <QtWidgets/QMessageBox>
 
+HE_CORE_USE_NAMESPACE
+
 HE_GUI_BEGIN_NAMESPACE
 
 HLoginDialog::HLoginDialog(QWidget *parent) :

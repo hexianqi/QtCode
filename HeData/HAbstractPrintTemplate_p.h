@@ -4,7 +4,7 @@
 
 HE_DATA_BEGIN_NAMESPACE
 
-class HAbstractPrintTemplatePrivate
+class HE_DATA_EXPORT HAbstractPrintTemplatePrivate
 {
 public:
     QString prefix;

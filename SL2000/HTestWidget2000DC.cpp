@@ -2,12 +2,8 @@
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
 #include "HeCore/HAppContext.h"
-#include "HeData/IPrint.h"
-#include "HeData/IPrintTemplate.h"
 #include "HeData/ITestData.h"
-#include "HeGui/ITestResult.h"
 #include "HeGui/HSpecEnergyWidget.h"
-#include "HeGui/HResultTableWidget.h"
 #include <QtCore/QSettings>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
@@ -28,7 +24,6 @@ HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
                              << "[显色指数Ra]" << "[显色指数R9]" <<"[显色指数Rx]"
                              << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
                              << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]" << "[荧光效能]" << "[荧光蓝光比]";
-    tagPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
 }
 
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
@@ -61,10 +56,7 @@ void HTestWidget2000DC::createAction()
     d->actionProbe = new QAction(tr("使用光探头(&P)"), this);
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
-    d->actionPrintTag = new QAction(tr("打印标签(&T)"), this);
-    d->actionPrintTag->setIcon(QIcon(":/image/Tag.png"));
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget2000DC::setProbe);
-    connect(d->actionPrintTag, &QAction::triggered, this, &HTestWidget2000DC::printTag);
 }
 
 void HTestWidget2000DC::createWidget()
@@ -87,7 +79,6 @@ void HTestWidget2000DC::initWidget()
     Q_D(HTestWidget2000DC);
     HSpecTestWidget::initWidget();
     d->energyWidget->addProgressBar("[光采样比率]");
-    d->tableWidget->addAction(d->actionPrintTag);
 }
 
 void HTestWidget2000DC::readSettings()
@@ -120,17 +111,4 @@ void HTestWidget2000DC::setProbe(bool b)
     d->testData->setData("[使用光探头]", b);
     d->energyWidget->setProgressBarVisible("[光采样比率]", b);
     d->testSetWidget->handleOperation("<启用光挡位>", b);
-}
-
-void HTestWidget2000DC::printTag()
-{
-    Q_D(HTestWidget2000DC);
-    auto row = d->tableWidget->currentRow();
-    auto data = d->testResult->at(row);
-    if (data == nullptr)
-        return;
-
-    d->tagPrintTemplate->setData(data->select(d->tagPrintTemplate->dataTypes()));
-    d->print->setPrintTemplate(d->tagPrintTemplate);
-    d->print->print();
 }

@@ -49,9 +49,9 @@ double HSpecPrintTemplate::paintHeader(QPainter *painter)
 {
     Q_D(HSpecPrintTemplate);
     painter->setFont(QFont("宋体", 12));
-    if (d->params.value("drawHeader", true).toBool())
-        HPainterHelper::drawText(painter, 20, 5, d->params.value("header").toString());
-    if (d->params.value("drawLogo", true).toBool())
+    if (d->params.value("DrawHeader", true).toBool())
+        HPainterHelper::drawText(painter, 20, 5, d->params.value("Header").toString());
+    if (d->params.value("DrawLogo", true).toBool())
         HPainterHelper::drawLogo(painter, QRectF(painter->viewport().width() - 180, 0, 162, 30));
     painter->drawLine(0, 35, painter->viewport().width(), 35);
     return 50;
@@ -60,7 +60,7 @@ double HSpecPrintTemplate::paintHeader(QPainter *painter)
 double HSpecPrintTemplate::paintTitle(QPainter *painter, double y)
 {
     Q_D(HSpecPrintTemplate);
-    auto text = d->params.value("title").toString();
+    auto text = d->params.value("Title").toString();
     painter->setFont(QFont(tr("宋体"), 16, QFont::Bold));
     return HPainterHelper::drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;
 }
@@ -167,7 +167,7 @@ QPointF HSpecPrintTemplate::drawChartSpec(QPainter *painter, QRectF rect, QPolyg
         d->specWidget = new HSpecDiagramWidget;
         d->specWidget->setMargins(40, 25, 25, 35);
         d->specWidget->setBrushBackground(Qt::white);
-        d->specWidget->setDrawRibbon(d->params.value("drawRibbon", true).toBool());
+        d->specWidget->setDrawRibbon(d->params.value("DrawRibbon", true).toBool());
         d->specWidget->setWindowTitle(tr("相对光谱能量分布"));
     }
     if (!poly.isEmpty())
@@ -201,11 +201,11 @@ void HSpecPrintTemplate::init()
                              << "[红色比]" << "[绿色比]" << "[蓝色比]"
                              << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]"
                              << "[光谱光通量]" << "[光功率]";
-    d->params.insert("header",      tr("松朗光电测试报告"));
-    d->params.insert("title",       tr("光谱测试报告"));
-    d->params.insert("drawHeader",  true);
-    d->params.insert("drawLogo",    true);
-    d->params.insert("drawRibbon",  true);
+    d->params.insert("Header",      tr("松朗光电测试报告"));
+    d->params.insert("Title",       tr("光谱测试报告"));
+    d->params.insert("DrawHeader",  true);
+    d->params.insert("DrawLogo",    true);
+    d->params.insert("DrawRibbon",  true);
     readSettings();
 }
 

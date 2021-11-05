@@ -1,4 +1,5 @@
 #include "HAbstractPrintTemplate_p.h"
+#include "HDataHelper.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCoreHelper.h"
@@ -27,7 +28,7 @@ void HAbstractPrintTemplate::initialize(QVariantMap /*param*/)
 {
 }
 
-QStringList HAbstractPrintTemplate::dataTypes()
+QStringList HAbstractPrintTemplate::dataType()
 {
     return d_ptr->types;
 }
@@ -39,7 +40,7 @@ void HAbstractPrintTemplate::setData(QVariantMap value)
 
 QString HAbstractPrintTemplate::toString(QString type)
 {
-    return HCore::toString(type, d_ptr->datas.value(type));
+    return HCore::toString(type, HDataHelper::derive(type, d_ptr->datas));
 }
 
 QString HAbstractPrintTemplate::toStringWhole(QString type)

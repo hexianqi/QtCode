@@ -9,7 +9,7 @@ class HSqlHandlePrivate
 public:
     ISqlTableModel *model = nullptr;
     IProductInfo *productInfo = nullptr;
-    QStringList fieldFinds;
+    QStringList fieldFind;
 };
 
 HE_SQL_END_NAMESPACE

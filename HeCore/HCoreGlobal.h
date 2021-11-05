@@ -8,7 +8,7 @@
 #  define HE_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
-//#define HE_CORE_NAMESPACE HeCore
+#define HE_CORE_NAMESPACE HeCore
 
 #ifdef HE_CORE_NAMESPACE
 #  define HE_CORE_BEGIN_NAMESPACE namespace HE_CORE_NAMESPACE {
@@ -19,8 +19,3 @@
 #  define HE_CORE_END_NAMESPACE
 #  define HE_CORE_USE_NAMESPACE
 #endif
-
-HE_CORE_BEGIN_NAMESPACE
-#define ToVariant(Value)            QVariant::fromValue(static_cast<void *>(Value))
-#define FromVariant(Class, Value)   static_cast<Class *>(Value.value<void *>())
-HE_CORE_END_NAMESPACE

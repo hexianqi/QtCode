@@ -17,7 +17,6 @@ public:
     static void addColumn(const QString &tableName, const QStringList &fields, QSqlDatabase db = QSqlDatabase());
     static bool setVersion(const QString &tableName, int version, QSqlDatabase db = QSqlDatabase());
     static int getVersion(const QString &tableName, QSqlDatabase db = QSqlDatabase());
-
 };
 
 HE_SQL_END_NAMESPACE

@@ -139,10 +139,16 @@ void HBuilder2100DC::buildDevice()
 void HBuilder2100DC::buildTemplate()
 {
     Q_D(HBuilder2100DC);
-    auto spec = new HSpecPrintTemplate2100DC(this);
     auto print = d->dataFactory->createPrint("HPrint");
+    auto expor = d->dataFactory->createTextExport("HTextExport");
+    auto spec = new HSpecPrintTemplate2100DC(this);
+    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
+    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
     HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ITextExport", expor);
     HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+    HAppContext::setContextPointer("ITagPrintTemplate", tag);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
 }
 
 void HBuilder2100DC::buildThread()
@@ -156,9 +162,8 @@ void HBuilder2100DC::buildThread()
 
 void HBuilder2100DC::buildModel()
 {
-    Q_D(HBuilder2100DC);
-    d->model = new HModel2100DC(this);
-    HAppContext::setContextPointer("IModel", d->model);
+    auto model = new HModel2100DC(this);
+    HAppContext::setContextPointer("IModel", model);
 }
 
 void HBuilder2100DC::buildMemento()

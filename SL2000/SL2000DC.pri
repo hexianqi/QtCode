@@ -5,8 +5,6 @@ HEADERS += \
     $$PWD/HBuilder2000DC_p.h \
     $$PWD/HSpecPrintTemplate2000DC.h \
     $$PWD/HSpecPrintTemplate2000DC_p.h \
-    $$PWD/HTagPrintTemplate2000DC.h \
-    $$PWD/HTagPrintTemplate2000DC_p.h \
     $$PWD/HTestWidget2000DC.h \
     $$PWD/HTestWidget2000DC_p.h \
     $$PWD/HDetailWidget2000DC.h \
@@ -18,7 +16,6 @@ SOURCES +=  \
     $$PWD/HMainWindow2000DC.cpp \
     $$PWD/HBuilder2000DC.cpp \
     $$PWD/HSpecPrintTemplate2000DC.cpp \
-    $$PWD/HTagPrintTemplate2000DC.cpp \
     $$PWD/HTestWidget2000DC.cpp \
     $$PWD/HDetailWidget2000DC.cpp \
     $$PWD/HTestSetWidget2000DC.cpp

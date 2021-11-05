@@ -9,7 +9,7 @@
 
 HE_CORE_BEGIN_NAMESPACE
 
-class HE_CORE_BEGIN_NAMESPACE HTypeHelper
+class HE_CORE_EXPORT HTypeHelper
 {
 public:
     // 创建对象

@@ -36,20 +36,14 @@ public:
     virtual void remove(int index, int count) = 0;
     // 设置修改
     virtual void setModified(bool b = true) = 0;
-    // 设置导出项
-    virtual void setExportTypes(QStringList) = 0;
-    // 设置导出路径
-    virtual void setExportPathName(const QString &) = 0;
-    // 设置同步文件名
-    virtual void setSyncFileName(const QString &) = 0;
+    // 设置同步项
+    virtual void setSyncType(QStringList) = 0;
+    // 设置同步文件
+    virtual void setSyncFile(const QString &) = 0;
     // 导出到数据库
     virtual void exportDatabase(int index, int count) = 0;
     virtual void exportDatabaseLast() = 0;
     virtual void exportDatabaseAll() = 0;
-    // 导出到Excel
-    virtual void exportExcel(int index, int count) = 0;
-    virtual void exportExcelLast() = 0;
-    virtual void exportExcelAppend() = 0;
     // 同步文件
     virtual void syncFile() = 0;
 };

@@ -5,9 +5,6 @@
 #pragma once
 
 #include "HCoreGlobal.h"
-
-class QStringList;
-class QObject;
 #include <QtCore/QVariant>
 
 HE_CORE_BEGIN_NAMESPACE

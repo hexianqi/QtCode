@@ -34,6 +34,7 @@ HEADERS     += \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HCallorHelper.h \
+            HDefine.h \
             HException.h \
             HThreadPool.h
 

@@ -9,6 +9,8 @@ HE_DATA_BEGIN_NAMESPACE
 class IConfigManage;
 class IPrint;
 class IPrintTemplate;
+class ITextExport;
+class ITextExportTemplate;
 HE_DATA_END_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
@@ -38,7 +40,8 @@ public:
     ITestDetailWidget *detailWidget = nullptr;
 
 public:
-    QAction *actionPrintPreviewLast = nullptr;
+    QAction *actionPrintPreview = nullptr;
+    QAction *actionPrintTag = nullptr;
     QAction *actionExportDatabaseLast = nullptr;
     QAction *actionExportDatabase = nullptr;
     QAction *actionExportPath = nullptr;
@@ -51,9 +54,12 @@ public:
 public:
     IConfigManage *configManage = nullptr;
     IMemento *memento = nullptr;
+    ITestResult *testResult = nullptr;
     IPrint *print = nullptr;
     IPrintTemplate *specPrintTemplate = nullptr;
-    ITestResult *testResult = nullptr;
+    IPrintTemplate *tagPrintTemplate = nullptr;
+    ITextExport *textExport = nullptr;
+    ITextExportTemplate *specTextTemplate = nullptr;
 
 public:
     QTimer *timer = nullptr;
@@ -61,8 +67,8 @@ public:
     bool productEditable = false;
     QStringList displays;
     QStringList tableSelecteds;
-    QString exportPathName;
-    QString syncFileName;
+    QString exportPath;
+    QString syncFile;
     int syncInterval = 20;
 };
 

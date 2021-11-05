@@ -35,8 +35,8 @@ protected:
     void createMenu() override;
     void createToolBar() override;
     void initWidget() override;
-    void exportExcel() override;
     void clearResult() override;
+    void exportExcel() override;
 
 protected:
     virtual void readSettings();
@@ -46,10 +46,12 @@ protected:
     void handleStateChanged(bool);
     void handleSaveModeChanged(int);
     void handleResultChanged(HActionType, bool);
-    void openCieDialog();
     void resetGrade();
+    void exportExcelAppend();
+    void openCieDialog();
     void exportDatabase();
     void printPreview();
+    void printTag();
     void removeResult();
     void setExportPath();
     void setSyncFile();

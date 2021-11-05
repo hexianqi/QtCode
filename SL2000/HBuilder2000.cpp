@@ -25,7 +25,6 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
-#include "HeGui/HSpecPrintTemplate.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 #include <QtCore/QDebug>
@@ -111,10 +110,15 @@ void HBuilder2000::buildTestData()
 void HBuilder2000::buildTemplate()
 {
     Q_D(HBuilder2000);
-    auto spec = new HSpecPrintTemplate(this);
+
     auto print = d->dataFactory->createPrint("HPrint");
+    auto expor = d->dataFactory->createTextExport("HTextExport");
+    auto spec = d->guiFactory->createPrintTemplate("HSpecPrintTemplate");
+    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
     HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ITextExport", expor);
     HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
 }
 
 void HBuilder2000::buildDevice()
@@ -144,8 +148,8 @@ void HBuilder2000::buildThread()
 void HBuilder2000::buildModel()
 {
     Q_D(HBuilder2000);
-    d->model = d->controllerFactory->createModel("HSpecModel");
-    HAppContext::setContextPointer("IModel", d->model);
+    auto model = d->controllerFactory->createModel("HSpecModel");
+    HAppContext::setContextPointer("IModel", model);
 }
 
 void HBuilder2000::buildMemento()

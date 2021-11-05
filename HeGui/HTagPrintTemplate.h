@@ -1,25 +1,28 @@
 /***************************************************************************************************
-**      2021-10-19  HTagPrintTemplate2000DC
+**      2021-11-01  HTagPrintTemplate 标签打印模版
 ***************************************************************************************************/
 
 #pragma once
 
+#include "HGuiGlobal.h"
 #include "HeData/HAbstractPrintTemplate.h"
 
 class QPainter;
 
 HE_DATA_USE_NAMESPACE
 
-class HTagPrintTemplate2000DCPrivate;
+HE_GUI_BEGIN_NAMESPACE
 
-class HTagPrintTemplate2000DC : public HAbstractPrintTemplate
+class HTagPrintTemplatePrivate;
+
+class HTagPrintTemplate : public HAbstractPrintTemplate
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HTagPrintTemplate2000DC)
+    Q_DECLARE_PRIVATE(HTagPrintTemplate)
 
 public:
-    explicit HTagPrintTemplate2000DC(QObject *parent = nullptr);
-    ~HTagPrintTemplate2000DC() override;
+    explicit HTagPrintTemplate(QObject *parent = nullptr);
+    ~HTagPrintTemplate() override;
 
 public:
     QString typeName() override;
@@ -28,11 +31,14 @@ public:
     bool printPages(QPrinter *) override;
 
 protected:
-    HTagPrintTemplate2000DC(HTagPrintTemplate2000DCPrivate &p, QObject *parent = nullptr);
+    HTagPrintTemplate(HTagPrintTemplatePrivate &p, QObject *parent = nullptr);
 
 protected:
     void drawText(QPainter *painter, double x1, double y1, double x2, double y2, QString text);
+
+private:
+    void init();
 };
 
-
+HE_GUI_END_NAMESPACE
 

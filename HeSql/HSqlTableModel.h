@@ -29,8 +29,9 @@ public:
 public:
     bool isValid(int row) override;
     bool setCurrentRow(int row) override;
-    void resetCurrentRow(int index) override;
+    void resetCurrentRow(int row) override;
     int currentRow() override;
+    QSqlRecord currentRecord() override;
 
 public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;

@@ -22,7 +22,7 @@ public:
     void initialize(QVariantMap param) override;
 
 public:
-    QStringList dataTypes() override;
+    QStringList dataType() override;
     void setData(QVariantMap) override;
 
 protected:

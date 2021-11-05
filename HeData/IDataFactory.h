@@ -12,6 +12,7 @@ HE_CORE_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
 
 class IPrint;
+class ITextExport;
 class IDataStream;
 class ITextStream;
 class IXlsxStream;
@@ -50,6 +51,8 @@ class IDataFactory : public IInitializeable
 public:
     // 创建打印
     virtual IPrint *createPrint(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建文本导出
+    virtual ITextExport *createTextExport(QString type, QVariantMap param = QVariantMap()) = 0;
 
 public:
     // 创建数据流

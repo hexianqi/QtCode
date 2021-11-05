@@ -32,6 +32,9 @@
 #include "HExportDeviceHandler.h"
 #include "HLoginInHandler.h"
 #include "HLoginOutHandler.h"
+#include "HSpecPrintTemplate.h"
+#include "HTagPrintTemplate.h"
+#include "HSpecTextExportTemplate.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QDebug>
@@ -76,14 +79,27 @@ ITestDataEditDialog *HGuiFactory::createTestDataEditDialog(QString type, QWidget
     return HWidgetFactory::createWidget<ITestDataEditDialog>(type, param, parent);
 }
 
-IGuiHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
+IHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 {
-    auto p = HObjectFactory::createObject<IGuiHandler>(type, param, this);
+    auto p = HObjectFactory::createObject<IHandler>(type, param, this);
     if (p == nullptr)
     {
         p = new HTestHandler(this);
         p->initialize(param);
     }
+    return p;
+}
+
+IPrintTemplate *HGuiFactory::createPrintTemplate(QString type, QVariantMap param)
+{
+    return HObjectFactory::createObject<IPrintTemplate>(type, param, this);
+}
+
+ITextExportTemplate *HGuiFactory::createTextExportTemplate(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HSpecTextExportTemplate(this);
+    p->initialize(param);
     return p;
 }
 
@@ -132,6 +148,9 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HExportCurveHandler>("HExportCurveHandler");
     HObjectFactory::registerClass<HLoginInHandler>("HLoginInHandler");
     HObjectFactory::registerClass<HLoginOutHandler>("HLoginOutHandler");
+
+    HObjectFactory::registerClass<HSpecPrintTemplate>("HSpecPrintTemplate");
+    HObjectFactory::registerClass<HTagPrintTemplate>("HTagPrintTemplate");
 }
 
 HE_GUI_END_NAMESPACE

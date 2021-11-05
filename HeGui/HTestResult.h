@@ -31,15 +31,11 @@ public:
     void save(bool append = true) override;
     void remove(int index, int count) override;
     void setModified(bool b = true) override;
-    void setExportTypes(QStringList) override;
-    void setExportPathName(const QString &) override;
-    void setSyncFileName(const QString &) override;
+    void setSyncType(QStringList) override;
+    void setSyncFile(const QString &) override;
     void exportDatabase(int index, int count) override;
     void exportDatabaseLast() override;
     void exportDatabaseAll() override;
-    void exportExcel(int index, int count) override;
-    void exportExcelLast() override;
-    void exportExcelAppend() override;
     void syncFile() override;
 
 protected:

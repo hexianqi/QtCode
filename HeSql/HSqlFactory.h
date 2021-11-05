@@ -26,6 +26,7 @@ public:
     ISqlDatabase *createDatabase(QString type, QVariantMap param = QVariantMap()) override;
     ISqlTableModel *createTableModel(QString type, QVariantMap param = QVariantMap()) override;
     ISqlHandle *createHandle(QString type, QVariantMap param = QVariantMap()) override;
+    ISqlOutput *createOutput(QString type, QVariantMap param = QVariantMap()) override;
     ISqlPrint *createPrint(QString type, QVariantMap param = QVariantMap()) override;
     ISqlBrowser *createBrowser(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IProductInfo *createProductInfo(QString type, QVariantMap param = QVariantMap()) override;

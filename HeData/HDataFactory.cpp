@@ -1,5 +1,6 @@
 #include "HDataFactory_p.h"
 #include "HPrint.h"
+#include "HTextExport.h"
 #include "HDataStream.h"
 #include "HTextStream.h"
 #include "HXlsxStream.h"
@@ -74,6 +75,14 @@ IPrint *HDataFactory::createPrint(QString type, QVariantMap param)
 {
     Q_UNUSED(type);
     auto p = new HPrint(this);
+    p->initialize(param);
+    return p;
+}
+
+ITextExport *HDataFactory::createTextExport(QString type, QVariantMap param)
+{
+    Q_UNUSED(type);
+    auto p = new HTextExport(this);
     p->initialize(param);
     return p;
 }

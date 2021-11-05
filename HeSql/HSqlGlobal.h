@@ -8,7 +8,7 @@
 #  define HE_SQL_EXPORT Q_DECL_IMPORT
 #endif
 
-//#define HE_SQL_NAMESPACE HeSql
+#define HE_SQL_NAMESPACE HeSql
 
 #ifdef HE_SQL_NAMESPACE
 #  define HE_SQL_BEGIN_NAMESPACE namespace HE_SQL_NAMESPACE {

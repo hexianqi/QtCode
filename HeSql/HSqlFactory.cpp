@@ -2,6 +2,7 @@
 #include "HSqlDatabase.h"
 #include "HSqlTableModel.h"
 #include "HSqlHandle.h"
+#include "HSqlOutput.h"
 #include "HSqlBrowser.h"
 #include "HProductInfo.h"
 #include "HSpecElecSqlPrint.h"
@@ -59,6 +60,14 @@ ISqlHandle *HSqlFactory::createHandle(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     auto p = new HSqlHandle(this);
+    p->initialize(param);
+    return p;
+}
+
+ISqlOutput *HSqlFactory::createOutput(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HSqlOutput(this);
     p->initialize(param);
     return p;
 }

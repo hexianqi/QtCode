@@ -1,5 +1,6 @@
 #include "HAbstractProtocol_p.h"
 #include "IDevice.h"
+#include "HeCore/HDefine.h"
 #include "HeCore/HException.h"
 #include <QtCore/QMutex>
 #include <QtCore/QVector>

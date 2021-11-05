@@ -1,5 +1,6 @@
 #include "HAbstractDevice_p.h"
 #include "IPort.h"
+#include "HeCore/HDefine.h"
 #include "HeCore/HException.h"
 #include <QtCore/QVector>
 

@@ -9,6 +9,8 @@
 
 class QPrinter;
 
+HE_CORE_USE_NAMESPACE
+
 HE_DATA_BEGIN_NAMESPACE
 
 class IPrintTemplate : public QObject, public IInitializeable
@@ -20,7 +22,7 @@ public:
 
 public:
     // 数据项
-    virtual QStringList dataTypes() = 0;
+    virtual QStringList dataType() = 0;
     // 设置数据
     virtual void setData(QVariantMap) = 0;
 

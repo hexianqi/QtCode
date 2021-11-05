@@ -75,6 +75,7 @@ unix {
 include(adjust.pri)
 include(chromatism.pri)
 include(elec.pri)
+include(export.pri)
 include(grade.pri)
 include(luminous.pri)
 include(print.pri)

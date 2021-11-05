@@ -9,9 +9,5 @@ public:
     HTestWidget2000DCPrivate();
 
 public:
-    IPrintTemplate *tagPrintTemplate = nullptr;
-
-public:
     QAction *actionProbe = nullptr;
-    QAction *actionPrintTag = nullptr;
 };

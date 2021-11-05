@@ -77,7 +77,6 @@ void HTestProduct::writeSettings(QString fileName)
 {
     if (fileName.isEmpty())
         fileName = HAppContext::getContextValue<QString>("Settings");
-
     QSettings settings(fileName, QSettings::IniFormat);
     settings.setIniCodec("utf-8");
     settings.beginGroup("ProductInfo");

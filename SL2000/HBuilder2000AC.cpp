@@ -116,10 +116,14 @@ void HBuilder2000AC::buildTestData()
 void HBuilder2000AC::buildTemplate()
 {
     Q_D(HBuilder2000AC);
-    auto spec = new HSpecPrintTemplate2000AC(this);
     auto print = d->dataFactory->createPrint("HPrint");
+    auto expor = d->dataFactory->createTextExport("HTextExport");
+    auto spec = new HSpecPrintTemplate2000AC(this);
+    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
     HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ITextExport", expor);
     HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
 }
 
 void HBuilder2000AC::buildDevice()
@@ -154,8 +158,8 @@ void HBuilder2000AC::buildThread()
 void HBuilder2000AC::buildModel()
 {
     Q_D(HBuilder2000AC);
-    d->model = d->controllerFactory->createModel("HSpecModel");
-    HAppContext::setContextPointer("IModel", d->model);
+    auto model = d->controllerFactory->createModel("HSpecModel");
+    HAppContext::setContextPointer("IModel", model);
 }
 
 void HBuilder2000AC::buildMemento()

@@ -19,7 +19,6 @@ HEADERS += \
     $$PWD/HLuminousCalibrateHandler_p.h \
     $$PWD/HProductEditHandler.h \
     $$PWD/HProductEditHandler_p.h \
-    $$PWD/IGuiHandler.h \
     $$PWD/HAbstractGuiHandler.h \
     $$PWD/HAbstractGuiHandler_p.h \
     $$PWD/HTestHandler.h \

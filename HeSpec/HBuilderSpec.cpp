@@ -106,9 +106,8 @@ void HBuilderSpec::buildThread()
 
 void HBuilderSpec::buildModel()
 {
-    Q_D(HBuilderSpec);
-    d->model = new HModelSpec(this);
-    HAppContext::setContextPointer("IModel", d->model);
+    auto model = new HModelSpec(this);
+    HAppContext::setContextPointer("IModel", model);
 }
 
 void HBuilderSpec::buildMemento()

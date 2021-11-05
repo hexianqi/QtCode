@@ -34,9 +34,11 @@ public:
     // 设置行
     virtual bool setCurrentRow(int row) = 0;
     // 重置行
-    virtual void resetCurrentRow(int index) = 0;
+    virtual void resetCurrentRow(int row) = 0;
     // 当前行
     virtual int currentRow() = 0;
+    // 当前记录
+    virtual QSqlRecord currentRecord() = 0;
 };
 
 HE_SQL_END_NAMESPACE

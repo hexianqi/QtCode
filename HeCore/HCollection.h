@@ -5,6 +5,7 @@
 #pragma once
 
 #include "ICollection.h"
+#include "HDefine.h"
 
 HE_CORE_BEGIN_NAMESPACE
 

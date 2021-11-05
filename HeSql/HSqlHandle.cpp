@@ -45,9 +45,9 @@ void HSqlHandle::setModel(ISqlTableModel *p)
 
 void HSqlHandle::setFieldFind(QStringList value)
 {
-    if (d_ptr->fieldFinds == value)
+    if (d_ptr->fieldFind == value)
         return;
-    d_ptr->fieldFinds = value;
+    d_ptr->fieldFind = value;
 }
 
 void HSqlHandle::setProductInfo(IProductInfo *p)
@@ -123,7 +123,7 @@ void HSqlHandle::revertRecord()
 
 void HSqlHandle::findRecord()
 {
-    HSqlFindDialog dlg(d_ptr->fieldFinds, d_ptr->model->filter());
+    HSqlFindDialog dlg(d_ptr->fieldFind, d_ptr->model->filter());
     if (dlg.exec())
         setFilter(dlg.filter());
 }

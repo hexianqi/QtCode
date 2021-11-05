@@ -10,6 +10,7 @@
 #include "IAdjustCollection.h"
 #include "IAdjust2Collection.h"
 #include "IQualityCollection.h"
+#include "HDataHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
@@ -19,16 +20,6 @@
 #include <QtCore/QDebug>
 
 HE_DATA_BEGIN_NAMESPACE
-
-QSet<QString> supplement(QSet<QString> set, QSet<QString> other)
-{
-    for (const auto &s : other)
-    {
-        if (set.contains(s))
-            return set.unite(other);
-    }
-    return set;
-}
 
 HConfigManagePrivate::HConfigManagePrivate()
 {
@@ -319,9 +310,9 @@ bool HConfigManage::exportPart(quint32 value)
 void HConfigManage::postProcess(ITestData *test, QStringList optional)
 {
     auto set = optional.toSet();
-    set = supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
-    set = supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
-    set = supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
+    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
+    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
+    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
     optional = set.toList();
     auto data = test->select(optional);
 

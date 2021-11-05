@@ -14,7 +14,6 @@ HE_COMMUNICATE_USE_NAMESPACE
 
 HE_CONTROLLER_BEGIN_NAMESPACE
 class IControllerFactory;
-class IModel;
 HE_CONTROLLER_END_NAMESPACE
 HE_CONTROLLER_USE_NAMESPACE
 
@@ -46,7 +45,6 @@ public:
     IGuiFactory *guiFactory = nullptr;
     ISqlFactory *sqlFactory = nullptr;
     IConfigManage *configManage = nullptr;
-    IModel *model = nullptr;
     QString configFileName;
     QVariantMap deploy;
 };

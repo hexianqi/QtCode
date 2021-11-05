@@ -16,9 +16,9 @@ class IPrintTemplate;
 class IPrint : public IInitializeable
 {
 public:
-    // 打印模版
+    // 获取模版
     virtual IPrintTemplate *printTemplate() = 0;
-    // 设置打印模版
+    // 设置模版
     virtual void setPrintTemplate(IPrintTemplate *) = 0;
 
 public:

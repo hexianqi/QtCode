@@ -1,5 +1,7 @@
 #include "HTestData_p.h"
+#include "HDataHelper.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HDefine.h"
 #include <QtCore/QDateTime>
 #include <QtGui/QColor>
 
@@ -40,13 +42,7 @@ QVariant HTestDataPrivate::data(const QString &type)
         return datas.value(type);
     if (successor != nullptr)
         return successor->data(type);
-    if (type == "[测量日期时间]")
-        return QDateTime::currentDateTime();
-    if (type == "[测量日期]")
-        return data("[测量日期时间]").toDate();
-    if (type == "[测量时间]")
-        return data("[测量日期时间]").toTime();
-    return QVariant();
+    return HDataHelper::derive(type, datas);
 }
 
 HTestData::HTestData() :
@@ -83,15 +79,6 @@ ITestData *HTestData::setSuccessor(ITestData *p)
 bool HTestData::setCalibrate(void *)
 {
     return false;
-}
-
-bool HTestData::contains(QString type)
-{
-    if (d_ptr->datas.contains(type))
-        return true;
-    if (d_ptr->successor == nullptr)
-        return false;
-    return d_ptr->successor->contains(type);
 }
 
 void HTestData::setData(QString type, QVariant value)

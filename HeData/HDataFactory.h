@@ -24,6 +24,7 @@ public:
 
 public:
     IPrint *createPrint(QString type, QVariantMap param = QVariantMap()) override;
+    ITextExport *createTextExport(QString type, QVariantMap param = QVariantMap()) override;
 
 public:
     IDataStream *createDataStream(QString type, QVariantMap param = QVariantMap()) override;

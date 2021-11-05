@@ -126,10 +126,10 @@ void HSpecPrintTemplate2000DC::init()
                              << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
                              << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
                              << "[荧光效能]" << "[荧光蓝光比]";
-    d->params.insert("header",      tr("松朗光色电综合测试报告"));
-    d->params.insert("title",       tr("光色电综合测试报告"));
-    d->params.insert("drawHeader",  true);
-    d->params.insert("drawLogo",    true);
-    d->params.insert("drawRibbon",  true);
+    d->params.insert("Header",      tr("松朗光色电综合测试报告"));
+    d->params.insert("Title",       tr("光色电综合测试报告"));
+    d->params.insert("DrawHeader",  true);
+    d->params.insert("DrawLogo",    true);
+    d->params.insert("DrawRibbon",  true);
     readSettings();
 }

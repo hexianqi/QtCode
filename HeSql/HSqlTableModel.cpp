@@ -71,15 +71,20 @@ bool HSqlTableModel::setCurrentRow(int row)
     return true;
 }
 
-void HSqlTableModel::resetCurrentRow(int index)
+void HSqlTableModel::resetCurrentRow(int row)
 {
-    d_ptr->currentRow = qMin(index, rowCount() -1);
+    d_ptr->currentRow = qMin(row, rowCount() -1);
     emit currentRowChanged(d_ptr->currentRow);
 }
 
 int HSqlTableModel::currentRow()
 {
     return d_ptr->currentRow;
+}
+
+QSqlRecord HSqlTableModel::currentRecord()
+{
+    return record(d_ptr->currentRow);
 }
 
 QVariant HSqlTableModel::data(const QModelIndex &index, int role) const

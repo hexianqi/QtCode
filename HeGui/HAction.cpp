@@ -1,4 +1,5 @@
 #include "HAction_p.h"
+#include "HeCore/HDefine.h"
 #include "HeCore/IHandler.h"
 
 HE_GUI_BEGIN_NAMESPACE

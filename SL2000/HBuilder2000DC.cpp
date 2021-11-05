@@ -1,9 +1,7 @@
 #include "HBuilder2000DC_p.h"
-#include "HTagPrintTemplate2000DC.h"
 #include "HSpecPrintTemplate2000DC.h"
 #include "HTestWidget2000DC.h"
 #include "HeCore/HAppContext.h"
-#include "HeData/IPrint.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IDataStream.h"
@@ -171,12 +169,16 @@ void HBuilder2000DC::buildTestData()
 void HBuilder2000DC::buildTemplate()
 {
     Q_D(HBuilder2000DC);
-    auto tag = new HTagPrintTemplate2000DC(this);
-    auto spec = new HSpecPrintTemplate2000DC(this);
     auto print = d->dataFactory->createPrint("HPrint");
+    auto expor = d->dataFactory->createTextExport("HTextExport");
+    auto spec = new HSpecPrintTemplate2000DC(this);
+    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
+    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
     HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("ITagPrintTemplate", tag);
+    HAppContext::setContextPointer("ITextExport", expor);
     HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+    HAppContext::setContextPointer("ITagPrintTemplate", tag);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
 }
 
 void HBuilder2000DC::buildDevice()
@@ -211,8 +213,8 @@ void HBuilder2000DC::buildThread()
 void HBuilder2000DC::buildModel()
 {
     Q_D(HBuilder2000DC);
-    d->model = d->controllerFactory->createModel("HIntegrateModel");
-    HAppContext::setContextPointer("IModel", d->model);
+    auto model = d->controllerFactory->createModel("HIntegrateModel");
+    HAppContext::setContextPointer("IModel", model);
 }
 
 void HBuilder2000DC::buildMemento()
