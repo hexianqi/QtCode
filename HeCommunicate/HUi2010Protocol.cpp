@@ -1,7 +1,6 @@
 #include "HUi2010Protocol_p.h"
 #include "HSerialPort.h"
 #include "HPowerFactorDevice.h"
-#include <QtCore/QtMath>
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE

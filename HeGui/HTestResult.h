@@ -33,16 +33,10 @@ public:
     void setModified(bool b = true) override;
     void setSyncType(QStringList) override;
     void setSyncFile(const QString &) override;
-    void exportDatabase(int index, int count) override;
-    void exportDatabaseLast() override;
-    void exportDatabaseAll() override;
     void syncFile() override;
 
 protected:
     HTestResult(HTestResultPrivate &p, QObject *parent = nullptr);
-
-protected:
-    QVariantMap toRecord(int index);
 
 protected:
     QScopedPointer<HTestResultPrivate> d_ptr;

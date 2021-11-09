@@ -40,10 +40,6 @@ public:
     virtual void setSyncType(QStringList) = 0;
     // 设置同步文件
     virtual void setSyncFile(const QString &) = 0;
-    // 导出到数据库
-    virtual void exportDatabase(int index, int count) = 0;
-    virtual void exportDatabaseLast() = 0;
-    virtual void exportDatabaseAll() = 0;
     // 同步文件
     virtual void syncFile() = 0;
 };

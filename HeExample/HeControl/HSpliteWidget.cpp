@@ -1,5 +1,4 @@
 #include "HSpliteWidget_p.h"
-#include <QtCore/QtMath>
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>

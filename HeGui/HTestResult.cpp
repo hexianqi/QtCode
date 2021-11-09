@@ -3,8 +3,6 @@
 #include "HeCore/HCore.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/ITestData.h"
-#include "HeSql/ISqlHandle.h"
-#include "HeSql/HSql.h"
 #include "QXlsx/xlsxdocument.h"
 #include <QtCore/QDebug>
 
@@ -12,7 +10,6 @@ HE_GUI_BEGIN_NAMESPACE
 
 HTestResultPrivate::HTestResultPrivate()
 {
-    sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
     xlsxStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createXlsxStream("HXlsxStream");
     xlsxStream->setWriteContent([=](Document *p) { writeContent(p); });
@@ -95,10 +92,7 @@ void HTestResult::clear()
 void HTestResult::save(bool append)
 {
     if (append || isEmpty())
-    {
-        d_ptr->testData->handleOperation("<编号自增>");
         d_ptr->results.append(d_ptr->testData->clone());
-    }
     else
         d_ptr->results.last()->setData(d_ptr->testData->cloneData());
     d_ptr->modified = true;
@@ -132,42 +126,12 @@ void HTestResult::setSyncFile(const QString &value)
     d_ptr->modified = true;
 }
 
-void HTestResult::exportDatabase(int index, int count)
-{
-    if (isEmpty() || count < 1 || index < 0)
-        return;
-    count = qMin(size() - index, count);
-    for (int i = 0; i < count; i++)
-        d_ptr->sqlHandle->addRecord(toRecord(index + i), false);
-}
-
-void HTestResult::exportDatabaseLast()
-{
-    if (isEmpty())
-        return;
-    d_ptr->sqlHandle->addRecord(toRecord(size() - 1));
-}
-
-void HTestResult::exportDatabaseAll()
-{
-    exportDatabase(0, size());
-}
-
 void HTestResult::syncFile()
 {
     if (d_ptr->syncFile.isEmpty() || !d_ptr->modified)
         return;
     if (d_ptr->xlsxStream->writeFile(d_ptr->syncFile))
         d_ptr->modified = false;
-}
-
-QVariantMap HTestResult::toRecord(int index)
-{
-    QVariantMap record;
-    auto data = d_ptr->results.at(index);
-    for (const auto &f : d_ptr->sqlHandle->field())
-        record.insert(f, data->data(HSql::toType(f)));
-    return record;
 }
 
 HE_GUI_END_NAMESPACE

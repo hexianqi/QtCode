@@ -2,7 +2,6 @@
 #include "HeCore/HCore.h"
 #include "HeCore/HDataFormatInfo.h"
 #include "QXlsx/xlsxdocument.h"
-#include <QtCore/QtMath>
 #include <QtGui/QClipboard>
 #include <QtGui/QScreen>
 #include <QtWidgets/QAction>

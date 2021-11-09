@@ -3,7 +3,6 @@
 #include "HChromaticity.h"
 #include "HChromaticity2.h"
 #include "HPhotopicVision.h"
-#include <QtCore/QtMath>
 #include <QtCore/QDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
@@ -55,7 +54,7 @@ void calcSpectrumEnergy(HSpecData *data)
     data->TotalEnergy = total;
     data->MaxEnergy = max;
     data->PeakWave = wave;
-    data->Bandwidth = qFabs(x - y);
+    data->Bandwidth = fabs(x - y);
     data->EnergyPercent.clear();
     for (auto p : data->Energy)
         data->EnergyPercent << QPointF(p.x(), 100 * p.y() / max);

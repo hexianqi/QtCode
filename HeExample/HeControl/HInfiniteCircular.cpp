@@ -35,7 +35,7 @@ void HInfiniteCircular::draw(QPainter *painter, double factor, QVariantMap param
     // x * |cos(a)| = 50
     // side = x / sqrt(2) = 50 / sqrt(2) / |cos(a)|
     auto mapAngle = static_cast<int>(factor * 360) % 45; // a mapTo [0, 45]
-    auto cosA = qAbs(qCos(qDegreesToRadians(mapAngle * 1.0)));
+    auto cosA = qAbs(cos(qDegreesToRadians(mapAngle * 1.0)));
     auto side = 50 / M_SQRT2;
     if (!qFuzzyCompare(cosA, 0))
         side /= cosA;

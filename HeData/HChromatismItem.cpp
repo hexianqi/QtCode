@@ -1,7 +1,6 @@
 #include "HChromatismItem_p.h"
 #include <QtCore/QPointF>
 #include <QtCore/QDataStream>
-#include <QtCore/QtMath>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -69,7 +68,7 @@ double HChromatismItem::calcSdcm(QPointF xy)
         c << v.toDouble();
     auto x = c[0] - xy.x();
     auto y = c[1] - xy.y();
-    auto sdcm = qSqrt(g[0] * x * x + 2 * g[1] * x * y + g[2] * y * y);
+    auto sdcm = sqrt(g[0] * x * x + 2 * g[1] * x * y + g[2] * y * y);
     setData("[测试点]", QVariantList() << xy.x() << xy.y());
     setData("[测试Sdcm]", sdcm);
     return sdcm;

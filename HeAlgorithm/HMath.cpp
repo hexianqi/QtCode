@@ -40,7 +40,7 @@ QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double interv
     if (x2 < x1)
         qSwap(x1, x2);
 
-    n = qCeil((x2 - x1) / interval + 1);
+    n = ceil((x2 - x1) / interval + 1);
     for (i = 0, j = 1; i < n; i++)
     {
         x = x1 + i * interval;
@@ -77,10 +77,10 @@ QPolygonF HMath::calcEllipse(QPointF center, double r, double theta, double a, d
     for (int i = 0; i < 3600; i++)
     {
         auto theta2 = qDegreesToRadians(i * 0.1);
-        auto x1 = r * a * qCos(theta2);
-        auto y1 = r * b * qSin(theta2);
-        auto x2 = x1 * qCos(theta1) - y1 * qSin(theta1) + center.x();
-        auto y2 = x1 * qSin(theta1) + y1 * qCos(theta1) + center.y();
+        auto x1 = r * a * cos(theta2);
+        auto y1 = r * b * sin(theta2);
+        auto x2 = x1 * cos(theta1) - y1 * sin(theta1) + center.x();
+        auto y2 = x1 * sin(theta1) + y1 * cos(theta1) + center.y();
         poly << QPointF(x2, y2);
     }
     return poly;

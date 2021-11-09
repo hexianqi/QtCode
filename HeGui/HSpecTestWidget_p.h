@@ -2,6 +2,7 @@
 
 #include "HSpecTestWidget.h"
 #include "HTestWidget_p.h"
+#include "HeSql/HSqlGlobal.h"
 
 class HCie1931Widget;
 
@@ -16,6 +17,11 @@ HE_DATA_END_NAMESPACE
 HE_CONTROLLER_BEGIN_NAMESPACE
 class IMemento;
 HE_CONTROLLER_END_NAMESPACE
+
+HE_SQL_BEGIN_NAMESPACE
+class ISqlHandle;
+HE_SQL_END_NAMESPACE
+HE_SQL_USE_NAMESPACE
 
 HE_GUI_BEGIN_NAMESPACE
 
@@ -55,6 +61,7 @@ public:
     IConfigManage *configManage = nullptr;
     IMemento *memento = nullptr;
     ITestResult *testResult = nullptr;
+    ISqlHandle *sqlHandle = nullptr;
     IPrint *print = nullptr;
     IPrintTemplate *specPrintTemplate = nullptr;
     IPrintTemplate *tagPrintTemplate = nullptr;

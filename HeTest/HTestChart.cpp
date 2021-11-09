@@ -3,7 +3,6 @@
 #include "HePlugin/HCalloutChartExtend.h"
 #include "HePlugin/HVernierChartView.h"
 #include <QtCore/QRandomGenerator>
-#include <QtCore/QtMath>
 #include <QtCharts/QChartView>
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>
@@ -16,7 +15,7 @@ QChartView *HTestChart::zoomChart()
     auto *series = new QLineSeries();
     for (int i = 0; i < 500; i++)
     {
-        QPointF p((qreal) i, qSin(M_PI / 50 * i) * 100);
+        QPointF p((qreal) i, sin(M_PI / 50 * i) * 100);
         p.ry() += QRandomGenerator::global()->bounded(20);
         *series << p;
     }

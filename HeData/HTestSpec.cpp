@@ -6,7 +6,6 @@
 #include <QtCore/QVector>
 #include <QtCore/QQueue>
 #include <QtCore/QReadWriteLock>
-#include <QtCore/QtMath>
 
 HE_DATA_BEGIN_NAMESPACE
 
@@ -315,8 +314,8 @@ QPointF HTestSpec::sampleMax(int type, double a, double b)
         return {};
     if (a > b)
         qSwap(a, b);
-    int f = qBound(0, qFloor(a), s.size());
-    int l = qBound(0, qCeil(b), s.size());
+    int f = qBound(0, int(floor(a)), s.size());
+    int l = qBound(0, int(ceil(b)), s.size());
     double x = 0.0;
     double y = 0.0;
     for (int i = f; i < l; i++)

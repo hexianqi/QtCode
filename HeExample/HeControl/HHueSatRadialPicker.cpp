@@ -72,8 +72,8 @@ void HHueSatRadialPicker::setColor(const QColor &value)
 
     auto side = qMin(width(), height());
     auto r = s * (side / 2.0 - 2) / 255.0;
-    auto x = r * qCos(qDegreesToRadians(h * 1.0));
-    auto y = r * qSin(qDegreesToRadians(h * 1.0));
+    auto x = r * cos(qDegreesToRadians(h * 1.0));
+    auto y = r * sin(qDegreesToRadians(h * 1.0));
     auto c = rect().center();
     d_ptr->point = QPointF(x + c.x(), c.y() - y);
     d_ptr->color = value;

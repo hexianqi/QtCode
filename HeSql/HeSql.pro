@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets sql printsupport
+QT          += widgets sql
 
 TEMPLATE    = lib
 
@@ -69,6 +69,5 @@ unix {
     INSTALLS += target
 }
 
-include(data.pri)
 include(kernel.pri)
 include(widget.pri)

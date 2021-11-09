@@ -1,5 +1,4 @@
 #include "HCustomGraphics_p.h"
-#include <QtCore/QtMath>
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
@@ -286,7 +285,7 @@ void HCustomGraphics::init()
 
 double HCustomGraphics::calcLength(const QPoint &p1, const QPoint &p2)
 {
-    return qPow(p1.x() - p2.x(), 2.0) + qPow(p1.y() - p2.y(), 2.0);
+    return pow(p1.x() - p2.x(), 2.0) + pow(p1.y() - p2.y(), 2.0);
 }
 
 bool HCustomGraphics::checkPoint(const QVector<QPoint> &points, QPoint p)

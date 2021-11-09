@@ -1,8 +1,8 @@
 #include "HClockGauge_p.h"
 #include <QtCore/QPropertyAnimation>
+#include <QtCore/QtMath>
 #include <QtCore/QTime>
 #include <QtCore/QTimer>
-#include <QtCore/QtMath>
 #include <QtGui/QPainter>
 
 HE_CONTROL_BEGIN_NAMESPACE
@@ -233,8 +233,8 @@ void HClockGauge::drawScaleLabel(QPainter *painter)
         auto text = QString("%1").arg(i + 1);
         auto textWidth = fontMetrics().width(text);
         auto textHeight = fontMetrics().height();
-        auto x = radius * qCos(angle) - textWidth / 2.0;
-        auto y = -radius * qSin(angle) + textHeight / 4.0;
+        auto x = radius * cos(angle) - textWidth / 2.0;
+        auto y = -radius * sin(angle) + textHeight / 4.0;
         painter->drawText(QPointF(x, y), text);
     }
     painter->restore();

@@ -14,9 +14,7 @@ HEADERS += \
     $$PWD/HTestWidget2100DC.h \
     $$PWD/HTestWidget2100DC_p.h \
     $$PWD/HThread2100DC.h \
-    $$PWD/HThread2100DC_p.h \
-    $$PWD/HSqlPrint2100DC.h \
-    $$PWD/HSqlPrint2100DC_p.h
+    $$PWD/HThread2100DC_p.h
 
 SOURCES += \
     $$PWD/HBuilder2100DC.cpp \
@@ -26,8 +24,7 @@ SOURCES += \
     $$PWD/HSpecPrintTemplate2100DC.cpp \
     $$PWD/HTestSetWidget2100DC.cpp \
     $$PWD/HTestWidget2100DC.cpp \
-    $$PWD/HThread2100DC.cpp \
-    $$PWD/HSqlPrint2100DC.cpp
+    $$PWD/HThread2100DC.cpp
 
 FORMS   += \
     $$PWD/HDetailWidget2100DC.ui \

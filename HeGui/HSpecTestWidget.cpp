@@ -18,6 +18,8 @@
 #include "HeData/ITextExportTemplate.h"
 #include "HeController/IMemento.h"
 #include "HePlugin/HCie1931Widget.h"
+#include "HeSql/ISqlHandle.h"
+#include "HeSql/HSql.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QSettings>
 #include <QtCore/QTimer>
@@ -36,6 +38,7 @@ HSpecTestWidgetPrivate::HSpecTestWidgetPrivate()
     testData->setData("[使用调整]", false);
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     memento = HAppContext::getContextPointer<IMemento>("IMementoTest");
+    sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
     print = HAppContext::getContextPointer<IPrint>("IPrint");
     specPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
     tagPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
@@ -96,7 +99,7 @@ void HSpecTestWidget::closeEvent(QCloseEvent *event)
     if (d->memento)
         d->memento->writeFile();
     if (!d->testResult->isEmpty() && QMessageBox::question(this, tr("保存数据"), tr("是否保存到数据库？")) == QMessageBox::Yes)
-        d->testResult->exportDatabaseAll();
+        exportDatabaseRange(0, d->testResult->size());
     clearResult();
     if (d->cieDialog)
         d->cieDialog->close();
@@ -153,7 +156,7 @@ void HSpecTestWidget::createAction()
     d->actionProductEidt->setVisible(d->productEditable);
     connect(d->actionPrintPreview, &QAction::triggered, this, &HSpecTestWidget::printPreview);
     connect(d->actionPrintTag, &QAction::triggered, this, &HSpecTestWidget::printTag);
-    connect(d->actionExportDatabaseLast, &QAction::triggered, this, [=]{ d->testResult->exportDatabaseLast(); });
+    connect(d->actionExportDatabaseLast, &QAction::triggered, this, &HSpecTestWidget::exportDatabaseLast);
     connect(d->actionExportDatabase, &QAction::triggered, this, &HSpecTestWidget::exportDatabase);
     connect(d->actionRemove, &QAction::triggered, this, &HSpecTestWidget::removeResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
@@ -315,11 +318,13 @@ void HSpecTestWidget::writeSettings()
     d->modified = false;
 }
 
-void HSpecTestWidget::postProcess()
+void HSpecTestWidget::postProcess(bool append)
 {
     Q_D(HSpecTestWidget);
     d->configManage->postProcess(d->testData, d->displays);
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+    if (append)
+        d->testData->handleOperation("<编号自增>");
 }
 
 void HSpecTestWidget::refreshWidget(bool append)
@@ -368,22 +373,13 @@ void HSpecTestWidget::handleSaveModeChanged(int value)
 void HSpecTestWidget::handleResultChanged(HActionType, bool append)
 {
     Q_D(HSpecTestWidget);
-    postProcess();
+    postProcess(append);
     refreshWidget(append);
     d->testResult->save(append);
     if (d->testSetWidget->saveMode() == 1 && append)
         exportExcelAppend();
     if (d->testSetWidget->saveMode() == 2)
         d->timer->start();
-}
-
-void HSpecTestWidget::resetGrade()
-{
-    Q_D(HSpecTestWidget);
-    auto p = d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>();
-    d->cieWidget->setGrade(p);
-    if (d->cieWidget2)
-        d->cieWidget2->setGrade(p);
 }
 
 void HSpecTestWidget::exportExcelAppend()
@@ -399,22 +395,36 @@ void HSpecTestWidget::exportExcelAppend()
     d->textExport->append();
 }
 
-void HSpecTestWidget::openCieDialog()
-{
-    Q_D(HSpecTestWidget);
-    if (d->cieWidget2 == nullptr)
-    {
-        d->cieWidget2 = new HCie1931Widget;
-        d->cieDialog = HGuiHelper::decoratorInDialog(d->cieWidget2, this);
-    }
-    d->cieDialog->show();
-}
-
 void HSpecTestWidget::exportDatabase()
 {
     Q_D(HSpecTestWidget);
     for (const auto &range : d->tableWidget->selectedRanges())
-        d->testResult->exportDatabase(range.topRow(), range.rowCount());
+        exportDatabaseRange(range.topRow(), range.rowCount());
+}
+
+void HSpecTestWidget::exportDatabaseRange(int index, int count)
+{
+    Q_D(HSpecTestWidget);
+    if (d->testResult->isEmpty() || count < 1 || index < 0)
+        return;
+
+    auto field = d->sqlHandle->field();
+    count = qMin(d->testResult->size() - index, count);
+    for (int i = 0; i < count; i++)
+    {
+        auto record = HSql::toRecord(field, d->testResult->at(index + i));
+        d->sqlHandle->addRecord(record);
+    }
+}
+
+void HSpecTestWidget::exportDatabaseLast()
+{
+    Q_D(HSpecTestWidget);
+    auto data = d->testResult->last();
+    if (data == nullptr)
+        return;
+    auto record = HSql::toRecord(d->sqlHandle->field(), data);
+    d->sqlHandle->addRecord(record);
 }
 
 void HSpecTestWidget::printPreview()
@@ -439,6 +449,26 @@ void HSpecTestWidget::printTag()
     d->tagPrintTemplate->setData(data->select(d->tagPrintTemplate->dataType()));
     d->print->setPrintTemplate(d->tagPrintTemplate);
     d->print->print();
+}
+
+void HSpecTestWidget::resetGrade()
+{
+    Q_D(HSpecTestWidget);
+    auto p = d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>();
+    d->cieWidget->setGrade(p);
+    if (d->cieWidget2)
+        d->cieWidget2->setGrade(p);
+}
+
+void HSpecTestWidget::openCieDialog()
+{
+    Q_D(HSpecTestWidget);
+    if (d->cieWidget2 == nullptr)
+    {
+        d->cieWidget2 = new HCie1931Widget;
+        d->cieDialog = HGuiHelper::decoratorInDialog(d->cieWidget2, this);
+    }
+    d->cieDialog->show();
 }
 
 void HSpecTestWidget::removeResult()

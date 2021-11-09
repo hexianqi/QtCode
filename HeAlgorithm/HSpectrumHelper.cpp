@@ -5,6 +5,8 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+using namespace std;
+
 const double C1 = 3.741844e-12;     // cm
 const double C2 = 1.438833;         // cm
 //const double C1 = 3.741771e-16;   // m
@@ -53,14 +55,14 @@ QPointF HSpecHelper::uv2cd(QPointF uv)
 double HSpecHelper::planck(double wave, double tc)
 {
     wave *= 1e-7;
-    return C1 / qPow(wave, 5) / (qExp(C2 / (wave * tc)) - 1);
+    return C1 / pow(wave, 5) / (exp(C2 / (wave * tc)) - 1);
 }
 
 double HSpecHelper::planckPrime(double wave, double tc)
 {
     wave *= 1e-7;
-    auto temp = qExp(C2 / wave / tc);
-    return C1 * C2 * qPow(tc, -2) * qPow(wave, -6) * temp * qPow(temp - 1, -2);
+    auto temp = exp(C2 / wave / tc);
+    return C1 * C2 * pow(tc, -2) * pow(wave, -6) * temp * pow(temp - 1, -2);
 }
 
 QVector<double> HSpecHelper::abt2g(QVector<double> value)
@@ -71,9 +73,9 @@ QVector<double> HSpecHelper::abt2g(QVector<double> value)
     auto a = value[0];
     auto b = value[1];
     auto theta = qDegreesToRadians(value[2]);
-    return QVector<double>() << qCos(theta) * qCos(theta) / a / a + qSin(theta) * qSin(theta) / b / b
-                             << qSin(theta) * qCos(theta) * (1 / a / a - 1 / b / b)
-                             << qSin(theta) * qSin(theta) / a / a + qCos(theta) * qCos(theta) / b / b;
+    return QVector<double>() << cos(theta) * cos(theta) / a / a + sin(theta) * sin(theta) / b / b
+                             << sin(theta) * cos(theta) * (1 / a / a - 1 / b / b)
+                             << sin(theta) * sin(theta) / a / a + cos(theta) * cos(theta) / b / b;
 }
 
 QVector<double> HSpecHelper::g2abt(QVector<double> value)
@@ -81,13 +83,13 @@ QVector<double> HSpecHelper::g2abt(QVector<double> value)
     if (value.size() < 3)
         return QVector<double>(3);
 
-    auto theta = qAtan(2 * value[1] / (value[0] - value[2]));
+    auto theta = atan(2 * value[1] / (value[0] - value[2]));
     if (theta < 0)
         theta += M_PI;
-    auto a = value[0] + value[2] + (value[0] - value[2]) / qCos(theta);
-    auto b = value[0] + value[2] - (value[0] - value[2]) / qCos(theta);
-    return QVector<double>() << qSqrt(2 / a)
-                             << qSqrt(2 / b)
+    auto a = value[0] + value[2] + (value[0] - value[2]) / cos(theta);
+    auto b = value[0] + value[2] - (value[0] - value[2]) / cos(theta);
+    return QVector<double>() << sqrt(2 / a)
+                             << sqrt(2 / b)
                              << qRadiansToDegrees(theta/2);
 }
 
@@ -152,9 +154,9 @@ QColor HSpecHelper::wave2color(double wave, double gamma, double intensityMax)
 
     // 伽马射线 gamma
     // 照明强度 intensityMax
-    int R = qFuzzyIsNull(r) ? 0 : int(std::round(intensityMax * std::pow(r * alpha, gamma)));
-    int G = qFuzzyIsNull(g) ? 0 : int(std::round(intensityMax * std::pow(g * alpha, gamma)));
-    int B = qFuzzyIsNull(b) ? 0 : int(std::round(intensityMax * std::pow(b * alpha, gamma)));
+    int R = qFuzzyIsNull(r) ? 0 : int(round(intensityMax * pow(r * alpha, gamma)));
+    int G = qFuzzyIsNull(g) ? 0 : int(round(intensityMax * pow(g * alpha, gamma)));
+    int B = qFuzzyIsNull(b) ? 0 : int(round(intensityMax * pow(b * alpha, gamma)));
     auto A = int(alpha);
     return {R, G, B, A};
 }

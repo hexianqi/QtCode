@@ -25,7 +25,7 @@ public:
 public:
     void setModel(ISqlTableModel *) override;
     void setRecordHandle(ISqlHandle *) override;
-    void setRecordPrint(ISqlPrint *) override;
+    void setRecordOutput(ISqlOutput *) override;
     void revert() override;
 
 protected:

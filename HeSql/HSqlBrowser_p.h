@@ -15,12 +15,12 @@ public:
     HSqlTableView *view = nullptr;
     ISqlTableModel *model = nullptr;
     ISqlHandle *handle = nullptr;
-    ISqlPrint *print = nullptr;
+    ISqlOutput *output = nullptr;
     QAction *actionRevert;
     QAction *actionFind;
     QAction *actionRemove;
-    QAction *actionExportExcel;
-    QAction *actionExportPdf;
+    QAction *actionOutputExcel;
+    QAction *actionPrintPdf;
     QAction *actionPrint;
     QAction *actionPrintPreview;
 };

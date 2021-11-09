@@ -5,7 +5,6 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QScatterSeries>
-#include <QtCore/QtMath>
 
 HDynamicChartView::HDynamicChartView(QWidget *parent) :
     HZoomChartView(*new HDynamicChartViewPrivate, nullptr, parent)
@@ -42,19 +41,19 @@ void HDynamicChartView::addPoint(QPointF point)
     if (d->lineSeries->count() == 2)
     {
         auto points = d->lineSeries->points();
-        d->axisX->setRange(qFloor(qMin(points[0].x(), points[1].x())) , qCeil(qMax(points[0].x(), points[1].x())));
-        d->axisY->setRange(qFloor(qMin(points[0].y(), points[1].y())) , qCeil(qMax(points[0].y(), points[1].y())));
+        d->axisX->setRange(floor(qMin(points[0].x(), points[1].x())) , ceil(qMax(points[0].x(), points[1].x())));
+        d->axisY->setRange(floor(qMin(points[0].y(), points[1].y())) , ceil(qMax(points[0].y(), points[1].y())));
     }
     else if (d->lineSeries->count() > 2)
     {
         if (point.x() < d->axisX->min())
-            d->axisX->setMin(qFloor(point.x()));
+            d->axisX->setMin(floor(point.x()));
         if (point.x() > d->axisX->max())
-            d->axisX->setMax(qCeil(point.x()));
+            d->axisX->setMax(ceil(point.x()));
         if (point.y() < d->axisY->min())
-            d->axisY->setMin(qFloor(point.y()));
+            d->axisY->setMin(floor(point.y()));
         if (point.y() > d->axisY->max())
-            d->axisY->setMax(qCeil(point.y()));
+            d->axisY->setMax(ceil(point.y()));
     }
 }
 
@@ -78,8 +77,8 @@ void HDynamicChartView::replace(QVector<QPointF> points)
     }
     d->lineSeries->replace(points);
     d->scatterSeries->replace(points);
-    d->axisX->setRange(qFloor(x1) , qCeil(x2));
-    d->axisY->setRange(qFloor(y1) , qCeil(y2));
+    d->axisX->setRange(floor(x1) , ceil(x2));
+    d->axisY->setRange(floor(y1) , ceil(y2));
 }
 
 void HDynamicChartView::init()

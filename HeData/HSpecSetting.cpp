@@ -4,7 +4,6 @@
 #include "HeAlgorithm/HMath.h"
 #include "HeAlgorithm/HSpecHelper.h"
 #include <QtCore/QDataStream>
-#include <QtCore/QtMath>
 
 HE_ALGORITHM_USE_NAMESPACE
 HE_DATA_BEGIN_NAMESPACE
@@ -107,7 +106,7 @@ int HSpecSetting::calcCommWaitTime(double &value)
     auto range = data("[积分时间范围]").toPointF();
     auto times = data("[光谱平均次数]").toInt();
     value = qBound(range.x(), value, range.y());
-    return qCeil(value * times);
+    return ceil(value * times);
 }
 
 int HSpecSetting::checkIntegralTime(double value)

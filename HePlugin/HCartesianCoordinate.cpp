@@ -1,5 +1,4 @@
 #include "HCartesianCoordinate_p.h"
-#include <QtCore/QtMath>
 #include <QtGui/QPolygonF>
 
 HCartesianCoordinate::HCartesianCoordinate(QObject *parent) :
@@ -56,18 +55,18 @@ void HCartesianCoordinate::adjustAxis(double &min, double &max, int &tick)
     double grossStep,step;
 
     grossStep = (max - min) / minTicks;
-    step = qPow(10.0, qFloor(log10(grossStep)));
+    step = pow(10.0, floor(log10(grossStep)));
 
     if ( 5 * step < grossStep)
         step *= 5;
     else if (2 * step < grossStep)
         step *= 2;
 
-    tick = int(qCeil(max / step) - qFloor(min / step));
+    tick = int(ceil(max / step) - floor(min / step));
     if (tick < minTicks)
         tick = minTicks;
-    min = qFloor(min / step) * step;
-    max = qCeil(max / step) * step;
+    min = floor(min / step) * step;
+    max = ceil(max / step) * step;
 }
 
 void HCartesianCoordinate::setAxis(QRectF rect)

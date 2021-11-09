@@ -69,11 +69,11 @@ double HSpecSimulateDevice::simulate(double value)
     // 方法2：与积分时间、采样点相关
     auto r = qDegreesToRadians(180.0 * value / 2304);   // 0-180度
     auto k = 600 * d->intergalTime;                     // 振幅
-    auto t = k * qSin(r);
+    auto t = k * sin(r);
 //    auto p = rg.bounded(-1000, 1000);                                       // [-1000, 1000]误差
 //    auto p = 1 + rg.bounded(-1000, 1000) / 100000.0;                        // 1%误差
-//    auto p = 0.9 + qSin(qDegreesToRadians(d->intergalTime * 1.8)) * 0.1;    // 误差和积分时间成sin曲线关系
-    auto p = 0.9 + qSin(qDegreesToRadians(t * 180 / 60000)) * 0.1;            // 误差和采样值成sin曲线关系
+//    auto p = 0.9 + sin(qDegreesToRadians(d->intergalTime * 1.8)) * 0.1;    // 误差和积分时间成sin曲线关系
+    auto p = 0.9 + sin(qDegreesToRadians(t * 180 / 60000)) * 0.1;            // 误差和采样值成sin曲线关系
     return t * p + 1000;
 }
 

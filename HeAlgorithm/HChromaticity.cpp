@@ -49,7 +49,7 @@ QLineF HChromaticity::calcIsothermUv(double tc, double duv)
 {
     QLineF line;
     auto iso = d_ptr->cie1931->calcIsothermFit(tc);
-    auto angle = qRadiansToDegrees(qAtan(iso.slope));
+    auto angle = qRadiansToDegrees(atan(iso.slope));
     if (angle < 0)
         angle = angle + 180;
     line.setP1(QPointF(iso.u, iso.v));
@@ -86,7 +86,7 @@ bool HChromaticity::exportIsotherm(const QString &fileName, QPointF tc, double i
     double t;
     QList<ISOTHERM> isotherm;
 
-    n = qCeil((tc.y() - tc.x()) / interval + 1);
+    n = ceil((tc.y() - tc.x()) / interval + 1);
     for (i = 0; i < n; i++)
     {
         t = tc.x() + interval * i;
@@ -118,7 +118,7 @@ bool HChromaticity::exportCieUcs(const QString &fileName, QPointF tc, double int
     int i,j,n;
     QList<CIE_UCS> ucs;
 
-    n = qCeil((tc.y() - tc.x()) / interval + 1);
+    n = ceil((tc.y() - tc.x()) / interval + 1);
     for (i = 0; i < n; i++)
         ucs << calcCieUcs(tc.x() + interval * i);
 
@@ -188,7 +188,7 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolyg
         Wki[i] = 25 * pow(Yki[i], 1.0/3) - 17;
         Uki[i] = 13 * Wki[i] * (ukip[i] - ur);
         Vki[i] = 13 * Wki[i] * (vkip[i] - vr);
-        E[i] = qSqrt(qPow(Uri[i] - Uki[i], 2) + qPow(Vri[i] - Vki[i], 2) + qPow(Wri[i] - Wki[i], 2));
+        E[i] = sqrt(pow(Uri[i] - Uki[i], 2) + pow(Vri[i] - Vki[i], 2) + pow(Wri[i] - Wki[i], 2));
         R[i] = 100 - 4.6 * E[i];
     }
     return R;

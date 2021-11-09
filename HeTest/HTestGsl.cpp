@@ -5,7 +5,6 @@
 #include "HeAlgorithm/HMultiFit.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include <QtCore/QtMath>
 #include <QtCore/QRandomGenerator>
 #include <QtCore/QDebug>
 
@@ -136,7 +135,7 @@ QList<QPolygonF> HTestGsl::multiFit()
     c.resize(5);
     for (double x = 0.1; x < 2; x+= 0.1)
     {
-        auto y = qExp(x);
+        auto y = exp(x);
         auto sigma = 0.1 * y;
         auto dy = QRandomGenerator::global()->bounded(-5, 5) / 50.0;
         p1 << QPointF(x, y * (1 + dy));
@@ -184,7 +183,7 @@ QList<QPolygonF> HTestGsl::multiFit2()
     c.resize(5);
     for (double x = 0.1; x < 2; x+= 0.1)
     {
-        auto y = qExp(x);
+        auto y = exp(x);
         auto dy = QRandomGenerator::global()->bounded(-5, 5) / 50.0;
         p1 << QPointF(x, y * (1 + dy));
     }

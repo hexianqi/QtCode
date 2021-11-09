@@ -4,10 +4,6 @@
 #include "HSqlHandle.h"
 #include "HSqlOutput.h"
 #include "HSqlBrowser.h"
-#include "HProductInfo.h"
-#include "HSpecElecSqlPrint.h"
-#include "HIntegrateSqlPrint.h"
-#include "HeCore/HObjectFactory.h"
 #include <QtCore/QDebug>
 
 HE_SQL_BEGIN_NAMESPACE
@@ -72,11 +68,6 @@ ISqlOutput *HSqlFactory::createOutput(QString type, QVariantMap param)
     return p;
 }
 
-ISqlPrint *HSqlFactory::createPrint(QString type, QVariantMap param)
-{
-    return HObjectFactory::createObject<ISqlPrint>(type, param, this);
-}
-
 ISqlBrowser *HSqlFactory::createBrowser(QString type, QWidget *parent, QVariantMap param)
 {
     Q_UNUSED(type)
@@ -85,19 +76,8 @@ ISqlBrowser *HSqlFactory::createBrowser(QString type, QWidget *parent, QVariantM
     return p;
 }
 
-IProductInfo *HSqlFactory::createProductInfo(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HProductInfo(this);
-    p->initialize(param);
-    return p;
-}
-
 void HSqlFactory::registerClass()
 {
-    HObjectFactory::registerClass<HSpecSqlPrint>("HSpecSqlPrint");
-    HObjectFactory::registerClass<HIntegrateSqlPrint>("HIntegrateSqlPrint");
-    HObjectFactory::registerClass<HSpecElecSqlPrint>("HSpecElecSqlPrint");
 }
 
 HE_SQL_END_NAMESPACE

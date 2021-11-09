@@ -244,8 +244,8 @@ void HCircleGauge::drawScaleLabel(QPainter *painter, int radius)
         auto text = QString::number(value, 'f', d->scaleDecimal);
         auto textWidth = fontMetrics().width(text);
         auto textHeight = fontMetrics().height();
-        auto x = radius * qCos(angle) - textWidth / 2.0;
-        auto y = -radius * qSin(angle) + textHeight / 4.0;
+        auto x = radius * cos(angle) - textWidth / 2.0;
+        auto y = -radius * sin(angle) + textHeight / 4.0;
         painter->drawText(QPointF(x, y), text);
     }
     painter->restore();

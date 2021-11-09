@@ -25,8 +25,7 @@
 #include "HeSql/ISqlTableModel.h"
 #include "HeSql/ISqlBrowser.h"
 #include "HeSql/ISqlHandle.h"
-#include "HeSql/ISqlPrint.h"
-#include "HeSql/IProductInfo.h"
+#include "HeSql/ISqlOutput.h"
 #include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
@@ -230,11 +229,9 @@ void HBuilder2000DC::buildDatabase()
 {
     Q_D(HBuilder2000DC);
     auto find = d->sqlField;
-    auto exportExcel = d->sqlField;
     find.removeFirst();
     find.removeLast();
     find.removeLast();
-    exportExcel.removeLast();
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
@@ -254,23 +251,23 @@ void HBuilder2000DC::buildDatabase()
     HSqlHelper::setVersion("Spec", 0x01010104);
 
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
-    auto info = d->sqlFactory->createProductInfo("HProductInfo");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");
-    auto print = d->sqlFactory->createPrint("HIntegrateSqlPrint");
+    auto output = d->sqlFactory->createOutput("HSqlOutput");
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
+    auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
+    auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
+
     model->setTableField("Spec", d->sqlField);
-    info->setRelationTableName("Spec");
     handle->setModel(model);
-    handle->setProductInfo(info);
     handle->setFieldFind(find);
-    print->setModel(model);
-    print->setFieldExportExcel(exportExcel);
+    output->setModel(model);
+    output->setTextTemplate(text);
+    output->setPrintTemplate(print);
     browser->setModel(model);
     browser->setRecordHandle(handle);
-    browser->setRecordPrint(print);
+    browser->setRecordOutput(output);
     db->insertTableModel(model);
     HAppContext::setContextPointer("ISqlHandle", handle);
-    HAppContext::setContextPointer("ISqlPrint", print);
     HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 

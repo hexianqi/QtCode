@@ -123,11 +123,14 @@ public:
 
 public:
     // 计算参考源光谱能量
-    double calcRefSourceSpectrum(double tc, double wave);
     QPolygonF calcRefSourceSpectrum(double tc, QPointF wave, double interval = 1.0);
 
 protected:
     void readStandard();
+    double calcRefSpectrum(double tc, double wave);
+    double calcRefSpectrumP(double tc, double wave);
+    double calcRefSpectrumD(double tc, double wave);
+    double calcRefSpectrumM(double tc, double wave);
 
 protected:
     QVector<CIE_DAY> _standard;

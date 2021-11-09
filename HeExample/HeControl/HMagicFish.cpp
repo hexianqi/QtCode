@@ -185,7 +185,7 @@ void HMagicFish::resizeEvent(QResizeEvent *)
 void HMagicFish::paintEvent(QPaintEvent *)
 {
     d_ptr->headPos = calcPoint(QPointF(0, 0), d_ptr->bodyLen / 1.5, 0);
-    auto angle = qSin(calcWaveRadians(1.2)) * 2;
+    auto angle = sin(calcWaveRadians(1.2)) * 2;
     auto pos = calcPoint(d_ptr->headPos, d_ptr->bodyLen, angle - 180);
     auto left = calcPoint(d_ptr->headPos, d_ptr->headLen * 0.9, angle + 110);
     auto right = calcPoint(d_ptr->headPos, d_ptr->headLen * 0.9, angle - 110);
@@ -235,7 +235,7 @@ void HMagicFish::drawFin(QPainter *painter, const QPointF &pos, double angle, bo
 {
     auto sign = left ? 1.0 : -1.0;
     auto controlAngle = 115;
-    auto finAngle = d_ptr->finMoveEnable ? qSin(calcWaveRadians(16.1)) * 12.0 : 2.0;
+    auto finAngle = d_ptr->finMoveEnable ? sin(calcWaveRadians(16.1)) * 12.0 : 2.0;
     auto endPos = calcPoint(pos, d_ptr->finLen, angle + (finAngle + 180) * sign);
     auto controlPos = calcPoint(pos, d_ptr->finLen * 1.8, angle + (controlAngle + finAngle) * sign);
     QPainterPath path;
@@ -283,7 +283,7 @@ void HMagicFish::drawTail1(QPainter *painter, const QPointF &pos, double angle)
     auto flag = 0.4;
     auto len = d_ptr->tailLen * 0.6;
     auto length = len * (flag + 2.7);
-    auto tailAngle = angle + qSin(calcWaveRadians(1.7)) * 35;
+    auto tailAngle = angle + sin(calcWaveRadians(1.7)) * 35;
     auto endPos = calcPoint(pos, length, tailAngle - 180);
     auto pos1 = calcPoint(pos, len, tailAngle - 90);
     auto pos2 = calcPoint(endPos, len * flag, tailAngle - 90);
@@ -308,7 +308,7 @@ void HMagicFish::drawTail2(QPainter *painter, const QPointF &pos, double angle)
     auto flag = 0.4;
     auto len = d_ptr->tailLen * 0.6;
     auto length = len * (flag + 2.7);
-    auto tailWidth = qAbs(qSin(calcWaveRadians(1.9)) * len + d_ptr->headLen * 3.0 / 5);
+    auto tailWidth = qAbs(sin(calcWaveRadians(1.9)) * len + d_ptr->headLen * 3.0 / 5);
     auto endPos1 = calcPoint(pos, length, angle - 180);
     auto endPos2 = calcPoint(pos, length - 10, angle - 180);
     auto pos1 = calcPoint(endPos1, tailWidth, angle - 90);
@@ -335,8 +335,8 @@ void HMagicFish::drawTail2(QPainter *painter, const QPointF &pos, double angle)
 
 QPointF HMagicFish::calcPoint(const QPointF &pos, double len, double angle)
 {
-    auto x = qCos(qDegreesToRadians(angle)) * len;
-    auto y = qSin(qDegreesToRadians(angle - 180)) * len;
+    auto x = cos(qDegreesToRadians(angle)) * len;
+    auto y = sin(qDegreesToRadians(angle - 180)) * len;
     return pos + QPointF(x, y);
 }
 

@@ -8,7 +8,6 @@ class HSqlHandlePrivate
 {
 public:
     ISqlTableModel *model = nullptr;
-    IProductInfo *productInfo = nullptr;
     QStringList fieldFind;
 };
 

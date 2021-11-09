@@ -1,7 +1,6 @@
 #include "HUi2008Protocol_p.h"
 #include "HSerialPort.h"
 #include "HPowerFactorDevice.h"
-#include <QtCore/QtMath>
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -59,7 +58,7 @@ bool HUi2008Protocol::getData(HActionType action, QVector<double> &value, int de
             }
             t = t * 10 + d;
         }
-        value[i] = t * qPow(0.1, 3 - n);
+        value[i] = t * pow(0.1, 3 - n);
     }
     return true;
 }

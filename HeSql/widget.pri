@@ -5,17 +5,13 @@ HEADERS += \
     $$PWD/HSqlTableView.h \
     $$PWD/HSqlTableView_p.h \
     $$PWD/HSqlFindDialog.h \
-    $$PWD/HSqlFindDialog_p.h \
-    $$PWD/HProductInfoDialog.h \
-    $$PWD/HProductInfoDialog_p.h
+    $$PWD/HSqlFindDialog_p.h
 
 SOURCES += \
     $$PWD/HSqlBrowser.cpp \
     $$PWD/HSqlTableView.cpp \
-    $$PWD/HSqlFindDialog.cpp \
-    $$PWD/HProductInfoDialog.cpp
+    $$PWD/HSqlFindDialog.cpp
 
 FORMS += \
-    $$PWD/HSqlFindDialog.ui \
-    $$PWD/HProductInfoDialog.ui
+    $$PWD/HSqlFindDialog.ui
 

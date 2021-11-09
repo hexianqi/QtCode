@@ -14,7 +14,7 @@ HE_SQL_BEGIN_NAMESPACE
 
 class ISqlTableModel;
 class ISqlHandle;
-class ISqlPrint;
+class ISqlOutput;
 
 class ISqlBrowser : public QWidget, public IInitializeable
 {
@@ -28,8 +28,8 @@ public:
     virtual void setModel(ISqlTableModel *) = 0;
     // 设置记录处理
     virtual void setRecordHandle(ISqlHandle *) = 0;
-    // 设置记录打印
-    virtual void setRecordPrint(ISqlPrint *) = 0;
+    // 设置记录输出
+    virtual void setRecordOutput(ISqlOutput *) = 0;
     // 记录还原
     virtual void revert() = 0;
 };

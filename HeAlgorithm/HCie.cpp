@@ -4,7 +4,6 @@
 #include "HMath.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include <QtCore/QtMath>
 #include <QDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
@@ -61,7 +60,7 @@ QPointF HCie1931::calcCoordinateUv(const QPolygonF &spd)
     double Z = 0;
     while (i < spd.size() && j < _standard.size())
     {
-        if (qFabs(spd.at(i).x() - _standard[j].wave) < 1e-6)
+        if (fabs(spd.at(i).x() - _standard[j].wave) < 1e-6)
         {
             X += spd.at(i).y() * _standard[j].X;
             Y += spd.at(i).y() * _standard[j].Y;
@@ -83,7 +82,7 @@ double HCie1931::calcDuv(QPointF uv, double tc)
 {
     auto uvt = calcIsoCoordinateUv(tc);
     auto na = uvt.y() > uv.y() ? -1 : 1;
-    return na * qSqrt(qPow(uvt.x() - uv.x(), 2) + qPow(uvt.y() - uv.y(), 2));
+    return na * sqrt(pow(uvt.x() - uv.x(), 2) + pow(uvt.y() - uv.y(), 2));
 }
 
 QList<double> HCie1931::calcDominantWavePurity(QPointF xy)
@@ -161,7 +160,7 @@ void HCie1931::calcColorReflectance(QPolygonF spd, QVector<double> &ui, QVector<
     Z.fill(0, 15);
     while (i < spd.size() && j < _standard.size() && k < _cieTc32->size())
     {
-        if (qFabs(spd[i].x() - _standard[j].wave) < 1e-6 && qFabs(spd[i].x() - _cieTc32->data(k).wave) < 1e-6)
+        if (fabs(spd[i].x() - _standard[j].wave) < 1e-6 && fabs(spd[i].x() - _cieTc32->data(k).wave) < 1e-6)
         {
             for (l = 0; l < 15; l++)
             {
@@ -274,43 +273,17 @@ HCieDay::HCieDay()
     readStandard();
 }
 
-double HCieDay::calcRefSourceSpectrum(double tc, double wave)
-{
-    if (tc <= 5000)
-        return HSpecHelper::planck(wave, tc);
-
-    int i;
-    double xd;
-
-    if (tc <= 7000)
-        xd = -4.6070e9 / qPow(tc, 3) + 2.9678e6 / qPow(tc, 2) + 0.09911e3 / tc + 0.244063;
-    else
-        xd = -2.0064e9 / qPow(tc, 3) + 1.9018e6 / qPow(tc, 2) + 0.24748e3 / tc + 0.237040;
-    auto yd = -3.000 * xd * xd + 2.870 * xd - 0.275;
-    auto m1 = (-1.3515 - 1.7703 * xd + 5.9114 * yd) / (0.0241 + 0.2562 * xd - 0.7341 * yd);
-    auto m2 = (0.0300 - 31.4424 * xd + 30.0717 * yd) / (0.0241 + 0.2562 * xd - 0.7341 * yd);
-
-    for (i = 1; i < _standard.size() - 1; i++)
-        if (wave <= _standard[i].wave)
-            break;
-    auto wave1 = _standard[i-1].wave;
-    auto wave2 = _standard[i].wave;
-    auto sp1 = _standard[i-1].S[0] + m1 * _standard[i-1].S[1] + m2 * _standard[i-1].S[2];
-    auto sp2 = _standard[i].S[0] + m1 * _standard[i].S[1] + m2 * _standard[i].S[2];
-    return qMax(0.0, HMath::interpolate(wave, wave1, sp1, wave2, sp2));
-}
-
 QPolygonF HCieDay::calcRefSourceSpectrum(double tc, QPointF wave, double interval)
 {
     int i,n;
     double x,y;
     QPolygonF poly;
 
-    n = qCeil((wave.y() - wave.x()) / interval + 1);
+    n = ceil((wave.y() - wave.x()) / interval + 1);
     for (i = 0; i < n; i++)
     {
         x = wave.x() + interval * i;
-        y = calcRefSourceSpectrum(tc, x);
+        y = calcRefSpectrum(tc, x);
         poly << QPointF(x, y);
     }
     return poly;
@@ -336,6 +309,54 @@ void HCieDay::readStandard()
             in >> _standard[i].S[j];
     }
     file.close();
+}
+
+double HCieDay::calcRefSpectrum(double tc, double wave)
+{
+    if (tc <= 5000)
+        return calcRefSpectrumP(wave, tc);
+    return calcRefSpectrumD(wave, tc);
+
+//    if (tc <= 4000)
+//        return calcRefSpectrumP(wave, tc);
+//    if (tc >= 5000)
+//        return calcRefSpectrumD(wave, tc);
+//    return calcRefSpectrumM(wave, tc);
+}
+
+double HCieDay::calcRefSpectrumP(double tc, double wave)
+{
+    return HSpecHelper::planck(wave, tc);
+}
+
+double HCieDay::calcRefSpectrumD(double tc, double wave)
+{
+    int i;
+    double xd;
+
+    if (tc <= 7000)
+        xd = -4.6070e9 / pow(tc, 3) + 2.9678e6 / pow(tc, 2) + 0.09911e3 / tc + 0.244063;
+    else
+        xd = -2.0064e9 / pow(tc, 3) + 1.9018e6 / pow(tc, 2) + 0.24748e3 / tc + 0.237040;
+    auto yd = -3.000 * xd * xd + 2.870 * xd - 0.275;
+    auto m1 = (-1.3515 - 1.7703 * xd + 5.9114 * yd) / (0.0241 + 0.2562 * xd - 0.7341 * yd);
+    auto m2 = (0.0300 - 31.4424 * xd + 30.0717 * yd) / (0.0241 + 0.2562 * xd - 0.7341 * yd);
+
+    for (i = 1; i < _standard.size() - 1; i++)
+        if (wave <= _standard[i].wave)
+            break;
+    auto wave1 = _standard[i-1].wave;
+    auto wave2 = _standard[i].wave;
+    auto sp1 = _standard[i-1].S[0] + m1 * _standard[i-1].S[1] + m2 * _standard[i-1].S[2];
+    auto sp2 = _standard[i].S[0] + m1 * _standard[i].S[1] + m2 * _standard[i].S[2];
+    return qMax(0.0, HMath::interpolate(wave, wave1, sp1, wave2, sp2));
+}
+
+double HCieDay::calcRefSpectrumM(double tc, double wave)
+{
+    auto sp = calcRefSpectrumP(tc, wave);
+    auto sd = calcRefSpectrumD(tc, wave);
+    return sp * (5000 - tc) / 1000 + sd * (tc - 4000) / 1000;
 }
 
 HIsotherm::HIsotherm()
@@ -386,7 +407,7 @@ void HIsotherm::readStandard()
 
 double HIsotherm::calcDistance(int i, double u, double v)
 {
-    return (v - _standard[i].v - _standard[i].slope * (u - _standard[i].u)) / qSqrt(1 + _standard[i].slope * _standard[i].slope);
+    return (v - _standard[i].v - _standard[i].slope * (u - _standard[i].u)) / sqrt(1 + _standard[i].slope * _standard[i].slope);
 }
 
 HCieUcs::HCieUcs()
@@ -416,7 +437,7 @@ void HCieUcs::calcColorTemperature(QPointF uv, double &tc, double &duv)
     }
     if (n > 0)
     {
-        duv = s * qSqrt(min);
+        duv = s * sqrt(min);
         tc = _cieUcs[n].Tc;
         return;
     }
@@ -432,7 +453,7 @@ void HCieUcs::calcColorTemperature(QPointF uv, double &tc, double &duv)
             s = _cieUcsP[i].vrt > v ? -1.0 : 1.0;
         }
     }
-    duv = s * qSqrt(min);
+    duv = s * sqrt(min);
     tc = _cieUcsP[n].Tc;
 }
 
@@ -442,7 +463,7 @@ CIE_UCS HCieUcs::findCieUcs(double tc)
     {
         for (int i = 0; i < _cieUcs.size() - 1; i++)
         {
-            if (qFabs(tc - _cieUcs[i].Tc) < 1e-6 || (tc > _cieUcs[i].Tc && tc < _cieUcs[i+1].Tc))
+            if (fabs(tc - _cieUcs[i].Tc) < 1e-6 || (tc > _cieUcs[i].Tc && tc < _cieUcs[i+1].Tc))
                 return _cieUcs[i];
         }
     }

@@ -1,7 +1,6 @@
 #include "HSlDevice2_p.h"
 #include "IPort.h"
 #include "HeCore/HException.h"
-#include <QtCore/QtMath>
 #include <QtCore/QDebug>
 
 HE_COMMUNICATE_BEGIN_NAMESPACE
@@ -108,7 +107,7 @@ bool HSlDevice2::getDataBatch(QList<uchar> param, QVector<uchar> &value, int del
     getDataOnce(size, param[2], 1, buff, delay);
     value << buff;
 
-    auto n = uchar(qCeil((value[0] * 256.0 + value[1]) / param[1]));
+    auto n = uchar(ceil((value[0] * 256.0 + value[1]) / param[1]));
     for (uchar i = 1; i < n; i++)
     {
         getDataOnce(size, param[2], i + 1, buff, 300);

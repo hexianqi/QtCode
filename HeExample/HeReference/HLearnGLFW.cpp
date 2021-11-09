@@ -1,6 +1,5 @@
 #include "HLearnGLFW_p.h"
 #include "HGeometryEngine.h"
-#include <QtCore/QtMath>
 #include <QtCore/QDebug>
 #include <iostream>
 

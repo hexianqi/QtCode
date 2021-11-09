@@ -448,7 +448,7 @@ void HKnobGauge::updateRadius(const QVariant &value)
 void HKnobGauge::setPressedValue(QPointF value)
 {
     auto p = value - rect().center();
-    auto r = qAtan2(-p.x(), p.y());
+    auto r = atan2(-p.x(), p.y());
     auto a = qRadiansToDegrees(r);
     if (a < 0)
         a += 360;

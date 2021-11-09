@@ -41,17 +41,19 @@ protected:
 protected:
     virtual void readSettings();
     virtual void writeSettings();
-    virtual void postProcess();
+    virtual void postProcess(bool append);
     virtual void refreshWidget(bool append);
     void handleStateChanged(bool);
     void handleSaveModeChanged(int);
     void handleResultChanged(HActionType, bool);
-    void resetGrade();
     void exportExcelAppend();
-    void openCieDialog();
     void exportDatabase();
+    void exportDatabaseRange(int index, int count);
+    void exportDatabaseLast();
     void printPreview();
     void printTag();
+    void resetGrade();
+    void openCieDialog();
     void removeResult();
     void setExportPath();
     void setSyncFile();

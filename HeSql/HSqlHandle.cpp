@@ -1,6 +1,5 @@
 #include "HSqlHandle_p.h"
 #include "ISqlTableModel.h"
-#include "IProductInfo.h"
 #include "HProductInfoDialog.h"
 #include "HSqlFindDialog.h"
 #include "HeCore/HCore.h"
@@ -11,13 +10,13 @@
 HE_SQL_BEGIN_NAMESPACE
 
 HSqlHandle::HSqlHandle(QObject *parent) :
-    ISqlHandle(parent),
+    QObject(parent),
     d_ptr(new HSqlHandlePrivate)
 {
 }
 
 HSqlHandle::HSqlHandle(HSqlHandlePrivate &p, QObject *parent) :
-    ISqlHandle(parent),
+    QObject(parent),
     d_ptr(&p)
 {
 }
@@ -50,51 +49,55 @@ void HSqlHandle::setFieldFind(QStringList value)
     d_ptr->fieldFind = value;
 }
 
-void HSqlHandle::setProductInfo(IProductInfo *p)
-{
-    if (d_ptr->productInfo == p)
-        return;
-    d_ptr->productInfo = p;
-}
-
 QStringList HSqlHandle::field()
 {
     return d_ptr->model->field();
 }
 
-bool HSqlHandle::addRecord(QVariantMap value, bool /*edit*/)
+bool HSqlHandle::addRecord(QVariantMap value)
 {
-//    if (edit && d_ptr->productInfo->editable())
-//        editProductInfo();
-
     auto r = d_ptr->model->record();
     for (const auto &f : field())
-    {
-        if (f == "ID")
-            continue;
-        if (value.contains(f) && value.value(f).isValid())
-        {
-            if (f == "EnergyGraph")
-                r.setValue(f, toString(value.value(f).value<QPolygonF>()));
-            else
-                r.setValue(f, value.value(f));
-        }
-//        else if (d_ptr->productInfo->contains(f))
-//            r.setValue(f, d_ptr->productInfo->data(f));
-        else if (f == "TestDateTime")
-            r.setValue(f, QDateTime::currentDateTime());
-        else if (f == "TestDate")
-            r.setValue(f, QDate::currentDate());
-        else if (f == "TestTime")
-            r.setValue(f, QTime::currentTime());
-    }
+        r.setValue(f, value.value(f));
 
     if (!d_ptr->model->insertRecord(-1, r))
         return false;
-//    d_ptr->productInfo->saveOnce();
     d_ptr->model->submitAll();
     d_ptr->model->resetCurrentRow(0);
     return true;
+
+
+//    if (edit && d_ptr->productInfo->editable())
+//        editProductInfo();
+
+//    auto r = d_ptr->model->record();
+//    for (const auto &f : field())
+//    {
+//        if (f == "ID")
+//            continue;
+//        if (value.contains(f) && value.value(f).isValid())
+//        {
+//            if (f == "EnergyGraph")
+//                r.setValue(f, toString(value.value(f).value<QPolygonF>()));
+//            else
+//                r.setValue(f, value.value(f));
+//        }
+//        else if (d_ptr->productInfo->contains(f))
+//            r.setValue(f, d_ptr->productInfo->data(f));
+//        else if (f == "TestDateTime")
+//            r.setValue(f, QDateTime::currentDateTime());
+//        else if (f == "TestDate")
+//            r.setValue(f, QDate::currentDate());
+//        else if (f == "TestTime")
+//            r.setValue(f, QTime::currentTime());
+//    }
+
+//    if (!d_ptr->model->insertRecord(-1, r))
+//        return false;
+//    d_ptr->productInfo->saveOnce();
+//    d_ptr->model->submitAll();
+//    d_ptr->model->resetCurrentRow(0);
+//    return true;
 }
 
 void HSqlHandle::removeRecord()
@@ -126,13 +129,6 @@ void HSqlHandle::findRecord()
     HSqlFindDialog dlg(d_ptr->fieldFind, d_ptr->model->filter());
     if (dlg.exec())
         setFilter(dlg.filter());
-}
-
-void HSqlHandle::editProductInfo()
-{
-    HProductInfoDialog dlg;
-    dlg.setData(d_ptr->productInfo);
-    dlg.exec();
 }
 
 void HSqlHandle::setFilter(const QString &value)
