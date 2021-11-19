@@ -14,6 +14,10 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 class HE_ALGORITHM_EXPORT HMath
 {
 public:
+    // 求和
+    static double sum(QVector<double>);
+    // 平均值
+    static double average(QVector<double>);
     // 插值
     static double interpolate(double x, double x1, double y1, double x2, double y2);
     static double interpolate(double x, QPointF p1, QPointF p2);

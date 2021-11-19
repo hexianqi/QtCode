@@ -34,7 +34,7 @@ void fillAsPow(gsl_matrix *m, QVector<double> xa)
     {
         for (j = 0; j < m->size2; j++)
         {
-            gsl_matrix_set(m, i, j, pow(xa[int(i)], j));
+            gsl_matrix_set(m, i, j, pow(xa[i], j));
         }
     }
 }
@@ -59,8 +59,8 @@ void multifit(const QPolygonF &basis, QVector<double> &ca, QVector<double> &cova
 
     fillAsPow(x, xa);   // 可替换
     func(x, &y.vector, c, cov);
-    ca = HGslHelper::fromGsl(c);
-    cova = HGslHelper::fromGsl(cov);
+    ca = HGslHelper::toVector(c);
+    cova = HGslHelper::toVector(cov);
 
     gsl_matrix_free(x);
     gsl_vector_free(c);

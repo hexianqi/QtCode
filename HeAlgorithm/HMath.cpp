@@ -4,6 +4,23 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+double HMath::sum(QVector<double> value)
+{
+    if (value.size() < 1)
+        return 0.0;
+    auto sum = 0.0;
+    for (auto v : value)
+        sum += v;
+    return sum;
+}
+
+double HMath::average(QVector<double> value)
+{
+    if (value.size() < 1)
+        return 0.0;
+    return sum(value) / value.size();
+}
+
 double HMath::interpolate(double x, double x1, double y1, double x2, double y2)
 {
     return (x - x1) * (y2 - y1) / (x2 - x1) + y1;

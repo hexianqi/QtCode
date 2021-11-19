@@ -11,7 +11,7 @@ public:
 
 public:
     std::shared_ptr<HCie1931> cie1931;
-    std::shared_ptr<HCieDay> cieDay;
+    std::shared_ptr<HCieDaylight> cieDay;
     std::shared_ptr<HIsotherm> isotherm;
 };
 

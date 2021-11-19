@@ -1,4 +1,5 @@
 #include "HGslHelper.h"
+#include "gsl/gsl_complex_math.h"
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
@@ -23,20 +24,20 @@ void HGslHelper::split(QPolygonF poly, QVector<double> &x, QVector<double> &y)
     }
 }
 
-QPointF HGslHelper::formGsl(gsl_complex z)
+QPointF HGslHelper::toPointF(gsl_complex z)
 {
     return {GSL_REAL(z), GSL_IMAG(z)};
 }
 
-QPolygonF HGslHelper::formGsl(QVector<gsl_complex> z)
+QPolygonF HGslHelper::toPolygonF(QVector<gsl_complex> z)
 {
     QPolygonF r;
     for (auto i : z)
-        r << formGsl(i);
+        r << toPointF(i);
     return r;
 }
 
-QVector<double> HGslHelper::fromGsl(gsl_vector *v)
+QVector<double> HGslHelper::toVector(gsl_vector *v)
 {
     QVector<double> r;
     for (uint i = 0; i < v->size; i++)
@@ -44,7 +45,7 @@ QVector<double> HGslHelper::fromGsl(gsl_vector *v)
     return r;
 }
 
-QVector<double> HGslHelper::fromGsl(gsl_matrix *m)
+QVector<double> HGslHelper::toVector(gsl_matrix *m)
 {
     QVector<double> r;
     for (uint i = 0; i < m->size1; i++)
@@ -53,6 +54,16 @@ QVector<double> HGslHelper::fromGsl(gsl_matrix *m)
             r << gsl_matrix_get(m, i, j);
     }
     return r;
+}
+
+gsl_complex HGslHelper::fromPoint(double x, double y)
+{
+    return gsl_complex_rect(x, y);
+}
+
+gsl_complex HGslHelper::fromPolar(double r, double theta)
+{
+    return gsl_complex_polar(r, theta);
 }
 
 HE_ALGORITHM_END_NAMESPACE

@@ -19,10 +19,8 @@ public:
     explicit HChromaticity2();
     ~HChromaticity2() override;
 
-public:
-    void calcSpectrum(HSpecData *) override;
-
 protected:
+    QList<double> calcColorTemperatureDuv(QPointF uv) override;
     QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc) override;
 
 protected:

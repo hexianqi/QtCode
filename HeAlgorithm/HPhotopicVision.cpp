@@ -52,18 +52,18 @@ void HPhotopicVision::calcSpectrum(HSpecData *data)
     {
         data->VisionFlux = 0;
         data->VisionEfficien = 0;
-        data->RedRatio = 0;
-        data->GreenRatio = 0;
-        data->BlueRatio = 0;
+        data->RatioRed = 0;
+        data->RatioGreen = 0;
+        data->RatioBlue = 0;
     }
     else
     {
         auto rgb = r + g + b;
         data->VisionFlux = 683 * sum2;              // lm
         data->VisionEfficien = 683 * sum2 / sum1;   // lm/W
-        data->RedRatio = 100 * r / rgb;
-        data->GreenRatio = 100 * g / rgb;
-        data->BlueRatio = 100 * b / rgb;
+        data->RatioRed = 100 * r / rgb;
+        data->RatioGreen = 100 * g / rgb;
+        data->RatioBlue = 100 * b / rgb;
     }
 }
 

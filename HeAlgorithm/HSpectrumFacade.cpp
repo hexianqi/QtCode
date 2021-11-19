@@ -13,13 +13,13 @@ void calcSpectrumEnergy(HSpecData *data)
         return;
 
     int i, n, size;
-    double x, y, max, total, wave;
+    double x, y, max, total, peak;
 
     size = data->Energy.size();
-    max = 0;
-    total = 0;
     n = 0;
-    wave = 0;
+    max = 0;
+    peak = 0;
+    total = 0;
     for (i = 0; i < size; i++)
     {
         x = data->Energy[i].x();
@@ -29,7 +29,7 @@ void calcSpectrumEnergy(HSpecData *data)
         {
             n = i;
             max = y;
-            wave = x;
+            peak = x;
         }
     }
 
@@ -51,9 +51,9 @@ void calcSpectrumEnergy(HSpecData *data)
             break;
         }
     }
-    data->TotalEnergy = total;
-    data->MaxEnergy = max;
-    data->PeakWave = wave;
+    data->EnergyTotal = total;
+    data->EnergyMax = max;
+    data->WavePeak = peak;
     data->Bandwidth = fabs(x - y);
     data->EnergyPercent.clear();
     for (auto p : data->Energy)

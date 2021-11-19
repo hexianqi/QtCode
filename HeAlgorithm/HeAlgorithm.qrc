@@ -8,5 +8,7 @@
         <file>dat/CIE_UCS_P.dat</file>
         <file>dat/MesopticVision.dat</file>
         <file>dat/PhotopicVision.dat</file>
+        <file>dat/CIE1964.dat</file>
+        <file>dat/IES_CES.dat</file>
     </qresource>
 </RCC>

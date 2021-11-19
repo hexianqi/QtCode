@@ -1,6 +1,7 @@
 HEADERS += \
     $$PWD/HChromaticity2.h \
     $$PWD/HChromaticity2_p.h \
+    $$PWD/HIesTm30.h \
     $$PWD/IChromaticity.h \
     $$PWD/HCie.h \
     $$PWD/HPhotopicVision.h \
@@ -15,6 +16,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/HChromaticity2.cpp \
     $$PWD/HCie.cpp \
+    $$PWD/HIesTm30.cpp \
     $$PWD/HPhotopicVision.cpp \
     $$PWD/HMesopticVision.cpp \
     $$PWD/HChromaticity.cpp \

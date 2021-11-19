@@ -17,10 +17,17 @@ public:
     static void split(QPolygonF poly, QVector<double> &x, QVector<double> &y);
 
 public:
-    static QPointF formGsl(gsl_complex z);
-    static QPolygonF formGsl(QVector<gsl_complex> z);
-    static QVector<double> fromGsl(gsl_vector *v);
-    static QVector<double> fromGsl(gsl_matrix *m);
+    // z = x + y * i
+    static QPointF toPointF(gsl_complex z);
+    static QPolygonF toPolygonF(QVector<gsl_complex> z);
+    // z = x + y * i
+    static gsl_complex fromPoint(double x, double y);
+    // z = r * exp^(i * θ) = r(cos(θ) + sin(θ) * i)
+    static gsl_complex fromPolar(double r, double theta);
+
+public:
+    static QVector<double> toVector(gsl_vector *);
+    static QVector<double> toVector(gsl_matrix *);
 };
 
 HE_ALGORITHM_END_NAMESPACE

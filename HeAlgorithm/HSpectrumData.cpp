@@ -11,23 +11,23 @@ void HSpecData::clear()
 {
     Energy.clear();
     EnergyPercent.clear();
-    TotalEnergy = 0.0;
-    MaxEnergy = 0.0;
-    PeakWave = 0.0;
+    EnergyTotal = 0.0;
+    EnergyMax = 0.0;
+    WavePeak = 0.0;
     Bandwidth = 0.0;
-    CoordinateXy = QPointF(0.0, 0.0);
-    CoordinateUv = QPointF(0.0, 0.0);
-    CoordinateUvp = QPointF(0.0, 0.0);
+    CoordinateXY = QPointF(0.0, 0.0);
+    CoordinateUV = QPointF(0.0, 0.0);
+    CoordinateUVp = QPointF(0.0, 0.0);
     ColorTemperature = 2300.0;
     Duv = 0.0;
-    DominantWave = 0.0;
+    WaveDominant = 0.0;
     ColorPurity = 0.0;
     RenderingIndex.fill(0, 15);
     RenderingIndexAvg = 0.0;
     VisionEfficien = 0.0;
-    RedRatio = 0.0;
-    GreenRatio = 0.0;
-    BlueRatio = 0.0;
+    RatioRed = 0.0;
+    RatioGreen = 0.0;
+    RatioBlue = 0.0;
     VisionFlux = 0.0;
 }
 

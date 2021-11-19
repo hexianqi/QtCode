@@ -25,21 +25,10 @@ HChromaticity2::~HChromaticity2()
     qDebug() << __func__;
 }
 
-void HChromaticity2::calcSpectrum(HSpecData *data)
+QList<double> HChromaticity2::calcColorTemperatureDuv(QPointF uv)
 {
     Q_D(HChromaticity2);
-    if (data->Energy.isEmpty())
-        return;
-
-    data->CoordinateUv = d->cie1931->calcCoordinateUv(data->Energy);
-    data->CoordinateXy = HSpecHelper::uv2xy(data->CoordinateUv);
-    data->CoordinateUvp = HSpecHelper::uv2uvp(data->CoordinateUv);
-    d->cieUcs->calcColorTemperature(data->CoordinateUv, data->ColorTemperature, data->Duv);
-    auto r = d_ptr->cie1931->calcDominantWavePurity(data->CoordinateXy);
-    data->DominantWave = r.first();
-    data->ColorPurity = r.last();
-    data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUv, data->Energy, data->ColorTemperature);
-    data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
+    return d->cieUcs->calcColorTemperatureDuv(uv);
 }
 
 QVector<double> HChromaticity2::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc)

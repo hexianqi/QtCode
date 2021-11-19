@@ -79,7 +79,7 @@ void HGradeIsothermDialog::saveData()
     {
         QPolygonF p;
         for (j = 0; j <= count1; j++)
-            p << chromaticity->calcIsothermXy(tcs[j], duvs[i]).p2();
+            p << chromaticity->calcIsothermXY(tcs[j], duvs[i]).p2();
         l << p;
     }
 

@@ -21,26 +21,26 @@ public:
     // 能量参数
     QPolygonF Energy;
     QPolygonF EnergyPercent;
-    double TotalEnergy;
-    double MaxEnergy;
-    double PeakWave;
+    double EnergyTotal;
+    double EnergyMax;
+    double WavePeak;
     double Bandwidth;
     // 色度参数
-    QPointF CoordinateUv;
-    QPointF CoordinateXy;
-    QPointF CoordinateUvp;
+    QPointF CoordinateUV;
+    QPointF CoordinateXY;
+    QPointF CoordinateUVp;
+    double WaveDominant;
     double ColorTemperature;
-    double Duv;
-    double DominantWave;
     double ColorPurity;
+    double Duv;
     QVector<double> RenderingIndex;
     double RenderingIndexAvg;
     // 明视觉参数
     double VisionFlux;
     double VisionEfficien;
-    double RedRatio;
-    double GreenRatio;
-    double BlueRatio;
+    double RatioRed;
+    double RatioGreen;
+    double RatioBlue;
 };
 
 HE_ALGORITHM_END_NAMESPACE

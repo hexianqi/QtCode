@@ -10,7 +10,7 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 HChromaticityPrivate::HChromaticityPrivate()
 {
     cie1931 = std::make_shared<HCie1931>();
-    cieDay = std::make_shared<HCieDay>();
+    cieDay = std::make_shared<HCieDaylight>();
     isotherm = std::make_shared<HIsotherm>();
 }
 
@@ -33,19 +33,20 @@ void HChromaticity::calcSpectrum(HSpecData *data)
 {
     if (data->Energy.isEmpty())
         return;
-    data->CoordinateUv = d_ptr->cie1931->calcCoordinateUv(data->Energy);
-    data->CoordinateXy = HSpecHelper::uv2xy(data->CoordinateUv);
-    data->CoordinateUvp = HSpecHelper::uv2uvp(data->CoordinateUv);
-    data->ColorTemperature = d_ptr->isotherm->calcColorTemperature(data->CoordinateUv);
-    data->Duv = d_ptr->cie1931->calcDuv(data->CoordinateUv, data->ColorTemperature);
-    auto r = d_ptr->cie1931->calcDominantWavePurity(data->CoordinateXy);
-    data->DominantWave = r.first();
-    data->ColorPurity = r.last();
-    data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUv, data->Energy, data->ColorTemperature);
+    data->CoordinateUV = d_ptr->cie1931->calcCoordinateUV(data->Energy);
+    data->CoordinateXY = HSpecHelper::uv2xy(data->CoordinateUV);
+    data->CoordinateUVp = HSpecHelper::uv2uvp(data->CoordinateUV);
+    auto r1 = calcColorTemperatureDuv(data->CoordinateUV);
+    auto r2 = d_ptr->cie1931->calcWaveDominantPurity(data->CoordinateXY);
+    data->ColorTemperature = r1.first();
+    data->Duv = r1.last();
+    data->WaveDominant = r2.first();
+    data->ColorPurity = r2.last();
+    data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUV, data->Energy, data->ColorTemperature);
     data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
 }
 
-QLineF HChromaticity::calcIsothermUv(double tc, double duv)
+QLineF HChromaticity::calcIsothermUV(double tc, double duv)
 {
     QLineF line;
     auto iso = d_ptr->cie1931->calcIsothermFit(tc);
@@ -58,25 +59,25 @@ QLineF HChromaticity::calcIsothermUv(double tc, double duv)
     return line;
 }
 
-QLineF HChromaticity::calcIsothermUv(double tc, double duvB, double duvE)
+QLineF HChromaticity::calcIsothermUV(double tc, double duvB, double duvE)
 {
-    auto line1 = calcIsothermUv(tc, duvB);
-    auto line2 = calcIsothermUv(tc, duvE);
+    auto line1 = calcIsothermUV(tc, duvB);
+    auto line2 = calcIsothermUV(tc, duvE);
     return {line1.p2(), line2.p2()};
 }
 
-QLineF HChromaticity::calcIsothermXy(double tc, double duv)
+QLineF HChromaticity::calcIsothermXY(double tc, double duv)
 {
-    auto line = calcIsothermUv(tc, duv);
+    auto line = calcIsothermUV(tc, duv);
     auto p1 = HSpecHelper::uv2xy(line.p1());
     auto p2 = HSpecHelper::uv2xy(line.p2());
     return {p1, p2};
 }
 
-QLineF HChromaticity::calcIsothermXy(double tc, double duvB, double duvE)
+QLineF HChromaticity::calcIsothermXY(double tc, double duvB, double duvE)
 {
-    auto line1 = calcIsothermXy(tc, duvB);
-    auto line2 = calcIsothermXy(tc, duvE);
+    auto line1 = calcIsothermXY(tc, duvB);
+    auto line2 = calcIsothermXY(tc, duvE);
     return {line1.p2(), line2.p2()};
 }
 
@@ -97,12 +98,11 @@ bool HChromaticity::exportIsotherm(const QString &fileName, QPointF tc, double i
 
 bool HChromaticity::exportIsotherm(const QString &fileName)
 {
-    int i;
     QList<double> mrecpK;
     QList<ISOTHERM> isotherm;
 
     mrecpK << 0.01;
-    for (i = 1; i < 601; i++)
+    for (int i = 1; i < 601; i++)
         mrecpK << i;
     for (auto k : mrecpK)
         isotherm << d_ptr->cie1931->calcIsotherm(1000000.0 / k);
@@ -111,41 +111,20 @@ bool HChromaticity::exportIsotherm(const QString &fileName)
 
 bool HChromaticity::exportCieUcs(const QString &fileName, QPointF tc, double interval)
 {
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        return false;
-
-    int i,j,n;
+    int i,n;
     QList<CIE_UCS> ucs;
 
     n = ceil((tc.y() - tc.x()) / interval + 1);
     for (i = 0; i < n; i++)
         ucs << calcCieUcs(tc.x() + interval * i);
+    return exportCieUcs(fileName, ucs);
+}
 
-    QTextStream out(&file);
-    out << "[CIE_UCS]" << "\t" << n << endl;
-    out << " Tc	      urt	      vrt	   xt	   yt	   ur	   vr	  cr	  dr	 Ur1	 Ur2	 Ur3	 Ur4	 Ur5	 Ur6	 Ur7	 Ur8	 Ur9	Ur10	 Ur11	 Ur12	Ur13	 Ur14   Ur15    Vr1 Vr2 Vr3 Vr4	 Vr5	 Vr6	 Vr7	 Vr8	 Vr9	Vr10	Vr11	 Vr12	Vr13	Vr14    Vr15    Wr1	 Wr2	 Wr3	 Wr4	 Wr5	 Wr6	 Wr7	 Wr8	 Wr9	Wr10	Wr11	Wr12	Wr13	Wr14    Wr15" << endl;
-    for (i = 0; i < n; i++)
-    {
-        out << QString::number(ucs[i].Tc, 'f', 0) << "\t"
-            << QString::number(ucs[i].urt, 'f', 12) << "\t"
-            << QString::number(ucs[i].vrt, 'f', 12) << "\t"
-            << QString::number(ucs[i].xt, 'f', 5) << "\t"
-            << QString::number(ucs[i].yt, 'f', 5) << "\t"
-            << QString::number(ucs[i].ur, 'f', 4) << "\t"
-            << QString::number(ucs[i].vr, 'f', 4) << "\t"
-            << QString::number(ucs[i].cr, 'f', 4) << "\t"
-            << QString::number(ucs[i].dr, 'f', 4);
-        for (j = 0; j < 15; j++)
-            out << "\t" << QString::number(ucs.at(i).Ur[j], 'f', 2);
-        for (j = 0; j < 15; j++)
-            out << "\t" << QString::number(ucs.at(i).Vr[j], 'f', 2);
-        for (j = 0; j < 15; j++)
-            out << "\t" << QString::number(ucs.at(i).Wr[j], 'f', 2);
-        out << endl;
-    }
-    file.close();
-    return true;
+QList<double> HChromaticity::calcColorTemperatureDuv(QPointF uv)
+{
+    auto tc = d_ptr->isotherm->calcColorTemperature(uv);
+    auto duv = d_ptr->cie1931->calcDuv(uv, tc);
+    return QList<double>() << tc << duv;
 }
 
 QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc)
@@ -157,16 +136,16 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolyg
 QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, CIE_UCS refer)
 {
     int i;
-    double ur,vr,cr,dr,ck,dk,cki,dki;
+    double cki,dki;
     QVector<double> Uri(15),Vri(15),Wri(15);
-    QVector<double> Yki(15),uki(15),vki(15),Uki(15),Vki(15),Wki(15),ukip(15),vkip(15);
+    QVector<double> Uki(15),Vki(15),Wki(15),ukip(15),vkip(15);
     QVector<double> E(15);
     QVector<double> R(15);
 
-    ur = refer.ur;
-    vr = refer.vr;
-    cr = refer.cr;
-    dr = refer.dr;
+    auto ur = refer.ur;
+    auto vr = refer.vr;
+    auto cr = refer.cr;
+    auto dr = refer.dr;
     for (i = 0; i < 15; i++)
     {
         Uri[i] = refer.Ur[i];
@@ -175,9 +154,12 @@ QVector<double> HChromaticity::calcColorRenderingIndex(QPointF uvk, const QPolyg
     }
 
     auto cdk = HSpecHelper::uv2cd(uvk);
-    ck = cdk.x();
-    dk = cdk.y();
-    d_ptr->cie1931->calcColorReflectance(spdk, uki, vki, Yki);
+    auto ck = cdk.x();
+    auto dk = cdk.y();
+    auto col = d_ptr->cie1931->calcColorReflectance(spdk);
+    auto uki = col.at(0);
+    auto vki = col.at(1);
+    auto Yki = col.at(2);
 
     for (i = 0; i < 15; i++)
     {
@@ -207,15 +189,17 @@ double HChromaticity::calcColorRenderingIndexAvg(QVector<double> index)
 
 CIE_UCS HChromaticity::calcCieUcs(double tc)
 {
-    QVector<double> Yri(15),uri(15),vri(15);
-    CIE_UCS ucs;
-
     auto spd = d_ptr->cieDay->calcRefSourceSpectrum(tc, QPointF(360, 830));
-    auto uvt = d_ptr->cie1931->calcIsoCoordinateUv(tc);
-    auto uv = d_ptr->cie1931->calcCoordinateUv(spd);
+    auto uvt = d_ptr->cie1931->calcIsoCoordinateUV(tc);
+    auto uv = d_ptr->cie1931->calcCoordinateUV(spd);
     auto xyt = HSpecHelper::uv2xy(uvt);
     auto cd = HSpecHelper::uv2cd(uv);
-    d_ptr->cie1931->calcColorReflectance(spd, uri, vri, Yri);
+    auto col = d_ptr->cie1931->calcColorReflectance(spd);
+    auto uri = col.at(0);
+    auto vri = col.at(1);
+    auto Yri = col.at(2);
+
+    CIE_UCS ucs;
     ucs.Tc = tc;
     ucs.urt = uvt.x();
     ucs.vrt = uvt.y();
@@ -243,11 +227,44 @@ bool HChromaticity::exportIsotherm(const QString &fileName, QList<HeAlgorithm::I
     QTextStream out(&file);
     out << "[Isotherm]" << "\t" << data.length() << endl;
     out << " Tc             u               v             Slope" << endl;
-    for(auto i : data)
-        out << QString::number(i.Tc, 'f', 0) << "\t"
-            << QString::number(i.u, 'f', 12) << "\t"
-            << QString::number(i.v, 'f', 12) << "\t"
-            << QString::number(i.slope, 'f', 12) << endl;
+    for (auto value : data)
+        out << QString::number(value.Tc, 'f', 0) << "\t"
+            << QString::number(value.u, 'f', 12) << "\t"
+            << QString::number(value.v, 'f', 12) << "\t"
+            << QString::number(value.slope, 'f', 12) << endl;
+    file.close();
+    return true;
+}
+
+bool HChromaticity::exportCieUcs(const QString &fileName, QList<CIE_UCS> data)
+{
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    int j;
+    QTextStream out(&file);
+    out << "[CIE_UCS]" << "\t" << data.length() << endl;
+    out << " Tc	      urt	      vrt	   xt	   yt	   ur	   vr	  cr	  dr	 Ur1	 Ur2	 Ur3	 Ur4	 Ur5	 Ur6	 Ur7	 Ur8	 Ur9	Ur10	 Ur11	 Ur12	Ur13	 Ur14   Ur15    Vr1 Vr2 Vr3 Vr4	 Vr5	 Vr6	 Vr7	 Vr8	 Vr9	Vr10	Vr11	 Vr12	Vr13	Vr14    Vr15    Wr1	 Wr2	 Wr3	 Wr4	 Wr5	 Wr6	 Wr7	 Wr8	 Wr9	Wr10	Wr11	Wr12	Wr13	Wr14    Wr15" << endl;
+    for (auto value : data)
+    {
+        out << QString::number(value.Tc, 'f', 0) << "\t"
+            << QString::number(value.urt, 'f', 12) << "\t"
+            << QString::number(value.vrt, 'f', 12) << "\t"
+            << QString::number(value.xt, 'f', 5) << "\t"
+            << QString::number(value.yt, 'f', 5) << "\t"
+            << QString::number(value.ur, 'f', 4) << "\t"
+            << QString::number(value.vr, 'f', 4) << "\t"
+            << QString::number(value.cr, 'f', 4) << "\t"
+            << QString::number(value.dr, 'f', 4);
+        for (j = 0; j < 15; j++)
+            out << "\t" << QString::number(value.Ur[j], 'f', 2);
+        for (j = 0; j < 15; j++)
+            out << "\t" << QString::number(value.Vr[j], 'f', 2);
+        for (j = 0; j < 15; j++)
+            out << "\t" << QString::number(value.Wr[j], 'f', 2);
+        out << endl;
+    }
     file.close();
     return true;
 }

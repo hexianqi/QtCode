@@ -20,10 +20,10 @@ public:
 
 public:
     void calcSpectrum(HSpecData *) override;
-    QLineF calcIsothermUv(double tc, double duv) override;
-    QLineF calcIsothermUv(double tc, double duvB, double duvE) override;
-    QLineF calcIsothermXy(double tc, double duv) override;
-    QLineF calcIsothermXy(double tc, double duvB, double duvE) override;
+    QLineF calcIsothermUV(double tc, double duv) override;
+    QLineF calcIsothermUV(double tc, double duvB, double duvE) override;
+    QLineF calcIsothermXY(double tc, double duv) override;
+    QLineF calcIsothermXY(double tc, double duvB, double duvE) override;
 
 public:
     bool exportIsotherm(const QString &fileName, QPointF tc, double interval = 1.0) override;
@@ -34,13 +34,17 @@ protected:
     HChromaticity(HChromaticityPrivate &);
 
 protected:
+    virtual QList<double> calcColorTemperatureDuv(QPointF uv);
     virtual QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, double tc);
     virtual QVector<double> calcColorRenderingIndex(QPointF uvk, const QPolygonF &spdk, CIE_UCS refer);
     virtual double calcColorRenderingIndexAvg(QVector<double> index);
 
 protected:
     CIE_UCS calcCieUcs(double tc);
+
+protected:
     bool exportIsotherm(const QString &fileName, QList<ISOTHERM> data);
+    bool exportCieUcs(const QString &fileName, QList<CIE_UCS> data);
 
 protected:
     QScopedPointer<HChromaticityPrivate> d_ptr;

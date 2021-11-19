@@ -154,7 +154,7 @@ bool HTestSpecPrivate::calcSpec()
     // 测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
-    if (specData->PeakWave < 700)
+    if (specData->WavePeak < 700)
     {
         specData->Energy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
         specFacade->calcSpectrum(specData);
@@ -164,24 +164,24 @@ bool HTestSpecPrivate::calcSpec()
     addData("[明视觉光效率]", visionEfficien);
     addData("[光谱光通量]", luminousFlux);
     addData("[光功率]", luminousPower);
-    addData("[峰值波长]", specData->PeakWave);
+    addData("[峰值波长]", specData->WavePeak);
     addData("[峰值带宽]", specData->Bandwidth);
-    addData("[主波长]", specData->DominantWave);
+    addData("[主波长]", specData->WaveDominant);
     addData("[色纯度]", specData->ColorPurity);
     addData("[色温]", specData->ColorTemperature);
-    addData("[色坐标]", specData->CoordinateXy);
-    addData("[色坐标x]", specData->CoordinateXy.x());
-    addData("[色坐标y]", specData->CoordinateXy.y());
-    addData("[色坐标uv]", specData->CoordinateUv);
-    addData("[色坐标u]", specData->CoordinateUv.x());
-    addData("[色坐标v]", specData->CoordinateUv.y());
-    addData("[色坐标uvp]", specData->CoordinateUvp);
-    addData("[色坐标up]", specData->CoordinateUvp.x());
-    addData("[色坐标vp]", specData->CoordinateUvp.y());
+    addData("[色坐标]", specData->CoordinateXY);
+    addData("[色坐标x]", specData->CoordinateXY.x());
+    addData("[色坐标y]", specData->CoordinateXY.y());
+    addData("[色坐标uv]", specData->CoordinateUV);
+    addData("[色坐标u]", specData->CoordinateUV.x());
+    addData("[色坐标v]", specData->CoordinateUV.y());
+    addData("[色坐标uvp]", specData->CoordinateUVp);
+    addData("[色坐标up]", specData->CoordinateUVp.x());
+    addData("[色坐标vp]", specData->CoordinateUVp.y());
     addData("[Duv]", specData->Duv);
-    addData("[红色比]", specData->RedRatio);
-    addData("[蓝色比]", specData->BlueRatio);
-    addData("[绿色比]", specData->GreenRatio);
+    addData("[红色比]", specData->RatioRed);
+    addData("[蓝色比]", specData->RatioBlue);
+    addData("[绿色比]", specData->RatioGreen);
     addData("[显色指数Ra]", specData->RenderingIndexAvg);
     addData("[显色指数R9]", specData->RenderingIndex.at(8));
     addData("[显色指数Rx]", renderingIndex());

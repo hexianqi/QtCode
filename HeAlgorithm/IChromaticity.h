@@ -17,10 +17,10 @@ public:
     // 计算光谱参数
     virtual void calcSpectrum(HSpecData *) = 0;
     // 计算等温线段
-    virtual QLineF calcIsothermUv(double tc, double duv) = 0;
-    virtual QLineF calcIsothermUv(double tc, double duvB, double duvE) = 0;
-    virtual QLineF calcIsothermXy(double tc, double duv) = 0;
-    virtual QLineF calcIsothermXy(double tc, double duvB, double duvE) = 0;
+    virtual QLineF calcIsothermUV(double tc, double duv) = 0;
+    virtual QLineF calcIsothermUV(double tc, double duvB, double duvE) = 0;
+    virtual QLineF calcIsothermXY(double tc, double duv) = 0;
+    virtual QLineF calcIsothermXY(double tc, double duvB, double duvE) = 0;
 
 public:
     // 导出等温线数据
