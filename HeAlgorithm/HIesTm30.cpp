@@ -3,11 +3,13 @@
 #include "HMatrix.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-
+#include "HGslHelper.h"
 #include <QtMath>
+#include <QtDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+// #CIE_CAM02
 // $F43 = 100                                                               LA (cd/m2)      -> LA
 // $F44 = 20                                                                Yb (cd/m2)      -> Yb
 // $F45 = 1                                                                 Did             -> Did
@@ -26,6 +28,7 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 // G144 = 0.725*(1/F142)^0.2                                                Ncb             -> Ncb
 // G145 = 1.48+G142^(1/2)                                                   z               -> z
 
+// #CAM02_UCS
 // G146 = MMULT($I$43:$K$45,G133:G135)                                      R               -> R
 // G147 = MMULT($I$43:$K$45,G133:G135)                                      G               -> G
 // G148 = MMULT($I$43:$K$45,G133:G135)                                      B               -> B
@@ -61,18 +64,29 @@ HE_ALGORITHM_BEGIN_NAMESPACE
 // G25  = (1+100*0.007)*G187/(1+0.007*G187)                                 Jc(Test)        -> Jp
 // G26  = G209*COS(G178*PI()/180)                                           aM(Test)        -> ap
 // G27  = G209*SIN(G178*PI()/180)                                           bM(Test)        -> bp
+
+// #IES_TM30
 // G30  = POWER(POWER(G21-G25,2)+POWER(G22-G26,2)+POWER(G23-G27,2),1/2)     dE              -> dE
-// G32  = AVERAGE(G30:DA30)                                                 dEavg           -> dEavg
-// Rfi  = 10*LN(EXP((100-$G$33*G30)/10)+1)                                  Rf_i            -> Rf
-// Rf   = 10*LN(EXP((100-$G$33*G32)/10)+1)                                  Rf              -> Rfavg
+// G32  = AVERAGE(G30:DA30)                                                 dEavg           -> dEi
+// Rfi  = 10*LN(EXP((100-$G$33*G30)/10)+1)                                  Rf_i            -> Rfi
+// Rf   = 10*LN(EXP((100-$G$33*G32)/10)+1)                                  Rf              -> Rf
 
-
-// RG = Calculator!DR26
+// #IES_HUE_BIN
+// DR8  = ar[i]
+// DS8  = at[i+1]
+// DR9  = bt[i]
+// DS9  = bt[i+1]
+// DR14 = DS8-DR8                                                           diff(a)
+// DR15 = (DR9+DS9)/2                                                       mean(b)
+// DR24 = SUMPRODUCT(DR12:EG12,DR13:EG13)                                   A0              -> Ar
+// DR25 = SUMPRODUCT(DR14:EG14,DR15:EG15)                                   A1              -> At
+// Rg   = DR25/DR24*100                                                     Rg              -> Rg
 
 struct CIE_CAM02
 {
 public:
     CIE_CAM02();
+    ~CIE_CAM02();
 
 public:
     int Did;
@@ -89,17 +103,22 @@ public:
     double Nbb;
     double Ncb;
     double z;
-    gsl_matrix_view MHPE;
-    gsl_matrix_view MCAT02;
-    gsl_matrix_view MCAT02inv;
+    gsl_matrix *MHPE;
+    gsl_matrix *MCAT02;
+    gsl_matrix *MCAT02inv;
 };
 
-double toDegrees(double a, double b)
+double calc_hue_angle(double a, double b)
 {
     if (qFuzzyIsNull(a) && qFuzzyIsNull(b))
         return 0.0;
-    auto degrees = atan2(a, b) * 180 / M_PI;
-    return b >= 0 ? degrees : degrees + 360;
+    auto degrees = atan2(b, a) * 180 / M_PI;
+    return degrees >= 0 ? degrees : degrees + 360;
+}
+
+double log_scale(double value, double scale_factor = 6.73, double scale_max = 100.0)
+{
+    return 10.0 *log(exp((scale_max - scale_factor * value)/10.0) + 1.0);
 }
 
 CIE_CAM02::CIE_CAM02()
@@ -119,37 +138,77 @@ CIE_CAM02::CIE_CAM02()
     Nbb = Ncb = 0.725 * pow(n, -0.2);
     z = 1.48 + sqrt(n);
 
-    double a[] = { 0.38971, 0.68898, -0.07868,
-                  -0.22981, 1.18340,  0.04641,
-                   0.00000, 0.00000,  1.00000 };
-    double b[] = { 0.7328, 0.4296, -0.1624,
-                  -0.7036, 1.6975,  0.0061,
-                   0.0030, 0.0136,	0.9834 };
-    double c[] = { 0.7328, 0.4296, -0.1624,
-                  -0.7036, 1.6975,  0.0061,
-                   0.0030, 0.0136,	0.9834 };
-    MHPE = gsl_matrix_view_array(a, 3, 3);
-    MCAT02 = gsl_matrix_view_array(b, 3, 3);
-    MCAT02inv = gsl_matrix_view_array(c, 3, 3);
-    HMatrix::inverse(&MCAT02inv.matrix);
+    auto mhpe = QVector<double>() <<  0.38971 << 0.68898 << -0.07868
+                                  << -0.22981 << 1.18340 <<  0.04641
+                                  <<  0.00000 << 0.00000 <<  1.00000;
+    auto mcat = QVector<double>() <<  0.7328  << 0.4296  << -0.1624
+                                  << -0.7036  << 1.6975  <<  0.0061
+                                  <<  0.0030  << 0.0136  <<  0.9834;
+    MHPE = gsl_matrix_calloc(3, 3);
+    MCAT02 = gsl_matrix_calloc(3, 3);
+    MCAT02inv = gsl_matrix_calloc(3, 3);
+    HGslHelper::fill(MHPE, mhpe);
+    HGslHelper::fill(MCAT02, mcat);
+    HGslHelper::fill(MCAT02inv, mcat);
+    HMatrix::inverse(MCAT02inv);
+}
+
+CIE_CAM02::~CIE_CAM02()
+{
+    gsl_matrix_free(MHPE);
+    gsl_matrix_free(MCAT02);
+    gsl_matrix_free(MCAT02inv);
+}
+
+CAM02_UCS::CAM02_UCS()
+{
+    X.fill(0.0, 100);
+    Y.fill(0.0, 100);
+    Z.fill(0.0, 100);
+    R.fill(0.0, 100);
+    G.fill(0.0, 100);
+    B.fill(0.0, 100);
+    Rc.fill(0.0, 100);
+    Gc.fill(0.0, 100);
+    Bc.fill(0.0, 100);
+    Rp.fill(0.0, 100);
+    Gp.fill(0.0, 100);
+    Bp.fill(0.0, 100);
+    Rap.fill(0.0, 100);
+    Gap.fill(0.0, 100);
+    Bap.fill(0.0, 100);
+    a.fill(0.0, 100);
+    b.fill(0.0, 100);
+    h.fill(0.0, 100);
+    e.fill(0.0, 100);
+    t.fill(0.0, 100);
+    A.fill(0.0, 100);
+    J.fill(0.0, 100);
+    C.fill(0.0, 100);
+    M.fill(0.0, 100);
+    Mp.fill(0.0, 100);
+    Jp.fill(0.0, 100);
+    ap.fill(0.0, 100);
+    bp.fill(0.0, 100);
 }
 
 void CAM02_UCS::calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ)
 {
+    QVector<double> RGB, RGBp, XYZc;
     for (int i = 0; i < 100; i++)
     {
-        X[i] = XYZ[0][i];
-        Y[i] = XYZ[1][i];
-        Z[i] = XYZ[2][i];
-        auto RGB  = HMatrix::mul(&cam->MCAT02.matrix, QVector<double>() << X[i] << Y[i] << Z[i]);
+        X[i]  = XYZ[0][i];
+        Y[i]  = XYZ[1][i];
+        Z[i]  = XYZ[2][i];
+        RGB   = HMatrix::mul(cam->MCAT02, QVector<double>() << X[i] << Y[i] << Z[i]);
         R[i]  = RGB.at(0);
         G[i]  = RGB.at(1);
         B[i]  = RGB.at(2);
         Rc[i] = (cam->D * (cam->Yw / R[0]) + 1 - cam->D) * R[i];
         Gc[i] = (cam->D * (cam->Yw / G[0]) + 1 - cam->D) * G[i];
         Bc[i] = (cam->D * (cam->Yw / B[0]) + 1 - cam->D) * B[i];
-        auto XYZc = HMatrix::mul(&cam->MCAT02inv.matrix, QVector<double>() << Rc[i] << Gc[i] << Bc[i]);
-        auto RGBp = HMatrix::mul(&cam->MHPE.matrix, XYZc);
+        XYZc  = HMatrix::mul(cam->MCAT02inv, QVector<double>() << Rc[i] << Gc[i] << Bc[i]);
+        RGBp  = HMatrix::mul(cam->MHPE, XYZc);
         Rp[i]  = RGBp.at(0);
         Gp[i]  = RGBp.at(1);
         Bp[i]  = RGBp.at(2);
@@ -158,7 +217,7 @@ void CAM02_UCS::calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ)
         Bap[i] = 0.1 + 400 * pow(cam->FL * Bp[i] / 100, 0.42) / (27.13 + pow(cam->FL * Bp[i] / 100, 0.42));
         a[i]   = (Rap[i] - Gap[i] * 12 / 11 + Bap[i] / 11);
         b[i]   = (Rap[i] + Gap[i] - Bap[i] * 2) / 9;
-        h[i]   = toDegrees(a[i], b[i]);
+        h[i]   = calc_hue_angle(a[i], b[i]);
         e[i]   =  (3.8 + cos(2 + h[i] * M_PI / 180)) / 4;
         t[i]   = 50000 / 13 * cam->Ncb * cam->Nc * e[i] * sqrt(pow(a[i], 2) + pow(b[i], 2)) / (Rap[i] + Gap[i] + Bap[i] * 21 / 20);
         A[i]   = cam->Nbb * (2 * Rap[i] + Gap[i] + 0.05 * Bap[i] -0.305);
@@ -172,10 +231,81 @@ void CAM02_UCS::calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ)
     }
 }
 
+IES_HUE_BIN::IES_HUE_BIN()
+{
+    hbincenters.fill(0, 16);
+    for (int i = 0; i < 16; i++)
+        hbincenters[i] = 2 * M_PI * (2 * i + 1) / 32;
+}
+
+void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
+{
+    int i,j,n;
+    QList<int> list;
+    auto g = group(p->refe.h);
+
+    ar.fill(0.0, 16);
+    br.fill(0.0, 16);
+    at.fill(0.0, 16);
+    bt.fill(0.0, 16);
+    dE.fill(0.0, 16);
+    Rf.fill(0.0, 16);
+    Rcs.fill(0.0, 16);
+    Rhs.fill(0.0, 16);
+    for (auto it = g.constBegin(); it != g.constEnd(); it++)
+    {
+        i = it.key();
+        n = it.value().size();
+        if (n == 0)
+            continue;
+        for (j = 0; j < n; j++)
+        {
+            ar[i] += p->refe.ap.at(it.value().at(j)) / n;
+            br[i] += p->refe.bp.at(it.value().at(j)) / n;
+            at[i] += p->test.ap.at(it.value().at(j)) / n;
+            bt[i] += p->test.bp.at(it.value().at(j)) / n;
+            dE[i] += p->dEi.at(it.value().at(j) - 1) / n;
+        }
+        Rf[i] = log_scale(dE[i], factor);
+    }
+
+    auto ar_close = QVector<double>() << ar << ar[0];
+    auto br_close = QVector<double>() << br << br[0];
+    auto at_close = QVector<double>() << at << at[0];
+    auto bt_close = QVector<double>() << bt << bt[0];
+    auto Ar = 0.0;
+    auto At = 0.0;
+    auto Cr = 0.0;
+    double da, db;
+    for (i = 0; i < 16; i++)
+    {
+        Cr = sqrt(pow(ar[i], 2) + pow(br[i], 2)) + 1e-308;
+        da = (at[i] - ar[i]) / Cr;
+        db = (bt[i] - br[i]) / Cr;
+        Rcs[i] = db * sin(hbincenters[i]) + da * cos(hbincenters[i]);
+        Rhs[i] = db * cos(hbincenters[i]) - da * sin(hbincenters[i]); // db * cos(hbincenters[i]) + da * sin(hbincenters[i]);
+        Ar += 0.5 * (ar_close[i + 1] - ar_close[i]) * (br_close[i + 1] + br_close[i]);
+        At += 0.5 * (at_close[i + 1] - at_close[i]) * (bt_close[i + 1] + bt_close[i]);
+    }
+    Rg = 100 * At / Ar;
+}
+
+QHash<int, QList<int> > IES_HUE_BIN::group(QVector<double> value)
+{
+    int key;
+    QHash<int, QList<int> > res;
+    for (int i = 1; i < value.size(); i++)
+    {
+        key = floor(value[i] * 16 / 360);
+        res[key].append(i);
+    }
+    return res;
+}
+
 IES_TM30::IES_TM30()
 {
-    dEi.resize(99);
-    Rfi.resize(99);
+    dEi.fill(0.0, 99);
+    Rfi.fill(0.0, 99);
 }
 
 void IES_TM30::calc(double factor)
@@ -183,26 +313,29 @@ void IES_TM30::calc(double factor)
     for (int i = 1; i < 100; i++)
     {
         dEi[i - 1] = sqrt(pow(refe.Jp[i] - test.Jp[i], 2) + pow(refe.ap[i] - test.ap[i], 2) + pow(refe.bp[i] - test.bp[i], 2));
-        Rfi[i - 1] = 10 * log(exp((100 - factor * dEi[i - 1]) / 10.0) + 1);
+        Rfi[i - 1] = log_scale(dEi[i - 1], factor);
     }
+    hj.calc(this, factor);
     dE = HMath::average(dEi);
-    Rf = 10 * log(exp((100 - factor * dE) / 10.0) + 1);
+    Rf = log_scale(dE, factor);
+    Rg = hj.Rg;
 }
 
 HIesTm30::HIesTm30()
 {
     _factor = 6.73;
     _cieCam02 = std::make_shared<CIE_CAM02>();
-    _iesTm30 = std::make_shared<IES_TM30>();
     readCie();
     readCes();
 }
 
-void HIesTm30::calc(const QPolygonF &spdr, const QPolygonF &spdt)
+IES_TM30 HIesTm30::calc(const QPolygonF &spdr, const QPolygonF &spdt)
 {
-    _iesTm30->refe.calc(_cieCam02.get(), calcTristimulus(spdr));
-    _iesTm30->test.calc(_cieCam02.get(), calcTristimulus(spdt));
-    _iesTm30->calc(_factor);
+    IES_TM30 r;
+    r.test.calc(_cieCam02.get(), calcTristimulus(spdt));
+    r.refe.calc(_cieCam02.get(), calcTristimulus(spdr));
+    r.calc(_factor);
+    return r;
 }
 
 void HIesTm30::readCie()
@@ -228,7 +361,7 @@ void HIesTm30::readCes()
     int i,j,n;
     QString str;
 
-    QFile file(":/dat/IES_CES.dat");
+    QFile file(":/dat/CIE224_2017_R99_1nm.dat");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
 
@@ -247,6 +380,7 @@ void HIesTm30::readCes()
 
 QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
 {
+    int c = 0;
     int i,j,k,l;
     double sum;
     QVector<double> X(100);
@@ -274,6 +408,7 @@ QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
             i++;
             j++;
             k++;
+            c++;
             continue;
         }
         if (spd[i].x() < _cie1964[j].wave || spd[i].x() < _iesCes[k].wave)
@@ -293,7 +428,7 @@ QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
     {
         X[i] = X[i] * sum;
         Y[i] = Y[i] * sum;;
-        Z[i] = Y[i] * sum;;
+        Z[i] = Z[i] * sum;;
     }
     return { X, Y, Z};
 }

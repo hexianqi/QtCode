@@ -12,6 +12,13 @@ const double C2 = 1.438833;         // cm
 //const double C1 = 3.741771e-16;   // m
 //const double C2 = 1.438775e-2;    // m
 
+//const double h = 6.62607004e-34;
+//const double c = 299792458;
+//const double k = 1.38064852e-23;
+//const double C1 = 2 * M_PI * h * c * c; // 3.741771790075259e-16
+//const double C2 = h * c / k;            // 1.438777353827720e-2
+
+
 QPointF HSpecHelper::xy2uv(QPointF xy)
 {
     auto x = xy.x();
@@ -52,13 +59,13 @@ QPointF HSpecHelper::uv2cd(QPointF uv)
 **      C1 = 2 * M_PI * h * c * c;
 **      C2 = h * c / k;
 ***************************************************************************************************/
-double HSpecHelper::planck(double wave, double tc)
+double HSpecHelper::planck(double tc, double wave)
 {
     wave *= 1e-7;
     return C1 / pow(wave, 5) / (exp(C2 / (wave * tc)) - 1);
 }
 
-double HSpecHelper::planckPrime(double wave, double tc)
+double HSpecHelper::planckPrime(double tc, double wave)
 {
     wave *= 1e-7;
     auto temp = exp(C2 / wave / tc);

@@ -9,6 +9,6 @@
         <file>dat/MesopticVision.dat</file>
         <file>dat/PhotopicVision.dat</file>
         <file>dat/CIE1964.dat</file>
-        <file>dat/IES_CES.dat</file>
+        <file>dat/CIE224_2017_R99_1nm.dat</file>
     </qresource>
 </RCC>

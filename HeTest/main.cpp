@@ -1,4 +1,4 @@
-﻿#include "MainWindow.h"
+#include "MainWindow.h"
 #include "HTestAlgorithm.h"
 #include "HTestChart.h"
 #include "HTestData.h"
@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
+    HTestAlgorithm::testIesTm30();
+
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 
@@ -44,10 +46,10 @@ int main(int argc, char *argv[])
 //    HControlDemoWidget dw;
 //    dw.show();
 
-    HBreakoutWidget ow;
-    ow.move(50, 300);
-    ow.resize(800, 600);
-    ow.show();
+//    HBreakoutWidget ow;
+//    ow.move(50, 300);
+//    ow.resize(800, 600);
+//    ow.show();
 
 //    MainWindow window;
 //    window.setCentralWidget(&videoWidget);

@@ -15,6 +15,9 @@
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 
+struct CIE_CAM02;
+struct IES_TM30;
+
 // CMF(color matching function) = 10
 struct CIE1964
 {
@@ -30,42 +33,67 @@ struct IES_CES
     double CES[100];
 };
 
-struct CIE_CAM02;
-
 struct CAM02_UCS
 {
+public:
+    CAM02_UCS();
+
 public:
     void calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ);
 
 public:
-    double X[100];
-    double Y[100];
-    double Z[100];
-    double R[100];
-    double G[100];
-    double B[100];
-    double Rc[100];
-    double Gc[100];
-    double Bc[100];
-    double Rp[100];
-    double Gp[100];
-    double Bp[100];
-    double Rap[100];     // Ra'
-    double Gap[100];     // Ga'
-    double Bap[100];     // Ba'
-    double a[100];
-    double b[100];
-    double h[100];
-    double e[100];
-    double t[100];
-    double A[100];
-    double J[100];
-    double C[100];
-    double M[100];
-    double Mp[100];      // M'
-    double Jp[100];      // J'
-    double ap[100];      // a'
-    double bp[100];      // b'
+    QVector<double> X;
+    QVector<double> Y;
+    QVector<double> Z;
+    QVector<double> R;
+    QVector<double> G;
+    QVector<double> B;
+    QVector<double> Rc;
+    QVector<double> Gc;
+    QVector<double> Bc;
+    QVector<double> Rp;
+    QVector<double> Gp;
+    QVector<double> Bp;
+    QVector<double> Rap;    // Ra'
+    QVector<double> Gap;    // Ga'
+    QVector<double> Bap;    // Ba'
+    QVector<double> a;
+    QVector<double> b;
+    QVector<double> h;
+    QVector<double> e;
+    QVector<double> t;
+    QVector<double> A;
+    QVector<double> J;
+    QVector<double> C;
+    QVector<double> M;
+    QVector<double> Mp;     // M'
+    QVector<double> Jp;     // J'
+    QVector<double> ap;     // a'
+    QVector<double> bp;     // b'
+};
+
+struct IES_HUE_BIN
+{
+public:
+    IES_HUE_BIN();
+
+public:
+    void calc(IES_TM30 *, double factor);
+    QHash<int, QList<int>> group(QVector<double>);
+
+public:
+    QVector<double> hbincenters;
+
+public:
+    QVector<double> ar;
+    QVector<double> br;
+    QVector<double> at;
+    QVector<double> bt;
+    QVector<double> dE;
+    QVector<double> Rf;
+    QVector<double> Rcs;
+    QVector<double> Rhs;
+    double Rg;
 };
 
 struct IES_TM30
@@ -83,15 +111,17 @@ public:
     QVector<double> Rfi;    // Rfi
     double dE;              // ΔE
     double Rf;              // Rf
+    double Rg;              // Rg
+    IES_HUE_BIN hj;         // Hue bin
 };
 
-class HIesTm30
+class Q_DECL_EXPORT HIesTm30
 {
 public:
     HIesTm30();
 
 public:
-    void calc(const QPolygonF &spdr, const QPolygonF &spdt);
+    IES_TM30 calc(const QPolygonF &spdr, const QPolygonF &spdt);
 
 protected:
     void readCie();
@@ -101,7 +131,6 @@ protected:
 protected:
     double _factor;
     std::shared_ptr<CIE_CAM02> _cieCam02;
-    std::shared_ptr<IES_TM30> _iesTm30;
     QVector<CIE1964> _cie1964;
     QVector<IES_CES> _iesCes;
 };

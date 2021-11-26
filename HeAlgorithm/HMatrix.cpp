@@ -4,6 +4,7 @@
 #include <gsl/gsl_linalg.h>
 #include <gsl/gsl_permutation.h>
 #include <QtCore/QVector>
+#include <QtDebug>
 
 HE_ALGORITHM_BEGIN_NAMESPACE
 

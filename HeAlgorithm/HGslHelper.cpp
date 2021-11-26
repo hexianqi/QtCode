@@ -56,6 +56,22 @@ QVector<double> HGslHelper::toVector(gsl_matrix *m)
     return r;
 }
 
+void HGslHelper::fill(gsl_matrix *m, QVector<double> value)
+{
+    uint i, j;
+    int k = 0;
+    double v;
+    for (i = 0; i < m->size1; i++)
+    {
+        for (j = 0; j < m->size2; j++)
+        {
+            v = k < value.size() ? value.at(k) : 0.0;
+            gsl_matrix_set(m, i, j, v);
+            k++;
+        }
+    }
+}
+
 gsl_complex HGslHelper::fromPoint(double x, double y)
 {
     return gsl_complex_rect(x, y);

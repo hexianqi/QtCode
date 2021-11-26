@@ -188,7 +188,7 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
         U += P * ubar;
         V += P * vbar;
         W += P * wbar;
-        Pprime = HSpecHelper::planckPrime(_cie1931[i].wave, tc);
+        Pprime = HSpecHelper::planckPrime(tc, _cie1931[i].wave);
         Uprime += Pprime * ubar;
         Vprime += Pprime * vbar;
         Wprime += Pprime * wbar;
@@ -320,20 +320,20 @@ void HCieDaylight::read()
 
 double HCieDaylight::calcRefSpectrum(double tc, double wave)
 {
-    if (tc <= 5000)
-        return calcRefSpectrumP(wave, tc);
-    return calcRefSpectrumD(wave, tc);
-
-//    if (tc <= 4000)
+//    if (tc <= 5000)
 //        return calcRefSpectrumP(wave, tc);
-//    if (tc >= 5000)
-//        return calcRefSpectrumD(wave, tc);
-//    return calcRefSpectrumM(wave, tc);
+//    return calcRefSpectrumD(wave, tc);
+
+    if (tc <= 4000)
+        return calcRefSpectrumP(tc, wave);
+    if (tc >= 5000)
+        return calcRefSpectrumD(tc, wave);
+    return calcRefSpectrumM(tc, wave);
 }
 
 double HCieDaylight::calcRefSpectrumP(double tc, double wave)
 {
-    return HSpecHelper::planck(wave, tc);
+    return HSpecHelper::planck(tc, wave);
 }
 
 double HCieDaylight::calcRefSpectrumD(double tc, double wave)

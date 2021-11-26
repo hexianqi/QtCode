@@ -108,14 +108,14 @@ protected:
     QVector<CIE_TC_32> _cieTc32;
 };
 
-class HCieDaylight
+class Q_DECL_EXPORT HCieDaylight
 {
 public:
     HCieDaylight();
 
 public:
     // 计算参考源光谱能量
-    QPolygonF calcRefSourceSpectrum(double tc, QPointF wave, double interval = 1.0);
+    QPolygonF calcRefSourceSpectrum(double tc, QPointF wave = QPointF(380, 780), double interval = 1.0);
 
 protected:
     void read();

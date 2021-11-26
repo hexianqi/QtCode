@@ -28,6 +28,7 @@ public:
 public:
     static QVector<double> toVector(gsl_vector *);
     static QVector<double> toVector(gsl_matrix *);
+    static void fill(gsl_matrix *, QVector<double>);
 };
 
 HE_ALGORITHM_END_NAMESPACE
