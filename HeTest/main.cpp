@@ -17,9 +17,16 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 
+#include "HePlugin/HTm30BarChart.h"
+#include "HePlugin/HTm30RfiChartView.h"
+#include "HePlugin/HTm30RfhjChartView.h"
+#include "HePlugin/HTm30RcshjChartView.h"
+#include "HePlugin/HTm30RhshjChartView.h"
+
 HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_USE_NAMESPACE
+
 
 void testGslChart()
 {
@@ -36,7 +43,27 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    HTestAlgorithm::testIesTm30();
+    auto data = HTestAlgorithm::testIesTm30();
+
+//    HTm30RfiChartView rfi;
+//    rfi.chart()->setBarValue(data.Rfi.toList());
+//    rfi.show();
+
+//    HTm30RfhjChartView rfhj;
+//    rfhj.chart()->setBarValue(data.hj.Rf.toList());
+//    rfhj.show();
+
+//    QList<double> data1;
+//    for (auto v : data.hj.Rcs)
+//        data1 << v * 100;
+//    HTm30RcshjChartView rcshj;
+//    rcshj.chart()->setBarValue(data1);
+//    rcshj.show();
+
+    HTm30RhshjChartView rhshj;
+    rhshj.chart()->setBarValue(data.hj.Rhs.toList());
+    rhshj.show();
+
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;

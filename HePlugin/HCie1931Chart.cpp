@@ -230,6 +230,7 @@ void HCie1931Chart::readSeries()
         in >> x >> y;
         planckian << QPointF(x,y);
     }
+    file.close();
 
     auto series0 = new QLineSeries;
     auto series1 = new QLineSeries;

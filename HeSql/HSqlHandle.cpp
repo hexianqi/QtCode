@@ -1,6 +1,5 @@
 #include "HSqlHandle_p.h"
 #include "ISqlTableModel.h"
-#include "HProductInfoDialog.h"
 #include "HSqlFindDialog.h"
 #include "HeCore/HCore.h"
 #include <QtCore/QDateTime>

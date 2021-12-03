@@ -42,31 +42,7 @@ public:
     void calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ);
 
 public:
-    QVector<double> X;
-    QVector<double> Y;
-    QVector<double> Z;
-    QVector<double> R;
-    QVector<double> G;
-    QVector<double> B;
-    QVector<double> Rc;
-    QVector<double> Gc;
-    QVector<double> Bc;
-    QVector<double> Rp;
-    QVector<double> Gp;
-    QVector<double> Bp;
-    QVector<double> Rap;    // Ra'
-    QVector<double> Gap;    // Ga'
-    QVector<double> Bap;    // Ba'
-    QVector<double> a;
-    QVector<double> b;
     QVector<double> h;
-    QVector<double> e;
-    QVector<double> t;
-    QVector<double> A;
-    QVector<double> J;
-    QVector<double> C;
-    QVector<double> M;
-    QVector<double> Mp;     // M'
     QVector<double> Jp;     // J'
     QVector<double> ap;     // a'
     QVector<double> bp;     // b'
@@ -79,16 +55,20 @@ public:
 
 public:
     void calc(IES_TM30 *, double factor);
-    QHash<int, QList<int>> group(QVector<double>);
+    QMap<int, QList<int> > group(QVector<double>);
 
 public:
     QVector<double> hbincenters;
 
 public:
-    QVector<double> ar;
-    QVector<double> br;
     QVector<double> at;
     QVector<double> bt;
+    QVector<double> ar;
+    QVector<double> br;
+    QVector<double> atn_close;
+    QVector<double> btn_close;
+    QVector<double> arn_close;
+    QVector<double> brn_close;
     QVector<double> dE;
     QVector<double> Rf;
     QVector<double> Rcs;
@@ -105,14 +85,14 @@ public:
     void calc(double factor);
 
 public:
-    CAM02_UCS refe;         // Reference
     CAM02_UCS test;         // Test
+    CAM02_UCS refe;         // Reference
+    IES_HUE_BIN hj;         // Hue bin
     QVector<double> dEi;    // ΔEi
     QVector<double> Rfi;    // Rfi
     double dE;              // ΔE
     double Rf;              // Rf
     double Rg;              // Rg
-    IES_HUE_BIN hj;         // Hue bin
 };
 
 class Q_DECL_EXPORT HIesTm30
@@ -121,7 +101,7 @@ public:
     HIesTm30();
 
 public:
-    IES_TM30 calc(const QPolygonF &spdr, const QPolygonF &spdt);
+    IES_TM30 calc(const QPolygonF &spdt, const QPolygonF &spdr);
 
 protected:
     void readCie();

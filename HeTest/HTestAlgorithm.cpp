@@ -7,8 +7,6 @@
 #include <QtCore/QTextStream>
 #include <QtDebug>
 
-HE_ALGORITHM_USE_NAMESPACE
-
 void HTestAlgorithm::testRegister()
 {
     HRegister reg;
@@ -34,7 +32,7 @@ void HTestAlgorithm::testChromaticity()
     cie.exportCieUcs("20000", QPointF(20000, 25000), 50);
 }
 
-void HTestAlgorithm::testIesTm30()
+IES_TM30 HTestAlgorithm::testIesTm30()
 {
     int i;
     double x, y;
@@ -54,14 +52,14 @@ void HTestAlgorithm::testIesTm30()
     HCieDaylight day;
     HIesTm30 ies;
 
-    auto spdr = day.calcRefSourceSpectrum(2937.7, QPointF(380, 780), 1); // 2938
-    auto resu = ies.calc(spdr, spdt);
-    qDebug() << resu.dEi;
-    qDebug() << resu.Rfi;
-    qDebug() << resu.dE;
-    qDebug() << resu.Rf;
-    qDebug() << resu.Rg;
-    qDebug() << resu.hj.Rcs;
-    qDebug() << resu.hj.Rhs;
-
+    auto spdr = day.calcRefSourceSpectrum(2937.7, QPointF(380, 780), 1);
+    auto res = ies.calc(spdt, spdr);
+    qDebug() << res.dEi;
+    qDebug() << res.Rfi;
+    qDebug() << res.dE;
+    qDebug() << res.Rf;
+    qDebug() << res.Rg;
+    qDebug() << res.hj.Rcs;
+    qDebug() << res.hj.Rhs;
+    return res;
 }

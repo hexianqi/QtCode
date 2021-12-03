@@ -105,4 +105,5 @@ void HDynamicChartView::init()
     d->callout = new HCalloutChartExtend(d->chart, this);
     d->callout->connectExtend();
     setChart(d->chart);
+    HZoomChartView::init();
 }

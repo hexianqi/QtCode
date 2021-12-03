@@ -1,9 +1,13 @@
 #pragma once
 
+#include "HeAlgorithm/HIesTm30.h"
+
+HE_ALGORITHM_USE_NAMESPACE
+
 class HTestAlgorithm
 {
 public:
     static void testRegister();
     static void testChromaticity();
-    static void testIesTm30();
+    static IES_TM30 testIesTm30();
 };

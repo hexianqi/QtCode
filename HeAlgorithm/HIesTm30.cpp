@@ -162,38 +162,22 @@ CIE_CAM02::~CIE_CAM02()
 
 CAM02_UCS::CAM02_UCS()
 {
-    X.fill(0.0, 100);
-    Y.fill(0.0, 100);
-    Z.fill(0.0, 100);
-    R.fill(0.0, 100);
-    G.fill(0.0, 100);
-    B.fill(0.0, 100);
-    Rc.fill(0.0, 100);
-    Gc.fill(0.0, 100);
-    Bc.fill(0.0, 100);
-    Rp.fill(0.0, 100);
-    Gp.fill(0.0, 100);
-    Bp.fill(0.0, 100);
-    Rap.fill(0.0, 100);
-    Gap.fill(0.0, 100);
-    Bap.fill(0.0, 100);
-    a.fill(0.0, 100);
-    b.fill(0.0, 100);
-    h.fill(0.0, 100);
-    e.fill(0.0, 100);
-    t.fill(0.0, 100);
-    A.fill(0.0, 100);
-    J.fill(0.0, 100);
-    C.fill(0.0, 100);
-    M.fill(0.0, 100);
-    Mp.fill(0.0, 100);
-    Jp.fill(0.0, 100);
-    ap.fill(0.0, 100);
-    bp.fill(0.0, 100);
+    h.fill(0.0, 99);
+    Jp.fill(0.0, 99);
+    ap.fill(0.0, 99);
+    bp.fill(0.0, 99);
 }
 
 void CAM02_UCS::calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ)
 {
+    double X[100], Y[100], Z[100];
+    double R[100], G[100], B[100];
+    double Rc[100], Gc[100], Bc[100];
+    double Rp[100], Gp[100], Bp[100];
+    double Rap[100], Gap[100], Bap[100];            // Ra' Ga' Ga'
+    double a[100], b[100], e[100], h[100], t[100];
+    double A[100], J[100], C[100], M[100];
+    double Mp[100], Jp[100], ap[100], bp[100];      // M' J' a' b'
     QVector<double> RGB, RGBp, XYZc;
     for (int i = 0; i < 100; i++)
     {
@@ -229,6 +213,13 @@ void CAM02_UCS::calc(CIE_CAM02 *cam, QList<QVector<double>> XYZ)
         ap[i]  = Mp[i] * cos(h[i] * M_PI / 180);
         bp[i]  = Mp[i] * sin(h[i] * M_PI / 180);
     }
+    for (int i = 0; i < 99; i++)
+    {
+        this->h[i]  = h[i+1];
+        this->Jp[i] = Jp[i+1];
+        this->ap[i] = ap[i+1];
+        this->bp[i] = bp[i+1];
+    }
 }
 
 IES_HUE_BIN::IES_HUE_BIN()
@@ -244,10 +235,10 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
     QList<int> list;
     auto g = group(p->refe.h);
 
-    ar.fill(0.0, 16);
-    br.fill(0.0, 16);
     at.fill(0.0, 16);
     bt.fill(0.0, 16);
+    ar.fill(0.0, 16);
+    br.fill(0.0, 16);
     dE.fill(0.0, 16);
     Rf.fill(0.0, 16);
     Rcs.fill(0.0, 16);
@@ -260,41 +251,58 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
             continue;
         for (j = 0; j < n; j++)
         {
-            ar[i] += p->refe.ap.at(it.value().at(j)) / n;
-            br[i] += p->refe.bp.at(it.value().at(j)) / n;
             at[i] += p->test.ap.at(it.value().at(j)) / n;
             bt[i] += p->test.bp.at(it.value().at(j)) / n;
-            dE[i] += p->dEi.at(it.value().at(j) - 1) / n;
+            ar[i] += p->refe.ap.at(it.value().at(j)) / n;
+            br[i] += p->refe.bp.at(it.value().at(j)) / n;
+            dE[i] += p->dEi.at(it.value().at(j)) / n;
         }
         Rf[i] = log_scale(dE[i], factor);
     }
 
-    auto ar_close = QVector<double>() << ar << ar[0];
-    auto br_close = QVector<double>() << br << br[0];
     auto at_close = QVector<double>() << at << at[0];
     auto bt_close = QVector<double>() << bt << bt[0];
-    auto Ar = 0.0;
+    auto ar_close = QVector<double>() << ar << ar[0];
+    auto br_close = QVector<double>() << br << br[0];
     auto At = 0.0;
-    auto Cr = 0.0;
+    auto Ar = 0.0;
+    double Ct, Cr, Ctn;
+    double ht, hr;
     double da, db;
+    QVector<double> atn, btn, arn, brn;
     for (i = 0; i < 16; i++)
     {
+        ht = calc_hue_angle(at[i], bt[i]);
+        hr = calc_hue_angle(ar[i], br[i]);
+        Ct = sqrt(pow(at[i], 2) + pow(bt[i], 2)) + 1e-308;
         Cr = sqrt(pow(ar[i], 2) + pow(br[i], 2)) + 1e-308;
+        Ctn = 100 * Ct / (Cr + 1e-308);
+
+        atn << Ctn * cos(ht * M_PI / 180);
+        btn << Ctn * sin(ht * M_PI / 180);
+        arn << 100 * cos(hr * M_PI / 180);
+        brn << 100 * sin(hr * M_PI / 180);
+
         da = (at[i] - ar[i]) / Cr;
         db = (bt[i] - br[i]) / Cr;
         Rcs[i] = db * sin(hbincenters[i]) + da * cos(hbincenters[i]);
         Rhs[i] = db * cos(hbincenters[i]) - da * sin(hbincenters[i]); // db * cos(hbincenters[i]) + da * sin(hbincenters[i]);
+
         Ar += 0.5 * (ar_close[i + 1] - ar_close[i]) * (br_close[i + 1] + br_close[i]);
         At += 0.5 * (at_close[i + 1] - at_close[i]) * (bt_close[i + 1] + bt_close[i]);
     }
+    atn_close = QVector<double>() << atn << atn[0];
+    btn_close = QVector<double>() << btn << btn[0];
+    arn_close = QVector<double>() << arn << arn[0];
+    brn_close = QVector<double>() << brn << brn[0];
     Rg = 100 * At / Ar;
 }
 
-QHash<int, QList<int> > IES_HUE_BIN::group(QVector<double> value)
+QMap<int, QList<int> > IES_HUE_BIN::group(QVector<double> value)
 {
     int key;
-    QHash<int, QList<int> > res;
-    for (int i = 1; i < value.size(); i++)
+    QMap<int, QList<int> > res;
+    for (int i = 0; i < value.size(); i++)
     {
         key = floor(value[i] * 16 / 360);
         res[key].append(i);
@@ -310,10 +318,10 @@ IES_TM30::IES_TM30()
 
 void IES_TM30::calc(double factor)
 {
-    for (int i = 1; i < 100; i++)
+    for (int i = 0; i < 99; i++)
     {
-        dEi[i - 1] = sqrt(pow(refe.Jp[i] - test.Jp[i], 2) + pow(refe.ap[i] - test.ap[i], 2) + pow(refe.bp[i] - test.bp[i], 2));
-        Rfi[i - 1] = log_scale(dEi[i - 1], factor);
+        dEi[i] = sqrt(pow(refe.Jp[i] - test.Jp[i], 2) + pow(refe.ap[i] - test.ap[i], 2) + pow(refe.bp[i] - test.bp[i], 2));
+        Rfi[i] = log_scale(dEi[i], factor);
     }
     hj.calc(this, factor);
     dE = HMath::average(dEi);
@@ -329,7 +337,7 @@ HIesTm30::HIesTm30()
     readCes();
 }
 
-IES_TM30 HIesTm30::calc(const QPolygonF &spdr, const QPolygonF &spdt)
+IES_TM30 HIesTm30::calc(const QPolygonF &spdt, const QPolygonF &spdr)
 {
     IES_TM30 r;
     r.test.calc(_cieCam02.get(), calcTristimulus(spdt));
