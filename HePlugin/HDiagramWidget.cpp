@@ -341,7 +341,7 @@ bool HDiagramWidget::drawGrid(QPainter *)
 
 bool HDiagramWidget::drawPolygon(QPainter *)
 {
-    return isValid();
+    return isValid() && !d_ptr->polygons.isEmpty();
 }
 
 bool HDiagramWidget::drawElse(QPainter *)

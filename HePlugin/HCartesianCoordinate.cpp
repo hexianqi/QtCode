@@ -1,4 +1,5 @@
 #include "HCartesianCoordinate_p.h"
+#include <QtCore/QLineF>
 #include <QtGui/QPolygonF>
 
 HCartesianCoordinate::HCartesianCoordinate(QObject *parent) :
@@ -38,6 +39,33 @@ QPolygonF HCartesianCoordinate::map(QPolygonF data, QRectF target, QRectF source
         poly.append(QPointF(x, y));
     }
     return poly;
+}
+
+QLineF HCartesianCoordinate::map(QLineF data, QRectF target, QRectF source)
+{
+    auto dx = target.width() / source.width();
+    auto dy = target.height() / source.height();
+    auto x1 = target.left() + (data.x1() - source.left()) * dx;
+    auto x2 = target.left() + (data.x2() - source.left()) * dx;
+    auto y1 = target.top() - (data.y1() - source.bottom()) * dy;
+    auto y2 = target.top() - (data.y2() - source.bottom()) * dy;
+    return {x1, y1, x2, y2};
+}
+
+QVector<QLineF> HCartesianCoordinate::map(QVector<QLineF> data, QRectF target, QRectF source)
+{
+    QVector<QLineF> lines;
+    auto dx = target.width() / source.width();
+    auto dy = target.height() / source.height();
+    for (int i = 0; i < data.size(); i++)
+    {
+        auto x1 = target.left() + (data[i].x1() - source.left()) * dx;
+        auto x2 = target.left() + (data[i].x2() - source.left()) * dx;
+        auto y1 = target.top() - (data[i].y1() - source.bottom()) * dy;
+        auto y2 = target.top() - (data[i].y2() - source.bottom()) * dy;
+        lines << QLineF(x1, y1, x2, y2);
+    }
+    return lines;
 }
 
 QRectF HCartesianCoordinate::map(QRectF data, QRectF target, QRectF source)
@@ -145,6 +173,21 @@ QPointF HCartesianCoordinate::mapToPosition(QPointF value, const QRectF logic)
 QPolygonF HCartesianCoordinate::mapToPosition(QPolygonF value, QRectF logic)
 {
     return map(std::move(value), logic, d_ptr->axis);
+}
+
+QLineF HCartesianCoordinate::mapToPosition(QLineF value, QRectF logic)
+{
+    return map(value, logic, d_ptr->axis);
+}
+
+QVector<QLineF> HCartesianCoordinate::mapToPosition(QVector<QLineF> value, QRectF logic)
+{
+    return map(value, logic, d_ptr->axis);
+}
+
+QRectF HCartesianCoordinate::mapToPosition(QRectF value, QRectF logic)
+{
+    return map(value, logic, d_ptr->axis);
 }
 
 QPointF HCartesianCoordinate::mapToValue(QPointF position, QRectF logic)

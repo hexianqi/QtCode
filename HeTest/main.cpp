@@ -22,17 +22,23 @@
 #include "HePlugin/HTm30RfhjChartView.h"
 #include "HePlugin/HTm30RcshjChartView.h"
 #include "HePlugin/HTm30RhshjChartView.h"
+#include "HePlugin/HTm30RxhjWidget.h"
+#include "HePlugin/HTm30CvgWidget.h"
 
 HE_CORE_USE_NAMESPACE
 
 HE_CONTROL_USE_NAMESPACE
-
 
 void testGslChart()
 {
     auto p = HTestGsl::interpEval();
     HTestChart::lineChart(p)->show();
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
+}
+
+void testTm30Widget()
+{
+
 }
 
 int main(int argc, char *argv[])
@@ -43,7 +49,7 @@ int main(int argc, char *argv[])
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
-    auto data = HTestAlgorithm::testIesTm30();
+//    auto data = HTestAlgorithm::testIesTm30();
 
 //    HTm30RfiChartView rfi;
 //    rfi.chart()->setBarValue(data.Rfi.toList());
@@ -53,16 +59,21 @@ int main(int argc, char *argv[])
 //    rfhj.chart()->setBarValue(data.hj.Rf.toList());
 //    rfhj.show();
 
-//    QList<double> data1;
-//    for (auto v : data.hj.Rcs)
-//        data1 << v * 100;
 //    HTm30RcshjChartView rcshj;
 //    rcshj.chart()->setBarValue(data1);
 //    rcshj.show();
 
-    HTm30RhshjChartView rhshj;
-    rhshj.chart()->setBarValue(data.hj.Rhs.toList());
-    rhshj.show();
+//    HTm30RhshjChartView rhshj;
+//    rhshj.chart()->setBarValue(data.hj.Rhs.toList());
+//    rhshj.show();
+
+//    HTm30RxhjWidget w;
+//    w.show();
+
+    HTm30CvgWidget w;
+    w.show();
+
+//    HTestData::testJson2();
 
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");

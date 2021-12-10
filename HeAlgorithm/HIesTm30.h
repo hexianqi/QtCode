@@ -65,10 +65,10 @@ public:
     QVector<double> bt;
     QVector<double> ar;
     QVector<double> br;
-    QVector<double> atn_close;
-    QVector<double> btn_close;
-    QVector<double> arn_close;
-    QVector<double> brn_close;
+    QVector<double> atn;
+    QVector<double> btn;
+    QVector<double> arn;
+    QVector<double> brn;
     QVector<double> dE;
     QVector<double> Rf;
     QVector<double> Rcs;

@@ -68,15 +68,15 @@ void HTestData::testJson2()
     auto b1 = datas == datas2;
     auto b2 = json == json2;
     auto b3 = str == str2;
-    qDebug() << " data         " << datas;
-    qDebug() << " data2        " << datas2;
-    qDebug() << " data = data2 " << b1;
-    qDebug() << " json         " << json;
-    qDebug() << " json2        " << json2;
-    qDebug() << " json = json2 " << b2;
-    qDebug() << " string " << str;
-    qDebug() << " string2 " << str2;
-    qDebug() << " string = string2 " << b3;
+    qDebug() << " data         "        << datas;
+    qDebug() << " data2        "        << datas2;
+    qDebug() << " data = data2 "        << b1;        // true
+    qDebug() << " json         "        << json;
+    qDebug() << " json2        "        << json2;
+    qDebug() << " json = json2 "        << b2;        // true
+    qDebug() << " string "              << str;
+    qDebug() << " string2 "             << str2;
+    qDebug() << " string = string2 "    << b3;        // false
 }
 
 void HTestData::testTemplateName()

@@ -51,14 +51,14 @@ bool HAbstractChartExtend::disconnectExtend()
     return chart() != nullptr;
 }
 
-void HAbstractChartExtend::forEachMarker(const std::function<void(QLegendMarker *)> &func)
+void HAbstractChartExtend::foreachMarker(const std::function<void(QLegendMarker *)> &func)
 {
     auto markers = chart()->legend()->markers();
     for (auto m : markers)
         func(m);
 }
 
-void HAbstractChartExtend::forEachSeries(const std::function<void(QAbstractSeries *)> &func)
+void HAbstractChartExtend::foreachSeries(const std::function<void(QAbstractSeries *)> &func)
 {
     auto series = chart()->series();
     for (auto s : series)

@@ -2,7 +2,7 @@
 #include <QtGui/QPainter>
 
 // 根据九宫格 4 边的宽度把 rect 按九宫格分割为 9 个 rect: 左、左上、上、右上、右、右下、下、左下、中间
-QList<QRect> calculateNinePatchRects(const QRect &rect, const QMargins &margins)
+QList<QRect> calcNinePatchRects(const QRect &rect, const QMargins &margins)
 {
     int l = margins.left();
     int r = margins.right();
@@ -78,35 +78,31 @@ void HNinePatchPainter::setBackground(const QPixmap &value)
 void HNinePatchPainter::draw(QPainter *painter, const QRect &rect)
 {
     rebuildPixmapIfNeeded();
-    auto rects = calculateNinePatchRects(rect, d_ptr->margins);
-    // 绘制 4 个角
+    auto rects = calcNinePatchRects(rect, d_ptr->margins);
+    // 绘制4个角
     painter->drawPixmap(rects.at(1), d_ptr->topLeftPixmap);
     painter->drawPixmap(rects.at(3), d_ptr->topRightPixmap);
     painter->drawPixmap(rects.at(5), d_ptr->bottomRightPixmap);
     painter->drawPixmap(rects.at(7), d_ptr->bottomLeftPixmap);
     // 绘制左右边
-    if (d_ptr->stretchHorizontal)
+    if (d_ptr->stretchHorizontal)   // 水平拉伸
     {
-        // 水平拉伸
         painter->drawPixmap(rects.at(0), scalePixmap(d_ptr->leftPixmap, rects.at(0).size()));
         painter->drawPixmap(rects.at(4), scalePixmap(d_ptr->leftPixmap, rects.at(4).size()));
     }
-    else
+    else                            // 水平平铺
     {
-        // 水平平铺
         painter->drawTiledPixmap(rects.at(0), d_ptr->leftPixmap);
         painter->drawTiledPixmap(rects.at(4), d_ptr->rightPixmap);
     }
     // 绘制上下边
-    if (d_ptr->stretchVertical)
+    if (d_ptr->stretchVertical)     // 垂直拉伸
     {
-        // 垂直拉伸
         painter->drawPixmap(rects.at(2), scalePixmap(d_ptr->topPixmap, rects.at(2).size()));
         painter->drawPixmap(rects.at(6), scalePixmap(d_ptr->bottomPixmap, rects.at(6).size()));
     }
-    else
+    else                            // 垂直平铺
     {
-        // 垂直平铺
         painter->drawTiledPixmap(rects.at(2), d_ptr->topPixmap);
         painter->drawTiledPixmap(rects.at(6), d_ptr->bottomPixmap);
     }
@@ -115,30 +111,26 @@ void HNinePatchPainter::draw(QPainter *painter, const QRect &rect)
     int pmh = d_ptr->centerPixmap.height();
     int crw = rects.at(8).width();
     int crh = rects.at(8).height();
-    if (d_ptr->stretchHorizontal && d_ptr->stretchVertical)
+    if (d_ptr->stretchHorizontal && d_ptr->stretchVertical)         // 水平和垂直都拉伸
     {
-        // 水平和垂直都拉伸
         painter->drawPixmap(rects.at(8), scalePixmap(d_ptr->centerPixmap, rects.at(8).size()));
     }
-    else if (d_ptr->stretchHorizontal && !d_ptr->stretchVertical)
+    else if (d_ptr->stretchHorizontal && !d_ptr->stretchVertical)   // 水平拉伸，垂直平铺
     {
-        // 水平拉伸，垂直平铺
         if (crh % pmh != 0)
             pmh = pmh * crh / (crh + pmh);
         auto pixmap = scalePixmap(d_ptr->centerPixmap, QSize(crw, pmh));
         painter->drawTiledPixmap(rects.at(8), pixmap);
     }
-    else if (!d_ptr->stretchHorizontal && d_ptr->stretchVertical)
+    else if (!d_ptr->stretchHorizontal && d_ptr->stretchVertical)   // 水平平铺，垂直拉伸
     {
-        // 水平平铺，垂直拉伸
         if (crw % pmw != 0)
             pmw = pmw * crw / (crw + pmw);
         auto pixmap = scalePixmap(d_ptr->centerPixmap, QSize(pmw, crh));
         painter->drawTiledPixmap(rects.at(8), pixmap);
     }
-    else
+    else                                                            // 水平和垂直都平铺
     {
-        // 水平和垂直都平铺
         painter->drawTiledPixmap(rects.at(8), d_ptr->centerPixmap);
     }
 }
@@ -148,7 +140,7 @@ void HNinePatchPainter::rebuildPixmapIfNeeded()
     if (!d_ptr->rebuildPixmap)
         return;
 
-    auto rects = calculateNinePatchRects(d_ptr->background.rect(), d_ptr->margins);
+    auto rects = calcNinePatchRects(d_ptr->background.rect(), d_ptr->margins);
     d_ptr->leftPixmap        = d_ptr->background.copy(rects.at(0));
     d_ptr->topLeftPixmap     = d_ptr->background.copy(rects.at(1));
     d_ptr->topPixmap         = d_ptr->background.copy(rects.at(2));
@@ -158,5 +150,5 @@ void HNinePatchPainter::rebuildPixmapIfNeeded()
     d_ptr->bottomPixmap      = d_ptr->background.copy(rects.at(6));
     d_ptr->bottomLeftPixmap  = d_ptr->background.copy(rects.at(7));
     d_ptr->centerPixmap      = d_ptr->background.copy(rects.at(8));
-    d_ptr->rebuildPixmap = false;
+    d_ptr->rebuildPixmap     = false;
 }

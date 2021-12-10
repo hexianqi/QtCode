@@ -50,7 +50,8 @@ QImage HImageEffects::red(QImage image)
 }
 
 // 反转效果：让图像呈现一种色彩颠倒的效果。将红绿蓝通道都取各自的相反值(255-原值)。
-QImage HImageEffects::invert(QImage image) {
+QImage HImageEffects::invert(QImage image)
+{
     convert(&image, [](QColor c) {
         return QColor(255 - c.red(), 255 - c.green(), 255 - c.blue(), c.alpha());
     });
@@ -58,7 +59,8 @@ QImage HImageEffects::invert(QImage image) {
 }
 
 // 亮度效果：让图像变得更亮或更暗。将红绿蓝通道，加上一个值。
-QImage HImageEffects::brightness(QImage image, int delta) {
+QImage HImageEffects::brightness(QImage image, int delta)
+{
     convert(&image, [=](QColor c) {
         int r = qBound(0, c.red() + delta, 255);
         int g = qBound(0, c.green() + delta, 255);

@@ -23,7 +23,7 @@ bool HMarkerChartExtend::connectExtend()
         return false;
 
 //    forEachMarker(std::bind(&HMarkerChartExtend::connectMarker, this, std::placeholders::_1));
-    forEachMarker([=](QLegendMarker *p) { connectMarker(p); });
+    foreachMarker([=](QLegendMarker *p) { connectMarker(p); });
     return true;
 }
 
@@ -32,7 +32,7 @@ bool HMarkerChartExtend::disconnectExtend()
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 
-    forEachMarker([=](QLegendMarker *p) { disconnectMarker(p); });
+    foreachMarker([=](QLegendMarker *p) { disconnectMarker(p); });
     return true;
 }
 

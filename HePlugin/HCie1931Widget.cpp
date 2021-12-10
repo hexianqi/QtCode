@@ -1,6 +1,7 @@
 #include "HCie1931Widget_p.h"
 #include "HCartesianCoordinate.h"
 #include "HPluginHelper.h"
+#include "HPainterHelper.h"
 #include "HPositionTracking.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
@@ -347,7 +348,10 @@ bool HCie1931Widget::drawCIE(QPainter *painter)
 
     auto target = d->plotArea.adjusted(1, 1, -1, -1);
     auto source = d->coordinate->mapToAxis(d->cie1931.rect(), QRectF(0, 0, 1, 1));
+    painter->save();
+    painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->drawPixmap(target, d->cie1931, source);
+    painter->restore();
     return true;
 }
 
@@ -409,19 +413,12 @@ bool HCie1931Widget::drawPoint(QPainter *painter)
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(d->colorPoint);
     for (auto p : d->points)
-    {
-        auto t = d->coordinate->mapToPosition(p, d->plotArea);
-        painter->drawLine(QLineF(t.x(), t.y() - 3, t.x(), t.y() + 3));
-        painter->drawLine(QLineF(t.x() - 3, t.y(), t.x() + 3, t.y()));
-    }
-
+        HPainterHelper::drawCrossCursor(painter, d->coordinate->mapToPosition(p, d->plotArea));
     if (!d->pointFocus.isNull())
     {
         auto text = QString("%1, %2").arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4);
-        auto t = d->coordinate->mapToPosition(d->pointFocus, d->plotArea);
         painter->setPen(QPen(d->colorPointFocus, 2));
-        painter->drawLine(QLineF(t.x(), t.y() - 3, t.x(), t.y() + 3));
-        painter->drawLine(QLineF(t.x() - 3, t.y(), t.x() + 3, t.y()));
+        HPainterHelper::drawCrossCursor(painter, d->coordinate->mapToPosition(d->pointFocus, d->plotArea));
         painter->setFont(d->fontPointFocus);
         painter->drawText(d->plotArea.adjusted(10, 10, -10, -10), Qt::AlignRight | Qt::AlignTop, text);
     }

@@ -9,6 +9,8 @@ HEADERS += \
     $$PWD/HTm30RfiChartView_p.h \
     $$PWD/HTm30RhshjChartView.h \
     $$PWD/HTm30RhshjChartView_p.h \
+    $$PWD/HTm30RxhjWidget.h \
+    $$PWD/HTm30RxhjWidget_p.h \
     $$PWD/HZoomChartView.h \
     $$PWD/HZoomChartView_p.h \
     $$PWD/HVernierChartView.h \
@@ -26,6 +28,7 @@ SOURCES += \
     $$PWD/HTm30RfhjChartView.cpp \
     $$PWD/HTm30RfiChartView.cpp \
     $$PWD/HTm30RhshjChartView.cpp \
+    $$PWD/HTm30RxhjWidget.cpp \
     $$PWD/HZoomChartView.cpp \
     $$PWD/HVernierChartView.cpp \
     $$PWD/HCie1931ChartView.cpp \

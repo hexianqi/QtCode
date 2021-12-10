@@ -21,5 +21,6 @@
         <file>image/table_redo.png</file>
         <file>image/table_undo.png</file>
         <file>dat/Tm30BarCamp99.dat</file>
+        <file>image/cvg_background.png</file>
     </qresource>
 </RCC>

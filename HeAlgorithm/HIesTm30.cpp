@@ -239,6 +239,10 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
     bt.fill(0.0, 16);
     ar.fill(0.0, 16);
     br.fill(0.0, 16);
+    atn.fill(0.0, 16);
+    btn.fill(0.0, 16);
+    arn.fill(0.0, 16);
+    brn.fill(0.0, 16);
     dE.fill(0.0, 16);
     Rf.fill(0.0, 16);
     Rcs.fill(0.0, 16);
@@ -269,7 +273,6 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
     double Ct, Cr, Ctn;
     double ht, hr;
     double da, db;
-    QVector<double> atn, btn, arn, brn;
     for (i = 0; i < 16; i++)
     {
         ht = calc_hue_angle(at[i], bt[i]);
@@ -278,23 +281,19 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
         Cr = sqrt(pow(ar[i], 2) + pow(br[i], 2)) + 1e-308;
         Ctn = 100 * Ct / (Cr + 1e-308);
 
-        atn << Ctn * cos(ht * M_PI / 180);
-        btn << Ctn * sin(ht * M_PI / 180);
-        arn << 100 * cos(hr * M_PI / 180);
-        brn << 100 * sin(hr * M_PI / 180);
+        atn[i] = Ctn * cos(ht * M_PI / 180);
+        btn[i] = Ctn * sin(ht * M_PI / 180);
+        arn[i] = 100 * cos(hr * M_PI / 180);
+        brn[i] = 100 * sin(hr * M_PI / 180);
 
         da = (at[i] - ar[i]) / Cr;
         db = (bt[i] - br[i]) / Cr;
-        Rcs[i] = db * sin(hbincenters[i]) + da * cos(hbincenters[i]);
+        Rcs[i] = 100 * (db * sin(hbincenters[i]) + da * cos(hbincenters[i]));
         Rhs[i] = db * cos(hbincenters[i]) - da * sin(hbincenters[i]); // db * cos(hbincenters[i]) + da * sin(hbincenters[i]);
 
         Ar += 0.5 * (ar_close[i + 1] - ar_close[i]) * (br_close[i + 1] + br_close[i]);
         At += 0.5 * (at_close[i + 1] - at_close[i]) * (bt_close[i + 1] + bt_close[i]);
     }
-    atn_close = QVector<double>() << atn << atn[0];
-    btn_close = QVector<double>() << btn << btn[0];
-    arn_close = QVector<double>() << arn << arn[0];
-    brn_close = QVector<double>() << brn << brn[0];
     Rg = 100 * At / Ar;
 }
 

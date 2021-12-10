@@ -33,3 +33,51 @@ QPointF HPainterHelper::drawChart(QPainter *painter, QRectF rect, QWidget *widge
     widget->render(painter, rect.topLeft().toPoint());
     return rect.bottomRight();
 }
+
+void HPainterHelper::drawQuiver(QPainter *painter, QPointF p1, QPointF p2, int size)
+{
+    QLineF line1, line2, line3;
+    line1.setP1(p1);
+    line1.setP2(p2);
+    line2.setP1(p2);
+    line2.setLength(size);
+    line2.setAngle(line1.angle() + 20 + 180);
+    line3.setP1(p2);
+    line3.setLength(size);
+    line3.setAngle(line1.angle() - 20 + 180);
+    painter->drawLine(line1);
+    painter->drawLine(line2);
+    painter->drawLine(line3);
+}
+
+void HPainterHelper::drawCrosshair(QPainter *painter, QPointF point, int size, const QColor &color)
+{
+    painter->save();
+    painter->setPen(QPen(color, size));
+    painter->drawLine(point - QPointF(0, -size * 3),  point - QPointF(0, -size));
+    painter->drawLine(point - QPointF(0,  size * 3),  point - QPointF(0,  size));
+    painter->drawLine(point - QPointF(-size * 3, 0),  point - QPointF(-size, 0));
+    painter->drawLine(point - QPointF( size * 3, 0),  point - QPointF( size, 0));
+    painter->restore();
+}
+
+void HPainterHelper::drawCrossCursor(QPainter *painter, QPointF point, int size, const QColor &color)
+{
+    auto text = QString("+");
+    auto font = painter->font();
+    font.setPixelSize(size);
+    auto fm = QFontMetrics(font);
+    QPainterPath path;
+    path.addText(point - QPointF(fm.width(text) / 2.0, -fm.height() / 4.0), font, text);
+
+    painter->save();
+    painter->setPen(color);
+    painter->drawPath(path);
+    painter->restore();
+}
+
+void HPainterHelper::drawCrossCursor(QPainter *painter, QPointF point, int size)
+{
+    painter->drawLine(QLineF(point.x(), point.y() - size, point.x(), point.y() + size));
+    painter->drawLine(QLineF(point.x() - size, point.y(), point.x() + size, point.y()));
+}

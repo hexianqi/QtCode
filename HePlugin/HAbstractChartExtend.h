@@ -35,8 +35,8 @@ protected:
     HAbstractChartExtend(HAbstractChartExtendPrivate &p, QObject *parent = nullptr);
 
 protected:
-    void forEachMarker(const std::function<void(QLegendMarker *)> &func);
-    void forEachSeries(const std::function<void(QAbstractSeries *)> &func);
+    void foreachMarker(const std::function<void(QLegendMarker *)> &func);
+    void foreachSeries(const std::function<void(QAbstractSeries *)> &func);
 
 protected:
     QScopedPointer<HAbstractChartExtendPrivate> d_ptr;

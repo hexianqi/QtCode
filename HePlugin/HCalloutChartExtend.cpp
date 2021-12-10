@@ -23,7 +23,7 @@ bool HCalloutChartExtend::connectExtend()
     if (!HAbstractChartExtend::connectExtend())
         return false;
 
-    forEachSeries([=](QAbstractSeries *p) { connectSeries(p); });
+    foreachSeries([=](QAbstractSeries *p) { connectSeries(p); });
     return true;
 }
 
@@ -32,7 +32,7 @@ bool HCalloutChartExtend::disconnectExtend()
     if (!HAbstractChartExtend::disconnectExtend())
         return false;
 
-    forEachSeries([=](QAbstractSeries *p) { disconnectSeries(p); });
+    foreachSeries([=](QAbstractSeries *p) { disconnectSeries(p); });
     return true;
 }
 
