@@ -2,9 +2,8 @@
 #include <QtCore/QDateTime>
 #include <QtNetwork/QUdpSocket>
 #include <QtNetwork/QNetworkDatagram>
-#include <QtDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNtpClient::HNtpClient(QObject *parent) :
     QObject(parent),
@@ -91,4 +90,4 @@ void HNtpClient::init()
     connect(d_ptr->socket, &QUdpSocket::readyRead, this, &HNtpClient::readData);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -8,9 +8,7 @@
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HE_CONTROLLER_EXPORT IModel : public QObject, public IInitializeable
 {
@@ -41,4 +39,4 @@ public:
     virtual bool exportFile(quint32 type) = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

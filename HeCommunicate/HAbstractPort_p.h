@@ -2,7 +2,7 @@
 
 #include "HAbstractPort.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractPortPrivate
 {
@@ -12,4 +12,4 @@ public:
     bool connected = false;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

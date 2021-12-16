@@ -1,7 +1,7 @@
 #include "HPieCircular_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPieCircular::HPieCircular(QObject *parent) :
     HAbstractCircular(*new HPieCircularPrivate, parent)
@@ -89,4 +89,4 @@ void HPieCircular::setSpanAngle(int value)
     emit dataChanged();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

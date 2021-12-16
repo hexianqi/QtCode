@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HHttpTest
 {
@@ -14,4 +14,4 @@ public:
     static void run();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

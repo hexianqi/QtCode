@@ -1,7 +1,7 @@
 #include "HSlCodec_p.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSlCodecPrivate::HSlCodecPrivate()
 {
@@ -19,10 +19,7 @@ HSlCodec::HSlCodec(HSlCodecPrivate &p) :
 {
 }
 
-HSlCodec::~HSlCodec()
-{
-    qDebug() << __func__;
-}
+HSlCodec::~HSlCodec() = default;
 
 void HSlCodec::initialize(QVariantMap param)
 {
@@ -145,4 +142,4 @@ uchar HSlCodec::calcCheckCode(QVector<uchar> value)
     return sum % 128;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

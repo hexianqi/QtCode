@@ -3,7 +3,7 @@
 #include "HeCore/HDataFormatInfo.h"
 #include <QtCore/QDataStream>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjustItemPrivate::HAdjustItemPrivate()
 {
@@ -65,4 +65,4 @@ QStringList HAdjustItem::toStringList()
                          << HCore::toString(t, data("[标准值]"));
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

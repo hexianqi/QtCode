@@ -3,7 +3,7 @@
 #include "HOpenGLTexture2D.h"
 #include <QtCore/QRectF>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGameObject::HGameObject(QObject *parent) :
     QObject(parent),
@@ -96,4 +96,4 @@ bool HGameObject::checkCollision(HGameObject *other)
     return collisionX && collisionY;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

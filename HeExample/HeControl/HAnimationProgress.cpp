@@ -1,7 +1,7 @@
 #include "HAnimationProgress_p.h"
 #include <QtCore/QPropertyAnimation>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAnimationProgress::HAnimationProgress(QWidget *parent) :
     HAbstractProgress(*new HAnimationProgressPrivate, parent)
@@ -88,4 +88,4 @@ void HAnimationProgress::init()
     connect(d->animation, &QPropertyAnimation::valueChanged, this, [=](QVariant value) { setCurrentValue(value.toDouble()); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

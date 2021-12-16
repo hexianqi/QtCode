@@ -9,9 +9,8 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
 #include <QtWidgets/QApplication>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSeekSlider::HSeekSlider(Qt::Orientation orientation, bool classic, QWidget *parent) :
     QSlider(orientation, parent),
@@ -395,4 +394,4 @@ void HSeekSlider::init()
     connect(loadingOut, &QPropertyAnimation::valueChanged, this, [=](QVariant value) { setLoading(value.toDouble()); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

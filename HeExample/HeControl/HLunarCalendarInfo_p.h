@@ -3,7 +3,7 @@
 #include "HLunarCalendarInfo.h"
 #include <QtCore/QMap>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HLunarCalendarInfoPrivate
 {
@@ -23,4 +23,4 @@ public:
     QList<int> chineseTwentyFourData;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

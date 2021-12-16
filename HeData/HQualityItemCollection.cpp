@@ -5,7 +5,7 @@
 #include "HeCore/HAppContext.h"
 #include <QtGui/QColor>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQualityItemCollectionPrivate::HQualityItemCollectionPrivate()
 {
@@ -37,14 +37,14 @@ void HQualityItemCollection::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IQualityItem>(s, d->items, [=](QString type) { return d->factory->createQualityItem(type); });
+    HStreamHelper::read<QString, IQualityItem>(s, d->items, [=](QString type) { return d->factory->createQualityItem(type); });
 }
 
 void HQualityItemCollection::writeContent(QDataStream &s)
 {
     Q_D(HQualityItemCollection);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IQualityItem>(s, d->items);
+    HStreamHelper::write<QString, IQualityItem>(s, d->items);
 }
 
 bool HQualityItemCollection::isValid(QVariantMap value)
@@ -75,4 +75,4 @@ double HQualityItemCollection::drift(QString type, QVariant value)
     return item(type)->drift(value);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

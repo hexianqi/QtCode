@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HInterp
+class HInterp
 {
 public:
     enum InterpType
@@ -38,4 +38,4 @@ public:
     static double eval_integ(QPolygonF basis, double a, double b, InterpType type = Linera);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,7 +6,7 @@
 
 #include "HAbstractConfigHandler.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HExportDeviceHandlerPrivate;
 
@@ -27,5 +27,5 @@ public:
 
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

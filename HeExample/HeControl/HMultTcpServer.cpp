@@ -1,7 +1,7 @@
 #include "HMultTcpServer_p.h"
 #include <QtNetwork/QTcpSocket>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMultTcpServer::HMultTcpServer(QObject *parent) :
     QTcpServer(parent),
@@ -58,4 +58,4 @@ void HMultTcpServer::handleClientDisconnected()
     emit clientDisconnected(d);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

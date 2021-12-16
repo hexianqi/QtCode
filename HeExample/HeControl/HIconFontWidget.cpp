@@ -3,7 +3,7 @@
 #include "HIconFontFactory.h"
 #include <QtGui/QFont>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIconFontWidget::HIconFontWidget(QWidget *parent) :
     QWidget(parent),
@@ -39,4 +39,4 @@ void HIconFontWidget::init()
     ui->label_4->setText(QChar(0xe907));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -7,7 +7,7 @@
 #include "HAbstractCircular.h"
 #include <QtGui/QColor>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HCircleCircularPrivate;
 
@@ -21,7 +21,7 @@ public:
     explicit HCircleCircular(QObject *parent = nullptr);
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -37,4 +37,4 @@ protected:
     HCircleCircular(HCircleCircularPrivate &p, QObject *parent = nullptr);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

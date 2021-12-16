@@ -5,23 +5,18 @@
 #pragma once
 
 #include "HAbstractTestWidget.h"
-#include "HeData/HDataGlobal.h"
 
 namespace Ui {
 class HSpecCalibrateWidget;
 }
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class ISpecCalibrate;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class ITestSetWidget;
 class HSpecCalibrateWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecCalibrateWidget : public HAbstractTestWidget
+class HSpecCalibrateWidget : public HAbstractTestWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecCalibrateWidget)
@@ -63,4 +58,4 @@ private:
     Ui::HSpecCalibrateWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

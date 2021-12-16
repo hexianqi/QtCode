@@ -6,7 +6,7 @@
 
 #include "HBigProtocol.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDaXinProtocolPrivate;
 
@@ -19,12 +19,12 @@ public:
     ~HDaXinProtocol() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
     HDaXinProtocol(HDaXinProtocolPrivate &);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -8,7 +8,7 @@
 
 class QOpenGLShaderProgram;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HShaderEngine_PBRPrivate;
 
@@ -22,7 +22,7 @@ public:
     ~HShaderEngine_PBR() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -49,7 +49,7 @@ public:
     ~HShaderEngine_PBR2() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -68,7 +68,7 @@ public:
     ~HShaderEngine_PBR3() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
@@ -94,7 +94,7 @@ public:
     ~HShaderEngine_PBR4() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
@@ -117,7 +117,7 @@ public:
     ~HShaderEngine_PBR5() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
@@ -141,12 +141,12 @@ public:
     ~HShaderEngine_PBR6() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
     void drawSpheres(HGeometryEngine *, QVariantMap param) override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -3,7 +3,6 @@
 #include "HeController/IModel.h"
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
 HTestSetWidget2000::HTestSetWidget2000(QWidget *parent) :
     HAbstractTestSetWidget(*new HTestSetWidget2000Private, parent),
@@ -15,7 +14,6 @@ HTestSetWidget2000::HTestSetWidget2000(QWidget *parent) :
 
 HTestSetWidget2000::~HTestSetWidget2000()
 {
-    qDebug() << __func__;
     delete ui;
 }
 

@@ -3,7 +3,7 @@
 #include "HOpenGLTexture2D.h"
 #include "glad/glad.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLTexture2DPrivate
 {
@@ -19,5 +19,5 @@ public:
     unsigned int magFilter = GL_LINEAR;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

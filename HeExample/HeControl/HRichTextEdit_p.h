@@ -6,7 +6,7 @@ class QToolBar;
 class QComboBox;
 class QFontComboBox;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HColorButton;
 
@@ -33,4 +33,4 @@ public:
     QList<QAction *> separators;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

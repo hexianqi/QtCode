@@ -11,7 +11,7 @@
 #include <QtNetwork/QHttpMultiPart>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // 使用用户设定的 URL、请求头、参数等创建 Request
 // 1. 如果是 GET 请求，并且参数不为空，则编码请求的参数，放到 URL 后面
@@ -384,4 +384,4 @@ void HHttpClient::upload(const QStringList &fileNames)
     uploadData(d_ptr.data(), fileNames, QByteArray());
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

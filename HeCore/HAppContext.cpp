@@ -1,6 +1,6 @@
 #include "HAppContext.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QHash<QString, QVariant> HAppContext::__contextValue;
 QHash<QString, void *> HAppContext::__contextPointer;
@@ -29,4 +29,4 @@ void *HAppContext::getContextPointer(const QString &key)
     return __contextPointer.value(key);
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

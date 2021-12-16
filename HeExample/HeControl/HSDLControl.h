@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include "SDL2/SDL_blendmode.h"
 #include <QtCore/QObject>
 #include <QtCore/QVariant>
@@ -14,7 +14,7 @@ union SDL_Event;
 struct SDL_Texture;
 struct AVFrame;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HFFAudioParams;
 struct HFFFrame;
@@ -87,5 +87,5 @@ protected:
     friend class HSDLControlThread;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

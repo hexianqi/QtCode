@@ -3,7 +3,7 @@
 #include "HNavListView.h"
 #include <QtWidgets/QStyledItemDelegate>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNavListModel : public QAbstractListModel
 {
@@ -115,6 +115,6 @@ public:
     HNavListDelegate *delegate;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 
-Q_DECLARE_METATYPE(HE_CONTROL_NAMESPACE::HNavListModel::HTreeNode *)
+Q_DECLARE_METATYPE(HE_NAMESPACE::HNavListModel::HTreeNode *)

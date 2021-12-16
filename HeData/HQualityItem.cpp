@@ -4,7 +4,7 @@
 #include <QtCore/QPointF>
 #include <QtCore/QDataStream>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQualityItemPrivate::HQualityItemPrivate()
 {
@@ -87,4 +87,4 @@ QStringList HQualityItem::toStringList()
     return QStringList() << HCore::toString(t, p.x()) << HCore::toString(t, p.y()) << data("[不足颜色]").value<QColor>().name() << data("[超出颜色]").value<QColor>().name();
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

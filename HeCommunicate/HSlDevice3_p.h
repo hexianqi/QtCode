@@ -4,7 +4,7 @@
 #include "HSlDevice3.h"
 #include <QtCore/QSharedPointer>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ICodec;
 
@@ -17,4 +17,4 @@ public:
     QSharedPointer<ICodec> codec;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

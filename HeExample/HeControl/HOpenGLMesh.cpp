@@ -4,7 +4,7 @@
 #include <QtGui/QOpenGLShaderProgram>
 #include <QtGui/QOpenGLExtraFunctions>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HHOpenGLMeshPrivate::HHOpenGLMeshPrivate()
 {
@@ -82,4 +82,4 @@ void HOpenGLMesh::setInstancedMatrix(int location)
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

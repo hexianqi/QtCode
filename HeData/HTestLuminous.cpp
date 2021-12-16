@@ -2,7 +2,7 @@
 #include "ILuminousCalibrate.h"
 #include "ILuminousCalibrateCollection.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestLuminousPrivate::HTestLuminousPrivate()
 {
@@ -118,4 +118,4 @@ bool HTestLuminous::matchGears()
     return true;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,19 +4,15 @@
 #include "HeData/IGradeCollection.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HSelectDialog.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeSelectHandler::HGradeSelectHandler(QObject *parent) :
     HAbstractConfigHandler(*new HGradeSelectHandlerPrivate, parent)
 {
 }
 
-HGradeSelectHandler::~HGradeSelectHandler()
-{
-    qDebug() << __func__;
-}
+HGradeSelectHandler::~HGradeSelectHandler() = default;
 
 QString HGradeSelectHandler::typeName()
 {
@@ -38,4 +34,4 @@ void HGradeSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_GRADE);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

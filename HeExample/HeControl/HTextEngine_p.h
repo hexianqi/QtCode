@@ -11,7 +11,7 @@ class QOpenGLFunctions;
 class QOpenGLBuffer;
 class QOpenGLTexture;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HCharacter
 {
@@ -43,5 +43,5 @@ public:
     QHash<QChar, HCharacter *> characterCache;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

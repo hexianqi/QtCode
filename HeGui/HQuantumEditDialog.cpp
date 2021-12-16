@@ -2,9 +2,8 @@
 #include "ui_HQuantumEditDialog.h"
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQuantumEditDialog::HQuantumEditDialog(QWidget *parent) :
     HAbstractTestDataEditDialog(*new HQuantumEditDialogPrivate, parent),
@@ -16,7 +15,6 @@ HQuantumEditDialog::HQuantumEditDialog(QWidget *parent) :
 
 HQuantumEditDialog::~HQuantumEditDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -68,4 +66,4 @@ void HQuantumEditDialog::init()
     showData();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

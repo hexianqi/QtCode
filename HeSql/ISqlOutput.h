@@ -4,20 +4,12 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include "HeData/HDataGlobal.h"
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_DATA_BEGIN_NAMESPACE
 class IPrintTemplate;
 class ITextExportTemplate;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
-
 class ISqlTableModel;
 
 class ISqlOutput : public IInitializeable
@@ -42,4 +34,4 @@ public:
     virtual void printPdf() = 0;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

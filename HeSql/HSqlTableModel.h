@@ -6,7 +6,7 @@
 
 #include "ISqlTableModel.h"
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlTableModelPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HSqlTableModel() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -48,4 +48,4 @@ protected:
     QScopedPointer<HSqlTableModelPrivate> d_ptr;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

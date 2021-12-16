@@ -6,7 +6,7 @@
 
 #include "HMimeText.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMimeHtmlPrivate;
 
@@ -28,4 +28,4 @@ protected:
     HMimeHtml(HMimeHtmlPrivate &p, const QString &html = QString(), QObject *parent = nullptr);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

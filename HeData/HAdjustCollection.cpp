@@ -7,7 +7,7 @@
 #include "QXlsx/xlsxdocument.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjustCollectionPrivate::HAdjustCollectionPrivate()
 {
@@ -30,7 +30,7 @@ void HAdjustCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IAdjust>(s, items, [=](QString type) { return factory->createAdjust(type); });
+    HStreamHelper::read<QString, IAdjust>(s, items, [=](QString type) { return factory->createAdjust(type); });
     s >> useIndex;
 }
 
@@ -52,7 +52,7 @@ void HAdjustCollectionPrivate::readContent(Document *p)
 void HAdjustCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IAdjust>(s, items);
+    HStreamHelper::write<QString, IAdjust>(s, items);
     s << useIndex;
 }
 
@@ -91,4 +91,4 @@ QVariantMap HAdjustCollection::correct(QVariantMap value)
     return i == nullptr ? QVariantMap() : i->correct(value);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

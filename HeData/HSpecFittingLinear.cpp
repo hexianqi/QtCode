@@ -3,9 +3,7 @@
 #include "HeAlgorithm/HInterp.h"
 #include "HeAlgorithm/HMath.h"
 
-HE_ALGORITHM_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingLinear::HSpecFittingLinear() :
     HSpecFitting(*new HSpecFittingLinearPrivate)
@@ -68,4 +66,4 @@ double HSpecFittingLinear::calcRate(double value)
 //    return HInterp::eval(d->fittingPoints, value, HInterpType::Cspline);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

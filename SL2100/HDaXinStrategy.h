@@ -6,7 +6,7 @@
 
 #include "HeController/HAbstractActionStrategy.h"
 
-HE_CONTROLLER_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HDaXinStrategyPrivate;
 

@@ -4,7 +4,7 @@
 #include <QtCore/QHash>
 #include <QtCore/QSet>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractEventFilterPrivate
 {
@@ -14,4 +14,4 @@ public:
     QHash<QEvent::Type, std::function<bool(QEvent *)>> handlers;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

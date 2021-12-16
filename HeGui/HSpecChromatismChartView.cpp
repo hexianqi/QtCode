@@ -9,9 +9,8 @@
 #include "HeData/IChromatismItem.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QMenu>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecChromatismChartViewPrivate::HSpecChromatismChartViewPrivate()
 {
@@ -26,10 +25,7 @@ HSpecChromatismChartView::HSpecChromatismChartView(QWidget *parent) :
     init();
 }
 
-HSpecChromatismChartView::~HSpecChromatismChartView()
-{
-    qDebug() << __func__;
-}
+HSpecChromatismChartView::~HSpecChromatismChartView() = default;
 
 void HSpecChromatismChartView::initMenuShow()
 {
@@ -76,4 +72,4 @@ void HSpecChromatismChartView::showChromatism(QAction *p)
     setData(p->data().toMap());
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

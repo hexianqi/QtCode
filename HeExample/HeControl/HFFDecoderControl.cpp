@@ -2,7 +2,7 @@
 #include "HFFCmdUtil.h"
 #include "HFFDataControl.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFFDecoderControl::HFFDecoderControl(QObject *parent) :
     QObject(parent),
@@ -165,4 +165,4 @@ int HFFDecoderControl::decode(HFFPacketQueue *packets, AVFrame *frame, AVSubtitl
     av_packet_free(&pkt);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

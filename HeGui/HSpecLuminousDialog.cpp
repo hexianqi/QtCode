@@ -5,9 +5,8 @@
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include "HeData/HSpecLuminous.h"
 #include <QtWidgets/QInputDialog>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecLuminousDialog::HSpecLuminousDialog(QWidget *parent) :
     QDialog(parent),
@@ -20,7 +19,6 @@ HSpecLuminousDialog::HSpecLuminousDialog(QWidget *parent) :
 
 HSpecLuminousDialog::~HSpecLuminousDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -97,4 +95,4 @@ void HSpecLuminousDialog::init()
     setWindowTitle(tr("光通量自吸收配置"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

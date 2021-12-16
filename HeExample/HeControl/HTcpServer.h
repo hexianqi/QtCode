@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtNetwork/QTcpServer>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTcpServerPrivate;
 
@@ -54,4 +54,4 @@ protected:
     QScopedPointer<HTcpServerPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

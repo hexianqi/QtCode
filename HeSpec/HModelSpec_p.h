@@ -2,16 +2,11 @@
 
 #include "HModelSpec.h"
 #include "HeController/HAbstractModel_p.h"
-#include "HeGui/HGuiGlobal.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 class HSpecCalibrateWidget;
-HE_GUI_END_NAMESPACE
-HE_GUI_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
 class ITestSpec;
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 
 class HModelSpecPrivate : public HAbstractModelPrivate
 {

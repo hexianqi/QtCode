@@ -3,7 +3,7 @@
 #include "HDaXinDevice.h"
 #include "HAbstractDevice_p.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDaXinDevicePrivate : public HAbstractDevicePrivate
 {
@@ -15,4 +15,4 @@ public:
     uchar sa;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

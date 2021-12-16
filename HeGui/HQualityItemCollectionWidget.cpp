@@ -9,9 +9,8 @@
 #include "HePlugin/HPluginHelper.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtWidgets/QColorDialog>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQualityItemCollectionPrivate::HQualityItemCollectionPrivate()
 {
@@ -30,7 +29,6 @@ HQualityItemCollectionWidget::HQualityItemCollectionWidget(QWidget *parent) :
 
 HQualityItemCollectionWidget::~HQualityItemCollectionWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -145,4 +143,4 @@ void HQualityItemCollectionWidget::initSelected()
     ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

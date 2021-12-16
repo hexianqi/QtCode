@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 
 class QKeyEvent;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGameManagerPrivate;
 
@@ -50,5 +50,5 @@ protected:
     QScopedPointer<HGameManagerPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -4,19 +4,12 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
 #include "HeCore/HSingleton3.h"
-#include "HeFile/HFileGlobal.h"
 #include <QtCore/QStringList>
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_FILE_BEGIN_NAMESPACE
 class HJson;
-HE_FILE_END_NAMESPACE
-HE_FILE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
 
 class HDBConfig
 {
@@ -48,4 +41,4 @@ private:
     HJson *_json;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

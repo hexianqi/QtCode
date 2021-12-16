@@ -4,15 +4,15 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
+#include <QtCore/QVector>
 
 class QPointF;
-class QPolygonF;
 class QColor;
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HSpecHelper
+class HSpecHelper
 {
 public:
     // 色坐标转换
@@ -31,4 +31,4 @@ public:
     static QColor wave2color(double wave, double gamma = 0.8, double intensityMax = 255.0);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

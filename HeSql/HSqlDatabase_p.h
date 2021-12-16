@@ -3,7 +3,7 @@
 #include "HSqlDatabase.h"
 #include <QtSql/QSqlDatabase>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlDatabasePrivate
 {
@@ -12,4 +12,4 @@ public:
     QMap<QString, ISqlTableModel *> tableModels;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

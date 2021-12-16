@@ -14,9 +14,8 @@
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include "HeController/IModel.h"
 #include <QtWidgets/QAction>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjustEditWidgetPrivate::HAdjustEditWidgetPrivate()
 {
@@ -44,7 +43,6 @@ HAdjustEditWidget::HAdjustEditWidget(QWidget *parent) :
 
 HAdjustEditWidget::~HAdjustEditWidget()
 {
-    qDebug() << __func__;
     disconnect(d_ptr->model, &IModel::actionFinished, this, &HAdjustEditWidget::handleAction);
     delete ui;
 }
@@ -205,4 +203,4 @@ void HAdjustEditWidget::initSelected()
     ui->pushButton_4->setEnabled(!d_ptr->selecteds.isEmpty());
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

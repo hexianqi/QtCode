@@ -1,7 +1,7 @@
 #include "HMultStream_p.h"
 #include <QtCore/QFileInfo>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 IStream *HMultStreamPrivate::findStream(QString fileName)
 {
@@ -74,4 +74,4 @@ void HMultStream::addStream(QString suffix, IStream *p, bool focus)
     d->fileFilter.clear();
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

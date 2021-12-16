@@ -1,6 +1,6 @@
 #include "HMimeAttachment_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMimeAttachment::HMimeAttachment(const QString &fileName, QObject *parent) :
     HMimeFile(*new HMimeAttachmentPrivate, fileName, parent)
@@ -19,4 +19,4 @@ void HMimeAttachment::prepare()
     HMimeFile::prepare();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

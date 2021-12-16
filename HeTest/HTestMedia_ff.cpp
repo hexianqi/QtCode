@@ -4,7 +4,7 @@
 #include <QtCore/QDataStream>
 #include <QtCore/QDebug>
 
-HE_CONTROL_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 extern "C"
 {

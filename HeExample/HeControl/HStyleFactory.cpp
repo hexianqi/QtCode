@@ -2,9 +2,9 @@
 #include "HFlatStyle.h"
 #include "HQssStyle.h"
 #include "HeCore/HObjectFactory.h"
-#include <QtCore/QDebug>
+#include <QtCore/QSet>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HStyleFactory::HStyleFactory(QObject *parent) :
     QObject(parent),
@@ -20,10 +20,7 @@ HStyleFactory::HStyleFactory(HStyleFactoryPrivate &p, QObject *parent) :
     registerClass();
 }
 
-HStyleFactory::~HStyleFactory()
-{
-    qDebug() << __func__;
-}
+HStyleFactory::~HStyleFactory() = default;
 
 void HStyleFactory::initialize(QVariantMap /*param*/)
 {
@@ -61,4 +58,4 @@ void HStyleFactory::registerClass()
     d_ptr->styles = HObjectFactory::keys().toSet().subtract(b).toList();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

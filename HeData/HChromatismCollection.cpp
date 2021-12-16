@@ -7,7 +7,7 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChromatismCollectionPrivate::HChromatismCollectionPrivate()
 {
@@ -27,14 +27,14 @@ void HChromatismCollectionPrivate::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IChromatism>(s, items, [=](QString type) { return factory->createChromatism(type); });
+    HStreamHelper::read<QString, IChromatism>(s, items, [=](QString type) { return factory->createChromatism(type); });
     s >> useIndex;
 }
 
 void HChromatismCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IChromatism>(s, items);
+    HStreamHelper::write<QString, IChromatism>(s, items);
     s << useIndex;
 }
 
@@ -69,4 +69,4 @@ QVariantMap HChromatismCollection::toMap()
     return i == nullptr ? QVariantMap() : i->toMap();
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 
 class QUdpSocket;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HUdpClientWidgetPrivate : public HAbstractClientWidgetPrivate
 {
@@ -13,4 +13,4 @@ public:
     QUdpSocket *socket = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

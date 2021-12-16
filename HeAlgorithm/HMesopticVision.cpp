@@ -3,7 +3,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMesopticVision::HMesopticVision()
 {
@@ -55,4 +55,4 @@ void HMesopticVision::readStandard()
     file.close();
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

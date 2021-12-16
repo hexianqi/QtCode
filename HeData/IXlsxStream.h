@@ -6,14 +6,14 @@
 #pragma once
 
 #include "IStream.h"
-#include <functional>
 
 namespace QXlsx {
 class Document;
 }
+
 using namespace QXlsx;
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IXlsxStream : public virtual IStream
 {
@@ -28,4 +28,4 @@ public:
     virtual bool writeContent(Document *) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QIcon>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HHueSatRadialPicker::HHueSatRadialPicker(QWidget *parent) :
     QWidget(parent),
@@ -213,4 +213,4 @@ double HHueSatRadialPicker::hue(const QPointF &point)
     return h / 360.0;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,7 +6,7 @@
 
 #include "IQssStyle.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HQssStylePrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HQssStyle() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -39,4 +39,4 @@ private:
     void init();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

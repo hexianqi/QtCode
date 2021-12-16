@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HReferenceGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpriteRenderer;
 class HGameObject;
@@ -41,5 +41,5 @@ protected:
     QScopedPointer<HPropManagerPrivate> d_ptr;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

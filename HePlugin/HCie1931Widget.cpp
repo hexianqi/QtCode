@@ -482,6 +482,7 @@ void HCie1931Widget::init()
     connect(enablePoint, &QAction::toggled, this, &HCie1931Widget::setDrawPoint);
     connect(clearPoint, &QAction::triggered, this, &HCie1931Widget::clearPoint);
 
+    setMargins(30, 30, 30, 30);
     setCoordinate(QRectF(0, 0, 0.75, 0.85), 5, 5);
     setWindowIcon(QIcon(":/image/CIE1931_s.png"));
     setWindowTitle(tr("色品图-CIE1931"));

@@ -6,7 +6,7 @@
 
 #include "HAbstractDevice.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSlDevice1Private;
 
@@ -29,4 +29,4 @@ protected:
     HSlDevice1(HSlDevice1Private &);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

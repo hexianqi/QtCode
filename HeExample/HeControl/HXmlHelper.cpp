@@ -1,7 +1,7 @@
 #include "HXmlHelper.h"
 #include <QtXml/QDomElement>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HXmlHelper::setAttribute(QDomElement elem, const QString &tagName, const QString &attributeName, const QString &attributeValue)
 {
@@ -16,4 +16,4 @@ void HXmlHelper::setAttribute(QDomElement elem, const QString &tagName, const QS
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,7 +6,7 @@
 
 #include "HAbstractDevice.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSlDevice2Private;
 
@@ -35,4 +35,4 @@ protected:
     bool getDataBatch(QList<uchar> param, QVector<uchar> &value, int delay = 0);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

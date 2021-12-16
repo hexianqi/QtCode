@@ -1,7 +1,7 @@
 #include "HClearLineEdit_p.h"
 #include <QtWidgets/QToolButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HClearLineEdit::HClearLineEdit(QWidget *parent) :
     HButtonLineEdit(*new HClearLineEditPrivate, parent)
@@ -48,4 +48,4 @@ void HClearLineEdit::init()
     connect(this, &HClearLineEdit::textChanged, this, [=](const QString &value) { setButtonPosition(value.isEmpty() ? Position_None : Position_RightInside); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

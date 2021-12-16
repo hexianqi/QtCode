@@ -2,7 +2,7 @@
 
 #include "HTextRenderer.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFreeType;
 
@@ -13,5 +13,5 @@ public:
     HFreeType *freeType = nullptr;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

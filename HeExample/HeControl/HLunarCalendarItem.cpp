@@ -1,7 +1,7 @@
 #include "HLunarCalendarItem_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLunarCalendarItemPrivate::HLunarCalendarItemPrivate()
 {
@@ -505,4 +505,4 @@ void HLunarCalendarItem::drawLunar(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

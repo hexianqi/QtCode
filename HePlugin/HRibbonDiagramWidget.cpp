@@ -8,7 +8,7 @@
 #include <QDebug>
 #include <QTime>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate()
 {

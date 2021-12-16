@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HDataGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariant>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_DATA_EXPORT HDataHelper
+class HDataHelper
 {
 public:
     static quint16 readUInt16(QVector<uchar> data, int &pos);
@@ -23,4 +23,4 @@ public:
     static QVariant derive(QString type, QVariantMap data);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

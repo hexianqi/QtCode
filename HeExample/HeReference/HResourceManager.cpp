@@ -5,7 +5,7 @@
 #include <QtCore/QMap>
 #include <QtCore/QFile>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QMap<QString, HOpenGLShaderProgram *> HResourceManager::__shaders;
 QMap<QString, HOpenGLTexture2D *> HResourceManager::__textures;
@@ -81,5 +81,5 @@ void HResourceManager::play(const QString &/*name*/)
 //    });
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

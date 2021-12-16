@@ -1,9 +1,8 @@
 #include "HDaXinProtocol_p.h"
 #include "HSerialPort.h"
 #include "HDaXinDevice.h"
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDaXinProtocolPrivate::HDaXinProtocolPrivate()
 {
@@ -38,10 +37,7 @@ HDaXinProtocol::HDaXinProtocol(HDaXinProtocolPrivate &p) :
 {
 }
 
-HDaXinProtocol::~HDaXinProtocol()
-{
-    qDebug() << __func__;
-}
+HDaXinProtocol::~HDaXinProtocol() = default;
 
 void HDaXinProtocol::initialize(QVariantMap param)
 {
@@ -54,4 +50,4 @@ QString HDaXinProtocol::typeName()
     return "HDaXinProtocol";
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

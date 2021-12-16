@@ -23,9 +23,8 @@
 #include "HeData/HSpecLuminous.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QInputDialog>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecCalibrateWidgetPrivate::HSpecCalibrateWidgetPrivate()
 {
@@ -51,7 +50,6 @@ HSpecCalibrateWidget::HSpecCalibrateWidget(QWidget *parent) :
 
 HSpecCalibrateWidget::~HSpecCalibrateWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -229,4 +227,4 @@ void HSpecCalibrateWidget::init()
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HSpecCalibrateWidget::handleResultChanged);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

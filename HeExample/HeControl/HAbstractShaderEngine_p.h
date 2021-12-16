@@ -6,7 +6,7 @@
 class QOpenGLShaderProgram;
 class QOpenGLExtraFunctions;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractShaderEnginePrivate
 {
@@ -20,5 +20,5 @@ public:
     QVector<QOpenGLTexture *> textures;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

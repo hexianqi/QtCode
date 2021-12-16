@@ -2,7 +2,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HShadeWidget::HShadeWidget(QWidget *parent) :
     QWidget(parent),
@@ -80,4 +80,4 @@ void HShadeWidget::init()
     addWatched(d_ptr->mainWidget);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

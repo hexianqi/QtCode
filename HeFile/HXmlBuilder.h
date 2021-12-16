@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HFileGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariant>
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HXmlElement;
 
-class HE_FILE_EXPORT HXmlBuilder
+class HXmlBuilder
 {
 public:
     // 创建对象
@@ -22,4 +22,4 @@ public:
     static T *createObject(HXmlElement *xe, QVariantMap param);
 };
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

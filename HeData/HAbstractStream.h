@@ -6,7 +6,7 @@
 
 #include "IStream.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractStreamPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractStream() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     QString fileFilter() override;
@@ -36,5 +36,5 @@ protected:
     QScopedPointer<HAbstractStreamPrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

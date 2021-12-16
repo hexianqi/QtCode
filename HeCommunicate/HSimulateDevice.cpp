@@ -1,8 +1,8 @@
 #include "HSimulateDevice_p.h"
 #include <QtCore/QRandomGenerator>
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSimulateDevice::HSimulateDevice() :
     HAbstractDevice(*new HSimulateDevicePrivate)
@@ -14,10 +14,7 @@ HSimulateDevice::HSimulateDevice(HSimulateDevicePrivate &p) :
 {
 }
 
-HSimulateDevice::~HSimulateDevice()
-{
-    qDebug() << __func__;
-}
+HSimulateDevice::~HSimulateDevice() = default;
 
 QString HSimulateDevice::typeName()
 {
@@ -63,4 +60,4 @@ uchar HSimulateDevice::simulate(int value)
     return QRandomGenerator::global()->bounded(value);
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtNetwork/QUdpSocket>
 #include <QtNetwork/QNetworkDatagram>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HUdpClientWidget::HUdpClientWidget(QWidget *parent) :
     HAbstractClientWidget(*new HUdpClientWidgetPrivate, parent),
@@ -109,4 +109,4 @@ void HUdpClientWidget::init()
     setWindowTitle(tr("UDP客户端"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

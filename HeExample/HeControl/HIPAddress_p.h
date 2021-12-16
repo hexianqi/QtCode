@@ -4,7 +4,7 @@
 
 class QLineEdit;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HIPAddressPrivate
 {
@@ -16,4 +16,4 @@ public:
     QList<QLineEdit *> lineEdits;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,6 +1,6 @@
 #include "HProp_p.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HProp::HProp(QObject *parent) :
     HGameObject(*new HPropPrivate, parent)
@@ -79,4 +79,4 @@ void HProp::update(float dt)
     setActivated(false);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

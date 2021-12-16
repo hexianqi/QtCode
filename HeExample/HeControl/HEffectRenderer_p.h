@@ -5,7 +5,7 @@
 #include <QtCore/QSharedPointer>
 #include <QtGui/QOpenGLFramebufferObject>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HEffectRendererPrivate : public HAbstractRendererPrivate
 {
@@ -27,5 +27,5 @@ public:
     QSharedPointer<QOpenGLFramebufferObject> fbo2;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -2,7 +2,7 @@
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractMouseEventFilter::HAbstractMouseEventFilter(QObject *parent) :
     HAbstractEventFilter(*new HAbstractMouseEventFilterPrivate, parent)
@@ -36,4 +36,4 @@ bool HAbstractMouseEventFilter::handleEvent(QObject *watched, QEvent *event)
     return false;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

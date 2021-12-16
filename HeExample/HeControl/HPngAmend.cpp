@@ -4,7 +4,7 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPngAmend::HPngAmend(QWidget *parent) :
     QWidget(parent),
@@ -78,4 +78,4 @@ void HPngAmend::init()
     setWindowTitle("PNG警告去除工具");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

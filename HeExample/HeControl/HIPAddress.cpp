@@ -6,7 +6,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QHBoxLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIPAddress::HIPAddress(QWidget *parent) :
     QWidget(parent),
@@ -177,4 +177,4 @@ void HIPAddress::updateStyle()
                              << QString("QLineEdit#txtIP4 { border-top-right-radius:%1px; border-bottom-right-radius:%1px; }").arg(d_ptr->borderRadius);
     setStyleSheet(qss.join("\n"));
 }
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

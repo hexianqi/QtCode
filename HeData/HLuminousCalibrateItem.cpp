@@ -3,8 +3,7 @@
 #include <QtGui/QPolygonF>
 #include <QtCore/QDataStream>
 
-HE_ALGORITHM_USE_NAMESPACE
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLuminousCalibrateItemPrivate::HLuminousCalibrateItemPrivate()
 {
@@ -90,4 +89,4 @@ double HLuminousCalibrateItem::toReal(double value, int index)
     return HMath::interpolate(value, d->relations.at(index));
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

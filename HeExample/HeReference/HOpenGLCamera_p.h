@@ -3,7 +3,7 @@
 #include "HOpenGLCamera.h"
 #include <QtGui/QVector3D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLCameraPrivate
 {
@@ -26,5 +26,5 @@ public:
     float lastY =  600.0 / 2.0;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

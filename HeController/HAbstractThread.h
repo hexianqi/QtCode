@@ -6,7 +6,7 @@
 
 #include "IThread.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractThreadPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractThread() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void stop() final;
@@ -52,4 +52,4 @@ private:
     void writeSettings();
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,9 +4,11 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+class QString;
+
+HE_BEGIN_NAMESPACE
 
 class HStyleHelper
 {
@@ -15,4 +17,4 @@ public:
     static QString loadStyle(const QString &fileName);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

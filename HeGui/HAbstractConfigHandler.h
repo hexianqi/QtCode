@@ -6,7 +6,7 @@
 
 #include "HAbstractGuiHandler.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractConfigHandlerPrivate;
 
@@ -22,4 +22,4 @@ protected:
     HAbstractConfigHandler(HAbstractConfigHandlerPrivate &p, QObject *parent = nullptr);
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

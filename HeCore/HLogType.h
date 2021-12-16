@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 enum HLogType
 {
@@ -32,4 +32,4 @@ enum HLogType
     TypeCount
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtCore/QDateTime>
 #include <QtGui/QColor>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HTestDataPrivate::setData(const QString &type, const QVariant &value)
 {
@@ -165,4 +165,4 @@ QVariant HTestData::handleOperation(QString type, QVariant value)
     return false;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

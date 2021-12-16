@@ -6,9 +6,8 @@
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include <QtGui/QPolygonF>
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIntegrateThreadPrivate::HIntegrateThreadPrivate()
 {
@@ -33,10 +32,7 @@ HIntegrateThread::HIntegrateThread(HIntegrateThreadPrivate &p, QObject *parent) 
     init();
 }
 
-HIntegrateThread::~HIntegrateThread()
-{
-    qDebug() << __func__;
-}
+HIntegrateThread::~HIntegrateThread() = default;
 
 QString HIntegrateThread::typeName()
 {
@@ -129,4 +125,4 @@ void HIntegrateThread::init()
     d->strategys << d->strategySpec << d->strategyElec << d->strategyLuminous;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

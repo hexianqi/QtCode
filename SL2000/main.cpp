@@ -10,8 +10,6 @@
 // 翻译时需要取消掉对应的命名空间
 // #define HE_ENGLISH
 
-HE_SQL_USE_NAMESPACE
-
 int main(int argc, char *argv[])
 {
     QApplication::addLibraryPath("./plugins");

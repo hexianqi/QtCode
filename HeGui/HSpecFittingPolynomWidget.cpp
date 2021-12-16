@@ -2,9 +2,8 @@
 #include "ui_HSpecFittingPolynomWidget.h"
 #include "HeData/HSpecFitting.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingPolynomWidget::HSpecFittingPolynomWidget(QWidget *parent) :
     HSpecFittingWidget(*new HSpecFittingPolynomWidgetPrivate, parent),
@@ -16,7 +15,6 @@ HSpecFittingPolynomWidget::HSpecFittingPolynomWidget(QWidget *parent) :
 
 HSpecFittingPolynomWidget::~HSpecFittingPolynomWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -77,4 +75,4 @@ void HSpecFittingPolynomWidget::init()
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_2);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

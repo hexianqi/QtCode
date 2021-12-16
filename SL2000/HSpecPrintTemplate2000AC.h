@@ -6,7 +6,7 @@
 
 #include "HeGui/HSpecPrintTemplate.h"
 
-HE_GUI_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HSpecPrintTemplate2000ACPrivate;
 

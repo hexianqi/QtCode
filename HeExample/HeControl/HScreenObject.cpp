@@ -4,7 +4,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HScreenObject::HScreenObject(QObject *parent) :
     QObject(parent),
@@ -133,4 +133,4 @@ void HScreenObject::init()
 }
 
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

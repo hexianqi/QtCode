@@ -4,19 +4,15 @@
 #include "HeData/IQualityCollection.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HSelectDialog.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQualitySelectHandler::HQualitySelectHandler(QObject *parent) :
     HAbstractConfigHandler(*new HQualitySelectHandlerPrivate, parent)
 {
 }
 
-HQualitySelectHandler::~HQualitySelectHandler()
-{
-    qDebug() << __func__;
-}
+HQualitySelectHandler::~HQualitySelectHandler() = default;
 
 QString HQualitySelectHandler::typeName()
 {
@@ -38,4 +34,4 @@ void HQualitySelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_QUALITY);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

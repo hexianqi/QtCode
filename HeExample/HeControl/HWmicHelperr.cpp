@@ -1,7 +1,7 @@
 #include "HWmicHelper.h"
 #include <QtCore/QProcess>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // 获取cpu名称：      wmic cpu get Name
 // 获取cpu核心数：    wmic cpu get NumberOfCores
@@ -39,4 +39,4 @@ QString HWmicHelper::diskNum()
     return wmicInfo("wmic diskdrive where index=0 get serialnumber");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

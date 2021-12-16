@@ -6,7 +6,7 @@
 
 #include "ITextExport.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTextExportPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HTextExport() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -42,5 +42,5 @@ protected:
     QScopedPointer<HTextExportPrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

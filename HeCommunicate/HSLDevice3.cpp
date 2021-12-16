@@ -1,9 +1,9 @@
 #include "HSlDevice3_p.h"
 #include "HSlCodec.h"
 #include "HeCore/HException.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSlDevice3Private::HSlDevice3Private()
 {
@@ -15,10 +15,7 @@ HSlDevice3::HSlDevice3() :
 {
 }
 
-HSlDevice3::~HSlDevice3()
-{
-    qDebug() << __func__;
-}
+HSlDevice3::~HSlDevice3() = default;
 
 void HSlDevice3::initialize(QVariantMap param)
 {
@@ -44,4 +41,4 @@ void HSlDevice3::transport(QVector<uchar> &downData, QVector<uchar> &upData, int
     upData = d->codec->decode(upData2);
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,7 +4,7 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QBoxLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTaskHeader::HTaskHeader(QWidget *parent) :
     QFrame(parent),
@@ -83,4 +83,4 @@ void HTaskHeader::init()
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

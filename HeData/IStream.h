@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include <functional>
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IStream : public IInitializeable
 {
@@ -29,4 +26,4 @@ public:
     virtual bool writeFile(QString fileName) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

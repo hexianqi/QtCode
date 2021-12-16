@@ -4,13 +4,9 @@
 
 #pragma once
 
-#include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include <QtCore/QVariant>
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITestData : public IInitializeable
 {
@@ -48,4 +44,4 @@ public:
     virtual QVariant handleOperation(QString type, QVariant value = QVariant()) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

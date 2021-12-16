@@ -4,14 +4,11 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
 #include "HeCore/HSingleton2.h"
 
 class QSqlDatabase;
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HConnectionPoolPrivate;
 
@@ -35,4 +32,4 @@ private:
     QScopedPointer<HConnectionPoolPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

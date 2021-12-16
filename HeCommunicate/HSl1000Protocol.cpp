@@ -1,9 +1,8 @@
 #include "HSl1000Protocol_p.h"
 #include "HSerialPort.h"
 #include "HSlDevice3.h"
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSl1000ProtocolPrivate::HSl1000ProtocolPrivate()
 {
@@ -43,10 +42,7 @@ HSl1000Protocol::HSl1000Protocol(HSl1000ProtocolPrivate &p) :
 {
 }
 
-HSl1000Protocol::~HSl1000Protocol()
-{
-    qDebug() << __func__;
-}
+HSl1000Protocol::~HSl1000Protocol() = default;
 
 void HSl1000Protocol::initialize(QVariantMap param)
 {
@@ -59,4 +55,4 @@ QString HSl1000Protocol::typeName()
     return "HSl1000Protocol";
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

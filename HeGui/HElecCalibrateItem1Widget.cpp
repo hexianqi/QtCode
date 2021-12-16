@@ -3,9 +3,8 @@
 #include "HeCore/HCore.h"
 #include "HeData/IElecCalibrateItem.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HElecCalibrateItem1Widget::HElecCalibrateItem1Widget(QWidget *parent) :
     HElecCalibrateItemWidget(*new HElecCalibrateItem1WidgetPrivate, parent),
@@ -16,7 +15,6 @@ HElecCalibrateItem1Widget::HElecCalibrateItem1Widget(QWidget *parent) :
 
 HElecCalibrateItem1Widget::~HElecCalibrateItem1Widget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -63,4 +61,4 @@ void HElecCalibrateItem1Widget::on_pushButton_3_clicked()
     emit elecChanged(d->type, d->data->toFiction(ui->doubleSpinBox_5->value()));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

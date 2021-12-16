@@ -7,7 +7,7 @@
 #include "ITextStream.h"
 #include "HAbstractStream.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTextStreamPrivate;
 
@@ -42,5 +42,5 @@ protected:
     HTextStream(HTextStreamPrivate &p, QObject *parent = nullptr);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

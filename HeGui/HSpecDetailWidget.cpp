@@ -1,9 +1,8 @@
 #include "HSpecDetailWidget_p.h"
 #include "ui_HSpecDetailWidget.h"
 #include "HeData/ITestData.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecDetailWidget::HSpecDetailWidget(QWidget *parent) :
     HAbstractTestDetailWidget(*new HSpecDetailWidgetPrivate, parent),
@@ -16,7 +15,6 @@ HSpecDetailWidget::HSpecDetailWidget(QWidget *parent) :
 
 HSpecDetailWidget::~HSpecDetailWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -45,4 +43,4 @@ void HSpecDetailWidget::refreshWidget()
     }
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

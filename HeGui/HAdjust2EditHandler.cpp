@@ -6,19 +6,15 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/IAdjust2Collection.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjust2EditHandler::HAdjust2EditHandler(QObject *parent) :
     HAbstractConfigHandler(*new HAdjust2EditHandlerPrivate, parent)
 {
 }
 
-HAdjust2EditHandler::~HAdjust2EditHandler()
-{
-    qDebug() << __func__;
-}
+HAdjust2EditHandler::~HAdjust2EditHandler() = default;
 
 QString HAdjust2EditHandler::typeName()
 {
@@ -39,4 +35,4 @@ void HAdjust2EditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_ADJUST);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

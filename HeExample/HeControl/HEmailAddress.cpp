@@ -1,6 +1,6 @@
 #include "HEmailAddress_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HEmailAddress::HEmailAddress(QObject *parent) :
     QObject(parent),
@@ -51,4 +51,4 @@ void HEmailAddress::setAddress(const QString &value)
     d_ptr->address = value;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

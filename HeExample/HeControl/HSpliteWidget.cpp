@@ -5,7 +5,7 @@
 #include <QtWidgets/QActionGroup>
 #include <QtWidgets/QGridLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpliteWidget::HSpliteWidget(QWidget *parent) :
     QWidget(parent),
@@ -196,4 +196,4 @@ void HSpliteWidget::initMenu()
     menu9->addAction("8-16", this, &HSpliteWidget::changeType)->setData("8-16");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

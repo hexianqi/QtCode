@@ -4,17 +4,18 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 
+class QString;
 class QWidget;
 class QDialog;
 class QMainWindow;
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITestWidget;
 
-class HE_GUI_EXPORT HGuiHelper
+class HGuiHelper
 {
 public:
     static QMainWindow *decoratorInMainWindow(ITestWidget *widget, QWidget *parent = nullptr);
@@ -22,4 +23,4 @@ public:
     static QString encodePassword(QString);
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

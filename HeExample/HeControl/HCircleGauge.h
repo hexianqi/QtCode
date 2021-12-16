@@ -6,7 +6,7 @@
 
 #include "HAnimationProgress.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HCircleGaugePrivate;
 
@@ -71,4 +71,4 @@ protected:
     double fromAngle(double value);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

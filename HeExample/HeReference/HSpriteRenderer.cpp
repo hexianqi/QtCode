@@ -2,7 +2,7 @@
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpriteRenderer::HSpriteRenderer(HOpenGLShaderProgram *shader, QObject *parent) :
     QObject(parent),
@@ -58,4 +58,4 @@ void HSpriteRenderer::init()
     glBindVertexArray(0);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HInterp2D
+class HInterp2D
 {
 public:
     enum Interp2DType
@@ -34,4 +34,4 @@ public:
     static double eval_deriv_xy(QVector<double> xa, QVector<double> ya, QVector<double> za, double x, double y, Interp2DType type = Bilinear);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <memory>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class HSingleton
@@ -50,4 +50,4 @@ template <typename T> T *HSingleton<T>::__instance = nullptr;
 
 #define H_FRIEND_SINGLETON(Class)    friend HSingleton<Class>;
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

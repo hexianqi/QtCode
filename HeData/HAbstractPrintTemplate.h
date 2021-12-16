@@ -6,11 +6,11 @@
 
 #include "IPrintTemplate.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractPrintTemplatePrivate;
 
-class HE_DATA_EXPORT HAbstractPrintTemplate : public IPrintTemplate
+class HAbstractPrintTemplate : public IPrintTemplate
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractPrintTemplate() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     QStringList dataType() override;
@@ -40,5 +40,5 @@ protected:
     QScopedPointer<HAbstractPrintTemplatePrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

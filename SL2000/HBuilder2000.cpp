@@ -26,7 +26,6 @@
 #include "HeGui/HAction.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
-#include <QtCore/QDebug>
 
 HBuilder2000Private::HBuilder2000Private()
 {
@@ -51,10 +50,7 @@ HBuilder2000::HBuilder2000(QObject *parent) :
 {
 }
 
-HBuilder2000::~HBuilder2000()
-{
-    qDebug() << __func__;
-}
+HBuilder2000::~HBuilder2000() = default;
 
 QString HBuilder2000::typeName()
 {
@@ -109,15 +105,14 @@ void HBuilder2000::buildTestData()
 void HBuilder2000::buildTemplate()
 {
     Q_D(HBuilder2000);
-
-    auto print = d->dataFactory->createPrint("HPrint");
     auto expor = d->dataFactory->createTextExport("HTextExport");
-    auto spec = d->guiFactory->createPrintTemplate("HSpecPrintTemplate");
     auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    HAppContext::setContextPointer("IPrint", print);
+    auto print = d->dataFactory->createPrint("HPrint");
+    auto spec = d->guiFactory->createPrintTemplate("HSpecPrintTemplate");
     HAppContext::setContextPointer("ITextExport", expor);
-    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
     HAppContext::setContextPointer("ISpecTextExportTemplate", text);
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
 }
 
 void HBuilder2000::buildDevice()

@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IDataDetail : public QObject, public IInitializeable
 {
@@ -40,4 +37,4 @@ public:
     virtual void saveData() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

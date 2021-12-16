@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <qnamespace.h>
 
 class QChar;
@@ -17,7 +17,7 @@ class QImage;
 class QPixmap;
 class QFont;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDrawHelper
 {
@@ -40,4 +40,4 @@ public:
     static QPixmap loadSvgToPixmap(const QString& path, QSize size);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

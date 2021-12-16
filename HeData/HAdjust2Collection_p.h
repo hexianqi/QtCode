@@ -2,7 +2,7 @@
 
 #include "HAdjust2Collection.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAdjust2CollectionPrivate : public HDataCollectionPrivate<IAdjust2>
 {
@@ -14,5 +14,5 @@ public:
     void writeContent(QDataStream &);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

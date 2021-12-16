@@ -3,9 +3,8 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include <QtWidgets/QGridLayout>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecCalibrateDialog::HSpecCalibrateDialog(QWidget *parent) :
     QDialog(parent),
@@ -14,10 +13,7 @@ HSpecCalibrateDialog::HSpecCalibrateDialog(QWidget *parent) :
     init();
 }
 
-HSpecCalibrateDialog::~HSpecCalibrateDialog()
-{
-    qDebug() << __func__;
-}
+HSpecCalibrateDialog::~HSpecCalibrateDialog() = default;
 
 void HSpecCalibrateDialog::done(int result)
 {
@@ -37,4 +33,4 @@ void HSpecCalibrateDialog::init()
     setWindowTitle(tr("光谱参数定标"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

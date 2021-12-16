@@ -1,9 +1,8 @@
 #include "HIconFontFactory_p.h"
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIconFontFactory::HIconFontFactory(QObject *parent) :
     QObject(parent),
@@ -19,10 +18,7 @@ HIconFontFactory::HIconFontFactory(HIconFontFactoryPrivate &p, QObject *parent) 
     registerClass();
 }
 
-HIconFontFactory::~HIconFontFactory()
-{
-    qDebug() << __func__;
-}
+HIconFontFactory::~HIconFontFactory() = default;
 
 void HIconFontFactory::initialize(QVariantMap /*param*/)
 {
@@ -57,4 +53,4 @@ void HIconFontFactory::registerClass()
     d_ptr->fontResource.insert("pe-icon-set-weather",   ":/fonts/pe-icon-set-weather.ttf");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,11 +6,11 @@ namespace Ui {
 class HProductEditDialog;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HProductEditDialogPrivate;
 
-class HE_GUI_EXPORT HProductEditDialog : public HAbstractTestDataEditDialog
+class HProductEditDialog : public HAbstractTestDataEditDialog
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HProductEditDialog)
@@ -33,4 +33,4 @@ private:
     Ui::HProductEditDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

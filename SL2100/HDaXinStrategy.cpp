@@ -1,7 +1,7 @@
 #include "HDaXinStrategy_p.h"
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
 HDaXinStrategyPrivate::HDaXinStrategyPrivate()
 {
@@ -26,10 +26,7 @@ HDaXinStrategy::HDaXinStrategy(HDaXinStrategyPrivate &p, QObject *parent) :
 {
 }
 
-HDaXinStrategy::~HDaXinStrategy()
-{
-    qDebug() << __func__;
-}
+HDaXinStrategy::~HDaXinStrategy() = default;
 
 QString HDaXinStrategy::typeName()
 {

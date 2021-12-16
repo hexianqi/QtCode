@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HAiry
+class HAiry
 {
 public:
     static double Ai(double x);
@@ -24,10 +24,10 @@ public:
     static double Bi_deriv_Scaled(double x);
 
 public:
-    static double zero_Ai(uint s);
-    static double zero_Bi(uint s);
-    static double zero_Ai_deriv(uint s);
-    static double zero_Bi_deriv(uint s);
+    static double zero_Ai(unsigned int s);
+    static double zero_Bi(unsigned int s);
+    static double zero_Ai_deriv(unsigned int s);
+    static double zero_Bi_deriv(unsigned int s);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,9 +3,8 @@
 #include <QtCore/QVector>
 #include <QtGui/QVector2D>
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGeometryEngine::HGeometryEngine(QObject *parent) :
     QObject(parent),
@@ -675,4 +674,4 @@ void HGeometryEngine::renderRoom(HOpenGLShaderProgram *p)
 
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

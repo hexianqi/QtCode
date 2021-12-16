@@ -8,7 +8,7 @@
 #include <QtCore/QRandomGenerator>
 #include <QtCore/QDebug>
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 QPolygonF readCieDay()
 {

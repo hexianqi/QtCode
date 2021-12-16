@@ -8,7 +8,7 @@
 
 class QOpenGLTexture;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGameObject;
 class HParticleRendererPrivate;
@@ -34,5 +34,5 @@ protected:
     void init(int amount);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

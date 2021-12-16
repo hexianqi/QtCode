@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QHeaderView>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HRbTableHeaderViewPrivate;
 
@@ -56,4 +56,4 @@ private:
     void handleSectionResized(int logicalIndex, int oldSize, int newSize);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

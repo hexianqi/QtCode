@@ -1,7 +1,6 @@
 #include "HTestWidget2000_p.h"
 #include "HTestSetWidget2000.h"
 #include "HDetailWidget2000.h"
-#include <QtCore/QDebug>
 
 HTestWidget2000Private::HTestWidget2000Private()
 {
@@ -22,10 +21,7 @@ HTestWidget2000::HTestWidget2000(QWidget *parent) :
     init();
 }
 
-HTestWidget2000::~HTestWidget2000()
-{
-    qDebug() << __func__;
-}
+HTestWidget2000::~HTestWidget2000() = default;
 
 QString HTestWidget2000::typeName()
 {

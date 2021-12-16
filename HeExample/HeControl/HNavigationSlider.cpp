@@ -4,7 +4,7 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavigationSlider::HNavigationSlider(QWidget *parent) :
     QAbstractSlider(parent),
@@ -218,4 +218,4 @@ void HNavigationSlider::init()
     setWindowIcon(QIcon(":/image/ww/listnavigator.png"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

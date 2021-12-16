@@ -2,7 +2,7 @@
 #include <QtCore/QPropertyAnimation>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCompassGauge::HCompassGauge(QWidget *parent) :
     QWidget(parent),
@@ -410,4 +410,4 @@ void HCompassGauge::init()
     connect(d_ptr->animation, &QPropertyAnimation::valueChanged, this, [=](QVariant value) { setCurrentValue(value.toDouble()); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

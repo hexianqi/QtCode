@@ -6,7 +6,7 @@
 
 #include "HSlDevice1.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSlDevice3Private;
 
@@ -19,11 +19,11 @@ public:
     ~HSlDevice3() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
     void transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

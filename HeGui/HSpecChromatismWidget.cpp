@@ -11,9 +11,8 @@
 #include "HePlugin/HChromatismWidget.h"
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QGridLayout>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecChromatismWidgetPrivate::HSpecChromatismWidgetPrivate()
 {
@@ -29,10 +28,7 @@ HSpecChromatismWidget::HSpecChromatismWidget(QWidget *parent) :
     init();
 }
 
-HSpecChromatismWidget::~HSpecChromatismWidget()
-{
-    qDebug() << __func__;
-}
+HSpecChromatismWidget::~HSpecChromatismWidget() = default;
 
 void HSpecChromatismWidget::initMenuShow()
 {
@@ -79,4 +75,4 @@ void HSpecChromatismWidget::init()
     setWindowTitle(tr("色容差"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

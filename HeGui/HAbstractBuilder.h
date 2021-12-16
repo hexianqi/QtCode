@@ -6,12 +6,12 @@
 
 #include "IBuilder.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IMainWindow;
 class HAbstractBuilderPrivate;
 
-class HE_GUI_EXPORT HAbstractBuilder : public QObject, public IBuilder
+class HAbstractBuilder : public QObject, public IBuilder
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     explicit HAbstractBuilder(QObject *parent = nullptr);
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void buildAll() override;
@@ -49,4 +49,4 @@ protected:
     QScopedPointer<HAbstractBuilderPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

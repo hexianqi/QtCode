@@ -4,19 +4,12 @@
 
 #pragma once
 
-#include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
-#include "HeCommunicate/HCommunicateGlobal.h"
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
 class IProtocol;
-HE_COMMUNICATE_END_NAMESPACE
-HE_COMMUNICATE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
 
 class IActionStrategy : public IInitializeable
 {
@@ -29,4 +22,4 @@ public:
     virtual bool handle(HActionType action) = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

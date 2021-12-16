@@ -18,6 +18,13 @@
 #include "HeData/ITextExportTemplate.h"
 #include "HeController/IMemento.h"
 #include "HePlugin/HCie1931Widget.h"
+#include "HePlugin/HTm30BarChart.h"
+#include "HePlugin/HTm30CvgWidget.h"
+#include "HePlugin/HTm30SpdChartView.h"
+#include "HePlugin/HTm30RfiChartView.h"
+#include "HePlugin/HTm30RfhjChartView.h"
+#include "HePlugin/HTm30RcshjChartView.h"
+#include "HePlugin/HTm30RhshjChartView.h"
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/HSql.h"
 #include <QtCore/QDateTime>
@@ -31,7 +38,7 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QToolBar>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecTestWidgetPrivate::HSpecTestWidgetPrivate()
 {
@@ -115,7 +122,11 @@ void HSpecTestWidget::handleAction(HActionType action)
         setTest(false);
         clearResult();
         if (action == ACT_RESET_SPECTRUM)
+        {
+            auto point = d_ptr->testData->data("[光谱波长范围]").toPointF();
             d->energyWidget->initCoordinate();
+            d->spdWidget->setAxisXRange(point.x(), point.y());
+        }
         if (action == ACT_RESET_CHROMATISM)
             d->chromatismWidget->initMenuShow();
         if (action == ACT_RESET_GRADE)
@@ -170,8 +181,14 @@ void HSpecTestWidget::createWidget()
 {
     Q_D(HSpecTestWidget);
     d->energyWidget = new HSpecEnergyWidget;
-    d->cieWidget = new HCie1931Widget;
     d->chromatismWidget = new HSpecChromatismChartView;
+    d->cieWidget = new HCie1931Widget;
+    d->spdWidget = new HTm30SpdChartView;
+    d->cvgWidget = new HTm30CvgWidget;
+    d->rfiWidget = new HTm30RfiChartView;
+    d->rfhjWidget = new HTm30RfhjChartView;
+    d->rcshjWidget = new HTm30RcshjChartView;
+    d->rhshjWidget = new HTm30RhshjChartView;
     d->tableWidget = new HResultTableWidget;
 }
 
@@ -219,8 +236,14 @@ void HSpecTestWidget::initWidget()
     d->tableWidget->addAction(d->actionPrintTag);
     tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
+    tabWidget1->addTab(d->spdWidget, d->spdWidget->windowTitle());
+    tabWidget1->addTab(d->rfiWidget, d->rfiWidget->windowTitle());
+    tabWidget1->addTab(d->rfhjWidget, d->rfhjWidget->windowTitle());
+    tabWidget1->addTab(d->rcshjWidget, d->rcshjWidget->windowTitle());
+    tabWidget1->addTab(d->rhshjWidget, d->rhshjWidget->windowTitle());
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
     tabWidget2->addTab(d->chromatismWidget, d->chromatismWidget->windowTitle());
+    tabWidget2->addTab(d->cvgWidget, d->cvgWidget->windowTitle());
     tabWidget3->addTab(d->detailWidget, tr("当次结果"));
     tabWidget3->addTab(d->tableWidget, tr("结果列表"));
     splitter1->addWidget(tabWidget1);
@@ -292,8 +315,6 @@ void HSpecTestWidget::readSettings()
 void HSpecTestWidget::writeSettings()
 {
     Q_D(HSpecTestWidget);
-    if (!d->modified)
-        return;
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
@@ -315,7 +336,6 @@ void HSpecTestWidget::writeSettings()
     settings->setValue("Yellow2", yellow.y());
     settings->endGroup();
     d->testData->handleOperation("<写入配置>", fileName);
-    d->modified = false;
 }
 
 void HSpecTestWidget::postProcess(bool append)
@@ -332,8 +352,8 @@ void HSpecTestWidget::refreshWidget(bool append)
     Q_D(HSpecTestWidget);
     auto point = d->testData->data("[色坐标]").toPointF();
     d->energyWidget->refreshWidget();
-    d->detailWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
+    d->detailWidget->refreshWidget();
     d->tableWidget->refreshResult(append);
     if (append)
     {
@@ -347,6 +367,13 @@ void HSpecTestWidget::refreshWidget(bool append)
         if (d->cieWidget2)
             d->cieWidget2->setPointFocus(point);
     }
+    d->spdWidget->setTest(d->testData->data("[光谱能量曲线]").value<QPolygonF>());
+    d->spdWidget->setReference(d->testData->data("[光谱反射曲线]").value<QPolygonF>());
+    d->cvgWidget->setData(d->testData->select(d->cvgWidget->dataType()));
+    d->rfiWidget->chart()->setBarValue(d->testData->data("[TM30_Rfi]").value<QList<double>>());
+    d->rfhjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rf]").value<QList<double>>());
+    d->rcshjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rcs]").value<QList<double>>());
+    d->rhshjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rhs]").value<QList<double>>());
 }
 
 void HSpecTestWidget::handleStateChanged(bool b)
@@ -518,4 +545,4 @@ void HSpecTestWidget::editProduct()
     d->tableWidget->setRow(row, data->toString(d->displays));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

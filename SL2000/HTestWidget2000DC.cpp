@@ -6,7 +6,6 @@
 #include "HeGui/HSpecEnergyWidget.h"
 #include <QtCore/QSettings>
 #include <QtWidgets/QMenu>
-#include <QtCore/QDebug>
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
@@ -32,10 +31,7 @@ HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :
     init();
 }
 
-HTestWidget2000DC::~HTestWidget2000DC()
-{
-    qDebug() << __func__;
-}
+HTestWidget2000DC::~HTestWidget2000DC() = default;
 
 QString HTestWidget2000DC::typeName()
 {

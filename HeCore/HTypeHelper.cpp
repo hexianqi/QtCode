@@ -30,7 +30,7 @@
 #include "IInitializeable.h"
 #include <QtCore/QMetaType>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 T *HTypeHelper::createObject(const QString &className)
@@ -49,4 +49,4 @@ T *HTypeHelper::createObject(const QString &className, QVariantMap param)
     return t;
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

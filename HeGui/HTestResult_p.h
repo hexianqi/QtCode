@@ -3,7 +3,7 @@
 #include "HTestResult.h"
 #include "HeData/IXlsxStream.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTestResultPrivate
 {
@@ -23,5 +23,5 @@ public:
     bool modified = false;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

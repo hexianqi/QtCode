@@ -10,9 +10,7 @@
 #include "HeData/IMultStream.h"
 #include <QtWidgets/QWidget>
 
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class HDataDetailPrivate
@@ -31,7 +29,7 @@ public:
     ~HDataDetail() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
     QWidget *widget() override;
     void start() override;
@@ -157,4 +155,4 @@ void HDataDetail<T>::setData(IDataCollection<T> *p)
     emit sourceChanged(d_ptr->datas->keys(), d_ptr->datas->useIndex());
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

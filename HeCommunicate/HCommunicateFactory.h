@@ -6,7 +6,7 @@
 
 #include "ICommunicateFactory.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HCommunicateFactoryPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HCommunicateFactory() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -38,4 +38,4 @@ private:
     void registerClass();
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

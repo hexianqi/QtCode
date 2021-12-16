@@ -5,9 +5,8 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
-#include <QtCore/QDebug>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTextExportPrivate::HTextExportPrivate()
 {
@@ -27,10 +26,7 @@ HTextExport::HTextExport(HTextExportPrivate &p, QObject *parent) :
 {
 }
 
-HTextExport::~HTextExport()
-{
-    qDebug() << __func__;
-}
+HTextExport::~HTextExport() = default;
 
 void HTextExport::initialize(QVariantMap /*param*/)
 {
@@ -101,4 +97,4 @@ bool HTextExport::isValid()
     return d_ptr->textTemplate != nullptr;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

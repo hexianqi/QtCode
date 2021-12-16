@@ -2,7 +2,7 @@
 #include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTristateProgressBar::HTristateProgressBar(QWidget *parent) :
     QWidget(parent),
@@ -302,4 +302,4 @@ void HTristateProgressBar::drawBorder(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

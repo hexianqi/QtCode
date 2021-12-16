@@ -6,11 +6,11 @@
 
 #include "ITestDataEditDialog.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractTestDataEditDialogPrivate;
 
-class HE_GUI_EXPORT HAbstractTestDataEditDialog : public ITestDataEditDialog
+class HAbstractTestDataEditDialog : public ITestDataEditDialog
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractTestDataEditDialog() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void setData(ITestData *) override;
@@ -36,5 +36,5 @@ protected:
     QScopedPointer<HAbstractTestDataEditDialogPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

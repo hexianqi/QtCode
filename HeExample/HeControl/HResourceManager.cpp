@@ -3,7 +3,7 @@
 #include <QtGui/QOpenGLTexture>
 #include <QtGui/QOpenGLShaderProgram>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QMap<QString, QOpenGLShaderProgram *> HResourceManager::__shaders;
 QMap<QString, QOpenGLTexture *> HResourceManager::__textures;
@@ -56,4 +56,4 @@ void HResourceManager::play(const QString &/*name*/)
     //    });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

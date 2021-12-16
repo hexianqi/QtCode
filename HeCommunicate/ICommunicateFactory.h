@@ -1,15 +1,12 @@
 /***************************************************************************************************
-**      2018-06-19  HCommunicateFactory 通讯器工厂接口。
+**      2018-06-19  ICommunicateFactory 通讯器工厂接口。
 ***************************************************************************************************/
 
 #pragma once
 
-#include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IPort;
 class IDevice;
@@ -29,4 +26,4 @@ public:
     virtual IProtocolCollection *createProtocolCollection(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

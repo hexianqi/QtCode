@@ -3,7 +3,7 @@
 #include <private/qobject_p.h>
 #include "HDPointer.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDPointerPrivate : public QObjectPrivate
 {
@@ -16,4 +16,4 @@ public:
     int da;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,7 +1,7 @@
 #include "HColorDelegate.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HColorDelegate::HColorDelegate(QObject *parent) :
     QAbstractItemDelegate(parent)
@@ -31,4 +31,4 @@ QSize HColorDelegate::sizeHint(const QStyleOptionViewItem &/*option*/, const QMo
     return {16, 16};
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

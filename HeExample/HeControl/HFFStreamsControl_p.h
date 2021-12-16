@@ -4,7 +4,7 @@
 #include "HFFmpeg.h"
 #include "HFFTypes.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFFPacketQueue;
 class HFFFrameQueue;
@@ -109,5 +109,5 @@ class HFFSubtitleStreamsControlPrivate : public HFFStreamsControlPrivate
 {
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

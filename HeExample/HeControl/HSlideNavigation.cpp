@@ -3,7 +3,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSlideNavigation::HSlideNavigation(QWidget *parent) :
     QWidget(parent),
@@ -581,4 +581,4 @@ void HSlideNavigation::init()
     setFocusPolicy(Qt::ClickFocus);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

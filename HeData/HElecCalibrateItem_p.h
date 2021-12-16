@@ -4,7 +4,7 @@
 #include "HAbstractDataItem_p.h"
 #include <QtGui/QPolygonF>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HElecCalibrateItemPrivate : public HAbstractDataItemPrivate
 {
@@ -15,4 +15,4 @@ public:
     QPolygonF relation;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

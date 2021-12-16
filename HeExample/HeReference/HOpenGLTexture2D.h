@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HReferenceGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QScopedPointer>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLTexture2DPrivate;
 
@@ -32,5 +32,5 @@ protected:
     QScopedPointer<HOpenGLTexture2DPrivate> d_ptr;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -1,6 +1,6 @@
 #include "HTextSpinBox_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTextSpinBox::HTextSpinBox(QWidget *parent) :
     QSpinBox(parent),
@@ -56,4 +56,4 @@ int HTextSpinBox::valueFromText(const QString &text) const
     return d_ptr->strings.indexOf(text);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

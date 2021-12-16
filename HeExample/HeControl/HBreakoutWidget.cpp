@@ -3,7 +3,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QOpenGLFunctions_3_3_Core>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBreakoutWidget::HBreakoutWidget(QWidget *parent) :
     QOpenGLWidget(parent),
@@ -50,4 +50,4 @@ void HBreakoutWidget::paintGL()
     d_ptr->game->render();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

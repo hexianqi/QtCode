@@ -5,7 +5,7 @@
 #include "HPngAmend.h"
 #include "HSerialPortWidget.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addTool()
 {
@@ -16,4 +16,4 @@ void HControlDemoWidget::addTool()
     addTab(tr("工具"), new HSerialPortWidget);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

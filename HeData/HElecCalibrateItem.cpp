@@ -2,8 +2,7 @@
 #include "HeAlgorithm/HMath.h"
 #include <QtCore/QDataStream>
 
-HE_ALGORITHM_USE_NAMESPACE
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HElecCalibrateItemPrivate::HElecCalibrateItemPrivate()
 {
@@ -74,4 +73,4 @@ double HElecCalibrateItem::toReal(double value)
     return qMax(0.0, HMath::interpolate(value, d->relation));
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

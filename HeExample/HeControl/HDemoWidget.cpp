@@ -66,7 +66,7 @@
 #include <QtGui/QStandardItemModel>
 
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDemoWidget::HDemoWidget(QWidget *parent) :
     QWidget(parent),
@@ -417,4 +417,4 @@ void HDemoWidget::addTab(QLayout *layout, const QString &title)
     ui->tabWidget->addTab(w, title);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

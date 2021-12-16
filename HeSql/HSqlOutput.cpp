@@ -7,9 +7,8 @@
 #include "HeData/IPrint.h"
 #include "HeData/IPrintTemplate.h"
 #include <QtSql/QSqlRecord>
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlOutputPrivate::HSqlOutputPrivate()
 {
@@ -29,10 +28,8 @@ HSqlOutput::HSqlOutput(HSqlOutputPrivate &p, QObject *parent) :
 {
 }
 
-HSqlOutput::~HSqlOutput()
-{
-    qDebug() << __func__;
-}
+HSqlOutput::~HSqlOutput() = default;
+
 
 void HSqlOutput::initialize(QVariantMap /*param*/)
 {
@@ -133,4 +130,4 @@ void HSqlOutput::saveExcel(QStringList type, QVariant data)
     d_ptr->textExport->save();
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

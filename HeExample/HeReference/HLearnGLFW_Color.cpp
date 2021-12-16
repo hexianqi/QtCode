@@ -1,9 +1,8 @@
 #include "HLearnGLFW_p.h"
 #include "HOpenGLShaderProgram.h"
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 int HLearnGLFW::testColor()
 {
@@ -134,4 +133,4 @@ int HLearnGLFW::testColor()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

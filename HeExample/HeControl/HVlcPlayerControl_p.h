@@ -3,7 +3,7 @@
 #include "HVlcPlayerControl.h"
 #include "vlc/vlc.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HVlcPlayerControlPrivate
 {
@@ -26,5 +26,5 @@ public:
     QList<libvlc_event_e> playerEvents;                 // 播放事件
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

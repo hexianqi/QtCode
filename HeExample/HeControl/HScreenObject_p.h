@@ -3,7 +3,7 @@
 #include "HScreenObject.h"
 #include <QtGui/QPixmap>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HScreenObjectPrivate
 {
@@ -17,4 +17,4 @@ public:
     QPixmap blurScreen;             // 模糊背景图
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

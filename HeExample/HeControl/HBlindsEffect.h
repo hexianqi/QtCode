@@ -7,7 +7,7 @@
 #include "HAbstractShaderEffect.h"
 #include "HControlType.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HBlindsEffectPrivate;
 
@@ -22,7 +22,7 @@ public:
     explicit HBlindsEffect(QObject *parent = nullptr);
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -40,4 +40,4 @@ protected:
     HBlindsEffect(HBlindsEffectPrivate &p, QObject *parent = nullptr);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

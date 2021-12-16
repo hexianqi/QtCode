@@ -2,9 +2,8 @@
 #include "IModel.h"
 #include <QtCore/QWaitCondition>
 #include <QtCore/QMutexLocker>
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDelayThreadPrivate::HDelayThreadPrivate(IModel *p)
 {
@@ -49,7 +48,6 @@ HDelayThread::HDelayThread(IModel *parent) :
 
 HDelayThread::~HDelayThread()
 {
-    qDebug() << __func__;
     stop();
 }
 
@@ -86,4 +84,4 @@ void HDelayThread::run()
     d_ptr->running = false;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

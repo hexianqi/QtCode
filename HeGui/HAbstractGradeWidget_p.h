@@ -2,12 +2,10 @@
 
 #include "HAbstractGradeWidget.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IDataFactory;
 class IGradeItem;
-HE_DATA_END_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
 
 class HAbstractGradeWidgetPrivate
 {
@@ -24,5 +22,5 @@ public:
     bool modified = false;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

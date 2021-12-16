@@ -8,7 +8,7 @@
 #include "HeData/IGradeItem.h"
 #include "HePlugin/HPluginHelper.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractGradeWidgetPrivate::HAbstractGradeWidgetPrivate()
 {
@@ -117,4 +117,4 @@ bool HAbstractGradeWidget::editGradeItem(const QString &type)
     return dlg->exec() == QDialog::Accepted;
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

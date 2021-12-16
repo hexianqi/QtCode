@@ -8,7 +8,7 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSerialPortWidget::HSerialPortWidget(QWidget *parent) :
     QWidget(parent),
@@ -239,4 +239,4 @@ void HSerialPortWidget::init()
     d_ptr->saveTimer->start(1000);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

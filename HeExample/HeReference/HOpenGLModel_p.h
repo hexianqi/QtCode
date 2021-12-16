@@ -4,7 +4,7 @@
 #include <QtCore/QVector>
 #include <QtCore/QHash>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLModelPrivate
 {
@@ -14,5 +14,5 @@ public:
     QHash<QString, Texture> textures;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

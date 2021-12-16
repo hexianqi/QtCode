@@ -7,7 +7,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLunarCalendarWidgetPrivate::HLunarCalendarWidgetPrivate()
 {
@@ -689,4 +689,4 @@ void HLunarCalendarWidget::dateChanged(int year, int month, int day)
     setDate(QDate(year, month, day > 28 ? 1 : day));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

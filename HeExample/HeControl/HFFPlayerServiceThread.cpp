@@ -1,7 +1,7 @@
 #include "HFFPlayerServiceThread_p.h"
 #include "HFFPlayerService.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFFPlayerServiceThreadPrivate::HFFPlayerServiceThreadPrivate(HFFPlayerService *service)
 {
@@ -87,4 +87,4 @@ void HFFPlayerServiceThread::run()
     d_ptr->running = false;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

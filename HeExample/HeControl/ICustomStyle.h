@@ -6,7 +6,7 @@
 
 #include "IStyle.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ICustomStyle : public IStyle
 {
@@ -27,4 +27,4 @@ public:
     virtual QString scrollBar(QVariantMap param = QVariantMap()) = 0;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

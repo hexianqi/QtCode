@@ -5,7 +5,7 @@
 #include <QtCore/QSet>
 #include <QtGui/QVector2D>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGameLevel;
 class HSpriteRenderer;
@@ -53,5 +53,5 @@ public:
     QSet<int> keys;                     // 记录当前被按下按键的集合
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

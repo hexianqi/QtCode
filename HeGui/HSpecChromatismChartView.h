@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include "HePlugin/HChromatismChartView.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecChromatismChartViewPrivate;
 
-class HE_GUI_EXPORT HSpecChromatismChartView : public HChromatismChartView
+class HSpecChromatismChartView : public HChromatismChartView
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecChromatismChartView)
@@ -29,4 +29,4 @@ protected:
     void showChromatism(QAction *);
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

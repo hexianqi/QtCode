@@ -3,7 +3,7 @@
 #include "HSequentialGradeWidget.h"
 #include "HAbstractGradeWidget_p.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSequentialGradeWidgetPrivate : public HAbstractGradeWidgetPrivate
 {
@@ -12,4 +12,4 @@ public:
     QAction *actionImport;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

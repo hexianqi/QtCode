@@ -2,7 +2,7 @@
 
 #include "HAbstractProgress.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractProgressPrivate
 {
@@ -13,4 +13,4 @@ public:
     int decimal = 0;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

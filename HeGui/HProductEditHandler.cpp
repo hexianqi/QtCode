@@ -1,21 +1,15 @@
 #include "HProductEditHandler_p.h"
 #include "HProductEditDialog.h"
 #include "HeCore/HAppContext.h"
-//#include "HeSql/ISqlHandle.h"
-#include <QtCore/QDebug>
 
-//HE_SQL_USE_NAMESPACE
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HProductEditHandler::HProductEditHandler(QObject *parent) :
     HAbstractGuiHandler(*new HProductEditHandlerPrivate, parent)
 {
 }
 
-HProductEditHandler::~HProductEditHandler()
-{
-    qDebug() << __func__;
-}
+HProductEditHandler::~HProductEditHandler() = default;
 
 QString HProductEditHandler::typeName()
 {
@@ -29,4 +23,4 @@ void HProductEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 //    HAppContext::getContextPointer<ISqlHandle>("ISqlHandle")->editProductInfo();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

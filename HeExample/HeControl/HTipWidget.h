@@ -4,13 +4,13 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QFrame>
 #include <QtGui/QIcon>
 
 class QTextBrowser;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTipWidgetPrivate;
 
@@ -71,4 +71,4 @@ private:
     void init();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

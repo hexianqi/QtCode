@@ -4,9 +4,8 @@
 #include "HePlugin/HPainterHelper.h"
 #include <QtGui/QPainter>
 #include <QtPrintSupport/QPrinter>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecPrintTemplatePrivate::HSpecPrintTemplatePrivate()
 {
@@ -24,10 +23,7 @@ HSpecPrintTemplate::HSpecPrintTemplate(HSpecPrintTemplatePrivate &p, QObject *pa
 {
 }
 
-HSpecPrintTemplate::~HSpecPrintTemplate()
-{
-    qDebug() << __func__;
-}
+HSpecPrintTemplate::~HSpecPrintTemplate() = default;
 
 QString HSpecPrintTemplate::typeName()
 {
@@ -36,12 +32,23 @@ QString HSpecPrintTemplate::typeName()
 
 bool HSpecPrintTemplate::printPages(QPrinter *printer)
 {
+    Q_D(HSpecPrintTemplate);
     printer->setPageMargins(13, 13, 5, 5, QPrinter::Millimeter);
     QPainter painter(printer);
     auto y1 = paintHeader(&painter);
+    auto y2 = paintFooter(&painter, 0);
     y1 = paintTitle(&painter, y1);
-    auto y2 = paintFooter(&painter, 1);
-    paintBody(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), 1);
+    paintBody(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), 0);
+//    if (d->params.value("DrawTM30", true).toBool())
+//    {
+//        for (int i = 1; i < 3; i++)
+//        {
+//            printer->newPage();
+//            y1 = paintHeader(&painter);
+//            y2 = paintFooterTM30(&painter, i);
+//            paintBodyTM30(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), i);
+//        }
+//    }
     return true;
 }
 
@@ -49,20 +56,7 @@ double HSpecPrintTemplate::paintHeader(QPainter *painter)
 {
     Q_D(HSpecPrintTemplate);
     painter->setFont(QFont("宋体", 12));
-    if (d->params.value("DrawHeader", true).toBool())
-        HPainterHelper::drawText(painter, 20, 5, d->params.value("Header").toString());
-    if (d->params.value("DrawLogo", true).toBool())
-        HPainterHelper::drawLogo(painter, QRectF(painter->viewport().width() - 180, 0, 162, 30));
-    painter->drawLine(0, 35, painter->viewport().width(), 35);
-    return 50;
-}
-
-double HSpecPrintTemplate::paintTitle(QPainter *painter, double y)
-{
-    Q_D(HSpecPrintTemplate);
-    auto text = d->params.value("Title").toString();
-    painter->setFont(QFont(tr("宋体"), 16, QFont::Bold));
-    return HPainterHelper::drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;
+    return HPainterHelper::paintHeader(painter, d->params);
 }
 
 double HSpecPrintTemplate::paintFooter(QPainter *painter, int /*page*/)
@@ -93,6 +87,14 @@ double HSpecPrintTemplate::paintFooter(QPainter *painter, int /*page*/)
     y2 += h;
     painter->drawText(QRectF(x1, y2 , w * 2, h), Qt::AlignLeft | Qt::AlignVCenter, toStringWhole("[制造厂商]"));
     return y1;
+}
+
+double HSpecPrintTemplate::paintTitle(QPainter *painter, double y)
+{
+    Q_D(HSpecPrintTemplate);
+    auto text = d->params.value("Title").toString();
+    painter->setFont(QFont(tr("宋体"), 16, QFont::Bold));
+    return HPainterHelper::drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;
 }
 
 void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
@@ -159,6 +161,32 @@ void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
     drawChartCie(painter, QRectF(xr2, yr, wr, hr), d->datas.value("[色坐标]").toPointF());
 }
 
+double HSpecPrintTemplate::paintFooterTM30(QPainter *painter, int page)
+{
+    painter->setFont(QFont(tr("宋体"), 8));
+    return HPainterHelper::paintFooter(painter, QString::number(page));
+}
+
+void HSpecPrintTemplate::paintBodyTM30(QPainter *painter, QRectF rect, int page)
+{
+    if (page == 1)
+    {
+        return;
+    }
+    if (page == 2)
+    {
+        return;
+    }
+
+//    d->spdWidget->setTest(d->testData->data("[光谱能量曲线]").value<QPolygonF>());
+//    d->spdWidget->setReference(d->testData->data("[光谱反射曲线]").value<QPolygonF>());
+//    d->cvgWidget->setData(d->testData->select(d->cvgWidget->dataType()));
+//    d->rfiWidget->chart()->setBarValue(d->testData->data("[TM30_Rfi]").value<QList<double>>());
+//    d->rfhjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rf]").value<QList<double>>());
+//    d->rcshjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rcs]").value<QList<double>>());
+//    d->rhshjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rhs]").value<QList<double>>());
+}
+
 QPointF HSpecPrintTemplate::drawChartSpec(QPainter *painter, QRectF rect, QPolygonF poly)
 {
     Q_D(HSpecPrintTemplate);
@@ -206,7 +234,6 @@ void HSpecPrintTemplate::init()
     d->params.insert("DrawHeader",  true);
     d->params.insert("DrawLogo",    true);
     d->params.insert("DrawRibbon",  true);
-    readSettings();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

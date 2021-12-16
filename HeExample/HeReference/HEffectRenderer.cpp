@@ -3,7 +3,7 @@
 #include "HOpenGLTexture2D.h"
 #include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HEffectRenderer::HEffectRenderer(HOpenGLShaderProgram *shader, int width, int height, QObject *parent) :
     QObject(parent),
@@ -152,4 +152,4 @@ void HEffectRenderer::init()
     d_ptr->shader->setUniformValueArray("blur_kernel", blur_kernel, 9, 1);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

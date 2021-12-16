@@ -6,20 +6,15 @@
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/HSpecSetting.h"
 #include <QtWidgets/QInputDialog>
-#include <QtCore/QDebug>
 
-HE_CORE_USE_NAMESPACE
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecTcHandler::HSpecTcHandler(QObject *parent) :
     HAbstractConfigHandler(*new HSpecTcHandlerPrivate, parent)
 {
 }
 
-HSpecTcHandler::~HSpecTcHandler()
-{
-    qDebug() << __func__;
-}
+HSpecTcHandler::~HSpecTcHandler() = default;
 
 QString HSpecTcHandler::typeName()
 {
@@ -38,4 +33,4 @@ void HSpecTcHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 }
 
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

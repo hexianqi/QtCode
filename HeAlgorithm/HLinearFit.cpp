@@ -2,7 +2,7 @@
 #include "HGslHelper.h"
 #include "gsl/gsl_fit.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QVector<double> HLinearFit::linear(QPolygonF basis)
 {
@@ -81,4 +81,4 @@ void HLinearFit::mul_est(double x, double c, double cov, double *y, double *y_er
     gsl_fit_mul_est(x, c, cov, y, y_err);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

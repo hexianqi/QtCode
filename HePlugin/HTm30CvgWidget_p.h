@@ -11,7 +11,7 @@ public:
 public:
     double Rf = 0.0;
     double Rg = 0.0;
-    double Tc = 0.0;
+    double CCT = 0.0;
     double Duv = 0.0;
     QPolygonF polyTest;
     QPolygonF polyReference;

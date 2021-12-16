@@ -2,9 +2,8 @@
 #include "include/ezusbsys.h"
 #include "HeCore/HException.h"
 #include <windows.h>
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HUsbPortCy7c68013::HUsbPortCy7c68013() :
     HAbstractPort(*new HUsbPortCy7c68013Private)
@@ -16,10 +15,7 @@ HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p) :
 {
 }
 
-HUsbPortCy7c68013::~HUsbPortCy7c68013()
-{
-    qDebug() << __func__;
-}
+HUsbPortCy7c68013::~HUsbPortCy7c68013() = default;
 
 void HUsbPortCy7c68013::initialize(QVariantMap param)
 {
@@ -106,4 +102,4 @@ int HUsbPortCy7c68013::readData(uchar *data, int maxSize)
     return ret;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

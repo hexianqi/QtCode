@@ -3,9 +3,8 @@
 #include "HeCore/HCore.h"
 #include "HeData/IElecCalibrateItem.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HElecCalibrateItem2Widget::HElecCalibrateItem2Widget(QWidget *parent) :
     HElecCalibrateItemWidget(*new HElecCalibrateItem2WidgetPrivate, parent),
@@ -16,7 +15,6 @@ HElecCalibrateItem2Widget::HElecCalibrateItem2Widget(QWidget *parent) :
 
 HElecCalibrateItem2Widget::~HElecCalibrateItem2Widget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -78,4 +76,4 @@ void HElecCalibrateItem2Widget::on_checkBox_1_clicked(bool checked)
     emit loopChanged(d->type, checked);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

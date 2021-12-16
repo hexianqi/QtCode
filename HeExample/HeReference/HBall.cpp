@@ -2,7 +2,7 @@
 #include "HPaddle.h"
 #include "HResourceManager.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBall::HBall(QObject *parent) :
     HGameObject(*new HBallPrivate, parent)
@@ -198,4 +198,4 @@ int HBall::direction(QVector2D target)
     return result;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

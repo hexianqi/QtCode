@@ -6,7 +6,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingWidgetPrivate::HSpecFittingWidgetPrivate()
 {
@@ -125,4 +125,4 @@ void HSpecFittingWidget::init()
     setWindowTitle(tr("光谱拟合"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

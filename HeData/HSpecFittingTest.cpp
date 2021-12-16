@@ -3,9 +3,7 @@
 #include "HeAlgorithm/HMath.h"
 #include <QtCore/QDataStream>
 
-HE_ALGORITHM_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingTest::HSpecFittingTest() :
     HSpecFitting(*new HSpecFittingTestPrivate)
@@ -98,4 +96,4 @@ double HSpecFittingTest::calcRate(int i, double value)
 //    return HInterp::eval(d->allFittingPoints[i], value, HInterpType::Cspline);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

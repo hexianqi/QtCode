@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HSpecData
+class HSpecData
 {
 public:
     HSpecData();
@@ -18,9 +18,11 @@ public:
     void clear();
 
 public:
+    QPolygonF TestEnergy;
+    QPolygonF TestEnergyPercent;
+    QPolygonF ReferenceEnergy;
+    QPolygonF ReferenceEnergyPercent;
     // 能量参数
-    QPolygonF Energy;
-    QPolygonF EnergyPercent;
     double EnergyTotal;
     double EnergyMax;
     double WavePeak;
@@ -41,6 +43,17 @@ public:
     double RatioRed;
     double RatioGreen;
     double RatioBlue;
+    // TM30
+    double TM30_Rf;
+    double TM30_Rg;
+    QList<double> TM30_Rfi;
+    QList<double> TM30_hj_atn;
+    QList<double> TM30_hj_btn;
+    QList<double> TM30_hj_arn;
+    QList<double> TM30_hj_brn;
+    QList<double> TM30_hj_Rf;
+    QList<double> TM30_hj_Rcs;
+    QList<double> TM30_hj_Rhs;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

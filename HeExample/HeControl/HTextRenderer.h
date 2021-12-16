@@ -8,7 +8,7 @@
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTextRendererPrivate;
 
@@ -28,5 +28,5 @@ public:
     void draw(const QString &text, QVector2D position = QVector2D(), int pixelSize = -1, QVector3D color = QVector3D(1.0f, 1.0f, 1.0f));
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

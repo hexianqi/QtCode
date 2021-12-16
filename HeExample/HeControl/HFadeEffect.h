@@ -6,7 +6,7 @@
 
 #include "HAbstractShaderEffect.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFadeEffectPrivate;
 
@@ -28,4 +28,4 @@ protected:
     HFadeEffect(HFadeEffectPrivate &p, QObject *parent = nullptr);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

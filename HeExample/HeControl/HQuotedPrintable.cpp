@@ -1,7 +1,7 @@
 #include "HQuotedPrintable.h"
 #include <QtCore/QString>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QString HQuotedPrintable::encode(const QByteArray &value)
 {
@@ -45,4 +45,4 @@ QByteArray HQuotedPrintable::decode(const QString &value)
     return result;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

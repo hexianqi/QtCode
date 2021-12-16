@@ -8,7 +8,7 @@
 #include "HFFPlayerControl_old.h"
 #include "HFFPlayerService.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addMedia()
 {
@@ -57,4 +57,4 @@ void HControlDemoWidget::addVlcPlayer()
     addTab(tr("媒体"), tr("VLC"), new HVlcPlayer(this));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

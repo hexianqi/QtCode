@@ -1,7 +1,6 @@
 #include "HDetailWidget2000_p.h"
 #include "ui_HDetailWidget2000.h"
 #include "HeData/ITestData.h"
-#include <QtCore/QDebug>
 
 HDetailWidget2000::HDetailWidget2000(QWidget *parent) :
     HAbstractTestDetailWidget(*new HDetailWidget2000Private, parent),
@@ -13,7 +12,6 @@ HDetailWidget2000::HDetailWidget2000(QWidget *parent) :
 
 HDetailWidget2000::~HDetailWidget2000()
 {
-    qDebug() << __func__;
     delete ui;
 }
 

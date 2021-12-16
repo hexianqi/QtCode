@@ -4,7 +4,7 @@
 #include "HCircleGauge_p.h"
 #include <QtCore/QMap>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HWeatherGaugePrivate : public HCircleGaugePrivate
 {
@@ -33,4 +33,4 @@ public:
     QPropertyAnimation *outerAnimation = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

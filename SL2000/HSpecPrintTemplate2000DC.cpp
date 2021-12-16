@@ -1,6 +1,5 @@
 #include "HSpecPrintTemplate2000DC_p.h"
 #include <QtGui/QPainter>
-#include <QtCore/QDebug>
 
 HSpecPrintTemplate2000DC::HSpecPrintTemplate2000DC(QObject *parent) :
     HSpecPrintTemplate(*new HSpecPrintTemplate2000DCPrivate, parent)
@@ -13,10 +12,7 @@ HSpecPrintTemplate2000DC::HSpecPrintTemplate2000DC(HSpecPrintTemplate2000DCPriva
 {
 }
 
-HSpecPrintTemplate2000DC::~HSpecPrintTemplate2000DC()
-{
-    qDebug() << __func__;
-}
+HSpecPrintTemplate2000DC::~HSpecPrintTemplate2000DC() = default;
 
 QString HSpecPrintTemplate2000DC::typeName()
 {
@@ -131,5 +127,4 @@ void HSpecPrintTemplate2000DC::init()
     d->params.insert("DrawHeader",  true);
     d->params.insert("DrawLogo",    true);
     d->params.insert("DrawRibbon",  true);
-    readSettings();
 }

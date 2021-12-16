@@ -1,11 +1,11 @@
 #pragma once
 
-#include <QException>
 #include "HErrorType.h"
+#include <QException>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HException : public QException
+class HException : public QException
 {
 public:
     HException(HErrorType);
@@ -21,5 +21,5 @@ private:
     QString _message;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE
 

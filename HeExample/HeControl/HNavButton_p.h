@@ -2,7 +2,7 @@
 
 #include "HNavButton.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNavButtonPrivate
 {
@@ -39,4 +39,4 @@ public:
     bool hover = false;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

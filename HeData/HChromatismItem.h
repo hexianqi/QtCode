@@ -7,7 +7,7 @@
 #include "IChromatismItem.h"
 #include "HAbstractDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HChromatismItemPrivate;
 
@@ -32,4 +32,4 @@ protected:
     HChromatismItem(HChromatismItemPrivate &);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

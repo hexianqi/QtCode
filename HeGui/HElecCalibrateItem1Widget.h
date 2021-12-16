@@ -6,7 +6,7 @@ namespace Ui {
 class HElecCalibrateItem1Widget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HElecCalibrateItem1WidgetPrivate;
 
@@ -32,4 +32,4 @@ private:
     Ui::HElecCalibrateItem1Widget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -17,7 +17,7 @@
 #include "HControlType.h"
 #include "HCircleGauge.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HArcGaugePrivate;
 
@@ -53,4 +53,4 @@ protected:
     void drawPointerCenter(QPainter *);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

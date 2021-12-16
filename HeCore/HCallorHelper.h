@@ -4,21 +4,10 @@
 
 #pragma once
 
-#include "IConstructorCall.h"
+#include "IConstructionCall.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HCallorHelper
-{
-public:
-    HCallorHelper();
-    ~HCallorHelper();
 
-public:
-    void initialize(IConstructorCall *) const;
 
-private:
-    mutable IConstructorCall *_p;
-};
-
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

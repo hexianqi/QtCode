@@ -13,7 +13,7 @@ class QScatterSeries;
 QT_CHARTS_END_NAMESPACE
 QT_CHARTS_USE_NAMESPACE
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecFittingChartViewPrivate : public HZoomChartViewPrivate
 {
@@ -25,4 +25,4 @@ public:
     QHash<int, QScatterSeries *> scatterSeries;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -7,9 +7,8 @@
 #include "HePlugin/HCie1931Widget.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QMessageBox>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeItem2DDialog::HGradeItem2DDialog(QWidget *parent) :
     HAbstractGradeItemDialog(*new HGradeItem2DDialogPrivate, parent),
@@ -21,7 +20,6 @@ HGradeItem2DDialog::HGradeItem2DDialog(QWidget *parent) :
 
 HGradeItem2DDialog::~HGradeItem2DDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -224,5 +222,5 @@ void HGradeItem2DDialog::init()
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, &HGradeItem2DDialog::setGradeFocus);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

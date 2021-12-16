@@ -7,9 +7,8 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QScatterSeries>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingChartView::HSpecFittingChartView(QWidget *parent) :
     HZoomChartView(*new HSpecFittingChartViewPrivate, nullptr, parent)
@@ -17,10 +16,7 @@ HSpecFittingChartView::HSpecFittingChartView(QWidget *parent) :
     init();
 }
 
-HSpecFittingChartView::~HSpecFittingChartView()
-{
-    qDebug() << __func__;
-}
+HSpecFittingChartView::~HSpecFittingChartView() = default;
 
 void HSpecFittingChartView::addLineSeries(int id, const QPolygonF &value)
 {
@@ -120,4 +116,4 @@ void HSpecFittingChartView::resizeEvent(QResizeEvent *e)
     HZoomChartView::resizeEvent(e);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

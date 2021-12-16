@@ -32,6 +32,8 @@ HEADERS     += \
             HDPointer.h \
             HDPointer_p.h
 
+INCLUDEPATH += ../..
+
 RESOURCES   += HeReference.qrc
 
 Debug {

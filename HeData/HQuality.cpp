@@ -3,7 +3,7 @@
 #include <QtCore/QDataStream>
 #include <QtGui/QColor>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQualityPrivate::HQualityPrivate()
 {
@@ -95,5 +95,5 @@ double HQuality::drift(QString type, QVariant value)
     return d_ptr->criterions->drift(type, value);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

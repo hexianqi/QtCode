@@ -4,11 +4,12 @@
 
 #pragma once
 
-#include "HReferenceGlobal.h"
+#include "HNamespace.h"
 
+class QString;
 class QStringList;
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLHelper
 {
@@ -24,5 +25,5 @@ public:
     static unsigned int createRenderDepth(int width, int height);
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

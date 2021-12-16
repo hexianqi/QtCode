@@ -3,7 +3,7 @@
 #include "HeCore/HException.h"
 #include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractPort::HAbstractPort() :
     d_ptr(new HAbstractPortPrivate)
@@ -88,5 +88,5 @@ bool HAbstractPort::transport(QVector<uchar> &downData, QVector<uchar> &upData, 
     return true;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE
 

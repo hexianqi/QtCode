@@ -5,7 +5,7 @@
 class QHBoxLayout;
 class QPushButton;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HStepButtonPrivate
 {
@@ -15,4 +15,4 @@ public:
     QString qss;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

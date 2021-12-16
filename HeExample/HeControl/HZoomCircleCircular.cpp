@@ -1,7 +1,7 @@
 #include "HZoomCircleCircular_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HZoomCircleCircular::HZoomCircleCircular(QObject *parent) :
     HAbstractCircular(*new HZoomCircleCircularPrivate, parent)
@@ -95,4 +95,4 @@ double HZoomCircleCircular::calcRaidous(double value)
     return value >= 0 ? d->minimum + span * value : 50 + span * value;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

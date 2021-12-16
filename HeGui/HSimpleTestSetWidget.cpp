@@ -3,9 +3,8 @@
 #include "HeController/IModel.h"
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSimpleTestSetWidget::HSimpleTestSetWidget(QWidget *parent) :
     HAbstractTestSetWidget(*new HSimpleTestSetWidgetPrivate, parent),
@@ -17,7 +16,6 @@ HSimpleTestSetWidget::HSimpleTestSetWidget(QWidget *parent) :
 
 HSimpleTestSetWidget::~HSimpleTestSetWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -102,4 +100,4 @@ void HSimpleTestSetWidget::init()
     ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,9 +4,8 @@
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QLabel>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecSampleWidgetPrivate::HSpecSampleWidgetPrivate()
 {
@@ -21,10 +20,7 @@ HSpecSampleWidget::HSpecSampleWidget(QWidget *parent) :
     init();
 }
 
-HSpecSampleWidget::~HSpecSampleWidget()
-{
-    qDebug() << __func__;
-}
+HSpecSampleWidget::~HSpecSampleWidget() = default;
 
 void HSpecSampleWidget::setEnablePeak(bool b)
 {
@@ -119,4 +115,4 @@ void HSpecSampleWidget::init()
     setWindowTitle(tr("光谱采样曲线"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,7 +1,7 @@
 #include "HSpecLuminous_p.h"
 #include <QtCore/QDataStream>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecLuminous::HSpecLuminous() :
     HAbstractDataItem(*new HSpecLuminousPrivate)
@@ -70,4 +70,4 @@ QMap<QString, double> HSpecLuminous::selfAbsorption()
     return d->selfAbsorption;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

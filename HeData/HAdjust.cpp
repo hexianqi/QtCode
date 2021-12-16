@@ -6,7 +6,7 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QPointF>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjustPrivate::HAdjustPrivate()
 {
@@ -38,7 +38,7 @@ void HAdjust::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IAdjustItem>(s, d->items, [=](QString type) { return d->factory->createAdjustItem(type); });
+    HStreamHelper::read<QString, IAdjustItem>(s, d->items, [=](QString type) { return d->factory->createAdjustItem(type); });
 }
 
 void HAdjust::readContent(Worksheet *p)
@@ -70,7 +70,7 @@ void HAdjust::writeContent(QDataStream &s)
 {
     Q_D(HAdjust);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IAdjustItem>(s, d->items);
+    HStreamHelper::write<QString, IAdjustItem>(s, d->items);
 }
 
 void HAdjust::writeContent(Worksheet *p)
@@ -112,4 +112,4 @@ QVariantMap HAdjust::correct(QVariantMap value)
     return map;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,15 +5,11 @@
 #pragma once
 
 #include "IDataEditer.h"
-#include "HeData/HDataGlobal.h"
 #include <QtWidgets/QWidget>
 
-HE_DATA_BEGIN_NAMESPACE
-class IGrade;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_GUI_BEGIN_NAMESPACE
+class IGrade;
 
 class HGradeEditWidgetPrivate;
 
@@ -26,7 +22,7 @@ public:
     ~HGradeEditWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -44,4 +40,4 @@ private:
     QScopedPointer<HGradeEditWidgetPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

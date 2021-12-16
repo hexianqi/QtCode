@@ -3,7 +3,7 @@
 #include <QtCore/QTextStream>
 #include <QtXml/QDomElement>
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HXmlElementPrivate::HXmlElementPrivate(const QString &fileName, QDomElement *domElement, HXmlElement *parent)
 {
@@ -68,7 +68,7 @@ QList<HXmlElement *> HXmlElement::childs()
     return d_ptr->childs;
 }
 
-void HXmlElement::setChild(const QList<HeFile::HXmlElement *> &value)
+void HXmlElement::setChild(const QList<HXmlElement *> &value)
 {
     d_ptr->childs = value;
 }
@@ -154,4 +154,4 @@ void HXmlElement::forEach(const std::function<void(HXmlElement *)> &func)
         item->forEach(func);
 }
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

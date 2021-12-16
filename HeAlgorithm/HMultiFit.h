@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HMultiFit
+class HMultiFit
 {
 public:
     enum RobustType
@@ -33,4 +33,4 @@ public:
     static void robust_est(double x, QVector<double> ca, QVector<double> cova, double *y, double *y_err);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

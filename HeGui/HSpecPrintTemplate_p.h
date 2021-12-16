@@ -6,9 +6,9 @@
 class HSpecDiagramWidget;
 class HCie1931Widget;
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_GUI_EXPORT HSpecPrintTemplatePrivate : public HAbstractPrintTemplatePrivate
+class HSpecPrintTemplatePrivate : public HAbstractPrintTemplatePrivate
 {
 public:
     HSpecPrintTemplatePrivate();
@@ -18,5 +18,5 @@ public:
     HCie1931Widget *cieWidget = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

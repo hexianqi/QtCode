@@ -16,7 +16,7 @@
 #include "HControlType.h"
 #include "HCircleGauge.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMiniGaugePrivate;
 
@@ -70,7 +70,7 @@ private:
 
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 
 //    Q_PROPERTY(int step READ getStep WRITE setStep)
 

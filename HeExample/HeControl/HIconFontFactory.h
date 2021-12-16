@@ -6,7 +6,7 @@
 
 #include "IIconFontFactory.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HIconFontFactoryPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HIconFontFactory() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -36,4 +36,4 @@ private:
     void registerClass();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 #include "HeReference/HLearnGLFW.h"
 #include "HeReference/HBreakout.h"
 
-HE_REFERENCE_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 int HTestOpenGL::testGlfw()
 {

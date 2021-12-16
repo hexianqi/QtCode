@@ -1,7 +1,7 @@
 #include "HLineEditGroup_p.h"
 #include <QtWidgets/QLineEdit>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLineEditGroup::HLineEditGroup(QObject *parent) :
     QObject(parent),
@@ -52,4 +52,4 @@ void HLineEditGroup::next()
     d_ptr->lineEdits.at(index)->setFocus();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

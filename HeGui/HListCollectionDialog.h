@@ -4,19 +4,19 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QDialog>
 
 namespace Ui {
 class HListCollectionDialog;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IDataDetail;
 class HListCollectionDialogPrivate;
 
-class HE_GUI_EXPORT HListCollectionDialog : public QDialog
+class HListCollectionDialog : public QDialog
 {
     Q_OBJECT
 
@@ -50,4 +50,4 @@ private:
     Ui::HListCollectionDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

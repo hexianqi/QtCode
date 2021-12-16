@@ -4,7 +4,7 @@
 #include <QtCore/QException>
 #include <QtNetwork/QSslSocket>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HResponseTimeoutException : public QException
 {
@@ -390,4 +390,4 @@ bool HSmtpClient::checkResponse(int code, SmtpError type)
     return false;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

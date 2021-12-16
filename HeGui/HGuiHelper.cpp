@@ -6,7 +6,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QMainWindow *HGuiHelper::decoratorInMainWindow(ITestWidget *widget, QWidget *parent)
 {
@@ -38,4 +38,4 @@ QString HGuiHelper::encodePassword(QString value)
     return hash.result().toBase64(QByteArray::Base64Encoding | QByteArray::OmitTrailingEquals);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

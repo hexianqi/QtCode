@@ -2,7 +2,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavigationWidget::HNavigationWidget(QWidget *parent) :
     QWidget(parent),
@@ -98,4 +98,4 @@ void HNavigationWidget::init()
     setFixedWidth(150);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

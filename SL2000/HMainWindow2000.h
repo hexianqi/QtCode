@@ -2,7 +2,7 @@
 
 #include "HeGui/HAbstractMainWindow.h"
 
-HE_GUI_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HMainWindow2000Private;
 
@@ -12,7 +12,7 @@ class HMainWindow2000 : public HAbstractMainWindow
     Q_DECLARE_PRIVATE(HMainWindow2000)
 
 public:
-    explicit HMainWindow2000(QWidget *parent = nullptr, const HCallorHelper &helper = HCallorHelper());
+    explicit HMainWindow2000(QWidget *parent = nullptr, const HConstructionCallHelper &helper = HConstructionCallHelper());
     ~HMainWindow2000() override;
 
 protected:

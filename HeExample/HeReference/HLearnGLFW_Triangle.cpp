@@ -1,7 +1,7 @@
 #include "HLearnGLFW_p.h"
 #include <iostream>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 const char *vertexShaderSource = "#version 330 core\n"
                                  "layout (location = 0) in vec3 aPos;\n"
@@ -150,4 +150,4 @@ int HLearnGLFW::testTriangle()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

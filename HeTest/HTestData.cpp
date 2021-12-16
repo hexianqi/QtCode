@@ -5,8 +5,8 @@
 #include <QtCore/QFile>
 #include <QtCore/QDataStream>
 #include <QtCore/QDateTime>
-#include <QtCore/QDebug>
 #include <cxxabi.h>
+#include <QtCore/QDebug>
 
 template <typename T>
 class NameTemplate
@@ -43,7 +43,14 @@ void HTestData::testJson()
 
 void HTestData::testJson2()
 {
-    // QPointF 无法转化成QJson
+    // QPointF QList<double> 无法转化成QJson
+    // QVariantList 无法直接转换成QList<double>
+
+    QVariantMap datasX;
+
+    datasX.insert("s1", true);
+    datasX.insert("s2", 0.3);
+
     QVariantMap datas;
     datas.insert("[项类型]", "Undefined");
     datas.insert("[标题]", "");
@@ -57,6 +64,8 @@ void HTestData::testJson2()
     datas.insert("[轴B]", 0.0);
     datas.insert("[测试点]", QVariantList() << 1.0 << 2.0);
     datas.insert("[测试Sdcm]", 3.0);
+    datas.insert("Tr", datasX);
+//    datas.insert("[测试]", QVariant::fromValue(QList<double>() << 10.0 << 12.0 << 15.0));
 
     auto json = QJsonObject::fromVariantMap(datas);
     auto str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
@@ -68,6 +77,8 @@ void HTestData::testJson2()
     auto b1 = datas == datas2;
     auto b2 = json == json2;
     auto b3 = str == str2;
+
+
     qDebug() << " data         "        << datas;
     qDebug() << " data2        "        << datas2;
     qDebug() << " data = data2 "        << b1;        // true
@@ -77,6 +88,12 @@ void HTestData::testJson2()
     qDebug() << " string "              << str;
     qDebug() << " string2 "             << str2;
     qDebug() << " string = string2 "    << b3;        // false
+
+    qDebug() << qMetaTypeId<QList<double>>();
+
+   // qDebug() << datas["[中心点]"].value<QList<double>>();
+  //  qDebug() << datas["[测试]"].value<QList<double>>();
+
 }
 
 void HTestData::testTemplateName()

@@ -6,7 +6,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QColorDialog>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HColorPopup::HColorPopup(HColorModel *model, QWidget *parent) :
     QWidget(parent, Qt::Popup),
@@ -55,4 +55,4 @@ void HColorPopup::popupDialog()
     emit selectColor(color);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

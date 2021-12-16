@@ -3,9 +3,8 @@
 #include "HOpenGLShaderProgram.h"
 #include "HGeometryEngine.h"
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 int HLearnGLFW::testNormalMapping()
 {
@@ -84,4 +83,4 @@ int HLearnGLFW::testNormalMapping()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QStyleOptionSpinBox>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLongSpinBoxValidator::HLongSpinBoxValidator(HLongSpinBox *parent) :
     QValidator(parent)
@@ -234,4 +234,4 @@ void HLongSpinBox::handleEditTextChanged(const QString &value)
         setValue(valueFromText(temp));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

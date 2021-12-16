@@ -7,7 +7,7 @@
 #include <QtCore/QQueue>
 #include <QtCore/QReadWriteLock>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestSpecPrivate::HTestSpecPrivate()
 {
@@ -141,8 +141,8 @@ bool HTestSpecPrivate::calcSpec()
         return false;
 
     specData->clear();
-    specData->Energy = calibrate->calcEnergy(samples[1], 0);
-    if(specData->Energy.isEmpty())
+    specData->TestEnergy = calibrate->calcEnergy(samples[1], 0);
+    if(specData->TestEnergy.isEmpty())
         return false;
     specFacade->calcSpectrum(specData);
     auto time = data("[积分时间]").toDouble();
@@ -150,13 +150,13 @@ bool HTestSpecPrivate::calcSpec()
     auto visionEfficien = specData->VisionEfficien;
     auto luminousFlux = calibrate->calcLuminous(visionFlux / time);
     auto luminousPower = visionEfficien < 0.00001 ? 0.0 : 1000 * luminousFlux / visionEfficien;
-    auto synthetic = calibrate->calcSynthetic(specData->Energy, time, data("[自动查找波段]").toBool(), data("[蓝光范围]").toPointF(), data("[荧光范围]").toPointF());
+    auto synthetic = calibrate->calcSynthetic(specData->TestEnergy, time, data("[自动查找波段]").toBool(), data("[蓝光范围]").toPointF(), data("[荧光范围]").toPointF());
     // 测试数据LED对不起来，作弊一下；
     // 峰值波长 >= 700 时，认为是卤钨灯，不需要重新计算；
     // 其他的认为是LED，需要加‘色温偏差’进行重新计算；
     if (specData->WavePeak < 700)
     {
-        specData->Energy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
+        specData->TestEnergy = calibrate->calcEnergy(samples[1], data("[CCD偏差]").toDouble());
         specFacade->calcSpectrum(specData);
     }
     addData(synthetic);
@@ -185,7 +185,19 @@ bool HTestSpecPrivate::calcSpec()
     addData("[显色指数Ra]", specData->RenderingIndexAvg);
     addData("[显色指数R9]", specData->RenderingIndex.at(8));
     addData("[显色指数Rx]", renderingIndex());
-    addData("[光谱能量曲线]", specData->EnergyPercent);
+    addData("[光谱能量曲线]", specData->TestEnergyPercent);
+
+    addData("[TM30_Rf]", specData->TM30_Rf);
+    addData("[TM30_Rg]", specData->TM30_Rg);
+    addData("[TM30_Rfi]", QVariant::fromValue(specData->TM30_Rfi));
+    addData("[TM30_hj_Rf]", QVariant::fromValue(specData->TM30_hj_Rf));
+    addData("[TM30_hj_atn]", QVariant::fromValue(specData->TM30_hj_atn));
+    addData("[TM30_hj_btn]", QVariant::fromValue(specData->TM30_hj_btn));
+    addData("[TM30_hj_arn]", QVariant::fromValue(specData->TM30_hj_arn));
+    addData("[TM30_hj_brn]", QVariant::fromValue(specData->TM30_hj_brn));
+    addData("[TM30_hj_Rcs]", QVariant::fromValue(specData->TM30_hj_Rcs));
+    addData("[TM30_hj_Rhs]", QVariant::fromValue(specData->TM30_hj_Rhs));;
+    addData("[光谱反射曲线]", specData->TestEnergyPercent);
     return true;
 }
 
@@ -359,4 +371,4 @@ QVector<uchar> HTestSpec::getRam()
     return d->calibrate->toBinaryData();
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

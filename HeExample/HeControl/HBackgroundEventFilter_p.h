@@ -3,7 +3,7 @@
 #include "HBackgroundEventFilter.h"
 #include "HAbstractMouseEventFilter_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HBackgroundEventFilterPrivate : public HAbstractMouseEventFilterPrivate
 {
@@ -17,4 +17,4 @@ public:
     bool stretched = false; // 拉伸
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

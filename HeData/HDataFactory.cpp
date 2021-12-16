@@ -39,9 +39,8 @@
 #include "HSpecFittingLinear.h"
 #include "HSpecFittingPolynom.h"
 #include "HeCore/HFactory.h"
-#include <QtCore/QDebug>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDataFactory::HDataFactory(QObject *parent) :
     QObject(parent),
@@ -57,10 +56,7 @@ HDataFactory::HDataFactory(HDataFactoryPrivate &p, QObject *parent) :
     registerClass();
 }
 
-HDataFactory::~HDataFactory()
-{
-    qDebug() << endl << __func__;
-}
+HDataFactory::~HDataFactory() = default;
 
 void HDataFactory::initialize(QVariantMap /*param*/)
 {
@@ -346,4 +342,4 @@ void HDataFactory::registerClass()
     HFactory::registerClass<HTestLuminous>("HTestLuminous");
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

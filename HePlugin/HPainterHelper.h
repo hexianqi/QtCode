@@ -5,13 +5,9 @@
 #pragma once
 
 #include <QtUiPlugin/QDesignerExportWidget>
-#include <QtCore/QString>
+#include <QtCore/QVariant>
 
-class QColor;
 class QPainter;
-class QPointF;
-class QRectF;
-class QWidget;
 
 class QDESIGNER_WIDGET_EXPORT HPainterHelper
 {
@@ -30,5 +26,9 @@ public:
     // 绘制十字光标
     static void drawCrossCursor(QPainter *, QPointF point, int size, const QColor &);
     static void drawCrossCursor(QPainter *, QPointF point, int size = 3);
+    // 打印页头
+    static double paintHeader(QPainter *, const QVariantMap &param);
+    // 打印页尾
+    static double paintFooter(QPainter *, const QString &footer);
 
 };

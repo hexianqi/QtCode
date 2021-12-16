@@ -6,7 +6,7 @@
 #include <QtGui/QFontDatabase>
 #include <QtXml/QDomDocument>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavListModel::HNavListModel(QObject *parent) :
     QAbstractListModel(parent)
@@ -883,4 +883,4 @@ void HNavListView::handleClicked(const QModelIndex &index)
     emit pressed(node->text, node->parentText);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

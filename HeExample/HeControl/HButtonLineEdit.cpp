@@ -3,7 +3,7 @@
 #include <QtGui/QRegExpValidator>
 #include <QtWidgets/QToolButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HButtonLineEdit::HButtonLineEdit(QWidget *parent) :
     QLineEdit(parent),
@@ -190,4 +190,4 @@ void HButtonLineEdit::init()
     setWindowIcon(QIcon(":/image/ww/buttonlineedit.png"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

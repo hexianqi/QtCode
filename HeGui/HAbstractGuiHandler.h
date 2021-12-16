@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IHandler.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractGuiHandlerPrivate;
 
@@ -22,7 +19,7 @@ public:
     ~HAbstractGuiHandler() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 protected:
     HAbstractGuiHandler(HAbstractGuiHandlerPrivate &p, QObject *parent = nullptr);
@@ -31,4 +28,4 @@ protected:
     QScopedPointer<HAbstractGuiHandlerPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

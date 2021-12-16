@@ -7,7 +7,7 @@
 
 #include "HChromaticity.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HChromaticity2Private;
 
@@ -27,4 +27,4 @@ protected:
     HChromaticity2(HChromaticity2Private &);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

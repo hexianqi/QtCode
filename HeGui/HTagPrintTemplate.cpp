@@ -1,9 +1,8 @@
 #include "HTagPrintTemplate_p.h"
 #include <QtGui/QPainter>
 #include <QtPrintSupport/QPrinter>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTagPrintTemplatePrivate::HTagPrintTemplatePrivate()
 {
@@ -21,10 +20,7 @@ HTagPrintTemplate::HTagPrintTemplate(HTagPrintTemplatePrivate &p, QObject *paren
 {
 }
 
-HTagPrintTemplate::~HTagPrintTemplate()
-{
-    qDebug() << __func__;
-}
+HTagPrintTemplate::~HTagPrintTemplate() = default;
 
 QString HTagPrintTemplate::typeName()
 {
@@ -87,7 +83,6 @@ void HTagPrintTemplate::init()
                              << "[实测电压]" << "[实测电流]" << "[电功率]" << "[反向漏流]";
     d->params.insert("PageSize",        QSize(50, 50));
     d->params.insert("PageMargins",     QRect(2, 2, 2, 2));
-    readSettings();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

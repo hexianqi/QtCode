@@ -4,17 +4,12 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeData/HDataType.h"
 #include <QtWidgets/QWidget>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IElecCalibrateItem;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HElecCalibrateItemWidgetPrivate;
 
 class HElecCalibrateItemWidget : public QWidget
@@ -46,4 +41,4 @@ protected:
     QScopedPointer<HElecCalibrateItemWidgetPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

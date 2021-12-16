@@ -3,7 +3,7 @@
 #include <QtXml/QXmlDefaultHandler>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 static const char * const SQL_ID                 = "id";
 static const char * const SQL_INCLUDED_DEFINE_ID = "defineId";
@@ -164,4 +164,4 @@ void HSqlStatement::init()
         addSqlFile(fileName);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

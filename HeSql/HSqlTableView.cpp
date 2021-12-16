@@ -3,9 +3,8 @@
 #include "HSql.h"
 #include "HePlugin/HOptionalTableExtend.h"
 #include <QtWidgets/QHeaderView>
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlTableView::HSqlTableView(QWidget *parent) :
     HTableView(*new HSqlTableViewPrivate, parent)
@@ -13,10 +12,7 @@ HSqlTableView::HSqlTableView(QWidget *parent) :
     init();
 }
 
-HSqlTableView::~HSqlTableView()
-{
-    qDebug() << __func__;
-}
+HSqlTableView::~HSqlTableView() = default;
 
 void HSqlTableView::setModel(ISqlTableModel *model)
 {
@@ -45,4 +41,4 @@ void HSqlTableView::init()
     horizontalHeader()->setStretchLastSection(true);
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

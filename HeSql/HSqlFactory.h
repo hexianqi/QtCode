@@ -6,11 +6,11 @@
 
 #include "ISqlFactory.h"
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlFactoryPrivate;
 
-class HE_SQL_EXPORT HSqlFactory : public QObject, public ISqlFactory
+class HSqlFactory : public QObject, public ISqlFactory
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HSqlFactory() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -39,4 +39,4 @@ private:
     void registerClass();
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

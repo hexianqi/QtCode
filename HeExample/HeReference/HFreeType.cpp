@@ -4,7 +4,7 @@
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFreeType::HFreeType(QObject *parent) :
     QObject(parent),
@@ -192,4 +192,4 @@ HCharacter *HFreeType::findCharacter(QChar key)
     return character;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

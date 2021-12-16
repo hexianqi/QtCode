@@ -14,7 +14,7 @@
 #include "GLFW/glfw3.h"
 #include <QtGui/QMatrix4x4>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGameManager::HGameManager(QObject *parent) :
     QObject(parent),
@@ -326,4 +326,4 @@ void HGameManager::handlePropChanged(const QString &type, bool b)
             d_ptr->effect->setChaos(false);
     }
 }
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

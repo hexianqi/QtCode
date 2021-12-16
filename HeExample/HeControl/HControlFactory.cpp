@@ -9,19 +9,15 @@
 #include "HScreenWidget.h"
 #include "HSerialPortWidget.h"
 #include "HMoveEventFilter.h"
-
 #include "HCircularProgress.h"
 #include "HDemoWidget.h"
 #include "HImageEffectWidget.h"
 #include "HImageBrowser.h"
-
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
-#include <QtCore/QDebug>
+#include <QtCore/QSet>
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HControlFactory::HControlFactory(QObject *parent) :
     QObject(parent),
@@ -30,10 +26,7 @@ HControlFactory::HControlFactory(QObject *parent) :
     registerClass();
 }
 
-HControlFactory::~HControlFactory()
-{
-    qDebug() << __func__;
-}
+HControlFactory::~HControlFactory() = default;
 
 void HControlFactory::initialize(QVariantMap /*param*/)
 {
@@ -94,4 +87,4 @@ void HControlFactory::registerClass()
     d_ptr->supportedEventFilters = e.subtract(b).toList();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

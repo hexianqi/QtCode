@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HRegisterPrivate;
 
-class HE_ALGORITHM_EXPORT HRegister : QObject
+class HRegister : QObject
 {
     Q_OBJECT
 
@@ -45,4 +45,4 @@ protected:
     QScopedPointer<HRegisterPrivate> d_ptr;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

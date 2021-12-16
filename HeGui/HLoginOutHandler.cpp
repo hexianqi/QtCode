@@ -1,19 +1,15 @@
 #include "HLoginOutHandler_p.h"
 #include "IMainWindow.h"
 #include <QtWidgets/QMessageBox>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLoginOutHandler::HLoginOutHandler(QObject *parent) :
     HAbstractGuiHandler(*new HLoginOutHandlerPrivate, parent)
 {
 }
 
-HLoginOutHandler::~HLoginOutHandler()
-{
-    qDebug() << __func__;
-}
+HLoginOutHandler::~HLoginOutHandler() = default;
 
 QString HLoginOutHandler::typeName()
 {
@@ -28,4 +24,4 @@ void HLoginOutHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 }
 
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,7 +4,7 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjustItemCollectionPrivate::HAdjustItemCollectionPrivate()
 {
@@ -38,7 +38,7 @@ void HAdjustItemCollection::readContent(QDataStream &s)
     quint32 version;
 
     s >> version;
-    HStreamHelper::read<QString, HeData::IAdjustItem>(s, d->items, [=](QString type) { return d->factory->createAdjustItem(type); });
+    HStreamHelper::read<QString, IAdjustItem>(s, d->items, [=](QString type) { return d->factory->createAdjustItem(type); });
     s >> d->datas;
 }
 
@@ -46,7 +46,7 @@ void HAdjustItemCollection::writeContent(QDataStream &s)
 {
     Q_D(HAdjustItemCollection);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IAdjustItem>(s, d->items);
+    HStreamHelper::write<QString, IAdjustItem>(s, d->items);
     s << d->datas;
 }
 
@@ -84,4 +84,4 @@ QVariantMap HAdjustItemCollection::correct(QVariantMap value)
     return map;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

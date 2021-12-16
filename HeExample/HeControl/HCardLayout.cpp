@@ -1,6 +1,6 @@
 #include "HCardLayout_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCardLayout::HCardLayout(QWidget *parent) :
     QLayout(parent),
@@ -83,4 +83,4 @@ void HCardLayout::setGeometry(const QRect &rect)
         itemAt(i)->setGeometry(QRect(rect.x() + i * spacing(), rect.y() + i * spacing(), w, h));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

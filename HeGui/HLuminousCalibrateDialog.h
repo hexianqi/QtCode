@@ -4,9 +4,7 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/HActionType.h"
-#include "HeData/HDataGlobal.h"
 #include <QtWidgets/QDialog>
 
 namespace Ui {
@@ -15,16 +13,10 @@ class HLuminousCalibrateDialog;
 
 class QTreeWidgetItem;
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_DATA_BEGIN_NAMESPACE
 class ILuminousCalibrate;
 class ILuminousCalibrateItem;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HLuminousCalibrateDialogPrivate;
 
 class HLuminousCalibrateDialog : public QDialog
@@ -58,5 +50,5 @@ private:
     Ui::HLuminousCalibrateDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

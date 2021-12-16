@@ -1,7 +1,7 @@
 #include "HPanelGauge_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPanelGauge::HPanelGauge(QWidget *parent) :
     HCircleGauge(*new HPanelGaugePrivate, parent)
@@ -144,4 +144,4 @@ void HPanelGauge::drawValue(QPainter *painter, int radius)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

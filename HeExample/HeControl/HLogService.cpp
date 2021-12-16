@@ -3,7 +3,7 @@
 #include "HNetworkLog.h"
 #include <QtCore/QMutexLocker>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // 日志重定向
 void log(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -82,4 +82,4 @@ void HLogService::init()
     connect(this, SIGNAL(send(QString)), HNetworkLog::instance(), SLOT(send(QString)));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

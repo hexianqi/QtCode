@@ -6,7 +6,7 @@
 
 #include "HAbstractCodec.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSlCodecPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HSlCodec() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -42,4 +42,4 @@ protected:
     uchar calcCheckCode(QVector<uchar> value);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

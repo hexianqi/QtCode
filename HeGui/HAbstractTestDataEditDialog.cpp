@@ -1,7 +1,7 @@
 #include "HAbstractTestDataEditDialog_p.h"
 #include "HeCore/HAppContext.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractTestDataEditDialogPrivate::HAbstractTestDataEditDialogPrivate()
 {
@@ -45,4 +45,4 @@ void HAbstractTestDataEditDialog::done(int result)
     QDialog::done(result);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

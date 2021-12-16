@@ -1,7 +1,6 @@
 #include "HTestWidget2100DC_p.h"
 #include "HTestSetWidget2100DC.h"
 #include "HDetailWidget2100DC.h"
-#include <QtCore/QDebug>
 
 HTestWidget2100DCPrivate::HTestWidget2100DCPrivate()
 {
@@ -25,10 +24,7 @@ HTestWidget2100DC::HTestWidget2100DC(QWidget *parent) :
     init();
 }
 
-HTestWidget2100DC::~HTestWidget2100DC()
-{
-    qDebug() << __func__;
-}
+HTestWidget2100DC::~HTestWidget2100DC() = default;
 
 QString HTestWidget2100DC::typeName()
 {

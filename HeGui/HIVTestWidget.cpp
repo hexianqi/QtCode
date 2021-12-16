@@ -11,9 +11,8 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QHeaderView>
 #include <QtCharts/QValueAxis>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIVTestWidgetPrivate::HIVTestWidgetPrivate()
 {
@@ -28,10 +27,7 @@ HIVTestWidget::HIVTestWidget(QWidget *parent) :
     setWindowTitle(tr("IV测试"));
 }
 
-HIVTestWidget::~HIVTestWidget()
-{
-    qDebug() << __func__;
-}
+HIVTestWidget::~HIVTestWidget() = default;
 
 QString HIVTestWidget::typeName()
 {
@@ -125,4 +121,4 @@ void HIVTestWidget::handleResultChanged()
     d->tableWidget->insertRow(0, QStringList() << QString::number(d->data.count()) << d->testData->toString("[输出电流]") << d->testData->toString("[实测电压]"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

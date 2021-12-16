@@ -5,7 +5,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QPushButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGroupButton::HGroupButton(QWidget *parent) :
     QWidget(parent),
@@ -55,4 +55,4 @@ void HGroupButton::init()
     setStyleSheet(HStyleHelper::loadStyle(":/qss/groupButton.css"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QOpenGLWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HBreakoutWidgetPrivate;
 
-class HE_CONTROL_EXPORT HBreakoutWidget : public QOpenGLWidget
+class HBreakoutWidget : public QOpenGLWidget
 {
     Q_OBJECT
 
@@ -30,5 +30,5 @@ protected:
     QScopedPointer<HBreakoutWidgetPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -1,38 +1,17 @@
 #pragma once
 
 #include "HAbstractBuilder.h"
-#include "HeCommunicate/HCommunicateGlobal.h"
-#include "HeController/HControllerGlobal.h"
-#include "HeData/HDataGlobal.h"
 
-#include "HeSql/HSqlGlobal.h"
+HE_BEGIN_NAMESPACE
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
 class ICommunicateFactory;
-HE_COMMUNICATE_END_NAMESPACE
-HE_COMMUNICATE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
 class IControllerFactory;
-HE_CONTROLLER_END_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
 class IDataFactory;
 class IConfigManage;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
 class ISqlFactory;
-HE_SQL_END_NAMESPACE
-HE_SQL_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class IGuiFactory;
 
-class HE_GUI_EXPORT HAbstractBuilderPrivate
+class HAbstractBuilderPrivate
 {
 public:
     HAbstractBuilderPrivate();
@@ -49,4 +28,4 @@ public:
     QVariantMap deploy;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HConfigPanelDelegate::HConfigPanelDelegate(QObject *parent) :
     QAbstractItemDelegate(parent)
@@ -213,4 +213,4 @@ void HConfigPanel::init()
     connect(d->view, &QListWidget::currentRowChanged, this, &HConfigPanel::setCurrentIndex);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

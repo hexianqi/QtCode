@@ -4,9 +4,8 @@
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtWidgets/QHeaderView>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLuminousCalibrateItemWidget::HLuminousCalibrateItemWidget(QWidget *parent) :
     QWidget(parent),
@@ -18,7 +17,6 @@ HLuminousCalibrateItemWidget::HLuminousCalibrateItemWidget(QWidget *parent) :
 
 HLuminousCalibrateItemWidget::~HLuminousCalibrateItemWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -105,4 +103,4 @@ void HLuminousCalibrateItemWidget::initWidget()
     ui->label_003->setText(HCore::toUnit(d_ptr->types.at(0)));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

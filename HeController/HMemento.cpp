@@ -6,7 +6,7 @@
 #include "HeData/ITestData.h"
 #include <QtCore/QDataStream>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMementoPrivate::HMementoPrivate()
 {
@@ -93,4 +93,4 @@ void HMemento::restore()
     d_ptr->model->syncDeviceAll();
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

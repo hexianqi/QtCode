@@ -4,20 +4,21 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
+#include <QtCore/QVector>
 
 class QPointF;
 class QPolygonF;
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HMath
+class HMath
 {
 public:
     // 求和
     static double sum(QVector<double>);
     // 平均值
-    static double average(QVector<double>);
+    static double mean(QVector<double>);
     // 插值
     static double interpolate(double x, double x1, double y1, double x2, double y2);
     static double interpolate(double x, QPointF p1, QPointF p2);
@@ -33,4 +34,4 @@ public:
     static QPolygonF calcEllipse(QPointF center, double r, double theta, double a, double b);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

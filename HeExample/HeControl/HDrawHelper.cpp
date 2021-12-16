@@ -5,7 +5,7 @@
 #include <QtSvg/QSvgRenderer>
 #include <QtWidgets/QApplication>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HDrawHelper::drawOverlay(QPainter *painter, double radius, QColor color)
 {
@@ -119,4 +119,4 @@ QPixmap HDrawHelper::loadSvgToPixmap(const QString &path, QSize size)
     return pixmap;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

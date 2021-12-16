@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HLinearFit
+class HLinearFit
 {
 public:
     // Y = c0 + c1 * x
@@ -29,4 +29,4 @@ public:
     static void mul_est(double x, double c, double cov, double *y, double *y_err);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

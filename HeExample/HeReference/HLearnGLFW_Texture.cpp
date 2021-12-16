@@ -2,9 +2,8 @@
 #include "HOpenGLHelper.h"
 #include "HOpenGLShaderProgram.h"
 #include "HGeometryEngine.h"
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 int HLearnGLFW::testTexture()
 {
@@ -94,4 +93,4 @@ int HLearnGLFW::testTexture2()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

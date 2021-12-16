@@ -4,7 +4,7 @@
 #include "HeController/IModel.h"
 #include <QtGui/QCloseEvent>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractTestWidgetPrivate::HAbstractTestWidgetPrivate()
 {
@@ -72,4 +72,4 @@ void HAbstractTestWidget::handleAction(HActionType action)
     d_ptr->testSetWidget->handleAction(action);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

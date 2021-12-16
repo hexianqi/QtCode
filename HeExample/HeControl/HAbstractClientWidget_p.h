@@ -3,7 +3,7 @@
 #include "HAbstractClientWidget.h"
 #include "HAbstractNetworkWidget_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractClientWidgetPrivate : public HAbstractNetworkWidgetPrivate
 {
@@ -12,4 +12,4 @@ public:
     int serverPort = 6000;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

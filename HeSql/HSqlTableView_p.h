@@ -5,7 +5,7 @@
 
 class HOptionalTableExtend;
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlTableViewPrivate : public HTableViewPrivate
 {
@@ -13,4 +13,4 @@ public:
     HOptionalTableExtend *optionalExtend;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

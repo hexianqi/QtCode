@@ -2,7 +2,7 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavLabel::HNavLabel(QWidget *parent) :
     QLabel(parent),
@@ -252,4 +252,4 @@ void HNavLabel::drawTriangle(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

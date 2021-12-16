@@ -4,7 +4,7 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLuminousCalibratePrivate::HLuminousCalibratePrivate()
 {
@@ -35,14 +35,14 @@ void HLuminousCalibrate::readContent(QDataStream &s)
     Q_D(HLuminousCalibrate);
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::ILuminousCalibrateItem>(s, d->items, [=](QString type) { return d->factory->createLuminousCalibrateItem(type); });
+    HStreamHelper::read<QString, ILuminousCalibrateItem>(s, d->items, [=](QString type) { return d->factory->createLuminousCalibrateItem(type); });
 }
 
 void HLuminousCalibrate::writeContent(QDataStream &s)
 {
     Q_D(HLuminousCalibrate);
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::ILuminousCalibrateItem>(s, d->items);
+    HStreamHelper::write<QString, ILuminousCalibrateItem>(s, d->items);
 }
 
 void HLuminousCalibrate::setTotalGears(int value)
@@ -63,4 +63,4 @@ double HLuminousCalibrate::toReal(double value, QString type, int index)
     return item(type)->toReal(value, index);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

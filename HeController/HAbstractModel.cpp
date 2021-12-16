@@ -3,11 +3,10 @@
 #include "IThreadCollection.h"
 #include "HDelayThread.h"
 #include "HeCore/HAppContext.h"
-
 #include "HeData/IConfigManage.h"
 #include "HeData/IStream.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractModelPrivate::HAbstractModelPrivate()
 {
@@ -154,4 +153,4 @@ void HAbstractModel::stopWorkThread()
         t->stop();
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

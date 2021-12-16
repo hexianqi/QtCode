@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "HReferenceGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 #include <QtGui/QVector2D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HCharacter;
 class HFreeTypePrivate;
@@ -38,5 +38,5 @@ protected:
     QScopedPointer<HFreeTypePrivate> d_ptr;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

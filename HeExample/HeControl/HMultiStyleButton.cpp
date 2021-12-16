@@ -3,7 +3,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMultiStyleButton::HMultiStyleButton(QWidget *parent) :
     QWidget(parent),
@@ -356,4 +356,4 @@ void HMultiStyleButton::init()
     installEventFilter(this);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

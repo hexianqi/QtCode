@@ -1,7 +1,7 @@
 #include "HSplitEffect_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSplitEffect::HSplitEffect(QObject *parent) :
     HAbstractShaderEffect(*new HSplitEffectPrivate, parent)
@@ -112,4 +112,4 @@ void HSplitEffect::setSplitStyle(SplitStyle value)
     d->splitStyle = value;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

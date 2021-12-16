@@ -1,6 +1,6 @@
 #include "HDPointer_p.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HDPointerPrivate::init()
 {
@@ -32,4 +32,4 @@ void HDPointer::test()
 
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

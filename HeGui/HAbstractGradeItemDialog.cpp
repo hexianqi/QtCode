@@ -1,7 +1,7 @@
 #include "HAbstractGradeItemDialog_p.h"
 #include "HeData/IGradeItem.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractGradeItemDialog::HAbstractGradeItemDialog(QWidget *parent) :
     QDialog(parent),
@@ -43,4 +43,4 @@ bool HAbstractGradeItemDialog::setAverageMode(bool b)
     return true;
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

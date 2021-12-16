@@ -1,9 +1,9 @@
 #include "HPowerFactorStrategy_p.h"
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPowerFactorStrategyPrivate::HPowerFactorStrategyPrivate()
 {
@@ -20,10 +20,7 @@ HPowerFactorStrategy::HPowerFactorStrategy(HPowerFactorStrategyPrivate &p, QObje
 {
 }
 
-HPowerFactorStrategy::~HPowerFactorStrategy()
-{
-    qDebug() << __func__;
-}
+HPowerFactorStrategy::~HPowerFactorStrategy() = default;
 
 QString HPowerFactorStrategy::typeName()
 {
@@ -48,4 +45,4 @@ bool HPowerFactorStrategy::handle(HActionType action)
     return false;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

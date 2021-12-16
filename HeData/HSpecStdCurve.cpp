@@ -1,7 +1,7 @@
 #include "HSpecStdCurve_p.h"
 #include <QtCore/QDataStream>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecStdCurve::HSpecStdCurve() :
     HAbstractDataItem(*new HSpecStdCurvePrivate)
@@ -54,4 +54,4 @@ QVector<double> HSpecStdCurve::curve()
     return d->curve;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

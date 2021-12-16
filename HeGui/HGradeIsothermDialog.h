@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QDialog>
 
 namespace Ui {
 class HGradeIsothermDialog;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGradeIsothermDialogPrivate;
 
@@ -41,4 +41,4 @@ private:
     Ui::HGradeIsothermDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

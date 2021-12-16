@@ -5,7 +5,7 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjust2Private::HAdjust2Private()
 {
@@ -48,14 +48,14 @@ void HAdjust2::readContent(QDataStream &s)
 //        d->items.insert("1", item);
 //        return;
 //    }
-    HStreamHelper::read<QString, HeData::IAdjustItemCollection>(s, d->items, [=](QString type) { return d->factory->createAdjustItemCollection(type); });
+    HStreamHelper::read<QString, IAdjustItemCollection>(s, d->items, [=](QString type) { return d->factory->createAdjustItemCollection(type); });
 }
 
 void HAdjust2::writeContent(QDataStream &s)
 {
     Q_D(HAdjust2);
     s << quint32(2);
-    HStreamHelper::write<QString, HeData::IAdjustItemCollection>(s, d->items);
+    HStreamHelper::write<QString, IAdjustItemCollection>(s, d->items);
 }
 
 void HAdjust2::restoreDefault()
@@ -91,4 +91,4 @@ bool HAdjust2::matching(double tc)
     return d->selectItem != nullptr;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

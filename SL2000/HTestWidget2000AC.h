@@ -6,7 +6,7 @@
 
 #include "HeGui/HSpecTestWidget.h"
 
-HE_GUI_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HTestWidget2000ACPrivate;
 

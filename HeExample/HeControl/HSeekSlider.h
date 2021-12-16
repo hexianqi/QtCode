@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QSlider>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HSeekPoint;
 class HSeekSliderPrivate;
@@ -63,5 +63,5 @@ protected:
     QScopedPointer<HSeekSliderPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

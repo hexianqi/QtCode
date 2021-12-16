@@ -4,7 +4,7 @@
 #include <QtCore/QTimer>
 #include <QtWidgets/QApplication>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HRunTimeService::HRunTimeService(QObject *parent) :
     QObject(parent),
@@ -98,4 +98,4 @@ void HRunTimeService::init()
     connect(QApplication::instance(), &QApplication::aboutToQuit, this, &HRunTimeService::stop);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

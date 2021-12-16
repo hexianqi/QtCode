@@ -4,7 +4,7 @@
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGameObjectPrivate
 {
@@ -17,5 +17,5 @@ public:
     QVector2D velocity = QVector2D(0.0, 0.0);
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

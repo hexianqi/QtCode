@@ -5,7 +5,7 @@
 
 class QVBoxLayout;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTaskWidget;
 
@@ -19,4 +19,4 @@ public:
     QVBoxLayout *layout;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

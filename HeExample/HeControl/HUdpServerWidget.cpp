@@ -5,7 +5,7 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HUdpServerWidget::HUdpServerWidget(QWidget *parent) :
     HAbstractServerWidget(*new HUdpServerWidgetPrivate, parent),
@@ -157,4 +157,4 @@ void HUdpServerWidget::init()
     setWindowTitle(tr("UDP服务端"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

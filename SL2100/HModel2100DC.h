@@ -6,7 +6,7 @@
 
 #include "HeController/HSpecModel.h"
 
-HE_CONTROLLER_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HModel2100DCPrivate;
 

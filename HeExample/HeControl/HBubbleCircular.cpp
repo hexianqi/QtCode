@@ -1,7 +1,7 @@
 #include "HBubbleCircular_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBubbleCircular::HBubbleCircular(QObject *parent) :
     HAbstractCircular(*new HBubbleCircularPrivate, parent)
@@ -57,4 +57,4 @@ void HBubbleCircular::setForeground(const QColor &value)
     emit dataChanged();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

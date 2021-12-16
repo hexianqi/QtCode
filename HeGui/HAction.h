@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInvoker.h"
 #include <QtWidgets/QAction>
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HActionPrivate;
 
@@ -23,7 +20,7 @@ public:
     ~HAction() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -37,4 +34,4 @@ protected:
     QScopedPointer<HActionPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,19 +1,13 @@
 #include "HMainWindowSpec_p.h"
 #include "HBuilderSpec.h"
 #include "HeData/IConfigManage.h"
-#include <QtCore/QDebug>
 
-HE_DATA_USE_NAMESPACE
-
-HMainWindowSpec::HMainWindowSpec(QWidget *parent, const HCallorHelper &helper) :
+HMainWindowSpec::HMainWindowSpec(QWidget *parent, const HConstructionCallHelper &helper) :
     HAbstractMainWindow(*new HMainWindowSpecPrivate(this), helper, parent)
 {
 }
 
-HMainWindowSpec::~HMainWindowSpec()
-{
-    qDebug() << __func__;
-}
+HMainWindowSpec::~HMainWindowSpec() = default;
 
 void HMainWindowSpec::initImportExport()
 {

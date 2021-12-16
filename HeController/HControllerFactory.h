@@ -4,9 +4,10 @@
 
 #pragma once
 
+#include "HControllerGlobal.h"
 #include "IControllerFactory.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HControllerFactoryPrivate;
 
@@ -19,7 +20,7 @@ public:
     ~HControllerFactory() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -39,4 +40,4 @@ private:
     void registerClass();
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

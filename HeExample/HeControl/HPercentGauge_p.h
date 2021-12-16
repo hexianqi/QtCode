@@ -2,7 +2,7 @@
 #include "HPercentGauge.h"
 #include "HCircleGauge_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HPercentGaugePrivate : public HCircleGaugePrivate
 {
@@ -16,4 +16,4 @@ public:
     QString title;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

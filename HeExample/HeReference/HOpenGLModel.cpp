@@ -5,11 +5,10 @@
 #include "assimp/postprocess.h"
 #include "glad/glad.h"
 #include <QtCore/QDir>
+#include <QtCore/QTemporaryFile>
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
-#include <QTemporaryFile>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLModel::HOpenGLModel(QObject *parent) :
     QObject(parent),
@@ -156,4 +155,4 @@ QVector<Texture> HOpenGLModel::processMaterial(aiMaterial *mat, int type, const 
     return textures;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 #include <QtNetwork/QUdpSocket>
 #include <QtNetwork/QNetworkDatagram>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HUdpServer::HUdpServer(QObject *parent) :
     QObject(parent),
@@ -138,4 +138,4 @@ void HUdpServer::init()
     connect(d_ptr->socket, &QUdpSocket::readyRead, this, &HUdpServer::handleReadyRead);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

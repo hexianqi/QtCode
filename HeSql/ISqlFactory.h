@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ISqlDatabase;
 class ISqlTableModel;
@@ -32,4 +29,4 @@ public:
     virtual ISqlBrowser *createBrowser(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) = 0;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

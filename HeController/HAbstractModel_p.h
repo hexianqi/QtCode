@@ -1,16 +1,10 @@
 #pragma once
 
 #include "HAbstractModel.h"
-#include "HeData/HDataGlobal.h"
-#include "HeCommunicate/HCommunicateGlobal.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IConfigManage;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
-
 class IThreadCollection;
 class HDelayThread;
 
@@ -27,4 +21,4 @@ public:
     HDelayThread *delayThread = nullptr;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

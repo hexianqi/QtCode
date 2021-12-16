@@ -2,7 +2,7 @@
 
 #include "HTristateProgressBar.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTristateProgressBarPrivate
 {
@@ -24,4 +24,4 @@ public:
     QColor textColor  = QColor(250, 250, 250);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

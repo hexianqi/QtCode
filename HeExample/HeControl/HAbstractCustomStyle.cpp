@@ -1,6 +1,6 @@
 #include "HAbstractCustomStyle_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractCustomStyle::HAbstractCustomStyle(QObject *parent) :
     QObject(parent),
@@ -41,4 +41,4 @@ QVariant HAbstractCustomStyle::data(const QString &type, const QVariantMap &para
     return d_ptr->globalParam.value(type, defaultValue);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

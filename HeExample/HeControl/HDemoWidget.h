@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
 namespace Ui {
 class HDemoWidget;
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDemoWidgetPrivate;
 
-class HE_CONTROL_EXPORT HDemoWidget : public QWidget
+class HDemoWidget : public QWidget
 {
     Q_OBJECT
 
@@ -51,4 +51,4 @@ private:
     QScopedPointer<HDemoWidgetPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

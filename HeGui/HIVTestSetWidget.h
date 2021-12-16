@@ -6,7 +6,7 @@ namespace Ui {
 class HIVTestSetWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HIVTestSetWidgetPrivate;
 
@@ -36,4 +36,4 @@ private:
     Ui::HIVTestSetWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

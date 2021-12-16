@@ -2,8 +2,7 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QSettings>
 
-HE_CORE_USE_NAMESPACE
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractServerWidget::HAbstractServerWidget(QWidget *parent) :
     HAbstractNetworkWidget(*new HAbstractServerWidgetPrivate, parent)
@@ -81,4 +80,4 @@ void HAbstractServerWidget::writeSettings()
     settings->endGroup();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

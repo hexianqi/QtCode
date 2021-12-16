@@ -1,9 +1,9 @@
 #include "HSlDevice1_p.h"
 #include "IPort.h"
 #include "HeCore/HException.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSlDevice1::HSlDevice1() :
     HAbstractDevice(*new HSlDevice1Private)
@@ -15,10 +15,7 @@ HSlDevice1::HSlDevice1(HSlDevice1Private &p) :
 {
 }
 
-HSlDevice1::~HSlDevice1()
-{
-    qDebug() << __func__;
-}
+HSlDevice1::~HSlDevice1() = default;
 
 QString HSlDevice1::typeName()
 {
@@ -71,4 +68,4 @@ bool HSlDevice1::getData(HActionType action, QVector<uchar> &value, int delay)
     return true;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

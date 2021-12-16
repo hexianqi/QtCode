@@ -1,7 +1,7 @@
 #include "HAbstractStream_p.h"
 #include <QtWidgets/QFileDialog>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractStream::HAbstractStream(QObject *parent) :
     QObject(parent),
@@ -61,4 +61,4 @@ bool HAbstractStream::saveAsFile(QString caption, QString dir, QString *selected
     return true;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 
 #include "HQuality.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HQualityPrivate
 {
@@ -15,4 +15,4 @@ public:
     QMap<int, QColor> colors;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

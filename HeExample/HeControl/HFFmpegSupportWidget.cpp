@@ -8,7 +8,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QGridLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFFmpegSupportWidget::HFFmpegSupportWidget(QWidget *parent) :
     QWidget(parent),
@@ -145,4 +145,4 @@ void HFFmpegSupportWidget::showBSF()
         d_ptr->tableWidgets.at(7)->insertRow(0, QStringList() << v->name << QString::number(v->priv_data_size));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

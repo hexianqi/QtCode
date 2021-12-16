@@ -6,7 +6,7 @@ class QHBoxLayout;
 class QButtonGroup;
 class QPushButton;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGroupButtonPrivate
 {
@@ -16,4 +16,4 @@ public:
     QList<QPushButton *> buttons;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

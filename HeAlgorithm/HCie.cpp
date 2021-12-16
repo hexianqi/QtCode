@@ -6,7 +6,7 @@
 #include <QtCore/QTextStream>
 #include <QDebug>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCie1931::HCie1931()
 {
@@ -184,7 +184,7 @@ ISOTHERM HCie1931::calcIsotherm(double tc)
         ubar = _cie1931[i].X * 2 / 3;
         vbar = _cie1931[i].Y;
         wbar = -0.5 * _cie1931[i].X + 1.5 * _cie1931[i].Y + 0.5 * _cie1931[i].Z;
-        P = HSpecHelper::planck(_cie1931[i].wave, tc);
+        P = HSpecHelper::planck(tc, _cie1931[i].wave);
         U += P * ubar;
         V += P * vbar;
         W += P * wbar;
@@ -516,5 +516,5 @@ double HIsotherm::calcDistance(int i, double u, double v)
     return (v - _data[i].v - _data[i].slope * (u - _data[i].u)) / sqrt(1 + _data[i].slope * _data[i].slope);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE
 

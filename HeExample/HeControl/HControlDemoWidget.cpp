@@ -7,7 +7,7 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QGridLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HControlDemoWidget::HControlDemoWidget(QWidget *parent) :
     QWidget(parent),
@@ -79,4 +79,4 @@ void HControlDemoWidget::addTab(const QString &key, const QString &title, QLayou
     addTab(key, title, w);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

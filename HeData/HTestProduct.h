@@ -6,7 +6,7 @@
 
 #include "HTestData.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTestProductPrivate;
 
@@ -30,5 +30,5 @@ protected:
     void writeSettings(QString fileName);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

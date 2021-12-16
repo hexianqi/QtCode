@@ -1,7 +1,7 @@
 #include "HMimeMultiPart_p.h"
 #include <QtCore/QCryptographicHash>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QString MULTI_PART_NAMES[] =
 {
@@ -73,4 +73,4 @@ void HMimeMultiPart::prepare()
     HMimePart::prepare();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

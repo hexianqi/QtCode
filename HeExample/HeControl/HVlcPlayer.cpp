@@ -5,9 +5,8 @@
 #include "HVlcPlayerControl.h"
 #include "HSoundWidget.h"
 #include <QtWidgets/QFileDialog>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HVlcPlayerPrivate::HVlcPlayerPrivate()
 {
@@ -115,4 +114,4 @@ void HVlcPlayer::handleStateChanged(int value)
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,7 +1,7 @@
 #include "HBigProtocol_p.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBigProtocol::HBigProtocol() :
     HAbstractProtocol(*new HBigProtocolPrivate)
@@ -13,10 +13,7 @@ HBigProtocol::HBigProtocol(HBigProtocolPrivate &p) :
 {
 }
 
-HBigProtocol::~HBigProtocol()
-{
-    qDebug() << __func__;
-}
+HBigProtocol::~HBigProtocol() = default;
 
 QString HBigProtocol::typeName()
 {
@@ -82,4 +79,4 @@ QVector<double> HBigProtocol::toDouble(QVector<uchar> value, int size)
     return result;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

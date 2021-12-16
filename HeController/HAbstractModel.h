@@ -6,7 +6,7 @@
 
 #include "IModel.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractModelPrivate;
 
@@ -20,7 +20,7 @@ public:
     ~HAbstractModel() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void start() override;
@@ -48,4 +48,4 @@ protected:
     QScopedPointer<HAbstractModelPrivate> d_ptr;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QAbstractItemDelegate>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HColorDelegate : public QAbstractItemDelegate
 {
@@ -21,4 +21,4 @@ public:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

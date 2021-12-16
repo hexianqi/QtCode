@@ -1,7 +1,7 @@
 #include "HAbstractConfigHandler_p.h"
 #include "HeCore/HAppContext.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractConfigHandlerPrivate::HAbstractConfigHandlerPrivate()
 {
@@ -19,4 +19,4 @@ HAbstractConfigHandler::HAbstractConfigHandler(HAbstractConfigHandlerPrivate &p,
 {
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

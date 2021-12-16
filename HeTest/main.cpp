@@ -17,28 +17,15 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCharts/QChartView>
 
-#include "HePlugin/HTm30BarChart.h"
-#include "HePlugin/HTm30RfiChartView.h"
-#include "HePlugin/HTm30RfhjChartView.h"
-#include "HePlugin/HTm30RcshjChartView.h"
-#include "HePlugin/HTm30RhshjChartView.h"
-#include "HePlugin/HTm30RxhjWidget.h"
-#include "HePlugin/HTm30CvgWidget.h"
 
-HE_CORE_USE_NAMESPACE
 
-HE_CONTROL_USE_NAMESPACE
+#include "HeCore/IConstructionDestruction.h"
 
 void testGslChart()
 {
     auto p = HTestGsl::interpEval();
     HTestChart::lineChart(p)->show();
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
-}
-
-void testTm30Widget()
-{
-
 }
 
 int main(int argc, char *argv[])
@@ -48,33 +35,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
-
-//    auto data = HTestAlgorithm::testIesTm30();
-
-//    HTm30RfiChartView rfi;
-//    rfi.chart()->setBarValue(data.Rfi.toList());
-//    rfi.show();
-
-//    HTm30RfhjChartView rfhj;
-//    rfhj.chart()->setBarValue(data.hj.Rf.toList());
-//    rfhj.show();
-
-//    HTm30RcshjChartView rcshj;
-//    rcshj.chart()->setBarValue(data1);
-//    rcshj.show();
-
-//    HTm30RhshjChartView rhshj;
-//    rhshj.chart()->setBarValue(data.hj.Rhs.toList());
-//    rhshj.show();
-
-//    HTm30RxhjWidget w;
-//    w.show();
-
-    HTm30CvgWidget w;
-    w.show();
-
-//    HTestData::testJson2();
-
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
@@ -89,11 +49,12 @@ int main(int argc, char *argv[])
 //    ow.resize(800, 600);
 //    ow.show();
 
-//    MainWindow window;
+    MainWindow window;
 //    window.setCentralWidget(&videoWidget);
-//    window.resize(800, 600);
-//    window.grabGesture(Qt::PanGesture);
-//    window.grabGesture(Qt::PinchGesture);
-//    window.show();
+    window.resize(800, 600);
+    window.grabGesture(Qt::PanGesture);
+    window.grabGesture(Qt::PinchGesture);
+    window.show();
+
     return a.exec();
 }

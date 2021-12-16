@@ -6,7 +6,7 @@
 
 #include "IDevice.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractDevicePrivate;
 
@@ -17,7 +17,7 @@ public:
     virtual ~HAbstractDevice();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     QString portType() override;
@@ -43,4 +43,4 @@ protected:
     QScopedPointer<HAbstractDevicePrivate> d_ptr;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

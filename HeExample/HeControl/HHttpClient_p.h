@@ -3,7 +3,7 @@
 #include "HHttpClient.h"
 #include <QtCore/QUrlQuery>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 enum class HHttpClientRequestMethod
 {
@@ -53,4 +53,4 @@ public:
 
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

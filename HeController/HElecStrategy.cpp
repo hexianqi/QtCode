@@ -1,9 +1,9 @@
 #include "HElecStrategy_p.h"
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HElecStrategyPrivate::HElecStrategyPrivate()
 {
@@ -30,10 +30,7 @@ HElecStrategy::HElecStrategy(HElecStrategyPrivate &p, QObject *parent) :
 {
 }
 
-HElecStrategy::~HElecStrategy()
-{
-    qDebug() << __func__;
-}
+HElecStrategy::~HElecStrategy() = default;
 
 QString HElecStrategy::typeName()
 {
@@ -89,4 +86,4 @@ bool HElecStrategy::handle(HActionType action)
     return false;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

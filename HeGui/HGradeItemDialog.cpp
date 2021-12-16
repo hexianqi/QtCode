@@ -5,9 +5,8 @@
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QMessageBox>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeItemDialog::HGradeItemDialog(QWidget *parent) :
     HAbstractGradeItemDialog(*new HGradeItemDialogPrivate, parent),
@@ -19,7 +18,6 @@ HGradeItemDialog::HGradeItemDialog(QWidget *parent) :
 
 HGradeItemDialog::~HGradeItemDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -118,4 +116,4 @@ void HGradeItemDialog::init()
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

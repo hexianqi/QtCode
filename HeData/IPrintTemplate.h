@@ -4,14 +4,11 @@
 
 #pragma once
 
-#include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 
 class QPrinter;
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IPrintTemplate : public QObject, public IInitializeable
 {
@@ -31,4 +28,4 @@ public:
     virtual bool printPages(QPrinter *) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

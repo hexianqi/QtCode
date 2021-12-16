@@ -2,7 +2,6 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestSpec.h"
-#include <QtCore/QDebug>
 
 HModel2100DC::HModel2100DC(QObject *parent) :
     HSpecModel(*new HModel2100DCPrivate, parent)
@@ -14,10 +13,7 @@ HModel2100DC::HModel2100DC(HModel2100DCPrivate &p, QObject *parent) :
 {
 }
 
-HModel2100DC::~HModel2100DC()
-{
-    qDebug() << __func__;
-}
+HModel2100DC::~HModel2100DC() = default;
 
 QString HModel2100DC::typeName()
 {

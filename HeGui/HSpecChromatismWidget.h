@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecChromatismWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecChromatismWidget : public QWidget
+class HSpecChromatismWidget : public QWidget
 {
     Q_OBJECT
 
@@ -36,4 +36,4 @@ private:
     void init();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

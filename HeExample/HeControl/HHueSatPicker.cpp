@@ -4,7 +4,7 @@
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QStyleOptionFrame>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HHueSatPicker::HHueSatPicker(QWidget *parent) :
     QFrame(parent),
@@ -242,4 +242,4 @@ void HHueSatPicker::colorPick(const QPointF &point)
     update();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

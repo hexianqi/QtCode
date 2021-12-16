@@ -5,7 +5,7 @@
 #include <QtGui/QPainter>
 #include <QtWidgets/QActionGroup>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCircularProgress::HCircularProgress(QWidget *parent) :
     QWidget(parent),
@@ -122,4 +122,4 @@ void HCircularProgress::init()
     d_ptr->timer->start();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

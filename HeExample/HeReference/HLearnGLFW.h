@@ -5,17 +5,17 @@
 
 #pragma once
 
-#include "HReferenceGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 
 class GLFWwindow;
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLShaderProgram;
 class HLearnGLFWPrivate;
 
-class HE_REFERENCE_EXPORT HLearnGLFW : public QObject
+class HLearnGLFW : public QObject
 {
     Q_OBJECT
 
@@ -99,5 +99,5 @@ protected:
     QScopedPointer<HLearnGLFWPrivate> d_ptr;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -3,7 +3,7 @@
 #include "HOpenGLMesh.h"
 #include <QtCore/QVector>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLMeshPrivate
 {
@@ -19,5 +19,5 @@ public:
     unsigned int ebo;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

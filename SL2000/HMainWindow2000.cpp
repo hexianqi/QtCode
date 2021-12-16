@@ -1,19 +1,13 @@
 #include "HMainWindow2000_p.h"
 #include "HBuilder2000.h"
 #include "HeData/IConfigManage.h"
-#include <QtCore/QDebug>
 
-HE_DATA_USE_NAMESPACE
-
-HMainWindow2000::HMainWindow2000(QWidget *parent, const HCallorHelper &helper) :
+HMainWindow2000::HMainWindow2000(QWidget *parent, const HConstructionCallHelper &helper) :
     HAbstractMainWindow(*new HMainWindow2000Private(this), helper, parent)
 {
 }
 
-HMainWindow2000::~HMainWindow2000()
-{
-    qDebug() << __func__;
-}
+HMainWindow2000::~HMainWindow2000() = default;
 
 void HMainWindow2000::initImportExport()
 {

@@ -1,20 +1,15 @@
 #pragma once
 
 #include "HAbstractThread.h"
-#include "HeCommunicate/HCommunicateGlobal.h"
 #include <QtCore/QQueue>
 #include <QtCore/QSet>
 
 class QMutex;
 class QWaitCondition;
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IProtocol;
-HE_COMMUNICATE_END_NAMESPACE
-HE_COMMUNICATE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
-
 class IActionStrategy;
 
 class HE_CONTROLLER_EXPORT HAbstractThreadPrivate
@@ -40,4 +35,4 @@ public:
     uint sleepTime = 1000;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

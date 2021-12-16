@@ -6,7 +6,7 @@
 
 #include "IInitializeable.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class ICollection : public IInitializeable
@@ -38,4 +38,4 @@ public:
     virtual QList<T *> values() = 0;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

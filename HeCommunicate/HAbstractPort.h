@@ -6,7 +6,7 @@
 
 #include "IPort.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractPortPrivate;
 
@@ -17,7 +17,7 @@ public:
     virtual ~HAbstractPort();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     bool isConnected() override;
@@ -42,4 +42,4 @@ protected:
     QScopedPointer<HAbstractPortPrivate> d_ptr;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

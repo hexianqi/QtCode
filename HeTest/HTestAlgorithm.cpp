@@ -3,9 +3,16 @@
 #include "HeAlgorithm/HChromaticity.h"
 #include "HeAlgorithm/HIesTm30.h"
 #include "HeAlgorithm/HCie.h"
+#include "HePlugin/HTm30BarChart.h"
+#include "HePlugin/HTm30RfiChartView.h"
+#include "HePlugin/HTm30RfhjChartView.h"
+#include "HePlugin/HTm30RcshjChartView.h"
+#include "HePlugin/HTm30RhshjChartView.h"
+#include "HePlugin/HTm30RxhjWidget.h"
+#include "HePlugin/HTm30CvgWidget.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include <QtDebug>
+#include <QtCore/QDebug>
 
 void HTestAlgorithm::testRegister()
 {
@@ -61,4 +68,34 @@ IES_TM30 HTestAlgorithm::testIesTm30()
     qDebug() << res.hj.Rcs;
     qDebug() << res.hj.Rhs;
     return res;
+}
+
+void HTestAlgorithm::testTm30Widget()
+{
+    auto data = HTestAlgorithm::testIesTm30();
+
+    HTm30RfiChartView rfi;
+    rfi.chart()->setBarValue(data.Rfi.toList());
+    rfi.show();
+
+    HTm30RfhjChartView rfhj;
+    rfhj.chart()->setBarValue(data.hj.Rf.toList());
+    rfhj.show();
+
+    HTm30RcshjChartView rcshj;
+    rcshj.chart()->setBarValue(data.hj.Rcs.toList());
+    rcshj.show();
+
+    HTm30RhshjChartView rhshj;
+    rhshj.chart()->setBarValue(data.hj.Rhs.toList());
+    rhshj.show();
+
+    HTm30RxhjWidget rxhj;
+    rxhj.setRcshj(data.hj.Rcs.toList());
+    rxhj.setRhshj(data.hj.Rhs.toList());
+    rxhj.setRfhj(data.hj.Rf.toList());
+    rxhj.show();
+
+    HTm30CvgWidget cvg;
+    cvg.show();
 }

@@ -5,7 +5,7 @@
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
 HThread2100DCPrivate::HThread2100DCPrivate()
 {
@@ -24,10 +24,7 @@ HThread2100DC::HThread2100DC(QObject *parent) :
     init();
 }
 
-HThread2100DC::~HThread2100DC()
-{
-    qDebug() << __func__;
-}
+HThread2100DC::~HThread2100DC() = default;
 
 QString HThread2100DC::typeName()
 {

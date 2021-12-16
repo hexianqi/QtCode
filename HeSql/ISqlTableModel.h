@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include <QtSql/QSqlTableModel>
 
-HE_CORE_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ISqlTableModel : public QSqlTableModel, public IInitializeable
 {
@@ -41,4 +38,4 @@ public:
     virtual QSqlRecord currentRecord() = 0;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

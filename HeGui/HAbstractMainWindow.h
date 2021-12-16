@@ -8,13 +8,11 @@
 #include "HeCore/HActionType.h"
 #include "HeCore/HCallorHelper.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractMainWindowPrivate;
 
-class HE_GUI_EXPORT HAbstractMainWindow : public IMainWindow, public IConstructorCall
+class HAbstractMainWindow : public IMainWindow, public IConstructionCall
 {
     Q_OBJECT
 
@@ -29,7 +27,7 @@ public:
     void openWidget(QWidget *) override;
 
 protected:
-    HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent = nullptr);
+    HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HConstructionCallHelper &helper, QWidget *parent = nullptr);
 
 protected slots:
     void showDeviceFailed(const QString &port, const QString &text);
@@ -72,4 +70,4 @@ protected:
     QScopedPointer<HAbstractMainWindowPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

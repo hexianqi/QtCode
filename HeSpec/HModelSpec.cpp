@@ -3,7 +3,6 @@
 #include "HeData/ITestSpec.h"
 #include "HeData/IConfigManage.h"
 #include "HeGui/HSpecCalibrateWidget.h"
-#include <QtCore/QDebug>
 
 HModelSpecPrivate::HModelSpecPrivate()
 {
@@ -22,10 +21,7 @@ HModelSpec::HModelSpec(QObject *parent) :
 {
 }
 
-HModelSpec::~HModelSpec()
-{
-    qDebug() << __func__;
-}
+HModelSpec::~HModelSpec() = default;
 
 QString HModelSpec::typeName()
 {

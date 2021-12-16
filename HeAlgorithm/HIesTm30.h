@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
 #include <memory>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct CIE_CAM02;
 struct IES_TM30;
@@ -86,7 +86,7 @@ public:
 
 public:
     CAM02_UCS test;         // Test
-    CAM02_UCS refe;         // Reference
+    CAM02_UCS reference;    // Reference
     IES_HUE_BIN hj;         // Hue bin
     QVector<double> dEi;    // ΔEi
     QVector<double> Rfi;    // Rfi
@@ -95,7 +95,7 @@ public:
     double Rg;              // Rg
 };
 
-class Q_DECL_EXPORT HIesTm30
+class HIesTm30
 {
 public:
     HIesTm30();
@@ -115,5 +115,5 @@ protected:
     QVector<IES_CES> _iesCes;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE
 

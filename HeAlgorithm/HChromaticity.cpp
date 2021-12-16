@@ -3,15 +3,16 @@
 #include "HSpecHelper.h"
 #include <QtCore/QFile>
 #include <QtCore/QtMath>
-#include <QtCore/QDebug>
+#include <QtCore/QTextStream>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChromaticityPrivate::HChromaticityPrivate()
 {
     cie1931 = std::make_shared<HCie1931>();
     cieDay = std::make_shared<HCieDaylight>();
     isotherm = std::make_shared<HIsotherm>();
+    iesTm30 = std::make_shared<HIesTm30>();
 }
 
 HChromaticity::HChromaticity() :
@@ -24,16 +25,13 @@ HChromaticity::HChromaticity(HChromaticityPrivate &p) :
 {
 }
 
-HChromaticity::~HChromaticity()
-{
-    qDebug() << __func__;
-}
+HChromaticity::~HChromaticity() = default;
 
 void HChromaticity::calcSpectrum(HSpecData *data)
 {
-    if (data->Energy.isEmpty())
+    if (data->TestEnergy.isEmpty())
         return;
-    data->CoordinateUV = d_ptr->cie1931->calcCoordinateUV(data->Energy);
+    data->CoordinateUV = d_ptr->cie1931->calcCoordinateUV(data->TestEnergy);
     data->CoordinateXY = HSpecHelper::uv2xy(data->CoordinateUV);
     data->CoordinateUVp = HSpecHelper::uv2uvp(data->CoordinateUV);
     auto r1 = calcColorTemperatureDuv(data->CoordinateUV);
@@ -42,8 +40,28 @@ void HChromaticity::calcSpectrum(HSpecData *data)
     data->Duv = r1.last();
     data->WaveDominant = r2.first();
     data->ColorPurity = r2.last();
-    data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUV, data->Energy, data->ColorTemperature);
+    data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUV, data->TestEnergy, data->ColorTemperature);
     data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
+
+    // TM30
+    data->ReferenceEnergy = d_ptr->cieDay->calcRefSourceSpectrum(data->ColorTemperature);
+    auto max = 0.0;
+    for (auto p : data->ReferenceEnergy)
+        if (p.y() > max)
+            max = p.y();
+    for (auto p : data->ReferenceEnergy)
+        data->ReferenceEnergyPercent << QPointF(p.x(), 100 * p.y() / max);
+    auto r3 = d_ptr->iesTm30->calc(data->TestEnergy, data->ReferenceEnergy);
+    data->TM30_Rf = r3.Rf;
+    data->TM30_Rg = r3.Rg;
+    data->TM30_Rfi = r3.Rfi.toList();
+    data->TM30_hj_atn = r3.hj.atn.toList();
+    data->TM30_hj_btn = r3.hj.btn.toList();
+    data->TM30_hj_arn = r3.hj.arn.toList();
+    data->TM30_hj_brn = r3.hj.brn.toList();
+    data->TM30_hj_Rf = r3.hj.Rf.toList();
+    data->TM30_hj_Rcs = r3.hj.Rcs.toList();
+    data->TM30_hj_Rhs = r3.hj.Rhs.toList();
 }
 
 QLineF HChromaticity::calcIsothermUV(double tc, double duv)
@@ -218,7 +236,7 @@ CIE_UCS HChromaticity::calcCieUcs(double tc)
     return ucs;
 }
 
-bool HChromaticity::exportIsotherm(const QString &fileName, QList<HeAlgorithm::ISOTHERM> data)
+bool HChromaticity::exportIsotherm(const QString &fileName, QList<ISOTHERM> data)
 {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -269,7 +287,7 @@ bool HChromaticity::exportCieUcs(const QString &fileName, QList<CIE_UCS> data)
     return true;
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //http://www.lrc.rpi.edu/programs/nlpip/lightinganswers/lightsources/appendixb1.asp

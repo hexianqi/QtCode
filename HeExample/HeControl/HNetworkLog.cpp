@@ -2,7 +2,7 @@
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QTcpServer>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNetworkLog::HNetworkLog(QObject *parent) :
     QObject(parent),
@@ -40,4 +40,4 @@ void HNetworkLog::handleNewConnection()
         d_ptr->socket = d_ptr->server->nextPendingConnection();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

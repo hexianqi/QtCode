@@ -1,17 +1,14 @@
 #include "HImportDeviceHandler_p.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HImportDeviceHandler::HImportDeviceHandler(QObject *parent) :
     HAbstractConfigHandler(*new HImportDeviceHandlerPrivate, parent)
 {
 }
 
-HImportDeviceHandler::~HImportDeviceHandler()
-{
-}
+HImportDeviceHandler::~HImportDeviceHandler() = default;
 
 QString HImportDeviceHandler::typeName()
 {
@@ -25,4 +22,4 @@ void HImportDeviceHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_SPECTRUM);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

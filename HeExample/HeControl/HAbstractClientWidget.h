@@ -6,7 +6,7 @@
 
 #include "HAbstractNetworkWidget.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractClientWidgetPrivate;
 
@@ -36,4 +36,4 @@ protected:
     void writeSettings() override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

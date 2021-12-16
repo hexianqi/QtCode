@@ -6,7 +6,7 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjust2CollectionPrivate::HAdjust2CollectionPrivate()
 {
@@ -25,14 +25,14 @@ void HAdjust2CollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IAdjust2>(s, items, [=](QString type) { return factory->createAdjust2(type); });
+    HStreamHelper::read<QString, IAdjust2>(s, items, [=](QString type) { return factory->createAdjust2(type); });
     s >> useIndex;
 }
 
 void HAdjust2CollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IAdjust2>(s, items);
+    HStreamHelper::write<QString, IAdjust2>(s, items);
     s << useIndex;
 }
 
@@ -61,4 +61,4 @@ QVariantMap HAdjust2Collection::correct(double tc, QVariantMap value)
     return i == nullptr ? QVariantMap() : i->correct(tc, value);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

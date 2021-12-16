@@ -6,21 +6,21 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include "gsl/gsl_matrix.h"
+#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HMatrix
+class HMatrix
 {
 public:
     // c = a * b
     static void mul(gsl_matrix *a, gsl_matrix *b, gsl_matrix *c);
-    //
     static QVector<double> mul(gsl_matrix *a, QVector<double> b);
     // 求逆
     static void inverse(gsl_matrix *a);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE
 

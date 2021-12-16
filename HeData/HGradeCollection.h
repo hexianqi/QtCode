@@ -6,7 +6,7 @@
 
 #include "IGradeCollection.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGradeCollectionPrivate;
 
@@ -29,4 +29,4 @@ protected:
     HGradeCollection(HGradeCollectionPrivate &);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

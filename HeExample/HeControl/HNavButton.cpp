@@ -1,7 +1,7 @@
 #include "HNavButton_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavButton::HNavButton(QWidget *parent) :
     QPushButton(parent),
@@ -558,4 +558,4 @@ void HNavButton::drawTriangle(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

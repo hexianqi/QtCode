@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IThread;
 class IThreadCollection;
@@ -32,4 +29,4 @@ public:
     virtual IMemento *createMemento(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

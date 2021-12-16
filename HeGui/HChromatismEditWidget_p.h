@@ -2,11 +2,9 @@
 
 #include "HChromatismEditWidget.h"
 
-HE_DATA_BEGIN_NAMESPACE
-class IDataFactory;
-HE_DATA_END_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_GUI_BEGIN_NAMESPACE
+class IDataFactory;
 
 class HChromatismEditWidgetPrivate
 {
@@ -18,4 +16,4 @@ public:
     IChromatism *data = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

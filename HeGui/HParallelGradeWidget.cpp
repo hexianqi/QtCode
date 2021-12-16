@@ -2,9 +2,8 @@
 #include "ui_HParallelGradeWidget.h"
 #include "HeData/IGradeItem.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HParallelGradeWidget::HParallelGradeWidget(QWidget *parent) :
     HAbstractGradeWidget(*new HParallelGradeWidgetPrivate, parent),
@@ -16,7 +15,6 @@ HParallelGradeWidget::HParallelGradeWidget(QWidget *parent) :
 
 HParallelGradeWidget::~HParallelGradeWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -188,4 +186,4 @@ void HParallelGradeWidget::init()
     connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, &HParallelGradeWidget::setModified);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

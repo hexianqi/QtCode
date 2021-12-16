@@ -10,9 +10,8 @@
 #include "HeData/IElecCalibrateItemCollection.h"
 #include "HeData/ITestData.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HElecCalibrateDialogPrivate::HElecCalibrateDialogPrivate()
 {
@@ -32,7 +31,6 @@ HElecCalibrateDialog::HElecCalibrateDialog(QWidget *parent) :
 
 HElecCalibrateDialog::~HElecCalibrateDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -238,4 +236,4 @@ void HElecCalibrateDialog::init()
     setWindowTitle(tr("电参数定标"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

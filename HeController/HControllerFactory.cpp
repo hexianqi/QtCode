@@ -12,9 +12,8 @@
 #include "HPowerFactorStrategy.h"
 #include "HMemento.h"
 #include "HeCore/HObjectFactory.h"
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HControllerFactory::HControllerFactory(QObject *parent) :
     QObject(parent),
@@ -30,10 +29,7 @@ HControllerFactory::HControllerFactory(HControllerFactoryPrivate &p, QObject *pa
     registerClass();
 }
 
-HControllerFactory::~HControllerFactory()
-{
-    qDebug() << endl << __func__;
-}
+HControllerFactory::~HControllerFactory() = default;
 
 void HControllerFactory::initialize(QVariantMap /*param*/)
 {
@@ -91,4 +87,4 @@ void HControllerFactory::registerClass()
     HObjectFactory::registerClass<HPowerFactorStrategy>("HPowerFactorStrategy");
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

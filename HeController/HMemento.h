@@ -6,7 +6,7 @@
 
 #include "IMemento.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMementoPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HMemento() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -40,5 +40,5 @@ protected:
     QScopedPointer<HMementoPrivate> d_ptr;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -6,7 +6,7 @@
 
 #include "HLittleProtocol.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HUi2008ProtocolPrivate;
 
@@ -25,4 +25,4 @@ public:
     bool getData(HActionType action, QVector<double> &value, int delay = 0) override;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

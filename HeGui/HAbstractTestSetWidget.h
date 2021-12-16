@@ -6,11 +6,11 @@
 
 #include "ITestSetWidget.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractTestSetWidgetPrivate;
 
-class HE_GUI_EXPORT HAbstractTestSetWidget : public ITestSetWidget
+class HAbstractTestSetWidget : public ITestSetWidget
 {
     Q_OBJECT
 
@@ -18,7 +18,7 @@ public:
     explicit HAbstractTestSetWidget(QWidget *parent = nullptr);
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
@@ -36,4 +36,4 @@ protected:
     QScopedPointer<HAbstractTestSetWidgetPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

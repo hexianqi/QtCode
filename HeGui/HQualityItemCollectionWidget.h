@@ -1,20 +1,15 @@
 #pragma once
 
-#include "HGuiGlobal.h"
-#include "HeData/HDataGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
 namespace Ui {
 class HQualityItemCollectionWidget;
 }
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IQualityItemCollection;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HQualityItemCollectionPrivate;
 
 class HQualityItemCollectionWidget : public QWidget
@@ -45,4 +40,4 @@ private:
     Ui::HQualityItemCollectionWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

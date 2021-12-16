@@ -6,7 +6,7 @@
 
 #include "ISqlHandle.h"
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlHandlePrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HSqlHandle() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -45,4 +45,4 @@ protected:
     QScopedPointer<HSqlHandlePrivate> d_ptr;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

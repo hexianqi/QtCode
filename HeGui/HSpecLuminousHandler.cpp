@@ -4,19 +4,15 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/HSpecLuminous.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecLuminousHandler::HSpecLuminousHandler(QObject *parent) :
     HAbstractConfigHandler(*new HSpecLuminousHandlerPrivate, parent)
 {
 }
 
-HSpecLuminousHandler::~HSpecLuminousHandler()
-{
-    qDebug() << __func__;
-}
+HSpecLuminousHandler::~HSpecLuminousHandler() = default;
 
 QString HSpecLuminousHandler::typeName()
 {
@@ -31,4 +27,4 @@ void HSpecLuminousHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     dlg.exec();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

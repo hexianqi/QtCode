@@ -1,6 +1,8 @@
 #include "HThreadPool.h"
 #include <iostream>
 
+HE_BEGIN_NAMESPACE
+
 inline HThreadPool::HThreadPool(size_t size)
 {
     for(size_t i = 0; i < size; ++i)
@@ -14,7 +16,7 @@ inline HThreadPool::HThreadPool(size_t size)
                     {
                         std::unique_lock<std::mutex> lock(this->_mutex);
                         this->_condition.wait(lock, [this]{ return this->_stop || !this->_tasks.empty(); });
-                        if(this->_stop && this->_tasks.empty())
+                        if (this->_stop && this->_tasks.empty())
                             return;
                         task = std::move(this->_tasks.front());
                         this->_tasks.pop();
@@ -33,10 +35,9 @@ inline HThreadPool::~HThreadPool()
         _stop = true;
     }
     _condition.notify_all();
-    for(std::thread &worker: _workers)
+    for (std::thread &worker : _workers)
         worker.join();
 }
-
 
 template<class F, class... Args>
 auto HThreadPool::enqueue(F&& f, Args&&... args) -> std::future<typename std::result_of<F(Args...)>::type>
@@ -59,7 +60,6 @@ auto HThreadPool::enqueue(F&& f, Args&&... args) -> std::future<typename std::re
     return res;
 }
 
-
 void testThreadPool()
 {
     HThreadPool pool(4);
@@ -79,3 +79,5 @@ void testThreadPool()
         std::cout << result.get() << ' ';
     std::cout << std::endl;
 }
+
+HE_END_NAMESPACE

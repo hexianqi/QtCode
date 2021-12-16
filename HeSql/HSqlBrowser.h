@@ -6,11 +6,11 @@
 
 #include "ISqlBrowser.h"
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlBrowserPrivate;
 
-class HE_SQL_EXPORT HSqlBrowser : public ISqlBrowser
+class HSqlBrowser : public ISqlBrowser
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HSqlBrowser() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -46,4 +46,4 @@ private:
     void createLayout();
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

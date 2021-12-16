@@ -9,6 +9,7 @@
 #include <QtCharts/QScatterSeries>
 #include <QtCharts/QSplineSeries>
 #include <QtCharts/QValueAxis>
+#include <QtCore/QDebug>
 
 QChartView *HTestChart::zoomChart()
 {

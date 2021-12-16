@@ -5,11 +5,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
+#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HBesselCylindrical
+class HBesselCylindrical
 {
 public: // 规则
     static double J0(double x);
@@ -44,4 +45,4 @@ public: // 不规则修正
     static QVector<double> Kn_scaled(int nmin, int nmax, double x);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

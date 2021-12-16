@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QMainWindow>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IMainWindow : public QMainWindow
 {
@@ -27,4 +27,4 @@ public:
     virtual void openWidget(QWidget *) = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

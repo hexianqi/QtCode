@@ -1,10 +1,10 @@
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <QScopedPointer>
 #include <mutex>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class HSingleton3
@@ -43,4 +43,4 @@ public:                                             \
         return HSingleton3<Class>::instance();      \
     }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

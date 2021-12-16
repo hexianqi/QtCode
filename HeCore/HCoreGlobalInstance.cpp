@@ -7,7 +7,7 @@
 #include <QtCore/QRegularExpression>
 #include <QtCore/QDebug>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QHash<HLogType, QString>            hashLogCommand;
 QHash<HActionType, QString>         hashActionComment;
@@ -175,7 +175,7 @@ HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
 
 HCoreGlobalInstance::~HCoreGlobalInstance()
 {
-    qDebug() << __func__;
+    qInfo() << __func__;
 }
 
 void HCoreGlobalInstance::initLogCommand()
@@ -458,7 +458,17 @@ void HCoreGlobalInstance::initDataFormatInfo()
     // 测试参数
     hashDataFormatInfo.insert("[测试时间]",                     new HDataFormatInfo("[测试时间]", "ms", 200, 30000, 1));
     hashDataFormatInfo.insert("[测试间隔]",                     new HDataFormatInfo("[测试间隔]", "s", 1, 3600, 1));
-
+    // TM30
+    hashDataFormatInfo.insert("[TM30_Rf]",                      new HDataFormatInfo("[TM30_Rf]", 0, 100, 1));
+    hashDataFormatInfo.insert("[TM30_Rg]",                      new HDataFormatInfo("[TM30_Rg]", 0, 100, 1));
+    hashDataFormatInfo.insert("[TM30_Rfi]",                     hashDataFormatInfo.value("[TM30_Rf]"));
+    hashDataFormatInfo.insert("[TM30_hj_Rf]",                   hashDataFormatInfo.value("[TM30_Rf]"));
+    hashDataFormatInfo.insert("[TM30_hj_atn]",                  new HDataFormatInfo("[TM30_hj_atn]", 0, 150, 2));
+    hashDataFormatInfo.insert("[TM30_hj_btn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
+    hashDataFormatInfo.insert("[TM30_hj_arn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
+    hashDataFormatInfo.insert("[TM30_hj_brn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
+    hashDataFormatInfo.insert("[TM30_hj_Rcs]",                  new HDataFormatInfo("[TM30_hj_Rcs]", -50, 50, 0));
+    hashDataFormatInfo.insert("[TM30_hj_Rhs]",                  new HDataFormatInfo("[TM30_hj_Rhs]", -0.5, 0.5, 2));
 
 //    //光强角度分布参数
 //    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));
@@ -601,4 +611,4 @@ void HCoreGlobalInstance::initMimeType()
     file.close();
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

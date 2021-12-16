@@ -2,7 +2,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAntLine::HAntLine(QWidget *parent) :
     QWidget(parent),
@@ -164,4 +164,4 @@ void HAntLine::updateValue()
     update();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

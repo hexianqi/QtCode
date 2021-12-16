@@ -4,7 +4,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HKnobGauge::HKnobGauge(QWidget *parent) :
     HAnimationProgress(*new HKnobGaugePrivate, parent)
@@ -456,4 +456,4 @@ void HKnobGauge::setPressedValue(QPointF value)
     setValue(v);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

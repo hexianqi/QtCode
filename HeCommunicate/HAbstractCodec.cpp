@@ -1,13 +1,11 @@
 #include "HAbstractCodec_p.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractCodec::HAbstractCodec() :
     d_ptr(new HAbstractCodecPrivate)
 {
 }
-
-
 
 HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p) :
     d_ptr(&p)
@@ -16,4 +14,4 @@ HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p) :
 
 HAbstractCodec::~HAbstractCodec() = default;
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

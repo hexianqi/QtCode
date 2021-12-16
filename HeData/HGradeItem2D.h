@@ -7,7 +7,7 @@
 #include "IGradeItem.h"
 #include "HAbstractDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGradeItem2DPrivate;
 
@@ -38,4 +38,4 @@ protected:
     HGradeItem2D(HGradeItem2DPrivate &);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

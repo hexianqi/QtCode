@@ -6,7 +6,7 @@
 
 #include "HLittleProtocol.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSl1000ProtocolPrivate;
 
@@ -19,11 +19,11 @@ public:
     ~HSl1000Protocol() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
     HSl1000Protocol(HSl1000ProtocolPrivate &);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtGui/QPainter>
 #include <QtWidgets/QActionGroup>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HImageEffectWidget::HImageEffectWidget(QWidget *parent) :
     QWidget(parent),
@@ -154,7 +154,7 @@ void HImageEffectWidget::init()
     connect(group, &QActionGroup::triggered, this, &HImageEffectWidget::changeEffect);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 // 下面是2张图片特效，如果图片大小不一致会很怪异
 //void ImageAnimation::paintEvent(QPaintEvent *)
 //{

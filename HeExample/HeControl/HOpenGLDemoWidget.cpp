@@ -3,7 +3,7 @@
 #include "ui_HOpenGLDemoWidget.h"
 #include <QtCore/QMultiHash>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLDemoWidget::HOpenGLDemoWidget(QWidget *parent) :
     QWidget(parent),
@@ -113,4 +113,4 @@ void HOpenGLDemoWidget::init()
      connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, [=](int value) { d_ptr->widget->setExposure(value * 0.01); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

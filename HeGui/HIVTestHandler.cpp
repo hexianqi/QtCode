@@ -2,19 +2,15 @@
 #include "IMainWindow.h"
 #include "HIVTestWidget.h"
 #include "HGuiHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIVTestHandler::HIVTestHandler(QObject *parent) :
     HAbstractGuiHandler(*new HIVTestHandlerPrivate, parent)
 {
 }
 
-HIVTestHandler::~HIVTestHandler()
-{
-    qDebug() << __func__;
-}
+HIVTestHandler::~HIVTestHandler() = default;
 
 QString HIVTestHandler::typeName()
 {
@@ -28,4 +24,4 @@ void HIVTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->mainWindow->openWidget(w);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

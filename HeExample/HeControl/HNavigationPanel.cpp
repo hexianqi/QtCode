@@ -5,9 +5,8 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QBoxLayout>
-#include <QtDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavigationPanel::HNavigationPanel(QWidget *parent) :
     HAbstractMultiPanel(*new HNavigationPanelPrivate, parent)
@@ -224,4 +223,4 @@ void HNavigationPanel::handleButtonClicked()
     setCurrentIndex(d->buttons.indexOf(b));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

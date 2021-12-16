@@ -3,9 +3,9 @@
 #include "HeCore/HException.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/IProtocol.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecStrategyPrivate::HSpecStrategyPrivate()
 {
@@ -29,10 +29,7 @@ HSpecStrategy::HSpecStrategy(HSpecStrategyPrivate &p, QObject *parent) :
 {
 }
 
-HSpecStrategy::~HSpecStrategy()
-{
-    qDebug() << __func__;
-}
+HSpecStrategy::~HSpecStrategy() = default;
 
 QString HSpecStrategy::typeName()
 {
@@ -73,4 +70,4 @@ bool HSpecStrategy::handle(HActionType action)
     return false;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 
 #include "HSpecCalibrateDialog.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecCalibrateWidget;
 
@@ -12,4 +12,4 @@ public:
     HSpecCalibrateWidget *widget = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,9 +3,7 @@
 #include <QtWidgets/QWidget>
 #include <QtCore/QDebug>
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // 此函数无法使用control里面的变量
 //static void handleEvents(const libvlc_event_t *event, void *data)
@@ -432,4 +430,4 @@ void HVlcPlayerControl::updateTracksInfo()
     //    qDebug() << "channels: " << libvlc_audio_get_channel(d_ptr->player);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

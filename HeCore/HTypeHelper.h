@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariant>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HTypeHelper
+class HTypeHelper
 {
 public:
     // 创建对象
@@ -20,4 +20,4 @@ public:
     static T *createObject(const QString &className, QVariantMap param);
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

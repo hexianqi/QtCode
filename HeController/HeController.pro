@@ -41,7 +41,6 @@ INCLUDEPATH += ..
 Debug {
     TARGET = HeControllerd
     LIBS    += \
-            -L$$DESTDIR -lHeAlgorithmd \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeCommunicated \
             -L$$DESTDIR -lHeDatad
@@ -50,7 +49,6 @@ Debug {
 Release {
     TARGET  = HeController
     LIBS    += \
-            -L$$DESTDIR -lHeAlgorithm \
             -L$$DESTDIR -lHeCore \
             -L$$DESTDIR -lHeCommunicate \
             -L$$DESTDIR -lHeData

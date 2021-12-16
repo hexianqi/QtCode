@@ -4,9 +4,8 @@
 #include "HeData/IDataFactory.h"
 #include "HeData/ITestData.h"
 #include "QXlsx/xlsxdocument.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestResultPrivate::HTestResultPrivate()
 {
@@ -41,10 +40,7 @@ HTestResult::HTestResult(HTestResultPrivate &p, QObject *parent) :
 {
 }
 
-HTestResult::~HTestResult()
-{
-    qDebug() << __func__;
-}
+HTestResult::~HTestResult() = default;
 
 void HTestResult::initialize(QVariantMap /*param*/)
 {
@@ -134,4 +130,4 @@ void HTestResult::syncFile()
         d_ptr->modified = false;
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

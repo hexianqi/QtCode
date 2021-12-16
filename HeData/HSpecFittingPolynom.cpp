@@ -4,9 +4,7 @@
 #include "HeAlgorithm/HMultiFit.h"
 #include <QtCore/QDataStream>
 
-HE_ALGORITHM_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingPolynom::HSpecFittingPolynom() :
     HSpecFitting(*new HSpecFittingPolynomPrivate)
@@ -147,4 +145,4 @@ void HSpecFittingPolynom::calcLinear()
     HMultiFit::linear(d->fittingPoints, d->ca, d->cova, &chisq);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

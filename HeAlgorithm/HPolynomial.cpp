@@ -1,9 +1,8 @@
 #include "HPolynomial.h"
 #include "gsl/gsl_poly.h"
 #include "gsl/gsl_complex_math.h"
-#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 double HPolynomial::eval(QVector<double> c, double x)
 {
@@ -90,4 +89,4 @@ QVector<gsl_complex> HPolynomial::complex_solve_cubic(double a, double b, double
     return r;
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

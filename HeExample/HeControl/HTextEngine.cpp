@@ -5,7 +5,7 @@
 #include <QtGui/QOpenGLBuffer>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTextEnginePrivate::HTextEnginePrivate()
 {
@@ -191,4 +191,4 @@ void HTextEngine::clear()
         FT_Done_Face(d_ptr->ftFace);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

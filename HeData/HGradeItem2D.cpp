@@ -5,7 +5,7 @@
 #include <QtCore/QSet>
 #include <QtGui/QPolygonF>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeItem2DPrivate::HGradeItem2DPrivate()
 {
@@ -117,4 +117,4 @@ QStringList HGradeItem2D::level(int i)
     return r;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

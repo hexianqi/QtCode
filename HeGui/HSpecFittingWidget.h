@@ -4,23 +4,15 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/HActionType.h"
-#include "HeData/HDataGlobal.h"
 #include <QtWidgets/QWidget>
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_DATA_BEGIN_NAMESPACE
 class HSpecFitting;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HSpecFittingWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecFittingWidget : public QWidget
+class HSpecFittingWidget : public QWidget
 {
     Q_OBJECT
 
@@ -57,4 +49,4 @@ private:
     void init();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

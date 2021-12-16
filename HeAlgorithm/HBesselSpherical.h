@@ -5,11 +5,12 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
+#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HBesselSpherical
+class HBesselSpherical
 {
 public: // 规则
     static double j0(double x);
@@ -41,4 +42,4 @@ public: // 不规则修正
     static QVector<double> kl_scaleds(int lmax, double x);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

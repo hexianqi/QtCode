@@ -6,11 +6,11 @@
 
 #include "HAbstractDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecSettingPrivate;
 
-class HE_DATA_EXPORT HSpecSetting : public HAbstractDataItem
+class HSpecSetting : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecSetting)
 
@@ -53,4 +53,4 @@ protected:
     double calcEnergy(double wave, double offset);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,14 +4,11 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
 
 class QWidget;
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class IDataEditer : public IInitializeable
@@ -31,4 +28,4 @@ public:
     virtual void showData() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,7 +6,7 @@
 class QMutex;
 class QWaitCondition;
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDelayThreadPrivate
 {
@@ -26,4 +26,4 @@ public:
     QQueue<QPair<HActionType, ulong>> actionCache;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

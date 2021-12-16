@@ -2,7 +2,7 @@
 #include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCarGaugePrivate::HCarGaugePrivate()
 {
@@ -376,4 +376,4 @@ void HCarGauge::drawCenterCircle(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

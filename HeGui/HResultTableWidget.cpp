@@ -5,9 +5,8 @@
 #include "HePlugin/HOptionalTableExtend.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QHeaderView>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HResultTableWidgetPrivate::HResultTableWidgetPrivate()
 {
@@ -26,10 +25,7 @@ HResultTableWidget::HResultTableWidget(HResultTableWidgetPrivate &p, QWidget *pa
     init();
 }
 
-HResultTableWidget::~HResultTableWidget()
-{
-    qDebug() << __func__;
-}
+HResultTableWidget::~HResultTableWidget() = default;
 
 void HResultTableWidget::setDisplay(const QStringList &value)
 {
@@ -93,4 +89,4 @@ void HResultTableWidget::init()
     horizontalHeader()->setDefaultSectionSize(100);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

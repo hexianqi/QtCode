@@ -5,7 +5,7 @@
 #include "HeCore/HCoreHelper.h"
 #include <QtCore/QSettings>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractPrintTemplate::HAbstractPrintTemplate(QObject *parent) :
     IPrintTemplate(parent),
@@ -26,6 +26,7 @@ HAbstractPrintTemplate::~HAbstractPrintTemplate()
 
 void HAbstractPrintTemplate::initialize(QVariantMap /*param*/)
 {
+    readSettings();
 }
 
 QStringList HAbstractPrintTemplate::dataType()
@@ -60,4 +61,4 @@ void HAbstractPrintTemplate::writeSettings()
     HCoreHelper::writeSettings(fileName, d_ptr->prefix, d_ptr->params);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

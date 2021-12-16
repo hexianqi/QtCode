@@ -3,7 +3,7 @@
 #include "HCircularProgress.h"
 #include <QtCore/QMap>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ICircularFactory;
 
@@ -19,4 +19,4 @@ public:
     QMap<QString, ICircular *> circularCache;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,21 +3,18 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeController/IModel.h"
+#include <QtCore/QTextStream>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HImportCurveHandler::HImportCurveHandler(QObject *parent) :
     HAbstractConfigHandler(*new HImportCurveHandlerPrivate, parent)
 {
 }
 
-HImportCurveHandler::~HImportCurveHandler()
-{
-    qDebug() << __func__;
-}
+HImportCurveHandler::~HImportCurveHandler() = default;
 
 QString HImportCurveHandler::typeName()
 {
@@ -57,4 +54,4 @@ void HImportCurveHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     QMessageBox::information(d->mainWindow, "", tr("\n导入成功！\n"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

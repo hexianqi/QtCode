@@ -6,7 +6,7 @@
 
 #include "HAbstractDevice.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecSimulateDevicePrivate;
 
@@ -36,5 +36,5 @@ protected:
     double simulate(double value);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE
 

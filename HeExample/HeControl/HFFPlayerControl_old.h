@@ -7,7 +7,7 @@
 #include "IMediaPlayerControl.h"
 #include <QtCore/QThread>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFFPlayerControlPrivate;
 
@@ -35,5 +35,5 @@ private:
     void free();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

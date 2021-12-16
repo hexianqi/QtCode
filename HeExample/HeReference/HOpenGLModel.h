@@ -11,7 +11,7 @@ struct aiScene;
 struct aiMesh;
 struct aiMaterial;
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLModelPrivate;
 
@@ -38,5 +38,5 @@ protected:
     QScopedPointer<HOpenGLModelPrivate> d_ptr;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

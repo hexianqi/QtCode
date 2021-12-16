@@ -17,7 +17,7 @@ extern "C" {
 
 using namespace std;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 #ifdef CONFIG_AVFILTER
 bool configure_filter_graph(AVFilterGraph *graph, const QString &filters, AVFilterContext *source, AVFilterContext *sink)
@@ -1470,4 +1470,4 @@ void HFFSubtitleStreamsControl::run()
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

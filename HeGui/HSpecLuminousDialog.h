@@ -4,21 +4,16 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
-#include "HeData/HDataGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QDialog>
-
-HE_DATA_BEGIN_NAMESPACE
-class HSpecLuminous;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
 
 namespace Ui {
 class HSpecLuminousDialog;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
+class HSpecLuminous;
 class HSpecLuminousDialogPrivate;
 
 class HSpecLuminousDialog : public QDialog
@@ -51,4 +46,4 @@ private:
     Ui::HSpecLuminousDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

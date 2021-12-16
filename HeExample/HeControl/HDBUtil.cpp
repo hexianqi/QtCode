@@ -7,7 +7,7 @@
 #include <QtSql/QSqlError>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 int HDBUtil::insert(const QString &sql, const QVariantMap &param)
 {
@@ -135,4 +135,4 @@ QList<QVariantMap> HDBUtil::toMaps(QSqlQuery *query)
     return list;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,7 +1,7 @@
 #include "HGslHelper.h"
 #include "gsl/gsl_complex_math.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QPolygonF HGslHelper::join(QVector<double> xa, QVector<double> y)
 {
@@ -82,4 +82,4 @@ gsl_complex HGslHelper::fromPolar(double r, double theta)
     return gsl_complex_polar(r, theta);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

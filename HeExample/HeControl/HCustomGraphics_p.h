@@ -2,7 +2,7 @@
 
 #include "HCustomGraphics.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HCustomGraphicsPrivate
 {
@@ -27,4 +27,4 @@ public:
     QList<QPair<QPolygon, bool>> polygons;  // 多边形集合
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

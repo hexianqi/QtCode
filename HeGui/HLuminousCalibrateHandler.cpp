@@ -2,19 +2,15 @@
 #include "IMainWindow.h"
 #include "HLuminousCalibrateDialog.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLuminousCalibrateHandler::HLuminousCalibrateHandler(QObject *parent) :
     HAbstractConfigHandler(*new HLuminousCalibrateHandlerPrivate, parent)
 {
 }
 
-HLuminousCalibrateHandler::~HLuminousCalibrateHandler()
-{
-    qDebug() << __func__;
-}
+HLuminousCalibrateHandler::~HLuminousCalibrateHandler() = default;
 
 QString HLuminousCalibrateHandler::typeName()
 {
@@ -30,4 +26,4 @@ void HLuminousCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param
     d->model->addAction(ACT_RESET_LUMINOUS);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

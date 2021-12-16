@@ -8,7 +8,7 @@
 #include <QtCore/QtMath>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 #define USE_ONEPASS_SUBTITLE_RENDER 1
 
@@ -795,4 +795,4 @@ void HSDLControl::run()
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

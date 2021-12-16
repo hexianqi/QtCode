@@ -2,12 +2,10 @@
 
 #include "HSqlOutput.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IPrint;
 class ITextExport;
-HE_DATA_END_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
 
 class HSqlOutputPrivate
 {
@@ -22,5 +20,5 @@ public:
     IPrintTemplate *printTemplate = nullptr;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE
 

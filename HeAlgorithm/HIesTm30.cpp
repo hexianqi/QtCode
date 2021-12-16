@@ -5,9 +5,8 @@
 #include <QtCore/QTextStream>
 #include "HGslHelper.h"
 #include <QtMath>
-#include <QtDebug>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // #CIE_CAM02
 // $F43 = 100                                                               LA (cd/m2)      -> LA
@@ -233,7 +232,7 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
 {
     int i,j,n;
     QList<int> list;
-    auto g = group(p->refe.h);
+    auto g = group(p->reference.h);
 
     at.fill(0.0, 16);
     bt.fill(0.0, 16);
@@ -257,8 +256,8 @@ void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
         {
             at[i] += p->test.ap.at(it.value().at(j)) / n;
             bt[i] += p->test.bp.at(it.value().at(j)) / n;
-            ar[i] += p->refe.ap.at(it.value().at(j)) / n;
-            br[i] += p->refe.bp.at(it.value().at(j)) / n;
+            ar[i] += p->reference.ap.at(it.value().at(j)) / n;
+            br[i] += p->reference.bp.at(it.value().at(j)) / n;
             dE[i] += p->dEi.at(it.value().at(j)) / n;
         }
         Rf[i] = log_scale(dE[i], factor);
@@ -319,11 +318,11 @@ void IES_TM30::calc(double factor)
 {
     for (int i = 0; i < 99; i++)
     {
-        dEi[i] = sqrt(pow(refe.Jp[i] - test.Jp[i], 2) + pow(refe.ap[i] - test.ap[i], 2) + pow(refe.bp[i] - test.bp[i], 2));
+        dEi[i] = sqrt(pow(reference.Jp[i] - test.Jp[i], 2) + pow(reference.ap[i] - test.ap[i], 2) + pow(reference.bp[i] - test.bp[i], 2));
         Rfi[i] = log_scale(dEi[i], factor);
     }
     hj.calc(this, factor);
-    dE = HMath::average(dEi);
+    dE = HMath::mean(dEi);
     Rf = log_scale(dE, factor);
     Rg = hj.Rg;
 }
@@ -340,7 +339,7 @@ IES_TM30 HIesTm30::calc(const QPolygonF &spdt, const QPolygonF &spdr)
 {
     IES_TM30 r;
     r.test.calc(_cieCam02.get(), calcTristimulus(spdt));
-    r.refe.calc(_cieCam02.get(), calcTristimulus(spdr));
+    r.reference.calc(_cieCam02.get(), calcTristimulus(spdr));
     r.calc(_factor);
     return r;
 }
@@ -440,4 +439,4 @@ QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
     return { X, Y, Z};
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

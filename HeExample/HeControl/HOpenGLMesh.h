@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
@@ -12,7 +12,7 @@
 class QOpenGLShaderProgram;
 class QOpenGLTexture;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct Vertex
 {
@@ -41,5 +41,5 @@ protected:
     QScopedPointer<HHOpenGLMeshPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

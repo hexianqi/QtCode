@@ -6,11 +6,11 @@
 
 #include "IGuiFactory.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGuiFactoryPrivate;
 
-class HE_GUI_EXPORT HGuiFactory : public QObject, public IGuiFactory
+class HGuiFactory : public QObject, public IGuiFactory
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HGuiFactory() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -40,4 +40,4 @@ private:
     void registerClass();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtWidgets/QGraphicsDropShadowEffect>
 #include <QtWidgets/QStyle>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAnimatedCheckBox::HAnimatedCheckBox(QWidget *parent) :
     QCheckBox(parent),
@@ -82,4 +82,4 @@ void HAnimatedCheckBox::handleToggled()
     style()->polish(this);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

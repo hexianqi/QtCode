@@ -19,7 +19,6 @@
 #include "HeGui/HSpecCalibrateWidget.h"
 #include "HeGui/HSpecCalibrateSetWidget.h"
 #include <QtWidgets/QMenu>
-#include <QtCore/QDebug>
 
 HBuilderSpecPrivate::HBuilderSpecPrivate()
 {
@@ -32,10 +31,7 @@ HBuilderSpec::HBuilderSpec(QObject *parent) :
 {
 }
 
-HBuilderSpec::~HBuilderSpec()
-{
-    qDebug() << __func__;
-}
+HBuilderSpec::~HBuilderSpec() = default;
 
 QString HBuilderSpec::typeName()
 {

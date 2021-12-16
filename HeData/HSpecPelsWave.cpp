@@ -3,8 +3,7 @@
 #include "HeAlgorithm/HMath.h"
 #include <QtCore/QDataStream>
 
-HE_ALGORITHM_USE_NAMESPACE
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecPelsWave::HSpecPelsWave() :
     HAbstractDataItem(*new HSpecPelsWavePrivate)
@@ -101,4 +100,4 @@ double HSpecPelsWave::handle(double value)
     return HMath::interpolate(value, d->pelsWave);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,23 +1,18 @@
 #pragma once
 
 #include "HAbstractMainWindow.h"
-#include "HeController/HControllerGlobal.h"
 #include <QtCore/QMap>
 
 class QLabel;
 class QActionGroup;
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IModel;
-HE_CONTROLLER_END_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class IBuilder;
 class ITestWidget;
 
-class HE_GUI_EXPORT HAbstractMainWindowPrivate
+class HAbstractMainWindowPrivate
 {
 public:
     HAbstractMainWindowPrivate(HAbstractMainWindow *);
@@ -58,4 +53,4 @@ public:
     QToolBar *toolBarLogo = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

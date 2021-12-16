@@ -44,7 +44,6 @@ SOURCES     += \
             HCoreGlobalInstance.cpp \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
-            HCallorHelper.cpp \
             HException.cpp \
             HThreadPool.cpp
 

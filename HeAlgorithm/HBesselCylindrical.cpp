@@ -1,8 +1,7 @@
 #include "HBesselCylindrical.h"
 #include "gsl/gsl_sf_bessel.h"
-#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 double HBesselCylindrical::J0(double x)
 {
@@ -154,4 +153,4 @@ QVector<double> HBesselCylindrical::Kn_scaled(int nmin, int nmax, double x)
     return r;
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

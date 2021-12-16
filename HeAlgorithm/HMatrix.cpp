@@ -3,10 +3,8 @@
 #include <gsl/gsl_blas.h>
 #include <gsl/gsl_linalg.h>
 #include <gsl/gsl_permutation.h>
-#include <QtCore/QVector>
-#include <QtDebug>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HMatrix::mul(gsl_matrix *a, gsl_matrix *b, gsl_matrix *c)
 {
@@ -41,7 +39,7 @@ void HMatrix::inverse(gsl_matrix *a)
     gsl_matrix_free(t);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE
 
 //#include <stdio.h>
 //#include <gsl/gsl_blas.h>

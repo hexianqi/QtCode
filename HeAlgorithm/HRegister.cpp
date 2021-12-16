@@ -5,9 +5,7 @@
 #include <exception>
 #include <windows.h>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
-
-using namespace std;
+HE_BEGIN_NAMESPACE
 
 QString REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\Test";
 QString REGISTER_ID = "banben";
@@ -58,7 +56,7 @@ QString HRegisterPrivate::registerCode()
         QSettings reg(REGISTRY_KEY, QSettings::NativeFormat);
         return reg.value(REGISTER_CODE).toString();
     }
-    catch (exception &e)
+    catch (std::exception &e)
     {
         qDebug() << __func__ << e.what();
         return QString();
@@ -94,7 +92,7 @@ bool HRegisterPrivate::setRegisterCode(const QString &value)
         reg.setValue(SERIAL_NUMBER, serialNumber);
         return true;
     }
-    catch (exception &e)
+    catch (std::exception &e)
     {
         qDebug() << __func__ << e.what();
         return false;
@@ -113,10 +111,7 @@ HRegister::HRegister(HRegisterPrivate &p, QObject *parent) :
 {
 }
 
-HRegister::~HRegister()
-{
-    qDebug() << __func__;
-}
+HRegister::~HRegister() = default;
 
 QString HRegister::registerId()
 {
@@ -151,7 +146,7 @@ bool HRegister::check(const QString &id, const QString &code)
     {
         return encrypt(id) == code;
     }
-    catch (exception &e)
+    catch (std::exception &e)
     {
         qDebug() << __func__ << e.what();
         return false;
@@ -172,4 +167,4 @@ void HRegister::trial()
     d_ptr->trial();
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

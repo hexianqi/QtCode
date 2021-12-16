@@ -3,7 +3,7 @@
 #include "HRegister.h"
 #include <QtCore/QString>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HRegisterPrivate
 {
@@ -23,4 +23,4 @@ public:
     int firstDate;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

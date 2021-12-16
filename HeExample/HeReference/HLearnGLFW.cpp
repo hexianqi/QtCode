@@ -1,9 +1,9 @@
 #include "HLearnGLFW_p.h"
 #include "HGeometryEngine.h"
-#include <QtCore/QDebug>
 #include <iostream>
+#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLCamera *camera = nullptr;
 
@@ -216,4 +216,4 @@ QVector3D HLearnGLFW::lightColor()
     return d_ptr->lightColor;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

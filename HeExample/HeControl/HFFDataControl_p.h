@@ -6,7 +6,7 @@
 #include <QtCore/QMutexLocker>
 #include <QtCore/QWaitCondition>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HFFPacket;
 
@@ -52,5 +52,5 @@ public:
     QVector<HFFFrame *> cache;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

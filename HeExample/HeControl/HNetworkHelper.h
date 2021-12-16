@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtNetwork/QAbstractSocket>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNetworkHelper
 {
@@ -16,4 +16,4 @@ public:
     static QStringList localIP(QAbstractSocket::NetworkLayerProtocol type = QAbstractSocket::IPv4Protocol);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

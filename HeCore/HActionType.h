@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 using HActionType = long long;
 
@@ -121,4 +121,4 @@ using HActionType = long long;
 //#define     ACT_RESET_JUDGMENT                      0xF0000003
 //#define     ACT_RESET_CIRCUIT                       0xF0000004
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

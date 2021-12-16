@@ -2,7 +2,7 @@
 #include <QtCore/QRegularExpression>
 #include <QtGui/QRegularExpressionValidator>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 bool HRegularExpressionHelper::isMatch(const QString &text, const QString &pattern)
 {
@@ -21,4 +21,4 @@ QRegularExpressionValidator *HRegularExpressionHelper::email(QObject *parent)
     return new QRegularExpressionValidator(re, parent);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

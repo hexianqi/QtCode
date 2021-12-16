@@ -6,7 +6,7 @@
 
 #include "HAbstractConfigHandler.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAdjust2SelectHandlerPrivate;
 
@@ -26,4 +26,4 @@ public:
     void execute(QObject *sender = nullptr, QVariantMap param = QVariantMap()) override;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

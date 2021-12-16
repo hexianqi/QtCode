@@ -6,7 +6,7 @@
 
 #include "IDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractDataItemPrivate;
 
@@ -17,7 +17,7 @@ public:
     ~HAbstractDataItem();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void setData(QString name, QVariant value) override;
@@ -32,4 +32,4 @@ protected:
     QScopedPointer<HAbstractDataItemPrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

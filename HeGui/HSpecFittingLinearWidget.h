@@ -10,11 +10,11 @@ namespace Ui {
 class HSpecFittingLinearWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecFittingLinearWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecFittingLinearWidget : public HSpecFittingWidget
+class HSpecFittingLinearWidget : public HSpecFittingWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecFittingLinearWidget)
@@ -38,4 +38,4 @@ private:
     Ui::HSpecFittingLinearWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

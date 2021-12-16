@@ -1,24 +1,16 @@
 #pragma once
 
 #include "HAdjust2EditWidget.h"
-#include "HeController/HControllerGlobal.h"
 #include <QModelIndex>
 
 class QStringListModel;
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IDataFactory;
 class ITestData;
 class IAdjustItemCollection;
-HE_DATA_END_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
 class IModel;
-HE_CONTROLLER_END_NAMESPACE
-HE_CONTROLLER_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HSpecEnergyWidget;
 class ITestSetWidget;
 
@@ -44,4 +36,4 @@ public:
     ITestSetWidget *testSetWidget = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

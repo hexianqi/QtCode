@@ -5,7 +5,7 @@
 #include <QtSql/QSqlError>
 #include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 bool checkQuery(QSqlQuery *query)
 {
@@ -108,4 +108,4 @@ int HSqlHelper::getVersion(const QString &tableName, QSqlDatabase db)
     return query.exec(sql) ? 0x01010101 : 0;
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

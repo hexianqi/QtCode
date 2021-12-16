@@ -2,12 +2,10 @@
 
 #include "HThread2000AC.h"
 #include "HeController/HAbstractThread_p.h"
-#include "HeData/HDataGlobal.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 class ITestData;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
+HE_END_NAMESPACE
 
 class HThread2000ACPrivate : public HAbstractThreadPrivate
 {

@@ -7,15 +7,13 @@
 #include "HLogType.h"
 #include "HActionType.h"
 #include "HErrorType.h"
+#include <QtCore/QVariant>
 
-class QVariant;
-class QStringList;
-
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDataFormatInfo;
 
-class HE_CORE_EXPORT HCore
+class HCore
 {
 public:
     static char *toCommand(HLogType type);
@@ -41,4 +39,4 @@ public:
     static QString typeAddition(const QString &type, const QString &addition);
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

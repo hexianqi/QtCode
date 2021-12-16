@@ -6,9 +6,8 @@
 #include <QtWidgets/QGraphicsSimpleTextItem>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecSampleChartViewPrivate::HSpecSampleChartViewPrivate()
 {
@@ -22,10 +21,7 @@ HSpecSampleChartView::HSpecSampleChartView(QWidget *parent) :
     init();
 }
 
-HSpecSampleChartView::~HSpecSampleChartView()
-{
-    qDebug() << __func__;
-}
+HSpecSampleChartView::~HSpecSampleChartView() = default;
 
 void HSpecSampleChartView::setEnablePeak(bool b)
 {
@@ -117,5 +113,5 @@ void HSpecSampleChartView::init()
     HVernierChartView::init();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

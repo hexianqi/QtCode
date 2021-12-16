@@ -4,7 +4,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLightButton::HLightButton(QWidget *parent) :
     QWidget(parent),
@@ -334,4 +334,4 @@ void HLightButton::init()
     connect(d_ptr->timer, &QTimer::timeout, this, &HLightButton::alarm);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

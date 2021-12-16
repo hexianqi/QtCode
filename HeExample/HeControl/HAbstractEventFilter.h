@@ -6,7 +6,7 @@
 
 #include "IEventFilter.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractEventFilterPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractEventFilter() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     bool setEnable(bool b) override;
@@ -42,4 +42,4 @@ protected:
     QScopedPointer<HAbstractEventFilterPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

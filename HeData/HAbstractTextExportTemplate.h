@@ -6,11 +6,11 @@
 
 #include "ITextExportTemplate.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractTextExportTemplatePrivate;
 
-class HE_DATA_EXPORT HAbstractTextExportTemplate : public QObject, public ITextExportTemplate
+class HAbstractTextExportTemplate : public QObject, public ITextExportTemplate
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractTextExportTemplate() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     QStringList dataType() override;
@@ -33,5 +33,5 @@ protected:
     QScopedPointer<HAbstractTextExportTemplatePrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

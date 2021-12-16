@@ -2,7 +2,7 @@
 
 #include "HRbTableHeaderView.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HRbTableHeaderModel;
 
@@ -15,4 +15,4 @@ public:
     HRbTableHeaderModel *model;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

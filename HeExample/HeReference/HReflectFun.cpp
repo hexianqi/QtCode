@@ -3,7 +3,7 @@
 #include <QtCore/QJsonObject>
 #include <QtCore/QTextStream>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HReflectFun::HReflectFun(QObject *parent) :
     QObject(parent)
@@ -103,4 +103,4 @@ void Test()
     os << "\njson:\n" << reply4["json"].toByteArray() << endl;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

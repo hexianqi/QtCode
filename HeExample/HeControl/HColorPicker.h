@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
 class QTimer;
@@ -14,9 +14,9 @@ namespace Ui {
 class HColorPicker;
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CONTROL_EXPORT HColorPicker : public QWidget
+class HColorPicker : public QWidget
 {
     Q_OBJECT
 
@@ -35,4 +35,4 @@ private:
     QTimer *_timer;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

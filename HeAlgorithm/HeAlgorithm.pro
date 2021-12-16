@@ -35,6 +35,8 @@ SOURCES     += \
             HRegister.cpp \
             HMath.cpp
 
+INCLUDEPATH += ..
+
 RESOURCES   += HeAlgorithm.qrc
 
 Debug:      TARGET  = HeAlgorithmd
@@ -42,3 +44,4 @@ Release:    TARGET  = HeAlgorithm
 
 include(gsl.pri)
 include(spec.pri)
+#include(luxpy.pri)

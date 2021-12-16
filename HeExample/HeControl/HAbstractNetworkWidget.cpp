@@ -5,8 +5,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
 
-HE_CORE_USE_NAMESPACE
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractNetworkWidget::HAbstractNetworkWidget(QWidget *parent) :
     QWidget(parent),
@@ -157,4 +156,4 @@ void HAbstractNetworkWidget::init()
     connect(d_ptr->timer, &QTimer::timeout, this, &HAbstractNetworkWidget::sendData);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

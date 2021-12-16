@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
+#include "HNamespace.h"
 #include <QtSql/QSqlDatabase>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_SQL_EXPORT HSqlHelper
+class HSqlHelper
 {
 public:
     static bool createTable(const QString &tableName, const QStringList &fields, QSqlDatabase db = QSqlDatabase());
@@ -19,4 +19,4 @@ public:
     static int getVersion(const QString &tableName, QSqlDatabase db = QSqlDatabase());
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

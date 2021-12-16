@@ -2,9 +2,8 @@
 #include "HSql.h"
 #include "HSqlHelper.h"
 #include <QtSql/QSqlRecord>
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlTableModel::HSqlTableModel(QObject *parent, QSqlDatabase db) :
     ISqlTableModel(parent, db),
@@ -21,10 +20,7 @@ HSqlTableModel::HSqlTableModel(HSqlTableModelPrivate &p, QObject *parent, QSqlDa
     init();
 }
 
-HSqlTableModel::~HSqlTableModel()
-{
-    qDebug() << __func__;
-}
+HSqlTableModel::~HSqlTableModel() = default;
 
 void HSqlTableModel::initialize(QVariantMap /*param*/)
 {
@@ -123,4 +119,4 @@ void HSqlTableModel::updateField()
         d_ptr->fields << r.fieldName(i);
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,7 +3,7 @@
 #include "HTestWidget.h"
 #include "HAbstractTestWidget_p.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTestWidgetPrivate : public HAbstractTestWidgetPrivate
 {
@@ -14,4 +14,4 @@ public:
     QAction *actionClear = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

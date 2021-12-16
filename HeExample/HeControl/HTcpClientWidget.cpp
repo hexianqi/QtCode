@@ -4,7 +4,7 @@
 #include <QtCore/QTimer>
 #include <QtNetwork/QTcpSocket>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTcpClientWidget::HTcpClientWidget(QWidget *parent) :
     HAbstractClientWidget(*new HTcpClientWidgetPrivate, parent),
@@ -136,4 +136,4 @@ void HTcpClientWidget::init()
     setWindowTitle(tr("TCP客户端"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

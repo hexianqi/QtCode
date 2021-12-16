@@ -4,16 +4,13 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include "HeCore/HActionType.h"
 #include <QtWidgets/QWidget>
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_GUI_BEGIN_NAMESPACE
-
-class HE_GUI_EXPORT ITestSetWidget : public QWidget, public IInitializeable
+class ITestSetWidget : public QWidget, public IInitializeable
 {
     Q_OBJECT
 
@@ -45,4 +42,4 @@ public:
     virtual int saveMode() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

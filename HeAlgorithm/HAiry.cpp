@@ -1,7 +1,7 @@
 #include "HAiry.h"
 #include "gsl/gsl_sf_airy.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 double HAiry::Ai(double x)
 {
@@ -43,24 +43,24 @@ double HAiry::Bi_deriv_Scaled(double x)
     return gsl_sf_airy_Bi_deriv_scaled(x, GSL_PREC_DOUBLE);
 }
 
-double HAiry::zero_Ai(uint s)
+double HAiry::zero_Ai(unsigned int s)
 {
     return gsl_sf_airy_zero_Ai(s);
 }
 
-double HAiry::zero_Bi(uint s)
+double HAiry::zero_Bi(unsigned int s)
 {
     return gsl_sf_airy_zero_Ai(s);
 }
 
-double HAiry::zero_Ai_deriv(uint s)
+double HAiry::zero_Ai_deriv(unsigned int s)
 {
     return gsl_sf_airy_zero_Ai_deriv(s);
 }
 
-double HAiry::zero_Bi_deriv(uint s)
+double HAiry::zero_Bi_deriv(unsigned int s)
 {
     return gsl_sf_airy_zero_Bi_deriv(s);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

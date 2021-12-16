@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
 namespace Ui {
 class HOpenGLDemoWidget;
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLDemoWidgetPrivate;
 
-class HE_CONTROL_EXPORT HOpenGLDemoWidget : public QWidget
+class HOpenGLDemoWidget : public QWidget
 {
     Q_OBJECT
 
@@ -39,5 +39,5 @@ private:
     Ui::HOpenGLDemoWidget *ui;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

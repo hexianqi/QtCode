@@ -6,7 +6,7 @@
 
 #include "HAbstractDevice.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HPowerFactorDevicePrivate;
 
@@ -26,4 +26,4 @@ public:
     bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

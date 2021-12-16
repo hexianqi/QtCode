@@ -8,9 +8,7 @@
 #include "HeCore/HSingleton2.h"
 #include <QtCore/QObject>
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HRunTimeServicePrivate;
 
@@ -39,4 +37,4 @@ private:
     void init();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

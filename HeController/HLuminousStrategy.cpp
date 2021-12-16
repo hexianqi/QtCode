@@ -1,9 +1,8 @@
 #include "HLuminousStrategy_p.h"
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLuminousStrategyPrivate::HLuminousStrategyPrivate()
 {
@@ -22,10 +21,7 @@ HLuminousStrategy::HLuminousStrategy(HLuminousStrategyPrivate &p, QObject *paren
 {
 }
 
-HLuminousStrategy::~HLuminousStrategy()
-{
-    qDebug() << __func__;
-}
+HLuminousStrategy::~HLuminousStrategy() = default;
 
 QString HLuminousStrategy::typeName()
 {
@@ -51,4 +47,4 @@ bool HLuminousStrategy::handle(HActionType action)
     return false;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

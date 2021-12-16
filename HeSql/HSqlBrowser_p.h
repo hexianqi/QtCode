@@ -4,7 +4,7 @@
 
 class QToolBar;
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlTableView;
 
@@ -25,4 +25,4 @@ public:
     QAction *actionPrintPreview;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 #include "HeCore/HAppContext.h"
 #include <QtCore/QSettings>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestProductPrivate::HTestProductPrivate()
 {
@@ -93,4 +93,4 @@ void HTestProduct::writeSettings(QString fileName)
     settings.endGroup();
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

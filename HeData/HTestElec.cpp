@@ -4,7 +4,7 @@
 #include "IElecCalibrateItemCollection.h"
 #include <QtCore/QVector>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestElecPrivate::HTestElecPrivate()
 {
@@ -163,4 +163,4 @@ void HTestElec::calcRelation(HElecType type)
         d->setData("[反向漏流]", d->calibrate->toReal(value, type, gears));
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

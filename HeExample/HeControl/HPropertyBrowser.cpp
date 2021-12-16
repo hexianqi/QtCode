@@ -4,7 +4,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtCore/QMetaProperty>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 bool isSubValue(int value, int subValue)
 {
@@ -335,4 +335,4 @@ void HPropertyBrowser::handleValueChanged(QtProperty *property, const QVariant &
     d_ptr->updateClassProperties(metaObject, true);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,9 +2,9 @@
 
 #include "HAbstractPrintTemplate.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_DATA_EXPORT HAbstractPrintTemplatePrivate
+class HAbstractPrintTemplatePrivate
 {
 public:
     QString prefix;
@@ -13,5 +13,5 @@ public:
     QVariantMap params;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

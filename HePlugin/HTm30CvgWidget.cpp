@@ -2,6 +2,7 @@
 #include "HCartesianCoordinate.h"
 #include "HPainterHelper.h"
 #include <QtCore/QtMath>
+#include <QtCore/QVariant>
 #include <QtGui/QPainter>
 
 HTm30CvgWidgetPrivate::HTm30CvgWidgetPrivate()
@@ -20,6 +21,45 @@ HTm30CvgWidget::HTm30CvgWidget(QWidget *parent) :
 
 HTm30CvgWidget::~HTm30CvgWidget()
 {
+}
+
+QStringList HTm30CvgWidget::dataType()
+{
+    return QStringList() << "[色温]" << "[Duv]" << "[TM30_Rf]" << "[TM30_Rg]"
+                         << "[TM30_hj_atn]" << "[TM30_hj_btn]" << "[TM30_hj_arn]" << "[TM30_hj_brn]";
+}
+
+void HTm30CvgWidget::setData(const QVariantMap &value)
+{
+    Q_D(HTm30CvgWidget);
+    if (value.contains("[色温]"))
+        d->CCT = value.value("[色温]").toDouble();
+    if (value.contains("[Duv]"))
+        d->Duv = value.value("[Duv]").toDouble();
+    if (value.contains("[TM30_Rf]"))
+        d->Rf = value.value("[TM30_Rf]").toDouble();
+    if (value.contains("[TM30_Rg]"))
+        d->Rg = value.value("[TM30_Rg]").toDouble();
+    if (value.contains("[TM30_hj_atn]") &&  value.contains("[TM30_hj_btn]"))
+    {
+        auto a = value.value("[TM30_hj_atn]").value<QList<double>>();
+        auto b = value.value("[TM30_hj_btn]").value<QList<double>>();
+        for (int i = 0; i < 16 && i < a.size() && i < b.size(); i++)
+        {
+            d->polyTest[i].setX(a[i]);
+            d->polyTest[i].setY(b[i]);
+        }
+    }
+    if (value.contains("[TM30_hj_arn]") &&  value.contains("[TM30_hj_brn]"))
+    {
+        auto a = value.value("[TM30_hj_arn]").value<QList<double>>();
+        auto b = value.value("[TM30_hj_brn]").value<QList<double>>();
+        for (int i = 0; i < 16 && i < a.size() && i < b.size(); i++)
+        {
+            d->polyReference[i].setX(a[i]);
+            d->polyReference[i].setY(b[i]);
+        }
+    }
 }
 
 bool HTm30CvgWidget::isDrawBackground() const
@@ -211,7 +251,7 @@ bool HTm30CvgWidget::drawValue(QPainter *painter)
     painter->setFont(font1);
     painter->drawText(d->coordinate->mapToPosition(rect11, d->plotArea), Qt::AlignVCenter | Qt::AlignLeft, QString::number(d->Rf, 'f', 0));
     painter->drawText(d->coordinate->mapToPosition(rect21, d->plotArea), Qt::AlignVCenter | Qt::AlignRight, QString::number(d->Rg, 'f', 0));
-    painter->drawText(d->coordinate->mapToPosition(rect31, d->plotArea), Qt::AlignVCenter | Qt::AlignLeft, QString::number(d->Tc, 'f', 0));
+    painter->drawText(d->coordinate->mapToPosition(rect31, d->plotArea), Qt::AlignVCenter | Qt::AlignLeft, QString::number(d->CCT, 'f', 0));
     painter->drawText(d->coordinate->mapToPosition(rect41, d->plotArea), Qt::AlignVCenter | Qt::AlignRight, QString::number(d->Duv, 'f', 4));
     painter->setFont(font2);
     painter->drawText(d->coordinate->mapToPosition(rect12, d->plotArea), Qt::AlignVCenter | Qt::AlignLeft, "Rf");
@@ -254,5 +294,7 @@ void HTm30CvgWidget::init()
                    << QColor(106, 78, 133)
                    << QColor(157, 105, 161)
                    << QColor(167, 79, 129);
+    setMargins(25, 25, 25, 25);
     setCoordinate(QRectF(-150, -150, 300, 300), 6, 6);
+    setWindowTitle("CVG");
 }

@@ -2,7 +2,7 @@
 #include "HChromatismChart.h"
 #include "HeAlgorithm/HMath.h"
 
-HE_ALGORITHM_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 HChromatismChartView::HChromatismChartView(QWidget *parent) :
     HZoomChartView(*new HChromatismChartViewPrivate, nullptr, parent)

@@ -7,7 +7,7 @@
 
 struct AVFormatContext;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFFVideoStreamsControl;
 class HFFAudioStreamsControl;
@@ -74,5 +74,5 @@ public:
     QWaitCondition cond;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

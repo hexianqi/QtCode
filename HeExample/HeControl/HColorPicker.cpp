@@ -5,9 +5,8 @@
 #include <QtWidgets/QDesktopWidget>
 #include <QtGui/QScreen>
 #include <QtGui/QIcon>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HColorPicker::HColorPicker(QWidget *parent) :
     QWidget(parent),
@@ -54,4 +53,4 @@ void HColorPicker::init()
     HControlHelper::centerWidget(this);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

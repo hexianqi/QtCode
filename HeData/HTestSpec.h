@@ -7,11 +7,11 @@
 #include "HTestData.h"
 #include "ITestSpec.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTestSpecPrivate;
 
-class HE_DATA_EXPORT HTestSpec : public HTestData, public virtual ITestSpec
+class HTestSpec : public HTestData, public virtual ITestSpec
 {
     Q_DECLARE_PRIVATE(HTestSpec)
 
@@ -46,4 +46,4 @@ protected:
     HTestSpec(HTestSpecPrivate &p);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

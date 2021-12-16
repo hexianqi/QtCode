@@ -2,7 +2,7 @@
 
 #include "HLunarCalendarItem.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HLunarCalendarItemPrivate
 {
@@ -38,4 +38,4 @@ public:
     bool pressed = false;                               // 鼠标是否按下
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

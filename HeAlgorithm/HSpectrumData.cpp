@@ -1,6 +1,6 @@
 #include "HSpecData.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecData::HSpecData()
 {
@@ -9,8 +9,8 @@ HSpecData::HSpecData()
 
 void HSpecData::clear()
 {
-    Energy.clear();
-    EnergyPercent.clear();
+    TestEnergy.clear();
+    TestEnergyPercent.clear();
     EnergyTotal = 0.0;
     EnergyMax = 0.0;
     WavePeak = 0.0;
@@ -31,4 +31,4 @@ void HSpecData::clear()
     VisionFlux = 0.0;
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

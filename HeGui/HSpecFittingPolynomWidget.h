@@ -10,11 +10,11 @@ namespace Ui {
 class HSpecFittingPolynomWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecFittingPolynomWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecFittingPolynomWidget : public HSpecFittingWidget
+class HSpecFittingPolynomWidget : public HSpecFittingWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecFittingPolynomWidget)
@@ -38,4 +38,4 @@ private:
     Ui::HSpecFittingPolynomWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

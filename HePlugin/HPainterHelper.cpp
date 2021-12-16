@@ -25,8 +25,11 @@ QPointF HPainterHelper::drawLogo(QPainter *painter, QRectF rect, QString fileNam
 
 QPointF HPainterHelper::drawChart(QPainter *painter, QRectF rect, QWidget *widget)
 {
-    auto y = drawText(painter, rect, widget->windowTitle(), Qt::AlignHCenter).y();
-    rect.setTop(y);
+    if (!widget->windowTitle().isEmpty())
+    {
+        auto p = drawText(painter, rect, widget->windowTitle(), Qt::AlignHCenter);
+        rect.setTop(p.y());
+    }
     auto side = qMin(rect.width(), rect.height());
     rect.adjust((rect.width() - side) / 2, 0, -(rect.width() - side) / 2, -(rect.height() - side));
     widget->resize(rect.size().toSize());
@@ -80,4 +83,22 @@ void HPainterHelper::drawCrossCursor(QPainter *painter, QPointF point, int size)
 {
     painter->drawLine(QLineF(point.x(), point.y() - size, point.x(), point.y() + size));
     painter->drawLine(QLineF(point.x() - size, point.y(), point.x() + size, point.y()));
+}
+
+double HPainterHelper::paintHeader(QPainter *painter, const QVariantMap &param)
+{
+    if (param.value("DrawHeader", true).toBool())
+        HPainterHelper::drawText(painter, 20, 5, param.value("Header").toString());
+    if (param.value("DrawLogo", true).toBool())
+        HPainterHelper::drawLogo(painter, QRectF(painter->viewport().width() - 180, 0, 162, 30), param.value("LogoFile").toString());
+    painter->drawLine(0, 35, painter->viewport().width(), 35);
+    return 50;
+}
+
+double HPainterHelper::paintFooter(QPainter *painter, const QString &footer)
+{
+    auto y = painter->viewport().height() - painter->fontMetrics().lineSpacing() - 10;
+    painter->drawLine(0, y, painter->viewport().width(), y);
+    drawText(painter, 0, y, footer, Qt::AlignCenter);
+    return y - 5;
 }

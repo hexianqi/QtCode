@@ -2,7 +2,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTextStreamPrivate::HTextStreamPrivate()
 {
@@ -125,4 +125,4 @@ bool HTextStream::appendFile(QString fileName)
     return r;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

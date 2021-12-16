@@ -2,7 +2,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBarRuler::HBarRuler(QWidget *parent) :
     HAbstractProgress(*new HBarRulerPrivate, parent)
@@ -300,4 +300,4 @@ void HBarRuler::updateValue()
     update();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

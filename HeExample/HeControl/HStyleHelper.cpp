@@ -1,7 +1,7 @@
 #include "HStyleHelper.h"
 #include <QtCore/QFile>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QString HStyleHelper::loadStyle(const QString &fileName)
 {
@@ -15,4 +15,4 @@ QString HStyleHelper::loadStyle(const QString &fileName)
     return qss;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

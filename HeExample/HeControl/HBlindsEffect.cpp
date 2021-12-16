@@ -1,7 +1,7 @@
 #include "HBlindsEffect_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBlindsEffect::HBlindsEffect(QObject *parent) :
     HAbstractShaderEffect(*new HBlindsEffectPrivate, parent)
@@ -78,4 +78,4 @@ void HBlindsEffect::setDirection(HControlType::Direction4 value)
     d->direction = value;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

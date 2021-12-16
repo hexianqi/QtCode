@@ -4,7 +4,7 @@
 #include "HControlHelper.h"
 #include <QtWidgets/QListView>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HControlFactoryWidget::HControlFactoryWidget(QWidget *parent) :
     QWidget(parent),
@@ -42,4 +42,4 @@ void HControlFactoryWidget::init()
 
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 #include "HTcpClient.h"
 #include <QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTcpServer::HTcpServer(QObject *parent) :
     QTcpServer(parent),
@@ -119,4 +119,4 @@ void HTcpServer::handleClientDisconnected()
     d_ptr->clients.remove(key);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

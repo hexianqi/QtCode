@@ -1,9 +1,9 @@
 #include "HSpecSimulateDevice_p.h"
 #include <QtCore/QRandomGenerator>
 #include <QtCore/QtMath>
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecSimulateDevice::HSpecSimulateDevice() :
     HAbstractDevice(*new HSpecSimulateDevicePrivate)
@@ -15,10 +15,7 @@ HSpecSimulateDevice::HSpecSimulateDevice(HSpecSimulateDevicePrivate &p) :
 {
 }
 
-HSpecSimulateDevice::~HSpecSimulateDevice()
-{
-    qDebug() << __func__;
-}
+HSpecSimulateDevice::~HSpecSimulateDevice() = default;
 
 QString HSpecSimulateDevice::typeName()
 {
@@ -77,4 +74,4 @@ double HSpecSimulateDevice::simulate(double value)
     return t * p + 1000;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

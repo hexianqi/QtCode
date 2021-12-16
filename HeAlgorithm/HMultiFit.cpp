@@ -3,7 +3,7 @@
 #include "gsl/gsl_multifit.h"
 #include <functional>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 const gsl_multifit_robust_type *toGsl(HMultiFit::RobustType type)
 {
@@ -117,4 +117,4 @@ void HMultiFit::robust_est(double x, QVector<double> ca, QVector<double> cova, d
     est(x, ca, cova, func);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

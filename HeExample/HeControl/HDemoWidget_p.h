@@ -2,7 +2,7 @@
 
 #include "HDemoWidget.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFlatStyle;
 
@@ -12,4 +12,4 @@ public:
     HFlatStyle *style;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

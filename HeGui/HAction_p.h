@@ -2,7 +2,7 @@
 
 #include "HAction.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HActionPrivate
 {
@@ -10,4 +10,4 @@ public:
     IHandler *handler = nullptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

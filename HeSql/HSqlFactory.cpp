@@ -4,9 +4,8 @@
 #include "HSqlHandle.h"
 #include "HSqlOutput.h"
 #include "HSqlBrowser.h"
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlFactory::HSqlFactory(QObject *parent) :
     QObject(parent),
@@ -22,10 +21,7 @@ HSqlFactory::HSqlFactory(HSqlFactoryPrivate &p, QObject *parent) :
     registerClass();
 }
 
-HSqlFactory::~HSqlFactory()
-{
-    qDebug() << endl << __func__;
-}
+HSqlFactory::~HSqlFactory() = default;
 
 void HSqlFactory::initialize(QVariantMap /*param*/)
 {
@@ -80,4 +76,4 @@ void HSqlFactory::registerClass()
 {
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

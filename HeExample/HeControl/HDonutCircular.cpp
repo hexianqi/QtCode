@@ -2,7 +2,7 @@
 #include <QtGui/QPalette>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDonutCircular::HDonutCircular(QObject *parent) :
     HAbstractCircular(*new HDonutCircularPrivate, parent)
@@ -101,4 +101,4 @@ void HDonutCircular::setSpanAngle(int value)
     emit dataChanged();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

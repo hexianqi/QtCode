@@ -1,7 +1,7 @@
 #include "HTcpClient_p.h"
 #include <QtNetwork/QHostAddress>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTcpClient::HTcpClient(QObject *parent) :
     QTcpSocket(parent),
@@ -50,4 +50,4 @@ void HTcpClient::init()
     connect(this, &HTcpClient::readyRead, this, &HTcpClient::handleReadyRead);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

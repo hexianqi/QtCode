@@ -2,7 +2,7 @@
 
 #include "HAbstractDevice.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractDevicePrivate
 {
@@ -14,4 +14,4 @@ public:
     QMap<HActionType, QList<uchar>> actionParams;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,7 +3,7 @@
 #include <QtCore/QSet>
 #include <QtCore/QPoint>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSequentialGrade::HSequentialGrade() :
     HAbstractGrade(*new HSequentialGradePrivate)
@@ -37,5 +37,5 @@ int HSequentialGrade::calcLevel(QVariantMap value, QString *text)
     return r + 1;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

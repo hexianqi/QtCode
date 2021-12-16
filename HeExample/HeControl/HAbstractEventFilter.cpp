@@ -1,6 +1,6 @@
 #include "HAbstractEventFilter_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractEventFilter::HAbstractEventFilter(QObject *parent) :
     QObject(parent),
@@ -72,4 +72,4 @@ bool HAbstractEventFilter::hasHandler(QEvent::Type t)
     return d_ptr->handlers.contains(t);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,14 +4,11 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
 #include "HeCore/IInitializeable.h"
 
 class QPainter;
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ICircular : public QObject, public IInitializeable
 {
@@ -28,4 +25,4 @@ public:
     virtual void draw(QPainter *, double factor, QVariantMap param = QVariantMap()) = 0;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

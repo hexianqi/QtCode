@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QSharedDataPointer>
 #include <QtGui/QColor>
 
@@ -12,11 +12,11 @@ class QObject;
 class QDoubleValidator;
 class QIntValidator;
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDataFormatInfoPrivate;
 
-class HE_CORE_EXPORT HDataFormatInfo
+class HDataFormatInfo
 {
 public:
     HDataFormatInfo();
@@ -56,4 +56,4 @@ protected:
     QSharedDataPointer<HDataFormatInfoPrivate> d_ptr;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

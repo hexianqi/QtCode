@@ -6,11 +6,11 @@
 
 #include "HAbstractDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecFittingPrivate;
 
-class HE_DATA_EXPORT HSpecFitting : public HAbstractDataItem
+class HSpecFitting : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecFitting)
 
@@ -39,4 +39,4 @@ protected:
     virtual double calcRate(double value);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariant>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IInitializeable
 {
 public:
     // 初始化
-    virtual void initialize(QVariantMap param) = 0;
+    virtual void initialize(QVariantMap param = QVariantMap()) = 0;
     // 类型名称
     virtual QString typeName() = 0;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

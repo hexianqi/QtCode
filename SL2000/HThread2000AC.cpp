@@ -5,7 +5,6 @@
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
 #include "HeController/IActionStrategy.h"
-#include <QtCore/QDebug>
 
 HThread2000ACPrivate::HThread2000ACPrivate()
 {
@@ -24,10 +23,7 @@ HThread2000AC::HThread2000AC(QObject *parent) :
 }
 
 
-HThread2000AC::~HThread2000AC()
-{
-    qDebug() << __func__;
-}
+HThread2000AC::~HThread2000AC() = default;
 
 QString HThread2000AC::typeName()
 {

@@ -6,7 +6,7 @@
 
 struct SwsContext;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSDLControlPrivate
 {
@@ -56,4 +56,4 @@ public:
     QHash<int, int> texture_formats;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

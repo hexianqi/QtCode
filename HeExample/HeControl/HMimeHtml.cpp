@@ -1,6 +1,6 @@
 #include "HMimeHtml_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMimeHtmlPrivate::HMimeHtmlPrivate()
 {
@@ -27,4 +27,4 @@ void HMimeHtml::setHtml(const QString &value)
     setText(value);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

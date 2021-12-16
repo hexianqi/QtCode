@@ -1,6 +1,6 @@
 #include "HLunarCalendarInfo_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLunarCalendarInfo::HLunarCalendarInfo(QObject *parent) :
     QObject(parent),
@@ -335,4 +335,4 @@ void HLunarCalendarInfo::init()
     d_ptr->lunarData << 200042 << 2413 << 723293 << 1197 << 2637 << 399947 << 3365 << 3410 << 334676 << 2906; // 2031--2040
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

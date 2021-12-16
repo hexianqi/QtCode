@@ -6,19 +6,15 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/IChromatismCollection.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChromatismEditHandler::HChromatismEditHandler(QObject *parent) :
     HAbstractConfigHandler(*new HChromatismEditHandlerPrivate, parent)
 {
 }
 
-HChromatismEditHandler::~HChromatismEditHandler()
-{
-    qDebug() << __func__;
-}
+HChromatismEditHandler::~HChromatismEditHandler() = default;
 
 QString HChromatismEditHandler::typeName()
 {
@@ -39,4 +35,4 @@ void HChromatismEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_CHROMATISM);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

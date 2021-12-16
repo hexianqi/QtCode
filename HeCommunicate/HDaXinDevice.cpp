@@ -1,9 +1,9 @@
 #include "HDaXinDevice_p.h"
 #include "IPort.h"
 #include "HeCore/HException.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 uint crc_tab[] = { 0x0000, 0x1021, 0x2042, 0x3063,
                    0x4084, 0x50a5, 0x60c6, 0x70e7,
@@ -63,10 +63,7 @@ HDaXinDevice::HDaXinDevice() :
 {
 }
 
-HDaXinDevice::~HDaXinDevice()
-{
-    qDebug() << __func__;
-}
+HDaXinDevice::~HDaXinDevice() = default;
 
 QString HDaXinDevice::typeName()
 {
@@ -140,4 +137,4 @@ bool HDaXinDevice::check()
            setData(ACT_SET_OUTPUT_CURRENT, QVector<uchar>() << 0x00 << 0x00);
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

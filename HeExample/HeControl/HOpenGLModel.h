@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 
 class QOpenGLShaderProgram;
@@ -15,7 +15,7 @@ struct aiScene;
 struct aiMesh;
 struct aiMaterial;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HOpenGLMesh;
 class HOpenGLModelPrivate;
@@ -46,5 +46,5 @@ protected:
     QScopedPointer<HOpenGLModelPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

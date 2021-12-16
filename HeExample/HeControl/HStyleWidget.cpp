@@ -3,7 +3,7 @@
 #include "HStyleFactory.h"
 #include "ICustomStyle.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HStyleWidget::HStyleWidget(QWidget *parent) :
     QWidget(parent),
@@ -26,4 +26,4 @@ void HStyleWidget::init()
     this->setStyleSheet(style->toStyleSheet());
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

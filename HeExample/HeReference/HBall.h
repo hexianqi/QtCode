@@ -7,7 +7,7 @@
 #include "HGameObject.h"
 #include <QtGui/QVector2D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HPaddle;
 class HBallPrivate;
@@ -50,5 +50,5 @@ protected:
     int direction(QVector2D target);
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

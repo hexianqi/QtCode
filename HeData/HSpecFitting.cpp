@@ -2,7 +2,7 @@
 #include <QtCore/QDataStream>
 #include <QtDebug>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFitting::HSpecFitting() :
     HAbstractDataItem(*new HSpecFittingPrivate)
@@ -105,4 +105,4 @@ QVector<double> HSpecFitting::handle(QVector<double> value, bool abovezero)
     return r;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

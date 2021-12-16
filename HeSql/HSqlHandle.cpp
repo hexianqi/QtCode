@@ -4,9 +4,8 @@
 #include "HeCore/HCore.h"
 #include <QtCore/QDateTime>
 #include <QtSql/QSqlRecord>
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlHandle::HSqlHandle(QObject *parent) :
     QObject(parent),
@@ -20,10 +19,7 @@ HSqlHandle::HSqlHandle(HSqlHandlePrivate &p, QObject *parent) :
 {
 }
 
-HSqlHandle::~HSqlHandle()
-{
-    qDebug() << __func__;
-}
+HSqlHandle::~HSqlHandle() = default;
 
 void HSqlHandle::initialize(QVariantMap /*param*/)
 {
@@ -145,4 +141,4 @@ QString HSqlHandle::toString(QPolygonF value)
     return list.join(",");
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

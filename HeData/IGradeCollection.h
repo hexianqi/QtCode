@@ -6,7 +6,7 @@
 
 #include "HDataCollection.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IGrade;
 
@@ -22,4 +22,4 @@ public:
     virtual int calcLevel(QVariantMap value, QString *text = nullptr) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

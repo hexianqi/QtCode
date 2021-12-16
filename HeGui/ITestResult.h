@@ -4,18 +4,11 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include "HeData/HDataGlobal.h"
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_DATA_BEGIN_NAMESPACE
 class ITestData;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
 
 class ITestResult : public IInitializeable
 {
@@ -44,4 +37,4 @@ public:
     virtual void syncFile() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

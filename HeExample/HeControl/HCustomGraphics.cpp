@@ -2,7 +2,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCustomGraphics::HCustomGraphics(QWidget *parent) :
     QWidget(parent),
@@ -327,4 +327,4 @@ void HCustomGraphics::clearAll()
     d_ptr->polygons.clear();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

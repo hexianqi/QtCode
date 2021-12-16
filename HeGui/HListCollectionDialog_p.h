@@ -5,7 +5,7 @@
 
 class QStringListModel;
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HListCollectionDialogPrivate
 {
@@ -17,4 +17,4 @@ public:
     QModelIndex currentIndex;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

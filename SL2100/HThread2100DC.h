@@ -6,7 +6,7 @@
 
 #include "HeController/HAbstractThread.h"
 
-HE_CONTROLLER_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HThread2100DCPrivate;
 

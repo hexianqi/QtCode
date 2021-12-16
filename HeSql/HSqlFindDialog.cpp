@@ -1,10 +1,9 @@
 #include "HSqlFindDialog_p.h"
 #include "ui_HSqlFindDialog.h"
 #include "HSql.h"
-#include <QtCore/QDebug>
 #include <QtCore/QStringListModel>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlFindDialog::HSqlFindDialog(const QStringList &fields, const QString &filter, QWidget *parent) :
     QDialog(parent),
@@ -20,7 +19,6 @@ HSqlFindDialog::HSqlFindDialog(const QStringList &fields, const QString &filter,
 
 HSqlFindDialog::~HSqlFindDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -67,4 +65,4 @@ void HSqlFindDialog::init()
     ui->comboBox_2->setCurrentIndex(2);
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

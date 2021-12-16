@@ -45,6 +45,7 @@ void HTm30RfhjChartView::init()
     d->chart->series()->setLabelsPrecision(2);
     d->chart->setBarColor(color);
     setChart(d->chart);
+    setWindowTitle("Rf,hj");
     HZoomChartView::init();
 }
 

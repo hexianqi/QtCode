@@ -2,9 +2,8 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestSpec.h"
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIntegrateModelPrivate::HIntegrateModelPrivate()
 {
@@ -23,10 +22,7 @@ HIntegrateModel::HIntegrateModel(HIntegrateModelPrivate &p, QObject *parent) :
 {
 }
 
-HIntegrateModel::~HIntegrateModel()
-{
-    qDebug() << __func__;
-}
+HIntegrateModel::~HIntegrateModel() = default;
 
 QString HIntegrateModel::typeName()
 {
@@ -77,4 +73,4 @@ void HIntegrateModel::syncDevice(quint32 type)
     }
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

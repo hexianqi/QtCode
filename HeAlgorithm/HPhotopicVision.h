@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecData;
 
@@ -26,4 +26,4 @@ protected:
     QPolygonF _standard;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

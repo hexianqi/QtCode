@@ -1,7 +1,7 @@
 #include "HBattery_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBattery::HBattery(QWidget *parent) :
     HAnimationProgress(*new HBatteryPrivate, parent)
@@ -203,4 +203,4 @@ void HBattery::paintEvent(QPaintEvent *)
     painter.restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

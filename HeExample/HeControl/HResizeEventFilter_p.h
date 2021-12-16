@@ -4,7 +4,7 @@
 #include "HAbstractMouseEventFilter_p.h"
 #include <QtCore/QRect>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HResizeEventFilterPrivate : public HAbstractMouseEventFilterPrivate
 {
@@ -29,4 +29,4 @@ public:
     QRect lastGeometry;             // 修改前区域
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

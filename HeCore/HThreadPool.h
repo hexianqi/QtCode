@@ -1,14 +1,18 @@
+/***************************************************************************************************
+**      2021-12-15  HThreadPool 线程池
+***************************************************************************************************/
+
 #pragma once
 
+#include "HNamespace.h"
 #include <vector>
 #include <queue>
-#include <memory>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
 #include <future>
-#include <functional>
-#include <stdexcept>
+
+HE_BEGIN_NAMESPACE
 
 class HThreadPool
 {
@@ -29,3 +33,5 @@ private:
     std::condition_variable _condition;
     bool _stop = false;
 };
+
+HE_END_NAMESPACE

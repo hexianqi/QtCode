@@ -3,7 +3,7 @@
 #include "HCircleGauge.h"
 #include "HAnimationProgress_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HCircleGaugePrivate : public HAnimationProgressPrivate
 {
@@ -20,4 +20,4 @@ public:
     QColor scaleLabelColor = QColor(20, 20, 20);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class ICloneable
@@ -16,5 +16,5 @@ public:
     virtual T *clone() = 0;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE
 

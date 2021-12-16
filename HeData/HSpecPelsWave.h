@@ -6,11 +6,11 @@
 
 #include "HAbstractDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecPelsWavePrivate;
 
-class HE_DATA_EXPORT HSpecPelsWave : public HAbstractDataItem
+class HSpecPelsWave : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecPelsWave)
 
@@ -36,4 +36,4 @@ protected:
     HSpecPelsWave(HSpecPelsWavePrivate &p);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

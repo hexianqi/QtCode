@@ -2,7 +2,7 @@
 
 #include "HSqlHandle.h"
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlHandlePrivate
 {
@@ -11,4 +11,4 @@ public:
     QStringList fieldFind;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

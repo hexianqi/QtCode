@@ -5,7 +5,7 @@
 #include <QtGui/QImage>
 #include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 unsigned int loadTexture(const QString &fileName, bool gamma)
 {
@@ -228,4 +228,4 @@ unsigned int HOpenGLHelper::createRenderDepth(int width, int height)
     return rbo;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

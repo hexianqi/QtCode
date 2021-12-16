@@ -5,7 +5,7 @@
 
 class HCie1931Widget;
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGradeItem2DDialogPrivate : public HAbstractGradeItemDialogPrivate
 {
@@ -13,4 +13,4 @@ public:
     HCie1931Widget *cieWidget;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -7,9 +7,9 @@
 #include "HSingleton.h"
 #include <QtCore/QObject>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HCoreGlobalInstance : public QObject, public HSingleton<HCoreGlobalInstance>
+class HCoreGlobalInstance : public QObject, public HSingleton<HCoreGlobalInstance>
 {
     Q_OBJECT
     H_FRIEND_SINGLETON(HCoreGlobalInstance)
@@ -33,4 +33,4 @@ private:
     bool _initialized = false;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

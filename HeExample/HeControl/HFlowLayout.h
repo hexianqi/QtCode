@@ -5,15 +5,15 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QStyle>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFlowLayoutPrivate;
 
-class HE_CONTROL_EXPORT HFlowLayout : public QLayout
+class HFlowLayout : public QLayout
 {
 public:
     explicit HFlowLayout(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
@@ -47,4 +47,4 @@ private:
     QScopedPointer<HFlowLayoutPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

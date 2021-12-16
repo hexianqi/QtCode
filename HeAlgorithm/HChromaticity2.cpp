@@ -1,9 +1,8 @@
 #include "HChromaticity2_p.h"
 #include "HSpecData.h"
 #include "HSpecHelper.h"
-#include <QtCore/QDebug>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChromaticity2Private::HChromaticity2Private()
 {
@@ -20,10 +19,7 @@ HChromaticity2::HChromaticity2(HChromaticity2Private &p) :
 {
 }
 
-HChromaticity2::~HChromaticity2()
-{
-    qDebug() << __func__;
-}
+HChromaticity2::~HChromaticity2() = default;
 
 QList<double> HChromaticity2::calcColorTemperatureDuv(QPointF uv)
 {
@@ -40,4 +36,4 @@ QVector<double> HChromaticity2::calcColorRenderingIndex(QPointF uvk, const QPoly
     return HChromaticity::calcColorRenderingIndex(uvk, spdk, ucs);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

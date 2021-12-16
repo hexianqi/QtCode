@@ -4,7 +4,7 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractGradePrivate::HAbstractGradePrivate()
 {
@@ -30,7 +30,7 @@ void HAbstractGrade::readContent(QDataStream &s)
     Q_D(HAbstractGrade);
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IGradeItem>(s, d->items, [=](QString type) { return d->factory->createGradeItem(type); });
+    HStreamHelper::read<QString, IGradeItem>(s, d->items, [=](QString type) { return d->factory->createGradeItem(type); });
     if (version >= 2)
         s >> d->datas;
 }
@@ -39,7 +39,7 @@ void HAbstractGrade::writeContent(QDataStream &s)
 {
     Q_D(HAbstractGrade);
     s << quint32(2);
-    HStreamHelper::write<QString, HeData::IGradeItem>(s, d->items);
+    HStreamHelper::write<QString, IGradeItem>(s, d->items);
     s << d->datas;
 }
 
@@ -60,4 +60,4 @@ QVariant HAbstractGrade::levels(QString type)
     return contains(type) ? value(type)->levels() : QVariant();
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

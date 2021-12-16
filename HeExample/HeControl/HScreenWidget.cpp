@@ -7,7 +7,7 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMenu>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HScreenWidget::HScreenWidget(QWidget *parent) :
     QWidget(parent),
@@ -142,4 +142,4 @@ void HScreenWidget::init()
     showFullScreen();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

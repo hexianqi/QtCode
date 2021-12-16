@@ -6,7 +6,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNetworkWidget::HNetworkWidget(QWidget *parent) :
     QWidget(parent),
@@ -39,4 +39,4 @@ void HNetworkWidget::init()
     setWindowTitle(tr("网络调试工具"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

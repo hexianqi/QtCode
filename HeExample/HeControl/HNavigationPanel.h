@@ -10,7 +10,7 @@
 class QPushButton;
 class QToolButton;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNavigationPanelPrivate;
 
@@ -54,4 +54,4 @@ private:
     void handleButtonClicked();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

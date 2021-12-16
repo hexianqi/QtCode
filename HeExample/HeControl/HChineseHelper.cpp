@@ -2,7 +2,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QRegularExpression>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChineseHelper::HChineseHelper() :
     d_ptr(new HChineseHelperPrivate)
@@ -72,4 +72,4 @@ void HChineseHelper::init()
     loadJianPin(":/data/jianpin.dat");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,9 +5,8 @@
 #include "HePlugin/HPluginHelper.h"
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QToolBar>
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlBrowser::HSqlBrowser(QWidget *parent) :
     ISqlBrowser(parent),
@@ -23,10 +22,7 @@ HSqlBrowser::HSqlBrowser(HSqlBrowserPrivate &p, QWidget *parent) :
     init();
 }
 
-HSqlBrowser::~HSqlBrowser()
-{
-    qDebug() << __func__;
-}
+HSqlBrowser::~HSqlBrowser() = default;
 
 void HSqlBrowser::initialize(QVariantMap /*param*/)
 {
@@ -161,4 +157,4 @@ void HSqlBrowser::createLayout()
     layout->addWidget(d_ptr->view, 1, 0);
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

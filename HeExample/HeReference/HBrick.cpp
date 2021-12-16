@@ -1,6 +1,6 @@
 #include "HBrick_p.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBrick::HBrick(QObject *parent) :
     HGameObject(*new HBrickPrivate, parent)
@@ -40,4 +40,4 @@ void HBrick::setDestroyed(bool b)
     d->destroyed = b;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

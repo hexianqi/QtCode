@@ -1,6 +1,6 @@
 #include "HPaddle_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPaddle::HPaddle(QObject *parent) :
     HGameObject(*new HPaddlePrivate, parent)
@@ -36,4 +36,4 @@ void HPaddle::reset(QVector2D position, QVector2D size, QVector3D color)
     setColor(color);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

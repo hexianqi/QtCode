@@ -3,7 +3,7 @@
 #include "HJson.h"
 #include <QtCore/QJsonDocument>
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HJsonPrivate
 {
@@ -20,4 +20,4 @@ public:
     QString errorString; // Json 无效时的错误信息
 };
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

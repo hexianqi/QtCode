@@ -10,7 +10,7 @@ namespace Ui {
 class HUdpServerWidget;
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HUdpServerWidgetPrivate;
 
@@ -44,4 +44,4 @@ private:
     Ui::HUdpServerWidget *ui;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HControllerGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IMemento : public IInitializeable
 {
@@ -30,4 +27,4 @@ public:
     virtual void restore() = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -15,7 +15,7 @@
 
 #include "HCircleGauge.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HPanelGaugePrivate;
 
@@ -53,4 +53,4 @@ protected:
     void drawValue(QPainter *, int radius) override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

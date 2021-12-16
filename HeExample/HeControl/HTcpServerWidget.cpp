@@ -5,7 +5,7 @@
 #include <QtCore/QTimer>
 #include <QtCore/QDateTime>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTcpServerWidget::HTcpServerWidget(QWidget *parent) :
     HAbstractServerWidget(*new HTcpServerWidgetPrivate, parent),
@@ -173,4 +173,4 @@ void HTcpServerWidget::init()
     setWindowTitle(tr("TCP服务端"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

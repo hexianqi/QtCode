@@ -4,9 +4,12 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+class QString;
+class QByteArray;
+
+HE_BEGIN_NAMESPACE
 
 class HQuotedPrintable
 {
@@ -15,4 +18,4 @@ public:
     static QByteArray decode(const QString &value);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

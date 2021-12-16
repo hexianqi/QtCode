@@ -4,7 +4,7 @@
 #include <QtCore/QVector>
 #include <QtGui/QVector2D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGameLevel;
 class HSpriteRenderer;
@@ -48,5 +48,5 @@ public:
     QVector2D ballVelocity = QVector2D(100.0f, -350.0f);
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -3,9 +3,8 @@
 #include "IActionStrategy.h"
 #include "HeCore/HAppContext.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecThreadPrivate::HSpecThreadPrivate()
 {
@@ -24,10 +23,7 @@ HSpecThread::HSpecThread(HSpecThreadPrivate &p, QObject *parent) :
     init();
 }
 
-HSpecThread::~HSpecThread()
-{
-    qDebug() << __func__;
-}
+HSpecThread::~HSpecThread() = default;
 
 QString HSpecThread::typeName()
 {
@@ -48,4 +44,4 @@ void HSpecThread::init()
     d->strategys << strategy;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,7 +4,6 @@
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QTimer>
-#include <QtCore/QDebug>
 
 HTestSetWidget2000DC::HTestSetWidget2000DC(QWidget *parent) :
     HAbstractTestSetWidget(*new HTestSetWidget2000DCPrivate, parent),
@@ -16,7 +15,6 @@ HTestSetWidget2000DC::HTestSetWidget2000DC(QWidget *parent) :
 
 HTestSetWidget2000DC::~HTestSetWidget2000DC()
 {
-    qDebug() << __func__;
     delete ui;
 }
 

@@ -1,9 +1,8 @@
 #include "HCcd554bProtocol_p.h"
 #include "HUsbPortCy.h"
 #include "HSlDevice1.h"
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCcd554bProtocolPrivate::HCcd554bProtocolPrivate()
 {
@@ -29,10 +28,7 @@ HCcd554bProtocol::HCcd554bProtocol(HCcd554bProtocolPrivate &p) :
 {
 }
 
-HCcd554bProtocol::~HCcd554bProtocol()
-{
-    qDebug() << __func__;
-}
+HCcd554bProtocol::~HCcd554bProtocol() = default;
 
 void HCcd554bProtocol::initialize(QVariantMap param)
 {
@@ -45,4 +41,4 @@ QString HCcd554bProtocol::typeName()
     return "HCcd554bProtocol";
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

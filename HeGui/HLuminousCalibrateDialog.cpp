@@ -9,9 +9,8 @@
 #include "HeData/ITestData.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLuminousCalibrateDialogPrivate::HLuminousCalibrateDialogPrivate()
 {
@@ -31,7 +30,6 @@ HLuminousCalibrateDialog::HLuminousCalibrateDialog(QWidget *parent) :
 
 HLuminousCalibrateDialog::~HLuminousCalibrateDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -168,4 +166,4 @@ void HLuminousCalibrateDialog::init()
     setWindowTitle(tr("光参数定标"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

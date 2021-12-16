@@ -1,7 +1,7 @@
 #include "HTaichiCircular_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTaichiCircular::HTaichiCircular(QObject *parent) :
     HAbstractCircular(*new HTaichiCircularPrivate, parent)
@@ -88,4 +88,4 @@ void HTaichiCircular::setForeground(const QColor &value)
     emit dataChanged();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

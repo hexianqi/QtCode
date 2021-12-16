@@ -1,9 +1,9 @@
 #include "HUi2008Protocol_p.h"
 #include "HSerialPort.h"
 #include "HPowerFactorDevice.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HUi2008ProtocolPrivate::HUi2008ProtocolPrivate()
 {
@@ -23,10 +23,7 @@ HUi2008Protocol::HUi2008Protocol() :
 {
 }
 
-HUi2008Protocol::~HUi2008Protocol()
-{
-    qDebug() << __func__;
-}
+HUi2008Protocol::~HUi2008Protocol() = default;
 
 QString HUi2008Protocol::typeName()
 {
@@ -63,4 +60,4 @@ bool HUi2008Protocol::getData(HActionType action, QVector<double> &value, int de
     return true;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

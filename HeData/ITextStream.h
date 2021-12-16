@@ -5,11 +5,10 @@
 #pragma once
 
 #include "IStream.h"
-#include <functional>
 
 class QTextStream;
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITextStream : public virtual IStream
 {
@@ -30,5 +29,5 @@ public:
     virtual bool appendFile(QString fileName) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

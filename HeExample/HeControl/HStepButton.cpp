@@ -4,7 +4,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QPushButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HStepButton::HStepButton(QWidget *parent) :
     QWidget(parent),
@@ -73,4 +73,4 @@ void HStepButton::init()
     setStyleSheet(d_ptr->qss);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

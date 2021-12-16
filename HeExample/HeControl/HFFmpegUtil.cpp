@@ -8,7 +8,7 @@ extern "C" {
 #include "libavfilter/buffersink.h"
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 bool __initialized = false;
 QMutex __mutex;
@@ -482,4 +482,4 @@ bool HFFmpegUtil::fixNoPts(AVPacket *packet, AVStream *stream, int index)
     return true;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

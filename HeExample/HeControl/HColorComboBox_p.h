@@ -2,7 +2,7 @@
 
 #include "HColorComboBox.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HColorModel;
 
@@ -13,4 +13,4 @@ public:
     bool colorDialogEnabled = false;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

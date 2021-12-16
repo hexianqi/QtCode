@@ -1,11 +1,11 @@
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 extern "C" {
 #include "libavcodec/avcodec.h"
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HFFAudioParams
 {
@@ -40,4 +40,4 @@ struct HFFPacket
     int serial;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

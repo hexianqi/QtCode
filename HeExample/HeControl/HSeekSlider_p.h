@@ -7,7 +7,7 @@ class QCommonStyle;
 class QPropertyAnimation;
 class QSequentialAnimationGroup;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTimeTooltip;
 class HSeekPoints;
@@ -37,5 +37,5 @@ public:
     QTimer *startLoadingTimer = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -8,7 +8,7 @@
 
 class QOpenGLShaderProgram;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HShaderEngine_TrianglePrivate;
 
@@ -22,7 +22,7 @@ public:
     ~HShaderEngine_Triangle() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -41,7 +41,7 @@ public:
     ~HShaderEngine_Texture() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -60,7 +60,7 @@ public:
     ~HShaderEngine_TextureBlend() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -79,7 +79,7 @@ public:
     ~HShaderEngine_CoordinateSystem() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -99,7 +99,7 @@ public:
     ~HShaderEngine_Color() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -118,7 +118,7 @@ public:
     ~HShaderEngine_Light() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -137,7 +137,7 @@ public:
     ~HShaderEngine_LightMaterials() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -156,7 +156,7 @@ public:
     ~HShaderEngine_LightMaps() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -175,7 +175,7 @@ public:
     ~HShaderEngine_LightCasterDirectional() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -195,7 +195,7 @@ public:
     ~HShaderEngine_LightCasterPoint() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -215,7 +215,7 @@ public:
     ~HShaderEngine_LightCasterSpot() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -235,7 +235,7 @@ public:
     ~HShaderEngine_LightCasterMulti() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -255,7 +255,7 @@ public:
     ~HShaderEngine_LightBlinn() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -274,7 +274,7 @@ public:
     ~HShaderEngine_LightGamma() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -293,7 +293,7 @@ public:
     ~HShaderEngine_Model() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -312,7 +312,7 @@ public:
     ~HShaderEngine_Depth() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -331,7 +331,7 @@ public:
     ~HShaderEngine_Stencil() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -350,7 +350,7 @@ public:
     ~HShaderEngine_Blending() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -369,7 +369,7 @@ public:
     ~HShaderEngine_Framebuffer() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -388,7 +388,7 @@ public:
     ~HShaderEngine_Cubemaps() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -407,7 +407,7 @@ public:
     ~HShaderEngine_Ubo() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -426,7 +426,7 @@ public:
     ~HShaderEngine_GeometryHouse() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -445,7 +445,7 @@ public:
     ~HShaderEngine_GeometryExplode() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -464,7 +464,7 @@ public:
     ~HShaderEngine_GeometryNormal() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -483,7 +483,7 @@ public:
     ~HShaderEngine_Instancing() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -502,7 +502,7 @@ public:
     ~HShaderEngine_InstancingModel() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -521,7 +521,7 @@ public:
     ~HShaderEngine_AntiAliasing() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -540,7 +540,7 @@ public:
     ~HShaderEngine_ShadowDepth() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -559,7 +559,7 @@ public:
     ~HShaderEngine_ShadowMapping() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -578,7 +578,7 @@ public:
     ~HShaderEngine_ShadowPoint() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -597,7 +597,7 @@ public:
     ~HShaderEngine_NormalMapping() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -616,7 +616,7 @@ public:
     ~HShaderEngine_ParallaxMapping() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -635,7 +635,7 @@ public:
     ~HShaderEngine_HDR() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -654,7 +654,7 @@ public:
     ~HShaderEngine_Bloom() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -673,7 +673,7 @@ public:
     ~HShaderEngine_DeferredShading() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -693,7 +693,7 @@ public:
     ~HShaderEngine_SSAO() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -712,11 +712,11 @@ public:
     ~HShaderEngine_Text() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
     void draw(HGeometryEngine *, QVariantMap param = QVariantMap()) override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

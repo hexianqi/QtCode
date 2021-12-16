@@ -6,9 +6,8 @@
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
-#include <QtCore/QDebug>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPrint::HPrint(QObject *parent) :
     QObject(parent),
@@ -22,10 +21,7 @@ HPrint::HPrint(HPrintPrivate &p, QObject *parent) :
 {
 }
 
-HPrint::~HPrint()
-{
-    qDebug() << __func__;
-}
+HPrint::~HPrint() = default;
 
 void HPrint::initialize(QVariantMap /*param*/)
 {
@@ -101,4 +97,4 @@ bool HPrint::printPages(QPrinter *p)
     return d_ptr->printTemplate->printPages(p);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

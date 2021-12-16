@@ -4,12 +4,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include "HeCore/HSingleton3.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HChineseHelperPrivate;
 
@@ -34,4 +32,4 @@ private:
     QScopedPointer<HChineseHelperPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

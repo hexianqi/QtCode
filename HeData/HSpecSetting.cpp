@@ -5,8 +5,7 @@
 #include "HeAlgorithm/HSpecHelper.h"
 #include <QtCore/QDataStream>
 
-HE_ALGORITHM_USE_NAMESPACE
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecSetting::HSpecSetting() :
     HAbstractDataItem(*new HSpecSettingPrivate)
@@ -200,7 +199,7 @@ QPolygonF HSpecSetting::interpEnergy(QPolygonF value, double offset)
 double HSpecSetting::calcEnergy(double wave, double offset)
 {
     auto tc = data("[标准色温]").toDouble() + offset;
-    return HSpecHelper::planck(wave, tc);
+    return HSpecHelper::planck(tc, wave);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

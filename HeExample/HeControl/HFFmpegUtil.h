@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariantMap>
 
 extern "C" {
@@ -19,9 +19,9 @@ class AVInputFormat;
 class AVOutputFormat;
 class AVFilter;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CONTROL_EXPORT HFFmpegUtil
+class HFFmpegUtil
 {
 public:
     // 初始化
@@ -77,5 +77,5 @@ public:
     static bool fixNoPts(AVPacket *packet, AVStream *stream, int index);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

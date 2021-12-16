@@ -12,7 +12,7 @@
 #include <QtCore/QDataStream>
 #include <QtGui/QPolygonF>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
@@ -245,4 +245,4 @@ void HSpecCalibrate::setStdCurve(QVector<double> value)
     d_ptr->stdCurve->setCurve(value);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

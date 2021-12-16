@@ -5,7 +5,7 @@
 #include <QtGui/QPixmapCache>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDefenceButton::HDefenceButton(QWidget *parent) :
     QWidget(parent),
@@ -222,4 +222,4 @@ void HDefenceButton::updatePixmap()
     update();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

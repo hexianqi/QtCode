@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
 class QListView;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HColorModel;
 class HColorPopupPrivate;
@@ -37,4 +37,4 @@ protected:
     QScopedPointer<HColorPopupPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

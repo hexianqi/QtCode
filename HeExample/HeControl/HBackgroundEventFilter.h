@@ -6,7 +6,7 @@
 
 #include "HAbstractMouseEventFilter.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HBackgroundEventFilterPrivate;
 
@@ -19,7 +19,7 @@ public:
     explicit HBackgroundEventFilter(QObject *parent = nullptr);
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -43,4 +43,4 @@ protected:
     void updateBackground(QWidget *);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

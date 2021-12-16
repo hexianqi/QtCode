@@ -6,9 +6,7 @@
 #include <QtCore/QSettings>
 #include <QtWidgets/QMessageBox>
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLoginDialog::HLoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -67,4 +65,4 @@ void HLoginDialog::writeSettings()
     settings->endGroup();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

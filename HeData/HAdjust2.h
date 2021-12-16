@@ -6,7 +6,7 @@
 
 #include "IAdjust2.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAdjust2Private;
 
@@ -36,5 +36,5 @@ protected:
     bool matching(double tc);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

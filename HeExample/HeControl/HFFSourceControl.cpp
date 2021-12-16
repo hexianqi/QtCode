@@ -15,7 +15,7 @@ extern "C" {
 
 using namespace std;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QRect calc_display_rect(QRect src, QSize tgt, AVRational pic_sar)
 {
@@ -881,4 +881,4 @@ bool HFFSourceControl::handle_read_frame()
     return true;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

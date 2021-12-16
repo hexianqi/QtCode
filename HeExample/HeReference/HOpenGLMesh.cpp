@@ -3,7 +3,7 @@
 #include "glad/glad.h"
 #include <QtGui/QMatrix4x4>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HOpenGLMeshPrivate::setup()
 {
@@ -100,4 +100,4 @@ void HOpenGLMesh::draw(HOpenGLShaderProgram *shader, int amount)
     glActiveTexture(GL_TEXTURE0);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

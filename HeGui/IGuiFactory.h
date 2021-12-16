@@ -4,23 +4,12 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
-#include "HeData/HDataGlobal.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 class IHandler;
-HE_CORE_END_NAMESPACE
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
 class IPrintTemplate;
 class ITextExportTemplate;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class ITestSetWidget;
 class ITestDataEditDialog;
 class HAction;
@@ -42,4 +31,4 @@ public:
     virtual HAction *createAction(QString text, QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,7 +3,7 @@
 #include <QtGui/QImage>
 #include <QtCore/QtDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFFmpegThreadPrivate::HFFmpegThreadPrivate()
 {
@@ -310,4 +310,4 @@ void HFFmpegThread::stop()
     wait(500);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

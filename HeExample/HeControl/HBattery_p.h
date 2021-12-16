@@ -3,7 +3,7 @@
 #include "HBattery.h"
 #include "HAnimationProgress_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HBatteryPrivate : public HAnimationProgressPrivate
 {
@@ -20,4 +20,4 @@ public:
     QColor normalColorEnd = QColor(60, 179, 133);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

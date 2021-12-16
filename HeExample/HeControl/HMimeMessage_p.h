@@ -3,7 +3,7 @@
 #include "HMimeMessage.h"
 #include <QtCore/QList>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMimeMessagePrivate
 {
@@ -19,4 +19,4 @@ public:
     HMimePart *content = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

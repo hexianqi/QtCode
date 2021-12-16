@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ISqlTableModel;
 
@@ -26,4 +23,4 @@ public:
     virtual ISqlTableModel *tableModel(const QString &tableName) = 0;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

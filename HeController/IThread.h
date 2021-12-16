@@ -9,11 +9,9 @@
 #include "HeCore/HActionType.h"
 #include <QtCore/QThread>
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_CONTROLLER_BEGIN_NAMESPACE
-
-class IThread : public QThread, public IInitializeable
+class HE_CONTROLLER_EXPORT IThread : public QThread, public IInitializeable
 {
     Q_OBJECT
 
@@ -36,4 +34,4 @@ public:
     virtual void clearAction() = 0;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

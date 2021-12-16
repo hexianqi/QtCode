@@ -1,7 +1,7 @@
 #include "HMimeFile_p.h"
 #include <QtCore/QFile>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMimeFilePrivate::HMimeFilePrivate()
 {
@@ -43,4 +43,4 @@ void HMimeFile::setFileName(const QString &value)
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

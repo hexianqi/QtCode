@@ -4,18 +4,15 @@
 
 #pragma once
 
-#include "HControllerGlobal.h"
 #include "HeCore/HActionType.h"
 #include <QtCore/QThread>
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IModel;
 class HDelayThreadPrivate;
 
-class HE_CONTROLLER_EXPORT HDelayThread : public QThread
+class HDelayThread : public QThread
 {
     Q_OBJECT
 
@@ -35,4 +32,4 @@ protected:
     QScopedPointer<HDelayThreadPrivate> d_ptr;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

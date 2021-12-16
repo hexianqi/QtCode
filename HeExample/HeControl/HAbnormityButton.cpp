@@ -4,7 +4,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbnormityButton::HAbnormityButton(QWidget *parent) :
     QWidget(parent),
@@ -43,4 +43,4 @@ void HAbnormityButton::init()
     setStyleSheet(HStyleHelper::loadStyle(":/qss/abnormityButton.css"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

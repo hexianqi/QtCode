@@ -3,7 +3,7 @@
 #include <QtCore/QJsonObject>
 #include <QtCore/QTextStream>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class EventHandler : public QObject
@@ -151,4 +151,4 @@ void test()
     os << "\njson:\n" << reply4["json"].toByteArray() << endl;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

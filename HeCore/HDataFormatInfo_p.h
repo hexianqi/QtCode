@@ -2,7 +2,7 @@
 
 #include "HDataFormatInfo.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDataFormatInfoPrivate : public QSharedData
 {
@@ -16,4 +16,4 @@ public:
     double singleStep = 1.0;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

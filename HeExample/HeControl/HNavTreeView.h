@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QTreeView>
 
 class QStandardItem;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNavTreeViewPrivate;
 
@@ -60,4 +60,4 @@ private:
     void init();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

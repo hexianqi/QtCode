@@ -5,9 +5,7 @@
 #include <QtGui/QPolygonF>
 #include <QtSql/QSqlRecord>
 
-HE_CORE_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QPolygonF toPolygonF(QString value)
 {
@@ -104,4 +102,4 @@ QVariantMap HSql::toData(const QStringList &type, QSqlRecord record)
     return result;
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

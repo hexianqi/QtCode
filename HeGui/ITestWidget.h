@@ -4,16 +4,13 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include <QtWidgets/QWidget>
 
 class QMenu;
 class QToolBar;
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITestWidget : public QWidget, public IInitializeable
 {
@@ -35,4 +32,4 @@ public:
     virtual void stop() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

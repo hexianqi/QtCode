@@ -6,7 +6,7 @@
 
 #include "IStyle.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IQssStyle : public IStyle
 {
@@ -21,4 +21,4 @@ public:
     virtual void addStyle(QString key, QString fileName) = 0;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 #include <QtCore/QMutex>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HSeekPoint
 {
@@ -40,5 +40,5 @@ private:
     QMutex _mutex;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

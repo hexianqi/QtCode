@@ -7,7 +7,7 @@
 #include "IDataStream.h"
 #include "HAbstractStream.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDataStreamPrivate;
 
@@ -21,7 +21,7 @@ public:
     ~HDataStream() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -40,5 +40,5 @@ protected:
     HDataStream(HDataStreamPrivate &p, QObject *parent = nullptr);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -6,7 +6,7 @@
 
 #include "HLittleProtocol.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HCcd554bProtocolPrivate;
 
@@ -19,11 +19,11 @@ public:
     ~HCcd554bProtocol() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
     HCcd554bProtocol(HCcd554bProtocolPrivate &);
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

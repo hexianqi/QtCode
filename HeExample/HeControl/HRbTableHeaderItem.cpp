@@ -1,6 +1,6 @@
 #include "HRbTableHeaderItem_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HRbTableHeaderItemPrivate::HRbTableHeaderItemPrivate(HRbTableHeaderItem *p)
 {
@@ -88,4 +88,4 @@ HRbTableHeaderItem *HRbTableHeaderItem::insertChild(int row, int column)
     return item;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

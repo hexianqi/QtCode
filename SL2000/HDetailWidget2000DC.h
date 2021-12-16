@@ -2,7 +2,7 @@
 
 #include "HeGui/HAbstractTestDetailWidget.h"
 
-HE_GUI_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 namespace Ui {
 class HDetailWidget2000DC;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 #define CONFIG_AVFILTER 1
 
@@ -39,4 +39,4 @@ HE_CONTROL_BEGIN_NAMESPACE
 // TODO: We assume that a decoded and resampled frame fits into this buffer
 #define SAMPLE_ARRAY_SIZE (8 * 65536)
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

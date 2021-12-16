@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QStandardItemModel>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HColorModel : public QStandardItemModel
 {
@@ -28,4 +28,4 @@ public:
     HColorModel *clone(QObject *parent = nullptr) const;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

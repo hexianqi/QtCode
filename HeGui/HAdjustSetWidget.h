@@ -6,7 +6,7 @@ namespace Ui {
 class HAdjustSetWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAdjustSetWidgetPrivate;
 
@@ -41,4 +41,4 @@ private:
     Ui::HAdjustSetWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

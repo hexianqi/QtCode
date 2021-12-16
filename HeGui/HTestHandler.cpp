@@ -1,19 +1,15 @@
 #include "HTestHandler_p.h"
 #include "IMainWindow.h"
 #include <QtWidgets/QMessageBox>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestHandler::HTestHandler(QObject *parent) :
     HAbstractGuiHandler(*new HTestHandlerPrivate, parent)
 {
 }
 
-HTestHandler::~HTestHandler()
-{
-    qDebug() << __func__;
-}
+HTestHandler::~HTestHandler() = default;
 
 QString HTestHandler::typeName()
 {
@@ -26,4 +22,4 @@ void HTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     QMessageBox::information(d->mainWindow, "" , tr("敬请期待"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

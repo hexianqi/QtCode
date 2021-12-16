@@ -4,7 +4,7 @@
 #include "HAbstractShaderEngine_p.h"
 #include <QtGui/QVector3D>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HShaderEngine_PBRPrivate : public HAbstractShaderEnginePrivate
 {
@@ -52,5 +52,5 @@ public:
     QHash<QString, QVector3D> spherePosition;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

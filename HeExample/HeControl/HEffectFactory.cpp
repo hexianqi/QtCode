@@ -6,9 +6,8 @@
 #include "HSplitEffect.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtWidgets/QActionGroup>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HEffectFactory::HEffectFactory(QObject *parent) :
     QObject(parent),
@@ -24,10 +23,7 @@ HEffectFactory::HEffectFactory(HEffectFactoryPrivate &p, QObject *parent) :
     registerClass();
 }
 
-HEffectFactory::~HEffectFactory()
-{
-    qDebug() << __func__;
-}
+HEffectFactory::~HEffectFactory() = default;
 
 void HEffectFactory::initialize(QVariantMap /*param*/)
 {
@@ -81,4 +77,4 @@ void HEffectFactory::registerClass()
     d_ptr->aliass.insert("HSplitEffect", tr("分割"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

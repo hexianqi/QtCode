@@ -8,7 +8,7 @@
 #include <QtCore/QWaitCondition>
 #include <QtCore/QMutexLocker>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractThreadPrivate::HAbstractThreadPrivate()
 {
@@ -242,4 +242,4 @@ void HAbstractThread::writeSettings()
     settings->endGroup();
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

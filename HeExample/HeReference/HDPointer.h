@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "HReferenceGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QObject>
 #include <QtCore/QSharedDataPointer>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDPointerPrivate;
 
@@ -29,4 +29,4 @@ protected:
     HDPointer(HDPointerPrivate &p, QObject *parent = nullptr);
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

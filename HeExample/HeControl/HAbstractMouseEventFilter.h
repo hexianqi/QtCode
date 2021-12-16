@@ -8,7 +8,7 @@
 
 class QMouseEvent;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractMouseEventFilterPrivate;
 
@@ -33,4 +33,4 @@ protected:
     virtual bool handleMouseMoveEvent(QWidget *, QMouseEvent *) = 0;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

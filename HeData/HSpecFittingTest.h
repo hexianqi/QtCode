@@ -6,7 +6,7 @@
 
 #include "HSpecFitting.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecFittingTestPrivate;
 
@@ -37,4 +37,4 @@ protected:
     double calcRate(int i, double value);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

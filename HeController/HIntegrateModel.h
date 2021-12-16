@@ -6,7 +6,7 @@
 
 #include "HAbstractModel.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HIntegrateModelPrivate;
 
@@ -30,5 +30,5 @@ protected:
     void syncDevice(quint32 type) override;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE
 

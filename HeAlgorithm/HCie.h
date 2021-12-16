@@ -13,11 +13,10 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtGui/QPolygonF>
-#include <memory>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // CMF(color matching function) = 2
 struct CIE1931
@@ -108,7 +107,7 @@ protected:
     QVector<CIE_TC_32> _cieTc32;
 };
 
-class Q_DECL_EXPORT HCieDaylight
+class HCieDaylight
 {
 public:
     HCieDaylight();
@@ -166,4 +165,4 @@ protected:
     QVector<ISOTHERM> _data;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

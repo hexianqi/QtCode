@@ -2,7 +2,7 @@
 #include <QtCore/QtMath>
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 double HMath::sum(QVector<double> value)
 {
@@ -14,7 +14,7 @@ double HMath::sum(QVector<double> value)
     return sum;
 }
 
-double HMath::average(QVector<double> value)
+double HMath::mean(QVector<double> value)
 {
     if (value.size() < 1)
         return 0.0;
@@ -199,4 +199,4 @@ QPolygonF HMath::calcEllipse(QPointF center, double r, double theta, double a, d
 //    return true;
 //}
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

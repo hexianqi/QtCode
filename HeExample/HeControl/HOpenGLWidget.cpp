@@ -8,9 +8,8 @@
 #include <QtCore/QtMath>
 #include <QtGui/QOpenGLFunctions_3_3_Core>
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLWidgetPrivate::HOpenGLWidgetPrivate()
 {
@@ -267,4 +266,4 @@ void HOpenGLWidget::init()
     setFormat(format);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,7 +1,7 @@
 #include "HCustomComboBox_p.h"
 #include <QtWidgets/QListView>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCustomComboBox::HCustomComboBox(QWidget *parent) :
     QComboBox(parent),
@@ -80,4 +80,4 @@ void HCustomComboBox::init()
     setStyleSheet(QString("QComboBox QAbstractItemView::item { min-height:%1px; }").arg(d_ptr->itemHeight));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,9 +1,8 @@
 #include "HCcd1305Protocol_p.h"
 #include "HUsbPortCy.h"
 #include "HSlDevice2.h"
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCcd1305ProtocolPrivate::HCcd1305ProtocolPrivate()
 {
@@ -30,10 +29,7 @@ HCcd1305Protocol::HCcd1305Protocol(HCcd1305ProtocolPrivate &p) :
 {
 }
 
-HCcd1305Protocol::~HCcd1305Protocol()
-{
-    qDebug() << __func__;
-}
+HCcd1305Protocol::~HCcd1305Protocol() = default;
 
 void HCcd1305Protocol::initialize(QVariantMap param)
 {
@@ -46,4 +42,4 @@ QString HCcd1305Protocol::typeName()
     return "HCcd1305Protocol";
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,8 +1,7 @@
 #include "HBesselSpherical.h"
 #include "gsl/gsl_sf_bessel.h"
-#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 double HBesselSpherical::j0(double x)
 {
@@ -119,4 +118,4 @@ QVector<double> HBesselSpherical::kl_scaleds(int lmax, double x)
     return r;
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

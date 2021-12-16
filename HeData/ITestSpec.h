@@ -6,7 +6,7 @@
 
 #include "ITestData.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITestSpec : public virtual ITestData
 {
@@ -35,4 +35,4 @@ public:
     virtual QVector<uchar> getRam() = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,8 +6,7 @@
 #include <QtCore/QSize>
 #include <QtCore/QHash>
 
-
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HCharacter
 {
@@ -30,5 +29,5 @@ public:
     QHash<QChar, HCharacter *> characterCache;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

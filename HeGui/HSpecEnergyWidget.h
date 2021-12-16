@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecEnergyWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecEnergyWidget : public QWidget
+class HSpecEnergyWidget : public QWidget
 {
     Q_OBJECT
 
@@ -37,4 +37,4 @@ private:
     void writeSettings();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

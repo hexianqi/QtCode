@@ -5,20 +5,15 @@
 #pragma once
 
 #include "IDataEditer.h"
-#include "HeData/HDataGlobal.h"
 #include <QtWidgets/QWidget>
 
 namespace Ui {
 class HQualityEditWidget;
 }
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IQuality;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HQualityEditWidgetPrivate;
 
 class HQualityEditWidget : public QWidget, public IDataEditer<IQuality>
@@ -30,7 +25,7 @@ public:
     ~HQualityEditWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -58,4 +53,4 @@ private:
     Ui::HQualityEditWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

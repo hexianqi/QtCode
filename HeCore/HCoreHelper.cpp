@@ -5,7 +5,7 @@
 #include <QtWidgets/QApplication>
 #include <QtCore/QDebug>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QStringList HCoreHelper::unselected(QStringList optional, QStringList selected)
 {
@@ -57,4 +57,4 @@ void HCoreHelper::writeSettings(QString fileName, QString prefix, QVariantMap pa
     settings.endGroup();
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

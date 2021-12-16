@@ -6,7 +6,7 @@
 
 #include "HAbstractActionStrategy.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecStrategyPrivate;
 
@@ -29,4 +29,4 @@ protected:
     HSpecStrategy(HSpecStrategyPrivate &p, QObject *parent = nullptr);
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -1,16 +1,11 @@
 #pragma once
 
 #include "HMemento.h"
-#include "HeData/HDataGlobal.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IDataStream;
 class ITestData;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
-
 class IModel;
 
 class HMementoPrivate
@@ -31,5 +26,5 @@ public:
     QVariantMap datas;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -8,7 +8,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QScrollBar>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFlatStyle::HFlatStyle(QObject *parent) :
     HAbstractCustomStyle(*new HFlatStylePrivate, parent)
@@ -254,4 +254,4 @@ void HFlatStyle::setStyle(QScrollBar *obj, int radius, int min, int max, const Q
     obj->setStyleSheet(scrollBar(param));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

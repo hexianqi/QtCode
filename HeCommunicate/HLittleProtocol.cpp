@@ -1,7 +1,7 @@
 #include "HLittleProtocol_p.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLittleProtocol::HLittleProtocol() :
     HAbstractProtocol(*new HLittleProtocolPrivate)
@@ -13,10 +13,7 @@ HLittleProtocol::HLittleProtocol(HLittleProtocolPrivate &p) :
 {
 }
 
-HLittleProtocol::~HLittleProtocol()
-{
-    qDebug() << __func__;
-}
+HLittleProtocol::~HLittleProtocol() = default;
 
 QString HLittleProtocol::typeName()
 {
@@ -82,4 +79,4 @@ QVector<double> HLittleProtocol::toDouble(QVector<uchar> value, int size)
     return result;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

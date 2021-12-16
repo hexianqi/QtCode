@@ -12,9 +12,8 @@
 #include "HWheelCircular.h"
 #include "HeCore/HObjectFactory.h"
 #include <QtWidgets/QActionGroup>
-#include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCircularFactory::HCircularFactory(QObject *parent) :
     QObject(parent),
@@ -30,10 +29,7 @@ HCircularFactory::HCircularFactory(HCircularFactoryPrivate &p, QObject *parent) 
     registerClass();
 }
 
-HCircularFactory::~HCircularFactory()
-{
-    qDebug() << __func__;
-}
+HCircularFactory::~HCircularFactory() = default;
 
 void HCircularFactory::initialize(QVariantMap /*param*/)
 {
@@ -101,4 +97,4 @@ void HCircularFactory::registerClass()
     d_ptr->aliass.insert("HZoomCircleCircular", tr("缩放"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

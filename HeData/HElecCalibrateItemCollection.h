@@ -6,7 +6,7 @@
 
 #include "IElecCalibrateItemCollection.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HElecCalibrateItemCollectionPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HElecCalibrateItemCollection();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -30,4 +30,4 @@ protected:
     HElecCalibrateItemCollection(HElecCalibrateItemCollectionPrivate &);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

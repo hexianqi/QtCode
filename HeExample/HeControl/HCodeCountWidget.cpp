@@ -4,7 +4,7 @@
 #include <QtCore/QTextStream>
 #include <QtWidgets/QFileDialog>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCodeCountWidget::HCodeCountWidget(QWidget *parent) :
     QWidget(parent),
@@ -247,4 +247,4 @@ void HCodeCountWidget::countCode(const QString &file, quint32 &lineCode, quint32
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

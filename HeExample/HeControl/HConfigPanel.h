@@ -6,7 +6,7 @@
 
 #include "HAbstractMultiPanel.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HConfigPanelPrivate;
 
@@ -51,4 +51,4 @@ private:
     void init();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

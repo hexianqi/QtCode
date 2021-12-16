@@ -3,7 +3,7 @@
 #include <QtWidgets/QStyle>
 #include <QtWidgets/QWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HColorDrag::HColorDrag(QWidget *source, const QColor &color, const QString &name) :
     QDrag(source)
@@ -19,4 +19,4 @@ HColorDrag::HColorDrag(QWidget *source, const QColor &color, const QString &name
     setMimeData(data);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

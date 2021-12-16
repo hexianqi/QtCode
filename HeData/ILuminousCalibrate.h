@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HDataGlobal.h"
 #include "HeCore/HCollection.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ILuminousCalibrateItem;
 
@@ -33,5 +30,5 @@ public:
     virtual double toReal(double value, QString type, int index = 0) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

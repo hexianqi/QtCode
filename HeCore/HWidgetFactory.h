@@ -10,12 +10,11 @@
 #pragma once
 
 #include "IInitializeable.h"
-#include <QtCore/QVariant>
 #include <functional>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HWidgetFactory
+class HWidgetFactory
 {
 public:
     // 注册类
@@ -70,4 +69,4 @@ QWidget *HWidgetFactory::constructorHelper(QWidget *parent)
     return new T(parent);
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

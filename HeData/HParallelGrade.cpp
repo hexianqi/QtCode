@@ -3,7 +3,7 @@
 #include <QtCore/QSet>
 #include <QtCore/QPoint>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HParallelGrade::HParallelGrade() :
     HAbstractGrade(*new HParallelGradePrivate)
@@ -47,4 +47,4 @@ int HParallelGrade::calcLevel(QVariantMap value, QString *text)
     return sum + 1;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

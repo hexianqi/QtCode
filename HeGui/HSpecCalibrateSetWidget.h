@@ -10,11 +10,11 @@ namespace Ui {
 class HSpecCalibrateSetWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecCalibrateSetWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecCalibrateSetWidget : public HAbstractTestSetWidget
+class HSpecCalibrateSetWidget : public HAbstractTestSetWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecCalibrateSetWidget)
@@ -49,4 +49,4 @@ private:
     Ui::HSpecCalibrateSetWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

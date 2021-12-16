@@ -6,11 +6,11 @@
 
 #include "HAbstractTestWidget.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTestWidgetPrivate;
 
-class HE_GUI_EXPORT HTestWidget : public HAbstractTestWidget
+class HTestWidget : public HAbstractTestWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HTestWidget)
@@ -29,8 +29,9 @@ protected:
     virtual void createToolBar() = 0;
     virtual void initWidget() = 0;
     virtual void initToolBar();
+    virtual void initStyleSheet();
     virtual void clearResult() = 0;
     virtual void exportExcel() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

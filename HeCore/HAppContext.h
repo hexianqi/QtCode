@@ -15,12 +15,12 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariant>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HAppContext
+class HAppContext
 {
 public:
     // 设置上下文数值
@@ -55,4 +55,4 @@ T *HAppContext::getContextPointer(const QString &key)
     return static_cast<T *>(getContextPointer(key));
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

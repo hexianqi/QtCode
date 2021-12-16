@@ -1,6 +1,6 @@
 #include "HAbstractColorPanel_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractColorPanel::HAbstractColorPanel(QWidget *parent) :
     QWidget(parent),
@@ -29,4 +29,4 @@ void HAbstractColorPanel::setColor(const QColor &value)
     emit colorPicked(value);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 
 #include "HeGui/HAbstractBuilder.h"
 
-HE_GUI_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 class HBuilder2000Private;
 

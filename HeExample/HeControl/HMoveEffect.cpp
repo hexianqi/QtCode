@@ -1,7 +1,7 @@
 #include "HMoveEffect_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMoveEffect::HMoveEffect(QObject *parent) :
     HAbstractShaderEffect(*new HMoveEffectPrivate, parent)
@@ -61,4 +61,4 @@ void HMoveEffect::setDirection(HControlType::Direction4 value)
     d->direction = value;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -7,7 +7,7 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QFileDialog>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HImageBrowser::HImageBrowser(QWidget *parent) :
     QWidget(parent),
@@ -338,4 +338,4 @@ void HImageBrowser::init()
     calcGeo();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

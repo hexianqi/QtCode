@@ -4,7 +4,7 @@
 #include "HeCore/HException.h"
 #include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractDevice::HAbstractDevice() :
     d_ptr(new HAbstractDevicePrivate)
@@ -133,5 +133,5 @@ void HAbstractDevice::transport(QVector<uchar> &downData, QVector<uchar> &upData
     d_ptr->port->transport(downData, upData, delay);
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE
 

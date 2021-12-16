@@ -6,7 +6,7 @@
 class QLabel;
 class QSpacerItem;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTaskHeaderPrivate
 {
@@ -17,4 +17,4 @@ public:
     QToolButton *button;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

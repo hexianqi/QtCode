@@ -6,9 +6,7 @@
 
 #include "IDataCollection.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IDataFactory;
 
@@ -82,4 +80,4 @@ QString HDataCollection<T>::useIndex()
     return d->useIndex;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,7 +6,7 @@
 #include <QtGui/QOpenGLExtraFunctions>
 #include <QtGui/QOpenGLFramebufferObject>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HShaderEngine_PBRPrivate::HShaderEngine_PBRPrivate()
 {
@@ -688,4 +688,4 @@ void HShaderEngine_PBR6::drawSpheres(HGeometryEngine *p, QVariantMap param)
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include <QtWidgets/QWidget>
 
-HE_CORE_USE_NAMESPACE
-
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ISqlTableModel;
 class ISqlHandle;
@@ -34,4 +31,4 @@ public:
     virtual void revert() = 0;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

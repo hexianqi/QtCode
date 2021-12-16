@@ -11,7 +11,7 @@
 #include <QtWidgets/QInputDialog>
 #include <QtWidgets/QFileDialog>
 
-HE_CORE_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 QAction *HPluginHelper::addSeparator(QWidget *widget)
 {

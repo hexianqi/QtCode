@@ -5,7 +5,7 @@
 #include "HIconFontWidget.h"
 #include "HSpliteWidget.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addDemo()
 {
@@ -16,4 +16,4 @@ void HControlDemoWidget::addDemo()
     addTab(tr("DEMO"), tr("分割界面"), new HSpliteWidget);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

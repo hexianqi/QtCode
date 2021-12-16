@@ -11,7 +11,7 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QStatusBar>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractMainWindowPrivate::HAbstractMainWindowPrivate(HAbstractMainWindow *p) :
     q_ptr(p)
@@ -29,7 +29,7 @@ HAbstractMainWindow::HAbstractMainWindow(QWidget *parent) :
     initialize();
 }
 
-HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HCallorHelper &helper, QWidget *parent) :
+HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HConstructionCallHelper &helper, QWidget *parent) :
     IMainWindow(parent),
     d_ptr(&p)
 {
@@ -346,4 +346,4 @@ void HAbstractMainWindow::about()
     QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

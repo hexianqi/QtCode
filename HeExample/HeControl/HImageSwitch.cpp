@@ -2,7 +2,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QPixmapCache>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HImageSwitch::HImageSwitch(QWidget *parent) :
     QWidget(parent),
@@ -104,4 +104,4 @@ void HImageSwitch::paintEvent(QPaintEvent *)
     painter.drawPixmap(x, y, pm);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

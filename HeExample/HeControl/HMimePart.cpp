@@ -1,7 +1,7 @@
 #include "HMimePart_p.h"
 #include "HQuotedPrintable.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMimePart::HMimePart(QObject *parent) :
     QObject(parent),
@@ -191,4 +191,4 @@ QString HMimePart::format(const QString &content, bool quotedPrintable, int maxL
     return result;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

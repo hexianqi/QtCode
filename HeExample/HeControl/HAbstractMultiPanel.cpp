@@ -1,7 +1,7 @@
 #include "HAbstractMultiPanel_p.h"
 #include <QtCore/QEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractMultiPanel::HAbstractMultiPanel(QWidget *parent) :
     QWidget(parent),
@@ -105,4 +105,4 @@ bool HAbstractMultiPanel::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

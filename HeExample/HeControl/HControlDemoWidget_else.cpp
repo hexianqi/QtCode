@@ -10,7 +10,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QVBoxLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addElse()
 {
@@ -151,4 +151,4 @@ void HControlDemoWidget::addAnimatedCheckBox()
     addTab(tr("其他"), tr("动画复选框"), new HAnimatedCheckBox);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

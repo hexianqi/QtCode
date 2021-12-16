@@ -3,7 +3,7 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QHBoxLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBackgroundEventFilterPrivate::HBackgroundEventFilterPrivate()
 {
@@ -131,4 +131,4 @@ void HBackgroundEventFilter::updateBackground(QWidget *widget)
         background->setStyleSheet(QString("QWidget#background { background-image:url(%1); background-repeat:no-repeat; background-position:center; }").arg(image));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

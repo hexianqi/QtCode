@@ -8,11 +8,11 @@
 #include "HCie.h"
 #include <QtCore/QScopedPointer>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HChromaticityPrivate;
 
-class HE_ALGORITHM_EXPORT HChromaticity : public IChromaticity
+class HChromaticity : public IChromaticity
 {
 public:
     explicit HChromaticity();
@@ -50,4 +50,4 @@ protected:
     QScopedPointer<HChromaticityPrivate> d_ptr;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

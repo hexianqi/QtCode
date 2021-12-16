@@ -2,7 +2,7 @@
 #include <QtCore/QtMath>
 #include <QtGui/QMatrix4x4>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLCamera::HOpenGLCamera(QObject *parent) :
     QObject(parent),
@@ -113,4 +113,4 @@ void HOpenGLCamera::updateVectors()
     d_ptr->up = QVector3D::normal(d_ptr->right, d_ptr->front);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

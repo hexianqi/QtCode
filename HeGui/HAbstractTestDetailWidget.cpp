@@ -2,7 +2,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractTestDetailWidgetPrivate::HAbstractTestDetailWidgetPrivate()
 {
@@ -28,4 +28,4 @@ void HAbstractTestDetailWidget::initialize(QVariantMap /*param*/)
 
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

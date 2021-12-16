@@ -1,18 +1,17 @@
 #include "HDetailWidget2000AC_p.h"
 #include "ui_HDetailWidget2000AC.h"
 #include "HeData/ITestData.h"
-#include <QtCore/QDebug>
 
 HDetailWidget2000AC::HDetailWidget2000AC(QWidget *parent) :
     HAbstractTestDetailWidget(*new HDetailWidget2000ACPrivate, parent),
     ui(new Ui::HDetailWidget2000AC)
 {
-    ui->setupUi(this);refreshWidget();
+    ui->setupUi(this);
+    refreshWidget();
 }
 
 HDetailWidget2000AC::~HDetailWidget2000AC()
 {
-    qDebug() << __func__;
     delete ui;
 }
 

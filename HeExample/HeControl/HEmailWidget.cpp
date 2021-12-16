@@ -6,7 +6,7 @@
 #include <QtWidgets/QFileIconProvider>
 #include <QtWidgets/QMessageBox>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HEmailWidget::HEmailWidget(QWidget *parent) :
     QWidget(parent),
@@ -102,4 +102,4 @@ bool HEmailWidget::check()
     return true;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

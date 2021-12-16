@@ -9,9 +9,8 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QGridLayout>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecEnergyWidgetPrivate::HSpecEnergyWidgetPrivate()
 {
@@ -36,7 +35,6 @@ HSpecEnergyWidget::HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *paren
 HSpecEnergyWidget::~HSpecEnergyWidget()
 {
     writeSettings();
-    qDebug() << __func__;
 }
 
 void HSpecEnergyWidget::initCoordinate()
@@ -126,4 +124,4 @@ void HSpecEnergyWidget::writeSettings()
     settings->endGroup();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

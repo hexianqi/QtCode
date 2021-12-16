@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/HActionType.h"
 #include "HeData/HDataType.h"
 #include <QtWidgets/QDialog>
@@ -15,18 +14,12 @@ class HElecCalibrateDialog;
 
 class QTreeWidgetItem;
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_DATA_BEGIN_NAMESPACE
 class IElecCalibrate;
 class IElecCalibrateItem;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
-class HElecCalibrateDialogPrivate;
 class HElecCalibrateItemWidget;
+class HElecCalibrateDialogPrivate;
 
 class HElecCalibrateDialog : public QDialog
 {
@@ -59,4 +52,4 @@ private:
     Ui::HElecCalibrateDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

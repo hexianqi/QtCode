@@ -6,11 +6,11 @@
 
 #include "HTestWidget.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecTestWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecTestWidget : public HTestWidget
+class HSpecTestWidget : public HTestWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecTestWidget)
@@ -61,5 +61,5 @@ protected:
     void editProduct();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

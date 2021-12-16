@@ -3,7 +3,7 @@
 #include "HImageCalendar.h"
 #include <QMap>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HLunarCalendarInfo;
 
@@ -15,4 +15,4 @@ public:
     QMap<HImageCalendar::CalendarStyle, QString> images;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

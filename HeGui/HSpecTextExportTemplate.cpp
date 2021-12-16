@@ -2,9 +2,8 @@
 #include "HeCore/HCore.h"
 #include "HeData/HDataHelper.h"
 #include <QtGui/QPolygonF>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecTextExportTemplate::HSpecTextExportTemplate(QObject *parent) :
     HAbstractTextExportTemplate(*new HSpecTextExportTemplatePrivate, parent)
@@ -16,10 +15,7 @@ HSpecTextExportTemplate::HSpecTextExportTemplate(HSpecTextExportTemplatePrivate 
 {
 }
 
-HSpecTextExportTemplate::~HSpecTextExportTemplate()
-{
-    qDebug() << __func__;
-}
+HSpecTextExportTemplate::~HSpecTextExportTemplate() = default;
 
 QString HSpecTextExportTemplate::typeName()
 {
@@ -87,4 +83,4 @@ QString HSpecTextExportTemplate::parse(QPolygonF value)
     return text;
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

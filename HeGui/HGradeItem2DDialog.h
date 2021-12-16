@@ -10,7 +10,7 @@ namespace Ui {
 class HGradeItem2DDialog;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGradeItem2DDialogPrivate;
 
@@ -47,4 +47,4 @@ private:
     Ui::HGradeItem2DDialog *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -3,7 +3,7 @@
 #include "HXlsxStream.h"
 #include "HAbstractStream_p.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HXlsxStreamPrivate : public HAbstractStreamPrivate
 {
@@ -15,5 +15,5 @@ public:
     std::function<void(Document *)> writeContent = nullptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

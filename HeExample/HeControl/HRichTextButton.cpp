@@ -5,7 +5,7 @@
 #include <QtWidgets/QStylePainter>
 #include <QtWidgets/QStyleOptionButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HRichTextButton::HRichTextButton(QWidget *parent) :
     QAbstractButton(parent),
@@ -168,4 +168,4 @@ void HRichTextButton::deleteInternalDoc()
         delete d_ptr->doc;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

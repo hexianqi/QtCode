@@ -5,7 +5,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 const char * const SQL_NAMESPACE_USER = "User";
 
@@ -155,4 +155,4 @@ void HDbTest::testOnBorrow()
     button->show();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

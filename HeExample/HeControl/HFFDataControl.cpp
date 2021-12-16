@@ -6,7 +6,7 @@
 
 using namespace std;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFFClock::HFFClock(QObject *parent) :
     QObject(parent),
@@ -350,4 +350,4 @@ void HFFFrameQueue::unref_item(HFFFrame *p)
  //   avsubtitle_free(&p->sub);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

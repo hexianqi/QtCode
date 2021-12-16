@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QDialog>
 
 namespace Ui {
 class HSqlFindDialog;
 }
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlFindDialogPrivate;
 
@@ -42,4 +42,4 @@ private:
     Ui::HSqlFindDialog *ui;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

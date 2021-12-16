@@ -16,7 +16,7 @@ extern "C" {
 #endif
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 /* no AV sync correction is done if below the minimum AV sync threshold */
 #define AV_SYNC_THRESHOLD_MIN 0.04
@@ -1851,7 +1851,7 @@ void HDecoder::init(HPacketQueue *queue, SDL_cond *empty_queue_cond)
     this->pkt_serial = -1;
 }
 
-void HeControl::HDecoder::set_codec_context(AVCodecContext *avctx)
+void HDecoder::set_codec_context(AVCodecContext *avctx)
 {
     this->avctx = avctx;
 }
@@ -3139,7 +3139,7 @@ void HVideoState::video_image_display()
     }
 }
 
-void HeControl::HVideoState::update_video_pts(double pts, int64_t pos, int serial)
+void HVideoState::update_video_pts(double pts, int64_t pos, int serial)
 {
     /* update current video pts */
     vidclk.set_clock( pts, serial);
@@ -3803,5 +3803,5 @@ void HFFPlayerControl::free()
     av_log(nullptr, AV_LOG_QUIET, "%s", "");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

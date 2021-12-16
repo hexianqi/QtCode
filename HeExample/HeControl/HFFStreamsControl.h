@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
 #include "HFFConfig.h"
 #include <QtCore/QObject>
 
@@ -13,7 +12,7 @@ struct AVPacket;
 struct AVFrame;
 struct AVProgram;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 struct HFFFrame;
 class HFFSourceControl;
@@ -170,5 +169,5 @@ protected:
     void run() override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

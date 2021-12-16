@@ -6,7 +6,7 @@
 
 #include "HAbstractProtocol.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HBigProtocolPrivate;
 
@@ -35,4 +35,4 @@ protected:
     QVector<double> toDouble(QVector<uchar> value, int size) override;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

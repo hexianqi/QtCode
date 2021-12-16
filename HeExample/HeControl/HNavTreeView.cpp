@@ -4,7 +4,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QStandardItemModel>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HNavTreeDelegate::HNavTreeDelegate(QObject *parent)
 {
@@ -246,4 +246,4 @@ void HNavTreeView::init()
     setItemDelegate(new HNavTreeDelegate(this));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -15,9 +15,8 @@
 #pragma once
 
 #include "IStream.h"
-#include <functional>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IDataStream : public virtual IStream
 {
@@ -36,4 +35,4 @@ public:
     virtual bool writeContent(QDataStream &) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

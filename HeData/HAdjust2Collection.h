@@ -6,7 +6,7 @@
 
 #include "IAdjust2Collection.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAdjust2CollectionPrivate;
 
@@ -28,5 +28,5 @@ protected:
     HAdjust2Collection(HAdjust2CollectionPrivate &);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -10,14 +10,14 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QDialog>
 
 namespace Ui {
 class HGifWidget;
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGifWidgetPrivate;
 
@@ -58,4 +58,4 @@ private:
     QScopedPointer<HGifWidgetPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

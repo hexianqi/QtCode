@@ -1,7 +1,7 @@
 #include "HArcGauge_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HArcGaugePrivate::HArcGaugePrivate()
 {
@@ -154,4 +154,4 @@ void HArcGauge::drawPointerCenter(QPainter *painter)
     painter->drawEllipse(-radius, -radius, radius * 2, radius * 2);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

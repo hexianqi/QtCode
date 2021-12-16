@@ -6,7 +6,7 @@
 
 #include "HMimePart.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMimeMultiPartPrivate;
 
@@ -45,4 +45,4 @@ protected:
     HMimeMultiPart(HMimeMultiPartPrivate &p, QObject *parent = nullptr);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

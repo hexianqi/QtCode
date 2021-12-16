@@ -1,7 +1,7 @@
 #include "HDataFormatInfo_p.h"
 #include <QtGui/QDoubleValidator>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDataFormatInfo::HDataFormatInfo() :
     HDataFormatInfo("")
@@ -133,4 +133,4 @@ QIntValidator *HDataFormatInfo::toIntValidator(QObject *parent)
     return new QIntValidator(int(min()), int(max()), parent);
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

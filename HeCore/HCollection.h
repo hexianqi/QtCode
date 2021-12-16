@@ -7,7 +7,7 @@
 #include "ICollection.h"
 #include "HDefine.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class HCollectionPrivate
@@ -24,7 +24,7 @@ public:
     ~HCollection();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void clear() override;
@@ -149,4 +149,4 @@ QList<T *> HCollection<T>::values()
     return d_ptr->items.values();
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

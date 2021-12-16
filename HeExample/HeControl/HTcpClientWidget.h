@@ -10,7 +10,7 @@ namespace Ui {
 class HTcpClientWidget;
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTcpClientWidgetPrivate;
 
@@ -45,4 +45,4 @@ private:
     Ui::HTcpClientWidget *ui;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

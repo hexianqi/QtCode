@@ -3,7 +3,7 @@
 #include "HGuiHelper.h"
 #include <QtWidgets/QMessageBox>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChangePasswordDialog::HChangePasswordDialog(QString password, QWidget *parent) :
     QDialog(parent),
@@ -44,4 +44,4 @@ void HChangePasswordDialog::done(int result)
     QDialog::done(result);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

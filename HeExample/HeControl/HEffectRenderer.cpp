@@ -4,7 +4,7 @@
 #include <QtGui/QOpenGLFunctions>
 #include <QtGui/QOpenGLShaderProgram>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HEffectRendererPrivate::HEffectRendererPrivate()
 {
@@ -149,4 +149,4 @@ void HEffectRenderer::init(int width, int height)
     d_ptr->shader->setUniformValueArray("blur_kernel", blur_kernel, 9, 1);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

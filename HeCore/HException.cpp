@@ -1,7 +1,7 @@
 #include "HException.h"
 #include "HCore.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HException::HException(HErrorType value)
 {
@@ -28,4 +28,4 @@ QString HException::message()
     return _message.isEmpty() ? HCore::toComment(_type) : _message;
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

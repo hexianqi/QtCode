@@ -2,9 +2,8 @@
 #include "ui_HSpecFittingLinearWidget.h"
 #include "HeData/HSpecFitting.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecFittingLinearWidget::HSpecFittingLinearWidget(QWidget *parent):
     HSpecFittingWidget(*new HSpecFittingLinearWidgetPrivate, parent),
@@ -16,7 +15,6 @@ HSpecFittingLinearWidget::HSpecFittingLinearWidget(QWidget *parent):
 
 HSpecFittingLinearWidget::~HSpecFittingLinearWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -73,4 +71,4 @@ void HSpecFittingLinearWidget::init()
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_2);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

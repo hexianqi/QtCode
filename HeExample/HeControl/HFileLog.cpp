@@ -2,7 +2,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFileLog::HFileLog(QObject *parent) :
     HAbstractFileLog(*new HFileLogPrivate, parent)
@@ -52,4 +52,4 @@ bool HFileLog::appendContent(QStringList value)
     return true;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

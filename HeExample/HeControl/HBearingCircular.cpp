@@ -2,7 +2,7 @@
 #include <QtGui/QPalette>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HBearingCircular::HBearingCircular(QObject *parent) :
     HAbstractCircular(*new HBearingCircularPrivate, parent)
@@ -86,4 +86,4 @@ void HBearingCircular::setForeground(const QColor &value)
     emit dataChanged();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

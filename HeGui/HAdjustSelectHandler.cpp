@@ -4,19 +4,15 @@
 #include "HeData/IAdjustCollection.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HSelectDialog.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAdjustSelectHandler::HAdjustSelectHandler(QObject *parent) :
     HAbstractConfigHandler(*new HAdjustSelectHandlerPrivate, parent)
 {
 }
 
-HAdjustSelectHandler::~HAdjustSelectHandler()
-{
-    qDebug() << __func__;
-}
+HAdjustSelectHandler::~HAdjustSelectHandler() = default;
 
 QString HAdjustSelectHandler::typeName()
 {
@@ -38,4 +34,4 @@ void HAdjustSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_ADJUST);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

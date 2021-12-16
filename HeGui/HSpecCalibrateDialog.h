@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QDialog>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecCalibrateDialogPrivate;
 
@@ -29,4 +29,4 @@ private:
     void init();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

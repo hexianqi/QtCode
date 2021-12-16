@@ -3,7 +3,7 @@
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QBoxLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTaskPanel::HTaskPanel(QWidget *parent) :
     HAbstractMultiPanel(*new HTaskPanelPrivate, parent)
@@ -150,4 +150,4 @@ void HTaskPanel::init()
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

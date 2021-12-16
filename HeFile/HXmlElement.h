@@ -4,17 +4,17 @@
 
 #pragma once
 
-#include "HFileGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QScopedPointer>
 #include <functional>
 
 class QDomElement;
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HXmlElementPrivate;
 
-class HE_FILE_EXPORT HXmlElement
+class HXmlElement
 {
 public:
     // 装载XML文档
@@ -59,4 +59,4 @@ private:
     QScopedPointer<HXmlElementPrivate> d_ptr;
 };
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

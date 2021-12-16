@@ -2,7 +2,7 @@
 #include "HOpenGLShaderProgram.h"
 #include "HFreeType.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTextRenderer::HTextRenderer(HOpenGLShaderProgram *shader, QObject *parent) :
     QObject(parent),
@@ -28,4 +28,4 @@ void HTextRenderer::draw(const QString &text, QVector2D position, int pixelSize,
     d_ptr->freeType->renderText(text, position, pixelSize);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

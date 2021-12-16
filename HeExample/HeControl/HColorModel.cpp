@@ -1,7 +1,7 @@
 #include "HColorModel.h"
 
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QStandardItem *createItem(const QColor &color, const QString &name)
 {
@@ -75,4 +75,4 @@ HColorModel *HColorModel::clone(QObject *parent) const
     return model;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

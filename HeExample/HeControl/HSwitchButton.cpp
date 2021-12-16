@@ -4,7 +4,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSwitchButton::HSwitchButton(QWidget *parent) :
     QWidget(parent),
@@ -396,4 +396,4 @@ int HSwitchButton::calcPos()
     return 0;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

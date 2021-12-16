@@ -4,12 +4,13 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 
 class QObject;
+class QString;
 class QRegularExpressionValidator;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HRegularExpressionHelper
 {
@@ -22,4 +23,4 @@ public:
     static QRegularExpressionValidator *email(QObject *parent = nullptr);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -8,7 +8,7 @@
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpriteRendererPrivate;
 
@@ -28,5 +28,5 @@ private:
     void init();
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

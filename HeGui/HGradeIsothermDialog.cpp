@@ -5,11 +5,8 @@
 #include "HeCore/HAppContext.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QSettings>
-#include <QtCore/QDebug>
 
-HE_ALGORITHM_USE_NAMESPACE
-HE_CORE_USE_NAMESPACE
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeIsothermDialog::HGradeIsothermDialog(QWidget *parent) :
     QDialog(parent),
@@ -24,7 +21,6 @@ HGradeIsothermDialog::HGradeIsothermDialog(QWidget *parent) :
 
 HGradeIsothermDialog::~HGradeIsothermDialog()
 {
-    qDebug() << __func__;
     writeSettings();
     delete ui;
 }
@@ -126,4 +122,4 @@ void HGradeIsothermDialog::writeSettings()
     settings->endGroup();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

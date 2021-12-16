@@ -8,7 +8,7 @@ class QListWidget;
 class QLabel;
 class QStackedWidget;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HConfigPanelPrivate : public HAbstractMultiPanelPrivate
 {
@@ -33,4 +33,4 @@ public:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

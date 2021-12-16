@@ -2,7 +2,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HKeepFileLog::HKeepFileLog(QObject *parent) :
     HAbstractFileLog(*new HKeepFileLogPrivate, parent)
@@ -76,4 +76,4 @@ void HKeepFileLog::reopenIfNeeded()
     d->file->open(QIODevice::ReadWrite | QIODevice::Append | QFile::Text);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

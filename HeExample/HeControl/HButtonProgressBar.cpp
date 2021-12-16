@@ -3,7 +3,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HButtonProgressBar::HButtonProgressBar(QWidget *parent) :
     HAbstractProgress(*new HButtonProgressBarPrivate, parent)
@@ -231,4 +231,4 @@ void HButtonProgressBar::updateValue()
     update();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

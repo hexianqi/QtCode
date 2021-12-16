@@ -1,7 +1,7 @@
 #include "HLedNumber_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HLedNumber::HLedNumber(QWidget *parent) :
     QWidget(parent),
@@ -306,4 +306,4 @@ void HLedNumber::init()
                            << QPoint(2, 7) << QPoint(3, 7) << QPoint(4, 7) << QPoint(5, 7) << QPoint(6, 7));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,12 +6,13 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include "gsl/gsl_complex.h"
+#include <QtCore/QVector>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_ALGORITHM_EXPORT HPolynomial
+class HPolynomial
 {
 public:
     // 求值
@@ -32,4 +33,4 @@ public:
     static QVector<gsl_complex> complex_solve_cubic(double a, double b, double c);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

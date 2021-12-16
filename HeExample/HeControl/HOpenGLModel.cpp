@@ -9,7 +9,7 @@
 #include <QtGui/QOpenGLBuffer>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLModelPrivate::HOpenGLModelPrivate()
 {
@@ -164,4 +164,4 @@ QHash<QString, QOpenGLTexture *> HOpenGLModel::processMaterial(aiMaterial *mat, 
     return textures;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

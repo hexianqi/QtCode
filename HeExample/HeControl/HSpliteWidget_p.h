@@ -6,7 +6,7 @@ class QGridLayout;
 class QLabel;
 class QMenu;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpliteWidgetPrivate
 {
@@ -19,4 +19,4 @@ public:
     QMenu *menu;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

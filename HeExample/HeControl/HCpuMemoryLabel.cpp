@@ -13,7 +13,7 @@
 #define MB (1024 * 1024)
 #define KB (1024)
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCpuMemoryLabel::HCpuMemoryLabel(QWidget *parent) :
     QLabel(parent),
@@ -187,4 +187,4 @@ void HCpuMemoryLabel::init()
     setAlignment(Qt::AlignCenter);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

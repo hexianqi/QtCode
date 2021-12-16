@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QVariantMap>
 
 class QSqlQuery;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HDBUtil
 {
@@ -58,4 +58,4 @@ QList<T> HDBUtil::selectBeans(T mapToBean(const QVariantMap &), const QString &s
     return list;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

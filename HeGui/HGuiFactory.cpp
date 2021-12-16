@@ -37,9 +37,8 @@
 #include "HSpecTextExportTemplate.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGuiFactory::HGuiFactory(QObject *parent) :
     QObject(parent),
@@ -55,10 +54,7 @@ HGuiFactory::HGuiFactory(HGuiFactoryPrivate &p, QObject *parent) :
     registerClass();
 }
 
-HGuiFactory::~HGuiFactory()
-{
-    qDebug() << endl << __func__;
-}
+HGuiFactory::~HGuiFactory() = default;
 
 void HGuiFactory::initialize(QVariantMap /*param*/)
 {
@@ -153,4 +149,4 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HTagPrintTemplate>("HTagPrintTemplate");
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

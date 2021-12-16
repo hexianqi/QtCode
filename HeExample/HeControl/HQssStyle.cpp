@@ -2,7 +2,7 @@
 #include "HStyleHelper.h"
 #include <QtGui/QPalette>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQssStyle::HQssStyle(QObject *parent) :
     QObject(parent),
@@ -70,4 +70,4 @@ void HQssStyle::init()
     selectStyle(tr("淡绿色风格"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

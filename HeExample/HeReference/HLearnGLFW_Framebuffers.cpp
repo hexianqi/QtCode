@@ -3,11 +3,10 @@
 #include "HOpenGLShaderProgram.h"
 #include "HGeometryEngine.h"
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
 using namespace std;
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 int HLearnGLFW::testFramebuffers()
 {
@@ -141,4 +140,4 @@ int HLearnGLFW::testFramebuffers()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,19 +4,15 @@
 #include "HeData/IChromatismCollection.h"
 #include "HePlugin/HSelectDialog.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChromatismSelectHandler::HChromatismSelectHandler(QObject *parent) :
     HAbstractConfigHandler(*new HChromatismSelectHandlerPrivate, parent)
 {
 }
 
-HChromatismSelectHandler::~HChromatismSelectHandler()
-{
-    qDebug() << __func__;
-}
+HChromatismSelectHandler::~HChromatismSelectHandler() = default;
 
 QString HChromatismSelectHandler::typeName()
 {
@@ -38,4 +34,4 @@ void HChromatismSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*
     d->model->addAction(ACT_RESET_CHROMATISM);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,11 +6,11 @@
 
 #include "ITestDetailWidget.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractTestDetailWidgetPrivate;
 
-class HE_GUI_EXPORT HAbstractTestDetailWidget : public ITestDetailWidget
+class HAbstractTestDetailWidget : public ITestDetailWidget
 {
     Q_OBJECT
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractTestDetailWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 protected:
     HAbstractTestDetailWidget(HAbstractTestDetailWidgetPrivate &p, QWidget *parent = nullptr);
@@ -28,4 +28,4 @@ protected:
     QScopedPointer<HAbstractTestDetailWidgetPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -10,7 +10,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QPainterPath>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HShaderEngine_Triangle::HShaderEngine_Triangle(QObject *parent) :
     HAbstractShaderEngine(*new HShaderEngine_TrianglePrivate, parent)
@@ -2788,4 +2788,4 @@ void HShaderEngine_Text::draw(HGeometryEngine */*p*/, QVariantMap param)
 }
 
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

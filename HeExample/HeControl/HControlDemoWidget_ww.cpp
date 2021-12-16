@@ -23,7 +23,7 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QGridLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addWw()
 {
@@ -138,4 +138,4 @@ void HControlDemoWidget::addWwElse()
     addTab(tr("ww"), tr("其他"), layout);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,11 +6,11 @@
 
 #include "HAbstractThread.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecThreadPrivate;
 
-class HE_CONTROLLER_EXPORT HSpecThread : public HAbstractThread
+class HSpecThread : public HAbstractThread
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecThread)
@@ -32,4 +32,4 @@ private:
     void init();
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

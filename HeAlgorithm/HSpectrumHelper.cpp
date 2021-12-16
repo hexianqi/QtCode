@@ -1,9 +1,9 @@
 #include "HSpecHelper.h"
 #include <QtCore/QtMath>
+#include <QtCore/QPointF>
 #include <QtGui/QColor>
-#include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 using namespace std;
 
@@ -284,4 +284,4 @@ QColor HSpecHelper::wave2color(double wave, double gamma, double intensityMax)
 //    return QList<double>() << mol << eff1 << eff2;
 //}
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

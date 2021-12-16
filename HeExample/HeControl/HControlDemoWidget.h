@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HControlDemoWidgetPrivate;
 
-class HE_CONTROL_EXPORT HControlDemoWidget : public QWidget
+class HControlDemoWidget : public QWidget
 {
     Q_OBJECT
 
@@ -73,4 +73,4 @@ private:
     void addTab(const QString &key, const QString &title, QLayout *);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

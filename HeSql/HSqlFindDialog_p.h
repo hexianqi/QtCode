@@ -4,7 +4,7 @@
 
 class QStringListModel;
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSqlFindDialogPrivate
 {
@@ -15,4 +15,4 @@ public:
     QStringListModel *model;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

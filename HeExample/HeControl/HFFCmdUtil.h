@@ -1,11 +1,11 @@
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 extern "C" {
 #include "libavformat/avformat.h"
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 extern AVDictionary *format_opts;
 extern AVDictionary *codec_opts;
@@ -33,4 +33,4 @@ bool cmp_audio_fmts(AVSampleFormat fmt1, int64_t channel_count1, AVSampleFormat 
 
 int cmp_mod(int a, int b);
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

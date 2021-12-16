@@ -3,7 +3,7 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QJsonArray>
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // 读取属性的值
 QJsonValue HJsonPrivate::getValue(const QString &path, const QJsonObject &fromNode) const
@@ -210,4 +210,4 @@ QString HJson::toString(bool pretty) const
     return QJsonDocument(d_ptr->root).toJson(pretty ? QJsonDocument::Indented : QJsonDocument::Compact);
 }
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

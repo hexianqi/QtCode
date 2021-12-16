@@ -18,9 +18,8 @@
 #include "HDaXinProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCommunicateFactory::HCommunicateFactory(QObject *parent) :
     QObject(parent),
@@ -36,10 +35,7 @@ HCommunicateFactory::HCommunicateFactory(HCommunicateFactoryPrivate &p, QObject 
     registerClass();
 }
 
-HCommunicateFactory::~HCommunicateFactory()
-{
-    qDebug() << endl << __func__;
-}
+HCommunicateFactory::~HCommunicateFactory() = default;
 
 void HCommunicateFactory::initialize(QVariantMap /*param*/)
 {
@@ -94,4 +90,4 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HDaXinProtocol>("HDaXinProtocol");
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

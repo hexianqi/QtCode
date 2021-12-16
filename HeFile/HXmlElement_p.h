@@ -3,7 +3,7 @@
 #include "HXmlElement.h"
 #include <QtCore/QStringList>
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HXmlElementPrivate
 {
@@ -17,4 +17,4 @@ public:
     QList<HXmlElement*> childs;
 };
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

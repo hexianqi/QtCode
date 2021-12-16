@@ -18,6 +18,10 @@ public:
     ~HTm30CvgWidget() override;
 
 public:
+    QStringList dataType();
+    void setData(const QVariantMap &value);
+
+public:
     bool isDrawBackground() const;
     bool isDrawEdge() const;
     bool isDrawLabel() const;

@@ -1,7 +1,7 @@
 #include "HPetalCircular_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPetalCircular::HPetalCircular(QObject *parent) :
     HAbstractCircular(*new HPetalCircularPrivate, parent)
@@ -57,4 +57,4 @@ void HPetalCircular::setForeground(const QColor &value)
     emit dataChanged();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

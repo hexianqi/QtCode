@@ -4,15 +4,12 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
 #include "HeCore/HSingleton.h"
 #include <QtCore/QObject>
 
-HE_CORE_USE_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-HE_SQL_BEGIN_NAMESPACE
-
-class HE_SQL_EXPORT HSqlGlobalInstance : public QObject, public HSingleton<HSqlGlobalInstance>
+class HSqlGlobalInstance : public QObject, public HSingleton<HSqlGlobalInstance>
 {
     Q_OBJECT
     H_FRIEND_SINGLETON(HSqlGlobalInstance)
@@ -29,4 +26,4 @@ protected:
     void initFieldCreateStyle();
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

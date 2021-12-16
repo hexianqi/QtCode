@@ -32,7 +32,6 @@
 #include "HeGui/HAction.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
-#include <QtCore/QDebug>
 
 HBuilder2000DCPrivate::HBuilder2000DCPrivate()
 {
@@ -67,10 +66,7 @@ HBuilder2000DC::HBuilder2000DC(HBuilder2000DCPrivate &p, QObject *parent) :
 {
 }
 
-HBuilder2000DC::~HBuilder2000DC()
-{
-    qDebug() << __func__;
-}
+HBuilder2000DC::~HBuilder2000DC() = default;
 
 QString HBuilder2000DC::typeName()
 {
@@ -168,16 +164,17 @@ void HBuilder2000DC::buildTestData()
 void HBuilder2000DC::buildTemplate()
 {
     Q_D(HBuilder2000DC);
-    auto print = d->dataFactory->createPrint("HPrint");
     auto expor = d->dataFactory->createTextExport("HTextExport");
-    auto spec = new HSpecPrintTemplate2000DC(this);
-    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
     auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    HAppContext::setContextPointer("IPrint", print);
+    auto print = d->dataFactory->createPrint("HPrint");
+    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
+    auto spec = new HSpecPrintTemplate2000DC(this);
+    spec->initialize();
     HAppContext::setContextPointer("ITextExport", expor);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
+    HAppContext::setContextPointer("IPrint", print);
     HAppContext::setContextPointer("ISpecPrintTemplate", spec);
     HAppContext::setContextPointer("ITagPrintTemplate", tag);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
 }
 
 void HBuilder2000DC::buildDevice()
@@ -317,7 +314,7 @@ void HBuilder2000DC::buildMenu()
     d->mainWindow->insertMenu(test);
     d->mainWindow->insertMenu(database);
     d->mainWindow->insertMenu(account);
-    d->mainWindow->setAuthority(0);
+//    d->mainWindow->setAuthority(0);
 }
 
 void HBuilder2000DC::buildTestWidget()

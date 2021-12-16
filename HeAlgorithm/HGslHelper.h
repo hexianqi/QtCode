@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include "gsl/gsl_matrix.h"
 #include <QtGui/QPolygonF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGslHelper
 {
@@ -31,4 +31,4 @@ public:
     static void fill(gsl_matrix *, QVector<double>);
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

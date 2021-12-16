@@ -3,7 +3,7 @@
 #include "HeCore/HCore.h"
 #include "HeCore/HCoreHelper.h"
 
-HE_CORE_USE_NAMESPACE
+HE_USE_NAMESPACE
 
 HTypeOptionalDialog::HTypeOptionalDialog(const QStringList &selected, const QStringList &optional, QWidget *parent) :
     QDialog(parent),

@@ -1,6 +1,6 @@
 #include "HAbstractTextExportTemplate_p.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractTextExportTemplate::HAbstractTextExportTemplate(QObject *parent) :
     QObject(parent),
@@ -40,4 +40,4 @@ void HAbstractTextExportTemplate::setData(QVariant value)
     d_ptr->data = value;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

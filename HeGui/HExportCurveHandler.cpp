@@ -2,21 +2,18 @@
 #include "IMainWindow.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ISpecCalibrate.h"
+#include <QtCore/QTextStream>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HExportCurveHandler::HExportCurveHandler(QObject *parent) :
     HAbstractConfigHandler(*new HExportCurveHandlerPrivate, parent)
 {
 }
 
-HExportCurveHandler::~HExportCurveHandler()
-{
-    qDebug() << __func__;
-}
+HExportCurveHandler::~HExportCurveHandler() = default;
 
 QString HExportCurveHandler::typeName()
 {
@@ -47,4 +44,4 @@ void HExportCurveHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     QMessageBox::information(d->mainWindow, "", tr("\n导出成功！\n"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 #include <QtWidgets/QStyleOption>
 #include <QtWidgets/QShortcut>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFileChooser::HFileChooser(QWidget *parent) :
     HButtonLineEdit(*new HFileChooserPrivate, parent)
@@ -186,4 +186,4 @@ void HFileChooser::init()
     setWindowIcon(QIcon(":/image/ww/filechooser.png"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

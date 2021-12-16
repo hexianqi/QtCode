@@ -1,12 +1,12 @@
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QString>
 
 class QOpenGLShaderProgram;
 class QOpenGLTexture;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HResourceManager
 {
@@ -23,5 +23,5 @@ protected:
     static QMap<QString, QOpenGLTexture *> __textures;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -4,9 +4,10 @@
 
 #pragma once
 
+#include "HControllerGlobal.h"
 #include "IActionStrategy.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractActionStrategyPrivate;
 
@@ -18,7 +19,7 @@ public:
     explicit HAbstractActionStrategy(QObject *parent = nullptr);
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     void setProtocol(IProtocol *) override;
@@ -31,4 +32,4 @@ protected:
     QScopedPointer<HAbstractActionStrategyPrivate> d_ptr;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

@@ -10,10 +10,10 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMultiStyleButtonPrivate;
 
@@ -119,4 +119,4 @@ private:
 
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

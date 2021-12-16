@@ -6,7 +6,7 @@
 
 #include "HGameObject.h"
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HPropPrivate;
 
@@ -41,5 +41,5 @@ protected:
     HProp(HPropPrivate &p, QObject *parent = nullptr);
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -2,7 +2,7 @@
 
 #include "HMagicMouse.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMagicMousePrivate
 {
@@ -16,4 +16,4 @@ public:
     QColor tailColor = QColor(168, 126, 166);
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

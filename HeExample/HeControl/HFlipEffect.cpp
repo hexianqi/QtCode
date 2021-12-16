@@ -1,7 +1,7 @@
 #include "HFlipEffect_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFlipEffect::HFlipEffect(QObject *parent) :
     HAbstractShaderEffect(*new HFlipEffectPrivate, parent)
@@ -81,4 +81,4 @@ void HFlipEffect::setDirection(HControlType::Direction4 value)
     d->direction = value;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

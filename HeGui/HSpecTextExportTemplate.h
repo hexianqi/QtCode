@@ -4,16 +4,13 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeData/HAbstractTextExportTemplate.h"
 
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecTextExportTemplatePrivate;
 
-class HE_GUI_EXPORT HSpecTextExportTemplate : public HAbstractTextExportTemplate
+class HSpecTextExportTemplate : public HAbstractTextExportTemplate
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecTextExportTemplate)
@@ -37,5 +34,5 @@ protected:
     virtual QString parse(QPolygonF);
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

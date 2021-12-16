@@ -1,9 +1,9 @@
 #pragma once
 
-#include "HDataGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QMetaType>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 enum HSpecType
 {
@@ -39,6 +39,6 @@ enum HQualityReport
     Passing
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 
-Q_DECLARE_METATYPE(HeData::HQualityReport);
+Q_DECLARE_METATYPE(HE_NAMESPACE::HQualityReport);

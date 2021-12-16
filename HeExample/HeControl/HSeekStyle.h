@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 #include <QtWidgets/QStyleOptionSlider>
 #include <QtWidgets/QProxyStyle>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSeekStyleOption : public QStyleOptionSlider
 {
@@ -34,5 +34,5 @@ public:
     void drawComplexControl(ComplexControl control, const QStyleOptionComplex *option, QPainter *painter, const QWidget *widget = nullptr) const override;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

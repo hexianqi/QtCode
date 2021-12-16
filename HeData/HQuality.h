@@ -6,7 +6,7 @@
 
 #include "IQuality.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HQualityPrivate;
 class IQualityItemCollection;
@@ -18,7 +18,7 @@ public:
     ~HQuality();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -39,4 +39,4 @@ protected:
     QScopedPointer<HQualityPrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

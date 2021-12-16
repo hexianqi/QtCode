@@ -4,7 +4,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPhotopicVision::HPhotopicVision()
 {
@@ -13,7 +13,7 @@ HPhotopicVision::HPhotopicVision()
 
 void HPhotopicVision::calcSpectrum(HSpecData *data)
 {
-    if (data->Energy.isEmpty())
+    if (data->TestEnergy.isEmpty())
         return;
 
     int i,j;
@@ -27,23 +27,23 @@ void HPhotopicVision::calcSpectrum(HSpecData *data)
     b = 0;
     sum1 = 0.0;
     sum2 = 0.0;
-    while (i < data->Energy.size() && j < _standard.size())
+    while (i < data->TestEnergy.size() && j < _standard.size())
     {
-        if (qAbs(data->Energy[i].x() - _standard[j].x()) < 1e-6)
+        if (qAbs(data->TestEnergy[i].x() - _standard[j].x()) < 1e-6)
         {
-            t = data->Energy[i].y() * _standard[j].y();
-            sum1 += data->Energy[i].y();
+            t = data->TestEnergy[i].y() * _standard[j].y();
+            sum1 += data->TestEnergy[i].y();
             sum2 += t;
-            if (data->Energy[i].x() >= 380 && data->Energy[i].x() < 500)
+            if (data->TestEnergy[i].x() >= 380 && data->TestEnergy[i].x() < 500)
                 b += t;
-            if (data->Energy[i].x() >= 500 && data->Energy[i].x() < 600)
+            if (data->TestEnergy[i].x() >= 500 && data->TestEnergy[i].x() < 600)
                 g += t;
-            if (data->Energy[i].x() >= 600 && data->Energy[i].x() < 780)
+            if (data->TestEnergy[i].x() >= 600 && data->TestEnergy[i].x() < 780)
                 r += t;
             i++;
             j++;
         }
-        else if (data->Energy[i].x() < _standard[j].x())
+        else if (data->TestEnergy[i].x() < _standard[j].x())
             i++;
         else
             j++;
@@ -90,4 +90,4 @@ void HPhotopicVision::readStandard()
     _standard = HInterp::eval(poly, poly.first().x(), poly.last().x(), 0.1, HInterp::Cspline);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

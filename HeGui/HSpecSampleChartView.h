@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
+#include "HNamespace.h"
 #include "HePlugin/HVernierChartView.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecSampleChartViewPrivate;
 
-class HE_GUI_EXPORT HSpecSampleChartView : public HVernierChartView
+class HSpecSampleChartView : public HVernierChartView
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecSampleChartView)
@@ -33,4 +33,4 @@ protected:
     void init() override;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

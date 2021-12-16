@@ -8,11 +8,8 @@
 #include "HeData/IChromatismItem.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtCore/QUuid>
-#include <QtCore/QDebug>
 
-HE_ALGORITHM_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HChromatismEditWidgetPrivate::HChromatismEditWidgetPrivate()
 {
@@ -30,7 +27,6 @@ HChromatismEditWidget::HChromatismEditWidget(QWidget *parent) :
 
 HChromatismEditWidget::~HChromatismEditWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -170,8 +166,7 @@ void HChromatismEditWidget::on_pushButton_4_clicked()
 void HChromatismEditWidget::init()
 {
     auto delegate = new HDoubleSpinBoxDelegate(this);
-    delegate->setType(QStringList() << "[色温]" << "[色容差]" << "[色坐标x]" << "[色坐标y]"
-                      << "[参数G]" << "[参数G]" << "[参数G]" << "[轴A]" << "[轴B]" << "[旋转角]");
+    delegate->setType(QStringList() << "[色温]" << "[色容差]" << "[色坐标x]" << "[色坐标y]" << "[参数G]" << "[参数G]" << "[参数G]" << "[轴A]" << "[轴B]" << "[旋转角]");
     delegate->setOrigin(QPoint(1,0));
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("标题") << tr("相关色温") << tr("色容差") << tr("x") << tr("y")
                                                << tr("g11(*10000)") << tr("g12(*10000)") << tr("g22(*10000)")
@@ -204,4 +199,4 @@ void HChromatismEditWidget::showTable(int row, const QString &key, IChromatismIt
     ui->tableWidget->setRow(row, list);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

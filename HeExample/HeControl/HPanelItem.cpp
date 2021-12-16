@@ -2,7 +2,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPanelItem::HPanelItem(QWidget *parent) :
     QWidget(parent),
@@ -283,4 +283,4 @@ void HPanelItem::init()
     connect(d_ptr->timer, &QTimer::timeout, this, [=] { d_ptr->dark = !d_ptr->dark; update(); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <string>
 #include <unordered_map>
 #include <memory>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T, typename K = std::string>
 class HMultiton
@@ -56,4 +56,4 @@ protected:
 template <typename T, typename K>
 std::unordered_map<K, std::shared_ptr<T>> HMultiton<T, K>::__map;
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

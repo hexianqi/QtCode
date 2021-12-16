@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HCommunicateGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ICodec : public IInitializeable
 {
@@ -24,4 +21,4 @@ public:
     virtual bool check(QVector<uchar> value) = 0;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

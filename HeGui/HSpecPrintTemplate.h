@@ -4,18 +4,15 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeData/HAbstractPrintTemplate.h"
 
 class QPainter;
 
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecPrintTemplatePrivate;
 
-class HE_GUI_EXPORT HSpecPrintTemplate : public HAbstractPrintTemplate
+class HSpecPrintTemplate : public HAbstractPrintTemplate
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecPrintTemplate)
@@ -38,6 +35,8 @@ protected:
     virtual double paintTitle(QPainter *painter, double y);
     virtual double paintFooter(QPainter *painter, int page);
     virtual void paintBody(QPainter *painter, QRectF rect, int page);
+    double paintFooterTM30(QPainter *painter, int page);
+    void paintBodyTM30(QPainter *painter, QRectF rect, int page);
 
 protected:
     QPointF drawChartSpec(QPainter *painter, QRectF rect, QPolygonF poly);
@@ -47,5 +46,5 @@ private:
     void init();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

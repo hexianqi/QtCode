@@ -1,7 +1,7 @@
 #include "HFlowLayout_p.h"
 #include <QtWidgets/QWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFlowLayoutPrivate::HFlowLayoutPrivate(int hSpace, int vSpacing)
 {
@@ -146,4 +146,4 @@ int HFlowLayout::smartSpacing(QStyle::PixelMetric pm) const
     return widget->style()->pixelMetric(pm, nullptr, widget);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 #include "ui_HFlatStyleWidget.h"
 #include "HFlatStyle.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFlatStyleWidget::HFlatStyleWidget(QWidget *parent) :
     QWidget(parent),
@@ -45,4 +45,4 @@ void HFlatStyleWidget::init()
     style->setStyle(ui->verticalScrollBar_1, 8, 120, 20, "#E8EDF2", "#1ABC9C", "#1ABC9C", "#E74C3C");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

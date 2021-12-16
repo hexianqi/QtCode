@@ -5,7 +5,7 @@
 #include <QtGui/QWheelEvent>
 #include <QtWidgets/QApplication>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSoundSlider::HSoundSlider(QWidget *parent) :
     QAbstractSlider(parent),
@@ -191,4 +191,4 @@ QColor HSoundSlider::desaturate(QColor c)
     return c;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

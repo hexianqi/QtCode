@@ -6,7 +6,7 @@
 #include <QtXml/QDomDocument>
 #include <QtSvg/QSvgRenderer>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HWeatherGaugePrivate::HWeatherGaugePrivate()
 {
@@ -374,4 +374,4 @@ void HWeatherGauge::init()
     connect(d->outerAnimation, &QPropertyAnimation::valueChanged, this, [=](QVariant value) { setOuterValue(value.toDouble()); });
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

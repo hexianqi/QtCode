@@ -6,9 +6,8 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QScrollBar>
 #include <QtWidgets/QFontComboBox>
-#include <QtDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HRichTextEdit::HRichTextEdit(QWidget *parent) :
     QTextEdit(parent),
@@ -283,4 +282,4 @@ void HRichTextEdit::init()
     updateActions();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

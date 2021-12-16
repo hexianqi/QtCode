@@ -2,7 +2,7 @@
 #include "gsl/gsl_spline2d.h"
 #include <functional>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 const gsl_interp2d_type *toGsl(HInterp2D::Interp2DType type)
 {
@@ -75,4 +75,4 @@ double HInterp2D::eval_deriv_xy(QVector<double> xa, QVector<double> ya, QVector<
     return interp(xa, ya, za, type, func);
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

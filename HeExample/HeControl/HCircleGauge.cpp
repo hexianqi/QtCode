@@ -2,7 +2,7 @@
 #include <QtCore/QtMath>
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HCircleGauge::HCircleGauge(QWidget *parent) :
     HAnimationProgress(*new HCircleGaugePrivate, parent)
@@ -295,4 +295,4 @@ double HCircleGauge::fromAngle(double value)
     return fromRatio((value - d->angleStart) / angleSpan());
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

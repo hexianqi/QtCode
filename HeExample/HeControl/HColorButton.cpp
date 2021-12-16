@@ -9,7 +9,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QListView>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HColorButton::HColorButton(QWidget *parent) :
     QPushButton(parent),
@@ -211,4 +211,4 @@ void HColorButton::init()
     setWindowIcon(QIcon(":/image/ww/colorbutton.png"));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

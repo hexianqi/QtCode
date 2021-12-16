@@ -6,19 +6,15 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeEditHandler::HGradeEditHandler(QObject *parent) :
     HAbstractConfigHandler(*new HGradeEditHandlerPrivate, parent)
 {
 }
 
-HGradeEditHandler::~HGradeEditHandler()
-{
-    qDebug() << __func__;
-}
+HGradeEditHandler::~HGradeEditHandler() = default;
 
 QString HGradeEditHandler::typeName()
 {
@@ -39,4 +35,4 @@ void HGradeEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_GRADE);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

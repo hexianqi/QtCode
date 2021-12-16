@@ -2,7 +2,7 @@
 
 #include "HLedNumber.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HLedNumberPrivate
 {
@@ -20,4 +20,4 @@ public:
     QHash<int, QPolygon>  position;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

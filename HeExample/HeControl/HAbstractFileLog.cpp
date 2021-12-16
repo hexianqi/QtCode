@@ -3,7 +3,7 @@
 #include <QtCore/QDir>
 #include <QtWidgets/QApplication>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractFileLogPrivate::HAbstractFileLogPrivate()
 {
@@ -51,4 +51,4 @@ QString HAbstractFileLog::fileName()
     return QString("%1%2%3_%4.log").arg(d_ptr->path, QDir::separator(), d_ptr->name, QDate::currentDate().toString(d_ptr->dataFormat));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

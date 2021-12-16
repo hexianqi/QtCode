@@ -3,7 +3,7 @@
 #include "HAdjustCollection.h"
 #include "IXlsxStream.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAdjustCollectionPrivate : public HDataCollectionPrivate<IAdjust>
 {
@@ -17,4 +17,4 @@ public:
     void writeContent(Document *);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

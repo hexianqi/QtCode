@@ -7,7 +7,7 @@ class QAbstractSlider;
 class QFrame;
 class QMenu;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSoundSlider;
 
@@ -24,5 +24,5 @@ public:
     QMenu *menu = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

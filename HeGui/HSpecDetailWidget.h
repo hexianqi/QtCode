@@ -10,11 +10,11 @@ namespace Ui {
 class HSpecDetailWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecDetailWidgetPrivate;
 
-class HE_GUI_EXPORT HSpecDetailWidget : public HAbstractTestDetailWidget
+class HSpecDetailWidget : public HAbstractTestDetailWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecDetailWidget)
@@ -33,4 +33,4 @@ private:
     Ui::HSpecDetailWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

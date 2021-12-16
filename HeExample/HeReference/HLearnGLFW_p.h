@@ -8,7 +8,7 @@
 #include <QtCore/QMap>
 #include <QtGui/QVector3D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HGeometryEngine;
 
@@ -54,4 +54,4 @@ public:
 
 extern HOpenGLCamera *camera;
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,7 +5,7 @@
 
 class QStandardItemModel;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNavTreeDelegate : public QStyledItemDelegate
 {
@@ -41,4 +41,4 @@ public:
     QMap<QString, QString> infos;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

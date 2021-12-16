@@ -6,18 +6,18 @@
 
 #include "ITestData.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTestDataPrivate;
 
-class HE_DATA_EXPORT HTestData : public virtual ITestData
+class HTestData : public virtual ITestData
 {
 public:
     explicit HTestData();
     virtual ~HTestData();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -43,4 +43,4 @@ protected:
     QScopedPointer<HTestDataPrivate> d_ptr;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

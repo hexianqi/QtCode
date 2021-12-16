@@ -6,9 +6,8 @@
 #include "HeData/IGrade.h"
 #include "HePlugin/HSelectDialog.h"
 #include <QtWidgets/QStackedLayout>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeEditWidgetPrivate::HGradeEditWidgetPrivate()
 {
@@ -24,10 +23,7 @@ HGradeEditWidget::HGradeEditWidget(QWidget *parent) :
     init();
 }
 
-HGradeEditWidget::~HGradeEditWidget()
-{
-    qDebug() << __func__;
-}
+HGradeEditWidget::~HGradeEditWidget() = default;
 
 void HGradeEditWidget::initialize(QVariantMap /*param*/)
 {
@@ -94,4 +90,4 @@ void HGradeEditWidget::init()
         d_ptr->layout->addWidget(w);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

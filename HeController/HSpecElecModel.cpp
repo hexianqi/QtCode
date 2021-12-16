@@ -2,9 +2,8 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/ITestSpec.h"
-#include <QtCore/QDebug>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecElecModelPrivate::HSpecElecModelPrivate()
 {
@@ -22,10 +21,7 @@ HSpecElecModel::HSpecElecModel(HSpecElecModelPrivate &p, QObject *parent) :
 {
 }
 
-HSpecElecModel::~HSpecElecModel()
-{
-    qDebug() << __func__;
-}
+HSpecElecModel::~HSpecElecModel() = default;
 
 QString HSpecElecModel::typeName()
 {
@@ -66,4 +62,4 @@ void HSpecElecModel::syncDevice(quint32 type)
     }
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

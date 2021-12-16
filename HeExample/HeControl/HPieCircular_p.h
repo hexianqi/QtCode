@@ -3,7 +3,7 @@
 #include "HPieCircular.h"
 #include "HAbstractCircular_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HPieCircularPrivate : public HAbstractCircularPrivate
 {
@@ -13,4 +13,4 @@ public:
     int spanAngle = 60;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

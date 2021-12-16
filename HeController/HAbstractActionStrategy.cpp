@@ -2,7 +2,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractActionStrategyPrivate::HAbstractActionStrategyPrivate()
 {
@@ -35,4 +35,4 @@ bool HAbstractActionStrategy::isSupport(HActionType action)
     return d_ptr->actionSupport.contains(action);
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

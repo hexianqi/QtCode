@@ -2,7 +2,7 @@
 
 #include "HShadeWidget.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HShadeWidgetPrivate
 {
@@ -12,4 +12,4 @@ public:
     QWidget *mainWidget = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

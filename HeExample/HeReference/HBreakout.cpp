@@ -4,7 +4,7 @@
 #include "GLFW/glfw3.h"
 #include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGameManager game;
 
@@ -123,4 +123,4 @@ void HBreakout::perFrameTime()
     d_ptr->lastFrame = currentFrame;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

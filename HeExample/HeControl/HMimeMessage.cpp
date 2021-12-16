@@ -4,7 +4,7 @@
 #include "HQuotedPrintable.h"
 #include <QtCore/QDateTime>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMimeMessage::HMimeMessage(QObject *parent) :
     QObject(parent),
@@ -182,4 +182,4 @@ QString HMimeMessage::toString(QList<HEmailAddress *> p)
     return list.join(",");
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -16,10 +16,10 @@
 #include <QtCore/QPointF>
 #include <QtCore/QJsonObject>
 #include <QtCore/QJsonDocument>
+#include <QtCore/QSet>
 #include <QtGui/QColor>
-#include <QtCore/QDebug>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HConfigManagePrivate::HConfigManagePrivate()
 {
@@ -147,10 +147,7 @@ HConfigManage::HConfigManage(HConfigManagePrivate &p, QObject *parent) :
 {
 }
 
-HConfigManage::~HConfigManage()
-{
-    qDebug() << __func__;
-}
+HConfigManage::~HConfigManage() = default;
 
 void HConfigManage::initialize(QVariantMap /*param*/)
 {
@@ -383,4 +380,4 @@ QVariantMap HConfigManage::unify(ITestData *test, QVariantMap value, QStringList
     return test->select(optional);
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

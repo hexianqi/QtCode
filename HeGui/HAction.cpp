@@ -2,7 +2,7 @@
 #include "HeCore/HDefine.h"
 #include "HeCore/IHandler.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAction::HAction(QObject* parent) :
     QAction(parent),
@@ -51,4 +51,4 @@ void HAction::call()
     d_ptr->handler->execute(this, param);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

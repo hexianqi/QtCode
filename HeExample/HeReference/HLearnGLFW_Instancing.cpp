@@ -3,9 +3,8 @@
 #include "HOpenGLModel.h"
 #include <QtCore/QRandomGenerator>
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 int HLearnGLFW::testInstancing()
 {
@@ -174,5 +173,5 @@ int HLearnGLFW::testInstancing2()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -31,15 +31,15 @@
 
 #pragma once
 
-#include "HFileGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QScopedPointer>
 #include <QtCore/QJsonObject>
 
-HE_FILE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HJsonPrivate;
 
-class HE_FILE_EXPORT HJson
+class HJson
 {
 public:
     static HJson *fromFile(const QString &fileName);
@@ -78,4 +78,4 @@ protected:
     QScopedPointer<HJsonPrivate> d_ptr;
 };
 
-HE_FILE_END_NAMESPACE
+HE_END_NAMESPACE

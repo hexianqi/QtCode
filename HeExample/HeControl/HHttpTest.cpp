@@ -3,7 +3,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HHttpTest::run()
 {
@@ -170,4 +170,4 @@ void HHttpTest::run()
 //    }
 //}
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

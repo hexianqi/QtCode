@@ -8,7 +8,7 @@
 #include "HeGui/HGuiFactory.h"
 #include "HeSql/HSqlFactory.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractBuilderPrivate::HAbstractBuilderPrivate()
 {
@@ -81,4 +81,4 @@ QString HAbstractBuilder::deployItem(const QString &key)
     return d_ptr->deploy.value(key).toString();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

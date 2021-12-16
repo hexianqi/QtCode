@@ -6,7 +6,7 @@
 
 #include "HAbstractPort.h"
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSerialPortPrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HSerialPort() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
     QString portType() override;
 
@@ -36,4 +36,4 @@ protected:
     int readData(uchar *data, int maxSize) override;
 };
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HControlGlobal.h"
+#include "HNamespace.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IService
 {
@@ -17,4 +17,4 @@ public:
     virtual void stop() = 0;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

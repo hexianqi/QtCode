@@ -3,7 +3,7 @@
 #include "HFFmpegThread.h"
 #include "HFFmpeg.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HFFmpegThreadPrivate
 {
@@ -34,5 +34,5 @@ public:
     AVFrame *frame2 = nullptr;                      // 帧对象
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

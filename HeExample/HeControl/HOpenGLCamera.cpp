@@ -5,7 +5,7 @@
 #include <QtGui/QMatrix4x4>
 #include <QtWidgets/QWidget>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLCameraPrivate::HOpenGLCameraPrivate()
 {
@@ -320,4 +320,4 @@ void HOpenGLCamera::updateVectors()
     d->up = QVector3D::normal(d->right, d->front);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

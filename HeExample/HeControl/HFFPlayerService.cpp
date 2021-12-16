@@ -6,7 +6,7 @@
 #include "HSDLControl.h"
 #include <QtCore/QRect>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HFFPlayerService::HFFPlayerService(QObject *parent) :
     QObject(parent),
@@ -147,4 +147,4 @@ double HFFPlayerService::refresh()
     return d_ptr->source->toggle_refresh();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

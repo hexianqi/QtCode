@@ -6,20 +6,15 @@
 
 #include "IDataEditer.h"
 #include "HeCore/HActionType.h"
-#include "HeData/HDataGlobal.h"
 #include <QtWidgets/QWidget>
 
 namespace Ui {
 class HAdjustEditWidget;
 }
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IAdjust;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HAdjustEditWidgetPrivate;
 
 class HAdjustEditWidget : public QWidget, public IDataEditer<IAdjust>
@@ -31,7 +26,7 @@ public:
     ~HAdjustEditWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -62,4 +57,4 @@ private:
     Ui::HAdjustEditWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,11 +6,11 @@
 
 #include "HAbstractDataItem.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecStdCurvePrivate;
 
-class HE_DATA_EXPORT HSpecStdCurve : public HAbstractDataItem
+class HSpecStdCurve : public HAbstractDataItem
 {
     Q_DECLARE_PRIVATE(HSpecStdCurve)
 
@@ -33,4 +33,4 @@ protected:
     HSpecStdCurve(HSpecStdCurvePrivate &p);
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

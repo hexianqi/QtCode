@@ -2,7 +2,7 @@
 #include "HSql.h"
 #include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 QHash<QString, QString>      hashFieldType;
 QHash<QString, QString>      hashFieldCreateStyle;
@@ -62,7 +62,7 @@ HSqlGlobalInstance::HSqlGlobalInstance(QObject *parent) :
 
 HSqlGlobalInstance::~HSqlGlobalInstance()
 {
-    qDebug() << __func__;
+    qInfo() << __func__;
 }
 
 void HSqlGlobalInstance::initFieldType()
@@ -213,4 +213,4 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("FluorescenceRatio",        "FluorescenceRatio numeric(18, 3)");
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

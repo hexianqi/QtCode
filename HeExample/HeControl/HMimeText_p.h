@@ -3,7 +3,7 @@
 #include "HMimeText.h"
 #include "HMimePart_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HMimeTextPrivate : public HMimePartPrivate
 {
@@ -14,4 +14,4 @@ public:
     QString text;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

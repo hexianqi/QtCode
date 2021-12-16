@@ -3,27 +3,26 @@
 #include "HChromaticity.h"
 #include "HChromaticity2.h"
 #include "HPhotopicVision.h"
-#include <QtCore/QDebug>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void calcSpectrumEnergy(HSpecData *data)
 {
-    if (data->Energy.isEmpty())
+    if (data->TestEnergy.isEmpty())
         return;
 
     int i, n, size;
     double x, y, max, total, peak;
 
-    size = data->Energy.size();
+    size = data->TestEnergy.size();
     n = 0;
     max = 0;
     peak = 0;
     total = 0;
     for (i = 0; i < size; i++)
     {
-        x = data->Energy[i].x();
-        y = data->Energy[i].y();
+        x = data->TestEnergy[i].x();
+        y = data->TestEnergy[i].y();
         total += y;
         if (y > max)
         {
@@ -36,18 +35,18 @@ void calcSpectrumEnergy(HSpecData *data)
     x = 0;
     for (i = n - 1; i > 1; i--)
     {
-        if (data->Energy[i - 1].y() < max / 2 && data->Energy[i + 1].y() > max / 2)
+        if (data->TestEnergy[i - 1].y() < max / 2 && data->TestEnergy[i + 1].y() > max / 2)
         {
-            x = data->Energy[i].x();
+            x = data->TestEnergy[i].x();
             break;
         }
     }
     y = 0;
     for (i = n + 1; i < size - 1; i++)
     {
-        if (data->Energy[i - 1].y() > max / 2 && data->Energy[i+1].y() < max / 2)
+        if (data->TestEnergy[i - 1].y() > max / 2 && data->TestEnergy[i+1].y() < max / 2)
         {
-            y = data->Energy[i].x();
+            y = data->TestEnergy[i].x();
             break;
         }
     }
@@ -55,9 +54,9 @@ void calcSpectrumEnergy(HSpecData *data)
     data->EnergyMax = max;
     data->WavePeak = peak;
     data->Bandwidth = fabs(x - y);
-    data->EnergyPercent.clear();
-    for (auto p : data->Energy)
-        data->EnergyPercent << QPointF(p.x(), 100 * p.y() / max);
+    data->TestEnergyPercent.clear();
+    for (auto p : data->TestEnergy)
+        data->TestEnergyPercent << QPointF(p.x(), 100 * p.y() / max);
 }
 
 HSpecFacadePrivate::HSpecFacadePrivate()
@@ -81,10 +80,7 @@ HSpecFacade::HSpecFacade() :
 {
 }
 
-HSpecFacade::~HSpecFacade()
-{
-    qDebug() << __func__;
-}
+HSpecFacade::~HSpecFacade() = default;
 
 void HSpecFacade::calcSpectrum(HSpecData *data)
 {
@@ -103,4 +99,4 @@ IChromaticity *HSpecFacade::chromaticity()
     return d_ptr->chromaticity.get();
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

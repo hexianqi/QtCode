@@ -7,11 +7,11 @@
 #include "ITestWidget.h"
 #include "HeCore/HActionType.h"
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractTestWidgetPrivate;
 
-class HE_GUI_EXPORT HAbstractTestWidget : public ITestWidget
+class HAbstractTestWidget : public ITestWidget
 {
     Q_OBJECT
 
@@ -20,7 +20,7 @@ public:
     ~HAbstractTestWidget() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
     QList<QMenu *> menus() override;
@@ -42,4 +42,4 @@ protected:
     QScopedPointer<HAbstractTestWidgetPrivate> d_ptr;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

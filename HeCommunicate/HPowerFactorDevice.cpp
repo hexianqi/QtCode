@@ -1,19 +1,16 @@
 #include "HPowerFactorDevice_p.h"
 #include "IPort.h"
 #include "HeCore/HException.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HPowerFactorDevice::HPowerFactorDevice() :
     HAbstractDevice(*new HPowerFactorDevicePrivate)
 {
 }
 
-HPowerFactorDevice::~HPowerFactorDevice()
-{
-    qDebug() << __func__;
-}
+HPowerFactorDevice::~HPowerFactorDevice() = default;
 
 QString HPowerFactorDevice::typeName()
 {
@@ -39,4 +36,4 @@ bool HPowerFactorDevice::getData(HActionType action, QVector<uchar> &value, int 
     return true;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

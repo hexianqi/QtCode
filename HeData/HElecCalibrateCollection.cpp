@@ -5,7 +5,7 @@
 #include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HElecCalibrateCollectionPrivate::HElecCalibrateCollectionPrivate()
 {
@@ -22,13 +22,13 @@ void HElecCalibrateCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
     s >> version;
-    HStreamHelper::read<QString, HeData::IElecCalibrate>(s, items, [=](QString type) { return factory->createElecCalibrate(type); });
+    HStreamHelper::read<QString, IElecCalibrate>(s, items, [=](QString type) { return factory->createElecCalibrate(type); });
 }
 
 void HElecCalibrateCollectionPrivate::writeContent(QDataStream &s)
 {
     s << quint32(1);
-    HStreamHelper::write<QString, HeData::IElecCalibrate>(s, items);
+    HStreamHelper::write<QString, IElecCalibrate>(s, items);
 }
 
 HElecCalibrateCollection::HElecCalibrateCollection() :
@@ -56,4 +56,4 @@ IDataStream *HElecCalibrateCollection::dataStream()
     return d->dataStream;
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

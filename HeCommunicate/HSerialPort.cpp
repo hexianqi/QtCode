@@ -1,9 +1,8 @@
 #include "HSerialPort_p.h"
 #include "HeCore/HException.h"
 #include <windows.h>
-#include <QtCore/QDebug>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSerialPort::HSerialPort() :
     HAbstractPort(*new HSerialPortPrivate)
@@ -15,10 +14,7 @@ HSerialPort::HSerialPort(HSerialPortPrivate &p) :
 {
 }
 
-HSerialPort::~HSerialPort()
-{
-    qDebug() << __func__;
-}
+HSerialPort::~HSerialPort() = default;
 
 void HSerialPort::initialize(QVariantMap param)
 {
@@ -113,4 +109,4 @@ int HSerialPort::readData(uchar *buff, int size)
     return ret;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -43,10 +43,11 @@ void HTm30BarChart::initBar(int count)
 {
     Q_D(HTm30BarChart);
     int v = 1;
-    auto space = count / 50 + 1;
+    auto space = count / 40 + 1;
     auto start = -0.5 * count;
     auto end = 0.5 * count;
-    auto font = QFont("Arial", 11, QFont::Bold);
+    auto fontTitle = QFont("Arial", 11, QFont::Bold);
+    auto fontSet = QFont("Arial", 9);
     auto color = QColor(10, 10, 10);
     auto axisX = new QCategoryAxis();
     auto axisY = new QValueAxis();
@@ -54,7 +55,7 @@ void HTm30BarChart::initBar(int count)
     d->series->setBarWidth(count);
     d->series->setLabelsVisible(true);
     d->series->setLabelsPosition(QAbstractBarSeries::LabelsOutsideEnd);
-    axisX->setTitleFont(font);
+    axisX->setTitleFont(fontTitle);
     axisX->setLinePenColor(color);
     axisX->setGridLineVisible(false);
     axisX->setLabelsPosition(QCategoryAxis::AxisLabelsPositionOnValue);
@@ -62,7 +63,7 @@ void HTm30BarChart::initBar(int count)
     axisX->setStartValue(start);
     for (double s = start; s < end; s += space, v += space)
         axisX->append(QString::number(v), s + 0.5);
-    axisY->setTitleFont(font);
+    axisY->setTitleFont(fontTitle);
     axisY->setLinePenColor(color);
     axisY->setGridLineVisible(false);
     axisY->setRange(0, 100);
@@ -74,9 +75,10 @@ void HTm30BarChart::initBar(int count)
     {
         auto set = new QBarSet(QString("%1").arg(i+1, 2, 10, QChar('0')));
         set->setLabelColor(Qt::black);
+        set->setLabelFont(fontSet);
         if (space < 2)
             set->setBorderColor(color);
-        set->append(i + 1);
+        set->append(0.0);
         d->series->append(set);
         d->set << set;
     }

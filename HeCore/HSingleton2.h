@@ -31,11 +31,11 @@
 
 #pragma once
 
-#include "HCoreGlobal.h"
+#include "HNamespace.h"
 #include <QMutex>
 #include <QScopedPointer>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 template <typename T>
 class HSingleton2
@@ -93,4 +93,4 @@ public:                                             \
         HSingleton2<Class>::release();              \
     }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

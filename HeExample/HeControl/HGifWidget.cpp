@@ -10,7 +10,7 @@
 #include <QtWidgets/QStyle>
 #include <QtWidgets/QFileDialog>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGifWidget::HGifWidget(QWidget *parent) :
     QDialog(parent),
@@ -177,4 +177,4 @@ void HGifWidget::init()
     setStyleSheet(qss.join(""));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

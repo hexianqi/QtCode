@@ -3,7 +3,7 @@
 #include <QtGui/QOpenGLContext>
 #include <QtGui/QOpenGLExtraFunctions>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractShaderEnginePrivate::HAbstractShaderEnginePrivate()
 {
@@ -91,4 +91,4 @@ double HAbstractShaderEngine::secs()
     return QTime::currentTime().msecsSinceStartOfDay() / 1000.0;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

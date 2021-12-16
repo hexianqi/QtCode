@@ -2,7 +2,7 @@
 #include "HDrawHelper.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HColorProgressBar::HColorProgressBar(QWidget *parent) :
     HAbstractProgress(*new HColorProgressBarPrivate, parent)
@@ -423,4 +423,4 @@ void HColorProgressBar::drawText(QPainter *painter, QRectF rect)
 //    painter->restore();
 //}
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
+#include "HNamespace.h"
 #include "HePlugin/HTableView.h"
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ISqlTableModel;
 class HSqlTableViewPrivate;
@@ -29,4 +29,4 @@ private:
     using HTableView::setModel;
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

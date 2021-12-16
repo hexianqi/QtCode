@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeCore/IInitializeable.h"
 #include <QtWidgets/QWidget>
 
-HE_CORE_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITestDetailWidget : public QWidget, public IInitializeable
 {
@@ -24,4 +21,4 @@ public:
     virtual void refreshWidget() = 0;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

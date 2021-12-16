@@ -5,7 +5,7 @@
 #include <QtGui/QVector2D>
 #include <QtGui/QVector4D>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 // Represents a single particle and its state
 struct HParticle
@@ -34,5 +34,5 @@ public:
     QVector<HParticle *> particles;
 };
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE
 

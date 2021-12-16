@@ -3,7 +3,7 @@
 #include "HChromaticity2.h"
 #include "HChromaticity_p.h"
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HChromaticity2Private : public HChromaticityPrivate
 {
@@ -14,4 +14,4 @@ public:
     std::shared_ptr<HCieUcs> cieUcs;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

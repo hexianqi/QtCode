@@ -15,17 +15,13 @@
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
 #include <QtWidgets/QMenu>
-#include <QtCore/QDebug>
 
 HBuilder2000F::HBuilder2000F(QObject *parent) :
     HBuilder2000DC(*new HBuilder2000FPrivate, parent)
 {
 }
 
-HBuilder2000F::~HBuilder2000F()
-{
-    qDebug() << __func__;
-}
+HBuilder2000F::~HBuilder2000F() = default;
 
 QString HBuilder2000F::typeName()
 {

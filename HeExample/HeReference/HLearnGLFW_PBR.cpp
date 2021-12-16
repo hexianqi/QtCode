@@ -6,9 +6,8 @@
 #include "stb_image.h"
 #include <QtGui/QImage>
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 unsigned int HLearnGLFW::loadCubemapFromHdr(const QString &fileName, int width, int height, int magFilter)
 {
@@ -953,4 +952,4 @@ int HLearnGLFW::testPBR6()
     return 0;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -5,9 +5,9 @@
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include <QtCore/QDebug>
+#include <QtCore/QVector>
 
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecElecThreadPrivate::HSpecElecThreadPrivate()
 {
@@ -32,10 +32,7 @@ HSpecElecThread::HSpecElecThread(HSpecElecThreadPrivate &p, QObject *parent) :
     init();
 }
 
-HSpecElecThread::~HSpecElecThread()
-{
-    qDebug() << __func__;
-}
+HSpecElecThread::~HSpecElecThread() = default;
 
 QString HSpecElecThread::typeName()
 {
@@ -107,4 +104,4 @@ void HSpecElecThread::init()
     d->strategys << d->strategySpec << d->strategyElec;
 }
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

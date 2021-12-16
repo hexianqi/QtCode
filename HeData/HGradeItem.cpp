@@ -5,7 +5,7 @@
 #include <QtCore/QPointF>
 #include <QtCore/QSet>
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HGradeItemPrivate::HGradeItemPrivate()
 {
@@ -108,4 +108,4 @@ QStringList HGradeItem::level(int i)
     return QStringList() << HCore::toString(t, p.x()) << HCore::toString(t, p.y());
 }
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

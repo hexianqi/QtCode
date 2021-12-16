@@ -2,23 +2,18 @@
 
 #include "HTestSpec.h"
 #include "HTestData_p.h"
-#include "HeAlgorithm/HAlgorithmGlobal.h"
 #include <QtCore/QVector>
 #include <QtCore/QQueue>
 
 class QReadWriteLock;
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class HSpecFacade;
 class HSpecData;
-HE_ALGORITHM_END_NAMESPACE
-HE_ALGORITHM_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
-
 class ISpecCalibrate;
 
-class HE_DATA_EXPORT HTestSpecPrivate : public HTestDataPrivate
+class HTestSpecPrivate : public HTestDataPrivate
 {
 public:
     HTestSpecPrivate();
@@ -55,4 +50,4 @@ public:
     QQueue<QVector<double>> sampleCache;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,9 +2,8 @@
 #include <QtCore/QFile>
 #include <QtGui/QColor>
 #include <QtGui/QMatrix4x4>
-#include <QtCore/QDebug>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HOpenGLShader::HOpenGLShader(ShaderType type, QObject *parent) :
     QObject(parent),
@@ -866,4 +865,4 @@ void HOpenGLShaderProgram::shaderDestroyed()
         removeShader(p);
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

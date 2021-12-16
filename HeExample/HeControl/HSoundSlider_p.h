@@ -3,7 +3,7 @@
 #include "HSoundSlider.h"
 #include <QtGui/QBitmap>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSoundSliderPrivate
 {
@@ -25,5 +25,5 @@ public:
     QBitmap mask;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

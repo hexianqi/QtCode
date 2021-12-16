@@ -4,7 +4,7 @@
 
 class QSerialPort;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSerialPortWidgetPrivate
 {
@@ -25,4 +25,4 @@ public:
     int sendInterval = 200;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

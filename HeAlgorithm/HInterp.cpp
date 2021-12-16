@@ -3,7 +3,7 @@
 #include "gsl/gsl_spline.h"
 #include <functional>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 const gsl_interp_type *toGsl(HInterp::InterpType type)
 {
@@ -105,5 +105,5 @@ double HInterp::eval_integ(QPolygonF basis, double a, double b, InterpType type)
     return r;
 }
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE
 

@@ -3,7 +3,7 @@
 #include "HTestElec.h"
 #include "HTestData_p.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IElecCalibrate;
 class IElecCalibrateCollection;
@@ -20,4 +20,4 @@ public:
     QMap<HElecType, double> values;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

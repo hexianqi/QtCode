@@ -3,9 +3,8 @@
 #include "HeData/HSpecPelsWave.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
 #include <QtWidgets/QHeaderView>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecPelsWaveWidget::HSpecPelsWaveWidget(QWidget *parent) :
     HEntireTableWidget(*new HSpecPelsWaveWidgetPrivate, parent)
@@ -13,10 +12,7 @@ HSpecPelsWaveWidget::HSpecPelsWaveWidget(QWidget *parent) :
     init();
 }
 
-HSpecPelsWaveWidget::~HSpecPelsWaveWidget()
-{
-    qDebug() << __func__;
-}
+HSpecPelsWaveWidget::~HSpecPelsWaveWidget() = default;
 
 void HSpecPelsWaveWidget::setData(HSpecPelsWave *p)
 {
@@ -58,4 +54,4 @@ void HSpecPelsWaveWidget::init()
     setWindowTitle(tr("光谱像元波长"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -2,7 +2,7 @@
 
 #include "HTextExport.h"
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class ITextStream;
 
@@ -18,5 +18,5 @@ public:
     QString fileName;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE
 

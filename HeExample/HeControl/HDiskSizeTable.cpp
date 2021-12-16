@@ -14,7 +14,7 @@
 #define MB (1024 * 1024)
 #define KB (1024)
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HDiskSizeTable::HDiskSizeTable(QWidget *parent) :
     QTableWidget(parent),
@@ -288,4 +288,4 @@ void HDiskSizeTable::checkSize(const QString &result, const QString &name)
 }
 #endif
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

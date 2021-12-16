@@ -1,7 +1,7 @@
 #include "HMagicMouse_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HMagicMouse::HMagicMouse(QWidget *parent) :
     QWidget(parent),
@@ -204,4 +204,4 @@ void HMagicMouse::drawTail(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

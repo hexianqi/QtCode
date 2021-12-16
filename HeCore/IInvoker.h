@@ -6,7 +6,7 @@
 
 #include "IInitializeable.h"
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IHandler;
 
@@ -19,4 +19,4 @@ public:
     virtual void call() = 0;
 };
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

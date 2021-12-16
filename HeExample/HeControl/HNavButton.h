@@ -16,7 +16,7 @@
 #include "HControlType.h"
 #include <QtWidgets/QPushButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HNavButtonPrivate;
 
@@ -136,4 +136,4 @@ protected:
     QScopedPointer<HNavButtonPrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

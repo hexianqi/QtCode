@@ -4,20 +4,16 @@
 
 #pragma once
 
-#include "HSqlGlobal.h"
-#include "HeData/HDataGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QVariant>
-
-HE_DATA_BEGIN_NAMESPACE
-class ITestData;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
 
 class QSqlRecord;
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_SQL_EXPORT HSql
+class ITestData;
+
+class HSql
 {
 public:
     static QString toType(const QString &field);
@@ -40,4 +36,4 @@ public:
     static QVariantMap toData(const QStringList &type, QSqlRecord);
 };
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

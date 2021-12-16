@@ -5,12 +5,11 @@
 #pragma once
 
 #include "IInitializeable.h"
-#include <QtCore/QVariant>
 #include <functional>
 
-HE_CORE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
-class HE_CORE_EXPORT HFactory
+class HFactory
 {
 public:
     // 注册类
@@ -63,4 +62,4 @@ void *HFactory::constructorHelper()
     return new T();
 }
 
-HE_CORE_END_NAMESPACE
+HE_END_NAMESPACE

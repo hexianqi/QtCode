@@ -5,7 +5,7 @@
 #include <QtCore/QMutex>
 #include <QtCore/QVector>
 
-HE_COMMUNICATE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HAbstractProtocolPrivate::HAbstractProtocolPrivate() :
     mutex(new QMutex)
@@ -164,4 +164,4 @@ bool HAbstractProtocol::getData(HActionType action, QVector<double> &value, int 
     return true;
 }
 
-HE_COMMUNICATE_END_NAMESPACE
+HE_END_NAMESPACE

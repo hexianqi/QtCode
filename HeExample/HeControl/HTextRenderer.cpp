@@ -2,7 +2,7 @@
 #include "HTextEngine.h"
 #include <QtGui/QOpenGLShaderProgram>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTextRenderer::HTextRenderer(QOpenGLShaderProgram *shader, QObject *parent) :
     HAbstractRenderer(*new HTextRendererPrivate, shader, parent)
@@ -27,4 +27,4 @@ void HTextRenderer::draw(const QString &text, QVector2D position, int pixelSize,
     d->engine->render(text, position, pixelSize);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

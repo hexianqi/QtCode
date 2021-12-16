@@ -7,9 +7,7 @@
 #include "HDataType.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IElecCalibrateItem;
 class IElecCalibrateItemCollection;
@@ -37,4 +35,4 @@ public:
     virtual QString toString(HElecType type) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

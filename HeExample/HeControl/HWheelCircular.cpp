@@ -1,7 +1,7 @@
 #include "HWheelCircular_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HWheelCircular::HWheelCircular(QObject *parent) :
     HAbstractCircular(*new HWheelCircularPrivate, parent)
@@ -164,4 +164,4 @@ void HWheelCircular::drawCircle(QPainter *painter)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

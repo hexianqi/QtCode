@@ -5,7 +5,7 @@ extern "C" {
 #include "libavutil/display.h"
 }
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 AVDictionary *format_opts;
 AVDictionary *codec_opts;
@@ -102,7 +102,7 @@ AVDictionary **setup_find_stream_info_opts(AVFormatContext *ctx, AVDictionary *c
         av_log(nullptr, AV_LOG_ERROR, "Could not alloc memory for stream options.\n");
         return nullptr;
     }
-    for (uint i = 0; i < ctx->nb_streams; i++)
+    for (unsigned int i = 0; i < ctx->nb_streams; i++)
         opts[i] = filter_codec_opts(codec_opts, ctx->streams[i]->codecpar->codec_id, ctx, ctx->streams[i], nullptr);
     return opts;
 }
@@ -149,4 +149,4 @@ int cmp_mod(int a, int b)
     return a < 0 ? a%b + b : a%b;
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

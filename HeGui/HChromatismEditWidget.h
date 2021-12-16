@@ -5,21 +5,16 @@
 #pragma once
 
 #include "IDataEditer.h"
-#include "HeData/HDataGlobal.h"
 #include <QtWidgets/QWidget>
 
 namespace Ui {
 class HChromatismEditWidget;
 }
 
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
+
 class IChromatism;
 class IChromatismItem;
-HE_DATA_END_NAMESPACE
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
-
 class HChromatismEditWidgetPrivate;
 
 class HChromatismEditWidget : public QWidget, public IDataEditer<IChromatism>
@@ -31,7 +26,7 @@ public:
     ~HChromatismEditWidget();
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:
@@ -57,4 +52,4 @@ private:
     Ui::HChromatismEditWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

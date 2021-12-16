@@ -3,7 +3,7 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtCore/QDebug>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSeekStyle::HSeekStyle() :
     QProxyStyle(QStyleFactory::create("Windows"))
@@ -168,6 +168,6 @@ void HSeekStyle::drawComplexControl(ComplexControl control, const QStyleOptionCo
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 
 

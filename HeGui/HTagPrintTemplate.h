@@ -4,14 +4,11 @@
 
 #pragma once
 
-#include "HGuiGlobal.h"
 #include "HeData/HAbstractPrintTemplate.h"
 
 class QPainter;
 
-HE_DATA_USE_NAMESPACE
-
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTagPrintTemplatePrivate;
 
@@ -40,5 +37,5 @@ private:
     void init();
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 

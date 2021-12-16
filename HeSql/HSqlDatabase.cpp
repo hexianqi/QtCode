@@ -3,9 +3,8 @@
 #include "HSqlHelper.h"
 #include <QtWidgets/QMessageBox>
 #include <QtSql/QSqlError>
-#include <QtCore/QDebug>
 
-HE_SQL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSqlDatabase::HSqlDatabase(QObject *parent) :
     QObject(parent),
@@ -19,10 +18,7 @@ HSqlDatabase::HSqlDatabase(HSqlDatabasePrivate &p, QObject *parent) :
 {
 }
 
-HSqlDatabase::~HSqlDatabase()
-{
-    qDebug() << __func__;
-}
+HSqlDatabase::~HSqlDatabase() = default;
 
 void HSqlDatabase::initialize(QVariantMap param)
 {
@@ -76,4 +72,4 @@ ISqlTableModel *HSqlDatabase::tableModel(const QString &tableName)
     return d_ptr->tableModels.first();
 }
 
-HE_SQL_END_NAMESPACE
+HE_END_NAMESPACE

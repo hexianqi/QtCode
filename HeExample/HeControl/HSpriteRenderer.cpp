@@ -4,7 +4,7 @@
 #include <QtGui/QOpenGLFunctions>
 #include <QtGui/QOpenGLShaderProgram>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpriteRenderer::HSpriteRenderer(QOpenGLShaderProgram *shader, QObject *parent) :
     HAbstractRenderer(*new HSpriteRendererPrivate, shader, parent)
@@ -52,4 +52,4 @@ void HSpriteRenderer::init()
     d->funcs->glEnableVertexAttribArray(0);
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

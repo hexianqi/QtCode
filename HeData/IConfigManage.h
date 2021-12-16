@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HDataGlobal.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IStream;
 class ISpecCalibrate;
@@ -90,4 +87,4 @@ public:
     virtual void postProcess(ITestData *, QStringList optional) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

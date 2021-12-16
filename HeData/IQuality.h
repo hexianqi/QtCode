@@ -7,9 +7,7 @@
 #include "HDataType.h"
 #include "HeCore/IInitializeable.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_DATA_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IQualityItemCollection;
 
@@ -34,4 +32,4 @@ public:
     virtual double drift(QString type, QVariant value) = 0;
 };
 
-HE_DATA_END_NAMESPACE
+HE_END_NAMESPACE

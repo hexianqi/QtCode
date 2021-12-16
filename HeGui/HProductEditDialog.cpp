@@ -2,9 +2,8 @@
 #include "ui_HProductEditDialog.h"
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HProductEditDialog::HProductEditDialog(QWidget *parent) :
     HAbstractTestDataEditDialog(*new HProductEditDialogPrivate, parent),
@@ -16,7 +15,6 @@ HProductEditDialog::HProductEditDialog(QWidget *parent) :
 
 HProductEditDialog::~HProductEditDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -82,4 +80,4 @@ void HProductEditDialog::init()
     showData();
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

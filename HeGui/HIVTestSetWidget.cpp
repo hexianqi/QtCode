@@ -3,9 +3,8 @@
 #include "HeController/IModel.h"
 #include "HeData/ITestData.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HIVTestSetWidget::HIVTestSetWidget(QWidget *parent) :
     HAbstractTestSetWidget(*new HIVTestSetWidgetPrivate, parent),
@@ -17,7 +16,6 @@ HIVTestSetWidget::HIVTestSetWidget(QWidget *parent) :
 
 HIVTestSetWidget::~HIVTestSetWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -100,4 +98,4 @@ void HIVTestSetWidget::init()
     ui->doubleSpinBox_4->setReadOnly(true);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

@@ -6,7 +6,7 @@
 
 #include "ICustomStyle.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HAbstractCustomStylePrivate;
 
@@ -19,7 +19,7 @@ public:
     ~HAbstractCustomStyle() override;
 
 public:
-    void initialize(QVariantMap param) override;
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString toStyleSheet() override;
 
 protected:
@@ -32,4 +32,4 @@ protected:
     QScopedPointer<HAbstractCustomStylePrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

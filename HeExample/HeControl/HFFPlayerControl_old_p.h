@@ -4,7 +4,7 @@
 #include "HFFmpeg.h"
 #include "SDL2/SDL.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HVideoState;
 class HSDLControl;
@@ -17,5 +17,5 @@ public:
     HSDLControl *sdl = nullptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE
 

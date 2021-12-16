@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "HAlgorithmGlobal.h"
+#include "HNamespace.h"
 #include <QtCore/QLineF>
 
-HE_ALGORITHM_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSpecData;
 
@@ -30,4 +30,4 @@ public:
     virtual bool exportCieUcs(const QString &fileName, QPointF tc = QPointF(1400, 25000), double interval = 1.0) = 0;
 };
 
-HE_ALGORITHM_END_NAMESPACE
+HE_END_NAMESPACE

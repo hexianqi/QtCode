@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "HControllerGlobal.h"
 #include "HeCore/HCollection.h"
 
-HE_CORE_USE_NAMESPACE
-
-HE_CONTROLLER_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class IThread;
 
@@ -19,4 +16,4 @@ public:
     using HCollection::HCollection;
 };
 
-HE_CONTROLLER_END_NAMESPACE
+HE_END_NAMESPACE

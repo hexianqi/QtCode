@@ -3,9 +3,8 @@
 #include "IDataDetail.h"
 #include "HePlugin/HPluginHelper.h"
 #include <QtCore/QStringListModel>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HListCollectionDialog::HListCollectionDialog(QWidget *parent) :
     QDialog(parent),
@@ -18,7 +17,6 @@ HListCollectionDialog::HListCollectionDialog(QWidget *parent) :
 
 HListCollectionDialog::~HListCollectionDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -90,4 +88,4 @@ void HListCollectionDialog::init()
     setWindowFlags(windowFlags() | Qt::WindowMinMaxButtonsHint);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

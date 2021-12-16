@@ -1,7 +1,7 @@
 #include "HStateProgressBar_p.h"
 #include <QtGui/QPainter>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HStateProgressBar::HStateProgressBar(QWidget *parent) :
     QWidget(parent),
@@ -313,4 +313,4 @@ void HStateProgressBar::drawTip(QPainter *painter, int index)
     painter->restore();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

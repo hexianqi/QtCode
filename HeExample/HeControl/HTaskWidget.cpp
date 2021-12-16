@@ -7,7 +7,7 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QBoxLayout>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTaskWidget::HTaskWidget(QWidget *body, QWidget *parent) :
     QWidget(parent),
@@ -131,4 +131,4 @@ void HTaskWidget::animateFinished()
     updateGeometry();
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

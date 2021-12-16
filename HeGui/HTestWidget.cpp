@@ -2,7 +2,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QToolBar>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HTestWidget::HTestWidget(QWidget *parent) :
     HAbstractTestWidget(*new HTestWidgetPrivate, parent)
@@ -22,6 +22,7 @@ void HTestWidget::init()
     createToolBar();
     initWidget();
     initToolBar();
+    initStyleSheet();
 }
 
 void HTestWidget::createAction()
@@ -55,4 +56,9 @@ void HTestWidget::initToolBar()
         bar->setMovable(false);
 }
 
-HE_GUI_END_NAMESPACE
+void HTestWidget::initStyleSheet()
+{
+
+}
+
+HE_END_NAMESPACE

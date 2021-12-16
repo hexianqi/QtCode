@@ -3,7 +3,7 @@
 #include "HTaichiCircular.h"
 #include "HAbstractCircular_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HTaichiCircularPrivate : public HAbstractCircularPrivate
 {
@@ -12,4 +12,4 @@ public:
     QColor foreground = Qt::white;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

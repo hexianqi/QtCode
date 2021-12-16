@@ -6,7 +6,7 @@
 
 #include "HMimePart.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HEmailAddress;
 class HMimeMessagePrivate;
@@ -61,4 +61,4 @@ protected:
     QScopedPointer<HMimeMessagePrivate> d_ptr;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

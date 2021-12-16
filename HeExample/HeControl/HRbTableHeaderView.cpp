@@ -5,7 +5,7 @@
 #include <QtGui/QPainter>
 #include <qdrawutil.h>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HRbTableHeaderViewPrivate::HRbTableHeaderViewPrivate(int rows, int columns)
 {
@@ -458,4 +458,4 @@ void HRbTableHeaderView::handleSectionResized(int logicalIndex, int /*oldSize*/,
     }
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

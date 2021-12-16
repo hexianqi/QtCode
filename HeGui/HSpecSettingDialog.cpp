@@ -2,9 +2,8 @@
 #include "ui_HSpecSettingDialog.h"
 #include "HePlugin/HPluginHelper.h"
 #include "HeData/HSpecSetting.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSpecSettingDialog::HSpecSettingDialog(QWidget *parent) :
     QDialog(parent),
@@ -17,7 +16,6 @@ HSpecSettingDialog::HSpecSettingDialog(QWidget *parent) :
 
 HSpecSettingDialog::~HSpecSettingDialog()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -102,4 +100,4 @@ void HSpecSettingDialog::init()
     setWindowTitle(tr("光谱参数设置"));
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

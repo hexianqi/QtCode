@@ -3,7 +3,7 @@
 #include "HArcGauge.h"
 #include "HCircleGauge_p.h"
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HArcGaugePrivate : public HCircleGaugePrivate
 {
@@ -15,4 +15,4 @@ public:
     HControlType::PointerStyle pointerStyle = HControlType::PointerStyle_Circle;
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

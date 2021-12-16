@@ -8,9 +8,8 @@
 #include "QXlsx/xlsxdocument.h"
 #include <QtWidgets/QAction>
 #include <QtWidgets/QFileDialog>
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HSequentialGradeWidget::HSequentialGradeWidget(QWidget *parent) :
     HAbstractGradeWidget(*new HSequentialGradeWidgetPrivate, parent),
@@ -22,7 +21,6 @@ HSequentialGradeWidget::HSequentialGradeWidget(QWidget *parent) :
 
 HSequentialGradeWidget::~HSequentialGradeWidget()
 {
-    qDebug() << __func__;
     delete ui;
 }
 
@@ -262,4 +260,4 @@ void HSequentialGradeWidget::init()
     connect(ui->tableWidget_1, &HTableWidget::contentChanged, this, &HSequentialGradeWidget::setModified);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

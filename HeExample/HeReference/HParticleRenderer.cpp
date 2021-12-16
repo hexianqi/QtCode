@@ -4,7 +4,7 @@
 #include "HGameObject.h"
 #include <QtCore/QRandomGenerator>
 
-HE_REFERENCE_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 void HParticle::update(float dt)
 {
@@ -133,4 +133,4 @@ void HParticleRenderer::init(int amount)
         d_ptr->particles << new HParticle;
 }
 
-HE_REFERENCE_END_NAMESPACE
+HE_END_NAMESPACE

@@ -4,7 +4,7 @@
 #include "HControlHelper.h"
 #include <QtGui/QScreen>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQssCreator::HQssCreator(QWidget *parent) :
     QMainWindow(parent),
@@ -163,4 +163,4 @@ void HQssCreator::changeStyle(QAction *p)
     setStyleSheet(d_ptr->style->toStyleSheet());
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

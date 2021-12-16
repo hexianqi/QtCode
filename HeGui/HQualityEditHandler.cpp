@@ -6,19 +6,15 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/IQualityCollection.h"
 #include "HeController/IModel.h"
-#include <QtCore/QDebug>
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HQualityEditHandler::HQualityEditHandler(QObject *parent) :
     HAbstractConfigHandler(*new HQualityEditHandlerPrivate, parent)
 {
 }
 
-HQualityEditHandler::~HQualityEditHandler()
-{
-    qDebug() << __func__;
-}
+HQualityEditHandler::~HQualityEditHandler() = default;
 
 QString HQualityEditHandler::typeName()
 {
@@ -39,4 +35,4 @@ void HQualityEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->model->addAction(ACT_RESET_QUALITY);
 }
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

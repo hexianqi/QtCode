@@ -4,7 +4,7 @@
 
 class QMenu;
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HScreenObject;
 
@@ -19,4 +19,4 @@ public:
 //    QPixmap *bgScreen;      //模糊背景图
 };
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

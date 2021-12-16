@@ -10,7 +10,7 @@ namespace Ui {
 class HSequentialGradeWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HSequentialGradeWidgetPrivate;
 
@@ -45,4 +45,4 @@ private:
     Ui::HSequentialGradeWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE

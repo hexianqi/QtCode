@@ -2,7 +2,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
 
-HE_CONTROL_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 HButtonColorPanel::HButtonColorPanel(QWidget *parent) :
     HAbstractColorPanel(*new HButtonColorPanelPrivate, parent)
@@ -165,4 +165,4 @@ void HButtonColorPanel::handleButtonPressed()
     setColor(QColor(sender()->objectName().right(7)));
 }
 
-HE_CONTROL_END_NAMESPACE
+HE_END_NAMESPACE

@@ -10,7 +10,7 @@ namespace Ui {
 class HParallelGradeWidget;
 }
 
-HE_GUI_BEGIN_NAMESPACE
+HE_BEGIN_NAMESPACE
 
 class HParallelGradeWidgetPrivate;
 
@@ -46,5 +46,5 @@ private:
     Ui::HParallelGradeWidget *ui;
 };
 
-HE_GUI_END_NAMESPACE
+HE_END_NAMESPACE
 
