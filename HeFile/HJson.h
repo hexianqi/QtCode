@@ -66,9 +66,9 @@ public:
 public:
     void set(const QString &path, const QJsonValue &value);
     void set(const QString &path, const QStringList &value);
-    void save(const QString &fileName, bool pretty = true) const;
+    void save(const QString &fileName, bool compact = true) const;
     void remove(const QString &path);
-    QString toString(bool pretty = true) const;
+    QString toString(bool compact = false) const;
 
 protected:
     HJson();

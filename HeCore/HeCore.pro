@@ -35,6 +35,8 @@ HEADERS     += \
             HDataFormatInfo_p.h \
             HCallorHelper.h \
             HDefine.h \
+            HDumpTree.h \
+            HDumpTree_p.h \
             HException.h \
             HThreadPool.h
 
@@ -44,6 +46,7 @@ SOURCES     += \
             HCoreGlobalInstance.cpp \
             HAppContext.cpp \
             HDataFormatInfo.cpp \
+            HDumpTree.cpp \
             HException.cpp \
             HThreadPool.cpp
 
@@ -54,6 +57,7 @@ INCLUDEPATH += ..
 Debug:      TARGET  = HeCored
 Release:    TARGET  = HeCore
 
+include(container.pri)
 include(interface.pri)
 include(reflect.pri)
 include(type.pri)

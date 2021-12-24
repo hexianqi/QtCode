@@ -60,7 +60,7 @@ bool class2Plugin::isContainer() const
 
 QString class2Plugin::domXml() const
 {
-    return QLatin1String("<widget class=\"class2\" name=\"class2\">\n</widget>\n");
+    return QLatin1String(R"(<widget class="class2" name="class2">\n</widget>\n)");
 }
 
 QString class2Plugin::includeFile() const

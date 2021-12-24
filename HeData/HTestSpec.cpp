@@ -197,7 +197,7 @@ bool HTestSpecPrivate::calcSpec()
     addData("[TM30_hj_brn]", QVariant::fromValue(specData->TM30_hj_brn));
     addData("[TM30_hj_Rcs]", QVariant::fromValue(specData->TM30_hj_Rcs));
     addData("[TM30_hj_Rhs]", QVariant::fromValue(specData->TM30_hj_Rhs));;
-    addData("[光谱反射曲线]", specData->TestEnergyPercent);
+    addData("[光谱反射曲线]", specData->ReferenceEnergyPercent);
     return true;
 }
 

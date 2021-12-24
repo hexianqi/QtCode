@@ -55,7 +55,7 @@ void HTm30SpdChartView::init()
     chart->addSeries(d->testSeries);
     chart->addSeries(d->references);
     setChart(chart);
-    setWindowTitle("SPD");
+    setWindowTitle(tr("相对光谱功率分布"));
     HZoomChartView::init();
 }
 

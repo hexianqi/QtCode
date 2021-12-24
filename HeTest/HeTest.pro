@@ -26,6 +26,8 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
+            HTestCore.cpp \
+            HTestEigen.cpp \
             HTestMedia_ff.cpp \
             HTestMedia_vlc.cpp \
             HTestOpenGL.cpp \
@@ -33,17 +35,17 @@ SOURCES     += \
             MainWindow.cpp \
             HTestAlgorithm.cpp \
             HTestPlugin.cpp \
-            HTestChart.cpp \
             HTestGsl.cpp \
             HTestData.cpp
 
 HEADERS     += \
+            HTestCore.h \
+            HTestEigen.h \
             HTestMedia.h \
             HTestOpenGL.h \
             MainWindow.h \
             HTestAlgorithm.h \
             HTestPlugin.h \
-            HTestChart.h \
             HTestGsl.h \
             HTestData.h
 
@@ -57,6 +59,7 @@ GslPath     = $$absolute_path("../../../modules/gsl/win32", $$[QT_INSTALL_DATA])
 FFmpegPath  = $$absolute_path("../../../modules/ffmpeg/win32", $$[QT_INSTALL_DATA])
 SDLPath     = $$absolute_path("../../../modules/SDL2/win32", $$[QT_INSTALL_DATA])
 VLCPath     = $$absolute_path("../../../modules/vlc/win32", $$[QT_INSTALL_DATA])
+EigenPath   = $$absolute_path("../../../modules/eigen3", $$[QT_INSTALL_DATA])
 
 INCLUDEPATH += \
             .. \
@@ -64,7 +67,8 @@ INCLUDEPATH += \
             $$GslPath/include \
             $$FFmpegPath/include \
             $$SDLPath/include \
-            $$VLCPath/include
+            $$VLCPath/include \
+            $$EigenPath/include
 
 Debug {
 #    CONFIG  += console

@@ -59,8 +59,10 @@ IES_TM30 HTestAlgorithm::testIesTm30()
     HCieDaylight day;
     HIesTm30 ies;
 
-    auto spdr = day.calcRefSourceSpectrum(2937.7, QPointF(380, 780), 1);
+    auto spdr = day.calcRefSourceSpectrum(6000, QPointF(380, 780), 1);
     auto res = ies.calc(spdt, spdr);
+    for (auto p : spdr)
+        qDebug() << p.x() << "\t" << p.y();
     qDebug() << res.Rf;
     qDebug() << res.Rg;
     qDebug() << res.Rfi;

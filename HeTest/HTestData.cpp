@@ -1,6 +1,7 @@
 #include "HTestData.h"
 #include <QtCore/QPoint>
 #include <QtCore/QJsonObject>
+#include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QFile>
 #include <QtCore/QDataStream>
@@ -93,6 +94,42 @@ void HTestData::testJson2()
 
    // qDebug() << datas["[中心点]"].value<QList<double>>();
   //  qDebug() << datas["[测试]"].value<QList<double>>();
+
+}
+
+void HTestData::testJson3()
+{
+    QString str = "{'sampleset' : 'sss',"
+                  "  'ref_type' : 'iesrf-tm30-15', "
+                  "    'cieobs' : {'xyz': '1964_10', 'cct' : '1931_2'}, "
+                  "       'avg' : 'np.mean', "
+                  " 'rf_from_avg_rounded_rfi' : false, "
+                  " 'scale' :{'fcn' : 'log_scale', 'cfactor' : [7.54]} }";
+
+    auto str2 = str.replace('\'', '"');
+    auto doc = QJsonDocument::fromJson(str2.toUtf8());
+    auto json = doc.object();
+    auto datas = json.toVariantMap();
+
+    qDebug() << str2;
+    qDebug() << json;
+    qDebug() << json["cieobs"].toObject()["xyz"];
+    qDebug() << datas;
+
+    QJsonObject json2;
+    json2["111"] = {
+        {
+            {"key1", 1},
+            {"key2", 6.6},
+            {"key3", "Hello world"},
+            {"array", QJsonArray({1, 2, 3})},
+            {"object", QJsonObject({
+                           {"key11", 3},
+                           {"key12", false}})}
+        }};
+    json2["222"] = true;
+
+    qDebug() << json2;
 
 }
 

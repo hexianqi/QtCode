@@ -28,7 +28,7 @@ void HTm30RfiChartView::init()
     d->chart->series()->setLabelsVisible(false);
     d->chart->setBarColor(d->color);
     setChart(d->chart);
-    setWindowTitle("Rf");
+    setWindowTitle(tr("样本色彩逼真度"));
     HZoomChartView::init();
 }
 

@@ -101,7 +101,7 @@ void HSpecEnergyWidget::init()
     initCoordinate();
     setAutoFillBackground(true);
     setWindowIcon(QIcon(":/image/Spectrum.png"));
-    setWindowTitle(tr("相对光谱能量分布"));
+    setWindowTitle(tr("相对光谱功率分布"));
 }
 
 void HSpecEnergyWidget::readSettings()

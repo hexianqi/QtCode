@@ -21,6 +21,7 @@
 #include "HePlugin/HTm30BarChart.h"
 #include "HePlugin/HTm30CvgWidget.h"
 #include "HePlugin/HTm30SpdChartView.h"
+#include "HePlugin/HTm30RfRgChartView.h"
 #include "HePlugin/HTm30RfiChartView.h"
 #include "HePlugin/HTm30RfhjChartView.h"
 #include "HePlugin/HTm30RcshjChartView.h"
@@ -185,6 +186,7 @@ void HSpecTestWidget::createWidget()
     d->cieWidget = new HCie1931Widget;
     d->spdWidget = new HTm30SpdChartView;
     d->cvgWidget = new HTm30CvgWidget;
+    d->rfrgWidget = new HTm30RfRgChartView;
     d->rfiWidget = new HTm30RfiChartView;
     d->rfhjWidget = new HTm30RfhjChartView;
     d->rcshjWidget = new HTm30RcshjChartView;
@@ -236,7 +238,7 @@ void HSpecTestWidget::initWidget()
     d->tableWidget->addAction(d->actionPrintTag);
     tabWidget1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
     tabWidget1->addTab(d->energyWidget, d->energyWidget->windowTitle());
-    tabWidget1->addTab(d->spdWidget, d->spdWidget->windowTitle());
+    tabWidget1->addTab(d->spdWidget, tr("相对光谱功率分布2"));
     tabWidget1->addTab(d->rfiWidget, d->rfiWidget->windowTitle());
     tabWidget1->addTab(d->rfhjWidget, d->rfhjWidget->windowTitle());
     tabWidget1->addTab(d->rcshjWidget, d->rcshjWidget->windowTitle());
@@ -244,6 +246,7 @@ void HSpecTestWidget::initWidget()
     tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
     tabWidget2->addTab(d->chromatismWidget, d->chromatismWidget->windowTitle());
     tabWidget2->addTab(d->cvgWidget, d->cvgWidget->windowTitle());
+    tabWidget2->addTab(d->rfrgWidget, d->rfrgWidget->windowTitle());
     tabWidget3->addTab(d->detailWidget, tr("当次结果"));
     tabWidget3->addTab(d->tableWidget, tr("结果列表"));
     splitter1->addWidget(tabWidget1);
@@ -370,6 +373,7 @@ void HSpecTestWidget::refreshWidget(bool append)
     d->spdWidget->setTest(d->testData->data("[光谱能量曲线]").value<QPolygonF>());
     d->spdWidget->setReference(d->testData->data("[光谱反射曲线]").value<QPolygonF>());
     d->cvgWidget->setData(d->testData->select(d->cvgWidget->dataType()));
+    d->rfrgWidget->setRfRg(d->testData->data("[TM30_Rf]").toDouble(), d->testData->data("[TM30_Rg]").toDouble());
     d->rfiWidget->chart()->setBarValue(d->testData->data("[TM30_Rfi]").value<QList<double>>());
     d->rfhjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rf]").value<QList<double>>());
     d->rcshjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rcs]").value<QList<double>>());

@@ -50,7 +50,6 @@ void HTm30RxhjWidget::init()
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
     setStyleSheet("background-color: rgb(255, 255, 255);");
-    setWindowTitle("Rx,hj");
 }
 
 

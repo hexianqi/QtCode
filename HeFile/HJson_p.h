@@ -12,6 +12,7 @@ public:
     void setValue(QJsonObject &parent, const QString &path, const QJsonValue &value);
     void setError(const QString &value);
     void remove(QJsonObject &parent, const QString &path);
+    void fromJson(QByteArray &data);
 
 public:
     QJsonObject root;    // Json 的根节点

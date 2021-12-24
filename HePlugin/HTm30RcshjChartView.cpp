@@ -51,7 +51,7 @@ void HTm30RcshjChartView::init()
     d->chart->series()->setLabelsAngle(90);
     d->chart->setBarColor(color);
     setChart(d->chart);
-    setWindowTitle("Rcs,hj");
+    setWindowTitle(tr("色度变化"));
     HZoomChartView::init();
 }
 

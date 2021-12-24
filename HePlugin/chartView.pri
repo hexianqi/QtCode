@@ -3,6 +3,8 @@ HEADERS += \
     $$PWD/HChartView_p.h \
     $$PWD/HTm30RcshjChartView.h \
     $$PWD/HTm30RcshjChartView_p.h \
+    $$PWD/HTm30RfRgChartView.h \
+    $$PWD/HTm30RfRgChartView_p.h \
     $$PWD/HTm30RfhjChartView.h \
     $$PWD/HTm30RfhjChartView_p.h \
     $$PWD/HTm30RfiChartView.h \
@@ -27,6 +29,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/HChartView.cpp \
     $$PWD/HTm30RcshjChartView.cpp \
+    $$PWD/HTm30RfRgChartView.cpp \
     $$PWD/HTm30RfhjChartView.cpp \
     $$PWD/HTm30RfiChartView.cpp \
     $$PWD/HTm30RhshjChartView.cpp \

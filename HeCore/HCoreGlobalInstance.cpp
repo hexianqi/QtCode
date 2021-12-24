@@ -74,6 +74,24 @@ QString HCore::toString(const QString &type, const QVariant &value)
             list << toString(type, v);
         return list.join(" ");
     }
+
+    if (value.canConvert<QVariantList>())
+    {
+        QStringList list;
+        auto iterable = value.value<QSequentialIterable>();
+        for (const auto &v : iterable)
+            list << toString(type, v);
+        return list.join(" ");
+    }
+    if (value.canConvert<QVariantMap>())
+    {
+        QStringList list;
+        auto iterable = value.value<QAssociativeIterable>();
+        for (auto it = iterable.begin(); it != iterable.end(); ++it)
+            list << toString(it.key().toString(), it.value());
+        return list.join(" ");
+    }
+
     return value.toString();
 }
 
@@ -576,18 +594,8 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[环境湿度]",            tr("环境湿度"));
     hashDataCaption.insert("[分级]",                tr("分级"));
 
-//    hashDataCaption.insert("[正向电流_1]",                      tr("正向电流(微)"));
-//    hashDataCaption.insert("[正向电流_2]",                      tr("正向电流(小)"));
-//    hashDataCaption.insert("[正向电流_3]",                      tr("正向电流(大)"));
-//    hashDataCaption.insert("[回溯电流_1]",                      tr("回溯电流(微)"));
-//    hashDataCaption.insert("[回溯电流_2]",                      tr("回溯电流(小)"));
-//    hashDataCaption.insert("[回溯电流_3]",                      tr("回溯电流(大)"));
-//    hashDataCaption.insert("[正向电流_L2_1]",                   tr("正向电流(1路)"));
-//    hashDataCaption.insert("[正向电流_L2_2]",                   tr("正向电流(2路)"));
-//    hashDataCaption.insert("[正向电流_L2_3]",                   tr("正向电流(3路)"));
-//    hashDataCaption.insert("[正向电流_L2_4]",                   tr("正向电流(4路)"));
-
-//    hashDataCaption.insert("[分级_别名]",                       tr("分级"));
+    hashDataCaption.insert("[TM30_Rf]",             tr("Rf"));
+    hashDataCaption.insert("[TM30_Rg]",             tr("Rg"));
 }
 
 void HCoreGlobalInstance::initMimeType()

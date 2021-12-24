@@ -17,12 +17,10 @@ public:
     // 延时
     static void msleep(int msecs);
     static void msleep2(int msecs);
-    // 转储结构
-    static void dumpStructure(const QObject *obj, int spaceCount);
     // 读取配置文件
-    static void readSettings(QString fileName, QString prefix, QVariantMap &params);
+    static void readSettings(const QString &fileName, const QString &prefix, QVariantMap &params);
     // 写入配置文件
-    static void writeSettings(QString fileName, QString prefix, QVariantMap params);
+    static void writeSettings(const QString &fileName, const QString &prefix, const QVariantMap &params);
 };
 
 HE_END_NAMESPACE

@@ -68,6 +68,7 @@ void HCie1931ChartView::init()
     connect(enablePoint, &QAction::toggled, d->chart, &HCie1931Chart::setEnablePoint);
     connect(clearPoint, &QAction::triggered, d->chart, &HCie1931Chart::clearPoint);
     setChart(d->chart);
+    setWindowTitle(tr("色品图-CIE1931"));
     HZoomChartView::init();
 }
 

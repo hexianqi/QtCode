@@ -296,5 +296,5 @@ void HTm30CvgWidget::init()
                    << QColor(167, 79, 129);
     setMargins(25, 25, 25, 25);
     setCoordinate(QRectF(-150, -150, 300, 300), 6, 6);
-    setWindowTitle("CVG");
+    setWindowTitle(tr("颜色矢量图"));
 }

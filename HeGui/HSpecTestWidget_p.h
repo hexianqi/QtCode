@@ -6,6 +6,7 @@
 class HCie1931Widget;
 class HTm30SpdChartView;
 class HTm30CvgWidget;
+class HTm30RfRgChartView;
 class HTm30RfiChartView;
 class HTm30RfhjChartView;
 class HTm30RcshjChartView;
@@ -38,6 +39,7 @@ public:
     HCie1931Widget *cieWidget2 = nullptr;
     HTm30SpdChartView *spdWidget = nullptr;
     HTm30CvgWidget *cvgWidget = nullptr;
+    HTm30RfRgChartView *rfrgWidget = nullptr;
     HTm30RfiChartView *rfiWidget = nullptr;
     HTm30RfhjChartView *rfhjWidget = nullptr;
     HTm30RcshjChartView *rcshjWidget = nullptr;

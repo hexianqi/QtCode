@@ -1,7 +1,8 @@
 #include "MainWindow.h"
 #include "HTestAlgorithm.h"
-#include "HTestChart.h"
+#include "HTestCore.h"
 #include "HTestData.h"
+#include "HTestEigen.h"
 #include "HTestGsl.h"
 #include "HTestMedia.h"
 #include "HTestOpenGL.h"
@@ -15,16 +16,13 @@
 #include <QtCore/QDebug>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
-#include <QtCharts/QChartView>
 
-
-
-#include "HeCore/IConstructionDestruction.h"
+#include "HePlugin/HTm30RfRgChartView.h"
 
 void testGslChart()
 {
     auto p = HTestGsl::interpEval();
-    HTestChart::lineChart(p)->show();
+    HTestPlugin::lineChart(p)->show();
 //    HTestChart::vernierChart(p[0], p[1])->showMaximized();
 }
 
@@ -49,12 +47,28 @@ int main(int argc, char *argv[])
 //    ow.resize(800, 600);
 //    ow.show();
 
-    MainWindow window;
-//    window.setCentralWidget(&videoWidget);
-    window.resize(800, 600);
-    window.grabGesture(Qt::PanGesture);
-    window.grabGesture(Qt::PinchGesture);
-    window.show();
+//    HTestAlgorithm::testIesTm30();
+
+
+    HTestCore::testDictionary();
+
+    return 0;
+
+
+
+
+    HTm30RfRgChartView w;
+    w.show();
+
+
+
+
+//    MainWindow window;
+////    window.setCentralWidget(&videoWidget);
+//    window.resize(800, 600);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
 
     return a.exec();
 }

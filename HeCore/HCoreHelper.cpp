@@ -28,16 +28,7 @@ void HCoreHelper::msleep2(int msecs)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
-void HCoreHelper::dumpStructure(const QObject *obj, int spaceCount)
-{
-    qDebug() << QString("%1%2 : %3")
-                    .arg("", spaceCount)
-                    .arg(obj->metaObject()->className(), obj->objectName());
-    for (auto child : obj->children())
-        dumpStructure(child, spaceCount + 4);
-}
-
-void HCoreHelper::readSettings(QString fileName, QString prefix, QVariantMap &params)
+void HCoreHelper::readSettings(const QString &fileName, const QString &prefix, QVariantMap &params)
 {
     QSettings settings(fileName, QSettings::IniFormat);
     settings.setIniCodec("utf-8");
@@ -47,7 +38,7 @@ void HCoreHelper::readSettings(QString fileName, QString prefix, QVariantMap &pa
     settings.endGroup();
 }
 
-void HCoreHelper::writeSettings(QString fileName, QString prefix, QVariantMap params)
+void HCoreHelper::writeSettings(const QString &fileName, const QString &prefix, const QVariantMap &params)
 {
     QSettings settings(fileName, QSettings::IniFormat);
     settings.setIniCodec("utf-8");
