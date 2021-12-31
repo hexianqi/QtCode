@@ -256,7 +256,7 @@ void HAbstractMainWindow::showDeviceFailed(const QString &port, const QString &t
     auto msg = tr("\n“%1”设备连接失败！错误原因“%2”。\n").arg(port, text);
     QMessageBox::critical(this, "", msg);
 #ifndef QT_DEBUG
- //   close();
+    close();
 #endif
 }
 

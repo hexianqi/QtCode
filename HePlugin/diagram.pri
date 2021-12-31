@@ -7,6 +7,8 @@ HEADERS += \
     $$PWD/HCartesianCoordinate_p.h \
     $$PWD/HTm30CvgWidget.h \
     $$PWD/HTm30CvgWidget_p.h \
+    $$PWD/HTm30GamutWidget.h \
+    $$PWD/HTm30GamutWidget_p.h \
     $$PWD/HVernierWidget.h \
     $$PWD/HVernierWidget_p.h \
     $$PWD/HSpecDiagramWidget.h \
@@ -23,6 +25,7 @@ SOURCES += \
     $$PWD/HCartesianWidget.cpp \
     $$PWD/HCartesianCoordinate.cpp \
     $$PWD/HTm30CvgWidget.cpp \
+    $$PWD/HTm30GamutWidget.cpp \
     $$PWD/HVernierWidget.cpp \
     $$PWD/HSpecDiagramWidget.cpp \
     $$PWD/HRibbonDiagramWidget.cpp \

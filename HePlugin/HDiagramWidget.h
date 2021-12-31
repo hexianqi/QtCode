@@ -21,6 +21,7 @@ class QDESIGNER_WIDGET_EXPORT HDiagramWidget : public QWidget
     Q_PROPERTY(QColor colorFrame READ colorFrame WRITE setColorFrame)
     Q_PROPERTY(bool drawRuler READ isDrawRuler WRITE setDrawRuler)
     Q_PROPERTY(QColor colorRuler READ colorRuler WRITE setColorRuler)
+    Q_PROPERTY(bool drawTick READ isDrawTick WRITE setDrawTick)
     Q_PROPERTY(bool drawGrid READ isDrawGrid WRITE setDrawGrid)
     Q_PROPERTY(QColor colorGrid READ colorGrid WRITE setColorGrid)
 
@@ -45,6 +46,7 @@ public:
     void setHalfSide(bool b);
     void setDrawFrame(bool b);
     void setDrawRuler(bool b);
+    void setDrawTick(bool b);
     void setDrawGrid(bool b);
     void setColorFrame(const QColor &);
     void setColorRuler(const QColor &);
@@ -58,6 +60,7 @@ public:
     bool isHalfSide() const;
     bool isDrawFrame() const;
     bool isDrawRuler() const;
+    bool isDrawTick() const;
     bool isDrawGrid() const;
     QColor colorFrame() const;
     QColor colorRuler() const;

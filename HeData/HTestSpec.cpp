@@ -191,6 +191,10 @@ bool HTestSpecPrivate::calcSpec()
     addData("[TM30_Rg]", specData->TM30_Rg);
     addData("[TM30_Rfi]", QVariant::fromValue(specData->TM30_Rfi));
     addData("[TM30_hj_Rf]", QVariant::fromValue(specData->TM30_hj_Rf));
+    addData("[TM30_hj_at]", QVariant::fromValue(specData->TM30_hj_at));
+    addData("[TM30_hj_bt]", QVariant::fromValue(specData->TM30_hj_bt));
+    addData("[TM30_hj_ar]", QVariant::fromValue(specData->TM30_hj_ar));
+    addData("[TM30_hj_br]", QVariant::fromValue(specData->TM30_hj_br));
     addData("[TM30_hj_atn]", QVariant::fromValue(specData->TM30_hj_atn));
     addData("[TM30_hj_btn]", QVariant::fromValue(specData->TM30_hj_btn));
     addData("[TM30_hj_arn]", QVariant::fromValue(specData->TM30_hj_arn));

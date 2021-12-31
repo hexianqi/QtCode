@@ -39,8 +39,14 @@ protected:
     void paintBodyTM30(QPainter *painter, QRectF rect, int page);
 
 protected:
-    QPointF drawChartSpec(QPainter *painter, QRectF rect, QPolygonF poly);
-    QPointF drawChartCie(QPainter *painter, QRectF rect, QPointF point);
+    QPointF drawChartSpec(QPainter *painter, QRectF rect);
+    QPointF drawChartCie(QPainter *painter, QRectF rect);
+    QPointF drawChartTm30Spd(QPainter *painter, QRectF rect);
+    QPointF drawChartTm30Cvg(QPainter *painter, QRectF rect);
+    QPointF drawChartTm30Rxhj(QPainter *painter, QRectF rect);
+    QPointF drawChartTm30Rfi(QPainter *painter, QRectF rect);
+    QPointF drawChartTm30Gamut(QPainter *painter, QRectF rect);
+    QPointF drawChartTm30RfRg(QPainter *painter, QRectF rect);
 
 private:
     void init();

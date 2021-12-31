@@ -20,7 +20,7 @@ public:
     QPixmap cvg;
     QList<QColor> colorQuiver;
     QVector<QLineF> lineEdge;
-    QVector<QRectF> rectLabel;
+    QVector<QRectF> rectHueBin;
 };
 
 

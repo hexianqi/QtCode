@@ -14,6 +14,7 @@
 HCie1931WidgetPrivate::HCie1931WidgetPrivate()
 {
     square = true;
+    drawTick = false;
     fontPointFocus.setPointSize(12);
     fontPointFocus.setWeight(QFont::Bold);
     cie1931.load(":/image/CIE1931.png");

@@ -12,7 +12,7 @@ HE_USE_NAMESPACE
 
 HRibbonDiagramWidgetPrivate::HRibbonDiagramWidgetPrivate()
 {
-    pixmapRibbon.load(":/image/7color.png");
+    pixmapRibbon.load(":/image/7color2.png");
 }
 
 HRibbonDiagramWidget::HRibbonDiagramWidget(QWidget *parent) :

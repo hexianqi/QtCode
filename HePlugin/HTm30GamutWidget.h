@@ -1,21 +1,21 @@
 /***************************************************************************************************
-**      2021-12-08  HTm30CvgWidget
+**      2021-12-27  HTm30GamutWidget
 ***************************************************************************************************/
 
 #pragma once
 
 #include "HCartesianWidget.h"
 
-class HTm30CvgWidgetPrivate;
+class HTm30GamutWidgetPrivate;
 
-class QDESIGNER_WIDGET_EXPORT HTm30CvgWidget : public HCartesianWidget
+class QDESIGNER_WIDGET_EXPORT HTm30GamutWidget : public HCartesianWidget
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HTm30CvgWidget)
+    Q_DECLARE_PRIVATE(HTm30GamutWidget)
 
 public:
-    explicit HTm30CvgWidget(QWidget *parent = nullptr);
-    ~HTm30CvgWidget() override;
+    explicit HTm30GamutWidget(QWidget *parent = nullptr);
+    ~HTm30GamutWidget() override;
 
 public:
     QStringList dataType();
@@ -25,10 +25,7 @@ public:
     bool isDrawBackground() const;
     bool isDrawEdge() const;
     bool isDrawHueBin() const;
-    bool isDrawCircle_10_20() const;
     bool isDrawVector() const;
-    bool isDrawQuiver() const;
-    bool isDrawValue() const;
 
 protected:
     bool drawElse(QPainter *) override;
@@ -36,10 +33,7 @@ protected:
     bool drawEdge(QPainter *);
     bool drawHueBin(QPainter *);
     bool drawCross(QPainter *);
-    bool drawCircle_10_20(QPainter *);
     bool drawVector(QPainter *);
-    bool drawQuiver(QPainter *);
-    bool drawValue(QPainter *);
 
 private:
     void init();

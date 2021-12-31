@@ -8,6 +8,7 @@ HE_USE_NAMESPACE
 
 HChromatismWidgetPrivate::HChromatismWidgetPrivate()
 {
+    drawTick = false;
     fontTitle.setPointSize(12);
     fontTitle.setWeight(QFont::Bold);
     fontBody.setPointSize(12);

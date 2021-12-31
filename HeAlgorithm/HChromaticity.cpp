@@ -55,6 +55,10 @@ void HChromaticity::calcSpectrum(HSpecData *data)
     data->TM30_Rf = r3.Rf;
     data->TM30_Rg = r3.Rg;
     data->TM30_Rfi = r3.Rfi.toList();
+    data->TM30_hj_at = r3.hj.at.toList();
+    data->TM30_hj_bt = r3.hj.bt.toList();
+    data->TM30_hj_ar = r3.hj.ar.toList();
+    data->TM30_hj_br = r3.hj.br.toList();
     data->TM30_hj_atn = r3.hj.atn.toList();
     data->TM30_hj_btn = r3.hj.btn.toList();
     data->TM30_hj_arn = r3.hj.arn.toList();

@@ -128,6 +128,14 @@ void HDiagramWidget::setDrawRuler(bool b)
     refreshPixmap();
 }
 
+void HDiagramWidget::setDrawTick(bool b)
+{
+    if (d_ptr->drawTick == b)
+        return;
+    d_ptr->drawTick = b;
+    refreshPixmap();
+}
+
 void HDiagramWidget::setDrawGrid(bool b)
 {
     if (d_ptr->drawGrid == b)
@@ -193,6 +201,11 @@ bool HDiagramWidget::isDrawFrame() const
 bool HDiagramWidget::isDrawRuler() const
 {
     return d_ptr->drawRuler;
+}
+
+bool HDiagramWidget::isDrawTick() const
+{
+    return d_ptr->drawTick;
 }
 
 bool HDiagramWidget::isDrawGrid() const
@@ -331,7 +344,7 @@ bool HDiagramWidget::drawRuler(QPainter *)
 
 bool HDiagramWidget::drawTick(QPainter *)
 {
-    return isValid() && d_ptr->halfSide;
+    return isValid() && isDrawTick();
 }
 
 bool HDiagramWidget::drawGrid(QPainter *)

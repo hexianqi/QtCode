@@ -103,8 +103,8 @@ void HSpecPrintTemplate2000DC::paintBody(QPainter *painter, QRectF rect, int /*p
     auto yr = y + 20;
     auto wr = rect.width() / 2.0 - gap;
     auto hr = rect.bottom() - yr;
-    drawChartSpec(painter, QRectF(xr1, yr, wr, hr), d->datas.value("[光谱能量曲线]").value<QPolygonF>());
-    drawChartCie(painter, QRectF(xr2, yr, wr, hr), d->datas.value("[色坐标]").toPointF());
+    drawChartSpec(painter, QRectF(xr1, yr, wr, hr));
+    drawChartCie(painter, QRectF(xr2, yr, wr, hr));
 }
 
 void HSpecPrintTemplate2000DC::init()

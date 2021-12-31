@@ -47,6 +47,10 @@ public:
     double TM30_Rf;
     double TM30_Rg;
     QList<double> TM30_Rfi;
+    QList<double> TM30_hj_at;
+    QList<double> TM30_hj_bt;
+    QList<double> TM30_hj_ar;
+    QList<double> TM30_hj_br;
     QList<double> TM30_hj_atn;
     QList<double> TM30_hj_btn;
     QList<double> TM30_hj_arn;

@@ -1,6 +1,12 @@
 #include "HSpecPrintTemplate_p.h"
 #include "HePlugin/HCie1931Widget.h"
 #include "HePlugin/HSpecDiagramWidget.h"
+#include "HePlugin/HTm30CvgWidget.h"
+#include "HePlugin/HTm30GamutWidget.h"
+#include "HePlugin/HTm30SpdChartView.h"
+#include "HePlugin/HTm30RfiChartView.h"
+#include "HePlugin/HTm30RfRgChartView.h"
+#include "HePlugin/HTm30RxhjWidget.h"
 #include "HePlugin/HPainterHelper.h"
 #include <QtGui/QPainter>
 #include <QtPrintSupport/QPrinter>
@@ -23,7 +29,18 @@ HSpecPrintTemplate::HSpecPrintTemplate(HSpecPrintTemplatePrivate &p, QObject *pa
 {
 }
 
-HSpecPrintTemplate::~HSpecPrintTemplate() = default;
+HSpecPrintTemplate::~HSpecPrintTemplate()
+{
+    Q_D(HSpecPrintTemplate);
+    delete d->specWidget;
+    delete d->cieWidget;
+    delete d->spdWidget;
+    delete d->cvgWidget;
+    delete d->rxhjWidget;
+    delete d->rfiWidget;
+    delete d->gamutWidget;
+    delete d->rfrgWidget;
+}
 
 QString HSpecPrintTemplate::typeName()
 {
@@ -32,23 +49,19 @@ QString HSpecPrintTemplate::typeName()
 
 bool HSpecPrintTemplate::printPages(QPrinter *printer)
 {
-    Q_D(HSpecPrintTemplate);
     printer->setPageMargins(13, 13, 5, 5, QPrinter::Millimeter);
     QPainter painter(printer);
     auto y1 = paintHeader(&painter);
     auto y2 = paintFooter(&painter, 0);
     y1 = paintTitle(&painter, y1);
     paintBody(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), 0);
-//    if (d->params.value("DrawTM30", true).toBool())
-//    {
-//        for (int i = 1; i < 3; i++)
-//        {
-//            printer->newPage();
-//            y1 = paintHeader(&painter);
-//            y2 = paintFooterTM30(&painter, i);
-//            paintBodyTM30(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), i);
-//        }
-//    }
+    for (int i = 1; i < 3; i++)
+    {
+        printer->newPage();
+        y1 = paintHeader(&painter);
+        y2 = paintFooterTM30(&painter, i + 1);
+        paintBodyTM30(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), i);
+    }
     return true;
 }
 
@@ -99,7 +112,6 @@ double HSpecPrintTemplate::paintTitle(QPainter *painter, double y)
 
 void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
 {
-    Q_D(HSpecPrintTemplate);
     auto gap = 8.0;
     rect.adjust(gap, gap, -gap, -gap);
     auto font1 = QFont("宋体", 12, QFont::Bold);
@@ -157,8 +169,8 @@ void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
     auto yr = y + 20;
     auto wr = rect.width() / 2.0 - gap;
     auto hr = rect.bottom() - yr;
-    drawChartSpec(painter, QRectF(xr1, yr, wr, hr), d->datas.value("[光谱能量曲线]").value<QPolygonF>());
-    drawChartCie(painter, QRectF(xr2, yr, wr, hr), d->datas.value("[色坐标]").toPointF());
+    drawChartSpec(painter, QRectF(xr1, yr, wr, hr));
+    drawChartCie(painter, QRectF(xr2, yr, wr, hr));
 }
 
 double HSpecPrintTemplate::paintFooterTM30(QPainter *painter, int page)
@@ -169,11 +181,29 @@ double HSpecPrintTemplate::paintFooterTM30(QPainter *painter, int page)
 
 void HSpecPrintTemplate::paintBodyTM30(QPainter *painter, QRectF rect, int page)
 {
+    auto gap = 8.0;
     if (page == 1)
     {
+        auto x1 = rect.left() + gap;
+        auto x2 = rect.center().x() + gap;
+        auto y1 = rect.top() + gap;
+        auto y2 = rect.top() + gap + rect.height() / 4.0;
+        auto w1 = rect.width() * 0.5 -  2 * gap;
+        auto w2 = rect.width() * 1.0 -  2 * gap;
+        auto h1 = rect.height() * 0.25 - 2 * gap;
+        auto h2 = rect.height() * 0.50 - 2 * gap;
+        auto h3 = rect.height() * 0.75 - 2 * gap;
+        drawChartTm30Spd(painter, QRectF(x1, y1, w1, h1));
+        drawChartTm30Cvg(painter, QRectF(x1, y2, w1, h2));
+        drawChartTm30Rxhj(painter, QRectF(x2, y1, w1, h3));
+        drawChartTm30Rfi(painter, QRectF(x1, y1, w2, h1));
         return;
     }
     if (page == 2)
+    {
+        return;
+    }
+    if (page == 3)
     {
         return;
     }
@@ -187,7 +217,7 @@ void HSpecPrintTemplate::paintBodyTM30(QPainter *painter, QRectF rect, int page)
 //    d->rhshjWidget->chart()->setBarValue(d->testData->data("[TM30_hj_Rhs]").value<QList<double>>());
 }
 
-QPointF HSpecPrintTemplate::drawChartSpec(QPainter *painter, QRectF rect, QPolygonF poly)
+QPointF HSpecPrintTemplate::drawChartSpec(QPainter *painter, QRectF rect)
 {
     Q_D(HSpecPrintTemplate);
     if (d->specWidget == nullptr)
@@ -198,13 +228,14 @@ QPointF HSpecPrintTemplate::drawChartSpec(QPainter *painter, QRectF rect, QPolyg
         d->specWidget->setDrawRibbon(d->params.value("DrawRibbon", true).toBool());
         d->specWidget->setWindowTitle(tr("相对光谱能量分布"));
     }
+    auto poly = d->datas.value("[光谱能量曲线]").value<QPolygonF>();
     if (!poly.isEmpty())
         d->specWidget->setWaveRange(QPointF(poly.first().x(), poly.last().x()));
     d->specWidget->addPolygon(0, poly);
     return HPainterHelper::drawChart(painter, rect, d->specWidget);
 }
 
-QPointF HSpecPrintTemplate::drawChartCie(QPainter *painter, QRectF rect, QPointF point)
+QPointF HSpecPrintTemplate::drawChartCie(QPainter *painter, QRectF rect)
 {
     Q_D(HSpecPrintTemplate);
     if (d->cieWidget == nullptr)
@@ -214,8 +245,39 @@ QPointF HSpecPrintTemplate::drawChartCie(QPainter *painter, QRectF rect, QPointF
         d->cieWidget->setBrushBackground(Qt::white);
         d->cieWidget->setWindowTitle(tr("CIE1931色品图"));
     }
-    d->cieWidget->setPointFocus(point);
+    d->cieWidget->setPointFocus(d->datas.value("[色坐标]").toPointF());
     return HPainterHelper::drawChart(painter, rect, d->cieWidget);
+}
+
+QPointF HSpecPrintTemplate::drawChartTm30Spd(QPainter *painter, QRectF rect)
+{
+    Q_D(HSpecPrintTemplate);
+    if (d->spdWidget == nullptr)
+        d->spdWidget = new HTm30SpdChartView;
+
+    d->spdWidget->setTest(d->datas.value("[光谱能量曲线]").value<QPolygonF>());
+    d->spdWidget->setReference(d->datas.value("[光谱反射曲线]").value<QPolygonF>());
+    return HPainterHelper::drawChart(painter, rect, d->spdWidget);
+}
+
+QPointF HSpecPrintTemplate::drawChartTm30Cvg(QPainter *painter, QRectF rect)
+{
+    Q_D(HSpecPrintTemplate);
+    if (d->cvgWidget == nullptr)
+        d->cvgWidget = new HTm30CvgWidget;
+    d->cvgWidget->setData(d->datas);
+    return HPainterHelper::drawChart(painter, rect, d->cvgWidget);
+}
+
+QPointF HSpecPrintTemplate::drawChartTm30Rxhj(QPainter *painter, QRectF rect)
+{
+    Q_D(HSpecPrintTemplate);
+    if (d->rxhjWidget == nullptr)
+        d->rxhjWidget = new HTm30RxhjWidget;
+    d->rxhjWidget->setRfhj(d->datas.value("[TM30_hj_Rf]").value<QList<double>>());
+    d->rxhjWidget->setRcshj(d->datas.value("[TM30_hj_Rcs]").value<QList<double>>());
+    d->rxhjWidget->setRhshj(d->datas.value("[TM30_hj_Rhs]").value<QList<double>>());
+    return HPainterHelper::drawChart(painter, rect, d->rxhjWidget);
 }
 
 void HSpecPrintTemplate::init()

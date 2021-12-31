@@ -53,4 +53,6 @@ void HDetailWidget2000DC::refreshWidget()
     ui->lineEdit_072->setText(d->testData->toString("[光合有效辐射通量]"));
     ui->lineEdit_073->setText(d->testData->toString("[光合光子通量效率]"));
     ui->lineEdit_074->setText(d->testData->toString("[荧光效能]"));
+    ui->lineEdit_081->setText(d->testData->toString("[TM30_Rf]"));
+    ui->lineEdit_082->setText(d->testData->toString("[TM30_Rg]"));
 }

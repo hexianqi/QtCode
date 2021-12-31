@@ -20,6 +20,7 @@ public:
     bool halfSide = false;
     bool drawFrame = true;
     bool drawRuler = true;
+    bool drawTick = true;
     bool drawGrid = true;
     QColor colorFrame = Qt::black;
     QColor colorRuler = Qt::black;

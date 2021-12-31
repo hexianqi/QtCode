@@ -17,7 +17,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
 
-#include "HePlugin/HTm30RfRgChartView.h"
+#include "HePlugin/HTm30GamutWidget.h"
 
 void testGslChart()
 {
@@ -49,16 +49,21 @@ int main(int argc, char *argv[])
 
 //    HTestAlgorithm::testIesTm30();
 
-
-    HTestCore::testDictionary();
+    auto str = "0000" + QString("%1").arg(3, 2, 10, QLatin1Char('0')) + "6600";
+    for (int i = 0; i < str.size(); i++)
+    {
+        qDebug() << str.at(i).unicode();//int(str.at(i).toLatin1());
+    }
+    qDebug() << "str.size():" << str.size();
+    qDebug() << str.toLatin1();
 
     return 0;
 
 
 
 
-    HTm30RfRgChartView w;
-    w.show();
+//    HTm30GamutWidget w;
+//    w.show();
 
 
 

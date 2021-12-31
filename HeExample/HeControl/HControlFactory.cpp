@@ -60,6 +60,7 @@ IEventFilter *HControlFactory::createEventFilter(const QString &type, QVariantMa
 
 void HControlFactory::registerClass()
 {
+    // 支持的窗体
     auto b = HWidgetFactory::keys().toSet();
     // 演示
     HWidgetFactory::registerClass<HControlDemoWidget>("HControlDemoWidget");
@@ -72,7 +73,6 @@ void HControlFactory::registerClass()
     HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
     HWidgetFactory::registerClass<HScreenWidget>("HScreenWidget");
     HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
-
     // 未整理
     HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
     HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
@@ -81,6 +81,8 @@ void HControlFactory::registerClass()
 
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->supportedWidgets = e.subtract(b).toList();
+
+    // 支持的事件
     b = HObjectFactory::keys().toSet();
     HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
     e = HObjectFactory::keys().toSet();

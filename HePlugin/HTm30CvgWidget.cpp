@@ -8,6 +8,7 @@
 HTm30CvgWidgetPrivate::HTm30CvgWidgetPrivate()
 {
     square = true;
+    drawTick = false;
     drawGrid = false;
     drawRuler = false;
     cvg.load(":/image/cvg_background.png");
@@ -40,7 +41,7 @@ void HTm30CvgWidget::setData(const QVariantMap &value)
         d->Rf = value.value("[TM30_Rf]").toDouble();
     if (value.contains("[TM30_Rg]"))
         d->Rg = value.value("[TM30_Rg]").toDouble();
-    if (value.contains("[TM30_hj_atn]") &&  value.contains("[TM30_hj_btn]"))
+    if (value.contains("[TM30_hj_atn]") && value.contains("[TM30_hj_btn]"))
     {
         auto a = value.value("[TM30_hj_atn]").value<QList<double>>();
         auto b = value.value("[TM30_hj_btn]").value<QList<double>>();
@@ -60,6 +61,7 @@ void HTm30CvgWidget::setData(const QVariantMap &value)
             d->polyReference[i].setY(b[i]);
         }
     }
+    refreshPixmap();
 }
 
 bool HTm30CvgWidget::isDrawBackground() const
@@ -72,7 +74,7 @@ bool HTm30CvgWidget::isDrawEdge() const
     return true;
 }
 
-bool HTm30CvgWidget::isDrawLabel() const
+bool HTm30CvgWidget::isDrawHueBin() const
 {
     return true;
 }
@@ -103,7 +105,7 @@ bool HTm30CvgWidget::drawElse(QPainter *painter)
     painter->setRenderHint(QPainter::Antialiasing, true);
     drawBackground(painter);
     drawEdge(painter);
-    drawLabel(painter);
+    drawHueBin(painter);
     drawCross(painter);
     drawCircle_10_20(painter);
     drawVector(painter);
@@ -142,10 +144,10 @@ bool HTm30CvgWidget::drawEdge(QPainter *painter)
     return true;
 }
 
-bool HTm30CvgWidget::drawLabel(QPainter *painter)
+bool HTm30CvgWidget::drawHueBin(QPainter *painter)
 {
     Q_D(HTm30CvgWidget);
-    if (!isDrawLabel() || !isValid())
+    if (!isDrawHueBin() || !isValid())
         return false;
 
     auto f = painter->font();
@@ -155,7 +157,7 @@ bool HTm30CvgWidget::drawLabel(QPainter *painter)
     painter->setFont(f);
     painter->setPen(QColor(64, 64, 64));
     for (int i = 0; i < 16; i++)
-        painter->drawText(d->coordinate->mapToPosition(d->rectLabel[i], d->plotArea), Qt::AlignCenter, QString::number(i + 1));
+        painter->drawText(d->coordinate->mapToPosition(d->rectHueBin[i], d->plotArea), Qt::AlignCenter, QString::number(i + 1));
     painter->restore();
     return true;
 }
@@ -265,16 +267,15 @@ bool HTm30CvgWidget::drawValue(QPainter *painter)
 void HTm30CvgWidget::init()
 {
     Q_D(HTm30CvgWidget);
-    int i;
     double theta1, theta2;
-    for (i = 0; i < 16; i++)
+    for (int i = 0; i < 16; i++)
     {
         QRectF rect(0, 0, 20, 20);
         theta1 = qDegreesToRadians(i * 360 / 16.0);
         theta2 = qDegreesToRadians(i * 360 / 16.0 + 11.25);
         rect.moveCenter(QPointF(135 * cos(theta2), 135 * sin(theta2)));
         d->lineEdge << QLineF(10 * cos(theta1), 10 * sin(theta1), 150 * cos(theta1), 150 * sin(theta1));
-        d->rectLabel << rect;
+        d->rectHueBin << rect;
         d->polyTest << QPointF(50 * cos(theta2), 50 * sin(theta2));
         d->polyReference << QPointF(100 * cos(theta2), 100 * sin(theta2));
     }

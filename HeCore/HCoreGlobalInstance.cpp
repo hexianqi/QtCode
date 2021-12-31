@@ -416,7 +416,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱能量百分比]",               hashDataFormatInfo.value("[百分比]"));
     // 色容差参数
     hashDataFormatInfo.insert("[色容差]",                       new HDataFormatInfo("[色容差]", "SDCM", 0, 100, 1, 1));
-    hashDataFormatInfo.insert("[参数G]",                        new HDataFormatInfo("[参数G]", 0, 1000000, 1));
+    hashDataFormatInfo.insert("[参数G]",                        new HDataFormatInfo("[参数G]", -1000000, 1000000, 1));
     hashDataFormatInfo.insert("[旋转角]",                       new HDataFormatInfo("[旋转角]", "°", 0, 180, 1, 1));
     hashDataFormatInfo.insert("[轴A]",                          new HDataFormatInfo("[轴A]", 0, 1000000, 1));
     hashDataFormatInfo.insert("[轴B]",                          new HDataFormatInfo("[轴B]", 0, 1000000, 1));
@@ -481,7 +481,11 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_Rg]",                      new HDataFormatInfo("[TM30_Rg]", 0, 100, 1));
     hashDataFormatInfo.insert("[TM30_Rfi]",                     hashDataFormatInfo.value("[TM30_Rf]"));
     hashDataFormatInfo.insert("[TM30_hj_Rf]",                   hashDataFormatInfo.value("[TM30_Rf]"));
-    hashDataFormatInfo.insert("[TM30_hj_atn]",                  new HDataFormatInfo("[TM30_hj_atn]", 0, 150, 2));
+    hashDataFormatInfo.insert("[TM30_hj_at]",                   new HDataFormatInfo("[TM30_hj_at]", -40, 40, 2));
+    hashDataFormatInfo.insert("[TM30_hj_bt]",                   hashDataFormatInfo.value("[TM30_hj_at]"));
+    hashDataFormatInfo.insert("[TM30_hj_ar]",                   hashDataFormatInfo.value("[TM30_hj_at]"));
+    hashDataFormatInfo.insert("[TM30_hj_br]",                   hashDataFormatInfo.value("[TM30_hj_at]"));
+    hashDataFormatInfo.insert("[TM30_hj_atn]",                  new HDataFormatInfo("[TM30_hj_atn]", -150, 150, 2));
     hashDataFormatInfo.insert("[TM30_hj_btn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_arn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_brn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
