@@ -26,5 +26,5 @@ protected:
     void keyPressEvent(QKeyEvent *) override;
 
 protected:
-    virtual void init();
+    void init() override;
 };

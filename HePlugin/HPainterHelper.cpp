@@ -30,8 +30,8 @@ QPointF HPainterHelper::drawChart(QPainter *painter, QRectF rect, QWidget *widge
         auto p = drawText(painter, rect, widget->windowTitle(), Qt::AlignHCenter);
         rect.setTop(p.y());
     }
-    auto side = qMin(rect.width(), rect.height());
-    rect.adjust((rect.width() - side) / 2, 0, -(rect.width() - side) / 2, -(rect.height() - side));
+ //   auto side = qMin(rect.width(), rect.height());
+ //   rect.adjust((rect.width() - side) / 2, 0, -(rect.width() - side) / 2, -(rect.height() - side));
     widget->resize(rect.size().toSize());
     widget->render(painter, rect.topLeft().toPoint());
     return rect.bottomRight();

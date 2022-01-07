@@ -47,6 +47,7 @@ protected:
     QPointF drawChartTm30Rfi(QPainter *painter, QRectF rect);
     QPointF drawChartTm30Gamut(QPainter *painter, QRectF rect);
     QPointF drawChartTm30RfRg(QPainter *painter, QRectF rect);
+    QPointF drawTableTm30Rxhj(QPainter *painter, QRectF rect);
 
 private:
     void init();

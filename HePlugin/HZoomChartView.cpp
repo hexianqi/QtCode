@@ -70,4 +70,5 @@ void HZoomChartView::init()
     setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     setRubberBand(QChartView::RectangleRubberBand);
+    HChartView::init();
 }

@@ -24,5 +24,8 @@ protected:
     HChartView(HChartViewPrivate &p, QChart *chart = nullptr, QWidget *parent = nullptr);
 
 protected:
+    virtual void init();
+
+protected:
     QScopedPointer<HChartViewPrivate> d_ptr;
 };

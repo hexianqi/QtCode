@@ -14,7 +14,7 @@ public:
     QPixmap pixmap;
     QMargins margins = QMargins(50, 50, 50, 50);
     QRectF plotArea;
-    QBrush brushBackground = Qt::NoBrush;
+    QBrush brushBackground = Qt::white;
     QBrush brushPlotArea = Qt::NoBrush;
     bool square = false;
     bool halfSide = false;

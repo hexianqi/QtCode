@@ -305,9 +305,11 @@ void HDiagramWidget::refreshPixmap(bool refresh)
 void HDiagramWidget::initPixmap(QPainter *painter)
 {
     painter->initFrom(this);
+    painter->save();
     painter->setBrush(d_ptr->brushBackground);
     painter->setPen(Qt::NoPen);
     painter->drawRect(rect());
+    painter->restore();
 }
 
 bool HDiagramWidget::drawFrame(QPainter *painter)

@@ -27,8 +27,6 @@ protected:
 
 protected:
     QScopedPointer<HTm30RxhjWidgetPrivate> d_ptr;
-
-
 };
 
 

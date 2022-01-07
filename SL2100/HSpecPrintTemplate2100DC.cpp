@@ -21,7 +21,6 @@ QString HSpecPrintTemplate2100DC::typeName()
 
 void HSpecPrintTemplate2100DC::paintBody(QPainter *painter, QRectF rect, int /*page*/)
 {
-    Q_D(HSpecPrintTemplate2100DC);
     auto gap = 8.0;
     rect.adjust(gap, gap, -gap, -gap);
     auto font1 = QFont("宋体", 12, QFont::Bold);
