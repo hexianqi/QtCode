@@ -39,7 +39,6 @@ protected:
 
 protected:
     void setFilter(const QString &);
-    QString toString(QPolygonF value);
 
 protected:
     QScopedPointer<HSqlHandlePrivate> d_ptr;

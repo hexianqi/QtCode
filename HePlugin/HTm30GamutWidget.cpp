@@ -9,8 +9,7 @@ HTm30GamutWidgetPrivate::HTm30GamutWidgetPrivate()
 {
     square = true;
     drawGrid = false;
-
-    cvg.load(":/image/cvg_background.png");
+    cvg.load(":/image/Gamut_background_s.png");
 }
 
 HTm30GamutWidget::HTm30GamutWidget(QWidget *parent) :
@@ -93,10 +92,10 @@ bool HTm30GamutWidget::drawBackground(QPainter *painter)
         return false;
 
     auto target = d->plotArea.adjusted(1, 1, -1, -1);
-    auto source = d->coordinate->mapToAxis(d->cvg.rect(), QRectF(-150, -150, 300, 300));
+    auto source = d->coordinate->mapToAxis(d->cvg.rect(), QRectF(-40, -40, 80, 80));
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
-    painter->drawPixmap(target, d->cvg, source);
+    painter->drawImage(target, d->cvg, source);
     painter->restore();
     return true;
 }
@@ -107,7 +106,7 @@ bool HTm30GamutWidget::drawEdge(QPainter *painter)
     if (!isDrawEdge() || !isValid())
         return false;
 
-    auto pen = QPen(QColor(128, 128, 128), 1, Qt::DashLine);
+    auto pen = QPen(QColor(255, 255, 255), 1, Qt::DashLine);
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(pen);
@@ -127,7 +126,7 @@ bool HTm30GamutWidget::drawHueBin(QPainter *painter)
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setFont(f);
-    painter->setPen(QColor(64, 64, 64));
+    painter->setPen(Qt::white);
     for (int i = 0; i < 16; i++)
         painter->drawText(d->coordinate->mapToPosition(d->rectHueBin[i], d->plotArea), Qt::AlignCenter, QString::number(i + 1));
     painter->restore();
@@ -141,7 +140,7 @@ bool HTm30GamutWidget::drawCross(QPainter *painter)
         return false;
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
-    painter->setPen(QColor(128, 128, 128));
+    painter->setPen(Qt::white);
     HPainterHelper::drawCrossCursor(painter, d->coordinate->mapToPosition(QPointF(0, 0), d->plotArea), 5);
     painter->restore();
     return true;

@@ -133,12 +133,12 @@ void HSqlHandle::setFilter(const QString &value)
     d_ptr->model->resetCurrentRow(0);
 }
 
-QString HSqlHandle::toString(QPolygonF value)
-{
-    QStringList list;
-    for (auto p : value)
-        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
-    return list.join(",");
-}
+//QString HSqlHandle::toString(QPolygonF value)
+//{
+//    QStringList list;
+//    for (auto p : value)
+//        list << HCore::toString("[波长]", p.x()) + ":" +  HCore::toString("[光谱能量百分比]", p.y());
+//    return list.join(",");
+//}
 
 HE_END_NAMESPACE

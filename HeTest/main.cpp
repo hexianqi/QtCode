@@ -8,6 +8,7 @@
 #include "HTestOpenGL.h"
 #include "HTestPlugin.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HDumpTree.h"
 #include "HeControl/HDemoWidget.h"
 #include "HeControl/HControlFactoryWidget.h"
 #include "HeControl/HControlDemoWidget.h"
@@ -16,8 +17,7 @@
 #include <QtCore/QDebug>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
-
-#include "HePlugin/HTm30GamutWidget.h"
+#include <QRegularExpression>
 
 void testGslChart()
 {
@@ -29,6 +29,7 @@ void testGslChart()
 int main(int argc, char *argv[])
 {
     qDebug() << HCore::toCommand(HLogType::ForePurple);
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
@@ -39,8 +40,8 @@ int main(int argc, char *argv[])
 
 //    HControlFactoryWidget cw;
 //    cw.show();
-//    HControlDemoWidget dw;
-//    dw.show();
+    HControlDemoWidget dw;
+    dw.show();
 
 //    HBreakoutWidget ow;
 //    ow.move(50, 300);
@@ -49,24 +50,6 @@ int main(int argc, char *argv[])
 
 //    HTestAlgorithm::testIesTm30();
 
-    auto str = "0000" + QString("%1").arg(3, 2, 10, QLatin1Char('0')) + "6600";
-    for (int i = 0; i < str.size(); i++)
-    {
-        qDebug() << str.at(i).unicode();//int(str.at(i).toLatin1());
-    }
-    qDebug() << "str.size():" << str.size();
-    qDebug() << str.toLatin1();
-
-    return 0;
-
-
-
-
-//    HTm30GamutWidget w;
-//    w.show();
-
-
-
 
 //    MainWindow window;
 ////    window.setCentralWidget(&videoWidget);
@@ -74,6 +57,7 @@ int main(int argc, char *argv[])
 //    window.grabGesture(Qt::PanGesture);
 //    window.grabGesture(Qt::PinchGesture);
 //    window.show();
+//    HDumpTree::dumpProperty(&window);
 
     return a.exec();
 }

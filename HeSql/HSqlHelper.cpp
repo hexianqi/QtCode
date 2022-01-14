@@ -41,6 +41,21 @@ bool HSqlHelper::createTable(const QString &tableName, const QStringList &fields
     return query.exec(sql);
 }
 
+bool HSqlHelper::truncateTable(const QString &tableName, QSqlDatabase db)
+{
+    if (tableName.isEmpty())
+        return false;
+
+    if (!db.isValid())
+        db = QSqlDatabase::database();
+
+    QSqlQuery query(db);
+    if (!db.tables().contains(tableName, Qt::CaseInsensitive))
+        return false;
+    auto sql = QString("TRUNCATE TABLE %1").arg(tableName);
+    return query.exec(sql);
+}
+
 bool HSqlHelper::addColumn(const QString &tableName, const QString &field, QSqlDatabase db)
 {
     if (!db.isValid())

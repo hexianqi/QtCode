@@ -9,8 +9,9 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication a(argc, argv);
 
 #ifdef HE_ENGLISH
     QTranslator t1, t2, t3, t4, t5, t6;

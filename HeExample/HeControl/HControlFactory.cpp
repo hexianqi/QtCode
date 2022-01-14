@@ -65,26 +65,26 @@ void HControlFactory::registerClass()
     // 演示
     HWidgetFactory::registerClass<HControlDemoWidget>("HControlDemoWidget");
     // 工具
-    HWidgetFactory::registerClass<HCodeCountWidget>("HCodeCountWidget");
-    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
-    HWidgetFactory::registerClass<HEmailWidget>("HEmailWidget");
-    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
-    HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
-    HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
-    HWidgetFactory::registerClass<HScreenWidget>("HScreenWidget");
-    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
-    // 未整理
-    HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
-    HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
-    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
-    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
+//    HWidgetFactory::registerClass<HCodeCountWidget>("HCodeCountWidget");
+//    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
+//    HWidgetFactory::registerClass<HEmailWidget>("HEmailWidget");
+//    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
+//    HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
+//    HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
+//    HWidgetFactory::registerClass<HScreenWidget>("HScreenWidget");
+//    HWidgetFactory::registerClass<HSerialPortWidget>("HSerialPortWidget");
+//    // 未整理
+//    HWidgetFactory::registerClass<HCircularProgress>("HCircularProgress");
+//    HWidgetFactory::registerClass<HImageEffectWidget>("HImageEffectWidget");
+//    HWidgetFactory::registerClass<HImageBrowser>("HImageBrowser");
+//    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
 
     auto e = HWidgetFactory::keys().toSet();
     d_ptr->supportedWidgets = e.subtract(b).toList();
 
     // 支持的事件
     b = HObjectFactory::keys().toSet();
-    HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
+//    HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
     e = HObjectFactory::keys().toSet();
     d_ptr->supportedEventFilters = e.subtract(b).toList();
 }

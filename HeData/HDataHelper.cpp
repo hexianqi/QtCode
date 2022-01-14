@@ -105,6 +105,16 @@ QVariant HDataHelper::derive(QString type, QVariantMap data)
         if (data.contains("[色坐标uvp]"))
             return data.value("[色坐标uvp]").toPointF().y();
     }
+    if (type == "[光谱光通量]")
+    {
+        if (data.contains("[光通量]"))
+            return data.value("[光通量]");
+    }
+    if (type == "[光通量]")
+    {
+        if (data.contains("[光谱光通量]"))
+            return data.value("[光谱光通量]");
+    }
     return QVariant();
 }
 

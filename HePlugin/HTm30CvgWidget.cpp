@@ -124,7 +124,7 @@ bool HTm30CvgWidget::drawBackground(QPainter *painter)
     auto source = d->coordinate->mapToAxis(d->cvg.rect(), QRectF(-150, -150, 300, 300));
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
-    painter->drawPixmap(target, d->cvg, source);
+    painter->drawImage(target, d->cvg, source);
     painter->restore();
     return true;
 }

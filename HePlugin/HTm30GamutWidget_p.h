@@ -13,10 +13,7 @@ public:
     QPolygonF polyReference;
 
 public:
-    QPixmap cvg;
+    QImage cvg;
     QVector<QLineF> lineEdge;
     QVector<QRectF> rectHueBin;
 };
-
-
-

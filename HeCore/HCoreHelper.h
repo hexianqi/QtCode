@@ -17,6 +17,8 @@ public:
     // 延时
     static void msleep(int msecs);
     static void msleep2(int msecs);
+    // 根据背景色自动计算合适的前景色
+    static QColor calcForeColor(QColor backColor);
     // 读取配置文件
     static void readSettings(const QString &fileName, const QString &prefix, QVariantMap &params);
     // 写入配置文件

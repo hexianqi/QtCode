@@ -481,6 +481,8 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_Rg]",                      new HDataFormatInfo("[TM30_Rg]", 0, 100, 1));
     hashDataFormatInfo.insert("[TM30_Rfi]",                     hashDataFormatInfo.value("[TM30_Rf]"));
     hashDataFormatInfo.insert("[TM30_hj_Rf]",                   hashDataFormatInfo.value("[TM30_Rf]"));
+    hashDataFormatInfo.insert("[TM30_hj_Rcs]",                  new HDataFormatInfo("[TM30_hj_Rcs]", -50, 50, 0));
+    hashDataFormatInfo.insert("[TM30_hj_Rhs]",                  new HDataFormatInfo("[TM30_hj_Rhs]", -0.5, 0.5, 2));
     hashDataFormatInfo.insert("[TM30_hj_at]",                   new HDataFormatInfo("[TM30_hj_at]", -40, 40, 2));
     hashDataFormatInfo.insert("[TM30_hj_bt]",                   hashDataFormatInfo.value("[TM30_hj_at]"));
     hashDataFormatInfo.insert("[TM30_hj_ar]",                   hashDataFormatInfo.value("[TM30_hj_at]"));
@@ -489,8 +491,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_hj_btn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_arn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_brn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
-    hashDataFormatInfo.insert("[TM30_hj_Rcs]",                  new HDataFormatInfo("[TM30_hj_Rcs]", -50, 50, 0));
-    hashDataFormatInfo.insert("[TM30_hj_Rhs]",                  new HDataFormatInfo("[TM30_hj_Rhs]", -0.5, 0.5, 2));
+
 
 //    //光强角度分布参数
 //    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));
@@ -600,6 +601,18 @@ void HCoreGlobalInstance::initDataCaption()
 
     hashDataCaption.insert("[TM30_Rf]",             tr("Rf"));
     hashDataCaption.insert("[TM30_Rg]",             tr("Rg"));
+    hashDataCaption.insert("[TM30_Rfi]",            tr("Rfi"));
+    hashDataCaption.insert("[TM30_hj_Rf]",          tr("hj_Rf"));
+    hashDataCaption.insert("[TM30_hj_Rcs]",         tr("hj_Rcs"));
+    hashDataCaption.insert("[TM30_hj_Rhs]",         tr("hj_Rhs"));
+    hashDataCaption.insert("[TM30_hj_at]",          tr("hj_at"));
+    hashDataCaption.insert("[TM30_hj_bt]",          tr("hj_bt"));
+    hashDataCaption.insert("[TM30_hj_ar]",          tr("hj_ar"));
+    hashDataCaption.insert("[TM30_hj_br]",          tr("hj_br"));
+    hashDataCaption.insert("[TM30_hj_atn]",         tr("hj_atn"));
+    hashDataCaption.insert("[TM30_hj_btn]",         tr("hj_btn"));
+    hashDataCaption.insert("[TM30_hj_arn]",         tr("hj_arn"));
+    hashDataCaption.insert("[TM30_hj_brn]",         tr("hj_brn"));
 }
 
 void HCoreGlobalInstance::initMimeType()

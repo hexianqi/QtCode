@@ -29,6 +29,7 @@ protected:
     HAbstractPrintTemplate(HAbstractPrintTemplatePrivate &p, QObject *parent = nullptr);
 
 protected:
+    virtual bool checkData(QStringList);
     virtual QString toString(QString type);
     virtual QString toStringWhole(QString type);
 

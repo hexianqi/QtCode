@@ -39,6 +39,16 @@ void HAbstractPrintTemplate::setData(QVariantMap value)
     d_ptr->datas = value;
 }
 
+bool HAbstractPrintTemplate::checkData(QStringList list)
+{
+    for (auto type : list)
+    {
+        if (!HDataHelper::derive(type, d_ptr->datas).isValid())
+            return false;
+    }
+    return true;
+}
+
 QString HAbstractPrintTemplate::toString(QString type)
 {
     return HCore::toString(type, HDataHelper::derive(type, d_ptr->datas));

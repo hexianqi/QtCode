@@ -42,7 +42,7 @@ void HTm30RfRgChartView::init()
     chart->setAxisY(axisY);
     d->point = new QScatterSeries;
     d->point->setMarkerShape(QScatterSeries::MarkerShapeCircle);
-    d->point->setMarkerSize(11.0);
+    d->point->setMarkerSize(10.0);
     d->point->append(80, 90);
     auto line = new QLineSeries;
     line->setPen(QPen(Qt::gray, 1, Qt::DashLine));
@@ -89,12 +89,12 @@ void HTm30RfRgChartView::init()
     area22->setBorderColor(color2);
     area22->setUpperSeries(line22);
     area22->setLowerSeries(line23);
-    chart->addSeries(d->point);
     chart->addSeries(line);
     chart->addSeries(area11);
     chart->addSeries(area12);
     chart->addSeries(area21);
     chart->addSeries(area22);
+    chart->addSeries(d->point);
     chart->legend()->setVisible(false);
     setChart(chart);
     setWindowTitle(tr("Rf与Rg关系图"));

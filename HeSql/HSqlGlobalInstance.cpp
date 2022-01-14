@@ -85,6 +85,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("TestDate",                "[测量日期]");
     hashFieldType.insert("TestTime",                "[测量时间]");
     // 光参数
+    hashFieldType.insert("LuminousFluxSpec",        "[光谱光通量]");
     hashFieldType.insert("LuminousFlux",            "[光通量]");
     hashFieldType.insert("LuminousPower",           "[光功率]");
     hashFieldType.insert("LuminousEfficiency",      "[光效率]");
@@ -111,7 +112,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("R9",                      "[显色指数R9]");
     hashFieldType.insert("Rx",                      "[显色指数Rx]");
     hashFieldType.insert("EnergyGraph",             "[光谱能量曲线]");
-    hashFieldType.insert("LuminousFluxSpec",        "[光谱光通量]");
+    hashFieldType.insert("ReflectGraph",            "[光谱反射曲线]");
     // 色容差
     hashFieldType.insert("SDCM",                    "[色容差]");
     // 电
@@ -137,6 +138,21 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("PPFE",                    "[光合光子通量效率]");
     hashFieldType.insert("FluorescenceEfficiency",  "[荧光效能]");
     hashFieldType.insert("FluorescenceRatio",       "[荧光蓝光比]");
+    // TM30
+    hashFieldType.insert("TM30_Rf",                 "[TM30_Rf]");
+    hashFieldType.insert("TM30_Rg",                 "[TM30_Rg]");
+    hashFieldType.insert("TM30_Rfi",                "[TM30_Rfi]");
+    hashFieldType.insert("TM30_hj_Rf",              "[TM30_hj_Rf]");
+    hashFieldType.insert("TM30_hj_Rcs",             "[TM30_hj_Rcs]");
+    hashFieldType.insert("TM30_hj_Rhs",             "[TM30_hj_Rhs]");
+    hashFieldType.insert("TM30_hj_at",              "[TM30_hj_at]");
+    hashFieldType.insert("TM30_hj_bt",              "[TM30_hj_bt]");
+    hashFieldType.insert("TM30_hj_ar",              "[TM30_hj_ar]");
+    hashFieldType.insert("TM30_hj_br",              "[TM30_hj_br]");
+    hashFieldType.insert("TM30_hj_atn",             "[TM30_hj_atn]");
+    hashFieldType.insert("TM30_hj_btn",             "[TM30_hj_btn]");
+    hashFieldType.insert("TM30_hj_arn",             "[TM30_hj_arn]");
+    hashFieldType.insert("TM30_hj_brn",             "[TM30_hj_brn]");
 
 }
 
@@ -186,6 +202,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("R9",                       "R9 numeric(18, 2)");
     hashFieldCreateStyle.insert("Rx",                       "Rx nchar(200)");
     hashFieldCreateStyle.insert("EnergyGraph",              "EnergyGraph ntext");
+    hashFieldCreateStyle.insert("ReflectGraph",             "ReflectGraph ntext");
     // 色容差
     hashFieldCreateStyle.insert("SDCM",                     "SDCM numeric(18, 1)");
     // 电
@@ -211,6 +228,21 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("PPFE",                     "PPFE numeric(18, 3)");
     hashFieldCreateStyle.insert("FluorescenceEfficiency",   "FluorescenceEfficiency numeric(18, 3)");
     hashFieldCreateStyle.insert("FluorescenceRatio",        "FluorescenceRatio numeric(18, 3)");
+    // TM30
+    hashFieldCreateStyle.insert("TM30_Rf",                 "TM30_Rf numeric(18, 2)");
+    hashFieldCreateStyle.insert("TM30_Rg",                 "TM30_Rg numeric(18, 2)");
+    hashFieldCreateStyle.insert("TM30_Rfi",                "TM30_Rfi nchar(700)");
+    hashFieldCreateStyle.insert("TM30_hj_Rf",              "TM30_hj_Rf nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_Rcs",             "TM30_hj_Rcs nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_Rhs",             "TM30_hj_Rhs nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_at",              "TM30_hj_at nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_bt",              "TM30_hj_bt nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_ar",              "TM30_hj_ar nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_br",              "TM30_hj_br nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_atn",             "TM30_hj_atn nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_btn",             "TM30_hj_btn nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_arn",             "TM30_hj_arn nchar(200)");
+    hashFieldCreateStyle.insert("TM30_hj_brn",             "TM30_hj_brn nchar(200)");
 }
 
 HE_END_NAMESPACE

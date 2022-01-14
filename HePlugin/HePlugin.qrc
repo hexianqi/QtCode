@@ -23,5 +23,7 @@
         <file>dat/Tm30BarCamp99.dat</file>
         <file>image/cvg_background.png</file>
         <file>image/7color2.png</file>
+        <file>image/Gamut_background.png</file>
+        <file>image/Gamut_background_s.png</file>
     </qresource>
 </RCC>

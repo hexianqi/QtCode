@@ -39,6 +39,7 @@ QString HSpecTextExportTemplate::parse(QVariantMap data, bool title)
     QStringList list;
     auto types = d->types;
     types.removeAll("[光谱能量曲线]");
+    types.removeAll("[光谱反射曲线]");
 
     if (title)
         text += HCore::toCaptionUnit(types).join("\t") + "\n";
@@ -57,6 +58,7 @@ QString HSpecTextExportTemplate::parse(QVariantList data, bool title)
     QStringList list1, list2;
     auto types = d->types;
     types.removeAll("[光谱能量曲线]");
+    types.removeAll("[光谱反射曲线]");
 
     if (title)
         text += "Index\t" + HCore::toCaptionUnit(types).join("\t") + "\n";

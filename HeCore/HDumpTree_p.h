@@ -17,6 +17,7 @@ public:
     void dump(const QJsonArray &value, const QString &pointer, const QString &prefix = QString());
     void dump(const QJsonObject &value, const QString &pointer, const QString &prefix = QString());
     void dump(const QObject *, const QString &pointer, const QString &prefix = QString());
+    void dumpProperty(const QObject *, const QString &pointer, const QString &prefix = QString());
 
 protected:
     QString space  = "    ";

@@ -17,7 +17,7 @@ class QDESIGNER_WIDGET_EXPORT HSelectDialog : public QDialog
 
 public:
     explicit HSelectDialog(QWidget *parent = nullptr);
-    ~HSelectDialog();
+    ~HSelectDialog() override;
 
 public:
     QString currentText() const;

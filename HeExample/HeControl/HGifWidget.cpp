@@ -117,7 +117,7 @@ void HGifWidget::record()
         d_ptr->fps = ui->spinBox_31->value();
 
         d_ptr->gifWriter = new Gif::GifWriter;
-        if (!d_ptr->gif->GifBegin(d_ptr->gifWriter, d_ptr->fileName.toLocal8Bit().data(), width, height, d_ptr->fps))
+        if (!d_ptr->gif->GifBegin(d_ptr->gifWriter, d_ptr->fileName.toStdString().c_str(), width, height, d_ptr->fps))
         {
             clearWriter();
             return;

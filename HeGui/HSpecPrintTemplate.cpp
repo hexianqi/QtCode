@@ -69,18 +69,32 @@ bool HSpecPrintTemplate::printPages(QPrinter *printer)
 {
     printer->setPageMargins(5, 5, 5, 5, QPrinter::Millimeter);
     QPainter painter(printer);
-    auto y1 = paintHeader(&painter);
-    auto y2 = paintFooter(&painter, 0);
-    y1 = paintTitle(&painter, y1);
-    paintBody(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), 0);
+    printHome(printer, &painter);
+    printTM30(printer, &painter);
+    return true;
+}
+
+void HSpecPrintTemplate::printHome(QPrinter */*printer*/, QPainter *painter)
+{
+    auto y1 = paintHeader(painter);
+    auto y2 = paintFooter(painter, 0);
+    y1 = paintTitle(painter, y1);
+    paintBody(painter, QRectF(0, y1, painter->viewport().width(), y2 - y1), 0);
+}
+
+void HSpecPrintTemplate::printTM30(QPrinter *printer, QPainter *painter)
+{
+    Q_D(HSpecPrintTemplate);
+    if (!checkData(d->tm30Types))
+        return;
+    double y1, y2;
     for (int i = 1; i < 3; i++)
     {
         printer->newPage();
-        y1 = paintHeader(&painter);
-        y2 = paintFooterTM30(&painter, i + 1);
-        paintBodyTM30(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1), i);
+        y1 = paintHeader(painter);
+        y2 = paintFooterTM30(painter, i + 1);
+        paintBodyTM30(painter, QRectF(0, y1, painter->viewport().width(), y2 - y1), i);
     }
-    return true;
 }
 
 double HSpecPrintTemplate::paintHeader(QPainter *painter)
@@ -130,6 +144,7 @@ double HSpecPrintTemplate::paintTitle(QPainter *painter, double y)
 
 void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
 {
+    Q_D(HSpecPrintTemplate);
     auto gap = 8.0;
     rect.adjust(gap, gap, -gap, -gap);
     auto font1 = QFont("宋体", 12, QFont::Bold);
@@ -173,10 +188,13 @@ void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }
-    text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
-    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
-    y += h2;
-
+    // TM30
+    if (checkData(d->tm30Types))
+    {
+        text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
+        painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+        y += h2;
+    }
     // 光度参数
     painter->setFont(font1);
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
@@ -233,10 +251,6 @@ void HSpecPrintTemplate::paintBodyTM30(QPainter *painter, QRectF rect, int page)
         drawChartTm30Gamut(painter, QRectF(x1, y1, w1, y2 - y1));
         drawChartTm30RfRg(painter, QRectF(x2, y1, w1, y2 - y1));
         drawTableTm30Rxhj(painter, QRectF(x3, y3, w2, y4 - y3));
-        return;
-    }
-    if (page == 3)
-    {
         return;
     }
 }

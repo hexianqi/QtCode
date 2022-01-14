@@ -40,43 +40,39 @@ void HControlDemoWidget::init()
 
 void HControlDemoWidget::initWidget()
 {
+    d_ptr->navigationWidget = new HNavigationWidget;
+    d_ptr->stackedWidget = new QStackedWidget;
     auto layout = new QGridLayout(this);
     auto splitter = new QSplitter;
-    auto nav = new HNavigationWidget;
-    auto stacked = new QStackedWidget;
-    auto keys = QStringList() << tr("ludianwu") << tr("ww") << tr("DEMO") << tr("工具") << tr("媒体")<< tr("其他");
-
-    for (const auto &key : keys)
-    {
-        auto w = new QTabWidget;
-        stacked->addWidget(w);
-        nav->addItem(key);
-        d_ptr->tabWidgets.insert(key, w);
-    }
-
-    splitter->addWidget(nav);
-    splitter->addWidget(stacked);
+    splitter->addWidget(d_ptr->navigationWidget);
+    splitter->addWidget(d_ptr->stackedWidget);
     layout->addWidget(splitter);
-    connect(nav, &HNavigationWidget::currentItemChanged, stacked, &QStackedWidget::setCurrentIndex);
+    connect(d_ptr->navigationWidget, &HNavigationWidget::currentItemChanged, d_ptr->stackedWidget, &QStackedWidget::setCurrentIndex);
     resize(1000, 800);
 }
 
-void HControlDemoWidget::addTab(const QString &key, QWidget *w)
+void HControlDemoWidget::addTab(const QString &key, QWidget *widget)
 {
-    addTab(key, w->windowTitle(), w);
+    addTab(key, widget->windowTitle(), widget);
 }
 
-void HControlDemoWidget::addTab(const QString &key, const QString &title, QWidget *w)
+void HControlDemoWidget::addTab(const QString &key, const QString &title, QWidget *widget)
 {
-    if (d_ptr->tabWidgets.contains(key))
-        d_ptr->tabWidgets[key]->addTab(w, title);
+    if (!d_ptr->tabWidgets.contains(key))
+    {
+        auto tab = new QTabWidget;
+        d_ptr->navigationWidget->addItem(key);
+        d_ptr->stackedWidget->addWidget(tab);
+        d_ptr->tabWidgets.insert(key, tab);
+    }
+    d_ptr->tabWidgets[key]->addTab(widget, title);
 }
 
 void HControlDemoWidget::addTab(const QString &key, const QString &title, QLayout *layout)
 {
-    auto w = new QWidget;
-    w->setLayout(layout);
-    addTab(key, title, w);
+    auto widget = new QWidget;
+    widget->setLayout(layout);
+    addTab(key, title, widget);
 }
 
 HE_END_NAMESPACE

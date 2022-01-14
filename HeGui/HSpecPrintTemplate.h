@@ -31,12 +31,14 @@ protected:
     HSpecPrintTemplate(HSpecPrintTemplatePrivate &p, QObject *parent = nullptr);
 
 protected:
+    virtual void printHome(QPrinter *printer, QPainter *painter);
+    virtual void printTM30(QPrinter *printer, QPainter *painter);
     virtual double paintHeader(QPainter *painter);
-    virtual double paintTitle(QPainter *painter, double y);
     virtual double paintFooter(QPainter *painter, int page);
+    virtual double paintTitle(QPainter *painter, double y);
     virtual void paintBody(QPainter *painter, QRectF rect, int page);
-    double paintFooterTM30(QPainter *painter, int page);
-    void paintBodyTM30(QPainter *painter, QRectF rect, int page);
+    virtual double paintFooterTM30(QPainter *painter, int page);
+    virtual void paintBodyTM30(QPainter *painter, QRectF rect, int page);
 
 protected:
     QPointF drawChartSpec(QPainter *painter, QRectF rect);

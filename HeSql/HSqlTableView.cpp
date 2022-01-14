@@ -22,6 +22,7 @@ void HSqlTableView::setModel(ISqlTableModel *model)
     auto display = HSql::toType(field);
     field.removeAll("ID");
     field.removeAll("EnergyGraph");
+    field.removeAll("ReflectGraph");
     auto optional = HSql::toType(field);
     d->optionalExtend->setDisplay(display);
     d->optionalExtend->setOptional(optional);
