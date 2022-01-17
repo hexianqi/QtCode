@@ -75,7 +75,7 @@ public:
 
 public:
     QTimer *timer = nullptr;
-    bool productEditable = false;
+    bool productEditable = true;
     QStringList displays;
     QStringList tableSelecteds;
     QString exportPath;

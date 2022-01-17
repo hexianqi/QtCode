@@ -40,15 +40,15 @@ int main(int argc, char *argv[])
 
 //    HControlFactoryWidget cw;
 //    cw.show();
-    HControlDemoWidget dw;
-    dw.show();
+//    HControlDemoWidget dw;
+//    dw.show();
 
 //    HBreakoutWidget ow;
 //    ow.move(50, 300);
 //    ow.resize(800, 600);
 //    ow.show();
 
-//    HTestAlgorithm::testIesTm30();
+    HTestAlgorithm::testIesTm30();
 
 
 //    MainWindow window;

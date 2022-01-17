@@ -1,4 +1,5 @@
 #include "HSpecFacade_p.h"
+#include "HMath.h"
 #include "HSpecData.h"
 #include "HChromaticity.h"
 #include "HChromaticity2.h"
@@ -54,9 +55,7 @@ void calcSpectrumEnergy(HSpecData *data)
     data->EnergyMax = max;
     data->WavePeak = peak;
     data->Bandwidth = fabs(x - y);
-    data->TestEnergyPercent.clear();
-    for (auto p : data->TestEnergy)
-        data->TestEnergyPercent << QPointF(p.x(), 100 * p.y() / max);
+    data->TestEnergyPercent = HMath::percentY(data->TestEnergy);
 }
 
 HSpecFacadePrivate::HSpecFacadePrivate()

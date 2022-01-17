@@ -6,6 +6,7 @@
 class HTestSetWidget2100DCPrivate : public HAbstractTestSetWidgetPrivate
 {
 public:
+    bool first = true;
     bool autoIntegralTime = false;
     QTimer *timerContinue = nullptr;
     QTimer *timerInterval = nullptr;

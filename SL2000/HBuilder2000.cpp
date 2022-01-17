@@ -39,7 +39,12 @@ HBuilder2000Private::HBuilder2000Private()
                              << "ColorTemperature" << "ColorPurity"
                              << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
                              << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx" << "EnergyGraph";
+                             << "Ra" << "R9" << "Rx"
+                             << "EnergyGraph" << "ReflectGraph"
+                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
+                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
@@ -159,13 +164,47 @@ void HBuilder2000::buildDatabase()
 {
     Q_D(HBuilder2000);
     auto find = d->sqlField;
-    find.removeFirst();
-    find.removeLast();
-    find.removeLast();
+    find.removeAll("ID");
+    find.removeAll("Rx");
+    find.removeAll("EnergyGraph");
+    find.removeAll("ReflectGraph");
+    find.removeAll("TM30_Rfi");
+    find.removeAll("TM30_hj_Rf");
+    find.removeAll("TM30_hj_Rcs");
+    find.removeAll("TM30_hj_Rhs");
+    find.removeAll("TM30_hj_at");
+    find.removeAll("TM30_hj_bt");
+    find.removeAll("TM30_hj_ar");
+    find.removeAll("TM30_hj_br");
+    find.removeAll("TM30_hj_atn");
+    find.removeAll("TM30_hj_btn");
+    find.removeAll("TM30_hj_arn");
+    find.removeAll("TM30_hj_arn");
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
-    HSqlHelper::setVersion("Spec", 0x01010101);
+    if (db->contains("Spec"))
+    {
+        auto version = HSqlHelper::getVersion("Spec");
+        // 1.1.1.2 添加列R9
+        if (version < 0x01010102)
+            HSqlHelper::addColumn("Spec", "R9");
+        // 1.1.1.3 添加列（光合）
+        if (version < 0x01010103)
+            HSqlHelper::addColumn("Spec", QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800"
+                                                        << "PPF" << "PRF" << "PPFE"
+                                                        << "FluorescenceEfficiency" << "FluorescenceRatio");
+        // 1.1.1.4 添加列SDCM
+        if (version < 0x01010104)
+            HSqlHelper::addColumn("Spec", "SDCM");
+        // 1.1.1.5 添加列TM30
+        if (version < 0x01010105)
+            HSqlHelper::addColumn("Spec", QStringList() << "ReflectGraph" << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
+                                                        << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+                                                        << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+                                                        << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
+    }
+    HSqlHelper::setVersion("Spec", 0x01010105);
 
     auto model = d->sqlFactory->createTableModel("HSqlTableModel");
     auto handle = d->sqlFactory->createHandle("HSqlHandle");

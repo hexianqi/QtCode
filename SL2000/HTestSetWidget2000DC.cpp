@@ -83,7 +83,8 @@ void HTestSetWidget2000DC::handleAction(HActionType action)
             setTestState(false);
         break;
     case ACT_GET_SPECTRUM_ELEC:
-        emit resultChanged(action, d->testMode == 3);
+        emit resultChanged(action, d->testMode == 3 || d->first);
+        d->first = false;
         if (!d->testState)
             break;
         adjustIntegralTime();
@@ -104,6 +105,7 @@ bool HTestSetWidget2000DC::setTestState(bool b)
 
     if (b)
     {
+        d->first = true;
         d->testData->handleOperation("<清空光谱采样缓存>");
         if (d->testMode == 0)
         {

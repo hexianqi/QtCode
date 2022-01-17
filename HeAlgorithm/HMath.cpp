@@ -4,7 +4,7 @@
 
 HE_BEGIN_NAMESPACE
 
-double HMath::sum(QVector<double> value)
+double HMath::sum(const QVector<double> &value)
 {
     if (value.size() < 1)
         return 0.0;
@@ -14,11 +14,41 @@ double HMath::sum(QVector<double> value)
     return sum;
 }
 
-double HMath::mean(QVector<double> value)
+double HMath::mean(const QVector<double> &value)
 {
     if (value.size() < 1)
         return 0.0;
     return sum(value) / value.size();
+}
+
+QVector<double> HMath::percent(const QVector<double> &value)
+{
+    if (value.size() < 1)
+        return {};
+
+    QVector<double> result;
+    auto max = value.first();
+    for (auto v : value)
+        if (v > max)
+            max = v;
+    for (auto v : value)
+        result << 100 * v / max;
+    return result;
+}
+
+QPolygonF HMath::percentY(const QPolygonF &value)
+{
+    if (value.size() < 1)
+        return {};
+
+    QPolygonF result;
+    auto max = value.first().y();
+    for (auto p : value)
+        if (p.y() > max)
+            max = p.y();
+    for (auto p : value)
+        result << QPointF(p.x(), 100 * p.y() / max);
+    return result;
 }
 
 double HMath::interpolate(double x, double x1, double y1, double x2, double y2)
@@ -31,7 +61,7 @@ double HMath::interpolate(double x, QPointF p1, QPointF p2)
     return interpolate(x, p1.x(), p1.y(), p2.x(), p2.y());
 }
 
-double HMath::interpolate(double x, QPolygonF poly)
+double HMath::interpolate(double x, const QPolygonF &poly)
 {
     if (poly.size() < 2)
         return 0;
@@ -45,14 +75,14 @@ double HMath::interpolate(double x, QPolygonF poly)
     return interpolate(x, poly[i - 1], poly[i]);
 }
 
-QPolygonF HMath::interpolate(QPolygonF poly, double x1, double x2, double interval)
+QPolygonF HMath::interpolate(const QPolygonF &poly, double x1, double x2, double interval)
 {
     int i,j,n;
     double x, y;
     QPolygonF result;
 
     if (poly.size() < 2)
-        return result;
+        return {};
 
     if (x2 < x1)
         qSwap(x1, x2);
@@ -73,7 +103,7 @@ double HMath::interpolateY(double y, QPointF p1, QPointF p2)
     return interpolate(y, p1.y(), p1.x(), p2.y(), p2.x());
 }
 
-double HMath::interpolateY(double y, QPolygonF poly)
+double HMath::interpolateY(double y, const QPolygonF &poly)
 {
     if (poly.size() < 2)
         return 0;

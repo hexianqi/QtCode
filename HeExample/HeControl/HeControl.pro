@@ -6,7 +6,7 @@
 
 QT          += widgets serialport network xml svg concurrent sql
 
-CONFIG      += resources_big
+CONFIG      += resources_big warn_off
 
 TEMPLATE    = lib
 

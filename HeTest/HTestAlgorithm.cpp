@@ -10,6 +10,7 @@
 #include "HePlugin/HTm30RhshjChartView.h"
 #include "HePlugin/HTm30RxhjWidget.h"
 #include "HePlugin/HTm30CvgWidget.h"
+#include "HePlugin/HTm30SpdChartView.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QtCore/QDebug>
@@ -69,6 +70,12 @@ IES_TM30 HTestAlgorithm::testIesTm30()
     qDebug() << res.hj.Rf;
     qDebug() << res.hj.Rcs;
     qDebug() << res.hj.Rhs;
+
+//    auto view = new HTm30SpdChartView();
+//    view->setTest(spdt);
+//    view->setReference(spdr);
+//    view->show();
+
     return res;
 }
 

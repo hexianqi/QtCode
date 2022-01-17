@@ -110,20 +110,19 @@ void HDumpTreePrivate::dump(const QJsonObject &value, const QString &pointer, co
         dump(it.value(), it.key(), it == end - 1 ? last : tee, prefix + extension);
 }
 
-void HDumpTreePrivate::dump(const QObject *p, const QString &pointer, const QString &prefix)
+void HDumpTreePrivate::dumpChild(const QObject *p, const QString &pointer, const QString &prefix)
 {
     qDebug() << QString("%1%2%3 : %4").arg(prefix, pointer, p->metaObject()->className(), p->objectName());
     auto extension = pointer == tee ? branch : space;
     auto children = p->children();
     auto size = children.size();
     for (int i = 0; i < size; i++)
-        dump(children.at(i), i == size - 1 ? last : tee, prefix + extension);
+        dumpChild(children.at(i), i == size - 1 ? last : tee, prefix + extension);
 }
 
 void HDumpTreePrivate::dumpProperty(const QObject *p, const QString &pointer, const QString &prefix)
 {
     qDebug() << QString("%1%2%3 : %4").arg(prefix, pointer, p->metaObject()->className(), p->objectName());
-
     int i;
     auto extension = pointer == tee ? branch : space;
     auto object = p->metaObject();
@@ -163,10 +162,10 @@ void HDumpTree::dump(const QJsonValue &value, const QString &name)
     d.dump(value, name, "");
 }
 
-void HDumpTree::dump(const QObject *p)
+void HDumpTree::dumpChild(const QObject *p)
 {
     HDumpTreePrivate d;
-    d.dump(p, "");
+    d.dumpChild(p, "");
 }
 
 void HDumpTree::dumpProperty(const QObject *p)

@@ -16,7 +16,7 @@ public:
     void dump(const QJsonValue &value, const QString &name, const QString &pointer, const QString &prefix = QString());
     void dump(const QJsonArray &value, const QString &pointer, const QString &prefix = QString());
     void dump(const QJsonObject &value, const QString &pointer, const QString &prefix = QString());
-    void dump(const QObject *, const QString &pointer, const QString &prefix = QString());
+    void dumpChild(const QObject *, const QString &pointer, const QString &prefix = QString());
     void dumpProperty(const QObject *, const QString &pointer, const QString &prefix = QString());
 
 protected:

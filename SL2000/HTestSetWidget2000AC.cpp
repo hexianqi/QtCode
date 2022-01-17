@@ -32,7 +32,8 @@ void HTestSetWidget2000AC::handleAction(HActionType action)
         ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
         break;
     case ACT_GET_SPECTRUM_ELEC:
-        emit resultChanged(action, false);
+        emit resultChanged(action, d->first);
+        d->first = false;
         if (!d->testState)
             break;
         adjustIntegralTime();
@@ -51,6 +52,7 @@ bool HTestSetWidget2000AC::setTestState(bool b)
 
     if (b)
     {
+        d->first = true;
         d->testData->handleOperation("<清空光谱采样缓存>");
         d->model->addAction(ACT_GET_SPECTRUM_ELEC);
         if (d->testMode == 1)

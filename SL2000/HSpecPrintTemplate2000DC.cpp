@@ -21,6 +21,7 @@ QString HSpecPrintTemplate2000DC::typeName()
 
 void HSpecPrintTemplate2000DC::paintBody(QPainter *painter, QRectF rect, int /*page*/)
 {
+    Q_D(HSpecPrintTemplate2000DC);
     auto gap = 8.0;
     rect.adjust(gap, gap, -gap, -gap);
     auto font1 = QFont("宋体", 12, QFont::Bold);
@@ -79,9 +80,13 @@ void HSpecPrintTemplate2000DC::paintBody(QPainter *painter, QRectF rect, int /*p
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }
-    text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
-    painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
-    y += h2;
+    // TM30
+    if (checkData(d->tm30Types))
+    {
+        text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
+        painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+        y += h2;
+    }
     // 光度参数
     painter->setFont(font1);
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
@@ -113,7 +118,7 @@ void HSpecPrintTemplate2000DC::init()
 {
     Q_D(HSpecPrintTemplate2000DC);
     auto elecTypes = QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]";
-    d->types = QStringList() << d->productTypes << d->specTypes << d->quantumTypes << d->tm30Types << elecTypes << "[光效率]";
+    d->types = QStringList() << d->productTypes << d->specTypes << d->quantumTypes << d->tm30Types << elecTypes;
     d->params.insert("Header",      tr("松朗光色电综合测试报告"));
     d->params.insert("Title",       tr("光色电综合测试报告"));
     d->params.insert("DrawHeader",  true);

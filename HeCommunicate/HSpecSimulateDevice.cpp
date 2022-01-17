@@ -58,10 +58,9 @@ bool HSpecSimulateDevice::getData(HActionType action, QVector<uchar> &value, int
 double HSpecSimulateDevice::simulate(double value)
 {
     Q_D(HSpecSimulateDevice);
-    QRandomGenerator rg;
     if (value < 50)
         return 1000;
-//    return rg.bounded(1000, 61000);     // 方法1：范围[1000, 61000]内随机
+//    return QRandomGenerator::global()->bounded(1000, 61000);     // 方法1：范围[1000, 61000]内随机
 
     // 方法2：与积分时间、采样点相关
     auto r = qDegreesToRadians(180.0 * value / 2304);   // 0-180度

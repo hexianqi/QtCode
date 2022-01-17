@@ -12,7 +12,7 @@ TRANSLATIONS = SL2100_en.ts
 
 DEFINES     += \
             SL2100DC \
-#            SIMULATE
+            SIMULATE
 
 HEADERS     += \
             HDaXinStrategy.h \

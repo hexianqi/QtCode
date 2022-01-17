@@ -9,7 +9,6 @@
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
-    productEditable = true;
     displays = QStringList() << "[调整组]"
                              << "[测量日期]" << "[测量时间]" << "[制造厂商]" << "[产品型号]" << "[测试员]" << "[样品编号]" << "[备注]" << "[环境温度]" << "[环境湿度]"
                              << "[分级]"

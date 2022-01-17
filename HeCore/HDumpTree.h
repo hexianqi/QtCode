@@ -22,7 +22,7 @@ public:
 public:
     static void dump(const QVariant &value, const QString &name = QString());
     static void dump(const QJsonValue &value, const QString &name = QString());
-    static void dump(const QObject *);
+    static void dumpChild(const QObject *);
     static void dumpProperty(const QObject *);
 
 protected:

@@ -231,7 +231,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     // TM30
     hashFieldCreateStyle.insert("TM30_Rf",                 "TM30_Rf numeric(18, 2)");
     hashFieldCreateStyle.insert("TM30_Rg",                 "TM30_Rg numeric(18, 2)");
-    hashFieldCreateStyle.insert("TM30_Rfi",                "TM30_Rfi nchar(700)");
+    hashFieldCreateStyle.insert("TM30_Rfi",                "TM30_Rfi nchar(1000)");
     hashFieldCreateStyle.insert("TM30_hj_Rf",              "TM30_hj_Rf nchar(200)");
     hashFieldCreateStyle.insert("TM30_hj_Rcs",             "TM30_hj_Rcs nchar(200)");
     hashFieldCreateStyle.insert("TM30_hj_Rhs",             "TM30_hj_Rhs nchar(200)");

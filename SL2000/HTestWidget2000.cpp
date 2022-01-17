@@ -4,6 +4,7 @@
 
 HTestWidget2000Private::HTestWidget2000Private()
 {
+    productEditable = false;
     displays = QStringList() << "[测量日期]" << "[测量时间]"
                              << "[分级]"
                              << "[色容差]"

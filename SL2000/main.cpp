@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 {
     QApplication::addLibraryPath("./plugins");
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication a(argc, argv);
 
 #ifdef HE_ENGLISH

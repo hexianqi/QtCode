@@ -21,6 +21,7 @@ QString HSpecPrintTemplate2000AC::typeName()
 
 void HSpecPrintTemplate2000AC::paintBody(QPainter *painter, QRectF rect, int /*page*/)
 {
+    Q_D(HSpecPrintTemplate2000AC);
     auto gap = 8.0;
     rect.adjust(gap, gap, -gap, -gap);
     auto font1 = QFont("宋体", 12, QFont::Bold);
@@ -75,6 +76,13 @@ void HSpecPrintTemplate2000AC::paintBody(QPainter *painter, QRectF rect, int /*p
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
         y += h2;
     }
+    // TM30
+    if (checkData(d->tm30Types))
+    {
+        text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
+        painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
+        y += h2;
+    }
     // 光度参数
     painter->setFont(font1);
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
@@ -105,18 +113,8 @@ void HSpecPrintTemplate2000AC::paintBody(QPainter *painter, QRectF rect, int /*p
 void HSpecPrintTemplate2000AC::init()
 {
     Q_D(HSpecPrintTemplate2000AC);
-    d->types = QStringList() << "[制造厂商]" << "[产品名称]" << "[产品型号]"  << "[样品编号]" << "[测试单位]" << "[测试员]"
-                             << "[环境温度]" << "[环境湿度]" << "[测量日期时间]"
-                             << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]"
-                             << "[色坐标]" <<  "[色坐标x]" << "[色坐标y]" << "[色坐标up]" << "[色坐标vp]" << "[Duv]"
-                             << "[色温]" << "[色纯度]" << "[色容差]"
-                             << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
-                             << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                             << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]"
-                             << "[光谱光通量]" << "[光功率]" << "[光效率]"
-                             << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
-                             << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
-                             << "[荧光效能]" << "[荧光蓝光比]";
+    auto elecTypes = QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]";
+    d->types = QStringList() << d->productTypes << d->specTypes << d->quantumTypes << d->tm30Types << elecTypes;
     d->params.insert("Header",      tr("松朗光色电综合测试报告"));
     d->params.insert("Title",       tr("光色电综合测试报告"));
     d->params.insert("DrawHeader",  true);

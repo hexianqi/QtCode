@@ -17,10 +17,9 @@ void HParticle::update(float dt)
 
 void HParticle::respawn(QVector2D position, QVector2D velocity, QVector2D offset)
 {
-    QRandomGenerator random;
-    auto x = random.generateDouble() * 10.0 - 5;
-    auto y = random.generateDouble() * 10.0 - 5;
-    auto color = 0.5 + random.generateDouble();
+    auto x = QRandomGenerator::global()->generateDouble() * 10.0 - 5;
+    auto y = QRandomGenerator::global()->generateDouble() * 10.0 - 5;
+    auto color = QRandomGenerator::global()->generateDouble() + 0.5;
     this->Position = position + offset + QVector2D(x, y);
     this->Color = QVector4D(color, color, color, 1.0f);
     this->Life = 1.0f;

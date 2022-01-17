@@ -1,4 +1,5 @@
 #include "HChromaticity_p.h"
+#include "HMath.h"
 #include "HSpecData.h"
 #include "HSpecHelper.h"
 #include <QtCore/QFile>
@@ -42,15 +43,9 @@ void HChromaticity::calcSpectrum(HSpecData *data)
     data->ColorPurity = r2.last();
     data->RenderingIndex = calcColorRenderingIndex(data->CoordinateUV, data->TestEnergy, data->ColorTemperature);
     data->RenderingIndexAvg = calcColorRenderingIndexAvg(data->RenderingIndex);
-
     // TM30
     data->ReferenceEnergy = d_ptr->cieDay->calcRefSourceSpectrum(data->ColorTemperature);
-    auto max = 0.0;
-    for (auto p : data->ReferenceEnergy)
-        if (p.y() > max)
-            max = p.y();
-    for (auto p : data->ReferenceEnergy)
-        data->ReferenceEnergyPercent << QPointF(p.x(), 100 * p.y() / max);
+    data->ReferenceEnergyPercent = HMath::percentY(data->ReferenceEnergy);
     auto r3 = d_ptr->iesTm30->calc(data->TestEnergy, data->ReferenceEnergy);
     data->TM30_Rf = r3.Rf;
     data->TM30_Rg = r3.Rg;

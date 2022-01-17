@@ -15,6 +15,7 @@ QHash<HErrorType, QString>          hashErrorComment;
 QHash<QString, HDataFormatInfo *>   hashDataFormatInfo;
 QHash<QString, QString>             hashDataCaption;
 QHash<QString, QSet<QString>>       hashMimeType;
+QHash<QString, QStringList>         hashGroupData;
 
 char *HCore::toCommand(HLogType type)
 {
@@ -481,8 +482,8 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_Rg]",                      new HDataFormatInfo("[TM30_Rg]", 0, 100, 1));
     hashDataFormatInfo.insert("[TM30_Rfi]",                     hashDataFormatInfo.value("[TM30_Rf]"));
     hashDataFormatInfo.insert("[TM30_hj_Rf]",                   hashDataFormatInfo.value("[TM30_Rf]"));
-    hashDataFormatInfo.insert("[TM30_hj_Rcs]",                  new HDataFormatInfo("[TM30_hj_Rcs]", -50, 50, 0));
-    hashDataFormatInfo.insert("[TM30_hj_Rhs]",                  new HDataFormatInfo("[TM30_hj_Rhs]", -0.5, 0.5, 2));
+    hashDataFormatInfo.insert("[TM30_hj_Rcs]",                  new HDataFormatInfo("[TM30_hj_Rcs]", -50, 50, 1));
+    hashDataFormatInfo.insert("[TM30_hj_Rhs]",                  new HDataFormatInfo("[TM30_hj_Rhs]", -0.5, 0.5, 3));
     hashDataFormatInfo.insert("[TM30_hj_at]",                   new HDataFormatInfo("[TM30_hj_at]", -40, 40, 2));
     hashDataFormatInfo.insert("[TM30_hj_bt]",                   hashDataFormatInfo.value("[TM30_hj_at]"));
     hashDataFormatInfo.insert("[TM30_hj_ar]",                   hashDataFormatInfo.value("[TM30_hj_at]"));

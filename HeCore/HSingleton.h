@@ -30,10 +30,11 @@ public:
 
     static void release()
     {
-        if (__instance == nullptr)
-            return;
-        delete __instance;
-        __instance = nullptr;
+        if (__instance)
+        {
+            delete __instance;
+            __instance = nullptr;
+        }
     }
 
 protected:
