@@ -1,36 +1,22 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2018-05-14T09:35:52
-#
-#-------------------------------------------------
-
-QT              += core gui widgets sql printsupport
-
-TEMPLATE        = app
+QT              += core gui widgets
 
 CONFIG          += c++11
 
-TRANSLATIONS    = SL2000_en.ts
-
 DESTDIR         = "../Dest"
 
-# You can also make your code fail to compile if you use deprecated APIs.
+TRANSLATIONS    = SL7000_en.ts
+
+# You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 DEFINES     += \
-#           SL2000 \
-#           SL2000AC \
-            SL2000DC \
-#           SL2000F \
+            SL7000 \
             SIMULATE
+
 
 SOURCES     += \
             main.cpp
-
-RESOURCES   += \
-            SL2000.qrc
 
 INCLUDEPATH += ..
 
@@ -57,22 +43,9 @@ Release {
             -L$$DESTDIR -lHeSql
 }
 
-include(SL2000.pri)
-include(SL2000AC.pri)
-include(SL2000DC.pri)
-include(SL2000F.pri)
+include(SL7000.pri)
 
-if (contains(DEFINES, SL2000)) {
-    TARGET_NAME = SL2000
-} else : if (contains(DEFINES, SL2000AC)) {
-    TARGET_NAME = SL2000AC
-} else : if (contains(DEFINES, SL2000DC)) {
-    TARGET_NAME = SL2000DC
-} else : if (contains(DEFINES, SL2000F)) {
-    TARGET_NAME = SL2000F
-} else {
-    TARGET_NAME = Test
-}
+TARGET_NAME                 = SL7000
 
 TARGET                      = $$TARGET_NAME
 VERSION                     = 1.0.0.1

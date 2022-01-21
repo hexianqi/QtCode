@@ -1,9 +1,7 @@
 #pragma once
 
 #include "HDaXinDevice.h"
-#include "HAbstractDevice_p.h"
-
-HE_BEGIN_NAMESPACE
+#include "HeCommunicate/HAbstractDevice_p.h"
 
 class HDaXinDevicePrivate : public HAbstractDevicePrivate
 {
@@ -14,5 +12,3 @@ public:
     uchar da;
     uchar sa;
 };
-
-HE_END_NAMESPACE

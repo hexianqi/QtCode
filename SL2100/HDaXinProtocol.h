@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HBigProtocol.h"
+#include "HeCommunicate/HBigProtocol.h"
 
-HE_BEGIN_NAMESPACE
+HE_USE_NAMESPACE
 
 class HDaXinProtocolPrivate;
 
@@ -25,6 +25,4 @@ public:
 protected:
     HDaXinProtocol(HDaXinProtocolPrivate &);
 };
-
-HE_END_NAMESPACE
 

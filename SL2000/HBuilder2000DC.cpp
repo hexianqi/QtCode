@@ -26,6 +26,7 @@
 #include "HeSql/ISqlBrowser.h"
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/ISqlOutput.h"
+#include "HeSql/HSql.h"
 #include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
@@ -257,18 +258,13 @@ void HBuilder2000DC::buildDatabase()
             HSqlHelper::addColumn("Spec", "R9");
         // 1.1.1.3 添加列（光合）
         if (version < 0x01010103)
-            HSqlHelper::addColumn("Spec", QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800"
-                                                        << "PPF" << "PRF" << "PPFE"
-                                                        << "FluorescenceEfficiency" << "FluorescenceRatio");
+            HSqlHelper::addColumn("Spec", HSql::membership("|光合信息|"));
         // 1.1.1.4 添加列SDCM
         if (version < 0x01010104)
             HSqlHelper::addColumn("Spec", "SDCM");
         // 1.1.1.5 添加列TM30
         if (version < 0x01010105)
-            HSqlHelper::addColumn("Spec", QStringList() << "ReflectGraph" << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
-                                                        << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-                                                        << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                                                        << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
+            HSqlHelper::addColumn("Spec", QStringList() << "ReflectGraph" << HSql::membership("|TM30信息|"));
     }
     HSqlHelper::setVersion("Spec", 0x01010105);
 
@@ -339,7 +335,9 @@ void HBuilder2000DC::buildMenu()
     d->mainWindow->insertMenu(test);
     d->mainWindow->insertMenu(database);
     d->mainWindow->insertMenu(account);
-//    d->mainWindow->setAuthority(0);
+#ifndef QT_DEBUG
+    d->mainWindow->setAuthority(0);
+#endif
 }
 
 void HBuilder2000DC::buildTestWidget()

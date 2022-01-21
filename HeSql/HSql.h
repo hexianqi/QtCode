@@ -32,6 +32,10 @@ public:
     static QStringList toCaptionUnit(const QStringList &field);
 
 public:
+    static QStringList membership(const QString &name);
+    static QStringList membership(const QStringList &name);
+
+public:
     static QVariantMap toRecord(const QStringList &field, ITestData *);
     static QVariantMap toData(const QStringList &type, QSqlRecord);
 };

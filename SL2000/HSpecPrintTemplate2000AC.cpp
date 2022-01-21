@@ -1,4 +1,5 @@
 #include "HSpecPrintTemplate2000AC_p.h"
+#include "HeCore/HCore.h"
 #include <QtGui/QPainter>
 
 HSpecPrintTemplate2000AC::HSpecPrintTemplate2000AC(QObject *parent) :
@@ -77,7 +78,7 @@ void HSpecPrintTemplate2000AC::paintBody(QPainter *painter, QRectF rect, int /*p
         y += h2;
     }
     // TM30
-    if (checkData(d->tm30Types))
+    if (d->haveTM30)
     {
         text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
@@ -113,8 +114,7 @@ void HSpecPrintTemplate2000AC::paintBody(QPainter *painter, QRectF rect, int /*p
 void HSpecPrintTemplate2000AC::init()
 {
     Q_D(HSpecPrintTemplate2000AC);
-    auto elecTypes = QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]";
-    d->types = QStringList() << d->productTypes << d->specTypes << d->quantumTypes << d->tm30Types << elecTypes;
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息|" << "|光合信息|" << "|色容差信息2|" << "|TM30信息|" << "|交流电信息|");
     d->params.insert("Header",      tr("松朗光色电综合测试报告"));
     d->params.insert("Title",       tr("光色电综合测试报告"));
     d->params.insert("DrawHeader",  true);

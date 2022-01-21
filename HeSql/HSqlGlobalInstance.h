@@ -24,6 +24,10 @@ protected:
 protected:
     void initFieldType();
     void initFieldCreateStyle();
+    void initFieldGroup();
+
+private:
+    bool _initialized = false;
 };
 
 HE_END_NAMESPACE

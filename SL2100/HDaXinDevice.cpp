@@ -1,9 +1,7 @@
 #include "HDaXinDevice_p.h"
-#include "IPort.h"
 #include "HeCore/HException.h"
+#include "HeCommunicate/IPort.h"
 #include <QtCore/QVector>
-
-HE_BEGIN_NAMESPACE
 
 uint crc_tab[] = { 0x0000, 0x1021, 0x2042, 0x3063,
                    0x4084, 0x50a5, 0x60c6, 0x70e7,
@@ -136,5 +134,3 @@ bool HDaXinDevice::check()
     return setData(ACT_SET_SOURCE_OPERATION, QVector<uchar>() << 0x00) &&
            setData(ACT_SET_OUTPUT_CURRENT, QVector<uchar>() << 0x00 << 0x00);
 }
-
-HE_END_NAMESPACE

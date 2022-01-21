@@ -8,6 +8,3 @@ class HMainWindow2100DCPrivate : public HAbstractMainWindowPrivate
 public:
     using HAbstractMainWindowPrivate::HAbstractMainWindowPrivate;
 };
-
-
-

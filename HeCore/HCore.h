@@ -29,7 +29,11 @@ public:
     static QString toCaption(const QString &type);
     static QStringList toCaption(QStringList type);
     static QString toCaptionUnit(const QString &type);
-    static QStringList toCaptionUnit(QStringList type);
+    static QStringList toCaptionUnit(const QStringList &type);
+
+public:
+    static QStringList membership(const QString &name);
+    static QStringList membership(const QStringList &name);
 
 public:
     static QString fileNameFilter(const QString &name, const QList<QByteArray> &formats);

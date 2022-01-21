@@ -18,22 +18,6 @@ HE_BEGIN_NAMESPACE
 HSpecPrintTemplatePrivate::HSpecPrintTemplatePrivate()
 {
     prefix = "SpecPrintTemplate";
-    productTypes << "[制造厂商]" << "[产品名称]" << "[产品型号]"  << "[样品编号]" << "[测试单位]" << "[测试员]"
-                 << "[环境温度]" << "[环境湿度]" << "[测量日期时间]";
-    specTypes << "[色坐标]" <<  "[色坐标x]" << "[色坐标y]" << "[色坐标up]" << "[色坐标vp]" << "[Duv]"
-              << "[色温]" << "[Duv]" << "[色纯度]" << "[色容差]"
-              << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
-              << "[红色比]" << "[绿色比]" << "[蓝色比]"
-              << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]"
-              << "[光谱光通量]" << "[光通量]" << "[光功率]" << "[光效率]"
-              << "[光谱能量曲线]" << "[光谱反射曲线]";
-    quantumTypes << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
-                 << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
-                 << "[荧光效能]" << "[荧光蓝光比]";
-    tm30Types << "[TM30_Rf]" << "[TM30_Rg]" << "[TM30_Rfi]"
-              << "[TM30_hj_at]" << "[TM30_hj_bt]" << "[TM30_hj_ar]" << "[TM30_hj_br]"
-              << "[TM30_hj_atn]" << "[TM30_hj_btn]" << "[TM30_hj_arn]" << "[TM30_hj_brn]"
-              << "[TM30_hj_Rf]" << "[TM30_hj_Rcs]" << "[TM30_hj_Rhs]";
 }
 
 HSpecPrintTemplate::HSpecPrintTemplate(QObject *parent) :
@@ -67,6 +51,8 @@ QString HSpecPrintTemplate::typeName()
 
 bool HSpecPrintTemplate::printPages(QPrinter *printer)
 {
+    Q_D(HSpecPrintTemplate);
+    d->haveTM30 = checkData(HCore::membership("|TM30信息|"));
     printer->setPageMargins(5, 5, 5, 5, QPrinter::Millimeter);
     QPainter painter(printer);
     printHome(printer, &painter);
@@ -85,7 +71,7 @@ void HSpecPrintTemplate::printHome(QPrinter */*printer*/, QPainter *painter)
 void HSpecPrintTemplate::printTM30(QPrinter *printer, QPainter *painter)
 {
     Q_D(HSpecPrintTemplate);
-    if (!checkData(d->tm30Types))
+    if (!d->haveTM30)
         return;
     double y1, y2;
     for (int i = 1; i < 3; i++)
@@ -189,7 +175,7 @@ void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
         y += h2;
     }
     // TM30
-    if (checkData(d->tm30Types))
+    if (d->haveTM30)
     {
         text = tr(" TM30 参数：Rf = %1    Rg = %2").arg(toString("[TM30_Rf]"), toString("[TM30_Rg]"));
         painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
@@ -411,7 +397,7 @@ QPointF HSpecPrintTemplate::drawTableTm30Rxhj(QPainter *painter, QRectF rect)
 void HSpecPrintTemplate::init()
 {
     Q_D(HSpecPrintTemplate);
-    d->types = QStringList() << d->productTypes << d->specTypes << d->tm30Types;
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息|" << "|色容差信息2|" << "|TM30信息|");
     d->params.insert("Header",      tr("松朗光电测试报告"));
     d->params.insert("Title",       tr("光谱测试报告"));
     d->params.insert("DrawHeader",  true);

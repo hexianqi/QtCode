@@ -23,7 +23,7 @@ bool HTestMedia::videoPlayer_vlc(QString fileName)
     qDebug() << path;
 
     auto instance = libvlc_new(0, nullptr);
-    auto media = libvlc_media_new_path(instance, fileName.toUtf8().constData());
+    auto media = libvlc_media_new_path(instance, path);
 //    auto media = libvlc_media_new_location(instance, path);
 
     auto player = libvlc_media_player_new_from_media(media);

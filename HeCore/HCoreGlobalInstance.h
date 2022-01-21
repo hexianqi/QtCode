@@ -27,6 +27,7 @@ protected:
     void initErrorComment();
     void initDataFormatInfo();
     void initDataCaption();
+    void initDataGroup();
     void initMimeType();
 
 private:

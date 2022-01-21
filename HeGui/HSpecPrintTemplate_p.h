@@ -28,10 +28,7 @@ public:
     HTm30RfiChartView *rfiWidget = nullptr;
     HTm30GamutWidget *gamutWidget = nullptr;
     HTm30RfRgChartView *rfrgWidget = nullptr;
-    QStringList productTypes;
-    QStringList specTypes;
-    QStringList quantumTypes;
-    QStringList tm30Types;
+    bool haveTM30 = true;
 };
 
 HE_END_NAMESPACE

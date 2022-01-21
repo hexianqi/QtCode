@@ -1,10 +1,10 @@
-QT          += core gui widgets sql
+QT              += core gui widgets sql
 
-CONFIG      += c++11
+CONFIG          += c++11
 
-DESTDIR     = "../Dest"
+DESTDIR         = "../Dest"
 
-TRANSLATIONS = SL2100_en.ts
+TRANSLATIONS    = SL2100_en.ts
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -14,12 +14,7 @@ DEFINES     += \
             SL2100DC \
             SIMULATE
 
-HEADERS     += \
-            HDaXinStrategy.h \
-            HDaXinStrategy_p.h
-
 SOURCES     += \
-            HDaXinStrategy.cpp \
             main.cpp
 
 INCLUDEPATH += ..
@@ -47,6 +42,7 @@ Release {
             -L$$DESTDIR -lHeSql
 }
 
+include(DaXin.pri)
 include(SL2100DC.pri)
 
 if (contains(DEFINES, SL2100DC)) {
@@ -57,19 +53,11 @@ if (contains(DEFINES, SL2100DC)) {
     TARGET_NAME = SL2100
 }
 
-TARGET = $$TARGET_NAME
-
-#版本信息
-VERSION = 1.0.0.1
-# 图标
-RC_ICONS = Image/Icon.ico
-# 公司名称
-QMAKE_TARGET_COMPANY = "SongLang"
-# 产品名称
-QMAKE_TARGET_PRODUCT = $$TARGET_NAME
-# 文件说明
-QMAKE_TARGET_DESCRIPTION = $$TARGET_NAME
-# 版权信息
-QMAKE_TARGET_COPYRIGHT = "版权所有：2017-2022 保留所有权利。"
-# 中文（简体）
-RC_LANG = 0x0004
+TARGET                      = $$TARGET_NAME
+VERSION                     = 1.0.0.1
+RC_ICONS                    = Image/Icon.ico
+RC_LANG                     = 0x0004
+QMAKE_TARGET_COMPANY        = "SongLang"
+QMAKE_TARGET_PRODUCT        = $$TARGET_NAME
+QMAKE_TARGET_DESCRIPTION    = $$TARGET_NAME
+QMAKE_TARGET_COPYRIGHT      = "版权所有：2017-2022 保留所有权利。"

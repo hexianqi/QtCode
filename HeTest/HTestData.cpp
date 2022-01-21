@@ -54,7 +54,7 @@ void HTestData::testJson2()
 
     QVariantMap datas;
     datas.insert("[项类型]", "Undefined");
-    datas.insert("[标题]", "");
+    datas.insert("[标题]", "成都市打算发大水阿大厦的阿迪达的");
     datas.insert("[使用]", true);
     datas.insert("[相关色温]", 0.0);
     datas.insert("[标准Sdcm]", 5.0);
@@ -65,7 +65,7 @@ void HTestData::testJson2()
     datas.insert("[轴B]", 0.0);
     datas.insert("[测试点]", QVariantList() << 1.0 << 2.0);
     datas.insert("[测试Sdcm]", 3.0);
-    datas.insert("Tr", datasX);
+//    datas.insert("Tr", datasX);
 //    datas.insert("[测试]", QVariant::fromValue(QList<double>() << 10.0 << 12.0 << 15.0));
 
     auto json = QJsonObject::fromVariantMap(datas);
@@ -78,6 +78,8 @@ void HTestData::testJson2()
     auto b1 = datas == datas2;
     auto b2 = json == json2;
     auto b3 = str == str2;
+
+    qDebug() << str.size();
 
 
     qDebug() << " data         "        << datas;

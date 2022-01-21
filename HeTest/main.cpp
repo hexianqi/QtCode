@@ -8,16 +8,12 @@
 #include "HTestOpenGL.h"
 #include "HTestPlugin.h"
 #include "HeCore/HCore.h"
-#include "HeCore/HDumpTree.h"
 #include "HeControl/HDemoWidget.h"
 #include "HeControl/HControlFactoryWidget.h"
 #include "HeControl/HControlDemoWidget.h"
-#include "HeControl/HOpenGLDemoWidget.h"
-#include "HeControl/HBreakoutWidget.h"
 #include <QtCore/QDebug>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
-#include <QRegularExpression>
 
 void testGslChart()
 {
@@ -29,7 +25,11 @@ void testGslChart()
 int main(int argc, char *argv[])
 {
     qDebug() << HCore::toCommand(HLogType::ForePurple);
+    // 设置启用高分屏缩放支持
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    // 设置启用高分屏图片支持
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    // 设置OpenGL模式
     QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
@@ -48,15 +48,15 @@ int main(int argc, char *argv[])
 //    ow.resize(800, 600);
 //    ow.show();
 
-    HTestAlgorithm::testIesTm30();
+    HTestData::testJson2();
 
 
-//    MainWindow window;
+    MainWindow window;
 ////    window.setCentralWidget(&videoWidget);
 //    window.resize(800, 600);
 //    window.grabGesture(Qt::PanGesture);
 //    window.grabGesture(Qt::PinchGesture);
-//    window.show();
+    window.show();
 //    HDumpTree::dumpProperty(&window);
 
     return a.exec();

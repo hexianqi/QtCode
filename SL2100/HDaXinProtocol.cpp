@@ -1,8 +1,6 @@
 #include "HDaXinProtocol_p.h"
-#include "HSerialPort.h"
 #include "HDaXinDevice.h"
-
-HE_BEGIN_NAMESPACE
+#include "HeCommunicate/HSerialPort.h"
 
 HDaXinProtocolPrivate::HDaXinProtocolPrivate()
 {
@@ -49,5 +47,3 @@ QString HDaXinProtocol::typeName()
 {
     return "HDaXinProtocol";
 }
-
-HE_END_NAMESPACE

@@ -6,7 +6,6 @@
 #include "HSlDevice1.h"
 #include "HSlDevice2.h"
 #include "HSlDevice3.h"
-#include "HDaXinDevice.h"
 #include "HPowerFactorDevice.h"
 #include "HLittleProtocol.h"
 #include "HBigProtocol.h"
@@ -15,7 +14,6 @@
 #include "HSl1000Protocol.h"
 #include "HUi2008Protocol.h"
 #include "HUi2010Protocol.h"
-#include "HDaXinProtocol.h"
 #include "HProtocolCollection.h"
 #include "HeCore/HFactory.h"
 
@@ -78,7 +76,6 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HSlDevice1>("HSlDevice1");
     HFactory::registerClass<HSlDevice2>("HSlDevice2");
     HFactory::registerClass<HSlDevice3>("HSlDevice3");
-    HFactory::registerClass<HDaXinDevice>("HDaXinDevice");
     HFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
     HFactory::registerClass<HLittleProtocol>("HLittleProtocol");
     HFactory::registerClass<HBigProtocol>("HBigProtocol");
@@ -87,7 +84,6 @@ void HCommunicateFactory::registerClass()
     HFactory::registerClass<HSl1000Protocol>("HSl1000Protocol");
     HFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
     HFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");
-    HFactory::registerClass<HDaXinProtocol>("HDaXinProtocol");
 }
 
 HE_END_NAMESPACE

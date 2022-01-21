@@ -14,8 +14,8 @@ QHash<HActionType, QString>         hashActionComment;
 QHash<HErrorType, QString>          hashErrorComment;
 QHash<QString, HDataFormatInfo *>   hashDataFormatInfo;
 QHash<QString, QString>             hashDataCaption;
+QHash<QString, QStringList>         hashDataGroup;
 QHash<QString, QSet<QString>>       hashMimeType;
-QHash<QString, QStringList>         hashGroupData;
 
 char *HCore::toCommand(HLogType type)
 {
@@ -75,7 +75,6 @@ QString HCore::toString(const QString &type, const QVariant &value)
             list << toString(type, v);
         return list.join(" ");
     }
-
     if (value.canConvert<QVariantList>())
     {
         QStringList list;
@@ -89,8 +88,11 @@ QString HCore::toString(const QString &type, const QVariant &value)
         QStringList list;
         auto iterable = value.value<QAssociativeIterable>();
         for (auto it = iterable.begin(); it != iterable.end(); ++it)
-            list << toString(it.key().toString(), it.value());
-        return list.join(" ");
+        {
+            auto key = it.key().toString();
+            list << toCaption(key) + ":" + toString(key, it.value());
+        }
+        return "{" + list.join(",") + "}";
     }
 
     return value.toString();
@@ -132,11 +134,24 @@ QString HCore::toCaptionUnit(const QString &type)
     return caption;
 }
 
-QStringList HCore::toCaptionUnit(QStringList type)
+QStringList HCore::toCaptionUnit(const QStringList &type)
 {
     QStringList list;
     for (const auto &t : type)
         list << toCaptionUnit(t);
+    return list;
+}
+
+QStringList HCore::membership(const QString &name)
+{
+    return hashDataGroup.value(name);
+}
+
+QStringList HCore::membership(const QStringList &name)
+{
+    QStringList list;
+    for (const auto &t : name)
+        list << hashDataGroup.value(t);
     return list;
 }
 
@@ -179,6 +194,7 @@ void HCoreGlobalInstance::init()
     initErrorComment();
     initDataFormatInfo();
     initDataCaption();
+    initDataGroup();
     initMimeType();
     _initialized = true;
 }
@@ -614,6 +630,46 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[TM30_hj_btn]",         tr("hj_btn"));
     hashDataCaption.insert("[TM30_hj_arn]",         tr("hj_arn"));
     hashDataCaption.insert("[TM30_hj_brn]",         tr("hj_brn"));
+}
+
+void HCoreGlobalInstance::initDataGroup()
+{
+    hashDataGroup.insert("|产品信息|",      QStringList() << "[制造厂商]" << "[产品名称]" << "[产品型号]"  << "[样品编号]" << "[测试单位]" << "[测试员]" << "[备注]");
+    hashDataGroup.insert("|产品信息2|",     QStringList() << "[制造厂商]" << "[产品名称]" << "[产品型号]"  << "[样品编号]" << "[测试单位]" << "[测试员]");
+    hashDataGroup.insert("|环境信息|",      QStringList() << "[环境温度]" << "[环境湿度]");
+    hashDataGroup.insert("|时间信息|",      QStringList() << "[测量日期时间]");
+    hashDataGroup.insert("|时间信息2|",     QStringList() << "[测量日期]" << "[测量时间]");
+    hashDataGroup.insert("|光谱信息|",      QStringList() << "[峰值波长]" << "[峰值带宽]" << "[主波长]"
+                                                          << "[色坐标]" << "[色坐标x]" << "[色坐标y]" << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]" << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]"
+                                                          << "[色温]" << "[色纯度]" << "[Duv]" << "[光谱光通量]"
+                                                          << "[红色比]" << "[绿色比]" << "[蓝色比]"
+                                                          << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]"
+                                                          << "[光谱能量曲线]" << "[光谱反射曲线]");
+    hashDataGroup.insert("|光谱信息2|",     QStringList() << "[峰值波长]" << "[峰值带宽]" << "[主波长]"
+                                                          << "[色坐标]" << "[色坐标x]" << "[色坐标y]" << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]"
+                                                          << "[色温]" << "[色纯度]" << "[Duv]" << "[光谱光通量]"
+                                                          << "[红色比]" << "[绿色比]" << "[蓝色比]"
+                                                          << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]"
+                                                          << "[光谱能量曲线]" << "[光谱反射曲线]");
+    hashDataGroup.insert("|光谱信息3|",     QStringList() << "[峰值波长]" << "[峰值带宽]" << "[主波长]"
+                                                          << "[色坐标]" << "[色坐标x]" << "[色坐标y]" << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]"
+                                                          << "[色温]" << "[色纯度]" << "[Duv]" << "[光谱光通量]"
+                                                          << "[红色比]" << "[绿色比]" << "[蓝色比]"
+                                                          << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]");
+    hashDataGroup.insert("|光度信息|",      QStringList() << "[光通量]" << "[光功率]" << "[光效率]");
+    hashDataGroup.insert("|光度信息2|",     QStringList() << "[光功率]" << "[光效率]");
+    hashDataGroup.insert("|光合信息|",      QStringList() << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
+                                                          << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
+                                                          << "[荧光效能]" << "[荧光蓝光比]");
+    hashDataGroup.insert("|色容差信息|",    QStringList() << "[色容差标准]" << "[色容差]");
+    hashDataGroup.insert("|色容差信息2|",   QStringList() << "[色容差]");
+    hashDataGroup.insert("|TM30信息|",      QStringList() << "[TM30_Rf]" << "[TM30_Rg]" << "[TM30_Rfi]"
+                                                          << "[TM30_hj_Rf]" << "[TM30_hj_Rcs]" << "[TM30_hj_Rhs]"
+                                                          << "[TM30_hj_at]" << "[TM30_hj_bt]" << "[TM30_hj_ar]" << "[TM30_hj_br]"
+                                                          << "[TM30_hj_atn]" << "[TM30_hj_btn]" << "[TM30_hj_arn]" << "[TM30_hj_brn]");
+    hashDataGroup.insert("|直流电信息|",    QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]");
+    hashDataGroup.insert("|直流电信息2|",   QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[电功率]");
+    hashDataGroup.insert("|交流电信息|",    QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]");
 }
 
 void HCoreGlobalInstance::initMimeType()

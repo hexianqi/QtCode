@@ -25,7 +25,7 @@ void HCoreHelper::msleep(int msecs)
 void HCoreHelper::msleep2(int msecs)
 {
     auto time = QTime::currentTime().addMSecs(msecs);
-    while (QTime::currentTime() < time )
+    while (QTime::currentTime() < time)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 

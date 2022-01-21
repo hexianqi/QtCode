@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "HAbstractDevice.h"
+#include "HeCommunicate/HAbstractDevice.h"
 
-HE_BEGIN_NAMESPACE
+HE_USE_NAMESPACE
 
 class HDaXinDevicePrivate;
 
@@ -28,5 +28,3 @@ public:
 protected:
     bool check() override;
 };
-
-HE_END_NAMESPACE

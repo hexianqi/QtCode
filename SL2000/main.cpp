@@ -50,5 +50,5 @@ int main(int argc, char *argv[])
     HMainWindow2000F w;
 #endif
     w.show();
-    return QApplication::exec();
+    return a.exec();
 }

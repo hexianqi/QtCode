@@ -8,18 +8,6 @@
 
 HE_BEGIN_NAMESPACE
 
-QStringList polygonField()
-{
-    return QStringList() << "EnergyGraph" << "ReflectGraph";
-}
-
-QStringList listField()
-{
-    return QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-                         << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                         << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_arn";
-}
-
 QString format(const QPolygonF &value)
 {
     QStringList list;
@@ -33,7 +21,7 @@ QString format(const QString &type, const QList<double> &value)
     QStringList list;
     for (const auto &v : value)
         list << HCore::toString(type, v);
-    return list.join(",");
+    return list.join(" ");
 }
 
 QPolygonF toPolygonF(QString value)
@@ -98,8 +86,8 @@ QStringList HSql::toCaptionUnit(const QStringList &field)
 QVariantMap HSql::toRecord(const QStringList &field, ITestData *data)
 {
     QVariantMap result;
-    auto pfield = polygonField();
-    auto lfield = listField();
+    auto pfield = membership("|多边形格式|");
+    auto lfield = membership("|列表格式|");
     for (const auto &f : field)
     {
         if (f == "ID")
@@ -127,8 +115,8 @@ QVariantMap HSql::toRecord(const QStringList &field, ITestData *data)
 QVariantMap HSql::toData(const QStringList &type, QSqlRecord record)
 {
     QVariantMap result;
-    auto pfield = polygonField();
-    auto lfield = listField();
+    auto pfield = membership("|多边形格式|");
+    auto lfield = membership("|列表格式|");
     for (const auto &t : type)
     {
         auto field = toField(t);
