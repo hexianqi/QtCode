@@ -41,7 +41,8 @@ template <typename T>
 class HSingleton2
 {
 public:
-    static T *instance();
+    template <typename... Args>
+    static T *instance(Args&&... args);
     static void release();
 
 private:
@@ -49,22 +50,25 @@ private:
     HSingleton2<T> &operator=(const HSingleton2 &) = delete;
 
 private:
-    static QMutex __mutex;
     static QScopedPointer<T> __instance;
+    static QMutex __mutex;
 };
 
-template <typename T> QMutex HSingleton2<T>::__mutex;
-template <typename T> QScopedPointer<T> HSingleton2<T>::__instance;
+template <typename T>
+QScopedPointer<T> HSingleton2<T>::__instance;
 
 template <typename T>
-T *HSingleton2<T>::instance()
+QMutex HSingleton2<T>::__mutex;
+
+template <typename T>
+template <typename... Args>
+T *HSingleton2<T>::instance(Args&&... args)
 {
     if (__instance.isNull())
     {
-        __mutex.lock();
+        QMutexLocker locker(&__mutex);
         if (__instance.isNull())
-            __instance.reset(new T); // 此指针会在全局变量作用域结束时自动 deleted (main 函数返回后)
-        __mutex.unlock();
+            __instance.reset(new T(std::forward<Args>(args)...)); // 此指针会在全局变量作用域结束时自动 deleted (main 函数返回后)
     }
     return __instance.data();
 }
@@ -76,21 +80,22 @@ void HSingleton2<T>::release()
     __instance.reset();
 }
 
-#define H_SINGLETON2(Class)                         \
-private:                                            \
-    Class(const Class &) = delete;                  \
-    Class &operator=(const Class &) = delete;       \
-    friend HSingleton2<Class>;                      \
-    friend QScopedPointerDeleter<Class>;            \
-                                                    \
-public:                                             \
-    static Class *instance()                        \
-    {                                               \
-        return HSingleton2<Class>::instance();      \
-    }                                               \
-    static void release()                           \
-    {                                               \
-        HSingleton2<Class>::release();              \
+#define H_SINGLETON2(Class)                                                 \
+private:                                                                    \
+    Class(const Class &) = delete;                                          \
+    Class &operator=(const Class &) = delete;                               \
+    friend HSingleton2<Class>;                                              \
+    friend QScopedPointerDeleter<Class>;                                    \
+                                                                            \
+public:                                                                     \
+    template <typename... Args>                                             \
+    static Class *instance(Args&&... args)                                  \
+    {                                                                       \
+        return HSingleton2<Class>::instance(std::forward<Args>(args)...);   \
+    }                                                                       \
+    static void release()                                                   \
+    {                                                                       \
+        HSingleton2<Class>::release();                                      \
     }
 
 HE_END_NAMESPACE

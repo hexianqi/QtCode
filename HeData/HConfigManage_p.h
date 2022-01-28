@@ -20,14 +20,15 @@ public:
     quint32 contain = 0;
     IDataFactory *factory = nullptr;
     IDataStream *stream = nullptr;
-    ISpecCalibrateCollection *specCalibrates = nullptr;
-    IElecCalibrateCollection *elecCalibrates = nullptr;
-    ILuminousCalibrateCollection *luminousCalibrates = nullptr;
-    IChromatismCollection *chromatisms = nullptr;
-    IGradeCollection *grades = nullptr;
-    IAdjustCollection *adjusts = nullptr;
-    IAdjust2Collection *adjusts2 = nullptr;
-    IQualityCollection *qualitys = nullptr;
+    ISpecCalibrateCollection *specCalibrate = nullptr;
+    IElecCalibrateCollection *elecCalibrate = nullptr;
+    ILuminousCalibrateCollection *luminousCalibrate = nullptr;
+    IChromatismCollection *chromatism = nullptr;
+    IGradeCollection *grade = nullptr;
+    IQualityCollection *quality = nullptr;
+    ILocationCollection *location = nullptr;
+    IAdjustCollection *adjust = nullptr;
+    IAdjust2Collection *adjust2 = nullptr;
 };
 
 HE_END_NAMESPACE

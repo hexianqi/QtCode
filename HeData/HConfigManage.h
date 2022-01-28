@@ -36,12 +36,14 @@ public:
     IChromatismCollection *chromatismCollection() override;
     void setGradeCollection(IGradeCollection *) override;
     IGradeCollection *gradeCollection() override;
+    void setQualityCollection(IQualityCollection *) override;
+    IQualityCollection *qualityCollection() override;
+    void setLocationCollection(ILocationCollection *) override;
+    ILocationCollection *locationCollection() override;
     void setAdjustCollection(IAdjustCollection *) override;
     IAdjustCollection *adjustCollection() override;
     void setAdjust2Collection(IAdjust2Collection *) override;
     IAdjust2Collection *adjust2Collection() override;
-    void setQualityCollection(IQualityCollection *) override;
-    IQualityCollection *qualityCollection() override;
 
 public:
     bool importPart(quint32 value) override;

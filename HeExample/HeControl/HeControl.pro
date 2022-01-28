@@ -81,6 +81,7 @@ include(tools.pri)
 include(widget.pri)
 include($$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser/qtpropertybrowser.pri)
 
+include(z_control.pri)
 include(z_demo.pri)
 include(z_widget.pri)
 

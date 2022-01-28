@@ -11,6 +11,10 @@ HEADERS += \
     $$PWD/HImportCurveHandler_p.h \
     $$PWD/HImportDeviceHandler.h \
     $$PWD/HImportDeviceHandler_p.h \
+    $$PWD/HLocationEditHandler.h \
+    $$PWD/HLocationEditHandler_p.h \
+    $$PWD/HLocationSelectHandler.h \
+    $$PWD/HLocationSelectHandler_p.h \
     $$PWD/HLoginInHandler.h \
     $$PWD/HLoginInHandler_p.h \
     $$PWD/HLoginOutHandler.h \
@@ -62,6 +66,8 @@ SOURCES += \
     $$PWD/HExportDeviceHandler.cpp \
     $$PWD/HImportCurveHandler.cpp \
     $$PWD/HImportDeviceHandler.cpp \
+    $$PWD/HLocationEditHandler.cpp \
+    $$PWD/HLocationSelectHandler.cpp \
     $$PWD/HLoginInHandler.cpp \
     $$PWD/HLoginOutHandler.cpp \
     $$PWD/HLuminousCalibrateHandler.cpp \

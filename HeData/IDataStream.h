@@ -8,6 +8,7 @@
 **                  IChromatismCollection           0x00020101      *.hcc
 **                  IGradeCollection                0x00030001      *.hcg
 **                  IQualityCollection              0x00030101      *.hcq
+**                  ILocationCollection             0x00031001      *.hco
 **                  IAdjustCollection               0x00040001      *.hca
 **                  IMemento                        0x01010001      *.tmp
 ***************************************************************************************************/

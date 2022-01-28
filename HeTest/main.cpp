@@ -8,6 +8,7 @@
 #include "HTestOpenGL.h"
 #include "HTestPlugin.h"
 #include "HeCore/HCore.h"
+#include "HeCore/HCoreGlobalInstance.h"
 #include "HeControl/HDemoWidget.h"
 #include "HeControl/HControlFactoryWidget.h"
 #include "HeControl/HControlDemoWidget.h"
@@ -24,16 +25,18 @@ void testGslChart()
 
 int main(int argc, char *argv[])
 {
+    HCoreGlobalInstance::instance()->initialize();
     qDebug() << HCore::toCommand(HLogType::ForePurple);
+
     // 设置启用高分屏缩放支持
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     // 设置启用高分屏图片支持
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     // 设置OpenGL模式
     QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
-    QApplication a(argc, argv);
     QApplication::addLibraryPath("./plugins");
     QApplication::setStyle(QStyleFactory::create("Plastique"));
+    QApplication a(argc, argv);
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;

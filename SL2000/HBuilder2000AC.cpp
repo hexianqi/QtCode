@@ -36,21 +36,23 @@ HBuilder2000ACPrivate::HBuilder2000ACPrivate()
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     deploy.insert("PfProtocol",     "HUi2008Protocol");     // HUi2008Protocol:UI2008; HUi2010Protocol:UI2010
 
-    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-                             << "ACCurrent" << "ACVoltage" << "ACPower" << "ACFactor"
-                             << "LuminousFluxSpec" << "LuminousPower" << "LuminousEfficiency"
-                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
-                             << "ColorTemperature" << "ColorPurity"
-                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-                             << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx" << "SDCM"
-                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
-                             << "EnergyGraph" << "ReflectGraph"
-                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
-                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
+    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|交流电信息|" << "|光度信息2|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    sqlField = QStringList() << "ID" << HSql::membership(list);
+//    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+//                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+//                             << "ACCurrent" << "ACVoltage" << "ACPower" << "ACFactor"
+//                             << "LuminousFluxSpec" << "LuminousPower" << "LuminousEfficiency"
+//                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
+//                             << "ColorTemperature" << "ColorPurity"
+//                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+//                             << "RedRatio" << "GreenRadio" << "BlueRatio"
+//                             << "Ra" << "R9" << "Rx" << "SDCM"
+//                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
+//                             << "EnergyGraph" << "ReflectGraph"
+//                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
+//                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+//                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+//                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("QualityOptionals",            QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");

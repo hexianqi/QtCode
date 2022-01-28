@@ -62,12 +62,13 @@ using HActionType = long long;
 #define     ACT_GET_SPECTRUM_ELEC                   0x10000002
 
 #define     ACT_RESET_SPECTRUM                      0xF0000001
-#define     ACT_RESET_GRADE                         0xF0000002
-#define     ACT_RESET_ADJUST                        0xF0000003
-#define     ACT_RESET_QUALITY                       0xF0000004
-#define     ACT_RESET_CHROMATISM                    0xF0000005
-#define     ACT_RESET_ELEC                          0xF0000006
-#define     ACT_RESET_LUMINOUS                      0xF0000007
+#define     ACT_RESET_LUMINOUS                      0xF0000002
+#define     ACT_RESET_CHROMATISM                    0xF0000003
+#define     ACT_RESET_ELEC                          0xF0000004
+#define     ACT_RESET_GRADE                         0xF0000011
+#define     ACT_RESET_ADJUST                        0xF0000012
+#define     ACT_RESET_QUALITY                       0xF0000013
+#define     ACT_RESET_LOCATION                      0xF0000014
 
 //#define     ACT_REFRESH_USE_TIME                    0x00000012
 

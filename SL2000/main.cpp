@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
         a.installTranslator(&t6);
 #endif
 
-    HCoreGlobalInstance::instance()->init();
-    HSqlGlobalInstance::instance()->init();
+    HCoreGlobalInstance::instance()->initialize();
+    HSqlGlobalInstance::instance()->initialize();
 
 #ifdef SL2000
     QApplication::setApplicationName("SL2000");

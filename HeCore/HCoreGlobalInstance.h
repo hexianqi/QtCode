@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "HSingleton.h"
+#include "HSingleton3.h"
 #include <QtCore/QObject>
 
 HE_BEGIN_NAMESPACE
 
-class HCoreGlobalInstance : public QObject, public HSingleton<HCoreGlobalInstance>
+class HCoreGlobalInstance : public QObject
 {
     Q_OBJECT
-    H_FRIEND_SINGLETON(HCoreGlobalInstance)
+    H_SINGLETON3(HCoreGlobalInstance)
 
 public:
-    void init();
+    void initialize();
 
 protected:
     HCoreGlobalInstance(QObject *parent = nullptr);

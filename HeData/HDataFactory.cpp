@@ -27,15 +27,17 @@
 #include "HParallelGrade.h"
 #include "HGradeItem.h"
 #include "HGradeItem2D.h"
+#include "HQuality.h"
+#include "HQualityCollection.h"
+#include "HQualityItem.h"
+#include "HLocation.h"
+#include "HLocationCollection.h"
 #include "HAdjust.h"
 #include "HAdjust2.h"
 #include "HAdjustItemCollection.h"
 #include "HAdjustCollection.h"
 #include "HAdjust2Collection.h"
 #include "HAdjustItem.h"
-#include "HQuality.h"
-#include "HQualityCollection.h"
-#include "HQualityItem.h"
 #include "HSpecFittingLinear.h"
 #include "HSpecFittingPolynom.h"
 #include "HeCore/HFactory.h"
@@ -250,6 +252,46 @@ IGradeItem *HDataFactory::createGradeItem(QString type, QVariantMap param)
     return HFactory::createObject<IGradeItem>(type, param);
 }
 
+IQualityCollection *HDataFactory::createQualityCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HQualityCollection;
+    p->initialize(param);
+    return p;
+}
+
+IQuality *HDataFactory::createQuality(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HQuality;
+    p->initialize(param);
+    return p;
+}
+
+IQualityItem *HDataFactory::createQualityItem(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HQualityItem;
+    p->initialize(param);
+    return p;
+}
+
+ILocationCollection *HDataFactory::createLocationCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HLocationCollection;
+    p->initialize(param);
+    return p;
+}
+
+ILocation *HDataFactory::createLocation(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HLocation;
+    p->initialize(param);
+    return p;
+}
+
 IAdjustCollection *HDataFactory::createAdjustCollection(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
@@ -294,30 +336,6 @@ IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     auto p = new HAdjustItem;
-    p->initialize(param);
-    return p;
-}
-
-IQualityCollection *HDataFactory::createQualityCollection(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HQualityCollection;
-    p->initialize(param);
-    return p;
-}
-
-IQuality *HDataFactory::createQuality(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HQuality;
-    p->initialize(param);
-    return p;
-}
-
-IQualityItem *HDataFactory::createQualityItem(QString type, QVariantMap param)
-{
-    Q_UNUSED(type)
-    auto p = new HQualityItem;
     p->initialize(param);
     return p;
 }

@@ -2,6 +2,7 @@
 #include "HTestSetWidget2000DC.h"
 #include "HDetailWidget2000DC.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCore.h"
 #include "HeData/ITestData.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include <QtCore/QSettings>
@@ -9,21 +10,8 @@
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
-    displays = QStringList() << "[调整组]"
-                             << "[测量日期]" << "[测量时间]" << "[制造厂商]" << "[产品型号]" << "[测试员]" << "[样品编号]" << "[备注]" << "[环境温度]" << "[环境湿度]"
-                             << "[分级]"
-                             << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]"
-                             << "[色容差]"
-                             << "[光通量]" << "[光功率]" << "[光效率]"
-                             << "[主波长]" << "[峰值波长]" << "[峰值带宽]"
-                             << "[色温]" << "[色纯度]"
-                             << "[色坐标x]" << "[色坐标y]" << "[色坐标up]" << "[色坐标vp]" << "[Duv]"
-                             << "[红色比]" << "[绿色比]" << "[蓝色比]"
-                             << "[显色指数Ra]" << "[显色指数R9]" <<"[显色指数Rx]"
-                             << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
-                             << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
-                             << "[荧光效能]" << "[荧光蓝光比]"
-                             << "[TM30_Rf]" << "[TM30_Rg]";
+    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
+    displays = QStringList() << "[调整组]" << "[分级]" << HCore::membership(list);
 }
 
 HTestWidget2000DC::HTestWidget2000DC(QWidget *parent) :

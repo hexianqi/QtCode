@@ -32,15 +32,18 @@ class IChromatismItem;
 class IGrade;
 class IGradeCollection;
 class IGradeItem;
+class IQuality;
+class IQualityCollection;
+class IQualityItem;
+class ILocation;
+class ILocationCollection;
 class IAdjust;
 class IAdjust2;
 class IAdjustCollection;
 class IAdjust2Collection;
 class IAdjustItem;
 class IAdjustItemCollection;
-class IQuality;
-class IQualityCollection;
-class IQualityItem;
+
 class HSpecFitting;
 
 class IDataFactory : public IInitializeable
@@ -64,58 +67,46 @@ public:
 public:
     // 创建测试数据
     virtual ITestData *createTestData(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光谱测试数据
+    // 创建测试数据 - 光谱
     virtual ITestSpec *createTestSpec(QString type, QVariantMap param = QVariantMap()) = 0;
 
 public:
     // 创建配置管理
     virtual IConfigManage *createConfigManage(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光谱校准数据集
-    virtual ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱校准数据
+    virtual ISpecCalibrateCollection *createSpecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual ISpecCalibrate *createSpecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建电校准数据集
-    virtual IElecCalibrateCollection *createElecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建电校准数据
+    virtual IElecCalibrateCollection *createElecCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IElecCalibrate *createElecCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建电校准数据子项集
     virtual IElecCalibrateItemCollection *createElecCalibrateItemCollection(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建电校准数据子项
     virtual IElecCalibrateItem *createElecCalibrateItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光校准数据集
-    virtual ILuminousCalibrateCollection *createLuminousCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光校准数据
+    virtual ILuminousCalibrateCollection *createLuminousCalibrateCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual ILuminousCalibrate *createLuminousCalibrate(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光校准数据子项
     virtual ILuminousCalibrateItem *createLuminousCalibrateItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建色容差数据集
-    virtual IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建色容差数据
+    virtual IChromatismCollection *createChromatismCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IChromatism *createChromatism(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建色容差数据子项
     virtual IChromatismItem *createChromatismItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建分级数据集
-    virtual IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建分级数据
+    virtual IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建分级数据子项
     virtual IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建校正数据集
+    // 创建品质数据
+    virtual IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    virtual IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) = 0;
+    virtual IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建定位数据
+    virtual ILocationCollection *createLocationCollection(QString type, QVariantMap param = QVariantMap()) = 0;
+    virtual ILocation *createLocation(QString type, QVariantMap param = QVariantMap()) = 0;
+    // 创建校正数据
     virtual IAdjustCollection *createAdjustCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IAdjust2Collection *createAdjust2Collection(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建校正数据
     virtual IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IAdjust2 *createAdjust2(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建校正数据子项集
     virtual IAdjustItemCollection *createAdjustItemCollection(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建校正数据子项
     virtual IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建品质数据集
-    virtual IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建品质数据
-    virtual IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建品质数据子项
-    virtual IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建光谱拟合
     virtual HSpecFitting *createSpecFitting(QString type, QVariantMap param = QVariantMap()) = 0;
 };

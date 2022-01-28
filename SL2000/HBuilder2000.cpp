@@ -33,19 +33,21 @@ HBuilder2000Private::HBuilder2000Private()
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
-    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-                             << "LuminousFluxSpec" << "LuminousPower"
-                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
-                             << "ColorTemperature" << "ColorPurity"
-                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-                             << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx"
-                             << "EnergyGraph" << "ReflectGraph"
-                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
-                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
+    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|光度信息3|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    sqlField = QStringList() << "ID" << HSql::membership(list);
+//    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+//                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+//                             << "LuminousFluxSpec" << "LuminousPower"
+//                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
+//                             << "ColorTemperature" << "ColorPurity"
+//                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+//                             << "RedRatio" << "GreenRadio" << "BlueRatio"
+//                             << "Ra" << "R9" << "Rx"
+//                             << "EnergyGraph" << "ReflectGraph"
+//                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
+//                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+//                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+//                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");

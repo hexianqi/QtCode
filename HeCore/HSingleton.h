@@ -5,6 +5,7 @@
 #pragma once
 
 #include "HNamespace.h"
+#include <QMutex>
 #include <memory>
 
 HE_BEGIN_NAMESPACE
@@ -17,7 +18,12 @@ public:
     static T *instance(Args&&... args)
     {
         if(__instance == nullptr)
-            __instance = new T(std::forward<Args>(args)...);
+        {
+            __mutex.lock();
+            if (__instance == nullptr)
+                __instance = new T(std::forward<Args>(args)...);
+            __mutex.unlock();
+        }
         return __instance;
     }
 
@@ -45,9 +51,11 @@ protected:
 
 protected:
     static T *__instance;
+    static QMutex __mutex;
 };
 
 template <typename T> T *HSingleton<T>::__instance = nullptr;
+template <typename T> QMutex HSingleton<T>::__mutex;
 
 #define H_FRIEND_SINGLETON(Class)    friend HSingleton<Class>;
 

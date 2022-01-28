@@ -78,7 +78,7 @@ void HNavigationWidget::paintEvent(QPaintEvent *)
             painter.setPen("#202020");
             painter.fillPath(itemPath, d_ptr->background);
         }
-        painter.drawText(rect, Qt::AlignVCenter | Qt::AlignHCenter, d_ptr->items[i]);
+        painter.drawText(rect, Qt::AlignCenter, d_ptr->items[i]);
     }
 }
 

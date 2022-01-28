@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "HeCore/HSingleton.h"
+#include "HeCore/HSingleton3.h"
 #include <QtCore/QObject>
 
 HE_BEGIN_NAMESPACE
 
-class HSqlGlobalInstance : public QObject, public HSingleton<HSqlGlobalInstance>
+class HSqlGlobalInstance : public QObject
 {
     Q_OBJECT
-    H_FRIEND_SINGLETON(HSqlGlobalInstance)
+    H_SINGLETON3(HSqlGlobalInstance)
 
 public:
-    void init();
+    void initialize();
 
 protected:
     explicit HSqlGlobalInstance(QObject *parent = nullptr);

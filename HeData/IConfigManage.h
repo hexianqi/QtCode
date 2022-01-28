@@ -15,9 +15,10 @@ class IElecCalibrateCollection;
 class ILuminousCalibrateCollection;
 class IChromatismCollection;
 class IGradeCollection;
+class IQualityCollection;
+class ILocationCollection;
 class IAdjustCollection;
 class IAdjust2Collection;
-class IQualityCollection;
 class ITestData;
 
 class IConfigManage : public IInitializeable
@@ -32,6 +33,7 @@ public:
         ContainChromatism    = 0x00000100,
         ContainGrade         = 0x00010000,
         ContainQuality       = 0x00020000,
+        ContainLocation      = 0x00100000,
         ContainAdjust        = 0x01000000,
         ContainAdjust2       = 0x02000000,
         ContainAll           = 0xFFFFFFFF
@@ -41,40 +43,35 @@ public:
 public:
     // 获取流
     virtual IStream *stream() = 0;
-    // 设置包含内容
+    // 包含内容
     virtual void setContain(quint32 value) = 0;
-    // 获取包含内容
     virtual quint32 contain() = 0;
-    // 设置光谱校准数据集
+    // 光谱校准数据
     virtual void setSpecCalibrateCollection(ISpecCalibrateCollection *) = 0;
-    // 获取光谱校准数据
     virtual ISpecCalibrate *specCalibrate(QString name) = 0;
-    // 设置电校准数据集
+    // 电校准数据
     virtual void setElecCalibrateCollection(IElecCalibrateCollection *) = 0;
-    // 获取电校准数据集
     virtual IElecCalibrateCollection *elecCalibrateCollection() = 0;
-    // 设置光校准数据集
+    // 光校准数据
     virtual void setLuminousCalibrateCollection(ILuminousCalibrateCollection *) = 0;
-    // 获取光校准数据集
     virtual ILuminousCalibrateCollection *luminousCalibrateCollection() = 0;
-    // 设置色容差数据集
+    // 色容差数据
     virtual void setChromatismCollection(IChromatismCollection *) = 0;
-    // 获取色容差数据集
     virtual IChromatismCollection *chromatismCollection() = 0;
-    // 设置分级数据集
+    // 分级数据
     virtual void setGradeCollection(IGradeCollection *) = 0;
-    // 获取分级数据集
     virtual IGradeCollection *gradeCollection() = 0;
-    // 设置调整数据集
+    // 品质数据
+    virtual void setQualityCollection(IQualityCollection *) = 0;
+    virtual IQualityCollection *qualityCollection() = 0;
+    // 定位数据
+    virtual void setLocationCollection(ILocationCollection *) = 0;
+    virtual ILocationCollection *locationCollection() = 0;
+    // 调整数据
     virtual void setAdjustCollection(IAdjustCollection *) = 0;
     virtual void setAdjust2Collection(IAdjust2Collection *) = 0;
-    // 获取调整数据集
     virtual IAdjustCollection *adjustCollection() = 0;
     virtual IAdjust2Collection *adjust2Collection() = 0;
-    // 设置品质数据集
-    virtual void setQualityCollection(IQualityCollection *) = 0;
-    // 获取品质数据集
-    virtual IQualityCollection *qualityCollection() = 0;
 
 public:
     // 导入部分数据

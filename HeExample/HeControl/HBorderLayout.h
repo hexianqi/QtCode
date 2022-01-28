@@ -41,7 +41,7 @@ protected:
     HBorderLayout(HBorderLayoutPrivate &p, QWidget *parent);
 
 protected:
-    QSize calculateSize(SizeType sizeType) const;
+    QSize calculateSize(SizeType) const;
 
 private:
     QScopedPointer<HBorderLayoutPrivate> d_ptr;

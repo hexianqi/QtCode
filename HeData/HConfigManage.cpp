@@ -7,15 +7,14 @@
 #include "ILuminousCalibrateCollection.h"
 #include "IChromatismCollection.h"
 #include "IGradeCollection.h"
+#include "IQualityCollection.h"
+#include "ILocationCollection.h"
 #include "IAdjustCollection.h"
 #include "IAdjust2Collection.h"
-#include "IQualityCollection.h"
 #include "HDataHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
-#include <QtCore/QJsonObject>
-#include <QtCore/QJsonDocument>
 #include <QtCore/QSet>
 #include <QtGui/QColor>
 
@@ -42,50 +41,56 @@ void HConfigManagePrivate::readContent(QDataStream &s)
     if (contain & IConfigManage::ContainSpec)
     {
         s >> type;
-        specCalibrates = factory->createSpecCalibrateCollection(type);
-        specCalibrates->dataStream()->readContent(s);
+        specCalibrate = factory->createSpecCalibrateCollection(type);
+        specCalibrate->dataStream()->readContent(s);
     }
     if (contain & IConfigManage::ContainElec)
     {
         s >> type;
-        elecCalibrates = factory->createElecCalibrateCollection(type);
-        elecCalibrates->dataStream()->readContent(s);
+        elecCalibrate = factory->createElecCalibrateCollection(type);
+        elecCalibrate->dataStream()->readContent(s);
     }
     if (contain & IConfigManage::ContainLuminous)
     {
         s >> type;
-        luminousCalibrates = factory->createLuminousCalibrateCollection(type);
-        luminousCalibrates->dataStream()->readContent(s);
+        luminousCalibrate = factory->createLuminousCalibrateCollection(type);
+        luminousCalibrate->dataStream()->readContent(s);
     }
     if (contain & IConfigManage::ContainChromatism)
     {
         s >> type;
-        chromatisms = factory->createChromatismCollection(type);
-        chromatisms->dataStream()->readContent(s);
+        chromatism = factory->createChromatismCollection(type);
+        chromatism->dataStream()->readContent(s);
     }
     if (contain & IConfigManage::ContainGrade)
     {
         s >> type;
-        grades = factory->createGradeCollection(type);
-        grades->dataStream()->readContent(s);
-    }
-    if (contain & IConfigManage::ContainAdjust)
-    {
-        s >> type;
-        adjusts = factory->createAdjustCollection(type);
-        adjusts->dataStream()->readContent(s);
-    }
-    if (contain & IConfigManage::ContainAdjust2)
-    {
-        s >> type;
-        adjusts2 = factory->createAdjust2Collection(type);
-        adjusts2->dataStream()->readContent(s);
+        grade = factory->createGradeCollection(type);
+        grade->dataStream()->readContent(s);
     }
     if (contain & IConfigManage::ContainQuality)
     {
         s >> type;
-        qualitys = factory->createQualityCollection(type);
-        qualitys->dataStream()->readContent(s);
+        quality = factory->createQualityCollection(type);
+        quality->dataStream()->readContent(s);
+    }
+    if (contain & IConfigManage::ContainLocation)
+    {
+        s >> type;
+        location = factory->createLocationCollection(type);
+        location->dataStream()->readContent(s);
+    }
+    if (contain & IConfigManage::ContainAdjust)
+    {
+        s >> type;
+        adjust = factory->createAdjustCollection(type);
+        adjust->dataStream()->readContent(s);
+    }
+    if (contain & IConfigManage::ContainAdjust2)
+    {
+        s >> type;
+        adjust2 = factory->createAdjust2Collection(type);
+        adjust2->dataStream()->readContent(s);
     }
 }
 
@@ -95,43 +100,48 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     s << contain;
     if (contain & IConfigManage::ContainSpec)
     {
-        s << specCalibrates->typeName();
-        specCalibrates->dataStream()->writeContent(s);
+        s << specCalibrate->typeName();
+        specCalibrate->dataStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainElec)
     {
-        s << elecCalibrates->typeName();
-        elecCalibrates->dataStream()->writeContent(s);
+        s << elecCalibrate->typeName();
+        elecCalibrate->dataStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainLuminous)
     {
-        s << luminousCalibrates->typeName();
-        luminousCalibrates->dataStream()->writeContent(s);
+        s << luminousCalibrate->typeName();
+        luminousCalibrate->dataStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainChromatism)
     {
-        s << chromatisms->typeName();
-        chromatisms->dataStream()->writeContent(s);
+        s << chromatism->typeName();
+        chromatism->dataStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainGrade)
     {
-        s << grades->typeName();
-        grades->dataStream()->writeContent(s);
-    }
-    if (contain & IConfigManage::ContainAdjust)
-    {
-        s << adjusts->typeName();
-        adjusts->dataStream()->writeContent(s);
-    }
-    if (contain & IConfigManage::ContainAdjust2)
-    {
-        s << adjusts2->typeName();
-        adjusts2->dataStream()->writeContent(s);
+        s << grade->typeName();
+        grade->dataStream()->writeContent(s);
     }
     if (contain & IConfigManage::ContainQuality)
     {
-        s << qualitys->typeName();
-        qualitys->dataStream()->writeContent(s);
+        s << quality->typeName();
+        quality->dataStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainLocation)
+    {
+        s << location->typeName();
+        location->dataStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainAdjust)
+    {
+        s << adjust->typeName();
+        adjust->dataStream()->writeContent(s);
+    }
+    if (contain & IConfigManage::ContainAdjust2)
+    {
+        s << adjust2->typeName();
+        adjust2->dataStream()->writeContent(s);
     }
 }
 
@@ -177,85 +187,95 @@ quint32 HConfigManage::contain()
 
 void HConfigManage::setSpecCalibrateCollection(ISpecCalibrateCollection *p)
 {
-    d_ptr->specCalibrates = p;
+    d_ptr->specCalibrate = p;
 }
 
 ISpecCalibrate *HConfigManage::specCalibrate(QString name)
 {
-    Q_ASSERT(d_ptr->specCalibrates != nullptr);
-    if (d_ptr->specCalibrates->contains(name))
-        return d_ptr->specCalibrates->value(name);
-    return d_ptr->specCalibrates->first();
+    Q_ASSERT(d_ptr->specCalibrate != nullptr);
+    if (d_ptr->specCalibrate->contains(name))
+        return d_ptr->specCalibrate->value(name);
+    return d_ptr->specCalibrate->first();
 }
 
 void HConfigManage::setElecCalibrateCollection(IElecCalibrateCollection *p)
 {
-    d_ptr->elecCalibrates = p;
+    d_ptr->elecCalibrate = p;
 }
 
 IElecCalibrateCollection *HConfigManage::elecCalibrateCollection()
 {
-    return d_ptr->elecCalibrates;
+    return d_ptr->elecCalibrate;
 }
 
 void HConfigManage::setLuminousCalibrateCollection(ILuminousCalibrateCollection *p)
 {
-    d_ptr->luminousCalibrates = p;
+    d_ptr->luminousCalibrate = p;
 }
 
 ILuminousCalibrateCollection *HConfigManage::luminousCalibrateCollection()
 {
-    return d_ptr->luminousCalibrates;
+    return d_ptr->luminousCalibrate;
 }
 
 void HConfigManage::setChromatismCollection(IChromatismCollection *p)
 {
-    d_ptr->chromatisms = p;
+    d_ptr->chromatism = p;
 }
 
 IChromatismCollection *HConfigManage::chromatismCollection()
 {
-    return d_ptr->chromatisms;
+    return d_ptr->chromatism;
 }
 
 void HConfigManage::setGradeCollection(IGradeCollection *p)
 {
-    d_ptr->grades = p;
+    d_ptr->grade = p;
 }
 
 IGradeCollection *HConfigManage::gradeCollection()
 {
-    return d_ptr->grades;
-}
-
-void HConfigManage::setAdjustCollection(IAdjustCollection *p)
-{
-    d_ptr->adjusts = p;
-}
-
-IAdjustCollection *HConfigManage::adjustCollection()
-{
-    return d_ptr->adjusts;
-}
-
-void HConfigManage::setAdjust2Collection(IAdjust2Collection *p)
-{
-    d_ptr->adjusts2 = p;
-}
-
-IAdjust2Collection *HConfigManage::adjust2Collection()
-{
-    return d_ptr->adjusts2;
+    return d_ptr->grade;
 }
 
 void HConfigManage::setQualityCollection(IQualityCollection *p)
 {
-    d_ptr->qualitys = p;
+    d_ptr->quality = p;
 }
 
 IQualityCollection *HConfigManage::qualityCollection()
 {
-    return d_ptr->qualitys;
+    return d_ptr->quality;
+}
+
+void HConfigManage::setLocationCollection(ILocationCollection *p)
+{
+    d_ptr->location = p;
+}
+
+ILocationCollection *HConfigManage::locationCollection()
+{
+    return d_ptr->location;
+}
+
+void HConfigManage::setAdjustCollection(IAdjustCollection *p)
+{
+    d_ptr->adjust = p;
+}
+
+IAdjustCollection *HConfigManage::adjustCollection()
+{
+    return d_ptr->adjust;
+}
+
+void HConfigManage::setAdjust2Collection(IAdjust2Collection *p)
+{
+    d_ptr->adjust2 = p;
+}
+
+IAdjust2Collection *HConfigManage::adjust2Collection()
+{
+    return d_ptr->adjust2;
 }
 
 bool HConfigManage::importPart(quint32 value)
@@ -263,21 +283,24 @@ bool HConfigManage::importPart(quint32 value)
     if ((d_ptr->contain & value) == 0)
         return false;
     if (value & ContainSpec)
-        return d_ptr->specCalibrates->dataStream()->openFile();
+        return d_ptr->specCalibrate->dataStream()->openFile();
     if (value & ContainElec)
-        return d_ptr->elecCalibrates->dataStream()->openFile();
+        return d_ptr->elecCalibrate->dataStream()->openFile();
     if (value & ContainLuminous)
-        return d_ptr->luminousCalibrates->dataStream()->openFile();
+        return d_ptr->luminousCalibrate->dataStream()->openFile();
     if (value & ContainChromatism)
-        return d_ptr->chromatisms->dataStream()->openFile();
+        return d_ptr->chromatism->dataStream()->openFile();
     if (value & ContainGrade)
-        return d_ptr->grades->dataStream()->openFile();
-    if (value & ContainAdjust)
-        return d_ptr->adjusts->dataStream()->openFile();
-    if (value & ContainAdjust2)
-        return d_ptr->adjusts2->dataStream()->openFile();
+        return d_ptr->grade->dataStream()->openFile();
     if (value & ContainQuality)
-        return d_ptr->qualitys->dataStream()->openFile();
+        return d_ptr->quality->dataStream()->openFile();
+    if (value & ContainLocation)
+        return d_ptr->location->dataStream()->openFile();
+    if (value & ContainAdjust)
+        return d_ptr->adjust->dataStream()->openFile();
+    if (value & ContainAdjust2)
+        return d_ptr->adjust2->dataStream()->openFile();
+
     return false;
 }
 
@@ -286,21 +309,23 @@ bool HConfigManage::exportPart(quint32 value)
     if ((d_ptr->contain & value) == 0)
         return false;
     if (value & ContainSpec)
-        return d_ptr->specCalibrates->dataStream()->saveAsFile();
+        return d_ptr->specCalibrate->dataStream()->saveAsFile();
     if (value & ContainElec)
-        return d_ptr->elecCalibrates->dataStream()->saveAsFile();
+        return d_ptr->elecCalibrate->dataStream()->saveAsFile();
     if (value & ContainLuminous)
-        return d_ptr->luminousCalibrates->dataStream()->saveAsFile();
+        return d_ptr->luminousCalibrate->dataStream()->saveAsFile();
     if (value & ContainChromatism)
-        return d_ptr->chromatisms->dataStream()->saveAsFile();
+        return d_ptr->chromatism->dataStream()->saveAsFile();
     if (value & ContainGrade)
-        return d_ptr->grades->dataStream()->saveAsFile();
-    if (value & ContainAdjust)
-        return d_ptr->adjusts->dataStream()->saveAsFile();
-    if (value & ContainAdjust2)
-        return d_ptr->adjusts2->dataStream()->saveAsFile();
+        return d_ptr->grade->dataStream()->saveAsFile();
     if (value & ContainQuality)
-        return d_ptr->qualitys->dataStream()->saveAsFile();
+        return d_ptr->quality->dataStream()->saveAsFile();
+    if (value & ContainLocation)
+        return d_ptr->location->dataStream()->saveAsFile();
+    if (value & ContainAdjust)
+        return d_ptr->adjust->dataStream()->saveAsFile();
+    if (value & ContainAdjust2)
+        return d_ptr->adjust2->dataStream()->saveAsFile();
     return false;
 }
 
@@ -317,46 +342,47 @@ void HConfigManage::postProcess(ITestData *test, QStringList optional)
     if (test->data("[使用调整]").toBool())
     {
         QVariantMap value;
-        if (d_ptr->adjusts != nullptr)
+        if (d_ptr->adjust != nullptr)
         {
-            value = d_ptr->adjusts->correct(data);
-            test->setData("[调整组]", d_ptr->adjusts->useIndex());
+            value = d_ptr->adjust->correct(data);
+            test->setData("[调整组]", d_ptr->adjust->useIndex());
         }
-        else if (d_ptr->adjusts2 != nullptr)
+        else if (d_ptr->adjust2 != nullptr)
         {
-            value = d_ptr->adjusts2->correct(test->data("[色温]").toDouble(), data);
-            test->setData("[调整组]", d_ptr->adjusts2->useIndex());
+            value = d_ptr->adjust2->correct(test->data("[色温]").toDouble(), data);
+            test->setData("[调整组]", d_ptr->adjust2->useIndex());
         }
         if (!value.isEmpty())
             data = unify(test, value, optional);
     }
-    if (d_ptr->chromatisms != nullptr)
+    if (d_ptr->chromatism != nullptr)
     {
-        test->setData("[色容差]", d_ptr->chromatisms->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
-        test->setData("[色容差标准]", d_ptr->chromatisms->toMap());
+        test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
+        test->setData("[色容差标准]", d_ptr->chromatism->toMap());
 //        auto std = d_ptr->chromatisms->toMap();
 //        test->setData("[色容差标准Json]", QString(QJsonDocument(QJsonObject::fromVariantMap(std)).toJson(QJsonDocument::Compact)));
     }
 
-    if (d_ptr->grades != nullptr)
+    if (d_ptr->grade != nullptr)
     {
         QString text;
-        auto level = d_ptr->grades->calcLevel(data, &text);
+        auto level = d_ptr->grade->calcLevel(data, &text);
         test->setData("[分级]", level);
         test->setData("[分级别名]", text);
     }
 
-    if (d_ptr->qualitys != nullptr)
+    if (d_ptr->quality != nullptr)
     {
         QVariantMap colors;
-        auto report = d_ptr->qualitys->check(data, &colors);
-        auto color = d_ptr->qualitys->color(report);
+        auto report = d_ptr->quality->check(data, &colors);
+        auto color = d_ptr->quality->color(report);
         test->setData("[品质]", report);
         test->setData("[品质颜色]", color);
         test->setData("[品质不符合颜色]", colors);
     }
 }
 
+// 关联数据统一
 QVariantMap HConfigManage::unify(ITestData *test, QVariantMap value, QStringList optional)
 {
     test->setData(value);

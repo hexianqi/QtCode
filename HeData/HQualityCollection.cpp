@@ -48,9 +48,7 @@ HQualityCollection::HQualityCollection(HQualityCollectionPrivate &p) :
 {
 }
 
-HQualityCollection::~HQualityCollection()
-{
-}
+HQualityCollection::~HQualityCollection() = default;
 
 QString HQualityCollection::typeName()
 {

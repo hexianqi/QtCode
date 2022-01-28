@@ -23,7 +23,7 @@ class HChromatismEditWidget : public QWidget, public IDataEditer<IChromatism>
 
 public:
     explicit HChromatismEditWidget(QWidget *parent = nullptr);
-    ~HChromatismEditWidget();
+    ~HChromatismEditWidget() override;
 
 public:
     void initialize(QVariantMap param = QVariantMap()) override;

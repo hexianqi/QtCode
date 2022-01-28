@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication a(argc, argv);
 
-    HCoreGlobalInstance::instance()->init();
-    HSqlGlobalInstance::instance()->init();
+    HCoreGlobalInstance::instance()->initialize();
+    HSqlGlobalInstance::instance()->initialize();
 
 #ifdef SL7000
     QApplication::setApplicationName("SL7000");

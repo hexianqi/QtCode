@@ -106,7 +106,7 @@ bool HTm30GamutWidget::drawEdge(QPainter *painter)
     if (!isDrawEdge() || !isValid())
         return false;
 
-    auto pen = QPen(QColor(255, 255, 255), 1, Qt::DashLine);
+    auto pen = QPen(QColor(128, 128, 128), 1, Qt::DashLine);
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(pen);
@@ -126,7 +126,7 @@ bool HTm30GamutWidget::drawHueBin(QPainter *painter)
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setFont(f);
-    painter->setPen(Qt::white);
+    painter->setPen(QColor(64, 64, 64));
     for (int i = 0; i < 16; i++)
         painter->drawText(d->coordinate->mapToPosition(d->rectHueBin[i], d->plotArea), Qt::AlignCenter, QString::number(i + 1));
     painter->restore();
@@ -140,7 +140,7 @@ bool HTm30GamutWidget::drawCross(QPainter *painter)
         return false;
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
-    painter->setPen(Qt::white);
+    painter->setPen(QColor(128, 128, 128));
     HPainterHelper::drawCrossCursor(painter, d->coordinate->mapToPosition(QPointF(0, 0), d->plotArea), 5);
     painter->restore();
     return true;

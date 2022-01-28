@@ -17,12 +17,14 @@
 #include "HChromatismSelectHandler.h"
 #include "HGradeEditHandler.h"
 #include "HGradeSelectHandler.h"
+#include "HQualityEditHandler.h"
+#include "HQualitySelectHandler.h"
+#include "HLocationEditHandler.h"
+#include "HLocationSelectHandler.h"
 #include "HAdjustEditHandler.h"
 #include "HAdjustSelectHandler.h"
 #include "HAdjust2EditHandler.h"
 #include "HAdjust2SelectHandler.h"
-#include "HQualityEditHandler.h"
-#include "HQualitySelectHandler.h"
 #include "HSqlBrowserHandler.h"
 #include "HProductEditHandler.h"
 #include "HIVTestHandler.h"
@@ -110,15 +112,16 @@ HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param
 
 void HGuiFactory::registerClass()
 {
+    // 设置窗体
     HWidgetFactory::registerClass<HSimpleTestSetWidget>("HSimpleTestSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget>("HSpecCalibrateSetWidget");
     HWidgetFactory::registerClass<HSpecCalibrateSetWidget2>("HSpecCalibrateSetWidget2");
     HWidgetFactory::registerClass<HAdjustSetWidget>("HAdjustSetWidget");
     HWidgetFactory::registerClass<HAdjustSetWidget2>("HAdjustSetWidget2");
-
+    // 对话框
     HWidgetFactory::registerClass<HProductEditDialog>("HProductEditDialog");
     HWidgetFactory::registerClass<HQuantumEditDialog>("HQuantumEditDialog");
-
+    // 动作处理
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
     HObjectFactory::registerClass<HSpecLuminousHandler>("HSpecLuminousHandler");
@@ -129,12 +132,14 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HChromatismSelectHandler>("HChromatismSelectHandler");
     HObjectFactory::registerClass<HGradeEditHandler>("HGradeEditHandler");
     HObjectFactory::registerClass<HGradeSelectHandler>("HGradeSelectHandler");
+    HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
+    HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
+    HObjectFactory::registerClass<HQualityEditHandler>("HLocationEditHandler");
+    HObjectFactory::registerClass<HQualitySelectHandler>("HLocationSelectHandler");
     HObjectFactory::registerClass<HAdjustEditHandler>("HAdjustEditHandler");
     HObjectFactory::registerClass<HAdjustSelectHandler>("HAdjustSelectHandler");
     HObjectFactory::registerClass<HAdjust2EditHandler>("HAdjust2EditHandler");
     HObjectFactory::registerClass<HAdjust2SelectHandler>("HAdjust2SelectHandler");
-    HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
-    HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
     HObjectFactory::registerClass<HProductEditHandler>("HProductEditHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
     HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
@@ -144,7 +149,7 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HExportCurveHandler>("HExportCurveHandler");
     HObjectFactory::registerClass<HLoginInHandler>("HLoginInHandler");
     HObjectFactory::registerClass<HLoginOutHandler>("HLoginOutHandler");
-
+    // 打印模板
     HObjectFactory::registerClass<HSpecPrintTemplate>("HSpecPrintTemplate");
     HObjectFactory::registerClass<HTagPrintTemplate>("HTagPrintTemplate");
 }

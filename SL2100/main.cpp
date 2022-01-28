@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 {
     QApplication::addLibraryPath("./plugins");
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication a(argc, argv);
 
 #ifdef HE_ENGLISH
@@ -29,8 +30,8 @@ int main(int argc, char *argv[])
         a.installTranslator(&t6);
 #endif
 
-    HCoreGlobalInstance::instance()->init();
-    HSqlGlobalInstance::instance()->init();
+    HCoreGlobalInstance::instance()->initialize();
+    HSqlGlobalInstance::instance()->initialize();
 
 #ifdef SL2100DC
     QApplication::setApplicationName("SL2100DC");

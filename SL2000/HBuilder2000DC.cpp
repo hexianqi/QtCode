@@ -39,21 +39,23 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate()
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
-    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-                             << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
-                             << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency"
-                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
-                             << "ColorTemperature" << "ColorPurity"
-                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-                             << "RedRatio" << "GreenRadio" << "BlueRatio"
-                             << "Ra" << "R9" << "Rx" << "SDCM"
-                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
-                             << "EnergyGraph" << "ReflectGraph"
-                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
-                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
+    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    sqlField = QStringList() << "ID" << HSql::membership(list);
+//    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
+//                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
+//                             << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
+//                             << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency"
+//                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
+//                             << "ColorTemperature" << "ColorPurity"
+//                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
+//                             << "RedRatio" << "GreenRadio" << "BlueRatio"
+//                             << "Ra" << "R9" << "Rx" << "SDCM"
+//                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
+//                             << "EnergyGraph" << "ReflectGraph"
+//                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
+//                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+//                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+//                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");

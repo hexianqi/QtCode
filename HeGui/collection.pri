@@ -14,4 +14,5 @@ FORMS += \
 include(adjust.pri)
 include(chromatism.pri)
 include(grade.pri)
+include(location.pri)
 include(quality.pri)

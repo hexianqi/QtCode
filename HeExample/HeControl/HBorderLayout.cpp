@@ -99,8 +99,8 @@ void HBorderLayout::setGeometry(const QRect &rect)
 
     for (auto p : d_ptr->items)
     {
-        QLayoutItem *item = p.first;
-        Position position = p.second;
+        auto item = p.first;
+        auto position = p.second;
         if (position == West)
         {
             item->setGeometry(QRect(rect.x() + westWidth, northHeight, item->sizeHint().width(), centerHeight));
@@ -110,7 +110,7 @@ void HBorderLayout::setGeometry(const QRect &rect)
         {
             item->setGeometry(QRect(item->geometry().x(), item->geometry().y(), item->sizeHint().width(), centerHeight));
             eastWidth += item->geometry().width() + spacing();
-            item->setGeometry(QRect( rect.x() + rect.width() - eastWidth + spacing(), northHeight, item->geometry().width(), item->geometry().height()));
+            item->setGeometry(QRect(rect.x() + rect.width() - eastWidth + spacing(), northHeight, item->geometry().width(), item->geometry().height()));
         }
     }
 
@@ -128,14 +128,14 @@ void HBorderLayout::add(QWidget *widget, Position position)
     add(new QWidgetItem(widget), position);
 }
 
-QSize HBorderLayout::calculateSize(SizeType sizeType) const
+QSize HBorderLayout::calculateSize(SizeType type) const
 {
     QSize totalSize;
     for (auto p : d_ptr->items)
     {
-        QLayoutItem *item = p.first;
-        Position position = p.second;
-        QSize itemSize = sizeType == MinimumSize ? item->maximumSize() : item->sizeHint();
+        auto item = p.first;
+        auto position = p.second;
+        auto itemSize = type == MinimumSize ? item->maximumSize() : item->sizeHint();
         if (position == North || position == South || position == Center)
             totalSize.rheight() += itemSize.height();
         if (position == West || position == East || position == Center)

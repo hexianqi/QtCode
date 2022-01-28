@@ -53,15 +53,18 @@ public:
     IGradeCollection *createGradeCollection(QString type, QVariantMap param = QVariantMap()) override;
     IGrade *createGrade(QString type, QVariantMap param = QVariantMap()) override;
     IGradeItem *createGradeItem(QString type, QVariantMap param = QVariantMap()) override;
+    IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) override;
+    IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) override;
+    IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) override;
+    ILocationCollection *createLocationCollection(QString type, QVariantMap param = QVariantMap()) override;
+    ILocation *createLocation(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustCollection *createAdjustCollection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjust2Collection *createAdjust2Collection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjust *createAdjust(QString type, QVariantMap param = QVariantMap()) override;
     IAdjust2 *createAdjust2(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustItemCollection *createAdjustItemCollection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) override;
-    IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) override;
-    IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) override;
-    IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) override;
+
     HSpecFitting *createSpecFitting(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
