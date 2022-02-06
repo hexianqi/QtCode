@@ -8,7 +8,7 @@
 
 class HSpinBoxDelegatePrivate;
 
-class HSpinBoxDelegate : public HStyledItemDelegate
+class QDESIGNER_WIDGET_EXPORT HSpinBoxDelegate : public HStyledItemDelegate
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HSpinBoxDelegate)

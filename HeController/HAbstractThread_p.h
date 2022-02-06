@@ -11,6 +11,7 @@ HE_BEGIN_NAMESPACE
 
 class IProtocol;
 class IActionStrategy;
+class ITestData;
 
 class HE_CONTROLLER_EXPORT HAbstractThreadPrivate
 {
@@ -23,9 +24,9 @@ public:
     void clearAction();
 
 public:
-    QMutex *mutex;
-    QWaitCondition *waitConditionAction;
     volatile bool running = false;
+    QMutex *mutex;
+    QWaitCondition *waitConditionAction;    
     QQueue<HActionType> actionCache;
     QSet<HActionType> actionSupport;
     QList<IProtocol *> protocols;
@@ -33,6 +34,9 @@ public:
     int runMode = 2;    // 0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
+
+public:
+    ITestData *testData = nullptr;
 };
 
 HE_END_NAMESPACE

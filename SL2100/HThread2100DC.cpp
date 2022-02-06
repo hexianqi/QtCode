@@ -11,7 +11,6 @@ HThread2100DCPrivate::HThread2100DCPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
                   << ACT_GET_SPECTRUM_ELEC;
-    testData = HAppContext::getContextPointer<ITestData>("ITestData");
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElec = protocolCollection->value("Elec");

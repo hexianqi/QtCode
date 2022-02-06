@@ -1,6 +1,5 @@
-#include "HBuilder2000DC_p.h"
-#include "HSpecPrintTemplate2000DC.h"
-#include "HTestWidget2000DC.h"
+#include "HBuilder7000_p.h"
+#include "HThread7000.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
@@ -8,11 +7,11 @@
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/ISpecCalibrateCollection.h"
 #include "HeData/IChromatismCollection.h"
-#include "HeData/IElecCalibrate.h"
-#include "HeData/IElecCalibrateCollection.h"
 #include "HeData/ILuminousCalibrate.h"
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HeData/ILuminousCalibrateCollection.h"
+#include "HeData/IElecCalibrate.h"
+#include "HeData/IElecCalibrateCollection.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
@@ -20,42 +19,20 @@
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
 #include "HeController/IMemento.h"
-#include "HeSql/ISqlFactory.h"
-#include "HeSql/ISqlDatabase.h"
-#include "HeSql/ISqlTableModel.h"
-#include "HeSql/ISqlBrowser.h"
-#include "HeSql/ISqlHandle.h"
-#include "HeSql/ISqlOutput.h"
 #include "HeSql/HSql.h"
-#include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 
-HBuilder2000DCPrivate::HBuilder2000DCPrivate()
+HBuilder7000Private::HBuilder7000Private()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
     auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
     sqlField = QStringList() << "ID" << HSql::membership(list);
-//    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-//                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-//                             << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
-//                             << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency"
-//                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
-//                             << "ColorTemperature" << "ColorPurity"
-//                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-//                             << "RedRatio" << "GreenRadio" << "BlueRatio"
-//                             << "Ra" << "R9" << "Rx" << "SDCM"
-//                             << "Photon380_780" << "Photon400_700" << "Photon700_800" << "PPF" << "PRF" << "PPFE" << "FluorescenceEfficiency" << "FluorescenceRatio"
-//                             << "EnergyGraph" << "ReflectGraph"
-//                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
-//                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-//                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-//                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
@@ -63,26 +40,26 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate()
     HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
 }
 
-HBuilder2000DC::HBuilder2000DC(QObject *parent) :
-    HAbstractBuilder(*new HBuilder2000DCPrivate, parent)
+HBuilder7000::HBuilder7000(QObject *parent) :
+    HAbstractBuilder(*new HBuilder7000Private, parent)
 {
 }
 
-HBuilder2000DC::HBuilder2000DC(HBuilder2000DCPrivate &p, QObject *parent) :
+HBuilder7000::HBuilder7000(HBuilder7000Private &p, QObject *parent) :
     HAbstractBuilder(p, parent)
 {
 }
 
-HBuilder2000DC::~HBuilder2000DC() = default;
+HBuilder7000::~HBuilder7000() = default;
 
-QString HBuilder2000DC::typeName()
+QString HBuilder7000::typeName()
 {
-    return "HBuilder2000DC";
+    return "HBuilder7000";
 }
 
-void HBuilder2000DC::buildConfigManage()
+void HBuilder7000::buildConfigManage()
 {
-    Q_D(HBuilder2000DC);
+    Q_D(HBuilder7000);
     d->configManage = d->dataFactory->createConfigManage("HConfigManage");
     if (!d->configManage->stream()->readFile(d->configFileName))
     {
@@ -134,6 +111,7 @@ void HBuilder2000DC::buildConfigManage()
                                     | IConfigManage::ContainLuminous
                                     | IConfigManage::ContainChromatism
                                     | IConfigManage::ContainGrade
+                                    | IConfigManage::ContainLocation
                                     | IConfigManage::ContainAdjust
                                     | IConfigManage::ContainQuality);
         d->configManage->setSpecCalibrateCollection(specs);
@@ -142,30 +120,15 @@ void HBuilder2000DC::buildConfigManage()
         d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
+        d->configManage->setLocationCollection(d->dataFactory->createLocationCollection("LocationCollection"));
         d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
 
-void HBuilder2000DC::buildTemplate()
+void HBuilder7000::buildTestData()
 {
-    Q_D(HBuilder2000DC);
-    auto expor = d->dataFactory->createTextExport("HTextExport");
-    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    auto print = d->dataFactory->createPrint("HPrint");
-    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
-    auto spec = new HSpecPrintTemplate2000DC(this);
-    spec->initialize();
-    HAppContext::setContextPointer("ITextExport", expor);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
-    HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
-    HAppContext::setContextPointer("ITagPrintTemplate", tag);
-}
-
-void HBuilder2000DC::buildTestData()
-{
-    Q_D(HBuilder2000DC);
+    Q_D(HBuilder7000);
     auto data = d->dataFactory->createTestData("HTestData");
     auto product = d->dataFactory->createTestData("HTestProduct");
     auto elec = d->dataFactory->createTestData("HTestElec");
@@ -184,16 +147,33 @@ void HBuilder2000DC::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
-void HBuilder2000DC::buildDevice()
+void HBuilder7000::buildTemplate()
 {
-    Q_D(HBuilder2000DC);
+    Q_D(HBuilder7000);
+    auto expor = d->dataFactory->createTextExport("HTextExport");
+    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
+//    auto print = d->dataFactory->createPrint("HPrint");
+//    auto spec = new HSpecPrintTemplate7000(this);
+//    spec->initialize();
+    HAppContext::setContextPointer("ITextExport", expor);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
+//    HAppContext::setContextPointer("IPrint", print);
+    //    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+}
+
+void HBuilder7000::buildDevice()
+{
+    Q_D(HBuilder7000);
 #ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto device2 = d->communicateFactory->createDevice("HSimulateDevice");
+    auto device3 = d->communicateFactory->createDevice("HSimulateDevice");
     auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
     auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
+    auto protocol3 = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol1->setDevice(device1);
     protocol2->setDevice(device2);
+    protocol3->setDevice(device2);
 #else
     auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
@@ -204,108 +184,52 @@ void HBuilder2000DC::buildDevice()
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
-void HBuilder2000DC::buildThread()
+void HBuilder7000::buildThread()
 {
-    Q_D(HBuilder2000DC);
-    auto thread = d->controllerFactory->createThread("HIntegrateThread");
+    Q_D(HBuilder7000);
+    auto thread = new HThread7000(this);
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
     threads->insert("1", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
 }
 
-void HBuilder2000DC::buildModel()
+void HBuilder7000::buildModel()
 {
-    Q_D(HBuilder2000DC);
-    auto model = d->controllerFactory->createModel("HIntegrateModel");
+    auto model = new HModel7000(this);
     HAppContext::setContextPointer("IModel", model);
 }
 
-void HBuilder2000DC::buildMemento()
+void HBuilder7000::buildMemento()
 {
-    Q_D(HBuilder2000DC);
+    Q_D(HBuilder7000);
     auto memento = d->controllerFactory->createMemento("HMemento");
     memento->setDataTypes(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
     memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
     HAppContext::setContextPointer("IMementoTest", memento);
 }
 
-void HBuilder2000DC::buildDatabase()
+void HBuilder7000::buildDatabase()
 {
-    Q_D(HBuilder2000DC);
-    auto find = d->sqlField;
-    find.removeAll("ID");
-    find.removeAll("Rx");
-    find.removeAll("EnergyGraph");
-    find.removeAll("ReflectGraph");
-    find.removeAll("TM30_Rfi");
-    find.removeAll("TM30_hj_Rf");
-    find.removeAll("TM30_hj_Rcs");
-    find.removeAll("TM30_hj_Rhs");
-    find.removeAll("TM30_hj_at");
-    find.removeAll("TM30_hj_bt");
-    find.removeAll("TM30_hj_ar");
-    find.removeAll("TM30_hj_br");
-    find.removeAll("TM30_hj_atn");
-    find.removeAll("TM30_hj_btn");
-    find.removeAll("TM30_hj_arn");
-    find.removeAll("TM30_hj_arn");
 
-    auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
-    if (db->contains("Spec"))
-    {
-        auto version = HSqlHelper::getVersion("Spec");
-        // 1.1.1.2 添加列R9
-        if (version < 0x01010102)
-            HSqlHelper::addColumn("Spec", "R9");
-        // 1.1.1.3 添加列（光合）
-        if (version < 0x01010103)
-            HSqlHelper::addColumn("Spec", HSql::membership("|光合信息|"));
-        // 1.1.1.4 添加列SDCM
-        if (version < 0x01010104)
-            HSqlHelper::addColumn("Spec", "SDCM");
-        // 1.1.1.5 添加列TM30
-        if (version < 0x01010105)
-            HSqlHelper::addColumn("Spec", QStringList() << "ReflectGraph" << HSql::membership("|TM30信息|"));
-    }
-    HSqlHelper::setVersion("Spec", 0x01010105);
-
-    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
-    auto handle = d->sqlFactory->createHandle("HSqlHandle");
-    auto output = d->sqlFactory->createOutput("HSqlOutput");
-    auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
-    auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
-
-    model->setTableField("Spec", d->sqlField);
-    handle->setModel(model);
-    handle->setFieldFind(find);
-    output->setModel(model);
-    output->setTextTemplate(text);
-    output->setPrintTemplate(print);
-    browser->setModel(model);
-    browser->setRecordHandle(handle);
-    browser->setRecordOutput(output);
-    db->insertTableModel(model);
-    HAppContext::setContextPointer("ISqlHandle", handle);
-    HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 
-void HBuilder2000DC::buildMenu()
+void HBuilder7000::buildMenu()
 {
-    Q_D(HBuilder2000DC);
+    Q_D(HBuilder7000);
     QVariantMap param[2];
     param[1].insert("authority", 1);
     param[0].insert("property", param[1]);
     auto calibrate = new QMenu(tr("定标(&C)"));
+    auto location = new QMenu(tr("定位配置(&T)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
     auto quality = new QMenu(tr("品质(&Q)"));
     auto device = new QMenu(tr("设备配置(&T)"));
-    auto test = new QMenu(tr("其他测试(&E)"));
-    auto database = new QMenu(tr("数据库(&D)"));
+//    auto test = new QMenu(tr("其他测试(&E)"));
+//    auto database = new QMenu(tr("数据库(&D)"));
     auto account = new QMenu(tr("账号管理(&M)"));
     calibrate->menuAction()->setProperty("authority", 1);
+    location->menuAction()->setProperty("authority", 1);
     grade->menuAction()->setProperty("authority", 1);
     quality->menuAction()->setProperty("authority", 1);
     device->menuAction()->setProperty("authority", 1);
@@ -314,6 +238,8 @@ void HBuilder2000DC::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
+    location->addAction(d->guiFactory->createAction(tr("定位数据配置(&E)..."), "HLocationEditHandler"));
+    location->addAction(d->guiFactory->createAction(tr("定位数据选择(&S)..."), "HLocationSelectHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));
@@ -324,27 +250,27 @@ void HBuilder2000DC::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
-    test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
-    database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
+//    test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
+//    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
+//    database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
+    d->mainWindow->insertMenu(location);
     d->mainWindow->insertMenu(grade);
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
     d->mainWindow->insertMenu(device);
-    d->mainWindow->insertMenu(test);
-    d->mainWindow->insertMenu(database);
+//    d->mainWindow->insertMenu(test);
+//    d->mainWindow->insertMenu(database);
     d->mainWindow->insertMenu(account);
 #ifndef QT_DEBUG
     d->mainWindow->setAuthority(0);
 #endif
 }
 
-void HBuilder2000DC::buildTestWidget()
+void HBuilder7000::buildTestWidget()
 {
-    ITestWidget *widget = new HTestWidget2000DC;
-//    widget->setVisible(false);
+    ITestWidget *widget = new HTestWidget7000;
     HAppContext::setContextPointer("ITestWidget", widget);
 }

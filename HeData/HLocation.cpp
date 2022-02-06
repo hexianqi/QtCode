@@ -52,11 +52,12 @@ QPolygon HLocation::polygon()
     Q_D(HLocation);
     if (d->polygon.isEmpty())
     {
-        auto width = data("[列数]").toInt();
-        auto height = data("[行数]").toInt();
-        for (int i = 0; i < d->layout.size() && i < width; i++)
+        int i,j;
+        auto row = data("[行数]").toInt();
+        auto col = data("[列数]").toInt();
+        for (i = 0; i < d->layout.size() && i < row; i++)
         {
-            for (int j = 0; j < d->layout.at(i).size() && j < height; j++)
+            for (j = 0; j < d->layout.at(i).size() && j < col; j++)
             {
                 if (d->layout.at(i).at(j) > 0)
                     d->polygon << QPoint(i, j);
@@ -64,6 +65,18 @@ QPolygon HLocation::polygon()
         }
     }
     return d->polygon;
+}
+
+QVector<QVector<int>> HLocation::layout()
+{
+    Q_D(HLocation);
+    return d->layout;
+}
+
+void HLocation::setLayout(QVector<QVector<int>> value)
+{
+    Q_D(HLocation);
+    d->layout = value;
 }
 
 HE_END_NAMESPACE

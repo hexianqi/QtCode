@@ -5,8 +5,6 @@
 
 HE_BEGIN_NAMESPACE
 
-class ITestData;
-
 class HSpecElecThreadPrivate : public HAbstractThreadPrivate
 {
 public:
@@ -15,7 +13,6 @@ public:
 public:
     IProtocol *protocolSpec = nullptr;
     IProtocol *protocolElse = nullptr;
-    ITestData *testData = nullptr;
     IActionStrategy *strategySpec = nullptr;
     IActionStrategy *strategyElec = nullptr;
 };

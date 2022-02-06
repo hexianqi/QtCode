@@ -510,6 +510,11 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_hj_arn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_brn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
 
+    // 定位参数
+    hashDataFormatInfo.insert("[定位行数]",                     new HDataFormatInfo("[定位行数]", 0, 70));
+    hashDataFormatInfo.insert("[定位列数]",                     new HDataFormatInfo("[定位列数]", 0, 70));
+    hashDataFormatInfo.insert("[定位数值]",                     new HDataFormatInfo("[定位列数]", 0, 65535));
+
 
 //    //光强角度分布参数
 //    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));

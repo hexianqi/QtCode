@@ -16,6 +16,9 @@ public:
     virtual QRect boundingRect() = 0;
     // 形状
     virtual QPolygon polygon() = 0;
+    // 布局
+    virtual QVector<QVector<int>> layout() = 0;
+    virtual void setLayout(QVector<QVector<int>>) = 0;
 };
 
 HE_END_NAMESPACE

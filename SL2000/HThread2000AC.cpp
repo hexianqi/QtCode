@@ -9,7 +9,6 @@
 HThread2000ACPrivate::HThread2000ACPrivate()
 {
     actionSupport << ACT_GET_SPECTRUM_ELEC;
-    testData = HAppContext::getContextPointer<ITestData>("ITestData");
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElec = protocolCollection->value("Elec");

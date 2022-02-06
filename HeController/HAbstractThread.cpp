@@ -14,6 +14,7 @@ HAbstractThreadPrivate::HAbstractThreadPrivate()
 {
     mutex = new QMutex;
     waitConditionAction = new QWaitCondition;
+    testData = HAppContext::getContextPointer<ITestData>("ITestData");
 }
 
 void HAbstractThreadPrivate::enqueueAction(HActionType action)

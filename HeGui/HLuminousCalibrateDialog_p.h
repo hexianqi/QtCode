@@ -4,9 +4,9 @@
 
 HE_BEGIN_NAMESPACE
 
-class ILuminousCalibrateCollection;
 class ITestData;
 class IModel;
+class ILuminousCalibrateCollection;
 class HLuminousCalibrateItemWidget;
 
 class HLuminousCalibrateDialogPrivate
@@ -14,10 +14,10 @@ class HLuminousCalibrateDialogPrivate
 public:
     HLuminousCalibrateDialogPrivate();
 
-public:
-    ILuminousCalibrateCollection *calibrate = nullptr;
+public:    
     ITestData *testData = nullptr;
     IModel *model = nullptr;
+    ILuminousCalibrateCollection *calibrate = nullptr;
     HLuminousCalibrateItemWidget *currentWidget = nullptr;
     bool test = false;
     int module = -1;

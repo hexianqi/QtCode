@@ -43,6 +43,7 @@ Release {
             -L$$DESTDIR -lHeSql
 }
 
+include(Keyence.pri)
 include(SL7000.pri)
 
 TARGET_NAME                 = SL7000
