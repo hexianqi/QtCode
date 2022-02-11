@@ -10,7 +10,7 @@ HE_BEGIN_NAMESPACE
 
 class HIntegrateModelPrivate;
 
-class HIntegrateModel : public HAbstractModel
+class HE_CONTROLLER_EXPORT HIntegrateModel : public HAbstractModel
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HIntegrateModel)

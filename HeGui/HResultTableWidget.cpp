@@ -44,10 +44,20 @@ void HResultTableWidget::setSelected(const QStringList &value)
     d->optional->setSelected(value);
 }
 
+void HResultTableWidget::setFixedRowCount(int value)
+{
+    Q_D(HResultTableWidget);
+    if (d->fixedRowCount == value)
+        return;
+    d->fixedRowCount = value;
+    clearResult();
+}
+
 void HResultTableWidget::clearResult()
 {
     clearContents();
     setRowCount(0);
+    fillContents();
 }
 
 void HResultTableWidget::refreshResult(bool append)
@@ -64,19 +74,48 @@ void HResultTableWidget::refreshResult(bool append)
     else
         setRow(row, value);
 
-    auto map = d->testData->data("[品质不符合颜色]").toMap();
-    for (auto i = map.begin(); i != map.end(); i++)
-    {
-        auto column = d->displays.indexOf(i.key());
-        if (column != -1)
-            item(row, column)->setBackgroundColor(i.value().value<QColor>());
-    }
+    setRowBackgroundColor(row, d->testData->data("[品质不符合颜色]").toMap());
+}
+
+void HResultTableWidget::refreshResult(int row)
+{
+    Q_D(HResultTableWidget);
+    if (row < 0 || row >= rowCount())
+        return;
+
+    setRow(row, d->testData->toString(d->displays));
+    setRowBackgroundColor(row, d->testData->data("[品质不符合颜色]").toMap());
 }
 
 QStringList HResultTableWidget::selected()
 {
     Q_D(HResultTableWidget);
     return d->optional->selected();
+}
+
+void HResultTableWidget::fillContents()
+{
+    Q_D(HResultTableWidget);
+    if (d->fixedRowCount <= 0)
+        return;
+
+    int i;
+    QStringList list;
+    for (i = 0; i < d->displays.size(); i++)
+        list << "-";
+    for (i = 0; i < d->fixedRowCount; i++)
+        insertRow(i, list);
+}
+
+void HResultTableWidget::setRowBackgroundColor(int row, QVariantMap value)
+{
+    Q_D(HResultTableWidget);
+    for (auto i = value.begin(); i != value.end(); i++)
+    {
+        auto column = d->displays.indexOf(i.key());
+        if (column != -1)
+            item(row, column)->setBackgroundColor(i.value().value<QColor>());
+    }
 }
 
 void HResultTableWidget::init()

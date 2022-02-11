@@ -1,5 +1,5 @@
 #include "HVlcPlayerControl_p.h"
-#include "HeCore/HCallback.h"
+#include "HeCore/HClassCallback.h"
 #include <QtWidgets/QWidget>
 #include <QtCore/QDebug>
 
@@ -293,8 +293,8 @@ void HVlcPlayerControl::attachEvents()
 {
     if (d_ptr->callback == nullptr)
     {
-        HCallback<void(const libvlc_event_t *, void *)>::func = std::bind(&HVlcPlayerControl::handleEvents, this, std::placeholders::_1, std::placeholders::_2);
-        d_ptr->callback = (HCallback<void(const libvlc_event_t *, void *)>::callback);
+        HClassCallback<void(const libvlc_event_t *, void *)>::func = std::bind(&HVlcPlayerControl::handleEvents, this, std::placeholders::_1, std::placeholders::_2);
+        d_ptr->callback = (HClassCallback<void(const libvlc_event_t *, void *)>::callback);
     }
     for(auto e : d_ptr->mediaEvents)
         libvlc_event_attach(d_ptr->mediaManager, e, d_ptr->callback, this);

@@ -2,6 +2,7 @@
 #include "ITestSetWidget.h"
 #include "HeCore/HAppContext.h"
 #include "HeController/IModel.h"
+#include "HeController/IMemento.h"
 #include <QtGui/QCloseEvent>
 
 HE_BEGIN_NAMESPACE
@@ -44,12 +45,16 @@ QList<QToolBar *> HAbstractTestWidget::toolBars()
 void HAbstractTestWidget::start()
 {
     connect(d_ptr->model, &IModel::actionFinished, this, &HAbstractTestWidget::handleAction);
+    if (d_ptr->memento)
+        d_ptr->memento->restore();
 }
 
 void HAbstractTestWidget::stop()
 {
     setTest(false);
     d_ptr->model->disconnect(this);
+    if (d_ptr->memento)
+        d_ptr->memento->save();
 }
 
 void HAbstractTestWidget::closeEvent(QCloseEvent *event)

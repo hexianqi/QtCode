@@ -6,7 +6,7 @@
 
 #include "IMainWindow.h"
 #include "HeCore/HActionType.h"
-#include "HeCore/HCallorHelper.h"
+#include "HeCore/IConstructionCall.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -37,9 +37,9 @@ protected slots:
     void updatetWindowTitle();
 
 protected slots:
-    virtual void open();
-    virtual void save(bool b = true);
-    virtual void saveAs();
+    virtual void openFile();
+    virtual void saveFile();
+    virtual void saveAsFile();
     virtual void importFile(QAction *);
     virtual void exportFile(QAction *);
     virtual void about();

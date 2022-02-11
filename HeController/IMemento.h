@@ -11,14 +11,15 @@ HE_BEGIN_NAMESPACE
 class IMemento : public IInitializeable
 {
 public:
-    // 读取文件
-    virtual bool readFile(QString fileName) = 0;
-    // 写入文件
-    virtual bool writeFile() = 0;
+    // 读取内容
+    virtual void readContent(QDataStream &) = 0;
+    // 写入内容
+    virtual void writeContent(QDataStream &) = 0;
 
 public:
-    // 设置保存项
-    virtual void setDataTypes(QStringList) = 0;
+    // 保存项
+    virtual void setDataType(QStringList) = 0;
+    virtual QStringList dataType() = 0;
 
 public:
     // 保存

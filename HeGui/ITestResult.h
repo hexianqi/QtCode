@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2021-01-26
+**      2021-01-26  ITestResult测试结果集接口。
 ***************************************************************************************************/
 
 #pragma once
@@ -13,9 +13,9 @@ class ITestData;
 class ITestResult : public IInitializeable
 {
 public:
-    //
+    // 结果
     virtual ITestData *at(int i) = 0;
-    // 最后一次结果
+    // 最后结果
     virtual ITestData *last() = 0;
     // 是否为空
     virtual bool isEmpty() = 0;
@@ -24,7 +24,7 @@ public:
     // 清除
     virtual void clear() = 0;
     // 保存
-    virtual void save(bool append = true) = 0;
+    virtual void save(bool append) = 0;
     // 删除
     virtual void remove(int index, int count) = 0;
     // 设置修改

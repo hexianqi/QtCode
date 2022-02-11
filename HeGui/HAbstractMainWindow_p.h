@@ -11,6 +11,7 @@ HE_BEGIN_NAMESPACE
 class IModel;
 class IBuilder;
 class ITestWidget;
+class IMementoCollection;
 
 class HAbstractMainWindowPrivate
 {
@@ -25,6 +26,7 @@ public:
     IBuilder *builder = nullptr;
     IModel *model = nullptr;
     ITestWidget *testWidget = nullptr;
+    IMementoCollection *mementos = nullptr;
 
 public:
     QMap<QString, quint32> importExport;

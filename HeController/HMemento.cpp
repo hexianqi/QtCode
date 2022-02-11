@@ -1,8 +1,6 @@
 #include "HMemento_p.h"
 #include "IModel.h"
 #include "HeCore/HAppContext.h"
-#include "HeData/IDataFactory.h"
-#include "HeData/IDataStream.h"
 #include "HeData/ITestData.h"
 #include <QtCore/QDataStream>
 
@@ -12,25 +10,6 @@ HMementoPrivate::HMementoPrivate()
 {
     model = HAppContext::getContextPointer<IModel>("IModel");
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
-    stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createDataStream("HDataStream");
-    stream->setMagicNumber(0x01010001);
-    stream->setFileVersion(0x01010101);
-    stream->setFileFilter("memento files (*.tmp)");
-    stream->setReadContent([=](QDataStream &s) { readContent(s); });
-    stream->setWriteContent([=](QDataStream &s) { writeContent(s); });
-}
-
-void HMementoPrivate::readContent(QDataStream &s)
-{
-    quint32 version;
-    s >> version;
-    s >> datas;
-}
-
-void HMementoPrivate::writeContent(QDataStream &s)
-{
-    s << quint32(1);
-    s << datas;
 }
 
 HMemento::HMemento(QObject *parent) :
@@ -51,10 +30,8 @@ HMemento::~HMemento()
 
 void HMemento::initialize(QVariantMap param)
 {
-    if (param.contains("fileName"))
-        d_ptr->fileName = param.value("fileName").toString();
-    if (param.contains("dataTypes"))
-        setDataTypes(param.value("dataTypes").toStringList());
+    if (param.contains("dataType"))
+        setDataType(param.value("dataType").toStringList());
 }
 
 QString HMemento::typeName()
@@ -62,22 +39,31 @@ QString HMemento::typeName()
     return "HMemento";
 }
 
-bool HMemento::readFile(QString fileName)
+void HMemento::readContent(QDataStream &s)
 {
-    d_ptr->fileName = fileName;
-    return d_ptr->stream->readFile(fileName);
+    quint32 version;
+    s >> version;
+    s >> d_ptr->types;
+    s >> d_ptr->datas;
 }
 
-bool HMemento::writeFile()
+void HMemento::writeContent(QDataStream &s)
 {
-    return d_ptr->stream->writeFile(d_ptr->fileName);
+    s << quint32(1);
+    s << d_ptr->types;
+    s << d_ptr->datas;
 }
 
-void HMemento::setDataTypes(QStringList value)
+void HMemento::setDataType(QStringList value)
 {
     if (d_ptr->types == value)
         return;
     d_ptr->types = value;
+}
+
+QStringList HMemento::dataType()
+{
+    return d_ptr->types;
 }
 
 void HMemento::save()

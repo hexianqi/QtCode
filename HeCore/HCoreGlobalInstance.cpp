@@ -285,6 +285,13 @@ void HCoreGlobalInstance::initActionComment()
     // 状态操作
     hashActionComment.insert(ACT_RESET_STATE_TRIGGER,           tr("复位触发状态"));
     hashActionComment.insert(ACT_QUERY_STATE_TRIGGER,           tr("查询触发状态"));
+
+    // 电机操作
+    hashActionComment.insert(ACT_SET_MOTOR_LOCATION,            tr("设置电机定位"));
+    hashActionComment.insert(ACT_RESET_MOTOR_LOCATION,          tr("复位电机定位"));
+    hashActionComment.insert(ACT_RESET_MOTOR_STATE,             tr("复位电机状态"));
+    hashActionComment.insert(ACT_QUERY_MOTOR_STATE,             tr("查询电机状态"));
+
     // 测试操作
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
     hashActionComment.insert(ACT_GET_SPECTRUM_ELEC,             tr("获取光谱&电数据"));

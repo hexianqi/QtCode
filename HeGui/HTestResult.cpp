@@ -81,7 +81,6 @@ void HTestResult::clear()
         return;
     qDeleteAll(d_ptr->results);
     d_ptr->results.clear();
-    d_ptr->index = 1;
     d_ptr->modified = true;
 }
 

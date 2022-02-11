@@ -5,7 +5,7 @@
 
 HE_BEGIN_NAMESPACE
 
-class HIntegrateThreadPrivate : public HAbstractThreadPrivate
+class HE_CONTROLLER_EXPORT HIntegrateThreadPrivate : public HAbstractThreadPrivate
 {
 public:
     HIntegrateThreadPrivate();

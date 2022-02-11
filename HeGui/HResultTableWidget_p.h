@@ -18,6 +18,7 @@ public:
     ITestData *testData = nullptr;
     HOptionalTableExtend *optional = nullptr;
     QStringList displays;
+    int fixedRowCount = -1;
 };
 
 HE_END_NAMESPACE

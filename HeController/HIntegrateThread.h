@@ -10,7 +10,7 @@ HE_BEGIN_NAMESPACE
 
 class HIntegrateThreadPrivate;
 
-class HIntegrateThread : public HAbstractThread
+class HE_CONTROLLER_EXPORT HIntegrateThread : public HAbstractThread
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HIntegrateThread)
@@ -30,11 +30,10 @@ protected:
 
 protected:
     bool handleAction(HActionType action) override;
-    void getSpectrum(int n = 1);
     void handleData();
 
-private:
-    void init();
+protected:
+    virtual void init();
 };
 
 HE_END_NAMESPACE

@@ -7,5 +7,4 @@ class HDaXinProtocolPrivate : public HBigProtocolPrivate
 {
 public:
     HDaXinProtocolPrivate();
-
 };

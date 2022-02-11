@@ -185,12 +185,6 @@ void HTestCore::testDictionary()
     QJsonValue json = dict.toJsonObject();
     HDumpTree::dump(json, "test");
     qDebug() << json;
-
-
-
-
-
-
 }
 
 #include "HTestCore.moc"

@@ -33,7 +33,6 @@ HEADERS     += \
             HAppContext.h \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
-            HCallorHelper.h \
             HDefine.h \
             HDumpTree.h \
             HDumpTree_p.h \

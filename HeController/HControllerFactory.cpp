@@ -11,6 +11,7 @@
 #include "HLuminousStrategy.h"
 #include "HPowerFactorStrategy.h"
 #include "HMemento.h"
+#include "HMementoCollection.h"
 #include "HeCore/HObjectFactory.h"
 
 HE_BEGIN_NAMESPACE
@@ -69,6 +70,14 @@ IMemento *HControllerFactory::createMemento(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
     auto p = new HMemento(this);
+    p->initialize(param);
+    return p;
+}
+
+IMementoCollection *HControllerFactory::createMementoCollection(QString type, QVariantMap param)
+{
+    Q_UNUSED(type)
+    auto p = new HMementoCollection;
     p->initialize(param);
     return p;
 }

@@ -16,17 +16,16 @@ class HTm30RhshjChartView;
 HE_BEGIN_NAMESPACE
 
 class IConfigManage;
+class ITestResult;
+class ISqlHandle;
 class IPrint;
 class IPrintTemplate;
 class ITextExport;
 class ITextExportTemplate;
-class IMemento;
-class ISqlHandle;
 class HSpecEnergyWidget;
 class HSpecChromatismChartView;
 class HResultTableWidget;
 class ITestDetailWidget;
-class ITestResult;
 
 class HSpecTestWidgetPrivate : public HTestWidgetPrivate
 {
@@ -34,8 +33,6 @@ public:
     HSpecTestWidgetPrivate();
 
 public:
-    HSpecEnergyWidget *energyWidget = nullptr;
-    HSpecChromatismChartView *chromatismWidget = nullptr;
     HCie1931Widget *cieWidget = nullptr;
     HCie1931Widget *cieWidget2 = nullptr;
     HTm30SpdChartView *spdWidget = nullptr;
@@ -47,6 +44,8 @@ public:
     HTm30RcshjChartView *rcshjWidget = nullptr;
     HTm30RhshjChartView *rhshjWidget = nullptr;
     QDialog *cieDialog = nullptr;
+    HSpecEnergyWidget *energyWidget = nullptr;
+    HSpecChromatismChartView *chromatismWidget = nullptr;
     HResultTableWidget *tableWidget = nullptr;
     ITestDetailWidget *detailWidget = nullptr;
 
@@ -64,7 +63,6 @@ public:
 
 public:
     IConfigManage *configManage = nullptr;
-    IMemento *memento = nullptr;
     ITestResult *testResult = nullptr;
     ISqlHandle *sqlHandle = nullptr;
     IPrint *print = nullptr;

@@ -58,6 +58,11 @@ using HActionType = long long;
 #define     ACT_RESET_STATE_TRIGGER                 0x00030101
 #define     ACT_QUERY_STATE_TRIGGER                 0x00030111
 
+#define     ACT_SET_MOTOR_LOCATION                  0x00030201
+#define     ACT_RESET_MOTOR_LOCATION                0x00030202
+#define     ACT_RESET_MOTOR_STATE                   0x00030203
+#define     ACT_QUERY_MOTOR_STATE                   0x00030211
+
 #define     ACT_SINGLE_TEST                         0x10000001
 #define     ACT_GET_SPECTRUM_ELEC                   0x10000002
 

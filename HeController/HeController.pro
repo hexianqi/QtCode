@@ -29,12 +29,14 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 
 HEADERS     += \
             HControllerGlobal.h \
+            HControllerHelper.h \
             IControllerFactory.h \
             HControllerFactory.h \
             HControllerFactory_p.h
 
 SOURCES     += \
-            HControllerFactory.cpp
+            HControllerFactory.cpp \
+            HControllerHelper.cpp
 
 INCLUDEPATH += ..
 

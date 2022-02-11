@@ -4,8 +4,9 @@
 
 HE_BEGIN_NAMESPACE
 
-class ITestData;
 class IModel;
+class ITestData;
+class IMemento;
 class ITestSetWidget;
 
 class HAbstractTestWidgetPrivate
@@ -14,9 +15,10 @@ public:
     HAbstractTestWidgetPrivate();
 
 public:
-    ITestSetWidget *testSetWidget = nullptr;
     IModel *model;
     ITestData *testData;
+    IMemento *memento = nullptr;
+    ITestSetWidget *testSetWidget = nullptr;
     QList<QMenu *> menus;
     QList<QToolBar *> toolBars;
 };

@@ -21,16 +21,22 @@ public:
     ~HResultTableWidget() override;
 
 public:
-    void setDisplay(const QStringList &value);
-    void setSelected(const QStringList &value);
+    void setDisplay(const QStringList &);
+    void setSelected(const QStringList &);
+    void setFixedRowCount(int);
     void clearResult();
     void refreshResult(bool append);
+    void refreshResult(int row);
 
 public:
     QStringList selected();
 
 protected:
     HResultTableWidget(HResultTableWidgetPrivate &p, QWidget *parent = nullptr);
+
+protected:
+    void fillContents();
+    void setRowBackgroundColor(int row, QVariantMap);
 
 private:
     void init();

@@ -27,11 +27,10 @@ public:
 
 protected:
     bool handleAction(HActionType action) override;
-    void getSpectrum(int n = 1);
     void handleData();
 
-private:
-    void init();
+protected:
+    virtual void init();
 };
 
 

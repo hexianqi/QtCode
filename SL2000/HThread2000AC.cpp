@@ -21,7 +21,6 @@ HThread2000AC::HThread2000AC(QObject *parent) :
     init();
 }
 
-
 HThread2000AC::~HThread2000AC() = default;
 
 QString HThread2000AC::typeName()

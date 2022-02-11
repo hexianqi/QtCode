@@ -19,7 +19,6 @@ public:
     QList<ITestData *> results;
     QStringList syncType;
     QString syncFile;
-    int index = 1;
     bool modified = false;
 };
 

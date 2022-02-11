@@ -23,11 +23,12 @@ public:
     QString typeName() override;
 
 public:
-    bool readFile(QString fileName) override;
-    bool writeFile() override;
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
 
 public:
-    void setDataTypes(QStringList) override;
+    void setDataType(QStringList) override;
+    QStringList dataType() override;
 
 public:
     void save() override;

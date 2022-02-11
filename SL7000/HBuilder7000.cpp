@@ -1,5 +1,8 @@
 #include "HBuilder7000_p.h"
+#include "HKeyenceProtocol.h"
 #include "HThread7000.h"
+#include "HModel7000.h"
+#include "HTestWidget7000.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
@@ -19,6 +22,7 @@
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
 #include "HeController/IMemento.h"
+#include "HeController/IMementoCollection.h"
 #include "HeSql/HSql.h"
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
@@ -173,14 +177,16 @@ void HBuilder7000::buildDevice()
     auto protocol3 = d->communicateFactory->createProtocol("HLittleProtocol");
     protocol1->setDevice(device1);
     protocol2->setDevice(device2);
-    protocol3->setDevice(device2);
+    protocol3->setDevice(device3);
 #else
     auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
     auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
+    auto protocol3 = new HKeyenceProtocol();
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
     protocols->insert("Else", protocol2);
+    protocols->insert("Keyence", protocol3);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
@@ -202,10 +208,14 @@ void HBuilder7000::buildModel()
 void HBuilder7000::buildMemento()
 {
     Q_D(HBuilder7000);
-    auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setDataTypes(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
-    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
-    HAppContext::setContextPointer("IMementoTest", memento);
+    auto mementos = d->controllerFactory->createMementoCollection("HMementoCollection");
+    if (!mementos->readFile(QString("%1.tmp").arg(QApplication::applicationName())) || !mementos->contains("Spec"))
+    {
+        auto memento = d->controllerFactory->createMemento("HMemento");
+        memento->setDataType(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
+        mementos->insert("Spec", memento);
+    }
+    HAppContext::setContextPointer("IMementoCollection", mementos);
 }
 
 void HBuilder7000::buildDatabase()

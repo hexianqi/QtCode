@@ -28,7 +28,7 @@ public:
     bool isEmpty() override;
     int size() override;
     void clear() override;
-    void save(bool append = true) override;
+    void save(bool append) override;
     void remove(int index, int count) override;
     void setModified(bool b = true) override;
     void setSyncType(QStringList) override;

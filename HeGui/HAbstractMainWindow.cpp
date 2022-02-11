@@ -3,6 +3,7 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeController/IModel.h"
+#include "HeController/IMementoCollection.h"
 #include <QtCore/QSettings>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
@@ -40,7 +41,9 @@ HAbstractMainWindow::~HAbstractMainWindow()
 {
     writeSettings();
     d_ptr->testWidget->close();
-    save(false);
+    d_ptr->model->saveFile();
+    if (d_ptr->mementos)
+        d_ptr->mementos->writeFile();
 }
 
 void HAbstractMainWindow::setAuthority(int value)
@@ -101,6 +104,7 @@ void HAbstractMainWindow::initialize()
     initModel();
     initCentralWidget();
     initWindow();
+    d_ptr->mementos = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
 }
 
 void HAbstractMainWindow::initImportExport()
@@ -134,9 +138,9 @@ void HAbstractMainWindow::createAction()
         d_ptr->actionGroupImport->addAction(i.key())->setData(i.value());
         d_ptr->actionGroupExport->addAction(i.key())->setData(i.value());
     }
-    connect(d_ptr->actionOpen, &QAction::triggered, this, &HAbstractMainWindow::open);
-    connect(d_ptr->actionSave, &QAction::triggered, this, &HAbstractMainWindow::save);
-    connect(d_ptr->actionSaveAs, &QAction::triggered, this, &HAbstractMainWindow::saveAs);
+    connect(d_ptr->actionOpen, &QAction::triggered, this, &HAbstractMainWindow::openFile);
+    connect(d_ptr->actionSave, &QAction::triggered, this, &HAbstractMainWindow::saveFile);
+    connect(d_ptr->actionSaveAs, &QAction::triggered, this, &HAbstractMainWindow::saveAsFile);
     connect(d_ptr->actionExit, &QAction::triggered, this, &HAbstractMainWindow::close);
     connect(d_ptr->actionAbout, &QAction::triggered, this, &HAbstractMainWindow::about);
     connect(d_ptr->actionGroupImport, &QActionGroup::triggered, this, &HAbstractMainWindow::importFile);
@@ -295,7 +299,7 @@ void HAbstractMainWindow::updatetWindowTitle()
     setWindowTitle(QApplication::applicationName() + " - " + fileName);
 }
 
-void HAbstractMainWindow::open()
+void HAbstractMainWindow::openFile()
 {
     if (!d_ptr->model->openFile())
         return;
@@ -303,15 +307,14 @@ void HAbstractMainWindow::open()
     updatetWindowTitle();
 }
 
-void HAbstractMainWindow::save(bool b)
+void HAbstractMainWindow::saveFile()
 {
     if (!d_ptr->model->saveFile())
         return;
-    if (b)
-        QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
+    QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
 }
 
-void HAbstractMainWindow::saveAs()
+void HAbstractMainWindow::saveAsFile()
 {
     if (!d_ptr->model->saveAsFile())
         return;

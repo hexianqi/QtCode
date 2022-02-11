@@ -7,6 +7,5 @@ class HDaXinStrategyPrivate : public HAbstractActionStrategyPrivate
 {
 public:
     HDaXinStrategyPrivate();
-
 };
 

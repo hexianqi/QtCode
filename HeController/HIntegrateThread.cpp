@@ -1,11 +1,11 @@
 #include "HIntegrateThread_p.h"
 #include "IControllerFactory.h"
 #include "IActionStrategy.h"
+#include "HControllerHelper.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
-#include <QtGui/QPolygonF>
 
 HE_BEGIN_NAMESPACE
 
@@ -28,7 +28,6 @@ HIntegrateThread::HIntegrateThread(QObject *parent) :
 HIntegrateThread::HIntegrateThread(HIntegrateThreadPrivate &p, QObject *parent) :
     HAbstractThread(p, parent)
 {
-    init();
 }
 
 HIntegrateThread::~HIntegrateThread() = default;
@@ -53,7 +52,7 @@ bool HIntegrateThread::handleAction(HActionType action)
         d->strategyElec->handle(ACT_GET_ELEC_DATA);
         msleep(d->testData->data("[光谱采样延时]").toInt());
         d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
-        getSpectrum(d->testData->data("[光谱平均次数]").toInt());
+        HControllerHelper::multGetSpectrum(d->protocolSpec, d->testData, d->testData->data("[光谱平均次数]").toInt());
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
         return true;
@@ -75,24 +74,6 @@ bool HIntegrateThread::handleAction(HActionType action)
         return true;
     }
     return HAbstractThread::handleAction(action);
-}
-
-void HIntegrateThread::getSpectrum(int n)
-{
-    Q_D(HIntegrateThread);
-    int i,j;
-    QVector<double> sample1, samples2;
-
-    n = qMin(1, n);
-    for (i = 0; i < n; i++)
-    {
-        d->protocolSpec->getData(ACT_GET_SPECTRUM, samples2);
-        if (sample1.size() < samples2.size())
-            sample1.resize(samples2.size());
-        for (j = 0; j < samples2.size(); j++)
-            sample1[j] += 1.0 * samples2.at(j) / n;
-    }
-    d->testData->setData("[光谱采样值]", QVariant::fromValue(sample1));
 }
 
 void HIntegrateThread::handleData()

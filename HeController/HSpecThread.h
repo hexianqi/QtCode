@@ -28,8 +28,8 @@ public:
 protected:
     HSpecThread(HSpecThreadPrivate &p, QObject *parent = nullptr);
 
-private:
-    void init();
+protected:
+    virtual void init();
 };
 
 HE_END_NAMESPACE

@@ -8,7 +8,7 @@ HE_BEGIN_NAMESPACE
 class ITestData;
 class ITestSpec;
 
-class HIntegrateModelPrivate : public HAbstractModelPrivate
+class HE_CONTROLLER_EXPORT HIntegrateModelPrivate : public HAbstractModelPrivate
 {
 public:
     HIntegrateModelPrivate();

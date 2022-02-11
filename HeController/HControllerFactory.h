@@ -29,6 +29,7 @@ public:
     IModel *createModel(QString type, QVariantMap param = QVariantMap()) override;
     IActionStrategy *createStrategy(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IMemento *createMemento(QString type, QVariantMap param = QVariantMap()) override;
+    IMementoCollection *createMementoCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HControllerFactory(HControllerFactoryPrivate &p, QObject *parent = nullptr);

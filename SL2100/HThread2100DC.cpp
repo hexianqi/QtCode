@@ -5,7 +5,7 @@
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
 #include "HeController/IControllerFactory.h"
-#include <QtCore/QVector>
+#include "HeController/HControllerHelper.h"
 
 HThread2100DCPrivate::HThread2100DCPrivate()
 {
@@ -47,7 +47,7 @@ bool HThread2100DC::handleAction(HActionType action)
         msleep(1000);
         d->strategyElec->handle(ACT_GET_ELEC_DATA);
         msleep(d->testData->data("[光谱采样延时]").toInt());
-        getSpectrum(d->testData->data("[光谱平均次数]").toInt());
+        HControllerHelper::multGetSpectrum(d->protocolSpec, d->testData, d->testData->data("[光谱平均次数]").toInt());
         d->testData->setData("[电源模式]", 0);
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
@@ -59,24 +59,6 @@ bool HThread2100DC::handleAction(HActionType action)
         return true;
     }
     return HAbstractThread::handleAction(action);
-}
-
-void HThread2100DC::getSpectrum(int n)
-{
-    Q_D(HThread2100DC);
-    int i,j;
-    QVector<double> sample1, samples2;
-
-    n = qMin(1, n);
-    for (i = 0; i < n; i++)
-    {
-        d->protocolSpec->getData(ACT_GET_SPECTRUM, samples2);
-        if (sample1.size() < samples2.size())
-            sample1.resize(samples2.size());
-        for (j = 0; j < samples2.size(); j++)
-            sample1[j] += 1.0 * samples2.at(j) / n;
-    }
-    d->testData->setData("[光谱采样值]", QVariant::fromValue(sample1));
 }
 
 void HThread2100DC::handleData()

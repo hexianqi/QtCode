@@ -28,6 +28,6 @@ public:
 protected:
     bool handleAction(HActionType action) override;
 
-private:
-    void init();
+protected:
+    virtual void init();
 };

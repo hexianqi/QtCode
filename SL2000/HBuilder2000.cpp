@@ -14,6 +14,7 @@
 #include "HeController/IControllerFactory.h"
 #include "HeController/IThreadCollection.h"
 #include "HeController/IMemento.h"
+#include "HeController/IMementoCollection.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
 #include "HeSql/ISqlTableModel.h"
@@ -157,10 +158,14 @@ void HBuilder2000::buildModel()
 void HBuilder2000::buildMemento()
 {
     Q_D(HBuilder2000);
-    auto memento = d->controllerFactory->createMemento("HMemento");
-    memento->setDataTypes(QStringList() << "[积分时间]");
-    memento->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
-    HAppContext::setContextPointer("IMementoTest", memento);
+    auto mementos = d->controllerFactory->createMementoCollection("HMementoCollection");
+    if (!mementos->readFile(QString("%1.tmp").arg(QApplication::applicationName())) || !mementos->contains("Spec"))
+    {
+        auto memento = d->controllerFactory->createMemento("HMemento");
+        memento->setDataType(QStringList() << "[积分时间]");
+        mementos->insert("Spec", memento);
+    }
+    HAppContext::setContextPointer("IMementoCollection", mementos);
 }
 
 void HBuilder2000::buildDatabase()

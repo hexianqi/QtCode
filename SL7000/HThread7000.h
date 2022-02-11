@@ -4,13 +4,13 @@
 
 #pragma once
 
-#include "HeController/HAbstractThread.h"
+#include "HeController/HIntegrateThread.h"
 
 HE_USE_NAMESPACE
 
 class HThread7000Private;
 
-class HThread7000 : public HAbstractThread
+class HThread7000 : public HIntegrateThread
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HThread7000)
@@ -22,12 +22,6 @@ public:
 public:
     QString typeName() override;
 
-public:
-    QString threadInfo() override;
-
 protected:
-    bool handleAction(HActionType action) override;
-
-private:
-    void init();
+    void init() override;
 };

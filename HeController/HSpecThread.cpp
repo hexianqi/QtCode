@@ -20,7 +20,6 @@ HSpecThread::HSpecThread(QObject *parent) :
 HSpecThread::HSpecThread(HSpecThreadPrivate &p, QObject *parent) :
     HAbstractThread(p, parent)
 {
-    init();
 }
 
 HSpecThread::~HSpecThread() = default;

@@ -19,10 +19,6 @@ public:
     explicit HSpecTestWidget(QWidget *parent = nullptr);
     ~HSpecTestWidget() override;
 
-public:
-    void start() override;
-    void stop() override;
-
 protected:
     HSpecTestWidget(HSpecTestWidgetPrivate &p, QWidget *parent = nullptr);
 

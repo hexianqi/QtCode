@@ -60,7 +60,7 @@ void HIntegrateModel::syncDevice(quint32 type)
         addAction(ACT_SET_INTEGRAL_TIME);
     if ((type & IConfigManage::ContainElec) != 0u)
     {
-        addAction(ACT_GET_REVERSE_CURRENT);
+        addAction(ACT_SET_REVERSE_VOLTAGE);
         addAction(ACT_SET_OUTPUT_VOLTAGE);
         addAction(ACT_SET_GEARS_MEASURED_CURRENT);
         addAction(ACT_SET_OUTPUT_CURRENT);

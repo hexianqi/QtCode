@@ -16,7 +16,7 @@
 #include "HeData/IPrintTemplate.h"
 #include "HeData/ITextExport.h"
 #include "HeData/ITextExportTemplate.h"
-#include "HeController/IMemento.h"
+#include "HeController/IMementoCollection.h"
 #include "HePlugin/HCie1931Widget.h"
 #include "HePlugin/HTm30BarChart.h"
 #include "HePlugin/HTm30CvgWidget.h"
@@ -44,9 +44,9 @@ HE_BEGIN_NAMESPACE
 
 HSpecTestWidgetPrivate::HSpecTestWidgetPrivate()
 {
-    testData->setData("[使用调整]", false);
+    auto mementoCollection = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
+    memento = mementoCollection->value("Spec");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-    memento = HAppContext::getContextPointer<IMemento>("IMementoTest");
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
     print = HAppContext::getContextPointer<IPrint>("IPrint");
     specPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
@@ -70,22 +70,6 @@ HSpecTestWidget::~HSpecTestWidget()
 {
 }
 
-void HSpecTestWidget::start()
-{
-    Q_D(HSpecTestWidget);
-    HTestWidget::start();
-    if (d->memento)
-        d->memento->restore();
-}
-
-void HSpecTestWidget::stop()
-{
-    Q_D(HSpecTestWidget);
-    HTestWidget::stop();
-    if (d->memento)
-        d->memento->save();
-}
-
 void HSpecTestWidget::init()
 {
     Q_D(HSpecTestWidget);
@@ -105,8 +89,6 @@ void HSpecTestWidget::closeEvent(QCloseEvent *event)
 {
     Q_D(HSpecTestWidget);
     stop();
-    if (d->memento)
-        d->memento->writeFile();
     if (!d->testResult->isEmpty() && QMessageBox::question(this, tr("保存数据"), tr("是否保存到数据库？")) == QMessageBox::Yes)
         exportDatabaseRange(0, d->testResult->size());
     clearResult();
@@ -125,7 +107,7 @@ void HSpecTestWidget::handleAction(HActionType action)
         clearResult();
         if (action == ACT_RESET_SPECTRUM)
         {
-            auto point = d_ptr->testData->data("[光谱波长范围]").toPointF();
+            auto point = d->testData->data("[光谱波长范围]").toPointF();
             d->energyWidget->initCoordinate();
             d->spdWidget->setAxisXRange(point.x(), point.y());
         }
