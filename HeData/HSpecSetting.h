@@ -31,6 +31,8 @@ public:
     void restoreDefault();
     // 测量参数
     QVariantMap testParam();
+    // 计算光合
+    QVariantMap calcSynthetic(QPolygonF energy, double k);
     // 计算通讯等待时间
     int calcCommWaitTime(double &value);
     // 检查积分时间溢出

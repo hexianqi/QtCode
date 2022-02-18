@@ -11,6 +11,7 @@ HQualityPrivate::HQualityPrivate()
     colors.insert(HQualityReport::Broken,       Qt::gray);
     colors.insert(HQualityReport::NoPass,       Qt::red);
     colors.insert(HQualityReport::Passing,      Qt::green);
+    colors.insert(HQualityReport::Spacer,       Qt::transparent);
     damages = new HQualityItemCollection;
     criterions = new HQualityItemCollection;
 }

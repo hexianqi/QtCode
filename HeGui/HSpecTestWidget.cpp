@@ -7,7 +7,6 @@
 #include "HSpecChromatismChartView.h"
 #include "HResultTableWidget.h"
 #include "HProductEditDialog.h"
-#include "HQuantumEditDialog.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
@@ -33,12 +32,12 @@
 #include <QtCore/QSettings>
 #include <QtCore/QTimer>
 #include <QtGui/QCloseEvent>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QToolBar>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QFileDialog>
-#include <QtWidgets/QMenu>
 #include <QtWidgets/QSplitter>
-#include <QtWidgets/QToolBar>
 
 HE_BEGIN_NAMESPACE
 
@@ -106,11 +105,7 @@ void HSpecTestWidget::handleAction(HActionType action)
         setTest(false);
         clearResult();
         if (action == ACT_RESET_SPECTRUM)
-        {
-            auto point = d->testData->data("[光谱波长范围]").toPointF();
-            d->energyWidget->initCoordinate();
-            d->spdWidget->setAxisXRange(point.x(), point.y());
-        }
+            resetSpec();
         if (action == ACT_RESET_CHROMATISM)
             d->chromatismWidget->initMenuShow();
         if (action == ACT_RESET_GRADE)
@@ -144,7 +139,6 @@ void HSpecTestWidget::createAction()
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
-    d->actionQuantum = new QAction(tr("光量子配置(&P)"), this);
     d->actionExportPath = new QAction(tr("配置导出目录(&D)"), this);
     d->actionSyncFile = new QAction(tr("配置同步文件(&F)"), this);
     d->actionProductEidt = new QAction(tr("产品信息修改(&P)"), this);
@@ -155,7 +149,6 @@ void HSpecTestWidget::createAction()
     connect(d->actionExportDatabase, &QAction::triggered, this, &HSpecTestWidget::exportDatabase);
     connect(d->actionRemove, &QAction::triggered, this, &HSpecTestWidget::removeResult);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
-    connect(d->actionQuantum, &QAction::triggered, this, &HSpecTestWidget::editQuantum);
     connect(d->actionExportPath, &QAction::triggered, this, &HSpecTestWidget::setExportPath);
     connect(d->actionSyncFile, &QAction::triggered, this, &HSpecTestWidget::setSyncFile);
     connect(d->actionProductEidt, &QAction::triggered, this, &HSpecTestWidget::editProduct);
@@ -164,8 +157,6 @@ void HSpecTestWidget::createAction()
 void HSpecTestWidget::createWidget()
 {
     Q_D(HSpecTestWidget);
-    d->energyWidget = new HSpecEnergyWidget;
-    d->chromatismWidget = new HSpecChromatismChartView;
     d->cieWidget = new HCie1931Widget;
     d->spdWidget = new HTm30SpdChartView;
     d->cvgWidget = new HTm30CvgWidget;
@@ -175,6 +166,8 @@ void HSpecTestWidget::createWidget()
     d->rfhjWidget = new HTm30RfhjChartView;
     d->rcshjWidget = new HTm30RcshjChartView;
     d->rhshjWidget = new HTm30RhshjChartView;
+    d->energyWidget = new HSpecEnergyWidget;
+    d->chromatismWidget = new HSpecChromatismChartView;
     d->tableWidget = new HResultTableWidget;
 }
 
@@ -183,7 +176,6 @@ void HSpecTestWidget::createMenu()
     Q_D(HSpecTestWidget);
     auto menu = new QMenu(tr("测试配置(&T)"));
     menu->addAction(d->actionAdjust);
-    menu->addAction(d->actionQuantum);
     menu->addAction(d->actionExportPath);
     menu->addAction(d->actionSyncFile);
     d->menus << menu;
@@ -271,7 +263,7 @@ void HSpecTestWidget::exportExcel()
     d->specTextTemplate->setDataType(type);
     d->specTextTemplate->setData(data->select(type));
     d->textExport->setTextTemplate(d->specTextTemplate);
-    d->textExport->save();
+    d->textExport->saveAs();
 }
 
 void HSpecTestWidget::readSettings()
@@ -287,15 +279,6 @@ void HSpecTestWidget::readSettings()
     d->syncInterval = settings->value("SyncInterval", 20).toInt();
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
     d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
-    settings->endGroup();
-    settings->beginGroup("Quantum");
-    d->testData->setData("[自动查找波段]", settings->value("AutoFind", false));
-    auto b1 = settings->value("Blue1", 400).toDouble();
-    auto b2 = settings->value("Blue2", 450).toDouble();
-    auto y1 = settings->value("Yellow1", 450).toDouble();
-    auto y2 = settings->value("Yellow2", 780).toDouble();
-    d->testData->setData("[蓝光范围]", QPointF(b1, b2));
-    d->testData->setData("[荧光范围]", QPointF(y1, y2));
     settings->endGroup();
     d->testData->handleOperation("<读取配置>", fileName);
 }
@@ -313,15 +296,6 @@ void HSpecTestWidget::writeSettings()
     settings->setValue("SyncInterval", d->syncInterval);
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
     settings->setValue("Offset", d->testData->data("[CCD偏差]"));
-    settings->endGroup();
-    settings->beginGroup("Quantum");
-    settings->setValue("AutoFind", d->testData->data("[自动查找波段]"));
-    auto blue = d->testData->data("[蓝光范围]").toPointF();
-    auto yellow = d->testData->data("[荧光范围]").toPointF();
-    settings->setValue("Blue1", blue.x());
-    settings->setValue("Blue2", blue.y());
-    settings->setValue("Yellow1", yellow.x());
-    settings->setValue("Yellow2", yellow.y());
     settings->endGroup();
     d->testData->handleOperation("<写入配置>", fileName);
 }
@@ -468,6 +442,14 @@ void HSpecTestWidget::printTag()
     d->print->print();
 }
 
+void HSpecTestWidget::resetSpec()
+{
+    Q_D(HSpecTestWidget);
+    auto point = d->testData->data("[光谱波长范围]").toPointF();
+    d->energyWidget->initCoordinate();
+    d->spdWidget->setAxisXRange(point.x(), point.y());
+}
+
 void HSpecTestWidget::resetGrade()
 {
     Q_D(HSpecTestWidget);
@@ -483,6 +465,7 @@ void HSpecTestWidget::openCieDialog()
     if (d->cieWidget2 == nullptr)
     {
         d->cieWidget2 = new HCie1931Widget;
+        d->cieWidget2->setGrade(d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>());
         d->cieDialog = HGuiHelper::decoratorInDialog(d->cieWidget2, this);
     }
     d->cieDialog->show();
@@ -513,12 +496,6 @@ void HSpecTestWidget::setSyncFile()
     d->testResult->setSyncFile(d->syncFile);
 }
 
-void HSpecTestWidget::editQuantum()
-{
-    HQuantumEditDialog dlg(this);
-    dlg.exec();
-}
-
 void HSpecTestWidget::editProduct()
 {
     Q_D(HSpecTestWidget);
@@ -532,7 +509,7 @@ void HSpecTestWidget::editProduct()
     if (dlg.exec() != QDialog::Accepted)
         return;
     d->testResult->setModified();
-    d->tableWidget->setRow(row, data->toString(d->displays));
+    d->tableWidget->refreshResult(row, data);
 }
 
 HE_END_NAMESPACE

@@ -64,7 +64,7 @@ public:
     // 品质数据
     virtual void setQualityCollection(IQualityCollection *) = 0;
     virtual IQualityCollection *qualityCollection() = 0;
-    // 定位数据
+    // 布局数据
     virtual void setLocationCollection(ILocationCollection *) = 0;
     virtual ILocationCollection *locationCollection() = 0;
     // 调整数据

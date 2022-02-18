@@ -36,7 +36,7 @@ QVariant HDictionaryPrivate::getValue(const QString &path) const
     auto names  = path.split('.');
     // 从搜索的根节点开始向下查找到倒数第二个属性名字对应的QVariantMap parent
     auto size = names.size();
-    for (int i = 0; i < size - 1; ++i)
+    for (int i = 0; i < size - 1; i++)
     {
         if (parent.isEmpty())
             return QVariant();

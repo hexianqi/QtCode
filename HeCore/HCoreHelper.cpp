@@ -15,6 +15,13 @@ QStringList HCoreHelper::unselected(QStringList optional, QStringList selected)
     return optional;
 }
 
+QVariantMap HCoreHelper::unite(QVariantMap main, const QVariantMap &other)
+{
+    for (auto i = other.begin(); i != other.end(); i++)
+        main.insert(i.key(), i.value());
+    return main;
+}
+
 void HCoreHelper::msleep(int msecs)
 {
     QEventLoop event;

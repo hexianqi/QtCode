@@ -128,7 +128,7 @@ void HLocationEditWidget::on_spinBox_1_valueChanged(int value)
 }
 
 void HLocationEditWidget::on_spinBox_2_valueChanged(int value)
-{    
+{
     int i,j;
     auto row = ui->tableWidget->rowCount();
     auto col = ui->tableWidget->columnCount();
@@ -141,7 +141,7 @@ void HLocationEditWidget::on_spinBox_2_valueChanged(int value)
 }
 
 void HLocationEditWidget::on_pushButton_1_clicked()
-{    
+{
     auto row = ui->tableWidget->rowCount();
     auto col = ui->tableWidget->columnCount();
     if (row < 1 || col < 1)
@@ -169,15 +169,15 @@ void HLocationEditWidget::on_pushButton_1_clicked()
 void HLocationEditWidget::init()
 {
     auto delegate = new HSpinBoxDelegate(this);
-    delegate->setType("[定位数值]");
+    delegate->setType("[布局数值]");
     ui->tableWidget->setItemDelegate(delegate);
-    HPluginHelper::initWidget("[定位行数]", ui->spinBox_01);
-    HPluginHelper::initWidget("[定位行数]", ui->spinBox_02);
-    HPluginHelper::initWidget("[定位行数]", ui->spinBox_03);
-    HPluginHelper::initWidget("[定位列数]", ui->spinBox_04);
-    HPluginHelper::initWidget("[定位列数]", ui->spinBox_05);
-    HPluginHelper::initWidget("[定位列数]", ui->spinBox_06);
-    HPluginHelper::initWidget("[定位数值]", ui->spinBox_07);
+    HPluginHelper::initWidget("[布局行数]", ui->spinBox_01);
+    HPluginHelper::initWidget("[布局行数]", ui->spinBox_02);
+    HPluginHelper::initWidget("[布局行数]", ui->spinBox_03);
+    HPluginHelper::initWidget("[布局列数]", ui->spinBox_04);
+    HPluginHelper::initWidget("[布局列数]", ui->spinBox_05);
+    HPluginHelper::initWidget("[布局列数]", ui->spinBox_06);
+    HPluginHelper::initWidget("[布局数值]", ui->spinBox_07);
 }
 
 HE_END_NAMESPACE

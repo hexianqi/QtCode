@@ -31,6 +31,7 @@ void HTestWidget2000DC::init()
 {
     Q_D(HTestWidget2000DC);
     HSpecTestWidget::init();
+    d->energyWidget->addProgressBar("[光采样比率]");
     setProbe(d->testData->data("[使用光探头]").toBool());
 }
 
@@ -47,9 +48,9 @@ void HTestWidget2000DC::createAction()
 void HTestWidget2000DC::createWidget()
 {
     Q_D(HTestWidget2000DC);
+    HSpecTestWidget::createWidget();
     d->testSetWidget = new HTestSetWidget2000DC;
     d->detailWidget = new HDetailWidget2000DC;
-    HSpecTestWidget::createWidget();
 }
 
 void HTestWidget2000DC::createMenu()
@@ -57,13 +58,6 @@ void HTestWidget2000DC::createMenu()
     Q_D(HTestWidget2000DC);
     HSpecTestWidget::createMenu();
     d->menus.at(0)->addAction(d->actionProbe);
-}
-
-void HTestWidget2000DC::initWidget()
-{
-    Q_D(HTestWidget2000DC);
-    HSpecTestWidget::initWidget();
-    d->energyWidget->addProgressBar("[光采样比率]");
 }
 
 void HTestWidget2000DC::readSettings()

@@ -14,6 +14,8 @@ class HCoreHelper
 public:
     // 选择
     static QStringList unselected(QStringList optional, QStringList selected);
+    // 合并
+    static QVariantMap unite(QVariantMap main, const QVariantMap &other);
     // 延时
     static void msleep(int msecs);
     static void msleep2(int msecs);

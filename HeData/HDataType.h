@@ -36,7 +36,8 @@ enum HQualityReport
     InvalidData,
     Broken,
     NoPass,
-    Passing
+    Passing,
+    Spacer
 };
 
 HE_END_NAMESPACE

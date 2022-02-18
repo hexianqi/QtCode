@@ -19,7 +19,7 @@ void HMainWindow7000::initImportExport()
     d->importExport.insert(tr("4.色容差数据(&C)..."),     IConfigManage::ContainChromatism);
     d->importExport.insert(tr("5.分级数据(&G)..."),       IConfigManage::ContainGrade);
     d->importExport.insert(tr("6.调整数据(&A)..."),       IConfigManage::ContainAdjust);
-    d->importExport.insert(tr("7.定位数据(&O)..."),       IConfigManage::ContainLocation);
+    d->importExport.insert(tr("7.布局数据(&O)..."),       IConfigManage::ContainLocation);
 }
 
 void HMainWindow7000::initBuilder()

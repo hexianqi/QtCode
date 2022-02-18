@@ -19,10 +19,14 @@ public:
     virtual void setTextTemplate(ITextExportTemplate *) = 0;
     // 设置导出路径
     virtual void setExportPath(const QString &) = 0;
+    // 设置文件
+    virtual void setFileName(const QString &) = 0;
 
 public:
-    // 保存文件
-    virtual bool save() = 0;
+    // 保存
+    virtual bool save(QString fileName = QString()) = 0;
+    // 另存
+    virtual bool saveAs() = 0;
     // 追加
     virtual bool append() = 0;
     // 清除

@@ -57,21 +57,21 @@ void HBuilder2000F::buildConfigManage()
         param[5].insert("itemClassName",    "HElecCalibrateItem");
         param[5].insert("itemTypes",        QStringList() << "[反向漏流]");
         auto elec = d->dataFactory->createElecCalibrate("HElecCalibrate");
+        auto elecs = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
         elec->setItemCollection(OutputVoltage,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[0]));
         elec->setItemCollection(OutputCurrent,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[1]));
         elec->setItemCollection(MeasuredVoltage, d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[2]));
         elec->setItemCollection(MeasuredCurrent, d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[3]));
         elec->setItemCollection(ReverseVoltage,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[4]));
         elec->setItemCollection(ReverseCurrent,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[5]));
-        auto elecs = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
         elecs->insert("模块1", elec);
 
         auto luminousItem = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
+        auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
+        auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
         luminousItem->setData("[项类型]", "[光通量]");
         luminousItem->setTotalGears(5);
-        auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
         luminous->insert("[光通量]", luminousItem);
-        auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
         luminouss->insert("模块1", luminous);
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");

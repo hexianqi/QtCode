@@ -9,6 +9,7 @@
 
 HE_BEGIN_NAMESPACE
 
+class ITestData;
 class HResultTableWidgetPrivate;
 
 class HResultTableWidget : public HEntireTableWidget
@@ -26,7 +27,7 @@ public:
     void setFixedRowCount(int);
     void clearResult();
     void refreshResult(bool append);
-    void refreshResult(int row);
+    void refreshResult(int row, ITestData *data = nullptr);
 
 public:
     QStringList selected();

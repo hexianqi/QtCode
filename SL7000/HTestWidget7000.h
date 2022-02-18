@@ -26,12 +26,25 @@ protected:
     void init() override;
     void closeEvent(QCloseEvent *) override;
     void handleAction(HActionType action) override;
+    void createAction() override;
+    void createWidget() override;
+    void createMenu() override;
+    void createToolBar() override;
+    void initWidget() override;
+    void clearResult() override;
+    void exportExcel() override;
 
 protected:
     void readSettings();
     void writeSettings();
+    void handleStateChanged(bool);
+    void handleSaveModeChanged(int);
+    void handleResultChanged(HActionType, bool);
     void resetGrade();
+    void resetQuality();
     void resetLocation();
+    void setProbe(bool b);
+    void editProduct();
 };
 
 

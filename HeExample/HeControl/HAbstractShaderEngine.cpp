@@ -48,8 +48,8 @@ void HAbstractShaderEngine::addTexture(const QString &fileName, bool gamma, QOpe
 void HAbstractShaderEngine::addTexture(const QStringList &fileNames)
 {
     QList<QImage> images;
-    for (int i = 0; i < fileNames.size(); i++)
-        images << QImage(fileNames.at(i)).convertToFormat(QImage::Format_RGBA8888);
+    for (auto name : fileNames)
+        images << QImage(name).convertToFormat(QImage::Format_RGBA8888);
 
     auto texture = createTexture(images.first().width(), images.first().height(), QOpenGLTexture::TargetCubeMap, QOpenGLTexture::RGBA8_UNorm);
     for (int i = 0; i < images.size(); i++)

@@ -1,5 +1,6 @@
 #include "HSpecSetting_p.h"
 #include "HDataHelper.h"
+#include "HeCore/HCoreHelper.h"
 #include "HeAlgorithm/HInterp.h"
 #include "HeAlgorithm/HMath.h"
 #include "HeAlgorithm/HSpecHelper.h"
@@ -27,8 +28,10 @@ void HSpecSetting::readContent(QDataStream &s)
 {
     Q_D(HSpecSetting);
     quint32 version;
+    QVariantMap data;
     s >> version;
-    s >> d->datas;
+    s >> data;
+    d->datas = HCoreHelper::unite(d->datas, data);
 }
 
 void HSpecSetting::writeContent(QDataStream &s)
@@ -89,6 +92,9 @@ void HSpecSetting::restoreDefault()
     setData("[光谱平滑帧数]", 1);
     setData("[光谱平滑次数]", 2);
     setData("[光谱平滑范围]", 2);
+    setData("[光合自动查找波段]", false);
+    setData("[光合蓝光范围]", QPointF(380.0, 450.0));
+    setData("[光合荧光范围]", QPointF(450.0, 780.0));
 }
 
 QVariantMap HSpecSetting::testParam()
@@ -98,6 +104,50 @@ QVariantMap HSpecSetting::testParam()
     for (const auto &s : list)
         param.insert(s, data(s));
     return param;
+}
+
+QVariantMap HSpecSetting::calcSynthetic(QPolygonF energy, double k)
+{
+    QVariantMap result;
+    auto blue = data("[光合蓝光范围]").toPointF();
+    auto yellow = data("[光合荧光范围]").toPointF();
+    if (data("[光合自动查找波段]").toBool() || blue.isNull() || yellow.isNull())
+    {
+        blue = QPointF(380.0, 500.0);
+        yellow = QPointF(500.0, 780.0);
+    }
+
+    auto sumBlue = 0.0;
+    auto sumYellow = 0.0;
+    auto sum380_780 = 0.0;
+    auto sum400_700 = 0.0;
+    auto sum700_800 = 0.0;
+    auto prf = 0.0;
+    for (auto point : energy)
+    {
+        if (point.x() >= 380 && point.x() <= 780)
+            sum380_780 += point.y() * point.x();
+        if (point.x() >= 400 && point.x() <= 700)
+        {
+            sum400_700 += point.y() * point.x();
+            prf += point.y();
+        }
+        if (point.x() >= 700 && point.x() <= 800)
+            sum700_800 += point.y() * point.x();
+        if (point.x() >= blue.x() && point.x() <= blue.y())
+            sumBlue += point.y();
+        if (point.x() >= yellow.x() && point.x() <= yellow.y())
+            sumYellow += point.y();
+    }
+    result.insert("[光量子(380-780)]",  k * sum380_780 / 119.8);
+    result.insert("[光量子(400-700)]",  k * sum400_700 / 119.8);
+    result.insert("[光量子(700-800)]",  k * sum700_800 / 119.8);
+    result.insert("[光合光量子通量]",   k * sum400_700 / 119.8);
+    result.insert("[光合光子通量效率]", k * sum400_700 / 119.8);
+    result.insert("[光合有效辐射通量]", k * prf * 1000);
+    result.insert("[荧光效能]",         k * sumYellow);
+    result.insert("[荧光蓝光比]",       qFuzzyIsNull(sumBlue) ? 0.0 : sumYellow / sumBlue);
+    return result;
 }
 
 int HSpecSetting::calcCommWaitTime(double &value)

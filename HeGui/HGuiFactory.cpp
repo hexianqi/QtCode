@@ -5,7 +5,6 @@
 #include "HAdjustSetWidget.h"
 #include "HAdjustSetWidget2.h"
 #include "HProductEditDialog.h"
-#include "HQuantumEditDialog.h"
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HSpecCalibrateHandler.h"
@@ -120,7 +119,6 @@ void HGuiFactory::registerClass()
     HWidgetFactory::registerClass<HAdjustSetWidget2>("HAdjustSetWidget2");
     // 对话框
     HWidgetFactory::registerClass<HProductEditDialog>("HProductEditDialog");
-    HWidgetFactory::registerClass<HQuantumEditDialog>("HQuantumEditDialog");
     // 动作处理
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");

@@ -58,7 +58,27 @@ void HTextExport::setExportPath(const QString &value)
     clear();
 }
 
-bool HTextExport::save()
+void HTextExport::setFileName(const QString &value)
+{
+    if (d_ptr->fileName == value)
+        return;
+    d_ptr->fileName = value;
+}
+
+bool HTextExport::save(QString fileName)
+{
+    if (!isValid())
+        return false;
+    if (!fileName.isEmpty())
+        d_ptr->fileName = fileName;
+    if (d_ptr->fileName.isEmpty())
+        d_ptr->fileName = generateFileName();
+    auto text = d_ptr->textTemplate->content(true);
+    d_ptr->stream->setContent(text);
+    return d_ptr->stream->writeFile(d_ptr->fileName);
+}
+
+bool HTextExport::saveAs()
 {
     if (!isValid())
         return false;
@@ -75,11 +95,7 @@ bool HTextExport::append()
     auto b = false;
     if (d_ptr->fileName.isEmpty())
     {
-        auto path = d_ptr->pathName.isEmpty() ? "AutoSave" : d_ptr->pathName;
-        QDir dir(path);
-        if (!dir.exists())
-            dir.mkpath(path);
-        d_ptr->fileName = dir.path() + dir.separator() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".xls";
+        d_ptr->fileName = generateFileName();
         b = true;
     }
     auto text = d_ptr->textTemplate->content(b);
@@ -95,6 +111,15 @@ void HTextExport::clear()
 bool HTextExport::isValid()
 {
     return d_ptr->textTemplate != nullptr;
+}
+
+QString HTextExport::generateFileName()
+{
+    auto path = d_ptr->pathName.isEmpty() ? "AutoSave" : d_ptr->pathName;
+    QDir dir(path);
+    if (!dir.exists())
+        dir.mkpath(path);
+    return dir.path() + dir.separator() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".xls";
 }
 
 HE_END_NAMESPACE

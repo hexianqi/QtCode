@@ -40,7 +40,10 @@ HTestResult::HTestResult(HTestResultPrivate &p, QObject *parent) :
 {
 }
 
-HTestResult::~HTestResult() = default;
+HTestResult::~HTestResult()
+{
+    clear();
+}
 
 void HTestResult::initialize(QVariantMap /*param*/)
 {
@@ -60,9 +63,7 @@ ITestData *HTestResult::at(int i)
 
 ITestData *HTestResult::last()
 {
-    if (d_ptr->results.isEmpty())
-        return nullptr;
-    return d_ptr->results.last();
+    return isEmpty() ? nullptr : d_ptr->results.last();
 }
 
 bool HTestResult::isEmpty()

@@ -28,7 +28,7 @@ void HLocationEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     detail.setEditer(new HLocationEditWidget);
     detail.setData(d->configManage->locationCollection());
     HListCollectionDialog dlg(d->mainWindow);
-    dlg.setWindowTitle(tr("定位数据配置"));
+    dlg.setWindowTitle(tr("布局数据配置"));
     dlg.setDataDetail(&detail);
     dlg.resize(1000, 600);
     dlg.exec();

@@ -27,7 +27,6 @@ protected:
     void createAction() override;
     void createWidget() override;
     void createMenu() override;
-    void initWidget() override;
     void readSettings() override;
     void writeSettings() override;
     void setProbe(bool b);

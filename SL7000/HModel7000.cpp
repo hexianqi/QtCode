@@ -16,9 +16,7 @@ QString HModel7000::typeName()
 void HModel7000::syncTestData(quint32 type)
 {
     if ((type & IConfigManage::ContainLocation) != 0u)
-    {
         addAction(ACT_RESET_LOCATION);
-    }
     HIntegrateModel::syncTestData(type);
 }
 

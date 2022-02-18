@@ -2,6 +2,7 @@
 #include "HDataHelper.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HDefine.h"
+#include "HeCore/HCoreHelper.h"
 #include <QtCore/QDateTime>
 #include <QtGui/QColor>
 

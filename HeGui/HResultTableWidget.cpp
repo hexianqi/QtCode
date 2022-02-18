@@ -77,14 +77,17 @@ void HResultTableWidget::refreshResult(bool append)
     setRowBackgroundColor(row, d->testData->data("[品质不符合颜色]").toMap());
 }
 
-void HResultTableWidget::refreshResult(int row)
+void HResultTableWidget::refreshResult(int row, ITestData *data)
 {
     Q_D(HResultTableWidget);
     if (row < 0 || row >= rowCount())
         return;
 
-    setRow(row, d->testData->toString(d->displays));
-    setRowBackgroundColor(row, d->testData->data("[品质不符合颜色]").toMap());
+    if (data == nullptr)
+        data = d->testData;
+
+    setRow(row, data->toString(d->displays));
+    setRowBackgroundColor(row, data->data("[品质不符合颜色]").toMap());
 }
 
 QStringList HResultTableWidget::selected()

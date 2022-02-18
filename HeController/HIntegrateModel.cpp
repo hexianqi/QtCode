@@ -49,9 +49,9 @@ void HIntegrateModel::syncTestData(quint32 type)
         addAction(ACT_RESET_LUMINOUS);
     }
     if ((type & IConfigManage::ContainGrade) != 0u)
-    {
         addAction(ACT_RESET_GRADE);
-    }
+    if ((type & IConfigManage::ContainQuality) != 0u)
+        addAction(ACT_RESET_QUALITY);
 }
 
 void HIntegrateModel::syncDevice(quint32 type)

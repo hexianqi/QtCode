@@ -26,9 +26,11 @@ public:
     ITextExportTemplate *textTemplate() override;
     void setTextTemplate(ITextExportTemplate *) override;
     void setExportPath(const QString &) override;
+    void setFileName(const QString &) override;
 
 public:
-    bool save() override;
+    bool save(QString fileName = QString()) override;
+    bool saveAs() override;
     bool append() override;
     void clear() override;
 
@@ -37,6 +39,8 @@ protected:
 
 protected:
     virtual bool isValid();
+    QString generateFileName();
+
 
 protected:
     QScopedPointer<HTextExportPrivate> d_ptr;

@@ -48,12 +48,12 @@ protected:
     void exportDatabaseLast();
     void printPreview();
     void printTag();
+    void resetSpec();
     void resetGrade();
     void openCieDialog();
     void removeResult();
     void setExportPath();
     void setSyncFile();
-    void editQuantum();
     void editProduct();
 };
 

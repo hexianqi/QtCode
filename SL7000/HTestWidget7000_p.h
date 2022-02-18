@@ -4,15 +4,7 @@
 #include "HeGui\HTestWidget_p.h"
 
 class HCie1931Widget;
-class HTm30SpdChartView;
-class HTm30CvgWidget;
-class HTm30GamutWidget;
-class HTm30RfRgChartView;
-class HTm30RfiChartView;
-class HTm30RfhjChartView;
-class HTm30RcshjChartView;
-class HTm30RhshjChartView;
-
+class HLocationWidget;
 class HTestResult7000;
 
 HE_BEGIN_NAMESPACE
@@ -21,6 +13,8 @@ class HSpecEnergyWidget;
 class HSpecChromatismChartView;
 class HResultTableWidget;
 class ITestDetailWidget;
+class ITextExport;
+class ITextExportTemplate;
 HE_END_NAMESPACE
 
 class HTestWidget7000Private : public HTestWidgetPrivate
@@ -30,22 +24,23 @@ public:
 
 public:
     HCie1931Widget *cieWidget = nullptr;
-    HTm30SpdChartView *spdWidget = nullptr;
-    HTm30CvgWidget *cvgWidget = nullptr;
-    HTm30GamutWidget *gamutWidget = nullptr;
-    HTm30RfRgChartView *rfrgWidget = nullptr;
-    HTm30RfiChartView *rfiWidget = nullptr;
-    HTm30RfhjChartView *rfhjWidget = nullptr;
-    HTm30RcshjChartView *rcshjWidget = nullptr;
-    HTm30RhshjChartView *rhshjWidget = nullptr;
     HSpecEnergyWidget *energyWidget = nullptr;
     HSpecChromatismChartView *chromatismWidget = nullptr;
     HResultTableWidget *tableWidget = nullptr;
+    HLocationWidget *locationWidget = nullptr;
     ITestDetailWidget *detailWidget = nullptr;
+
+public:
+    QAction *actionAdjust = nullptr;
+    QAction *actionProbe = nullptr;
+    QAction *actionProductEidt = nullptr;
 
 public:
     IConfigManage *configManage = nullptr;
     HTestResult7000 *testResult = nullptr;
+    ITextExport *textExport = nullptr;
+    ITextExportTemplate *textTemplate = nullptr;
+    QPolygon polygon;
 
 public:
     QStringList displays;

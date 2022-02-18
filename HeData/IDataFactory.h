@@ -97,7 +97,7 @@ public:
     virtual IQualityCollection *createQualityCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IQuality *createQuality(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IQualityItem *createQualityItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建定位数据
+    // 创建布局数据
     virtual ILocationCollection *createLocationCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual ILocation *createLocation(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建校正数据

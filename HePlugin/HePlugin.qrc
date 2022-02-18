@@ -24,5 +24,6 @@
         <file>image/7color2.png</file>
         <file>image/Gamut_background.png</file>
         <file>image/Gamut_background_s.png</file>
+        <file>image/Logo.png</file>
     </qresource>
 </RCC>

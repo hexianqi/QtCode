@@ -7,8 +7,6 @@ class HOptionalTableExtend;
 
 HE_BEGIN_NAMESPACE
 
-class ITestData;
-
 class HResultTableWidgetPrivate : public HEntireTableWidgetPrivate
 {
 public:

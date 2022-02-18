@@ -182,7 +182,7 @@ void HAbstractMainWindow::createToolBarLogo()
         auto label = new QLabel;
         label->setPixmap(d_ptr->logo);
         label->setScaledContents(true);
-        label->setMaximumSize(400, 80);
+        label->setMaximumSize(355, 80);
         d_ptr->toolBarLogo->addWidget(label);
     }
     else

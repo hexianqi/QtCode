@@ -39,7 +39,7 @@ public:
     // 计算光谱能量
     virtual QPolygonF calcEnergy(QVector<double> value, double offset) = 0;
     // 计算光合数据
-    virtual QVariantMap calcSynthetic(QPolygonF energy, double time, bool find, QPointF blue, QPointF yellow) = 0;
+    virtual QVariantMap calcSynthetic(QPolygonF energy, double time) = 0;
     // 计算光通量
     virtual double calcLuminous(double value) = 0;
     // 计算通讯等待时间

@@ -35,8 +35,6 @@ HBuilder7000Private::HBuilder7000Private()
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 
-    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
-    sqlField = QStringList() << "ID" << HSql::membership(list);
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
@@ -90,21 +88,25 @@ void HBuilder7000::buildConfigManage()
         param[5].insert("itemClassName",    "HElecCalibrateItem");
         param[5].insert("itemTypes",        QStringList() << "[反向漏流]");
         auto elec = d->dataFactory->createElecCalibrate("HElecCalibrate");
+        auto elecs = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
         elec->setItemCollection(OutputVoltage,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[0]));
         elec->setItemCollection(OutputCurrent,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[1]));
         elec->setItemCollection(MeasuredVoltage, d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[2]));
         elec->setItemCollection(MeasuredCurrent, d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[3]));
         elec->setItemCollection(ReverseVoltage,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[4]));
         elec->setItemCollection(ReverseCurrent,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[5]));
-        auto elecs = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
         elecs->insert("模块1", elec);
 
-        auto luminousItem = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
-        luminousItem->setData("[项类型]", "[光通量]");
-        luminousItem->setTotalGears(5);
+        auto luminousItem1 = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
+        auto luminousItem2 = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
         auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
-        luminous->insert("[光通量]", luminousItem);
         auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
+        luminousItem1->setData("[项类型]", "[光通量]");
+        luminousItem1->setTotalGears(5);
+        luminousItem2->setData("[项类型]", "[光强度]");
+        luminousItem2->setTotalGears(5);
+        luminous->insert("[光通量]", luminousItem1);
+        luminous->insert("[光强度]", luminousItem2);
         luminouss->insert("模块1", luminous);
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
@@ -154,15 +156,10 @@ void HBuilder7000::buildTestData()
 void HBuilder7000::buildTemplate()
 {
     Q_D(HBuilder7000);
-    auto expor = d->dataFactory->createTextExport("HTextExport");
+    auto expo = d->dataFactory->createTextExport("HTextExport");
     auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-//    auto print = d->dataFactory->createPrint("HPrint");
-//    auto spec = new HSpecPrintTemplate7000(this);
-//    spec->initialize();
-    HAppContext::setContextPointer("ITextExport", expor);
+    HAppContext::setContextPointer("ITextExport", expo);
     HAppContext::setContextPointer("ISpecTextExportTemplate", text);
-//    HAppContext::setContextPointer("IPrint", print);
-    //    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
 }
 
 void HBuilder7000::buildDevice()
@@ -235,8 +232,6 @@ void HBuilder7000::buildMenu()
     auto adjust = new QMenu(tr("调整(&A)"));
     auto quality = new QMenu(tr("品质(&Q)"));
     auto device = new QMenu(tr("设备配置(&T)"));
-//    auto test = new QMenu(tr("其他测试(&E)"));
-//    auto database = new QMenu(tr("数据库(&D)"));
     auto account = new QMenu(tr("账号管理(&M)"));
     calibrate->menuAction()->setProperty("authority", 1);
     location->menuAction()->setProperty("authority", 1);
@@ -248,8 +243,8 @@ void HBuilder7000::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
-    location->addAction(d->guiFactory->createAction(tr("定位数据配置(&E)..."), "HLocationEditHandler"));
-    location->addAction(d->guiFactory->createAction(tr("定位数据选择(&S)..."), "HLocationSelectHandler"));
+    location->addAction(d->guiFactory->createAction(tr("布局数据配置(&E)..."), "HLocationEditHandler"));
+    location->addAction(d->guiFactory->createAction(tr("布局数据选择(&S)..."), "HLocationSelectHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));
@@ -260,9 +255,6 @@ void HBuilder7000::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
-//    test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-//    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
-//    database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
@@ -271,8 +263,6 @@ void HBuilder7000::buildMenu()
     d->mainWindow->insertMenu(adjust);
     d->mainWindow->insertMenu(quality);
     d->mainWindow->insertMenu(device);
-//    d->mainWindow->insertMenu(test);
-//    d->mainWindow->insertMenu(database);
     d->mainWindow->insertMenu(account);
 #ifndef QT_DEBUG
     d->mainWindow->setAuthority(0);

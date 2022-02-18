@@ -303,7 +303,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_RESET_GRADE,                   tr("重新配置分级数据"));
     hashActionComment.insert(ACT_RESET_ADJUST,                  tr("重新配置调整数据"));
     hashActionComment.insert(ACT_RESET_QUALITY,                 tr("重新配置品质数据"));
-    hashActionComment.insert(ACT_RESET_LOCATION,                tr("重新配置定位数据"));
+    hashActionComment.insert(ACT_RESET_LOCATION,                tr("重新配置布局数据"));
 
 
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
@@ -517,10 +517,10 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_hj_arn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_brn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
 
-    // 定位参数
-    hashDataFormatInfo.insert("[定位行数]",                     new HDataFormatInfo("[定位行数]", 0, 70));
-    hashDataFormatInfo.insert("[定位列数]",                     new HDataFormatInfo("[定位列数]", 0, 70));
-    hashDataFormatInfo.insert("[定位数值]",                     new HDataFormatInfo("[定位列数]", 0, 65535));
+    // 布局参数
+    hashDataFormatInfo.insert("[布局行数]",                     new HDataFormatInfo("[布局行数]", 0, 70));
+    hashDataFormatInfo.insert("[布局列数]",                     new HDataFormatInfo("[布局列数]", 0, 70));
+    hashDataFormatInfo.insert("[布局数值]",                     new HDataFormatInfo("[布局数值]", 0, 65535));
 
 
 //    //光强角度分布参数

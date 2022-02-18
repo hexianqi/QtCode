@@ -160,49 +160,10 @@ QPolygonF HSpecCalibrate::calcEnergy(QVector<double> value, double offset)
     return d_ptr->setting->interpEnergy(poly, offset);
 }
 
-QVariantMap HSpecCalibrate::calcSynthetic(QPolygonF energy, double time, bool find, QPointF blue, QPointF yellow)
+QVariantMap HSpecCalibrate::calcSynthetic(QPolygonF energy, double time)
 {
-    QVariantMap result;
-    if (find || blue.isNull() || yellow.isNull())
-    {
-        blue = QPointF(380.0, 500.0);
-        yellow = QPointF(500.0, 780.0);
-    }
-
-    auto sumBlue = 0.0;
-    auto sumYellow = 0.0;
-    auto sum380_780 = 0.0;
-    auto sum400_700 = 0.0;
-    auto sum700_800 = 0.0;
-    auto prf = 0.0;
-
-    for (auto i = 0; i < energy.size(); i++)
-    {
-        auto p = energy.at(i);
-        if (p.x() >= 380 && p.x() <= 780)
-            sum380_780 += p.y() * p.x();
-        if (p.x() >= 400 && p.x() <= 700)
-        {
-            sum400_700 += p.y() * p.x();
-            prf += p.y();
-        }
-        if (p.x() >= 700 && p.x() <= 800)
-            sum700_800 += p.y() * p.x();
-        if (p.x() >= blue.x() && p.x() <= blue.y())
-            sumBlue += p.y();
-        if (p.x() >= yellow.x() && p.x() <= yellow.y())
-            sumYellow += p.y();
-    }
     auto k = d_ptr->luminous->data("[光谱光通量系数]").toDouble() / time;
-    result.insert("[光量子(380-780)]", k * sum380_780 / 119.8);
-    result.insert("[光量子(400-700)]", k * sum400_700 / 119.8);
-    result.insert("[光量子(700-800)]", k * sum700_800 / 119.8);
-    result.insert("[光合光量子通量]", k * sum400_700 / 119.8);
-    result.insert("[光合有效辐射通量]", k * prf * 1000);
-    result.insert("[光合光子通量效率]", k * sum400_700 / 119.8);
-    result.insert("[荧光效能]", k * sumYellow);
-    result.insert("[荧光蓝光比]", qFuzzyIsNull(sumBlue) ? 0.0 : sumYellow / sumBlue);
-    return result;
+    return d_ptr->setting->calcSynthetic(energy, k);
 }
 
 double HSpecCalibrate::calcLuminous(double value)

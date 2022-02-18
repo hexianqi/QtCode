@@ -127,7 +127,7 @@ void HSqlOutput::saveExcel(QStringList type, QVariant data)
     d_ptr->textTemplate->setDataType(type);
     d_ptr->textTemplate->setData(data);
     d_ptr->textExport->setTextTemplate(d_ptr->textTemplate);
-    d_ptr->textExport->save();
+    d_ptr->textExport->saveAs();
 }
 
 HE_END_NAMESPACE
