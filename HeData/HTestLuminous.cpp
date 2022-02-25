@@ -41,7 +41,7 @@ bool HTestLuminous::setCalibrate(void *p)
     return true;
 }
 
-void HTestLuminous::setData(QString type, QVariant value)
+bool HTestLuminous::setData(QString type, QVariant value)
 {
     if (type == "[光模块]")
         return setModule(value.toInt());
@@ -61,7 +61,7 @@ QVariant HTestLuminous::handleOperation(QString type, QVariant value)
     return HTestData::handleOperation(type, value);
 }
 
-void HTestLuminous::setModule(int value)
+bool HTestLuminous::setModule(int value)
 {
     Q_D(HTestLuminous);
     value = qBound(0, value, d->collection->size() - 1);
@@ -70,25 +70,25 @@ void HTestLuminous::setModule(int value)
     d->setData("[光档位数]", d->calibrate->totalGears());
     for (auto k : d->calibrate->keys())
         d->addData(k, 0);
+    return true;
 }
 
-void HTestLuminous::setType(QString value)
+bool HTestLuminous::setType(QString value)
 {
     Q_D(HTestLuminous);
     if (!d->calibrate->contains(value))
-        return;
-    d->setData("[光测试类型]", value);
+        return false;
     d->setData("[光通道]", value == "[光亮度]" || value == "[光强度]" ? 1 : 2);
+    return d->setData("[光测试类型]", value);
 }
 
-void HTestLuminous::setGears(int value)
+bool HTestLuminous::setGears(int value)
 {
     Q_D(HTestLuminous);
-    value = qBound(0, value, d->calibrate->totalGears() - 1);
-    d->setData("[光档位]", value);
+    return d->setData("[光档位]", qBound(0, value, d->calibrate->totalGears() - 1));
 }
 
-void HTestLuminous::setSample(double value)
+bool HTestLuminous::setSample(double value)
 {
     Q_D(HTestLuminous);
     auto type = data("[光测试类型]").toString();
@@ -96,12 +96,12 @@ void HTestLuminous::setSample(double value)
     d->setData("[光采样值]", value);
     d->setData("[光采样比率]", value / 655.35);
     d->setData(type, d->calibrate->toReal(value, type, gears));
+    return true;
 }
 
 bool HTestLuminous::matchGears()
 {
     Q_D(HTestLuminous);
-
     auto sample = data("[光采样值]").toDouble();
     if (sample >= 6000 && sample <= 61000)
         return false;

@@ -63,6 +63,7 @@ void HIntegrateModel::syncDevice(quint32 type)
         addAction(ACT_SET_REVERSE_VOLTAGE);
         addAction(ACT_SET_OUTPUT_VOLTAGE);
         addAction(ACT_SET_GEARS_MEASURED_CURRENT);
+        addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
         addAction(ACT_SET_OUTPUT_CURRENT);
         addAction(ACT_SET_SOURCE_MODE);
     }

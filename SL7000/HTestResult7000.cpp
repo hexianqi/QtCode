@@ -27,6 +27,11 @@ bool HTestResult7000::isEmpty()
     return d_ptr->results.isEmpty();
 }
 
+int HTestResult7000::size()
+{
+    return d_ptr->results.size();
+}
+
 void HTestResult7000::clear()
 {
     if (isEmpty())
@@ -36,11 +41,11 @@ void HTestResult7000::clear()
     d_ptr->modified = true;
 }
 
-void HTestResult7000::seLocation(QPolygon value)
+void HTestResult7000::setPolygon(QPolygon value)
 {
-    if (d_ptr->location == value)
+    if (d_ptr->polygon == value)
         return;
-    d_ptr->location = value;
+    d_ptr->polygon = value;
     clear();
 }
 

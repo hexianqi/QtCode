@@ -71,10 +71,8 @@ bool HTestSetWidget2000AC::setTestState(bool b)
 void HTestSetWidget2000AC::on_doubleSpinBox_1_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000AC);
-    if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
-        return;
-    d->testData->setData("[积分时间]", value);
-    d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    if (d->testData->setData("[积分时间]", value))
+        d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
 void HTestSetWidget2000AC::on_checkBox_1_clicked(bool b)
@@ -107,7 +105,6 @@ void HTestSetWidget2000AC::init()
 {
     Q_D(HTestSetWidget2000AC);
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_1);
-    ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
     ui->comboBox_1->addItems(QStringList() << tr("  反复测试  ") << tr("  持续测试  "));
     d->timerContinue = new QTimer(this);
     connect(d->timerContinue, &QTimer::timeout, this, [=] { setTestState(false); });

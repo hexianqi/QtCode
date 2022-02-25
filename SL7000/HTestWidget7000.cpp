@@ -14,15 +14,6 @@
 #include "HeData/ITextExportTemplate.h"
 #include "HeController/IMementoCollection.h"
 #include "HePlugin/HCie1931Widget.h"
-#include "HePlugin/HTm30BarChart.h"
-#include "HePlugin/HTm30CvgWidget.h"
-#include "HePlugin/HTm30GamutWidget.h"
-#include "HePlugin/HTm30SpdChartView.h"
-#include "HePlugin/HTm30RfRgChartView.h"
-#include "HePlugin/HTm30RfiChartView.h"
-#include "HePlugin/HTm30RfhjChartView.h"
-#include "HePlugin/HTm30RcshjChartView.h"
-#include "HePlugin/HTm30RhshjChartView.h"
 #include "HeGui/HSpecEnergyWidget.h"
 #include "HeGui/HSpecChromatismChartView.h"
 #include "HeGui/HResultTableWidget.h"
@@ -33,16 +24,17 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QSplitter>
+#include <QtWidgets/QFileDialog>
 
 HTestWidget7000Private::HTestWidget7000Private()
 {
     auto group = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
-    auto mementoCollection = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
-    memento = mementoCollection->value("Spec");
+    auto mementos = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
+    memento = mementos->value("Spec");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     textExport = HAppContext::getContextPointer<ITextExport>("ITextExport");
     textTemplate = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
-    displays = QStringList() << "[分级]" << HCore::membership(group);
+    displays = QStringList() << "[电机定位]" << "[分级]" << HCore::membership(group);
 }
 
 HTestWidget7000::HTestWidget7000(QWidget *parent) :
@@ -63,6 +55,7 @@ void HTestWidget7000::init()
     Q_D(HTestWidget7000);
     readSettings();
     d->testResult = new HTestResult7000(this);
+    d->textExport->setExportPath(d->exportPath);
     HTestWidget::init();
     resetGrade();
     resetQuality();
@@ -74,6 +67,7 @@ void HTestWidget7000::init()
 void HTestWidget7000::closeEvent(QCloseEvent *event)
 {
     stop();
+    clearResult();
     writeSettings();
     event->accept();
 }
@@ -104,6 +98,7 @@ void HTestWidget7000::createAction()
 {
     Q_D(HTestWidget7000);
     HTestWidget::createAction();
+    d->actionExportPath = new QAction(tr("配置导出目录(&D)"), this);
     d->actionAdjust = new QAction(tr("使用调整(&A)"), this);
     d->actionAdjust->setCheckable(true);
     d->actionAdjust->setChecked(d->testData->data("[使用调整]").toBool());
@@ -111,6 +106,7 @@ void HTestWidget7000::createAction()
     d->actionProbe->setCheckable(true);
     d->actionProbe->setChecked(d->testData->data("[使用光探头]").toBool());
     d->actionProductEidt = new QAction(tr("产品信息修改(&P)"), this);
+    connect(d->actionExportPath, &QAction::triggered, this, &HTestWidget7000::setExportPath);
     connect(d->actionAdjust, &QAction::triggered, this, [=](bool b){ d->testData->setData("[使用调整]", b); });
     connect(d->actionProbe, &QAction::triggered, this, &HTestWidget7000::setProbe);
     connect(d->actionProductEidt, &QAction::triggered, this, &HTestWidget7000::editProduct);
@@ -132,6 +128,7 @@ void HTestWidget7000::createMenu()
 {
     Q_D(HTestWidget7000);
     auto menu = new QMenu(tr("测试配置(&T)"));
+    menu->addAction(d->actionExportPath);
     menu->addAction(d->actionAdjust);
     menu->addAction(d->actionProbe);
     d->menus << menu;
@@ -178,7 +175,6 @@ void HTestWidget7000::initWidget()
     tabWidget2->addTab(d->chromatismWidget, d->chromatismWidget->windowTitle());
     layout->addWidget(tabWidget1);
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget7000::handleStateChanged);
-    connect(d->testSetWidget, &ITestSetWidget::saveModeChanged, this, &HTestWidget7000::handleSaveModeChanged);
     connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget7000::handleResultChanged);
     connect(d->tableWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget7000::editProduct);
 }
@@ -201,7 +197,10 @@ void HTestWidget7000::exportExcel()
 
     QVariantList list;
     for (int i = 0; i < d->testResult->size(); i++)
-        list << d->testResult->at(i)->select(d->displays);
+    {
+        if (d->testResult->at(i))
+            list << d->testResult->at(i)->select(d->displays);
+    }
     d->textTemplate->setDataType(d->displays);
     d->textTemplate->setData(list);
     d->textExport->setTextTemplate(d->textTemplate);
@@ -216,6 +215,7 @@ void HTestWidget7000::readSettings()
     settings->setIniCodec("utf-8");
     settings->beginGroup("TestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
+    d->exportPath = settings->value("ExportPath", ".").toString();
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
     d->testData->setData("[CCD偏差]", settings->value("Offset", 55.0));
     d->testData->setData("[使用光探头]", settings->value("Probe", false));
@@ -231,6 +231,7 @@ void HTestWidget7000::writeSettings()
     settings->setIniCodec("utf-8");
     settings->beginGroup("TestWidget");
     settings->setValue("TableSelected", d->tableWidget->selected());
+    settings->setValue("ExportPath", d->exportPath);
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
     settings->setValue("Offset", d->testData->data("[CCD偏差]"));
     settings->setValue("Probe", d->testData->data("[使用光探头]"));
@@ -247,14 +248,12 @@ void HTestWidget7000::handleStateChanged(bool b)
     d->actionExportExcel->setEnabled(!b);
 }
 
-void HTestWidget7000::handleSaveModeChanged(int)
-{
-
-}
-
 void HTestWidget7000::handleResultChanged(HActionType, bool)
 {
-
+    Q_D(HTestWidget7000);
+    postProcess();
+    refreshWidget();
+    d->testResult->update();
 }
 
 void HTestWidget7000::resetGrade()
@@ -277,6 +276,7 @@ void HTestWidget7000::resetLocation()
     if (d->polygon == polygon)
         return;
     d->polygon = polygon;
+    d->testResult->setPolygon(polygon);
     d->locationWidget->setPolygon(polygon);
     d->tableWidget->setFixedRowCount(polygon.size());
     d->testSetWidget->handleOperation("<设置布局>", polygon);
@@ -290,11 +290,20 @@ void HTestWidget7000::setProbe(bool b)
     d->testSetWidget->handleOperation("<启用光挡位>", b);
 }
 
+void HTestWidget7000::setExportPath()
+{
+    Q_D(HTestWidget7000);
+    d->exportPath = QFileDialog::getExistingDirectory(this, tr("导出目录"), ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    d->textExport->setExportPath(d->exportPath);
+}
+
 void HTestWidget7000::editProduct()
 {
     Q_D(HTestWidget7000);
     auto row = d->tableWidget->currentRow();
     auto data = d->testResult->at(row);
+    if (data == nullptr)
+        return;
     HProductEditDialog dlg(this);
     dlg.setData(data);
     if (dlg.exec() != QDialog::Accepted)

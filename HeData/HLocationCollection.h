@@ -22,7 +22,6 @@ public:
     QString typeName() override;
 
 public:
-    QRect boundingRect() override;
     QPolygon polygon() override;
 
 protected:

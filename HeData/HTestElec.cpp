@@ -48,7 +48,7 @@ QString HTestElec::typeName()
     return "HTestElec";
 }
 
-void HTestElec::setData(QString type, QVariant value)
+bool HTestElec::setData(QString type, QVariant value)
 {
     if (type == "[电模块]")
         return setModule(value.toInt());
@@ -90,52 +90,55 @@ bool HTestElec::setCalibrate(void *p)
     return true;
 }
 
-void HTestElec::setModule(int value)
+bool HTestElec::setModule(int value)
 {
     Q_D(HTestElec);
     value = qBound(0, value, d->collection->size() - 1);
     d->calibrate = d->collection->itemAt(value);
     d->setData("[电模块]", value);
     d->setData("[输出电流_档位数]", d->calibrate->itemCollection(OutputCurrent)->size());
+    return true;
 }
 
-void HTestElec::setGears(HElecType type, int value)
+bool HTestElec::setGears(HElecType type, int value)
 {
     Q_D(HTestElec);
     value = qBound(0, value, d->calibrate->itemCollection(type)->size() - 1);
-    if (type == OutputVoltage)
-        d->setData("[输出电压_档位]", value);
-    if (type == OutputCurrent)
-        d->setData("[输出电流_档位]", value);
-    if (type == MeasuredVoltage)
-        d->setData("[实测电压_档位]", value);
-    if (type == MeasuredCurrent)
-        d->setData("[实测电流_档位]", value);
-    if (type == ReverseVoltage)
-        d->setData("[反向电压_档位]", value);
-    if (type == ReverseCurrent)
-        d->setData("[反向漏流_档位]", value);
     d->gears.insert(type, value);
     calcRelation(type);
+    if (type == OutputVoltage)
+        return d->setData("[输出电压_档位]", value);
+    if (type == OutputCurrent)
+        return d->setData("[输出电流_档位]", value);
+    if (type == MeasuredVoltage)
+        return d->setData("[实测电压_档位]", value);
+    if (type == MeasuredCurrent)
+        return d->setData("[实测电流_档位]", value);
+    if (type == ReverseVoltage)
+        return d->setData("[反向电压_档位]", value);
+    if (type == ReverseCurrent)
+        return d->setData("[反向漏流_档位]", value);
+    return false;
 }
 
-void HTestElec::setParam(HElecType type, double value)
+bool HTestElec::setParam(HElecType type, double value)
 {
     Q_D(HTestElec);
-    if (type == OutputVoltage)
-        d->setData("[输出电压]", value);
-    if (type == OutputCurrent)
-        d->setData("[输出电流]", value);
-    if (type == ReverseVoltage)
-        d->setData("[反向电压]", value);
-    if (type == MeasuredVoltage)
-        d->setData("[实测电压_F]", value);
-    if (type == MeasuredCurrent)
-        d->setData("[实测电流_F]", value);
-    if (type == ReverseCurrent)
-        d->setData("[反向漏流_F]", value);
     d->values.insert(type, value);
     calcRelation(type);
+    if (type == OutputVoltage)
+        return d->setData("[输出电压]", value);
+    if (type == OutputCurrent)
+        return d->setData("[输出电流]", value);
+    if (type == ReverseVoltage)
+        return d->setData("[反向电压]", value);
+    if (type == MeasuredVoltage)
+        return d->setData("[实测电压_F]", value);
+    if (type == MeasuredCurrent)
+        return d->setData("[实测电流_F]", value);
+    if (type == ReverseCurrent)
+        return d->setData("[反向漏流_F]", value);
+    return false;
 }
 
 void HTestElec::calcRelation(HElecType type)

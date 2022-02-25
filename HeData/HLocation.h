@@ -26,7 +26,6 @@ public:
     void writeContent(QDataStream &) override;
 
 public:
-    QRect boundingRect() override;
     QPolygon polygon() override;
     QVector<QVector<int>> layout() override;
     void setLayout(QVector<QVector<int>>) override;

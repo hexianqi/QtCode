@@ -23,7 +23,7 @@ public:
 public:
     ITestData *setSuccessor(ITestData *) override;
     bool setCalibrate(void *) override;
-    void setData(QString type, QVariant value) override;
+    bool setData(QString type, QVariant value) override;
     void setData(QVariantMap value) override;
     void addData(QString type, QVariant value) override;
     void addData(QVariantMap value) override;

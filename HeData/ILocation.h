@@ -12,8 +12,6 @@ HE_BEGIN_NAMESPACE
 class ILocation : public virtual IDataItem
 {
 public:
-    // 边框
-    virtual QRect boundingRect() = 0;
     // 形状
     virtual QPolygon polygon() = 0;
     // 布局

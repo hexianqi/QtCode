@@ -37,6 +37,7 @@ HEADERS     += \
             HDumpTree.h \
             HDumpTree_p.h \
             HException.h \
+            HHash.h \
             HThreadPool.h
 
 SOURCES     += \

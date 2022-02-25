@@ -16,8 +16,6 @@ public:
     using HDataCollection::HDataCollection;
 
 public:
-    // 边框
-    virtual QRect boundingRect() = 0;
     // 形状
     virtual QPolygon polygon() = 0;
 };

@@ -56,7 +56,7 @@ void HLocationWidget::clearResult()
 
 void HLocationWidget::refreshResult()
 {
-    auto point = d_ptr->testData->data("[设备位置]").toPoint();
+    auto point = d_ptr->testData->data("[电机定位]").toPoint();
     auto color = d_ptr->testData->data("[品质颜色]").value<QColor>();
     auto label = d_ptr->labelTests.value(point);
     if (label != nullptr)

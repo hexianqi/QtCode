@@ -42,11 +42,6 @@ void HLocation::writeContent(QDataStream &s)
     s << d->layout;
 }
 
-QRect HLocation::boundingRect()
-{
-    return polygon().boundingRect();
-}
-
 QPolygon HLocation::polygon()
 {
     Q_D(HLocation);

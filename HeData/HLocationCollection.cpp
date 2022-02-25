@@ -56,14 +56,6 @@ QString HLocationCollection::typeName()
     return "HLocationCollection";
 }
 
-QRect HLocationCollection::boundingRect()
-{
-    auto i = item(useIndex());
-    if (i != nullptr)
-        return i->boundingRect();
-    return {};
-}
-
 QPolygon HLocationCollection::polygon()
 {
     auto i = item(useIndex());

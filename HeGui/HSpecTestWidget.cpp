@@ -366,11 +366,9 @@ void HSpecTestWidget::handleResultChanged(HActionType, bool append)
     Q_D(HSpecTestWidget);
     postProcess(append);
     refreshWidget(append);
-    d->testResult->save(append);
+    d->testResult->update(append);
     if (d->testSetWidget->saveMode() == 1 && append)
         exportExcelAppend();
-    if (d->testSetWidget->saveMode() == 2)
-        d->timer->start();
 }
 
 void HSpecTestWidget::exportExcelAppend()

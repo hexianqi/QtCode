@@ -31,6 +31,7 @@ public:
     ITestDetailWidget *detailWidget = nullptr;
 
 public:
+    QAction *actionExportPath = nullptr;
     QAction *actionAdjust = nullptr;
     QAction *actionProbe = nullptr;
     QAction *actionProductEidt = nullptr;
@@ -45,5 +46,6 @@ public:
 public:
     QStringList displays;
     QStringList tableSelecteds;
+    QString exportPath;
 };
 

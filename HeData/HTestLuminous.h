@@ -22,17 +22,17 @@ public:
 
 public:
     bool setCalibrate(void *) override;
-    void setData(QString type, QVariant value) override;
+    bool setData(QString type, QVariant value) override;
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 
 protected:
     HTestLuminous(HTestLuminousPrivate &);
 
 protected:
-    void setModule(int value);
-    void setType(QString value);
-    void setGears(int value);
-    void setSample(double value);
+    bool setModule(int value);
+    bool setType(QString value);
+    bool setGears(int value);
+    bool setSample(double value);
     bool matchGears();
 };
 

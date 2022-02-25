@@ -10,7 +10,7 @@ public:
 
 public:
     bool modified = false;
-    QPolygon location;
+    QPolygon polygon;
     QList<ITestData *> results;
 };
 

@@ -6,6 +6,7 @@
 class HTestSetWidget7000Private : public HAbstractTestSetWidgetPrivate
 {
 public:
+    QPolygon polygon;
     bool autoIntegralTime = false;
     bool autoLuminousGears = true;
 };

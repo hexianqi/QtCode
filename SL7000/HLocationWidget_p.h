@@ -1,20 +1,15 @@
 #pragma once
 
 #include "HLocationWidget.h"
+#include "HeCore/HHash.h"
 #include "HeData/ITestData.h"
-#include <QtCore/QHash>
-#include <QtCore/QPoint>
+
 
 class QLabel;
 class QGridLayout;
 class HProgressBar;
 
 HE_USE_NAMESPACE
-
-uint qHash(const QPoint &key)
-{
-    return qHash(QPair<int, int>(key.x(), key.y()));
-}
 
 class HLocationWidgetPrivate
 {

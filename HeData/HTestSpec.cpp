@@ -29,11 +29,11 @@ void HTestSpecPrivate::setCalibrate(ISpecCalibrate *p)
     addData(p->testParam());
 }
 
-void HTestSpecPrivate::setIntegralTime(double value)
+bool HTestSpecPrivate::setIntegralTime(double value)
 {
-    setData("[光谱采样等待时间]", calibrate->calcCommWaitTime(value));
-    setData("[积分时间]", value);
     clearCache();
+    setData("[光谱采样等待时间]", calibrate->calcCommWaitTime(value));
+    return setData("[积分时间]", value);
 }
 
 bool HTestSpecPrivate::matchIntegralTime()
@@ -238,16 +238,13 @@ QString HTestSpec::typeName()
     return "HTestSpec";
 }
 
-void HTestSpec::setData(QString type, QVariant value)
+bool HTestSpec::setData(QString type, QVariant value)
 {
     Q_D(HTestSpec);
     if (type == "[积分时间]")
         return d->setIntegralTime(value.toDouble());
     if (type == "[光谱采样值]")
-    {
-        setSample(value.value<QVector<double>>());
-        return;
-    }
+        return setSample(value.value<QVector<double>>());
     return HTestData::setData(type, value);
 }
 

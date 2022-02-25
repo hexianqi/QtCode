@@ -61,10 +61,8 @@ bool HAdjustSetWidget::setTestState(bool b)
 void HAdjustSetWidget::on_doubleSpinBox_01_valueChanged(double value)
 {
     Q_D(HAdjustSetWidget);
-    if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
-        return;
-    d->testData->setData("[积分时间]", value);
-    d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    if (d->testData->setData("[积分时间]", value))
+        d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
 void HAdjustSetWidget::on_checkBox_01_clicked(bool b)

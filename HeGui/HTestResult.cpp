@@ -85,7 +85,7 @@ void HTestResult::clear()
     d_ptr->modified = true;
 }
 
-void HTestResult::save(bool append)
+void HTestResult::update(bool append)
 {
     if (append || isEmpty())
         d_ptr->results.append(d_ptr->testData->clone());

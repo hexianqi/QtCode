@@ -8,16 +8,19 @@
 
 HE_BEGIN_NAMESPACE
 
-void HTestDataPrivate::setData(const QString &type, const QVariant &value)
+bool HTestDataPrivate::setData(const QString &type, const QVariant &value)
 {
     if (datas.contains(type))
     {
+        if (datas.value(type) == value)
+            return false;
         datas[type] = value;
-        return;
+        return true;
     }
     if (successor != nullptr)
         return successor->setData(type, value);
     addData(type, value);
+    return true;
 }
 
 void HTestDataPrivate::setData(QVariantMap value)
@@ -82,9 +85,9 @@ bool HTestData::setCalibrate(void *)
     return false;
 }
 
-void HTestData::setData(QString type, QVariant value)
+bool HTestData::setData(QString type, QVariant value)
 {
-    d_ptr->setData(type, value);
+    return d_ptr->setData(type, value);
 }
 
 void HTestData::setData(QVariantMap value)

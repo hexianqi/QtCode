@@ -19,7 +19,7 @@ public:
     // 设置校准数据
     virtual bool setCalibrate(void *) = 0;
     // 设置数据
-    virtual void setData(QString type, QVariant value) = 0;
+    virtual bool setData(QString type, QVariant value) = 0;
     // 设置数据
     virtual void setData(QVariantMap value) = 0;
     // 添加数据

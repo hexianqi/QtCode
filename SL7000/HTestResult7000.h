@@ -24,7 +24,8 @@ public:
     bool isEmpty();
     int size();
     void clear();
-    void seLocation(QPolygon);
+    void update();
+    void setPolygon(QPolygon);
     void setModified(bool b = true);
 
 protected:

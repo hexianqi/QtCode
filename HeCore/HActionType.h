@@ -66,6 +66,8 @@ using HActionType = long long;
 #define     ACT_SINGLE_TEST                         0x10000001
 #define     ACT_GET_SPECTRUM_ELEC                   0x10000002
 
+#define     ACT_QUERY_NEXT_TEST                     0xE0000001
+
 #define     ACT_RESET_SPECTRUM                      0xF0000001
 #define     ACT_RESET_LUMINOUS                      0xF0000002
 #define     ACT_RESET_CHROMATISM                    0xF0000003

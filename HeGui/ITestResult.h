@@ -23,8 +23,8 @@ public:
     virtual int size() = 0;
     // 清除
     virtual void clear() = 0;
-    // 保存
-    virtual void save(bool append) = 0;
+    // 更新
+    virtual void update(bool append) = 0;
     // 删除
     virtual void remove(int index, int count) = 0;
     // 设置修改

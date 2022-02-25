@@ -22,7 +22,7 @@ public:
     QString typeName() override;
 
 public:
-    void setData(QString type, QVariant value) override;
+    bool setData(QString type, QVariant value) override;
     QString toString(QString type) override;
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
 

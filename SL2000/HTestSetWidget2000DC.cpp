@@ -151,31 +151,29 @@ bool HTestSetWidget2000DC::setTestState(bool b)
 void HTestSetWidget2000DC::on_doubleSpinBox_1_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    if (qFuzzyCompare(value, d->testData->data("[积分时间]").toDouble()))
-        return;
-    d->testData->setData("[积分时间]", value);
-    d->model->addAction(ACT_SET_INTEGRAL_TIME);
+    if (d->testData->setData("[积分时间]", value))
+        d->model->addAction(ACT_SET_INTEGRAL_TIME);
 }
 
 void HTestSetWidget2000DC::on_doubleSpinBox_2_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testData->setData("[输出电压]", value);
-    d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
+    if (d->testData->setData("[输出电压]", value))
+        d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
 }
 
 void HTestSetWidget2000DC::on_doubleSpinBox_3_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testData->setData("[输出电流]", value);
-    d->model->addAction(ACT_SET_OUTPUT_CURRENT);
+    if (d->testData->setData("[输出电流]", value))
+        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HTestSetWidget2000DC::on_doubleSpinBox_4_valueChanged(double value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testData->setData("[反向电压]", value);
-    d->model->addAction(ACT_SET_REVERSE_VOLTAGE);
+    if (d->testData->setData("[反向电压]", value))
+        d->model->addAction(ACT_SET_REVERSE_VOLTAGE);
 }
 
 void HTestSetWidget2000DC::on_checkBox_1_clicked(bool b)
@@ -205,23 +203,21 @@ void HTestSetWidget2000DC::on_comboBox_1_currentIndexChanged(int value)
 void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
-    d->testData->setData("[输出电流_档位]", value);
-    d->testData->setData("[实测电流_档位]", value);
-    d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
-    d->model->addAction(ACT_SET_OUTPUT_CURRENT);
+    if (d->testData->setData("[输出电流_档位]", value) || d->testData->setData("[实测电流_档位]", value))
+    {
+        d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
+    }
 }
 
 void HTestSetWidget2000DC::on_comboBox_3_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
+    d->autoLuminousGears = value == 0;
     if (value == 0)
-    {
-        d->autoLuminousGears = true;
         return;
-    }
-    d->autoLuminousGears = false;
-    d->testData->setData("[光档位]", value - 1);
-    d->model->addAction(ACT_SET_LUMINOUS_GEARS);
+    if (d->testData->setData("[光档位]", value - 1))
+        d->model->addAction(ACT_SET_LUMINOUS_GEARS);
 }
 
 bool HTestSetWidget2000DC::adjustIntegralTime()
@@ -250,12 +246,7 @@ void HTestSetWidget2000DC::init()
     HPluginHelper::initWidget("[输出电压]", ui->doubleSpinBox_2);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox_3);
     HPluginHelper::initWidget("[反向电压]", ui->doubleSpinBox_4);
-    ui->doubleSpinBox_1->setValue(d->testData->data("[积分时间]").toDouble());
-    ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
-    ui->doubleSpinBox_3->setValue(d->testData->data("[输出电流]").toDouble());
-    ui->doubleSpinBox_4->setValue(d->testData->data("[反向电压]").toDouble());
     ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));// << tr("  分选测试  "));
-
     for (i = 0; i < d->testData->data("[输出电流_档位数]").toInt(); i++)
         ui->comboBox_2->addItem(tr("  %1档  ").arg(i+1));
     ui->comboBox_3->addItem(tr("  自动  "));

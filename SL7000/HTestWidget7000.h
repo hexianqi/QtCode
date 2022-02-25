@@ -38,12 +38,14 @@ protected:
     void readSettings();
     void writeSettings();
     void handleStateChanged(bool);
-    void handleSaveModeChanged(int);
     void handleResultChanged(HActionType, bool);
+    void postProcess();
+    void refreshWidget();
     void resetGrade();
     void resetQuality();
     void resetLocation();
     void setProbe(bool b);
+    void setExportPath();
     void editProduct();
 };
 

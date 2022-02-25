@@ -70,8 +70,8 @@ void HBuilder2000F::buildConfigManage()
         auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
         auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
         luminousItem->setData("[项类型]", "[光通量]");
-        luminousItem->setTotalGears(5);
         luminous->insert("[光通量]", luminousItem);
+        luminous->setTotalGears(5);
         luminouss->insert("模块1", luminous);
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");

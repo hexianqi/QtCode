@@ -23,15 +23,15 @@ public:
 
 public:
     bool setCalibrate(void *) override;
-    void setData(QString type, QVariant value) override;
+    bool setData(QString type, QVariant value) override;
 
 protected:
     HTestElec(HTestElecPrivate &);
 
 protected:
-    void setModule(int value);
-    void setGears(HElecType type, int value);
-    void setParam(HElecType type, double value);
+    bool setModule(int value);
+    bool setGears(HElecType type, int value);
+    bool setParam(HElecType type, double value);
     void calcRelation(HElecType type);
 };
 

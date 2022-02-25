@@ -124,8 +124,8 @@ void HBuilder2000DC::buildConfigManage()
         auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
         luminousItem->setData("[项类型]", "[光通量]");
-        luminousItem->setTotalGears(5);
         luminous->insert("[光通量]", luminousItem);
+        luminous->setTotalGears(5);
         luminouss->insert("模块1", luminous);
 
         chromatisms->dataStream()->readFile(":/dat/Chromatism.hcc");
