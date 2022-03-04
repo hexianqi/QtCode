@@ -15,7 +15,7 @@ QStringList HCoreHelper::unselected(QStringList optional, QStringList selected)
     return optional;
 }
 
-QVariantMap HCoreHelper::unite(const QVariantMap &m1, const QVariantMap &m2)
+QVariantMap HCoreHelper::unite(QVariantMap m1, const QVariantMap &m2)
 {
     auto m = m1;
     for (auto i = m2.begin(); i != m2.end(); i++)

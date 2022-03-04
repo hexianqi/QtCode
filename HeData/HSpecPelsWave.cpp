@@ -86,6 +86,7 @@ void HSpecPelsWave::setPelsWave(const QPolygonF &value)
 {
     Q_D(HSpecPelsWave);
     d->pelsWave = value;
+    std::sort(d->pelsWave.begin(), d->pelsWave.end(), [](QPointF p1, QPointF p2) { return p1.x() < p2.x(); });
 }
 
 QPolygonF HSpecPelsWave::pelsWave()

@@ -2,12 +2,17 @@
 #include "HeCore/HCore.h"
 #include "HeData/HSpecPelsWave.h"
 #include "HePlugin/HDoubleSpinBoxDelegate.h"
+#include "HePlugin/HEntireTableWidget.h"
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QGridLayout>
 
 HE_BEGIN_NAMESPACE
 
 HSpecPelsWaveWidget::HSpecPelsWaveWidget(QWidget *parent) :
-    HEntireTableWidget(*new HSpecPelsWaveWidgetPrivate, parent)
+    QWidget(parent),
+    d_ptr(new HSpecPelsWaveWidgetPrivate)
 {
     init();
 }
@@ -16,41 +21,47 @@ HSpecPelsWaveWidget::~HSpecPelsWaveWidget() = default;
 
 void HSpecPelsWaveWidget::setData(HSpecPelsWave *p)
 {
-    Q_D(HSpecPelsWaveWidget);
-    d->data = p;
+    d_ptr->data = p;
     showData();
 }
 
 void HSpecPelsWaveWidget::saveData()
 {
-    Q_D(HSpecPelsWaveWidget);
     QPolygonF poly;
-
-    for (int i = 0; i < rowCount(); i++)
-        poly << QPointF(item(i, 0)->text().toDouble(), item(i, 1)->text().toDouble());
-    d->data->setPelsWave(poly);
+    for (int i = 0; i < d_ptr->tableWidget->rowCount(); i++)
+        poly << QPointF(d_ptr->tableWidget->item(i, 0)->text().toDouble(), d_ptr->tableWidget->item(i, 1)->text().toDouble());
+    d_ptr->data->setPelsWave(poly);
     showData();
 }
 
 void HSpecPelsWaveWidget::showData()
 {
-    Q_D(HSpecPelsWaveWidget);
-    auto poly = d->data->pelsWave();
+    auto poly = d_ptr->data->pelsWave();
     auto size = poly.size();
-
-    clearContents();
-    setRowCount(size);
+    d_ptr->spinBox->setValue(size);
     for (int i = 0; i < size; i++)
-        setRow(i, QStringList() << HCore::toString("[光谱像元]", poly[i].x()) << HCore::toString("[光谱波长]", poly[i].y()));
+        d_ptr->tableWidget->setRow(i, QStringList() << HCore::toString("[光谱像元]", poly[i].x()) << HCore::toString("[光谱波长]", poly[i].y()));
 }
 
 void HSpecPelsWaveWidget::init()
 {
     auto delegate = new HDoubleSpinBoxDelegate(this);
     delegate->setType(QStringList() << "[光谱像元]" << "[光谱波长]");
-    setItemDelegate(delegate);
-    setHorizontalHeaderLabels(QStringList() << tr("像元") << tr("波长"));
-    horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    d_ptr->tableWidget = new HEntireTableWidget;
+    d_ptr->tableWidget->setItemDelegate(delegate);
+    d_ptr->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("像元") << tr("波长"));
+    d_ptr->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    d_ptr->spinBox = new QSpinBox();
+    d_ptr->spinBox->setAlignment(Qt::AlignCenter);
+    d_ptr->spinBox->setRange(2, 10);
+    auto label = new QLabel();
+    label->setText(tr("项数："));
+    label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+    auto layout = new QGridLayout(this);
+    layout->addWidget(label, 1, 0, 1, 1);
+    layout->addWidget(d_ptr->spinBox, 1, 1, 1, 1);
+    layout->addWidget(d_ptr->tableWidget, 0, 0, 1, 2);
+    connect(d_ptr->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), d_ptr->tableWidget, &HEntireTableWidget::setRowCount);
     setWindowTitle(tr("光谱像元波长"));
 }
 

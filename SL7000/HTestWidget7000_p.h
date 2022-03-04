@@ -41,11 +41,14 @@ public:
     HTestResult7000 *testResult = nullptr;
     ITextExport *textExport = nullptr;
     ITextExportTemplate *textTemplate = nullptr;
+    IModel *model = nullptr;
     QPolygon polygon;
 
 public:
     QStringList displays;
     QStringList tableSelecteds;
     QString exportPath;
+    int index = -1;
+    int index2 = -1;
 };
 

@@ -15,7 +15,7 @@ public:
     // 选择
     static QStringList unselected(QStringList optional, QStringList selected);
     // 合并
-    static QVariantMap unite(const QVariantMap &m1, const QVariantMap &m2);
+    static QVariantMap unite(QVariantMap m1, const QVariantMap &m2);
     // 延时
     static void msleep(int msecs);
     static void msleep2(int msecs);

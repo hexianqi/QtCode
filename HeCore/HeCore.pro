@@ -37,7 +37,7 @@ HEADERS     += \
             HDumpTree.h \
             HDumpTree_p.h \
             HException.h \
-            HHash.h \
+            HPromotion.h \
             HThreadPool.h
 
 SOURCES     += \
@@ -48,6 +48,7 @@ SOURCES     += \
             HDataFormatInfo.cpp \
             HDumpTree.cpp \
             HException.cpp \
+            HPromotion.cpp \
             HThreadPool.cpp
 
 RESOURCES   += HeCore.qrc

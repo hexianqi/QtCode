@@ -12,6 +12,7 @@
 #include "HeData/ITestData.h"
 #include "HeData/ITextExport.h"
 #include "HeData/ITextExportTemplate.h"
+#include "HeController/IModel.h"
 #include "HeController/IMementoCollection.h"
 #include "HePlugin/HCie1931Widget.h"
 #include "HeGui/HSpecEnergyWidget.h"
@@ -19,6 +20,7 @@
 #include "HeGui/HResultTableWidget.h"
 #include "HeGui/HProductEditDialog.h"
 #include <QtCore/QSettings>
+#include <QtCore/QDateTime>
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QToolBar>
@@ -34,6 +36,7 @@ HTestWidget7000Private::HTestWidget7000Private()
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     textExport = HAppContext::getContextPointer<ITextExport>("ITextExport");
     textTemplate = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
+    model = HAppContext::getContextPointer<IModel>("IModel");
     displays = QStringList() << "[电机定位]" << "[分级]" << HCore::membership(group);
 }
 
@@ -75,6 +78,24 @@ void HTestWidget7000::closeEvent(QCloseEvent *event)
 void HTestWidget7000::handleAction(HActionType action)
 {
     Q_D(HTestWidget7000);
+    if (action == ACT_SET_MOTOR_LOCATION)
+    {
+        auto point = d->testData->data("[电机定位]").toPoint();
+        d->index = d->polygon.indexOf(point);
+        return;
+    }
+    if (action == ACT_QUERY_NEXT_TEST)
+    {
+        d->index2 = d->testResult->next(d->index2);
+        if (d->index2 >= 0)
+        {
+            d->testData->setData("[电机定位]", d->polygon.at(d->index2));
+            d->model->addAction(ACT_SET_MOTOR_LOCATION);
+        }
+        else
+            setTest(false);
+        return;
+    }
     if (action >= 0xF0000000)
     {
         setTest(false);
@@ -174,14 +195,17 @@ void HTestWidget7000::initWidget()
     tabWidget2->addTab(d->cieWidget,        d->cieWidget->windowTitle());
     tabWidget2->addTab(d->chromatismWidget, d->chromatismWidget->windowTitle());
     layout->addWidget(tabWidget1);
-    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget7000::handleStateChanged);
-    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget7000::handleResultChanged);
+//    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget7000::handleStateChanged);
+//    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget7000::handleResultChanged);
+    connect(d->testSetWidget, SIGNAL(testStateChanged(bool)), this, SLOT(handleStateChanged(bool)));
+    connect(d->testSetWidget, SIGNAL(resultChanged(HActionType, bool)), this,SLOT(handleResultChanged(HActionType, bool)));
     connect(d->tableWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget7000::editProduct);
 }
 
 void HTestWidget7000::clearResult()
 {
     Q_D(HTestWidget7000);
+    d->index2 = -1;
     d->testResult->clear();
     d->textExport->clear();
     d->cieWidget->clearPoint();
@@ -254,6 +278,25 @@ void HTestWidget7000::handleResultChanged(HActionType, bool)
     postProcess();
     refreshWidget();
     d->testResult->update();
+}
+
+void HTestWidget7000::postProcess()
+{
+    Q_D(HTestWidget7000);
+    d->configManage->postProcess(d->testData, d->displays);
+    d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
+    d->testData->handleOperation("<编号自增>");
+}
+
+void HTestWidget7000::refreshWidget()
+{
+    Q_D(HTestWidget7000);
+    auto point = d->testData->data("[色坐标]").toPointF();
+    d->energyWidget->refreshWidget();
+    d->chromatismWidget->refreshWidget();
+    d->detailWidget->refreshWidget();
+    d->tableWidget->refreshResult(d->index);
+    d->cieWidget->addPoint(point);
 }
 
 void HTestWidget7000::resetGrade()

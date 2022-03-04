@@ -21,9 +21,10 @@
         <file>image/table_undo.png</file>
         <file>dat/Tm30BarCamp99.dat</file>
         <file>image/cvg_background.png</file>
-        <file>image/7color2.png</file>
+        <file>image/color[360-830].png</file>
         <file>image/Gamut_background.png</file>
         <file>image/Gamut_background_s.png</file>
         <file>image/Logo.png</file>
+        <file>image/color[300-1100].png</file>
     </qresource>
 </RCC>

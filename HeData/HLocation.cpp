@@ -71,7 +71,10 @@ QVector<QVector<int>> HLocation::layout()
 void HLocation::setLayout(QVector<QVector<int>> value)
 {
     Q_D(HLocation);
+    if (d->layout == value)
+        return;
     d->layout = value;
+    d->polygon.clear();
 }
 
 HE_END_NAMESPACE

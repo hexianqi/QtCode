@@ -1,6 +1,7 @@
 #pragma once
 
 #include "HTestResult7000.h"
+#include "HeCore/.h"
 #include <QtGui/QPolygon>
 
 class HTestResult7000Private
@@ -11,8 +12,6 @@ public:
 public:
     bool modified = false;
     QPolygon polygon;
-    QList<ITestData *> results;
+    ITestData *testData = nullptr;
+    QHash<QPoint, ITestData *> results;
 };
-
-
-

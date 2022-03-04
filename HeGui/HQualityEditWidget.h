@@ -44,6 +44,7 @@ protected slots:
     void on_pushButton_02_clicked();
     void on_pushButton_03_clicked();
     void on_pushButton_04_clicked();
+    void on_pushButton_05_clicked();
 
 private:
     void init();

@@ -242,8 +242,8 @@ void HBuilder7000::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
-    location->addAction(d->guiFactory->createAction(tr("布局数据配置(&E)..."), "HLocationEditHandler"));
-    location->addAction(d->guiFactory->createAction(tr("布局数据选择(&S)..."), "HLocationSelectHandler"));
+    location->addAction(d->guiFactory->createAction(tr("定位数据配置(&E)..."), "HLocationEditHandler"));
+    location->addAction(d->guiFactory->createAction(tr("定位数据选择(&S)..."), "HLocationSelectHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));

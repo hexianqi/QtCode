@@ -1,13 +1,17 @@
 #pragma once
 
 #include "HSpecPelsWaveWidget.h"
-#include "HePlugin/HEntireTableWidget_p.h"
+
+class QSpinBox;
+class HEntireTableWidget;
 
 HE_BEGIN_NAMESPACE
 
-class HSpecPelsWaveWidgetPrivate : public HEntireTableWidgetPrivate
+class HSpecPelsWaveWidgetPrivate
 {
 public:
+    QSpinBox *spinBox = nullptr;
+    HEntireTableWidget *tableWidget = nullptr;
     HSpecPelsWave *data;
 };
 

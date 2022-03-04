@@ -9,8 +9,6 @@ using namespace Eigen;
 Q_DECLARE_METATYPE(Eigen::MatrixXd)
 Q_DECLARE_METATYPE(Eigen::ArrayXXd)
 
-
-
 QDebug operator<<(QDebug dbg, const MatrixXd &m)
 {
     std::cout << m << std::endl << std::endl;

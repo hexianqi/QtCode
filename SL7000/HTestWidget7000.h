@@ -34,11 +34,13 @@ protected:
     void clearResult() override;
     void exportExcel() override;
 
+protected slots:
+    void handleStateChanged(bool);
+    void handleResultChanged(HActionType, bool);
+
 protected:
     void readSettings();
     void writeSettings();
-    void handleStateChanged(bool);
-    void handleResultChanged(HActionType, bool);
     void postProcess();
     void refreshWidget();
     void resetGrade();

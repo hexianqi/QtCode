@@ -38,6 +38,24 @@ int main(int argc, char *argv[])
     QApplication::setStyle(QStyleFactory::create("Plastique"));
     QApplication a(argc, argv);
 
+    auto pelsWave = QPolygonF() << QPointF(397, 404.7)
+                                << QPointF(468, 435.8)
+                                << QPointF(727, 546.1)
+                                << QPointF(935, 632.8)
+                                << QPointF(1088, 696.5)
+                                << QPointF(1222, 750.4)
+                                << QPointF(1253, 763.5);
+
+    for (int i = 0; i < pelsWave.size() - 1; i++)
+    {
+        qDebug() << (pelsWave[i+1].y() - pelsWave[i].y()) / (pelsWave[i+1].x() - pelsWave[i].x());
+    }
+
+    auto view = HTestPlugin::lineChart(QList<QPolygonF>() << pelsWave);
+    view->show();
+
+
+
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 
@@ -51,15 +69,15 @@ int main(int argc, char *argv[])
 //    ow.resize(800, 600);
 //    ow.show();
 
-    HTestData::testJson2();
+//    HTestData::testJson2();
 
 
-    MainWindow window;
+//   MainWindow window;
 ////    window.setCentralWidget(&videoWidget);
 //    window.resize(800, 600);
 //    window.grabGesture(Qt::PanGesture);
 //    window.grabGesture(Qt::PinchGesture);
-    window.show();
+//    window.show();
 //    HDumpTree::dumpProperty(&window);
 
     return a.exec();

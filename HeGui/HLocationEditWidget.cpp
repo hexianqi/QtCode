@@ -114,7 +114,7 @@ void HLocationEditWidget::showData()
     }
 }
 
-void HLocationEditWidget::on_spinBox_1_valueChanged(int value)
+void HLocationEditWidget::on_spinBox_01_valueChanged(int value)
 {
     int i,j;
     auto row = ui->tableWidget->rowCount();
@@ -127,7 +127,7 @@ void HLocationEditWidget::on_spinBox_1_valueChanged(int value)
     }
 }
 
-void HLocationEditWidget::on_spinBox_2_valueChanged(int value)
+void HLocationEditWidget::on_spinBox_04_valueChanged(int value)
 {
     int i,j;
     auto row = ui->tableWidget->rowCount();
@@ -140,7 +140,7 @@ void HLocationEditWidget::on_spinBox_2_valueChanged(int value)
     }
 }
 
-void HLocationEditWidget::on_pushButton_1_clicked()
+void HLocationEditWidget::on_pushButton_01_clicked()
 {
     auto row = ui->tableWidget->rowCount();
     auto col = ui->tableWidget->columnCount();
@@ -148,10 +148,10 @@ void HLocationEditWidget::on_pushButton_1_clicked()
         return;
 
     int i,j;
-    auto rf = ui->spinBox_02->value();
-    auto rt = ui->spinBox_03->value();
-    auto cf = ui->spinBox_05->value();
-    auto ct = ui->spinBox_06->value();
+    auto rf = ui->spinBox_02->value() - 1;
+    auto rt = ui->spinBox_03->value() - 1;
+    auto cf = ui->spinBox_05->value() - 1;
+    auto ct = ui->spinBox_06->value() - 1;
     auto text = QString::number(ui->spinBox_07->value());
 
     if (rf > rt)

@@ -132,8 +132,8 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HGradeSelectHandler>("HGradeSelectHandler");
     HObjectFactory::registerClass<HQualityEditHandler>("HQualityEditHandler");
     HObjectFactory::registerClass<HQualitySelectHandler>("HQualitySelectHandler");
-    HObjectFactory::registerClass<HQualityEditHandler>("HLocationEditHandler");
-    HObjectFactory::registerClass<HQualitySelectHandler>("HLocationSelectHandler");
+    HObjectFactory::registerClass<HLocationEditHandler>("HLocationEditHandler");
+    HObjectFactory::registerClass<HLocationSelectHandler>("HLocationSelectHandler");
     HObjectFactory::registerClass<HAdjustEditHandler>("HAdjustEditHandler");
     HObjectFactory::registerClass<HAdjustSelectHandler>("HAdjustSelectHandler");
     HObjectFactory::registerClass<HAdjust2EditHandler>("HAdjust2EditHandler");

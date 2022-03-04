@@ -35,13 +35,13 @@ void HLocationWidget::setColor(const QColor &invalid, const QColor &spacer)
     {
         d_ptr->colorInvalid = invalid;
         for (auto label : d_ptr->labelTests)
-            label->setStyleSheet(d_ptr->css.arg(d_ptr->colorInvalid.name()));
+            label->setStyleSheet(d_ptr->cssTest.arg(d_ptr->colorInvalid.name()));
     }
     if (d_ptr->colorSpacer != spacer)
     {
         d_ptr->colorSpacer = spacer;
         for (auto label : d_ptr->labelSpacers)
-            label->setStyleSheet(d_ptr->css.arg(d_ptr->colorSpacer.name()));
+            label->setStyleSheet(d_ptr->cssSpacer.arg(d_ptr->colorSpacer.name()));
     }
 }
 
@@ -49,7 +49,7 @@ void HLocationWidget::clearResult()
 {
     for (auto label : d_ptr->labelTests)
     {
-        label->setStyleSheet(d_ptr->css.arg(d_ptr->colorInvalid.name()));
+        label->setStyleSheet(d_ptr->cssTest.arg(d_ptr->colorInvalid.name()));
         label->setToolTip("");
     }
 }
@@ -60,13 +60,14 @@ void HLocationWidget::refreshResult()
     auto color = d_ptr->testData->data("[品质颜色]").value<QColor>();
     auto label = d_ptr->labelTests.value(point);
     if (label != nullptr)
-        label->setStyleSheet(d_ptr->css.arg(color.name()));
+        label->setStyleSheet(d_ptr->cssTest.arg(color.name()));
     d_ptr->progressBar->setValue(d_ptr->testData->data("[光谱采样比率]").toDouble());
 }
 
 void HLocationWidget::init()
 {
-    d_ptr->css = QString("background-color: %1;\nborder: 2px solid rgb(0, 0, 0);");
+    d_ptr->cssTest = QString("background-color: %1;\nborder: 2px solid rgb(0, 0, 0);\nfont:15pt;");
+    d_ptr->cssSpacer = QString("background-color: %1;\nborder: 2px dashed rgb(0, 0, 0);");
     d_ptr->colorSpacer = Qt::transparent;
     d_ptr->colorInvalid = Qt::blue;
     d_ptr->labelError = new QLabel;
@@ -101,28 +102,31 @@ void HLocationWidget::resetLayout()
     auto rect = d_ptr->polygon.boundingRect();
     if (rect.isEmpty())
     {
+        d_ptr->labelError->setVisible(true);
         d_ptr->layout->addWidget(d_ptr->labelError);
         return;
     }
 
-    for (int row = rect.top(); row <= rect.bottom(); row++)
+    d_ptr->labelError->setVisible(false);
+    for (int row = rect.left(); row <= rect.right(); row++)
     {
-        for (int column = rect.left(); column <= rect.bottom(); column++)
+        for (int column = rect.top(); column <= rect.bottom(); column++)
         {
             auto point = QPoint(row, column);
             auto label = new QLabel;
             label->setFrameShape(QFrame::Panel);
             label->setAlignment(Qt::AlignCenter);
-            label->setText(QString("%1:%2").arg(row).arg(column));
             d_ptr->layout->addWidget(label, row, column);
             if (d_ptr->polygon.contains(point))
             {
-                label->setStyleSheet(d_ptr->css.arg(d_ptr->colorInvalid.name()));
+                label->setText(QString("%1, %2").arg(row).arg(column));
+                label->setStyleSheet(d_ptr->cssTest.arg(d_ptr->colorInvalid.name()));
                 d_ptr->labelTests.insert(point, label);
             }
             else
             {
-                label->setStyleSheet(d_ptr->css.arg(d_ptr->colorSpacer.name()));
+                label->setText("");
+                label->setStyleSheet(d_ptr->cssSpacer.arg(d_ptr->colorSpacer.name()));
                 d_ptr->labelSpacers.insert(point, label);
             }
         }

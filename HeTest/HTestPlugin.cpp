@@ -56,6 +56,12 @@ QChartView *HTestPlugin::lineChart(QList<QPolygonF> polys)
         series->setName(QString("Line %1").arg(i + 1));
         series->append(polys[i].toList());
         chart->addSeries(series);
+
+        auto series2 = new QLineSeries();
+        series2->setName(QString("Line2 %1").arg(i + 1));
+        series2->append(polys[i].first());
+        series2->append(polys[i].last());
+        chart->addSeries(series2);
     }
     chart->createDefaultAxes();
     chart->legend()->setAlignment(Qt::AlignRight);

@@ -1,9 +1,8 @@
 #pragma once
 
 #include "HLocationWidget.h"
-#include "HeCore/HHash.h"
+#include "HeCore/.h"
 #include "HeData/ITestData.h"
-
 
 class QLabel;
 class QGridLayout;
@@ -17,7 +16,8 @@ public:
     HLocationWidgetPrivate();
 
 public:
-    QString css;
+    QString cssTest;
+    QString cssSpacer;
     QPolygon polygon;
     QColor colorSpacer;
     QColor colorInvalid;

@@ -37,9 +37,9 @@ public:
     void showData() override;
 
 protected slots:
-    void on_spinBox_1_valueChanged(int value);
-    void on_spinBox_2_valueChanged(int value);
-    void on_pushButton_1_clicked();
+    void on_spinBox_01_valueChanged(int value);
+    void on_spinBox_04_valueChanged(int value);
+    void on_pushButton_01_clicked();
 
 private:
     void init();

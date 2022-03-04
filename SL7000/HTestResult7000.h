@@ -25,6 +25,7 @@ public:
     int size();
     void clear();
     void update();
+    int next(int index);
     void setPolygon(QPolygon);
     void setModified(bool b = true);
 

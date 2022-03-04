@@ -54,6 +54,7 @@ void HQualityEditWidget::setData(IQuality *p)
     d_ptr->colorDamage = d_ptr->data->color(Broken);
     d_ptr->colorNoPass = d_ptr->data->color(NoPass);
     d_ptr->colorPassing = d_ptr->data->color(Passing);
+    d_ptr->colorSpacer = d_ptr->data->color(Spacer);
     d_ptr->widget1->setData(p->itemCollection(Damage));
     d_ptr->widget2->setData(p->itemCollection(Criterion));
     showData();
@@ -66,6 +67,7 @@ void HQualityEditWidget::clearData()
     d_ptr->colorDamage = Qt::white;
     d_ptr->colorNoPass = Qt::white;
     d_ptr->colorPassing = Qt::white;
+    d_ptr->colorSpacer = Qt::transparent;
     d_ptr->widget1->clearData();
     d_ptr->widget2->clearData();
     showPushButton();
@@ -79,6 +81,7 @@ void HQualityEditWidget::saveData()
     d_ptr->data->setColor(Broken, d_ptr->colorDamage);
     d_ptr->data->setColor(NoPass, d_ptr->colorNoPass);
     d_ptr->data->setColor(Passing, d_ptr->colorPassing);
+    d_ptr->data->setColor(Spacer, d_ptr->colorSpacer);
     d_ptr->widget1->saveData();
     d_ptr->widget2->saveData();
 }
@@ -98,6 +101,7 @@ void HQualityEditWidget::showPushButton()
     ui->pushButton_02->setStyleSheet(d_ptr->css.arg(d_ptr->colorDamage.name()));
     ui->pushButton_03->setStyleSheet(d_ptr->css.arg(d_ptr->colorNoPass.name()));
     ui->pushButton_04->setStyleSheet(d_ptr->css.arg(d_ptr->colorPassing.name()));
+    ui->pushButton_05->setStyleSheet(d_ptr->css.arg(d_ptr->colorSpacer.name()));
 }
 
 void HQualityEditWidget::on_pushButton_01_clicked()
@@ -137,6 +141,16 @@ void HQualityEditWidget::on_pushButton_04_clicked()
     {
         d_ptr->colorPassing = dlg.currentColor();
         ui->pushButton_04->setStyleSheet(d_ptr->css.arg(d_ptr->colorPassing.name()));
+    }
+}
+
+void HQualityEditWidget::on_pushButton_05_clicked()
+{
+    QColorDialog dlg(d_ptr->colorSpacer, this);
+    if (dlg.exec())
+    {
+        d_ptr->colorSpacer = dlg.currentColor();
+        ui->pushButton_05->setStyleSheet(d_ptr->css.arg(d_ptr->colorSpacer.name()));
     }
 }
 

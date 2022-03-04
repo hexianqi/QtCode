@@ -39,7 +39,7 @@ QVariant HTestSetWidget7000::handleOperation(QString type, QVariant value)
         ui->comboBox_4->clear();
         ui->comboBox_4->addItem(tr("  原点  "), QPoint(99, 99));
         for (auto p : d->polygon)
-            ui->comboBox_4->addItem(QString("  %1:%2  ").arg(p.x()).arg(p.y()), p);
+            ui->comboBox_4->addItem(QString("  %1, %2  ").arg(p.x()).arg(p.y()), p);
         ui->comboBox_4->blockSignals(false);
         return true;
     }

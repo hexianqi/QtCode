@@ -5,17 +5,16 @@
 #pragma once
 
 #include "HNamespace.h"
-#include "HePlugin/HEntireTableWidget.h"
+#include <QtWidgets/QWidget>
 
 HE_BEGIN_NAMESPACE
 
 class HSpecPelsWave;
 class HSpecPelsWaveWidgetPrivate;
 
-class HSpecPelsWaveWidget : public HEntireTableWidget
+class HSpecPelsWaveWidget : public QWidget
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(HSpecPelsWaveWidget)
 
 public:
     explicit HSpecPelsWaveWidget(QWidget *parent = nullptr);
@@ -25,6 +24,9 @@ public:
     void setData(HSpecPelsWave *);
     void saveData();
     void showData();
+
+protected:
+    QScopedPointer<HSpecPelsWaveWidgetPrivate> d_ptr;
 
 private:
     void init();
