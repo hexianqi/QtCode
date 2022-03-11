@@ -1,18 +1,21 @@
 #include "HControlFactory_p.h"
+#include "HControlHelper.h"
 #include "HControlDemoWidget.h"
-#include "HCodeCountWidget.h"
-#include "HColorPicker.h"
-#include "HEmailWidget.h"
-#include "HGifWidget.h"
-#include "HNetworkWidget.h"
-#include "HPngAmend.h"
-#include "HScreenWidget.h"
-#include "HSerialPortWidget.h"
+//#include "HCodeCountWidget.h"
+//#include "HColorPicker.h"
+//#include "HEmailWidget.h"
+//#include "HGifWidget.h"
+//#include "HNetworkWidget.h"
+//#include "HPngAmend.h"
+//#include "HScreenWidget.h"
+//#include "HSerialPortWidget.h"
+//#include "HCircularProgress.h"
+//#include "HDemoWidget.h"
+//#include "HImageEffectWidget.h"
+//#include "HImageBrowser.h"
+#include "HBackgroundEventFilter.h"
 #include "HMoveEventFilter.h"
-#include "HCircularProgress.h"
-#include "HDemoWidget.h"
-#include "HImageEffectWidget.h"
-#include "HImageBrowser.h"
+#include "HResizeEventFilter.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
 #include <QtCore/QSet>
@@ -38,18 +41,32 @@ QString HControlFactory::typeName()
     return "HControlFactory";
 }
 
-QStringList HControlFactory::supportedWidgets()
+QStringList HControlFactory::supportedWidget()
 {
-    return d_ptr->supportedWidgets;
+    return d_ptr->supportedWidget;
 }
 
-QStringList HControlFactory::supportedEventFilters()
+QStringList HControlFactory::supportedEventFilter()
 {
-    return d_ptr->supportedEventFilters;
+    return d_ptr->supportedEventFilter;
 }
 
 QWidget *HControlFactory::createWidget(const QString &type, QWidget *parent)
 {
+    if (type == "frameless")
+    {
+        auto w = new QWidget();
+        w->resize(800, 600);
+        HControlHelper::framelessWidget(w);
+        return w;
+    }
+    if (type == "translucent")
+    {
+        auto w = new QWidget();
+        w->resize(800, 600);
+        HControlHelper::translucentWidget(w, QStringList());
+        return w;
+    }
     return HWidgetFactory::createWidget<QWidget>(type, parent);
 }
 
@@ -80,13 +97,17 @@ void HControlFactory::registerClass()
 //    HWidgetFactory::registerClass<HDemoWidget>("HDemoWidget");
 
     auto e = HWidgetFactory::keys().toSet();
-    d_ptr->supportedWidgets = e.subtract(b).toList();
+    d_ptr->supportedWidget = e.subtract(b).toList();
+    d_ptr->supportedWidget.prepend("frameless");
+    d_ptr->supportedWidget.prepend("translucent");
 
     // 支持的事件
     b = HObjectFactory::keys().toSet();
-//    HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
+    HObjectFactory::registerClass<HBackgroundEventFilter>("HBackgroundEventFilter");
+    HObjectFactory::registerClass<HMoveEventFilter>("HMoveEventFilter");
+    HObjectFactory::registerClass<HResizeEventFilter>("HResizeEventFilter");
     e = HObjectFactory::keys().toSet();
-    d_ptr->supportedEventFilters = e.subtract(b).toList();
+    d_ptr->supportedEventFilter = e.subtract(b).toList();
 }
 
 HE_END_NAMESPACE

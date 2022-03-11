@@ -11,6 +11,7 @@ DESTDIR     = "../Dest"
 TRANSLATIONS = HePlugin_en.ts
 
 SOURCES     += \
+            HChartHelper.cpp \
             HPainterHelper.cpp \
             class2Plugin.cpp \
             HCollectionInterface.cpp \
@@ -18,6 +19,7 @@ SOURCES     += \
             HDrawHelper.cpp
 
 HEADERS     += \
+            HChartHelper.h \
             HPainterHelper.h \
             class2Plugin.h \
             HCollectionInterface.h \

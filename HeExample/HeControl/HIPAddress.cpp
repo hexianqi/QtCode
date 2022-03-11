@@ -109,12 +109,9 @@ bool HIPAddress::eventFilter(QObject *watched, QEvent *event)
             if (key->text() == ".")
                 focusNextChild();
             if (key->key() == Qt::Key_Backspace && line->text().length() <= 1)
-            {
-                focusNextPrevChild(false);
-            }
+                focusPreviousChild();
         }
     }
-
     return QWidget::eventFilter(watched, event);
 }
 
@@ -125,7 +122,7 @@ void HIPAddress::handleTextChanged(const QString &text)
         focusNextChild();
 
     QStringList list;
-    for(auto v : d_ptr->lineEdits)
+    for (auto v : d_ptr->lineEdits)
         list << v->text();
     d_ptr->ip = list.join(".");
     emit valueChanged(d_ptr->ip);

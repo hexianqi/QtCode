@@ -28,6 +28,7 @@ protected:
 private:
     void init();
     void initWidget();
+    void addFYQY();
     void addLiuDianWu();
     void addWw();
     void addDemo();
@@ -35,16 +36,18 @@ private:
     void addMedia();
     void addElse();
 
-    // LiuDianWu
+    // FYQY
     void addBattery();
-    void addCalendar();
+    void addDeviceButton();
     void addExplorer();
+    void addImageSwitch();
     void addIPAddress();
-    void addDefenceButton();
     void addLightButton();
+
+    // LiuDianWu
+    void addCalendar();
     void addNavButton();
     void addLunarCalendar();
-    void addImageSwitch();
 
     // ww
     void addWwExtend();

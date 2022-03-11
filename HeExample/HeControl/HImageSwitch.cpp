@@ -1,6 +1,6 @@
 #include "HImageSwitch_p.h"
 #include <QtGui/QPainter>
-#include <QtGui/QPixmapCache>
+
 
 HE_BEGIN_NAMESPACE
 
@@ -57,20 +57,20 @@ void HImageSwitch::setButtonStyle(HImageSwitch::ButtonStyle value)
     d_ptr->buttonStyle = value;
     if (d_ptr->buttonStyle == ButtonStyle_1)
     {
-        d_ptr->imageNameOff = ":/image/ludianwu/check_off_1.png";
-        d_ptr->imageNameOn = ":/image/ludianwu/check_on_1.png";
+        d_ptr->imageNameOff = ":/fyqy/imageswitch/check_off_1.png";
+        d_ptr->imageNameOn = ":/fyqy/imageswitch/check_on_1.png";
         resize(87, 28);
     }
     else if (d_ptr->buttonStyle == ButtonStyle_2)
     {
-        d_ptr->imageNameOff = ":/image/ludianwu/check_off_2.png";
-        d_ptr->imageNameOn = ":/image/ludianwu/check_on_2.png";
+        d_ptr->imageNameOff = ":/fyqy/imageswitch/check_off_2.png";
+        d_ptr->imageNameOn = ":/fyqy/imageswitch/check_on_2.png";
         resize(87, 28);
     }
     else if (d_ptr->buttonStyle == ButtonStyle_3)
     {
-        d_ptr->imageNameOff = ":/image/ludianwu/check_off_3.png";
-        d_ptr->imageNameOn = ":/image/ludianwu/check_on_3.png";
+        d_ptr->imageNameOff = ":/fyqy/imageswitch/check_off_3.png";
+        d_ptr->imageNameOn = ":/fyqy/imageswitch/check_on_3.png";
         resize(96, 38);
     }
     d_ptr->imageName = d_ptr->checked ? d_ptr->imageNameOn : d_ptr->imageNameOff;
@@ -89,12 +89,7 @@ void HImageSwitch::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHints(QPainter::SmoothPixmapTransform);
 
-    QPixmap pm;
-    if (!QPixmapCache::find(d_ptr->imageName, &pm))
-    {
-        pm.load(d_ptr->imageName);
-        QPixmapCache::insert(d_ptr->imageName, pm);
-    }
+    QPixmap pm(d_ptr->imageName);
     if (pm.isNull())
         return;
 

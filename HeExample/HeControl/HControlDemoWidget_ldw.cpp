@@ -2,16 +2,9 @@
 #include "IIconFontFactory.h"
 #include "HFlatStyle.h"
 #include "HDrawHelper.h"
-#include "HBattery.h"
-#include "HDefenceButton.h"
-#include "HDiskSizeTable.h"
 #include "HImageCalendar.h"
-#include "HImageSwitch.h"
-#include "HIPAddress.h"
-#include "HLightButton.h"
 #include "HLunarCalendarWidget.h"
 #include "HNavButton.h"
-
 #include <QtGui/QPen>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QComboBox>
@@ -22,31 +15,9 @@ HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addLiuDianWu()
 {
-    addBattery();
     addCalendar();
-    addExplorer();
-    addIPAddress();
-    addDefenceButton();
-    addLightButton();
     addLunarCalendar();
     addNavButton();
-    addImageSwitch();
-}
-
-void HControlDemoWidget::addBattery()
-{
-    auto battery = new HBattery;
-    auto slider = new QSlider;
-    slider->setOrientation(Qt::Horizontal);
-    slider->setSingleStep(10);
-
-    auto layout = new QGridLayout;
-    layout->addWidget(battery, 0, 0);
-    layout->addWidget(slider, 1, 0);
-
-    d_ptr->style->setStyle(slider, 8, "#505050", "#1ABC9C", "#1ABC9C");
-    connect(slider, &QSlider::valueChanged, battery, &HBattery::setValue);
-    addTab(tr("ludianwu"), tr("电池电量"), layout);
 }
 
 void HControlDemoWidget::addCalendar()
@@ -54,130 +25,6 @@ void HControlDemoWidget::addCalendar()
     addTab(tr("ludianwu"), new HImageCalendar);
 }
 
-void HControlDemoWidget::addExplorer()
-{
-//    auto w = new HCpuMemoryLabel();
-    auto table = new HDiskSizeTable();
-//    w->setFont(QFont("Microsoft Yahei", 13));
-//    w->setStyleSheet("QLabel{ background-color: #000000; color: #64B8FF; }");
-//    w->start(1500);
-//    layout->addWidget(w, 0, 0);
-    auto layout = new QGridLayout;
-    layout->addWidget(table, 1, 0);
-    addTab(tr("ludianwu"), tr("资源管理器"), layout);
-}
-
-void HControlDemoWidget::addIPAddress()
-{
-    addTab(tr("ludianwu"), new HIPAddress);
-}
-
-void HControlDemoWidget::addDefenceButton()
-{
-    QHash<QString, HDefenceButton::ButtonStyle> style;
-    style.insert(tr("圆形"),  HDefenceButton::ButtonStyle_Circle);
-    style.insert(tr("警察"),  HDefenceButton::ButtonStyle_Police);
-    style.insert(tr("气泡"),  HDefenceButton::ButtonStyle_Bubble);
-    style.insert(tr("气泡2"), HDefenceButton::ButtonStyle_Bubble2);
-    style.insert(tr("消息"),  HDefenceButton::ButtonStyle_Msg);
-    style.insert(tr("消息2"), HDefenceButton::ButtonStyle_Msg2);
-
-    QHash<QString, HDefenceButton::ButtonStatus> status;
-    status.insert(tr("布防"), HDefenceButton::ButtonStatus_Arming);
-    status.insert(tr("撤防"), HDefenceButton::ButtonStatus_Disarming);
-    status.insert(tr("报警"), HDefenceButton::ButtonStatus_Alarm);
-    status.insert(tr("旁路"), HDefenceButton::ButtonStatus_Bypass);
-    status.insert(tr("故障"), HDefenceButton::ButtonStatus_Error);
-
-    auto label = new QLabel;
-    label->setFrameShape(QFrame::Box);
-    label->setFrameShadow(QFrame::Sunken);
-    label->setAlignment(Qt::AlignCenter);
-    label->setStyleSheet("border-image:url(:/image/ludianwu/defence_button_bk.jpg);");
-
-    auto defenceButton1 = new HDefenceButton(label);
-    defenceButton1->setText("#1");
-    defenceButton1->setGeometry(5, 5, 35, 35);
-    auto defenceButton2 = new HDefenceButton(label);
-    defenceButton2->setText("#2");
-    defenceButton2->setGeometry(45, 5, 35, 35);
-    auto defenceButton3 = new HDefenceButton(label);
-    defenceButton3->setText("#3");
-    defenceButton3->setGeometry(85, 5, 35, 35);
-
-    auto changeStyle = [=] {
-        auto pushButton = qobject_cast<QPushButton *>(sender());
-        auto style = pushButton->property("buttonStyle").value<HDefenceButton::ButtonStyle>();
-        defenceButton1->setButtonStyle(style);
-        defenceButton2->setButtonStyle(style);
-        defenceButton3->setButtonStyle(style);
-    };
-    auto changeStatus = [=] {
-        auto pushButton = qobject_cast<QPushButton *>(sender());
-        auto status = pushButton->property("buttonStatus").value<HDefenceButton::ButtonStatus>();
-        defenceButton1->setButtonStatus(status);
-        defenceButton2->setButtonStatus(status);
-        defenceButton3->setButtonStatus(status);
-    };
-    auto changeMove = [=](int value) {
-        defenceButton1->setMoveEnable(value != 0);
-        defenceButton2->setMoveEnable(value != 0);
-        defenceButton3->setMoveEnable(value != 0);
-    };
-
-    auto frame = new QFrame;
-    frame->setMaximumSize(QSize(100, 16777215));
-    frame->setFrameShape(QFrame::Box);
-    frame->setFrameShadow(QFrame::Sunken);
-    auto vLayout = new QVBoxLayout(frame);
-
-    for (auto i = style.begin(); i != style.end(); i++)
-    {
-        auto pushButton = new QPushButton(i.key());
-        pushButton->setProperty("buttonStyle", i.value());
-        vLayout->addWidget(pushButton);
-        connect(pushButton, &QPushButton::clicked, this, changeStyle);
-    }
-
-    auto line = new QFrame(frame);
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
-    vLayout->addWidget(line);
-
-    for (auto i = status.begin(); i != status.end(); i++)
-    {
-        auto pushButton = new QPushButton(i.key());
-        pushButton->setProperty("buttonStatus", i.value());
-        vLayout->addWidget(pushButton);
-        connect(pushButton, &QPushButton::clicked, this, changeStatus);
-    }
-
-    auto check = new QCheckBox(tr("可移动"));
-    check->setChecked(true);
-    connect(check, &QCheckBox::stateChanged, this, changeMove);
-
-    vLayout->addWidget(check);
-    vLayout->addStretch();
-
-    auto hLayout = new QHBoxLayout;
-    hLayout->addWidget(label);
-    hLayout->addWidget(frame);
-    addTab(tr("ludianwu"), tr("布防按钮"), hLayout);
-}
-
-void HControlDemoWidget::addLightButton()
-{
-    auto button1 = new HLightButton;
-    auto button2 = new HLightButton;
-    auto button3 = new HLightButton;
-    button2->setBackground(QColor(255, 107, 107));
-    button3->setBackground(QColor(24, 189, 155));
-    auto layout = new QHBoxLayout;
-    layout->addWidget(button1);
-    layout->addWidget(button2);
-    layout->addWidget(button3);
-    addTab(tr("ludianwu"), tr("发光按钮"), layout);
-}
 
 void HControlDemoWidget::addLunarCalendar()
 {
@@ -434,19 +281,5 @@ void HControlDemoWidget::addNavButton()
     addTab(tr("ludianwu"), tr("导航按钮"), layout);
 }
 
-void HControlDemoWidget::addImageSwitch()
-{
-    auto button1 = new HImageSwitch;
-    auto button2 = new HImageSwitch;
-    auto button3 = new HImageSwitch;
-    button1->setButtonStyle(HImageSwitch::ButtonStyle_1);
-    button2->setButtonStyle(HImageSwitch::ButtonStyle_2);
-    button3->setButtonStyle(HImageSwitch::ButtonStyle_3);
-    auto layout = new QHBoxLayout;
-    layout->addWidget(button1);
-    layout->addWidget(button2);
-    layout->addWidget(button3);
-    addTab(tr("ludianwu"), tr("图片开关按钮"), layout);
-}
 
 HE_END_NAMESPACE

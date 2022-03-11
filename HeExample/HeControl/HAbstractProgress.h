@@ -14,10 +14,10 @@ class HAbstractProgressPrivate;
 class HAbstractProgress : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(double minimum READ minimum WRITE setMinimum)
-    Q_PROPERTY(double maximum READ maximum WRITE setMaximum)
-    Q_PROPERTY(double value READ value WRITE setValue)
-    Q_PROPERTY(int decimal READ decimal WRITE setDecimal)
+    Q_PROPERTY(double minimum   READ minimum    WRITE setMinimum)
+    Q_PROPERTY(double maximum   READ maximum    WRITE setMaximum)
+    Q_PROPERTY(double value     READ value      WRITE setValue)
+    Q_PROPERTY(int decimal      READ decimal    WRITE setDecimal)
 
 public:
     explicit HAbstractProgress(QWidget *parent = nullptr);

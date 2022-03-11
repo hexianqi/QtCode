@@ -30,6 +30,7 @@ void HControlDemoWidget::init()
     d_ptr->iconFactory = new HIconFontFactory(this);
     d_ptr->style = new HFlatStyle(this);
     initWidget();
+    addFYQY();
     addLiuDianWu();
     addWw();
     addDemo();

@@ -23,8 +23,8 @@ public:
     QString typeName() override;
 
 public:
-    QStringList supportedWidgets() override;
-    QStringList supportedEventFilters() override;
+    QStringList supportedWidget() override;
+    QStringList supportedEventFilter() override;
     QWidget *createWidget(const QString &type, QWidget *parent = nullptr) override;
     IEventFilter *createEventFilter(const QString &type, QVariantMap param = QVariantMap()) override;
 

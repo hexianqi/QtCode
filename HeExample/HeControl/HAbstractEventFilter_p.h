@@ -10,8 +10,8 @@ class HAbstractEventFilterPrivate
 {
 public:
     bool enable = true;
-    QSet<QObject *> watcheds;
-    QHash<QEvent::Type, std::function<bool(QEvent *)>> handlers;
+    QSet<QObject *> watched;
+    QHash<QEvent::Type, std::function<bool(QEvent *)>> handler;
 };
 
 HE_END_NAMESPACE

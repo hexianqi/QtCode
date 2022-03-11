@@ -2,7 +2,6 @@
 #include <QtCore/QTimer>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QProgressBar>
-
 #ifdef Q_OS_WIN
 #include <QtCore/QDir>
 #include <windows.h>
@@ -222,7 +221,7 @@ void HDiskSizeTable::init()
     setSelectionMode(QAbstractItemView::SingleSelection);
     verticalHeader()->setVisible(true);
     horizontalHeader()->setStretchLastSection(true);
-    QTimer::singleShot(0, this, &HDiskSizeTable::load);
+    QMetaObject::invokeMethod(this, "load", Qt::QueuedConnection);
 }
 
 #ifndef Q_OS_WIN

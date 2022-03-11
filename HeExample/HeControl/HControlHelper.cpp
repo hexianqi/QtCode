@@ -71,7 +71,6 @@ void HControlHelper::centerWidget(QWidget *widget)
 void HControlHelper::framelessWidget(QWidget *widget, bool moveEnable, bool resizeEnable)
 {
     widget->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
-
     if (moveEnable)
     {
         auto filter = new HMoveEventFilter(widget);
@@ -89,7 +88,6 @@ void HControlHelper::translucentWidget(QWidget *widget, const QStringList &files
 {
     widget->setAttribute(Qt::WA_TranslucentBackground);
     widget->setWindowFlags(Qt::FramelessWindowHint);
-
     if (moveEnable)
     {
         auto filter = new HMoveEventFilter(widget);

@@ -114,8 +114,8 @@ bool HResizeEventFilter::handleHoverMoveEvent(QWidget *widget, QEvent *event)
     Q_D(HResizeEventFilter);
     auto e = dynamic_cast<QHoverEvent *>(event);
     auto pos = e->pos();
-    auto offsetX = pos.x() - d->lastPos.x();
-    auto offsetY = pos.y() - d->lastPos.y();
+    auto x = pos.x() - d->lastPos.x();
+    auto y = pos.y() - d->lastPos.y();
     if (d->rectLeft.contains(pos))
         widget->setCursor(Qt::SizeHorCursor);
     else if (d->rectRight.contains(pos))
@@ -137,59 +137,59 @@ bool HResizeEventFilter::handleHoverMoveEvent(QWidget *widget, QEvent *event)
 
     if (d->pressedLeft)
     {
-        auto resizeW = widget->width() - offsetX;
-        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
-            widget->setGeometry(widget->x() + offsetX, d->lastGeometry.top(), resizeW, d->lastGeometry.height());
+        auto w = widget->width() - x;
+        if (widget->minimumWidth() <= w && widget->maximumWidth() >= w)
+            widget->setGeometry(widget->x() + x, d->lastGeometry.top(), w, d->lastGeometry.height());
     }
     else if (d->pressedRight)
     {
-        auto resizeW = widget->width() + offsetX;
-        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
-            widget->setGeometry(d->lastGeometry.adjusted(0, 0, offsetX, 0));
+        auto w = widget->width() + x;
+        if (widget->minimumWidth() <= w && widget->maximumWidth() >= w)
+            widget->setGeometry(d->lastGeometry.adjusted(0, 0, x, 0));
     }
     else if (d->pressedTop)
     {
-        auto resizeH = widget->height() - offsetY;
-        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
-            widget->setGeometry(d->lastGeometry.left(), widget->y() + offsetY, d->lastGeometry.width(), resizeH);
+        auto h = widget->height() - y;
+        if (widget->minimumHeight() <= h && widget->maximumHeight() >= h)
+            widget->setGeometry(d->lastGeometry.left(), widget->y() + y, d->lastGeometry.width(), h);
     }
     else if (d->pressedBottom)
     {
-        auto resizeH = widget->height() + offsetY;
-        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
-            widget->setGeometry(d->lastGeometry.adjusted(0, 0, 0, offsetY));
+        auto h = widget->height() + y;
+        if (widget->minimumHeight() <= h && widget->maximumHeight() >= h)
+            widget->setGeometry(d->lastGeometry.adjusted(0, 0, 0, y));
     }
     else if (d->pressedTopLeft)
     {
-        auto resizeW = widget->width() - offsetX;
-        auto resizeH = widget->height() - offsetY;
-        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
-            widget->setGeometry(widget->x() + offsetX, widget->y(), resizeW, resizeH);
-        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
-            widget->setGeometry(widget->x(), widget->y() + offsetY, resizeW, resizeH);
+        auto w = widget->width() - x;
+        auto h = widget->height() - y;
+        if (widget->minimumWidth() <= w && widget->maximumWidth() >= w)
+            widget->setGeometry(widget->x() + x, widget->y(), w, h);
+        if (widget->minimumHeight() <= h && widget->maximumHeight() >= h)
+            widget->setGeometry(widget->x(), widget->y() + y, w, h);
     }
     else if (d->pressedTopRight)
     {
-        auto resizeW = d->lastGeometry.width() + offsetX;
-        auto resizeH = widget->height() - offsetY;
-        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW && widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
-            widget->setGeometry(widget->x(), widget->y() + offsetY, resizeW, resizeH);
+        auto w = d->lastGeometry.width() + x;
+        auto h = widget->height() - y;
+        if (widget->minimumWidth() <= w && widget->maximumWidth() >= w && widget->minimumHeight() <= h && widget->maximumHeight() >= h)
+            widget->setGeometry(widget->x(), widget->y() + y, w, h);
     }
     else if (d->pressedBottomLeft)
     {
-        auto resizeW = widget->width() - offsetX;
-        auto resizeH = d->lastGeometry.height() + offsetY;
-        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW)
-            widget->setGeometry(widget->x() + offsetX, widget->y(), resizeW, resizeH);
-        if (widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
-            widget->setGeometry(widget->x(), widget->y(), resizeW, resizeH);
+        auto w = widget->width() - x;
+        auto h = d->lastGeometry.height() + y;
+        if (widget->minimumWidth() <= w && widget->maximumWidth() >= w)
+            widget->setGeometry(widget->x() + x, widget->y(), w, h);
+        if (widget->minimumHeight() <= h && widget->maximumHeight() >= h)
+            widget->setGeometry(widget->x(), widget->y(), w, h);
     }
     else if (d->pressedBottomRight)
     {
-        auto resizeW = d->lastGeometry.width() + offsetX;
-        auto resizeH = d->lastGeometry.height() + offsetY;
-        if (widget->minimumWidth() <= resizeW && widget->maximumWidth() >= resizeW && widget->minimumHeight() <= resizeH && widget->maximumHeight() >= resizeH)
-            widget->setGeometry(widget->x(), widget->y(), resizeW, resizeH);
+        auto w = d->lastGeometry.width() + x;
+        auto h = d->lastGeometry.height() + y;
+        if (widget->minimumWidth() <= w && widget->maximumWidth() >= w && widget->minimumHeight() <= h && widget->maximumHeight() >= h)
+            widget->setGeometry(widget->x(), widget->y(), w, h);
     }
     return true;
 }

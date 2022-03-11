@@ -27,9 +27,6 @@ public:
     QFont createFont(const QString &family) override;
 
 protected:
-    HIconFontFactory(HIconFontFactoryPrivate &p, QObject *parent = nullptr);
-
-protected:
     QScopedPointer<HIconFontFactoryPrivate> d_ptr;
 
 private:

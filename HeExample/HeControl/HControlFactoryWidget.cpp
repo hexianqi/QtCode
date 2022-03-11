@@ -1,7 +1,6 @@
 #include "HControlFactoryWidget_p.h"
 #include "ui_HControlFactoryWidget.h"
 #include "HControlFactory.h"
-#include "HControlHelper.h"
 #include <QtWidgets/QListView>
 
 HE_BEGIN_NAMESPACE
@@ -35,11 +34,9 @@ void HControlFactoryWidget::init()
         << "QComboBox QAbstractItemView::item { min-height: 25px; min-width: 60px; }";
     d_ptr->factory = new HControlFactory(this);
     ui->comboBox->setView(new QListView);
-    ui->comboBox->addItems(d_ptr->factory->supportedWidgets());
+    ui->comboBox->addItems(d_ptr->factory->supportedWidget());
     ui->comboBox->setStyleSheet(qss.join("\n"));
-    HControlHelper::translucentWidget(this, QStringList());
     resize(800, 600);
-
 }
 
 HE_END_NAMESPACE

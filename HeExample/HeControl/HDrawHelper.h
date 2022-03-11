@@ -37,7 +37,7 @@ public:
     // 自动调节文字大小
     static QFont adjustFontSize(QPainter *, const QString &text, double width);
     // 加载svg图片
-    static QPixmap loadSvgToPixmap(const QString& path, QSize size);
+    static QPixmap loadSvgToPixmap(const QString &fileName, QSize size);
 };
 
 HE_END_NAMESPACE

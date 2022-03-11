@@ -175,31 +175,32 @@ void HBattery::setNormalColorEnd(const QColor &value)
 
 void HBattery::paintEvent(QPaintEvent *)
 {
+    Q_D(HBattery);
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.save();
     // 绘制电池边框
     auto rect1 = QRectF(QPointF(5, 5), QPointF(width() * 9.0 / 10, height() - 5));
-    painter.setPen(QPen(borderColorStart(), 5));
+    painter.setPen(QPen(d->borderColorStart, 5));
     painter.setBrush(Qt::NoBrush);
-    painter.drawRoundRect(rect1, borderRadius(), borderRadius());
+    painter.drawRoundRect(rect1, d->borderRadius, d->borderRadius);
     // 绘制电池头部
     auto rect2 = QRectF(QPointF(rect1.right(), height() / 3.0), QPointF(width() - 5, height() * 2.0 / 3));
     auto gradient2 = QLinearGradient(rect2.topLeft(), rect2.bottomLeft());
-    gradient2.setColorAt(0.0, borderColorStart());
-    gradient2.setColorAt(1.0, borderColorEnd());
+    gradient2.setColorAt(0.0, d->borderColorStart);
+    gradient2.setColorAt(1.0, d->borderColorEnd);
     painter.setBrush(gradient2);
-    painter.drawRoundRect(rect2, headRadius(), headRadius());
+    painter.drawRoundRect(rect2, d->headRadius, d->headRadius);
     // 绘制电量
     auto margin = qMin(width(), height()) / 20;
     auto rect3 = rect1.adjusted(margin, margin, -margin, -margin);
-    rect3.setWidth(rect3.width() * currentValue() / 100);
+    rect3.setWidth(rect3.width() * d->currentValue / 100);
     auto gradient3 = QLinearGradient(QPointF(0, 0), QPointF(0, height()));
-    gradient3.setColorAt(0.0, currentValue() <= alarmValue() ? alarmColorStart() : normalColorStart());
-    gradient3.setColorAt(1.0, currentValue() <= alarmValue() ? alarmColorEnd() : normalColorEnd());
+    gradient3.setColorAt(0.0, d->currentValue <= d->alarmValue ? d->alarmColorStart : d->normalColorStart);
+    gradient3.setColorAt(1.0, d->currentValue <= d->alarmValue ? d->alarmColorEnd : d->normalColorEnd);
     painter.setPen(Qt::NoPen);
     painter.setBrush(gradient3);
-    painter.drawRoundRect(rect3, backgroundRadius(), backgroundRadius());
+    painter.drawRoundRect(rect3, d->backgroundRadius, d->backgroundRadius);
     painter.restore();
 }
 

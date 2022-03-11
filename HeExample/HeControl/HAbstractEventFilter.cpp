@@ -39,14 +39,14 @@ bool HAbstractEventFilter::addWatched(QObject *p)
 {
     if (hasWatched(p))
         return false;
-    d_ptr->watcheds.insert(p);
+    d_ptr->watched.insert(p);
     p->installEventFilter(this);
     return true;
 }
 
 void HAbstractEventFilter::addHandler(QEvent::Type type, std::function<bool (QEvent *)> func)
 {
-    d_ptr->handlers.insert(type, func);
+    d_ptr->handler.insert(type, func);
 }
 
 bool HAbstractEventFilter::eventFilter(QObject *watched, QEvent *event)
@@ -58,18 +58,18 @@ bool HAbstractEventFilter::eventFilter(QObject *watched, QEvent *event)
     if (handleEvent(watched, event))
         return true;
     if (hasHandler(event->type()))
-        return d_ptr->handlers.value(event->type())(event);
+        return d_ptr->handler.value(event->type())(event);
     return QObject::eventFilter(watched, event);
 }
 
 bool HAbstractEventFilter::hasWatched(QObject *p)
 {
-    return d_ptr->watcheds.contains(p);
+    return d_ptr->watched.contains(p);
 }
 
 bool HAbstractEventFilter::hasHandler(QEvent::Type t)
 {
-    return d_ptr->handlers.contains(t);
+    return d_ptr->handler.contains(t);
 }
 
 HE_END_NAMESPACE

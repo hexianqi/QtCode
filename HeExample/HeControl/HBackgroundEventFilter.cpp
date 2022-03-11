@@ -114,7 +114,7 @@ bool HBackgroundEventFilter::handleMouseMoveEvent(QWidget *, QMouseEvent *)
 void HBackgroundEventFilter::updateBackground()
 {
     Q_D(HBackgroundEventFilter);
-    for (auto obj : d->watcheds)
+    for (auto obj : d->watched)
         updateBackground(qobject_cast<QWidget *>(obj));
 }
 

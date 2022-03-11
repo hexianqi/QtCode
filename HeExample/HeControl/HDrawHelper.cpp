@@ -106,13 +106,13 @@ QFont HDrawHelper::adjustFontSize(QPainter *painter, const QString &text, double
     return font;
 }
 
-QPixmap HDrawHelper::loadSvgToPixmap(const QString &path, QSize size)
+QPixmap HDrawHelper::loadSvgToPixmap(const QString &fileName, QSize size)
 {
     auto ratio = QApplication::primaryScreen()->devicePixelRatio();
     auto pixmap = QPixmap(size * ratio);
-    pixmap.fill( Qt::transparent );
+    pixmap.fill(Qt::transparent);
 
-    QSvgRenderer renderer(path);
+    QSvgRenderer renderer(fileName);
     QPainter painter(&pixmap);
     renderer.render(&painter);
     pixmap.setDevicePixelRatio(ratio);

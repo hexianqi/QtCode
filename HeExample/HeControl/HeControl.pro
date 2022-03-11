@@ -65,9 +65,9 @@ unix {
 include(_canpool.pri)
 include(_liudianwu.pri)
 include(_ww.pri)
-include(event.pri)
+
 include(helper.pri)
-include(iconFont.pri)
+
 include(layout.pri)
 include(media.pri)
 include(multimedia.pri)
@@ -83,5 +83,9 @@ include($$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser/qtprop
 
 include(z_control.pri)
 include(z_demo.pri)
+include(z_event.pri)
+include(z_fyqy.pri)
+include(z_iconFont.pri)
+include(z_style.pri)
 include(z_widget.pri)
 

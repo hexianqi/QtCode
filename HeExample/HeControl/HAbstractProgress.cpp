@@ -83,7 +83,7 @@ double HAbstractProgress::range()
 
 double HAbstractProgress::toRatio(double value)
 {
-    return (value- d_ptr->minimum) / range();
+    return (value - d_ptr->minimum) / range();
 }
 
 double HAbstractProgress::fromRatio(double value)

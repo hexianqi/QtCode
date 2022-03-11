@@ -7,8 +7,8 @@ HE_BEGIN_NAMESPACE
 class HControlFactoryPrivate
 {
 public:
-    QStringList supportedWidgets;
-    QStringList supportedEventFilters;
+    QStringList supportedWidget;
+    QStringList supportedEventFilter;
 };
 
 HE_END_NAMESPACE

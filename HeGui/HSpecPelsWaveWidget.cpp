@@ -43,6 +43,14 @@ void HSpecPelsWaveWidget::showData()
         d_ptr->tableWidget->setRow(i, QStringList() << HCore::toString("[光谱像元]", poly[i].x()) << HCore::toString("[光谱波长]", poly[i].y()));
 }
 
+void HSpecPelsWaveWidget::on_spinBox_valueChanged(int value)
+{
+    auto previous = d_ptr->tableWidget->rowCount();
+    d_ptr->tableWidget->setRowCount(value);
+    for (int i = previous; i < value; i++)
+        d_ptr->tableWidget->setRow(i, QStringList() << "0" << "500.0");
+}
+
 void HSpecPelsWaveWidget::init()
 {
     auto delegate = new HDoubleSpinBoxDelegate(this);
@@ -61,7 +69,7 @@ void HSpecPelsWaveWidget::init()
     layout->addWidget(label, 1, 0, 1, 1);
     layout->addWidget(d_ptr->spinBox, 1, 1, 1, 1);
     layout->addWidget(d_ptr->tableWidget, 0, 0, 1, 2);
-    connect(d_ptr->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), d_ptr->tableWidget, &HEntireTableWidget::setRowCount);
+    connect(d_ptr->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &HSpecPelsWaveWidget::on_spinBox_valueChanged);
     setWindowTitle(tr("光谱像元波长"));
 }
 

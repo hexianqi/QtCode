@@ -1,6 +1,5 @@
 /***************************************************************************************************
 **      2016-10-23  HBattery 电池电量控件。
-**                  http://www.qtcn.org/bbs/read-htm-tid-63464.html
 **                  1:可设置电池电量,动态切换电池电量变化
 **                  2:可设置电池电量警戒值
 **                  3:可设置电池电量正常颜色和报警颜色
@@ -21,16 +20,16 @@ class HBattery : public HAnimationProgress
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(HBattery)
-    Q_PROPERTY(double alarmValue READ alarmValue WRITE setAlarmValue)
-    Q_PROPERTY(int borderRadius READ borderRadius WRITE setBorderRadius)
-    Q_PROPERTY(int backgroundRadius READ backgroundRadius WRITE setBackgroundRadius)
-    Q_PROPERTY(int headRadius READ headRadius WRITE setHeadRadius)
-    Q_PROPERTY(QColor borderColorStart READ borderColorStart WRITE setBorderColorStart)
-    Q_PROPERTY(QColor borderColorEnd READ borderColorEnd WRITE setBorderColorEnd)
-    Q_PROPERTY(QColor alarmColorStart READ alarmColorStart WRITE setAlarmColorStart)
-    Q_PROPERTY(QColor alarmColorEnd READ alarmColorEnd WRITE setAlarmColorEnd)
-    Q_PROPERTY(QColor normalColorStart READ normalColorStart WRITE setNormalColorStart)
-    Q_PROPERTY(QColor normalColorEnd READ normalColorEnd WRITE setNormalColorEnd)
+    Q_PROPERTY(double alarmValue        READ alarmValue         WRITE setAlarmValue)
+    Q_PROPERTY(int borderRadius         READ borderRadius       WRITE setBorderRadius)
+    Q_PROPERTY(int backgroundRadius     READ backgroundRadius   WRITE setBackgroundRadius)
+    Q_PROPERTY(int headRadius           READ headRadius         WRITE setHeadRadius)
+    Q_PROPERTY(QColor borderColorStart  READ borderColorStart   WRITE setBorderColorStart)
+    Q_PROPERTY(QColor borderColorEnd    READ borderColorEnd     WRITE setBorderColorEnd)
+    Q_PROPERTY(QColor alarmColorStart   READ alarmColorStart    WRITE setAlarmColorStart)
+    Q_PROPERTY(QColor alarmColorEnd     READ alarmColorEnd      WRITE setAlarmColorEnd)
+    Q_PROPERTY(QColor normalColorStart  READ normalColorStart   WRITE setNormalColorStart)
+    Q_PROPERTY(QColor normalColorEnd    READ normalColorEnd     WRITE setNormalColorEnd)
 
 public:
     explicit HBattery(QWidget *parent = nullptr);

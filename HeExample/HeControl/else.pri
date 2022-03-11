@@ -1,8 +1,6 @@
 HEADERS += \
     $$PWD/HAntLine.h \
     $$PWD/HAntLine_p.h \
-    $$PWD/HCpuMemoryLabel.h \
-    $$PWD/HCpuMemoryLabel_p.h\
     $$PWD/HLedNumber.h \
     $$PWD/HLedNumber_p.h \
     $$PWD/HPanelItem.h \
@@ -10,6 +8,5 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAntLine.cpp \
-    $$PWD/HCpuMemoryLabel.cpp \
     $$PWD/HLedNumber.cpp \
     $$PWD/HPanelItem.cpp

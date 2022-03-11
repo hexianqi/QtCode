@@ -19,13 +19,13 @@ class HDiskSizeTablePrivate;
 class HDiskSizeTable : public QTableWidget
 {
     Q_OBJECT
-    Q_PROPERTY(QColor background READ background WRITE setBackground)
-    Q_PROPERTY(QColor chunkColor1 READ chunkColor1 WRITE setChunkColor1)
-    Q_PROPERTY(QColor chunkColor2 READ chunkColor2 WRITE setChunkColor2)
-    Q_PROPERTY(QColor chunkColor3 READ chunkColor3 WRITE setChunkColor3)
-    Q_PROPERTY(QColor textColor1 READ textColor1 WRITE setTextColor1)
-    Q_PROPERTY(QColor textColor2 READ textColor2 WRITE setTextColor2)
-    Q_PROPERTY(QColor textColor3 READ textColor3 WRITE setTextColor3)
+    Q_PROPERTY(QColor background    READ background     WRITE setBackground)
+    Q_PROPERTY(QColor chunkColor1   READ chunkColor1    WRITE setChunkColor1)
+    Q_PROPERTY(QColor chunkColor2   READ chunkColor2    WRITE setChunkColor2)
+    Q_PROPERTY(QColor chunkColor3   READ chunkColor3    WRITE setChunkColor3)
+    Q_PROPERTY(QColor textColor1    READ textColor1     WRITE setTextColor1)
+    Q_PROPERTY(QColor textColor2    READ textColor2     WRITE setTextColor2)
+    Q_PROPERTY(QColor textColor3    READ textColor3     WRITE setTextColor3)
 
 public:
     explicit HDiskSizeTable(QWidget *parent = nullptr);
