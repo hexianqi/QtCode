@@ -1,11 +1,15 @@
 #include "HKeyenceStrategy_p.h"
 #include "HeData/ITestData.h"
+#include "HeCommunicate/IProtocol.h"
+#include <QtCore/QPoint>
+#include <QtCore/QVector>
 
 HKeyenceStrategyPrivate::HKeyenceStrategyPrivate()
 {
     actionSupport << ACT_SET_MOTOR_LOCATION
                   << ACT_RESET_MOTOR_LOCATION
-                  << ACT_RESET_MOTOR_STATE
+                  << ACT_SET_MOTOR_PREPARE_TEST
+                  << ACT_SET_MOTOR_CANCEL_TEST
                   << ACT_QUERY_MOTOR_STATE;
 }
 
@@ -29,17 +33,21 @@ QString HKeyenceStrategy::typeName()
 bool HKeyenceStrategy::handle(HActionType action)
 {
     Q_D(HKeyenceStrategy);
+    int sample;
+    QPoint point;
+
     switch(action)
     {
     case ACT_SET_MOTOR_LOCATION:
-        return true;
+        point = d->testData->data("[电机定位]").toPoint();
+        return d->protocol->setData(action, QVector<uchar>() << point.x() << point.y());
     case ACT_RESET_MOTOR_LOCATION:
-        return true;
-    case ACT_RESET_MOTOR_STATE:
-        d->testData->setData("[电机状态]", 0);
-        return true;
+    case ACT_SET_MOTOR_PREPARE_TEST:
+    case ACT_SET_MOTOR_CANCEL_TEST:
+        return d->protocol->setData(action);
     case ACT_QUERY_MOTOR_STATE:
-        d->testData->setData("[电机状态]", 1);
+        d->protocol->getData(action, sample);
+        d->testData->setData("[电机状态]", sample);
         return true;
     }
     return false;

@@ -58,6 +58,11 @@ bool HAbstractProtocol::close()
     return true;
 }
 
+bool HAbstractProtocol::setData(HActionType action)
+{
+    return setData(action, QVector<uchar>());
+}
+
 bool HAbstractProtocol::setData(HActionType action, int value, int delay)
 {
     auto data = toVector(value);
@@ -109,6 +114,12 @@ bool HAbstractProtocol::setData(HActionType action, QVector<double> value, int d
     for (auto i : value)
         data << toVector(i);
     return setData(action, data, delay);
+}
+
+bool HAbstractProtocol::getData(HActionType action)
+{
+    QVector<uchar> data;
+    return getData(action, data);
 }
 
 bool HAbstractProtocol::getData(HActionType action, int &value, int delay)

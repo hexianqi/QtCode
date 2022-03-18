@@ -55,7 +55,7 @@ QPolygon HLocation::polygon()
             for (j = 0; j < d->layout.at(i).size() && j < col; j++)
             {
                 if (d->layout.at(i).at(j) > 0)
-                    d->polygon << QPoint(i, j);
+                    d->polygon << QPoint(i + 1, j + 1);
             }
         }
     }

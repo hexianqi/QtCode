@@ -288,7 +288,8 @@ void HCoreGlobalInstance::initActionComment()
     // 电机操作
     hashActionComment.insert(ACT_SET_MOTOR_LOCATION,            tr("设置电机定位"));
     hashActionComment.insert(ACT_RESET_MOTOR_LOCATION,          tr("复位电机定位"));
-    hashActionComment.insert(ACT_RESET_MOTOR_STATE,             tr("复位电机状态"));
+    hashActionComment.insert(ACT_SET_MOTOR_PREPARE_TEST,        tr("设置电机准备测试"));
+    hashActionComment.insert(ACT_SET_MOTOR_CANCEL_TEST,         tr("设置电机取消测试"));
     hashActionComment.insert(ACT_QUERY_MOTOR_STATE,             tr("查询电机状态"));
     // 测试操作
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));

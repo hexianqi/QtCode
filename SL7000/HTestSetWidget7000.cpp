@@ -49,7 +49,6 @@ QVariant HTestSetWidget7000::handleOperation(QString type, QVariant value)
 void HTestSetWidget7000::handleAction(HActionType action)
 {
     Q_D(HTestSetWidget7000);
-    bool adjust = false;
     QPoint point;
     switch(action)
     {
@@ -83,28 +82,32 @@ void HTestSetWidget7000::handleAction(HActionType action)
         break;
     case ACT_RESET_MOTOR_LOCATION:
         ui->comboBox_4->setCurrentIndex(0);
-        d->model->addAction(ACT_QUERY_MOTOR_STATE);
+//        d->model->addAction(ACT_QUERY_MOTOR_STATE);
         break;
     case ACT_QUERY_MOTOR_STATE:
         if (d->testData->data("[电机状态]").toInt() == 1)
         {
-            d->model->addAction(ACT_RESET_MOTOR_STATE);
             if (d->testState && d->testMode == 2)
-                d->model->addAction(ACT_SINGLE_TEST);
+            {
+                if (d->prepare)
+                {
+                    d->prepare = false;
+                    d->model->addAction(ACT_QUERY_NEXT_TEST);
+                }
+                else
+                    d->model->addAction(ACT_SINGLE_TEST);
+            }
         }
         else
             d->model->addAction(ACT_QUERY_MOTOR_STATE, 50);
         break;
+    case ACT_SET_MOTOR_PREPARE_TEST:
+        d->prepare = true;
+        d->model->addAction(ACT_QUERY_MOTOR_STATE, 50);
+        break;
     case ACT_SINGLE_TEST:
         if (!d->testState)
             break;
-        adjust = adjustIntegralTime();
-        adjust = adjustLuminousGears() || adjust;
-        if (adjust)
-        {
-            d->model->addAction(ACT_SINGLE_TEST);
-            break;
-        }
         emit resultChanged(action, false);
         if (d->testMode == 2)
             d->model->addAction(ACT_QUERY_NEXT_TEST);
@@ -144,7 +147,7 @@ bool HTestSetWidget7000::setTestState(bool b)
         }
         if (d->testMode == 2)
         {
-            d->model->addAction(ACT_QUERY_NEXT_TEST);
+            d->model->addAction(ACT_SET_MOTOR_PREPARE_TEST);
         }
     }
     else
@@ -153,6 +156,11 @@ bool HTestSetWidget7000::setTestState(bool b)
         {
             d->testData->setData("[电源模式]", 0);
             d->model->addAction(ACT_SET_SOURCE_MODE, 200);
+        }
+        if (d->testMode == 2)
+        {
+            d->model->addAction(ACT_SET_MOTOR_CANCEL_TEST);
+            d->model->addAction(ACT_RESET_MOTOR_LOCATION, 200);
         }
     }
     ui->comboBox_1->setEnabled(!b);
@@ -227,11 +235,11 @@ void HTestSetWidget7000::on_comboBox_3_currentIndexChanged(int value)
 
 void HTestSetWidget7000::on_comboBox_4_currentIndexChanged(int /*value*/)
 {
-    Q_D(HTestSetWidget7000);
-    if (d->testState)
-        return;
-    if (d->testData->setData("[电机定位]", ui->comboBox_4->currentData()))
-        d->model->addAction(ACT_SET_MOTOR_LOCATION);
+//    Q_D(HTestSetWidget7000);
+//    if (d->testState)
+//        return;
+//    if (d->testData->setData("[电机定位]", ui->comboBox_4->currentData()))
+//        d->model->addAction(ACT_SET_MOTOR_LOCATION);
 }
 
 void HTestSetWidget7000::on_comboBox_5_currentIndexChanged(int value)

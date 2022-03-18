@@ -26,6 +26,7 @@ public:
     bool close() override;
 
 public:
+    bool setData(HActionType action) override;
     bool setData(HActionType action, int value, int delay = 0) override;
     bool setData(HActionType action, uchar value, int delay = 0) override;
     bool setData(HActionType action, uint value, int delay = 0) override;
@@ -36,6 +37,7 @@ public:
     bool setData(HActionType action, QVector<double> value, int delay = 0) override;
 
 public:
+    bool getData(HActionType action) override;
     bool getData(HActionType action, int &value, int delay = 0) override;
     bool getData(HActionType action, uchar &value, int delay = 0) override;
     bool getData(HActionType action, uint &value, int delay = 0) override;

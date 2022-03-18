@@ -9,4 +9,5 @@ public:
     QPolygon polygon;
     bool autoIntegralTime = false;
     bool autoLuminousGears = true;
+    bool prepare = false;
 };

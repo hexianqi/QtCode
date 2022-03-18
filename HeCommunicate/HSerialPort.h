@@ -25,6 +25,7 @@ public:
 
 public:
     void setBaudRate(ulong value);
+    void setParity(uchar value);
 
 protected:
     HSerialPort(HSerialPortPrivate &);

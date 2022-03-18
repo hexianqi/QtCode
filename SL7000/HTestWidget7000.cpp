@@ -82,7 +82,6 @@ void HTestWidget7000::handleAction(HActionType action)
     {
         auto point = d->testData->data("[电机定位]").toPoint();
         d->index = d->polygon.indexOf(point);
-        return;
     }
     if (action == ACT_QUERY_NEXT_TEST)
     {

@@ -25,6 +25,7 @@ public:
 
 public:
     // 设置数据
+    virtual bool setData(HActionType action) = 0;
     virtual bool setData(HActionType action, int value, int delay = 0) = 0;
     virtual bool setData(HActionType action, uchar value, int delay = 0) = 0;
     virtual bool setData(HActionType action, uint value, int delay = 0) = 0;
@@ -34,6 +35,7 @@ public:
     virtual bool setData(HActionType action, QVector<uint> value, int delay = 0) = 0;
     virtual bool setData(HActionType action, QVector<double> value, int delay = 0) = 0;
     // 读取数据
+    virtual bool getData(HActionType action) = 0;
     virtual bool getData(HActionType action, int &value, int delay = 0) = 0;
     virtual bool getData(HActionType action, uchar &value, int delay = 0) = 0;
     virtual bool getData(HActionType action, uint &value, int delay = 0) = 0;

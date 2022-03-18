@@ -21,6 +21,8 @@ void HSerialPort::initialize(QVariantMap param)
     HAbstractPort::initialize(param);
     if (param.contains("baudRate"))
         setBaudRate(param.value("baudRate").toUInt());
+    if (param.contains("parity"))
+        setParity(param.value("parity").toUInt());
 }
 
 QString HSerialPort::typeName()
@@ -39,12 +41,19 @@ void HSerialPort::setBaudRate(ulong value)
     d->baudRate = value;
 }
 
+void HSerialPort::setParity(uchar value)
+{
+    Q_D(HSerialPort);
+    d->parity = value;
+}
+
 bool HSerialPort::openPort(int portNum)
 {
     Q_D(HSerialPort);
 
     DCB dcb;
-    auto name = QString("COM%1").arg(portNum).toStdWString().c_str();
+    auto port = QString("COM%1").arg(portNum).toStdWString();
+    auto name = port.c_str();
     COMMTIMEOUTS timeOuts;
     timeOuts.ReadIntervalTimeout = 0;
     timeOuts.ReadTotalTimeoutMultiplier = 2;
@@ -64,10 +73,10 @@ bool HSerialPort::openPort(int portNum)
             throw HException(E_PORT_INVALID_HANDLE);
         dcb.BaudRate = d->baudRate;
         dcb.ByteSize = 8;
-        dcb.StopBits = 0;
+        dcb.StopBits = ONESTOPBIT;
         dcb.fParity = 1;
         dcb.fBinary = 1;
-        dcb.Parity = 0;
+        dcb.Parity = d->parity;
         if (!SetCommState(d->handle, &dcb))
             throw HException(E_PORT_INVALID_HANDLE);
         return true;

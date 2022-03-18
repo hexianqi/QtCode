@@ -56,7 +56,7 @@ bool HDaXinStrategy::handle(HActionType action)
     case ACT_SET_SOURCE_FORWARD:
     case ACT_SET_SOURCE_REVERSE:
     case ACT_SET_SOURCE_IO:
-        return d->protocol->setData(action, QVector<uchar>());
+        return d->protocol->setData(action);
     case ACT_GET_ELEC_DATA:
         d->protocol->getData(action, buff);
         if (buff.length() >= 5)

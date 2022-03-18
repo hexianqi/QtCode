@@ -1,7 +1,7 @@
 #pragma once
 
 #include "HLocationWidget.h"
-#include "HeCore/.h"
+#include "HeCore/HPromotion.h"
 #include "HeData/ITestData.h"
 
 class QLabel;

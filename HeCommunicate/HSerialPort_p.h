@@ -9,6 +9,7 @@ class HSerialPortPrivate : public HAbstractPortPrivate
 {
 public:
     ulong baudRate = 115200;
+    uchar parity = 0;
     void *handle = nullptr;
 };
 
