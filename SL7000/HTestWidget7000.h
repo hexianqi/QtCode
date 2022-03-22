@@ -49,6 +49,7 @@ protected:
     void setProbe(bool b);
     void setExportPath();
     void editProduct();
+    int next(int index);
 };
 
 

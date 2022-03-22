@@ -85,7 +85,7 @@ void HTestWidget7000::handleAction(HActionType action)
     }
     if (action == ACT_QUERY_NEXT_TEST)
     {
-        d->index2 = d->testResult->next(d->index2);
+        d->index2 = next(d->index2);
         if (d->index2 >= 0)
         {
             d->testData->setData("[电机定位]", d->polygon.at(d->index2));
@@ -352,4 +352,11 @@ void HTestWidget7000::editProduct()
         return;
     d->testResult->setModified();
     d->tableWidget->refreshResult(row, data);
+}
+
+int HTestWidget7000::next(int index)
+{
+    Q_D(HTestWidget7000);
+    index += 1;
+    return index >= d->polygon.size() ? -1 : index;
 }

@@ -31,7 +31,7 @@ bool HKeyenceDevice::getData(HActionType action, QVector<uchar> &value, int /*de
 {
     Q_D(HKeyenceDevice);
     auto param = d->actionParams.value(action);
-    if (param.size() < 3)
+    if (param.size() < 2)
         throw HException(E_DEVICE_ACTION_PARAM_ERROR);
 
     value = QVector<uchar>() << 0x00 << 0x00;

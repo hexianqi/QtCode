@@ -45,6 +45,7 @@ void HLocation::writeContent(QDataStream &s)
 QPolygon HLocation::polygon()
 {
     Q_D(HLocation);
+    bool b = true;
     if (d->polygon.isEmpty())
     {
         int i,j;
@@ -52,11 +53,24 @@ QPolygon HLocation::polygon()
         auto col = data("[列数]").toInt();
         for (i = 0; i < d->layout.size() && i < row; i++)
         {
-            for (j = 0; j < d->layout.at(i).size() && j < col; j++)
+            if (b)
             {
-                if (d->layout.at(i).at(j) > 0)
-                    d->polygon << QPoint(i + 1, j + 1);
+                for (j = 0; j < d->layout.at(i).size() && j < col; j++)
+                {
+                    if (d->layout.at(i).at(j) > 0)
+                        d->polygon << QPoint(i + 1, j + 1);
+                }
             }
+            else
+            {
+                for (j = qMin(d->layout.at(i).size(), col) - 1; j >= 0; j--)
+                {
+                    if (d->layout.at(i).at(j) > 0)
+                        d->polygon << QPoint(i + 1, j + 1);
+                }
+            }
+            if (!d->polygon.isEmpty())
+                b = !b;
         }
     }
     return d->polygon;
