@@ -294,6 +294,7 @@ void HTestWidget7000::refreshWidget()
     d->energyWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
     d->detailWidget->refreshWidget();
+    d->locationWidget->refreshResult();
     d->tableWidget->refreshResult(d->index);
     d->cieWidget->addPoint(point);
 }

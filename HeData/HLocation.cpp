@@ -51,11 +51,11 @@ QPolygon HLocation::polygon()
         int i,j;
         auto row = data("[行数]").toInt();
         auto col = data("[列数]").toInt();
-        for (i = 0; i < d->layout.size() && i < row; i++)
+        for (j = 0; j < col; j++)
         {
             if (b)
             {
-                for (j = 0; j < d->layout.at(i).size() && j < col; j++)
+                for (i = 0; i < row; i++)
                 {
                     if (d->layout.at(i).at(j) > 0)
                         d->polygon << QPoint(i + 1, j + 1);
@@ -63,7 +63,7 @@ QPolygon HLocation::polygon()
             }
             else
             {
-                for (j = qMin(d->layout.at(i).size(), col) - 1; j >= 0; j--)
+                for (i = row - 1; i >= 0; i--)
                 {
                     if (d->layout.at(i).at(j) > 0)
                         d->polygon << QPoint(i + 1, j + 1);
