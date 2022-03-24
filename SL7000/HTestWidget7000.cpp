@@ -265,6 +265,7 @@ void HTestWidget7000::writeSettings()
 void HTestWidget7000::handleStateChanged(bool b)
 {
     Q_D(HTestWidget7000);
+    d->index2 = -1;
     d->actionStart->setEnabled(!b);
     d->actionStop->setEnabled(b);
     d->actionClear->setEnabled(!b);

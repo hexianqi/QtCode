@@ -51,7 +51,7 @@ QPolygon HLocation::polygon()
         int i,j;
         auto row = data("[行数]").toInt();
         auto col = data("[列数]").toInt();
-        for (j = 0; j < col; j++)
+        for (j = col - 1; j >= 0; j--)
         {
             if (b)
             {
