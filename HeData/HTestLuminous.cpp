@@ -1,6 +1,8 @@
 #include "HTestLuminous_p.h"
 #include "ILuminousCalibrate.h"
 #include "ILuminousCalibrateCollection.h"
+#include "HeAlgorithm/HMath.h"
+#include <QtGui/QPolygonF>
 
 HE_BEGIN_NAMESPACE
 
@@ -51,6 +53,8 @@ bool HTestLuminous::setData(QString type, QVariant value)
         return setGears(value.toInt());
     if (type == "[光采样值]")
         return setSample(value.toInt());
+    if (type == "[光强角度分布采样值]")
+        return setAngleSample(value.value<QVector<double>>());
     return HTestData::setData(type, value);
 }
 
@@ -96,6 +100,28 @@ bool HTestLuminous::setSample(double value)
     d->setData("[光采样值]", value);
     d->setData("[光采样比率]", value / 655.35);
     d->setData(type, d->calibrate->toReal(value, type, gears));
+    return true;
+}
+
+bool HTestLuminous::setAngleSample(QVector<double> value)
+{
+    // TODO:
+    Q_D(HTestLuminous);
+    auto gears = data("[光档位]").toInt();
+    QPolygonF poly;
+
+    if (value.size() <= 0)
+        return false;
+
+    for (int i = 0; i < value.size(); i++)
+        poly.append(QPointF(i * 0.9, d->calibrate->toReal(value[i], "[光强度]", gears)));
+
+    poly = HMath::interpolate(poly, 0.0, 180.0, 0.1);
+
+
+    d->setData("[光强角度分布]", poly);
+
+
     return true;
 }
 

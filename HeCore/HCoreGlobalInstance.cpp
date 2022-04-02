@@ -281,11 +281,15 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_SET_LUMINOUS_MODULE,           tr("设置光模块"));
     hashActionComment.insert(ACT_SET_LUMINOUS_TYPE,             tr("设置光类型"));
     hashActionComment.insert(ACT_SET_LUMINOUS_GEARS,            tr("设置光档位"));
+    hashActionComment.insert(ACT_START_ANGLE_TEST,              tr("启动角度分布测试"));
+    hashActionComment.insert(ACT_STOP_ANGLE_TEST,               tr("停止角度分布测试"));
     hashActionComment.insert(ACT_GET_LUMINOUS_DATA,             tr("获取光数据"));
+    hashActionComment.insert(ACT_GET_ANGLE_DISTRIBUTION,        tr("获取角度分布数据"));
     // 状态操作
     hashActionComment.insert(ACT_RESET_STATE_TRIGGER,           tr("复位触发状态"));
     hashActionComment.insert(ACT_QUERY_STATE_TRIGGER,           tr("查询触发状态"));
     // 电机操作
+    hashActionComment.insert(ACT_SET_MOTOR_MODULE,              tr("设置电机模块"));
     hashActionComment.insert(ACT_SET_MOTOR_LOCATION,            tr("设置电机定位"));
     hashActionComment.insert(ACT_RESET_MOTOR_LOCATION,          tr("复位电机定位"));
     hashActionComment.insert(ACT_SET_MOTOR_PREPARE_TEST,        tr("设置电机准备测试"));
@@ -308,15 +312,6 @@ void HCoreGlobalInstance::initActionComment()
 
 
 //    hashActionComment.insert(ACT_REFRESH_USE_TIME,             QStringList() << tr("ACT_REFRESH_USE_TIME") << tr("刷新设备使用时间"));
-
-//    hashActionComment.insert(ACT_SET_ELEC_MODULE,                QStringList() << tr("ACT_SET_ELEC_MODULE") << tr("设置电学参数模块"));
-//    hashActionComment.insert(ACT_SET_ELEC_CODE,                  QStringList() << tr("ACT_SET_ELEC_CODE") << tr("设置开关编码"));
-//    hashActionComment.insert(ACT_GET_ELEC,                       QStringList() << tr("ACT_GET_ELEC") << tr("获取电参数"));
-//    hashActionComment.insert(ACT_GET_FEEDBACK_CURRENT,           QStringList() << tr("ACT_GET_FEEDBACK_CURRENT") << tr("获取回溯电流"));
-
-//    hashActionComment.insert(ACT_GET_ANGULAR_DISTRIBUTION,       QStringList() << tr("ACT_GET_ANGULAR_DISTRIBUTION") << tr("获取角度分布数据"));
-
-//    hashActionComment.insert(ACT_RESET_MOTOR,                    QStringList() << tr("ACT_RESET_MOTOR") << tr("电机复位"));
 
 //    hashActionComment.insert(ACT_SET_LED_NUM,                    QStringList() << tr("ACT_SET_LED_NUM") << tr("设置LED编号"));
 //    hashActionComment.insert(ACT_SET_LED_ADDRESS,                QStringList() << tr("ACT_SET_LED_ADDRESS") << tr("设置LED地址"));
@@ -487,6 +482,18 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光合光子通量效率]",             new HDataFormatInfo("[光合光子通量效率]", "umol/s/W", 0, 99999, 3));
     hashDataFormatInfo.insert("[荧光效能]",                     new HDataFormatInfo("[荧光效能]", "", 0, 99999, 3));
     hashDataFormatInfo.insert("[荧光蓝光比]",                   new HDataFormatInfo("[荧光蓝光比]", "", 0, 99999, 3));
+    // 光强角度分布参数
+    hashDataFormatInfo.insert("[角度]",                         new HDataFormatInfo("[角度]", "°", 0, 360, 1));
+    hashDataFormatInfo.insert("[最大光强度]",                   hashDataFormatInfo.value("[光强度]"));
+    hashDataFormatInfo.insert("[法相光强度]",                   hashDataFormatInfo.value("[光强度]"));
+    hashDataFormatInfo.insert("[角度光通量]",                   hashDataFormatInfo.value("[光通量]"));
+    hashDataFormatInfo.insert("[最大光强度角]",                 hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[半光强度夹角]",                 hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[1/5光强度夹角]",                hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[左半光强度角]",                 hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[右半光强度角]",                 hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[左1/5光强度角]",                hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[右1/5光强度角]",                hashDataFormatInfo.value("[角度]"));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
@@ -524,18 +531,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[布局数值]",                     new HDataFormatInfo("[布局数值]", 0, 65535));
 
 
-//    //光强角度分布参数
-//    hashFormatInfo.insert(tr("[角度]"),                            FTypeInfo(tr("[角度]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[最大光强度]"),                      FTypeInfo(tr("[最大光强度]"), tr("mcd"), 0, 99999, 2, 100));
-//    hashFormatInfo.insert(tr("[法相光强度]"),                      FTypeInfo(tr("[法相光强度]"), tr("mcd"), 0, 99999, 2, 100));
-//    hashFormatInfo.insert(tr("[最大光强度角]"),                    FTypeInfo(tr("[最大光强度角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[半光强度夹角]"),                    FTypeInfo(tr("[半光强度夹角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[1/5光强度夹角]"),                   FTypeInfo(tr("[1/5光强度夹角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[左半光强度角]"),                    FTypeInfo(tr("[左半光强度角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[右半光强度角]"),                    FTypeInfo(tr("[右半光强度角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[左1/5光强度角]"),                   FTypeInfo(tr("[左1/5光强度角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[右1/5光强度角]"),                   FTypeInfo(tr("[右1/5光强度角]"), tr("°"), 0, 360, 1));
-//    hashFormatInfo.insert(tr("[理论光通量]"),                      FTypeInfo(tr("[理论光通量]"), tr("lm"), 0, 99999, 2, 100));
+
 
 //    //电机参数
 //    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));

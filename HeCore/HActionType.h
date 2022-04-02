@@ -53,15 +53,19 @@ using HActionType = long long;
 #define     ACT_SET_LUMINOUS_MODULE                 0x00020301
 #define     ACT_SET_LUMINOUS_TYPE                   0x00020302
 #define     ACT_SET_LUMINOUS_GEARS                  0x00020303
+#define     ACT_START_ANGLE_TEST                    0x00020304
+#define     ACT_STOP_ANGLE_TEST                     0x00020305
 #define     ACT_GET_LUMINOUS_DATA                   0x00020311
+#define     ACT_GET_ANGLE_DISTRIBUTION              0x00020312
 
 #define     ACT_RESET_STATE_TRIGGER                 0x00030101
 #define     ACT_QUERY_STATE_TRIGGER                 0x00030111
 
-#define     ACT_SET_MOTOR_LOCATION                  0x00030201
-#define     ACT_RESET_MOTOR_LOCATION                0x00030202
-#define     ACT_SET_MOTOR_PREPARE_TEST              0x00030203
-#define     ACT_SET_MOTOR_CANCEL_TEST               0x00030204
+#define     ACT_SET_MOTOR_MODULE                    0x00030201
+#define     ACT_SET_MOTOR_LOCATION                  0x00030202
+#define     ACT_RESET_MOTOR_LOCATION                0x00030203
+#define     ACT_SET_MOTOR_PREPARE_TEST              0x00030204
+#define     ACT_SET_MOTOR_CANCEL_TEST               0x00030205
 #define     ACT_QUERY_MOTOR_STATE                   0x00030211
 
 #define     ACT_SINGLE_TEST                         0x10000001
@@ -80,14 +84,8 @@ using HActionType = long long;
 
 //#define     ACT_REFRESH_USE_TIME                    0x00000012
 
-//#define     ACT_GET_ANGULAR_DISTRIBUTION            0x000002C1
-
-//#define     ACT_RESET_MOTOR                         0x00001101
-
-//#define     ACT_SET_MOTOR_MODULE                    0x00000401
 //#define     ACT_SET_MOTOR_DIRECTION                 0x00000402
 //#define     ACT_SET_MOTOR_STEP                      0x00000403
-
 
 //#define     ACT_GET_LAMPS_ELEC                      0x00008081
 
@@ -98,36 +96,11 @@ using HActionType = long long;
 //#define     ACT_GET_TEMPERATURE                     0x00008281
 //#define     ACT_GET_TEMPERATURE_CALIBRATE           0x00008284
 
-//#define     ACT_SEND_DATA                           0x00010111
-//#define     ACT_RECEIVE_DATA                        0x00010191
-
 //#define     ACT_SET_LED_NUM                         0x00010201
 //#define     ACT_SET_LED_ADDRESS                     0x00010202
-
-////#define     ACT_PLC_RESET_MOTOR                     0x00010301
-////#define     ACT_PLC_SEND_DATA                       0x00010302
-////#define     ACT_PLC_FLUSH_DELAY                     0x00010303
-////#define     ACT_PLC_GET_FEEDBACK                    0x00010381
-////#define     ACT_PLC_QUERY_STATE_TRIGGER             0x00010382
-////#define     ACT_PLC_QUERY_STATE_MOTOR               0x00010383
-////#define     ACT_PLC_QUERY_STATE_BLANKING            0x00010384
-
-//////#define     ACT_COB_SET_CYLINDER                    0x00010401
-//////#define     ACT_COB_SET_MOTOR_MODE                  0x00010411
-//////#define     ACT_COB_SET_MOTOR_DATA                  0x00010412
-//////#define     ACT_COB_RESET_MOTOR_POSITION            0x00010413
-//////#define     ACT_COB_SET_MOTOR_POSITION              0x00010414
-//////#define     ACT_COB_RESET_MOTOR_STEP                0x00010415
-//////#define     ACT_COB_SET_MOTOR_STEP                  0x00010416
-//////#define     ACT_COB_QUERY_STATE                     0x00010481
 
 //#define     ACT_PULSE_TEST                          0x0F000181
 //#define     ACT_GET_ELEC_LUMINOUS_SPECTRUM          0x0F000182
 //#define     ACT_GET_LUMINOUS_SPECTRUM               0x0F000183
-
-//////#define     ACT_SET_MOTOR_ANGULAR                   0x0F000201
-
-//#define     ACT_RESET_JUDGMENT                      0xF0000003
-//#define     ACT_RESET_CIRCUIT                       0xF0000004
 
 HE_END_NAMESPACE

@@ -1,6 +1,8 @@
 HEADERS += \
     $$PWD/HLuminousStrategy.h \
     $$PWD/HLuminousStrategy_p.h \
+    $$PWD/HMotorStrategy.h \
+    $$PWD/HMotorStrategy_p.h \
     $$PWD/HPowerFactorStrategy.h \
     $$PWD/HPowerFactorStrategy_p.h \
     $$PWD/IActionStrategy.h \
@@ -14,6 +16,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/HAbstractActionStrategy.cpp \
     $$PWD/HLuminousStrategy.cpp \
+    $$PWD/HMotorStrategy.cpp \
     $$PWD/HPowerFactorStrategy.cpp \
     $$PWD/HSpecStrategy.cpp \
     $$PWD/HElecStrategy.cpp
