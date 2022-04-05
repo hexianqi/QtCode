@@ -105,23 +105,83 @@ bool HTestLuminous::setSample(double value)
 
 bool HTestLuminous::setAngleSample(QVector<double> value)
 {
-    // TODO:
     Q_D(HTestLuminous);
-    auto gears = data("[光档位]").toInt();
+    int i;
     QPolygonF poly;
+    auto gears = data("[光档位]").toInt();
+    auto size = poly.size();
 
-    if (value.size() <= 0)
+    if (size <= 0)
         return false;
 
     for (int i = 0; i < value.size(); i++)
         poly.append(QPointF(i * 0.9, d->calibrate->toReal(value[i], "[光强度]", gears)));
 
     poly = HMath::interpolate(poly, 0.0, 180.0, 0.1);
+    size = poly.size();
 
+    auto maxN = size / 2;
+    auto maxIv = poly.at(maxN).y();
+    auto theta1 = 0.0;
+    auto theta2 = 0.0;
+    auto theta3 = 0.0;
+    auto theta4 = 0.0;
+    auto flux = 0.0;
+    auto radian = M_PI / size;
 
+    for (i = 0; i < size; i++)
+    {
+        if (poly[i].y() > maxIv)
+        {
+            maxIv = poly[i].y();
+            maxN = i;
+        }
+    }
+    for (i = 0; i < maxN; i++)
+    {
+        if (poly[i].y() > maxIv / 2)
+        {
+            theta1 = i / 10.0 - 90;
+            break;
+        }
+    }
+    for (i = size - 1; i > maxN; i--)
+    {
+        if (poly[i].y() > maxIv / 2)
+        {
+            theta2 = i/10.0-90;
+            break;
+        }
+    }
+    for (i = 0; i < maxN; i++)
+    {
+        if (poly[i].y() > maxIv / 5)
+        {
+            theta3 = i / 10.0 - 90;
+            break;
+        }
+    }
+    for (i = size - 1; i > maxN; i--)
+    {
+        if (poly[i].y() > maxIv / 5)
+        {
+            theta4 = i/10.0-90;
+            break;
+        }
+    }
+    for (i = 1; i < size; i++)
+        flux += M_PI * radian * (poly.at(i-1).y() + poly.at(i).y()) * (qAbs(cos(radian * i)) + qAbs(cos(radian * (i-1)))) / 4;
     d->setData("[光强角度分布]", poly);
-
-
+    d->setData("[最大光强度]", maxIv);
+    d->setData("[法相光强度]", poly.at(size / 2).y());
+    d->setData("[角度光通量]", flux);
+    d->setData("[最大光强度角]", maxN / 10.0 - 90);
+    d->setData("[左半光强度角]", theta1);
+    d->setData("[右半光强度角]", theta2);
+    d->setData("[半光强度夹角]", qAbs(theta1 - theta2));
+    d->setData("[左1/5光强度角]", theta3);
+    d->setData("[右1/5光强度角]", theta4);
+    d->setData("[1/5光强度夹角]", qAbs(theta3 - theta4));
     return true;
 }
 
