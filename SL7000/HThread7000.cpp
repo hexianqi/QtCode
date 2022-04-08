@@ -37,12 +37,3 @@ void HThread7000::init()
     d->strategyKeyence->setProtocol(d->protocolKeyence);
     d->strategys.prepend(d->strategyKeyence);
 }
-
-bool HThread7000::handleAction(HActionType action)
-{
-    Q_D(HThread7000);
-    qDebug() << action << "\t" << HCore::toComment(action);
-    if (action == ACT_SET_MOTOR_LOCATION)
-        qDebug() << d->testData->data("[电机定位]");
-    return HIntegrateThread::handleAction(action);
-}

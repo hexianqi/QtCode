@@ -21,7 +21,7 @@ void HSpecCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HSpecCalibrateHandler);
     HSpecCalibrateDialog dlg(d->mainWindow);
-    d->mainWindow->openDialog(&dlg);
+    d->mainWindow->blockAndRun(&dlg);
     d->model->addAction(ACT_RESET_SPECTRUM);
 }
 

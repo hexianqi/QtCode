@@ -42,25 +42,45 @@ QList<QToolBar *> HAbstractTestWidget::toolBars()
     return d_ptr->toolBars;
 }
 
-void HAbstractTestWidget::start()
+bool HAbstractTestWidget::start()
 {
+    if (d_ptr->running)
+        return false;
+
+    d_ptr->running = true;
     connect(d_ptr->model, &IModel::actionFinished, this, &HAbstractTestWidget::handleAction);
-    if (d_ptr->memento)
-        d_ptr->memento->restore();
+    restoreState();
+    return true;
 }
 
-void HAbstractTestWidget::stop()
+bool HAbstractTestWidget::stop()
 {
+    if (!d_ptr->running)
+        return false;
+
     setTest(false);
+    saveState();
     d_ptr->model->disconnect(this);
-    if (d_ptr->memento)
-        d_ptr->memento->save();
+    d_ptr->running = false;
+    return true;
 }
 
 void HAbstractTestWidget::closeEvent(QCloseEvent *event)
 {
     stop();
     event->accept();
+}
+
+void HAbstractTestWidget::saveState()
+{
+    if (d_ptr->memento)
+        d_ptr->memento->save();
+}
+
+void HAbstractTestWidget::restoreState()
+{
+    if (d_ptr->memento)
+        d_ptr->memento->restore();
 }
 
 bool HAbstractTestWidget::setTest(bool b)

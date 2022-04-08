@@ -27,9 +27,9 @@ public:
 
 public:
     // 启动
-    virtual void start() = 0;
+    virtual bool start() = 0;
     // 停止
-    virtual void stop() = 0;
+    virtual bool stop() = 0;
 };
 
 HE_END_NAMESPACE

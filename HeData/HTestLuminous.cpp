@@ -15,6 +15,19 @@ HTestLuminousPrivate::HTestLuminousPrivate()
     addData("[光档位]", 0);
     addData("[光采样值]", 0);
     addData("[光采样比率]", 0.0);
+    addData("[光通量]", 0.0);
+    addData("[光强度]", 0.0);
+    addData("[光亮度]", 0.0);
+    addData("[最大光强度]", 0.0);
+    addData("[法相光强度]", 0.0);
+    addData("[角度光通量]", 0.0);
+    addData("[最大光强度角]", 0.0);
+    addData("[左半光强度角]", 0.0);
+    addData("[右半光强度角]", 0.0);
+    addData("[半光强度夹角]", 0.0);
+    addData("[左1/5光强度角]", 0.0);
+    addData("[右1/5光强度角]", 0.0);
+    addData("[1/5光强度夹角]", 0.0);
 }
 
 HTestLuminous::HTestLuminous() :
@@ -141,7 +154,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     {
         if (poly[i].y() > maxIv / 2)
         {
-            theta1 = i / 10.0 - 90;
+            theta1 = i / 10.0;
             break;
         }
     }
@@ -149,7 +162,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     {
         if (poly[i].y() > maxIv / 2)
         {
-            theta2 = i/10.0-90;
+            theta2 = i / 10.0;
             break;
         }
     }
@@ -157,7 +170,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     {
         if (poly[i].y() > maxIv / 5)
         {
-            theta3 = i / 10.0 - 90;
+            theta3 = i / 10.0;
             break;
         }
     }
@@ -165,7 +178,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     {
         if (poly[i].y() > maxIv / 5)
         {
-            theta4 = i/10.0-90;
+            theta4 = i / 10.0;
             break;
         }
     }
@@ -175,7 +188,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     d->setData("[最大光强度]", maxIv);
     d->setData("[法相光强度]", poly.at(size / 2).y());
     d->setData("[角度光通量]", flux);
-    d->setData("[最大光强度角]", maxN / 10.0 - 90);
+    d->setData("[最大光强度角]", maxN / 10.0);
     d->setData("[左半光强度角]", theta1);
     d->setData("[右半光强度角]", theta2);
     d->setData("[半光强度夹角]", qAbs(theta1 - theta2));

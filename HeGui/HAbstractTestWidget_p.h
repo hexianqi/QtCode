@@ -21,6 +21,7 @@ public:
     ITestSetWidget *testSetWidget = nullptr;
     QList<QMenu *> menus;
     QList<QToolBar *> toolBars;
+    bool running = false;
 };
 
 HE_END_NAMESPACE

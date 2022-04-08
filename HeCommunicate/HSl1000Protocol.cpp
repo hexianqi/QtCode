@@ -30,6 +30,11 @@ HSl1000ProtocolPrivate::HSl1000ProtocolPrivate()
     device->addActionParam(ACT_SET_LUMINOUS_TYPE,           QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x05);
     device->addActionParam(ACT_SET_LUMINOUS_GEARS,          QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x06);
     device->addActionParam(ACT_GET_LUMINOUS_DATA,           QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x11);
+    device->addActionParam(ACT_START_ANGLE_TEST,            QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x14);
+    device->addActionParam(ACT_GET_ANGLE_DISTRIBUTION,      QList<uchar>() << 0x01 << 0x92 << 0x02 << 0x12);
+    device->addActionParam(ACT_RESET_MOTOR_LOCATION,        QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x13);
+    device->addActionParam(ACT_SET_MOTOR_LOCATION,          QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x16);
+    device->addActionParam(ACT_QUERY_MOTOR_STATE,           QList<uchar>() << 0x00 << 0x02 << 0x02 << 0x15);
 }
 
 HSl1000Protocol::HSl1000Protocol() :

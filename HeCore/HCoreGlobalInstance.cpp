@@ -483,17 +483,17 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[荧光效能]",                     new HDataFormatInfo("[荧光效能]", "", 0, 99999, 3));
     hashDataFormatInfo.insert("[荧光蓝光比]",                   new HDataFormatInfo("[荧光蓝光比]", "", 0, 99999, 3));
     // 光强角度分布参数
-    hashDataFormatInfo.insert("[角度]",                         new HDataFormatInfo("[角度]", "°", 0, 360, 1));
+    hashDataFormatInfo.insert("[光强度角]",                     new HDataFormatInfo("[光强度角]", "°", 0, 180, 1));
     hashDataFormatInfo.insert("[最大光强度]",                   hashDataFormatInfo.value("[光强度]"));
     hashDataFormatInfo.insert("[法相光强度]",                   hashDataFormatInfo.value("[光强度]"));
     hashDataFormatInfo.insert("[角度光通量]",                   hashDataFormatInfo.value("[光通量]"));
-    hashDataFormatInfo.insert("[最大光强度角]",                 hashDataFormatInfo.value("[角度]"));
-    hashDataFormatInfo.insert("[左半光强度角]",                 hashDataFormatInfo.value("[角度]"));
-    hashDataFormatInfo.insert("[右半光强度角]",                 hashDataFormatInfo.value("[角度]"));
-    hashDataFormatInfo.insert("[半光强度夹角]",                 hashDataFormatInfo.value("[角度]"));
-    hashDataFormatInfo.insert("[左1/5光强度角]",                hashDataFormatInfo.value("[角度]"));
-    hashDataFormatInfo.insert("[右1/5光强度角]",                hashDataFormatInfo.value("[角度]"));
-    hashDataFormatInfo.insert("[1/5光强度夹角]",                hashDataFormatInfo.value("[角度]"));
+    hashDataFormatInfo.insert("[最大光强度角]",                 hashDataFormatInfo.value("[光强度角]"));
+    hashDataFormatInfo.insert("[左半光强度角]",                 hashDataFormatInfo.value("[光强度角]"));
+    hashDataFormatInfo.insert("[右半光强度角]",                 hashDataFormatInfo.value("[光强度角]"));
+    hashDataFormatInfo.insert("[半光强度夹角]",                 hashDataFormatInfo.value("[光强度角]"));
+    hashDataFormatInfo.insert("[左1/5光强度角]",                hashDataFormatInfo.value("[光强度角]"));
+    hashDataFormatInfo.insert("[右1/5光强度角]",                hashDataFormatInfo.value("[光强度角]"));
+    hashDataFormatInfo.insert("[1/5光强度夹角]",                hashDataFormatInfo.value("[光强度角]"));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));

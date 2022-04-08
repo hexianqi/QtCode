@@ -23,8 +23,10 @@ public:
 public:
     void setAuthority(int) override;
     QAction *insertMenu(QMenu *) override;
-    bool openDialog(QDialog *) override;
-    void openWidget(QWidget *) override;
+    bool blockTestWidget(bool block) override;
+    bool blockAndRun(QDialog *) override;
+    void blockAndRun(QWidget *) override;
+    void blockAndConnect(QWidget *) override;
 
 protected:
     HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HConstructionCallHelper &helper, QWidget *parent = nullptr);

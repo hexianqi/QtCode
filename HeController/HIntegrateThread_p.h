@@ -16,6 +16,7 @@ public:
     IActionStrategy *strategySpec = nullptr;
     IActionStrategy *strategyElec = nullptr;
     IActionStrategy *strategyLuminous = nullptr;
+    IActionStrategy *strategyMotor = nullptr;
 };
 
 HE_END_NAMESPACE

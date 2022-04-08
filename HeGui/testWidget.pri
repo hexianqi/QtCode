@@ -1,4 +1,10 @@
 HEADERS += \
+    $$PWD/HAngleTestDetailWidget.h \
+    $$PWD/HAngleTestDetailWidget_p.h \
+    $$PWD/HAngleTestSetWidget.h \
+    $$PWD/HAngleTestSetWidget_p.h \
+    $$PWD/HAngleTestWidget.h \
+    $$PWD/HAngleTestWidget_p.h \
     $$PWD/ITestWidget.h \
     $$PWD/HAbstractTestWidget.h \
     $$PWD/HAbstractTestWidget_p.h \
@@ -23,6 +29,9 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HAbstractTestWidget.cpp \
+    $$PWD/HAngleTestDetailWidget.cpp \
+    $$PWD/HAngleTestSetWidget.cpp \
+    $$PWD/HAngleTestWidget.cpp \
     $$PWD/HTestWidget.cpp \
     $$PWD/HSpecTestWidget.cpp \
     $$PWD/HAbstractTestSetWidget.cpp \
@@ -33,5 +42,7 @@ SOURCES += \
     $$PWD/HIVTestSetWidget.cpp
 
 FORMS += \
+    $$PWD/HAngleTestDetailWidget.ui \
+    $$PWD/HAngleTestSetWidget.ui \
     $$PWD/HSimpleTestSetWidget.ui \
     $$PWD/HIVTestSetWidget.ui

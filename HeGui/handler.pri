@@ -3,6 +3,8 @@ HEADERS += \
     $$PWD/HAdjust2EditHandler_p.h \
     $$PWD/HAdjust2SelectHandler.h \
     $$PWD/HAdjust2SelectHandler_p.h \
+    $$PWD/HAngleTestHandler.h \
+    $$PWD/HAngleTestHandler_p.h \
     $$PWD/HExportCurveHandler.h \
     $$PWD/HExportCurveHandler_p.h \
     $$PWD/HExportDeviceHandler.h \
@@ -62,6 +64,7 @@ SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
     $$PWD/HAdjust2EditHandler.cpp \
     $$PWD/HAdjust2SelectHandler.cpp \
+    $$PWD/HAngleTestHandler.cpp \
     $$PWD/HExportCurveHandler.cpp \
     $$PWD/HExportDeviceHandler.cpp \
     $$PWD/HImportCurveHandler.cpp \

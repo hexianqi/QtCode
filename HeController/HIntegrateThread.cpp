@@ -99,10 +99,12 @@ void HIntegrateThread::init()
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
     d->strategyElec = factory->createStrategy("HElecStrategy", this);
     d->strategyLuminous = factory->createStrategy("HLuminousStrategy", this);
+    d->strategyMotor = factory->createStrategy("HMotorStrategy", this);
     d->strategySpec->setProtocol(d->protocolSpec);
     d->strategyElec->setProtocol(d->protocolElse);
     d->strategyLuminous->setProtocol(d->protocolElse);
-    d->strategys << d->strategySpec << d->strategyElec << d->strategyLuminous;
+    d->strategyMotor->setProtocol(d->protocolElse);
+    d->strategys << d->strategySpec << d->strategyElec << d->strategyLuminous << d->strategyMotor;
 }
 
 HE_END_NAMESPACE

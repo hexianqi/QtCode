@@ -26,7 +26,6 @@ QString HSpecDetailWidget::typeName()
 void HSpecDetailWidget::refreshWidget()
 {
     Q_D(HSpecDetailWidget);
-
     QString text;
     ui->lineEdit_001->setText(d->testData->toString("[峰值波长]"));
     ui->lineEdit_002->setText(d->testData->toString("[主波长]"));

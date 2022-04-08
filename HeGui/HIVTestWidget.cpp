@@ -3,9 +3,9 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/ITextStream.h"
+#include "HeData/ITestData.h"
 #include "HePlugin/HEntireTableWidget.h"
 #include "HePlugin/HDynamicChartView.h"
-#include "HeData/ITestData.h"
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
@@ -57,7 +57,7 @@ void HIVTestWidget::createToolBar()
     toolBar2->addAction(d->actionStop);
     toolBar2->addAction(d->actionClear);
     toolBar2->addAction(d->actionExportExcel);
-    toolBar2->setIconSize(QSize(40,40));
+    toolBar2->setIconSize(QSize(40, 40));
     toolBar2->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     d->toolBars << toolBar1 << toolBar2;
 }

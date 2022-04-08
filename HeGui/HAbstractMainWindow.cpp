@@ -67,21 +67,35 @@ QAction *HAbstractMainWindow::insertMenu(QMenu *menu)
     return menuBar()->insertMenu(d_ptr->actionSeparator, menu);
 }
 
-bool HAbstractMainWindow::openDialog(QDialog *dlg)
+bool HAbstractMainWindow::blockTestWidget(bool block)
+{
+    if (d_ptr->testWidget == nullptr)
+        return false;
+    if (block)
+        return d_ptr->testWidget->stop();
+    return d_ptr->testWidget->start();
+}
+
+bool HAbstractMainWindow::blockAndRun(QDialog *dialog)
 {
     d_ptr->testWidget->stop();
-    auto result = dlg->exec();
+    auto result = dialog->exec();
     d_ptr->testWidget->start();
     return result == QDialog::Accepted;
 }
 
-void HAbstractMainWindow::openWidget(QWidget *w)
+void HAbstractMainWindow::blockAndRun(QWidget *widget)
+{
+    blockAndConnect(widget);
+    widget->show();
+}
+
+void HAbstractMainWindow::blockAndConnect(QWidget *widget)
 {
     d_ptr->testWidget->stop();
-    w->setAttribute(Qt::WA_ShowModal, true);
-    w->setAttribute(Qt::WA_DeleteOnClose, true);
-    w->show();
-    connect(w, &QWidget::destroyed, d_ptr->testWidget, &ITestWidget::start);
+    connect(widget, &QWidget::destroyed, d_ptr->testWidget, &ITestWidget::start);
+    widget->setAttribute(Qt::WA_ShowModal, true);
+    widget->setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
 QString HAbstractMainWindow::summary()

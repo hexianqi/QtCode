@@ -21,7 +21,7 @@ void HElecCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HElecCalibrateHandler);
     HElecCalibrateDialog dlg(d->mainWindow);
-    d->mainWindow->openDialog(&dlg);
+    d->mainWindow->blockAndRun(&dlg);
     d->model->addAction(ACT_RESET_ELEC);
 }
 

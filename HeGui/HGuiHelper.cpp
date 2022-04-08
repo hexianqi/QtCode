@@ -17,18 +17,17 @@ QMainWindow *HGuiHelper::decoratorInMainWindow(ITestWidget *widget, QWidget *par
         main->menuBar()->addMenu(menu);
     for (auto toolBar : widget->toolBars())
         main->addToolBar(toolBar);
-    widget->start();
     return main;
 }
 
 QDialog *HGuiHelper::decoratorInDialog(QWidget *widget, QWidget *parent)
 {
-    auto dlg = new QDialog(parent);
-    auto layout = new QGridLayout(dlg);
+    auto dialog = new QDialog(parent);
+    auto layout = new QGridLayout(dialog);
     layout->addWidget(widget);
-    dlg->setWindowTitle(widget->windowTitle());
-    dlg->setWindowIcon(widget->windowIcon());
-    return dlg;
+    dialog->setWindowTitle(widget->windowTitle());
+    dialog->setWindowIcon(widget->windowIcon());
+    return dialog;
 }
 
 QString HGuiHelper::encodePassword(QString value)

@@ -197,7 +197,7 @@ void HTestWidget7000::initWidget()
 //    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget7000::handleStateChanged);
 //    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget7000::handleResultChanged);
     connect(d->testSetWidget, SIGNAL(testStateChanged(bool)), this, SLOT(handleStateChanged(bool)));
-    connect(d->testSetWidget, SIGNAL(resultChanged(HActionType, bool)), this,SLOT(handleResultChanged(HActionType, bool)));
+    connect(d->testSetWidget, SIGNAL(resultChanged(HActionType, bool)), this, SLOT(handleResultChanged(HActionType, bool)));
     connect(d->tableWidget, &HResultTableWidget::itemDoubleClicked, this, &HTestWidget7000::editProduct);
 }
 

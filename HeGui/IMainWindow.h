@@ -21,10 +21,13 @@ public:
     virtual void setAuthority(int) = 0;
     // 插入菜单
     virtual QAction *insertMenu(QMenu *) = 0;
-    // 打开对话框
-    virtual bool openDialog(QDialog *) = 0;
-    // 打开窗体
-    virtual void openWidget(QWidget *) = 0;
+    // 阻塞测试窗体
+    virtual bool blockTestWidget(bool block) = 0;
+    // 阻塞并运行
+    virtual bool blockAndRun(QDialog *) = 0;
+    virtual void blockAndRun(QWidget *) = 0;
+    // 阻塞并连接销毁
+    virtual void blockAndConnect(QWidget *) = 0;
 };
 
 HE_END_NAMESPACE

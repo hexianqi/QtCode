@@ -24,5 +24,4 @@ public:
 
 protected:
     void init() override;
-    bool handleAction(HActionType action) override;
 };

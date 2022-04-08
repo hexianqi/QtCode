@@ -27,6 +27,7 @@
 #include "HSqlBrowserHandler.h"
 #include "HProductEditHandler.h"
 #include "HIVTestHandler.h"
+#include "HAngleTestHandler.h"
 #include "HImportCurveHandler.h"
 #include "HExportCurveHandler.h"
 #include "HImportDeviceHandler.h"
@@ -141,6 +142,7 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HProductEditHandler>("HProductEditHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
     HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
+    HObjectFactory::registerClass<HAngleTestHandler>("HAngleTestHandler");
     HObjectFactory::registerClass<HImportDeviceHandler>("HImportDeviceHandler");
     HObjectFactory::registerClass<HExportDeviceHandler>("HExportDeviceHandler");
     HObjectFactory::registerClass<HImportCurveHandler>("HImportCurveHandler");

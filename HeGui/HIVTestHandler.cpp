@@ -20,8 +20,11 @@ QString HIVTestHandler::typeName()
 void HIVTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HIVTestHandler);
-    auto w = HGuiHelper::decoratorInMainWindow(new HIVTestWidget, d->mainWindow);
-    d->mainWindow->openWidget(w);
+    auto w = new HIVTestWidget;
+    auto m = HGuiHelper::decoratorInMainWindow(w, d->mainWindow);
+    d->mainWindow->blockAndConnect(m);
+    w->start();
+    m->show();
 }
 
 HE_END_NAMESPACE

@@ -27,14 +27,16 @@ public:
     QList<QToolBar *> toolBars() override;
 
 public:
-    void start() override;
-    void stop() override;
+    bool start() override;
+    bool stop() override;
 
 protected:
     HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected slots:
     virtual void closeEvent(QCloseEvent *) override;
+    virtual void saveState();
+    virtual void restoreState();
     virtual bool setTest(bool b);
     virtual void handleAction(HActionType action);
 

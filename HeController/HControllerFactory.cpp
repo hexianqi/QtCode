@@ -9,6 +9,7 @@
 #include "HSpecStrategy.h"
 #include "HElecStrategy.h"
 #include "HLuminousStrategy.h"
+#include "HMotorStrategy.h"
 #include "HPowerFactorStrategy.h"
 #include "HMemento.h"
 #include "HMementoCollection.h"
@@ -93,6 +94,7 @@ void HControllerFactory::registerClass()
     HObjectFactory::registerClass<HSpecStrategy>("HSpecStrategy");
     HObjectFactory::registerClass<HElecStrategy>("HElecStrategy");
     HObjectFactory::registerClass<HLuminousStrategy>("HLuminousStrategy");
+    HObjectFactory::registerClass<HMotorStrategy>("HMotorStrategy");
     HObjectFactory::registerClass<HPowerFactorStrategy>("HPowerFactorStrategy");
 }
 
