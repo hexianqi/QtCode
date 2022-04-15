@@ -36,9 +36,6 @@ HBuilder2100DCPrivate::HBuilder2100DCPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
-
-    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息2|" << "|光度信息2|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
-    sqlField = QStringList() << "ID" << HSql::membership(list);
 //    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
 //                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
 //                             << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ElecPower"
@@ -118,6 +115,22 @@ void HBuilder2100DC::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
+void HBuilder2100DC::buildTemplate()
+{
+    Q_D(HBuilder2100DC);
+    auto textExport = d->dataFactory->createTextExport("HTextExport");
+    auto specTextTemplate = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
+    auto print = d->dataFactory->createPrint("HPrint");
+    auto tagPrintTemplate = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
+    auto specPrintTemplate = new HSpecPrintTemplate2100DC(this);
+    specPrintTemplate->initialize();
+    HAppContext::setContextPointer("ITextExport", textExport);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
+    HAppContext::setContextPointer("ITagPrintTemplate", tagPrintTemplate);
+}
+
 void HBuilder2100DC::buildDevice()
 {
     Q_D(HBuilder2100DC);
@@ -137,22 +150,6 @@ void HBuilder2100DC::buildDevice()
     protocols->insert("Spec", protocol1);
     protocols->insert("Elec", protocol2);
     HAppContext::setContextPointer("IProtocolCollection", protocols);
-}
-
-void HBuilder2100DC::buildTemplate()
-{
-    Q_D(HBuilder2100DC);
-    auto expor = d->dataFactory->createTextExport("HTextExport");
-    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    auto print = d->dataFactory->createPrint("HPrint");
-    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
-    auto spec = new HSpecPrintTemplate2100DC(this);
-    spec->initialize();
-    HAppContext::setContextPointer("ITextExport", expor);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
-    HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
-    HAppContext::setContextPointer("ITagPrintTemplate", tag);
 }
 
 void HBuilder2100DC::buildThread()
@@ -186,24 +183,8 @@ void HBuilder2100DC::buildMemento()
 void HBuilder2100DC::buildDatabase()
 {
     Q_D(HBuilder2100DC);
-    auto find = d->sqlField;
-    find.removeAll("ID");
-    find.removeAll("Rx");
-    find.removeAll("EnergyGraph");
-    find.removeAll("ReflectGraph");
-    find.removeAll("TM30_Rfi");
-    find.removeAll("TM30_hj_Rf");
-    find.removeAll("TM30_hj_Rcs");
-    find.removeAll("TM30_hj_Rhs");
-    find.removeAll("TM30_hj_at");
-    find.removeAll("TM30_hj_bt");
-    find.removeAll("TM30_hj_ar");
-    find.removeAll("TM30_hj_br");
-    find.removeAll("TM30_hj_atn");
-    find.removeAll("TM30_hj_btn");
-    find.removeAll("TM30_hj_arn");
-    find.removeAll("TM30_hj_arn");
-
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息2|" << "|光度信息3|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    auto field = QStringList() << "ID" << HSql::membership(group);
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
     if (db->contains("Spec"))
@@ -227,9 +208,8 @@ void HBuilder2100DC::buildDatabase()
     auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
     auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
     auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
-    model->setTableField("Spec", d->sqlField);
+    model->setTableField("Spec", field);
     handle->setModel(model);
-    handle->setFieldFind(find);
     output->setModel(model);
     output->setTextTemplate(text);
     output->setPrintTemplate(print);

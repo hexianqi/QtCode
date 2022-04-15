@@ -36,6 +36,7 @@
 #include "HLoginOutHandler.h"
 #include "HSpecPrintTemplate.h"
 #include "HTagPrintTemplate.h"
+#include "HAngleTextExportTemplate.h"
 #include "HSpecTextExportTemplate.h"
 #include "HeCore/HObjectFactory.h"
 #include "HeCore/HWidgetFactory.h"
@@ -95,10 +96,7 @@ IPrintTemplate *HGuiFactory::createPrintTemplate(QString type, QVariantMap param
 
 ITextExportTemplate *HGuiFactory::createTextExportTemplate(QString type, QVariantMap param)
 {
-    Q_UNUSED(type)
-    auto p = new HSpecTextExportTemplate(this);
-    p->initialize(param);
-    return p;
+    return HObjectFactory::createObject<ITextExportTemplate>(type, param, this);
 }
 
 HAction *HGuiFactory::createAction(QString text, QString type, QVariantMap param)
@@ -152,6 +150,10 @@ void HGuiFactory::registerClass()
     // 打印模板
     HObjectFactory::registerClass<HSpecPrintTemplate>("HSpecPrintTemplate");
     HObjectFactory::registerClass<HTagPrintTemplate>("HTagPrintTemplate");
+    // 文本导出模板
+    HObjectFactory::registerClass<HAngleTextExportTemplate>("HAngleTextExportTemplate");
+    HObjectFactory::registerClass<HSpecTextExportTemplate>("HSpecTextExportTemplate");
+
 }
 
 HE_END_NAMESPACE

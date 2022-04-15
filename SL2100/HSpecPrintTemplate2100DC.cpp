@@ -114,7 +114,7 @@ void HSpecPrintTemplate2100DC::paintBody(QPainter *painter, QRectF rect, int /*p
 void HSpecPrintTemplate2100DC::init()
 {
     Q_D(HSpecPrintTemplate2100DC);
-    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|光合信息|" << "|色容差信息2|" << "|TM30信息|" << "|直流电信息2|");
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息3|" << "|光合信息|" << "|色容差信息2|" << "|TM30信息|" << "|直流电信息2|");
     d->params.insert("Header",      tr("松朗光色电综合测试报告"));
     d->params.insert("Title",       tr("光色电综合测试报告"));
     d->params.insert("DrawHeader",  true);

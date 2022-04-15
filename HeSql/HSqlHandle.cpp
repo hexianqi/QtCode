@@ -1,5 +1,6 @@
 #include "HSqlHandle_p.h"
 #include "ISqlTableModel.h"
+#include "HSql.h"
 #include "HSqlFindDialog.h"
 #include "HeCore/HCore.h"
 #include <QtCore/QDateTime>
@@ -35,6 +36,7 @@ void HSqlHandle::setModel(ISqlTableModel *p)
     if (d_ptr->model == p)
         return;
     d_ptr->model = p;
+    d_ptr->fieldFind = HSql::generateFieldFind(p->tableName(), p->field());
 }
 
 void HSqlHandle::setFieldFind(QStringList value)

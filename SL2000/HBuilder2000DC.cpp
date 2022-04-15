@@ -1,18 +1,18 @@
 #include "HBuilder2000DC_p.h"
-#include "HSpecPrintTemplate2000DC.h"
 #include "HTestWidget2000DC.h"
+#include "HSpecPrintTemplate2000DC.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IDataStream.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/ISpecCalibrateCollection.h"
-#include "HeData/IChromatismCollection.h"
 #include "HeData/IElecCalibrate.h"
 #include "HeData/IElecCalibrateCollection.h"
 #include "HeData/ILuminousCalibrate.h"
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HeData/ILuminousCalibrateCollection.h"
+#include "HeData/IChromatismCollection.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
@@ -39,9 +39,6 @@ HBuilder2000DCPrivate::HBuilder2000DCPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
-
-    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
-    sqlField = QStringList() << "ID" << HSql::membership(list);
 //    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
 //                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
 //                             << "OutputVoltage" << "OutputCurrent" << "MeasuredVoltage" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower"
@@ -122,12 +119,12 @@ void HBuilder2000DC::buildConfigManage()
         auto luminousItem = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
         auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
         auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
-        auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
         luminousItem->setData("[项类型]", "[光通量]");
         luminous->insert("[光通量]", luminousItem);
         luminous->setTotalGears(5);
         luminouss->insert("模块1", luminous);
 
+        auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
         chromatisms->dataStream()->readFile(":/dat/Chromatism.hcc");
 
         d->configManage->setContain(IConfigManage::ContainSpec
@@ -148,22 +145,6 @@ void HBuilder2000DC::buildConfigManage()
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
 
-void HBuilder2000DC::buildTemplate()
-{
-    Q_D(HBuilder2000DC);
-    auto expor = d->dataFactory->createTextExport("HTextExport");
-    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    auto print = d->dataFactory->createPrint("HPrint");
-    auto tag = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
-    auto spec = new HSpecPrintTemplate2000DC(this);
-    spec->initialize();
-    HAppContext::setContextPointer("ITextExport", expor);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
-    HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
-    HAppContext::setContextPointer("ITagPrintTemplate", tag);
-}
-
 void HBuilder2000DC::buildTestData()
 {
     Q_D(HBuilder2000DC);
@@ -172,7 +153,6 @@ void HBuilder2000DC::buildTestData()
     auto elec = d->dataFactory->createTestData("HTestElec");
     auto luminous = d->dataFactory->createTestData("HTestLuminous");
     auto spec = d->dataFactory->createTestSpec("HTestSpec");
-
     spec->setCalibrate(d->configManage->specCalibrate("1"));
     elec->setCalibrate(d->configManage->elecCalibrateCollection());
     elec->setData("[输出电压]", 10);
@@ -183,6 +163,22 @@ void HBuilder2000DC::buildTestData()
     HAppContext::setContextPointer("ITestLuminous", luminous);
     HAppContext::setContextPointer("ITestElec", elec);
     HAppContext::setContextPointer("ITestSpec", spec);
+}
+
+void HBuilder2000DC::buildTemplate()
+{
+    Q_D(HBuilder2000DC);
+    auto textExport = d->dataFactory->createTextExport("HTextExport");
+    auto specTextTemplate = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
+    auto print = d->dataFactory->createPrint("HPrint");
+    auto tagPrintTemplate = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
+    auto specPrintTemplate = new HSpecPrintTemplate2000DC(this);
+    specPrintTemplate->initialize();
+    HAppContext::setContextPointer("ITextExport", textExport);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
+    HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
+    HAppContext::setContextPointer("ITagPrintTemplate", tagPrintTemplate);
 }
 
 void HBuilder2000DC::buildDevice()
@@ -237,23 +233,15 @@ void HBuilder2000DC::buildMemento()
 void HBuilder2000DC::buildDatabase()
 {
     Q_D(HBuilder2000DC);
-    auto find = d->sqlField;
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息2|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    auto field = QStringList() << "ID" << HSql::membership(group);
+    auto find = field;
     find.removeAll("ID");
     find.removeAll("Rx");
     find.removeAll("EnergyGraph");
     find.removeAll("ReflectGraph");
-    find.removeAll("TM30_Rfi");
-    find.removeAll("TM30_hj_Rf");
-    find.removeAll("TM30_hj_Rcs");
-    find.removeAll("TM30_hj_Rhs");
-    find.removeAll("TM30_hj_at");
-    find.removeAll("TM30_hj_bt");
-    find.removeAll("TM30_hj_ar");
-    find.removeAll("TM30_hj_br");
-    find.removeAll("TM30_hj_atn");
-    find.removeAll("TM30_hj_btn");
-    find.removeAll("TM30_hj_arn");
-    find.removeAll("TM30_hj_arn");
+    for (auto f : HSql::membership("|TM30信息3|"))
+        find.removeAll(f);
 
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
@@ -282,9 +270,8 @@ void HBuilder2000DC::buildDatabase()
     auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
     auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
 
-    model->setTableField("Spec", d->sqlField);
+    model->setTableField("Spec", field);
     handle->setModel(model);
-    handle->setFieldFind(find);
     output->setModel(model);
     output->setTextTemplate(text);
     output->setPrintTemplate(print);

@@ -7,6 +7,8 @@ HE_BEGIN_NAMESPACE
 
 class HSimulateDevicePrivate : public HAbstractDevicePrivate
 {
+public:
+    HSimulateDevicePrivate();
 
 };
 

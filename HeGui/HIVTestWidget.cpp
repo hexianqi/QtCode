@@ -39,7 +39,12 @@ void HIVTestWidget::createWidget()
     Q_D(HIVTestWidget);
     d->testSetWidget = new HIVTestSetWidget;
     d->tableWidget = new HEntireTableWidget;
+    d->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("电流(mA)") << tr("电压(V)"));
+    d->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    d->tableWidget->verticalHeader()->setVisible(false);
     d->chartView = new HDynamicChartView;
+    d->chartView->axisX()->setLabelFormat("%.2f mA");
+    d->chartView->axisY()->setLabelFormat("%.2f V");
 }
 
 void HIVTestWidget::createMenu()
@@ -67,11 +72,6 @@ void HIVTestWidget::initWidget()
     Q_D(HIVTestWidget);
     auto layout = new QGridLayout(this);
     auto tabWidget = new QTabWidget;
-    d->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("电流(mA)") << tr("电压(V)"));
-    d->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    d->tableWidget->verticalHeader()->setVisible(false);
-    d->chartView->axisX()->setLabelFormat("%.2f mA");
-    d->chartView->axisY()->setLabelFormat("%.2f V");
     tabWidget->addTab(d->chartView, tr("测试图形"));
     tabWidget->addTab(d->tableWidget, tr("结果列表"));
     layout->addWidget(tabWidget, 1, 0, 1, 2);

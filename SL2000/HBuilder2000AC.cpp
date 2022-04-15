@@ -37,8 +37,6 @@ HBuilder2000ACPrivate::HBuilder2000ACPrivate()
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     deploy.insert("PfProtocol",     "HUi2008Protocol");     // HUi2008Protocol:UI2008; HUi2010Protocol:UI2010
 
-    auto list = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|交流电信息|" << "|光度信息2|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
-    sqlField = QStringList() << "ID" << HSql::membership(list);
 //    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
 //                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
 //                             << "ACCurrent" << "ACVoltage" << "ACPower" << "ACFactor"
@@ -119,15 +117,15 @@ void HBuilder2000AC::buildTestData()
 void HBuilder2000AC::buildTemplate()
 {
     Q_D(HBuilder2000AC);
-    auto expor = d->dataFactory->createTextExport("HTextExport");
-    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
+    auto textExport = d->dataFactory->createTextExport("HTextExport");
+    auto specTextTemplate = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
     auto print = d->dataFactory->createPrint("HPrint");
-    auto spec = new HSpecPrintTemplate2000AC(this);
-    spec->initialize();
-    HAppContext::setContextPointer("ITextExport", expor);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
+    auto specPrintTemplate = new HSpecPrintTemplate2000AC(this);
+    specPrintTemplate->initialize();
+    HAppContext::setContextPointer("ITextExport", textExport);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
     HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("ISpecPrintTemplate", spec);
+    HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
 }
 
 void HBuilder2000AC::buildDevice()
@@ -182,24 +180,8 @@ void HBuilder2000AC::buildMemento()
 void HBuilder2000AC::buildDatabase()
 {
     Q_D(HBuilder2000AC);
-    auto find = d->sqlField;
-    find.removeAll("ID");
-    find.removeAll("Rx");
-    find.removeAll("EnergyGraph");
-    find.removeAll("ReflectGraph");
-    find.removeAll("TM30_Rfi");
-    find.removeAll("TM30_hj_Rf");
-    find.removeAll("TM30_hj_Rcs");
-    find.removeAll("TM30_hj_Rhs");
-    find.removeAll("TM30_hj_at");
-    find.removeAll("TM30_hj_bt");
-    find.removeAll("TM30_hj_ar");
-    find.removeAll("TM30_hj_br");
-    find.removeAll("TM30_hj_atn");
-    find.removeAll("TM30_hj_btn");
-    find.removeAll("TM30_hj_arn");
-    find.removeAll("TM30_hj_arn");
-
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|交流电信息|" << "|光度信息3|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    auto field = QStringList() << "ID" << HSql::membership(group);
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
     if (db->contains("Spec"))
@@ -224,9 +206,8 @@ void HBuilder2000AC::buildDatabase()
     auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
     auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
 
-    model->setTableField("Spec", d->sqlField);
+    model->setTableField("Spec", field);
     handle->setModel(model);
-    handle->setFieldFind(find);
     output->setModel(model);
     output->setTextTemplate(text);
     output->setPrintTemplate(print);

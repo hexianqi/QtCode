@@ -7,8 +7,4 @@ class HBuilder2100DCPrivate : public HAbstractBuilderPrivate
 {
 public:
     HBuilder2100DCPrivate();
-
-public:
-    QStringList sqlField;
-
 };

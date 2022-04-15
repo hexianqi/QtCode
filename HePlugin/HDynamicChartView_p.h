@@ -13,7 +13,7 @@ class QLineSeries;
 class QScatterSeries;
 QT_CHARTS_END_NAMESPACE
 
-class HDynamicChartViewPrivate : public HZoomChartViewPrivate
+class QDESIGNER_WIDGET_EXPORT HDynamicChartViewPrivate : public HZoomChartViewPrivate
 {
 public:
     HSingleAxisChart *chart;

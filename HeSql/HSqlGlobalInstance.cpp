@@ -101,6 +101,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("TestDate",                "[测量日期]");
     hashFieldType.insert("TestTime",                "[测量时间]");
     // 光参数
+    hashFieldType.insert("LuminousIntensity",       "[光强度]");
     hashFieldType.insert("LuminousFlux",            "[光通量]");
     hashFieldType.insert("LuminousPower",           "[光功率]");
     hashFieldType.insert("LuminousEfficiency",      "[光效率]");
@@ -195,6 +196,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("TestDate",                 "TestDate date");
     hashFieldCreateStyle.insert("TestTime",                 "TestTime time");
     // 光
+    hashFieldCreateStyle.insert("LuminousIntensity",        "LuminousIntensity numeric(18, 2)");
     hashFieldCreateStyle.insert("LuminousFlux",             "LuminousFlux numeric(18, 2)");
     hashFieldCreateStyle.insert("LuminousPower",            "LuminousPower numeric(18, 2)");
     hashFieldCreateStyle.insert("LuminousEfficiency",       "LuminousEfficiency numeric(18, 2)");
@@ -271,11 +273,13 @@ void HSqlGlobalInstance::initFieldGroup()
     // |光谱信息3|   - [CC_u][CC_v][LuminousFluxSpec]
     // |光谱信息4|   - [CC_u][CC_v][EnergyGraph][ReflectGraph]
     // |光谱信息5|   - [CC_u][CC_v][LuminousFluxSpec][EnergyGraph][ReflectGraph]
-    // |光度信息2|   - [LuminousFlux]
-    // |光度信息3|   - [LuminousFlux][LuminousEfficiency]
+    // |光度信息2|   - [LuminousIntensity]
+    // |光度信息3|   = [LuminousPower][LuminousEfficiency]
+    // |光度信息4|   = [LuminousPower]
     // |色容差信息2| - [SDCMDetail]
     // |直流电信息2| - [ReverseVoltage][ReverseCurrent]
     // |TM30信息2|,  # [TM30_Rf][TM30_Rg]
+    // |TM30信息3|,  - [TM30_Rf][TM30_Rg]
 
     hashFieldGroup.insert("|产品信息|",      QStringList() << "Manufacturer" << "ProductName" << "ProductModel"  << "SampleNumber" << "TestInstitute" << "Tester" << "Note");
     hashFieldGroup.insert("|产品信息2|",     QStringList() << "Manufacturer" << "ProductName" << "ProductModel"  << "SampleNumber" << "TestInstitute" << "Tester");
@@ -311,9 +315,10 @@ void HSqlGlobalInstance::initFieldGroup()
                                                            << "ColorTemperature" << "ColorPurity" << "Duv"
                                                            << "RedRatio" << "GreenRadio" << "BlueRatio"
                                                            << "Ra" << "R9" << "Rx");
-    hashFieldGroup.insert("|光度信息|",      QStringList() << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency");
-    hashFieldGroup.insert("|光度信息2|",     QStringList() << "LuminousPower" << "LuminousEfficiency");
-    hashFieldGroup.insert("|光度信息3|",     QStringList() << "LuminousPower");
+    hashFieldGroup.insert("|光度信息|",      QStringList() << "LuminousIntensity" << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency");
+    hashFieldGroup.insert("|光度信息2|",     QStringList() << "LuminousFlux" << "LuminousPower" << "LuminousEfficiency");
+    hashFieldGroup.insert("|光度信息3|",     QStringList() << "LuminousPower" << "LuminousEfficiency");
+    hashFieldGroup.insert("|光度信息4|",     QStringList() << "LuminousPower");
     hashFieldGroup.insert("|光合信息|",      QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800"
                                                            << "PPF" << "PRF" << "PPFE"
                                                            << "FluorescenceEfficiency" << "FluorescenceRatio");
@@ -324,15 +329,18 @@ void HSqlGlobalInstance::initFieldGroup()
                                                            << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
                                                            << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
     hashFieldGroup.insert("|TM30信息2|",     QStringList() << "TM30_Rf" << "TM30_Rg");
+    hashFieldGroup.insert("|TM30信息3|",     QStringList() << "TM30_Rfi"
+                                                           << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+                                                           << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+                                                           << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
     hashFieldGroup.insert("|直流电信息|",    QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower");
     hashFieldGroup.insert("|直流电信息2|",   QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ElecPower");
     hashFieldGroup.insert("|交流电信息|",    QStringList() << "ACVoltage" << "ACCurrent" << "ACPower" << "ACFactor");
-
     // 数据格式
     hashFieldGroup.insert("|多边形格式|",    QStringList() << "EnergyGraph" << "ReflectGraph");
     hashFieldGroup.insert("|列表格式|",      QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
                                                            << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                                                           << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_arn");
+                                                           << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
 }
 
 HE_END_NAMESPACE

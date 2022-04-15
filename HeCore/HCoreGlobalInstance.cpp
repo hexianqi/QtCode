@@ -650,11 +650,13 @@ void HCoreGlobalInstance::initDataGroup()
     // |光谱信息3|   - [色坐标uv][色坐标u][色坐标v][光谱光通量]
     // |光谱信息4|   - [色坐标][色坐标uvp][色坐标uv][色坐标u][色坐标v][光谱能量曲线][光谱反射曲线]
     // |光谱信息5|   - [色坐标][色坐标uvp][色坐标uv][色坐标u][色坐标v][光谱光通量][光谱能量曲线][光谱反射曲线]
-    // |光度信息2|   - [光通量]
-    // |光度信息3|   - [光通量][光效率]
+    // |光度信息2|   - [光强度]
+    // |光度信息3|   = [光功率][光效率]
+    // |光度信息4|   = [光功率]
     // |色容差信息2| - [色容差标准]
     // |直流电信息2| - [反向电压][反向漏流]
-    // |TM30信息2|,  # [TM30_Rf][TM30_Rg]
+    // |TM30信息2|   = [TM30_Rf][TM30_Rg]
+    // |TM30信息3|   - [TM30_Rf][TM30_Rg]
 
     hashDataGroup.insert("|产品信息|",      QStringList() << "[制造厂商]" << "[产品名称]" << "[产品型号]" << "[样品编号]" << "[测试单位]" << "[测试员]" << "[备注]");
     hashDataGroup.insert("|产品信息2|",     QStringList() << "[制造厂商]" << "[产品名称]" << "[产品型号]" << "[样品编号]" << "[测试单位]" << "[测试员]");
@@ -691,9 +693,10 @@ void HCoreGlobalInstance::initDataGroup()
                                                           << "[色温]" << "[色纯度]" << "[Duv]"
                                                           << "[红色比]" << "[绿色比]" << "[蓝色比]"
                                                           << "[显色指数Ra]" << "[显色指数R9]" << "[显色指数Rx]");
-    hashDataGroup.insert("|光度信息|",      QStringList() << "[光通量]" << "[光功率]" << "[光效率]");
-    hashDataGroup.insert("|光度信息2|",     QStringList() << "[光功率]" << "[光效率]");
-    hashDataGroup.insert("|光度信息3|",     QStringList() << "[光功率]");
+    hashDataGroup.insert("|光度信息|",      QStringList() << "[光强度]" << "[光通量]" << "[光功率]" << "[光效率]");
+    hashDataGroup.insert("|光度信息2|",     QStringList() << "[光通量]" << "[光功率]" << "[光效率]");
+    hashDataGroup.insert("|光度信息3|",     QStringList() << "[光功率]" << "[光效率]");
+    hashDataGroup.insert("|光度信息4|",     QStringList() << "[光功率]");
     hashDataGroup.insert("|光合信息|",      QStringList() << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
                                                           << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
                                                           << "[荧光效能]" << "[荧光蓝光比]");
@@ -704,9 +707,17 @@ void HCoreGlobalInstance::initDataGroup()
                                                           << "[TM30_hj_at]" << "[TM30_hj_bt]" << "[TM30_hj_ar]" << "[TM30_hj_br]"
                                                           << "[TM30_hj_atn]" << "[TM30_hj_btn]" << "[TM30_hj_arn]" << "[TM30_hj_brn]");
     hashDataGroup.insert("|TM30信息2|",     QStringList() << "[TM30_Rf]" << "[TM30_Rg]");
+    hashDataGroup.insert("|TM30信息3|",     QStringList() << "[TM30_Rfi]"
+                                                          << "[TM30_hj_Rf]" << "[TM30_hj_Rcs]" << "[TM30_hj_Rhs]"
+                                                          << "[TM30_hj_at]" << "[TM30_hj_bt]" << "[TM30_hj_ar]" << "[TM30_hj_br]"
+                                                          << "[TM30_hj_atn]" << "[TM30_hj_btn]" << "[TM30_hj_arn]" << "[TM30_hj_brn]");
     hashDataGroup.insert("|直流电信息|",    QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]");
     hashDataGroup.insert("|直流电信息2|",   QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[电功率]");
     hashDataGroup.insert("|交流电信息|",    QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]");
+    hashDataGroup.insert("|光强角度信息|",  QStringList() << "[最大光强度]" << "[法相光强度]" << "[角度光通量]" << "[最大光强度角]"
+                                                          << "[左半光强度角]" << "[右半光强度角]" << "[半光强度夹角]"
+                                                          << "[左1/5光强度角]" << "[右1/5光强度角]" << "[1/5光强度夹角]"
+                                                          << "[光强角度分布]");
 }
 
 void HCoreGlobalInstance::initMimeType()

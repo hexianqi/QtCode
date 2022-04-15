@@ -32,7 +32,7 @@ protected:
     void clearResult() override;
     void exportExcel() override;
     void handleStateChanged(bool b);
-    void handleResultChanged();
+    void handleResultChanged(HActionType, bool);
     void exportDatabase();
 };
 

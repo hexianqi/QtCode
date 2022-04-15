@@ -14,7 +14,6 @@ DEFINES     += \
             SL7000 \
             SIMULATE
 
-
 SOURCES     += \
             main.cpp
 

@@ -34,7 +34,6 @@ HBuilder7000Private::HBuilder7000Private()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
-
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
     HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
@@ -155,10 +154,10 @@ void HBuilder7000::buildTestData()
 void HBuilder7000::buildTemplate()
 {
     Q_D(HBuilder7000);
-    auto expo = d->dataFactory->createTextExport("HTextExport");
-    auto text = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    HAppContext::setContextPointer("ITextExport", expo);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", text);
+    auto textExport = d->dataFactory->createTextExport("HTextExport");
+    auto specTextTemplate = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
+    HAppContext::setContextPointer("ITextExport", textExport);
+    HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
 }
 
 void HBuilder7000::buildDevice()

@@ -68,7 +68,7 @@ public:
     IPrintTemplate *specPrintTemplate = nullptr;
     IPrintTemplate *tagPrintTemplate = nullptr;
     ITextExport *textExport = nullptr;
-    ITextExportTemplate *specTextTemplate = nullptr;
+    ITextExportTemplate *textExportTemplate = nullptr;
 
 public:
     QTimer *timer = nullptr;

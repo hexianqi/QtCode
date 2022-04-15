@@ -133,4 +133,30 @@ QVariantMap HSql::toData(const QStringList &type, QSqlRecord record)
     return result;
 }
 
+QStringList HSql::generateFieldFind(const QString name, const QStringList &field)
+{
+    auto list = field;
+    list.removeAll("ID");
+
+    if (name == "Spec")
+    {
+        list.removeAll("Rx");
+        list.removeAll("EnergyGraph");
+        list.removeAll("ReflectGraph");
+        for (auto f : HSql::membership("|TM30信息3|"))
+            list.removeAll(f);
+    }
+
+    return list;
+}
+
+QStringList HSql::removeFieldGraph(const QStringList &field)
+{
+    auto list = field;
+    list.removeAll("ID");
+    list.removeAll("EnergyGraph");
+    list.removeAll("ReflectGraph");
+    return list;
+}
+
 HE_END_NAMESPACE

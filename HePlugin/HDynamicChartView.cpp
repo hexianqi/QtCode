@@ -77,8 +77,8 @@ void HDynamicChartView::replace(QVector<QPointF> points)
     }
     d->lineSeries->replace(points);
     d->scatterSeries->replace(points);
-    d->axisX->setRange(floor(x1) , ceil(x2));
-    d->axisY->setRange(floor(y1) , ceil(y2));
+    d->axisX->setRange(10 * floor(x1 / 10) , 10 * ceil(x2 / 10));
+    d->axisY->setRange(10 * floor(y1 / 10) , 10 * ceil(y2 / 10));
 }
 
 void HDynamicChartView::init()

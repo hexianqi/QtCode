@@ -120,21 +120,22 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
 {
     Q_D(HTestLuminous);
     int i;
-    QPolygonF poly;
+    QPolygonF poly1, poly2;
     auto gears = data("[光档位]").toInt();
-    auto size = poly.size();
+    auto size = value.size();
 
     if (size <= 0)
         return false;
 
-    for (int i = 0; i < value.size(); i++)
-        poly.append(QPointF(i * 0.9, d->calibrate->toReal(value[i], "[光强度]", gears)));
+    for (int i = 0; i < size; i++)
+        poly1.append(QPointF(i * 0.9, d->calibrate->toReal(value[i], "[光强度]", gears)));
 
-    poly = HMath::interpolate(poly, 0.0, 180.0, 0.1);
-    size = poly.size();
+    poly1 = HMath::interpolate(poly1, 0.0, 180.0, 0.1);
+    poly2 = HMath::interpolate(poly1, 0.0, 180.0, 1);
+    size = poly1.size();
 
     auto maxN = size / 2;
-    auto maxIv = poly.at(maxN).y();
+    auto maxIv = poly1.at(maxN).y();
     auto theta1 = 0.0;
     auto theta2 = 0.0;
     auto theta3 = 0.0;
@@ -144,15 +145,15 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
 
     for (i = 0; i < size; i++)
     {
-        if (poly[i].y() > maxIv)
+        if (poly1[i].y() > maxIv)
         {
-            maxIv = poly[i].y();
+            maxIv = poly1[i].y();
             maxN = i;
         }
     }
     for (i = 0; i < maxN; i++)
     {
-        if (poly[i].y() > maxIv / 2)
+        if (poly1[i].y() > maxIv / 2)
         {
             theta1 = i / 10.0;
             break;
@@ -160,7 +161,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     }
     for (i = size - 1; i > maxN; i--)
     {
-        if (poly[i].y() > maxIv / 2)
+        if (poly1[i].y() > maxIv / 2)
         {
             theta2 = i / 10.0;
             break;
@@ -168,7 +169,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     }
     for (i = 0; i < maxN; i++)
     {
-        if (poly[i].y() > maxIv / 5)
+        if (poly1[i].y() > maxIv / 5)
         {
             theta3 = i / 10.0;
             break;
@@ -176,17 +177,17 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     }
     for (i = size - 1; i > maxN; i--)
     {
-        if (poly[i].y() > maxIv / 5)
+        if (poly1[i].y() > maxIv / 5)
         {
             theta4 = i / 10.0;
             break;
         }
     }
     for (i = 1; i < size; i++)
-        flux += M_PI * radian * (poly.at(i-1).y() + poly.at(i).y()) * (qAbs(cos(radian * i)) + qAbs(cos(radian * (i-1)))) / 4;
-    d->setData("[光强角度分布]", poly);
+        flux += M_PI * radian * (poly1.at(i-1).y() + poly1.at(i).y()) * (qAbs(cos(radian * i)) + qAbs(cos(radian * (i-1)))) / 4;
+    d->setData("[光强角度分布]", poly2);
     d->setData("[最大光强度]", maxIv);
-    d->setData("[法相光强度]", poly.at(size / 2).y());
+    d->setData("[法相光强度]", poly1.at(size / 2).y());
     d->setData("[角度光通量]", flux);
     d->setData("[最大光强度角]", maxN / 10.0);
     d->setData("[左半光强度角]", theta1);

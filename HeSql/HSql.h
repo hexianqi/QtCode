@@ -32,12 +32,18 @@ public:
     static QStringList toCaptionUnit(const QStringList &field);
 
 public:
+    static QVariantMap toRecord(const QStringList &field, ITestData *);
+    static QVariantMap toData(const QStringList &type, QSqlRecord);
+
+public:
     static QStringList membership(const QString &name);
     static QStringList membership(const QStringList &name);
 
 public:
-    static QVariantMap toRecord(const QStringList &field, ITestData *);
-    static QVariantMap toData(const QStringList &type, QSqlRecord);
+    static QStringList generateFieldFind(const QString name, const QStringList &field);
+    static QStringList removeFieldGraph(const QStringList &field);
+
+
 };
 
 HE_END_NAMESPACE

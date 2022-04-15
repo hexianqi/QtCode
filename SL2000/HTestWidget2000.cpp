@@ -6,7 +6,7 @@
 HTestWidget2000Private::HTestWidget2000Private()
 {
     productEditable = false;
-    auto list = QStringList() << "|时间信息2|" << "|光度信息3|" << "|光谱信息4|" << "|色容差信息2|";
+    auto list = QStringList() << "|时间信息2|" << "|光度信息4|" << "|光谱信息4|" << "|色容差信息2|";
     displays = QStringList() << "[分级]" << HCore::membership(list);
 }
 

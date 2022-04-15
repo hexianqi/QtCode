@@ -30,7 +30,7 @@
 
 HTestWidget7000Private::HTestWidget7000Private()
 {
-    auto group = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
+    auto group = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息2|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
     auto mementos = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
     memento = mementos->value("Spec");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");

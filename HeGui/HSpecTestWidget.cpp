@@ -51,7 +51,7 @@ HSpecTestWidgetPrivate::HSpecTestWidgetPrivate()
     specPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
     tagPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
     textExport = HAppContext::getContextPointer<ITextExport>("ITextExport");
-    specTextTemplate = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
+    textExportTemplate = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
 }
 
 HSpecTestWidget::HSpecTestWidget(QWidget *parent) :
@@ -260,9 +260,9 @@ void HSpecTestWidget::exportExcel()
         return;
 
     auto type = QStringList() << d->displays << "[光谱能量曲线]";
-    d->specTextTemplate->setDataType(type);
-    d->specTextTemplate->setData(data->select(type));
-    d->textExport->setTextTemplate(d->specTextTemplate);
+    d->textExportTemplate->setDataType(type);
+    d->textExportTemplate->setData(data->select(type));
+    d->textExport->setTextTemplate(d->textExportTemplate);
     d->textExport->saveAs();
 }
 
@@ -378,9 +378,9 @@ void HSpecTestWidget::exportExcelAppend()
     if (data == nullptr)
         return;
 
-    d->specTextTemplate->setDataType(d->displays);
-    d->specTextTemplate->setData(data->select(d->displays));
-    d->textExport->setTextTemplate(d->specTextTemplate);
+    d->textExportTemplate->setDataType(d->displays);
+    d->textExportTemplate->setData(data->select(d->displays));
+    d->textExport->setTextTemplate(d->textExportTemplate);
     d->textExport->append();
 }
 

@@ -5,7 +5,7 @@
 
 HTestWidget2100DCPrivate::HTestWidget2100DCPrivate()
 {
-    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息2|" << "|光度信息2|" << "|光谱信息4|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
+    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息2|" << "|光度信息3|" << "|光谱信息4|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
     displays = QStringList() << "[调整组]" << "[分级]" << HCore::membership(list);
 }
 

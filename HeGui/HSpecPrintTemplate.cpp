@@ -397,7 +397,7 @@ QPointF HSpecPrintTemplate::drawTableTm30Rxhj(QPainter *painter, QRectF rect)
 void HSpecPrintTemplate::init()
 {
     Q_D(HSpecPrintTemplate);
-    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息|" << "|色容差信息2|" << "|TM30信息|");
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|色容差信息2|" << "|TM30信息|");
     d->params.insert("Header",      tr("松朗光电测试报告"));
     d->params.insert("Title",       tr("光谱测试报告"));
     d->params.insert("DrawHeader",  true);
