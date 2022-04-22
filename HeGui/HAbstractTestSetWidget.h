@@ -22,6 +22,8 @@ public:
 
 public:
     QVariant handleOperation(QString type, QVariant value = QVariant()) override;
+    bool setData(QString type, QVariant value) override;
+    QVariant data(QString type) override;
     bool setTestState(bool b) override;
     bool testState() override;
     bool setTestMode(int value) override;

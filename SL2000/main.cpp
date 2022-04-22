@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName("SL2000F");
     HMainWindow2000F w;
 #endif
-    w.show();
+
+    w.showMaximized();
     return a.exec();
 }

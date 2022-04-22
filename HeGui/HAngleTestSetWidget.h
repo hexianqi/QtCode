@@ -23,11 +23,11 @@ public:
     QString typeName() override;
 
 public:
+    QVariant handleOperation(QString type, QVariant value = QVariant()) override;
     void handleAction(HActionType action) override;
     bool setTestState(bool b) override;
 
 protected slots:
-    void on_spinBox_1_editingFinished();
     void on_doubleSpinBox_2_valueChanged(double value);
     void on_doubleSpinBox_3_valueChanged(double value);
     void on_comboBox_1_currentIndexChanged(int value);

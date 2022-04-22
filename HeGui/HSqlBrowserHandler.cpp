@@ -11,6 +11,13 @@ HSqlBrowserHandler::HSqlBrowserHandler(QObject *parent) :
 
 HSqlBrowserHandler::~HSqlBrowserHandler() = default;
 
+void HSqlBrowserHandler::initialize(QVariantMap param)
+{
+    Q_D(HSqlBrowserHandler);
+    if (param.contains("sqlBrowser"))
+        d->sqlBrowser = param.value("sqlBrowser").toString();
+}
+
 QString HSqlBrowserHandler::typeName()
 {
     return "HSqlBrowserHandler";
@@ -18,9 +25,12 @@ QString HSqlBrowserHandler::typeName()
 
 void HSqlBrowserHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
-    auto browser = HAppContext::getContextPointer<ISqlBrowser>("ISqlBrowser");
+    Q_D(HSqlBrowserHandler);
+    if (d->sqlBrowser.isEmpty())
+        d->sqlBrowser = "ISpecSqlBrowser";
+    auto browser = HAppContext::getContextPointer<ISqlBrowser>(d->sqlBrowser);
     browser->revert();
-    browser->show();
+    browser->showMaximized();
 }
 
 HE_END_NAMESPACE

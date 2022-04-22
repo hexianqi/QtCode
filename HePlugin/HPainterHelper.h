@@ -29,6 +29,9 @@ public:
     // 打印页头
     static double paintHeader(QPainter *, const QVariantMap &param);
     // 打印页尾
-    static double paintFooter(QPainter *, const QString &footer);
+    static double paintFooter(QPainter *, const QString &text);
+    // 打印标题
+    static double paintTitle(QPainter *, const QString &text, double y);
+
 
 };

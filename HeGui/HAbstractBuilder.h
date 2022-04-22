@@ -9,6 +9,7 @@
 HE_BEGIN_NAMESPACE
 
 class IMainWindow;
+class ISqlTableModel;
 class HAbstractBuilderPrivate;
 
 class HAbstractBuilder : public QObject, public IBuilder
@@ -41,6 +42,7 @@ protected:
     virtual void buildDatabase() = 0;
     virtual void buildMenu() = 0;
     virtual void buildTestWidget() = 0;
+    virtual ISqlTableModel *createSqlTableModel(QString name, QStringList field);
 
 protected:
     QString deployItem(const QString &key);

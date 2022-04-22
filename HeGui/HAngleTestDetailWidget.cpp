@@ -28,7 +28,7 @@ void HAngleTestDetailWidget::refreshWidget()
     Q_D(HAngleTestDetailWidget);
     ui->lineEdit_001->setText(d->testData->toString("[最大光强度角]"));
     ui->lineEdit_002->setText(d->testData->toString("[最大光强度]"));
-    ui->lineEdit_003->setText(d->testData->toString("[法相光强度]"));
+    ui->lineEdit_003->setText(d->testData->toString("[法向光强度]"));
     ui->lineEdit_004->setText(d->testData->toString("[光强度]"));
     ui->lineEdit_011->setText(d->testData->toString("[左半光强度角]"));
     ui->lineEdit_012->setText(d->testData->toString("[右半光强度角]"));

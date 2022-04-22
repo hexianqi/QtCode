@@ -17,10 +17,6 @@
 #include "HeController/IMementoCollection.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
-#include "HeSql/ISqlTableModel.h"
-#include "HeSql/ISqlBrowser.h"
-#include "HeSql/ISqlHandle.h"
-#include "HeSql/ISqlOutput.h"
 #include "HeSql/HSql.h"
 #include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
@@ -33,19 +29,6 @@ HBuilder2000Private::HBuilder2000Private()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
-//    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
-//                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
-//                             << "LuminousFluxSpec" << "LuminousPower"
-//                             << "PeakWave" << "PeakBandwidth" << "DominantWave"
-//                             << "ColorTemperature" << "ColorPurity"
-//                             << "CC_x" << "CC_y" << "CC_up" << "CC_vp" << "Duv"
-//                             << "RedRatio" << "GreenRadio" << "BlueRatio"
-//                             << "Ra" << "R9" << "Rx"
-//                             << "EnergyGraph" << "ReflectGraph"
-//                             << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
-//                             << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-//                             << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-//                             << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn";
     HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
     HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
     HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
@@ -168,46 +151,14 @@ void HBuilder2000::buildMemento()
 void HBuilder2000::buildDatabase()
 {
     Q_D(HBuilder2000);
-    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|光度信息4|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
-    auto field = QStringList() << "ID" << HSql::membership(group);
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
-    if (db->contains("Spec"))
-    {
-        auto version = HSqlHelper::getVersion("Spec");
-        // 1.1.1.2 添加列R9
-        if (version < 0x01010102)
-            HSqlHelper::addColumn("Spec", "R9");
-        // 1.1.1.3 添加列（光合）
-        if (version < 0x01010103)
-            HSqlHelper::addColumn("Spec", HSql::membership("|光合信息|"));
-        // 1.1.1.4 添加列SDCM
-        if (version < 0x01010104)
-            HSqlHelper::addColumn("Spec", "SDCM");
-        // 1.1.1.5 添加列TM30
-        if (version < 0x01010105)
-            HSqlHelper::addColumn("Spec", QStringList() << "ReflectGraph" << HSql::membership("|TM30信息|"));
-    }
-    HSqlHelper::setVersion("Spec", 0x01010105);
+    HSqlHelper::updateSpecTable(db);
 
-    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
-    auto handle = d->sqlFactory->createHandle("HSqlHandle");
-    auto output = d->sqlFactory->createOutput("HSqlOutput");
-    auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
-    auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
-
-    model->setTableField("Spec", field);
-    handle->setModel(model);
-    output->setModel(model);
-    output->setTextTemplate(text);
-    output->setPrintTemplate(print);
-    browser->setModel(model);
-    browser->setRecordHandle(handle);
-    browser->setRecordOutput(output);
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|光度信息4|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    auto field = QStringList() << "ID" << HSql::membership(group);
+    auto model = createSqlTableModel("Spec", field);
     db->insertTableModel(model);
-    HAppContext::setContextPointer("ISqlHandle", handle);
-    HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 
 void HBuilder2000::buildMenu()

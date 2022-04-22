@@ -19,7 +19,7 @@ HTestLuminousPrivate::HTestLuminousPrivate()
     addData("[光强度]", 0.0);
     addData("[光亮度]", 0.0);
     addData("[最大光强度]", 0.0);
-    addData("[法相光强度]", 0.0);
+    addData("[法向光强度]", 0.0);
     addData("[角度光通量]", 0.0);
     addData("[最大光强度角]", 0.0);
     addData("[左半光强度角]", 0.0);
@@ -187,7 +187,7 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
         flux += M_PI * radian * (poly1.at(i-1).y() + poly1.at(i).y()) * (qAbs(cos(radian * i)) + qAbs(cos(radian * (i-1)))) / 4;
     d->setData("[光强角度分布]", poly2);
     d->setData("[最大光强度]", maxIv);
-    d->setData("[法相光强度]", poly1.at(size / 2).y());
+    d->setData("[法向光强度]", poly1.at(size / 2).y());
     d->setData("[角度光通量]", flux);
     d->setData("[最大光强度角]", maxN / 10.0);
     d->setData("[左半光强度角]", theta1);

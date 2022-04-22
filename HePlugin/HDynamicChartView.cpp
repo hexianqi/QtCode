@@ -24,6 +24,18 @@ QValueAxis *HDynamicChartView::axisY()
     return d->axisY;
 }
 
+QLineSeries *HDynamicChartView::lineSeries()
+{
+    Q_D(HDynamicChartView);
+    return d->lineSeries;
+}
+
+QScatterSeries *HDynamicChartView::scatterSeries()
+{
+    Q_D(HDynamicChartView);
+    return d->scatterSeries;
+}
+
 void HDynamicChartView::clear()
 {
     Q_D(HDynamicChartView);

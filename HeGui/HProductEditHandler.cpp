@@ -20,7 +20,6 @@ void HProductEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     HProductEditDialog dlg;
     dlg.exec();
-//    HAppContext::getContextPointer<ISqlHandle>("ISqlHandle")->editProductInfo();
 }
 
 HE_END_NAMESPACE

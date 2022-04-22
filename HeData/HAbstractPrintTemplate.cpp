@@ -51,7 +51,8 @@ bool HAbstractPrintTemplate::checkData(QStringList list)
 
 QString HAbstractPrintTemplate::toString(QString type)
 {
-    return HCore::toString(type, HDataHelper::derive(type, d_ptr->datas));
+    auto value = HDataHelper::derive(type, d_ptr->datas);
+    return HCore::toString(type, value);
 }
 
 QString HAbstractPrintTemplate::toStringWhole(QString type)

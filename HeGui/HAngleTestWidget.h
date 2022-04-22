@@ -24,6 +24,7 @@ public:
 
 protected:
     void restoreState() override;
+    void handleAction(HActionType action) override;
     void createAction() override;
     void createWidget() override;
     void createMenu() override;
@@ -34,6 +35,7 @@ protected:
     void handleStateChanged(bool b);
     void handleResultChanged(HActionType, bool);
     void exportDatabase();
+    void printPreview();
 };
 
 HE_END_NAMESPACE

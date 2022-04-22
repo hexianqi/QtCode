@@ -20,10 +20,6 @@
 #include "HeController/IMementoCollection.h"
 #include "HeSql/ISqlFactory.h"
 #include "HeSql/ISqlDatabase.h"
-#include "HeSql/ISqlTableModel.h"
-#include "HeSql/ISqlBrowser.h"
-#include "HeSql/ISqlHandle.h"
-#include "HeSql/ISqlOutput.h"
 #include "HeSql/HSql.h"
 #include "HeSql/HSqlHelper.h"
 #include "HeGui/IGuiFactory.h"
@@ -183,50 +179,21 @@ void HBuilder2100DC::buildMemento()
 void HBuilder2100DC::buildDatabase()
 {
     Q_D(HBuilder2100DC);
-    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息2|" << "|光度信息3|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
-    auto field = QStringList() << "ID" << HSql::membership(group);
     auto db = d->sqlFactory->createDatabase("HSqlDatabase");
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
-    if (db->contains("Spec"))
-    {
-        auto version = HSqlHelper::getVersion("Spec");
-        // 1.1.1.3 添加列（光合）
-        if (version < 0x01010103)
-            HSqlHelper::addColumn("Spec", HSql::membership("|光合信息|"));
-        // 1.1.1.4 添加列SDCM
-        if (version < 0x01010104)
-            HSqlHelper::addColumn("Spec", "SDCM");
-        // 1.1.1.5 添加列TM30
-        if (version < 0x01010105)
-            HSqlHelper::addColumn("Spec", QStringList() << "ReflectGraph" << HSql::membership("|TM30信息|"));
-    }
-    HSqlHelper::setVersion("Spec", 0x01010105);
-
-    auto model = d->sqlFactory->createTableModel("HSqlTableModel");
-    auto handle = d->sqlFactory->createHandle("HSqlHandle");
-    auto output = d->sqlFactory->createOutput("HSqlOutput");
-    auto browser = d->sqlFactory->createBrowser("HSqlBrowser", d->mainWindow);
-    auto text = HAppContext::getContextPointer<ITextExportTemplate>("ISpecTextExportTemplate");
-    auto print = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
-    model->setTableField("Spec", field);
-    handle->setModel(model);
-    output->setModel(model);
-    output->setTextTemplate(text);
-    output->setPrintTemplate(print);
-    browser->setModel(model);
-    browser->setRecordHandle(handle);
-    browser->setRecordOutput(output);
+    HSqlHelper::updateSpecTable(db);
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息2|" << "|光度信息3|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    auto field = QStringList() << "ID" << HSql::membership(group);
+    auto model = createSqlTableModel("Spec", field);
     db->insertTableModel(model);
-    HAppContext::setContextPointer("ISqlHandle", handle);
-    HAppContext::setContextPointer("ISqlBrowser", browser);
 }
 
 void HBuilder2100DC::buildMenu()
 {
     Q_D(HBuilder2100DC);
     QVariantMap param[2];
-    param[1].insert("authority", 1);
-    param[0].insert("property", param[1]);
+    param[0].insert("authority", 1);
+    param[1].insert("property", param[0]);
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
@@ -242,7 +209,7 @@ void HBuilder2100DC::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
-    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));
+    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[1]));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));

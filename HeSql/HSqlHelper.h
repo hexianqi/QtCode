@@ -9,6 +9,8 @@
 
 HE_BEGIN_NAMESPACE
 
+class ISqlDatabase;
+
 class HSqlHelper
 {
 public:
@@ -23,7 +25,10 @@ public:
     static bool setVersion(const QString &tableName, int version, QSqlDatabase db = QSqlDatabase());
     // 获取表格版本
     static int getVersion(const QString &tableName, QSqlDatabase db = QSqlDatabase());
-
+    // 更新光谱表格
+    static void updateSpecTable(ISqlDatabase *db);
+    // 更新光强角表格
+    static void updateAngleTable(ISqlDatabase *db);
 };
 
 HE_END_NAMESPACE

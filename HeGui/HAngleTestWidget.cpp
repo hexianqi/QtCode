@@ -4,6 +4,8 @@
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/ITestData.h"
+#include "HeData/IPrint.h"
+#include "HeData/IPrintTemplate.h"
 #include "HeData/ITextExport.h"
 #include "HeData/ITextExportTemplate.h"
 #include "HeController/IModel.h"
@@ -22,6 +24,8 @@ HE_BEGIN_NAMESPACE
 HAngleTestWidgetPrivate::HAngleTestWidgetPrivate()
 {
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("IAngleSqlHandle");
+    print = HAppContext::getContextPointer<IPrint>("IPrint");
+    printTemplate = HAppContext::getContextPointer<IPrintTemplate>("IAnglePrintTemplate");
     textExport = HAppContext::getContextPointer<ITextExport>("ITextExport");
     textExportTemplate = HAppContext::getContextPointer<ITextExportTemplate>("IAngleTextExportTemplate");
 }
@@ -48,15 +52,41 @@ void HAngleTestWidget::restoreState()
     d->model->addAction(ACT_SET_LUMINOUS_TYPE);
 }
 
+void HAngleTestWidget::handleAction(HActionType action)
+{
+    Q_D(HAngleTestWidget);
+    if (action == ACT_QUERY_MOTOR_STATE)
+    {
+        auto state = d->testData->data("[电机状态]").toInt();
+        d->actionMotorLocation->setEnabled(state == 1);
+        d->actionMotorReset->setEnabled(state == 1);
+    }
+    HTestWidget::handleAction(action);
+}
+
 void HAngleTestWidget::createAction()
 {
     Q_D(HAngleTestWidget);
     HTestWidget::createAction();
+
+    d->actionMotorLocation = new QAction(tr("转动电机(&L)"), this);
+    d->actionMotorLocation->setIcon(QIcon(":/image/Motor.png"));
+    d->actionMotorLocation->setIconText(tr("转动电机"));
+    d->actionMotorReset = new QAction(tr("复位电机(&R)"), this);
+    d->actionMotorReset->setIcon(QIcon(":/image/Reset.png"));
+    d->actionMotorReset->setIconText(tr("复位电机"));
     d->actionExportDatabase = new QAction(tr("保存数据库(&D)"), this);
     d->actionExportDatabase->setIcon(QIcon(":/image/DbComit.png"));
     d->actionExportDatabase->setIconText(tr("保存数据库"));
     d->actionExportDatabase->setEnabled(false);
+    d->actionPrintPreview = new QAction(tr("打印预览(&V)"), this);
+    d->actionPrintPreview->setIcon(QIcon(":/image/PrintPreview.png"));
+    d->actionPrintPreview->setIconText(tr("打印预览"));
+    d->actionPrintPreview->setEnabled(false);
+    connect(d->actionMotorLocation, &QAction::triggered, this, [=] { d->testSetWidget->handleOperation("<转动电机>"); });
+    connect(d->actionMotorReset, &QAction::triggered, this, [=] { d->testSetWidget->handleOperation("<复位电机>"); });
     connect(d->actionExportDatabase, &QAction::triggered, this, &HAngleTestWidget::exportDatabase);
+    connect(d->actionPrintPreview, &QAction::triggered, this, &HAngleTestWidget::printPreview);
 }
 
 void HAngleTestWidget::createWidget()
@@ -67,9 +97,12 @@ void HAngleTestWidget::createWidget()
     d->cartesianChartView = new HDynamicChartView;
     d->cartesianChartView->axisX()->setRange(0, 180);
     d->cartesianChartView->axisX()->setLabelFormat("%d");
+    d->cartesianChartView->axisY()->setRange(0, 10);
     d->cartesianChartView->axisY()->setLabelFormat("%d");
     d->polarChartView = new HPolarChartView;
+    d->polarChartView->axisAngular()->setRange(0, 360);
     d->polarChartView->axisAngular()->setLabelFormat("%d");
+    d->polarChartView->axisRadial()->setRange(0, 10);
     d->polarChartView->axisRadial()->setLabelFormat("%d");
 }
 
@@ -86,8 +119,11 @@ void HAngleTestWidget::createToolBar()
     toolBar1->addWidget(d->testSetWidget);
     toolBar2->addAction(d->actionStart);
     toolBar2->addAction(d->actionStop);
+    toolBar2->addAction(d->actionMotorReset);
+    toolBar2->addAction(d->actionMotorLocation);
     toolBar2->addAction(d->actionExportExcel);
     toolBar2->addAction(d->actionExportDatabase);
+    toolBar2->addAction(d->actionPrintPreview);
     toolBar2->setIconSize(QSize(40, 40));
     toolBar2->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     d->toolBars << toolBar1 << toolBar2;
@@ -107,6 +143,7 @@ void HAngleTestWidget::initWidget()
     splitter2->addWidget(splitter1);
     splitter2->addWidget(d->detailWidget);
     splitter2->setHandleWidth(15);
+    splitter2->setStretchFactor(0, 3);
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HAngleTestWidget::handleStateChanged);
@@ -136,6 +173,9 @@ void HAngleTestWidget::handleStateChanged(bool b)
     d->actionClear->setEnabled(!b);
     d->actionExportExcel->setEnabled(!b);
     d->actionExportDatabase->setEnabled(!b);
+    d->actionPrintPreview->setEnabled(!b);
+    d->actionMotorLocation->setEnabled(!b || d->testSetWidget->testMode() == 1);
+    d->actionMotorReset->setEnabled(!b);
 }
 
 void HAngleTestWidget::handleResultChanged(HActionType action, bool)
@@ -162,6 +202,14 @@ void HAngleTestWidget::exportDatabase()
         return;
     auto record = HSql::toRecord(d->sqlHandle->field(), d->testData);
     d->sqlHandle->addRecord(record);
+}
+
+void HAngleTestWidget::printPreview()
+{
+    Q_D(HAngleTestWidget);
+    d->printTemplate->setData(d->testData->select(d->printTemplate->dataType()));
+    d->print->setPrintTemplate(d->printTemplate);
+    d->print->printPreview();
 }
 
 HE_END_NAMESPACE

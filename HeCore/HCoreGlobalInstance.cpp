@@ -485,7 +485,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     // 光强角度分布参数
     hashDataFormatInfo.insert("[光强度角]",                     new HDataFormatInfo("[光强度角]", "°", 0, 180, 1));
     hashDataFormatInfo.insert("[最大光强度]",                   hashDataFormatInfo.value("[光强度]"));
-    hashDataFormatInfo.insert("[法相光强度]",                   hashDataFormatInfo.value("[光强度]"));
+    hashDataFormatInfo.insert("[法向光强度]",                   hashDataFormatInfo.value("[光强度]"));
     hashDataFormatInfo.insert("[角度光通量]",                   hashDataFormatInfo.value("[光通量]"));
     hashDataFormatInfo.insert("[最大光强度角]",                 hashDataFormatInfo.value("[光强度角]"));
     hashDataFormatInfo.insert("[左半光强度角]",                 hashDataFormatInfo.value("[光强度角]"));
@@ -529,9 +529,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[布局行数]",                     new HDataFormatInfo("[布局行数]", 0, 70));
     hashDataFormatInfo.insert("[布局列数]",                     new HDataFormatInfo("[布局列数]", 0, 70));
     hashDataFormatInfo.insert("[布局数值]",                     new HDataFormatInfo("[布局数值]", 0, 65535));
-
-
-
 
 //    //电机参数
 //    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
@@ -640,6 +637,17 @@ void HCoreGlobalInstance::initDataCaption()
     hashDataCaption.insert("[TM30_hj_btn]",         tr("hj_btn"));
     hashDataCaption.insert("[TM30_hj_arn]",         tr("hj_arn"));
     hashDataCaption.insert("[TM30_hj_brn]",         tr("hj_brn"));
+
+    hashDataCaption.insert("[最大光强度]",          tr("最大光强度"));
+    hashDataCaption.insert("[法向光强度]",          tr("法向光强度"));
+    hashDataCaption.insert("[角度光通量]",          tr("光通量"));
+    hashDataCaption.insert("[最大光强度角]",        tr("最大光强度角"));
+    hashDataCaption.insert("[左半光强度角]",        tr("左半光强度角"));
+    hashDataCaption.insert("[右半光强度角]",        tr("右半光强度角"));
+    hashDataCaption.insert("[半光强度夹角]",        tr("半光强度夹角"));
+    hashDataCaption.insert("[左1/5光强度角]",       tr("左1/5光强度角"));
+    hashDataCaption.insert("[右1/5光强度角]",       tr("右1/5光强度角"));
+    hashDataCaption.insert("[1/5光强度夹角]",       tr("1/5光强度夹角"));
 }
 
 void HCoreGlobalInstance::initDataGroup()
@@ -714,7 +722,7 @@ void HCoreGlobalInstance::initDataGroup()
     hashDataGroup.insert("|直流电信息|",    QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[反向电压]" << "[反向漏流]" << "[电功率]");
     hashDataGroup.insert("|直流电信息2|",   QStringList() << "[输出电压]" << "[实测电压]" << "[输出电流]" << "[实测电流]" << "[电功率]");
     hashDataGroup.insert("|交流电信息|",    QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]");
-    hashDataGroup.insert("|光强角度信息|",  QStringList() << "[最大光强度]" << "[法相光强度]" << "[角度光通量]" << "[最大光强度角]"
+    hashDataGroup.insert("|光强角度信息|",  QStringList() << "[最大光强度]" << "[法向光强度]" << "[角度光通量]" << "[最大光强度角]"
                                                           << "[左半光强度角]" << "[右半光强度角]" << "[半光强度夹角]"
                                                           << "[左1/5光强度角]" << "[右1/5光强度角]" << "[1/5光强度夹角]"
                                                           << "[光强角度分布]");

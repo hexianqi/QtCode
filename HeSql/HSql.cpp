@@ -154,8 +154,8 @@ QStringList HSql::removeFieldGraph(const QStringList &field)
 {
     auto list = field;
     list.removeAll("ID");
-    list.removeAll("EnergyGraph");
-    list.removeAll("ReflectGraph");
+    for (auto v : membership("|多边形格式|"))
+        list.removeAll(v);
     return list;
 }
 

@@ -92,7 +92,7 @@
    <item row="0" column="6">
     <widget class="QLabel" name="label_003">
      <property name="text">
-      <string>法相光强度：</string>
+      <string>法向光强度：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

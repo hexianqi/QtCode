@@ -32,6 +32,20 @@ QVariant HAbstractTestSetWidget::handleOperation(QString /*type*/, QVariant /*va
     return false;
 }
 
+bool HAbstractTestSetWidget::setData(QString type, QVariant value)
+{
+    if (d_ptr->datas.contains(type) && d_ptr->datas.value(type) == value)
+        return false;
+    d_ptr->datas[type] = value;
+    emit dataChanged(type, value);
+    return true;
+}
+
+QVariant HAbstractTestSetWidget::data(QString type)
+{
+    return d_ptr->datas.value(type);
+}
+
 bool HAbstractTestSetWidget::setTestState(bool b)
 {
     if (d_ptr->testState == b)

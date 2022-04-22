@@ -24,6 +24,10 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
+#include "HeSql/ISqlFactory.h"
+#include "HeSql/ISqlDatabase.h"
+#include "HeSql/HSql.h"
+#include "HeSql/HSqlHelper.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 
@@ -150,6 +154,7 @@ void HBuilder1000A::buildTemplate()
     auto specTextTemplate = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
     auto angleTextTemplate = d->guiFactory->createTextExportTemplate("HAngleTextExportTemplate");
     auto print = d->dataFactory->createPrint("HPrint");
+    auto anglePrintTemplate = d->guiFactory->createPrintTemplate("HAnglePrintTemplate");
     auto tagPrintTemplate = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
     auto specPrintTemplate = new HSpecPrintTemplate1000A(this);
     specPrintTemplate->initialize();
@@ -157,6 +162,7 @@ void HBuilder1000A::buildTemplate()
     HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
     HAppContext::setContextPointer("IAngleTextExportTemplate", angleTextTemplate);
     HAppContext::setContextPointer("IPrint", print);
+    HAppContext::setContextPointer("IAnglePrintTemplate", anglePrintTemplate);
     HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
     HAppContext::setContextPointer("ITagPrintTemplate", tagPrintTemplate);
 }
@@ -213,15 +219,34 @@ void HBuilder1000A::buildMemento()
 
 void HBuilder1000A::buildDatabase()
 {
+    Q_D(HBuilder1000A);
+    auto db = d->sqlFactory->createDatabase("HSqlDatabase");
+    db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
 
+    HSqlHelper::updateSpecTable(db);
+    // Spec
+    {
+        auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+        auto field = QStringList() << "ID" << HSql::membership(group);
+        auto model = createSqlTableModel("Spec", field);
+        db->insertTableModel(model);
+    }
+    // Angle
+    HSqlHelper::updateSpecTable(db);
+    {
+        auto field = QStringList() << "ID" << HSql::membership("|光强角度信息|");
+        auto model = createSqlTableModel("Angle", field);
+        db->insertTableModel(model);
+    }
 }
 
 void HBuilder1000A::buildMenu()
 {
     Q_D(HBuilder1000A);
-    QVariantMap param[2];
-    param[1].insert("authority", 1);
-    param[0].insert("property", param[1]);
+    QVariantMap param[3];
+    param[0].insert("authority", 1);
+    param[1].insert("property", param[0]);
+    param[2].insert("sqlBrowser", "IAngleSqlBrowser");
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
@@ -241,7 +266,7 @@ void HBuilder1000A::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
-    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));
+    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[1]));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
@@ -252,7 +277,8 @@ void HBuilder1000A::buildMenu()
     test->addAction(d->guiFactory->createAction(tr("光强角度测试(&A)..."), "HAngleTestHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
-    database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
+    database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&B)..."), "HSqlBrowserHandler"));
+    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&B)..."), "HSqlBrowserHandler", param[2]));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
@@ -273,6 +299,3 @@ void HBuilder1000A::buildTestWidget()
     ITestWidget *widget = new HTestWidget1000A;
     HAppContext::setContextPointer("ITestWidget", widget);
 }
-
-
-

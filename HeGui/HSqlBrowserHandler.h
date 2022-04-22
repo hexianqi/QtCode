@@ -20,6 +20,7 @@ public:
     ~HSqlBrowserHandler() override;
 
 public:
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:

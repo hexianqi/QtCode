@@ -15,5 +15,8 @@
         <file>image/Import.png</file>
         <file>image/Tag.png</file>
         <file>image/export.png</file>
+        <file>image/Motor.png</file>
+        <file>image/Reset.png</file>
+        <file>image/undo.png</file>
     </qresource>
 </RCC>

@@ -10,6 +10,8 @@ HE_BEGIN_NAMESPACE
 
 class ITestDetailWidget;
 class ISqlHandle;
+class IPrint;
+class IPrintTemplate;
 class ITextExport;
 class ITextExportTemplate;
 
@@ -24,10 +26,15 @@ public:
     HPolarChartView *polarChartView = nullptr;
 
 public:
+    QAction *actionMotorLocation = nullptr;
+    QAction *actionMotorReset = nullptr;
     QAction *actionExportDatabase = nullptr;
+    QAction *actionPrintPreview = nullptr;
 
 public:
     ISqlHandle *sqlHandle = nullptr;
+    IPrint *print = nullptr;
+    IPrintTemplate *printTemplate = nullptr;
     ITextExport *textExport = nullptr;
     ITextExportTemplate *textExportTemplate = nullptr;
 };

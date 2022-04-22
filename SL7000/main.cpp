@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
 #ifdef SL7000
     QApplication::setApplicationName("SL7000");
     HMainWindow7000 w;
-    w.show();
 #endif
 
+    w.showMaximized();
     return a.exec();
 }

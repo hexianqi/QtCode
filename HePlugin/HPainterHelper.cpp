@@ -95,10 +95,15 @@ double HPainterHelper::paintHeader(QPainter *painter, const QVariantMap &param)
     return 50;
 }
 
-double HPainterHelper::paintFooter(QPainter *painter, const QString &footer)
+double HPainterHelper::paintFooter(QPainter *painter, const QString &text)
 {
     auto y = painter->viewport().height() - painter->fontMetrics().lineSpacing() - 10;
     painter->drawLine(0, y, painter->viewport().width(), y);
-    drawText(painter, 0, y, footer, Qt::AlignCenter);
+    drawText(painter, 0, y, text, Qt::AlignCenter);
     return y - 5;
+}
+
+double HPainterHelper::paintTitle(QPainter *painter, const QString &text, double y)
+{
+    return drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;
 }

@@ -7,6 +7,10 @@
 #include "HeData/HDataFactory.h"
 #include "HeGui/HGuiFactory.h"
 #include "HeSql/HSqlFactory.h"
+#include "HeSql/ISqlBrowser.h"
+#include "HeSql/ISqlHandle.h"
+#include "HeSql/ISqlOutput.h"
+#include "HeSql/ISqlTableModel.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -74,6 +78,27 @@ void HAbstractBuilder::buildFactory()
     HAppContext::setContextPointer("IDataFactory", d_ptr->dataFactory);
     HAppContext::setContextPointer("IGuiFactory", d_ptr->guiFactory);
     HAppContext::setContextPointer("ISqlFactory", d_ptr->sqlFactory);
+}
+
+ISqlTableModel *HAbstractBuilder::createSqlTableModel(QString name, QStringList field)
+{
+    auto model = d_ptr->sqlFactory->createTableModel("HSqlTableModel");
+    auto handle = d_ptr->sqlFactory->createHandle("HSqlHandle");
+    auto output = d_ptr->sqlFactory->createOutput("HSqlOutput");
+    auto browser = d_ptr->sqlFactory->createBrowser("HSqlBrowser", d_ptr->mainWindow);
+    auto text = HAppContext::getContextPointer<ITextExportTemplate>(QString("I%1TextExportTemplate").arg(name));
+    auto print = HAppContext::getContextPointer<IPrintTemplate>(QString("I%1PrintTemplate").arg(name));
+    model->setTableField(name, field);
+    handle->setModel(model);
+    output->setModel(model);
+    output->setTextTemplate(text);
+    output->setPrintTemplate(print);
+    browser->setModel(model);
+    browser->setRecordHandle(handle);
+    browser->setRecordOutput(output);
+    HAppContext::setContextPointer(QString("I%1SqlHandle").arg(name), handle);
+    HAppContext::setContextPointer(QString("I%1SqlBrowser").arg(name), browser);
+    return model;
 }
 
 QString HAbstractBuilder::deployItem(const QString &key)

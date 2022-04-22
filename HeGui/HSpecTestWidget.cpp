@@ -46,7 +46,7 @@ HSpecTestWidgetPrivate::HSpecTestWidgetPrivate()
     auto mementoCollection = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
     memento = mementoCollection->value("Spec");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
-    sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISqlHandle");
+    sqlHandle = HAppContext::getContextPointer<ISqlHandle>("ISpecSqlHandle");
     print = HAppContext::getContextPointer<IPrint>("IPrint");
     specPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ISpecPrintTemplate");
     tagPrintTemplate = HAppContext::getContextPointer<IPrintTemplate>("ITagPrintTemplate");
@@ -112,7 +112,7 @@ void HSpecTestWidget::handleAction(HActionType action)
             resetGrade();
         return;
     }
-    HAbstractTestWidget::handleAction(action);
+    HTestWidget::handleAction(action);
 }
 
 void HSpecTestWidget::createAction()

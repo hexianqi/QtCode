@@ -31,6 +31,7 @@ protected:
     HAnglePrintTemplate(HAnglePrintTemplatePrivate &p, QObject *parent = nullptr);
 
 protected:
+    void paintBody(QPainter *painter, QRectF rect);
     QPointF drawChartCartesian(QPainter *painter, QRectF rect);
     QPointF drawChartPolar(QPainter *painter, QRectF rect);
 

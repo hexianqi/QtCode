@@ -18,6 +18,7 @@ public:
     using QWidget::QWidget;
 
 signals:
+    void dataChanged(QString type, QVariant value);
     void testStateChanged(bool b);
     void testModeChanged(int value);
     void saveModeChanged(int value);
@@ -28,6 +29,10 @@ public:
     virtual QVariant handleOperation(QString type, QVariant value = QVariant()) = 0;
     // 处理动作
     virtual void handleAction(HActionType action) = 0;
+    // 设置数据
+    virtual bool setData(QString type, QVariant value) = 0;
+    // 获取数据
+    virtual QVariant data(QString type) = 0;
     // 设置测试状态
     virtual bool setTestState(bool b) = 0;
     // 获取测试状态

@@ -15,6 +15,7 @@ public:
 public:
     IModel *model;
     ITestData *testData;
+    QVariantMap datas;
     bool testState = false;
     int testMode = 0;
     int saveMode = 0;

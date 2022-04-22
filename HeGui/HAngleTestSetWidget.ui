@@ -29,7 +29,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
-      <cstring>comboBox_1</cstring>
+      <cstring>comboBox_2</cstring>
      </property>
     </widget>
    </item>
@@ -73,7 +73,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
-      <cstring>doubleSpinBox_1</cstring>
+      <cstring>doubleSpinBox_2</cstring>
      </property>
     </widget>
    </item>
@@ -95,7 +95,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
-      <cstring>comboBox_1</cstring>
+      <cstring>comboBox_3</cstring>
      </property>
     </widget>
    </item>
@@ -117,16 +117,12 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
-      <cstring>comboBox_1</cstring>
+      <cstring>spinBox_1</cstring>
      </property>
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="QSpinBox" name="spinBox_1">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
+    <widget class="QSpinBox" name="spinBox_1"/>
    </item>
    <item row="1" column="4">
     <widget class="QLabel" name="label_004">
@@ -143,7 +139,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
-      <cstring>doubleSpinBox_1</cstring>
+      <cstring>doubleSpinBox_3</cstring>
      </property>
     </widget>
    </item>

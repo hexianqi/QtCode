@@ -34,6 +34,7 @@
 #include "HExportDeviceHandler.h"
 #include "HLoginInHandler.h"
 #include "HLoginOutHandler.h"
+#include "HAnglePrintTemplate.h"
 #include "HSpecPrintTemplate.h"
 #include "HTagPrintTemplate.h"
 #include "HAngleTextExportTemplate.h"
@@ -148,6 +149,7 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HLoginInHandler>("HLoginInHandler");
     HObjectFactory::registerClass<HLoginOutHandler>("HLoginOutHandler");
     // 打印模板
+    HObjectFactory::registerClass<HAnglePrintTemplate>("HAnglePrintTemplate");
     HObjectFactory::registerClass<HSpecPrintTemplate>("HSpecPrintTemplate");
     HObjectFactory::registerClass<HTagPrintTemplate>("HTagPrintTemplate");
     // 文本导出模板

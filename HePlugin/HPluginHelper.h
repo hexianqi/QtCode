@@ -36,6 +36,8 @@ public:
     static void initWidget(const QString &type, QInputDialog *);
     // 窗体居中桌面
     static void centerWidget(QWidget *);
+    // 窗体居中父窗体
+    static void centerWidget(QWidget *child, QWidget *parent);
 
 public:
     // 选择参数

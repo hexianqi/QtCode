@@ -1,5 +1,6 @@
 #include "HSqlHelper.h"
 #include "HSql.h"
+#include "ISqlDatabase.h"
 #include <QtCore/QStringList>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
@@ -121,6 +122,32 @@ int HSqlHelper::getVersion(const QString &tableName, QSqlDatabase db)
         return query.value(0).toInt();
     sql = QString("INSERT INTO VersionManage (TableName, Version) VALUES ('%1', %2)").arg(tableName).arg(0x01010101);
     return query.exec(sql) ? 0x01010101 : 0;
+}
+
+void HSqlHelper::updateSpecTable(ISqlDatabase *db)
+{
+    if (db->contains("Spec"))
+    {
+        auto version = getVersion("Spec");
+        // 1.1.1.2 添加列R9
+        if (version < 0x01010102)
+            addColumn("Spec", "R9");
+        // 1.1.1.3 添加列（光合）
+        if (version < 0x01010103)
+            addColumn("Spec", HSql::membership("|光合信息|"));
+        // 1.1.1.4 添加列SDCM
+        if (version < 0x01010104)
+            addColumn("Spec", "SDCM");
+        // 1.1.1.5 添加列TM30
+        if (version < 0x01010105)
+            addColumn("Spec", QStringList() << "ReflectGraph" << HSql::membership("|TM30信息|"));
+    }
+    setVersion("Spec", 0x01010105);
+}
+
+void HSqlHelper::updateAngleTable(ISqlDatabase */*db*/)
+{
+    setVersion("Angle", 0x01010101);
 }
 
 HE_END_NAMESPACE

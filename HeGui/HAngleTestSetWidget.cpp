@@ -24,6 +24,28 @@ QString HAngleTestSetWidget::typeName()
     return "HAngleTestSetWidget";
 }
 
+QVariant HAngleTestSetWidget::handleOperation(QString type, QVariant value)
+{
+    Q_D(HAngleTestSetWidget);
+    if (type == "<转动电机>")
+    {
+        if (d->testData->setData("[电机定位]", ui->spinBox_1->value()))
+        {
+            ui->spinBox_1->setEnabled(false);
+            d->model->addAction(ACT_SET_MOTOR_LOCATION);
+        }
+        return true;
+    }
+    if (type == "<复位电机>")
+    {
+        ui->spinBox_1->setValue(0);
+        ui->spinBox_1->setEnabled(false);
+        d->model->addAction(ACT_RESET_MOTOR_LOCATION);
+        return true;
+    }
+    return HAbstractTestSetWidget::handleOperation(type, value);
+}
+
 void HAngleTestSetWidget::handleAction(HActionType action)
 {
     Q_D(HAngleTestSetWidget);
@@ -57,15 +79,15 @@ void HAngleTestSetWidget::handleAction(HActionType action)
         d->model->addAction(ACT_GET_LUMINOUS_DATA, 100);
         break;
     case ACT_SET_MOTOR_LOCATION:
+    case ACT_RESET_MOTOR_LOCATION:
         d->model->addAction(ACT_QUERY_MOTOR_STATE, 50);
         break;
     case ACT_QUERY_MOTOR_STATE:
         if (d->testData->data("[电机状态]").toInt() == 1)
         {
-            if (d->testMode == 0)
+            if (d->testState && d->testMode == 0)
                 d->model->addAction(ACT_GET_ANGLE_DISTRIBUTION);
-            if (d->testMode == 1)
-                ui->spinBox_1->setEnabled(true);
+            ui->spinBox_1->setEnabled(true);
         }
         else
             d->model->addAction(ACT_QUERY_MOTOR_STATE, 50);
@@ -99,16 +121,6 @@ bool HAngleTestSetWidget::setTestState(bool b)
     return true;
 }
 
-void HAngleTestSetWidget::on_spinBox_1_editingFinished()
-{
-    Q_D(HAngleTestSetWidget);
-    if (d->testData->setData("[电机定位]", ui->spinBox_1->value()))
-    {
-        ui->spinBox_1->setEnabled(false);
-        d->model->addAction(ACT_SET_MOTOR_LOCATION);
-    }
-}
-
 void HAngleTestSetWidget::on_doubleSpinBox_2_valueChanged(double value)
 {
     Q_D(HAngleTestSetWidget);
@@ -125,8 +137,7 @@ void HAngleTestSetWidget::on_doubleSpinBox_3_valueChanged(double value)
 
 void HAngleTestSetWidget::on_comboBox_1_currentIndexChanged(int value)
 {
-    if (setTestMode(value))
-        ui->spinBox_1->setEnabled(value == 1);
+    setTestMode(value);
 }
 
 void HAngleTestSetWidget::on_comboBox_2_currentIndexChanged(int value)
@@ -164,6 +175,7 @@ void HAngleTestSetWidget::updateUI()
     ui->comboBox_1->setEnabled(!d->testState);
     ui->comboBox_2->setEnabled(!d->testState || d->testMode == 1);
     ui->comboBox_3->setEnabled(!d->testState || d->testMode == 1);
+    ui->spinBox_1->setEnabled(!d->testState || d->testMode == 1);
     ui->doubleSpinBox_2->setEnabled(!d->testState || d->testMode == 1);
     ui->doubleSpinBox_3->setEnabled(!d->testState || d->testMode == 1);
 }

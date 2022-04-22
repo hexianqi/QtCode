@@ -8,6 +8,8 @@
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QValueAxis;
+class QLineSeries;
+class QScatterSeries;
 QT_CHARTS_END_NAMESPACE
 
 class HDynamicChartViewPrivate;
@@ -23,6 +25,8 @@ public:
 public:
     QValueAxis *axisX();
     QValueAxis *axisY();
+    QLineSeries *lineSeries();
+    QScatterSeries * scatterSeries();
 
 public:
     void clear();

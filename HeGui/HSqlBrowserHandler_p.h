@@ -7,6 +7,8 @@ HE_BEGIN_NAMESPACE
 
 class HSqlBrowserHandlerPrivate : public HAbstractGuiHandlerPrivate
 {
+public:
+    QString sqlBrowser;
 };
 
 HE_END_NAMESPACE

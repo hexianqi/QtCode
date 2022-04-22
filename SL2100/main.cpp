@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 #ifdef SL2100DC
     QApplication::setApplicationName("SL2100DC");
     HMainWindow2100DC w;
-    w.show();
 #endif
 
+    w.showMaximized();
     return a.exec();
 }

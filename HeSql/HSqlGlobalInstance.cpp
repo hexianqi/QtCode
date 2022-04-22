@@ -156,6 +156,18 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("PPFE",                    "[光合光子通量效率]");
     hashFieldType.insert("FluorescenceEfficiency",  "[荧光效能]");
     hashFieldType.insert("FluorescenceRatio",       "[荧光蓝光比]");
+    // 光强角
+    hashFieldType.insert("ADLI_LIMax",              "[最大光强度]");
+    hashFieldType.insert("ADLI_LINormal",           "[法向光强度]");
+    hashFieldType.insert("ADLI_LF",                 "[角度光通量]");
+    hashFieldType.insert("ADLI_AngleMax",           "[最大光强度角]");
+    hashFieldType.insert("ADLI_AngleHalfLeft",      "[左半光强度角]");
+    hashFieldType.insert("ADLI_AngleHalfRight",     "[右半光强度角]");
+    hashFieldType.insert("ADLI_AngleHalfOff",       "[半光强度夹角]");
+    hashFieldType.insert("ADLI_AngleFifthLeft",     "[左1/5光强度角]");
+    hashFieldType.insert("ADLI_AngleFifthRight",    "[右1/5光强度角]");
+    hashFieldType.insert("ADLI_AngleFifthOff",      "[1/5光强度夹角]");
+    hashFieldType.insert("ADLI_Graph",              "[光强角度分布]");
     // TM30
     hashFieldType.insert("TM30_Rf",                 "[TM30_Rf]");
     hashFieldType.insert("TM30_Rg",                 "[TM30_Rg]");
@@ -248,6 +260,18 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("PPFE",                     "PPFE numeric(18, 3)");
     hashFieldCreateStyle.insert("FluorescenceEfficiency",   "FluorescenceEfficiency numeric(18, 3)");
     hashFieldCreateStyle.insert("FluorescenceRatio",        "FluorescenceRatio numeric(18, 3)");
+    // 光强角
+    hashFieldCreateStyle.insert("ADLI_LIMax",               "ADLI_LIMax numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADLI_LINormal",            "ADLI_LINormal numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADLI_LF",                  "ADLI_LF numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADLI_AngleMax",            "ADLI_AngleMax numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleHalfLeft",       "ADLI_AngleHalfLeft numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleHalfRight",      "ADLI_AngleHalfRight numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleHalfOff",        "ADLI_AngleHalfOff numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleFifthLeft",      "ADLI_AngleFifthLeft numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleFifthRight",     "ADLI_AngleFifthRight numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleFifthOff",       "ADLI_AngleFifthOff numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_Graph",               "ADLI_Graph ntext");
     // TM30
     hashFieldCreateStyle.insert("TM30_Rf",                 "TM30_Rf numeric(18, 2)");
     hashFieldCreateStyle.insert("TM30_Rg",                 "TM30_Rg numeric(18, 2)");
@@ -336,8 +360,13 @@ void HSqlGlobalInstance::initFieldGroup()
     hashFieldGroup.insert("|直流电信息|",    QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower");
     hashFieldGroup.insert("|直流电信息2|",   QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ElecPower");
     hashFieldGroup.insert("|交流电信息|",    QStringList() << "ACVoltage" << "ACCurrent" << "ACPower" << "ACFactor");
+
+    hashFieldGroup.insert("|光强角度信息|",  QStringList() << "ADLI_LIMax" << "ADLI_LINormal" << "ADLI_LF" << "ADLI_AngleMax"
+                                                           << "ADLI_AngleHalfLeft" << "ADLI_AngleHalfRight" << "ADLI_AngleHalfOff"
+                                                           << "ADLI_AngleFifthLeft" << "ADLI_AngleFifthRight" << "ADLI_AngleFifthOff"
+                                                           << "ADLI_Graph");
     // 数据格式
-    hashFieldGroup.insert("|多边形格式|",    QStringList() << "EnergyGraph" << "ReflectGraph");
+    hashFieldGroup.insert("|多边形格式|",    QStringList() << "EnergyGraph" << "ReflectGraph" << "ADLI_Graph");
     hashFieldGroup.insert("|列表格式|",      QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
                                                            << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
                                                            << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");

@@ -2,6 +2,7 @@
 #include "IMainWindow.h"
 #include "HIVTestWidget.h"
 #include "HGuiHelper.h"
+#include "HePlugin/HPluginHelper.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -25,6 +26,7 @@ void HIVTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     d->mainWindow->blockAndConnect(m);
     w->start();
     m->show();
+    HPluginHelper::centerWidget(m, d->mainWindow);
 }
 
 HE_END_NAMESPACE

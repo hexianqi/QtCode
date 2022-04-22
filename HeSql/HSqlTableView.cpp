@@ -36,7 +36,8 @@ void HSqlTableView::init()
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     setSelectionMode(QAbstractItemView::ContiguousSelection);
     setSelectionBehavior(QAbstractItemView::SelectRows);
-    horizontalHeader()->setStretchLastSection(true);
+    horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+ //   horizontalHeader()->setStretchLastSection(true);
 }
 
 HE_END_NAMESPACE

@@ -48,7 +48,7 @@ void HPolarChartView::replace(QVector<QPointF> points)
             r2 = p.y();
     }
     d->series->replace(points);
-    d->axisRadial->setRange(floor(r1) , ceil(r2));
+    d->axisRadial->setRange(10 * floor(r1 / 10) , 10 * ceil(r2 / 10));
 }
 
 void HPolarChartView::init()

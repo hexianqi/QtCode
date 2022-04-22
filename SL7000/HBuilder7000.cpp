@@ -222,8 +222,8 @@ void HBuilder7000::buildMenu()
 {
     Q_D(HBuilder7000);
     QVariantMap param[2];
-    param[1].insert("authority", 1);
-    param[0].insert("property", param[1]);
+    param[0].insert("authority", 1);
+    param[1].insert("property", param[0]);
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto location = new QMenu(tr("定位配置(&T)"));
     auto grade = new QMenu(tr("分级(&G)"));
@@ -245,7 +245,7 @@ void HBuilder7000::buildMenu()
     location->addAction(d->guiFactory->createAction(tr("定位数据选择(&S)..."), "HLocationSelectHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
-    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[0]));
+    adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[1]));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
     quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));

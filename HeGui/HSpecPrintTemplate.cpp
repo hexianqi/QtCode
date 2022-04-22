@@ -73,6 +73,7 @@ void HSpecPrintTemplate::printTM30(QPrinter *printer, QPainter *painter)
     Q_D(HSpecPrintTemplate);
     if (!d->haveTM30)
         return;
+
     double y1, y2;
     for (int i = 1; i < 3; i++)
     {

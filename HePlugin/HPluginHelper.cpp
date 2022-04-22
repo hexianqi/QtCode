@@ -7,6 +7,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QDesktopWidget>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QInputDialog>
 #include <QtWidgets/QFileDialog>
@@ -232,9 +233,16 @@ void HPluginHelper::initWidget(const QString &type, QInputDialog *dlg)
 
 void HPluginHelper::centerWidget(QWidget *widget)
 {
-    auto size = QApplication::primaryScreen()->availableSize();
-    widget->move((size.width() - widget->width()) / 2, (size.height() - widget->height()) / 2);
-    widget->setFixedSize(widget->width(), widget->height());
+    auto size = QApplication::primaryScreen()->availableSize() - widget->size();
+    widget->move(size.width() / 2, size.height() / 2);
+    widget->setFixedSize(widget->size());
+}
+
+void HPluginHelper::centerWidget(QWidget *child, QWidget *parent)
+{
+    auto pos = parent == nullptr ? QPoint(0,0) : parent->mapToGlobal(QPoint(0,0));
+    auto size = (parent == nullptr ? QApplication::primaryScreen()->availableSize() : parent->size()) - child->size();
+    child->move(pos.x() + size.width() / 2, pos.y() + size.height() / 2);
 }
 
 bool HPluginHelper::selectedParameter(QWidget *parent, QStringList optional, QString &selected)
