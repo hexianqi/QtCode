@@ -95,12 +95,12 @@ void HAngleTestWidget::createWidget()
     d->testSetWidget = new HAngleTestSetWidget;
     d->detailWidget = new HAngleTestDetailWidget;
     d->cartesianChartView = new HDynamicChartView;
-    d->cartesianChartView->axisX()->setRange(0, 180);
+    d->cartesianChartView->axisX()->setRange(-90, 90);
     d->cartesianChartView->axisX()->setLabelFormat("%d");
     d->cartesianChartView->axisY()->setRange(0, 10);
     d->cartesianChartView->axisY()->setLabelFormat("%d");
     d->polarChartView = new HPolarChartView;
-    d->polarChartView->axisAngular()->setRange(0, 360);
+    d->polarChartView->axisAngular()->setRange(-90, 90);
     d->polarChartView->axisAngular()->setLabelFormat("%d");
     d->polarChartView->axisRadial()->setRange(0, 10);
     d->polarChartView->axisRadial()->setLabelFormat("%d");

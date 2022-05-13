@@ -11,7 +11,7 @@ Q_DECLARE_METATYPE(Eigen::ArrayXXd)
 
 QDebug operator<<(QDebug dbg, const MatrixXd &m)
 {
-    std::cout << m << std::endl << std::endl;
+    std::cout << m << std::endl;
     return dbg.maybeSpace();
 }
 

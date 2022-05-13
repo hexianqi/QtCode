@@ -28,8 +28,8 @@ public:
     double WavePeak;
     double Bandwidth;
     // 色度参数
-    QPointF CoordinateUV;
     QPointF CoordinateXY;
+    QPointF CoordinateUV;
     QPointF CoordinateUVp;
     double WaveDominant;
     double ColorTemperature;

@@ -92,7 +92,7 @@ QPointF HAnglePrintTemplate::drawChartCartesian(QPainter *painter, QRectF rect)
     if (d->cartesianChartView == nullptr)
     {
         d->cartesianChartView = new HDynamicChartView;
-        d->cartesianChartView->axisX()->setRange(0, 180);
+        d->cartesianChartView->axisX()->setRange(-90, 90);
         d->cartesianChartView->axisX()->setLabelFormat("%d");
         d->cartesianChartView->axisY()->setLabelFormat("%d");
         d->cartesianChartView->scatterSeries()->setVisible(false);

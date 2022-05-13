@@ -483,7 +483,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[荧光效能]",                     new HDataFormatInfo("[荧光效能]", "", 0, 99999, 3));
     hashDataFormatInfo.insert("[荧光蓝光比]",                   new HDataFormatInfo("[荧光蓝光比]", "", 0, 99999, 3));
     // 光强角度分布参数
-    hashDataFormatInfo.insert("[光强度角]",                     new HDataFormatInfo("[光强度角]", "°", 0, 180, 1));
+    hashDataFormatInfo.insert("[光强度角]",                     new HDataFormatInfo("[光强度角]", "°", -90, 90, 1));
     hashDataFormatInfo.insert("[最大光强度]",                   hashDataFormatInfo.value("[光强度]"));
     hashDataFormatInfo.insert("[法向光强度]",                   hashDataFormatInfo.value("[光强度]"));
     hashDataFormatInfo.insert("[角度光通量]",                   hashDataFormatInfo.value("[光通量]"));

@@ -36,7 +36,7 @@ bool HMotorStrategy::handle(HActionType action)
     switch(action)
     {
     case ACT_SET_MOTOR_LOCATION:
-        return d->protocol->setData(action, d->testData->data("[电机定位]").toInt());
+        return d->protocol->setData(action, (d->testData->data("[电机定位]").toInt() + 90) * 160 / 9);
     case ACT_RESET_MOTOR_LOCATION:
         return d->protocol->setData(action);
     case ACT_QUERY_MOTOR_STATE:

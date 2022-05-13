@@ -144,10 +144,9 @@ void HAngleTestSetWidget::on_comboBox_2_currentIndexChanged(int value)
 {
     Q_D(HAngleTestSetWidget);
     if (d->testData->setData("[输出电流_档位]", value))
-    {
         d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+    if (d->testData->setData("[实测电流_档位]", value))
         d->model->addAction(ACT_SET_OUTPUT_CURRENT);
-    }
 }
 
 void HAngleTestSetWidget::on_comboBox_3_currentIndexChanged(int value)
@@ -187,6 +186,7 @@ void HAngleTestSetWidget::init()
     HPluginHelper::initWidget("[光强度角]", ui->spinBox_1);
     HPluginHelper::initWidget("[输出电压]", ui->doubleSpinBox_2);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox_3);
+    ui->spinBox_1->setValue(0);
     ui->comboBox_1->addItems(QStringList() << tr("  分布测试  ") << tr("  反复测试  "));
     for (i = 0; i < d->testData->data("[输出电流_档位数]").toInt(); i++)
         ui->comboBox_2->addItem(tr("  %1档  ").arg(i+1));

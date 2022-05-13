@@ -203,11 +203,10 @@ void HTestSetWidget2000DC::on_comboBox_1_currentIndexChanged(int value)
 void HTestSetWidget2000DC::on_comboBox_2_currentIndexChanged(int value)
 {
     Q_D(HTestSetWidget2000DC);
-    if (d->testData->setData("[输出电流_档位]", value) || d->testData->setData("[实测电流_档位]", value))
-    {
+    if (d->testData->setData("[输出电流_档位]", value))
         d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
+    if (d->testData->setData("[实测电流_档位]", value))
         d->model->addAction(ACT_SET_OUTPUT_CURRENT);
-    }
 }
 
 void HTestSetWidget2000DC::on_comboBox_3_currentIndexChanged(int value)
