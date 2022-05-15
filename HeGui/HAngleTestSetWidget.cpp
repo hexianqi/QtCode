@@ -105,17 +105,10 @@ bool HAngleTestSetWidget::setTestState(bool b)
 
     if (b)
     {
-        d->testData->setData("[电源模式]", 1);
-        d->model->addAction(ACT_SET_SOURCE_MODE);
         if (d->testMode == 0)
             d->model->addAction(ACT_START_ANGLE_TEST);
         if (d->testMode == 1)
             d->model->addAction(ACT_GET_LUMINOUS_DATA);
-    }
-    else
-    {
-        d->testData->setData("[电源模式]", 0);
-        d->model->addAction(ACT_SET_SOURCE_MODE, 200);
     }
     updateUI();
     return true;

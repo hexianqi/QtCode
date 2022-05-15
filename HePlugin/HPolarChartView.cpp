@@ -56,7 +56,7 @@ void HPolarChartView::init()
     Q_D(HPolarChartView);
     d->axisAngular = new QValueAxis();
     d->axisAngular->setRange(-180, 180);
-    d->axisAngular->setTickCount(9);
+    d->axisAngular->setTickCount(25);
     d->axisAngular->setLabelFormat("%d");
 //    d->axisAngular->setShadesVisible(true);
 //    d->axisAngular->setShadesBrush(QColor(249, 249, 255));

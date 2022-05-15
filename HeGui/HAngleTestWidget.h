@@ -23,6 +23,8 @@ public:
     QString typeName() override;
 
 protected:
+    void init() override;
+    void closeEvent(QCloseEvent *) override;
     void restoreState() override;
     void handleAction(HActionType action) override;
     void createAction() override;

@@ -96,8 +96,8 @@ QPointF HAnglePrintTemplate::drawChartCartesian(QPainter *painter, QRectF rect)
         d->cartesianChartView->axisX()->setLabelFormat("%d");
         d->cartesianChartView->axisY()->setLabelFormat("%d");
         d->cartesianChartView->scatterSeries()->setVisible(false);
-        d->cartesianChartView->setWindowTitle(tr("光强角度分布图1"));
         d->cartesianChartView->chart()->legend()->setVisible(false);
+        d->cartesianChartView->setWindowTitle(tr("光强角度分布图1"));
     }
     auto poly = d->datas.value("[光强角度分布]").value<QPolygonF>();
     d->cartesianChartView->replace(poly);

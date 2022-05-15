@@ -14,6 +14,7 @@
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/HSql.h"
 #include <QtCharts/QValueAxis>
+#include <QtCharts/QScatterSeries>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QSplitter>
@@ -42,6 +43,22 @@ HAngleTestWidget::~HAngleTestWidget() = default;
 QString HAngleTestWidget::typeName()
 {
     return "HAngleTestWidget";
+}
+
+void HAngleTestWidget::init()
+{
+    Q_D(HAngleTestWidget);
+    d->testData->setData("[电源模式]", 1);
+    d->model->addAction(ACT_SET_SOURCE_MODE, 200);
+    HTestWidget::init();
+}
+
+void HAngleTestWidget::closeEvent(QCloseEvent *event)
+{
+    Q_D(HAngleTestWidget);
+    d->testData->setData("[电源模式]", 0);
+    d->model->addAction(ACT_SET_SOURCE_MODE, 200);
+    HTestWidget::closeEvent(event);
 }
 
 void HAngleTestWidget::restoreState()
@@ -99,8 +116,10 @@ void HAngleTestWidget::createWidget()
     d->cartesianChartView->axisX()->setLabelFormat("%d");
     d->cartesianChartView->axisY()->setRange(0, 10);
     d->cartesianChartView->axisY()->setLabelFormat("%d");
+    d->cartesianChartView->scatterSeries()->setVisible(false);
+    d->cartesianChartView->chart()->legend()->setVisible(false);
     d->polarChartView = new HPolarChartView;
-    d->polarChartView->axisAngular()->setRange(-90, 90);
+    d->polarChartView->axisAngular()->setRange(-180, 180);
     d->polarChartView->axisAngular()->setLabelFormat("%d");
     d->polarChartView->axisRadial()->setRange(0, 10);
     d->polarChartView->axisRadial()->setLabelFormat("%d");

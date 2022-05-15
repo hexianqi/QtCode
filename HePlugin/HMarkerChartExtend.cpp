@@ -57,7 +57,6 @@ void HMarkerChartExtend::handleMarkerClicked()
     marker->series()->setVisible(!marker->series()->isVisible());
     marker->setVisible(true);
     auto alpha = marker->series()->isVisible() ? 1.0 : 0.5;
-
     auto brush = marker->labelBrush();
     auto color = brush.color();
     color.setAlphaF(alpha);
