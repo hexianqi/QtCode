@@ -25,15 +25,15 @@ HScreenWidget::HScreenWidget(HScreenWidgetPrivate &p, QWidget *parent) :
 
 HScreenWidget::~HScreenWidget() = default;
 
-void HScreenWidget::contextMenuEvent(QContextMenuEvent *e)
+void HScreenWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     setCursor(Qt::ArrowCursor);
-    d_ptr->menu->exec(e->globalPos());
+    d_ptr->menu->exec(event->globalPos());
 }
 
-void HScreenWidget::mousePressEvent(QMouseEvent *e)
+void HScreenWidget::mousePressEvent(QMouseEvent *event)
 {
-    auto pos = e->pos();
+    auto pos = event->pos();
     auto status = d_ptr->screen->status();
     if (status == HScreenObject::Select)
     {
@@ -54,9 +54,9 @@ void HScreenWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void HScreenWidget::mouseMoveEvent(QMouseEvent *e)
+void HScreenWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    auto pos = e->pos();
+    auto pos = event->pos();
     auto status = d_ptr->screen->status();
     if (status == HScreenObject::Select)
     {

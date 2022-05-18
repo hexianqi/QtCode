@@ -227,17 +227,17 @@ void HSwitchButton::setTextOn(const QString &value)
     update();
 }
 
-void HSwitchButton::mousePressEvent(QMouseEvent *e)
+void HSwitchButton::mousePressEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
         setChecked(!isChecked());
-    QWidget::mousePressEvent(e);
+    QWidget::mousePressEvent(event);
 }
 
-void HSwitchButton::resizeEvent(QResizeEvent *e)
+void HSwitchButton::resizeEvent(QResizeEvent *event)
 {
     d_ptr->pos = isChecked() ? calcPos() : 0;
-    return QWidget::resizeEvent(e);
+    return QWidget::resizeEvent(event);
 }
 
 void HSwitchButton::paintEvent(QPaintEvent *)

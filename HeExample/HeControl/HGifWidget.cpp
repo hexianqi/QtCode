@@ -54,13 +54,13 @@ QColor HGifWidget::background() const
     return d_ptr->background;
 }
 
-void HGifWidget::resizeEvent(QResizeEvent *e)
+void HGifWidget::resizeEvent(QResizeEvent *event)
 {
     if (d_ptr->isStart)
         return;
     ui->spinBox_32->setValue(ui->widget_2->width());
     ui->spinBox_33->setValue(ui->widget_2->height());
-    QDialog::resizeEvent(e);
+    QDialog::resizeEvent(event);
 }
 
 void HGifWidget::paintEvent(QPaintEvent *)

@@ -18,11 +18,11 @@ HAdjustCollectionPrivate::HAdjustCollectionPrivate()
     dataStream->setFileFilter("Adjust files (*.hca)");
     dataStream->setReadContent([=](QDataStream &s) { readContent(s); });
     dataStream->setWriteContent([=](QDataStream &s) { writeContent(s); });
-    auto xlsxStream = factory->createXlsxStream("HXlsxStream");
-    xlsxStream->setReadContent([=](Document *p) { readContent(p); });
-    xlsxStream->setWriteContent([=](Document *p) { writeContent(p); });
     multStream = factory->createMultStream("HMultStream");
     multStream->addStream("hca", dataStream);
+//    auto xlsxStream = factory->createXlsxStream("HXlsxStream");
+//    xlsxStream->setReadContent([=](Document *p) { readContent(p); });
+//    xlsxStream->setWriteContent([=](Document *p) { writeContent(p); });
 //    multStream->addStream("xlsx", xlsxStream);
 }
 

@@ -158,11 +158,11 @@ void HNavLabel::setTriangleColor(const QColor &value)
     update();
 }
 
-void HNavLabel::mousePressEvent(QMouseEvent *e)
+void HNavLabel::mousePressEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
         emit clicked();
-    return QLabel::mousePressEvent(e);
+    return QLabel::mousePressEvent(event);
 }
 
 void HNavLabel::paintEvent(QPaintEvent *)

@@ -111,25 +111,25 @@ void HCartesianWidget::appendPoint(int id, QPointF value, bool refix, bool refre
         refreshPixmap();
 }
 
-void HCartesianWidget::mousePressEvent(QMouseEvent *e)
+void HCartesianWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HCartesianWidget);
-    d->zoom->mousePressEvent(e);
-    HDiagramWidget::mousePressEvent(e);
+    d->zoom->mousePressEvent(event);
+    HDiagramWidget::mousePressEvent(event);
 }
 
-void HCartesianWidget::mouseMoveEvent(QMouseEvent *e)
+void HCartesianWidget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HCartesianWidget);
-    d->zoom->mouseMoveEvent(e);
-    HDiagramWidget::mouseMoveEvent(e);
+    d->zoom->mouseMoveEvent(event);
+    HDiagramWidget::mouseMoveEvent(event);
 }
 
-void HCartesianWidget::mouseReleaseEvent(QMouseEvent *e)
+void HCartesianWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HCartesianWidget);
-    d->zoom->mouseReleaseEvent(e);
-    HDiagramWidget::mouseReleaseEvent(e);
+    d->zoom->mouseReleaseEvent(event);
+    HDiagramWidget::mouseReleaseEvent(event);
 }
 
 bool HCartesianWidget::drawRuler(QPainter *painter)

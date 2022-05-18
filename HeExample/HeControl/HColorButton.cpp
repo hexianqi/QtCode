@@ -93,43 +93,43 @@ void HColorButton::clear()
     d_ptr->model->clear();
 }
 
-void HColorButton::mousePressEvent(QMouseEvent *e)
+void HColorButton::mousePressEvent(QMouseEvent *event)
 {
-    if (d_ptr->dragEnabled && e->button() & Qt::LeftButton)
-        d_ptr->pressPos = e->pos();
-    QPushButton::mousePressEvent(e);
+    if (d_ptr->dragEnabled && event->button() & Qt::LeftButton)
+        d_ptr->pressPos = event->pos();
+    QPushButton::mousePressEvent(event);
 }
 
-void HColorButton::mouseMoveEvent(QMouseEvent *e)
+void HColorButton::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((e->buttons() & Qt::LeftButton) && d_ptr->dragEnabled && (e->pos() - d_ptr->pressPos).manhattanLength() >= QApplication::startDragDistance())
+    if ((event->buttons() & Qt::LeftButton) && d_ptr->dragEnabled && (event->pos() - d_ptr->pressPos).manhattanLength() >= QApplication::startDragDistance())
     {
         auto drag = new HColorDrag(this, currentColor(), currentColor().name());
         drag->exec();
         setDown(false);
     }
-    QPushButton::mouseMoveEvent(e);
+    QPushButton::mouseMoveEvent(event);
 }
 
-void HColorButton::dragEnterEvent(QDragEnterEvent *e)
+void HColorButton::dragEnterEvent(QDragEnterEvent *event)
 {
     QColor color;
-    if (e->mimeData()->hasColor())
-        color = e->mimeData()->colorData().value<QColor>();
-    else if (e->mimeData()->hasText())
-        color = QColor(e->mimeData()->text());
+    if (event->mimeData()->hasColor())
+        color = event->mimeData()->colorData().value<QColor>();
+    else if (event->mimeData()->hasText())
+        color = QColor(event->mimeData()->text());
     if (color.isValid())
-        e->acceptProposedAction();
+        event->acceptProposedAction();
 }
 
-void HColorButton::dropEvent(QDropEvent *e)
+void HColorButton::dropEvent(QDropEvent *event)
 {
-    if (e->source() == this)
+    if (event->source() == this)
         return;
-    if (e->mimeData()->hasColor())
-        setCurrentColor(e->mimeData()->colorData().value<QColor>());
+    if (event->mimeData()->hasColor())
+        setCurrentColor(event->mimeData()->colorData().value<QColor>());
     else
-        setCurrentColor(e->mimeData()->text());
+        setCurrentColor(event->mimeData()->text());
 }
 
 void HColorButton::setCurrentIndex(const QModelIndex &index)

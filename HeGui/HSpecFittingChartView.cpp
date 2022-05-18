@@ -3,10 +3,10 @@
 #include "HePlugin/HMarkerChartExtend.h"
 #include "HePlugin/HSingleAxisChart.h"
 #include "HePlugin/HPluginHelper.h"
-#include <QtWidgets/QAction>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QScatterSeries>
+#include <QtWidgets/QAction>
 
 HE_BEGIN_NAMESPACE
 
@@ -84,6 +84,7 @@ void HSpecFittingChartView::clearSeries()
 void HSpecFittingChartView::init()
 {
     Q_D(HSpecFittingChartView);
+    HZoomChartView::init();
     auto axisX = new QValueAxis;
     axisX->setLabelFormat("%d");
     axisX->setRange(0, 65535);
@@ -96,24 +97,21 @@ void HSpecFittingChartView::init()
     d->chart->setAxisY(axisY);
     d->marker = new HMarkerChartExtend(d->chart, this);
     d->callout = new HCalloutChartExtend(d->chart, this);
-    auto clearCallout = new QAction(tr("清除标注(&C)"));
     auto clearSeries = new QAction(tr("清除曲线(&C)"));
-    connect(clearCallout, &QAction::triggered, d->callout, &HCalloutChartExtend::clear);
     connect(clearSeries, &QAction::triggered, this, &HSpecFittingChartView::clearSeries);
-    addAction(clearCallout);
-    addAction(clearSeries);
     HPluginHelper::addSeparator(this);
+    addActions(d->callout->actions());
+    addAction(clearSeries);
     setChart(d->chart);
     setWindowTitle(tr("CCD曲线"));
-    HZoomChartView::init();
 }
 
-void HSpecFittingChartView::resizeEvent(QResizeEvent *e)
+void HSpecFittingChartView::resizeEvent(QResizeEvent *event)
 {
     Q_D(HSpecFittingChartView);
     if (scene())
         d->callout->updateGeometry();
-    HZoomChartView::resizeEvent(e);
+    HZoomChartView::resizeEvent(event);
 }
 
 HE_END_NAMESPACE

@@ -16,6 +16,9 @@ public:
     static QStringList unselected(QStringList optional, QStringList selected);
     // 合并
     static QVariantMap unite(QVariantMap m1, const QVariantMap &m2);
+    // Json格式
+    static QString toJson(QVariantMap);
+    static QVariantMap fromJson(QString);
     // 延时
     static void msleep(int msecs);
     static void msleep2(int msecs);

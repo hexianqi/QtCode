@@ -2,6 +2,7 @@
 #include "HSingleAxisChart.h"
 #include "HePlugin/HCalloutChartExtend.h"
 #include "HePlugin/HMarkerChartExtend.h"
+#include "HePlugin/HPluginHelper.h"
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QScatterSeries>
@@ -96,6 +97,7 @@ void HDynamicChartView::replace(QVector<QPointF> points)
 void HDynamicChartView::init()
 {
     Q_D(HDynamicChartView);
+    HZoomChartView::init();
     d->lineSeries = new QLineSeries();
     d->lineSeries->setName(tr("线"));
     d->scatterSeries = new QScatterSeries();
@@ -116,6 +118,15 @@ void HDynamicChartView::init()
     d->marker->connectExtend();
     d->callout = new HCalloutChartExtend(d->chart, this);
     d->callout->connectExtend();
+    HPluginHelper::addSeparator(this);
+    addActions(d->callout->actions());
     setChart(d->chart);
-    HZoomChartView::init();
+}
+
+void HDynamicChartView::resizeEvent(QResizeEvent *event)
+{
+    Q_D(HDynamicChartView);
+    if (scene())
+        d->callout->updateGeometry();
+    HZoomChartView::resizeEvent(event);
 }

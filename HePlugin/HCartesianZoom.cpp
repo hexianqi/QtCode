@@ -53,28 +53,28 @@ bool HCartesianZoom::setValidRegion(QRectF value)
     return true;
 }
 
-bool HCartesianZoom::mousePressEvent(QMouseEvent *e)
+bool HCartesianZoom::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HCartesianZoom);
     if (!isEnable())
         return false;
-    return d->rubberBand->mousePressEvent(e);
+    return d->rubberBand->mousePressEvent(event);
 }
 
-bool HCartesianZoom::mouseMoveEvent(QMouseEvent *e)
+bool HCartesianZoom::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HCartesianZoom);
     if (!isEnable())
         return false;
-    return d->rubberBand->mouseMoveEvent(e);
+    return d->rubberBand->mouseMoveEvent(event);
 }
 
-bool HCartesianZoom::mouseReleaseEvent(QMouseEvent *e)
+bool HCartesianZoom::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HCartesianZoom);
     if (!isEnable())
         return false;
-    return d->rubberBand->mouseReleaseEvent(e);
+    return d->rubberBand->mouseReleaseEvent(event);
 }
 
 void HCartesianZoom::handleRubberBandChanged(QRectF value)

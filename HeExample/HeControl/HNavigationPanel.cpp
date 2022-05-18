@@ -142,22 +142,22 @@ void HNavigationPanel::setTopWidgetVisible(bool b)
     d->topButton->setVisible(b);
 }
 
-void HNavigationPanel::actionEvent(QActionEvent *e)
+void HNavigationPanel::actionEvent(QActionEvent *event)
 {
     Q_D(HNavigationPanel);
-    if (e->type() == QEvent::ActionAdded)
+    if (event->type() == QEvent::ActionAdded)
     {
-        if (e->before() == nullptr)
-            addToolButton(0, e->action());
+        if (event->before() == nullptr)
+            addToolButton(0, event->action());
         else
-            findToolButton(e->before(), [=](int index, QToolButton */*button*/) { addToolButton(index, e->action()); });
+            findToolButton(event->before(), [=](int index, QToolButton */*button*/) { addToolButton(index, event->action()); });
     }
-    if (e->type() == QEvent::ActionRemoved)
+    if (event->type() == QEvent::ActionRemoved)
     {
-        findToolButton(e->before(), [=](int /*index*/, QToolButton *button) { d->bottomLayout->removeWidget(button); delete button; });
+        findToolButton(event->before(), [=](int /*index*/, QToolButton *button) { d->bottomLayout->removeWidget(button); delete button; });
         return;
     }
-    QWidget::actionEvent(e);
+    QWidget::actionEvent(event);
 }
 
 void HNavigationPanel::addToolButton(int index, QAction *action)

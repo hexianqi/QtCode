@@ -123,15 +123,15 @@ void HButtonProgressBar::resizeEvent(QResizeEvent *)
     d->tempWidth = width();
 }
 
-void HButtonProgressBar::mousePressEvent(QMouseEvent *e)
+void HButtonProgressBar::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HButtonProgressBar);
-    if (e->button() == Qt::LeftButton && d->status != 1)
+    if (event->button() == Qt::LeftButton && d->status != 1)
     {
         d->status = 0;
         d->timer->start();
     }
-    return HAbstractProgress::mousePressEvent(e);
+    return HAbstractProgress::mousePressEvent(event);
 }
 
 void HButtonProgressBar::paintEvent(QPaintEvent *)

@@ -22,9 +22,8 @@ public:
 public:
     QString typeName() override;
 
-public:
-    void refreshWidget() override;
-    void refreshData(QString) override;
+protected:
+    void initHash() override;
 
 private:
     Ui::HAngleTestDetailWidget *ui;

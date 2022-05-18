@@ -96,38 +96,38 @@ void HMiniGauge::setShowValue(bool b)
     update();
 }
 
-void HMiniGauge::mousePressEvent(QMouseEvent *e)
+void HMiniGauge::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HMiniGauge);
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
         d->pressed = true;
-        setPressedValue(e->localPos());
+        setPressedValue(event->localPos());
         return;
     }
-    HCircleGauge::mousePressEvent(e);
+    HCircleGauge::mousePressEvent(event);
 }
 
-void HMiniGauge::mouseReleaseEvent(QMouseEvent *e)
+void HMiniGauge::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HMiniGauge);
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
         d->pressed = false;
         return;
     }
-    HCircleGauge::mouseReleaseEvent(e);
+    HCircleGauge::mouseReleaseEvent(event);
 }
 
-void HMiniGauge::mouseMoveEvent(QMouseEvent *e)
+void HMiniGauge::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HMiniGauge);
     if (d->pressed)
     {
-        setPressedValue(e->localPos());
+        setPressedValue(event->localPos());
         return;
     }
-    HCircleGauge::mouseMoveEvent(e);
+    HCircleGauge::mouseMoveEvent(event);
 }
 
 void HMiniGauge::paintEvent(QPaintEvent *)

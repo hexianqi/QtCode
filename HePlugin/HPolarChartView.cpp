@@ -28,6 +28,14 @@ QValueAxis *HPolarChartView::axisRadial()
     return d->axisRadial;
 }
 
+void HPolarChartView::addSeries(QAbstractSeries *series)
+{
+    Q_D(HPolarChartView);
+    d->chart->addSeries(series);
+    series->attachAxis(d->axisRadial);
+    series->attachAxis(d->axisAngular);
+}
+
 void HPolarChartView::clear()
 {
     Q_D(HPolarChartView);
@@ -54,24 +62,22 @@ void HPolarChartView::replace(QVector<QPointF> points)
 void HPolarChartView::init()
 {
     Q_D(HPolarChartView);
-    d->axisAngular = new QValueAxis();
+    HChartView::init();
+    d->axisAngular = new QValueAxis;
     d->axisAngular->setRange(-180, 180);
     d->axisAngular->setTickCount(25);
     d->axisAngular->setLabelFormat("%d");
 //    d->axisAngular->setShadesVisible(true);
 //    d->axisAngular->setShadesBrush(QColor(249, 249, 255));
-    d->axisRadial = new QValueAxis();
+    d->axisRadial = new QValueAxis;
     d->axisRadial->setTickCount(6);
     d->axisRadial->setRange(0, 1);
     d->axisRadial->setLabelFormat("%.1f");
-    d->series = new QSplineSeries();
+    d->series = new QSplineSeries;
     d->chart = new QPolarChart;
+    d->chart->legend()->setVisible(false);
     d->chart->addAxis(d->axisAngular, QPolarChart::PolarOrientationAngular);
     d->chart->addAxis(d->axisRadial, QPolarChart::PolarOrientationRadial);
-    d->chart->addSeries(d->series);
-    d->series->attachAxis(d->axisRadial);
-    d->series->attachAxis(d->axisAngular);
-    d->chart->legend()->setVisible(false);
+    addSeries(d->series);
     setChart(d->chart);
-    HChartView::init();
 }

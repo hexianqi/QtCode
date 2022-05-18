@@ -2,6 +2,8 @@
 
 #include "HAbstractTestDetailWidget.h"
 
+class QLineEdit;
+
 HE_BEGIN_NAMESPACE
 
 class ITestData;
@@ -13,6 +15,7 @@ public:
 
 public:
     ITestData *testData;
+    QHash<QString, QLineEdit *> lineEdits;
 };
 
 HE_END_NAMESPACE

@@ -55,9 +55,9 @@ void HTaskHeader::setIcon(const QIcon &value)
     update();
 }
 
-void HTaskHeader::paintEvent(QPaintEvent *e)
+void HTaskHeader::paintEvent(QPaintEvent *event)
 {
-    QFrame::paintEvent(e);
+    QFrame::paintEvent(event);
     QPainter print(this);
     d_ptr->icon.paint(&print, QRect(6, (height() - 32) / 2 , 32, 32), Qt::AlignCenter,
                  isEnabled() ? QIcon::Normal : QIcon::Disabled,

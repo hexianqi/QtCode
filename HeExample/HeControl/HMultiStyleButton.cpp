@@ -259,27 +259,27 @@ bool HMultiStyleButton::eventFilter(QObject *watched, QEvent *event)
     return QWidget::eventFilter(watched, event);
 }
 
-void HMultiStyleButton::mousePressEvent(QMouseEvent *e)
+void HMultiStyleButton::mousePressEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
         d_ptr->pressed = true;
         update();
         emit pressed();
     }
-    QWidget::mousePressEvent(e);
+    QWidget::mousePressEvent(event);
 }
 
-void HMultiStyleButton::mouseReleaseEvent(QMouseEvent *e)
+void HMultiStyleButton::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton && d_ptr->pressed)
+    if (event->button() == Qt::LeftButton && d_ptr->pressed)
     {
         d_ptr->pressed = false;
         update();
         emit released();
         emit clicked();
     }
-    QWidget::mouseReleaseEvent(e);
+    QWidget::mouseReleaseEvent(event);
 }
 
 void HMultiStyleButton::paintEvent(QPaintEvent *)

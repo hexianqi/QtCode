@@ -4,9 +4,10 @@
 #include "HeData/HAbstractPrintTemplate_p.h"
 
 class HDynamicChartView;
-class HPolarChartView;
 
 HE_BEGIN_NAMESPACE
+
+class HAngleChartView;
 
 class HAnglePrintTemplatePrivate : public HAbstractPrintTemplatePrivate
 {
@@ -15,7 +16,7 @@ public:
 
 public:
     HDynamicChartView *cartesianChartView = nullptr;
-    HPolarChartView *polarChartView = nullptr;
+    HAngleChartView *polarChartView = nullptr;
 };
 
 HE_END_NAMESPACE

@@ -253,9 +253,9 @@ void HDiagramWidget::setPolygonColor(int id, const QColor &value)
     refreshPixmap();
 }
 
-void HDiagramWidget::resizeEvent(QResizeEvent *e)
+void HDiagramWidget::resizeEvent(QResizeEvent *event)
 {
-    setPlotArea(d_ptr->calcPlotArea(e->size()));
+    setPlotArea(d_ptr->calcPlotArea(event->size()));
     refreshPixmap();
 }
 

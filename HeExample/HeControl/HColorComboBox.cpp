@@ -138,25 +138,25 @@ void HColorComboBox::paintEvent(QPaintEvent *)
     painter.drawControl(QStyle::CE_ComboBoxLabel, option);
 }
 
-void HColorComboBox::dragEnterEvent(QDragEnterEvent *e)
+void HColorComboBox::dragEnterEvent(QDragEnterEvent *event)
 {
     QColor color;
-    if (e->mimeData()->hasColor())
-        color = e->mimeData()->colorData().value<QColor>();
-    else if (e->mimeData()->hasText())
-        color = QColor(e->mimeData()->text());
+    if (event->mimeData()->hasColor())
+        color = event->mimeData()->colorData().value<QColor>();
+    else if (event->mimeData()->hasText())
+        color = QColor(event->mimeData()->text());
     if (color.isValid())
-        e->acceptProposedAction();
+        event->acceptProposedAction();
 }
 
-void HColorComboBox::dropEvent(QDropEvent *e)
+void HColorComboBox::dropEvent(QDropEvent *event)
 {
-    if (e->source() == this)
+    if (event->source() == this)
         return;
-    if (e->mimeData()->hasColor())
-        setCurrentColor(e->mimeData()->colorData().value<QColor>());
+    if (event->mimeData()->hasColor())
+        setCurrentColor(event->mimeData()->colorData().value<QColor>());
     else
-        setCurrentColor(e->mimeData()->text());
+        setCurrentColor(event->mimeData()->text());
 }
 
 void HColorComboBox::handleActivated(int index)

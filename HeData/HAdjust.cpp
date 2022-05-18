@@ -36,7 +36,6 @@ void HAdjust::readContent(QDataStream &s)
 {
     Q_D(HAdjust);
     quint32 version;
-
     s >> version;
     HStreamHelper::read<QString, IAdjustItem>(s, d->items, [=](QString type) { return d->factory->createAdjustItem(type); });
 }

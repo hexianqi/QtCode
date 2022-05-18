@@ -169,31 +169,31 @@ void HRichTextEdit::setCharFormat(const QTextCharFormat &value)
     setTextCursor(cursor);
 }
 
-void HRichTextEdit::keyPressEvent(QKeyEvent *e)
+void HRichTextEdit::keyPressEvent(QKeyEvent *event)
 {
     auto c = textCursor();
     d_ptr->currentList = c.currentList();
-    if (d_ptr->currentList != nullptr && (e->key() == Qt::Key_Tab || e->key() == Qt::Key_Backtab))
+    if (d_ptr->currentList != nullptr && (event->key() == Qt::Key_Tab || event->key() == Qt::Key_Backtab))
     {
         auto f = d_ptr->currentList->format();
-        f.setIndent(d_ptr->currentList->format().indent() + (e->key() == Qt::Key_Tab ? 1 : -1));
+        f.setIndent(d_ptr->currentList->format().indent() + (event->key() == Qt::Key_Tab ? 1 : -1));
         d_ptr->currentList = c.createList(f);
         return;
     }
-    QTextEdit::keyPressEvent(e);
+    QTextEdit::keyPressEvent(event);
 }
 
-void HRichTextEdit::resizeEvent(QResizeEvent *e)
+void HRichTextEdit::resizeEvent(QResizeEvent *event)
 {
     auto bar = verticalScrollBar();
     d_ptr->toolBar->setGeometry(1, 1, width() - bar->sizeHint().width() - 1, d_ptr->toolBar->sizeHint().height());
-    QTextEdit::resizeEvent(e);
+    QTextEdit::resizeEvent(event);
     auto rect = bar->geometry();
     rect.setTop(d_ptr->toolBar->geometry().bottom() + 2);
     bar->setGeometry(rect);
 }
 
-void HRichTextEdit::contextMenuEvent(QContextMenuEvent *e)
+void HRichTextEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     auto style = new QMenu(tr("样式"));
     style->addAction(d_ptr->boldAction);
@@ -208,7 +208,7 @@ void HRichTextEdit::contextMenuEvent(QContextMenuEvent *e)
     auto menu = createStandardContextMenu();
     menu->addMenu(style);
     menu->addMenu(align);
-    menu->exec(e->globalPos());
+    menu->exec(event->globalPos());
     delete menu;
 }
 

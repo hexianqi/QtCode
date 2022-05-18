@@ -19,10 +19,6 @@ public:
     static const char *toCommand(HLogType type);
 
 public:
-    static QString toJson(QVariantMap);
-    static QVariantMap fromJson(QString);
-
-public:
     static QString toComment(HActionType type);
     static QString toComment(HErrorType type);
 

@@ -96,20 +96,20 @@ QVector<QPointF> HAbstractVernierTracking::verniers()
     return d->verniers;
 }
 
-bool HAbstractVernierTracking::mousePressEvent(QMouseEvent *e)
+bool HAbstractVernierTracking::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HAbstractVernierTracking);
-    if (!isEnable() || e->button() != Qt::LeftButton || !isValid(e->localPos()))
+    if (!isEnable() || event->button() != Qt::LeftButton || !isValid(event->localPos()))
         return false;
     for (int i = 0; i < d->verniers.size(); i++)
     {
-        if (d->orientation == Qt::Horizontal && qAbs(e->localPos().y() - d->verniers[i].y()) < 5)
+        if (d->orientation == Qt::Horizontal && qAbs(event->localPos().y() - d->verniers[i].y()) < 5)
         {
             d->pos = i;
             d->parent->setCursor(Qt::SizeVerCursor);
             return true;
         }
-        if (d->orientation == Qt::Vertical && qAbs(e->localPos().x() - d->verniers[i].x()) < 5)
+        if (d->orientation == Qt::Vertical && qAbs(event->localPos().x() - d->verniers[i].x()) < 5)
         {
             d->pos = i;
             d->parent->setCursor(Qt::SizeHorCursor);
@@ -119,10 +119,10 @@ bool HAbstractVernierTracking::mousePressEvent(QMouseEvent *e)
     return false;
 }
 
-bool HAbstractVernierTracking::mouseReleaseEvent(QMouseEvent *e)
+bool HAbstractVernierTracking::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HAbstractVernierTracking);
-    if (!isEnable() || e->button() != Qt::LeftButton || d->pos == -1 )
+    if (!isEnable() || event->button() != Qt::LeftButton || d->pos == -1 )
         return false;
 
     emit vernierPosChanged(d->verniers[d->pos]);

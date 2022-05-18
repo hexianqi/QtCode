@@ -81,25 +81,25 @@ void HHueSatRadialPicker::setColor(const QColor &value)
     update();
 }
 
-void HHueSatRadialPicker::mousePressEvent(QMouseEvent *e)
+void HHueSatRadialPicker::mousePressEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
-        auto p = e->localPos();
+        auto p = event->localPos();
         auto r = radius(p);
         auto side = qMin(width(), height());
         if (r >= side / 2.0)
             return;
         colorPick(p, r);
     }
-    QWidget::mousePressEvent(e);
+    QWidget::mousePressEvent(event);
 }
 
-void HHueSatRadialPicker::mouseMoveEvent(QMouseEvent *e)
+void HHueSatRadialPicker::mouseMoveEvent(QMouseEvent *event)
 {
-    if (e->buttons() & Qt::LeftButton)
+    if (event->buttons() & Qt::LeftButton)
     {
-        auto p = e->localPos();
+        auto p = event->localPos();
         auto r = radius(p);
         auto side = qMin(width(), height());
         if (r >= side / 2.0)
@@ -109,12 +109,12 @@ void HHueSatRadialPicker::mouseMoveEvent(QMouseEvent *e)
         }
         colorPick(p, r);
     }
-    QWidget::mousePressEvent(e);
+    QWidget::mousePressEvent(event);
 }
 
-void HHueSatRadialPicker::resizeEvent(QResizeEvent *e)
+void HHueSatRadialPicker::resizeEvent(QResizeEvent *event)
 {
-    QWidget::resizeEvent(e);
+    QWidget::resizeEvent(event);
     buildPixmap();
     update();
 }

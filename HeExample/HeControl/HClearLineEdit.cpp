@@ -22,7 +22,7 @@ void HClearLineEdit::setButtonVisible(bool b)
     HButtonLineEdit::setButtonVisible(b);
 }
 
-void HClearLineEdit::paintEvent(QPaintEvent *e)
+void HClearLineEdit::paintEvent(QPaintEvent *event)
 {
     Q_D(HClearLineEdit);
     if (!d->vis && isReadOnly())
@@ -35,7 +35,7 @@ void HClearLineEdit::paintEvent(QPaintEvent *e)
         d->button->setVisible(!text().isEmpty());
         d->vis = false;
     }
-    HButtonLineEdit::paintEvent(e);
+    HButtonLineEdit::paintEvent(event);
 }
 
 void HClearLineEdit::init()

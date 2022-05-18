@@ -38,4 +38,5 @@ protected:
 
 protected:
     void init() override;
+    void resizeEvent(QResizeEvent *) override;
 };

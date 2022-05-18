@@ -29,6 +29,9 @@ public:
 public:
     void refreshWidget() override;
 
+protected:
+    void initHash() override;
+
 private:
     Ui::HSpecDetailWidget *ui;
 };

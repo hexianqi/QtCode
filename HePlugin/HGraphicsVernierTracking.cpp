@@ -74,14 +74,14 @@ void HGraphicsVernierTracking::resizeVernier(int size)
     HAbstractVernierTracking::resizeVernier(size);
 }
 
-bool HGraphicsVernierTracking::mouseMoveEvent(QMouseEvent *e)
+bool HGraphicsVernierTracking::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HGraphicsVernierTracking);
     auto pos = d->pos;
-    if (!isValid(e->localPos()) || pos == -1)
+    if (!isValid(event->localPos()) || pos == -1)
         return false;
 
-    d->verniers[pos] = e->localPos();
+    d->verniers[pos] = event->localPos();
     setLine(pos);
     emit vernierPosChanged(d->verniers[pos]);
     return true;

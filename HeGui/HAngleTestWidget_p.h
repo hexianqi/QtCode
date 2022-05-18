@@ -4,10 +4,10 @@
 #include "HTestWidget_p.h"
 
 class HDynamicChartView;
-class HPolarChartView;
 
 HE_BEGIN_NAMESPACE
 
+class HAngleChartView;
 class ITestDetailWidget;
 class ISqlHandle;
 class IPrint;
@@ -23,13 +23,14 @@ public:
 public:
     ITestDetailWidget *detailWidget = nullptr;
     HDynamicChartView *cartesianChartView = nullptr;
-    HPolarChartView *polarChartView = nullptr;
+    HAngleChartView *polarChartView = nullptr;
 
 public:
     QAction *actionMotorLocation = nullptr;
     QAction *actionMotorReset = nullptr;
     QAction *actionExportDatabase = nullptr;
     QAction *actionPrintPreview = nullptr;
+    QTimer *timer = nullptr;
 
 public:
     ISqlHandle *sqlHandle = nullptr;

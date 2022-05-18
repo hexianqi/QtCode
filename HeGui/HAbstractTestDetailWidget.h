@@ -22,11 +22,16 @@ public:
     void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
+    void refreshWidget() override;
     void refreshData(QString) override;
     void refreshData(QStringList) override;
 
 protected:
     HAbstractTestDetailWidget(HAbstractTestDetailWidgetPrivate &p, QWidget *parent = nullptr);
+
+protected:
+    virtual void init();
+    virtual void initHash() = 0;
 
 protected:
     QScopedPointer<HAbstractTestDetailWidgetPrivate> d_ptr;

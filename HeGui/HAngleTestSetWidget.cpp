@@ -40,6 +40,7 @@ QVariant HAngleTestSetWidget::handleOperation(QString type, QVariant value)
     {
         ui->spinBox_1->setValue(0);
         ui->spinBox_1->setEnabled(false);
+        d->testData->setData("[电机定位]", 0);
         d->model->addAction(ACT_RESET_MOTOR_LOCATION);
         return true;
     }
@@ -51,6 +52,9 @@ void HAngleTestSetWidget::handleAction(HActionType action)
     Q_D(HAngleTestSetWidget);
     switch(action)
     {
+    case ACT_GET_MEASURED_VOLTAGE:
+        emit resultChanged(action, false);
+        break;
     case ACT_SET_OUTPUT_VOLTAGE:
         ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
         break;
@@ -138,8 +142,6 @@ void HAngleTestSetWidget::on_comboBox_2_currentIndexChanged(int value)
     Q_D(HAngleTestSetWidget);
     if (d->testData->setData("[输出电流_档位]", value))
         d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
-    if (d->testData->setData("[实测电流_档位]", value))
-        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HAngleTestSetWidget::on_comboBox_3_currentIndexChanged(int value)

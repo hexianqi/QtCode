@@ -121,9 +121,9 @@ void HCustomGraphics::setSelectColor(const QColor &value)
     update();
 }
 
-void HCustomGraphics::mousePressEvent(QMouseEvent *e)
+void HCustomGraphics::mousePressEvent(QMouseEvent *event)
 {
-    auto pos = e->pos();
+    auto pos = event->pos();
     d_ptr->pressed = true;
     d_ptr->lastPoint = mapToGlobal(pos);
 
@@ -171,9 +171,9 @@ void HCustomGraphics::mousePressEvent(QMouseEvent *e)
     update();
 }
 
-void HCustomGraphics::mouseMoveEvent(QMouseEvent *e)
+void HCustomGraphics::mouseMoveEvent(QMouseEvent *event)
 {
-    d_ptr->tempPoint = e->pos();
+    d_ptr->tempPoint = event->pos();
     if (d_ptr->pressed && d_ptr->selectedIndex != -1)
     {
         // 整体偏移坐标
@@ -194,10 +194,10 @@ void HCustomGraphics::mouseMoveEvent(QMouseEvent *e)
     update();
 }
 
-void HCustomGraphics::mouseReleaseEvent(QMouseEvent *e)
+void HCustomGraphics::mouseReleaseEvent(QMouseEvent *event)
 {
     // 鼠标右键清空临时的
-    if (e->button() == Qt::RightButton)
+    if (event->button() == Qt::RightButton)
     {
         clearTemp();
         return;
@@ -208,7 +208,7 @@ void HCustomGraphics::mouseReleaseEvent(QMouseEvent *e)
     if (d_ptr->selectedIndex != -1)
         return;
 
-    auto pos = e->pos();
+    auto pos = event->pos();
     if (d_ptr->tempPoints.count() > 0)
     {
         if (calcLength(d_ptr->tempPoints.first(), pos) < 100)

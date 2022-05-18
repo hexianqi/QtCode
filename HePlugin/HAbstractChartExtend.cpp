@@ -27,6 +27,11 @@ HAbstractChartExtend::HAbstractChartExtend(HAbstractChartExtendPrivate &p, QObje
 
 HAbstractChartExtend::~HAbstractChartExtend() = default;
 
+QList<QAction *> HAbstractChartExtend::actions()
+{
+    return d_ptr->actions;
+}
+
 void HAbstractChartExtend::setChart(QChart *p)
 {
     if (d_ptr->chart == p)

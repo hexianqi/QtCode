@@ -93,19 +93,19 @@ void HTwoColorIndicator::switchColors()
     update();
 }
 
-void HTwoColorIndicator::mousePressEvent(QMouseEvent *e)
+void HTwoColorIndicator::mousePressEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
-        d_ptr->pressPos = e->pos();
-        if (foregroundRect().contains(e->pos()))
+        d_ptr->pressPos = event->pos();
+        if (foregroundRect().contains(event->pos()))
         {
             d_ptr->foregroundPress = true;
             d_ptr->backgroundPress = false;
             emit foregroundPressed();
             update();
         }
-        else if (backgroundRect().contains(e->pos()))
+        else if (backgroundRect().contains(event->pos()))
         {
             d_ptr->foregroundPress = false;
             d_ptr->backgroundPress = true;
@@ -113,14 +113,14 @@ void HTwoColorIndicator::mousePressEvent(QMouseEvent *e)
             update();
         }
     }
-    QWidget::mousePressEvent(e);
+    QWidget::mousePressEvent(event);
 }
 
-void HTwoColorIndicator::mouseMoveEvent(QMouseEvent *e)
+void HTwoColorIndicator::mouseMoveEvent(QMouseEvent *event)
 {
     if (d_ptr->foregroundPress || d_ptr->backgroundPress)
     {
-        if (isDragEnabled() && (e->pos() - d_ptr->pressPos).manhattanLength() >= QApplication::startDragDistance())
+        if (isDragEnabled() && (event->pos() - d_ptr->pressPos).manhattanLength() >= QApplication::startDragDistance())
         {
             auto color = d_ptr->foregroundPress ? foreground() : background();
             auto drag = new HColorDrag(this, color, color.name());
@@ -132,14 +132,14 @@ void HTwoColorIndicator::mouseMoveEvent(QMouseEvent *e)
     }
     else if (testAttribute(Qt::WA_Hover))
         update();
-    QWidget::mouseMoveEvent(e);
+    QWidget::mouseMoveEvent(event);
 }
 
-void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *e)
+void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
-        if (d_ptr->foregroundPress && foregroundRect().contains(e->pos()))
+        if (d_ptr->foregroundPress && foregroundRect().contains(event->pos()))
         {
             emit foregroundClicked();
             if (isActive())
@@ -149,7 +149,7 @@ void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *e)
                     setForeground(color);
             }
         }
-        else if (d_ptr->backgroundPress && backgroundRect().contains(e->pos()))
+        else if (d_ptr->backgroundPress && backgroundRect().contains(event->pos()))
         {
             emit backgroundClicked();
             if (isActive())
@@ -163,47 +163,47 @@ void HTwoColorIndicator::mouseReleaseEvent(QMouseEvent *e)
         d_ptr->backgroundPress = false;
         update();
     }
-    QWidget::mouseReleaseEvent(e);
+    QWidget::mouseReleaseEvent(event);
 }
 
-void HTwoColorIndicator::dragEnterEvent(QDragEnterEvent *e)
+void HTwoColorIndicator::dragEnterEvent(QDragEnterEvent *event)
 {
     QColor color;
-    if (e->mimeData()->hasColor())
-        color = e->mimeData()->colorData().value<QColor>();
-    else if (e->mimeData()->hasFormat("text/plain"))
-        color = QColor(e->mimeData()->text());
+    if (event->mimeData()->hasColor())
+        color = event->mimeData()->colorData().value<QColor>();
+    else if (event->mimeData()->hasFormat("text/plain"))
+        color = QColor(event->mimeData()->text());
     if (color.isValid())
-        e->acceptProposedAction();
+        event->acceptProposedAction();
 }
 
-void HTwoColorIndicator::dragMoveEvent(QDragMoveEvent *e)
+void HTwoColorIndicator::dragMoveEvent(QDragMoveEvent *event)
 {
-    if (foregroundRect().intersects(e->answerRect()))
+    if (foregroundRect().intersects(event->answerRect()))
     {
-        e->acceptProposedAction();
-        e->accept(foregroundRect());
+        event->acceptProposedAction();
+        event->accept(foregroundRect());
     }
-    else if (backgroundRect().intersects(e->answerRect()))
+    else if (backgroundRect().intersects(event->answerRect()))
     {
-        e->acceptProposedAction();
+        event->acceptProposedAction();
     }
     else
-        e->ignore();
+        event->ignore();
 }
 
-void HTwoColorIndicator::dropEvent(QDropEvent *e)
+void HTwoColorIndicator::dropEvent(QDropEvent *event)
 {
-    QColor c;
-    if (e->mimeData()->hasColor())
-        c = e->mimeData()->colorData().value<QColor>();
+    QColor color;
+    if (event->mimeData()->hasColor())
+        color = event->mimeData()->colorData().value<QColor>();
     else
-        c.setNamedColor(e->mimeData()->text());
-    if (foregroundRect().contains(e->pos()))
-        setForeground(c);
-    else if (backgroundRect().contains(e->pos()))
-        setBackground(c);
-    e->setDropAction(Qt::CopyAction);
+        color.setNamedColor(event->mimeData()->text());
+    if (foregroundRect().contains(event->pos()))
+        setForeground(color);
+    else if (backgroundRect().contains(event->pos()))
+        setBackground(color);
+    event->setDropAction(Qt::CopyAction);
 }
 
 void HTwoColorIndicator::paintEvent(QPaintEvent *)

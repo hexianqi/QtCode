@@ -29,17 +29,17 @@ void HZoomChartView::resizeEvent(QResizeEvent *e)
     QChartView::resizeEvent(e);
 }
 
-void HZoomChartView::mouseReleaseEvent(QMouseEvent *e)
+void HZoomChartView::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::RightButton)
-        e->accept();
+    if (event->button() == Qt::RightButton)
+        event->accept();
     else
-        QChartView::mouseReleaseEvent(e);
+        QChartView::mouseReleaseEvent(event);
 }
 
-void HZoomChartView::keyPressEvent(QKeyEvent *e)
+void HZoomChartView::keyPressEvent(QKeyEvent *event)
 {
-    switch (e->key())
+    switch (event->key())
     {
     case Qt::Key_Plus:
         chart()->zoomIn();
@@ -51,13 +51,14 @@ void HZoomChartView::keyPressEvent(QKeyEvent *e)
         chart()->zoomReset();
         break;
     default:
-        QChartView::keyPressEvent(e);
+        QChartView::keyPressEvent(event);
         break;
     }
 }
 
 void HZoomChartView::init()
 {
+    HChartView::init();
     auto zoomReset = new QAction(QIcon(":/image/Zoom.png"), tr("还原(&R)"));
     auto zoomIn = new QAction(QIcon(":/image/ZoomIn.png"), tr("放大(&I)"));
     auto zoomOut = new QAction(QIcon(":/image/ZoomOut.png"), tr("缩小(&O)"));
@@ -67,8 +68,5 @@ void HZoomChartView::init()
     connect(zoomReset, &QAction::triggered, this, [=] { chart()->zoomReset(); });
     connect(zoomIn, &QAction::triggered, this, [=] { chart()->zoomIn(); });
     connect(zoomOut, &QAction::triggered, this, [=] { chart()->zoomOut(); });
-    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    setContextMenuPolicy(Qt::ActionsContextMenu);
     setRubberBand(QChartView::RectangleRubberBand);
-    HChartView::init();
 }

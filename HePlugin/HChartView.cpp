@@ -23,6 +23,8 @@ HChartView::HChartView(HChartViewPrivate &p, QChart *chart, QWidget *parent) :
 void HChartView::init()
 {
     setBackgroundBrush(Qt::white);
+    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 HChartView::~HChartView() = default;

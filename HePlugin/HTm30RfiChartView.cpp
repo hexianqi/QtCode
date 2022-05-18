@@ -22,6 +22,7 @@ HTm30BarChart *HTm30RfiChartView::chart()
 void HTm30RfiChartView::init()
 {
     Q_D(HTm30RfiChartView);
+    HZoomChartView::init();
     readColor();
     d->chart = new HTm30BarChart(99);
     d->chart->axisY()->setTitleText("<p>Color Sample Fidelity (R<span style='vertical-align:sub;'>f,CESi</span>)</p>");
@@ -29,7 +30,6 @@ void HTm30RfiChartView::init()
     d->chart->setBarColor(d->color);
     setChart(d->chart);
     setWindowTitle(tr("样本色彩逼真度"));
-    HZoomChartView::init();
 }
 
 void HTm30RfiChartView::readColor()

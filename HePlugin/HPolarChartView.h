@@ -26,6 +26,7 @@ public:
     QValueAxis *axisRadial();
 
 public:
+    void addSeries(QAbstractSeries *);
     void clear();
     void replace(QVector<QPointF>);
 

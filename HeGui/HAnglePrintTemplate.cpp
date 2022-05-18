@@ -1,4 +1,5 @@
 #include "HAnglePrintTemplate_p.h"
+#include "HAngleChartView.h"
 #include "HeCore/HCore.h"
 #include "HePlugin/HDynamicChartView.h"
 #include "HePlugin/HPolarChartView.h"
@@ -109,13 +110,15 @@ QPointF HAnglePrintTemplate::drawChartPolar(QPainter *painter, QRectF rect)
     Q_D(HAnglePrintTemplate);
     if (d->polarChartView == nullptr)
     {
-        d->polarChartView = new HPolarChartView;
+        d->polarChartView = new HAngleChartView;
         d->polarChartView->axisAngular()->setLabelFormat("%d");
         d->polarChartView->axisRadial()->setLabelFormat("%d");
         d->polarChartView->setWindowTitle(tr("光强角度分布图2"));
     }
     auto poly = d->datas.value("[光强角度分布]").value<QPolygonF>();
     d->polarChartView->replace(poly);
+    d->polarChartView->setAngleFifth(d->datas.value("[左1/5光强度角]").toDouble(), d->datas.value("[右1/5光强度角]").toDouble());
+    d->polarChartView->setAngleHalf(d->datas.value("[左半光强度角]").toDouble(), d->datas.value("[右半光强度角]").toDouble());
     return HPainterHelper::drawChart(painter, rect, d->polarChartView);
 }
 

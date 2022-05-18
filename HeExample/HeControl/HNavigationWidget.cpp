@@ -82,11 +82,11 @@ void HNavigationWidget::paintEvent(QPaintEvent *)
     }
 }
 
-void HNavigationWidget::mousePressEvent(QMouseEvent *e)
+void HNavigationWidget::mousePressEvent(QMouseEvent *event)
 {
-    if (e->y() / d_ptr->rowHeight < d_ptr->items.count())
+    if (event->y() / d_ptr->rowHeight < d_ptr->items.count())
     {
-        d_ptr->currentIndex = e->y() / d_ptr->rowHeight;
+        d_ptr->currentIndex = event->y() / d_ptr->rowHeight;
         emit currentItemChanged(d_ptr->currentIndex);
         update();
     }

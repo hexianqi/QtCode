@@ -1,8 +1,7 @@
 #include "HIVTestHandler_p.h"
 #include "IMainWindow.h"
 #include "HIVTestWidget.h"
-#include "HGuiHelper.h"
-#include "HePlugin/HPluginHelper.h"
+#include "HDecoratorMainWindow.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -21,12 +20,8 @@ QString HIVTestHandler::typeName()
 void HIVTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HIVTestHandler);
-    auto w = new HIVTestWidget;
-    auto m = HGuiHelper::decoratorInMainWindow(w, d->mainWindow);
-    d->mainWindow->blockAndConnect(m);
-    w->start();
-    m->show();
-    HPluginHelper::centerWidget(m, d->mainWindow);
+    auto w = new HDecoratorMainWindow(d->mainWindow);
+    w->run(new HIVTestWidget);
 }
 
 HE_END_NAMESPACE

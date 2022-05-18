@@ -208,11 +208,18 @@ void HBuilder1000A::buildMemento()
 {
     Q_D(HBuilder1000A);
     auto mementos = d->controllerFactory->createMementoCollection("HMementoCollection");
-    if (!mementos->readFile(QString("%1.tmp").arg(QApplication::applicationName())) || !mementos->contains("Spec"))
+    auto ok = mementos->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
+    if (!ok || !mementos->contains("Spec"))
     {
         auto memento = d->controllerFactory->createMemento("HMemento");
         memento->setDataType(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
         mementos->insert("Spec", memento);
+    }
+    if (!ok || !mementos->contains("Angle"))
+    {
+        auto memento = d->controllerFactory->createMemento("HMemento");
+        memento->setDataType(QStringList() << "[输出电流_档位]" << "[输出电压]" << "[输出电流]" << "[光档位]");
+        mementos->insert("Angle", memento);
     }
     HAppContext::setContextPointer("IMementoCollection", mementos);
 }

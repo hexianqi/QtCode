@@ -22,7 +22,7 @@ HTm30BarChart *HTm30RcshjChartView::chart()
 void HTm30RcshjChartView::init()
 {
     Q_D(HTm30RcshjChartView);
-
+    HZoomChartView::init();
     QList<QColor> color;
     color << QColor(163, 92, 96)
           << QColor(204, 118, 94)
@@ -52,6 +52,5 @@ void HTm30RcshjChartView::init()
     d->chart->setBarColor(color);
     setChart(d->chart);
     setWindowTitle(tr("色度变化"));
-    HZoomChartView::init();
 }
 

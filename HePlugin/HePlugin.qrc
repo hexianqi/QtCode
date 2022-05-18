@@ -26,5 +26,7 @@
         <file>image/Gamut_background_s.png</file>
         <file>image/Logo.png</file>
         <file>image/color[300-1100].png</file>
+        <file>image/Clear2.png</file>
+        <file>image/Annotation.png</file>
     </qresource>
 </RCC>

@@ -155,10 +155,10 @@ void HFileChooser::handleTextChanged(const QString &value)
     update();
 }
 
-void HFileChooser::paintEvent(QPaintEvent *e)
+void HFileChooser::paintEvent(QPaintEvent *event)
 {
     Q_D(HFileChooser);
-    HButtonLineEdit::paintEvent(e);
+    HButtonLineEdit::paintEvent(event);
     QPainter painter(this);
     QStyleOption option;
     option.initFrom(this);

@@ -1,6 +1,7 @@
 #include "HAngleTestWidget_p.h"
 #include "HAngleTestSetWidget.h"
 #include "HAngleTestDetailWidget.h"
+#include "HAngleChartView.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/ITestData.h"
@@ -9,21 +10,24 @@
 #include "HeData/ITextExport.h"
 #include "HeData/ITextExportTemplate.h"
 #include "HeController/IModel.h"
+#include "HeController/IMementoCollection.h"
 #include "HePlugin/HDynamicChartView.h"
-#include "HePlugin/HPolarChartView.h"
 #include "HeSql/ISqlHandle.h"
 #include "HeSql/HSql.h"
-#include <QtCharts/QValueAxis>
-#include <QtCharts/QScatterSeries>
+#include <QtCore/QTimer>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QToolBar>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QScatterSeries>
 
 HE_BEGIN_NAMESPACE
 
 HAngleTestWidgetPrivate::HAngleTestWidgetPrivate()
 {
+    auto mementoCollection = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
+    memento = mementoCollection->value("Angle");
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("IAngleSqlHandle");
     print = HAppContext::getContextPointer<IPrint>("IPrint");
     printTemplate = HAppContext::getContextPointer<IPrintTemplate>("IAnglePrintTemplate");
@@ -48,17 +52,19 @@ QString HAngleTestWidget::typeName()
 void HAngleTestWidget::init()
 {
     Q_D(HAngleTestWidget);
-    d->testData->setData("[电源模式]", 1);
-    d->model->addAction(ACT_SET_SOURCE_MODE, 200);
     HTestWidget::init();
+    d->timer = new QTimer(this);
+    d->timer->setInterval(1000);
+    connect(d->timer, &QTimer::timeout, this, [=] { d->model->addAction(ACT_GET_MEASURED_VOLTAGE); });
 }
 
-void HAngleTestWidget::closeEvent(QCloseEvent *event)
+void HAngleTestWidget::saveState()
 {
     Q_D(HAngleTestWidget);
+    HTestWidget::saveState();
+    d->timer->stop();
     d->testData->setData("[电源模式]", 0);
     d->model->addAction(ACT_SET_SOURCE_MODE, 200);
-    HTestWidget::closeEvent(event);
 }
 
 void HAngleTestWidget::restoreState()
@@ -67,6 +73,10 @@ void HAngleTestWidget::restoreState()
     HTestWidget::restoreState();
     d->testData->setData("[光测试类型]", "[光强度]");
     d->model->addAction(ACT_SET_LUMINOUS_TYPE);
+    d->testData->setData("[电源模式]", 1);
+    d->model->addAction(ACT_SET_SOURCE_MODE, 200);
+    d->testSetWidget->handleOperation("<复位电机>");
+    d->timer->start();
 }
 
 void HAngleTestWidget::handleAction(HActionType action)
@@ -85,7 +95,6 @@ void HAngleTestWidget::createAction()
 {
     Q_D(HAngleTestWidget);
     HTestWidget::createAction();
-
     d->actionMotorLocation = new QAction(tr("转动电机(&L)"), this);
     d->actionMotorLocation->setIcon(QIcon(":/image/Motor.png"));
     d->actionMotorLocation->setIconText(tr("转动电机"));
@@ -118,7 +127,7 @@ void HAngleTestWidget::createWidget()
     d->cartesianChartView->axisY()->setLabelFormat("%d");
     d->cartesianChartView->scatterSeries()->setVisible(false);
     d->cartesianChartView->chart()->legend()->setVisible(false);
-    d->polarChartView = new HPolarChartView;
+    d->polarChartView = new HAngleChartView;
     d->polarChartView->axisAngular()->setRange(-180, 180);
     d->polarChartView->axisAngular()->setLabelFormat("%d");
     d->polarChartView->axisRadial()->setRange(0, 10);
@@ -200,6 +209,11 @@ void HAngleTestWidget::handleStateChanged(bool b)
 void HAngleTestWidget::handleResultChanged(HActionType action, bool)
 {
     Q_D(HAngleTestWidget);
+    if (action == ACT_GET_MEASURED_VOLTAGE)
+    {
+        d->detailWidget->refreshData("[实测电压]");
+        return;
+    }
     if (action == ACT_GET_LUMINOUS_DATA)
     {
         d->detailWidget->refreshData("[光强度]");
@@ -211,6 +225,9 @@ void HAngleTestWidget::handleResultChanged(HActionType action, bool)
         d->detailWidget->refreshWidget();
         d->cartesianChartView->replace(poly);
         d->polarChartView->replace(poly);
+        d->polarChartView->setAngleFifth(d->testData->data("[左1/5光强度角]").toDouble(), d->testData->data("[右1/5光强度角]").toDouble());
+        d->polarChartView->setAngleHalf(d->testData->data("[左半光强度角]").toDouble(), d->testData->data("[右半光强度角]").toDouble());
+        return;
     }
 }
 

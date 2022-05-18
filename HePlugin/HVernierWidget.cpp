@@ -81,35 +81,35 @@ int HVernierWidget::decimals()
     return d->decimals;
 }
 
-void HVernierWidget::paintEvent(QPaintEvent *e)
+void HVernierWidget::paintEvent(QPaintEvent *event)
 {
     Q_D(HVernierWidget);
-    d->tracking->paintEvent(e);
-    HCartesianWidget::paintEvent(e);
+    d->tracking->paintEvent(event);
+    HCartesianWidget::paintEvent(event);
 }
 
-void HVernierWidget::mousePressEvent(QMouseEvent *e)
+void HVernierWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HVernierWidget);
-    if (d->tracking->mousePressEvent(e))
+    if (d->tracking->mousePressEvent(event))
         return;
-    HCartesianWidget::mousePressEvent(e);
+    HCartesianWidget::mousePressEvent(event);
 }
 
-void HVernierWidget::mouseMoveEvent(QMouseEvent *e)
+void HVernierWidget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HVernierWidget);
-    if (d->tracking->mouseMoveEvent(e))
+    if (d->tracking->mouseMoveEvent(event))
         return;
-    HCartesianWidget::mouseMoveEvent(e);
+    HCartesianWidget::mouseMoveEvent(event);
 }
 
-void HVernierWidget::mouseReleaseEvent(QMouseEvent *e)
+void HVernierWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HVernierWidget);
-    if (d->tracking->mouseReleaseEvent(e))
+    if (d->tracking->mouseReleaseEvent(event))
         return;
-    HCartesianWidget::mouseReleaseEvent(e);
+    HCartesianWidget::mouseReleaseEvent(event);
 }
 
 void HVernierWidget::handleCoordinateChanged(HCartesianCoordinate *p)

@@ -9,5 +9,6 @@ public:
 
 public:
     QChart *chart = nullptr;
+    QList<QAction *> actions;
 };
 

@@ -150,23 +150,23 @@ void HHueSatPicker::setColor(const QColor &value)
     update();
 }
 
-void HHueSatPicker::mousePressEvent(QMouseEvent *e)
+void HHueSatPicker::mousePressEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
-        colorPick(e->localPos());
-    QFrame::mousePressEvent(e);
+    if (event->button() == Qt::LeftButton)
+        colorPick(event->localPos());
+    QFrame::mousePressEvent(event);
 }
 
-void HHueSatPicker::mouseMoveEvent(QMouseEvent *e)
+void HHueSatPicker::mouseMoveEvent(QMouseEvent *event)
 {
-    if (e->buttons() & Qt::LeftButton)
-        colorPick(e->localPos());
-    QFrame::mouseMoveEvent(e);
+    if (event->buttons() & Qt::LeftButton)
+        colorPick(event->localPos());
+    QFrame::mouseMoveEvent(event);
 }
 
-void HHueSatPicker::resizeEvent(QResizeEvent *e)
+void HHueSatPicker::resizeEvent(QResizeEvent *event)
 {
-    QFrame::resizeEvent(e);
+    QFrame::resizeEvent(event);
     buildPixmap();
     update();
 }

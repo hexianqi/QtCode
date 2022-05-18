@@ -19,17 +19,17 @@ HAbstractTestWidget::HAbstractTestWidget(QWidget *parent) :
 {
 }
 
-void HAbstractTestWidget::initialize(QVariantMap /*param*/)
-{
-
-}
-
-HAbstractTestWidget::~HAbstractTestWidget() = default;
-
 HAbstractTestWidget::HAbstractTestWidget(HAbstractTestWidgetPrivate &p, QWidget *parent) :
     ITestWidget(parent),
     d_ptr(&p)
 {
+}
+
+HAbstractTestWidget::~HAbstractTestWidget() = default;
+
+void HAbstractTestWidget::initialize(QVariantMap /*param*/)
+{
+
 }
 
 QList<QMenu *> HAbstractTestWidget::menus()

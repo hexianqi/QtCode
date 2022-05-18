@@ -26,6 +26,7 @@ HCie1931Chart *HCie1931ChartView::chart()
 void HCie1931ChartView::init()
 {
     Q_D(HCie1931ChartView);
+    HZoomChartView::init();
     d->chart = new HCie1931Chart;
     d->tracking = new HPositionTracking(this);
     d->positionItem = new QGraphicsSimpleTextItem(d->chart);
@@ -69,22 +70,21 @@ void HCie1931ChartView::init()
     connect(clearPoint, &QAction::triggered, d->chart, &HCie1931Chart::clearPoint);
     setChart(d->chart);
     setWindowTitle(tr("色品图-CIE1931"));
-    HZoomChartView::init();
 }
 
-void HCie1931ChartView::mouseMoveEvent(QMouseEvent *e)
+void HCie1931ChartView::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HCie1931ChartView);
-    d->tracking->mouseMoveEvent(e);
-    HZoomChartView::mouseMoveEvent(e);
+    d->tracking->mouseMoveEvent(event);
+    HZoomChartView::mouseMoveEvent(event);
 }
 
-void HCie1931ChartView::mouseDoubleClickEvent(QMouseEvent *e)
+void HCie1931ChartView::mouseDoubleClickEvent(QMouseEvent *event)
 {
     Q_D(HCie1931ChartView);
     if (d->tracking->isEnable())
-        emit mouseDoubleClicked(chart()->mapToValue(e->pos()));
-    HZoomChartView::mouseMoveEvent(e);
+        emit mouseDoubleClicked(chart()->mapToValue(event->pos()));
+    HZoomChartView::mouseMoveEvent(event);
 }
 
 void HCie1931ChartView::handlePlotAreaChanged(QRectF value)

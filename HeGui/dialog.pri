@@ -1,5 +1,7 @@
 HEADERS += \
     $$PWD/HChangePasswordDialog.h \
+    $$PWD/HDecoratorDialog.h \
+    $$PWD/HDecoratorDialog_p.h \
     $$PWD/HLoginDialog.h \
     $$PWD/HProductEditDialog.h \
     $$PWD/HProductEditDialog_p.h \
@@ -10,6 +12,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/HAbstractTestDataEditDialog.cpp \
     $$PWD/HChangePasswordDialog.cpp \
+    $$PWD/HDecoratorDialog.cpp \
     $$PWD/HLoginDialog.cpp \
     $$PWD/HProductEditDialog.cpp
 

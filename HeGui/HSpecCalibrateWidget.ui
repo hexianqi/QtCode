@@ -116,7 +116,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 170, 255);</string>
+        <string notr="true">color: rgb(170, 0, 127);</string>
        </property>
        <property name="text">
         <string>积 分 定 标</string>
@@ -148,7 +148,10 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 0, 255);</string>
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.997963 rgba(255, 118, 0, 205), stop:1 rgba(255, 255, 255, 255));
+selection-color: rgb(85, 255, 0);
+border-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>光通量定标</string>

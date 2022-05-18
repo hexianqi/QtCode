@@ -2,15 +2,18 @@
 #include "HCalloutChartItem.h"
 #include <QtCharts/QChart>
 #include <QtCharts/QXYSeries>
+#include <QtWidgets/QAction>
 
 HCalloutChartExtend::HCalloutChartExtend(QObject *parent) :
     HAbstractChartExtend(*new HCalloutChartExtendPrivate, parent)
 {
+    init();
 }
 
 HCalloutChartExtend::HCalloutChartExtend(QChart *chart, QObject *parent) :
     HAbstractChartExtend(*new HCalloutChartExtendPrivate(chart), parent)
 {
+    init();
 }
 
 HCalloutChartExtend::HCalloutChartExtend(HCalloutChartExtendPrivate &p, QObject *parent) :
@@ -95,4 +98,12 @@ void HCalloutChartExtend::handleSeriesHovered(QPointF point, bool state)
     }
     else
         d->tooltip->hide();
+}
+
+void HCalloutChartExtend::init()
+{
+    Q_D(HCalloutChartExtend);
+    auto clear = new QAction(QIcon(":/image/Annotation.png"), tr("清除标注(&C)"), this);
+    connect(clear, &QAction::triggered, this, &HCalloutChartExtend::clear);
+    d->actions.append(clear);
 }

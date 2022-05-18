@@ -215,38 +215,38 @@ void HKnobGauge::leaveEvent(QEvent *)
     d->animationHover->start();
 }
 
-void HKnobGauge::mousePressEvent(QMouseEvent *e)
+void HKnobGauge::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HKnobGauge);
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
         d->pressed = true;
-        setPressedValue(e->localPos());
+        setPressedValue(event->localPos());
         return;
     }
-    HAnimationProgress::mousePressEvent(e);
+    HAnimationProgress::mousePressEvent(event);
 }
 
-void HKnobGauge::mouseReleaseEvent(QMouseEvent *e)
+void HKnobGauge::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HKnobGauge);
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
     {
         d->pressed = false;
         return;
     }
-    HAnimationProgress::mouseReleaseEvent(e);
+    HAnimationProgress::mouseReleaseEvent(event);
 }
 
-void HKnobGauge::mouseMoveEvent(QMouseEvent *e)
+void HKnobGauge::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HKnobGauge);
     if (d->pressed)
     {
-        setPressedValue(e->localPos());
+        setPressedValue(event->localPos());
         return;
     }
-    HAnimationProgress::mouseMoveEvent(e);
+    HAnimationProgress::mouseMoveEvent(event);
 }
 
 void HKnobGauge::paintEvent(QPaintEvent *)

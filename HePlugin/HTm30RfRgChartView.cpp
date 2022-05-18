@@ -23,6 +23,7 @@ void HTm30RfRgChartView::setRfRg(double Rf, double Rg)
 void HTm30RfRgChartView::init()
 {
     Q_D(HTm30RfRgChartView);
+    HZoomChartView::init();
     auto axisX = new QValueAxis;
     axisX->setLabelFormat("%d");
     axisX->setLinePenColor(Qt::black);
@@ -98,7 +99,6 @@ void HTm30RfRgChartView::init()
     chart->legend()->setVisible(false);
     setChart(chart);
     setWindowTitle(tr("Rf与Rg关系图"));
-    HZoomChartView::init();
 }
 
 

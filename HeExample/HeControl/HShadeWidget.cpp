@@ -64,10 +64,10 @@ bool HShadeWidget::eventFilter(QObject *watched, QEvent *event)
     return QWidget::eventFilter(watched, event);
 }
 
-void HShadeWidget::showEvent(QShowEvent *e)
+void HShadeWidget::showEvent(QShowEvent *event)
 {
     setGeometry(d_ptr->mainWidget->geometry());
-    QWidget::showEvent(e);
+    QWidget::showEvent(event);
 }
 
 void HShadeWidget::init()

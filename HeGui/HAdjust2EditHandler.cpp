@@ -31,8 +31,8 @@ void HAdjust2EditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     dlg.setWindowTitle(tr("调整数据配置"));
     dlg.setDataDetail(&detail);
     dlg.setMinimumSize(1200, 600);
-    if (d->mainWindow->blockAndRun(&dlg))
-        d->model->addAction(ACT_RESET_ADJUST);
+    d->mainWindow->blockAndRun(&dlg);
+    d->model->addAction(ACT_RESET_ADJUST);
 }
 
 HE_END_NAMESPACE

@@ -315,19 +315,19 @@ void HCie1931Widget::clearPoint()
     refreshPixmap();
 }
 
-void HCie1931Widget::mouseMoveEvent(QMouseEvent *e)
+void HCie1931Widget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HCie1931Widget);
-    d->tracking->mouseMoveEvent(e);
-    HCartesianWidget::mouseMoveEvent(e);
+    d->tracking->mouseMoveEvent(event);
+    HCartesianWidget::mouseMoveEvent(event);
 }
 
-void HCie1931Widget::mouseDoubleClickEvent(QMouseEvent *e)
+void HCie1931Widget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     Q_D(HCie1931Widget);
     if (isEnableTracking())
-        emit mouseDoubleClicked(d->coordinate->mapToValue(e->localPos(), d->plotArea));
-    HCartesianWidget::mouseDoubleClickEvent(e);
+        emit mouseDoubleClicked(d->coordinate->mapToValue(event->localPos(), d->plotArea));
+    HCartesianWidget::mouseDoubleClickEvent(event);
 }
 
 bool HCie1931Widget::drawElse(QPainter *painter)

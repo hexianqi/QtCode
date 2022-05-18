@@ -142,25 +142,25 @@ void HButtonLineEdit::setButtonFocusPolicy(Qt::FocusPolicy value)
     d_ptr->button->setFocusPolicy(value);
 }
 
-void HButtonLineEdit::resizeEvent(QResizeEvent *e)
+void HButtonLineEdit::resizeEvent(QResizeEvent *event)
 {
     updateButtonPosition(qMin(d_ptr->button->sizeHint().width(), height()));
-    QLineEdit::resizeEvent(e);
+    QLineEdit::resizeEvent(event);
 }
 
-void HButtonLineEdit::actionEvent(QActionEvent *e)
+void HButtonLineEdit::actionEvent(QActionEvent *event)
 {
-    if (e->type() == QEvent::ActionAdded)
+    if (event->type() == QEvent::ActionAdded)
     {
-        d_ptr->button->insertAction(e->before(), e->action());
+        d_ptr->button->insertAction(event->before(), event->action());
         return;
     }
-    if (e->type() == QEvent::ActionRemoved)
+    if (event->type() == QEvent::ActionRemoved)
     {
-        d_ptr->button->removeAction(e->action());
+        d_ptr->button->removeAction(event->action());
         return;
     }
-    QLineEdit::actionEvent(e);
+    QLineEdit::actionEvent(event);
 }
 
 void HButtonLineEdit::updateButtonPosition(int w)

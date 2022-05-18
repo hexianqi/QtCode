@@ -62,6 +62,7 @@ void HChromatismChartView::setData(const QVariantMap &value)
 void HChromatismChartView::init()
 {
     Q_D(HChromatismChartView);
+    HZoomChartView::init();
     d->chart = new HChromatismChart;
     d->pointFocusItem = new QGraphicsSimpleTextItem(d->chart);
     d->pointFocusItem->setPen(QPen(Qt::red));
@@ -69,5 +70,4 @@ void HChromatismChartView::init()
     d->pointFocusItem->setText(tr("%2, %3\n      %1SDCM").arg(d->sdcmFocus, 0, 'f', 1).arg(d->pointFocus.x(), 0, 'f', 4).arg(d->pointFocus.y(), 0, 'f', 4));
     setChart(d->chart);
     connect(d->chart, &HChromatismChart::plotAreaChanged, this, &HChromatismChartView::handlePlotAreaChanged);
-    HZoomChartView::init();
 }

@@ -36,15 +36,15 @@ void HVernierTracking::paintEvent(QPaintEvent *)
     painter.restore();
 }
 
-bool HVernierTracking::mouseMoveEvent(QMouseEvent *e)
+bool HVernierTracking::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HVernierTracking);
     auto pos = d->pos;
-    if (!isValid(e->localPos()) || pos == -1)
+    if (!isValid(event->localPos()) || pos == -1)
         return false;
 
     emit vernierPosChanged(d->verniers[pos]);
-    d->verniers[pos] = e->localPos();
+    d->verniers[pos] = event->localPos();
     emit vernierPosChanged(d->verniers[pos]);
     return true;
 }

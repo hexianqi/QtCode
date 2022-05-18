@@ -36,4 +36,7 @@ protected:
 protected slots:
     void handleSeriesClicked(QPointF point);
     void handleSeriesHovered(QPointF point, bool state);
+
+protected:
+    virtual void init();
 };

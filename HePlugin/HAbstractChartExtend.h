@@ -9,6 +9,8 @@
 #include <QtUiPlugin/QDesignerExportWidget>
 #include <functional>
 
+class QAction;
+
 QT_CHARTS_BEGIN_NAMESPACE
 class QLegendMarker;
 class QAbstractSeries;
@@ -24,6 +26,9 @@ public:
     explicit HAbstractChartExtend(QObject *parent = nullptr);
     explicit HAbstractChartExtend(QChart *chart, QObject *parent = nullptr);
     ~HAbstractChartExtend() override;
+
+public:
+    QList<QAction *> actions();
 
 public:
     void setChart(QChart *) override;

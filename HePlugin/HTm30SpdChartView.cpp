@@ -32,6 +32,7 @@ void HTm30SpdChartView::setReference(QPolygonF value)
 void HTm30SpdChartView::init()
 {
     Q_D(HTm30SpdChartView);
+    HZoomChartView::init();
     auto axisX = new QValueAxis;
     axisX->setLabelFormat("%d");
     axisX->setRange(380, 780);
@@ -56,7 +57,6 @@ void HTm30SpdChartView::init()
     chart->addSeries(d->references);
     setChart(chart);
     setWindowTitle(tr("相对光谱功率分布"));
-    HZoomChartView::init();
 }
 
 

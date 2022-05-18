@@ -22,7 +22,6 @@ void HLuminousCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param
     Q_D(HLuminousCalibrateHandler);
     HLuminousCalibrateDialog dlg(d->mainWindow);
     d->mainWindow->blockAndRun(&dlg);
-    d->model->addAction(ACT_RESET_ELEC);
     d->model->addAction(ACT_RESET_LUMINOUS);
 }
 

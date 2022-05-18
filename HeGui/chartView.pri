@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HAngleChartView.h \
+    $$PWD/HAngleChartView_p.h \
     $$PWD/HSpecSampleChartView.h \
     $$PWD/HSpecSampleChartView_p.h \
     $$PWD/HSpecFittingChartView.h \
@@ -7,6 +9,7 @@ HEADERS += \
     $$PWD/HSpecChromatismChartView_p.h
 
 SOURCES += \
+    $$PWD/HAngleChartView.cpp \
     $$PWD/HSpecSampleChartView.cpp \
     $$PWD/HSpecFittingChartView.cpp \
     $$PWD/HSpecChromatismChartView.cpp

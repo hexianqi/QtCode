@@ -1,6 +1,9 @@
 #include "HSpecCalibrateHandler_p.h"
 #include "IMainWindow.h"
-#include "HSpecCalibrateDialog.h"
+#include "HDecoratorDialog.h"
+#include "HSpecCalibrateWidget.h"
+#include "HeCore/HAppContext.h"
+#include "HeData/IConfigManage.h"
 #include "HeController/IModel.h"
 
 HE_BEGIN_NAMESPACE
@@ -20,8 +23,12 @@ QString HSpecCalibrateHandler::typeName()
 void HSpecCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HSpecCalibrateHandler);
-    HSpecCalibrateDialog dlg(d->mainWindow);
-    d->mainWindow->blockAndRun(&dlg);
+    auto calibrate = HAppContext::getContextPointer<IConfigManage>("IConfigManage")->specCalibrate("1");
+    auto t = new HSpecCalibrateWidget;
+    auto w = new HDecoratorDialog(d->mainWindow);
+    t->setCalibrate(calibrate);
+    t->setWindowTitle(tr("光谱参数定标"));
+    w->run(t);
     d->model->addAction(ACT_RESET_SPECTRUM);
 }
 

@@ -133,9 +133,9 @@ void HLedWidget::blink()
     QTimer::singleShot(100, this, &HLedWidget::toggle);
 }
 
-void HLedWidget::mouseReleaseEvent(QMouseEvent *e)
+void HLedWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (e->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton)
         emit clicked();
 }
 

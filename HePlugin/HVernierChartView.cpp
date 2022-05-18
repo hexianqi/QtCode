@@ -59,6 +59,7 @@ int HVernierChartView::decimals()
 void HVernierChartView::init()
 {
     Q_D(HVernierChartView);
+    HZoomChartView::init();
     d->tracking = new HGraphicsVernierTracking(Qt::Vertical, chart(), this);
     d->tracking->resizeVernier(2);
     d->textLeft = new QGraphicsSimpleTextItem(chart());
@@ -71,31 +72,30 @@ void HVernierChartView::init()
     connect(d->tracking, &HGraphicsVernierTracking::orientationChanged, this, &HVernierChartView::updataVernier);
     connect(d->tracking, &HGraphicsVernierTracking::vernierPosChanged, this, &HVernierChartView::updataVernier);
     connect(d->tracking, &HGraphicsVernierTracking::vernierSizeChanged, this, &HVernierChartView::updataVernier);
-    HZoomChartView::init();
 }
 
-void HVernierChartView::mousePressEvent(QMouseEvent *e)
+void HVernierChartView::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HVernierChartView);
-    if (d->tracking->mousePressEvent(e))
+    if (d->tracking->mousePressEvent(event))
         return;
-    HZoomChartView::mousePressEvent(e);
+    HZoomChartView::mousePressEvent(event);
 }
 
-void HVernierChartView::mouseMoveEvent(QMouseEvent *e)
+void HVernierChartView::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HVernierChartView);
-    if (d->tracking->mouseMoveEvent(e))
+    if (d->tracking->mouseMoveEvent(event))
         return;
-    HZoomChartView::mouseMoveEvent(e);
+    HZoomChartView::mouseMoveEvent(event);
 }
 
-void HVernierChartView::mouseReleaseEvent(QMouseEvent *e)
+void HVernierChartView::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HVernierChartView);
-    if (d->tracking->mouseReleaseEvent(e))
+    if (d->tracking->mouseReleaseEvent(event))
         return;
-    HZoomChartView::mouseReleaseEvent(e);
+    HZoomChartView::mouseReleaseEvent(event);
 }
 
 void HVernierChartView::handlePlotAreaChanged(QRectF value)

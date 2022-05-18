@@ -27,30 +27,30 @@ bool HRubberBand::setEnable(bool b)
     return true;
 }
 
-bool HRubberBand::mousePressEvent(QMouseEvent *e)
+bool HRubberBand::mousePressEvent(QMouseEvent *event)
 {
     Q_D(HRubberBand);
-    if (!isValid(e->localPos()) || e->button() != Qt::LeftButton)
+    if (!isValid(event->localPos()) || event->button() != Qt::LeftButton)
         return false;
-    d->origin = e->pos();
-    d->rubberBand->setGeometry(QRect(e->pos(), QSize()));
+    d->origin = event->pos();
+    d->rubberBand->setGeometry(QRect(event->pos(), QSize()));
     d->rubberBand->show();
     return true;
 }
 
-bool HRubberBand::mouseMoveEvent(QMouseEvent *e)
+bool HRubberBand::mouseMoveEvent(QMouseEvent *event)
 {
     Q_D(HRubberBand);
     if (!isEnable() || !d->rubberBand->isVisible())
         return false;
-    d->rubberBand->setGeometry(QRect(d->origin, e->pos()).normalized());
+    d->rubberBand->setGeometry(QRect(d->origin, event->pos()).normalized());
     return true;
 }
 
-bool HRubberBand::mouseReleaseEvent(QMouseEvent *e)
+bool HRubberBand::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_D(HRubberBand);
-    if (!isEnable() || !d->rubberBand->isVisible() || e->button() != Qt::LeftButton)
+    if (!isEnable() || !d->rubberBand->isVisible() || event->button() != Qt::LeftButton)
         return false;
 
     d->rubberBand->hide();

@@ -191,16 +191,16 @@ void HImageBrowser::setKeyMove(bool b)
     update();
 }
 
-void HImageBrowser::keyPressEvent(QKeyEvent *e)
+void HImageBrowser::keyPressEvent(QKeyEvent *event)
 {
     if (d_ptr->keyMove)
     {
-        if (e->key() == Qt::Key_Left || e->key() == Qt::Key_Up)
+        if (event->key() == Qt::Key_Left || event->key() == Qt::Key_Up)
             movePrevious();
-        if (e->key() == Qt::Key_Right || e->key() == Qt::Key_Down)
+        if (event->key() == Qt::Key_Right || event->key() == Qt::Key_Down)
             moveNext();
     }
-    QWidget::keyPressEvent(e);
+    QWidget::keyPressEvent(event);
 }
 
 void HImageBrowser::resizeEvent(QResizeEvent *)

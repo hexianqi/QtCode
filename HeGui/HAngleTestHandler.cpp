@@ -1,8 +1,7 @@
 #include "HAngleTestHandler_p.h"
 #include "IMainWindow.h"
 #include "HAngleTestWidget.h"
-#include "HGuiHelper.h"
-#include "HePlugin/HPluginHelper.h"
+#include "HDecoratorMainWindow.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -21,12 +20,8 @@ QString HAngleTestHandler::typeName()
 void HAngleTestHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAngleTestHandler);
-    auto w = new HAngleTestWidget;
-    auto m = HGuiHelper::decoratorInMainWindow(w, d->mainWindow);
-    d->mainWindow->blockAndConnect(m);
-    w->start();
-    m->show();
-    HPluginHelper::centerWidget(m, d->mainWindow);
+    auto w = new HDecoratorMainWindow(d->mainWindow);
+    w->run(new HAngleTestWidget);
 }
 
 HE_END_NAMESPACE
