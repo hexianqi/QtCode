@@ -26,8 +26,6 @@ QString HSqlBrowserHandler::typeName()
 void HSqlBrowserHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HSqlBrowserHandler);
-    if (d->sqlBrowser.isEmpty())
-        d->sqlBrowser = "ISpecSqlBrowser";
     auto browser = HAppContext::getContextPointer<ISqlBrowser>(d->sqlBrowser);
     browser->revert();
     browser->showMaximized();

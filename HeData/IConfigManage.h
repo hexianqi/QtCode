@@ -62,8 +62,8 @@ public:
     virtual void setGradeCollection(IGradeCollection *) = 0;
     virtual IGradeCollection *gradeCollection() = 0;
     // 品质数据
-    virtual void setQualityCollection(IQualityCollection *) = 0;
-    virtual IQualityCollection *qualityCollection() = 0;
+    virtual void addQualityCollection(QString key, IQualityCollection *) = 0;
+    virtual IQualityCollection *qualityCollection(QString key) = 0;
     // 布局数据
     virtual void setLocationCollection(ILocationCollection *) = 0;
     virtual ILocationCollection *locationCollection() = 0;
@@ -81,7 +81,12 @@ public:
 
 public:
     // 测试数据后续处理
-    virtual void postProcess(ITestData *, QStringList optional) = 0;
+    virtual QStringList supplement(QStringList) = 0;
+    virtual void postProcess(ITestData *, QStringList optional, QString keyQuality) = 0;
+    virtual bool processChromatism(ITestData *) = 0;
+    virtual bool processAdjust(ITestData *, QStringList optional) = 0;
+    virtual bool processGrade(ITestData *, QStringList optional) = 0;
+    virtual bool processQuality(ITestData *, QStringList optional, QString key) = 0;
 };
 
 HE_END_NAMESPACE

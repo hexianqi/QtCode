@@ -35,6 +35,7 @@ public:
     void clearData() override;
     void saveData() override;
     void showData() override;
+    void setOptional(QStringList);
 
 protected:
     void showPushButton();

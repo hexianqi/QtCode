@@ -14,9 +14,9 @@ public:
 public:
     IDataFactory *factory = nullptr;
     IQualityItemCollection *data = nullptr;
-    QStringList optionals;
-    QStringList selecteds;
-    QStringList unselecteds;
+    QStringList optional;
+    QStringList selected;
+    QStringList unselected;
 };
 
 HE_END_NAMESPACE

@@ -21,7 +21,7 @@ HE_BEGIN_NAMESPACE
 HAdjust2EditWidgetPrivate::HAdjust2EditWidgetPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    optionals = HAppContext::getContextValue<QStringList>("AdjustOptionals");
+    optional = HAppContext::getContextValue<QStringList>("AdjustOptional");
     model = HAppContext::getContextPointer<IModel>("IModel");
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
 
@@ -111,7 +111,7 @@ void HAdjust2EditWidget::handleStateChanged(bool b)
 void HAdjust2EditWidget::handleResultChanged()
 {
     d_ptr->energyWidget->refreshWidget();
-    ui->tableWidget->setColumn(1, d_ptr->testData->toString(d_ptr->selecteds));
+    ui->tableWidget->setColumn(1, d_ptr->testData->toString(d_ptr->selected));
 }
 
 void HAdjust2EditWidget::setCurrentIndex(QModelIndex index)
@@ -179,7 +179,7 @@ void HAdjust2EditWidget::clearItem()
 void HAdjust2EditWidget::on_pushButton_1_clicked()
 {
     QString type;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->unselecteds, type))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->unselected, type))
         return;
 
     saveItem();
@@ -194,7 +194,7 @@ void HAdjust2EditWidget::on_pushButton_1_clicked()
 void HAdjust2EditWidget::on_pushButton_2_clicked()
 {
     QString type;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->selecteds, type))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->selected, type))
         return;
     saveItem();
     d_ptr->itemCollection->remove(type);
@@ -266,17 +266,17 @@ void HAdjust2EditWidget::init()
 
 void HAdjust2EditWidget::initSelected()
 {
-    d_ptr->selecteds = d_ptr->itemCollection->keys();
-    d_ptr->unselecteds = HCoreHelper::unselected(d_ptr->optionals, d_ptr->selecteds);
+    d_ptr->selected = d_ptr->itemCollection->keys();
+    d_ptr->unselected = HCoreHelper::unselected(d_ptr->optional, d_ptr->selected);
     auto delegate = new HDoubleSpinBoxDelegate(this);
-    delegate->setType(d_ptr->selecteds);
+    delegate->setType(d_ptr->selected);
     delegate->setOrientation(Qt::Vertical);
     ui->tableWidget->setItemDelegateForColumn(1, delegate);
     ui->tableWidget->setItemDelegateForColumn(2, delegate);
-    ui->tableWidget->setRowCount(d_ptr->selecteds.size());
-    ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
-    ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
-    ui->pushButton_4->setEnabled(!d_ptr->selecteds.isEmpty());
+    ui->tableWidget->setRowCount(d_ptr->selected.size());
+    ui->pushButton_2->setEnabled(!d_ptr->selected.isEmpty());
+    ui->pushButton_3->setEnabled(!d_ptr->selected.isEmpty());
+    ui->pushButton_4->setEnabled(!d_ptr->selected.isEmpty());
 }
 
 HE_END_NAMESPACE

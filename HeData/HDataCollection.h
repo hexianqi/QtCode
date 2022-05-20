@@ -34,6 +34,10 @@ public:
     void setUseIndex(QString value) override;
     QString useIndex() override;
 
+public:
+    virtual bool readContent(QDataStream &);
+    virtual bool writeContent(QDataStream &);
+
 protected:
     HDataCollection(HDataCollectionPrivate<T> &);
 };
@@ -78,6 +82,24 @@ QString HDataCollection<T>::useIndex()
 {
     H_D(HDataCollection, T);
     return d->useIndex;
+}
+
+template<typename T>
+bool HDataCollection<T>::readContent(QDataStream &s)
+{
+    H_D(HDataCollection, T);
+    if (d->dataStream == nullptr)
+        return false;
+    return d->dataStream->readContent(s);
+}
+
+template<typename T>
+bool HDataCollection<T>::writeContent(QDataStream &s)
+{
+    H_D(HDataCollection, T);
+    if (d->dataStream == nullptr)
+        return false;
+    return d->dataStream->writeContent(s);
 }
 
 HE_END_NAMESPACE

@@ -15,7 +15,7 @@ HE_BEGIN_NAMESPACE
 HQualityItemCollectionPrivate::HQualityItemCollectionPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    optionals = HAppContext::getContextValue<QStringList>("QualityOptionals");
+    optional = HAppContext::getContextValue<QStringList>("QualityOptional");
 }
 
 HQualityItemCollectionWidget::HQualityItemCollectionWidget(QWidget *parent) :
@@ -30,6 +30,11 @@ HQualityItemCollectionWidget::HQualityItemCollectionWidget(QWidget *parent) :
 HQualityItemCollectionWidget::~HQualityItemCollectionWidget()
 {
     delete ui;
+}
+
+void HQualityItemCollectionWidget::setOptional(QStringList value)
+{
+    d_ptr->optional = value;
 }
 
 void HQualityItemCollectionWidget::setData(IQualityItemCollection *p)
@@ -87,7 +92,7 @@ void HQualityItemCollectionWidget::saveData()
 void HQualityItemCollectionWidget::on_pushButton_1_clicked()
 {
     QString t;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->unselecteds, t))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->unselected, t))
         return;
 
     saveData();
@@ -102,7 +107,7 @@ void HQualityItemCollectionWidget::on_pushButton_1_clicked()
 void HQualityItemCollectionWidget::on_pushButton_2_clicked()
 {
     QString t;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->selecteds, t))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->selected, t))
         return;
 
     saveData();
@@ -132,15 +137,15 @@ void HQualityItemCollectionWidget::init()
 
 void HQualityItemCollectionWidget::initSelected()
 {
-    d_ptr->selecteds = d_ptr->data->keys();
-    d_ptr->unselecteds = HCoreHelper::unselected(d_ptr->optionals, d_ptr->selecteds);
+    d_ptr->selected = d_ptr->data->keys();
+    d_ptr->unselected = HCoreHelper::unselected(d_ptr->optional, d_ptr->selected);
     auto delegate = new HDoubleSpinBoxDelegate(this);
-    delegate->setType(d_ptr->selecteds);
+    delegate->setType(d_ptr->selected);
     delegate->setOrientation(Qt::Vertical);
     ui->tableWidget->setItemDelegateForColumn(0, delegate);
     ui->tableWidget->setItemDelegateForColumn(1, delegate);
-    ui->tableWidget->setRowCount(d_ptr->selecteds.size());
-    ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
+    ui->tableWidget->setRowCount(d_ptr->selected.size());
+    ui->pushButton_2->setEnabled(!d_ptr->selected.isEmpty());
 }
 
 HE_END_NAMESPACE

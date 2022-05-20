@@ -90,7 +90,7 @@ void HBuilder2000F::buildConfigManage()
         d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjust2Collection(d->dataFactory->createAdjust2Collection("HAdjust2Collection"));
-        d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("Spec", d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }

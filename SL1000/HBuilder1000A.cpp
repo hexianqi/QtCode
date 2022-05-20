@@ -2,6 +2,7 @@
 #include "HTestWidget1000A.h"
 #include "HSpecPrintTemplate1000A.h"
 #include "HeCore/HAppContext.h"
+#include "HeCore/HCore.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IDataFactory.h"
 #include "HeData/IDataStream.h"
@@ -37,9 +38,10 @@ HBuilder1000APrivate::HBuilder1000APrivate()
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
-    HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
-    HAppContext::setContextValue("QualityOptionals",            QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("AdjustOptional",              QStringList() << "[实测电压]" << "[实测电流]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("GradeOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
+    HAppContext::setContextValue("SpecQualityOptional",         QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("AngleQualityOptional",        HCore::membership("|光强角度信息2|"));
 }
 
 
@@ -122,7 +124,8 @@ void HBuilder1000A::buildConfigManage()
         d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
-        d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("Spec",   d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("Angle",  d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
@@ -250,10 +253,14 @@ void HBuilder1000A::buildDatabase()
 void HBuilder1000A::buildMenu()
 {
     Q_D(HBuilder1000A);
-    QVariantMap param[3];
+    QVariantMap param[5];
     param[0].insert("authority", 1);
     param[1].insert("property", param[0]);
-    param[2].insert("sqlBrowser", "IAngleSqlBrowser");
+    param[2].insert("key", "Spec");
+    param[2].insert("optional", "SpecQualityOptional");
+    param[3].insert("key", "Angle");
+    param[3].insert("optional", "AngleQualityOptional");
+    param[4].insert("sqlBrowser", "IAngleSqlBrowser");
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
@@ -275,8 +282,10 @@ void HBuilder1000A::buildMenu()
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[1]));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
-    quality->addAction(d->guiFactory->createAction(tr("品质数据配置(&E)..."), "HQualityEditHandler"));
-    quality->addAction(d->guiFactory->createAction(tr("品质数据选择(&S)..."), "HQualitySelectHandler"));
+    quality->addAction(d->guiFactory->createAction(tr("光谱品质数据配置(&E)..."), "HQualityEditHandler", param[2]));
+    quality->addAction(d->guiFactory->createAction(tr("光谱品质数据选择(&S)..."), "HQualitySelectHandler", param[2]));
+    quality->addAction(d->guiFactory->createAction(tr("光强角品质数据配置(&E)..."), "HQualityEditHandler", param[3]));
+    quality->addAction(d->guiFactory->createAction(tr("光强角品质数据选择(&S)..."), "HQualitySelectHandler", param[3]));
     device->addAction(d->guiFactory->createAction(tr("从设备读取数据(&G)..."), "HImportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
@@ -285,7 +294,7 @@ void HBuilder1000A::buildMenu()
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&B)..."), "HSqlBrowserHandler"));
-    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&B)..."), "HSqlBrowserHandler", param[2]));
+    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&B)..."), "HSqlBrowserHandler", param[4]));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);

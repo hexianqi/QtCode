@@ -9,6 +9,7 @@ HE_BEGIN_NAMESPACE
 
 class HAngleChartView;
 class ITestDetailWidget;
+class IConfigManage;
 class ISqlHandle;
 class IPrint;
 class IPrintTemplate;
@@ -33,6 +34,7 @@ public:
     QTimer *timer = nullptr;
 
 public:
+    IConfigManage *configManage = nullptr;
     ISqlHandle *sqlHandle = nullptr;
     IPrint *print = nullptr;
     IPrintTemplate *printTemplate = nullptr;

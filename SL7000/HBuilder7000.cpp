@@ -36,9 +36,9 @@ HBuilder7000Private::HBuilder7000Private()
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
-    HAppContext::setContextValue("GradeOptionals",              QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
-    HAppContext::setContextValue("QualityOptionals",            QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("AdjustOptionals",             QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("GradeOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
+    HAppContext::setContextValue("QualityOptional",             QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("AdjustOptional",              QStringList() << "[实测电压]" << "[实测电流]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
 }
 
 HBuilder7000::HBuilder7000(QObject *parent) :
@@ -125,7 +125,7 @@ void HBuilder7000::buildConfigManage()
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
         d->configManage->setLocationCollection(d->dataFactory->createLocationCollection("LocationCollection"));
-        d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("Spec", d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }

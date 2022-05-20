@@ -3,6 +3,7 @@
 #include "HListCollectionDialog.h"
 #include "HDataDetail.h"
 #include "HQualityEditWidget.h"
+#include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IQualityCollection.h"
 #include "HeController/IModel.h"
@@ -16,6 +17,15 @@ HQualityEditHandler::HQualityEditHandler(QObject *parent) :
 
 HQualityEditHandler::~HQualityEditHandler() = default;
 
+void HQualityEditHandler::initialize(QVariantMap param)
+{
+    Q_D(HQualityEditHandler);
+    if (param.contains("key"))
+        d->key = param.value("key").toString();
+    if (param.contains("optional"))
+        d->optional = param.value("optional").toString();
+}
+
 QString HQualityEditHandler::typeName()
 {
     return "HQualityEditHandler";
@@ -24,9 +34,12 @@ QString HQualityEditHandler::typeName()
 void HQualityEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualityEditHandler);
+    auto widget = new HQualityEditWidget;
+    if (!d->optional.isEmpty())
+        widget->setOptional(HAppContext::getContextValue<QStringList>(d->optional));
     HDataDetail<IQuality> detail;
-    detail.setEditer(new HQualityEditWidget);
-    detail.setData(d->configManage->qualityCollection());
+    detail.setEditer(widget);
+    detail.setData(d->configManage->qualityCollection(d->key));
     HListCollectionDialog dlg(d->mainWindow);
     dlg.setWindowTitle(tr("品质数据配置"));
     dlg.setDataDetail(&detail);

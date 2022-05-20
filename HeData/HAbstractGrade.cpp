@@ -34,7 +34,7 @@ void HAbstractGrade::readContent(QDataStream &s)
     if (version >= 2)
         s >> d->datas;
 }
-
+// 版本2 增加d->datas
 void HAbstractGrade::writeContent(QDataStream &s)
 {
     Q_D(HAbstractGrade);

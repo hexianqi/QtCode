@@ -291,19 +291,20 @@ void HSqlGlobalInstance::initFieldCreateStyle()
 
 void HSqlGlobalInstance::initFieldGroup()
 {
-    // |产品信息2|   - [Note]
-    // |产品信息3|   - [ProductName][TestInstitute][Note]
-    // |光谱信息2|   - [CC_u][CC_v]
-    // |光谱信息3|   - [CC_u][CC_v][LuminousFluxSpec]
-    // |光谱信息4|   - [CC_u][CC_v][EnergyGraph][ReflectGraph]
-    // |光谱信息5|   - [CC_u][CC_v][LuminousFluxSpec][EnergyGraph][ReflectGraph]
-    // |光度信息2|   - [LuminousIntensity]
-    // |光度信息3|   = [LuminousPower][LuminousEfficiency]
-    // |光度信息4|   = [LuminousPower]
-    // |色容差信息2| - [SDCMDetail]
-    // |直流电信息2| - [ReverseVoltage][ReverseCurrent]
-    // |TM30信息2|,  # [TM30_Rf][TM30_Rg]
-    // |TM30信息3|,  - [TM30_Rf][TM30_Rg]
+    // |产品信息2|      - [Note]
+    // |产品信息3|      - [ProductName][TestInstitute][Note]
+    // |光谱信息2|      - [CC_u][CC_v]
+    // |光谱信息3|      - [CC_u][CC_v][LuminousFluxSpec]
+    // |光谱信息4|      - [CC_u][CC_v][EnergyGraph][ReflectGraph]
+    // |光谱信息5|      - [CC_u][CC_v][LuminousFluxSpec][EnergyGraph][ReflectGraph]
+    // |光度信息2|      - [LuminousIntensity]
+    // |光度信息3|      = [LuminousPower][LuminousEfficiency]
+    // |光度信息4|      = [LuminousPower]
+    // |色容差信息2|    - [SDCMDetail]
+    // |直流电信息2|    - [ReverseVoltage][ReverseCurrent]
+    // |TM30信息2|      = [TM30_Rf][TM30_Rg]
+    // |TM30信息3|      - [TM30_Rf][TM30_Rg]
+    // |光强角度信息2|  - [ADLI_Graph]
 
     hashFieldGroup.insert("|产品信息|",      QStringList() << "Manufacturer" << "ProductName" << "ProductModel"  << "SampleNumber" << "TestInstitute" << "Tester" << "Note");
     hashFieldGroup.insert("|产品信息2|",     QStringList() << "Manufacturer" << "ProductName" << "ProductModel"  << "SampleNumber" << "TestInstitute" << "Tester");
@@ -365,6 +366,9 @@ void HSqlGlobalInstance::initFieldGroup()
                                                            << "ADLI_AngleHalfLeft" << "ADLI_AngleHalfRight" << "ADLI_AngleHalfOff"
                                                            << "ADLI_AngleFifthLeft" << "ADLI_AngleFifthRight" << "ADLI_AngleFifthOff"
                                                            << "ADLI_Graph");
+    hashFieldGroup.insert("|光强角度信息2|", QStringList() << "ADLI_LIMax" << "ADLI_LINormal" << "ADLI_LF" << "ADLI_AngleMax"
+                                                           << "ADLI_AngleHalfLeft" << "ADLI_AngleHalfRight" << "ADLI_AngleHalfOff"
+                                                           << "ADLI_AngleFifthLeft" << "ADLI_AngleFifthRight" << "ADLI_AngleFifthOff");
     // 数据格式
     hashFieldGroup.insert("|多边形格式|",    QStringList() << "EnergyGraph" << "ReflectGraph" << "ADLI_Graph");
     hashFieldGroup.insert("|列表格式|",      QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"

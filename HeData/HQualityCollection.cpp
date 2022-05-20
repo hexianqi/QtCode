@@ -25,7 +25,6 @@ HQualityCollectionPrivate::HQualityCollectionPrivate()
 void HQualityCollectionPrivate::readContent(QDataStream &s)
 {
     quint32 version;
-
     s >> version;
     HStreamHelper::read<QString, IQuality>(s, items, [=](QString type) { return factory->createQuality(type); });
     s >> useIndex;

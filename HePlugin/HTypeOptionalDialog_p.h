@@ -5,7 +5,7 @@
 class HTypeOptionalDialogPrivate
 {
 public:
-    QStringList optionals;
-    QStringList selecteds;
-    QStringList unselecteds;
+    QStringList optional;
+    QStringList selected;
+    QStringList unselected;
 };

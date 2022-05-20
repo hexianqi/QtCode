@@ -29,9 +29,9 @@ HBuilder2000Private::HBuilder2000Private()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
-    HAppContext::setContextValue("GradeOptionals",      QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
-    HAppContext::setContextValue("AdjustOptionals",     QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("QualityOptionals",    QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("GradeOptional",   QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
+    HAppContext::setContextValue("AdjustOptional",  QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
+    HAppContext::setContextValue("QualityOptional", QStringList() << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
 }
 
 HBuilder2000::HBuilder2000(QObject *parent) :
@@ -73,7 +73,7 @@ void HBuilder2000::buildConfigManage()
         d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
-        d->configManage->setQualityCollection(d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("Spec", d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }

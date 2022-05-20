@@ -26,7 +26,7 @@ void HGradeSelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
     if (data == nullptr || data->keys().size() < 2)
         return;
     HSelectDialog dlg(d->mainWindow);
-    dlg.setOptionals(data->keys());
+    dlg.setOptional(data->keys());
     dlg.setCurrentText(data->useIndex());
     if (!dlg.exec())
         return;

@@ -21,6 +21,7 @@ public:
     ~HQualityItemCollectionWidget();
 
 public:
+    void setOptional(QStringList);
     void setData(IQualityItemCollection *);
     void clearData();
     void showData();

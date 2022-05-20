@@ -303,7 +303,7 @@ void HSpecTestWidget::writeSettings()
 void HSpecTestWidget::postProcess(bool append)
 {
     Q_D(HSpecTestWidget);
-    d->configManage->postProcess(d->testData, d->displays);
+    d->configManage->postProcess(d->testData, d->displays, "Spec");
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
     if (append)
         d->testData->handleOperation("<编号自增>");

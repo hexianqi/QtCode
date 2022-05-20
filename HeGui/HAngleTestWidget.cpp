@@ -4,6 +4,7 @@
 #include "HAngleChartView.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
+#include "HeData/IConfigManage.h"
 #include "HeData/ITestData.h"
 #include "HeData/IPrint.h"
 #include "HeData/IPrintTemplate.h"
@@ -28,6 +29,7 @@ HAngleTestWidgetPrivate::HAngleTestWidgetPrivate()
 {
     auto mementoCollection = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
     memento = mementoCollection->value("Angle");
+    configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("IAngleSqlHandle");
     print = HAppContext::getContextPointer<IPrint>("IPrint");
     printTemplate = HAppContext::getContextPointer<IPrintTemplate>("IAnglePrintTemplate");
@@ -222,6 +224,7 @@ void HAngleTestWidget::handleResultChanged(HActionType action, bool)
     if (action == ACT_GET_ANGLE_DISTRIBUTION)
     {
         auto poly = d->testData->data("[光强角度分布]").value<QPolygonF>();
+        d->configManage->processQuality(d->testData, HCore::membership("|光强角度信息2|"), "Angle");
         d->detailWidget->refreshWidget();
         d->cartesianChartView->replace(poly);
         d->polarChartView->replace(poly);

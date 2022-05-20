@@ -12,6 +12,7 @@
 #include "IAdjustCollection.h"
 #include "IAdjust2Collection.h"
 #include "HDataHelper.h"
+#include "HStreamHelper.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
 #include <QtCore/QPointF>
@@ -70,9 +71,17 @@ void HConfigManagePrivate::readContent(QDataStream &s)
     }
     if (contain & IConfigManage::ContainQuality)
     {
-        s >> type;
-        quality = factory->createQualityCollection(type);
-        quality->dataStream()->readContent(s);
+        if (version >= 2)
+        {
+            HStreamHelper::read<QString, IQualityCollection>(s, qualitys, [=](QString type) { return factory->createQualityCollection(type); });
+        }
+        else
+        {
+            s >> type;
+            auto quality = factory->createQualityCollection(type);
+            quality->dataStream()->readContent(s);
+            qualitys.insert("Spec", quality);
+        }
     }
     if (contain & IConfigManage::ContainLocation)
     {
@@ -93,10 +102,10 @@ void HConfigManagePrivate::readContent(QDataStream &s)
         adjust2->dataStream()->readContent(s);
     }
 }
-
+// 版本2 IQualityCollection *quality -> QMap<QString, IQualityCollection *> qualitys
 void HConfigManagePrivate::writeContent(QDataStream &s)
 {
-    s << quint32(1);
+    s << quint32(2);
     s << contain;
     if (contain & IConfigManage::ContainSpec)
     {
@@ -125,8 +134,10 @@ void HConfigManagePrivate::writeContent(QDataStream &s)
     }
     if (contain & IConfigManage::ContainQuality)
     {
-        s << quality->typeName();
-        quality->dataStream()->writeContent(s);
+        // 版本1
+        // s << quality->typeName();
+        // quality->dataStream()->writeContent(s);
+        HStreamHelper::write<QString, IQualityCollection>(s, qualitys);
     }
     if (contain & IConfigManage::ContainLocation)
     {
@@ -238,14 +249,16 @@ IGradeCollection *HConfigManage::gradeCollection()
     return d_ptr->grade;
 }
 
-void HConfigManage::setQualityCollection(IQualityCollection *p)
+void HConfigManage::addQualityCollection(QString key, IQualityCollection *p)
 {
-    d_ptr->quality = p;
+    d_ptr->qualitys.insert(key, p);
 }
 
-IQualityCollection *HConfigManage::qualityCollection()
+IQualityCollection *HConfigManage::qualityCollection(QString key)
 {
-    return d_ptr->quality;
+    if (!d_ptr->qualitys.contains(key))
+        return nullptr;
+    return d_ptr->qualitys.value(key);
 }
 
 void HConfigManage::setLocationCollection(ILocationCollection *p)
@@ -292,15 +305,15 @@ bool HConfigManage::importPart(quint32 value)
         return d_ptr->chromatism->dataStream()->openFile();
     if (value & ContainGrade)
         return d_ptr->grade->dataStream()->openFile();
-    if (value & ContainQuality)
-        return d_ptr->quality->dataStream()->openFile();
+//  不支持ContainQuality
+//  if (value & ContainQuality)
+//      return d_ptr->quality->dataStream()->openFile();
     if (value & ContainLocation)
         return d_ptr->location->dataStream()->openFile();
     if (value & ContainAdjust)
         return d_ptr->adjust->dataStream()->openFile();
     if (value & ContainAdjust2)
         return d_ptr->adjust2->dataStream()->openFile();
-
     return false;
 }
 
@@ -318,8 +331,9 @@ bool HConfigManage::exportPart(quint32 value)
         return d_ptr->chromatism->dataStream()->saveAsFile();
     if (value & ContainGrade)
         return d_ptr->grade->dataStream()->saveAsFile();
-    if (value & ContainQuality)
-        return d_ptr->quality->dataStream()->saveAsFile();
+//  不支持ContainQuality
+//  if (value & ContainQuality)
+//      return d_ptr->quality->dataStream()->saveAsFile();
     if (value & ContainLocation)
         return d_ptr->location->dataStream()->saveAsFile();
     if (value & ContainAdjust)
@@ -329,61 +343,147 @@ bool HConfigManage::exportPart(quint32 value)
     return false;
 }
 
-void HConfigManage::postProcess(ITestData *test, QStringList optional)
+QStringList HConfigManage::supplement(QStringList list)
 {
-    auto set = optional.toSet();
+    auto set = list.toSet();
     set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
     set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
     set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
-    optional = set.toList();
+    return set.toList();
+}
+
+void HConfigManage::postProcess(ITestData *test, QStringList optional, QString keyQuality)
+{
+    optional = supplement(optional);
+    processAdjust(test, optional);
+    processChromatism(test);
+    processGrade(test, optional);
+    processQuality(test, optional, keyQuality);
+}
+
+//void HConfigManage::postProcess(ITestData *test, QStringList optional)
+//{
+//    auto set = optional.toSet();
+//    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
+//    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
+//    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
+//    optional = set.toList();
+//    auto data = test->select(optional);
+
+//    test->setData("[调整组]", "-");
+//    if (test->data("[使用调整]").toBool())
+//    {
+//        QVariantMap value;
+//        if (d_ptr->adjust != nullptr)
+//        {
+//            value = d_ptr->adjust->correct(data);
+//            test->setData("[调整组]", d_ptr->adjust->useIndex());
+//        }
+//        else if (d_ptr->adjust2 != nullptr)
+//        {
+//            value = d_ptr->adjust2->correct(test->data("[色温]").toDouble(), data);
+//            test->setData("[调整组]", d_ptr->adjust2->useIndex());
+//        }
+//        if (!value.isEmpty())
+//            data = unify(test, value, optional);
+//    }
+//    if (d_ptr->chromatism != nullptr)
+//    {
+//        test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
+//        test->setData("[色容差标准]", d_ptr->chromatism->toMap());
+////        auto std = d_ptr->chromatism->toMap();
+////        test->setData("[色容差标准Json]", HCore::toJson(std));
+//    }
+
+//    if (d_ptr->grade != nullptr)
+//    {
+//        QString text;
+//        auto level = d_ptr->grade->calcLevel(data, &text);
+//        test->setData("[分级]", level);
+//        test->setData("[分级别名]", text);
+//    }
+
+//    if (d_ptr->quality != nullptr)
+//    {
+//        QVariantMap colors;
+//        auto report = d_ptr->quality->check(data, &colors);
+//        auto color = d_ptr->quality->color(report);
+//        test->setData("[品质]", report);
+//        test->setData("[品质颜色]", color);
+//        test->setData("[品质不符合颜色]", colors);
+//    }
+//}
+
+bool HConfigManage::processChromatism(ITestData *test)
+{
+    if (d_ptr->chromatism == nullptr)
+        return false;
+
+    test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
+    test->setData("[色容差标准]", d_ptr->chromatism->toMap());
+//    auto std = d_ptr->chromatism->toMap();
+//    test->setData("[色容差标准Json]", HCore::toJson(std));
+    return true;
+}
+
+bool HConfigManage::processAdjust(ITestData *test, QStringList optional)
+{
+    if (!test->data("[使用调整]").toBool())
+        return true;
+
+    QVariantMap value;
     auto data = test->select(optional);
+    if (d_ptr->adjust != nullptr)
+    {
+        value = d_ptr->adjust->correct(data);
+        test->setData("[调整组]", d_ptr->adjust->useIndex());
+    }
+    else if (d_ptr->adjust2 != nullptr)
+    {
+        value = d_ptr->adjust2->correct(test->data("[色温]").toDouble(), data);
+        test->setData("[调整组]", d_ptr->adjust2->useIndex());
+    }
+    else
+    {
+        test->setData("[调整组]", "-");
+        return false;
+    }
+    if (!value.isEmpty())
+        unify(test, value, optional);
+    return true;
+}
 
-    test->setData("[调整组]", "-");
-    if (test->data("[使用调整]").toBool())
-    {
-        QVariantMap value;
-        if (d_ptr->adjust != nullptr)
-        {
-            value = d_ptr->adjust->correct(data);
-            test->setData("[调整组]", d_ptr->adjust->useIndex());
-        }
-        else if (d_ptr->adjust2 != nullptr)
-        {
-            value = d_ptr->adjust2->correct(test->data("[色温]").toDouble(), data);
-            test->setData("[调整组]", d_ptr->adjust2->useIndex());
-        }
-        if (!value.isEmpty())
-            data = unify(test, value, optional);
-    }
-    if (d_ptr->chromatism != nullptr)
-    {
-        test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
-        test->setData("[色容差标准]", d_ptr->chromatism->toMap());
-//        auto std = d_ptr->chromatism->toMap();
-//        test->setData("[色容差标准Json]", HCore::toJson(std));
-    }
+bool HConfigManage::processGrade(ITestData *test, QStringList optional)
+{
+    if (d_ptr->grade == nullptr)
+        return false;
 
-    if (d_ptr->grade != nullptr)
-    {
-        QString text;
-        auto level = d_ptr->grade->calcLevel(data, &text);
-        test->setData("[分级]", level);
-        test->setData("[分级别名]", text);
-    }
+    QString text;
+    auto data = test->select(optional);
+    auto level = d_ptr->grade->calcLevel(data, &text);
+    test->setData("[分级]", level);
+    test->setData("[分级别名]", text);
+    return true;
+}
 
-    if (d_ptr->quality != nullptr)
-    {
-        QVariantMap colors;
-        auto report = d_ptr->quality->check(data, &colors);
-        auto color = d_ptr->quality->color(report);
-        test->setData("[品质]", report);
-        test->setData("[品质颜色]", color);
-        test->setData("[品质不符合颜色]", colors);
-    }
+bool HConfigManage::processQuality(ITestData *test, QStringList optional, QString key)
+{
+    if (!d_ptr->qualitys.contains(key))
+        return false;
+
+    QVariantMap colors;
+    auto quality = d_ptr->qualitys.value(key);
+    auto data = test->select(optional);
+    auto report = quality->check(data, &colors);
+    auto color = quality->color(report);
+    test->setData("[品质]", report);
+    test->setData("[品质颜色]", color);
+    test->setData("[品质不符合颜色]", colors);
+    return true;
 }
 
 // 关联数据统一
-QVariantMap HConfigManage::unify(ITestData *test, QVariantMap value, QStringList optional)
+void HConfigManage::unify(ITestData *test, QVariantMap value, QStringList optional)
 {
     test->setData(value);
     if (optional.contains("[色坐标]") && (value.contains("[色坐标x]") || value.contains("[色坐标y]")))
@@ -403,7 +503,6 @@ QVariantMap HConfigManage::unify(ITestData *test, QVariantMap value, QStringList
         if (optional.contains("[光功率]"))
             test->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
     }
-    return test->select(optional);
 }
 
 HE_END_NAMESPACE

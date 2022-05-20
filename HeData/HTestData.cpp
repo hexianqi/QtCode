@@ -92,6 +92,8 @@ bool HTestData::setData(QString type, QVariant value)
 
 void HTestData::setData(QVariantMap value)
 {
+    if (value.isEmpty())
+        return;
     d_ptr->setData(value);
 }
 

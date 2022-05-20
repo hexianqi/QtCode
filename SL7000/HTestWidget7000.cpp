@@ -283,7 +283,7 @@ void HTestWidget7000::handleResultChanged(HActionType, bool)
 void HTestWidget7000::postProcess()
 {
     Q_D(HTestWidget7000);
-    d->configManage->postProcess(d->testData, d->displays);
+    d->configManage->postProcess(d->testData, d->displays, "Spec");
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
     d->testData->handleOperation("<编号自增>");
 }
@@ -309,7 +309,7 @@ void HTestWidget7000::resetGrade()
 void HTestWidget7000::resetQuality()
 {
     Q_D(HTestWidget7000);
-    auto qc = d->configManage->qualityCollection();
+    auto qc = d->configManage->qualityCollection("Spec");
     d->locationWidget->setColor(qc->color(HQualityReport::InvalidData), qc->color(HQualityReport::Spacer));
 }
 

@@ -36,8 +36,8 @@ public:
     IChromatismCollection *chromatismCollection() override;
     void setGradeCollection(IGradeCollection *) override;
     IGradeCollection *gradeCollection() override;
-    void setQualityCollection(IQualityCollection *) override;
-    IQualityCollection *qualityCollection() override;
+    void addQualityCollection(QString key, IQualityCollection *) override;
+    IQualityCollection *qualityCollection(QString key) override;
     void setLocationCollection(ILocationCollection *) override;
     ILocationCollection *locationCollection() override;
     void setAdjustCollection(IAdjustCollection *) override;
@@ -50,13 +50,18 @@ public:
     bool exportPart(quint32 value) override;
 
 public:
-    void postProcess(ITestData *, QStringList optional) override;
+    QStringList supplement(QStringList) override;
+    void postProcess(ITestData *, QStringList optional, QString keyQuality) override;
+    bool processChromatism(ITestData *) override;
+    bool processAdjust(ITestData *, QStringList optional) override;
+    bool processGrade(ITestData *, QStringList optional) override;
+    bool processQuality(ITestData *, QStringList optional, QString key = QString()) override;
 
 protected:
     HConfigManage(HConfigManagePrivate &p, QObject *parent = nullptr);
 
 protected:
-    QVariantMap unify(ITestData *test, QVariantMap value, QStringList optional);
+    void unify(ITestData *test, QVariantMap value, QStringList optional);
 
 protected:
     QScopedPointer<HConfigManagePrivate> d_ptr;

@@ -19,38 +19,38 @@ void HOptionalTableExtend::setTableView(QTableView *p)
 void HOptionalTableExtend::setDisplay(const QStringList &value)
 {
     Q_D(HOptionalTableExtend);
-    if (d->displays == value)
+    if (d->display == value)
         return;
-    d->displays = value;
+    d->display = value;
 }
 
 void HOptionalTableExtend::setOptional(const QStringList &value)
 {
     Q_D(HOptionalTableExtend);
-    if (d->optionals == value)
+    if (d->optional == value)
         return;
-    d->optionals = value;
+    d->optional = value;
 }
 
 void HOptionalTableExtend::setSelected(const QStringList &value)
 {
     Q_D(HOptionalTableExtend);
-    if (d->selecteds == value)
+    if (d->selected == value)
         return;
-    d->selecteds = value;
+    d->selected = value;
     setColumnHidden();
 }
 
 QStringList HOptionalTableExtend::selected()
 {
     Q_D(HOptionalTableExtend);
-    return d->selecteds;
+    return d->selected;
 }
 
 void HOptionalTableExtend::editSelected()
 {
     Q_D(HOptionalTableExtend);
-    HTypeOptionalDialog dlg(d->selecteds, d->optionals);
+    HTypeOptionalDialog dlg(d->selected, d->optional);
     if (dlg.exec())
         setSelected(dlg.selected());
 }
@@ -60,6 +60,6 @@ void HOptionalTableExtend::setColumnHidden()
     Q_D(HOptionalTableExtend);
     if (d->view == nullptr)
         return;
-    for (int i = 0; i < d->displays.size(); i++)
-        d->view->setColumnHidden(i, !d->selecteds.contains(d->displays[i]));
+    for (int i = 0; i < d->display.size(); i++)
+        d->view->setColumnHidden(i, !d->selected.contains(d->display[i]));
 }

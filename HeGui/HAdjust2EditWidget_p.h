@@ -25,9 +25,9 @@ public:
     IAdjustItemCollection *itemCollection = nullptr;
     QStringListModel *listModel;
     QModelIndex currentIndex;
-    QStringList optionals;
-    QStringList selecteds;
-    QStringList unselecteds;
+    QStringList optional;
+    QStringList selected;
+    QStringList unselected;
 
 public:
     IModel *model = nullptr;

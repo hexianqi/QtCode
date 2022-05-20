@@ -18,9 +18,9 @@ public:
 public:
     IDataFactory *factory = nullptr;
     IAdjust *data = nullptr;
-    QStringList optionals;
-    QStringList selecteds;
-    QStringList unselecteds;
+    QStringList optional;
+    QStringList selected;
+    QStringList unselected;
 
 public:
     IModel *model = nullptr;

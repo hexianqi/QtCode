@@ -25,7 +25,7 @@ public:
     ILuminousCalibrateCollection *luminousCalibrate = nullptr;
     IChromatismCollection *chromatism = nullptr;
     IGradeCollection *grade = nullptr;
-    IQualityCollection *quality = nullptr;
+    QMap<QString, IQualityCollection *> qualitys;
     ILocationCollection *location = nullptr;
     IAdjustCollection *adjust = nullptr;
     IAdjust2Collection *adjust2 = nullptr;

@@ -22,6 +22,9 @@ public:
 public:
     QString typeName() override;
 
+public:
+    void refreshWidget() override;
+
 protected:
     void initHash() override;
 

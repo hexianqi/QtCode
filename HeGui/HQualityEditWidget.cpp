@@ -95,6 +95,12 @@ void HQualityEditWidget::showData()
     showPushButton();
 }
 
+void HQualityEditWidget::setOptional(QStringList value)
+{
+    d_ptr->widget1->setOptional(value);
+    d_ptr->widget2->setOptional(value);
+}
+
 void HQualityEditWidget::showPushButton()
 {
     ui->pushButton_01->setStyleSheet(d_ptr->css.arg(d_ptr->colorInvalidData.name()));

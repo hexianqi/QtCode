@@ -13,7 +13,7 @@ HE_BEGIN_NAMESPACE
 HAbstractGradeWidgetPrivate::HAbstractGradeWidgetPrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
-    optionals = HAppContext::getContextValue<QStringList>("GradeOptionals");
+    optional = HAppContext::getContextValue<QStringList>("GradeOptional");
 }
 
 HAbstractGradeWidget::HAbstractGradeWidget(QWidget *parent) :
@@ -57,8 +57,8 @@ bool HAbstractGradeWidget::showData()
         return false;
 
     d_ptr->modified = false;
-    d_ptr->selecteds = d_ptr->data != nullptr ? d_ptr->data->keys() : QStringList();
-    d_ptr->unselecteds = HCoreHelper::unselected(d_ptr->optionals, d_ptr->selecteds);
+    d_ptr->selected = d_ptr->data != nullptr ? d_ptr->data->keys() : QStringList();
+    d_ptr->unselected = HCoreHelper::unselected(d_ptr->optional, d_ptr->selected);
 
     QMap<int, IGradeItem *> map;
     for (auto v : d_ptr->data->values())
@@ -75,7 +75,7 @@ bool HAbstractGradeWidget::showData()
 void HAbstractGradeWidget::insertGradeItem()
 {
     QString type;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->unselecteds, type))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->unselected, type))
         return;
 
     auto className = type == "[色坐标]" ? "HGradeItem2D" : "HGradeItem";
@@ -89,7 +89,7 @@ void HAbstractGradeWidget::insertGradeItem()
 void HAbstractGradeWidget::removeGradeItem()
 {
     QString type;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->selecteds, type))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->selected, type))
         return;
     d_ptr->data->remove(type);
     showData();
@@ -98,7 +98,7 @@ void HAbstractGradeWidget::removeGradeItem()
 void HAbstractGradeWidget::editGradeItem()
 {
     QString type;
-    if (!HPluginHelper::selectedParameter(this, d_ptr->selecteds, type))
+    if (!HPluginHelper::selectedParameter(this, d_ptr->selected, type))
         return;
     if (!editGradeItem(type))
         return;

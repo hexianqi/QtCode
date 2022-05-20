@@ -107,8 +107,8 @@ bool HSequentialGradeWidget::showData()
     delegate->setType(types);
     delegate->setOrigin(QPoint(1, 0));
     connect(delegate, &HDoubleSpinBoxDelegate::closeEditor, this, &HSequentialGradeWidget::setModified);
-    ui->pushButton_2->setEnabled(!d_ptr->selecteds.isEmpty());
-    ui->pushButton_3->setEnabled(!d_ptr->selecteds.isEmpty());
+    ui->pushButton_2->setEnabled(!d_ptr->selected.isEmpty());
+    ui->pushButton_3->setEnabled(!d_ptr->selected.isEmpty());
     ui->tableWidget_1->setHorizontalHeaderLabels(headers);
     ui->tableWidget_1->setItemDelegate(delegate);
     ui->tableWidget_1->setRowCount(total);

@@ -47,7 +47,7 @@ IGrade *HGradeEditWidget::createData()
 
     HSelectDialog dlg(this);
     dlg.setLabelText(tr("请选择分级类型："));
-    dlg.setOptionals(option);
+    dlg.setOptional(option);
     if (!dlg.exec())
         return nullptr;
     return d_ptr->factory->createGrade(dlg.currentData().toString());

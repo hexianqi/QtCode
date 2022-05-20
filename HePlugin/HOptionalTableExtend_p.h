@@ -6,7 +6,7 @@
 class HOptionalTableExtendPrivate : public HAbstractTableExtendPrivate
 {
 public:
-    QStringList displays;
-    QStringList optionals;
-    QStringList selecteds;
+    QStringList display;
+    QStringList optional;
+    QStringList selected;
 };

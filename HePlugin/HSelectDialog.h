@@ -25,8 +25,8 @@ public:
 
 public:
     void setLabelText(const QString &);
-    void setOptionals(const QStringList &);
-    void setOptionals(const QVariantMap &);
+    void setOptional(const QStringList &);
+    void setOptional(const QVariantMap &);
     void setCurrentText(const QString &);
     void setCurrentIndex(int index);
 

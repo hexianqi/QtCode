@@ -20,6 +20,7 @@ public:
     ~HQualitySelectHandler() override;
 
 public:
+    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 public:

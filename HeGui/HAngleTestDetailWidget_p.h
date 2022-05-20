@@ -7,6 +7,11 @@ HE_BEGIN_NAMESPACE
 
 class HAngleTestDetailWidgetPrivate : public HAbstractTestDetailWidgetPrivate
 {
+public:
+    HAngleTestDetailWidgetPrivate();
+
+public:
+    QString css;
 };
 
 HE_END_NAMESPACE

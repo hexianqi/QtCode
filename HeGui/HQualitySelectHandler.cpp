@@ -14,6 +14,13 @@ HQualitySelectHandler::HQualitySelectHandler(QObject *parent) :
 
 HQualitySelectHandler::~HQualitySelectHandler() = default;
 
+void HQualitySelectHandler::initialize(QVariantMap param)
+{
+    Q_D(HQualitySelectHandler);
+    if (param.contains("key"))
+        d->key = param.value("key").toString();
+}
+
 QString HQualitySelectHandler::typeName()
 {
     return "HQualitySelectHandler";
@@ -22,11 +29,11 @@ QString HQualitySelectHandler::typeName()
 void HQualitySelectHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HQualitySelectHandler);
-    auto data = d->configManage->qualityCollection();
+    auto data = d->configManage->qualityCollection(d->key);
     if (data == nullptr || data->keys().size() < 2)
         return;
     HSelectDialog dlg(d->mainWindow);
-    dlg.setOptionals(data->keys());
+    dlg.setOptional(data->keys());
     dlg.setCurrentText(data->useIndex());
     if (!dlg.exec())
         return;

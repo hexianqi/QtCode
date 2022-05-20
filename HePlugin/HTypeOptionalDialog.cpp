@@ -11,9 +11,9 @@ HTypeOptionalDialog::HTypeOptionalDialog(const QStringList &selected, const QStr
     ui(new Ui::HTypeOptionalDialog)
 {
     ui->setupUi(this);
-    d_ptr->optionals = optional;
-    d_ptr->selecteds = selected;
-    d_ptr->unselecteds = HCoreHelper::unselected(optional, selected);
+    d_ptr->optional = optional;
+    d_ptr->selected = selected;
+    d_ptr->unselected = HCoreHelper::unselected(optional, selected);
     showData();
 }
 
@@ -24,7 +24,7 @@ HTypeOptionalDialog::~HTypeOptionalDialog()
 
 QStringList HTypeOptionalDialog::selected()
 {
-    return d_ptr->selecteds;
+    return d_ptr->selected;
 }
 
 void HTypeOptionalDialog::on_toolButton_1_clicked()
@@ -80,14 +80,14 @@ void HTypeOptionalDialog::done(int result)
 
 void HTypeOptionalDialog::showData()
 {
-    for (const auto &t : d_ptr->unselecteds)
+    for (const auto &t : d_ptr->unselected)
     {
         auto item = new QListWidgetItem;
         item->setData(Qt::UserRole, t);
         item->setData(Qt::DisplayRole, HCore::toCaption(t));
         ui->listWidget_1->addItem(item);
     }
-    for (const auto &t : d_ptr->selecteds)
+    for (const auto &t : d_ptr->selected)
     {
         auto item = new QListWidgetItem;
         item->setData(Qt::UserRole, t);
@@ -98,7 +98,7 @@ void HTypeOptionalDialog::showData()
 
 void HTypeOptionalDialog::saveData()
 {
-    d_ptr->selecteds.clear();
+    d_ptr->selected.clear();
     for (int i = 0; i< ui->listWidget_2->count(); i++)
-        d_ptr->selecteds << ui->listWidget_2->item(i)->data(Qt::UserRole).toString();
+        d_ptr->selected << ui->listWidget_2->item(i)->data(Qt::UserRole).toString();
 }

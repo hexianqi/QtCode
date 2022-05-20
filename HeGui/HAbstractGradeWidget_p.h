@@ -15,9 +15,9 @@ public:
 public:
     IDataFactory *factory = nullptr;
     IGrade *data = nullptr;
-    QStringList optionals;
-    QStringList selecteds;
-    QStringList unselecteds;
+    QStringList optional;
+    QStringList selected;
+    QStringList unselected;
     QList<IGradeItem *> items;
     bool modified = false;
 };
