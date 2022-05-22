@@ -36,14 +36,14 @@ void HAngleChartView::init()
     Q_D(HAngleChartView);
     HPolarChartView::init();
     d->originSeries = new QLineSeries;
-    d->originSeries->setColor(QColor(16, 16, 16));
+    d->originSeries->setPen(QPen(QColor(16, 16, 16), 3));
     d->originSeries->append(-90, d->maxValue);
     d->originSeries->append(0, 0);
     d->originSeries->append(90, d->maxValue);
     d->fifthSeries = new QLineSeries;
-    d->fifthSeries->setColor(Qt::green);
+    d->fifthSeries->setPen(QPen(Qt::green, 2));
     d->halfSeries = new QLineSeries;
-    d->halfSeries->setColor(Qt::red);
+    d->halfSeries->setPen(QPen(Qt::red, 2));
     d->callout = new HCalloutChartExtend(d->chart, this);
     d->callout->connectExtend();
     addSeries(d->originSeries);

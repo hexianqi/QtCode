@@ -271,7 +271,6 @@ void HBuilder1000A::buildMenu()
     auto account = new QMenu(tr("账号管理(&M)"));
     calibrate->menuAction()->setProperty("authority", 1);
     grade->menuAction()->setProperty("authority", 1);
-    quality->menuAction()->setProperty("authority", 1);
     device->menuAction()->setProperty("authority", 1);
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("电定标(&E)..."), "HElecCalibrateHandler"));

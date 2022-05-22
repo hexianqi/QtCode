@@ -53,6 +53,7 @@ bool HIntegrateThread::handleAction(HActionType action)
         msleep(d->testData->data("[光谱采样延时]").toInt());
         d->strategyLuminous->handle(ACT_GET_LUMINOUS_DATA);
         HControllerHelper::multGetSpectrum(d->protocolSpec, d->testData, d->testData->data("[光谱平均次数]").toInt());
+        d->testData->setData("[电源模式]", 0);
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
         return true;

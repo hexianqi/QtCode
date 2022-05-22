@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>964</width>
-    <height>125</height>
+    <height>127</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -417,16 +417,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="9">
-    <widget class="QLabel" name="label_004">
-     <property name="text">
-      <string>合格：</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="4">
     <widget class="QLineEdit" name="lineEdit_002">
      <property name="minimumSize">
@@ -459,8 +449,14 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="11">
+   <item row="0" column="11" rowspan="4">
     <widget class="QLineEdit" name="lineEdit_004">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
        <width>100</width>
@@ -472,6 +468,16 @@
      </property>
      <property name="readOnly">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="9" rowspan="4">
+    <widget class="QLabel" name="label_004">
+     <property name="text">
+      <string>合格：</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>

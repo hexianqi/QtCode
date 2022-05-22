@@ -2,6 +2,8 @@
 #include "HAngleTestSetWidget.h"
 #include "HAngleTestDetailWidget.h"
 #include "HAngleChartView.h"
+#include "HAction.h"
+#include "IGuiFactory.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/IConfigManage.h"
@@ -29,6 +31,7 @@ HAngleTestWidgetPrivate::HAngleTestWidgetPrivate()
 {
     auto mementoCollection = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
     memento = mementoCollection->value("Angle");
+    guiFactory = HAppContext::getContextPointer<IGuiFactory>("IGuiFactory");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     sqlHandle = HAppContext::getContextPointer<ISqlHandle>("IAngleSqlHandle");
     print = HAppContext::getContextPointer<IPrint>("IPrint");
@@ -138,7 +141,17 @@ void HAngleTestWidget::createWidget()
 
 void HAngleTestWidget::createMenu()
 {
-
+    Q_D(HAngleTestWidget);
+    QVariantMap param[2];
+    param[0].insert("key", "Angle");
+    param[0].insert("optional", "AngleQualityOptional");
+    param[1].insert("sqlBrowser", "IAngleSqlBrowser");
+    auto quality = new QMenu(tr("品质(&Q)"));
+    auto database = new QMenu(tr("数据库(&D)"));
+    quality->addAction(d->guiFactory->createAction(tr("光强角品质数据配置(&E)..."), "HQualityEditHandler", param[0]));
+    quality->addAction(d->guiFactory->createAction(tr("光强角品质数据选择(&S)..."), "HQualitySelectHandler", param[0]));
+    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&B)..."), "HSqlBrowserHandler", param[1]));
+    d->menus << quality << database;
 }
 
 void HAngleTestWidget::createToolBar()
@@ -168,12 +181,12 @@ void HAngleTestWidget::initWidget()
     splitter1->addWidget(d->cartesianChartView);
     splitter1->addWidget(d->polarChartView);
     splitter1->setHandleWidth(15);
-    splitter1->setStretchFactor(0, 2);
+    splitter1->setStretchFactor(0, 1);
     splitter1->setStretchFactor(1, 1);
     splitter2->addWidget(splitter1);
     splitter2->addWidget(d->detailWidget);
     splitter2->setHandleWidth(15);
-    splitter2->setStretchFactor(0, 3);
+    splitter2->setStretchFactor(0, 2);
     splitter2->setStretchFactor(1, 1);
     layout->addWidget(splitter2);
     connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HAngleTestWidget::handleStateChanged);

@@ -169,6 +169,8 @@ void HElecCalibrateDialog::setLoop(HElecType type, bool loop)
 
 void HElecCalibrateDialog::done(int result)
 {
+    d_ptr->testData->setData("[电源模式]", 0);
+    d_ptr->model->addAction(ACT_SET_SOURCE_MODE);
     disconnect(d_ptr->model, &IModel::actionFinished, this, &HElecCalibrateDialog::handleAction);
     QDialog::done(result);
 }

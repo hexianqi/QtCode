@@ -73,7 +73,7 @@ void HQuality::setColor(HQualityReport type, const QColor &value)
 
 QColor HQuality::color(HQualityReport type)
 {
-    return d_ptr->colors.value(type, Qt::black);
+    return d_ptr->colors.value(type, Qt::transparent);
 }
 
 HQualityReport HQuality::check(QVariantMap value, QVariantMap *color)

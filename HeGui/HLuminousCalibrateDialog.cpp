@@ -115,6 +115,7 @@ void HLuminousCalibrateDialog::setTest(bool b)
 
 void HLuminousCalibrateDialog::done(int result)
 {
+    setTest(false);
     disconnect(d_ptr->model, &IModel::actionFinished, this, &HLuminousCalibrateDialog::handleAction);
     QDialog::done(result);
 }
