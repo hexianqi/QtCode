@@ -24,8 +24,8 @@ public:
 
 public:
     QStringList supportedWidget() override;
-    QStringList supportedEventFilter() override;
     QWidget *createWidget(const QString &type, QWidget *parent = nullptr) override;
+    QStringList supportedEventFilter() override;
     IEventFilter *createEventFilter(const QString &type, QVariantMap param = QVariantMap()) override;
 
 protected:

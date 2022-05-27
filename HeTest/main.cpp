@@ -13,6 +13,7 @@
 #include "HeControl/HControlFactoryWidget.h"
 #include "HeControl/HControlDemoWidget.h"
 #include <QtCore/QDebug>
+#include <QtCore/QTextCodec>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
 
@@ -38,14 +39,16 @@ int main(int argc, char *argv[])
     QApplication::setStyle(QStyleFactory::create("Plastique"));
     QApplication a(argc, argv);
 
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
+
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 
-    HControlFactoryWidget cw;
-    cw.show();
-//    HControlDemoWidget dw;
-//    dw.show();
+//    HControlFactoryWidget cw;
+//    cw.show();
+    HControlDemoWidget dw;
+    dw.show();
 
 //    HBreakoutWidget ow;
 //    ow.move(50, 300);

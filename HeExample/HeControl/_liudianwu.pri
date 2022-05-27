@@ -7,7 +7,6 @@ SOURCES += \
     $$PWD/HSlideNavigation.cpp \
 
 
-include(_liudianwu_button.pri)
 include(_liudianwu_calendar.pri)
 include(_liudianwu_else.pri)
 

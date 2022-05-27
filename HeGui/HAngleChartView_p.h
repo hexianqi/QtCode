@@ -3,8 +3,6 @@
 #include "HAngleChartView.h"
 #include "HePlugin/HPolarChartView_p.h"
 
-class HCalloutChartExtend;
-
 QT_CHARTS_BEGIN_NAMESPACE
 class QLineSeries;
 QT_CHARTS_END_NAMESPACE
@@ -18,7 +16,6 @@ public:
     QLineSeries *originSeries = nullptr;
     QLineSeries *fifthSeries = nullptr;
     QLineSeries *halfSeries = nullptr;
-    HCalloutChartExtend *callout;
 };
 
 HE_END_NAMESPACE

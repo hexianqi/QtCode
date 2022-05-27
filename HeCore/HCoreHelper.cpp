@@ -1,9 +1,11 @@
 #include "HCoreHelper.h"
+#include <QtCore/QFile>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include <QtCore/QSettings>
 #include <QtCore/QTime>
 #include <QtCore/QTimer>
+#include <QtCore/QTranslator>
 #include <QtGui/QColor>
 #include <QtWidgets/QApplication>
 #include <QtCore/QDebug>
@@ -78,6 +80,15 @@ void HCoreHelper::writeSettings(const QString &fileName, const QString &prefix, 
     for (auto i = params.begin(); i != params.end(); i++)
         settings.setValue(i.key(), i.value());
     settings.endGroup();
+}
+
+void HCoreHelper::installTranslator(const QString &fileName)
+{
+    if (!QFile::exists(fileName))
+        return;
+    auto translator = new QTranslator(QApplication::instance());
+    if (translator->load(fileName))
+        QApplication::installTranslator(translator);
 }
 
 HE_END_NAMESPACE

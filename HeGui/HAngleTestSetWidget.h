@@ -30,7 +30,6 @@ public:
 protected slots:
     void on_doubleSpinBox_2_valueChanged(double value);
     void on_doubleSpinBox_3_valueChanged(double value);
-    void on_comboBox_1_currentIndexChanged(int value);
     void on_comboBox_2_currentIndexChanged(int value);
     void on_comboBox_3_currentIndexChanged(int value);
 

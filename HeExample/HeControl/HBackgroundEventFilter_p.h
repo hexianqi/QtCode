@@ -12,8 +12,8 @@ public:
 
 public:
     int index = 0;
-    QStringList imageFiles;
-    bool repeated = false;  // 平铺
+    QStringList imageFile;
+    bool repeated = true;  // 平铺
     bool stretched = false; // 拉伸
 };
 

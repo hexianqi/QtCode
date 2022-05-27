@@ -1,6 +1,8 @@
 HEADERS += \
     $$PWD/HBattery.h \
     $$PWD/HBattery_p.h \
+    $$PWD/HChineseTranslate.h \
+    $$PWD/HChineseTranslate_p.h \
     $$PWD/HCpuMemoryLabel.h \
     $$PWD/HCpuMemoryLabel_p.h\
     $$PWD/HDeviceButton.h \
@@ -13,15 +15,19 @@ HEADERS += \
     $$PWD/HIPAddress_p.h \
     $$PWD/HLightButton.h \
     $$PWD/HLightButton_p.h \
+    $$PWD/HNavButton.h \
+    $$PWD/HNavButton_p.h \
 
 SOURCES += \
     $$PWD/HBattery.cpp \
+    $$PWD/HChineseTranslate.cpp \
     $$PWD/HCpuMemoryLabel.cpp \
     $$PWD/HDeviceButton.cpp \
     $$PWD/HDiskSizeTable.cpp \
     $$PWD/HImageSwitch.cpp \
     $$PWD/HIPAddress.cpp \
     $$PWD/HLightButton.cpp \
+    $$PWD/HNavButton.cpp \
 
 RESOURCES += \
     $$PWD/fyqy.qrc

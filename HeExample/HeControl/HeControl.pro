@@ -62,7 +62,6 @@ unix {
     INSTALLS += target
 }
 
-include(_canpool.pri)
 include(_liudianwu.pri)
 include(_ww.pri)
 
@@ -73,19 +72,22 @@ include(media.pri)
 include(multimedia.pri)
 include(network.pri)
 include(openGL.pri)
-include(service.pri)
 include(sql.pri)
 include(style.pri)
 include(test.pri)
 include(tools.pri)
 include(widget.pri)
-include($$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser/qtpropertybrowser.pri)
+
+
 
 include(z_control.pri)
 include(z_demo.pri)
 include(z_event.pri)
 include(z_fyqy.pri)
+include(z_helper.pri)
 include(z_iconFont.pri)
+include(z_service.pri)
 include(z_style.pri)
 include(z_widget.pri)
+include($$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser/qtpropertybrowser.pri)
 

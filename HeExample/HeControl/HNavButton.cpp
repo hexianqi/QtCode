@@ -7,12 +7,14 @@ HNavButton::HNavButton(QWidget *parent) :
     QPushButton(parent),
     d_ptr(new HNavButtonPrivate)
 {
+    setCheckable(true);
 }
 
 HNavButton::HNavButton(HNavButtonPrivate &p, QWidget *parent) :
     QPushButton(parent),
     d_ptr(&p)
 {
+    setCheckable(true);
 }
 
 HNavButton::~HNavButton() = default;

@@ -1,11 +1,10 @@
 #pragma once
 
-#include "HChineseHelper.h"
-#include <QtCore/QStringList>
+#include "HChineseTranslate.h"
 
 HE_BEGIN_NAMESPACE
 
-class HChineseHelperPrivate
+class HChineseTranslatePrivate
 {
 public:
     QStringList pinYins;
@@ -13,3 +12,4 @@ public:
 };
 
 HE_END_NAMESPACE
+

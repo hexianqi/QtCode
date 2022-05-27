@@ -49,5 +49,7 @@
         <file>fyqy/imageswitch/check_on_1.png</file>
         <file>fyqy/imageswitch/check_on_2.png</file>
         <file>fyqy/imageswitch/check_on_3.png</file>
+        <file>fyqy/data/jianpin.dat</file>
+        <file>fyqy/data/pinyin.dat</file>
     </qresource>
 </RCC>

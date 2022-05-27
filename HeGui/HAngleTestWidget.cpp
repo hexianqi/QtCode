@@ -60,7 +60,7 @@ void HAngleTestWidget::init()
     HTestWidget::init();
     d->timer = new QTimer(this);
     d->timer->setInterval(1000);
-    connect(d->timer, &QTimer::timeout, this, [=] { d->model->addAction(ACT_GET_MEASURED_VOLTAGE); });
+    connect(d->timer, &QTimer::timeout, this, &HAngleTestWidget::handleTimer);
 }
 
 void HAngleTestWidget::saveState()
@@ -217,8 +217,12 @@ void HAngleTestWidget::handleStateChanged(bool b)
     d->actionExportExcel->setEnabled(!b);
     d->actionExportDatabase->setEnabled(!b);
     d->actionPrintPreview->setEnabled(!b);
-    d->actionMotorLocation->setEnabled(!b || d->testSetWidget->testMode() == 1);
+    d->actionMotorLocation->setEnabled(!b);
     d->actionMotorReset->setEnabled(!b);
+    if (b)
+        d->timer->stop();
+    else
+        d->timer->start();
 }
 
 void HAngleTestWidget::handleResultChanged(HActionType action, bool)
@@ -245,6 +249,13 @@ void HAngleTestWidget::handleResultChanged(HActionType action, bool)
         d->polarChartView->setAngleHalf(d->testData->data("[左半光强度角]").toDouble(), d->testData->data("[右半光强度角]").toDouble());
         return;
     }
+}
+
+void HAngleTestWidget::handleTimer()
+{
+    Q_D(HAngleTestWidget);
+    d->model->addAction(ACT_GET_MEASURED_VOLTAGE);
+    d->model->addAction(ACT_GET_LUMINOUS_DATA);
 }
 
 void HAngleTestWidget::exportDatabase()

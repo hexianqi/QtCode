@@ -3,6 +3,8 @@
 #include <QtGui/QPainter>
 #include <QProgressDialog>
 #include <QTimer>
+#include <QFile>
+#include <QDir>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :

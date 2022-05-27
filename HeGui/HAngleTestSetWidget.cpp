@@ -53,7 +53,8 @@ void HAngleTestSetWidget::handleAction(HActionType action)
     switch(action)
     {
     case ACT_GET_MEASURED_VOLTAGE:
-        emit resultChanged(action, false);
+        if (!d->testState)
+            emit resultChanged(action, false);
         break;
     case ACT_SET_OUTPUT_VOLTAGE:
         ui->doubleSpinBox_2->setValue(d->testData->data("[输出电压]").toDouble());
@@ -68,19 +69,20 @@ void HAngleTestSetWidget::handleAction(HActionType action)
         if (ui->comboBox_3->isEnabled() && !d->autoLuminousGears)
             ui->comboBox_3->setCurrentIndex(d->testData->data("[光档位]").toInt() + 1);
         break;
+    case ACT_GET_LUMINOUS_DATA:
+        if (!d->testState)
+        {
+            emit resultChanged(action, false);
+            if (adjustLuminousGears())
+                d->model->addAction(ACT_GET_LUMINOUS_DATA);
+        }
+        break;
     case ACT_START_ANGLE_TEST:
         d->model->addAction(ACT_QUERY_MOTOR_STATE, 1000);
         break;
     case ACT_GET_ANGLE_DISTRIBUTION:
         emit resultChanged(action, true);
         setTestState(false);
-        break;
-    case ACT_GET_LUMINOUS_DATA:
-        emit resultChanged(action, false);
-        if (!d->testState)
-            break;
-        adjustLuminousGears();
-        d->model->addAction(ACT_GET_LUMINOUS_DATA, 100);
         break;
     case ACT_SET_MOTOR_LOCATION:
     case ACT_RESET_MOTOR_LOCATION:
@@ -89,7 +91,7 @@ void HAngleTestSetWidget::handleAction(HActionType action)
     case ACT_QUERY_MOTOR_STATE:
         if (d->testData->data("[电机状态]").toInt() == 1)
         {
-            if (d->testState && d->testMode == 0)
+            if (d->testState)
                 d->model->addAction(ACT_GET_ANGLE_DISTRIBUTION);
             ui->spinBox_1->setEnabled(true);
         }
@@ -108,12 +110,7 @@ bool HAngleTestSetWidget::setTestState(bool b)
         return false;
 
     if (b)
-    {
-        if (d->testMode == 0)
-            d->model->addAction(ACT_START_ANGLE_TEST);
-        if (d->testMode == 1)
-            d->model->addAction(ACT_GET_LUMINOUS_DATA);
-    }
+        d->model->addAction(ACT_START_ANGLE_TEST);
     updateUI();
     return true;
 }
@@ -130,11 +127,6 @@ void HAngleTestSetWidget::on_doubleSpinBox_3_valueChanged(double value)
     Q_D(HAngleTestSetWidget);
     if (d->testData->setData("[输出电流]", value))
         d->model->addAction(ACT_SET_OUTPUT_CURRENT);
-}
-
-void HAngleTestSetWidget::on_comboBox_1_currentIndexChanged(int value)
-{
-    setTestMode(value);
 }
 
 void HAngleTestSetWidget::on_comboBox_2_currentIndexChanged(int value)
@@ -166,12 +158,11 @@ bool HAngleTestSetWidget::adjustLuminousGears()
 void HAngleTestSetWidget::updateUI()
 {
     Q_D(HAngleTestSetWidget);
-    ui->comboBox_1->setEnabled(!d->testState);
-    ui->comboBox_2->setEnabled(!d->testState || d->testMode == 1);
-    ui->comboBox_3->setEnabled(!d->testState || d->testMode == 1);
-    ui->spinBox_1->setEnabled(!d->testState || d->testMode == 1);
-    ui->doubleSpinBox_2->setEnabled(!d->testState || d->testMode == 1);
-    ui->doubleSpinBox_3->setEnabled(!d->testState || d->testMode == 1);
+    ui->comboBox_2->setEnabled(!d->testState);
+    ui->comboBox_3->setEnabled(!d->testState);
+    ui->spinBox_1->setEnabled(!d->testState);
+    ui->doubleSpinBox_2->setEnabled(!d->testState);
+    ui->doubleSpinBox_3->setEnabled(!d->testState);
 }
 
 void HAngleTestSetWidget::init()
@@ -182,7 +173,6 @@ void HAngleTestSetWidget::init()
     HPluginHelper::initWidget("[输出电压]", ui->doubleSpinBox_2);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox_3);
     ui->spinBox_1->setValue(0);
-    ui->comboBox_1->addItems(QStringList() << tr("  分布测试  ") << tr("  反复测试  "));
     for (i = 0; i < d->testData->data("[输出电流_档位数]").toInt(); i++)
         ui->comboBox_2->addItem(tr("  %1档  ").arg(i+1));
     ui->comboBox_3->addItem(tr("  自动  "));

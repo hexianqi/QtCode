@@ -202,7 +202,7 @@ HNavListDelegate::HNavListDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
     auto factory = new HIconFontFactory(this);
-    _iconFont = factory->createFont("pe-icon-set-weather");
+    _iconFont = factory->createFont("FontWeather");
     _view = qobject_cast<HNavListView *>(parent);
 }
 

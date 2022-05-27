@@ -46,11 +46,6 @@ QStringList HControlFactory::supportedWidget()
     return d_ptr->supportedWidget;
 }
 
-QStringList HControlFactory::supportedEventFilter()
-{
-    return d_ptr->supportedEventFilter;
-}
-
 QWidget *HControlFactory::createWidget(const QString &type, QWidget *parent)
 {
     if (type == "frameless")
@@ -68,6 +63,11 @@ QWidget *HControlFactory::createWidget(const QString &type, QWidget *parent)
         return w;
     }
     return HWidgetFactory::createWidget<QWidget>(type, parent);
+}
+
+QStringList HControlFactory::supportedEventFilter()
+{
+    return d_ptr->supportedEventFilter;
 }
 
 IEventFilter *HControlFactory::createEventFilter(const QString &type, QVariantMap param)

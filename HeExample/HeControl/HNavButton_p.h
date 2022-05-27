@@ -15,7 +15,7 @@ public:
     bool showTriangle = false;
     int triangleLen = 5;
     HControlType::Position trianglePosition = HControlType::Position_Right;
-    QColor triangleColor = Qt::black;
+    QColor triangleColor = Qt::white;
     bool showIcon = false;
     int iconSpace = 10;
     QSize iconSize = QSize(16, 16);
@@ -31,8 +31,8 @@ public:
     QColor hoverBackground = QColor(130, 130, 130);
     QColor checkBackground = QColor(80, 80, 80);
     QColor normalTextColor = QColor(100, 100, 100);
-    QColor hoverTextColor = Qt::black;
-    QColor checkTextColor = Qt::black;
+    QColor hoverTextColor = Qt::white;
+    QColor checkTextColor = Qt::white;
     QBrush normalBackgroundBrush = Qt::NoBrush;
     QBrush hoverBackgroundBrush = Qt::NoBrush;
     QBrush checkBackgroundBrush = Qt::NoBrush;

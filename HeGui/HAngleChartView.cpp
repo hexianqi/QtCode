@@ -1,5 +1,4 @@
 #include "HAngleChartView_p.h"
-#include "HePlugin/HCalloutChartExtend.h"
 #include <QtCharts/QPolarChart>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
@@ -35,6 +34,8 @@ void HAngleChartView::init()
 {
     Q_D(HAngleChartView);
     HPolarChartView::init();
+    d->axisAngular->setLabelsAngle(180);
+    d->axisRadial->setLabelsAngle(180);
     d->originSeries = new QLineSeries;
     d->originSeries->setPen(QPen(QColor(16, 16, 16), 3));
     d->originSeries->append(-90, d->maxValue);
@@ -44,20 +45,17 @@ void HAngleChartView::init()
     d->fifthSeries->setPen(QPen(Qt::green, 2));
     d->halfSeries = new QLineSeries;
     d->halfSeries->setPen(QPen(Qt::red, 2));
-    d->callout = new HCalloutChartExtend(d->chart, this);
-    d->callout->connectExtend();
     addSeries(d->originSeries);
     addSeries(d->fifthSeries);
     addSeries(d->halfSeries);
-    addActions(d->callout->actions());
 }
 
 void HAngleChartView::resizeEvent(QResizeEvent *event)
 {
     Q_D(HAngleChartView);
-    if (scene())
-        d->callout->updateGeometry();
     HPolarChartView::resizeEvent(event);
+    d->chart->setTransformOriginPoint(rect().center());
+    d->chart->setRotation(180);
 }
 
 HE_END_NAMESPACE

@@ -43,10 +43,11 @@ private:
     void addImageSwitch();
     void addIPAddress();
     void addLightButton();
+    void addNavButton();
+    void addChineseTranslate();
 
     // LiuDianWu
     void addCalendar();
-    void addNavButton();
     void addLunarCalendar();
 
     // ww

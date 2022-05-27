@@ -1,21 +1,21 @@
 #pragma once
 
 #include "HRunTimeService.h"
-#include <QDateTime>
+#include "HAbstractService_p.h"
+#include <QtCore/QDateTime>
 
 class QTimer;
 
 HE_BEGIN_NAMESPACE
 
-class HFileLog;
-
-class HRunTimeServicePrivate
+class HRunTimeServicePrivate : public HAbstractServicePrivate
 {
 public:
-    HFileLog *fileLog;
+    ILogFile *file;
     QTimer *timer;
     int lastId;
     QDateTime startTime;
 };
 
 HE_END_NAMESPACE
+

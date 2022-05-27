@@ -1,40 +1,45 @@
 /***************************************************************************************************
-**      2019-06-10  HRunTimeService 运行时间服务。
+**      2022-05-26  HRunTimeService 运行时间记录服务。
 ***************************************************************************************************/
 
 #pragma once
 
-#include "IService.h"
+#include "HAbstractService.h"
 #include "HeCore/HSingleton2.h"
-#include <QtCore/QObject>
 
 HE_BEGIN_NAMESPACE
 
+class ILogFile;
 class HRunTimeServicePrivate;
 
-class HRunTimeService : public QObject, public IService
+class HRunTimeService : public HAbstractService
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HRunTimeService)
     H_SINGLETON2(HRunTimeService)
 
 private:
-    HRunTimeService(QObject *parent = nullptr);
+    explicit HRunTimeService(QObject *parent = nullptr);
     ~HRunTimeService() override;
 
 public:
-    void start() override;
-    void stop() override;
-    void setInterval(int);
+signals:
+    void dataChanged(const QString &value, bool append);
 
-protected:
-    void initLog();
-    void saveLog();
+public:
+    ILogFile *file();
 
-protected:
-    QScopedPointer<HRunTimeServicePrivate> d_ptr;
+public slots:
+    bool start() override;
+    bool stop() override;
+    void setInterval(int);  // 设置保存间隔
+    void initLog();         // 初始化日志文件
+    void appendLog();       // 追加一条记录到日志文件
+    void saveLog();         // 保存运行时间到日志文件
 
 private:
     void init();
 };
 
 HE_END_NAMESPACE
+

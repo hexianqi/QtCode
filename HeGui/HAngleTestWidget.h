@@ -36,6 +36,7 @@ protected:
     void exportExcel() override;
     void handleStateChanged(bool b);
     void handleResultChanged(HActionType, bool);
+    void handleTimer();
     void exportDatabase();
     void printPreview();
 };

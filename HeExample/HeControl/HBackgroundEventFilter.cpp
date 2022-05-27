@@ -7,7 +7,7 @@ HE_BEGIN_NAMESPACE
 
 HBackgroundEventFilterPrivate::HBackgroundEventFilterPrivate()
 {
-    imageFiles << QString(":/image/background1.png") << QString(":/image/background2.png") << QString(":/image/background3.png") << QString(":/image/background4.png") << QString(":/image/background5.png");
+    imageFile << QString(":/image/background1.png") << QString(":/image/background2.png") << QString(":/image/background3.png") << QString(":/image/background4.png") << QString(":/image/background5.png");
 }
 
 HBackgroundEventFilter::HBackgroundEventFilter(QObject *parent) :
@@ -57,9 +57,9 @@ bool HBackgroundEventFilter::addWatched(QObject *p)
 void HBackgroundEventFilter::setBackgroundImage(const QStringList &value)
 {
     Q_D(HBackgroundEventFilter);
-    if (d->imageFiles == value || value.isEmpty())
+    if (d->imageFile == value || value.isEmpty())
         return;
-    d->imageFiles = value;
+    d->imageFile = value;
     d->index = 0;
     updateBackground();
 }
@@ -91,7 +91,7 @@ bool HBackgroundEventFilter::handleMousePressEvent(QWidget *widget, QMouseEvent 
         return false;
     d->pressed = true;
     d->index++;
-    if (d->index >= d->imageFiles.count())
+    if (d->index >= d->imageFile.count())
         d->index = 0;
     updateBackground(widget);
     return false;
@@ -122,7 +122,7 @@ void HBackgroundEventFilter::updateBackground(QWidget *widget)
 {
     Q_D(HBackgroundEventFilter);
     auto background = widget->findChild<QWidget *>("background");
-    auto image = d->imageFiles.at(d->index);
+    auto image = d->imageFile.at(d->index);
     if (d->stretched)
         background->setStyleSheet(QString("QWidget#background { border-image:url(%1); }").arg(image));
     else if (d->repeated)

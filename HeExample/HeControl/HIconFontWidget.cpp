@@ -21,7 +21,7 @@ HIconFontWidget::~HIconFontWidget()
 void HIconFontWidget::init()
 {
     auto factory = new HIconFontFactory(this);
-    auto font = factory->createFont("pe-icon-set-weather");
+    auto font = factory->createFont("FontWeather");
     font.setPixelSize(128);             // 设置字体大小
 
     QPalette palette;
