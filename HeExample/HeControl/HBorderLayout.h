@@ -34,14 +34,14 @@ public:
     void setGeometry(const QRect &rect) override;
 
 public:
-    void add(QLayoutItem *item, Position position);
-    void add(QWidget *widget, Position position);
+    void addItem(QLayoutItem *item, Position position);
+    void addWidget(QWidget *widget, Position position);
 
 protected:
     HBorderLayout(HBorderLayoutPrivate &p, QWidget *parent);
 
 protected:
-    QSize calculateSize(SizeType) const;
+    QSize calcSize(SizeType) const;
 
 private:
     QScopedPointer<HBorderLayoutPrivate> d_ptr;

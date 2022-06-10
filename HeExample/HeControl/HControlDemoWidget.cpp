@@ -34,6 +34,7 @@ void HControlDemoWidget::init()
     addLiuDianWu();
     addWw();
     addDemo();
+    addLayout();
     addTool();
     addMedia();
     addElse();

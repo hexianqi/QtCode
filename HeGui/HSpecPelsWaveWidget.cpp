@@ -43,7 +43,7 @@ void HSpecPelsWaveWidget::showData()
         d_ptr->tableWidget->setRow(i, QStringList() << HCore::toString("[光谱像元]", poly[i].x()) << HCore::toString("[光谱波长]", poly[i].y()));
 }
 
-void HSpecPelsWaveWidget::on_spinBox_valueChanged(int value)
+void HSpecPelsWaveWidget::setRowCount(int value)
 {
     auto previous = d_ptr->tableWidget->rowCount();
     d_ptr->tableWidget->setRowCount(value);
@@ -69,7 +69,7 @@ void HSpecPelsWaveWidget::init()
     layout->addWidget(label, 1, 0, 1, 1);
     layout->addWidget(d_ptr->spinBox, 1, 1, 1, 1);
     layout->addWidget(d_ptr->tableWidget, 0, 0, 1, 2);
-    connect(d_ptr->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &HSpecPelsWaveWidget::on_spinBox_valueChanged);
+    connect(d_ptr->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &HSpecPelsWaveWidget::setRowCount);
     setWindowTitle(tr("光谱像元波长"));
 }
 

@@ -21,6 +21,9 @@ public:
 public slots:
     void on_pushButton_clicked();
     void test();
+    void CheckActiveSignal(int);
+    void CheckIndexChangedSignal(int);
+    void on_comboBox_currentIndexChanged(int value);
 
 private:
     Ui::MainWindow *ui;

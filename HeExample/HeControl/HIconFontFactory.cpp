@@ -46,9 +46,9 @@ QFont HIconFontFactory::createFont(const QString &family)
 
 void HIconFontFactory::registerClass()
 {
-    d_ptr->fontResource.insert("FontAwesome",   ":/fonts/fontawesome-webfont.ttf");
-    d_ptr->fontResource.insert("FontIcon",      ":/fonts/iconfont.ttf");
-    d_ptr->fontResource.insert("FontWeather",   ":/fonts/pe-icon-set-weather.ttf");
+    d_ptr->fontResource.insert("FontAwesome",   ":/Resources/fonts/fontawesome-webfont.ttf");
+    d_ptr->fontResource.insert("FontIcon",      ":/Resources/fonts/iconfont.ttf");
+    d_ptr->fontResource.insert("FontWeather",   ":/Resources/fonts/pe-icon-set-weather.ttf");
 }
 
 HE_END_NAMESPACE

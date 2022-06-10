@@ -31,7 +31,6 @@ signals:
     void hueChanged(int, int);
     void valueChanged(int);
 
-
 public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
@@ -72,7 +71,6 @@ private:
     double hueToX(double) const;
     double satFromY(double) const;
     double satToY(double) const;
-
 };
 
 HE_END_NAMESPACE

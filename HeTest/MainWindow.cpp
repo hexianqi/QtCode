@@ -17,6 +17,14 @@ MainWindow::MainWindow(QWidget *parent) :
     _progressDialog->reset();
     connect(_timer, &QTimer::timeout, this, &MainWindow::test);
     connect(_progressDialog, &QProgressDialog::canceled, _timer, &QTimer::stop);
+
+
+    ui->comboBox->addItem("111");
+    ui->comboBox->addItem("222");
+    ui->comboBox->addItem("333");
+    ui->comboBox->addItem("444");
+    connect(ui->comboBox, SIGNAL(activated(int)), this, SLOT(CheckActiveSignal(int)));
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(CheckIndexChangedSignal(int)));
 }
 
 MainWindow::~MainWindow()
@@ -56,4 +64,19 @@ void MainWindow::test()
     _progressDialog->setValue(_testValue);
     if (_testValue >= _testVector.size())
         _timer->stop();
+}
+
+void MainWindow::CheckActiveSignal(int value)
+{
+    qDebug() << "CheckActiveSignal " << value;
+}
+
+void MainWindow::CheckIndexChangedSignal(int value)
+{
+    qDebug() << "CheckIndexChangedSignal " << value;
+}
+
+void MainWindow::on_comboBox_currentIndexChanged(int value)
+{
+    qDebug() << "on_comboBox_currentIndexChanged " << value;
 }

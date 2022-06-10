@@ -57,20 +57,20 @@ void HImageSwitch::setButtonStyle(HImageSwitch::ButtonStyle value)
     d_ptr->buttonStyle = value;
     if (d_ptr->buttonStyle == ButtonStyle_1)
     {
-        d_ptr->imageNameOff = ":/fyqy/imageswitch/check_off_1.png";
-        d_ptr->imageNameOn = ":/fyqy/imageswitch/check_on_1.png";
+        d_ptr->imageNameOff = ":/Resources/fyqy/imageswitch/check_off_1.png";
+        d_ptr->imageNameOn = ":/Resources/fyqy/imageswitch/check_on_1.png";
         resize(87, 28);
     }
     else if (d_ptr->buttonStyle == ButtonStyle_2)
     {
-        d_ptr->imageNameOff = ":/fyqy/imageswitch/check_off_2.png";
-        d_ptr->imageNameOn = ":/fyqy/imageswitch/check_on_2.png";
+        d_ptr->imageNameOff = ":/Resources/fyqy/imageswitch/check_off_2.png";
+        d_ptr->imageNameOn = ":/Resources/fyqy/imageswitch/check_on_2.png";
         resize(87, 28);
     }
     else if (d_ptr->buttonStyle == ButtonStyle_3)
     {
-        d_ptr->imageNameOff = ":/fyqy/imageswitch/check_off_3.png";
-        d_ptr->imageNameOn = ":/fyqy/imageswitch/check_on_3.png";
+        d_ptr->imageNameOff = ":/Resources/fyqy/imageswitch/check_off_3.png";
+        d_ptr->imageNameOn = ":/Resources/fyqy/imageswitch/check_on_3.png";
         resize(96, 38);
     }
     d_ptr->imageName = d_ptr->checked ? d_ptr->imageNameOn : d_ptr->imageNameOff;

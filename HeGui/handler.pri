@@ -1,4 +1,8 @@
 HEADERS += \
+    $$PWD/HAbstractGuiHandler.h \
+    $$PWD/HAbstractGuiHandler_p.h \
+    $$PWD/HAbstractConfigHandler.h \
+    $$PWD/HAbstractConfigHandler_p.h \
     $$PWD/HAdjust2EditHandler.h \
     $$PWD/HAdjust2EditHandler_p.h \
     $$PWD/HAdjust2SelectHandler.h \
@@ -25,8 +29,6 @@ HEADERS += \
     $$PWD/HLuminousCalibrateHandler_p.h \
     $$PWD/HProductEditHandler.h \
     $$PWD/HProductEditHandler_p.h \
-    $$PWD/HAbstractGuiHandler.h \
-    $$PWD/HAbstractGuiHandler_p.h \
     $$PWD/HTestHandler.h \
     $$PWD/HTestHandler_p.h \
     $$PWD/HGradeEditHandler.h \
@@ -57,11 +59,12 @@ HEADERS += \
     $$PWD/HSpecLuminousHandler_p.h \
     $$PWD/HSpecTcHandler.h \
     $$PWD/HSpecTcHandler_p.h \
-    $$PWD/HAbstractConfigHandler.h \
-    $$PWD/HAbstractConfigHandler_p.h
+    $$PWD/HTrendTestHandler.h \
+    $$PWD/HTrendTestHandler_p.h
 
 SOURCES += \
     $$PWD/HAbstractGuiHandler.cpp \
+    $$PWD/HAbstractConfigHandler.cpp \
     $$PWD/HAdjust2EditHandler.cpp \
     $$PWD/HAdjust2SelectHandler.cpp \
     $$PWD/HAngleTestHandler.cpp \
@@ -90,4 +93,4 @@ SOURCES += \
     $$PWD/HIVTestHandler.cpp \
     $$PWD/HSpecLuminousHandler.cpp \
     $$PWD/HSpecTcHandler.cpp \
-    $$PWD/HAbstractConfigHandler.cpp
+    $$PWD/HTrendTestHandler.cpp

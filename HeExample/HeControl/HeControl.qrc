@@ -1,46 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file>image/Layout/BorderLayout.png</file>
-        <file>image/Layout/CardLayout.png</file>
-        <file>image/Layout/FlowLayout.gif</file>
         <file>image/tools/ColorPicker.ico</file>
         <file>image/tools/gifwidget.ico</file>
         <file>image/tools/gifwidget.png</file>
-        <file>translator/qt_zh_CN.qm</file>
-        <file>translator/textEdit.qm</file>
         <file>image/beautify/back.png</file>
         <file>image/beautify/next.png</file>
-        <file>image/ww/closetab.png</file>
-        <file>image/ww/fileopen.png</file>
-        <file>image/ww/filesave.png</file>
-        <file>image/ww/huesatpicker.png</file>
-        <file>image/ww/filechooser.png</file>
-        <file>image/ww/colorbutton.png</file>
-        <file>image/ww/huesatradialpicker.png</file>
-        <file>image/ww/led.png</file>
-        <file>image/ww/listnavigator.png</file>
-        <file>image/ww/go-bottom.png</file>
-        <file>image/ww/go-down.png</file>
-        <file>image/ww/go-first.png</file>
-        <file>image/ww/go-last.png</file>
-        <file>image/ww/go-next.png</file>
-        <file>image/ww/go-previous.png</file>
-        <file>image/ww/go-top.png</file>
-        <file>image/ww/go-up.png</file>
-        <file>image/ww/buttonlineedit.png</file>
-        <file>image/ww/longspinbox.png</file>
-        <file>image/ww/navigationbar.png</file>
-        <file>image/ww/numpad.png</file>
-        <file>image/ww/wrap.png</file>
-        <file>image/ww/simplifyrichtext.png</file>
-        <file>image/ww/textbold.png</file>
-        <file>image/ww/textcenter.png</file>
-        <file>image/ww/textitalic.png</file>
-        <file>image/ww/textjustify.png</file>
-        <file>image/ww/textleft.png</file>
-        <file>image/ww/textright.png</file>
-        <file>image/ww/textunder.png</file>
-        <file>image/ww/twocolorindicator.png</file>
         <file>image/beautify/sun.svg</file>
         <file>image/beautify/rain.svg</file>
         <file>image/beautify/snow.svg</file>
@@ -51,30 +15,6 @@
         <file>image/beautify/fog.svg</file>
         <file>image/beautify/wind.svg</file>
         <file>image/beautify/partly_cloud.svg</file>
-        <file>image/demo/NavigationWidget.gif</file>
-        <file>image/demo/FlatUI.gif</file>
-        <file>image/demo/LightButton.gif</file>
-        <file>image/demo/GifWidget.gif</file>
-        <file>image/demo/RbTableHeader.png</file>
-        <file>image/demo/DeviceSizeTable.gif</file>
-        <file>fonts/fontawesome-webfont.ttf</file>
-        <file>fonts/pe-icon-set-weather.ttf</file>
-        <file>image/demo/NavButton.gif</file>
-        <file>image/demo/SpliteWidget.gif</file>
-        <file>image/demo/IPAddress.gif</file>
-        <file>image/background1.png</file>
-        <file>image/background2.png</file>
-        <file>image/background3.png</file>
-        <file>image/background4.png</file>
-        <file>image/background5.png</file>
-        <file>image/demo/Translucent.gif</file>
-        <file>image/demo/CodeCountWidget.gif</file>
-        <file>image/demo/ColorPicker.gif</file>
-        <file>image/demo/PngAmend.gif</file>
-        <file>image/demo/ShadeWidget.gif</file>
-        <file>image/demo/Battery.gif</file>
-        <file>image/demo/LineEditGroup.gif</file>
-        <file>image/demo/DefenceButton.gif</file>
         <file>image/ludianwu/calendar_blue.png</file>
         <file>image/ludianwu/calendar_brown.png</file>
         <file>image/ludianwu/calendar_gray.png</file>
@@ -82,7 +22,6 @@
         <file>image/ludianwu/calendar_red.png</file>
         <file>image/ludianwu/calendar_yellow.png</file>
         <file>image/ludianwu/calendar_item_bk.png</file>
-        <file>image/demo/LunarCalendarWidget.gif</file>
         <file>sql/dbconfig.json</file>
         <file>sql/product.sql</file>
         <file>sql/table.sql</file>
@@ -93,6 +32,5 @@
         <file>image/svg/volume-low.svg</file>
         <file>image/svg/volume-medium.svg</file>
         <file>image/svg/volume-muted.svg</file>
-        <file>fonts/iconfont.ttf</file>
     </qresource>
 </RCC>

@@ -39,10 +39,7 @@ void HIVTestSetWidget::handleAction(HActionType action)
         emit resultChanged(action, true);
         d->current += d->interval;
         if (d->current <= d->to)
-        {
-            d->testData->setData("[输出电流]", d->current);
-            d->model->addAction(ACT_SET_OUTPUT_CURRENT);
-        }
+            setTestData("[输出电流]", d->current, ACT_SET_OUTPUT_CURRENT);
         else
             setTestState(false);
     }
@@ -60,16 +57,11 @@ bool HIVTestSetWidget::setTestState(bool b)
     if (b)
     {
         initParam();
-        d->testData->setData("[电源模式]", 1);
-        d->testData->setData("[输出电流]", d->current);
-        d->model->addAction(ACT_SET_SOURCE_MODE);
-        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
+        setTestData("[电源模式]", 1, ACT_SET_SOURCE_MODE);
+        setTestData("[输出电流]", d->current, ACT_SET_OUTPUT_CURRENT);
     }
     else
-    {
-        d->testData->setData("[电源模式]", 0);
-        d->model->addAction(ACT_SET_SOURCE_MODE);
-    }
+        setTestData("[电源模式]", 0, ACT_SET_SOURCE_MODE);
     return true;
 }
 

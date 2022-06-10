@@ -58,13 +58,6 @@ bool HAdjustSetWidget::setTestState(bool b)
     return true;
 }
 
-void HAdjustSetWidget::on_doubleSpinBox_01_valueChanged(double value)
-{
-    Q_D(HAdjustSetWidget);
-    if (d->testData->setData("[积分时间]", value))
-        d->model->addAction(ACT_SET_INTEGRAL_TIME);
-}
-
 void HAdjustSetWidget::on_checkBox_01_clicked(bool b)
 {
     Q_D(HAdjustSetWidget);
@@ -96,6 +89,8 @@ void HAdjustSetWidget::init()
     Q_D(HAdjustSetWidget);
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_01);
     ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
+    connect(ui->doubleSpinBox_01, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[积分时间]", value, ACT_SET_INTEGRAL_TIME); });
+
 }
 
 HE_END_NAMESPACE

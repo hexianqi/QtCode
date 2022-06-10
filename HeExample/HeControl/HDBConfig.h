@@ -9,7 +9,7 @@
 
 HE_BEGIN_NAMESPACE
 
-class HJson;
+class HJsonTree;
 
 class HDBConfig
 {
@@ -38,7 +38,7 @@ public:
     bool setConigFile(const QString &fileName);
 
 private:
-    HJson *_json;
+    HJsonTree *_json;
 };
 
 HE_END_NAMESPACE

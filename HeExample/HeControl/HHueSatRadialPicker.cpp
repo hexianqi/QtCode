@@ -130,7 +130,7 @@ void HHueSatRadialPicker::paintEvent(QPaintEvent *)
 
 void HHueSatRadialPicker::init()
 {
-    setWindowIcon(QIcon(":/image/ww/huesatradialpicker.png"));
+    setWindowIcon(QIcon(":/Resources/ww/huesatradialpicker.png"));
     buildGradient(d_ptr->value);
 }
 

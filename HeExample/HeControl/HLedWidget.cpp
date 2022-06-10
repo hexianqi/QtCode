@@ -180,7 +180,7 @@ void HLedWidget::init()
     auto policy = QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     policy.setHeightForWidth(true);
     setSizePolicy(policy);
-    setWindowIcon(QIcon(":/image/ww/led.png"));
+    setWindowIcon(QIcon(":/Resources/ww/led.png"));
 }
 
 HE_END_NAMESPACE

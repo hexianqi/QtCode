@@ -3,15 +3,15 @@
 
 HE_BEGIN_NAMESPACE
 
-HFlowLayoutPrivate::HFlowLayoutPrivate(int hSpace, int vSpacing)
+HFlowLayoutPrivate::HFlowLayoutPrivate(int horizontalSpacing, int verticalSpacing)
 {
-    this->hSpacing = hSpace;
-    this->vSpacing = vSpacing;
+    this->horizontalSpacing = horizontalSpacing;
+    this->verticalSpacing = verticalSpacing;
 }
 
-HFlowLayout::HFlowLayout(QWidget *parent, int margin, int hSpacing, int vSpacing) :
+HFlowLayout::HFlowLayout(QWidget *parent, int margin, int horizontalSpacing, int verticalSpacing) :
     QLayout(parent),
-    d_ptr(new HFlowLayoutPrivate(hSpacing, vSpacing))
+    d_ptr(new HFlowLayoutPrivate(horizontalSpacing, verticalSpacing))
 {
     setContentsMargins(margin, margin, margin, margin);
 }
@@ -90,23 +90,44 @@ int HFlowLayout::heightForWidth(int width) const
 
 int HFlowLayout::horizontalSpacing() const
 {
-    if (d_ptr->hSpacing >= 0)
-        return d_ptr->hSpacing;
+    if (d_ptr->horizontalSpacing >= 0)
+        return d_ptr->horizontalSpacing;
     return smartSpacing(QStyle::PM_LayoutHorizontalSpacing);
 }
 
 int HFlowLayout::verticalSpacing() const
 {
-    if (d_ptr->vSpacing >= 0)
-        return d_ptr->vSpacing;
+    if (d_ptr->horizontalSpacing >= 0)
+        return d_ptr->verticalSpacing;
     return smartSpacing(QStyle::PM_LayoutVerticalSpacing);
+}
+
+void HFlowLayout::setHorizontalSpacing(int value)
+{
+    if (d_ptr->horizontalSpacing == value)
+        return;
+    d_ptr->verticalSpacing = value;
+    doLayout(this->geometry(), false);
+}
+
+void HFlowLayout::setVerticalSpacing(int value)
+{
+    if (d_ptr->verticalSpacing == value)
+        return;
+    d_ptr->verticalSpacing = value;
+    doLayout(this->geometry(), false);
+}
+
+void HFlowLayout::addWidget(QWidget *widget)
+{
+    addItem(new QWidgetItem(widget));
 }
 
 int HFlowLayout::doLayout(const QRect &rect, bool testOnly) const
 {
     int left, top, right, bottom;
     getContentsMargins(&left, &top, &right, &bottom);
-    auto effectiveRect = rect.adjusted(+left, +top, -right, -bottom);
+    auto effectiveRect = rect.adjusted(left, top, -right, -bottom);
     auto x = effectiveRect.x();
     auto y = effectiveRect.y();
     auto lineHeight = 0;

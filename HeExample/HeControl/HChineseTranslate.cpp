@@ -8,8 +8,8 @@ HChineseTranslate::HChineseTranslate(QObject *parent) :
     QObject(parent),
     d_ptr(new HChineseTranslatePrivate)
 {
-    loadPinYin(":/fyqy/data/pinyin.dat");
-    loadJianPin(":/fyqy/data/jianpin.dat");
+    loadPinYin(":/Resources/data/pinyin.dat");
+    loadJianPin(":/Resources/data/jianpin.dat");
 }
 
 HChineseTranslate::~HChineseTranslate() = default;

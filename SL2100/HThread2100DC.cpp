@@ -10,7 +10,7 @@
 HThread2100DCPrivate::HThread2100DCPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
-                  << ACT_GET_SPECTRUM_ELEC;
+                  << ACT_INTEGRATE_TEST;
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElec = protocolCollection->value("Elec");
@@ -52,7 +52,7 @@ bool HThread2100DC::handleAction(HActionType action)
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
         return true;
-    case ACT_GET_SPECTRUM_ELEC:
+    case ACT_INTEGRATE_TEST:
         d->strategyElec->handle(ACT_GET_ELEC_DATA);
         d->strategySpec->handle(ACT_GET_SPECTRUM);
         handleData();

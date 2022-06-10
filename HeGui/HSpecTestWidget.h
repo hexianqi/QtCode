@@ -32,11 +32,13 @@ protected:
     void createToolBar() override;
     void initWidget() override;
     void clearResult() override;
+    void saveResult() override;
     void exportExcel() override;
+    void readSettings() override;
+    void writeSettings() override;
 
 protected:
-    virtual void readSettings();
-    virtual void writeSettings();
+
     virtual void postProcess(bool append);
     virtual void refreshWidget(bool append);
     void handleStateChanged(bool);

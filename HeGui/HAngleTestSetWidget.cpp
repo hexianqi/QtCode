@@ -115,35 +115,19 @@ bool HAngleTestSetWidget::setTestState(bool b)
     return true;
 }
 
-void HAngleTestSetWidget::on_doubleSpinBox_2_valueChanged(double value)
+void HAngleTestSetWidget::setCurrentGears(int value)
 {
-    Q_D(HAngleTestSetWidget);
-    if (d->testData->setData("[输出电压]", value))
-        d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
+    setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT);
+    setTestData("[实测电流_档位]", value, ACT_SET_GEARS_MEASURED_CURRENT);
 }
 
-void HAngleTestSetWidget::on_doubleSpinBox_3_valueChanged(double value)
-{
-    Q_D(HAngleTestSetWidget);
-    if (d->testData->setData("[输出电流]", value))
-        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
-}
-
-void HAngleTestSetWidget::on_comboBox_2_currentIndexChanged(int value)
-{
-    Q_D(HAngleTestSetWidget);
-    if (d->testData->setData("[输出电流_档位]", value))
-        d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
-}
-
-void HAngleTestSetWidget::on_comboBox_3_currentIndexChanged(int value)
+void HAngleTestSetWidget::setLuminousGears(int value)
 {
     Q_D(HAngleTestSetWidget);
     d->autoLuminousGears = value == 0;
     if (value == 0)
         return;
-    if (d->testData->setData("[光档位]", value - 1))
-        d->model->addAction(ACT_SET_LUMINOUS_GEARS);
+    setTestData("[光档位]", value - 1, ACT_SET_LUMINOUS_GEARS);
 }
 
 bool HAngleTestSetWidget::adjustLuminousGears()
@@ -178,6 +162,11 @@ void HAngleTestSetWidget::init()
     ui->comboBox_3->addItem(tr("  自动  "));
     for (i = 0; i < d->testData->data("[光档位数]").toInt(); i++)
         ui->comboBox_3->addItem(tr("  %1档  ").arg(i+1));
+
+    connect(ui->doubleSpinBox_2, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电压]", value, ACT_SET_OUTPUT_VOLTAGE); });
+    connect(ui->doubleSpinBox_3, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电流]", value, ACT_SET_OUTPUT_CURRENT); });
+    connect(ui->comboBox_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HAngleTestSetWidget::setCurrentGears);
+    connect(ui->comboBox_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HAngleTestSetWidget::setLuminousGears);
 }
 
 HE_END_NAMESPACE

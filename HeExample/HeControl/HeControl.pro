@@ -29,14 +29,15 @@ SOURCES     += \
             HControlFactory.cpp
 
 HEADERS     += \
+            IControlFactory.h \
             HControlGlobal.h \
             HControlType.h \
-            IControlFactory.h \
             HControlFactory.h \
             HControlFactory_p.h
 
 RESOURCES   = \
             HeControl.qrc \
+            Resources.qrc \
             qss.qrc
 
 INCLUDEPATH += ../..
@@ -45,7 +46,6 @@ Debug {
     TARGET = HeControld
     LIBS    += \
             -L$$DESTDIR -lHeCored \
-            -L$$DESTDIR -lHeFiled \
             -L$$DESTDIR -lHePlugind
 }
 
@@ -53,7 +53,6 @@ Release {
     TARGET  = HeControl
     LIBS    += \
             -L$$DESTDIR -lHeCore \
-            -L$$DESTDIR -lHeFile \
             -L$$DESTDIR -lHePlugin
 }
 
@@ -63,11 +62,7 @@ unix {
 }
 
 include(_liudianwu.pri)
-include(_ww.pri)
-
 include(helper.pri)
-
-include(layout.pri)
 include(media.pri)
 include(multimedia.pri)
 include(network.pri)
@@ -79,15 +74,14 @@ include(tools.pri)
 include(widget.pri)
 
 
-
-include(z_control.pri)
 include(z_demo.pri)
 include(z_event.pri)
 include(z_fyqy.pri)
 include(z_helper.pri)
 include(z_iconFont.pri)
+include(z_layout.pri)
 include(z_service.pri)
+include(z_tool.pri)
 include(z_style.pri)
 include(z_widget.pri)
-include($$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser/qtpropertybrowser.pri)
-
+include(z_ww.pri)

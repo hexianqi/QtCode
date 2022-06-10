@@ -35,7 +35,7 @@ int HBorderLayout::count() const
 
 void HBorderLayout::addItem(QLayoutItem *item)
 {
-    add(item, West);
+    addItem(item, West);
 }
 
 QLayoutItem *HBorderLayout::itemAt(int index) const
@@ -50,12 +50,12 @@ QLayoutItem *HBorderLayout::takeAt(int index)
 
 QSize HBorderLayout::sizeHint() const
 {
-    return calculateSize(SizeHint);
+    return calcSize(SizeHint);
 }
 
 QSize HBorderLayout::minimumSize() const
 {
-    return calculateSize(MinimumSize);
+    return calcSize(MinimumSize);
 }
 
 Qt::Orientations HBorderLayout::expandingDirections() const
@@ -118,30 +118,30 @@ void HBorderLayout::setGeometry(const QRect &rect)
         centerItem->setGeometry(QRect(westWidth, northHeight, rect.width() - eastWidth - westWidth, centerHeight));
 }
 
-void HBorderLayout::add(QLayoutItem *item, Position position)
+void HBorderLayout::addItem(QLayoutItem *item, Position position)
 {
     d_ptr->items.append(qMakePair(item, position));
 }
 
-void HBorderLayout::add(QWidget *widget, Position position)
+void HBorderLayout::addWidget(QWidget *widget, Position position)
 {
-    add(new QWidgetItem(widget), position);
+    addItem(new QWidgetItem(widget), position);
 }
 
-QSize HBorderLayout::calculateSize(SizeType type) const
+QSize HBorderLayout::calcSize(SizeType type) const
 {
-    QSize totalSize;
+    QSize size;
     for (auto p : d_ptr->items)
     {
         auto item = p.first;
         auto position = p.second;
-        auto itemSize = type == MinimumSize ? item->maximumSize() : item->sizeHint();
+        auto itemSize = type == MinimumSize ? item->minimumSize() : item->sizeHint();
         if (position == North || position == South || position == Center)
-            totalSize.rheight() += itemSize.height();
+            size.rheight() += itemSize.height();
         if (position == West || position == East || position == Center)
-            totalSize.rwidth() += itemSize.width();
+            size.rwidth() += itemSize.width();
     }
-    return totalSize;
+    return size;
 }
 
 HE_END_NAMESPACE

@@ -352,7 +352,7 @@ QStringList HConfigManage::supplement(QStringList list)
     return set.toList();
 }
 
-void HConfigManage::postProcess(ITestData *test, QStringList optional, QString keyQuality)
+void HConfigManage::processAll(ITestData *test, QStringList optional, QString keyQuality)
 {
     optional = supplement(optional);
     processAdjust(test, optional);

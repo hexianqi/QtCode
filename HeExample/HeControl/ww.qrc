@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/ww/longspinbox.png</file>
+        <file>Resources/ww/closetab.png</file>
+        <file>Resources/ww/wrap.png</file>
+        <file>Resources/ww/filechooser.png</file>
+        <file>Resources/ww/fileopen.png</file>
+        <file>Resources/ww/filesave.png</file>
+        <file>Resources/ww/buttonlineedit.png</file>
+        <file>Resources/ww/textbold.png</file>
+        <file>Resources/ww/textcenter.png</file>
+        <file>Resources/ww/textitalic.png</file>
+        <file>Resources/ww/textjustify.png</file>
+        <file>Resources/ww/textleft.png</file>
+        <file>Resources/ww/textright.png</file>
+        <file>Resources/ww/textunder.png</file>
+        <file>Resources/ww/simplifyrichtext.png</file>
+        <file>Resources/ww/colorbutton.png</file>
+        <file>Resources/ww/huesatpicker.png</file>
+        <file>Resources/ww/huesatradialpicker.png</file>
+        <file>Resources/ww/twocolorindicator.png</file>
+        <file>Resources/ww/navigationbar.png</file>
+        <file>Resources/ww/led.png</file>
+        <file>Resources/ww/numpad.png</file>
+        <file>Resources/ww/go-bottom.png</file>
+        <file>Resources/ww/go-down.png</file>
+        <file>Resources/ww/go-first.png</file>
+        <file>Resources/ww/go-last.png</file>
+        <file>Resources/ww/go-next.png</file>
+        <file>Resources/ww/go-previous.png</file>
+        <file>Resources/ww/go-top.png</file>
+        <file>Resources/ww/go-up.png</file>
+        <file>Resources/ww/listnavigator.png</file>
+    </qresource>
+</RCC>

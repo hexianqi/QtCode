@@ -24,7 +24,6 @@ public:
 
 protected:
     void init() override;
-    void closeEvent(QCloseEvent *) override;
     void handleAction(HActionType action) override;
     void createAction() override;
     void createWidget() override;
@@ -33,14 +32,14 @@ protected:
     void initWidget() override;
     void clearResult() override;
     void exportExcel() override;
+    void readSettings() override;
+    void writeSettings() override;
 
 protected slots:
     void handleStateChanged(bool);
     void handleResultChanged(HActionType, bool);
 
 protected:
-    void readSettings();
-    void writeSettings();
     void postProcess();
     void refreshWidget();
     void resetGrade();

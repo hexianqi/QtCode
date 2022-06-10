@@ -17,8 +17,8 @@ public:
 
 public:
     ITextStream *stream = nullptr;
-    HEntireTableWidget *tableWidget;
-    HDynamicChartView *chartView;
+    HEntireTableWidget *tableWidget = nullptr;
+    HDynamicChartView *chartView = nullptr;
 
 public:
     QPolygonF data;

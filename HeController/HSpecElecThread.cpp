@@ -12,7 +12,7 @@ HE_BEGIN_NAMESPACE
 HSpecElecThreadPrivate::HSpecElecThreadPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
-                  << ACT_GET_SPECTRUM_ELEC;
+                  << ACT_INTEGRATE_TEST;
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElse = protocolCollection->value("Else");
@@ -55,7 +55,7 @@ bool HSpecElecThread::handleAction(HActionType action)
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
         return true;
-    case ACT_GET_SPECTRUM_ELEC:
+    case ACT_INTEGRATE_TEST:
         d->strategyElec->handle(ACT_GET_MEASURED_VOLTAGE);
         d->strategyElec->handle(ACT_GET_MEASURED_CURRENT);
         d->strategySpec->handle(ACT_GET_SPECTRUM);

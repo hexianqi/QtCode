@@ -56,23 +56,13 @@ QString HTestWidget7000::typeName()
 void HTestWidget7000::init()
 {
     Q_D(HTestWidget7000);
-    readSettings();
+    HTestWidget::init();
     d->testResult = new HTestResult7000(this);
     d->textExport->setExportPath(d->exportPath);
-    HTestWidget::init();
     resetGrade();
     resetQuality();
     resetLocation();
-    d->energyWidget->addProgressBar("[光采样比率]");
     setProbe(d->testData->data("[使用光探头]").toBool());
-}
-
-void HTestWidget7000::closeEvent(QCloseEvent *event)
-{
-    stop();
-    clearResult();
-    writeSettings();
-    event->accept();
 }
 
 void HTestWidget7000::handleAction(HActionType action)
@@ -137,6 +127,7 @@ void HTestWidget7000::createWidget()
     Q_D(HTestWidget7000);
     d->cieWidget = new HCie1931Widget;
     d->energyWidget = new HSpecEnergyWidget;
+    d->energyWidget->addProgressBar("[光采样比率]");
     d->chromatismWidget = new HSpecChromatismChartView;
     d->tableWidget = new HResultTableWidget;
     d->locationWidget = new HLocationWidget;
@@ -236,7 +227,7 @@ void HTestWidget7000::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
-    settings->beginGroup("TestWidget");
+    settings->beginGroup("SpecTestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
     d->exportPath = settings->value("ExportPath", ".").toString();
     d->testData->setData("[使用调整]", settings->value("Adjust", false));
@@ -252,7 +243,7 @@ void HTestWidget7000::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
-    settings->beginGroup("TestWidget");
+    settings->beginGroup("SpecTestWidget");
     settings->setValue("TableSelected", d->tableWidget->selected());
     settings->setValue("ExportPath", d->exportPath);
     settings->setValue("Adjust", d->testData->data("[使用调整]"));
@@ -283,7 +274,7 @@ void HTestWidget7000::handleResultChanged(HActionType, bool)
 void HTestWidget7000::postProcess()
 {
     Q_D(HTestWidget7000);
-    d->configManage->postProcess(d->testData, d->displays, "Spec");
+    d->configManage->processAll(d->testData, d->displays, "Spec");
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
     d->testData->handleOperation("<编号自增>");
 }

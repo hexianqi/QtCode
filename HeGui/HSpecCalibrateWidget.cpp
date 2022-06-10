@@ -2,7 +2,7 @@
 #include "ui_HSpecCalibrateWidget.h"
 #include "IGuiFactory.h"
 #include "ITestSetWidget.h"
-#include "HSpecDetailWidget.h"
+#include "HSpecCalibrateDetailWidget.h"
 #include "HSpecEnergyWidget.h"
 #include "HSpecFittingChartView.h"
 #include "HSpecFittingLinearWidget.h"
@@ -36,7 +36,7 @@ HSpecCalibrateWidgetPrivate::HSpecCalibrateWidgetPrivate()
     ccdView = new HSpecFittingChartView;
     energyWidget = new HSpecEnergyWidget;
     pelsWaveWidget = new HSpecPelsWaveWidget;
-    detailWidget = new HSpecDetailWidget;
+    detailWidget = new HSpecCalibrateDetailWidget;
     testSetWidget = factory->createTestSetWidget(type);
 }
 

@@ -91,9 +91,9 @@ void HDeviceButton::setButtonColor(ButtonColor value)
 void HDeviceButton::checkAlarm()
 {
     if (d_ptr->isDark)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_black_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_black_%1.png").arg(d_ptr->type);
     else
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_red_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_red_%1.png").arg(d_ptr->type);
 
     d_ptr->isDark = !d_ptr->isDark;
     update();
@@ -170,7 +170,7 @@ void HDeviceButton::drawText(QPainter *painter)
 void HDeviceButton::init()
 {
     d_ptr->type = "police";
-    d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_green_%1.png").arg(d_ptr->type);
+    d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_green_%1.png").arg(d_ptr->type);
     d_ptr->filter = new HMoveEventFilter(this);
     d_ptr->filter->addWatched(this);
     d_ptr->timer = new QTimer(this);
@@ -200,17 +200,17 @@ void HDeviceButton::updatePixmap()
         d_ptr->type = "circle";
 
     if (d_ptr->buttonColor == ButtonColor_Green)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_green_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_green_%1.png").arg(d_ptr->type);
     else if (d_ptr->buttonColor == ButtonColor_Blue)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_blue_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_blue_%1.png").arg(d_ptr->type);
     else if (d_ptr->buttonColor == ButtonColor_Gray)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_gray_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_gray_%1.png").arg(d_ptr->type);
     else if (d_ptr->buttonColor == ButtonColor_Black)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_black_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_black_%1.png").arg(d_ptr->type);
     else if (d_ptr->buttonColor == ButtonColor_Purple)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_purple_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_purple_%1.png").arg(d_ptr->type);
     else if (d_ptr->buttonColor == ButtonColor_Yellow)
-        d_ptr->imageName = QString(":/fyqy/devicebutton/devicebutton_yellow_%1.png").arg(d_ptr->type);
+        d_ptr->imageName = QString(":/Resources/fyqy/devicebutton/devicebutton_yellow_%1.png").arg(d_ptr->type);
     else if (d_ptr->buttonColor == ButtonColor_Red)
     {
         checkAlarm();

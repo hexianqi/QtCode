@@ -7,12 +7,12 @@ HE_BEGIN_NAMESPACE
 class HFlowLayoutPrivate
 {
 public:
-    HFlowLayoutPrivate(int hSpace = -1, int vSpacing = -1);
+    HFlowLayoutPrivate(int horizontalSpacing = -1, int verticalSpacing = -1);
 
 public:
     QList<QLayoutItem *> items;
-    int hSpacing;
-    int vSpacing;
+    int horizontalSpacing;
+    int verticalSpacing;
 };
 
 HE_END_NAMESPACE

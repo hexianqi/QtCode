@@ -142,10 +142,10 @@ void HNavigationSlider::sliderChange(SliderChange change)
             d_ptr->slider->setInvertedAppearance(false);
             d_ptr->slider->setInvertedControls(false);
             d_ptr->slider->setOrientation(Qt::Horizontal);
-            d_ptr->first->setIcon(QIcon::fromTheme("go-first", QIcon(":/image/ww/go-first.png")));
-            d_ptr->previous->setIcon(QIcon::fromTheme("go-previous", QIcon(":/image/ww/go-previous.png")));
-            d_ptr->next->setIcon(QIcon::fromTheme("go-next", QIcon(":/image/ww/go-next.png")));
-            d_ptr->last->setIcon(QIcon::fromTheme("go-last", QIcon(":/image/ww/go-last.png")));
+            d_ptr->first->setIcon(QIcon::fromTheme("go-first", QIcon(":/Resources/ww/go-first.png")));
+            d_ptr->previous->setIcon(QIcon::fromTheme("go-previous", QIcon(":/Resources/ww/go-previous.png")));
+            d_ptr->next->setIcon(QIcon::fromTheme("go-next", QIcon(":/Resources/ww/go-next.png")));
+            d_ptr->last->setIcon(QIcon::fromTheme("go-last", QIcon(":/Resources/ww/go-last.png")));
         }
         if (orientation() == Qt::Vertical)
         {
@@ -153,10 +153,10 @@ void HNavigationSlider::sliderChange(SliderChange change)
             d_ptr->slider->setInvertedAppearance(true);
             d_ptr->slider->setInvertedControls(true);
             d_ptr->slider->setOrientation(Qt::Vertical);
-            d_ptr->first->setIcon(QIcon::fromTheme("go-top", QIcon(":/image/ww/go-top.png")));
-            d_ptr->previous->setIcon(QIcon::fromTheme("go-up", QIcon(":/image/ww/go-up.png")));
-            d_ptr->next->setIcon(QIcon::fromTheme("go-down", QIcon(":/image/ww/go-down.png")));
-            d_ptr->last->setIcon(QIcon::fromTheme("go-bottom", QIcon(":/image/ww/go-bottom.png")));
+            d_ptr->first->setIcon(QIcon::fromTheme("go-top", QIcon(":/Resources/ww/go-top.png")));
+            d_ptr->previous->setIcon(QIcon::fromTheme("go-up", QIcon(":/Resources/ww/go-up.png")));
+            d_ptr->next->setIcon(QIcon::fromTheme("go-down", QIcon(":/Resources/ww/go-down.png")));
+            d_ptr->last->setIcon(QIcon::fromTheme("go-bottom", QIcon(":/Resources/ww/go-bottom.png")));
         }
         layout->setMargin(0);
         layout->addWidget(d_ptr->first);
@@ -215,7 +215,7 @@ void HNavigationSlider::init()
     connect(this, &HNavigationSlider::valueChanged, this, &HNavigationSlider::updateUi);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     setOrientation(Qt::Horizontal);
-    setWindowIcon(QIcon(":/image/ww/listnavigator.png"));
+    setWindowIcon(QIcon(":/Resources/ww/listnavigator.png"));
 }
 
 HE_END_NAMESPACE

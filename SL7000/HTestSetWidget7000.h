@@ -28,17 +28,11 @@ public:
     bool setTestState(bool b) override;
 
 protected slots:
-    void on_doubleSpinBox_1_valueChanged(double value);
-    void on_doubleSpinBox_2_valueChanged(double value);
-    void on_doubleSpinBox_3_valueChanged(double value);
-    void on_doubleSpinBox_4_valueChanged(double value);
     void on_checkBox_1_clicked(bool b);
     void on_checkBox_2_clicked(bool b);
-    void on_comboBox_1_currentIndexChanged(int value);
-    void on_comboBox_2_currentIndexChanged(int value);
-    void on_comboBox_3_currentIndexChanged(int value);
-    void on_comboBox_4_currentIndexChanged(int value);
-    void on_comboBox_5_currentIndexChanged(int value);
+    void setLuminousGears(int value);
+    void setMotorLocation(int value);
+    void setCurrentGears(int value);
 
 protected:
     bool adjustIntegralTime();

@@ -5,7 +5,6 @@
 #pragma once
 
 #include "HNamespace.h"
-#include <QtGui/QIcon>
 #include <QtWidgets/QSpinBox>
 
 HE_BEGIN_NAMESPACE
@@ -15,21 +14,23 @@ class HTextSpinBoxPrivate;
 class HTextSpinBox : public QSpinBox
 {
     Q_OBJECT
-    Q_PROPERTY(QStringList stringList READ stringList WRITE setStringList)
+    Q_PROPERTY(QStringList items READ items WRITE setItems)
 
 public:
     explicit HTextSpinBox(QWidget *parent = nullptr);
     ~HTextSpinBox() override;
 
 signals:
-    void stringListChanged(const QStringList &);
+    void itemsChanged(const QStringList &);
 
 public:
     QValidator::State validate(QString &input, int &pos) const override;
-    QStringList stringList() const;
+    QStringList items() const;
 
 public slots:
-    void setStringList(const QStringList &);
+    void setItems(const QStringList &);
+    void addItems(const QStringList &);
+    void addItem(const QString &);
 
 protected:
     HTextSpinBox(HTextSpinBoxPrivate &p, QWidget *parent = nullptr);

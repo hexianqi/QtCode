@@ -6,11 +6,13 @@ HCardLayout::HCardLayout(QWidget *parent) :
     QLayout(parent),
     d_ptr(new HCardLayoutPrivate)
 {
+    setSpacing(12);
 }
 
 HCardLayout::HCardLayout() :
     d_ptr(new HCardLayoutPrivate)
 {
+    setSpacing(12);
 }
 
 HCardLayout::HCardLayout(HCardLayoutPrivate &p, QWidget *parent) :
@@ -81,6 +83,11 @@ void HCardLayout::setGeometry(const QRect &rect)
     auto h = rect.height() - (n - 1) * spacing();
     for (int i = 0; i < n; i++)
         itemAt(i)->setGeometry(QRect(rect.x() + i * spacing(), rect.y() + i * spacing(), w, h));
+}
+
+void HCardLayout::addWidget(QWidget *widget)
+{
+     addItem(new QWidgetItem(widget));
 }
 
 HE_END_NAMESPACE

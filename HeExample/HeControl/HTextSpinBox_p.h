@@ -7,7 +7,7 @@ HE_BEGIN_NAMESPACE
 class HTextSpinBoxPrivate
 {
 public:
-    QStringList strings;
+    QStringList items;
 };
 
 HE_END_NAMESPACE

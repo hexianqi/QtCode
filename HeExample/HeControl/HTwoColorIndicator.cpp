@@ -258,6 +258,7 @@ void HTwoColorIndicator::init()
     setAcceptDrops(true);
     setMouseTracking(true);
     setAttribute(Qt::WA_Hover);
+    setWindowIcon(QIcon(":/Resources/ww/twocolorindicator.png"));
 }
 
 HE_END_NAMESPACE

@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/image/background1.png</file>
+        <file>Resources/image/background2.png</file>
+        <file>Resources/image/background3.png</file>
+        <file>Resources/image/background4.png</file>
+        <file>Resources/image/background5.png</file>
+        <file>Resources/fonts/fontawesome-webfont.ttf</file>
+        <file>Resources/fonts/iconfont.ttf</file>
+        <file>Resources/fonts/pe-icon-set-weather.ttf</file>
+        <file>Resources/translator/qt_zh_CN.qm</file>
+        <file>Resources/translator/textEdit.qm</file>
+        <file>Resources/data/jianpin.dat</file>
+        <file>Resources/data/pinyin.dat</file>
+    </qresource>
+</RCC>

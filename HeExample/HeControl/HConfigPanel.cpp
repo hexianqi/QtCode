@@ -18,10 +18,10 @@ void HConfigPanelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         painter->fillRect(option.rect, option.palette.highlight());
 
     auto size = option.decorationSize;
-    auto rect = QRect(option.rect.x() + 4, option.rect.top() + 4, option.rect.width() - 8, size.height());
+    auto rect1 = QRect(option.rect.x() + 4, option.rect.top() + 4, option.rect.width() - 8, size.height());
     auto mode = option.state & QStyle::State_Enabled ? ((option.state & QStyle::State_Selected) && option.showDecorationSelected ? QIcon::Selected : QIcon::Normal) : QIcon::Disabled;
     auto icon = index.data(Qt::DecorationRole).value<QIcon>();
-    icon.paint(painter, rect, Qt::AlignCenter, mode);
+    icon.paint(painter, rect1, Qt::AlignCenter, mode);
 
     auto text = index.data(Qt::DisplayRole).toString();
     auto rect2 = option.rect.adjusted(4, size.height() + 8, -4, -4);
@@ -82,7 +82,6 @@ void HConfigPanel::insertWidget(int index, QWidget *widget, const QIcon &icon, c
 {
     Q_D(HConfigPanel);
     HAbstractMultiPanel::insertWidget(index, widget, icon, label);
-
     d->stack->insertWidget(index, widget);
     d->view->insertItem(index, new QListWidgetItem(widget->windowIcon(), widget->windowTitle()));
     if (count() == 1)
@@ -102,10 +101,7 @@ bool HConfigPanel::removeWidget(int index)
     delete d->view->takeItem(index);
 
     d->currentIndex = d->stack->currentIndex();
-    if (d->currentIndex > -1)
-        d->title->setText(d->view->item(d->currentIndex)->text());
-    else
-        d->title->setText("");
+    d->title->setText(d->currentIndex > -1 ? d->view->item(d->currentIndex)->text() : "");
     return true;
 }
 

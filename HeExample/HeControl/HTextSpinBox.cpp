@@ -18,42 +18,51 @@ HTextSpinBox::~HTextSpinBox() = default;
 
 QValidator::State HTextSpinBox::validate(QString &input, int &/*pos*/) const
 {
-    for (const auto &s : d_ptr->strings)
+    for (const auto &text : d_ptr->items)
     {
-        if (s == input)
+        if (text == input)
             return QValidator::Acceptable;
-        if (s.contains(input))
+        if (text.contains(input))
             return QValidator::Intermediate;
     }
     return QValidator::Invalid;
 }
 
-QStringList HTextSpinBox::stringList() const
+QStringList HTextSpinBox::items() const
 {
-    return d_ptr->strings;
+    return d_ptr->items;
 }
 
-void HTextSpinBox::setStringList(const QStringList &value)
+void HTextSpinBox::setItems(const QStringList &value)
 {
-    if (d_ptr->strings == value)
+    if (d_ptr->items == value)
         return;
-    d_ptr->strings = value;
+    d_ptr->items = value;
     setRange(0, value.size() - 1);
-    emit stringListChanged(value);
+    emit itemsChanged(value);
     interpretText();
 }
 
+void HTextSpinBox::addItems(const QStringList &value)
+{
+    setItems(QStringList() << d_ptr->items << value);
+}
+
+void HTextSpinBox::addItem(const QString &value)
+{
+    setItems(QStringList() << d_ptr->items << value);
+}
 
 QString HTextSpinBox::textFromValue(int value) const
 {
-    if (d_ptr->strings.size() <= value)
+    if (d_ptr->items.size() <= value || value < 0)
         return "";
-    return d_ptr->strings.at(value);
+    return d_ptr->items.at(value);
 }
 
 int HTextSpinBox::valueFromText(const QString &text) const
 {
-    return d_ptr->strings.indexOf(text);
+    return d_ptr->items.indexOf(text);
 }
 
 HE_END_NAMESPACE

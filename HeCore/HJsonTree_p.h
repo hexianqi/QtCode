@@ -15,10 +15,10 @@ public:
     void fromJson(QByteArray &data);
 
 public:
-    QJsonDocument doc;  // Json 的文档对象
-    QJsonObject root;   // Json 的根节点
-    bool valid = true;  // Json 是否有效
-    QString errorString;      // Json 无效时的错误信息
+    QJsonDocument doc;      // Json 的文档对象
+    QJsonObject root;       // Json 的根节点
+    bool valid = true;      // Json 是否有效
+    QString errorString;    // Json 无效时的错误信息
 };
 
 HE_END_NAMESPACE

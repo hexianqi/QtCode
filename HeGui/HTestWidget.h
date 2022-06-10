@@ -21,6 +21,9 @@ public:
 protected:
     HTestWidget(HTestWidgetPrivate &p, QWidget *parent = nullptr);
 
+protected slots:
+    void closeEvent(QCloseEvent *) override;
+
 protected:
     virtual void init();
     virtual void createAction();
@@ -31,7 +34,10 @@ protected:
     virtual void initToolBar();
     virtual void initStyleSheet();
     virtual void clearResult() = 0;
+    virtual void saveResult();
     virtual void exportExcel() = 0;
+    virtual void readSettings();
+    virtual void writeSettings();
 };
 
 HE_END_NAMESPACE

@@ -76,26 +76,12 @@ bool HAbstractMainWindow::blockTestWidget(bool block)
     return d_ptr->testWidget->start();
 }
 
-bool HAbstractMainWindow::blockAndRun(QDialog *dialog)
+QVariant HAbstractMainWindow::blockAndRun(std::function<QVariant (QVariantMap)> func, QVariantMap param)
 {
     d_ptr->testWidget->stop();
-    auto result = dialog->exec();
+    auto result = func(param);
     d_ptr->testWidget->start();
-    return result == QDialog::Accepted;
-}
-
-void HAbstractMainWindow::blockAndRun(QWidget *widget)
-{
-    blockAndConnect(widget);
-    widget->show();
-}
-
-void HAbstractMainWindow::blockAndConnect(QWidget *widget)
-{
-    d_ptr->testWidget->stop();
-    connect(widget, &QWidget::destroyed, d_ptr->testWidget, &ITestWidget::start);
-    widget->setAttribute(Qt::WA_ShowModal, true);
-    widget->setAttribute(Qt::WA_DeleteOnClose, true);
+    return result;
 }
 
 QString HAbstractMainWindow::summary()

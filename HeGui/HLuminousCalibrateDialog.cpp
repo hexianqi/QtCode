@@ -68,12 +68,6 @@ void HLuminousCalibrateDialog::on_checkBox_clicked(bool b)
     setTest(b);
 }
 
-void HLuminousCalibrateDialog::on_doubleSpinBox_valueChanged(double value)
-{
-    d_ptr->testData->setData("[输出电流]", value);
-    d_ptr->model->addAction(ACT_SET_OUTPUT_CURRENT);
-}
-
 void HLuminousCalibrateDialog::handleAction(HActionType action)
 {
     switch (action)
@@ -91,6 +85,12 @@ void HLuminousCalibrateDialog::handleAction(HActionType action)
         d_ptr->model->addAction(ACT_GET_LUMINOUS_DATA, 300);
         break;
     }
+}
+
+void HLuminousCalibrateDialog::setOutputCurrent(double value)
+{
+    if (d_ptr->testData->setData("[输出电流]", value))
+        d_ptr->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HLuminousCalibrateDialog::setGears(int value)
@@ -163,6 +163,7 @@ void HLuminousCalibrateDialog::init()
     ui->splitter->setStretchFactor(1, 10);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox);
     ui->doubleSpinBox->setValue(d_ptr->testData->data("[输出电流]").toDouble());
+    connect(ui->doubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &HLuminousCalibrateDialog::setOutputCurrent);
     connect(d_ptr->model, &IModel::actionFinished, this, &HLuminousCalibrateDialog::handleAction);
     setWindowTitle(tr("光参数定标"));
 }

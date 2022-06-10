@@ -29,6 +29,9 @@ protected:
     HDecoratorDialog(HDecoratorDialogPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    void done(int result) override;
+
+protected:
     QScopedPointer<HDecoratorDialogPrivate> d_ptr;
 };
 

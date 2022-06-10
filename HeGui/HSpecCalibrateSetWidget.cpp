@@ -86,13 +86,6 @@ void HSpecCalibrateSetWidget::setAutoIntegralTime(bool b)
     ui->doubleSpinBox_01->setEnabled(!b);
 }
 
-void HSpecCalibrateSetWidget::on_doubleSpinBox_01_valueChanged(double value)
-{
-    Q_D(HSpecCalibrateSetWidget);
-    if (d->testData->setData("[积分时间]", value))
-        d->model->addAction(ACT_SET_INTEGRAL_TIME);
-}
-
 void HSpecCalibrateSetWidget::on_checkBox_01_clicked(bool b)
 {
     setAutoIntegralTime(b);
@@ -131,6 +124,7 @@ void HSpecCalibrateSetWidget::init()
     Q_D(HSpecCalibrateSetWidget);
     HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_01);
     ui->doubleSpinBox_01->setValue(d->testData->data("[积分时间]").toDouble());
+    connect(ui->doubleSpinBox_01, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[积分时间]", value, ACT_SET_INTEGRAL_TIME); });
 }
 
 HE_END_NAMESPACE

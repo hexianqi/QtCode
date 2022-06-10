@@ -1,6 +1,7 @@
 #include "HAbstractTestSetWidget_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeData/ITestData.h"
+#include "HeController/IModel.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -86,6 +87,12 @@ bool HAbstractTestSetWidget::setSaveMode(int value)
 int HAbstractTestSetWidget::saveMode()
 {
     return d_ptr->saveMode;
+}
+
+void HAbstractTestSetWidget::setTestData(QString type, QVariant value, HActionType action, ulong delay)
+{
+    if (d_ptr->testData->setData(type, value))
+        d_ptr->model->addAction(action, delay);
 }
 
 HE_END_NAMESPACE

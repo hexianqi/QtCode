@@ -197,7 +197,7 @@ void HLongSpinBox::init()
     updateEdit();
     lineEdit()->setValidator(new HLongSpinBoxValidator(this));
     connect(lineEdit(), &QLineEdit::textChanged, this, &HLongSpinBox::handleEditTextChanged);
-    setWindowIcon(QIcon(":/image/ww/longspinbox.png"));
+    setWindowIcon(QIcon(":/Resources/ww/longspinbox.png"));
 }
 
 void HLongSpinBox::updateEdit()

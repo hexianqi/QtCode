@@ -14,12 +14,12 @@ void HControlHelper::initTranslator()
 {
     // 加载鼠标右键菜单翻译文件
     auto t1 = new QTranslator(QApplication::instance());
-    t1->load(":/translator/qt_zh_CN.qm");
+    t1->load(":/Resources/translator/qt_zh_CN.qm");
     QApplication::installTranslator(t1);
 
     // 加载富文本框鼠标右键菜单翻译文件
     auto t2 = new QTranslator(QApplication::instance());
-    t2->load(":/translator/textEdit.qm");
+    t2->load(":/Resources/translator/textEdit.qm");
     QApplication::installTranslator(t2);
 }
 

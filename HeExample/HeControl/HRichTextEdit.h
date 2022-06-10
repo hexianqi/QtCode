@@ -20,14 +20,14 @@ class HRichTextEdit : public QTextEdit
 public:
     enum Option
     {
-        NoOptions = 0x0,
-        FontFamily = 0x01,
-        FontSize = 0x02,
-        Style = 0x04,
-        Alignment = 0x08,
-        Color = 0x10,
-        List = 0x20,
-        AllOptions = FontFamily | FontSize | Style | Alignment | Color | List
+        NoOptions   = 0x00,
+        FontFamily  = 0x01,
+        FontSize    = 0x02,
+        Style       = 0x04,
+        Alignment   = 0x08,
+        Color       = 0x10,
+        List        = 0x20,
+        AllOptions  = 0xFF
     };
     Q_DECLARE_FLAGS(Options, Option)
     Q_FLAG(Options)

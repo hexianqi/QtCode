@@ -31,7 +31,6 @@ void HTestWidget2000DC::init()
 {
     Q_D(HTestWidget2000DC);
     HSpecTestWidget::init();
-    d->energyWidget->addProgressBar("[光采样比率]");
     setProbe(d->testData->data("[使用光探头]").toBool());
 }
 
@@ -51,6 +50,7 @@ void HTestWidget2000DC::createWidget()
     HSpecTestWidget::createWidget();
     d->testSetWidget = new HTestSetWidget2000DC;
     d->detailWidget = new HDetailWidget2000DC;
+    d->energyWidget->addProgressBar("[光采样比率]");
 }
 
 void HTestWidget2000DC::createMenu()
@@ -67,7 +67,7 @@ void HTestWidget2000DC::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
-    settings->beginGroup("TestWidget");
+    settings->beginGroup("SpecTestWidget");
     d->testData->setData("[使用光探头]", settings->value("Probe", false));
     settings->endGroup();
 }
@@ -79,7 +79,7 @@ void HTestWidget2000DC::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
-    settings->beginGroup("TestWidget");
+    settings->beginGroup("SpecTestWidget");
     settings->setValue("Probe", d->testData->data("[使用光探头]"));
     settings->endGroup();
 }

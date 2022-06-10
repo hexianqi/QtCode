@@ -1,8 +1,6 @@
 HEADERS += \
     $$PWD/HBattery.h \
     $$PWD/HBattery_p.h \
-    $$PWD/HChineseTranslate.h \
-    $$PWD/HChineseTranslate_p.h \
     $$PWD/HCpuMemoryLabel.h \
     $$PWD/HCpuMemoryLabel_p.h\
     $$PWD/HDeviceButton.h \
@@ -20,7 +18,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HBattery.cpp \
-    $$PWD/HChineseTranslate.cpp \
     $$PWD/HCpuMemoryLabel.cpp \
     $$PWD/HDeviceButton.cpp \
     $$PWD/HDiskSizeTable.cpp \

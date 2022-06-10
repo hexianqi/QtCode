@@ -69,7 +69,7 @@ using HActionType = long long;
 #define     ACT_QUERY_MOTOR_STATE                   0x00030211
 
 #define     ACT_SINGLE_TEST                         0x10000001
-#define     ACT_GET_SPECTRUM_ELEC                   0x10000002
+#define     ACT_INTEGRATE_TEST                      0x10000002
 
 #define     ACT_QUERY_NEXT_TEST                     0xE0000001
 

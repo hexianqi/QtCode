@@ -27,6 +27,7 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 
 SOURCES     += \
             HTestCore.cpp \
+            HTestDir.cpp \
             HTestEigen.cpp \
             HTestMedia_ff.cpp \
             HTestMedia_vlc.cpp \
@@ -40,6 +41,7 @@ SOURCES     += \
 
 HEADERS     += \
             HTestCore.h \
+            HTestDir.h \
             HTestEigen.h \
             HTestMedia.h \
             HTestOpenGL.h \

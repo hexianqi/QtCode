@@ -28,6 +28,9 @@ public:
     QSize minimumSize() const override;
     void setGeometry(const QRect &rect) override;
 
+public:
+    void addWidget(QWidget *widget);
+
 protected:
     HCardLayout(HCardLayoutPrivate &p, QWidget *parent);
 

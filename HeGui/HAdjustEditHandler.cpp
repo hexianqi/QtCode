@@ -24,14 +24,18 @@ QString HAdjustEditHandler::typeName()
 void HAdjustEditHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HAdjustEditHandler);
-    HDataDetail<IAdjust> detail;
-    detail.setEditer(new HAdjustEditWidget);
-    detail.setData(d->configManage->adjustCollection());
-    HListCollectionDialog dlg(d->mainWindow);
-    dlg.setWindowTitle(tr("调整数据配置"));
-    dlg.setDataDetail(&detail);
-    dlg.setMinimumSize(1115, 600);
-    d->mainWindow->blockAndRun(&dlg);
+    auto func = [=] (QVariantMap)
+    {
+        HDataDetail<IAdjust> detail;
+        detail.setEditer(new HAdjustEditWidget);
+        detail.setData(d->configManage->adjustCollection());
+        HListCollectionDialog dlg(d->mainWindow);
+        dlg.setWindowTitle(tr("调整数据配置"));
+        dlg.setDataDetail(&detail);
+        dlg.setMinimumSize(1115, 600);
+        return dlg.exec();
+    };
+    d->mainWindow->blockAndRun(func);
     d->model->addAction(ACT_RESET_ADJUST);
 }
 

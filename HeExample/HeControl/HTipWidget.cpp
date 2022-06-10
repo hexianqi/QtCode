@@ -160,11 +160,11 @@ void HTipWidget::showTip()
     auto v = d_ptr->currentTip.data(Qt::DisplayRole);
     d_ptr->browser->setHtml(v.toString());
     if (v.type() == QVariant::Icon)
-        d_ptr->label->setPixmap(qvariant_cast<QIcon>(v).pixmap(d_ptr->iconSize));
+        d_ptr->label->setPixmap(v.value<QIcon>().pixmap(d_ptr->iconSize));
     else if (v.type() == QVariant::Pixmap)
-        d_ptr->label->setPixmap(qvariant_cast<QPixmap>(v));
+        d_ptr->label->setPixmap(v.value<QPixmap>());
     else if (v.type() == QVariant::Image)
-        d_ptr->label->setPixmap(QPixmap::fromImage(qvariant_cast<QImage>(v)));
+        d_ptr->label->setPixmap(QPixmap::fromImage(v.value<QImage>()));
     else
         d_ptr->label->setPixmap(d_ptr->defaultIcon.pixmap(d_ptr->iconSize));
 }
@@ -188,9 +188,9 @@ void HTipWidget::init()
     setFrameShadow(d_ptr->browser->frameShadow());
     auto palette = d_ptr->browser->palette();
     setPalette(palette);
+    setAutoFillBackground(true);
     palette.setColor(QPalette::Base, Qt::transparent);
     d_ptr->browser->setPalette(palette);
-    setAutoFillBackground(true);
     d_ptr->browser->setAutoFillBackground(false);
     d_ptr->browser->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
 
@@ -210,6 +210,5 @@ void HTipWidget::init()
     connect(d_ptr->closeButton, &QPushButton::clicked, this, &HTipWidget::close);
     showTip();
 }
-
 
 HE_END_NAMESPACE

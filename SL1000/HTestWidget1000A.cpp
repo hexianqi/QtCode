@@ -23,17 +23,11 @@ QString HTestWidget1000A::typeName()
     return "HTestWidget1000A";
 }
 
-void HTestWidget1000A::init()
-{
-    Q_D(HTestWidget1000A);
-    HSpecTestWidget::init();
-    d->energyWidget->addProgressBar("[光采样比率]");
-}
-
 void HTestWidget1000A::createWidget()
 {
     Q_D(HTestWidget1000A);
     HSpecTestWidget::createWidget();
     d->testSetWidget = new HTestSetWidget1000A;
     d->detailWidget = new HDetailWidget1000A;
+    d->energyWidget->addProgressBar("[光采样比率]");
 }

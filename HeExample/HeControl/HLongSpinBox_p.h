@@ -13,7 +13,6 @@ public:
     qlonglong singleStep = 1;
     QString prefix;
     QString suffix;
-
 };
 
 class HLongSpinBoxValidator : public QValidator

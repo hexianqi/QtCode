@@ -24,8 +24,8 @@ void HSpecCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HSpecCalibrateHandler);
     auto calibrate = HAppContext::getContextPointer<IConfigManage>("IConfigManage")->specCalibrate("1");
-    auto t = new HSpecCalibrateWidget;
     auto w = new HDecoratorDialog(d->mainWindow);
+    auto t = new HSpecCalibrateWidget;
     t->setCalibrate(calibrate);
     t->setWindowTitle(tr("光谱参数定标"));
     w->run(t);

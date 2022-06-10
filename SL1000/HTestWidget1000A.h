@@ -23,7 +23,6 @@ public:
     QString typeName() override;
 
 protected:
-    void init() override;
     void createWidget() override;
 };
 

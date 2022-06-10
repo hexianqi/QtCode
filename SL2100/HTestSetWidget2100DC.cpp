@@ -51,14 +51,14 @@ void HTestSetWidget2100DC::handleAction(HActionType action)
         else
             setTestState(false);
         break;
-    case ACT_GET_SPECTRUM_ELEC:
+    case ACT_INTEGRATE_TEST:
         emit resultChanged(action, d->testMode == 3 || d->first);
         d->first = false;
         if (!d->testState)
             break;
         adjustIntegralTime();
         if (d->testMode == 1 || d->testMode == 2)
-            d->model->addAction(ACT_GET_SPECTRUM_ELEC, 100);
+            d->model->addAction(ACT_INTEGRATE_TEST, 100);
         break;
     default:
         break;
@@ -81,16 +81,15 @@ bool HTestSetWidget2100DC::setTestState(bool b)
         }
         else
         {
-            d->testData->setData("[电源模式]", 1);
-            d->model->addAction(ACT_SET_SOURCE_MODE);
+            setTestData("[电源模式]", 1, ACT_SET_SOURCE_MODE);
             if (d->testMode == 1)
             {
-                d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+                d->model->addAction(ACT_INTEGRATE_TEST);
             }
             if (d->testMode == 2)
             {
                 auto t = ui->timeEdit_1->time();
-                d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+                d->model->addAction(ACT_INTEGRATE_TEST);
                 d->timerContinue->start((t.hour() * 3600 + t.minute() * 60 + t.second()) * 1000);
             }
             if (d->testMode == 3)
@@ -105,32 +104,10 @@ bool HTestSetWidget2100DC::setTestState(bool b)
         {
             d->timerContinue->stop();
             d->timerInterval->stop();
-            d->testData->setData("[电源模式]", 0);
-            d->model->addAction(ACT_SET_SOURCE_MODE, 200);
+            setTestData("[电源模式]", 0,ACT_SET_SOURCE_MODE, 200);
         }
     }
     return true;
-}
-
-void HTestSetWidget2100DC::on_doubleSpinBox_1_valueChanged(double value)
-{
-    Q_D(HTestSetWidget2100DC);
-    if (d->testData->setData("[积分时间]", value))
-        d->model->addAction(ACT_SET_INTEGRAL_TIME);
-}
-
-void HTestSetWidget2100DC::on_doubleSpinBox_2_valueChanged(double value)
-{
-    Q_D(HTestSetWidget2100DC);
-    if (d->testData->setData("[输出电压]", value))
-        d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
-}
-
-void HTestSetWidget2100DC::on_doubleSpinBox_3_valueChanged(double value)
-{
-    Q_D(HTestSetWidget2100DC);
-    if (d->testData->setData("[输出电流]", value))
-        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
 }
 
 void HTestSetWidget2100DC::on_checkBox_1_clicked(bool b)
@@ -143,13 +120,13 @@ void HTestSetWidget2100DC::on_checkBox_1_clicked(bool b)
     ui->doubleSpinBox_1->setEnabled(!b);
 }
 
-void HTestSetWidget2100DC::on_comboBox_1_currentIndexChanged(int value)
+bool HTestSetWidget2100DC::setTestMode(int value)
 {
-    if (setTestMode(value))
-    {
-        ui->timeEdit_1->setEnabled(value == 2);
-        ui->spinBox_1->setEnabled(value == 3);
-    }
+    if (!HAbstractTestSetWidget::setTestMode(value))
+        return false;
+    ui->timeEdit_1->setEnabled(value == 2);
+    ui->spinBox_1->setEnabled(value == 3);
+    return true;
 }
 
 bool HTestSetWidget2100DC::adjustIntegralTime()
@@ -173,6 +150,10 @@ void HTestSetWidget2100DC::init()
     ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));
     d->timerContinue = new QTimer(this);
     d->timerInterval = new QTimer(this);
+    connect(ui->doubleSpinBox_1, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[积分时间]", value, ACT_SET_INTEGRAL_TIME); });
+    connect(ui->doubleSpinBox_2, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电压]", value, ACT_SET_OUTPUT_VOLTAGE); });
+    connect(ui->doubleSpinBox_3, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电流]", value, ACT_SET_OUTPUT_CURRENT); });
+    connect(ui->comboBox_1, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HTestSetWidget2100DC::setTestMode);
     connect(d->timerContinue, &QTimer::timeout, this, [=] { setTestState(false); });
-    connect(d->timerInterval, &QTimer::timeout, this, [=] { d->model->addAction(ACT_GET_SPECTRUM_ELEC); });
+    connect(d->timerInterval, &QTimer::timeout, this, [=] { d->model->addAction(ACT_INTEGRATE_TEST); });
 }

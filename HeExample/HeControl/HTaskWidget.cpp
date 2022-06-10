@@ -96,12 +96,12 @@ bool HTaskWidget::eventFilter(QObject *object, QEvent *event)
 void HTaskWidget::init(QWidget *body)
 {
     d_ptr->body = body;
+    d_ptr->body->setVisible(false);
     d_ptr->animateWidget = nullptr;
     d_ptr->header = new HTaskHeader;
     d_ptr->timeLine = new QTimeLine(1200, this);
     d_ptr->timeLine->setUpdateInterval(20);
     d_ptr->timeLine->setCurveShape(QTimeLine::EaseInOutCurve);
-    d_ptr->body->setVisible(false);
     d_ptr->layout = new QVBoxLayout(this);
     d_ptr->layout->setMargin(0);
     d_ptr->layout->addWidget(d_ptr->header);

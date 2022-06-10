@@ -1,4 +1,5 @@
 #include "HTestWidget_p.h"
+#include <QtGui/QCloseEvent>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QToolBar>
 
@@ -14,8 +15,18 @@ HTestWidget::HTestWidget(HTestWidgetPrivate &p, QWidget *parent) :
 {
 }
 
+void HTestWidget::closeEvent(QCloseEvent *event)
+{
+    stop();
+    saveResult();
+    clearResult();
+    writeSettings();
+    event->accept();
+}
+
 void HTestWidget::init()
 {
+    readSettings();
     createAction();
     createWidget();
     createMenu();
@@ -57,6 +68,21 @@ void HTestWidget::initToolBar()
 }
 
 void HTestWidget::initStyleSheet()
+{
+
+}
+
+void HTestWidget::saveResult()
+{
+
+}
+
+void HTestWidget::readSettings()
+{
+
+}
+
+void HTestWidget::writeSettings()
 {
 
 }

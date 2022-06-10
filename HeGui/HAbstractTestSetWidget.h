@@ -35,6 +35,9 @@ protected:
     HAbstractTestSetWidget(HAbstractTestSetWidgetPrivate &p, QWidget *parent = nullptr);
 
 protected:
+    void setTestData(QString type, QVariant value, HActionType action, ulong delay = 0);
+
+protected:
     QScopedPointer<HAbstractTestSetWidgetPrivate> d_ptr;
 };
 

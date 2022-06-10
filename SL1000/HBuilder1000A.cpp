@@ -197,7 +197,6 @@ void HBuilder1000A::buildThread()
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
     threads->insert("1", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
-
 }
 
 void HBuilder1000A::buildModel()
@@ -290,6 +289,7 @@ void HBuilder1000A::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     test->addAction(d->guiFactory->createAction(tr("光强角度测试(&A)..."), "HAngleTestHandler"));
+    test->addAction(d->guiFactory->createAction(tr("老化测试(&I)..."), "HTrendTestHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
     database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&B)..."), "HSqlBrowserHandler"));

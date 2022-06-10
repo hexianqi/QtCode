@@ -16,7 +16,7 @@ class HFlowLayoutPrivate;
 class HFlowLayout : public QLayout
 {
 public:
-    explicit HFlowLayout(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
+    explicit HFlowLayout(QWidget *parent, int margin = -1, int horizontalSpacing = -1, int verticalSpacing = -1);
     explicit HFlowLayout();
     ~HFlowLayout() override;
 
@@ -35,6 +35,9 @@ public:
 public:
     int horizontalSpacing() const;
     int verticalSpacing() const;
+    void setHorizontalSpacing(int);
+    void setVerticalSpacing(int);
+    void addWidget(QWidget *widget);
 
 protected:
     HFlowLayout(HFlowLayoutPrivate &p, QWidget *parent);

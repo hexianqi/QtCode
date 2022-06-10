@@ -1,5 +1,5 @@
 #include "HDBConfig.h"
-#include "HeFile/HJson.h"
+#include "HeCore/HJsonTree.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -80,7 +80,7 @@ QStringList HDBConfig::sqlFiles() const
 
 bool HDBConfig::setConigFile(const QString &fileName)
 {
-    auto json = HJson::fromFile(fileName);
+    auto json = HJsonTree::fromFile(fileName);
     if (!json->isValid())
         return false;
     _json = json;

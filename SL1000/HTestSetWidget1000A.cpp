@@ -72,7 +72,7 @@ void HTestSetWidget1000A::handleAction(HActionType action)
         else
             setTestState(false);
         break;
-    case ACT_GET_SPECTRUM_ELEC:
+    case ACT_INTEGRATE_TEST:
         emit resultChanged(action, d->testMode == 3 || d->first);
         d->first = false;
         if (!d->testState)
@@ -80,7 +80,7 @@ void HTestSetWidget1000A::handleAction(HActionType action)
         adjustIntegralTime();
         adjustLuminousGears();
         if (d->testMode == 1 || d->testMode == 2)
-            d->model->addAction(ACT_GET_SPECTRUM_ELEC, 100);
+            d->model->addAction(ACT_INTEGRATE_TEST, 100);
         break;
     default:
         break;
@@ -110,12 +110,12 @@ bool HTestSetWidget1000A::setTestState(bool b)
             d->testData->setData("[预配置测试]", true);
             if (d->testMode == 1)
             {
-                d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+                d->model->addAction(ACT_INTEGRATE_TEST);
             }
             if (d->testMode == 2)
             {
                 auto t = ui->timeEdit_1->time();
-                d->model->addAction(ACT_GET_SPECTRUM_ELEC);
+                d->model->addAction(ACT_INTEGRATE_TEST);
                 d->timerContinue->start((t.hour() * 3600 + t.minute() * 60 + t.second()) * 1000);
             }
             if (d->testMode == 3)
@@ -130,40 +130,11 @@ bool HTestSetWidget1000A::setTestState(bool b)
         {
             d->timerContinue->stop();
             d->timerInterval->stop();
-            d->testData->setData("[电源模式]", 0);
-            d->model->addAction(ACT_SET_SOURCE_MODE, 200);
+            setTestData("[电源模式]", 0, ACT_SET_SOURCE_MODE, 200);
         }
     }
     ui->comboBox_1->setEnabled(!b);
     return true;
-}
-
-void HTestSetWidget1000A::on_doubleSpinBox_1_valueChanged(double value)
-{
-    Q_D(HTestSetWidget1000A);
-    if (d->testData->setData("[积分时间]", value))
-        d->model->addAction(ACT_SET_INTEGRAL_TIME);
-}
-
-void HTestSetWidget1000A::on_doubleSpinBox_2_valueChanged(double value)
-{
-    Q_D(HTestSetWidget1000A);
-    if (d->testData->setData("[输出电压]", value))
-        d->model->addAction(ACT_SET_OUTPUT_VOLTAGE);
-}
-
-void HTestSetWidget1000A::on_doubleSpinBox_3_valueChanged(double value)
-{
-    Q_D(HTestSetWidget1000A);
-    if (d->testData->setData("[输出电流]", value))
-        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
-}
-
-void HTestSetWidget1000A::on_doubleSpinBox_4_valueChanged(double value)
-{
-    Q_D(HTestSetWidget1000A);
-    if (d->testData->setData("[反向电压]", value))
-        d->model->addAction(ACT_SET_REVERSE_VOLTAGE);
 }
 
 void HTestSetWidget1000A::on_checkBox_1_clicked(bool b)
@@ -181,32 +152,29 @@ void HTestSetWidget1000A::on_checkBox_2_clicked(bool b)
     setSaveMode(b ? 2 : 0);
 }
 
-void HTestSetWidget1000A::on_comboBox_1_currentIndexChanged(int value)
+bool HTestSetWidget1000A::setTestMode(int value)
 {
-    if (setTestMode(value))
-    {
-        ui->timeEdit_1->setEnabled(value == 2);
-        ui->spinBox_1->setEnabled(value == 3);
-    }
+    if (!HAbstractTestSetWidget::setTestMode(value))
+        return false;
+
+    ui->timeEdit_1->setEnabled(value == 2);
+    ui->spinBox_1->setEnabled(value == 3);
+    return true;
 }
 
-void HTestSetWidget1000A::on_comboBox_2_currentIndexChanged(int value)
+void HTestSetWidget1000A::setCurrentGears(int value)
 {
-    Q_D(HTestSetWidget1000A);
-    if (d->testData->setData("[输出电流_档位]", value))
-        d->model->addAction(ACT_SET_GEARS_OUTPUT_CURRENT);
-    if (d->testData->setData("[实测电流_档位]", value))
-        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
+    setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT);
+    setTestData("[实测电流_档位]", value, ACT_SET_GEARS_MEASURED_CURRENT);
 }
 
-void HTestSetWidget1000A::on_comboBox_3_currentIndexChanged(int value)
+void HTestSetWidget1000A::setLuminousGears(int value)
 {
     Q_D(HTestSetWidget1000A);
     d->autoLuminousGears = value == 0;
     if (value == 0)
         return;
-    if (d->testData->setData("[光档位]", value - 1))
-        d->model->addAction(ACT_SET_LUMINOUS_GEARS);
+    setTestData("[光档位]", value - 1, ACT_SET_LUMINOUS_GEARS);
 }
 
 bool HTestSetWidget1000A::adjustIntegralTime()
@@ -243,6 +211,14 @@ void HTestSetWidget1000A::init()
         ui->comboBox_3->addItem(tr("  %1档  ").arg(i+1));
     d->timerContinue = new QTimer(this);
     d->timerInterval = new QTimer(this);
+
+    connect(ui->doubleSpinBox_1, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[积分时间]", value, ACT_SET_INTEGRAL_TIME); });
+    connect(ui->doubleSpinBox_2, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电压]", value, ACT_SET_OUTPUT_VOLTAGE); });
+    connect(ui->doubleSpinBox_3, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电流]", value, ACT_SET_OUTPUT_CURRENT); });
+    connect(ui->doubleSpinBox_4, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[反向电压]", value, ACT_SET_REVERSE_VOLTAGE); });
+    connect(ui->comboBox_1, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HTestSetWidget1000A::setTestMode);
+    connect(ui->comboBox_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HTestSetWidget1000A::setCurrentGears);
+    connect(ui->comboBox_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HTestSetWidget1000A::setLuminousGears);
     connect(d->timerContinue, &QTimer::timeout, this, [=] { setTestState(false); });
-    connect(d->timerInterval, &QTimer::timeout, this, [=] { d->model->addAction(ACT_GET_SPECTRUM_ELEC); });
+    connect(d->timerInterval, &QTimer::timeout, this, [=] { d->model->addAction(ACT_INTEGRATE_TEST); });
 }

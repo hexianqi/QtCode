@@ -26,7 +26,7 @@ public:
     void showData();
 
 protected:
-    void on_spinBox_valueChanged(int value);
+    void setRowCount(int value);
 
 protected:
     QScopedPointer<HSpecPelsWaveWidgetPrivate> d_ptr;

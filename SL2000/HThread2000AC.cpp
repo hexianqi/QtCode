@@ -8,7 +8,7 @@
 
 HThread2000ACPrivate::HThread2000ACPrivate()
 {
-    actionSupport << ACT_GET_SPECTRUM_ELEC;
+    actionSupport << ACT_INTEGRATE_TEST;
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElec = protocolCollection->value("Elec");
@@ -36,7 +36,7 @@ QString HThread2000AC::threadInfo()
 bool HThread2000AC::handleAction(HActionType action)
 {
     Q_D(HThread2000AC);
-    if (action == ACT_GET_SPECTRUM_ELEC)
+    if (action == ACT_INTEGRATE_TEST)
     {
         if (!d->strategyElec->handle(ACT_GET_ELEC_DATA) || !d->strategySpec->handle(ACT_GET_SPECTRUM))
             return false;

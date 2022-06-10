@@ -72,7 +72,7 @@ HSpecTestWidget::~HSpecTestWidget()
 void HSpecTestWidget::init()
 {
     Q_D(HSpecTestWidget);
-    readSettings();
+    HTestWidget::init();
     d->testResult = new HTestResult(this);
     d->testResult->setSyncType(d->displays);
     d->testResult->setSyncFile(d->syncFile);
@@ -80,21 +80,15 @@ void HSpecTestWidget::init()
     d->timer = new QTimer(this);
     d->timer->setInterval(d->syncInterval * 1000);
     connect(d->timer, &QTimer::timeout, this, [=] { d->testResult->syncFile(); });
-    HTestWidget::init();
     resetGrade();
 }
 
 void HSpecTestWidget::closeEvent(QCloseEvent *event)
 {
     Q_D(HSpecTestWidget);
-    stop();
-    if (!d->testResult->isEmpty() && QMessageBox::question(this, tr("保存数据"), tr("是否保存到数据库？")) == QMessageBox::Yes)
-        exportDatabaseRange(0, d->testResult->size());
-    clearResult();
+    HTestWidget::closeEvent(event);
     if (d->cieDialog)
         d->cieDialog->close();
-    writeSettings();
-    event->accept();
 }
 
 void HSpecTestWidget::handleAction(HActionType action)
@@ -252,6 +246,15 @@ void HSpecTestWidget::clearResult()
     d->tableWidget->clearResult();
 }
 
+void HSpecTestWidget::saveResult()
+{
+    Q_D(HSpecTestWidget);
+    if (d->testResult->isEmpty())
+        return;
+    if (QMessageBox::question(this, tr("保存数据"), tr("是否保存到数据库？")) == QMessageBox::Yes)
+        exportDatabaseRange(0, d->testResult->size());
+}
+
 void HSpecTestWidget::exportExcel()
 {
     Q_D(HSpecTestWidget);
@@ -272,7 +275,7 @@ void HSpecTestWidget::readSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
-    settings->beginGroup("TestWidget");
+    settings->beginGroup("SpecTestWidget");
     d->tableSelecteds = settings->value("TableSelected", d->displays).toStringList();
     d->exportPath = settings->value("ExportPath", ".").toString();
     d->syncFile = settings->value("SyncFile", "temp.xlsx").toString();
@@ -289,7 +292,7 @@ void HSpecTestWidget::writeSettings()
     auto fileName = HAppContext::getContextValue<QString>("Settings");
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
-    settings->beginGroup("TestWidget");
+    settings->beginGroup("SpecTestWidget");
     settings->setValue("TableSelected", d->tableWidget->selected());
     settings->setValue("ExportPath", d->exportPath);
     settings->setValue("SyncFile", d->syncFile);
@@ -303,7 +306,7 @@ void HSpecTestWidget::writeSettings()
 void HSpecTestWidget::postProcess(bool append)
 {
     Q_D(HSpecTestWidget);
-    d->configManage->postProcess(d->testData, d->displays, "Spec");
+    d->configManage->processAll(d->testData, d->displays, "Spec");
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
     if (append)
         d->testData->handleOperation("<编号自增>");

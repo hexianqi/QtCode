@@ -20,8 +20,12 @@ QString HLuminousCalibrateHandler::typeName()
 void HLuminousCalibrateHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 {
     Q_D(HLuminousCalibrateHandler);
-    HLuminousCalibrateDialog dlg(d->mainWindow);
-    d->mainWindow->blockAndRun(&dlg);
+    auto func = [=] (QVariantMap)
+    {
+        HLuminousCalibrateDialog dlg(d->mainWindow);
+        return dlg.exec();
+    };
+    d->mainWindow->blockAndRun(func);
     d->model->addAction(ACT_RESET_LUMINOUS);
 }
 

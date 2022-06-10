@@ -11,6 +11,7 @@ HEADERS += \
     $$PWD/HStandardPixmapWidget.h \
 
 SOURCES += \
+    $$PWD/HControlDemoWidget_layout.cpp \
     $$PWD/HControlFactoryWidget.cpp \
     $$PWD/HControlDemoWidget.cpp \
     $$PWD/HControlDemoWidget_demo.cpp \

@@ -381,7 +381,7 @@ void HDemoWidget::addww()
     auto rte = new HRichTextEdit;
     auto lsb = new HLongSpinBox;
     auto tsb = new HTextSpinBox;
-    tsb->setStringList(QStringList() << "a" << "d" << "b" << "dsad" << "csss");
+    tsb->setItems(QStringList() << "a" << "d" << "b" << "dsad" << "csss");
 //    auto mw = new HConfigWidget;
 //    auto mw = new HNavigationBar;
     auto mw = new HTaskPanel;

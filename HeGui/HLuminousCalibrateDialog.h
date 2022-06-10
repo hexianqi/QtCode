@@ -31,8 +31,8 @@ protected slots:
     void on_treeWidget_itemSelectionChanged();
     void on_pushButton_1_clicked();
     void on_checkBox_clicked(bool b);
-    void on_doubleSpinBox_valueChanged(double value);
     void handleAction(HActionType action);
+    void setOutputCurrent(double value);
     void setGears(int value);
     void setTest(bool b);
 

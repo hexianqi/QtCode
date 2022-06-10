@@ -75,14 +75,13 @@ unix {
 }
 
 include(builder.pri)
+include(calibrate.pri)
 include(collection.pri)
 include(chartView.pri)
 include(dialog.pri)
-include(elec.pri)
 include(handler.pri)
-include(luminous.pri)
-include(mainWindow.pri)
-include(spec.pri)
 include(testWidget.pri)
 include(testResult.pri)
 include(template.pri)
+include(widget.pri)
+include(window.pri)

@@ -41,7 +41,7 @@ void HClearLineEdit::paintEvent(QPaintEvent *event)
 void HClearLineEdit::init()
 {
     setButtonPosition(Position_None);
-    setIcon(QIcon(":/image/ww/closetab.png"));
+    setIcon(QIcon(":/Resources/ww/closetab.png"));
     setAutoRaise(true);
     setButtonFocusPolicy(Qt::NoFocus);
     connect(this, &HClearLineEdit::buttonClicked, this, [=] { if (!isReadOnly()) clear(); });

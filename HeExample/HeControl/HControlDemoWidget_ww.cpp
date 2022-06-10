@@ -3,25 +3,26 @@
 #include "HClearLineEdit.h"
 #include "HResetLineEdit.h"
 #include "HFileChooser.h"
-#include "HRichTextButton.h"
-#include "HColorButton.h"
-#include "HColorComboBox.h"
 #include "HLongSpinBox.h"
 #include "HTextSpinBox.h"
+#include "HRichTextButton.h"
 #include "HRichTextEdit.h"
+#include "HColorButton.h"
+#include "HColorComboBox.h"
 #include "HHueSatPicker.h"
 #include "HHueSatRadialPicker.h"
-#include "HNavigationSlider.h"
 #include "HConfigPanel.h"
 #include "HNavigationPanel.h"
 #include "HTaskPanel.h"
+#include "HNavigationSlider.h"
 #include "HTipWidget.h"
 #include "HLedWidget.h"
 #include "HNumPad.h"
 #include "HTwoColorIndicator.h"
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QListWidget>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSplitter>
 
 HE_BEGIN_NAMESPACE
 
@@ -29,39 +30,32 @@ void HControlDemoWidget::addWw()
 {
     addWwExtend();
     addWwPicker();
-    addWwNavigator();
     addWwConfigPanel();
     addWwNavigationPanel();
     addWwTaskPanel();
     addWwTipWidget();
+    addWwNavigator();
     addWwElse();
 }
 
 void HControlDemoWidget::addWwExtend()
 {
-    auto layout = new QVBoxLayout;
-    auto buttonLineEdit = new HButtonLineEdit;
-    auto fileChooser = new HFileChooser;
-    auto clearLineEdit = new HClearLineEdit;
-    auto resetLineEdit = new HResetLineEdit;
-    auto richTextButton = new HRichTextButton;
-    auto colorButton = new HColorButton;
-    auto colorComboBox = new HColorComboBox;
-    auto longSpinBox = new HLongSpinBox;
+    auto layout = new QFormLayout;
     auto textSpinBox = new HTextSpinBox;
-    auto richTextEdit = new HRichTextEdit;
-    textSpinBox->setStringList(QStringList() << "a" << "b" << "c" << "d");
+    textSpinBox->setItems(QStringList() << "a" << "b" << "c" << "d");
+    auto richTextButton = new HRichTextButton;
     richTextButton->setHtml(R"(<p align="center"><span style=" font-weight:600; color:#ff0000;">富文本按钮</span></p>)");
-    layout->addWidget(buttonLineEdit);
-    layout->addWidget(fileChooser);
-    layout->addWidget(clearLineEdit);
-    layout->addWidget(resetLineEdit);
-    layout->addWidget(richTextButton);
-    layout->addWidget(colorButton);
-    layout->addWidget(colorComboBox);
-    layout->addWidget(longSpinBox);
-    layout->addWidget(textSpinBox);
-    layout->addWidget(richTextEdit);
+    layout->setLabelAlignment(Qt::AlignRight);
+    layout->addRow(new QLabel(tr("按钮行编辑：")), new HButtonLineEdit);
+    layout->addRow(new QLabel(tr("清除行编辑：")), new HClearLineEdit);
+    layout->addRow(new QLabel(tr("重置行编辑：")), new HResetLineEdit);
+    layout->addRow(new QLabel(tr("文件行编辑：")), new HFileChooser);
+    layout->addRow(new QLabel(tr("长整型调节框：")), new HLongSpinBox);
+    layout->addRow(new QLabel(tr("文本调节框：")), textSpinBox);
+    layout->addRow(new QLabel(tr("颜色组合框：")), new HColorComboBox);
+    layout->addRow(new QLabel(tr("颜色按钮：")), new HColorButton);
+    layout->addRow(new QLabel(tr("富文本按钮：")), richTextButton);
+    layout->addRow(new QLabel(tr("富文本编辑：")), new HRichTextEdit);
     addTab(tr("ww"), tr("控件扩展"), layout);
 }
 
@@ -81,6 +75,33 @@ void HControlDemoWidget::addWwPicker()
     addTab(tr("ww"), tr("颜色拾取器"), layout);
 }
 
+void HControlDemoWidget::addWwConfigPanel()
+{
+    auto panel = new HConfigPanel;
+    panel->addWidget(new HButtonLineEdit, tr("行编辑器1"));
+    panel->addWidget(new HClearLineEdit, tr("行编辑器2"));
+    panel->addWidget(new HColorButton, tr("颜色按钮"));
+    addTab(tr("ww"), tr("配置面板"), panel);
+}
+
+void HControlDemoWidget::addWwNavigationPanel()
+{
+    auto panel = new HNavigationPanel;
+    panel->addWidget(new HButtonLineEdit, tr("行编辑器1"));
+    panel->addWidget(new HClearLineEdit, tr("行编辑器2"));
+    panel->addWidget(new HColorButton, tr("颜色按钮"));
+    addTab(tr("ww"), tr("导航面板"), panel);
+}
+
+void HControlDemoWidget::addWwTaskPanel()
+{
+    auto panel = new HTaskPanel;
+    panel->addWidget(new HHueSatPicker, tr("颜色拾取器"));
+    panel->addWidget(new HHueSatRadialPicker, tr("颜色拾取器2"));
+    panel->addWidget(new HRichTextEdit, tr("富文本编辑器"));
+    addTab(tr("ww"), tr("任务面板"), panel);
+}
+
 void HControlDemoWidget::addWwNavigator()
 {
     auto layout = new QVBoxLayout;
@@ -91,34 +112,7 @@ void HControlDemoWidget::addWwNavigator()
     nav->setListWidget(widget);
     layout->addWidget(widget);
     layout->addWidget(nav);
-    addTab(tr("ww"), tr("导航"), layout);
-}
-
-void HControlDemoWidget::addWwConfigPanel()
-{
-    auto w = new HConfigPanel;
-    w->addWidget(new HButtonLineEdit, tr("行编辑器1"));
-    w->addWidget(new HClearLineEdit, tr("行编辑器2"));
-    w->addWidget(new HColorButton, tr("颜色按钮"));
-    addTab(tr("ww"), tr("配置窗体"), w);
-}
-
-void HControlDemoWidget::addWwNavigationPanel()
-{
-    auto w = new HNavigationPanel;
-    w->addWidget(new HButtonLineEdit, tr("行编辑器1"));
-    w->addWidget(new HClearLineEdit, tr("行编辑器2"));
-    w->addWidget(new HColorButton, tr("颜色按钮"));
-    addTab(tr("ww"), tr("导航面板"), w);
-}
-
-void HControlDemoWidget::addWwTaskPanel()
-{
-    auto w = new HTaskPanel;
-    w->addWidget(new HHueSatPicker, tr("颜色拾取器"));
-    w->addWidget(new HHueSatRadialPicker, tr("颜色拾取器2"));
-    w->addWidget(new HRichTextEdit, tr("富文本编辑器"));
-    addTab(tr("ww"), tr("任务面板"), w);
+    addTab(tr("ww"), tr("导航滑块"), layout);
 }
 
 void HControlDemoWidget::addWwTipWidget()
@@ -129,12 +123,9 @@ void HControlDemoWidget::addWwTipWidget()
 void HControlDemoWidget::addWwElse()
 {
     auto layout = new QGridLayout;
-    auto led = new HLedWidget;
-    auto indicator = new HTwoColorIndicator;
-    auto num = new HNumPad;
-    layout->addWidget(led, 0, 0);
-    layout->addWidget(indicator, 0, 1);
-    layout->addWidget(num, 1, 0, 1, 2);
+    layout->addWidget(new HLedWidget, 0, 0);
+    layout->addWidget(new HTwoColorIndicator, 0, 1);
+    layout->addWidget(new HNumPad, 1, 0, 1, 2);
     addTab(tr("ww"), tr("其他"), layout);
 }
 

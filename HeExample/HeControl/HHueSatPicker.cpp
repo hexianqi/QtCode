@@ -191,7 +191,7 @@ void HHueSatPicker::paintEvent(QPaintEvent *)
 
 void HHueSatPicker::init()
 {
-    setWindowIcon(QIcon(":/image/ww/huesatpicker.png"));
+    setWindowIcon(QIcon(":/Resources/ww/huesatpicker.png"));
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 

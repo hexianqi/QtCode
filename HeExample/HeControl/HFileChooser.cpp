@@ -71,9 +71,9 @@ void HFileChooser::setAcceptMode(QFileDialog::AcceptMode value)
 
     d->acceptMode = value;
     if (d->acceptMode == QFileDialog::AcceptOpen)
-        setIcon(QIcon::fromTheme("document-open", QIcon(":/image/ww/fileopen.png")));
+        setIcon(QIcon::fromTheme("document-open", QIcon(":/Resources/ww/fileopen.png")));
     else
-        setIcon(QIcon::fromTheme("document-save", QIcon(":/image/ww/filesave.png")));
+        setIcon(QIcon::fromTheme("document-save", QIcon(":/Resources/ww/filesave.png")));
 }
 
 void HFileChooser::setUseNativeFileDialog(bool b)
@@ -183,7 +183,7 @@ void HFileChooser::init()
     connect(this, &HFileChooser::buttonClicked, this, &HFileChooser::chooseFile);
     connect(this, &HFileChooser::textChanged, this, &HFileChooser::handleTextChanged);
     connect(shortcut, &QShortcut::activated, this, [=] { d->completer->complete(); });
-    setWindowIcon(QIcon(":/image/ww/filechooser.png"));
+    setWindowIcon(QIcon(":/Resources/ww/filechooser.png"));
 }
 
 HE_END_NAMESPACE

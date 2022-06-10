@@ -30,8 +30,9 @@ public:
 
 public:
     void clear();
+    void addPoint(double x, double y);
     void addPoint(QPointF);
-    void replace(QVector<QPointF>);
+    void replace(QVector<QPointF>, bool rescale = true, int baseX = 1, int baseY = 1);
 
 protected:
     HDynamicChartView(HDynamicChartViewPrivate &p, QWidget *parent = nullptr);

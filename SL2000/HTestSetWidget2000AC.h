@@ -27,9 +27,7 @@ public:
     bool setTestState(bool b) override;
 
 protected slots:
-    void on_doubleSpinBox_1_valueChanged(double value);
     void on_checkBox_1_clicked(bool b);
-    void on_comboBox_1_currentIndexChanged(int value);
 
 protected:
     bool adjustIntegralTime();

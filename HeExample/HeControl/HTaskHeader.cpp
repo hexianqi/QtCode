@@ -59,9 +59,11 @@ void HTaskHeader::paintEvent(QPaintEvent *event)
 {
     QFrame::paintEvent(event);
     QPainter print(this);
-    d_ptr->icon.paint(&print, QRect(6, (height() - 32) / 2 , 32, 32), Qt::AlignCenter,
-                 isEnabled() ? QIcon::Normal : QIcon::Disabled,
-                 toggleButton()->isChecked() ? QIcon::On : QIcon::Off);
+    d_ptr->icon.paint(&print,
+                      QRect(6, (height() - 32) / 2 , 32, 32),
+                      Qt::AlignCenter,
+                      isEnabled() ? QIcon::Normal : QIcon::Disabled,
+                      toggleButton()->isChecked() ? QIcon::On : QIcon::Off);
 }
 
 void HTaskHeader::init()

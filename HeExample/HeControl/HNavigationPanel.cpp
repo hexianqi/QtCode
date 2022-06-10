@@ -63,13 +63,13 @@ void HNavigationPanel::insertWidget(int index, QWidget *widget, const QIcon &ico
     Q_D(HNavigationPanel);
     HAbstractMultiPanel::insertWidget(index, widget, icon, label);
 
-    auto b = new QPushButton(widget->windowIcon(), widget->windowTitle());
-    b->updateGeometry();
-    connect(b, &QPushButton::clicked, this, &HNavigationPanel::handleButtonClicked);
+    auto button = new QPushButton(widget->windowIcon(), widget->windowTitle());
+    button->updateGeometry();
+    connect(button, &QPushButton::clicked, this, &HNavigationPanel::handleButtonClicked);
 
     d->stack->insertWidget(index, widget);
-    d->buttons.insert(index, b);
-    d->buttonLayout->insertWidget(index, b);
+    d->buttons.insert(index, button);
+    d->buttonLayout->insertWidget(index, button);
     d->buttonLayout->parentWidget()->setMaximumSize(16777215, d->buttonLayout->parentWidget()->sizeHint().height());
     if (count() == 1)
         setCurrentIndex(0);
@@ -213,7 +213,7 @@ void HNavigationPanel::init()
     layout->addWidget(d->topButton);
     layout->addWidget(splitter);
     layout->addWidget(frame);
-    setWindowIcon(QIcon(":/image/ww/navigationbar.png"));
+    setWindowIcon(QIcon(":/Resources/ww/navigationbar.png"));
 }
 
 void HNavigationPanel::handleButtonClicked()

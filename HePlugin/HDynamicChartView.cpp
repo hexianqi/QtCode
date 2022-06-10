@@ -46,6 +46,11 @@ void HDynamicChartView::clear()
     d->axisY->setRange(0, 1);
 }
 
+void HDynamicChartView::addPoint(double x, double y)
+{
+    addPoint(QPointF(x, y));
+}
+
 void HDynamicChartView::addPoint(QPointF point)
 {
     Q_D(HDynamicChartView);
@@ -70,28 +75,34 @@ void HDynamicChartView::addPoint(QPointF point)
     }
 }
 
-void HDynamicChartView::replace(QVector<QPointF> points)
+void HDynamicChartView::replace(QVector<QPointF> points, bool rescale, int baseX, int baseY)
 {
     Q_D(HDynamicChartView);
-    auto x1 = 0.0;
-    auto x2 = 1.0;
-    auto y1 = 0.0;
-    auto y2 = 1.0;
-    for (auto p : points)
+    if (rescale && !points.isEmpty())
     {
-        if (p.x() < x1)
-            x1 = p.x();
-        if (p.x() > x2)
-            x2 = p.x();
-        if (p.y() < y1)
-            y1 = p.y();
-        if (p.y() > y2)
-            y2 = p.y();
+        auto x0 = pow(10.0, baseX);
+        auto x1 = points.first().x() - x0 * 0.05;
+        auto x2 = points.first().x() + x0 * 0.05;
+        auto y0 = pow(10.0, baseY);
+        auto y1 = points.first().y() - y0 * 0.05;
+        auto y2 = points.first().y() + y0 * 0.05;
+        for (auto p : points)
+        {
+            if (p.x() < x1)
+                x1 = p.x();
+            if (p.x() > x2)
+                x2 = p.x();
+            if (p.y() < y1)
+                y1 = p.y();
+            if (p.y() > y2)
+                y2 = p.y();
+        }
+
+        d->axisX->setRange(x0 * floor(x1 / x0) , x0 * ceil(x2 / x0));
+        d->axisY->setRange(y0 * floor(y1 / y0) , y0 * ceil(y2 / y0));
     }
     d->lineSeries->replace(points);
     d->scatterSeries->replace(points);
-    d->axisX->setRange(10 * floor(x1 / 10) , 10 * ceil(x2 / 10));
-    d->axisY->setRange(10 * floor(y1 / 10) , 10 * ceil(y2 / 10));
 }
 
 void HDynamicChartView::init()

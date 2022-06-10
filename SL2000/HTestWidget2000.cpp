@@ -26,7 +26,7 @@ QString HTestWidget2000::typeName()
 void HTestWidget2000::createWidget()
 {
      Q_D(HTestWidget2000);
+     HSpecTestWidget::createWidget();
      d->testSetWidget = new HTestSetWidget2000;
      d->detailWidget = new HDetailWidget2000;
-     HSpecTestWidget::createWidget();
 }

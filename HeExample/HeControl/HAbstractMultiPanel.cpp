@@ -95,12 +95,12 @@ bool HAbstractMultiPanel::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::WindowTitleChange || event->type() == QEvent::WindowIconChange)
     {
-        auto w = qobject_cast<QWidget *>(object);
-        auto i = indexOf(w);
+        auto widget = qobject_cast<QWidget *>(object);
+        auto index = indexOf(widget);
         if (event->type() == QEvent::WindowTitleChange)
-            setWidgetTitle(i, w->windowTitle());
+            setWidgetTitle(index, widget->windowTitle());
         if (event->type() == QEvent::WindowIconChange)
-            setWidgetIcon(i, w->windowIcon());
+            setWidgetIcon(index, widget->windowIcon());
     }
     return QWidget::eventFilter(object, event);
 }

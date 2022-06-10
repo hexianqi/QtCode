@@ -187,7 +187,7 @@ void HButtonLineEdit::init()
     d_ptr->button->setCursor(Qt::ArrowCursor);
     connect(d_ptr->button, &QToolButton::clicked, this, &HButtonLineEdit::buttonClicked);
     setButtonPosition(Position_RightOutside);
-    setWindowIcon(QIcon(":/image/ww/buttonlineedit.png"));
+    setWindowIcon(QIcon(":/Resources/ww/buttonlineedit.png"));
 }
 
 HE_END_NAMESPACE

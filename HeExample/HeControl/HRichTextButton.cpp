@@ -115,7 +115,7 @@ void HRichTextButton::paintEvent(QPaintEvent *)
     auto r = style()->subElementRect(QStyle::SE_PushButtonContents, &option, this);
 
     painter.translate(r.topLeft() - rect().topLeft());
-    if(r.height() > h)
+    if (r.height() > h)
         painter.translate(0, (r.height() - h) / 2.0);
     if (isDown() || isChecked())
     {

@@ -9,8 +9,9 @@ HDecoratorDialog::HDecoratorDialog(IMainWindow *parent) :
     QDialog(parent),
     d_ptr(new HDecoratorDialogPrivate)
 {
-    d_ptr->mainWindow = parent;
     d_ptr->layout = new QGridLayout(this);
+    d_ptr->mainWindow = parent;
+    d_ptr->mainWindow->blockTestWidget(true);
 }
 
 HDecoratorDialog::~HDecoratorDialog() = default;
@@ -24,12 +25,16 @@ int HDecoratorDialog::run(ITestWidget *widget)
     setWindowTitle(widget->windowTitle());
     setWindowIcon(widget->windowIcon());
     d_ptr->layout->addWidget(widget);
-    d_ptr->mainWindow->blockTestWidget(true);
     d_ptr->widget->start();
-    auto result = exec();
-    d_ptr->widget->stop();
+    return exec();
+}
+
+void HDecoratorDialog::done(int result)
+{
+    if (d_ptr->widget)
+        d_ptr->widget->stop();
     d_ptr->mainWindow->blockTestWidget(false);
-    return result;
+    QDialog::done(result);
 }
 
 HE_END_NAMESPACE

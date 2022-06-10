@@ -51,7 +51,7 @@ public:
 
 public:
     QStringList supplement(QStringList) override;
-    void postProcess(ITestData *, QStringList optional, QString keyQuality) override;
+    void processAll(ITestData *, QStringList optional, QString keyQuality) override;
     bool processChromatism(ITestData *) override;
     bool processAdjust(ITestData *, QStringList optional) override;
     bool processGrade(ITestData *, QStringList optional) override;

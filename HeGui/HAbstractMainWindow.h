@@ -24,9 +24,7 @@ public:
     void setAuthority(int) override;
     QAction *insertMenu(QMenu *) override;
     bool blockTestWidget(bool block) override;
-    bool blockAndRun(QDialog *) override;
-    void blockAndRun(QWidget *) override;
-    void blockAndConnect(QWidget *) override;
+    QVariant blockAndRun(std::function<QVariant(QVariantMap)> func, QVariantMap param = QVariantMap()) override;
 
 protected:
     HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HConstructionCallHelper &helper, QWidget *parent = nullptr);

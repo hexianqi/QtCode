@@ -1,6 +1,4 @@
 HEADERS += \
-    $$PWD/HPropertyBrowser.h \
-    $$PWD/HPropertyBrowser_p.h \
     $$PWD/HShadeWidget.h \
     $$PWD/HShadeWidget_p.h \
     $$PWD/HLineEditGroup.h \
@@ -19,7 +17,6 @@ HEADERS += \
     $$PWD/HTimeTooltip_p.h
 
 SOURCES += \
-    $$PWD/HPropertyBrowser.cpp \
     $$PWD/HShadeWidget.cpp \
     $$PWD/HLineEditGroup.cpp \
     $$PWD/HGroupButton.cpp \

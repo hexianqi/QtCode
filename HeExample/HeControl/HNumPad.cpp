@@ -43,39 +43,39 @@ void HNumPad::animateClick(const QString &button, int msec)
 
 void HNumPad::init()
 {
-    auto g = new QButtonGroup(this);
-    for (int i = 0; i < 9; i++)
+    auto group = new QButtonGroup(this);
+    for (int i = 1; i < 10; i++)
     {
-        auto b = new QToolButton;
-        b->setObjectName(QString("b%1").arg(i+1));
-        b->setText(QString::number(i + 1));
-        g->addButton(b, i + 1);
+        auto button = new QToolButton;
+        button->setObjectName(QString("b%1").arg(i));
+        button->setText(QString::number(i));
+        group->addButton(button, i);
     }
-    auto a = new QToolButton;
-    a->setObjectName("bAster");
-    a->setText("*");
-    g->addButton(a, 10);
-    auto z = new QToolButton;
-    z->setObjectName("b0");
-    z->setText("0");
-    g->addButton(z, 0);
-    auto h = new QToolButton;
-    h->setText("#");
-    h->setObjectName("bHash");
-    g->addButton(h, 11);
+    auto aster = new QToolButton;
+    aster->setObjectName("bAster");
+    aster->setText("*");
+    group->addButton(aster, 10);
+    auto zero = new QToolButton;
+    zero->setObjectName("b0");
+    zero->setText("0");
+    group->addButton(zero, 0);
+    auto hash = new QToolButton;
+    hash->setText("#");
+    hash->setObjectName("bHash");
+    group->addButton(hash, 11);
 
-    auto l = new QGridLayout(this);
-    l->setSpacing(2);
-    l->setMargin(2);
+    auto layout = new QGridLayout(this);
+    layout->setSpacing(2);
+    layout->setMargin(2);
 
-    for (int i = 0; i < g->buttons().count(); i++)
+    for (int i = 0; i < group->buttons().count(); i++)
     {
-        auto b = g->buttons().at(i);
-        b->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-        l->addWidget(b, i / 3, i % 3);
+        auto button = group->buttons().at(i);
+        button->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        layout->addWidget(button, i / 3, i % 3);
     }
-    connect(g, SIGNAL(buttonClicked(int)), SLOT(handleClicked(int)));
-    setWindowIcon(QIcon(":/image/ww/numpad.png"));
+    connect(group, SIGNAL(buttonClicked(int)), SLOT(handleClicked(int)));
+    setWindowIcon(QIcon(":/Resources/ww/numpad.png"));
 }
 
 void HNumPad::handleClicked(int id)

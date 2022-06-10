@@ -82,7 +82,7 @@ public:
 public:
     // 测试数据后续处理
     virtual QStringList supplement(QStringList) = 0;
-    virtual void postProcess(ITestData *, QStringList optional, QString keyQuality) = 0;
+    virtual void processAll(ITestData *, QStringList optional, QString keyQuality) = 0;
     virtual bool processChromatism(ITestData *) = 0;
     virtual bool processAdjust(ITestData *, QStringList optional) = 0;
     virtual bool processGrade(ITestData *, QStringList optional) = 0;

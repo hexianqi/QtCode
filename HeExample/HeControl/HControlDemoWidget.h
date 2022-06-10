@@ -32,6 +32,7 @@ private:
     void addLiuDianWu();
     void addWw();
     void addDemo();
+    void addLayout();
     void addTool();
     void addMedia();
     void addElse();
@@ -44,7 +45,6 @@ private:
     void addIPAddress();
     void addLightButton();
     void addNavButton();
-    void addChineseTranslate();
 
     // LiuDianWu
     void addCalendar();
@@ -53,12 +53,22 @@ private:
     // ww
     void addWwExtend();
     void addWwPicker();
-    void addWwNavigator();
     void addWwConfigPanel();
     void addWwNavigationPanel();
     void addWwTaskPanel();
     void addWwTipWidget();
+    void addWwNavigator();
     void addWwElse();
+
+    // Demo
+
+    // Layout
+    void addBorderLayout();
+    void addCardLayout();
+    void addFlowLayout();
+
+    // Tool
+    void addChineseTranslate();
 
     // media
     void addFFPlayer();

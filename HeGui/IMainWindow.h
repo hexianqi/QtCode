@@ -5,6 +5,8 @@
 #pragma once
 
 #include "HNamespace.h"
+#include <functional>
+#include <QtCore/QVariant>
 #include <QtWidgets/QMainWindow>
 
 HE_BEGIN_NAMESPACE
@@ -24,10 +26,7 @@ public:
     // 阻塞测试窗体
     virtual bool blockTestWidget(bool block) = 0;
     // 阻塞并运行
-    virtual bool blockAndRun(QDialog *) = 0;
-    virtual void blockAndRun(QWidget *) = 0;
-    // 阻塞并连接销毁
-    virtual void blockAndConnect(QWidget *) = 0;
+    virtual QVariant blockAndRun(std::function<QVariant(QVariantMap)> func, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_END_NAMESPACE

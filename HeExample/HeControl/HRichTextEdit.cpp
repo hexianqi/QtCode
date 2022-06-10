@@ -73,8 +73,8 @@ void HRichTextEdit::setUnderline(bool b)
 
 void HRichTextEdit::setAlignment(QAction *p)
 {
-    auto cursor = textCursor();
     QTextBlockFormat format;
+    auto cursor = textCursor();
     auto v = static_cast<Qt::Alignment>(p->data().toInt());
     format.setAlignment(v);
     cursor.mergeBlockFormat(format);
@@ -220,22 +220,22 @@ void HRichTextEdit::init()
     d_ptr->sizeComboBox = new QComboBox(this);
     for (auto s : QFontDatabase::standardSizes())
         d_ptr->sizeComboBox->addItem(QString::number(s));
-    d_ptr->boldAction = new QAction(QIcon::fromTheme("format-text-bold", QIcon(":/image/ww/textbold.png")), tr("粗体"), this);
+    d_ptr->boldAction = new QAction(QIcon::fromTheme("format-text-bold", QIcon(":/Resources/ww/textbold.png")), tr("粗体"), this);
     d_ptr->boldAction->setCheckable(true);
-    d_ptr->italicAction = new QAction(QIcon::fromTheme("format-text-italic", QIcon(":/image/ww/textitalic.png")), tr("斜体"), this);
+    d_ptr->italicAction = new QAction(QIcon::fromTheme("format-text-italic", QIcon(":/Resources/ww/textitalic.png")), tr("斜体"), this);
     d_ptr->italicAction->setCheckable(true);
-    d_ptr->underlineAction = new QAction(QIcon::fromTheme("format-text-underline", QIcon(":/image/ww/textunder.png")), tr("下划线"), this);
+    d_ptr->underlineAction = new QAction(QIcon::fromTheme("format-text-underline", QIcon(":/Resources/ww/textunder.png")), tr("下划线"), this);
     d_ptr->underlineAction->setCheckable(true);
-    d_ptr->alignLeftAction = new QAction(QIcon::fromTheme("format-justify-left", QIcon(":/image/ww/textleft.png")), tr("左对齐"), this);
+    d_ptr->alignLeftAction = new QAction(QIcon::fromTheme("format-justify-left", QIcon(":/Resources/ww/textleft.png")), tr("左对齐"), this);
     d_ptr->alignLeftAction->setCheckable(true);
     d_ptr->alignLeftAction->setData(Qt::AlignLeft);
-    d_ptr->alignCenterAction = new QAction(QIcon::fromTheme("format-justify-center", QIcon(":/image/ww/textcenter.png")), tr("中央对齐"), this);
+    d_ptr->alignCenterAction = new QAction(QIcon::fromTheme("format-justify-center", QIcon(":/Resources/ww/textcenter.png")), tr("中央对齐"), this);
     d_ptr->alignCenterAction->setCheckable(true);
     d_ptr->alignCenterAction->setData(Qt::AlignCenter);
-    d_ptr->alignRightAction = new QAction(QIcon::fromTheme("format-justify-right", QIcon(":/image/ww/textright.png")), tr("右对齐"), this);
+    d_ptr->alignRightAction = new QAction(QIcon::fromTheme("format-justify-right", QIcon(":/Resources/ww/textright.png")), tr("右对齐"), this);
     d_ptr->alignRightAction->setCheckable(true);
     d_ptr->alignRightAction->setData(Qt::AlignRight);
-    d_ptr->alignJustifyAction = new QAction(QIcon::fromTheme("format-justify-fill", QIcon(":/image/ww/textjustify.png")), tr("自动调整"), this);
+    d_ptr->alignJustifyAction = new QAction(QIcon::fromTheme("format-justify-fill", QIcon(":/Resources/ww/textjustify.png")), tr("自动调整"), this);
     d_ptr->alignJustifyAction->setCheckable(true);
     d_ptr->alignJustifyAction->setData(Qt::AlignJustify);
     auto group = new QActionGroup(this);
@@ -247,7 +247,7 @@ void HRichTextEdit::init()
     d_ptr->colorButton->setShowName(false);
     d_ptr->colorButton->setFlat(true);
     d_ptr->colorButton->setFocusPolicy(Qt::NoFocus);
-    d_ptr->listAtion = new QAction(QIcon::fromTheme("format-list-unordered", QIcon(":/image/ww/simplifyrichtext.png")), tr("列表"), this);
+    d_ptr->listAtion = new QAction(QIcon::fromTheme("format-list-unordered", QIcon(":/Resources/ww/simplifyrichtext.png")), tr("列表"), this);
     d_ptr->listAtion->setCheckable(true);
 
     d_ptr->fontAction = d_ptr->toolBar->addWidget(d_ptr->fontComboBox);
@@ -270,7 +270,7 @@ void HRichTextEdit::init()
     setContentsMargins(0, d_ptr->toolBar->sizeHint().height(), 0, 0);
     connect(this, &HRichTextEdit::currentCharFormatChanged, this, &HRichTextEdit::updateActions);
     connect(this, &HRichTextEdit::cursorPositionChanged, this, &HRichTextEdit::updateActions);
-    connect(this , &HRichTextEdit::textChanged, this, &HRichTextEdit::updateActions);
+    connect(this, &HRichTextEdit::textChanged, this, &HRichTextEdit::updateActions);
     connect(d_ptr->fontComboBox, QOverload<int>::of(&QFontComboBox::activated), this, &HRichTextEdit::setFontFocus);
     connect(d_ptr->sizeComboBox, QOverload<int>::of(&QComboBox::activated), this, &HRichTextEdit::setFontFocus);
     connect(d_ptr->boldAction, &QAction::triggered, this, &HRichTextEdit::setBold);

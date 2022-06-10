@@ -297,7 +297,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_QUERY_MOTOR_STATE,             tr("查询电机状态"));
     // 测试操作
     hashActionComment.insert(ACT_SINGLE_TEST,                   tr("单次测试"));
-    hashActionComment.insert(ACT_GET_SPECTRUM_ELEC,             tr("获取光谱&电数据"));
+    hashActionComment.insert(ACT_INTEGRATE_TEST,                tr("综合测试"));
     // 非设备操作
     hashActionComment.insert(ACT_QUERY_NEXT_TEST,               tr("查询下一测试"));
     // 重置操作

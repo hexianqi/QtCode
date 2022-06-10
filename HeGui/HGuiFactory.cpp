@@ -26,8 +26,9 @@
 #include "HAdjust2SelectHandler.h"
 #include "HSqlBrowserHandler.h"
 #include "HProductEditHandler.h"
-#include "HIVTestHandler.h"
 #include "HAngleTestHandler.h"
+#include "HIVTestHandler.h"
+#include "HTrendTestHandler.h"
 #include "HImportCurveHandler.h"
 #include "HExportCurveHandler.h"
 #include "HImportDeviceHandler.h"
@@ -140,8 +141,9 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HAdjust2SelectHandler>("HAdjust2SelectHandler");
     HObjectFactory::registerClass<HProductEditHandler>("HProductEditHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
-    HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
     HObjectFactory::registerClass<HAngleTestHandler>("HAngleTestHandler");
+    HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");
+    HObjectFactory::registerClass<HTrendTestHandler>("HTrendTestHandler");
     HObjectFactory::registerClass<HImportDeviceHandler>("HImportDeviceHandler");
     HObjectFactory::registerClass<HExportDeviceHandler>("HExportDeviceHandler");
     HObjectFactory::registerClass<HImportCurveHandler>("HImportCurveHandler");
@@ -155,7 +157,6 @@ void HGuiFactory::registerClass()
     // 文本导出模板
     HObjectFactory::registerClass<HAngleTextExportTemplate>("HAngleTextExportTemplate");
     HObjectFactory::registerClass<HSpecTextExportTemplate>("HSpecTextExportTemplate");
-
 }
 
 HE_END_NAMESPACE

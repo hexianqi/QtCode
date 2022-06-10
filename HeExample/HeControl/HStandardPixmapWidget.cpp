@@ -17,6 +17,7 @@ void HStandardPixmapWidget::init()
     {
         auto pixmap = this->style()->standardPixmap(static_cast<QStyle::StandardPixmap>(i));
         auto label = new QLabel;
+        label->setAlignment(Qt::AlignCenter);
         label->setPixmap(pixmap);
         layout->addWidget(label, i / 7, i % 7);
     }

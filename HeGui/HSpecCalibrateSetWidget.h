@@ -33,7 +33,6 @@ public:
 
 protected slots:
     void setAutoIntegralTime(bool b);
-    void on_doubleSpinBox_01_valueChanged(double value);
     void on_checkBox_01_clicked(bool b);
     void on_checkBox_02_clicked(bool b);
     void on_radioButton_01_clicked();

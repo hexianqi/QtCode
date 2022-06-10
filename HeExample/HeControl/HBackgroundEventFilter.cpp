@@ -7,7 +7,11 @@ HE_BEGIN_NAMESPACE
 
 HBackgroundEventFilterPrivate::HBackgroundEventFilterPrivate()
 {
-    imageFile << QString(":/image/background1.png") << QString(":/image/background2.png") << QString(":/image/background3.png") << QString(":/image/background4.png") << QString(":/image/background5.png");
+    imageFile << QString(":/Resources/image/background1.png")
+              << QString(":/Resources/image/background2.png")
+              << QString(":/Resources/image/background3.png")
+              << QString(":/Resources/image/background4.png")
+              << QString(":/Resources/image/background5.png");
 }
 
 HBackgroundEventFilter::HBackgroundEventFilter(QObject *parent) :

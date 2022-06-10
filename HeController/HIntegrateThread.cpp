@@ -12,7 +12,7 @@ HE_BEGIN_NAMESPACE
 HIntegrateThreadPrivate::HIntegrateThreadPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
-                  << ACT_GET_SPECTRUM_ELEC;
+                  << ACT_INTEGRATE_TEST;
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     protocolSpec = protocolCollection->value("Spec");
     protocolElse = protocolCollection->value("Else");
@@ -57,7 +57,7 @@ bool HIntegrateThread::handleAction(HActionType action)
         d->strategyElec->handle(ACT_SET_SOURCE_MODE);
         handleData();
         return true;
-    case ACT_GET_SPECTRUM_ELEC:
+    case ACT_INTEGRATE_TEST:
         if (d->testData->data("[预配置测试]").toBool())
         {
             d->testData->setData("[电源模式]", 2);
