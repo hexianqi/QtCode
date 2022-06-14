@@ -1,10 +1,9 @@
 #include "HPropertyBrowser_p.h"
 #include "qttreepropertybrowser.h"
 #include "qtvariantproperty.h"
-#include <QtWidgets/QVBoxLayout>
 #include <QtCore/QMetaProperty>
+#include <QtWidgets/QVBoxLayout>
 
-HE_BEGIN_NAMESPACE
 
 bool isSubValue(int value, int subValue)
 {
@@ -334,5 +333,3 @@ void HPropertyBrowser::handleValueChanged(QtProperty *property, const QVariant &
 
     d_ptr->updateClassProperties(metaObject, true);
 }
-
-HE_END_NAMESPACE

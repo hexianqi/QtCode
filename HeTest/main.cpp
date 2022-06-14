@@ -53,11 +53,6 @@ int main(int argc, char *argv[])
 //    HControlDemoWidget dw;
 //    dw.show();
 
-//    HBreakoutWidget ow;
-//    ow.move(50, 300);
-//    ow.resize(800, 600);
-//    ow.show();
-
    MainWindow window;
 //    window.setCentralWidget(&videoWidget);
     window.resize(800, 600);

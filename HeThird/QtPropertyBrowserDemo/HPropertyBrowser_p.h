@@ -7,8 +7,6 @@ class QtTreePropertyBrowser;
 class QtVariantProperty;
 class QtVariantPropertyManager;
 
-HE_BEGIN_NAMESPACE
-
 class HPropertyBrowserPrivate
 {
 public:
@@ -27,5 +25,3 @@ public:
     QtVariantPropertyManager *manager = nullptr;
     QtVariantPropertyManager *readOnlyManager = nullptr;
 };
-
-HE_END_NAMESPACE

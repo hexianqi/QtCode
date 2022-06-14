@@ -26,7 +26,7 @@ void HDetailWidget1000A::initHash()
     d->lineEdits.insert("[实测电压]",          ui->lineEdit_051);
     d->lineEdits.insert("[实测电流]",          ui->lineEdit_052);
     d->lineEdits.insert("[反向漏流]",          ui->lineEdit_053);
-    d->lineEdits.insert("[电功率]",            ui->lineEdit_051);
+    d->lineEdits.insert("[电功率]",            ui->lineEdit_054);
     d->lineEdits.insert("[光强度]",            ui->lineEdit_004);
     d->lineEdits.insert("[光通量]",            ui->lineEdit_014);
     d->lineEdits.insert("[光功率]",            ui->lineEdit_024);
@@ -47,7 +47,7 @@ void HDetailWidget1000A::initHash()
     d->lineEdits.insert("[显色指数R9]",        ui->lineEdit_042);
     d->lineEdits.insert("[显色指数Rx]",        ui->lineEdit_043);
     d->lineEdits.insert("[TM30_Rf]",           ui->lineEdit_081);
-    d->lineEdits.insert("[TM30_Rg]",           ui->lineEdit_081);
+    d->lineEdits.insert("[TM30_Rg]",           ui->lineEdit_082);
     d->lineEdits.insert("[光量子(380-780)]",   ui->lineEdit_061);
     d->lineEdits.insert("[光量子(400-700)]",   ui->lineEdit_062);
     d->lineEdits.insert("[光量子(700-800)]",   ui->lineEdit_063);

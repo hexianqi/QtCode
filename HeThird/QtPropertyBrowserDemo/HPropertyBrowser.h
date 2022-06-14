@@ -5,13 +5,9 @@
 
 #pragma once
 
-#include "HNamespace.h"
 #include <QtWidgets/QWidget>
 
 class QtProperty;
-
-HE_BEGIN_NAMESPACE
-
 class HPropertyBrowserPrivate;
 
 class HPropertyBrowser : public QWidget
@@ -41,5 +37,3 @@ private:
     void build();
     void handleValueChanged(QtProperty *, const QVariant &);
 };
-
-HE_END_NAMESPACE
