@@ -36,7 +36,7 @@ public:
     QJsonObject toJsonObject();
 
 protected:
-    HDictionaryPrivate d;
+    QScopedPointer<HDictionaryPrivate> d_ptr;
 
 protected:
     friend QDebug operator<<(QDebug, const HDictionary &);

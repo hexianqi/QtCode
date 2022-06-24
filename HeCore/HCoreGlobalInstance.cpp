@@ -108,6 +108,15 @@ QStringList HCore::toString(const QString &type, QVector<double> value, char f)
     return list;
 }
 
+QStringList HCore::toString(const QString &type, QList<double> value, char f)
+{
+    auto info = toFormatInfo(type);
+    QStringList list;
+    for (auto v : value)
+        list << QString().setNum(v, f, info->decimals());
+    return list;
+}
+
 QString HCore::toUnit(const QString &type)
 {
     return toFormatInfo(type)->unit(false);
@@ -708,7 +717,7 @@ void HCoreGlobalInstance::initDataGroup()
     hashDataGroup.insert("|光合信息|",      QStringList() << "[光量子(380-780)]" << "[光量子(400-700)]" << "[光量子(700-800)]"
                                                           << "[光合光量子通量]" << "[光合有效辐射通量]" << "[光合光子通量效率]"
                                                           << "[荧光效能]" << "[荧光蓝光比]");
-    hashDataGroup.insert("|色容差信息|",    QStringList() << "[色容差标准]" << "[色容差]");
+    hashDataGroup.insert("|色容差信息|",    QStringList() << "[色容差]" << "[色容差详情]");
     hashDataGroup.insert("|色容差信息2|",   QStringList() << "[色容差]");
     hashDataGroup.insert("|TM30信息|",      QStringList() << "[TM30_Rf]" << "[TM30_Rg]" << "[TM30_Rfi]"
                                                           << "[TM30_hj_Rf]" << "[TM30_hj_Rcs]" << "[TM30_hj_Rhs]"

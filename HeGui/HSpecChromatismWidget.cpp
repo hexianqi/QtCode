@@ -50,7 +50,7 @@ void HSpecChromatismWidget::initMenuShow()
 
 void HSpecChromatismWidget::refreshWidget()
 {
-    d_ptr->chromatismWidget->setData(d_ptr->testData->data("[色容差标准]").toMap());
+    d_ptr->chromatismWidget->setData(d_ptr->testData->data("[色容差详情]").toMap());
 }
 
 void HSpecChromatismWidget::showChromatism(QAction *p)

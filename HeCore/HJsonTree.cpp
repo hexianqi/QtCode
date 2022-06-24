@@ -1,4 +1,5 @@
 #include "HJsonTree_p.h"
+#include "HDumpTree.h"
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QtCore/QJsonArray>
@@ -243,9 +244,9 @@ QString HJsonTree::toString(bool compact) const
     return QJsonDocument(d_ptr->root).toJson(compact ? QJsonDocument::Compact : QJsonDocument::Indented);
 }
 
-QDebug operator<<(QDebug dbg, const HJsonTree &)
+QDebug operator<<(QDebug dbg, const HJsonTree &s)
 {
-//    HDumpTree::dump(s.d.root, "root");
+    HDumpTree::dump(QJsonValue(s.d_ptr->root), "root");
     return dbg.maybeSpace();
 }
 

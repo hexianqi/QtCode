@@ -63,10 +63,10 @@ double HChromatismCollection::calcSdcm(double tc, QPointF xy)
     return i == nullptr ? 0 : i->calcSdcm(tc, xy);
 }
 
-QVariantMap HChromatismCollection::toMap()
+QVariantMap HChromatismCollection::detail()
 {
     auto i = item(useIndex());
-    return i == nullptr ? QVariantMap() : i->toMap();
+    return i == nullptr ? QVariantMap() : i->detail();
 }
 
 HE_END_NAMESPACE

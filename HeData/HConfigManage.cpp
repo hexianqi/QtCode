@@ -390,7 +390,7 @@ void HConfigManage::processAll(ITestData *test, QStringList optional, QString ke
 //    if (d_ptr->chromatism != nullptr)
 //    {
 //        test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
-//        test->setData("[色容差标准]", d_ptr->chromatism->toMap());
+//        test->setData("[色容差详情]", d_ptr->chromatism->toMap());
 ////        auto std = d_ptr->chromatism->toMap();
 ////        test->setData("[色容差标准Json]", HCore::toJson(std));
 //    }
@@ -420,9 +420,7 @@ bool HConfigManage::processChromatism(ITestData *test)
         return false;
 
     test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
-    test->setData("[色容差标准]", d_ptr->chromatism->toMap());
-//    auto std = d_ptr->chromatism->toMap();
-//    test->setData("[色容差标准Json]", HCore::toJson(std));
+    test->setData("[色容差详情]", d_ptr->chromatism->detail());
     return true;
 }
 

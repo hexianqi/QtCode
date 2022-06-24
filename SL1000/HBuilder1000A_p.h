@@ -7,9 +7,6 @@ class HBuilder1000APrivate : public HAbstractBuilderPrivate
 {
 public:
     HBuilder1000APrivate();
-
-public:
-    QStringList sqlField;
 };
 
 

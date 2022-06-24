@@ -8,13 +8,13 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class HMainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit HMainWindow(QWidget *parent = nullptr);
+    ~HMainWindow();
 
 //    void paintEvent(QPaintEvent *);
 

@@ -49,7 +49,7 @@ void HSpecChromatismChartView::initMenuShow()
 void HSpecChromatismChartView::refreshWidget()
 {
     Q_D(HSpecChromatismChartView);
-    setData(d->testData->data("[色容差标准]").toMap());
+    setData(d->testData->data("[色容差详情]").toMap());
 }
 
 void HSpecChromatismChartView::init()

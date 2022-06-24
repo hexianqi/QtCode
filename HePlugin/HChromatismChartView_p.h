@@ -4,12 +4,26 @@
 #include "HZoomChartView_p.h"
 
 class QGraphicsSimpleTextItem;
+class HSingleAxisChart;
+
+QT_CHARTS_BEGIN_NAMESPACE
+class QValueAxis;
+class QLineSeries;
+class QScatterSeries;
+QT_CHARTS_END_NAMESPACE
 
 class HChromatismChartViewPrivate : public HZoomChartViewPrivate
 {
 public:
-    HChromatismChart *chart;
-    QGraphicsSimpleTextItem *pointFocusItem;
+    QGraphicsSimpleTextItem *pointFocusItem = nullptr;
+
+public:
+    HSingleAxisChart *chart = nullptr;
+    QValueAxis *axisX = nullptr;
+    QValueAxis *axisY = nullptr;
+    QLineSeries *ellipse = nullptr;
+    QScatterSeries *focus = nullptr;
+    QScatterSeries *center = nullptr;
 
 public:
     QPointF pointCenter;

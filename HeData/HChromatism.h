@@ -27,7 +27,7 @@ public:
 
 public:
     double calcSdcm(double tc, QPointF xy) override;
-    QVariantMap toMap() override;
+    QVariantMap detail() override;
 
 protected:
     HChromatism(HChromatismPrivate &);

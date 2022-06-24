@@ -155,7 +155,7 @@ void HBuilder2000::buildDatabase()
     db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
     HSqlHelper::updateSpecTable(db);
 
-    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|光度信息4|" << "|光谱信息2|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|光度信息4|" << "|光谱信息2|" << "|色容差信息|" << "|光合信息|" << "|TM30信息|";
     auto field = QStringList() << "ID" << HSql::membership(group);
     auto model = createSqlTableModel("Spec", field);
     db->insertTableModel(model);
@@ -184,6 +184,7 @@ void HBuilder2000::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("数据打印配置(&P)..."), "HPrintSettingHandler"));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     d->mainWindow->insertMenu(calibrate);
     d->mainWindow->insertMenu(grade);

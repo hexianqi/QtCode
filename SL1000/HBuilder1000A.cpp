@@ -235,7 +235,7 @@ void HBuilder1000A::buildDatabase()
     HSqlHelper::updateSpecTable(db);
     // Spec
     {
-        auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息|";
+        auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息|" << "|光合信息|" << "|TM30信息|";
         auto field = QStringList() << "ID" << HSql::membership(group);
         auto model = createSqlTableModel("Spec", field);
         db->insertTableModel(model);
@@ -252,14 +252,17 @@ void HBuilder1000A::buildDatabase()
 void HBuilder1000A::buildMenu()
 {
     Q_D(HBuilder1000A);
-    QVariantMap param[5];
-    param[0].insert("authority", 1);
-    param[1].insert("property", param[0]);
-    param[2].insert("key", "Spec");
-    param[2].insert("optional", "SpecQualityOptional");
-    param[3].insert("key", "Angle");
-    param[3].insert("optional", "AngleQualityOptional");
-    param[4].insert("sqlBrowser", "IAngleSqlBrowser");
+    QVariantMap param[7];
+    param[0].insert("authority",            1);
+    param[1].insert("property",             param[0]);
+    param[2].insert("key",                  "Spec");
+    param[2].insert("optional",             "SpecQualityOptional");
+    param[3].insert("key",                  "Angle");
+    param[3].insert("optional",             "AngleQualityOptional");
+    param[4].insert("sqlBrowser",           "ISpecSqlBrowser");
+    param[5].insert("sqlBrowser",           "IAngleSqlBrowser");
+    param[6].insert("printTemplate",        "ISpecPrintTemplate");
+    param[6].insert("printSettingDialog",   "HSpecPrintSettingDialog");
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
@@ -291,9 +294,10 @@ void HBuilder1000A::buildMenu()
     test->addAction(d->guiFactory->createAction(tr("光强角度测试(&A)..."), "HAngleTestHandler"));
     test->addAction(d->guiFactory->createAction(tr("老化测试(&I)..."), "HTrendTestHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-    database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
-    database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&B)..."), "HSqlBrowserHandler"));
-    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&B)..."), "HSqlBrowserHandler", param[4]));
+    database->addAction(d->guiFactory->createAction(tr("光谱产品信息配置(&E)..."), "HProductEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("光谱数据打印配置(&P)..."), "HPrintSettingHandler", param[6]));
+    database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&S)..."), "HSqlBrowserHandler", param[4]));
+    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&A)..."), "HSqlBrowserHandler", param[5]));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);

@@ -131,7 +131,7 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("EnergyGraph",             "[光谱能量曲线]");
     hashFieldType.insert("ReflectGraph",            "[光谱反射曲线]");
     // 色容差
-    hashFieldType.insert("SDCMDetail",              "[色容差标准]");
+    hashFieldType.insert("SDCM_Detail",             "[色容差详情]");
     hashFieldType.insert("SDCM",                    "[色容差]");
     // 电
     hashFieldType.insert("OutputVoltage",           "[输出电压]");
@@ -235,7 +235,7 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("EnergyGraph",              "EnergyGraph ntext");
     hashFieldCreateStyle.insert("ReflectGraph",             "ReflectGraph ntext");
     // 色容差
-    hashFieldCreateStyle.insert("SDCMDetail",               "SDCMDetail nchar(1000)");
+    hashFieldCreateStyle.insert("SDCM_Detail",              "SDCM_Detail nchar(1000)");
     hashFieldCreateStyle.insert("SDCM",                     "SDCM numeric(18, 1)");
     // 电
     hashFieldCreateStyle.insert("OutputVoltage",            "OutputVoltage numeric(18, 2)");
@@ -300,7 +300,7 @@ void HSqlGlobalInstance::initFieldGroup()
     // |光度信息2|      - [LuminousIntensity]
     // |光度信息3|      = [LuminousPower][LuminousEfficiency]
     // |光度信息4|      = [LuminousPower]
-    // |色容差信息2|    - [SDCMDetail]
+    // |色容差信息2|    - [SDCM_Detail]
     // |直流电信息2|    - [ReverseVoltage][ReverseCurrent]
     // |TM30信息2|      = [TM30_Rf][TM30_Rg]
     // |TM30信息3|      - [TM30_Rf][TM30_Rg]
@@ -347,15 +347,14 @@ void HSqlGlobalInstance::initFieldGroup()
     hashFieldGroup.insert("|光合信息|",      QStringList() << "Photon380_780" << "Photon400_700" << "Photon700_800"
                                                            << "PPF" << "PRF" << "PPFE"
                                                            << "FluorescenceEfficiency" << "FluorescenceRatio");
-    hashFieldGroup.insert("|色容差信息|",    QStringList() << "SDCMDetail" << "SDCM");
+    hashFieldGroup.insert("|色容差信息|",    QStringList() << "SDCM" << "SDCM_Detail");
     hashFieldGroup.insert("|色容差信息2|",   QStringList() << "SDCM");
     hashFieldGroup.insert("|TM30信息|",      QStringList() << "TM30_Rf" << "TM30_Rg" << "TM30_Rfi"
                                                            << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
                                                            << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
                                                            << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
     hashFieldGroup.insert("|TM30信息2|",     QStringList() << "TM30_Rf" << "TM30_Rg");
-    hashFieldGroup.insert("|TM30信息3|",     QStringList() << "TM30_Rfi"
-                                                           << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+    hashFieldGroup.insert("|TM30信息3|",     QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
                                                            << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
                                                            << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
     hashFieldGroup.insert("|直流电信息|",    QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower");
@@ -370,10 +369,12 @@ void HSqlGlobalInstance::initFieldGroup()
                                                            << "ADLI_AngleHalfLeft" << "ADLI_AngleHalfRight" << "ADLI_AngleHalfOff"
                                                            << "ADLI_AngleFifthLeft" << "ADLI_AngleFifthRight" << "ADLI_AngleFifthOff");
     // 数据格式
-    hashFieldGroup.insert("|多边形格式|",    QStringList() << "EnergyGraph" << "ReflectGraph" << "ADLI_Graph");
+    hashFieldGroup.insert("|Json格式|",      QStringList() << "SDCM_Detail");
     hashFieldGroup.insert("|列表格式|",      QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
                                                            << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
                                                            << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
+    hashFieldGroup.insert("|多边形格式_02|", QStringList() << "ADLI_Graph");
+    hashFieldGroup.insert("|多边形格式_11|", QStringList() << "EnergyGraph" << "ReflectGraph");
 }
 
 HE_END_NAMESPACE

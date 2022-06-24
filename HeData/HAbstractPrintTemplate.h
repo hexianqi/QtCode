@@ -22,6 +22,8 @@ public:
     void initialize(QVariantMap param = QVariantMap()) override;
 
 public:
+    QVariantMap param() override;
+    void setParam(QVariantMap) override;
     QStringList dataType() override;
     void setData(QVariantMap) override;
 

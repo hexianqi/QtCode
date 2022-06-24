@@ -5,6 +5,7 @@
 
 class HSpecDiagramWidget;
 class HCie1931Widget;
+class HChromatismChartView;
 class HTm30SpdChartView;
 class HTm30CvgWidget;
 class HTm30RxhjWidget;
@@ -22,6 +23,7 @@ public:
 public:
     HSpecDiagramWidget *specWidget = nullptr;
     HCie1931Widget *cieWidget = nullptr;
+    HChromatismChartView *chromatismWidget = nullptr;
     HTm30SpdChartView *spdWidget = nullptr;
     HTm30CvgWidget *cvgWidget = nullptr;
     HTm30RxhjWidget *rxhjWidget = nullptr;

@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2022-05-27  HChineseTranslate 中文转拼音。
+**      2022-05-27  HChineseConvert 中文转拼音。
 ***************************************************************************************************/
 
 #pragma once
@@ -10,16 +10,16 @@
 
 HE_BEGIN_NAMESPACE
 
-class HChineseTranslatePrivate;
+class HChineseConvertPrivate;
 
-class HChineseTranslate : public QObject
+class HChineseConvert : public QObject
 {
     Q_OBJECT
-    H_SINGLETON3(HChineseTranslate)
+    H_SINGLETON3(HChineseConvert)
 
 private:
-    explicit HChineseTranslate(QObject *parent = nullptr);
-    ~HChineseTranslate() override;
+    explicit HChineseConvert(QObject *parent = nullptr);
+    ~HChineseConvert() override;
 
 public:
     void loadPinYin(const QString &fileName);
@@ -29,7 +29,7 @@ public:
     QString toShouZhiMu(const QString &value);  // 汉字转首字母
 
 protected:
-    QScopedPointer<HChineseTranslatePrivate> d_ptr;
+    QScopedPointer<HChineseConvertPrivate> d_ptr;
 };
 
 HE_END_NAMESPACE

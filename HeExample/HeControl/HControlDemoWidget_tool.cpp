@@ -1,5 +1,9 @@
 #include "HControlDemoWidget_p.h"
-#include "HChineseTranslate.h"
+#include "HChineseConvert.h"
+#include "HBase64ConvertWidget.h"
+
+
+
 #include "HCodeCountWidget.h"
 #include "HEmailWidget.h"
 #include "HNetworkWidget.h"
@@ -14,7 +18,8 @@ HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addTool()
 {
-    addChineseTranslate();
+    addChineseConvert();
+    addTab(tr("工具"), new HBase64ConvertWidget);
 
     addTab(tr("工具"), new HCodeCountWidget);
     addTab(tr("工具"), new HEmailWidget);
@@ -23,14 +28,14 @@ void HControlDemoWidget::addTool()
     addTab(tr("工具"), new HSerialPortWidget);
 }
 
-void HControlDemoWidget::addChineseTranslate()
+void HControlDemoWidget::addChineseConvert()
 {
     auto button1 = new QPushButton(tr("转全拼"));
     auto button2 = new QPushButton(tr("转简拼"));
     auto lineEdit1 = new QLineEdit(tr("测试文字"));
     auto lineEdit2 = new QLineEdit;
-    connect(button1, &QPushButton::clicked, [=] { lineEdit2->setText(HChineseTranslate::instance()->toPingYin(lineEdit1->text())); });
-    connect(button2, &QPushButton::clicked, [=] { lineEdit2->setText(HChineseTranslate::instance()->toJianPin(lineEdit1->text())); });
+    connect(button1, &QPushButton::clicked, [=] { lineEdit2->setText(HChineseConvert::instance()->toPingYin(lineEdit1->text())); });
+    connect(button2, &QPushButton::clicked, [=] { lineEdit2->setText(HChineseConvert::instance()->toJianPin(lineEdit1->text())); });
     auto layout = new QGridLayout;
     layout->addWidget(new QLabel(tr("汉字：")), 0, 0);
     layout->addWidget(lineEdit1, 0, 1);

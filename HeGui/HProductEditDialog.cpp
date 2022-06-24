@@ -54,7 +54,6 @@ void HProductEditDialog::saveData()
         d->data0->setData("[编号自增]", ui->checkBox_01->isChecked());
         d->data0->setData("[环境温度]", ui->doubleSpinBox_01->value());
         d->data0->setData("[环境湿度]", ui->doubleSpinBox_02->value());
-
     }
     if (d->data1 != nullptr)
     {

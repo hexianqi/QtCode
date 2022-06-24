@@ -55,7 +55,7 @@ double HChromatism::calcSdcm(double tc, QPointF xy)
     return d->selectItem->calcSdcm(xy);
 }
 
-QVariantMap HChromatism::toMap()
+QVariantMap HChromatism::detail()
 {
     Q_D(HChromatism);
     return d->selectItem == nullptr ? QVariantMap() : d->selectItem->data();

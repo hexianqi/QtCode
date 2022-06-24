@@ -108,16 +108,20 @@ void HSpecPrintTemplate2000AC::paintBody(QPainter *painter, QRectF rect, int /*p
     auto wr = rect.width() / 2.0 - gap;
     auto hr = rect.bottom() - yr;
     drawChartSpec(painter, QRectF(xr1, yr, wr, hr));
-    drawChartCie(painter, QRectF(xr2, yr, wr, hr));
+    if (d->params.value("DrawChromatism").toBool())
+        drawChartChromatism(painter, QRectF(xr2, yr, wr, hr));
+    else
+        drawChartCie(painter, QRectF(xr2, yr, wr, hr));
 }
 
 void HSpecPrintTemplate2000AC::init()
 {
     Q_D(HSpecPrintTemplate2000AC);
-    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|光合信息|" << "|色容差信息2|" << "|TM30信息|" << "|交流电信息|");
-    d->params.insert("Header",      tr("松朗光色电综合测试报告"));
-    d->params.insert("Title",       tr("光色电综合测试报告"));
-    d->params.insert("DrawHeader",  true);
-    d->params.insert("DrawLogo",    true);
-    d->params.insert("DrawRibbon",  true);
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|光合信息|" << "|色容差信息|" << "|TM30信息|" << "|交流电信息|");
+    d->params.insert("Header",          tr("松朗光色电综合测试报告"));
+    d->params.insert("Title",           tr("光色电综合测试报告"));
+    d->params.insert("DrawHeader",      true);
+    d->params.insert("DrawLogo",        true);
+    d->params.insert("DrawRibbon",      true);
+    d->params.insert("DrawChromatism",  false);
 }

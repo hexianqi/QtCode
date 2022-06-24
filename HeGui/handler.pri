@@ -27,6 +27,8 @@ HEADERS += \
     $$PWD/HLoginOutHandler_p.h \
     $$PWD/HLuminousCalibrateHandler.h \
     $$PWD/HLuminousCalibrateHandler_p.h \
+    $$PWD/HPrintSettingHandler.h \
+    $$PWD/HPrintSettingHandler_p.h \
     $$PWD/HProductEditHandler.h \
     $$PWD/HProductEditHandler_p.h \
     $$PWD/HTestHandler.h \
@@ -77,6 +79,7 @@ SOURCES += \
     $$PWD/HLoginInHandler.cpp \
     $$PWD/HLoginOutHandler.cpp \
     $$PWD/HLuminousCalibrateHandler.cpp \
+    $$PWD/HPrintSettingHandler.cpp \
     $$PWD/HProductEditHandler.cpp \
     $$PWD/HTestHandler.cpp \
     $$PWD/HGradeEditHandler.cpp \

@@ -25,6 +25,7 @@ public:
 public:
     ITestSetWidget *createTestSetWidget(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) override;
     ITestDataEditDialog *createTestDataEditDialog(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) override;
+    IPrintSettingDialog *createPrintSettingDialog(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IHandler *createHandler(QString type, QVariantMap param = QVariantMap()) override;
     IPrintTemplate *createPrintTemplate(QString type, QVariantMap param = QVariantMap()) override;
     ITextExportTemplate *createTextExportTemplate(QString type, QVariantMap param = QVariantMap()) override;

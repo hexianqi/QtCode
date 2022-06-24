@@ -7,7 +7,7 @@
 #include <QDir>
 #include <QDebug>
 
-MainWindow::MainWindow(QWidget *parent) :
+HMainWindow::HMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _timer = new QTimer(this);
     _progressDialog = new QProgressDialog(tr("正在采样...."), tr("取消"), 0, 100, this);
     _progressDialog->reset();
-    connect(_timer, &QTimer::timeout, this, &MainWindow::test);
+    connect(_timer, &QTimer::timeout, this, &HMainWindow::test);
     connect(_progressDialog, &QProgressDialog::canceled, _timer, &QTimer::stop);
 
 
@@ -27,12 +27,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(CheckIndexChangedSignal(int)));
 }
 
-MainWindow::~MainWindow()
+HMainWindow::~HMainWindow()
 {
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void HMainWindow::on_pushButton_clicked()
 {
     _testValue = 0;
     _testVector.resize(100);
@@ -51,7 +51,7 @@ void MainWindow::on_pushButton_clicked()
 //    painter.fillRect(0, 0, 100, 100, Qt::red);
 //}
 
-void MainWindow::test()
+void HMainWindow::test()
 {
     qDebug() << _testValue;
     qDebug() << _testValue++;
@@ -66,17 +66,17 @@ void MainWindow::test()
         _timer->stop();
 }
 
-void MainWindow::CheckActiveSignal(int value)
+void HMainWindow::CheckActiveSignal(int value)
 {
     qDebug() << "CheckActiveSignal " << value;
 }
 
-void MainWindow::CheckIndexChangedSignal(int value)
+void HMainWindow::CheckIndexChangedSignal(int value)
 {
     qDebug() << "CheckIndexChangedSignal " << value;
 }
 
-void MainWindow::on_comboBox_currentIndexChanged(int value)
+void HMainWindow::on_comboBox_currentIndexChanged(int value)
 {
     qDebug() << "on_comboBox_currentIndexChanged " << value;
 }

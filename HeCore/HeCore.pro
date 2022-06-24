@@ -31,6 +31,7 @@ HEADERS     += \
             HCoreHelper.h \
             HCoreGlobalInstance.h \
             HAppContext.h \
+            HDataConvert.h \
             HDataFormatInfo.h \
             HDataFormatInfo_p.h \
             HDefine.h \
@@ -45,6 +46,7 @@ SOURCES     += \
             HCoreHelper.cpp \
             HCoreGlobalInstance.cpp \
             HAppContext.cpp \
+            HDataConvert.cpp \
             HDataFormatInfo.cpp \
             HDumpTree.cpp \
             HException.cpp \

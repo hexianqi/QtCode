@@ -45,21 +45,22 @@ int main(int argc, char *argv[])
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
 
+
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 
 //    HControlFactoryWidget cw;
 //    cw.show();
-//    HControlDemoWidget dw;
-//    dw.show();
+    HControlDemoWidget dw;
+    dw.show();
 
-   MainWindow window;
-//    window.setCentralWidget(&videoWidget);
-    window.resize(800, 600);
-    window.grabGesture(Qt::PanGesture);
-    window.grabGesture(Qt::PinchGesture);
-    window.show();
-//    HDumpTree::dumpProperty(&window);
+//   HMainWindow window;
+////    window.setCentralWidget(&videoWidget);
+//    window.resize(800, 600);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
+////    HDumpTree::dumpProperty(&window);
 
     return a.exec();
 }

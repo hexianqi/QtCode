@@ -1,7 +1,5 @@
 #include "HCoreHelper.h"
 #include <QtCore/QFile>
-#include <QtCore/QJsonDocument>
-#include <QtCore/QJsonObject>
 #include <QtCore/QSettings>
 #include <QtCore/QTime>
 #include <QtCore/QTimer>
@@ -25,21 +23,6 @@ QVariantMap HCoreHelper::unite(QVariantMap m1, const QVariantMap &m2)
     for (auto i = m2.begin(); i != m2.end(); i++)
         m.insert(i.key(), i.value());
     return m;
-}
-
-QString HCoreHelper::toJson(QVariantMap value)
-{
-    auto obj = QJsonObject::fromVariantMap(value);
-    auto doc = QJsonDocument(obj);
-    return doc.toJson(QJsonDocument::Compact);
-}
-
-QVariantMap HCoreHelper::fromJson(QString value)
-{
-    auto doc = QJsonDocument::fromJson(value.toUtf8());
-    if (doc.isObject())
-        return doc.object().toVariantMap();
-    return {};
 }
 
 void HCoreHelper::msleep(int msecs)

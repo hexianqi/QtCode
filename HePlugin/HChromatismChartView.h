@@ -6,7 +6,6 @@
 
 #include "HZoomChartView.h"
 
-class HChromatismChart;
 class HChromatismChartViewPrivate;
 
 class QDESIGNER_WIDGET_EXPORT HChromatismChartView : public HZoomChartView
@@ -18,7 +17,6 @@ public:
     explicit HChromatismChartView(QWidget *parent = nullptr);
 
 public:
-    HChromatismChart *chart();
     void setData(const QVariantMap &);
 
 protected:
@@ -29,4 +27,5 @@ protected slots:
 
 protected:
     void init() override;
+    void fixAxes();
 };

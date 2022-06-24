@@ -91,7 +91,7 @@ QVariant HSqlTableModel::data(const QModelIndex &index, int role) const
     {
         int n = index.column();
         if (n >= 0 && n < d_ptr->fields.size())
-            return HSql::toString(d_ptr->fields[n], QSqlTableModel::data(index, Qt::EditRole));
+            return HSql::toString(d_ptr->fields.at(n), QSqlTableModel::data(index, Qt::EditRole));
     }
     return QSqlTableModel::data(index, role);
 }

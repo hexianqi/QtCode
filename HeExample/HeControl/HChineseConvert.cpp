@@ -1,20 +1,20 @@
-#include "HChineseTranslate_p.h"
+#include "HChineseConvert_p.h"
 #include <QtCore/QFile>
 #include <QtCore/QRegularExpression>
 
 HE_BEGIN_NAMESPACE
 
-HChineseTranslate::HChineseTranslate(QObject *parent) :
+HChineseConvert::HChineseConvert(QObject *parent) :
     QObject(parent),
-    d_ptr(new HChineseTranslatePrivate)
+    d_ptr(new HChineseConvertPrivate)
 {
     loadPinYin(":/Resources/data/pinyin.dat");
     loadJianPin(":/Resources/data/jianpin.dat");
 }
 
-HChineseTranslate::~HChineseTranslate() = default;
+HChineseConvert::~HChineseConvert() = default;
 
-void HChineseTranslate::loadPinYin(const QString &fileName)
+void HChineseConvert::loadPinYin(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -23,7 +23,7 @@ void HChineseTranslate::loadPinYin(const QString &fileName)
     file.close();
 }
 
-void HChineseTranslate::loadJianPin(const QString &fileName)
+void HChineseConvert::loadJianPin(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -32,7 +32,7 @@ void HChineseTranslate::loadJianPin(const QString &fileName)
     file.close();
 }
 
-QString HChineseTranslate::toPingYin(const QString &value)
+QString HChineseConvert::toPingYin(const QString &value)
 {
     if (d_ptr->pinYins.isEmpty() || value.isEmpty())
         return value;
@@ -50,7 +50,7 @@ QString HChineseTranslate::toPingYin(const QString &value)
     return list.join(" ");
 }
 
-QString HChineseTranslate::toJianPin(const QString &value)
+QString HChineseConvert::toJianPin(const QString &value)
 {
     if (d_ptr->jianPins.isEmpty() || value.isEmpty())
         return value;
@@ -73,7 +73,7 @@ QString HChineseTranslate::toJianPin(const QString &value)
     return text;
 }
 
-QString HChineseTranslate::toShouZhiMu(const QString &value)
+QString HChineseConvert::toShouZhiMu(const QString &value)
 {
     return toJianPin(value).at(0);
 }

@@ -12,6 +12,7 @@ class IPrintTemplate;
 class ITextExportTemplate;
 class ITestSetWidget;
 class ITestDataEditDialog;
+class IPrintSettingDialog;
 class HAction;
 
 class IGuiFactory : public IInitializeable
@@ -21,6 +22,8 @@ public:
     virtual ITestSetWidget *createTestSetWidget(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) = 0;
     // 创建测试数据编辑对话框
     virtual ITestDataEditDialog *createTestDataEditDialog(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) = 0;
+    // 创建打印配置对话框
+    virtual IPrintSettingDialog *createPrintSettingDialog(QString type, QWidget *parent = nullptr, QVariantMap param = QVariantMap()) = 0;
     // 创建处理者
     virtual IHandler *createHandler(QString type, QVariantMap param = QVariantMap()) = 0;
     // 创建打印模版

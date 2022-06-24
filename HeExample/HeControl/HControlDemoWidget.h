@@ -68,7 +68,7 @@ private:
     void addFlowLayout();
 
     // Tool
-    void addChineseTranslate();
+    void addChineseConvert();
 
     // media
     void addFFPlayer();

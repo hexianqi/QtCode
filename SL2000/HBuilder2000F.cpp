@@ -98,9 +98,11 @@ void HBuilder2000F::buildConfigManage()
 void HBuilder2000F::buildMenu()
 {
     Q_D(HBuilder2000F);
-    QVariantMap param[2];
+    QVariantMap param[3];
     param[0].insert("authority", 1);
     param[1].insert("property", param[0]);
+    param[2].insert("printTemplate",        "ISpecPrintTemplate");
+    param[2].insert("printSettingDialog",   "HSpecPrintSettingDialog");
     auto calibrate = new QMenu(tr("定标(&C)"));
     auto grade = new QMenu(tr("分级(&G)"));
     auto adjust = new QMenu(tr("调整(&A)"));
@@ -130,6 +132,7 @@ void HBuilder2000F::buildMenu()
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
     database->addAction(d->guiFactory->createAction(tr("产品信息配置(&P)..."), "HProductEditHandler"));
+    database->addAction(d->guiFactory->createAction(tr("数据打印配置(&P)..."), "HPrintSettingHandler", param[2]));
     database->addAction(d->guiFactory->createAction(tr("数据库浏览(&B)..."), "HSqlBrowserHandler"));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));

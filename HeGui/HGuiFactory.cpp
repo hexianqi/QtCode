@@ -5,6 +5,7 @@
 #include "HAdjustSetWidget.h"
 #include "HAdjustSetWidget2.h"
 #include "HProductEditDialog.h"
+#include "HSpecPrintSettingDialog.h"
 #include "HAction.h"
 #include "HTestHandler.h"
 #include "HSpecCalibrateHandler.h"
@@ -24,8 +25,9 @@
 #include "HAdjustSelectHandler.h"
 #include "HAdjust2EditHandler.h"
 #include "HAdjust2SelectHandler.h"
-#include "HSqlBrowserHandler.h"
 #include "HProductEditHandler.h"
+#include "HPrintSettingHandler.h"
+#include "HSqlBrowserHandler.h"
 #include "HAngleTestHandler.h"
 #include "HIVTestHandler.h"
 #include "HTrendTestHandler.h"
@@ -80,6 +82,11 @@ ITestDataEditDialog *HGuiFactory::createTestDataEditDialog(QString type, QWidget
     return HWidgetFactory::createWidget<ITestDataEditDialog>(type, param, parent);
 }
 
+IPrintSettingDialog *HGuiFactory::createPrintSettingDialog(QString type, QWidget *parent, QVariantMap param)
+{
+    return HWidgetFactory::createWidget<IPrintSettingDialog>(type, param, parent);
+}
+
 IHandler *HGuiFactory::createHandler(QString type, QVariantMap param)
 {
     auto p = HObjectFactory::createObject<IHandler>(type, param, this);
@@ -120,6 +127,7 @@ void HGuiFactory::registerClass()
     HWidgetFactory::registerClass<HAdjustSetWidget2>("HAdjustSetWidget2");
     // 对话框
     HWidgetFactory::registerClass<HProductEditDialog>("HProductEditDialog");
+    HWidgetFactory::registerClass<HSpecPrintSettingDialog>("HSpecPrintSettingDialog");
     // 动作处理
     HObjectFactory::registerClass<HTestHandler>("HTestHandler");
     HObjectFactory::registerClass<HSpecCalibrateHandler>("HSpecCalibrateHandler");
@@ -140,6 +148,7 @@ void HGuiFactory::registerClass()
     HObjectFactory::registerClass<HAdjust2EditHandler>("HAdjust2EditHandler");
     HObjectFactory::registerClass<HAdjust2SelectHandler>("HAdjust2SelectHandler");
     HObjectFactory::registerClass<HProductEditHandler>("HProductEditHandler");
+    HObjectFactory::registerClass<HPrintSettingHandler>("HPrintSettingHandler");
     HObjectFactory::registerClass<HSqlBrowserHandler>("HSqlBrowserHandler");
     HObjectFactory::registerClass<HAngleTestHandler>("HAngleTestHandler");
     HObjectFactory::registerClass<HIVTestHandler>("HIVTestHandler");

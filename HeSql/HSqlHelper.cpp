@@ -141,8 +141,11 @@ void HSqlHelper::updateSpecTable(ISqlDatabase *db)
         // 1.1.1.5 添加列TM30
         if (version < 0x01010105)
             addColumn("Spec", QStringList() << "ReflectGraph" << HSql::membership("|TM30信息|"));
+        // 1.1.1.6 添加列SDCM
+        if (version < 0x01010106)
+            addColumn("Spec", "SDCM_Detail");
     }
-    setVersion("Spec", 0x01010105);
+    setVersion("Spec", 0x01010106);
 }
 
 void HSqlHelper::updateAngleTable(ISqlDatabase */*db*/)

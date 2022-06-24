@@ -27,6 +27,7 @@ public:
     static QString toString(const QString &type, double value, char f = 'f');
     static QString toString(const QString &type, const QVariant &value);
     static QStringList toString(const QString &type, QVector<double> value, char f = 'f');
+    static QStringList toString(const QString &type, QList<double> value, char f = 'f');
     static QString toUnit(const QString &type);
     static QString toCaption(const QString &type);
     static QStringList toCaption(QStringList type);

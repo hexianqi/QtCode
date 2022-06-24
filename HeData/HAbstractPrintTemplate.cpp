@@ -29,6 +29,18 @@ void HAbstractPrintTemplate::initialize(QVariantMap /*param*/)
     readSettings();
 }
 
+QVariantMap HAbstractPrintTemplate::param()
+{
+    return d_ptr->params;
+}
+
+void HAbstractPrintTemplate::setParam(QVariantMap value)
+{
+    if (d_ptr->params == value)
+        return;
+    d_ptr->params = value;
+}
+
 QStringList HAbstractPrintTemplate::dataType()
 {
     return d_ptr->types;

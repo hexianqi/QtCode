@@ -1,10 +1,10 @@
 #pragma once
 
-#include "HChineseTranslate.h"
+#include "HChineseConvert.h"
 
 HE_BEGIN_NAMESPACE
 
-class HChineseTranslatePrivate
+class HChineseConvertPrivate
 {
 public:
     QStringList pinYins;

@@ -4,7 +4,6 @@
 #include <QtCore/QMetaProperty>
 #include <QtWidgets/QVBoxLayout>
 
-
 bool isSubValue(int value, int subValue)
 {
     if (value == subValue)
@@ -113,9 +112,7 @@ int intToEnum(const QMetaEnum &metaEnum, int intValue)
             values.append(value);
         }
     }
-    if (intValue >= values.count())
-        return -1;
-    return values.at(intValue);
+    return intValue >= values.count() ? -1 : values.at(intValue);
 }
 
 void HPropertyBrowserPrivate::addClassProperties(const QMetaObject *metaObject)
@@ -145,9 +142,9 @@ void HPropertyBrowserPrivate::addClassProperties(const QMetaObject *metaObject)
             }
             else if (metaProperty.isEnumType())
             {
-                auto metaEnum = metaProperty.enumerator();
                 QMap<int, bool> values;
                 QStringList names;
+                auto metaEnum = metaProperty.enumerator();
                 for (int i = 0; i < metaEnum.keyCount(); i++)
                 {
                     auto value = metaEnum.value(i);
@@ -227,9 +224,7 @@ void HPropertyBrowserPrivate::updateClassProperties(const QMetaObject *metaObjec
                     subProperty->setValue(enumToInt(metaProperty.enumerator(), metaProperty.read(object).toInt()));
             }
             else
-            {
                 subProperty->setValue(metaProperty.read(object));
-            }
         }
     }
 }
@@ -281,13 +276,12 @@ void HPropertyBrowser::setShowParent(bool b)
 
 void HPropertyBrowser::init()
 {
-    auto factory = new QtVariantEditorFactory(this);
+    d_ptr->factory = new QtVariantEditorFactory(this);
     d_ptr->manager = new QtVariantPropertyManager(this);
     d_ptr->readOnlyManager = new QtVariantPropertyManager(this);
     d_ptr->browser = new QtTreePropertyBrowser(this);
     d_ptr->browser->setRootIsDecorated(false);
-    d_ptr->browser->setFactoryForManager(d_ptr->manager, factory);
-
+    d_ptr->browser->setFactoryForManager(d_ptr->manager, d_ptr->factory);
     auto layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(d_ptr->browser);
@@ -296,12 +290,11 @@ void HPropertyBrowser::init()
 
 void HPropertyBrowser::clear()
 {
-    if (d_ptr->object)
-    {
-        for (auto it : d_ptr->topLevelProperties)
-            d_ptr->browser->removeProperty(it);
-        d_ptr->topLevelProperties.clear();
-    }
+    if (d_ptr->object == nullptr)
+        return;
+    for (auto it : d_ptr->topLevelProperties)
+        d_ptr->browser->removeProperty(it);
+    d_ptr->topLevelProperties.clear();
 }
 
 void HPropertyBrowser::build()
@@ -316,9 +309,9 @@ void HPropertyBrowser::handleValueChanged(QtProperty *property, const QVariant &
     if (!d_ptr->propertyToIndex.contains(property))
         return;
 
-    auto idx = d_ptr->propertyToIndex.value(property);
+    auto index = d_ptr->propertyToIndex.value(property);
     auto metaObject = d_ptr->object->metaObject();
-    auto metaProperty = metaObject->property(idx);
+    auto metaProperty = metaObject->property(index);
     if (metaProperty.isEnumType())
     {
         if (metaProperty.isFlagType())
@@ -327,9 +320,6 @@ void HPropertyBrowser::handleValueChanged(QtProperty *property, const QVariant &
             metaProperty.write(d_ptr->object, intToEnum(metaProperty.enumerator(), value.toInt()));
     }
     else
-    {
         metaProperty.write(d_ptr->object, value);
-    }
-
     d_ptr->updateClassProperties(metaObject, true);
 }

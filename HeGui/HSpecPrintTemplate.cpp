@@ -1,6 +1,7 @@
 #include "HSpecPrintTemplate_p.h"
 #include "HeCore/HCore.h"
 #include "HePlugin/HCie1931Widget.h"
+#include "HePlugin/HChromatismChartView.h"
 #include "HePlugin/HSpecDiagramWidget.h"
 #include "HePlugin/HTm30BarChart.h"
 #include "HePlugin/HTm30CvgWidget.h"
@@ -36,6 +37,7 @@ HSpecPrintTemplate::~HSpecPrintTemplate()
     Q_D(HSpecPrintTemplate);
     delete d->specWidget;
     delete d->cieWidget;
+    delete d->chromatismWidget;
     delete d->spdWidget;
     delete d->cvgWidget;
     delete d->rxhjWidget;
@@ -197,7 +199,10 @@ void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
     auto wr = rect.width() / 2.0 - gap;
     auto hr = rect.bottom() - yr;
     drawChartSpec(painter, QRectF(xr1, yr, wr, hr));
-    drawChartCie(painter, QRectF(xr2, yr, wr, hr));
+    if (d->params.value("DrawChromatism").toBool())
+        drawChartChromatism(painter, QRectF(xr2, yr, wr, hr));
+    else
+        drawChartCie(painter, QRectF(xr2, yr, wr, hr));
 }
 
 double HSpecPrintTemplate::paintFooterTM30(QPainter *painter, int page)
@@ -250,13 +255,14 @@ QPointF HSpecPrintTemplate::drawChartSpec(QPainter *painter, QRectF rect)
         d->specWidget = new HSpecDiagramWidget;
         d->specWidget->setMargins(40, 25, 25, 35);
         d->specWidget->setBrushBackground(Qt::white);
-        d->specWidget->setDrawRibbon(d->params.value("DrawRibbon", true).toBool());
+
         d->specWidget->setWindowTitle(tr("相对光谱能量分布"));
     }
     auto poly = d->datas.value("[光谱能量曲线]").value<QPolygonF>();
     if (!poly.isEmpty())
         d->specWidget->setWaveRange(QPointF(poly.first().x(), poly.last().x()));
     d->specWidget->addPolygon(0, poly);
+    d->specWidget->setDrawRibbon(d->params.value("DrawRibbon", true).toBool());
     return HPainterHelper::drawChart(painter, rect, d->specWidget);
 }
 
@@ -272,6 +278,18 @@ QPointF HSpecPrintTemplate::drawChartCie(QPainter *painter, QRectF rect)
     }
     d->cieWidget->setPointFocus(d->datas.value("[色坐标]").toPointF());
     return HPainterHelper::drawChart(painter, rect, d->cieWidget);
+}
+
+QPointF HSpecPrintTemplate::drawChartChromatism(QPainter *painter, QRectF rect)
+{
+    Q_D(HSpecPrintTemplate);
+    if (d->chromatismWidget == nullptr)
+    {
+        d->chromatismWidget = new HChromatismChartView;
+        d->chromatismWidget->setWindowTitle("");
+    }
+    d->chromatismWidget->setData(d->datas.value("[色容差详情]").toMap());
+    return HPainterHelper::drawChart(painter, rect, d->chromatismWidget);
 }
 
 QPointF HSpecPrintTemplate::drawChartTm30Spd(QPainter *painter, QRectF rect)
@@ -398,12 +416,13 @@ QPointF HSpecPrintTemplate::drawTableTm30Rxhj(QPainter *painter, QRectF rect)
 void HSpecPrintTemplate::init()
 {
     Q_D(HSpecPrintTemplate);
-    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|色容差信息2|" << "|TM30信息|");
-    d->params.insert("Header",      tr("松朗光电测试报告"));
-    d->params.insert("Title",       tr("光谱测试报告"));
-    d->params.insert("DrawHeader",  true);
-    d->params.insert("DrawLogo",    true);
-    d->params.insert("DrawRibbon",  true);
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|色容差信息|" << "|TM30信息|");
+    d->params.insert("Header",          tr("松朗光电测试报告"));
+    d->params.insert("Title",           tr("光谱测试报告"));
+    d->params.insert("DrawHeader",      true);
+    d->params.insert("DrawLogo",        true);
+    d->params.insert("DrawRibbon",      true);
+    d->params.insert("DrawChromatism",  false);
 }
 
 HE_END_NAMESPACE

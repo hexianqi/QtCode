@@ -43,6 +43,7 @@ protected:
 protected:
     QPointF drawChartSpec(QPainter *painter, QRectF rect);
     QPointF drawChartCie(QPainter *painter, QRectF rect);
+    QPointF drawChartChromatism(QPainter *painter, QRectF rect);
     QPointF drawChartTm30Spd(QPainter *painter, QRectF rect);
     QPointF drawChartTm30Cvg(QPainter *painter, QRectF rect);
     QPointF drawChartTm30Rxhj(QPainter *painter, QRectF rect);

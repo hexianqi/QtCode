@@ -46,7 +46,8 @@ QVariant HDictionaryPrivate::getValue(const QString &path) const
     return parent.value(names.last());
 }
 
-HDictionary::HDictionary()
+HDictionary::HDictionary() :
+    d_ptr(new HDictionaryPrivate)
 {
 }
 
@@ -56,37 +57,37 @@ HDictionary::~HDictionary()
 
 void HDictionary::set(const QString &path, const QVariant &value)
 {
-    d.setValue(d.root, path, value);
+    d_ptr->setValue(d_ptr->root, path, value);
 }
 
 QVariant HDictionary::get(const QString &path)
 {
-    return d.getValue(path);
+    return d_ptr->getValue(path);
 }
 
 void HDictionary::fromVariantMap(const QVariantMap &value)
 {
-    d.root = value;
+    d_ptr->root = value;
 }
 
 void HDictionary::fromJsonObject(const QJsonObject &value)
 {
-    d.root = value.toVariantMap();
+    d_ptr->root = value.toVariantMap();
 }
 
 QVariantMap HDictionary::toVariantMap()
 {
-    return d.root;
+    return d_ptr->root;
 }
 
 QJsonObject HDictionary::toJsonObject()
 {
-    return QJsonObject::fromVariantMap(d.root);
+    return QJsonObject::fromVariantMap(d_ptr->root);
 }
 
 QDebug operator<<(QDebug dbg, const HDictionary &s)
 {
-    HDumpTree::dump(s.d.root, "root");
+    HDumpTree::dump(s.d_ptr->root, "root");
     return dbg.maybeSpace();
 }
 

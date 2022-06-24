@@ -18,6 +18,9 @@ public:
     using QObject::QObject;
 
 public:
+    // 打印参数
+    virtual QVariantMap param() = 0;
+    virtual void setParam(QVariantMap) = 0;
     // 数据项
     virtual QStringList dataType() = 0;
     // 设置数据
