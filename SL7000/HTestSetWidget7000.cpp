@@ -199,7 +199,9 @@ void HTestSetWidget7000::setMotorLocation(int /*value*/)
 
 void HTestSetWidget7000::setCurrentGears(int value)
 {
-    setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT);
+    Q_D(HTestSetWidget7000);
+    if (setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT))
+        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
     setTestData("[实测电流_档位]", value, ACT_SET_GEARS_MEASURED_CURRENT);
 }
 

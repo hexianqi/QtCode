@@ -28,6 +28,8 @@ public:
     bool setTestState(bool b) override;
 
 protected slots:
+    void setVoltage(double value);
+    void setCurrent(double value);
     void setCurrentGears(int value);
     void setLuminousGears(int value);
 

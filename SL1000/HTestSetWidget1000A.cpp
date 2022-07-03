@@ -134,6 +134,7 @@ bool HTestSetWidget1000A::setTestState(bool b)
         }
     }
     ui->comboBox_1->setEnabled(!b);
+    ui->comboBox_2->setEnabled(!b);
     return true;
 }
 
@@ -164,7 +165,9 @@ bool HTestSetWidget1000A::setTestMode(int value)
 
 void HTestSetWidget1000A::setCurrentGears(int value)
 {
-    setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT);
+    Q_D(HTestSetWidget1000A);
+    if (setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT))
+        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
     setTestData("[实测电流_档位]", value, ACT_SET_GEARS_MEASURED_CURRENT);
 }
 
