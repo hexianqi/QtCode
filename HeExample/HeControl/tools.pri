@@ -8,12 +8,8 @@ HEADERS += \
     $$PWD/HImageBrowser.h \
     $$PWD/HImageBrowser_p.h \
     $$PWD/HColorPicker.h \
-    $$PWD/HCodeCountWidget.h \
-    $$PWD/HCodeCountWidget_p.h \
     $$PWD/HPngAmend.h \
     $$PWD/HPngAmend_p.h \
-    $$PWD/HEmailWidget.h \
-    $$PWD/HEmailWidget_p.h \
     $$PWD/HScreenObject.h \
     $$PWD/HScreenObject_p.h \
     $$PWD/HScreenWidget.h \
@@ -25,9 +21,7 @@ SOURCES += \
     $$PWD/HNetworkWidget.cpp \
     $$PWD/HImageBrowser.cpp \
     $$PWD/HColorPicker.cpp \
-    $$PWD/HCodeCountWidget.cpp \
     $$PWD/HPngAmend.cpp \
-    $$PWD/HEmailWidget.cpp \
     $$PWD/HScreenObject.cpp \
     $$PWD/HScreenWidget.cpp \
 
@@ -36,6 +30,5 @@ FORMS += \
     $$PWD/HSerialPortWidget.ui \
     $$PWD/HGifWidget.ui \
     $$PWD/HColorPicker.ui \
-    $$PWD/HCodeCountWidget.ui \
     $$PWD/HPngAmend.ui \
-    $$PWD/HEmailWidget.ui
+

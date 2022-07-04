@@ -28,6 +28,17 @@ protected slots:
     void writeData(QString data);
     void sendData();
     void saveData();
+    void append(int type, const QString &data);
+    void clear();
+
+protected slots:
+    void on_btnOpen_clicked();
+    void on_btnSendCount_clicked();
+    void on_btnReceiveCount_clicked();
+    void on_btnStopShow_clicked();
+    void on_btnData_clicked();
+    void on_ckAutoSend_stateChanged(int);
+    void on_ckAutoSave_stateChanged(int);
 
 private:
     Ui::HMainWindow *ui;

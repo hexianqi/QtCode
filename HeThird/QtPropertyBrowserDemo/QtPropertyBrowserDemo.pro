@@ -12,11 +12,11 @@ SOURCES     += \
             HDemoWidget.cpp \
             HDoublePropertyManager.cpp \
             HDoubleSpinBoxFactory.cpp \
+            HMainWindow.cpp \
             HPointFPropertyManager.cpp \
             HPropertyBrowser.cpp \
             HVariantWidget.cpp \
-            main.cpp \
-            MainWindow.cpp
+            main.cpp
 
 HEADERS     += \
             HDemoWidget.h \
@@ -24,24 +24,33 @@ HEADERS     += \
             HDoublePropertyManager_p.h \
             HDoubleSpinBoxFactory.h \
             HDoubleSpinBoxFactory_p.h \
+            HMainWindow.h \
             HPointFPropertyManager.h \
             HPointFPropertyManager_p.h \
             HPropertyBrowser.h \
             HPropertyBrowser_p.h \
-            HVariantWidget.h \
-            MainWindow.h
-
-FORMS       += \
-            MainWindow.ui
+            HVariantWidget.h
 
 RESOURCES   += \
             QtPropertyBrowserDemo.qrc
 
+Debug {
+    LIBS    += \
+            -L$$DESTDIR -lHeControld \
+}
+
+Release {
+    LIBS    += \
+            -L$$DESTDIR -lHeControl
+}
+
 ThirdPath   = $$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser
 
-INCLUDEPATH += $$ThirdPath
+INCLUDEPATH += \
+            ../.. \
+            ../../HeExample \
+            $$ThirdPath
 
-include(Canvas.pri)
 include($$ThirdPath/QtPropertyBrowser.pri)
 
 

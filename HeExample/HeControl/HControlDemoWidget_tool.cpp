@@ -20,9 +20,9 @@ void HControlDemoWidget::addTool()
 {
     addChineseConvert();
     addTab(tr("工具"), new HBase64ConvertWidget);
-
     addTab(tr("工具"), new HCodeCountWidget);
     addTab(tr("工具"), new HEmailWidget);
+
     addTab(tr("工具"), new HNetworkWidget);
     addTab(tr("工具"), new HPngAmend);
     addTab(tr("工具"), new HSerialPortWidget);

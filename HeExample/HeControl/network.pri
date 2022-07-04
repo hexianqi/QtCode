@@ -13,6 +13,5 @@ SOURCES += \
 
 include(tcp.pri)
 include(udp.pri)
-include(smtp.pri)
 include(ntp.pri)
 include(http.pri)
