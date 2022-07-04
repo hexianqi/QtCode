@@ -115,9 +115,25 @@ bool HAngleTestSetWidget::setTestState(bool b)
     return true;
 }
 
+void HAngleTestSetWidget::setVoltage(double value)
+{
+    setTestData("[输出电压]", value, ACT_SET_OUTPUT_VOLTAGE);
+}
+
+void HAngleTestSetWidget::setCurrent(double value)
+{
+    setTestData("[输出电流]", value, ACT_SET_OUTPUT_CURRENT);
+}
+
 void HAngleTestSetWidget::setCurrentGears(int value)
 {
-    setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT);
+    Q_D(HAngleTestSetWidget);
+    if (setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT))
+    {
+        setTestData("[电源模式]", 0, ACT_SET_SOURCE_MODE);
+        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
+        setTestData("[电源模式]", 1, ACT_SET_SOURCE_MODE);
+    }
     setTestData("[实测电流_档位]", value, ACT_SET_GEARS_MEASURED_CURRENT);
 }
 
@@ -163,8 +179,8 @@ void HAngleTestSetWidget::init()
     for (i = 0; i < d->testData->data("[光档位数]").toInt(); i++)
         ui->comboBox_3->addItem(tr("  %1档  ").arg(i+1));
 
-    connect(ui->doubleSpinBox_2, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电压]", value, ACT_SET_OUTPUT_VOLTAGE); });
-    connect(ui->doubleSpinBox_3, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [=] (double value) { setTestData("[输出电流]", value, ACT_SET_OUTPUT_CURRENT); });
+    connect(ui->doubleSpinBox_2, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &HAngleTestSetWidget::setVoltage);
+    connect(ui->doubleSpinBox_3, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &HAngleTestSetWidget::setCurrent);
     connect(ui->comboBox_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HAngleTestSetWidget::setCurrentGears);
     connect(ui->comboBox_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HAngleTestSetWidget::setLuminousGears);
 }

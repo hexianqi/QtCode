@@ -88,7 +88,9 @@ bool HTrendTestSetWidget::setTestState(bool b)
 
 void HTrendTestSetWidget::setCurrentGears(int value)
 {
-    setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT);
+    Q_D(HTrendTestSetWidget);
+    if (setTestData("[输出电流_档位]", value, ACT_SET_GEARS_OUTPUT_CURRENT))
+        d->model->addAction(ACT_SET_OUTPUT_CURRENT);
     setTestData("[实测电流_档位]", value, ACT_SET_GEARS_MEASURED_CURRENT);
 }
 

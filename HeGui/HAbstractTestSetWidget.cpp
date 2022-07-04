@@ -89,10 +89,12 @@ int HAbstractTestSetWidget::saveMode()
     return d_ptr->saveMode;
 }
 
-void HAbstractTestSetWidget::setTestData(QString type, QVariant value, HActionType action, ulong delay)
+bool HAbstractTestSetWidget::setTestData(QString type, QVariant value, HActionType action, ulong delay)
 {
-    if (d_ptr->testData->setData(type, value))
-        d_ptr->model->addAction(action, delay);
+    if (!d_ptr->testData->setData(type, value))
+        return false;
+    d_ptr->model->addAction(action, delay);
+    return true;
 }
 
 HE_END_NAMESPACE
