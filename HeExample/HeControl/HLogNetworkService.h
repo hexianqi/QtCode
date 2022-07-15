@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "HAbstractService.h"
+#include "HeCore/HAbstractService.h"
 #include "HeCore/HSingleton3.h"
 
 HE_BEGIN_NAMESPACE

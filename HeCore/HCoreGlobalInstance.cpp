@@ -1,6 +1,8 @@
-#include "HCoreGlobalInstance.h"
+#include "HCoreGlobalInstance_p.h"
 #include "HCore.h"
 #include "HDataFormatInfo.h"
+#include "HKeepLogFile.h"
+#include "HLogRedirectService.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QFile>
 #include <QtCore/QPointF>
@@ -193,9 +195,22 @@ QString HCore::fileNameFilter(const QString &name, const QStringList &mimeTypes)
     return QString("%1 (*.").arg(name) + list.join(" *.") + ")";
 }
 
+HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
+    QObject(parent),
+    d_ptr(new HCoreGlobalInstancePrivate)
+{
+    qInfo() << "Start Core Instance.";
+}
+
+HCoreGlobalInstance::~HCoreGlobalInstance()
+{
+    qInfo() << "Stop Core Instance.";
+    stopLogService();
+}
+
 void HCoreGlobalInstance::initialize()
 {
-    if (_initialized)
+    if (d_ptr->initialized)
         return;
     qRegisterMetaType<HLogType>("HLogType");
     qRegisterMetaType<HErrorType>("HErrorType");
@@ -207,18 +222,25 @@ void HCoreGlobalInstance::initialize()
     initDataCaption();
     initDataGroup();
     initMimeType();
-    _initialized = true;
+    d_ptr->initialized = true;
 }
 
-HCoreGlobalInstance::HCoreGlobalInstance(QObject *parent) :
-    QObject(parent)
+void HCoreGlobalInstance::startLogService()
 {
-    qInfo() << "Start Core Instance.";
+    if (d_ptr->logService == nullptr)
+    {
+        d_ptr->logService = HLogRedirectService::instance(this);
+        d_ptr->logFile = new HKeepLogFile(this);
+        connect(d_ptr->logService, SIGNAL(output(QString)), d_ptr->logFile, SLOT(append(QString)));
+    }
+    d_ptr->logService->start();
 }
 
-HCoreGlobalInstance::~HCoreGlobalInstance()
+void HCoreGlobalInstance::stopLogService()
 {
-    qInfo() << "Stop Core Instance.";
+    if (d_ptr->logService == nullptr)
+        return;
+    d_ptr->logService->stop();
 }
 
 void HCoreGlobalInstance::initLogCommand()

@@ -18,5 +18,12 @@
         <file>image/Motor.png</file>
         <file>image/Reset.png</file>
         <file>image/undo.png</file>
+        <file>image/circle_blue.png</file>
+        <file>image/circle_blue_help.png</file>
+        <file>image/circle_green.png</file>
+        <file>image/circle_grey.png</file>
+        <file>image/circle_orange.png</file>
+        <file>image/circle_red.png</file>
+        <file>image/circle_yellow.png</file>
     </qresource>
 </RCC>

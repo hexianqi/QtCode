@@ -44,7 +44,7 @@ Release {
 
 include(SL1000A.pri)
 
-TARGET_NAME                 = SL1000
+TARGET_NAME                 = SL1000A
 
 TARGET                      = $$TARGET_NAME
 VERSION                     = 1.0.0.1

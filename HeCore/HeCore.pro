@@ -28,8 +28,9 @@ DEFINES     += QT_DEPRECATED_WARNINGS
 HEADERS     += \
             HCoreGlobal.h \
             HCore.h \
-            HCoreHelper.h \
             HCoreGlobalInstance.h \
+            HCoreGlobalInstance_p.h \
+            HCoreHelper.h \
             HAppContext.h \
             HDataConvert.h \
             HDataFormatInfo.h \
@@ -63,5 +64,6 @@ Release:    TARGET  = HeCore
 include(container.pri)
 include(interface.pri)
 include(reflect.pri)
+include(service.pri)
 include(type.pri)
 include(template.pri)

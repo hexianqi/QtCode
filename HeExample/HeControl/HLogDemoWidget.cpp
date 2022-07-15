@@ -1,8 +1,8 @@
 #include "HLogDemoWidget_p.h"
 #include "ui_HLogDemoWidget.h"
-#include "HLogRedirectService.h"
 #include "HLogNetworkService.h"
-#include "HKeepLogFile.h"
+#include "HeCore/HKeepLogFile.h"
+#include "HeCore/HLogRedirectService.h"
 #include <QtCore/QTimer>
 #include <QtCore/QDateTime>
 

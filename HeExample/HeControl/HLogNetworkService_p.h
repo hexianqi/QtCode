@@ -1,7 +1,7 @@
 #pragma once
 
 #include "HLogNetworkService.h"
-#include "HAbstractService_p.h"
+#include "HeCore/HAbstractService_p.h"
 
 class QTcpSocket;
 class QTcpServer;

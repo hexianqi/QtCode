@@ -1,7 +1,7 @@
 #include "HRunTimeDemoWidget.h"
 #include "ui_HRunTimeDemoWidget.h"
 #include "HRunTimeService.h"
-#include "ILogFile.h"
+#include "HeCore/ILogFile.h"
 
 HE_BEGIN_NAMESPACE
 

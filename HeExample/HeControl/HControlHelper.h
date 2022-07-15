@@ -18,10 +18,6 @@ class HControlHelper : public QObject
 public:
     // 初始化翻译
     static void initTranslator();
-    // 运行时间
-    static QString runTime(const QDateTime &start, const QDateTime &end);
-    // 转为HH:mm:ss格式
-    static QString secsToTime(qlonglong value);
 
 public:
     // 窗体居中桌面

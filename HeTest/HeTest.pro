@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core gui charts widgets opengl
+QT          += core gui charts widgets opengl sql
 
 TEMPLATE    = app
 
@@ -32,6 +32,7 @@ SOURCES     += \
             HTestMedia_ff.cpp \
             HTestMedia_vlc.cpp \
             HTestOpenGL.cpp \
+            HTestSql.cpp \
             main.cpp \
             MainWindow.cpp \
             HTestAlgorithm.cpp \
@@ -45,6 +46,7 @@ HEADERS     += \
             HTestEigen.h \
             HTestMedia.h \
             HTestOpenGL.h \
+            HTestSql.h \
             MainWindow.h \
             HTestAlgorithm.h \
             HTestPlugin.h \

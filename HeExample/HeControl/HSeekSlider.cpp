@@ -1,8 +1,8 @@
 #include "HSeekSlider_p.h"
-#include "HControlHelper.h"
 #include "HSeekStyle.h"
 #include "HSeekPoints.h"
 #include "HTimeTooltip.h"
+#include "HeCore/HCoreHelper.h"
 #include <QtCore/QTimer>
 #include <QtCore/QPropertyAnimation>
 #include <QtCore/QSequentialAnimationGroup>
@@ -169,7 +169,7 @@ void HSeekSlider::mouseMoveEvent(QMouseEvent *event)
                       QWidget::mapToGlobal( QPoint( 0, 0 ) ).y() );
         if (size().width() > handleLength())
         {
-            auto time = HControlHelper::secsToTime(d_ptr->inputLength * valueFromPosition(event->x()) / maximum());
+            auto time = HCoreHelper::secsToTime(d_ptr->inputLength * valueFromPosition(event->x()) / maximum());
             d_ptr->timeTooltip->setTip( target, time, text );
         }
     }

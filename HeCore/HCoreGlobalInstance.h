@@ -9,6 +9,8 @@
 
 HE_BEGIN_NAMESPACE
 
+class HCoreGlobalInstancePrivate;
+
 class HCoreGlobalInstance : public QObject
 {
     Q_OBJECT
@@ -16,6 +18,8 @@ class HCoreGlobalInstance : public QObject
 
 public:
     void initialize();
+    void startLogService();
+    void stopLogService();
 
 protected:
     HCoreGlobalInstance(QObject *parent = nullptr);
@@ -31,7 +35,7 @@ protected:
     void initMimeType();
 
 private:
-    bool _initialized = false;
+    QScopedPointer<HCoreGlobalInstancePrivate> d_ptr;
 };
 
 HE_END_NAMESPACE

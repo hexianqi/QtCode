@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FrmBinxy</class>
+ <widget class="QDialog" name="FrmBinxy">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>690</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableView" name="tvbinxy">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>10</y>
+     <width>521</width>
+     <height>671</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="gbxyset">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>510</y>
+     <width>480</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>坐标分级设置</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>30</y>
+      <width>30</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X轴：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtminx">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>28</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>84</x>
+      <y>30</y>
+      <width>10</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtmaxx">
+    <property name="geometry">
+     <rect>
+      <x>94</x>
+      <y>28</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.600</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>60</y>
+      <width>30</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Y轴：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtmaxy">
+    <property name="geometry">
+     <rect>
+      <x>94</x>
+      <y>58</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.600</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtminy">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>58</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>84</x>
+      <y>60</y>
+      <width>10</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>重置坐标</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edty0">
+    <property name="geometry">
+     <rect>
+      <x>212</x>
+      <y>40</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.6000</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtx0">
+    <property name="geometry">
+     <rect>
+      <x>161</x>
+      <y>40</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.1000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>161</x>
+      <y>20</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>左上 X0/Y0 ：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtx1">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>130</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.1000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>110</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>左下 X1/Y1 ：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edty1">
+    <property name="geometry">
+     <rect>
+      <x>211</x>
+      <y>130</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.1000</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtx2">
+    <property name="geometry">
+     <rect>
+      <x>279</x>
+      <y>130</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.6000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>279</x>
+      <y>110</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>右下 X2/Y2 ：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edty2">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>130</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.1000</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edtx3">
+    <property name="geometry">
+     <rect>
+      <x>279</x>
+      <y>40</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.6000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>279</x>
+      <y>20</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>右上 X3/Y3 ：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="edty3">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>40</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.6000</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="btnfenji">
+    <property name="geometry">
+     <rect>
+      <x>176</x>
+      <y>70</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>分级计算并预览</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>43</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>X等分：</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spx">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>40</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>133</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Y等分：</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spy">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>130</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_5">
+    <property name="geometry">
+     <rect>
+      <x>319</x>
+      <y>70</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>确认分级参数</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbdaba">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打靶预览</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>90</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>放大</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_3">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>130</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>缩小</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

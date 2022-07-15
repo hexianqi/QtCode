@@ -1,7 +1,7 @@
 #pragma once
 
 #include "HRunTimeService.h"
-#include "HAbstractService_p.h"
+#include "HeCore/HAbstractService_p.h"
 #include <QtCore/QDateTime>
 
 class QTimer;

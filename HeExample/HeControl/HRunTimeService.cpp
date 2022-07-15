@@ -1,6 +1,6 @@
 #include "HRunTimeService_p.h"
-#include "HLogFile.h"
-#include "HControlHelper.h"
+#include "HeCore/HLogFile.h"
+#include "HeCore/HCoreHelper.h"
 #include <QtCore/QTimer>
 #include <QtWidgets/QApplication>
 
@@ -78,7 +78,7 @@ void HRunTimeService::appendLog()
 {
     Q_D(HRunTimeService);
     auto current = QDateTime::currentDateTime();
-    auto content = QString("%1").arg(d->lastId) + QString("\t%1\t%2\t%3").arg(d->startTime.toString("yyyy-MM-dd HH:mm:ss"), current.toString("yyyy-MM-dd HH:mm:ss"), HControlHelper::runTime(d->startTime, current));
+    auto content = QString("%1").arg(d->lastId) + QString("\t%1\t%2\t%3").arg(d->startTime.toString("yyyy-MM-dd HH:mm:ss"), current.toString("yyyy-MM-dd HH:mm:ss"), HCoreHelper::runTime(d->startTime, current));
     d->file->append(content);
     emit dataChanged(content, true);
 }
@@ -97,7 +97,7 @@ void HRunTimeService::saveLog()
     auto texts = list.last().split("\t");
     auto current = QDateTime::currentDateTime();
     texts[2] = current.toString("yyyy-MM-dd HH:mm:ss");
-    texts[3] = HControlHelper::runTime(d->startTime, current);
+    texts[3] = HCoreHelper::runTime(d->startTime, current);
     auto content = texts.join("\t");
     list[list.size() - 1] = content;
     d->file->write(list);

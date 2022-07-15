@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/welcome.jpg</file>
+        <file>image/0-0.png</file>
+        <file>image/0-1.png</file>
+        <file>image/1-0.png</file>
+        <file>image/1-1.png</file>
+        <file>image/2-0.png</file>
+        <file>image/2-1.png</file>
+        <file>image/3-0.png</file>
+        <file>image/3-1.png</file>
+        <file>image/4-0.png</file>
+        <file>image/4-1.png</file>
+        <file>image/5-0.png</file>
+        <file>image/5-1.png</file>
+        <file>image/6-0.png</file>
+        <file>image/6-1.png</file>
+        <file>image/7-0.png</file>
+        <file>image/7-1.png</file>
+        <file>image/8-0.png</file>
+        <file>image/8-1.png</file>
+        <file>image/9-0.png</file>
+        <file>image/9-1.png</file>
+        <file>image/Icon.ico</file>
+    </qresource>
+</RCC>

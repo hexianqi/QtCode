@@ -23,6 +23,12 @@ public:
     static void msleep2(int msecs);
 
 public:
+    // 运行时间
+    static QString runTime(const QDateTime &start, const QDateTime &end);
+    // 转为HH:mm:ss格式
+    static QString secsToTime(qlonglong value);
+
+public:
     // 根据背景色自动计算合适的前景色
     static QColor calcForeColor(QColor backColor);
 

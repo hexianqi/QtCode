@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include <QtGui/QPainter>
+#include <QLabel>
 #include <QProgressDialog>
 #include <QTimer>
 #include <QFile>

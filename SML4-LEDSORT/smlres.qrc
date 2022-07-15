@@ -1,0 +1,41 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>res/pic/run.png</file>
+        <file>res/pic/setting.png</file>
+        <file>res/pic/stop.png</file>
+        <file>res/pic/1.png</file>
+        <file>res/pic/2.png</file>
+        <file>res/pic/3.png</file>
+        <file>res/pic/4.png</file>
+        <file>res/pic/anticlockwise.png</file>
+        <file>res/pic/back.png</file>
+        <file>res/pic/closewise.png</file>
+        <file>res/pic/edit.png</file>
+        <file>res/pic/front.png</file>
+        <file>res/pic/home.png</file>
+        <file>res/pic/left.png</file>
+        <file>res/pic/maintain.png</file>
+        <file>res/pic/new.png</file>
+        <file>res/pic/open.png</file>
+        <file>res/pic/right.png</file>
+        <file>res/pic/save.png</file>
+        <file>res/pic/curve_chart.png</file>
+        <file>res/pic/point_chart.png</file>
+        <file>res/pic/printer.png</file>
+        <file>res/pic/product.png</file>
+        <file>res/pic/1-1.png</file>
+        <file>res/pic/2-1.png</file>
+        <file>res/pic/3-1.png</file>
+        <file>res/pic/4-1.png</file>
+        <file>res/pic/qgreen.png</file>
+        <file>res/pic/qnone.png</file>
+        <file>res/pic/qred.png</file>
+        <file>res/pic/logo.jpg</file>
+        <file>res/pic/timer.png</file>
+        <file>res/pic/tools.png</file>
+        <file>res/pic/verify.png</file>
+        <file>res/pic/welcome.png</file>
+        <file>res/pic/CIE1931.jpg</file>
+        <file>res/pic/CIE1931_1.jpg</file>
+    </qresource>
+</RCC>

@@ -1,9 +1,9 @@
 #include "HVlcPlayer_p.h"
 #include "ui_HVlcPlayer.h"
-#include "HControlHelper.h"
 #include "HFlatStyle.h"
 #include "HVlcPlayerControl.h"
 #include "HSoundWidget.h"
+#include "HeCore/HCoreHelper.h"
 #include <QtWidgets/QFileDialog>
 
 HE_BEGIN_NAMESPACE
@@ -79,8 +79,8 @@ void HVlcPlayer::init()
     connect(d_ptr->control, &HVlcPlayerControl::mutedChanged, this, [=](bool b) { sound->setMuted(b); });
     connect(d_ptr->control, &HVlcPlayerControl::volumeChanged, this, [=](double value) { sound->setVolume(value * 100); });
     connect(d_ptr->control, &HVlcPlayerControl::positionChanged, this, [=](double value) { ui->slider->setValue(value * 1000); });
-    connect(d_ptr->control, &HVlcPlayerControl::timeChanged, this, [=](qlonglong value) { ui->label_1->setText(HControlHelper::secsToTime(value/1000)); });
-    connect(d_ptr->control, &HVlcPlayerControl::durationChanged, this, [=](qlonglong value) { ui->label_2->setText(HControlHelper::secsToTime(value/1000)); });
+    connect(d_ptr->control, &HVlcPlayerControl::timeChanged, this, [=](qlonglong value) { ui->label_1->setText(HCoreHelper::secsToTime(value/1000)); });
+    connect(d_ptr->control, &HVlcPlayerControl::durationChanged, this, [=](qlonglong value) { ui->label_2->setText(HCoreHelper::secsToTime(value/1000)); });
     connect(d_ptr->control, &HVlcPlayerControl::stateChanged, this, &HVlcPlayer::handleStateChanged);
 }
 
@@ -93,7 +93,7 @@ void HVlcPlayer::handleStateChanged(int value)
         ui->pushButton_3->setEnabled(false);
         ui->slider->setEnabled(false);
         ui->slider->setValue(0);
-        ui->label_1->setText(HControlHelper::secsToTime(0));
+        ui->label_1->setText(HCoreHelper::secsToTime(0));
         return;
     }
     if (value == HVlcPlayerControl::Playing)

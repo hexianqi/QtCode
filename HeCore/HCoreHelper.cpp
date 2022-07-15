@@ -39,6 +39,44 @@ void HCoreHelper::msleep2(int msecs)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
+QString HCoreHelper::runTime(const QDateTime &start, const QDateTime &end)
+{
+    qint64 sec = start.secsTo(end);
+    int day = 0;
+    int hour = 0;
+    int minute = 0;
+    int second = 0;
+    while (sec > 0)
+    {
+        second++;
+        if (second == 60)
+        {
+            minute++;
+            second = 0;
+        }
+        if (minute == 60)
+        {
+            hour++;
+            minute = 0;
+        }
+        if (hour == 24)
+        {
+            day++;
+            hour = 0;
+        }
+        sec--;
+    }
+    return QObject::tr("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
+}
+
+QString HCoreHelper::secsToTime(qlonglong value)
+{
+    int hh  = value / 3600;
+    int mm  = (value % 3600) / 60;
+    int ss  = (value % 60);
+    return QString("%1:%2:%3").arg(hh, 2, 10, QChar('0')).arg(mm, 2, 10,  QChar('0')).arg(ss, 2, 10,  QChar('0'));
+}
+
 QColor HCoreHelper::calcForeColor(QColor backColor)
 {
     auto gray = (0.299 * backColor.red() + 0.587 * backColor.green() + 0.114 * backColor.blue()) / 255;

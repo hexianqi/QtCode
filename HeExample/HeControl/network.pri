@@ -11,7 +11,6 @@ SOURCES += \
     $$PWD/HAbstractServerWidget.cpp \
     $$PWD/HAbstractClientWidget.cpp
 
-include(tcp.pri)
 include(udp.pri)
 include(ntp.pri)
 include(http.pri)

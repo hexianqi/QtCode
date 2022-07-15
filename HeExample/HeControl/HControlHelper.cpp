@@ -23,44 +23,6 @@ void HControlHelper::initTranslator()
     QApplication::installTranslator(t2);
 }
 
-QString HControlHelper::runTime(const QDateTime &start, const QDateTime &end)
-{
-    qint64 sec = start.secsTo(end);
-    int day = 0;
-    int hour = 0;
-    int minute = 0;
-    int second = 0;
-    while (sec > 0)
-    {
-        second++;
-        if (second == 60)
-        {
-            minute++;
-            second = 0;
-        }
-        if (minute == 60)
-        {
-            hour++;
-            minute = 0;
-        }
-        if (hour == 24)
-        {
-            day++;
-            hour = 0;
-        }
-        sec--;
-    }
-    return tr("%1天 %2时 %3分 %4秒").arg(day).arg(hour).arg(minute).arg(second);
-}
-
-QString HControlHelper::secsToTime(qlonglong value)
-{
-    int hh  = value / 3600;
-    int mm  = (value % 3600) / 60;
-    int ss  = (value % 60);
-    return QString("%1:%2:%3").arg(hh, 2, 10, QChar('0')).arg(mm, 2, 10,  QChar('0')).arg(ss, 2, 10,  QChar('0'));
-}
-
 void HControlHelper::centerWidget(QWidget *widget)
 {
     auto size = QApplication::primaryScreen()->availableSize();
