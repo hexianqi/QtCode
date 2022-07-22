@@ -1,5 +1,5 @@
 #include "HSqlFactory_p.h"
-#include "HSqlDatabase.h"
+#include "HSqliteDatabase.h"
 #include "HSqlTableModel.h"
 #include "HSqlHandle.h"
 #include "HSqlOutput.h"
@@ -35,7 +35,7 @@ QString HSqlFactory::typeName()
 ISqlDatabase *HSqlFactory::createDatabase(QString type, QVariantMap param)
 {
     Q_UNUSED(type)
-    auto p = new HSqlDatabase(this);
+    auto p = new HSqliteDatabase(this);
     p->initialize(param);
     return p;
 }

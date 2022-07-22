@@ -8,15 +8,15 @@
 
 HE_BEGIN_NAMESPACE
 
-class HSqlDatabasePrivate;
+class HSqliteDatabasePrivate;
 
-class HSqlDatabase : public QObject, public ISqlDatabase
+class HSqliteDatabase : public QObject, public ISqlDatabase
 {
     Q_OBJECT
 
 public:
-    explicit HSqlDatabase(QObject *parent = nullptr);
-    ~HSqlDatabase() override;
+    explicit HSqliteDatabase(QObject *parent = nullptr);
+    ~HSqliteDatabase() override;
 
 public:
     void initialize(QVariantMap param = QVariantMap()) override;
@@ -24,15 +24,16 @@ public:
 
 public:
     bool openDatabase(const QString &dbName) override;
+    QSqlDatabase getConnection() override;
     bool contains(const QString &tableName) override;
     void insertTableModel(ISqlTableModel *model) override;
     ISqlTableModel *tableModel(const QString &tableName) override;
 
 protected:
-    HSqlDatabase(HSqlDatabasePrivate &p, QObject *parent = nullptr);
+    HSqliteDatabase(HSqliteDatabasePrivate &p, QObject *parent = nullptr);
 
 protected:
-    QScopedPointer<HSqlDatabasePrivate> d_ptr;
+    QScopedPointer<HSqliteDatabasePrivate> d_ptr;
 };
 
 HE_END_NAMESPACE

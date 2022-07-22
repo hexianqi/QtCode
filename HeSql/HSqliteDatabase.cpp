@@ -1,4 +1,4 @@
-#include "HSqlDatabase_p.h"
+#include "HSqliteDatabase_p.h"
 #include "ISqlTableModel.h"
 #include "HSqlHelper.h"
 #include <QtWidgets/QMessageBox>
@@ -6,32 +6,32 @@
 
 HE_BEGIN_NAMESPACE
 
-HSqlDatabase::HSqlDatabase(QObject *parent) :
+HSqliteDatabase::HSqliteDatabase(QObject *parent) :
     QObject(parent),
-    d_ptr(new HSqlDatabasePrivate)
+    d_ptr(new HSqliteDatabasePrivate)
 {
 }
 
-HSqlDatabase::HSqlDatabase(HSqlDatabasePrivate &p, QObject *parent) :
+HSqliteDatabase::HSqliteDatabase(HSqliteDatabasePrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)
 {
 }
 
-HSqlDatabase::~HSqlDatabase() = default;
+HSqliteDatabase::~HSqliteDatabase() = default;
 
-void HSqlDatabase::initialize(QVariantMap param)
+void HSqliteDatabase::initialize(QVariantMap param)
 {
     if (param.contains("dbName"))
         openDatabase(param.value("dbName").toString());
 }
 
-QString HSqlDatabase::typeName()
+QString HSqliteDatabase::typeName()
 {
     return "HSqlDatabase";
 }
 
-bool HSqlDatabase::openDatabase(const QString &dbName)
+bool HSqliteDatabase::openDatabase(const QString &dbName)
 {
     if (dbName.isEmpty())
         return false;
@@ -52,18 +52,24 @@ bool HSqlDatabase::openDatabase(const QString &dbName)
     return true;
 }
 
-bool HSqlDatabase::contains(const QString &tableName)
+QSqlDatabase HSqliteDatabase::getConnection()
 {
-    Q_ASSERT_X(d_ptr->db.isValid() && d_ptr->db.isOpen(), "containTable", "database is invalid or closed.");
+    Q_ASSERT_X(d_ptr->db.isValid() && d_ptr->db.isOpen(), "HSqliteDatabase", "database is invalid or closed.");
+    return d_ptr->db;
+}
+
+bool HSqliteDatabase::contains(const QString &tableName)
+{
+    Q_ASSERT_X(d_ptr->db.isValid() && d_ptr->db.isOpen(), "HSqliteDatabase", "database is invalid or closed.");
     return d_ptr->db.tables().contains(tableName);
 }
 
-void HSqlDatabase::insertTableModel(ISqlTableModel *model)
+void HSqliteDatabase::insertTableModel(ISqlTableModel *model)
 {
     d_ptr->tableModels.insert(model->tableName(), model);
 }
 
-ISqlTableModel *HSqlDatabase::tableModel(const QString &tableName)
+ISqlTableModel *HSqliteDatabase::tableModel(const QString &tableName)
 {
     if (d_ptr->tableModels.isEmpty())
         return nullptr;

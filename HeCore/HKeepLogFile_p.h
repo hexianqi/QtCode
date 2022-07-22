@@ -14,7 +14,7 @@ public:
     QString fileName;
     int maxRow = 0;     // 文件最大行数（0 = 不启用）
     int currentRow = 0; // 文件当前行
-    int maxSize = 128;  // 文件最大大小（0 = 不启用，单位KB）
+    int maxSize = 0;    // 文件最大大小（0 = 不启用，单位KB）
 };
 
 HE_END_NAMESPACE

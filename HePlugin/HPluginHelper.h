@@ -14,7 +14,6 @@ class QTableView;
 class QSpinBox;
 class QDoubleSpinBox;
 class QInputDialog;
-class QAbstractItemModel;
 
 class QDESIGNER_WIDGET_EXPORT HPluginHelper
 {

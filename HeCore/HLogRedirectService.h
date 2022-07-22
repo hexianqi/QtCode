@@ -44,8 +44,10 @@ public:
 
 public:
     bool isFilter(const QtMsgType &);
+    bool isUseTime();
     bool isUseContext();
     void setMsgType(const MsgType &);       // 设置输出消息类型
+    void setUseTime(bool);                  // 设置是否输出时间
     void setUseContext(bool);               // 设置是否输出日志上下文
     void save(const QString &content);
 };

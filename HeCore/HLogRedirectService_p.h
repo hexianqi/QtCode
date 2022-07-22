@@ -8,6 +8,7 @@ HE_BEGIN_NAMESPACE
 class HLogRedirectServicePrivate : public HAbstractServicePrivate
 {
 public:
+    bool useTime = true;
     bool useContext = false;
     HLogRedirectService::MsgType msgType = HLogRedirectService::MsgType_All;
 };

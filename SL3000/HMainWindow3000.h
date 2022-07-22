@@ -30,12 +30,12 @@ protected:
 //    void initModel();
     void initCentralWidget();
     void initWindow();
-
-
-
-
+    void initTimer();
     void readSettings();
     void writeSettings();
+
+protected slots:
+    void updateTime();
 
 private:
     QScopedPointer<HMainWindow3000Private> d_ptr;

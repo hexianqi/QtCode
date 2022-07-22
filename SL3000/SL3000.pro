@@ -13,6 +13,8 @@ SOURCES     += \
             HHelper.cpp \
             HMainWindow3000.cpp \
             HStationWidget.cpp \
+            HStatusWidget.cpp \
+            HTestWidget3000.cpp \
             main.cpp
 
 HEADERS     += \
@@ -21,11 +23,16 @@ HEADERS     += \
             HMainWindow3000.h \
             HMainWindow3000_p.h \
             HStationWidget.h \
-            HStationWidget_p.h
+            HStationWidget_p.h \
+            HStatusWidget.h \
+            HStatusWidget_p.h \
+            HTestWidget3000.h \
+            HTestWidget3000_p.h
 
 FORMS       += \
             HDBLoginDialog.ui \
-            HMainWindow3000.ui
+            HMainWindow3000.ui \
+            HTestWidget3000.ui
 
 RESOURCES   += \
             SL3000.qrc
@@ -39,8 +46,8 @@ Debug {
 #            -L$$DESTDIR -lHeCommunicated \
 #            -L$$DESTDIR -lHeControllerd \
             -L$$DESTDIR -lHeGuid \
-#            -L$$DESTDIR -lHePlugind \
-#            -L$$DESTDIR -lHeSqld
+            -L$$DESTDIR -lHePlugind \
+            -L$$DESTDIR -lHeSqld
 }
 
 Release {
@@ -51,8 +58,8 @@ Release {
 #            -L$$DESTDIR -lHeCommunicate \
 #            -L$$DESTDIR -lHeController \
             -L$$DESTDIR -lHeGui \
-#            -L$$DESTDIR -lHePlugin \
-#            -L$$DESTDIR -lHeSql
+            -L$$DESTDIR -lHePlugin \
+            -L$$DESTDIR -lHeSql
 }
 
 TARGET_NAME                 = SL3000

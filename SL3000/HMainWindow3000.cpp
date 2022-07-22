@@ -1,8 +1,13 @@
 #include "HMainWindow3000_p.h"
 #include "ui_HMainWindow3000.h"
+#include "HHelper.h"
 #include "HStationWidget.h"
+#include "HStatusWidget.h"
 #include "HeCore/HAppContext.h"
+#include "HeSql/HSqlHelper.h"
+#include <QtCore/QDateTime>
 #include <QtCore/QSettings>
+#include <QtCore/QTimer>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QStatusBar>
@@ -25,6 +30,7 @@ HMainWindow3000::HMainWindow3000(QWidget *parent) :
 
 HMainWindow3000::~HMainWindow3000()
 {
+    d_ptr->timer->stop();
     writeSettings();
     delete ui;
 }
@@ -43,6 +49,8 @@ void HMainWindow3000::initialize()
 //    initModel();
     initCentralWidget();
     initWindow();
+    initTimer();
+    HSqlHelper::truncateTable("testdata", HHelper::mysql);
 }
 
 void HMainWindow3000::createToolBarLogo()
@@ -73,23 +81,33 @@ void HMainWindow3000::initWindow()
     setWindowIcon(QIcon(":/image/Icon.ico"));
 }
 
+void HMainWindow3000::initTimer()
+{
+    d_ptr->timer = new QTimer(this);
+    connect(d_ptr->timer, &QTimer::timeout, this, &HMainWindow3000::updateTime);
+    d_ptr->timer->start(1000);
+}
+
 void HMainWindow3000::initStatusBar()
 {
-//    statusBar()->addWidget(new QLabel(tr("当前登录用户：%1").arg()))
-//    for (auto w : d_ptr->labels)
-//        statusBar()->removeWidget(w);
-//    d_ptr->labels.clear();
-//    for (const auto &s : list)
-//    {
-//        auto l = new QLabel;
-//        l->setText(tr("%1:<font color=#FF0000>关闭</font>").arg(s));
-//        d_ptr->labels.insert(s, l);
-//        statusBar()->addWidget(l);
-//    }
+    QVector<int> indexs;
+    for (int i = 0; i < d_ptr->stationEnable.size(); i++)
+    {
+        if (d_ptr->stationEnable.at(i))
+            indexs << i;
+    }
 
+    d_ptr->time = new QLabel(QDateTime::currentDateTime().toString(" yyyy-MM-dd hh:mm:ss "));
+    d_ptr->workStatusWidget = new HStatusWidget(tr("工位运行状态："), indexs);
+    d_ptr->specStatusWidget = new HStatusWidget(tr("光谱连接状态："), indexs);
+    d_ptr->elecStatusWidget = new HStatusWidget(tr("电源连接状态："), indexs);
+    statusBar()->addPermanentWidget(d_ptr->time);
+    statusBar()->addWidget(new QLabel(tr(" 当前登录用户：%1 ").arg(HAppContext::getContextValue<QString>("User"))));
+    statusBar()->addWidget(d_ptr->workStatusWidget);
+    statusBar()->addWidget(d_ptr->specStatusWidget);
+    statusBar()->addWidget(d_ptr->elecStatusWidget);
 
-
-    statusBar()->setStyleSheet("QStatusBar::item { border: 0px }");
+ //   statusBar()->setStyleSheet("QStatusBar::item { border:2px solid red; }");
 }
 
 void HMainWindow3000::initCentralWidget()
@@ -101,6 +119,9 @@ void HMainWindow3000::initCentralWidget()
         auto widget = new HStationWidget(i);
         ui->tabWidget->addTab(widget, widget->windowIcon(), "");
         d_ptr->stationWidget.insert(i, widget);
+        connect(widget, &HStationWidget::workStateChanged, d_ptr->workStatusWidget, &HStatusWidget::setStatus);
+        connect(widget, &HStationWidget::specStateChanged, d_ptr->specStatusWidget, &HStatusWidget::setStatus);
+        connect(widget, &HStationWidget::elecStateChanged, d_ptr->elecStatusWidget, &HStatusWidget::setStatus);
     }
 
     //    for (int i = 0; i < d_ptr->stationEnable.size(); i++)
@@ -137,4 +158,9 @@ void HMainWindow3000::writeSettings()
     for (int i = 0; i < d_ptr->stationEnable.size(); i++)
         settings->setValue(QString("Station%1").arg(i+1), d_ptr->stationEnable.at(i));
     settings->endGroup();
+}
+
+void HMainWindow3000::updateTime()
+{
+    d_ptr->time->setText(QDateTime::currentDateTime().toString(" yyyy-MM-dd hh:mm:ss "));
 }

@@ -37,7 +37,7 @@ void HControlDemoWidget::addMultHeaderTableView()
     hModel->setData(hModel->index(2, 1), QString("cell3"), Qt::DisplayRole);
     hModel->setData(hModel->index(2, 2), QString("cell4"), Qt::DisplayRole);
     hModel->setData(hModel->index(0, 3), QString("cell5"), Qt::DisplayRole);
-    hModel->setData(hModel->index(1, 3), QString("cell5"), Qt::DisplayRole);
+    hModel->setData(hModel->index(1, 3), QString("cell6"), Qt::DisplayRole);
     hHead->setCellBackgroundColor(hModel->index(0, 0), 0xCFCFCF);
     hHead->setCellBackgroundColor(hModel->index(0, 1), 0xCFCFCF);
 
@@ -89,6 +89,8 @@ void HControlDemoWidget::addMultHeaderTableWidget()
     widget1->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     widget1->verticalHeader()->setVisible(false);
     widget1->setHorizontalHeaderLabels(QStringList() << "结果" << "球编号");
+    widget1->setRowCount(10);
+    widget1->setItem(0, 0, new QTableWidgetItem("text"));
 
     auto widget2 = new QTableWidget;
     widget2->setColumnCount(2);

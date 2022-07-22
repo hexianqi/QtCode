@@ -49,15 +49,15 @@ int main(int argc, char *argv[])
 
 //    HControlFactoryWidget cw;
 //    cw.show();
-//    HControlDemoWidget dw;
-//    dw.show();
+    HControlDemoWidget dw;
+    dw.show();
 
-   HMainWindow window;
-//    window.setCentralWidget(&videoWidget);
-    window.resize(800, 600);
-    window.grabGesture(Qt::PanGesture);
-    window.grabGesture(Qt::PinchGesture);
-    window.show();
+//   HMainWindow window;
+////    window.setCentralWidget(&videoWidget);
+//    window.resize(800, 600);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
 ////    HDumpTree::dumpProperty(&window);
 
     return a.exec();

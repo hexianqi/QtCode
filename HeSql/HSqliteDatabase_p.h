@@ -1,11 +1,10 @@
 #pragma once
 
-#include "HSqlDatabase.h"
-#include <QtSql/QSqlDatabase>
+#include "HSqliteDatabase.h"
 
 HE_BEGIN_NAMESPACE
 
-class HSqlDatabasePrivate
+class HSqliteDatabasePrivate
 {
 public:
     QSqlDatabase db;

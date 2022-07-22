@@ -1,5 +1,6 @@
 #include "HLogRedirectService_p.h"
 #include <QtCore/QMutexLocker>
+#include <QtCore/QDateTime>
 
 HE_BEGIN_NAMESPACE
 
@@ -18,23 +19,25 @@ void log(QtMsgType type, const QMessageLogContext &context, const QString &msg)
     switch (type)
     {
     case QtDebugMsg:
-        content = QString("Debug:\t%1").arg(msg);
+        content = QString("[Debug]\t%1").arg(msg);
         break;
     case QtInfoMsg:
-        content = QString("Info:\t%1").arg(msg);
+        content = QString("[Info]\t%1").arg(msg);
         break;
     case QtWarningMsg:
-        content = QString("Warning:\t%1").arg(msg);
+        content = QString("[Warning]\t%1").arg(msg);
         break;
     case QtCriticalMsg:
-        content = QString("Critical:\t%1").arg(msg);
+        content = QString("[Critical]\t%1").arg(msg);
         break;
     case QtFatalMsg:
-        content = QString("Fatal:\t%1").arg(msg);
+        content = QString("[Fatal]\t%1").arg(msg);
         break;
     }
     if (content.isEmpty())
         return;
+    if (service->isUseTime())
+        content = QString("[%1]%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz"), content);
     if (service->isUseContext())
         content += QString("\n%1:%2, %3").arg(context.file).arg(context.line).arg(context.function);
     service->save(content);
@@ -85,6 +88,12 @@ bool HLogRedirectService::isFilter(const QtMsgType &type)
     return false;
 }
 
+bool HLogRedirectService::isUseTime()
+{
+    Q_D(HLogRedirectService);
+    return d->useTime;
+}
+
 bool HLogRedirectService::isUseContext()
 {
     Q_D(HLogRedirectService);
@@ -95,6 +104,12 @@ void HLogRedirectService::setMsgType(const MsgType &value)
 {
     Q_D(HLogRedirectService);
     d->msgType = value;
+}
+
+void HLogRedirectService::setUseTime(bool b)
+{
+    Q_D(HLogRedirectService);
+    d->useTime = b;
 }
 
 void HLogRedirectService::setUseContext(bool b)

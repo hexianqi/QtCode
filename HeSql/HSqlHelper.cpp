@@ -145,12 +145,12 @@ void HSqlHelper::updateSpecTable(ISqlDatabase *db)
         if (version < 0x01010106)
             addColumn("Spec", "SDCM_Detail");
     }
-    setVersion("Spec", 0x01010106);
+    setVersion("Spec", 0x01010106, db->getConnection());
 }
 
-void HSqlHelper::updateAngleTable(ISqlDatabase */*db*/)
+void HSqlHelper::updateAngleTable(ISqlDatabase *db)
 {
-    setVersion("Angle", 0x01010101);
+    setVersion("Angle", 0x01010101, db->getConnection());
 }
 
 HE_END_NAMESPACE

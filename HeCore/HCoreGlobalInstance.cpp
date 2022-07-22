@@ -229,7 +229,7 @@ void HCoreGlobalInstance::startLogService()
 {
     if (d_ptr->logService == nullptr)
     {
-        d_ptr->logService = HLogRedirectService::instance(this);
+        d_ptr->logService = HLogRedirectService::instance();
         d_ptr->logFile = new HKeepLogFile(this);
         connect(d_ptr->logService, SIGNAL(output(QString)), d_ptr->logFile, SLOT(append(QString)));
     }

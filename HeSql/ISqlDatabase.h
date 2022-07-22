@@ -5,6 +5,7 @@
 #pragma once
 
 #include "HeCore/IInitializeable.h"
+#include <QtSql/QSqlDatabase>
 
 HE_BEGIN_NAMESPACE
 
@@ -15,6 +16,8 @@ class ISqlDatabase : public IInitializeable
 public:
     // 打开数据库
     virtual bool openDatabase(const QString &dbName) = 0;
+    // 获取连接
+    virtual QSqlDatabase getConnection() = 0;
     // 是否包含表格
     virtual bool contains(const QString &tableName) = 0;
     // 添加数据库表格模型

@@ -11,6 +11,8 @@ HE_USE_NAMESPACE
 
 int main(int argc, char *argv[])
 {
+    Q_INIT_RESOURCE(HeGui);
+
     QApplication a(argc, argv);
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));

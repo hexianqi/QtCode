@@ -69,7 +69,7 @@ QSqlDatabase HConnectionPool::openConnection()
     return db;
 }
 
-void HConnectionPool::closeConnection(const QSqlDatabase &db)
+void HConnectionPool::closeConnection(QSqlDatabase db)
 {
     auto connectionName = db.connectionName();
     if (d_ptr->usedConnectionNames.contains(connectionName))
@@ -79,6 +79,7 @@ void HConnectionPool::closeConnection(const QSqlDatabase &db)
         d_ptr->unusedConnectionNames.enqueue(connectionName);
         d_ptr->waitConnection->wakeOne();
     }
+    db.close();
 }
 
 QString HConnectionPool::getConnectionName()
@@ -99,7 +100,7 @@ QString HConnectionPool::getConnectionName()
     return QString();
 }
 
-QSqlDatabase HConnectionPool::createConnection(const QString &connectionName)
+QSqlDatabase HConnectionPool::createConnection(QString connectionName)
 {
     auto db = QSqlDatabase::addDatabase(d_ptr->databaseType, connectionName);
     db.setDatabaseName(d_ptr->databaseName);

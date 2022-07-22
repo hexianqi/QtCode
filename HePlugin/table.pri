@@ -12,3 +12,4 @@ SOURCES += \
     $$PWD/HTableView.cpp
 
 include(tableExtend.pri)
+include(tableHeader.pri)
