@@ -1,5 +1,7 @@
 #include "HStationWidget_p.h"
-#include "HTestWidget3000.h"
+#include "HTestTricrystal.h"
+#include "HTestResultWidget.h"
+#include "HTestConfigWidget.h"
 #include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QLayout>
@@ -15,16 +17,27 @@ HStationWidget::HStationWidget(int index, QWidget *parent) :
 
 HStationWidget::~HStationWidget()
 {
+    delete d_ptr->testData;
+}
+
+void HStationWidget::setStackedCurrentIndex(int index)
+{
+    d_ptr->stackedWidget->setCurrentIndex(index);
 }
 
 void HStationWidget::initialize(int index)
 {
     d_ptr->index = index;
+    d_ptr->testData = new HTestTricrystal;
 //  readSettings();
     createAction();
     createToolBar();
     createWidget();
+    createThread();
     initWidget();
+    setStyleSheet("background-color: rgba(255, 255, 255);\
+                   selection-background-color: rgb(85, 255, 255);\
+                   selection-color: rgb(255, 0, 0);");
     setWindowIcon(QIcon(QString(":/image/%1-0.png").arg(index + 1)));
 }
 
@@ -45,12 +58,15 @@ void HStationWidget::createAction()
     d_ptr->actionClear->setIconText(tr("清除结果"));
     d_ptr->actionCie = new QAction(tr("显示色品图"), this);
     d_ptr->actionEnergy = new QAction(tr("显示能量图"), this);
-    d_ptr->actionTest = new QAction(tr("测试结果"), this);
-    d_ptr->actionTestSet = new QAction(tr("测试设置"), this);
+    d_ptr->actionTestResult = new QAction(tr("测试结果"), this);
+    d_ptr->actionTestConfig = new QAction(tr("测试配置"), this);
+
+    connect(d_ptr->actionClear, &QAction::triggered, this, &HStationWidget::clearResult);
+    connect(d_ptr->actionTestResult, &QAction::triggered, this, [=] { setStackedCurrentIndex(0); });
+    connect(d_ptr->actionTestConfig, &QAction::triggered, this, [=] { setStackedCurrentIndex(1); });
 
 //    connect(d_ptr->actionStart, &QAction::triggered, this, [=] { setTest(true); });
 //    connect(d_ptr->actionStop, &QAction::triggered, this, [=] { setTest(false); });
-    //    connect(d_ptr->actionClear, &QAction::triggered, this, &HTestWidget::clearResult);
 }
 
 void HStationWidget::createToolBar()
@@ -64,8 +80,8 @@ void HStationWidget::createToolBar()
     d_ptr->toolBar->addAction(d_ptr->actionCie);
     d_ptr->toolBar->addAction(d_ptr->actionEnergy);
     d_ptr->toolBar->addSeparator();
-    d_ptr->toolBar->addAction(d_ptr->actionTest);
-    d_ptr->toolBar->addAction(d_ptr->actionTestSet);
+    d_ptr->toolBar->addAction(d_ptr->actionTestResult);
+    d_ptr->toolBar->addAction(d_ptr->actionTestConfig);
     d_ptr->toolBar->setIconSize(QSize(32, 32));
     d_ptr->toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
@@ -73,8 +89,15 @@ void HStationWidget::createToolBar()
 void HStationWidget::createWidget()
 {
     d_ptr->stackedWidget = new QStackedWidget;
-    d_ptr->testWidget = new HTestWidget3000;
-    d_ptr->stackedWidget->addWidget(d_ptr->testWidget);
+    d_ptr->testResultWidget = new HTestResultWidget;
+    d_ptr->testConfigWidget = new HTestConfigWidget;
+    d_ptr->stackedWidget->addWidget(d_ptr->testResultWidget);
+    d_ptr->stackedWidget->addWidget(d_ptr->testConfigWidget);
+}
+
+void HStationWidget::createThread()
+{
+
 }
 
 void HStationWidget::initWidget()
@@ -83,6 +106,11 @@ void HStationWidget::initWidget()
     layout->setSpacing(9);
     layout->addWidget(d_ptr->toolBar, 0, 0);
     layout->addWidget(d_ptr->stackedWidget, 1, 0);
+}
+
+void HStationWidget::clearResult()
+{
+    d_ptr->testResultWidget->clearResult();
 }
 
 

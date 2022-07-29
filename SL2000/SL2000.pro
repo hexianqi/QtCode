@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT              += core gui widgets sql printsupport
+QT              += core gui widgets sql
 
 TEMPLATE        = app
 

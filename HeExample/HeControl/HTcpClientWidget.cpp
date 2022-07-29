@@ -2,6 +2,7 @@
 #include "ui_HTcpClientWidget.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
+#include <QtNetwork/QHostAddress>
 #include <QtNetwork/QTcpSocket>
 
 HE_BEGIN_NAMESPACE
@@ -35,7 +36,7 @@ void HTcpClientWidget::sendData()
 
     auto data = toByteArray(text);
     if (d->socket->write(data) == -1)
-        append(0, tr("发送失败"));
+        append(2, tr("发送失败"));
     else
         append(0, text);
 }
@@ -50,10 +51,7 @@ void HTcpClientWidget::on_pushButton_101_clicked()
 {
     Q_D(HTcpClientWidget);
     if (!d->connected)
-    {
-        d->socket->abort();
         d->socket->connectToHost(d->serverAddress, d->serverPort);
-    }
     else
         d->socket->abort();
 }
@@ -69,16 +67,15 @@ void HTcpClientWidget::handleConnected()
     Q_D(HTcpClientWidget);
     d->connected = true;
     ui->pushButton_101->setText(tr("断开"));
-    append(1, tr("服务器连接"));
+    append(3, tr("服务器连接"));
 }
 
 void HTcpClientWidget::handleDisconnected()
 {
     Q_D(HTcpClientWidget);
     d->connected = false;
-    d->socket->abort();
     ui->pushButton_101->setText(tr("连接"));
-    append(1, tr("服务器断开"));
+    append(3, tr("服务器断开"));
 }
 
 void HTcpClientWidget::handleReadyRead()
@@ -90,15 +87,41 @@ void HTcpClientWidget::handleReadyRead()
     append(1, fromByteArray(data));
 }
 
+void HTcpClientWidget::handleError()
+{
+    Q_D(HTcpClientWidget);
+    append(2, d->socket->errorString());
+}
+
 void HTcpClientWidget::append(int type, QString data)
 {
     Q_D(HTcpClientWidget);
     if (d->currentCount >= d->maxCount)
         clearData();
 
+    QString strType;
+    if (type == 0)
+    {
+        strType = tr("发送");
+        ui->textEdit->setTextColor(QColor("#22A3A9"));
+    }
+    else if (type == 1)
+    {
+        strType = tr("接收");
+        ui->textEdit->setTextColor(QColor("#753775"));
+    }
+    else if (type == 2)
+    {
+        strType = tr("错误");
+        ui->textEdit->setTextColor(Qt::red);
+    }
+    else
+    {
+        strType = tr("提示");
+        ui->textEdit->setTextColor(Qt::black);
+    }
     auto text = data.replace("\r", "").replace("\n", "");
-    ui->textEdit->setTextColor(type == 0 ? Qt::darkGreen : Qt::red);
-    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), type == 0 ? tr("发送") : tr("接收"), text));
+    ui->textEdit->append(tr("[%1][%2]%3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), strType, text));
     d->currentCount++;
 }
 
@@ -129,10 +152,10 @@ void HTcpClientWidget::init()
     connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerAddress(ui->lineEdit_101->text()); });
     connect(ui->pushButton_103, &QPushButton::clicked, this, &HTcpClientWidget::clearData);
     connect(ui->pushButton_201, &QPushButton::clicked, this, &HTcpClientWidget::sendData);
-    connect(d->socket, &QTcpSocket::connected, this, &HTcpClientWidget::handleConnected);
-    connect(d->socket, &QTcpSocket::disconnected, this, &HTcpClientWidget::handleDisconnected);
-    connect(d->socket, &QTcpSocket::readyRead, this, &HTcpClientWidget::handleReadyRead);
-    connect(d->socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(handleDisconnected()));
+    connect(d->socket, SIGNAL(connected()), this, SLOT(handleConnected()));
+    connect(d->socket, SIGNAL(disconnected()), this, SLOT(handleDisconnected()));
+    connect(d->socket, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
+    connect(d->socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(handleError()));
     setWindowTitle(tr("TCP客户端"));
 }
 

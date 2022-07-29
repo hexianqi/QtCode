@@ -30,6 +30,7 @@ public slots:
 protected slots:
     void on_pushButton_101_clicked();
     void handleReadyRead();
+    void handleError();
     void append(int type, QString data);
 
 protected:

@@ -33,6 +33,7 @@ protected slots:
     void handleConnected();
     void handleDisconnected();
     void handleReadyRead();
+    void handleError();
     void append(int type, QString data);
 
 protected:

@@ -42,16 +42,21 @@ void HAbstractServerWidget::setListenPort(int value)
     d->listenPort = value;
 }
 
+void HAbstractServerWidget::handleError(const QString &address, int port, const QString &error)
+{
+    append(2, QString("[%1:%2]%3").arg(address).arg(port).arg(error));
+}
+
 void HAbstractServerWidget::handleSentData(const QString &address, int port, const QByteArray &data)
 {
     auto text = fromByteArray(data);
-    append(0, QString("[%1:%2] %3").arg(address).arg(port).arg(text));
+    append(0, QString("[%1:%2]%3").arg(address).arg(port).arg(text));
 }
 
 void HAbstractServerWidget::handleReceiveData(const QString &address, int port, const QByteArray &data)
 {
     auto text = fromByteArray(data);
-    append(1, QString("[%1:%2] %3").arg(address).arg(port).arg(text));
+    append(1, QString("[%1:%2]%3").arg(address).arg(port).arg(text));
 }
 
 void HAbstractServerWidget::readSettings()

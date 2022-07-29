@@ -31,6 +31,7 @@ void HNetworkWidget::init()
     d_ptr->tcpServer = new HTcpServerWidget;
     d_ptr->udpClient = new HUdpClientWidget;
     d_ptr->udpServer = new HUdpServerWidget;
+    d_ptr->tabWidget->setTabPosition(QTabWidget::South);
     d_ptr->tabWidget->addTab(d_ptr->tcpClient, d_ptr->tcpClient->windowTitle());
     d_ptr->tabWidget->addTab(d_ptr->tcpServer, d_ptr->tcpServer->windowTitle());
     d_ptr->tabWidget->addTab(d_ptr->udpClient, d_ptr->udpClient->windowTitle());

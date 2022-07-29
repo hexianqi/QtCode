@@ -14,10 +14,12 @@ class ISqlTableModel;
 class ISqlDatabase : public IInitializeable
 {
 public:
-    // 打开数据库
-    virtual bool openDatabase(const QString &dbName) = 0;
-    // 获取连接
-    virtual QSqlDatabase getConnection() = 0;
+    // 设置数据库名称
+    virtual void setDatabaseName(const QString &name) = 0;
+    // 打开连接
+    virtual QSqlDatabase openConnection() = 0;
+    // 关闭连接
+    virtual void closeConnection(QSqlDatabase db) = 0;
     // 是否包含表格
     virtual bool contains(const QString &tableName) = 0;
     // 添加数据库表格模型

@@ -151,8 +151,8 @@ void HBuilder2000::buildMemento()
 void HBuilder2000::buildDatabase()
 {
     Q_D(HBuilder2000);
-    auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
+    auto db = d->sqlFactory->createDatabase("HSqliteDatabase");
+    db->openConnection();
     HSqlHelper::updateSpecTable(db);
 
     auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|光度信息4|" << "|光谱信息2|" << "|色容差信息|" << "|光合信息|" << "|TM30信息|";

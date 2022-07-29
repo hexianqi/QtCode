@@ -23,8 +23,9 @@ public:
     QString typeName() override;
 
 public:
-    bool openDatabase(const QString &dbName) override;
-    QSqlDatabase getConnection() override;
+    void setDatabaseName(const QString &name) override;
+    QSqlDatabase openConnection() override;
+    void closeConnection(QSqlDatabase db) override;
     bool contains(const QString &tableName) override;
     void insertTableModel(ISqlTableModel *model) override;
     ISqlTableModel *tableModel(const QString &tableName) override;

@@ -4,13 +4,17 @@
 
 class QToolBar;
 class QStackedWidget;
-class HTestWidget3000;
-class HTestSetWidget3000;
+class HTestTricrystal;
+class HTestResultWidget;
+class HTestConfigWidget;
 
 class HStationWidgetPrivate
 {
 public:
     int index;
+
+public:
+    HTestTricrystal *testData = nullptr;
 
 public:
     QAction *actionStart = nullptr;
@@ -19,12 +23,12 @@ public:
     QAction *actionClear = nullptr;
     QAction *actionCie = nullptr;
     QAction *actionEnergy = nullptr;
-    QAction *actionTest = nullptr;
-    QAction *actionTestSet = nullptr;
+    QAction *actionTestResult = nullptr;
+    QAction *actionTestConfig = nullptr;
     QToolBar *toolBar = nullptr;
     QStackedWidget *stackedWidget = nullptr;
-    HTestWidget3000 *testWidget = nullptr;
-    HTestSetWidget3000 *testSetWidget = nullptr;
+    HTestResultWidget *testResultWidget = nullptr;
+    HTestConfigWidget *testConfigWidget = nullptr;
 };
 
 

@@ -31,8 +31,8 @@ protected slots:
     void on_pushButton_101_clicked();
     void on_pushButton_102_clicked();
     void on_pushButton_104_clicked();
-    void handleClientConnected(const QString &address, int port) override;
-    void handleClientDisconnected(const QString &address, int port) override;
+    void handleConnected(const QString &address, int port) override;
+    void handleDisconnected(const QString &address, int port) override;
     void append(int type, QString data) override;
 
 protected:

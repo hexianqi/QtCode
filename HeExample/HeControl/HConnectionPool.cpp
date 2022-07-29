@@ -100,7 +100,7 @@ QString HConnectionPool::getConnectionName()
     return QString();
 }
 
-QSqlDatabase HConnectionPool::createConnection(QString connectionName)
+QSqlDatabase HConnectionPool::createConnection(const QString &connectionName)
 {
     auto db = QSqlDatabase::addDatabase(d_ptr->databaseType, connectionName);
     db.setDatabaseName(d_ptr->databaseName);

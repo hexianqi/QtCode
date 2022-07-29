@@ -229,8 +229,8 @@ void HBuilder1000A::buildMemento()
 void HBuilder1000A::buildDatabase()
 {
     Q_D(HBuilder1000A);
-    auto db = d->sqlFactory->createDatabase("HSqlDatabase");
-    db->openDatabase(QString("%1.db").arg(QApplication::applicationName()));
+    auto db = d->sqlFactory->createDatabase("HSqliteDatabase");
+    db->openConnection();
 
     HSqlHelper::updateSpecTable(db);
     // Spec

@@ -77,7 +77,7 @@ bool HPrint::printPdf()
     if (!isValid())
         return false;
 
-    auto fileName = QFileDialog::getSaveFileName(nullptr, QString(), ".", tr("PDF files (*.pdf)"));
+    auto fileName = QFileDialog::getSaveFileName(nullptr, QString(), ".", tr("PDF files (*.pdf)"), nullptr, );
     if (fileName.isEmpty())
         return false;
 

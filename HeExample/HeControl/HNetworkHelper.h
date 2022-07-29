@@ -14,6 +14,8 @@ class HNetworkHelper
 public:
     // 本地IP
     static QStringList localIP(QAbstractSocket::NetworkLayerProtocol type = QAbstractSocket::IPv4Protocol);
+    // 地址转字符串
+    static QString toString(QHostAddress);
 };
 
 HE_END_NAMESPACE

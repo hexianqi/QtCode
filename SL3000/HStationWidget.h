@@ -21,13 +21,18 @@ signals:
     void specStateChanged(int, bool);
     void elecStateChanged(int, bool);
 
+protected slots:
+    void setStackedCurrentIndex(int);
+
+
 protected:
     void initialize(int index);
     void createAction();
     void createToolBar();
     void createWidget();
+    void createThread();
     void initWidget();
-//    virtual void clearResult() = 0;
+    void clearResult();
 //    virtual void saveResult();
 //    virtual void exportExcel() = 0;
 //    virtual void readSettings();

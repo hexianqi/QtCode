@@ -1,8 +1,6 @@
 HEADERS += \
     $$PWD/HUdpServer.h \
     $$PWD/HUdpServer_p.h \
-    $$PWD/HUdpClient.h \
-    $$PWD/HUdpClient_p.h \
     $$PWD/HUdpServerWidget.h \
     $$PWD/HUdpServerWidget_p.h \
     $$PWD/HUdpClientWidget.h \
@@ -10,7 +8,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/HUdpServer.cpp \
-    $$PWD/HUdpClient.cpp \
     $$PWD/HUdpServerWidget.cpp \
     $$PWD/HUdpClientWidget.cpp \
 

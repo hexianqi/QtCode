@@ -20,10 +20,11 @@ public:
     ~HTcpServer() override;
 
 signals:
-    void clientConnected(const QString &ip, int port);
-    void clientDisconnected(const QString &ip, int port);
-    void sentData(const QString &ip, int port, const QByteArray &data);
-    void receiveData(const QString &ip, int port, const QByteArray &data);
+    void connected(const QString &address, int port);
+    void disconnected(const QString &address, int port);
+    void error(const QString &address, int port, const QString &error);
+    void sentData(const QString &address, int port, const QByteArray &data);
+    void receiveData(const QString &address, int port, const QByteArray &data);
 
 public slots:
     // 是否运行
@@ -47,8 +48,8 @@ protected:
     HTcpServer(HTcpServerPrivate &p, QObject *parent = nullptr);
 
 protected:
-    void incomingConnection(int handle) override;
-    void handleClientDisconnected();
+    void handleNewConnection();
+    void handleDisconnected();
 
 protected:
     QScopedPointer<HTcpServerPrivate> d_ptr;

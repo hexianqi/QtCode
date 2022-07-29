@@ -27,8 +27,9 @@ public:
 public slots:
     void setListenAddress(const QString &value);
     void setListenPort(int value);
-    virtual void handleClientConnected(const QString &address, int port) = 0;
-    virtual void handleClientDisconnected(const QString &address, int port) = 0;
+    virtual void handleConnected(const QString &address, int port) = 0;
+    virtual void handleDisconnected(const QString &address, int port) = 0;
+    virtual void handleError(const QString &address, int port, const QString &error);
     virtual void handleSentData(const QString &address, int port, const QByteArray &data);
     virtual void handleReceiveData(const QString &address, int port, const QByteArray &data);
     virtual void append(int type, QString data) = 0;

@@ -33,4 +33,9 @@ QStringList HNetworkHelper::localIP(QAbstractSocket::NetworkLayerProtocol type)
     return ip;
 }
 
+QString HNetworkHelper::toString(QHostAddress address)
+{
+    return address.toString().replace("::ffff:", "");
+}
+
 HE_END_NAMESPACE

@@ -5,21 +5,25 @@
 #pragma once
 
 #include "HNamespace.h"
-#include <QtNetwork/QTcpSocket>
+#include <QtCore/QObject>
+
+class QTcpSocket;
 
 HE_BEGIN_NAMESPACE
 
 class HTcpClientPrivate;
 
-class HTcpClient : public QTcpSocket
+class HTcpClient : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit HTcpClient(QObject *parent = nullptr);
+    explicit HTcpClient(QTcpSocket *socket, QObject *parent = nullptr);
     ~HTcpClient() override;
 
 signals:
+    void disconnected(const QString &ip, int port);
+    void error(const QString &address, int port, const QString &error);
     void sentData(const QString &address, int port, const QByteArray &data);
     void receiveData(const QString &address, int port, const QByteArray &data);
 
@@ -29,18 +33,16 @@ public:
 
 public slots:
     void sendData(const QByteArray &value);
+    void disconnectFromHost();
+    void abort();
 
-protected:
-    HTcpClient(HTcpClientPrivate &p, QObject *parent = nullptr);
-
-protected:
+protected slots:
+    void handleError();
+    void handleDisconnected();
     void handleReadyRead();
 
 protected:
     QScopedPointer<HTcpClientPrivate> d_ptr;
-
-private:
-    void init();
 };
 
 HE_END_NAMESPACE

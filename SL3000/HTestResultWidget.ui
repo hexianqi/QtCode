@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HTestWidget3000</class>
- <widget class="QWidget" name="HTestWidget3000">
+ <class>HTestResultWidget</class>
+ <widget class="QWidget" name="HTestResultWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,9 +9,6 @@
     <width>928</width>
     <height>621</height>
    </rect>
-  </property>
-  <property name="autoFillBackground">
-   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -26,9 +23,6 @@
       <number>15</number>
      </property>
      <widget class="QSplitter" name="splitter_1">
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -176,7 +170,14 @@
          <number>4</number>
         </property>
         <item>
-         <widget class="HEntireTableWidget" name="tableWidget_2"/>
+         <widget class="HEntireTableWidget" name="tableWidget_2">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -192,7 +193,17 @@
          <number>4</number>
         </property>
         <item>
-         <widget class="HEntireTableWidget" name="tableWidget_3"/>
+         <widget class="HEntireTableWidget" name="tableWidget_3">
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -210,11 +221,17 @@
        </property>
        <item>
         <widget class="HEntireTableWidget" name="tableWidget_4">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>0</height>
-          </size>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOn</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
         </widget>
        </item>

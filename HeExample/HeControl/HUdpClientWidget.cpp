@@ -1,5 +1,6 @@
 #include "HUdpClientWidget_p.h"
 #include "ui_HUdpClientWidget.h"
+#include "HNetworkHelper.h"
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
 #include <QtNetwork/QUdpSocket>
@@ -33,7 +34,7 @@ void HUdpClientWidget::sendData()
 
     auto data = toByteArray(text);
     if (d->socket->writeDatagram(data, QHostAddress(d->serverAddress), d->serverPort) == -1)
-        append(0, tr("发送失败"));
+        append(2, tr("发送失败"));
     else
         append(0, QString("[%1:%2] %3").arg(d->serverAddress).arg(d->serverPort).arg(text));
 }
@@ -56,14 +57,20 @@ void HUdpClientWidget::handleReadyRead()
     while (d->socket->hasPendingDatagrams())
     {
         auto datagram = d->socket->receiveDatagram();
-        auto ip = datagram.senderAddress().toString().replace("::ffff:", "");
+        auto address = HNetworkHelper::toString(datagram.senderAddress());
         auto port = datagram.senderPort();
         auto data = datagram.data();
-        if (ip.isEmpty() || data.isEmpty())
+        if (address.isEmpty() || data.isEmpty())
             continue;
         auto text = fromByteArray(data);
-        append(1, QString("[%1:%2] %3").arg(ip).arg(port).arg(text));
+        append(1, QString("[%1:%2] %3").arg(address).arg(port).arg(text));
     }
+}
+
+void HUdpClientWidget::handleError()
+{
+    Q_D(HUdpClientWidget);
+    append(2, d->socket->errorString());
 }
 
 void HUdpClientWidget::append(int type, QString data)
@@ -72,9 +79,29 @@ void HUdpClientWidget::append(int type, QString data)
     if (d->currentCount >= d->maxCount)
         clearData();
 
+    QString strType;
+    if (type == 0)
+    {
+        strType = tr("发送");
+        ui->textEdit->setTextColor(QColor("#22A3A9"));
+    }
+    else if (type == 1)
+    {
+        strType = tr("接收");
+        ui->textEdit->setTextColor(QColor("#753775"));
+    }
+    else if (type == 2)
+    {
+        strType = tr("错误");
+        ui->textEdit->setTextColor(Qt::red);
+    }
+    else
+    {
+        strType = tr("提示");
+        ui->textEdit->setTextColor(Qt::black);
+    }
     auto text = data.replace("\r", "").replace("\n", "");
-    ui->textEdit->setTextColor(type == 0 ? Qt::darkGreen : Qt::red);
-    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), type == 0 ? tr("发送") : tr("接收"), text));
+    ui->textEdit->append(tr("[%1][%2]%3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), strType, text));
     d->currentCount++;
 }
 
@@ -105,7 +132,8 @@ void HUdpClientWidget::init()
     connect(ui->lineEdit_101, &QLineEdit::editingFinished, this, [=]{ setServerAddress(ui->lineEdit_101->text()); });
     connect(ui->pushButton_102, &QPushButton::clicked, this, &HUdpClientWidget::clearData);
     connect(ui->pushButton_201, &QPushButton::clicked, this, &HUdpClientWidget::sendData);
-    connect(d->socket, &QUdpSocket::readyRead, this, &HUdpClientWidget::handleReadyRead);
+    connect(d->socket, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
+    connect(d->socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(handleError()));
     setWindowTitle(tr("UDP客户端"));
 }
 

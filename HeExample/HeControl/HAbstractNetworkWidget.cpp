@@ -79,7 +79,7 @@ void HAbstractNetworkWidget::setAutoSend(bool b)
 
 void HAbstractNetworkWidget::setInterval(int value)
 {
-    if (d_ptr->interval == value && value == d_ptr->timer->interval())
+    if (d_ptr->interval == value)
         return;
     d_ptr->interval = value;
     d_ptr->timer->setInterval(value);

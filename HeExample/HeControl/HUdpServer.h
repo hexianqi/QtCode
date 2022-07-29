@@ -20,12 +20,15 @@ public:
     ~HUdpServer() override;
 
 signals:
-    void clientConnected(const QString &address, int port);
-    void clientDisconnected(const QString &address, int port);
+    void connected(const QString &address, int port);
+    void disconnected(const QString &address, int port);
+    void error(const QString &address, int port, const QString &error);
     void sentData(const QString &address, int port, const QByteArray &data);
     void receiveData(const QString &address, int port, const QByteArray &data);
 
 public slots:
+    // 错误
+    QString errorString();
     // 是否运行
     bool isRunning();
     // 启动服务
@@ -38,18 +41,19 @@ public slots:
     void setListenPort(int value);
     // 发送数据
     void sendData(const QByteArray &data);
-    void sendData(const QString &ip, int port, const QByteArray &data);
+    void sendData(const QString &address, int port, const QByteArray &data);
     // 新连接
-    void incomingConnection(const QString &ip, int port);
+    void incomingConnection(const QString &address, int port);
     // 断开连接
     void disconnectClient();
-    void disconnectClient(const QString &ip, int port);
+    void disconnectClient(const QString &address, int port);
 
 protected:
     HUdpServer(HUdpServerPrivate &p, QObject *parent = nullptr);
 
 protected slots:
     void handleReadyRead();
+    void handleError();
 
 protected:
     QScopedPointer<HUdpServerPrivate> d_ptr;

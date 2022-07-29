@@ -14,7 +14,10 @@ SOURCES     += \
             HMainWindow3000.cpp \
             HStationWidget.cpp \
             HStatusWidget.cpp \
-            HTestWidget3000.cpp \
+            HTestConfigWidget.cpp \
+            HTestResultWidget.cpp \
+            HTestThread.cpp \
+            HTestTricrystal.cpp \
             main.cpp
 
 HEADERS     += \
@@ -26,13 +29,20 @@ HEADERS     += \
             HStationWidget_p.h \
             HStatusWidget.h \
             HStatusWidget_p.h \
-            HTestWidget3000.h \
-            HTestWidget3000_p.h
+            HTestConfigWidget.h \
+            HTestConfigWidget_p.h \
+            HTestResultWidget.h \
+            HTestResultWidget_p.h \
+            HTestThread.h \
+            HTestThread_p.h \
+            HTestTricrystal.h \
+            HTestTricrystal_p.h
 
 FORMS       += \
             HDBLoginDialog.ui \
             HMainWindow3000.ui \
-            HTestWidget3000.ui
+            HTestConfigWidget.ui \
+            HTestResultWidget.ui
 
 RESOURCES   += \
             SL3000.qrc
@@ -42,7 +52,7 @@ INCLUDEPATH += ..
 Debug {
     LIBS    += \
             -L$$DESTDIR -lHeCored \
-#            -L$$DESTDIR -lHeDatad \
+            -L$$DESTDIR -lHeDatad \
 #            -L$$DESTDIR -lHeCommunicated \
 #            -L$$DESTDIR -lHeControllerd \
             -L$$DESTDIR -lHeGuid \
@@ -54,7 +64,7 @@ Release {
     DEFINES += QT_NO_DEBUG_OUTPUT
     LIBS    += \
             -L$$DESTDIR -lHeCore \
-#            -L$$DESTDIR -lHeData \
+            -L$$DESTDIR -lHeData \
 #            -L$$DESTDIR -lHeCommunicate \
 #            -L$$DESTDIR -lHeController \
             -L$$DESTDIR -lHeGui \

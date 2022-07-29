@@ -61,7 +61,7 @@ void HUdpServerWidget::on_pushButton_101_clicked()
     {
         d->server->stop();
         ui->pushButton_101->setText(tr("监听"));
-        append(0, tr("关闭监听"));
+        append(3, tr("关闭监听"));
     }
     else
     {
@@ -70,8 +70,10 @@ void HUdpServerWidget::on_pushButton_101_clicked()
         if (d->server->start())
         {
             ui->pushButton_101->setText(tr("关闭"));
-            append(0, tr("开始监听"));
+            append(3, tr("开始监听"));
         }
+        else
+            append(2, tr("监听失败：%1").arg(d->server->errorString()));
     }
 }
 
@@ -81,15 +83,15 @@ void HUdpServerWidget::on_pushButton_102_clicked()
         clearData();
 }
 
-void HUdpServerWidget::handleClientConnected(const QString &address, int port)
+void HUdpServerWidget::handleConnected(const QString &address, int port)
 {
     auto text = QString("%1:%2").arg(address).arg(port);
     ui->listWidget_101->addItem(text);
     ui->label_104->setText(tr("共 %1 个客户端").arg(ui->listWidget_101->count()));
-    append(1, tr("[%1:%2] 客户端上线").arg(address).arg(port));
+    append(1, tr("[%1:%2]客户端上线").arg(address).arg(port));
 }
 
-void HUdpServerWidget::handleClientDisconnected(const QString &address, int port)
+void HUdpServerWidget::handleDisconnected(const QString &address, int port)
 {
     int row = -1;
     QString text = QString("%1:%2").arg(address).arg(port);
@@ -105,7 +107,7 @@ void HUdpServerWidget::handleClientDisconnected(const QString &address, int port
     {
         ui->listWidget_101->takeItem(row);
         ui->label_104->setText(tr("共 %1 个客户端").arg(ui->listWidget_101->count()));
-        append(1, tr("[%1:%2] 客户端下线").arg(address).arg(port));
+        append(1, tr("[%1:%2]客户端下线").arg(address).arg(port));
     }
 }
 
@@ -115,9 +117,29 @@ void HUdpServerWidget::append(int type, QString data)
     if (d->currentCount >= d->maxCount)
         clearData();
 
+    QString strType;
+    if (type == 0)
+    {
+        strType = tr("发送");
+        ui->textEdit->setTextColor(QColor("#22A3A9"));
+    }
+    else if (type == 1)
+    {
+        strType = tr("接收");
+        ui->textEdit->setTextColor(QColor("#753775"));
+    }
+    else if (type == 2)
+    {
+        strType = tr("错误");
+        ui->textEdit->setTextColor(Qt::red);
+    }
+    else
+    {
+        strType = tr("提示");
+        ui->textEdit->setTextColor(Qt::black);
+    }
     auto text = data.replace("\r", "").replace("\n", "");
-    ui->textEdit->setTextColor(type == 0 ? Qt::darkGreen : Qt::red);
-    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), type == 0 ? tr("发送") : tr("接收"), text));
+    ui->textEdit->append(tr("[%1][%2]: %3").arg(QTime::currentTime().toString("HH:mm:ss.zzz"), strType, text));
     d->currentCount++;
 }
 
@@ -150,8 +172,9 @@ void HUdpServerWidget::init()
     connect(ui->spinBox_102, SIGNAL(valueChanged(int)), this, SLOT(setListenPort(int)));
     connect(ui->pushButton_103, &QPushButton::clicked, this, &HUdpServerWidget::clearData);
     connect(ui->pushButton_201, &QPushButton::clicked, this, &HUdpServerWidget::sendData);
-    connect(d->server, &HUdpServer::clientConnected, this, &HUdpServerWidget::handleClientConnected);
-    connect(d->server, &HUdpServer::clientDisconnected, this, &HUdpServerWidget::handleClientDisconnected);
+    connect(d->server, &HUdpServer::connected, this, &HUdpServerWidget::handleConnected);
+    connect(d->server, &HUdpServer::disconnected, this, &HUdpServerWidget::handleDisconnected);
+    connect(d->server, &HUdpServer::error, this, &HUdpServerWidget::handleError);
     connect(d->server, &HUdpServer::sentData, this, &HUdpServerWidget::handleSentData);
     connect(d->server, &HUdpServer::receiveData, this, &HUdpServerWidget::handleReceiveData);
     setWindowTitle(tr("UDP服务端"));

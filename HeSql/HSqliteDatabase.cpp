@@ -1,10 +1,16 @@
 #include "HSqliteDatabase_p.h"
 #include "ISqlTableModel.h"
 #include "HSqlHelper.h"
+#include <QtWidgets/QApplication>
 #include <QtWidgets/QMessageBox>
 #include <QtSql/QSqlError>
 
 HE_BEGIN_NAMESPACE
+
+HSqliteDatabasePrivate::HSqliteDatabasePrivate()
+{
+    databaseName = QString("%1.db").arg(QApplication::applicationName());
+}
 
 HSqliteDatabase::HSqliteDatabase(QObject *parent) :
     QObject(parent),
@@ -20,42 +26,46 @@ HSqliteDatabase::HSqliteDatabase(HSqliteDatabasePrivate &p, QObject *parent) :
 
 HSqliteDatabase::~HSqliteDatabase() = default;
 
-void HSqliteDatabase::initialize(QVariantMap param)
+void HSqliteDatabase::initialize(QVariantMap /*param*/)
 {
-    if (param.contains("dbName"))
-        openDatabase(param.value("dbName").toString());
+
 }
 
 QString HSqliteDatabase::typeName()
 {
-    return "HSqlDatabase";
+    return "HSqliteDatabase";
 }
 
-bool HSqliteDatabase::openDatabase(const QString &dbName)
+void HSqliteDatabase::setDatabaseName(const QString &name)
 {
-    if (dbName.isEmpty())
-        return false;
-
-    if (QSqlDatabase::contains())
-    {
-        QSqlDatabase::database();
-        return true;
-    }
-
-    d_ptr->db = QSqlDatabase::addDatabase("QSQLITE");
-    d_ptr->db.setDatabaseName(dbName);
-    if (!d_ptr->db.open())
-    {
-        QMessageBox::warning(nullptr, tr("打开数据库失败"), d_ptr->db.lastError().text());
-        return false;
-    }
-    return true;
+    if (d_ptr->databaseName == name || name.isEmpty())
+        return;
+    d_ptr->databaseName = name;
 }
 
-QSqlDatabase HSqliteDatabase::getConnection()
+QSqlDatabase HSqliteDatabase::openConnection()
 {
-    Q_ASSERT_X(d_ptr->db.isValid() && d_ptr->db.isOpen(), "HSqliteDatabase", "database is invalid or closed.");
+    if (!d_ptr->db.isValid())
+    {
+        d_ptr->db = QSqlDatabase::addDatabase("QSQLITE");
+        d_ptr->db.setDatabaseName(d_ptr->databaseName);
+    }
+    if (!d_ptr->db.isOpen())
+    {
+        if (!d_ptr->db.open())
+        {
+            QMessageBox::warning(nullptr, tr("打开数据库失败"), d_ptr->db.lastError().text());
+            return {};
+        }
+    }
     return d_ptr->db;
+}
+
+void HSqliteDatabase::closeConnection(QSqlDatabase /*db*/)
+{
+    if (!d_ptr->db.isValid() || !d_ptr->db.isOpen())
+        return;
+    d_ptr->db.close();
 }
 
 bool HSqliteDatabase::contains(const QString &tableName)
