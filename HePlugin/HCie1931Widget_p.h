@@ -21,6 +21,7 @@ public:
     bool drawHorseshoe = true;
     bool drawPlanckian = true;
     bool drawGrade = true;
+    bool drawGradeName = true;
     bool drawPoint = true;
     QColor colorHorseshoe = Qt::black;
     QColor colorPlanckian = Qt::black;
@@ -33,6 +34,7 @@ public:
     QPolygonF horseshoe;
     QPolygonF planckian;
     QList<QPolygonF> grades;
+    QStringList gradeNames;
     QPolygonF gradeFocus;
     QList<QPointF> points;
     QPointF pointFocus;

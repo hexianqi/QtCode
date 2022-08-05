@@ -55,9 +55,4 @@ QVariant HAbstractGrade::data(QString name)
     return d->datas.value(name);
 }
 
-QVariant HAbstractGrade::levels(QString type)
-{
-    return contains(type) ? value(type)->levels() : QVariant();
-}
-
 HE_END_NAMESPACE

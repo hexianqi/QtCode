@@ -25,6 +25,7 @@ public:
 public:
     QStringList families() override;
     QFont createFont(const QString &family) override;
+    QPoint fontRange(const QString &family) override;
 
 protected:
     QScopedPointer<HIconFontFactoryPrivate> d_ptr;

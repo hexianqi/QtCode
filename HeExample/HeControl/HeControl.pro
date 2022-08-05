@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += widgets serialport network xml svg concurrent sql
+QT          += widgets serialport network xml svg concurrent sql websockets
 
 CONFIG      += resources_big warn_off
 

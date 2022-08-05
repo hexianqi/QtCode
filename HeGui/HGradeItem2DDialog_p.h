@@ -11,6 +11,7 @@ class HGradeItem2DDialogPrivate : public HAbstractGradeItemDialogPrivate
 {
 public:
     HCie1931Widget *cieWidget;
+    QStringList names;
 };
 
 HE_END_NAMESPACE

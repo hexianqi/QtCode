@@ -59,19 +59,19 @@ HQualityReport HQualityCollection::check(QVariantMap value, QVariantMap *color)
     if (color == nullptr)
         color = new QVariantMap();
     color->clear();
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? HQualityReport::InvalidQuality : i->check(value, color);
 }
 
 QColor HQualityCollection::color(HQualityReport type)
 {
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? Qt::transparent : i->color(type);
 }
 
 double HQualityCollection::drift(QString type, QVariant value)
 {
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? 0 : i->drift(type, value);
 }
 

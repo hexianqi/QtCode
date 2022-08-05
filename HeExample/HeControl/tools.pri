@@ -6,8 +6,6 @@ HEADERS += \
     $$PWD/HImageBrowser.h \
     $$PWD/HImageBrowser_p.h \
     $$PWD/HColorPicker.h \
-    $$PWD/HPngAmend.h \
-    $$PWD/HPngAmend_p.h \
     $$PWD/HScreenObject.h \
     $$PWD/HScreenObject_p.h \
     $$PWD/HScreenWidget.h \
@@ -18,7 +16,6 @@ SOURCES += \
     $$PWD/HGifWidget.cpp \
     $$PWD/HImageBrowser.cpp \
     $$PWD/HColorPicker.cpp \
-    $$PWD/HPngAmend.cpp \
     $$PWD/HScreenObject.cpp \
     $$PWD/HScreenWidget.cpp \
 
@@ -26,5 +23,5 @@ FORMS += \
     $$PWD/HSerialPortWidget.ui \
     $$PWD/HGifWidget.ui \
     $$PWD/HColorPicker.ui \
-    $$PWD/HPngAmend.ui \
+
 

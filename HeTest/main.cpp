@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
 
-
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 

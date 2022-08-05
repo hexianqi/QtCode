@@ -16,8 +16,6 @@ public:
     using HDataCollection::HDataCollection;
 
 public:
-    // 获取某类型所有分级
-    virtual QVariant levels(QString type) = 0;
     // 计算分级
     virtual int calcLevel(QVariantMap value, QString *text = nullptr) = 0;
 };

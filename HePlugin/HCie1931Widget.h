@@ -21,6 +21,7 @@ class QDESIGNER_WIDGET_EXPORT HCie1931Widget : public HCartesianWidget
     Q_PROPERTY(bool drawGrade READ isDrawGrade WRITE setDrawGrade)
     Q_PROPERTY(QColor colorGrade READ colorGrade WRITE setColorGrade)
     Q_PROPERTY(QColor colorGradeFocus READ colorGradeFocus WRITE setColorGradeFocus)
+    Q_PROPERTY(bool drawGradeName READ isDrawGradeName WRITE setDrawGradeName)
     Q_PROPERTY(bool drawPoint READ isDrawPoint WRITE setDrawPoint)
     Q_PROPERTY(QColor colorPoint READ colorPoint WRITE setColorPoint)
     Q_PROPERTY(QColor colorPointFocus READ colorPointFocus WRITE setColorPointFocus)
@@ -38,6 +39,7 @@ public:
     void setDrawHorseshoe(bool b);
     void setDrawPlanckian(bool b);
     void setDrawGrade(bool b);
+    void setDrawGradeName(bool b);
     void setDrawPoint(bool b);
     void setColorHorseshoe(const QColor &);
     void setColorPlanckian(const QColor &);
@@ -53,6 +55,7 @@ public:
     bool isDrawHorseshoe();
     bool isDrawPlanckian();
     bool isDrawGrade();
+    bool isDrawGradeName();
     bool isDrawPoint();
     QColor colorHorseshoe();
     QColor colorPlanckian();
@@ -64,10 +67,13 @@ public:
 
 public:
     void setGradeFocus(const QPolygonF &);
-    void setGrade(const QList<QPolygonF> &);
+    void setGrade(const QList<QPolygonF> &, bool refresh = true);
     void addGrade(const QPolygonF &value, bool focus = true, bool refresh = true);
     void removeGrade(const QPolygonF &value, bool refresh = true);
+    void replaceGrade(int i, const QPolygonF &value, bool refresh = true);
     void clearGrade();
+    void setGradeName(const QStringList &, bool refresh = true);
+    void replaceGradeName(int i, const QString &value, bool refresh = true);
     void setPointFocus(QPointF value);
     void setPoint(const QList<QPointF> &);
     void addPoint(QPointF value, bool focus = true, bool refresh = true);

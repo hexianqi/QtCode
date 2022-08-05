@@ -15,6 +15,8 @@ public:
     virtual QStringList families() = 0;
     // 创建字体
     virtual QFont createFont(const QString &family) = 0;
+    // 字体范围
+    virtual QPoint fontRange(const QString &family) = 0;
 };
 
 HE_END_NAMESPACE

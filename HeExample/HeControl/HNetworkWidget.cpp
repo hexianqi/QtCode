@@ -3,6 +3,8 @@
 #include "HTcpServerWidget.h"
 #include "HUdpClientWidget.h"
 #include "HUdpServerWidget.h"
+#include "HWebClientWidget.h"
+#include "HWebServerWidget.h"
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
 
@@ -26,17 +28,21 @@ HNetworkWidget::~HNetworkWidget() = default;
 void HNetworkWidget::init()
 {
     auto gridLayout = new QGridLayout(this);
-    d_ptr->tabWidget = new QTabWidget;
-    d_ptr->tcpClient = new HTcpClientWidget;
-    d_ptr->tcpServer = new HTcpServerWidget;
-    d_ptr->udpClient = new HUdpClientWidget;
-    d_ptr->udpServer = new HUdpServerWidget;
-    d_ptr->tabWidget->setTabPosition(QTabWidget::South);
-    d_ptr->tabWidget->addTab(d_ptr->tcpClient, d_ptr->tcpClient->windowTitle());
-    d_ptr->tabWidget->addTab(d_ptr->tcpServer, d_ptr->tcpServer->windowTitle());
-    d_ptr->tabWidget->addTab(d_ptr->udpClient, d_ptr->udpClient->windowTitle());
-    d_ptr->tabWidget->addTab(d_ptr->udpServer, d_ptr->udpServer->windowTitle());
-    gridLayout->addWidget(d_ptr->tabWidget, 0, 0, 1, 1);
+    auto tabWidget = new QTabWidget;
+    auto tcpClient = new HTcpClientWidget;
+    auto tcpServer = new HTcpServerWidget;
+    auto udpClient = new HUdpClientWidget;
+    auto udpServer = new HUdpServerWidget;
+    auto webClient = new HWebClientWidget;
+    auto webServer = new HWebServerWidget;
+    tabWidget->setTabPosition(QTabWidget::South);
+    tabWidget->addTab(tcpClient, tcpClient->windowTitle());
+    tabWidget->addTab(tcpServer, tcpServer->windowTitle());
+    tabWidget->addTab(udpClient, udpClient->windowTitle());
+    tabWidget->addTab(udpServer, udpServer->windowTitle());
+    tabWidget->addTab(webClient, webClient->windowTitle());
+    tabWidget->addTab(webServer, webServer->windowTitle());
+    gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
     setWindowTitle(tr("网络调试工具"));
 }
 

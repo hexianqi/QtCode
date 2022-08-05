@@ -30,6 +30,7 @@ protected slots:
     void on_pushButton_13_clicked();
     void setGradeFocus();
     void replacePoint(QPointF point);
+    void handleCellChanged(int row, int column);
 
 protected:
     bool setAverageMode(bool b) override;
@@ -39,6 +40,7 @@ protected:
     QPolygonF getLevel(int row);
     QList<QPolygonF> getLevels();
     void showLevels(QList<QPolygonF> value);
+    QString getName(int row);
 
 private:
     void init();

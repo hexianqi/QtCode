@@ -11,6 +11,8 @@
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
 #include "HeData/ITestData.h"
+#include "HeData/IGrade.h"
+#include "HeData/IGradeItem.h"
 #include "HeData/IPrint.h"
 #include "HeData/IPrintTemplate.h"
 #include "HeData/ITextExport.h"
@@ -451,13 +453,25 @@ void HSpecTestWidget::resetSpec()
     d->spdWidget->setAxisXRange(point.x(), point.y());
 }
 
+
+
 void HSpecTestWidget::resetGrade()
 {
     Q_D(HSpecTestWidget);
-    auto p = d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>();
-    d->cieWidget->setGrade(p);
-    if (d->cieWidget2)
-        d->cieWidget2->setGrade(p);
+    auto grade = d->configManage->gradeCollection()->useItem();
+    if (grade != nullptr && grade->contains("[色坐标]"))
+    {
+        auto item = grade->item("[色坐标]");
+        auto level = item->levels().value<QList<QPolygonF>>();
+        auto name = item->data("[名称]").toStringList();
+        d->cieWidget->setGrade(level);
+        d->cieWidget->setGradeName(name);
+        if (d->cieWidget2)
+        {
+            d->cieWidget2->setGrade(level);
+            d->cieWidget2->setGradeName(name);
+        }
+    }
 }
 
 void HSpecTestWidget::openCieDialog()
@@ -466,7 +480,13 @@ void HSpecTestWidget::openCieDialog()
     if (d->cieWidget2 == nullptr)
     {
         d->cieWidget2 = new HCie1931Widget;
-        d->cieWidget2->setGrade(d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>());
+        auto grade = d->configManage->gradeCollection()->useItem();
+        if (grade != nullptr && grade->contains("[色坐标]"))
+        {
+            auto item = grade->item("[色坐标]");
+            d->cieWidget->setGrade(item->levels().value<QList<QPolygonF>>());
+            d->cieWidget->setGradeName(item->data("[名称]").toStringList());
+        }
         d->cieDialog = HGuiHelper::decoratorInDialog(d->cieWidget2, this);
     }
     d->cieDialog->show();

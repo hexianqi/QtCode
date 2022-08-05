@@ -56,17 +56,11 @@ QString HGradeCollection::typeName()
     return "HGradeCollection";
 }
 
-QVariant HGradeCollection::levels(QString type)
-{
-    auto i = item(useIndex());
-    return i == nullptr ? QVariant() : i->levels(type);
-}
-
 int HGradeCollection::calcLevel(QVariantMap value, QString *text)
 {
     if (text == nullptr)
         text = new QString();
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? -1 : i->calcLevel(value, text);
 }
 

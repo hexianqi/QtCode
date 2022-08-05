@@ -7,6 +7,8 @@
 #include "HeCore/HAppContext.h"
 #include "HeData/IConfigManage.h"
 #include "HeData/IGradeCollection.h"
+#include "HeData/IGrade.h"
+#include "HeData/IGradeItem.h"
 #include "HeData/IQualityCollection.h"
 #include "HeData/ILocationCollection.h"
 #include "HeData/ITestData.h"
@@ -294,7 +296,14 @@ void HTestWidget7000::refreshWidget()
 void HTestWidget7000::resetGrade()
 {
     Q_D(HTestWidget7000);
-    d->cieWidget->setGrade(d->configManage->gradeCollection()->levels("[色坐标]").value<QList<QPolygonF>>());
+
+    auto grade = d->configManage->gradeCollection()->useItem();
+    if (grade != nullptr && grade->contains("[色坐标]"))
+    {
+        auto item = grade->item("[色坐标]");
+        d->cieWidget->setGrade(item->levels().value<QList<QPolygonF>>());
+        d->cieWidget->setGradeName(item->data("[名称]").toStringList());
+    }
 }
 
 void HTestWidget7000::resetQuality()

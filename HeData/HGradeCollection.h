@@ -22,7 +22,6 @@ public:
     QString typeName() override;
 
 public:
-    QVariant levels(QString type) override;
     int calcLevel(QVariantMap value, QString *text = nullptr) override;
 
 protected:

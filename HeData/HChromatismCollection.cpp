@@ -59,13 +59,13 @@ QString HChromatismCollection::typeName()
 
 double HChromatismCollection::calcSdcm(double tc, QPointF xy)
 {
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? 0 : i->calcSdcm(tc, xy);
 }
 
 QVariantMap HChromatismCollection::detail()
 {
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? QVariantMap() : i->detail();
 }
 

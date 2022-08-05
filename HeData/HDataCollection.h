@@ -33,6 +33,7 @@ public:
     IMultStream *multStream() override;
     void setUseIndex(QString value) override;
     QString useIndex() override;
+    T *useItem() override;
 
 public:
     virtual bool readContent(QDataStream &);
@@ -82,6 +83,13 @@ QString HDataCollection<T>::useIndex()
 {
     H_D(HDataCollection, T);
     return d->useIndex;
+}
+
+template<typename T>
+T *HDataCollection<T>::useItem()
+{
+    H_D(HDataCollection, T);
+    return this->item(d->useIndex);
 }
 
 template<typename T>

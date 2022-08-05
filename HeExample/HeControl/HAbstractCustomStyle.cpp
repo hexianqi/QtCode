@@ -18,19 +18,18 @@ HAbstractCustomStyle::~HAbstractCustomStyle() = default;
 
 void HAbstractCustomStyle::initialize(QVariantMap param)
 {
-    d_ptr->globalParam = param;
+    d_ptr->param = param;
 }
 
 QString HAbstractCustomStyle::toStyleSheet()
 {
-    QStringList list;
-    list << pushButton()
-         << lineEdit()
-         << progressBar()
-         << slider()
-         << radioButton()
-         << checkBox()
-         << scrollBar();
+    auto list = QStringList() << pushButton()
+                              << lineEdit()
+                              << progressBar()
+                              << slider()
+                              << radioButton()
+                              << checkBox()
+                              << scrollBar();
     return list.join("\n");
 }
 
@@ -38,7 +37,7 @@ QVariant HAbstractCustomStyle::data(const QString &type, const QVariantMap &para
 {
     if (param.contains(type))
         return param.value(type);
-    return d_ptr->globalParam.value(type, defaultValue);
+    return d_ptr->param.value(type, defaultValue);
 }
 
 HE_END_NAMESPACE

@@ -28,16 +28,9 @@ protected:
 private:
     void init();
     void initWidget();
-    void addFYQY();
-    void addLiuDianWu();
-    void addWw();
-    void addDemo();
-    void addLayout();
-    void addTool();
-    void addMedia();
-    void addElse();
 
     // FYQY
+    void addFYQY();
     void addBattery();
     void addDeviceButton();
     void addExplorer();
@@ -47,10 +40,12 @@ private:
     void addNavButton();
 
     // LiuDianWu
+    void addLiuDianWu();
     void addCalendar();
     void addLunarCalendar();
 
     // ww
+    void addWw();
     void addWwExtend();
     void addWwPicker();
     void addWwConfigPanel();
@@ -61,20 +56,28 @@ private:
     void addWwElse();
 
     // Demo
+    void addDemo();
 
     // Layout
+    void addLayout();
     void addBorderLayout();
     void addCardLayout();
     void addFlowLayout();
 
+    // Style
+    void addStyle();
+
     // Tool
+    void addTool();
     void addChineseConvert();
 
     // media
+    void addMedia();
     void addFFPlayer();
     void addVlcPlayer();
 
     // Else
+    void addElse();
     void addMultHeaderTableView();
     void addMultHeaderTableWidget();
     void addLineEditGroup();

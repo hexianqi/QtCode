@@ -26,6 +26,8 @@ public:
     virtual void setUseIndex(QString value) = 0;
     // 使用的索引
     virtual QString useIndex() = 0;
+    // 使用的项
+    virtual T *useItem() = 0;
 };
 
 HE_END_NAMESPACE

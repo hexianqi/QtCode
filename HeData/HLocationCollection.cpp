@@ -58,10 +58,8 @@ QString HLocationCollection::typeName()
 
 QPolygon HLocationCollection::polygon()
 {
-    auto i = item(useIndex());
-    if (i != nullptr)
-        return i->polygon();
-    return {};
+    auto i = useItem();
+    return i == nullptr ? QPolygon() : i->polygon();
 }
 
 HE_END_NAMESPACE

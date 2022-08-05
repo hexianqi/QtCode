@@ -12,5 +12,6 @@
         <file>Resources/translator/textEdit.qm</file>
         <file>Resources/data/jianpin.dat</file>
         <file>Resources/data/pinyin.dat</file>
+        <file>Resources/fonts/fa-regular-400.ttf</file>
     </qresource>
 </RCC>

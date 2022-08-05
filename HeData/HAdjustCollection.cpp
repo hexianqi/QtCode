@@ -87,7 +87,7 @@ QString HAdjustCollection::typeName()
 
 QVariantMap HAdjustCollection::correct(QVariantMap value)
 {
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? QVariantMap() : i->correct(value);
 }
 

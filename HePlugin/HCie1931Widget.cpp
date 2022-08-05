@@ -94,6 +94,15 @@ void HCie1931Widget::setDrawGrade(bool b)
     refreshPixmap();
 }
 
+void HCie1931Widget::setDrawGradeName(bool b)
+{
+    Q_D(HCie1931Widget);
+    if (d->drawGradeName == b)
+        return;
+    d->drawGradeName = b;
+    refreshPixmap();
+}
+
 void HCie1931Widget::setDrawPoint(bool b)
 {
     Q_D(HCie1931Widget);
@@ -196,6 +205,12 @@ bool HCie1931Widget::isDrawGrade()
     return d->drawGrade;
 }
 
+bool HCie1931Widget::isDrawGradeName()
+{
+    Q_D(HCie1931Widget);
+    return d->drawGradeName;
+}
+
 bool HCie1931Widget::isDrawPoint()
 {
     Q_D(HCie1931Widget);
@@ -251,11 +266,12 @@ void HCie1931Widget::setGradeFocus(const QPolygonF &value)
     refreshPixmap();
 }
 
-void HCie1931Widget::setGrade(const QList<QPolygonF> &value)
+void HCie1931Widget::setGrade(const QList<QPolygonF> &value, bool refresh)
 {
     Q_D(HCie1931Widget);
     d->grades = value;
-    refreshPixmap();
+    if (refresh)
+        refreshPixmap();
 }
 
 void HCie1931Widget::addGrade(const QPolygonF &value, bool focus, bool refresh)
@@ -275,12 +291,38 @@ void HCie1931Widget::removeGrade(const QPolygonF &value, bool refresh)
         refreshPixmap();
 }
 
+void HCie1931Widget::replaceGrade(int i, const QPolygonF &value, bool refresh)
+{
+    Q_D(HCie1931Widget);
+    d->grades.replace(i, value);
+    if (refresh)
+        refreshPixmap();
+}
+
 void HCie1931Widget::clearGrade()
 {
     Q_D(HCie1931Widget);
     d->grades.clear();
     d->gradeFocus.clear();
     refreshPixmap();
+}
+
+void HCie1931Widget::setGradeName(const QStringList &value, bool refresh)
+{
+    Q_D(HCie1931Widget);
+    if (d->gradeNames == value)
+        return;
+    d->gradeNames = value;
+    if (refresh)
+        refreshPixmap();
+}
+
+void HCie1931Widget::replaceGradeName(int i, const QString &value, bool refresh)
+{
+    Q_D(HCie1931Widget);
+    d->gradeNames.replace(i, value);
+    if (refresh)
+        refreshPixmap();
 }
 
 void HCie1931Widget::setPointFocus(QPointF value)
@@ -395,8 +437,18 @@ bool HCie1931Widget::drawGradeBlock(QPainter *painter)
     painter->save();
     painter->setClipRect(d->plotArea.adjusted(+1, +1, -1, -1));
     painter->setPen(d->colorGrade);
-    for (const auto &p : d->grades)
-        painter->drawPolygon(d->coordinate->mapToPosition(p, d->plotArea));
+    for (int i = 0; i < d->grades.size(); i++)
+    {
+        auto poly = d->coordinate->mapToPosition(d->grades.at(i), d->plotArea);
+        painter->drawPolygon(poly);
+        if (d->drawGradeName)
+        {
+            if (i < d->gradeNames.size())
+                painter->drawText(poly.boundingRect(), Qt::AlignCenter, d->gradeNames.at(i));
+        }
+    }
+//    for (const auto &p : d->grades)
+//        painter->drawPolygon(d->coordinate->mapToPosition(p, d->plotArea));
 
     painter->setPen(QPen(d->colorGradeFocus, 2));
     painter->drawPolygon(d->coordinate->mapToPosition(d->gradeFocus, d->plotArea));
@@ -461,6 +513,9 @@ void HCie1931Widget::init()
     auto enableGrade = new QAction(tr("分级区域(&S)"));
     enableGrade->setCheckable(true);
     enableGrade->setChecked(isDrawGrade());
+    auto enableGradeName = new QAction(tr("分级区域名称(&N)"));
+    enableGradeName->setCheckable(true);
+    enableGradeName->setChecked(isDrawGradeName());
     auto enablePoint = new QAction(tr("打点记录(&O)"));
     enablePoint->setCheckable(true);
     enablePoint->setChecked(isDrawPoint());
@@ -480,6 +535,7 @@ void HCie1931Widget::init()
     connect(enableHorseshoe, &QAction::toggled, this, &HCie1931Widget::setDrawHorseshoe);
     connect(enablePlanckian, &QAction::toggled, this, &HCie1931Widget::setDrawPlanckian);
     connect(enableGrade, &QAction::toggled, this, &HCie1931Widget::setDrawGrade);
+    connect(enableGradeName, &QAction::toggled, this, &HCie1931Widget::setDrawGradeName);
     connect(enablePoint, &QAction::toggled, this, &HCie1931Widget::setDrawPoint);
     connect(clearPoint, &QAction::triggered, this, &HCie1931Widget::clearPoint);
 

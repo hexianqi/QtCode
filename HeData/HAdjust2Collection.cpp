@@ -57,7 +57,7 @@ QString HAdjust2Collection::typeName()
 
 QVariantMap HAdjust2Collection::correct(double tc, QVariantMap value)
 {
-    auto i = item(useIndex());
+    auto i = useItem();
     return i == nullptr ? QVariantMap() : i->correct(tc, value);
 }
 

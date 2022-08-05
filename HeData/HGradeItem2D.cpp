@@ -11,6 +11,7 @@ HGradeItem2DPrivate::HGradeItem2DPrivate()
 {
     datas.insert("[项类型]", "Undefined");
     datas.insert("[优先级]", 1);
+    datas.insert("[名称]", QStringList());
 }
 
 HGradeItem2D::HGradeItem2D() :

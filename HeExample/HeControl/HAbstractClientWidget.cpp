@@ -50,8 +50,8 @@ void HAbstractClientWidget::readSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
     settings->beginGroup(groupName());
-    d->serverAddress = settings->value("ServerAddress", "127.0.0.1").toString();
-    d->serverPort = settings->value("ServerPort", 6000).value<int>();
+    d->serverAddress = settings->value("ServerAddress", d->serverAddress).toString();
+    d->serverPort = settings->value("ServerPort", d->serverPort).value<int>();
     settings->endGroup();
 }
 

@@ -8,6 +8,8 @@ HEADERS += \
     $$PWD/HEmailWidget_p.h \
     $$PWD/HNetworkWidget.h \
     $$PWD/HNetworkWidget_p.h \
+    $$PWD/HPngAmend.h \
+    $$PWD/HPngAmend_p.h \
 
 SOURCES += \
     $$PWD/HBase64ConvertWidget.cpp \
@@ -15,9 +17,11 @@ SOURCES += \
     $$PWD/HCodeCountWidget.cpp \
     $$PWD/HEmailWidget.cpp \
     $$PWD/HNetworkWidget.cpp \
+    $$PWD/HPngAmend.cpp \
 
 FORMS += \
     $$PWD/HBase64ConvertWidget.ui \
     $$PWD/HCodeCountWidget.ui \
-    $$PWD/HEmailWidget.ui
+    $$PWD/HEmailWidget.ui \
+    $$PWD/HPngAmend.ui
 

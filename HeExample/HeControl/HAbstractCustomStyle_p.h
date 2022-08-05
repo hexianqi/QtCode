@@ -7,7 +7,7 @@ HE_BEGIN_NAMESPACE
 class HAbstractCustomStylePrivate
 {
 public:
-    QVariantMap globalParam;
+    QVariantMap param;
 };
 
 HE_END_NAMESPACE
