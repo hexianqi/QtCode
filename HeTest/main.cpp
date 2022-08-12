@@ -11,7 +11,6 @@
 #include "HTestSql.h"
 #include "HeCore/HCore.h"
 #include "HeCore/HCoreGlobalInstance.h"
-#include "HeControl/HDemoWidget.h"
 #include "HeControl/HControlFactoryWidget.h"
 #include "HeControl/HControlDemoWidget.h"
 #include <QtCore/QDebug>

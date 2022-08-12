@@ -25,9 +25,10 @@ public:
 public:
     QString toStyleSheet() override;
     QPalette toPalette() override;
+    QColor color(const QString &flag) override;
     QStringList styles() override;
-    bool selectStyle(QString value) override;
-    void addStyle(QString key, QString fileName) override;
+    bool selectStyle(const QString &vlaue) override;
+    void addStyle(const QString &key, const QString &fileName) override;
 
 protected:
     HQssStyle(HQssStylePrivate &p, QObject *parent = nullptr);

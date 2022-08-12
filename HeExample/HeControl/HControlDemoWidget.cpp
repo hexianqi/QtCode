@@ -36,6 +36,7 @@ void HControlDemoWidget::init()
     addDemo();
     addLayout();
     addStyle();
+    addUI();
     addTool();
     addMedia();
     addElse();

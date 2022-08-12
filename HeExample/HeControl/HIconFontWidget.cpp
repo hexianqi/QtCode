@@ -15,6 +15,7 @@ HGraphicsTextItem::HGraphicsTextItem(QGraphicsItem *parent) :
 void HGraphicsTextItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
     setDefaultTextColor(Qt::red);
+    emit hoverEntered();
 }
 
 void HGraphicsTextItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
@@ -36,7 +37,7 @@ HIconFontWidget::~HIconFontWidget()
     delete ui;
 }
 
-void HIconFontWidget::setFontFamily(const QString &value)
+void HIconFontWidget::on_comboBox_01_currentTextChanged(const QString &value)
 {
     if (d_ptr->fontFamily == value)
         return;
@@ -45,8 +46,9 @@ void HIconFontWidget::setFontFamily(const QString &value)
     d_ptr->font.setPixelSize(15);
     d_ptr->scene->clear();
 
-    auto x = 0;
+    auto n = 0;
     auto range = d_ptr->fontFactory->fontRange(value);
+    auto count = range.y() - range.x() + 1;
     for (int i = range.x(); i <= range.y(); i++)
     {
         if (!checkIcon(i))
@@ -55,11 +57,35 @@ void HIconFontWidget::setFontFamily(const QString &value)
         item->setFont(d_ptr->font);
         item->setPlainText((QChar)i);
         item->setToolTip(QString("0x%1").arg(i, 0, 16));
-        item->setPos((x % 20) * 30, (x / 20) * 30);
+        item->setPos((n % 20) * 30, (n / 20) * 30);
         d_ptr->scene->addItem(item);
-        x++;
+        connect(item, &HGraphicsTextItem::hoverEntered, this, &HIconFontWidget::handleHoverEntered);
+        n++;
     }
-  //  d_ptr->scene->setSceneRect(QRectF(0, 0, 636, (x / 20) * 30 + 36));
+    ui->label_01->setText(QString("%1/%2").arg(n).arg(count));
+}
+
+void HIconFontWidget::handleHoverEntered()
+{
+    auto item = qobject_cast<HGraphicsTextItem *>(sender());
+    if (item == nullptr)
+        return;
+    d_ptr->font.setPixelSize(d_ptr->iconSize);
+    auto value = item->toolTip();
+    auto icon = QChar(value.toInt(nullptr, 16));
+    auto pixmap = QPixmap::fromImage(HDrawHelper::createFontImage(d_ptr->font, icon, QSize(d_ptr->iconSize, d_ptr->iconSize), QColor("#753775")));
+
+    ui->label_02->setText(value);
+    ui->label_03->setFont(d_ptr->font);
+    ui->label_03->setText(icon);
+    ui->label_04->setPixmap(pixmap);
+    ui->pushButton_01->setFont(d_ptr->font);
+    ui->pushButton_01->setText(icon);
+    ui->toolButton_01->setIcon(pixmap);
+    d_ptr->font.setPixelSize(15);
+    ui->pushButton_02->setFont(d_ptr->font);
+    ui->pushButton_02->setText(QString("%1 测试图标").arg((QChar)icon));
+    ui->pushButton_03->setIcon(pixmap);
 }
 
 bool HIconFontWidget::checkIcon(int icon)
@@ -84,36 +110,10 @@ void HIconFontWidget::init()
 {
     d_ptr->fontFactory = new HIconFontFactory(this);
     d_ptr->scene = new QGraphicsScene(this);
-
-
-
-
-
     ui->graphicsView->setScene(d_ptr->scene);
-//    auto layout = new QGraphicsGridLayout;
-//    layout->addItem(new QGraphicsTextItem("123"), 0, 0);
-//    layout->addItem(pushButton, 0, 1);
-
-//    QGraphicsWidget *form = new QGraphicsWidget;
-//    form->setLayout(layout);
-//    scene.addItem(form);
-
-
-
-
-
+    ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     ui->comboBox_01->addItems(d_ptr->fontFactory->families());
     ui->splitter->setStretchFactor(0, 10);
-
-
-
-
-
-    connect(ui->comboBox_01, &QComboBox::currentTextChanged, this, &HIconFontWidget::setFontFamily);
-    ui->comboBox_01->setCurrentIndex(0);
-
 }
-
-
 
 HE_END_NAMESPACE

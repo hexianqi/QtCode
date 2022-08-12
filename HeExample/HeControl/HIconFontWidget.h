@@ -24,9 +24,10 @@ public:
     ~HIconFontWidget();
 
 public slots:
-    void setFontFamily(const QString &);
+    void on_comboBox_01_currentTextChanged(const QString &);
 
-protected:
+protected slots:
+    void handleHoverEntered();
     bool checkIcon(int);
 
 private:

@@ -13,5 +13,36 @@
         <file>Resources/data/jianpin.dat</file>
         <file>Resources/data/pinyin.dat</file>
         <file>Resources/fonts/fa-regular-400.ttf</file>
+        <file>Resources/qss/flatgray.css</file>
+        <file>Resources/qss/lightblue.css</file>
+        <file>Resources/qss/psblack.css</file>
+        <file>Resources/image/about.png</file>
+        <file>Resources/image/company.png</file>
+        <file>Resources/image/config.png</file>
+        <file>Resources/image/exit.png</file>
+        <file>Resources/image/find.png</file>
+        <file>Resources/image/help.png</file>
+        <file>Resources/image/main.png</file>
+        <file>Resources/image/person.png</file>
+        <file>Resources/image/main1.jpg</file>
+        <file>Resources/image/main2.jpg</file>
+        <file>Resources/image/main3.jpg</file>
+        <file>Resources/image/main4.jpg</file>
+        <file>Resources/image/main5.jpg</file>
+        <file>Resources/image/PNG99.png</file>
+        <file>Resources/image/PNG100.png</file>
+        <file>Resources/image/PNG101.png</file>
+        <file>Resources/image/PNG102.png</file>
+        <file>Resources/image/PNG103.png</file>
+        <file>Resources/image/PNG104.png</file>
+        <file>Resources/image/PNG105.png</file>
+        <file>Resources/image/PNG106.png</file>
+        <file>Resources/image/PNG107.png</file>
+        <file>Resources/image/PNG108.png</file>
+        <file>Resources/image/PNG109.png</file>
+        <file>Resources/image/PNG110.png</file>
+        <file>Resources/image/PNG111.png</file>
+        <file>Resources/image/PNG112.png</file>
+        <file>Resources/image/PNG114.png</file>
     </qresource>
 </RCC>

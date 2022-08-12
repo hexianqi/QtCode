@@ -39,20 +39,29 @@ QPalette HQssStyle::toPalette()
     return d_ptr->palette.value(d_ptr->current);
 }
 
+QColor HQssStyle::color(const QString &flag)
+{
+    auto style = toStyleSheet();
+    auto index = style.indexOf(flag);
+    if (index >= 0)
+        return style.mid(index + flag.length(), 7);
+    return Qt::black;
+}
+
 QStringList HQssStyle::styles()
 {
     return d_ptr->styleSheet.keys();
 }
 
-bool HQssStyle::selectStyle(QString value)
+bool HQssStyle::selectStyle(const QString &vlaue)
 {
-    if (d_ptr->current == value || !d_ptr->styleSheet.contains(value))
+    if (d_ptr->current == vlaue || !d_ptr->styleSheet.contains(vlaue))
         return false;
-    d_ptr->current = value;
+    d_ptr->current = vlaue;
     return true;
 }
 
-void HQssStyle::addStyle(QString key, QString fileName)
+void HQssStyle::addStyle(const QString &key, const QString &fileName)
 {
     auto qss = HStyleHelper::loadStyle(fileName);
     if (qss.isEmpty())
@@ -64,10 +73,10 @@ void HQssStyle::addStyle(QString key, QString fileName)
 
 void HQssStyle::init()
 {
-    addStyle(tr("黑色风格"),        ":/qss/psblack.css");
-    addStyle(tr("白色扁平化风格"),  ":/qss/flatwhite.css");
-    addStyle(tr("淡绿色风格"),      ":/qss/lightblue.css");
-    selectStyle(tr("淡绿色风格"));
+    addStyle(tr("黑色风格"),        ":/Resources/qss/psblack.css");
+    addStyle(tr("灰色扁平风格"),    ":/Resources/qss/flatgray.css");
+    addStyle(tr("淡蓝色风格"),      ":/Resources/qss/lightblue.css");
+    selectStyle(tr("淡蓝色风格"));
 }
 
 HE_END_NAMESPACE

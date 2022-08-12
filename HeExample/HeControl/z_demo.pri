@@ -8,12 +8,15 @@ HEADERS += \
     $$PWD/HIconFontWidget_p.h \
     $$PWD/HLogDemoWidget.h \
     $$PWD/HLogDemoWidget_p.h \
+    $$PWD/HQssStyleWindow.h \
+    $$PWD/HQssStyleWindow_p.h \
     $$PWD/HRunTimeDemoWidget.h \
     $$PWD/HSmoothCurveDemoWidget.h \
     $$PWD/HSmoothCurveDemoWidget_p.h \
     $$PWD/HStandardPixmapWidget.h \
 
 SOURCES += \
+    $$PWD/HControlDemoWidget_ui.cpp \
     $$PWD/HControlFactoryWidget.cpp \
     $$PWD/HControlDemoWidget.cpp \
     $$PWD/HControlDemoWidget_demo.cpp \
@@ -28,6 +31,7 @@ SOURCES += \
     $$PWD/HFlatStyleWidget.cpp \
     $$PWD/HIconFontWidget.cpp \
     $$PWD/HLogDemoWidget.cpp \
+    $$PWD/HQssStyleWindow.cpp \
     $$PWD/HRunTimeDemoWidget.cpp \
     $$PWD/HSmoothCurveDemoWidget.cpp \
     $$PWD/HStandardPixmapWidget.cpp \
@@ -37,5 +41,6 @@ FORMS += \
     $$PWD/HFlatStyleWidget.ui \
     $$PWD/HIconFontWidget.ui \
     $$PWD/HLogDemoWidget.ui \
+    $$PWD/HQssStyleWindow.ui \
     $$PWD/HRunTimeDemoWidget.ui \
     $$PWD/HSmoothCurveDemoWidget.ui

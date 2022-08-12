@@ -13,12 +13,14 @@ class IQssStyle : public IStyle
 public:
     // 调色板
     virtual QPalette toPalette() = 0;
+    // 某项颜色
+    virtual QColor color(const QString &flag) = 0;
     // 所有样式
     virtual QStringList styles() = 0;
     // 选择样式
-    virtual bool selectStyle(QString vlaue) = 0;
+    virtual bool selectStyle(const QString &vlaue) = 0;
     // 添加样式
-    virtual void addStyle(QString key, QString fileName) = 0;
+    virtual void addStyle(const QString &key, const QString &fileName) = 0;
 };
 
 HE_END_NAMESPACE

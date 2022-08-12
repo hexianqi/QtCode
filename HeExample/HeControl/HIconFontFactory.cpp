@@ -52,14 +52,15 @@ QPoint HIconFontFactory::fontRange(const QString &family)
 
 void HIconFontFactory::registerClass()
 {
+    d_ptr->fontResource.insert("FontWeather",       ":/Resources/fonts/pe-icon-set-weather.ttf");
     d_ptr->fontResource.insert("FontAwesome",       ":/Resources/fonts/fontawesome-webfont.ttf");
     d_ptr->fontResource.insert("FontAwesome6Pro",   ":/Resources/fonts/fa-regular-400.ttf");
     d_ptr->fontResource.insert("FontIcon",          ":/Resources/fonts/iconfont.ttf");
-    d_ptr->fontResource.insert("FontWeather",       ":/Resources/fonts/pe-icon-set-weather.ttf");
+    d_ptr->fontRange.insert("FontWeather",          QPoint(0xe900, 0xe9cf));
     d_ptr->fontRange.insert("FontAwesome",          QPoint(0xf000, 0xf2e0));
     d_ptr->fontRange.insert("FontAwesome6Pro",      QPoint(0xe000, 0xf8ff));
     d_ptr->fontRange.insert("FontIcon",             QPoint(0xe500, 0xea5d));
-    d_ptr->fontRange.insert("FontWeather",          QPoint(0xe900, 0xe9cf));
+
 }
 
 HE_END_NAMESPACE

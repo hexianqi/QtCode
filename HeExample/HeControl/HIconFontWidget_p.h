@@ -21,8 +21,13 @@ public:
 
 class HGraphicsTextItem : public QGraphicsTextItem
 {
+    Q_OBJECT
+
 public:
     explicit HGraphicsTextItem(QGraphicsItem *parent = nullptr);
+
+signals:
+    void hoverEntered();
 
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *) override;

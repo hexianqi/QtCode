@@ -67,6 +67,9 @@ private:
     // Style
     void addStyle();
 
+    // UI
+    void addUI();
+
     // Tool
     void addTool();
     void addChineseConvert();
