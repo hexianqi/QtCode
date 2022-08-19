@@ -1,15 +1,10 @@
 #include "HControlDemoWidget_p.h"
-
-#include "HFlatStyle.h"
-
 #include "HImageCalendar.h"
 #include "HLunarCalendarWidget.h"
-
-
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLayout>
 
 HE_BEGIN_NAMESPACE
 
@@ -43,8 +38,8 @@ void HControlDemoWidget::addLunarCalendar()
     comboBox2->addItem(tr("长名称"),   HLunarCalendarWidget::WeekNameFormat_Long);
     comboBox2->addItem(tr("英文名称"), HLunarCalendarWidget::WeekNameFormat_En);
 
-    auto checkCox = new QCheckBox(tr("显示农历"));
-    checkCox->setChecked(true);
+    auto checkBox = new QCheckBox(tr("显示农历"));
+    checkBox->setChecked(true);
 
     auto widget = new HLunarCalendarWidget;
 
@@ -53,7 +48,7 @@ void HControlDemoWidget::addLunarCalendar()
     hLayout->addWidget(comboBox1, 3);
     hLayout->addWidget(label2, 1);
     hLayout->addWidget(comboBox2, 3);
-    hLayout->addWidget(checkCox, 2);
+    hLayout->addWidget(checkBox, 2);
 
     auto vLayout = new QVBoxLayout;
     vLayout->addWidget(widget);
@@ -61,7 +56,7 @@ void HControlDemoWidget::addLunarCalendar()
 
     connect(comboBox1, &QComboBox::currentTextChanged, this, [=] { widget->setSelectType(comboBox1->currentData().value<HLunarCalendarItem::SelectType>()); });
     connect(comboBox2, &QComboBox::currentTextChanged, this, [=] { widget->setWeekNameFormat(comboBox2->currentData().value<HLunarCalendarWidget::WeekNameFormat>()); });
-    connect(checkCox, &QCheckBox::clicked, this, [=](bool b) { widget->setShowLunar(b); });
+    connect(checkBox, &QCheckBox::clicked, this, [=](bool b) { widget->setShowLunar(b); });
     addTab(tr("ludianwu"), tr("农历"), vLayout);
 }
 

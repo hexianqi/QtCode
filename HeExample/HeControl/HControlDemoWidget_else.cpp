@@ -145,6 +145,7 @@ void HControlDemoWidget::addButtonGroup()
     layout->addWidget(group);
     layout->addWidget(step);
     layout->addWidget(abnormity);
+    layout->addStretch();
     addTab(tr("其他"), tr("按钮组"), layout);
 }
 

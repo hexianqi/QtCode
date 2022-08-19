@@ -13,9 +13,6 @@
         <file>Resources/data/jianpin.dat</file>
         <file>Resources/data/pinyin.dat</file>
         <file>Resources/fonts/fa-regular-400.ttf</file>
-        <file>Resources/qss/flatgray.css</file>
-        <file>Resources/qss/lightblue.css</file>
-        <file>Resources/qss/psblack.css</file>
         <file>Resources/image/about.png</file>
         <file>Resources/image/company.png</file>
         <file>Resources/image/config.png</file>
@@ -44,5 +41,8 @@
         <file>Resources/image/PNG111.png</file>
         <file>Resources/image/PNG112.png</file>
         <file>Resources/image/PNG114.png</file>
+        <file>Resources/image/ColorPicker.ico</file>
+        <file>Resources/image/gifwidget.ico</file>
+        <file>Resources/image/gifwidget.png</file>
     </qresource>
 </RCC>

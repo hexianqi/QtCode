@@ -127,7 +127,7 @@ double HSpecPrintTemplate::paintTitle(QPainter *painter, double y)
 {
     Q_D(HSpecPrintTemplate);
     auto text = d->params.value("Title").toString();
-    painter->setFont(QFont(tr("宋体"), 16, QFont::Bold));
+    painter->setFont(QFont("宋体", 16, QFont::Bold));
     return HPainterHelper::drawText(painter, 0, y, text, Qt::AlignHCenter | Qt::TextWordWrap).y() + 10;
 }
 
@@ -207,7 +207,7 @@ void HSpecPrintTemplate::paintBody(QPainter *painter, QRectF rect, int /*page*/)
 
 double HSpecPrintTemplate::paintFooterTM30(QPainter *painter, int page)
 {
-    painter->setFont(QFont(tr("宋体"), 8));
+    painter->setFont(QFont("宋体", 8));
     return HPainterHelper::paintFooter(painter, QString::number(page));
 }
 
@@ -375,7 +375,7 @@ QPointF HSpecPrintTemplate::drawTableTm30Rxhj(QPainter *painter, QRectF rect)
     auto Rcs = d->datas.value("[TM30_hj_Rcs]").value<QList<double>>();
     auto Rhs = d->datas.value("[TM30_hj_Rhs]").value<QList<double>>();
     auto pens = QList<QPen>() << QPen(Qt::black, 2) << QPen(Qt::black, 1);
-    auto fonts = QList<QFont>() << QFont(tr("宋体"), 16, QFont::Bold) << QFont(tr("宋体"), 10, QFont::Bold) << QFont(tr("宋体"), 10);
+    auto fonts = QList<QFont>() << QFont("宋体", 16, QFont::Bold) << QFont("宋体", 10, QFont::Bold) << QFont("宋体", 10);
     auto height = QFontMetrics(fonts[1]).height() + 8.0 * 2;
     auto width = QList<double>() << 0.0 << 0.15 << 0.4 << 0.6 << 0.8 << 1.0;
     QVector<double> x,y;

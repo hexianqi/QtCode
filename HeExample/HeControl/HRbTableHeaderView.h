@@ -23,6 +23,9 @@ signals:
     void sectionPressed(int from, int to);
 
 public:
+    QSize sizeHint() const override;
+
+public:
     void setRowHeight(int row, int height);
     void setColumnWidth(int column, int width);
     void setSpan(int row, int column, int rowSpanCount, int columnSpanCount);
@@ -38,7 +41,7 @@ protected:
     QSize sectionSizeFromContents(int logicalIndex) const override;
 
 protected:
-    QModelIndex indexAt(const QPoint&);
+    QModelIndex indexAt(const QPoint &) const override;
     QModelIndex index(int row, int column) const;
     QModelIndex columnSpanIndex(const QModelIndex &) const;
     QModelIndex rowSpanIndex(const QModelIndex &) const;

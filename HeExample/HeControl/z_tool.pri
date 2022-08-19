@@ -10,6 +10,9 @@ HEADERS += \
     $$PWD/HNetworkWidget_p.h \
     $$PWD/HPngAmend.h \
     $$PWD/HPngAmend_p.h \
+    $$PWD/HColorPicker.h \
+    $$PWD/HGifWidget.h \
+    $$PWD/HGifWidget_p.h \
 
 SOURCES += \
     $$PWD/HBase64ConvertWidget.cpp \
@@ -18,10 +21,14 @@ SOURCES += \
     $$PWD/HEmailWidget.cpp \
     $$PWD/HNetworkWidget.cpp \
     $$PWD/HPngAmend.cpp \
+    $$PWD/HColorPicker.cpp \
+    $$PWD/HGifWidget.cpp \
 
 FORMS += \
     $$PWD/HBase64ConvertWidget.ui \
     $$PWD/HCodeCountWidget.ui \
     $$PWD/HEmailWidget.ui \
-    $$PWD/HPngAmend.ui
+    $$PWD/HPngAmend.ui \
+    $$PWD/HColorPicker.ui \
+    $$PWD/HGifWidget.ui \
 

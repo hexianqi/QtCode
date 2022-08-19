@@ -90,12 +90,12 @@ void HImageCalendar::changeStyle(QAction *p)
 void HImageCalendar::init()
 {
     d_ptr->lunar = new HLunarCalendarInfo(this);
-    d_ptr->images.insert(CalendarStyle_Yellow,    ":/image/ludianwu/calendar_yellow.png");
-    d_ptr->images.insert(CalendarStyle_Blue,      ":/image/ludianwu/calendar_blue.png");
-    d_ptr->images.insert(CalendarStyle_Brown,     ":/image/ludianwu/calendar_brown.png");
-    d_ptr->images.insert(CalendarStyle_Gray,      ":/image/ludianwu/calendar_gray.png");
-    d_ptr->images.insert(CalendarStyle_Purple,    ":/image/ludianwu/calendar_purple.png");
-    d_ptr->images.insert(CalendarStyle_Red,       ":/image/ludianwu/calendar_red.png");
+    d_ptr->images.insert(CalendarStyle_Yellow,    ":/Resources/fyqy/calendar/calendar_yellow.png");
+    d_ptr->images.insert(CalendarStyle_Blue,      ":/Resources/fyqy/calendar/calendar_blue.png");
+    d_ptr->images.insert(CalendarStyle_Brown,     ":/Resources/fyqy/calendar/calendar_brown.png");
+    d_ptr->images.insert(CalendarStyle_Gray,      ":/Resources/fyqy/calendar/calendar_gray.png");
+    d_ptr->images.insert(CalendarStyle_Purple,    ":/Resources/fyqy/calendar/calendar_purple.png");
+    d_ptr->images.insert(CalendarStyle_Red,       ":/Resources/fyqy/calendar/calendar_red.png");
     QMap<CalendarStyle, QString> alias;
     alias.insert(CalendarStyle_Yellow,    tr("黄色风格"));
     alias.insert(CalendarStyle_Blue,      tr("蓝色风格"));

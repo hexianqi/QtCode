@@ -49,5 +49,12 @@
         <file>Resources/fyqy/devicebutton/devicebutton_yellow_msg.png</file>
         <file>Resources/fyqy/devicebutton/devicebutton_yellow_msg2.png</file>
         <file>Resources/fyqy/devicebutton/devicebutton_yellow_police.png</file>
+        <file>Resources/fyqy/calendar/calendar_item_bk.png</file>
+        <file>Resources/fyqy/calendar/calendar_blue.png</file>
+        <file>Resources/fyqy/calendar/calendar_brown.png</file>
+        <file>Resources/fyqy/calendar/calendar_gray.png</file>
+        <file>Resources/fyqy/calendar/calendar_purple.png</file>
+        <file>Resources/fyqy/calendar/calendar_red.png</file>
+        <file>Resources/fyqy/calendar/calendar_yellow.png</file>
     </qresource>
 </RCC>

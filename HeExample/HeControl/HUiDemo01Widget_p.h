@@ -6,6 +6,8 @@ class QAbstractButton;
 
 HE_BEGIN_NAMESPACE
 
+class HIconFontStyle;
+
 class HUiDemo01WidgetPrivate
 {
 public:
@@ -17,6 +19,7 @@ public:
     QColor darkText;
     QList<QAbstractButton *> btnMain;
     QList<QAbstractButton *> btnConfig;
+    HIconFontStyle *style = nullptr;
 };
 
 HE_END_NAMESPACE

@@ -1020,4 +1020,68 @@ Import success!
     <source>新密码不相同！</source>
     <target>The new password is different!</target>
 </phrase>
+<phrase>
+    <source>清除标注(&amp;C)</source>
+    <target>&amp;Clear annotation</target>
+</phrase>
+<phrase>
+    <source>相对光谱功率分布</source>
+    <target>Spectrum energy distribution</target>
+</phrase>
+<phrase>
+    <source>输出Excel(&amp;E)</source>
+    <target>&amp;Export excel</target>
+</phrase>
+<phrase>
+    <source>输出Excel</source>
+    <target>Export excel</target>
+</phrase>
+<phrase>
+    <source>松朗光电测试报告</source>
+    <target>Song lang test report</target>
+</phrase>
+<phrase>
+    <source>光强角度分布测试报告</source>
+    <target>Angle distribution test report</target>
+</phrase>
+<phrase>
+    <source>列总数：</source>
+    <target>Column count:</target>
+</phrase>
+<phrase>
+    <source>数值：</source>
+    <target>Value:</target>
+</phrase>
+<phrase>
+    <source>结束行：</source>
+    <target>Row end:</target>
+</phrase>
+<phrase>
+    <source>自增</source>
+    <target>Increment</target>
+</phrase>
+<phrase>
+    <source>空灯：</source>
+    <target>empty:</target>
+</phrase>
+<phrase>
+    <source>标题：</source>
+    <target>Title:</target>
+</phrase>
+<phrase>
+    <source>  光合</source>
+    <target>  Photosynthetic</target>
+</phrase>
+<phrase>
+    <source>lm</source>
+    <target>lm</target>
+</phrase>
+<phrase>
+    <source>数据分析表</source>
+    <target>Analysis table</target>
+</phrase>
+<phrase>
+    <source>数据打印配置(&amp;P)...</source>
+    <target>&amp;Print edit...</target>
+</phrase>
 </QPH>

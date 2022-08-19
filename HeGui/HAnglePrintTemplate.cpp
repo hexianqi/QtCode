@@ -46,9 +46,9 @@ bool HAnglePrintTemplate::printPages(QPrinter *printer)
     printer->setPageMargins(5, 5, 5, 5, QPrinter::Millimeter);
     painter.setFont(QFont("宋体", 12));
     auto y1 = HPainterHelper::paintHeader(&painter, d->params);
-    painter.setFont(QFont(tr("宋体"), 8));
+    painter.setFont(QFont("宋体", 8));
     auto y2 = HPainterHelper::paintFooter(&painter, "1");
-    painter.setFont(QFont(tr("宋体"), 16, QFont::Bold));
+    painter.setFont(QFont("宋体", 16, QFont::Bold));
     y1 = HPainterHelper::paintTitle(&painter, d->params.value("Title").toString(), y1);
     paintBody(&painter, QRectF(0, y1, painter.viewport().width(), y2 - y1));
     return true;

@@ -28,3 +28,5 @@ SOURCES += \
 
 RESOURCES += \
     $$PWD/fyqy.qrc
+
+include(z_fyqy_calendar.pri)

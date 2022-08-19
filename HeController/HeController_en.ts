@@ -4,7 +4,7 @@
 <context>
     <name>HIntegrateThread</name>
     <message>
-        <location filename="HIntegrateThread.cpp" line="48"/>
+        <location filename="HIntegrateThread.cpp" line="42"/>
         <source>线程</source>
         <translation>Thread</translation>
     </message>
@@ -12,7 +12,7 @@
 <context>
     <name>HSpecElecThread</name>
     <message>
-        <location filename="HSpecElecThread.cpp" line="47"/>
+        <location filename="HSpecElecThread.cpp" line="42"/>
         <source>线程</source>
         <translation>Thread</translation>
     </message>
@@ -20,7 +20,7 @@
 <context>
     <name>HSpecThread</name>
     <message>
-        <location filename="HSpecThread.cpp" line="39"/>
+        <location filename="HSpecThread.cpp" line="34"/>
         <source>线程</source>
         <translation>Thread</translation>
     </message>

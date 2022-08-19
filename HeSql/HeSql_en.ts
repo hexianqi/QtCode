@@ -4,114 +4,89 @@
 <context>
     <name>HAbstractSqlPrint</name>
     <message>
-        <location filename="HAbstractSqlPrint.cpp" line="85"/>
         <source>PDF files (*.pdf)</source>
-        <translation>PDF files (*.pdf)</translation>
-    </message>
-    <message>
-        <location filename="HAbstractSqlPrint.cpp" line="212"/>
-        <location filename="HAbstractSqlPrint.cpp" line="221"/>
-        <source>宋体</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">PDF files (*.pdf)</translation>
     </message>
 </context>
 <context>
     <name>HIntegrateSqlPrint</name>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="33"/>
         <source>测试数据</source>
-        <translation>Test data</translation>
+        <translation type="vanished">Test data</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="51"/>
         <source>光谱数据</source>
-        <translation>Spectrum data</translation>
+        <translation type="vanished">Spectrum data</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="52"/>
         <source>波长(nm)	能量百分比(%)</source>
-        <translation>Wavelength(nm)\t Energy(%)</translation>
+        <translation type="vanished">Wavelength(nm)\t Energy(%)</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="60"/>
         <source>松朗光色电综合测试报告</source>
-        <translation>Song lang test report</translation>
+        <translation type="vanished">Song lang test report</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="61"/>
         <source>光色电综合测试报告</source>
-        <translation>Comprehensive Test Report</translation>
+        <translation type="vanished">Comprehensive Test Report</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="62"/>
         <source> - %1 - </source>
-        <translation> - %1 - </translation>
+        <translation type="vanished"> - %1 - </translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="81"/>
         <source>电参数：</source>
-        <translation>Elec:</translation>
+        <translation type="vanished">Elec:</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="102"/>
         <source> 相关色温：Tc = %1K    主波长：λd = %2nm    色纯度：Purity = %3    色容差：%4SDCM</source>
-        <translation> Tc = %1K    λd = %2nm    Purity = %3    SDCM:%4</translation>
+        <translation type="vanished"> Tc = %1K    λd = %2nm    Purity = %3    SDCM:%4</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="106"/>
         <source> 色比：R = %1％  G = %2％  B = %3％    峰值波长：λp = %4nm    峰值带宽：Δλd = %5nm</source>
-        <translation> R = %1%  G = %2%  B = %3%    λp = %4nm    Δλd = %5nm</translation>
+        <translation type="vanished"> R = %1%  G = %2%  B = %3%    λp = %4nm    Δλd = %5nm</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="129"/>
         <source> 光通量：Φ = %1lm    光功率：Φ e = %2    光效率：%3lm/W</source>
-        <translation> Luminous flux: %1lm    Luminous power: %2   Luminous efficiency: %3lm/W</translation>
+        <translation type="vanished"> Luminous flux: %1lm    Luminous power: %2   Luminous efficiency: %3lm/W</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="132"/>
         <source> 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]</source>
-        <translation> Photon(umol/s): %1[380-780nm]  %2[400-700nm]  %3[700-800nm]</translation>
+        <translation type="vanished"> Photon(umol/s): %1[380-780nm]  %2[400-700nm]  %3[700-800nm]</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="135"/>
         <source> 光合光量子通量PPF：%1umol/s    光合有效辐射通量PRF：%2mW</source>
-        <translation> PPF：%1umol/s    PRF：%2mW</translation>
+        <translation type="vanished"> PPF：%1umol/s    PRF：%2mW</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="138"/>
         <source> 光合光子通量效率Eff(PPF)：%1umol/s/W    荧光效能：%2    荧光蓝光比：%3</source>
-        <translation> Eff(PPF)：%1umol/s/W  Fluorescence efficiency：%2  Fluorescence ratio：%3</translation>
+        <translation type="vanished"> Eff(PPF)：%1umol/s/W  Fluorescence efficiency：%2  Fluorescence ratio：%3</translation>
     </message>
     <message>
         <source> 输出电压：%1 V    输出电流：%2 mA </source>
         <translation type="vanished"> Output voltage: %1 V    Output Current: %2 mA </translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="84"/>
         <source> 输出电压：%1V    输出电流：%2mA </source>
         <oldsource> 实测电压：%1 V    实测电流：%2 mA    电功率：%3 W</oldsource>
-        <translation> Output voltage: %1V    Output Current: %2mA </translation>
+        <translation type="vanished"> Output voltage: %1V    Output Current: %2mA </translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="87"/>
         <source> 实测电压：%1V    实测电流：%2mA    电功率：%3W</source>
         <oldsource> 反向电压：%1 V    反向漏流：%2 mA</oldsource>
-        <translation> Measured voltage: %1V    Measured current: %2mA    Elec power: %3W</translation>
+        <translation type="vanished"> Measured voltage: %1V    Measured current: %2mA    Elec power: %3W</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="90"/>
         <source> 反向电压：%1V    反向漏流：%2mA</source>
-        <translation> Reverse voltage: %1V    Reverse current:%2mA</translation>
+        <translation type="vanished"> Reverse voltage: %1V    Reverse current:%2mA</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="95"/>
         <source>颜色参数：</source>
-        <translation>Spectrum:</translation>
+        <translation type="vanished">Spectrum:</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="98"/>
         <source> 色品坐标：x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</source>
-        <translation> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
+        <translation type="vanished"> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
     </message>
     <message>
         <source> 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3</source>
@@ -122,24 +97,20 @@
         <translation type="vanished">R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="112"/>
         <source> 显色指数：Ra = %1    R9 = %2</source>
-        <translation> Ra = %1    R9 = %2</translation>
+        <translation type="vanished"> Ra = %1    R9 = %2</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="115"/>
         <source>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</source>
-        <translation>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
+        <translation type="vanished">  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="119"/>
         <source>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</source>
-        <translation>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
+        <translation type="vanished">  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
     </message>
     <message>
-        <location filename="HIntegrateSqlPrint.cpp" line="126"/>
         <source>光度参数：</source>
-        <translation>Luminous:</translation>
+        <translation type="vanished">Luminous:</translation>
     </message>
     <message>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2    光效率：%3 lm/W</source>
@@ -149,337 +120,303 @@
 <context>
     <name>HProductInfoDialog</name>
     <message>
-        <location filename="HProductInfoDialog.ui" line="14"/>
         <source>产品信息编辑</source>
-        <translation>Product info</translation>
+        <translation type="vanished">Product info</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="29"/>
         <source>制造厂商：</source>
-        <translation>Manufacturer:</translation>
+        <translation type="vanished">Manufacturer:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="61"/>
         <source>产品名称：</source>
-        <translation>Product name:</translation>
+        <translation type="vanished">Product name:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="93"/>
         <source>产品型号：</source>
-        <translation>Product model:</translation>
+        <translation type="vanished">Product model:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="125"/>
         <source>样品编号：</source>
-        <translation>Sample number:</translation>
+        <translation type="vanished">Sample number:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="154"/>
         <source>测试单位：</source>
-        <translation>Test institute:</translation>
+        <translation type="vanished">Test institute:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="186"/>
         <source>测试员：</source>
-        <translation>Tester:</translation>
+        <translation type="vanished">Tester:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="218"/>
         <source>环境温度：</source>
-        <translation>Temperature:</translation>
+        <translation type="vanished">Temperature:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="247"/>
         <source>环境湿度：</source>
-        <translation>Humidity:</translation>
+        <translation type="vanished">Humidity:</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="275"/>
         <source>启用</source>
-        <translation>Enable</translation>
+        <translation type="vanished">Enable</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="282"/>
         <source>保存前弹出此对话框</source>
-        <translation>Pops this before saving</translation>
+        <translation type="vanished">Pops this before saving</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="289"/>
         <source>保存后编号自动增加</source>
-        <translation>Automatically increase number</translation>
+        <translation type="vanished">Automatically increase number</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="342"/>
         <source>确 定</source>
-        <translation>OK</translation>
+        <translation type="vanished">OK</translation>
     </message>
     <message>
-        <location filename="HProductInfoDialog.ui" line="365"/>
         <source>取 消</source>
-        <translation>Cancel</translation>
+        <translation type="vanished">Cancel</translation>
     </message>
 </context>
 <context>
     <name>HSpecElecSqlPrint</name>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="33"/>
         <source>测试数据</source>
-        <translation>Test data</translation>
+        <translation type="vanished">Test data</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="48"/>
         <source>光谱数据</source>
-        <translation>Spectrum data</translation>
+        <translation type="vanished">Spectrum data</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="49"/>
         <source>波长(nm)	能量百分比(%)</source>
-        <translation>Wavelength(nm)\t Energy(%)</translation>
+        <translation type="vanished">Wavelength(nm)\t Energy(%)</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="57"/>
         <source>松朗光电测试报告</source>
-        <translation>Song lang test report</translation>
+        <translation type="vanished">Song lang test report</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="58"/>
         <source>光色电测试报告</source>
-        <translation>Comprehensive Test Report</translation>
+        <translation type="vanished">Comprehensive Test Report</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="59"/>
         <source> - %1 - </source>
-        <translation> - %1 - </translation>
+        <translation type="vanished"> - %1 - </translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="78"/>
         <source>电参数：</source>
-        <translation>Elec:</translation>
+        <translation type="vanished">Elec:</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="81"/>
         <source> 输出电压：%1 V   输出电流：%2 mA </source>
-        <translation> Output voltage: %1 V    Output Current: %2 mA </translation>
+        <translation type="vanished"> Output voltage: %1 V    Output Current: %2 mA </translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="84"/>
         <source> 实测电压：%1 V   实测电流：%2 mA  电功率：%3 W</source>
-        <translation> Measured voltage: %1 V    Measured current: %2 mA    Elec power: %3 W</translation>
+        <translation type="vanished"> Measured voltage: %1 V    Measured current: %2 mA    Elec power: %3 W</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="87"/>
         <source> 反向电压：%1 V   反向漏流：%2 mA</source>
-        <translation> Reverse voltage: %1 V    Reverse current:%2 mA</translation>
+        <translation type="vanished"> Reverse voltage: %1 V    Reverse current:%2 mA</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="92"/>
         <source>颜色参数：</source>
-        <translation>Spectrum:</translation>
+        <translation type="vanished">Spectrum:</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="95"/>
         <source> 色品坐标：x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</source>
-        <translation> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
+        <translation type="vanished"> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="99"/>
         <source> 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3</source>
-        <translation> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
+        <translation type="vanished"> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="103"/>
         <source>色比：R = %1 ％  G = %2 ％  B = %3 ％ 峰值波长：λp = %4 nm   峰值带宽：Δλd = %5 nm</source>
-        <translation>R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
+        <translation type="vanished">R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="107"/>
         <source> 显色指数：Ra = %1</source>
-        <translation> Ra = %1</translation>
+        <translation type="vanished"> Ra = %1</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="112"/>
         <source>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</source>
-        <translation>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
+        <translation type="vanished">  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="116"/>
         <source>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</source>
-        <translation>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
+        <translation type="vanished">  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="123"/>
         <source>光度参数：</source>
-        <translation>Luminous:</translation>
+        <translation type="vanished">Luminous:</translation>
     </message>
     <message>
-        <location filename="HSpecElecSqlPrint.cpp" line="126"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2   光效率：%3 lm/W</source>
-        <translation> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
+        <translation type="vanished"> Luminous flux: %1 lm    Luminous power: %2   Luminous efficiency: %3 lm/W</translation>
     </message>
 </context>
 <context>
     <name>HSpecSqlPrint</name>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="43"/>
         <source>测试数据</source>
-        <translation>Test data</translation>
+        <translation type="vanished">Test data</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="55"/>
         <source>光谱数据</source>
-        <translation>Spectrum data</translation>
+        <translation type="vanished">Spectrum data</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="56"/>
         <source>波长(nm)	能量百分比(%)</source>
-        <translation>Wavelength(nm)\t Energy(%)</translation>
+        <translation type="vanished">Wavelength(nm)\t Energy(%)</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="69"/>
         <source>松朗光电测试报告</source>
-        <translation>Song lang test report</translation>
+        <translation type="vanished">Song lang test report</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="70"/>
         <source>光谱测试报告</source>
-        <translation>Spectrum Test Report</translation>
+        <translation type="vanished">Spectrum Test Report</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="71"/>
         <source> - %1 - </source>
-        <translation> - %1 - </translation>
+        <translation type="vanished"> - %1 - </translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="120"/>
         <source>颜色参数：</source>
-        <translation>Spectrum:</translation>
+        <translation type="vanished">Spectrum:</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="123"/>
         <source> 色品坐标：x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</source>
-        <translation> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
+        <translation type="vanished"> x = %1    y = %2    u&apos; = %3    v&apos; = %4    duv = %5</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="127"/>
         <source> 相关色温：Tc = %1 K    主波长：λd = %2 nm    色纯度：Purity = %3</source>
-        <translation> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
+        <translation type="vanished"> Tc = %1 K    λd = %2 nm    Purity = %3</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="131"/>
         <source>色比：R = %1 ％  G = %2 ％  B = %3 ％ 峰值波长：λp = %4 nm   峰值带宽：Δλd = %5 nm</source>
-        <translation>R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
+        <translation type="vanished">R = %1 ％  G = %2 ％  B = %3 ％    λp = %4 nm    Δλd = %5 nm</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="137"/>
         <source> 显色指数：Ra = %1    R9 = %2</source>
-        <translation> Ra = %1    R9 = %2</translation>
+        <translation type="vanished"> Ra = %1    R9 = %2</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="140"/>
         <source>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</source>
-        <translation>  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
+        <translation type="vanished">  R01 = %1  R02 = %2  R03 = %3  R04 = %4  R05 = %5  R06 = %6  R07 = %7  R08 = %8</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="144"/>
         <source>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</source>
-        <translation>  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
+        <translation type="vanished">  R09 = %1  R10 = %2  R11 = %3  R12 = %4  R13 = %5  R14 = %6  R15 = %7</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="151"/>
         <source>光度参数：</source>
-        <translation>Luminous:</translation>
+        <translation type="vanished">Luminous:</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="154"/>
         <source> 光通量：Φ = %1 lm    光功率：Φ e = %2</source>
-        <translation> Luminous flux: %1 lm    Luminous power: %2</translation>
+        <translation type="vanished"> Luminous flux: %1 lm    Luminous power: %2</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="180"/>
         <source>相对光谱能量分布</source>
-        <translation>Spectrum energy distribution</translation>
+        <translation type="vanished">Spectrum energy distribution</translation>
     </message>
     <message>
-        <location filename="HSpecSqlPrint.cpp" line="193"/>
         <source>CIE1931色品图</source>
-        <translation>CIE1931</translation>
+        <translation type="vanished">CIE1931</translation>
     </message>
 </context>
 <context>
     <name>HSqlBrowser</name>
     <message>
-        <location filename="HSqlBrowser.cpp" line="96"/>
+        <location filename="HSqlBrowser.cpp" line="91"/>
         <source>数据库浏览</source>
         <translation>Browser</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="101"/>
+        <location filename="HSqlBrowser.cpp" line="96"/>
         <source>所有记录(&amp;R)</source>
         <translation>&amp;Revert</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="103"/>
+        <location filename="HSqlBrowser.cpp" line="98"/>
         <source>所有记录</source>
         <translation>Revert</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="104"/>
+        <location filename="HSqlBrowser.cpp" line="99"/>
         <source>查询记录(&amp;F)</source>
         <translation>&amp;Find</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="106"/>
+        <location filename="HSqlBrowser.cpp" line="101"/>
         <source>查询记录</source>
         <translation>Find</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="107"/>
+        <location filename="HSqlBrowser.cpp" line="102"/>
         <source>删除记录(&amp;R)</source>
         <translation>&amp;Delete</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="109"/>
+        <location filename="HSqlBrowser.cpp" line="104"/>
         <source>删除记录</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="110"/>
-        <source>导出记录(&amp;E)</source>
+        <location filename="HSqlBrowser.cpp" line="105"/>
+        <source>输出Excel(&amp;E)</source>
         <translation>&amp;Export excel</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="112"/>
-        <location filename="HSqlBrowser.cpp" line="115"/>
-        <source>导出记录</source>
+        <location filename="HSqlBrowser.cpp" line="107"/>
+        <source>输出Excel</source>
         <translation>Export excel</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="113"/>
-        <source>导出记录(&amp;D)</source>
+        <location filename="HSqlBrowser.cpp" line="108"/>
+        <source>打印PDF(&amp;P)</source>
         <translation>Export &amp;PDF</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="116"/>
+        <location filename="HSqlBrowser.cpp" line="110"/>
+        <source>打印PDF</source>
+        <translation>Export PDF</translation>
+    </message>
+    <message>
+        <source>导出记录(&amp;E)</source>
+        <translation type="vanished">&amp;Export excel</translation>
+    </message>
+    <message>
+        <source>导出记录</source>
+        <translation type="vanished">Export excel</translation>
+    </message>
+    <message>
+        <source>导出记录(&amp;D)</source>
+        <translation type="vanished">Export &amp;PDF</translation>
+    </message>
+    <message>
+        <location filename="HSqlBrowser.cpp" line="111"/>
         <source>打印(&amp;P)</source>
         <translation>&amp;Print</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="118"/>
+        <location filename="HSqlBrowser.cpp" line="113"/>
         <source>打印</source>
         <translation>Print</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="119"/>
+        <location filename="HSqlBrowser.cpp" line="114"/>
         <source>打印预览(&amp;V)</source>
         <translation>P&amp;review</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="121"/>
+        <location filename="HSqlBrowser.cpp" line="116"/>
         <source>打印预览</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="HSqlBrowser.cpp" line="133"/>
+        <location filename="HSqlBrowser.cpp" line="128"/>
         <source>数据操作(&amp;S)</source>
         <translation>&amp;Operate</translation>
     </message>
@@ -487,9 +424,8 @@
 <context>
     <name>HSqlDatabase</name>
     <message>
-        <location filename="HSqlDatabase.cpp" line="53"/>
         <source>打开数据库失败</source>
-        <translation>Failed to open database</translation>
+        <translation type="vanished">Failed to open database</translation>
     </message>
 </context>
 <context>
@@ -528,6 +464,14 @@
         <location filename="HSqlFindDialog.ui" line="214"/>
         <source>取 消</source>
         <translation>Cancel</translation>
+    </message>
+</context>
+<context>
+    <name>HSqliteDatabase</name>
+    <message>
+        <location filename="HSqliteDatabase.cpp" line="57"/>
+        <source>打开数据库失败</source>
+        <translation>Failed to open database</translation>
     </message>
 </context>
 </TS>

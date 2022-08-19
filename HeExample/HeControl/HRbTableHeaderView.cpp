@@ -19,6 +19,28 @@ HRbTableHeaderView::HRbTableHeaderView(Qt::Orientation orientation, int rows, in
     init();
 }
 
+QSize HRbTableHeaderView::sizeHint() const
+{
+    auto size = index(0, 0).data(Qt::SizeHintRole).toSize();
+    if (orientation() == Qt::Horizontal)
+    {
+        for (int row = 1; row < rowCount(); row++)
+        {
+            auto height = index(row, 0).data(Qt::SizeHintRole).toSize().height();
+            size += QSize(0, height);
+        }
+    }
+    else
+    {
+        for (int column = 1; column < columnCount(); column++)
+        {
+            auto width = index(0, column).data(Qt::SizeHintRole).toSize().width();
+            size += QSize(width, 0);
+        }
+    }
+    return size;
+}
+
 HRbTableHeaderView::HRbTableHeaderView(HRbTableHeaderViewPrivate &p, Qt::Orientation orientation, QWidget *parent) :
     QHeaderView(orientation, parent),
     d_ptr(&p)
@@ -248,7 +270,7 @@ QSize HRbTableHeaderView::sectionSizeFromContents(int logicalIndex) const
     return size;
 }
 
-QModelIndex HRbTableHeaderView::indexAt(const QPoint &pos)
+QModelIndex HRbTableHeaderView::indexAt(const QPoint &pos) const
 {
     int logical = logicalIndexAt(pos);
     if (orientation() == Qt::Horizontal)

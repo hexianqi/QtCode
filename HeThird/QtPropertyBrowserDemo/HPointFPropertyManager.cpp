@@ -143,7 +143,3 @@ void HPointFPropertyManager::slotPropertyDestroyed(QtProperty *property)
         d_ptr->yToProperty.remove(property);
     }
 }
-
-
-
-

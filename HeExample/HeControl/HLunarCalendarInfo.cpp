@@ -95,7 +95,7 @@ QString HLunarCalendarInfo::lunarInfo(int year, int month, int day, bool yearInf
     QString holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay;
     lunarInfo(year, month, day, holiday, solarTerms, lunarFestival, lunarYear, lunarMonth, lunarDay);
 
-    // 农历节日优先,其次农历节气,然后公历节日,最后才是农历月份名称
+    // 农历节日 - 农历节气 - 公历节日 - 农历月份名称
     if (!lunarFestival.isEmpty())
         lunarDay = lunarFestival;
     else if (!solarTerms.isEmpty())
@@ -103,7 +103,7 @@ QString HLunarCalendarInfo::lunarInfo(int year, int month, int day, bool yearInf
     else if (!holiday.isEmpty())
         lunarDay = holiday;
 
-    return QString("%1%2%3").arg(yearInfo ? lunarYear + "年" : "", monthInfo ? lunarMonth : "", dayInfo ? lunarDay : "");
+    return QString("%1%2%3").arg(yearInfo ? lunarYear + tr("年") : "", monthInfo ? lunarMonth : "", dayInfo ? lunarDay : "");
 }
 
 void HLunarCalendarInfo::lunarInfo(int year, int month, int day, QString &holiday, QString &solarTerms, QString &lunarFestival, QString &lunarYear, QString &lunarMonth, QString &lunarDay)
@@ -112,12 +112,11 @@ void HLunarCalendarInfo::lunarInfo(int year, int month, int day, QString &holida
         return;
 
     int info, end, monTemp, k, n, bit;
-
     holiday = this->holiday(month, day);
     solarTerms = this->solarTerms(year, month, day);
 
-    // 现在计算农历:获得当年春节的公历日期(比如：2015年春节日期为(2月19日))
-    // 以此为分界点,2.19前面的农历是2014年农历(用2014年农历数据来计算)
+    // 现在计算农历：获得当年春节的公历日期(比如：2015年春节日期为(2月19日))
+    // 以此为分界点，2.19前面的农历是2014年农历(用2014年农历数据来计算)
     // 2.19以及之后的日期，农历为2015年农历(用2015年农历数据来计算)
     monTemp = year - 1968;
     int springMonth = d_ptr->springFestival.at(monTemp) / 100;
@@ -208,16 +207,29 @@ void HLunarCalendarInfo::init()
     d_ptr->monthAdd << 0 << 31 << 59 << 90 << 120 << 151 << 181 << 212 << 243 << 273 << 304 << 334;
     d_ptr->holiday.insert(0x0101, tr("元旦"));
     d_ptr->holiday.insert(0x020E, tr("情人节"));
+    d_ptr->holiday.insert(0x0303, tr("爱耳日"));
+    d_ptr->holiday.insert(0x0305, tr("志愿者服务日"));
     d_ptr->holiday.insert(0x0308, tr("妇女节"));
+    d_ptr->holiday.insert(0x0309, tr("保护母亲河"));
     d_ptr->holiday.insert(0x030C, tr("植树节"));
+    d_ptr->holiday.insert(0x030F, tr("消费者权益日"));
     d_ptr->holiday.insert(0x0401, tr("愚人节"));
     d_ptr->holiday.insert(0x0501, tr("劳动节"));
     d_ptr->holiday.insert(0x0504, tr("青年节"));
     d_ptr->holiday.insert(0x0601, tr("儿童节"));
+    d_ptr->holiday.insert(0x0606, tr("全国爱眼日"));
     d_ptr->holiday.insert(0x0701, tr("建党节"));
+    d_ptr->holiday.insert(0x0707, tr("抗战纪念日"));
     d_ptr->holiday.insert(0x0801, tr("建军节"));
     d_ptr->holiday.insert(0x090A, tr("教师节"));
+    d_ptr->holiday.insert(0x0910, tr("脑健康日"));
+    d_ptr->holiday.insert(0x0914, tr("爱牙日"));
     d_ptr->holiday.insert(0x0A01, tr("国庆节"));
+    d_ptr->holiday.insert(0x0A0A, tr("高血压日"));
+    d_ptr->holiday.insert(0x0A1C, tr("男性健康日"));
+    d_ptr->holiday.insert(0x0B08, tr("记者节"));
+    d_ptr->holiday.insert(0x0B09, tr("消防宣传日"));
+    d_ptr->holiday.insert(0x0C04, tr("法制宣传日"));
     d_ptr->holiday.insert(0x0C18, tr("平安夜"));
     d_ptr->holiday.insert(0x0C19, tr("圣诞节"));
     d_ptr->lunarFestival.insert(0x0101, tr("春节"));
@@ -228,6 +240,7 @@ void HLunarCalendarInfo::init()
     d_ptr->lunarFestival.insert(0x080F, tr("中秋节"));
     d_ptr->lunarFestival.insert(0x0909, tr("重阳节"));
     d_ptr->lunarFestival.insert(0x0C08, tr("腊八节"));
+    d_ptr->lunarFestival.insert(0x0C1E, tr("除夕"));
 
     d_ptr->solarTerm << tr("小寒") << tr("大寒") << tr("立春") << tr("雨水") << tr("惊蛰") << tr("春分") << tr("清明") << tr("谷雨")
                      << tr("立夏") << tr("小满") << tr("芒种") << tr("夏至") << tr("小暑") << tr("大暑") << tr("立秋") << tr("处暑")
@@ -237,14 +250,34 @@ void HLunarCalendarInfo::init()
     d_ptr->animal  << tr("鼠") << tr("牛") << tr("虎") << tr("兔") << tr("龙") << tr("蛇") << tr("马") << tr("羊") << tr("猴") << tr("鸡") << tr("狗") << tr("猪");
 
 
-    d_ptr->dayName << tr("*") << tr("初一") << tr("初二") << tr("初三") << tr("初四") << tr("初五") << tr("初六") << tr("初七")
+    d_ptr->dayName << tr("*")    << tr("初一") << tr("初二") << tr("初三") << tr("初四") << tr("初五") << tr("初六") << tr("初七")
                    << tr("初八") << tr("初九") << tr("初十") << tr("十一") << tr("十二") << tr("十三") << tr("十四") << tr("十五")
                    << tr("十六") << tr("十七") << tr("十八") << tr("十九") << tr("二十") << tr("廿一") << tr("廿二") << tr("廿三")
                    << tr("廿四") << tr("廿五") << tr("廿六") << tr("廿七") << tr("廿八") << tr("廿九") << tr("三十");
 
-    d_ptr->monthName << tr("*") << tr("正月") << tr("二月") << tr("三月") << tr("四月") << tr("五月") << tr("六月")
+    d_ptr->monthName << tr("*")    << tr("正月") << tr("二月") << tr("三月") << tr("四月") << tr("五月") << tr("六月")
                      << tr("七月") << tr("八月") << tr("九月") << tr("十月") << tr("冬月") << tr("腊月");
 
+    // 春节公历日期
+    d_ptr->springFestival << 130 << 217 << 206;                                                    // 1968--1970
+    d_ptr->springFestival << 127 << 215 << 203 << 123 << 211 << 131 << 218 << 207 << 128 << 216;   // 1971--1980
+    d_ptr->springFestival << 205 << 125 << 213 << 202 << 220 << 209 << 219 << 217 << 206 << 127;   // 1981--1990
+    d_ptr->springFestival << 215 << 204 << 123 << 210 << 131 << 219 << 207 << 128 << 216 << 205;   // 1991--2000
+    d_ptr->springFestival << 124 << 212 << 201 << 122 << 209 << 129 << 218 << 207 << 126 << 214;   // 2001--2010
+    d_ptr->springFestival << 203 << 123 << 210 << 131 << 219 << 208 << 128 << 216 << 205 << 125;   // 2011--2020
+    d_ptr->springFestival << 212 << 201 << 122 << 210 << 129 << 217 << 206 << 126 << 213 << 203;   // 2021--2030
+    d_ptr->springFestival << 123 << 211 << 131 << 219 << 208 << 128 << 215 << 204 << 124 << 212;   // 2031--2040
+    // 农历每月数据
+    // 16--18位表示闰几月 0--12位表示农历每月的数据 高位表示1月 低位表示12月(农历闰月就会多一个月)
+    d_ptr->lunarData << 0x070B55 << 0x00056A << 0x00096D;                                                                                     // 1968--1970
+    d_ptr->lunarData << 0x05095D << 0x0004AD << 0x000A4D << 0x041A4D << 0x000D25 << 0x081AA5 << 0x000B54 << 0x000B6A << 0x0612DA << 0x00095B; // 1971--1980
+    d_ptr->lunarData << 0x00049B << 0x041497 << 0x000A4B << 0x0A164B << 0x0006A5 << 0x0006D4 << 0x0615B4 << 0x000AB6 << 0x000957 << 0x05092F; // 1981--1990
+    d_ptr->lunarData << 0x000497 << 0x00064B << 0x030D4A << 0x000EA5 << 0x080D65 << 0x0005AC << 0x000AB6 << 0x05126D << 0x00092E << 0x000C96; // 1991--2000
+    d_ptr->lunarData << 0x041A95 << 0x000D4A << 0x000DA5 << 0x020B55 << 0x00056A << 0x07155B << 0x00025D << 0x00092D << 0x05192B << 0x000A95; // 2001--2010
+    d_ptr->lunarData << 0x000B4A << 0x0416AA << 0x000AD5 << 0x090AB5 << 0x0004BA << 0x000A5B << 0x060A57 << 0x00052B << 0x000A93 << 0x040E95; // 2011--2020
+    d_ptr->lunarData << 0x0006AA << 0x000AD5 << 0x0209B5 << 0x0004B6 << 0x0614AE << 0x000A4E << 0x000D26 << 0x051D26 << 0x000D53 << 0x0005AA; // 2021--2030
+    d_ptr->lunarData << 0x030D6A << 0x00096D << 0x0B095D << 0x0004AD << 0x000A4D << 0x061A4B << 0x000D25 << 0x000D52 << 0x051B54 << 0x000B5A; // 2031--2040
+    // 农历二十四节气数据
     d_ptr->chineseTwentyFourData << 0x95 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x97 << 0x88 << 0x78 << 0x78 << 0x69 << 0x78 << 0x87; // 1970
     d_ptr->chineseTwentyFourData << 0x96 << 0xB4 << 0x96 << 0xA6 << 0x97 << 0x97 << 0x78 << 0x79 << 0x79 << 0x69 << 0x78 << 0x77; // 1971
     d_ptr->chineseTwentyFourData << 0x96 << 0xA4 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 1972
@@ -314,25 +347,67 @@ void HLunarCalendarInfo::init()
     d_ptr->chineseTwentyFourData << 0x95 << 0xB4 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2036
     d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2037
     d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2038
-
-    d_ptr->springFestival << 130 << 217 << 206;                                                    // 1968--1970
-    d_ptr->springFestival << 127 << 215 << 203 << 123 << 211 << 131 << 218 << 207 << 128 << 216;   // 1971--1980
-    d_ptr->springFestival << 205 << 125 << 213 << 202 << 220 << 209 << 219 << 217 << 206 << 127;   // 1981--1990
-    d_ptr->springFestival << 215 << 204 << 123 << 210 << 131 << 219 << 207 << 128 << 216 << 205;   // 1991--2000
-    d_ptr->springFestival << 124 << 212 << 201 << 122 << 209 << 129 << 218 << 207 << 126 << 214;   // 2001--2010
-    d_ptr->springFestival << 203 << 123 << 210 << 131 << 219 << 208 << 128 << 216 << 205 << 125;   // 2011--2020
-    d_ptr->springFestival << 212 << 201 << 122 << 210 << 129 << 217 << 206 << 126 << 213 << 203;   // 2021--2030
-    d_ptr->springFestival << 123 << 211 << 131 << 219 << 208 << 128 << 215 << 204 << 124 << 212;   // 2031--2040
-
-    // 16--18位表示闰几月 0--12位表示农历每月的数据 高位表示1月 低位表示12月(农历闰月就会多一个月)
-    d_ptr->lunarData << 461653 << 1386 << 2413;                                                               // 1968--1970
-    d_ptr->lunarData << 330077 << 1197 << 2637 << 268877 << 3365 << 531109 << 2900 << 2922 << 398042 << 2395; // 1971--1980
-    d_ptr->lunarData << 1179 << 267415 << 2635 << 661067 << 1701 << 1748 << 398772 << 2742 << 2391 << 330031; // 1981--1990
-    d_ptr->lunarData << 1175 << 1611 << 200010 << 3749 << 527717 << 1452 << 2742 << 332397 << 2350 << 3222;   // 1991--2000
-    d_ptr->lunarData << 268949 << 3402 << 3493 << 133973 << 1386 << 464219 << 605 << 2349 << 334123 << 2709;  // 2001--2010
-    d_ptr->lunarData << 2890 << 267946 << 2773 << 592565 << 1210 << 2651 << 395863 << 1323 << 2707 << 265877; // 2011--2020
-    d_ptr->lunarData << 1706 << 2773 << 133557 << 1206 << 398510 << 2638 << 3366 << 335142 << 3411 << 1450;   // 2021--2030
-    d_ptr->lunarData << 200042 << 2413 << 723293 << 1197 << 2637 << 399947 << 3365 << 3410 << 334676 << 2906; // 2031--2040
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2039
+    d_ptr->chineseTwentyFourData << 0x95 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x97 << 0x88 << 0x78 << 0x78 << 0x69 << 0x78 << 0x87; // 2040
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA5 << 0xA6 << 0x87 << 0x88 << 0x87 << 0x78 << 0x87 << 0x86; // 2041
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2042
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2043
+    d_ptr->chineseTwentyFourData << 0x95 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x97 << 0x88 << 0x78 << 0x78 << 0x79 << 0x78 << 0x87; // 2044
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x87 << 0x88 << 0x87 << 0x78 << 0x87 << 0x86; // 2045
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2046
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2047
+    d_ptr->chineseTwentyFourData << 0x95 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x96 << 0x88 << 0x78 << 0x78 << 0x79 << 0x77 << 0x87; // 2048
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x86; // 2049
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2050
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2051
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x96 << 0x88 << 0x78 << 0x78 << 0x79 << 0x77 << 0x87; // 2052
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x86; // 2053
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2054
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2055
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x96 << 0x88 << 0x78 << 0x78 << 0x79 << 0x77 << 0x87; // 2056
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2057
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2058
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2059
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x96 << 0x88 << 0x78 << 0x78 << 0x78 << 0x87 << 0x87; // 2060
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2061
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2062
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2063
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0x96 << 0x96 << 0x88 << 0x78 << 0x78 << 0x78 << 0x87 << 0x87; // 2064
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2065
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2066
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2067
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2068
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2069
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA5 << 0xA6 << 0x87 << 0x88 << 0x87 << 0x78 << 0x87 << 0x86; // 2070
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2071
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2072
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x88 << 0x87 << 0x96; // 2073
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA5 << 0xA6 << 0x87 << 0x88 << 0x87 << 0x78 << 0x87 << 0x86; // 2074
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2075
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2076
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x88 << 0x87 << 0x96; // 2077
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x88 << 0x87 << 0x78 << 0x87 << 0x86; // 2078
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2079
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0x96 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x78 << 0x78 << 0x87 << 0x87; // 2080
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0x97 << 0x87 << 0x87 << 0x88 << 0x86 << 0x96; // 2081
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x86; // 2082
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2083
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0xA6 << 0xA5 << 0xA6 << 0x96 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2084
+    d_ptr->chineseTwentyFourData << 0xB4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0x97 << 0x87 << 0x87 << 0x88 << 0x86 << 0x96; // 2085
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x86; // 2086
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2087
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2088
+    d_ptr->chineseTwentyFourData << 0xB4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0x97 << 0x87 << 0x87 << 0x88 << 0x96 << 0x96; // 2089
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2090
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2091
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2092
+    d_ptr->chineseTwentyFourData << 0xB4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0x97 << 0x87 << 0x87 << 0x87 << 0x96 << 0x96; // 2093
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2094
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2095
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xB3 << 0xA5 << 0xA5 << 0xA6 << 0xA6 << 0x88 << 0x88 << 0x88 << 0x78 << 0x87 << 0x87; // 2096
+    d_ptr->chineseTwentyFourData << 0xB4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA5 << 0x97 << 0x97 << 0x87 << 0x87 << 0x96 << 0x96; // 2097
+    d_ptr->chineseTwentyFourData << 0xA4 << 0xC3 << 0xA5 << 0xB4 << 0xA5 << 0xA6 << 0x97 << 0x87 << 0x87 << 0x78 << 0x87 << 0x96; // 2098
+    d_ptr->chineseTwentyFourData << 0xA5 << 0xC3 << 0xA5 << 0xB5 << 0xA6 << 0xA6 << 0x87 << 0x88 << 0x88 << 0x78 << 0x87 << 0x86; // 2099
 }
 
 HE_END_NAMESPACE

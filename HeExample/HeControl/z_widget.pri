@@ -10,3 +10,6 @@ SOURCES += \
     $$PWD/HNavigationWidget.cpp \
     $$PWD/HAbstractProgress.cpp \
     $$PWD/HAnimationProgress.cpp
+
+include(z_button.pri)
+include(z_table.pri)

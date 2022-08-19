@@ -48,6 +48,6 @@ void HTm30RhshjChartView::init()
     d->chart->series()->setLabelsAngle(90);
     d->chart->setBarColor(color);
     setChart(d->chart);
-    setWindowTitle("Rhs,hj");
+    setWindowTitle(tr("色调变化"));
 }
 

@@ -31,7 +31,7 @@ void HUiDemo02Widget::on_toolButton_01_clicked()
 void HUiDemo02Widget::updateBackground()
 {
     auto image = _imageFile.at(_index);
-    QString qss = QString("QWidget#frm { background-image: url(%1); }").arg(image);
+    QString qss = QString("QWidget#frm {  border-image:url(%1); }").arg(image);
     qss += "QToolButton { color:#E7ECF0; background-color:rgba(0,0,0,0); border-style:none; }";
     this->setStyleSheet(qss);
 }

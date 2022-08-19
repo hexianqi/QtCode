@@ -13,8 +13,8 @@ HLunarCalendarWidgetPrivate::HLunarCalendarWidgetPrivate()
 {
     date = QDate::currentDate();
     weekNameFormat = HLunarCalendarWidget::WeekNameFormat_Short;
-    backgroundImage = ":/image/ludianwu/calendar_item_bk.png";
     selectType = HLunarCalendarItem::SelectType_Rect;
+    backgroundImage = ":/Resources/fyqy/calendar/calendar_item_bk.png";
 }
 
 HLunarCalendarWidget::HLunarCalendarWidget(QWidget *parent) :
@@ -410,6 +410,7 @@ void HLunarCalendarWidget::init()
     d_ptr->info = new HLunarCalendarInfo(this);
     auto factory = new HIconFontFactory(this);
     d_ptr->iconFont = factory->createFont("FontAwesome");
+    d_ptr->iconFont.setHintingPreference(QFont::PreferNoHinting);
     initWidget();
     initStyle();
     initDate();
@@ -448,7 +449,7 @@ void HLunarCalendarWidget::initWidget()
 
     auto today = new QPushButton;
     today->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-    today->setText(tr("今天"));
+    today->setText(tr("今 天"));
 
     d_ptr->comboBoxYear = new QComboBox;
     for (int i = 1901; i <= 2099; i++)
@@ -532,25 +533,25 @@ void HLunarCalendarWidget::initStyle()
          << QString("QPushButton { background:#16A085; color:#FFFFFF; border-radius:5px; }")
          << QString("QLabel { background:%1; color:%2; }").arg(d_ptr->weekBackground.name(), d_ptr->weekTextColor.name())
          << QString("QWidget#widgetBody { border:1px solid %1; }").arg(d_ptr->borderColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-showLunar:%1; }").arg(d_ptr->showLunar)
-         << QString("HeControl--HLunarCalendarItem { qproperty-backgroundImage:%1; }").arg(d_ptr->backgroundImage)
-         << QString("HeControl--HLunarCalendarItem { qproperty-selectType:%1; }").arg(type)
-         << QString("HeControl--HLunarCalendarItem { qproperty-borderColor:%1; }").arg(d_ptr->borderColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-weekColor:%1; }").arg(d_ptr->weekColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-superColor:%1; }").arg(d_ptr->superColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-lunarColor:%1; }").arg(d_ptr->lunarColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-currentTextColor:%1; }").arg(d_ptr->currentTextColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-otherTextColor:%1; }").arg(d_ptr->otherTextColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-selectTextColor:%1; }").arg(d_ptr->selectTextColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-hoverTextColor:%1; }").arg(d_ptr->hoverTextColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-currentLunarColor:%1; }").arg(d_ptr->currentLunarColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-otherLunarColor:%1; }").arg(d_ptr->otherLunarColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-selectLunarColor:%1; }").arg(d_ptr->selectLunarColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-hoverLunarColor:%1; }").arg(d_ptr->hoverLunarColor.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-currentBackground:%1; }").arg(d_ptr->currentBackground.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-otherBackground:%1; }").arg(d_ptr->otherBackground.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-selectBackground:%1; }").arg(d_ptr->selectBackground.name())
-         << QString("HeControl--HLunarCalendarItem { qproperty-hoverBackground:%1; }").arg(d_ptr->hoverBackground.name());
+         << QString("He--HLunarCalendarItem { qproperty-showLunar:%1; }").arg(d_ptr->showLunar)
+         << QString("He--HLunarCalendarItem { qproperty-backgroundImage:%1; }").arg(d_ptr->backgroundImage)
+         << QString("He--HLunarCalendarItem { qproperty-selectType:%1; }").arg(type)
+         << QString("He--HLunarCalendarItem { qproperty-borderColor:%1; }").arg(d_ptr->borderColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-weekColor:%1; }").arg(d_ptr->weekColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-superColor:%1; }").arg(d_ptr->superColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-lunarColor:%1; }").arg(d_ptr->lunarColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-currentTextColor:%1; }").arg(d_ptr->currentTextColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-otherTextColor:%1; }").arg(d_ptr->otherTextColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-selectTextColor:%1; }").arg(d_ptr->selectTextColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-hoverTextColor:%1; }").arg(d_ptr->hoverTextColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-currentLunarColor:%1; }").arg(d_ptr->currentLunarColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-otherLunarColor:%1; }").arg(d_ptr->otherLunarColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-selectLunarColor:%1; }").arg(d_ptr->selectLunarColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-hoverLunarColor:%1; }").arg(d_ptr->hoverLunarColor.name())
+         << QString("He--HLunarCalendarItem { qproperty-currentBackground:%1; }").arg(d_ptr->currentBackground.name())
+         << QString("He--HLunarCalendarItem { qproperty-otherBackground:%1; }").arg(d_ptr->otherBackground.name())
+         << QString("He--HLunarCalendarItem { qproperty-selectBackground:%1; }").arg(d_ptr->selectBackground.name())
+         << QString("He--HLunarCalendarItem { qproperty-hoverBackground:%1; }").arg(d_ptr->hoverBackground.name());
     setStyleSheet(list.join("\n"));
 }
 

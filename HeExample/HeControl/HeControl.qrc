@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>image/tools/ColorPicker.ico</file>
-        <file>image/tools/gifwidget.ico</file>
-        <file>image/tools/gifwidget.png</file>
         <file>image/beautify/back.png</file>
         <file>image/beautify/next.png</file>
         <file>image/beautify/sun.svg</file>
@@ -15,13 +12,6 @@
         <file>image/beautify/fog.svg</file>
         <file>image/beautify/wind.svg</file>
         <file>image/beautify/partly_cloud.svg</file>
-        <file>image/ludianwu/calendar_blue.png</file>
-        <file>image/ludianwu/calendar_brown.png</file>
-        <file>image/ludianwu/calendar_gray.png</file>
-        <file>image/ludianwu/calendar_purple.png</file>
-        <file>image/ludianwu/calendar_red.png</file>
-        <file>image/ludianwu/calendar_yellow.png</file>
-        <file>image/ludianwu/calendar_item_bk.png</file>
         <file>sql/dbconfig.json</file>
         <file>sql/product.sql</file>
         <file>sql/table.sql</file>

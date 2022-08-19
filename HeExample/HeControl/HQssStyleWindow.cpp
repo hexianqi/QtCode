@@ -1,5 +1,5 @@
 #include "HQssStyleWindow_p.h"
-#include "ui_HQssCreator.h"
+#include "ui_HQssStyleWindow.h"
 #include "HQssStyle.h"
 #include "HControlHelper.h"
 #include <QtGui/QScreen>

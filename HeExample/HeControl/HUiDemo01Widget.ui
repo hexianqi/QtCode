@@ -558,7 +558,7 @@
              <bool>true</bool>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextUnderIcon</enum>
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
           </item>
@@ -577,7 +577,7 @@
              <bool>true</bool>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextUnderIcon</enum>
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
           </item>
@@ -596,7 +596,7 @@
              <bool>true</bool>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextUnderIcon</enum>
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
           </item>
@@ -615,7 +615,7 @@
              <bool>true</bool>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextUnderIcon</enum>
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
           </item>
@@ -634,7 +634,7 @@
              <bool>true</bool>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextUnderIcon</enum>
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
           </item>
@@ -653,7 +653,7 @@
              <bool>true</bool>
             </property>
             <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextUnderIcon</enum>
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
           </item>

@@ -14,6 +14,8 @@ SOURCES += \
     $$PWD/HFFmpegUtil.cpp \
     $$PWD/HFFmpegWidget.cpp     # 参考
 
+FORMS +=
+
 
 FFmpegPath  = $$absolute_path("../../../modules/ffmpeg/win32", $$[QT_INSTALL_DATA])
 
@@ -34,4 +36,4 @@ DEPENDPATH  += $$FFmpegPath/include
 #    system(xcopy $$src_file $$target_file /y /s/q/e)
 #}
 
-FORMS +=
+

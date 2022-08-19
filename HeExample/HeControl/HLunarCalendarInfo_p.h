@@ -18,9 +18,9 @@ public:
     QStringList animal;                 // 属相
     QStringList dayName;                // 农历日期名称
     QStringList monthName;              // 农历月份名称
-    QList<int> springFestival;          // 每年春节对应的公历日期
-    QList<int> lunarData;
-    QList<int> chineseTwentyFourData;
+    QList<int> springFestival;          // 春节公历日期
+    QList<int> lunarData;               // 农历每月数据
+    QList<int> chineseTwentyFourData;   // 农历二十四节气数据
 };
 
 HE_END_NAMESPACE

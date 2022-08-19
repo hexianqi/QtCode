@@ -1,10 +1,8 @@
 #include "HControlFactory_p.h"
 #include "HControlHelper.h"
 #include "HControlDemoWidget.h"
-//#include "HCodeCountWidget.h"
-//#include "HColorPicker.h"
-//#include "HEmailWidget.h"
-//#include "HGifWidget.h"
+#include "HColorPicker.h"
+#include "HGifWidget.h"
 //#include "HNetworkWidget.h"
 //#include "HPngAmend.h"
 //#include "HScreenWidget.h"
@@ -82,10 +80,8 @@ void HControlFactory::registerClass()
     // 演示
     HWidgetFactory::registerClass<HControlDemoWidget>("HControlDemoWidget");
     // 工具
-//    HWidgetFactory::registerClass<HCodeCountWidget>("HCodeCountWidget");
-//    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
-//    HWidgetFactory::registerClass<HEmailWidget>("HEmailWidget");
-//    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
+    HWidgetFactory::registerClass<HColorPicker>("HColorPicker");
+    HWidgetFactory::registerClass<HGifWidget>("HGifWidget");
 //    HWidgetFactory::registerClass<HNetworkWidget>("HNetworkWidget");
 //    HWidgetFactory::registerClass<HPngAmend>("HPngAmend");
 //    HWidgetFactory::registerClass<HScreenWidget>("HScreenWidget");

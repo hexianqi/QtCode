@@ -73,9 +73,10 @@ void HQssStyle::addStyle(const QString &key, const QString &fileName)
 
 void HQssStyle::init()
 {
-    addStyle(tr("黑色风格"),        ":/Resources/qss/psblack.css");
-    addStyle(tr("灰色扁平风格"),    ":/Resources/qss/flatgray.css");
-    addStyle(tr("淡蓝色风格"),      ":/Resources/qss/lightblue.css");
+    addStyle(tr("黑色风格1"),       ":/qss/psblack.css");
+    addStyle(tr("黑色风格2"),       ":/qss/blacksoft.css");
+    addStyle(tr("灰色扁平风格"),    ":/qss/flatgray.css");
+    addStyle(tr("淡蓝色风格"),      ":/qss/lightblue.css");
     selectStyle(tr("淡蓝色风格"));
 }
 

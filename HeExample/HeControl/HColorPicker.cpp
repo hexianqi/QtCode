@@ -48,7 +48,7 @@ void HColorPicker::init()
     _timer->start(200);
 
     setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
-    setWindowIcon(QIcon(":/image/tools/ColorPicker.ico"));
+    setWindowIcon(QIcon(":/Resources/image/ColorPicker.ico"));
     setWindowTitle("屏幕拾色器");
     HControlHelper::centerWidget(this);
 }

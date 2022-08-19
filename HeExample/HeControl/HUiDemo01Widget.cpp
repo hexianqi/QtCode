@@ -26,14 +26,13 @@ HUiDemo01Widget::~HUiDemo01Widget()
 
 void HUiDemo01Widget::initForm()
 {
-    auto fontFactory = new HIconFontFactory(this);
-    auto iconFont = fontFactory->createFont("FontIcon");
-    iconFont.setPixelSize(30);
     auto widgetFont = this->font();
     widgetFont.setPixelSize(25);
-
-    ui->labIco->setFont(iconFont);
-    ui->labIco->setText((QChar)0xf073);
+    d_ptr->style = new HIconFontStyle(this);
+    d_ptr->style->setIcon(ui->labIco, 0xf073, 30);
+    d_ptr->style->setIcon(ui->btnMin, 0xf068);
+    d_ptr->style->setIcon(ui->btnMax, 0xf067);
+    d_ptr->style->setIcon(ui->btnClose, 0xf00d);
     ui->labTitle->setFont(widgetFont);
     ui->labTitle->setText("智能访客管理平台");
     ui->btnMain->setIcon(QIcon(":/Resources/image/main.png"));
@@ -41,9 +40,6 @@ void HUiDemo01Widget::initForm()
     ui->btnData->setIcon(QIcon(":/Resources/image/find.png"));
     ui->btnHelp->setIcon(QIcon(":/Resources/image/help.png"));
     ui->btnExit->setIcon(QIcon(":/Resources/image/main.png"));
-    ui->btnMin->setIcon(style()->standardPixmap(QStyle::SP_TitleBarMinButton));
-    ui->btnMax->setIcon(style()->standardPixmap(QStyle::SP_TitleBarMaxButton));
-    ui->btnClose->setIcon(style()->standardPixmap(QStyle::SP_TitleBarCloseButton));
     ui->widgetTitle->setProperty("form", "title");
     ui->widgetTitle->installEventFilter(this);
     ui->widgetTop->setProperty("nav", "top");
@@ -61,7 +57,7 @@ void HUiDemo01Widget::initForm()
 void HUiDemo01Widget::initStyle()
 {
     auto style = new HQssStyle(this);
-    style->selectStyle(tr("黑色风格"));
+    style->selectStyle(tr("黑色风格1"));
     setPalette(style->toPalette());
     setStyleSheet(style->toStyleSheet());
     d_ptr->border = style->color("HighColor:");
@@ -77,7 +73,6 @@ void HUiDemo01Widget::initLeftMain()
     d_ptr->btnMain << ui->tbtnMain1 << ui->tbtnMain2 << ui->tbtnMain3;
     for (auto btn : d_ptr->btnMain)
         connect(btn, &QToolButton::clicked, this, &HUiDemo01Widget::leftMainClick);
-    auto style = new HIconFontStyle(this);
     HIconFontStyle::StyleColor styleColor;
     styleColor.position = "left";
     styleColor.iconPixelSize = 18;
@@ -85,7 +80,7 @@ void HUiDemo01Widget::initLeftMain()
     styleColor.borderWidth = 4;
     styleColor.borderColor = d_ptr->border.name();
     styleColor.setColor(d_ptr->normalBackground.name(), d_ptr->normalText.name(), d_ptr->darkBackground.name(), d_ptr->darkText.name());
-    style->setStyle(ui->widgetLeftMain, d_ptr->btnMain, icons, styleColor);
+    d_ptr->style->setStyle(ui->widgetLeftMain, d_ptr->btnMain, icons, styleColor);
     ui->tbtnMain1->click();
 }
 
@@ -95,7 +90,6 @@ void HUiDemo01Widget::initLeftConfig()
     d_ptr->btnConfig << ui->tbtnConfig1 << ui->tbtnConfig2 << ui->tbtnConfig3 << ui->tbtnConfig4 << ui->tbtnConfig5 << ui->tbtnConfig6;
     for (auto btn : d_ptr->btnConfig)
         connect(btn, &QToolButton::clicked, this, &HUiDemo01Widget::leftConfigClick);
-    auto style = new HIconFontStyle(this);
     HIconFontStyle::StyleColor styleColor;
     styleColor.position = "left";
     styleColor.iconPixelSize = 16;
@@ -103,7 +97,7 @@ void HUiDemo01Widget::initLeftConfig()
     styleColor.borderWidth = 3;
     styleColor.borderColor = d_ptr->border.name();
     styleColor.setColor(d_ptr->normalBackground.name(), d_ptr->normalText.name(), d_ptr->darkBackground.name(), d_ptr->darkText.name());
-    style->setStyle(ui->widgetLeftConfig, d_ptr->btnConfig, icons, styleColor);
+    d_ptr->style->setStyle(ui->widgetLeftConfig, d_ptr->btnConfig, icons, styleColor);
     ui->tbtnConfig1->click();
 }
 
@@ -173,15 +167,9 @@ void HUiDemo01Widget::on_btnMax_clicked()
 {
     d_ptr->max = !d_ptr->max;
     if (d_ptr->max)
-    {
         showMaximized();
-        ui->btnMax->setIcon(style()->standardPixmap(QStyle::SP_TitleBarNormalButton));
-    }
     else
-    {
         showNormal();
-        ui->btnMax->setIcon(style()->standardPixmap(QStyle::SP_TitleBarMaxButton));
-    }
     setProperty("canMove", !d_ptr->max);
 }
 
@@ -199,7 +187,5 @@ bool HUiDemo01Widget::eventFilter(QObject *watched, QEvent *event)
     }
     return QWidget::eventFilter(watched, event);
 }
-
-
 
 HE_END_NAMESPACE

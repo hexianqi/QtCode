@@ -56,8 +56,6 @@ QColor HGifWidget::background() const
 
 void HGifWidget::resizeEvent(QResizeEvent *event)
 {
-    if (d_ptr->isStart)
-        return;
     ui->spinBox_32->setValue(ui->widget_2->width());
     ui->spinBox_33->setValue(ui->widget_2->height());
     QDialog::resizeEvent(event);
@@ -65,8 +63,8 @@ void HGifWidget::resizeEvent(QResizeEvent *event)
 
 void HGifWidget::paintEvent(QPaintEvent *)
 {
-    int width = ui->spinBox_32->value();
-    int height = ui->spinBox_33->value();
+    auto width = ui->spinBox_32->value();
+    auto height = ui->spinBox_33->value();
     d_ptr->screen = QRect(d_ptr->borderWidth, ui->widget_1->height(), width - (d_ptr->borderWidth * 2), height);
 
     QPainter painter(this);
@@ -85,6 +83,8 @@ void HGifWidget::saveImage()
     auto pixmap = QApplication::primaryScreen()->grabWindow(0, x() + d_ptr->screen.x(), y() + d_ptr->screen.y(), d_ptr->screen.width(), d_ptr->screen.height());
     auto image = pixmap.toImage().convertToFormat(QImage::Format_RGBA8888);
     d_ptr->gif->GifWriteFrame(d_ptr->gifWriter, image.bits(), d_ptr->screen.width(), d_ptr->screen.height(), d_ptr->fps);
+    d_ptr->count++;
+    ui->label_34->setText(tr("正在录制（第 %1 帧）").arg(d_ptr->count));
 }
 
 void HGifWidget::closeAll()
@@ -97,12 +97,12 @@ void HGifWidget::closeAll()
 
 void HGifWidget::record()
 {
-    if (d_ptr->isStart)
+    if (d_ptr->running)
     {
         d_ptr->timer->stop();
         d_ptr->gif->GifEnd(d_ptr->gifWriter);
         clearWriter();
-        ui->label_34->setText(tr("录制完成：%1").arg(d_ptr->fileName));
+        ui->label_34->setText(tr("录制完成（共 %1 帧）").arg(d_ptr->count));
         QDesktopServices::openUrl(d_ptr->fileName);
     }
     else
@@ -112,8 +112,8 @@ void HGifWidget::record()
             return;
 
         clearWriter();
-        int width = ui->spinBox_32->value();
-        int height = ui->spinBox_33->value();
+        auto width = ui->spinBox_32->value();
+        auto height = ui->spinBox_33->value();
         d_ptr->fps = ui->spinBox_31->value();
 
         d_ptr->gifWriter = new Gif::GifWriter;
@@ -122,15 +122,15 @@ void HGifWidget::record()
             clearWriter();
             return;
         }
-        saveImage();
-        d_ptr->timer->start(1000 / d_ptr->fps);
         ui->label_34->setText(tr("开始录制..."));
+        d_ptr->count = 0;
+        d_ptr->timer->start(1000 / d_ptr->fps);
     }
-    d_ptr->isStart = !d_ptr->isStart;
-    ui->spinBox_31->setEnabled(!d_ptr->isStart);
-    ui->spinBox_32->setEnabled(!d_ptr->isStart);
-    ui->spinBox_33->setEnabled(!d_ptr->isStart);
-    ui->pushButton_31->setText(d_ptr->isStart ? tr("停 止") : tr("开 始"));
+    d_ptr->running = !d_ptr->running;
+    ui->spinBox_31->setEnabled(!d_ptr->running);
+    ui->spinBox_32->setEnabled(!d_ptr->running);
+    ui->spinBox_33->setEnabled(!d_ptr->running);
+    ui->pushButton_31->setText(d_ptr->running ? tr("停 止") : tr("开 始"));
 }
 
 void HGifWidget::resizeScreenshot()
@@ -155,7 +155,7 @@ void HGifWidget::init()
                              << "#pushButton_12:hover { background-color:#ff0000; }"
                              << "#pushButton_12{ border-top-right-radius:5px; }"
                              << "#label_11{ font:bold 16px; }"
-                             << "#labStatus{ font:15px; }";
+                             << "#label_34{ font:15px; }";
 
     d_ptr->filter = new HMoveEventFilter(this);
     d_ptr->filter->addWatched(this);
@@ -172,8 +172,9 @@ void HGifWidget::init()
     connect(ui->spinBox_33, &QSpinBox::editingFinished, this, &HGifWidget::resizeScreenshot);
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_DeleteOnClose);
+    setSizeGripEnabled(true);
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint | Qt::WindowStaysOnTopHint);
-    setWindowIcon(QIcon(":/image/tools/gifWidget.ico"));
+    setWindowIcon(QIcon(":/Resources/image/gifwidget.ico"));
     setStyleSheet(qss.join(""));
 }
 
