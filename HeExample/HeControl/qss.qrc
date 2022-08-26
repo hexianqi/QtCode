@@ -7,8 +7,6 @@
         <file>qss/stepButton/last-active.png</file>
         <file>qss/stepButton/normal.png</file>
         <file>qss/groupButton.css</file>
-        <file>qss/groupButton.png</file>
-        <file>qss/stepButton.png</file>
         <file>qss/abnormityButton.css</file>
         <file>qss/abnormityButton/bottom.png</file>
         <file>qss/abnormityButton/bottom-hover.png</file>
@@ -25,8 +23,6 @@
         <file>qss/abnormityButton/top.png</file>
         <file>qss/abnormityButton/top-hover.png</file>
         <file>qss/abnormityButton/top-pressed.png</file>
-        <file>qss/abnormityButton.png</file>
-        <file>qss/animatedCheckbox.gif</file>
         <file>qss/blacksoft.css</file>
         <file>qss/flatgray.css</file>
         <file>qss/lightblue.css</file>

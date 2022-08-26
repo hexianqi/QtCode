@@ -47,10 +47,8 @@ Release {
 ThirdPath   = $$[QT_INSTALL_PREFIX]/../Src/qttools/src/shared/qtpropertybrowser
 
 INCLUDEPATH += \
+            $$ThirdPath \
             ../.. \
             ../../HeExample \
-            $$ThirdPath
 
 include($$ThirdPath/QtPropertyBrowser.pri)
-
-

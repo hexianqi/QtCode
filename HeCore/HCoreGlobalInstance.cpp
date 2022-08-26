@@ -474,21 +474,22 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[轴B]",                          new HDataFormatInfo("[轴B]", 0, 1000000, 1));
     // 电参数
     hashDataFormatInfo.insert("[电压]",                         new HDataFormatInfo("[电压]", "V", 0, 400, 3));
-    hashDataFormatInfo.insert("[电流]",                         new HDataFormatInfo("[电流]", "mA", 0, 5000, 3));
+    hashDataFormatInfo.insert("[电流-毫安]",                    new HDataFormatInfo("[电流-毫安]", "mA", 0, 100000, 3));
+    hashDataFormatInfo.insert("[电流-微安]",                    new HDataFormatInfo("[电流-微安]", "uA", 0, 100000, 3));
     hashDataFormatInfo.insert("[电功率]",                       new HDataFormatInfo("[电功率]", "W", 0, 500, 3));
     hashDataFormatInfo.insert("[电阻]",                         new HDataFormatInfo("[电阻]", "Ω", 0, 10, 3));
-    hashDataFormatInfo.insert("[反向漏流]",                     new HDataFormatInfo("[反向漏流]", "uA",0, 500, 3));
+    hashDataFormatInfo.insert("[反向漏流]",                     hashDataFormatInfo.value("[电流-微安]"));
     hashDataFormatInfo.insert("[输出电压]",                     hashDataFormatInfo.value("[电压]"));
-    hashDataFormatInfo.insert("[输出电流]",                     hashDataFormatInfo.value("[电流]"));
-    hashDataFormatInfo.insert("[输出电流1]",                    hashDataFormatInfo.value("[电流]"));
-    hashDataFormatInfo.insert("[输出电流2]",                    hashDataFormatInfo.value("[电流]"));
-    hashDataFormatInfo.insert("[输出电流3]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[输出电流]",                     hashDataFormatInfo.value("[电流-毫安]"));
+    hashDataFormatInfo.insert("[输出电流1]",                    hashDataFormatInfo.value("[电流-微安]"));
+    hashDataFormatInfo.insert("[输出电流2]",                    hashDataFormatInfo.value("[电流-毫安]"));
+    hashDataFormatInfo.insert("[输出电流3]",                    hashDataFormatInfo.value("[电流-毫安]"));
     hashDataFormatInfo.insert("[反向电压]",                     hashDataFormatInfo.value("[电压]"));
     hashDataFormatInfo.insert("[实测电压]",                     hashDataFormatInfo.value("[电压]"));
-    hashDataFormatInfo.insert("[实测电流]",                     hashDataFormatInfo.value("[电流]"));
-    hashDataFormatInfo.insert("[实测电流1]",                    hashDataFormatInfo.value("[电流]"));
-    hashDataFormatInfo.insert("[实测电流2]",                    hashDataFormatInfo.value("[电流]"));
-    hashDataFormatInfo.insert("[实测电流3]",                    hashDataFormatInfo.value("[电流]"));
+    hashDataFormatInfo.insert("[实测电流]",                     hashDataFormatInfo.value("[电流-毫安]"));
+    hashDataFormatInfo.insert("[实测电流1]",                    hashDataFormatInfo.value("[电流-微安]"));
+    hashDataFormatInfo.insert("[实测电流2]",                    hashDataFormatInfo.value("[电流-毫安]"));
+    hashDataFormatInfo.insert("[实测电流3]",                    hashDataFormatInfo.value("[电流-毫安]"));
     // 交流电参数
     hashDataFormatInfo.insert("[交流电压]",                     new HDataFormatInfo("[交流电压]", "V", 0, 500, 2));
     hashDataFormatInfo.insert("[交流电流]",                     new HDataFormatInfo("[交流电流]", "A", 0, 50, 3));

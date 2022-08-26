@@ -22,6 +22,9 @@ public:
 signals:
     void receiveTime(const QDateTime &value);
 
+public:
+    QString host() const;
+
 public slots:
     void setHost(const QString &value);
     void getDateTime();

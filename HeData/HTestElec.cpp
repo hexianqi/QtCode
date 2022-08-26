@@ -1,7 +1,10 @@
 #include "HTestElec_p.h"
 #include "IElecCalibrate.h"
 #include "IElecCalibrateCollection.h"
+#include "IElecCalibrateItem.h"
 #include "IElecCalibrateItemCollection.h"
+#include "HeCore/HCore.h"
+#include "HeCore/HDataFormatInfo.h"
 #include <QtCore/QVector>
 
 HE_BEGIN_NAMESPACE
@@ -146,24 +149,35 @@ void HTestElec::calcRelation(HElecType type)
     Q_D(HTestElec);
     auto value = d->values.value(type, 0);
     auto gears = d->gears.value(type, 0);
+    auto item = d->calibrate->item(type, gears);
+    if (item == nullptr)
+        return;
+    auto unit = HCore::toFormatInfo(item->data("[项类型]").toString())->unit(false);
     if (type == OutputVoltage)
-        d->setData("[输出电压_F]", d->calibrate->toFiction(value, type, gears));
+        d->setData("[输出电压_F]", item->toFiction(value));
     if (type == OutputCurrent)
-        d->setData("[输出电流_F]", d->calibrate->toFiction(value, type, gears));
+    {
+        if (unit == "μA")
+            value *= 1000;
+        d->setData("[输出电流_F]", item->toFiction(value));
+    }
     if (type == ReverseVoltage)
-        d->setData("[反向电压_F]", d->calibrate->toFiction(value, type, gears));
+        d->setData("[反向电压_F]", item->toFiction(value));
     if (type == MeasuredVoltage)
     {
-        d->setData("[实测电压]", d->calibrate->toReal(value, type, gears));
+        d->setData("[实测电压]", item->toReal(value));
         d->setData("[电功率]" , data("[实测电压]").toDouble() * data("[实测电流]").toDouble() / 1000.0);
     }
     if (type == MeasuredCurrent)
     {
-        d->setData("[实测电流]", d->calibrate->toReal(value, type, gears));
+        value = item->toReal(value);
+        if (unit == "μA")
+            value /= 1000;
+        d->setData("[实测电流]", value);
         d->setData("[电功率]" , data("[实测电压]").toDouble() * data("[实测电流]").toDouble() / 1000.0);
     }
     if (type == ReverseCurrent)
-        d->setData("[反向漏流]", d->calibrate->toReal(value, type, gears));
+        d->setData("[反向漏流]", item->toReal(value));
 }
 
 HE_END_NAMESPACE

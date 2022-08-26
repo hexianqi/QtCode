@@ -81,7 +81,7 @@ bool HImageBrowser::isKeyMove() const
 
 void HImageBrowser::load()
 {
-    auto dir = QFileDialog::getExistingDirectory(this, tr("打开目录"),".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    auto dir = QFileDialog::getExistingDirectory(this, tr("打开目录"), ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     if (dir.isEmpty())
         return;
     load(dir);
@@ -311,10 +311,10 @@ void HImageBrowser::init()
     d_ptr->timer = new QTimer(this);
     d_ptr->timer->setInterval(100);
     d_ptr->previous = new QToolButton(this);
-    d_ptr->previous->setIcon(QIcon(":/image/beautify/back.png"));
+    d_ptr->previous->setIcon(QIcon(":/Resources/image/back.png"));
     d_ptr->previous->setIconSize(d_ptr->iconSize);
     d_ptr->next = new QToolButton(this);
-    d_ptr->next->setIcon(QIcon(":/image/beautify/next.png"));
+    d_ptr->next->setIcon(QIcon(":/Resources/image/next.png"));
     d_ptr->next->setIconSize(d_ptr->iconSize);
     auto actionLoad = new QAction(tr("载入"), this);
     auto actionClear = new QAction("清空", this);

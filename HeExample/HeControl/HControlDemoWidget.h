@@ -32,17 +32,18 @@ private:
     // FYQY
     void addFYQY();
     void addBattery();
+    void addCalendar();
+    void addLunarCalendar();
     void addDeviceButton();
     void addExplorer();
     void addImageSwitch();
     void addIPAddress();
     void addLightButton();
     void addNavButton();
+    void addNtpClient();
 
-    // LiuDianWu
-    void addLiuDianWu();
-    void addCalendar();
-    void addLunarCalendar();
+    // YSA
+    void addYSA();
 
     // ww
     void addWw();

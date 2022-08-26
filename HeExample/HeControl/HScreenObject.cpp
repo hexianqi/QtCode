@@ -94,7 +94,7 @@ void HScreenObject::drawScreen(QPainter *painter)
 
     painter->drawRect(d_ptr->area);
     painter->setPen(QPen(Qt::yellow, 2, Qt::DotLine));
-    painter->drawText(QRect(rect.left() + 2, rect.top() - 10, rect.width() - 4, 8),
+    painter->drawText(QRect(rect.left() + 2, rect.top() - 16, rect.width() - 4, 14),
                       Qt::AlignCenter,
                       tr("截图范围：(%1 , %2) - (%3 , %4)  图片大小：(%5 X %6)").arg(rect.left()).arg(rect.top()).arg(rect.right()).arg(rect.bottom()).arg(rect.width()).arg(rect.height()));
     painter->restore();

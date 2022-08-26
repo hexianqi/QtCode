@@ -44,5 +44,7 @@
         <file>Resources/image/ColorPicker.ico</file>
         <file>Resources/image/gifwidget.ico</file>
         <file>Resources/image/gifwidget.png</file>
+        <file>Resources/image/back.png</file>
+        <file>Resources/image/next.png</file>
     </qresource>
 </RCC>

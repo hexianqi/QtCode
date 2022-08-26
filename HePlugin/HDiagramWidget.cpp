@@ -371,7 +371,6 @@ bool HDiagramWidget::isValid()
 
 void HDiagramWidget::init()
 {
-    setAutoFillBackground(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setFocusPolicy(Qt::NoFocus);
     setContextMenuPolicy(Qt::ActionsContextMenu);

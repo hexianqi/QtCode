@@ -48,9 +48,8 @@ public:
     bool internal = true;                                       // 是否使用自动创建的 manager
 
     std::function<void (const QString &)> success = nullptr;    // 成功的回调函数，参数为响应的字符串
-    std::function<void (const QString &, int)> fail = nullptr;  // 失败的回调函数，参数为失败原因和 HTTP status code
+    std::function<void (const QString &, int)> fail = nullptr;  // 失败的回调函数，参数为失败原因和状态码
     std::function<void ()> complete = nullptr;                  // 结束的回调函数
-
 };
 
 HE_END_NAMESPACE

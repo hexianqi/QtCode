@@ -9,17 +9,27 @@ DESTDIR     = "../../Dest"
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES     += \
-            main.cpp \
-            MainWindow.cpp
+            HMainWindow.cpp \
+            main.cpp
 
 HEADERS     += \
-            MainWindow.h
+            HMainWindow.h
 
-FORMS       += \
-            MainWindow.ui
+Debug {
+    LIBS    += \
+            -L$$DESTDIR -lHeControld \
+}
+
+Release {
+    LIBS    += \
+            -L$$DESTDIR -lHeControl
+}
 
 ThirdPath   = $$PWD/../QCustomPlot
 
-INCLUDEPATH += $$ThirdPath
+INCLUDEPATH += \
+            $$ThirdPath \
+            ../.. \
+            ../../HeExample
 
 include($$ThirdPath/QCustomPlot.pri)

@@ -30,3 +30,4 @@ RESOURCES += \
     $$PWD/fyqy.qrc
 
 include(z_fyqy_calendar.pri)
+include(z_fyqy_special.pri)

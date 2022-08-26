@@ -24,6 +24,11 @@ HNtpClient::~HNtpClient()
     d_ptr->socket->abort();
 }
 
+QString HNtpClient::host() const
+{
+    return d_ptr->host;
+}
+
 void HNtpClient::setHost(const QString &value)
 {
     if (d_ptr->host == value)
@@ -84,7 +89,7 @@ void HNtpClient::readData()
 
 void HNtpClient::init()
 {
-    d_ptr->host = "time.windows.com";
+    d_ptr->host = "ntp1.aliyun.com";
     d_ptr->socket = new QUdpSocket(this);
     connect(d_ptr->socket, &QUdpSocket::connected, this, &HNtpClient::sendData);
     connect(d_ptr->socket, &QUdpSocket::readyRead, this, &HNtpClient::readData);

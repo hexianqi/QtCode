@@ -13,6 +13,14 @@ HEADERS += \
     $$PWD/HColorPicker.h \
     $$PWD/HGifWidget.h \
     $$PWD/HGifWidget_p.h \
+    $$PWD/HScreenObject.h \
+    $$PWD/HScreenObject_p.h \
+    $$PWD/HScreenWidget.h \
+    $$PWD/HScreenWidget_p.h \
+    $$PWD/HImageBrowser.h \
+    $$PWD/HImageBrowser_p.h \
+    $$PWD/HSerialPortWidget.h \
+    $$PWD/HSerialPortWidget_p.h \
 
 SOURCES += \
     $$PWD/HBase64ConvertWidget.cpp \
@@ -23,6 +31,10 @@ SOURCES += \
     $$PWD/HPngAmend.cpp \
     $$PWD/HColorPicker.cpp \
     $$PWD/HGifWidget.cpp \
+    $$PWD/HScreenObject.cpp \
+    $$PWD/HScreenWidget.cpp \
+    $$PWD/HImageBrowser.cpp \
+    $$PWD/HSerialPortWidget.cpp \
 
 FORMS += \
     $$PWD/HBase64ConvertWidget.ui \
@@ -31,4 +43,5 @@ FORMS += \
     $$PWD/HPngAmend.ui \
     $$PWD/HColorPicker.ui \
     $$PWD/HGifWidget.ui \
+    $$PWD/HSerialPortWidget.ui \
 

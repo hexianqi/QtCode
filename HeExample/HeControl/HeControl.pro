@@ -64,12 +64,9 @@ unix {
 include(_liudianwu.pri)
 include(media.pri)
 include(multimedia.pri)
-include(network.pri)
 include(openGL.pri)
 include(sql.pri)
-include(tools.pri)
 include(widget.pri)
-
 
 include(z_demo.pri)
 include(z_event.pri)
@@ -84,3 +81,4 @@ include(z_tool.pri)
 include(z_ui.pri)
 include(z_widget.pri)
 include(z_ww.pri)
+include(z_ysa.pri)

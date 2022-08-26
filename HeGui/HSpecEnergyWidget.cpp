@@ -99,10 +99,8 @@ void HSpecEnergyWidget::init()
     layout->addWidget(d_ptr->specWidget, 0, 1);
     connect(d_ptr->specWidget, &HSpecDiagramWidget::marginChanged, this, [=](QMargins m){ d_ptr->progressLayout->setContentsMargins(5, m.top(), 5, m.bottom()); });
     initCoordinate();
-    setAutoFillBackground(true);
     setWindowIcon(QIcon(":/image/Spectrum.png"));
     setWindowTitle(tr("相对光谱功率分布"));
-    setStyleSheet("background-color: rgb(255, 255, 255);");
 }
 
 void HSpecEnergyWidget::readSettings()

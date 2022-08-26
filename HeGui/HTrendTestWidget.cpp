@@ -22,12 +22,8 @@ HTrendTestWidgetPrivate::HTrendTestWidgetPrivate()
 {
     stream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createTextStream("HTextStream");
     stream->setFileFilter("Excel files (*.xls)");
-    displayType = QStringList() << "[实测电压]" << "[实测电流]" << "[电功率]"
-                                << "[光强度]" << "[光通量]"
-                                << "[峰值波长]" << "[主波长]"
-                                << "[色纯度]" << "[色温]" << "[色坐标x]" << "[色坐标y]"
-                                << "[显色指数Ra]" << "[显色指数R9]";
-    testType = QStringList() << "[测量日期]" << "[测量时间]" << displayType;
+    optional = HAppContext::getContextValue<QStringList>("TrendOptional");
+    displays = QStringList() << "[测量日期]" << "[测量时间]" << optional;
     baseY.insert("[色纯度]", -1);
     baseY.insert("[色坐标x]", -1);
     baseY.insert("[色坐标y]", -1);
@@ -52,7 +48,7 @@ void HTrendTestWidget::createAction()
     Q_D(HTrendTestWidget);
     HTestWidget::createAction();
     d->displayGroup = new QActionGroup(this);
-    for (auto s : d->displayType)
+    for (auto s : d->optional)
     {
         auto action = new QAction;
         action->setCheckable(true);
@@ -99,8 +95,8 @@ void HTrendTestWidget::initWidget()
     auto layout = new QGridLayout(this);
     auto tabWidget = new QTabWidget;
     auto splitter = new QSplitter(Qt::Vertical);
-    d->tableWidget->setDisplay(d->testType);
-    d->tableWidget->setSelected(d->selectedType);
+    d->tableWidget->setDisplay(d->displays);
+    d->tableWidget->setSelected(d->selected);
     d->tableWidget->addAction(d->actionClear);
     HPluginHelper::addSeparator(d->chartView);
     d->chartView->addActions(d->displayGroup->actions());
@@ -134,11 +130,11 @@ void HTrendTestWidget::exportExcel()
         return;
 
     QString text;
-    text += "Index\t" + HCore::toCaptionUnit(d->testType).join("\t") + "\n";
+    text += "Index\t" + HCore::toCaptionUnit(d->displays).join("\t") + "\n";
     for (int i = 0; i < d->result.count(); i++)
     {
         QStringList list;
-        for (auto t : d->testType)
+        for (auto t : d->displays)
             list << HCore::toString(t, d->result.at(i).value(t));
         text += QString("%1\t").arg(i + 1) + list.join("\t") +  + "\n";
     }
@@ -153,7 +149,7 @@ void HTrendTestWidget::readSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
     settings->beginGroup("TrendTestWidget");
-    d->selectedType = settings->value("TableSelected", d->testType).toStringList();
+    d->selected = settings->value("TableSelected", d->displays).toStringList();
     settings->endGroup();
 }
 
@@ -175,9 +171,9 @@ void HTrendTestWidget::changeDisplay(QAction *action)
         return;
     action->setChecked(true);
     auto type = action->data().toString();
-    if (type == d->currentType)
+    if (type == d->current)
         return;
-    d->currentType = type;
+    d->current = type;
     QPolygonF poly;
     for (int i = 0; i < d->result.size(); i++)
         poly.append(QPointF(d->interval * (i + 1), d->result.at(i).value(type).toDouble()));
@@ -203,10 +199,10 @@ void HTrendTestWidget::handleResultChanged(HActionType, bool first)
         d->interval = d->testSetWidget->data("[测量间隔]").toDouble();
     }
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
-    d->result.append(d->testData->select(d->testType));
+    d->result.append(d->testData->select(d->displays));
     d->energyWidget->refreshWidget();
     d->tableWidget->refreshResult(true);
-    d->chartView->addPoint(d->interval * d->result.size(), d->testData->data(d->currentType).toDouble());
+    d->chartView->addPoint(d->interval * d->result.size(), d->testData->data(d->current).toDouble());
 }
 
 HE_END_NAMESPACE

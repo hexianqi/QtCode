@@ -11,10 +11,8 @@ SOURCES += \
     $$PWD/HAbstractServerWidget.cpp \
     $$PWD/HAbstractClientWidget.cpp
 
-
-
-#include(ntp.pri)
-#include(http.pri)
+include(z_ntp.pri)
+include(z_http.pri)
 include(z_smtp.pri)
 include(z_tcp.pri)
 include(z_udp.pri)

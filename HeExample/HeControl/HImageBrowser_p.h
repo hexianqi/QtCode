@@ -9,8 +9,8 @@ HE_BEGIN_NAMESPACE
 class HImageBrowserPrivate
 {
 public:
-    QColor backgroundStart = QColor(100, 100, 100);
-    QColor backgroundEnd = QColor(60, 60, 60);
+    QColor backgroundStart = QColor(255, 255, 255);
+    QColor backgroundEnd = QColor(228, 228, 228);
     int bottomSpace = 10;
     int buttonSpace = 10;
     QSize iconSize = QSize(65, 65);

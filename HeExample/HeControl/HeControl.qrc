@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>image/beautify/back.png</file>
-        <file>image/beautify/next.png</file>
         <file>image/beautify/sun.svg</file>
         <file>image/beautify/rain.svg</file>
         <file>image/beautify/snow.svg</file>

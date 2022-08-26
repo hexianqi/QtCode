@@ -6,25 +6,35 @@
 #include "HFlatStyle.h"
 #include "HImageSwitch.h"
 #include "HIPAddress.h"
+#include "HImageCalendar.h"
+#include "HLunarCalendarWidget.h"
 #include "HLightButton.h"
 #include "HNavButton.h"
+#include "HNtpClient.h"
+#include "HFyqySpecialWidget.h"
 #include "HDrawHelper.h"
 #include "IIconFontFactory.h"
 #include <QtGui/QPen>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLineEdit>
 
 HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addFYQY()
 {
     addBattery();
+    addCalendar();
+    addLunarCalendar();
     addDeviceButton();
     addExplorer();
     addImageSwitch();
     addIPAddress();
     addLightButton();
     addNavButton();
+    addNtpClient();
+    addTab(tr("飞扬青云"), tr("特殊窗体"), new HFyqySpecialWidget);
 }
 
 void HControlDemoWidget::addBattery()
@@ -41,6 +51,51 @@ void HControlDemoWidget::addBattery()
     d_ptr->style->setStyle(slider, 8, "#505050", "#1ABC9C", "#1ABC9C");
     connect(slider, &QSlider::valueChanged, battery, &HBattery::setValue);
     addTab(tr("飞扬青云"), tr("电池电量"), layout);
+}
+
+void HControlDemoWidget::addCalendar()
+{
+    addTab(tr("飞扬青云"), new HImageCalendar);
+}
+
+void HControlDemoWidget::addLunarCalendar()
+{
+    auto label1 = new QLabel(tr("选中样式："));
+    auto label2 = new QLabel(tr("星期格式："));
+    label1->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    label2->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+    auto comboBox1 = new QComboBox;
+    auto comboBox2 = new QComboBox;
+    comboBox1->addItem(tr("矩形背景"), HLunarCalendarItem::SelectType_Rect);
+    comboBox1->addItem(tr("圆形背景"), HLunarCalendarItem::SelectType_Circle);
+    comboBox1->addItem(tr("角标背景"), HLunarCalendarItem::SelectType_Triangle);
+    comboBox1->addItem(tr("图片背景"), HLunarCalendarItem::SelectType_Image);
+    comboBox2->addItem(tr("短名称"),   HLunarCalendarWidget::WeekNameFormat_Short);
+    comboBox2->addItem(tr("普通名称"), HLunarCalendarWidget::WeekNameFormat_Normal);
+    comboBox2->addItem(tr("长名称"),   HLunarCalendarWidget::WeekNameFormat_Long);
+    comboBox2->addItem(tr("英文名称"), HLunarCalendarWidget::WeekNameFormat_En);
+
+    auto checkBox = new QCheckBox(tr("显示农历"));
+    checkBox->setChecked(true);
+
+    auto widget = new HLunarCalendarWidget;
+
+    auto hLayout = new QHBoxLayout;
+    hLayout->addWidget(label1, 1);
+    hLayout->addWidget(comboBox1, 3);
+    hLayout->addWidget(label2, 1);
+    hLayout->addWidget(comboBox2, 3);
+    hLayout->addWidget(checkBox, 2);
+
+    auto vLayout = new QVBoxLayout;
+    vLayout->addWidget(widget);
+    vLayout->addLayout(hLayout);
+
+    connect(comboBox1, &QComboBox::currentTextChanged, this, [=] { widget->setSelectType(comboBox1->currentData().value<HLunarCalendarItem::SelectType>()); });
+    connect(comboBox2, &QComboBox::currentTextChanged, this, [=] { widget->setWeekNameFormat(comboBox2->currentData().value<HLunarCalendarWidget::WeekNameFormat>()); });
+    connect(checkBox, &QCheckBox::clicked, this, [=](bool b) { widget->setShowLunar(b); });
+    addTab(tr("飞扬青云"), tr("农历"), vLayout);
 }
 
 void HControlDemoWidget::addDeviceButton()
@@ -438,6 +493,33 @@ void HControlDemoWidget::addNavButton()
     layout->addLayout(layout7, 3, 0, 1, 4);
     layout->addItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding), 4, 0);
     addTab(tr("飞扬青云"), tr("导航按钮"), layout);
+}
+
+void HControlDemoWidget::addNtpClient()
+{
+    auto layout = new QGridLayout;
+    auto client = new HNtpClient(layout);
+    auto label1 = new QLabel(tr("服务地址："));
+    label1->setAlignment(Qt::AlignRight);
+    auto label2 = new QLabel(tr("返回时间："));
+    label2->setAlignment(Qt::AlignRight);
+    auto lineEdit1 = new QLineEdit(client->host());
+    auto lineEdit2 = new QLineEdit;
+    auto pushButton = new QPushButton("获取");
+    QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+    sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+    pushButton->setSizePolicy(sizePolicy);
+    layout->addWidget(label1, 0, 0);
+    layout->addWidget(label2, 1, 0);
+    layout->addWidget(lineEdit1, 0, 1);
+    layout->addWidget(lineEdit2, 1, 1);
+    layout->addWidget(pushButton, 0, 2, 2, 1);
+
+    connect(pushButton, &QPushButton::clicked, this, [=] { client->setHost(lineEdit1->text().trimmed()); client->getDateTime(); });
+    connect(client, &HNtpClient::receiveTime, this, [=](const QDateTime &dateTime) { lineEdit2->setText(dateTime.toString("yyyy-MM-dd HH:mm:ss.zzz")); });
+    addTab(tr("飞扬青云"), tr("Ntp校时"), layout);
 }
 
 HE_END_NAMESPACE

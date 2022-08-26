@@ -31,7 +31,7 @@ void HControlDemoWidget::init()
     d_ptr->style = new HFlatStyle(this);
     initWidget();
     addFYQY();
-    addLiuDianWu();
+    addYSA();
     addWw();
     addDemo();
     addLayout();

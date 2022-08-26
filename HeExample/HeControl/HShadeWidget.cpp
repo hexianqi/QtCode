@@ -72,7 +72,7 @@ void HShadeWidget::showEvent(QShowEvent *event)
 
 void HShadeWidget::init()
 {
-    d_ptr->mainWidget = parentWidget() == nullptr ? QApplication::desktop() : parentWidget();
+    d_ptr->mainWidget = window();
     setObjectName("shade");
     setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
     setBackground(Qt::black);

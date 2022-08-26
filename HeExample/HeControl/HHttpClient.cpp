@@ -39,7 +39,7 @@ QNetworkRequest createRequest(HHttpClientPrivate *d, HHttpClientRequestMethod me
         {
             auto list = QStringList() << "[参数]";
             for (const auto &v : d->query.queryItems())
-                list << QString("       %1=%2").arg(v.first, v.second);
+                list << QString("       %1 = %2").arg(v.first, v.second);
             if (list.size() > 1)
                 qDebug().noquote() << list.join("\n");
         }

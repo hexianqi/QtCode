@@ -26,10 +26,10 @@ public:
 
 public:
     double interval = 0.0;
-    QString currentType;
-    QStringList testType;
-    QStringList displayType;
-    QStringList selectedType;
+    QString current;
+    QStringList optional;
+    QStringList displays;
+    QStringList selected;
     QList<QVariantMap> result;
     QMap<QString, int> baseY;
 };
