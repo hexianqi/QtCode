@@ -34,13 +34,12 @@ QVariant HTestSetWidget7000::handleOperation(QString type, QVariant value)
     }
     if (type == "<设置布局>")
     {
+        QSignalBlocker blocker(ui->comboBox_4);
         d->polygon = value.value<QPolygon>();
-        ui->comboBox_4->blockSignals(true);
         ui->comboBox_4->clear();
         ui->comboBox_4->addItem(tr("  原点  "), QPoint(99, 99));
         for (auto p : d->polygon)
             ui->comboBox_4->addItem(QString("  %1, %2  ").arg(p.x()).arg(p.y()), p);
-        ui->comboBox_4->blockSignals(false);
         return true;
     }
     return HAbstractTestSetWidget::handleOperation(type, value);

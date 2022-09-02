@@ -37,12 +37,11 @@ HEADERS += \
         HModelSpec.h \
         HModelSpec_p.h
 
-TARGET = HeSpec
+TARGET = SLSpec
 
 INCLUDEPATH += ..
 
 Debug {
-#    CONFIG  += console
     LIBS    += \
             -L$$DESTDIR -lHeCored \
             -L$$DESTDIR -lHeDatad \

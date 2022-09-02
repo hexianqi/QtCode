@@ -1,14 +1,18 @@
 #pragma once
 
-#include "HHueSatRadialPicker.h"
+#include "HGraphicsColorBoardItem.h"
+#include "HGraphicsObject_p.h"
+#include <QtGui/QGradient>
 
 HE_BEGIN_NAMESPACE
 
-class HHueSatRadialPickerPrivate
+class HGraphicsColorBoardItemPrivate : public HGraphicsObjectPrivate
 {
 public:
+    HGraphicsColorBoardItemPrivate();
+
+public:
     int value = 255;
-    QColor color;
     QConicalGradient conicalGradient;
     QRadialGradient radialGradient;
     QPixmap boardPixmap;
@@ -18,3 +22,4 @@ public:
 };
 
 HE_END_NAMESPACE
+

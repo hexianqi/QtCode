@@ -54,13 +54,11 @@ void HLocationEditWidget::setData(ILocation *p)
 
 void HLocationEditWidget::clearData()
 {
+    QSignalBlocker blocker1(ui->spinBox_01);
+    QSignalBlocker blocker2(ui->spinBox_04);
     d_ptr->data = nullptr;
-    ui->spinBox_01->blockSignals(true);
-    ui->spinBox_04->blockSignals(true);
     ui->spinBox_01->setValue(0);
     ui->spinBox_04->setValue(0);
-    ui->spinBox_01->blockSignals(false);
-    ui->spinBox_04->blockSignals(false);
     ui->tableWidget->clearContents();
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(0);
@@ -93,15 +91,13 @@ void HLocationEditWidget::showData()
         return;
     int i,j;
     QString text;
+    QSignalBlocker blocker1(ui->spinBox_01);
+    QSignalBlocker blocker2(ui->spinBox_04);
     auto row = d_ptr->data->data("[行数]").toInt();
     auto col = d_ptr->data->data("[列数]").toInt();
     auto layout = d_ptr->data->layout();
-    ui->spinBox_01->blockSignals(true);
-    ui->spinBox_04->blockSignals(true);
     ui->spinBox_01->setValue(row);
     ui->spinBox_04->setValue(col);
-    ui->spinBox_01->blockSignals(false);
-    ui->spinBox_04->blockSignals(false);
     ui->tableWidget->setRowCount(row);
     ui->tableWidget->setColumnCount(col);
     for (i = 0; i < row; i++)

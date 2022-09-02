@@ -205,11 +205,10 @@ void HLongSpinBox::updateEdit()
     auto edit = lineEdit();
     auto empty = edit->text().isEmpty();
     auto cursor = edit->cursorPosition();
-    auto bs = edit->blockSignals(true);
+    QSignalBlocker blocker(edit);
     edit->setText(d_ptr->prefix + textFromValue(d_ptr->value) + d_ptr->suffix);
     cursor = qBound(d_ptr->prefix.size(), cursor, edit->displayText().size() - d_ptr->suffix.size());
     edit->setCursorPosition(empty ? d_ptr->prefix.size() : cursor);
-    edit->blockSignals(bs);
     updateButtons();
 }
 

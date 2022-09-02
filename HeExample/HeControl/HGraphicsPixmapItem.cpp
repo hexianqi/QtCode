@@ -1,5 +1,6 @@
 #include "HGraphicsPixmapItem_p.h"
 #include "HGraphicsHelper.h"
+#include <QtGui/QMovie>
 #include <QtGui/QPainter>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QGraphicsScene>
@@ -10,22 +11,24 @@
 
 HE_BEGIN_NAMESPACE
 
+HGraphicsPixmapItemPrivate::HGraphicsPixmapItemPrivate()
+{
+    itemSize = QSizeF(128, 128);
+}
+
 HGraphicsPixmapItem::HGraphicsPixmapItem(QGraphicsItem *parent) :
-    QGraphicsObject(parent),
-    d_ptr(new HGraphicsPixmapItemPrivate)
+    HGraphicsObject(*new HGraphicsPixmapItemPrivate, parent)
 {
     init();
 }
 
 HGraphicsPixmapItem::HGraphicsPixmapItem(HGraphicsPixmapItemPrivate &p, QGraphicsItem *parent) :
-    QGraphicsObject(parent),
-    d_ptr(&p)
+    HGraphicsObject(p, parent)
 {
 }
 
 HGraphicsPixmapItem::~HGraphicsPixmapItem()
 {
-    init();
 }
 
 int HGraphicsPixmapItem::type() const
@@ -35,166 +38,96 @@ int HGraphicsPixmapItem::type() const
 
 QString HGraphicsPixmapItem::title() const
 {
-    return d_ptr->title;
+    Q_D(const HGraphicsPixmapItem);
+    return d->title;
 }
 
 QPixmap HGraphicsPixmapItem::pixmap() const
 {
-    return d_ptr->pixmap;
+    Q_D(const HGraphicsPixmapItem);
+    return d->pixmap;
 }
 
 QColor HGraphicsPixmapItem::textColor() const
 {
-    return d_ptr->textColor;
+    Q_D(const HGraphicsPixmapItem);
+    return d->textColor;
 }
 
 void HGraphicsPixmapItem::setTitle(const QString &value)
 {
-    if (d_ptr->title == value)
+    Q_D(HGraphicsPixmapItem);
+    if (d->title == value)
         return;
-    d_ptr->title = value;
+    d->title = value;
     update();
 }
 
 void HGraphicsPixmapItem::setPixmap(const QPixmap &value)
 {
-    if (d_ptr->pixmap == value)
+    Q_D(HGraphicsPixmapItem);
+    if (d->pixmap == value)
         return;
-    d_ptr->pixmap = value;
-    d_ptr->itemSize = d_ptr->pixmap.size();
+    d->pixmap = value;
     update();
 }
 
 void HGraphicsPixmapItem::setTextColor(const QColor &value)
 {
-    if (d_ptr->textColor == value)
+    Q_D(HGraphicsPixmapItem);
+    if (d->textColor == value)
         return;
-    d_ptr->textColor = value;
+    d->textColor = value;
     update();
 }
 
-QRectF HGraphicsPixmapItem::boundingRect() const
+void HGraphicsPixmapItem::init()
 {
-    return  QRectF(0, 0, d_ptr->itemSize.width() + 10, d_ptr->itemSize.height() + 10);
-}
-
-QVariant HGraphicsPixmapItem::itemChange(GraphicsItemChange change, const QVariant &value)
-{
-    if ((change == ItemPositionChange || change == ItemPositionHasChanged) && scene())
-    {
-        auto pos = HGraphicsHelper::fixByScene(this, value);
-        if (pos.isValid())
-            return pos;
-    }
-    return QGraphicsItem::itemChange(change, value);
-}
-
-void HGraphicsPixmapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(widget);
-    painter->save();
-    painter->setRenderHint(QPainter::Antialiasing);
-
-    auto rect = boundingRect();
-    if (option->state & QStyle::State_Selected)
-    {
-        painter->setPen(QPen(Qt::black, 1, Qt::DashLine));
-        painter->drawRect(rect);
-        setZValue(2);
-    }
-    else
-    {
-        setZValue(1);
-        painter->fillRect(rect, QBrush(Qt::transparent));
-    }
-
-    if (!d_ptr->pixmap.isNull())
-        painter->drawPixmap(rect.toRect(), d_ptr->pixmap);
-
-    if (!d_ptr->title.isEmpty())
-    {
-        auto textRect = QRectF(0, 0, rect.width(), 30);
-        textRect.moveTo(QPoint(0, static_cast<int>((rect.height() - 30) / 2)));
-        auto font = painter->font();
-        font.setPixelSize(24);
-        painter->setPen(QPen(d_ptr->textColor, 2, Qt::SolidLine));
-        painter->setFont(font);
-        painter->drawText(textRect, Qt::AlignCenter, d_ptr->title);
-    }
-
-    if (option->state & QStyle::State_Selected)
-    {
-        auto w = int(rect.width());
-        auto h = int(rect.height());
-        painter->setPen(Qt::red);
-        for (auto p : d_ptr->resizePos)
-            painter->drawLine(w - p, h, w, h - p);
-    }
-
-    painter->restore();
+    Q_D(HGraphicsPixmapItem);
+    HGraphicsObject::init();
+    d->movie = new QMovie(this);
+    connect(d->movie, &QMovie::frameChanged, [=] { setPixmap(d->movie->currentPixmap()); });
 }
 
 void HGraphicsPixmapItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
     QMenu menu;
     auto action = menu.addAction(tr("设置图片"));
-    connect(action, &QAction::triggered, this, &HGraphicsPixmapItem::openPixmap);
+    connect(action, &QAction::triggered, this, &HGraphicsPixmapItem::openFile);
     menu.exec(event->screenPos());
 }
 
-void HGraphicsPixmapItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void HGraphicsPixmapItem::drawContent(QPainter *painter, const QStyleOptionGraphicsItem */*option*/)
 {
-    if (event->button() == Qt::LeftButton)
+    Q_D(HGraphicsPixmapItem);
+    auto rect = boundingRect().toRect();
+    painter->save();
+
+    if (!d->pixmap.isNull())
+        painter->drawPixmap(rect, d->pixmap);
+
+    if (!d->title.isEmpty())
     {
-        if (isInResizeArea(event->pos()))
-            d_ptr->resizing = true;
+        auto textRect = QRectF(0, 0, rect.width(), 30);
+        textRect.moveTo(QPoint(0, static_cast<int>((rect.height() - 30) / 2)));
+        auto font = painter->font();
+        font.setPixelSize(24);
+        painter->setPen(QPen(d->textColor, 2, Qt::SolidLine));
+        painter->setFont(font);
+        painter->drawText(textRect, Qt::AlignCenter, d->title);
     }
-    return QGraphicsObject::mousePressEvent(event);
+    painter->restore();
 }
 
-void HGraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void HGraphicsPixmapItem::openFile()
 {
-    if (d_ptr->resizing)
-    {
-        auto w = event->pos().x();
-        auto h = event->pos().y();
-        if (w > 0)
-            d_ptr->itemSize.setWidth(w);
-        if (h > 0)
-            d_ptr->itemSize.setHeight(h);
-        prepareGeometryChange();
-    }
-    else
-        QGraphicsObject::mouseMoveEvent(event);
-}
-
-void HGraphicsPixmapItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if (event->button() == Qt::LeftButton && d_ptr->resizing)
-        d_ptr->resizing = false;
-    QGraphicsObject::mouseReleaseEvent(event);
-}
-
-void HGraphicsPixmapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
-{
-    if (d_ptr->resizing || (isInResizeArea(event->pos()) && isSelected()))
-        setCursor(Qt::SizeFDiagCursor);
-    else
-        setCursor(Qt::ArrowCursor);
-    QGraphicsObject::hoverMoveEvent(event);
-}
-
-void HGraphicsPixmapItem::init()
-{
-    setAcceptHoverEvents(true);
-    setFlags(ItemIsMovable | ItemSendsScenePositionChanges | ItemIsSelectable | ItemIsFocusable);
-}
-
-void HGraphicsPixmapItem::openPixmap()
-{
-    auto fileName = QFileDialog::getOpenFileName(nullptr, tr("设置图片"), QString(), "*.png *.jpg");
-    if (fileName.isEmpty())
+    Q_D(HGraphicsPixmapItem);
+    auto fileName = QFileDialog::getOpenFileName(nullptr, tr("设置图片"), QString(), "*.png *.jpg *.gif");
+    if (fileName.isEmpty() || d->fileName == fileName)
         return;
+
+    QSignalBlocker blocker(d->movie);
+    d->movie->stop();
 
     QPixmap pixmap(fileName);
     if (pixmap.width() >= scene()->width() || pixmap.height() >= scene()->height())
@@ -202,12 +135,17 @@ void HGraphicsPixmapItem::openPixmap()
         QMessageBox::information(nullptr, tr("错误"), tr("图片尺寸大于视图尺寸"));
         return;
     }
+
+    QFileInfo info(fileName);
+    if (info.suffix() == "gif")
+    {
+        d->movie->setFileName(fileName);
+        d->movie->start();
+    }
+    d->fileName = fileName;
+
     setPixmap(pixmap);
 }
 
-bool HGraphicsPixmapItem::isInResizeArea(const QPointF &pos)
-{
-    return (pos.x() - d_ptr->itemSize.width() + d_ptr->resizePos[0]) > (d_ptr->itemSize.height() - pos.y());
-}
-
 HE_END_NAMESPACE
+

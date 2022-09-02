@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2022-08-26  HGraphicsSliderItem
+**      2022-08-26  HGraphicsSliderItem 滑动条图形项
 ***************************************************************************************************/
 
 #pragma once
@@ -20,6 +20,10 @@ public:
     ~HGraphicsSliderItem() override;
 
 public:
+    enum { Type = UserType + 23 };
+    int type() const override;
+
+public:
     void setOrientation(Qt::Orientation);
     void setRange(const int min, const int max);
 
@@ -31,9 +35,7 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *) override;
     void hoverMoveEvent(QGraphicsSceneHoverEvent *) override;
-    void init() override;
-    void drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option) override;
-
+    void drawContent(QPainter *painter, const QStyleOptionGraphicsItem *option) override;
 };
 
 HE_END_NAMESPACE

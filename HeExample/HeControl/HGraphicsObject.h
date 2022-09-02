@@ -16,11 +16,24 @@ class HGraphicsObject : public QGraphicsObject
     Q_OBJECT
 
 public:
+    enum ItemFix
+    {
+        FixNot = 0,             // 不限制
+        FixByScene = 1,         // 场景限制
+        FixByOverlap = 2        // 重叠限制
+    };
+    Q_ENUM(ItemFix)
+
+public:
     explicit HGraphicsObject(QGraphicsItem *parent = nullptr);
     ~HGraphicsObject() override;
 
 public:
-    QRectF boundingRect()const override;
+    QRectF boundingRect() const override;
+    ItemFix itemFix() const;
+
+public:
+    void setItemFix(ItemFix);
 
 protected:
     HGraphicsObject(HGraphicsObjectPrivate &p, QGraphicsItem *parent = nullptr);
@@ -32,10 +45,10 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *) override;
     void hoverMoveEvent(QGraphicsSceneHoverEvent *) override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
-    virtual bool isInResizeArea(const QPointF &);
     virtual void init();
+    virtual bool isInResizeArea(const QPointF &);
     virtual void drawBound(QPainter *painter, const QStyleOptionGraphicsItem *option);
-    virtual void drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option) = 0;
+    virtual void drawContent(QPainter *painter, const QStyleOptionGraphicsItem *option) = 0;
     virtual void drawResizeArea(QPainter *painter, const QStyleOptionGraphicsItem *option);
 
 protected:

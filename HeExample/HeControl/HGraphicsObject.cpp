@@ -28,11 +28,25 @@ QRectF HGraphicsObject::boundingRect() const
     return  QRectF(0, 0, d_ptr->itemSize.width() + 10, d_ptr->itemSize.height() + 10);
 }
 
+HGraphicsObject::ItemFix HGraphicsObject::itemFix() const
+{
+    return d_ptr->itemFix;
+}
+
+void HGraphicsObject::setItemFix(ItemFix value)
+{
+    d_ptr->itemFix = value;
+}
+
 QVariant HGraphicsObject::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     if ((change == ItemPositionChange || change == ItemPositionHasChanged) && scene())
     {
-        auto pos = HGraphicsHelper::fixByScene(this, value);
+        QVariant pos;
+        if (d_ptr->itemFix == FixByScene)
+            pos = HGraphicsHelper::fixByScene(this, value);
+        else if (d_ptr->itemFix == FixByOverlap)
+            pos = HGraphicsHelper::fixByOverlap(this, value);
         if (pos.isValid())
             return pos;
     }
@@ -55,9 +69,9 @@ void HGraphicsObject::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     {
         auto w = event->pos().x();
         auto h = event->pos().y();
-        if (w > 0)
+        if (w >= d_ptr->minimumSizeHint.width())
             d_ptr->itemSize.setWidth(w);
-        if (h > 0)
+        if (h >= d_ptr->minimumSizeHint.height())
             d_ptr->itemSize.setHeight(h);
         prepareGeometryChange();
     }
@@ -84,16 +98,22 @@ void HGraphicsObject::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 void HGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(widget);
-    painter->setRenderHint(QPainter::Antialiasing);
+    painter->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::TextAntialiasing);
     drawBound(painter, option);
-    drawItem(painter, option);
+    drawContent(painter, option);
     drawResizeArea(painter, option);
 }
 
 void HGraphicsObject::init()
 {
     setAcceptHoverEvents(true);
+    setZValue(1);
     setFlags(ItemIsMovable | ItemSendsScenePositionChanges | ItemIsSelectable | ItemIsFocusable);
+}
+
+bool HGraphicsObject::isInResizeArea(const QPointF &pos)
+{
+    return (pos.x() - d_ptr->itemSize.width() + d_ptr->resizePos[0]) > (d_ptr->itemSize.height() - pos.y());
 }
 
 void HGraphicsObject::drawBound(QPainter *painter, const QStyleOptionGraphicsItem *option)
@@ -119,19 +139,13 @@ void HGraphicsObject::drawResizeArea(QPainter *painter, const QStyleOptionGraphi
     if (option->state & QStyle::State_Selected)
     {
         painter->save();
-        auto rect = boundingRect();
-        auto w = int(rect.width());
-        auto h = int(rect.height());
+        auto w = int(boundingRect().width());
+        auto h = int(boundingRect().height());
         painter->setPen(Qt::red);
         for (auto p : d_ptr->resizePos)
             painter->drawLine(w - p, h, w, h - p);
         painter->restore();
     }
-}
-
-bool HGraphicsObject::isInResizeArea(const QPointF &pos)
-{
-    return (pos.x() - d_ptr->itemSize.width() + d_ptr->resizePos[0]) > (d_ptr->itemSize.height() - pos.y());
 }
 
 HE_END_NAMESPACE

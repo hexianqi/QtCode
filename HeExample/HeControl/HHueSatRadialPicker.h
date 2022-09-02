@@ -52,9 +52,12 @@ private:
     void init();
     void buildGradient(int value);
     void buildPixmap();
-    void colorPick(const QPointF &point, double radius);
+    void colorPick(const QPointF &point);
+    bool isInBoard(const QPointF &);
     double radius(const QPointF &);
     double hue(const QPointF &);
+    QPointF toRelative(const QPointF &);
+    QPointF toAbsolute(const QPointF &);
 };
 
 HE_END_NAMESPACE

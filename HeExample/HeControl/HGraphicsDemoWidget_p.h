@@ -6,13 +6,13 @@ class QGraphicsScene;
 
 HE_BEGIN_NAMESPACE
 
-class HTestGraphicsItem;
+class HGraphicsObject;
 
 class HGraphicsDemoWidgetPrivate
 {
 public:
     QGraphicsScene *scene;
-    QList<HTestGraphicsItem *> items;
+    QList<HGraphicsObject *> items;
 
 };
 

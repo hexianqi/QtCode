@@ -4,16 +4,16 @@
 
 #pragma once
 
-#include "HNamespace.h"
-#include <QtWidgets/QGraphicsObject>
+#include "HGraphicsObject.h"
 
 HE_BEGIN_NAMESPACE
 
 class HGraphicsPixmapItemPrivate;
 
-class HGraphicsPixmapItem : public QGraphicsObject
+class HGraphicsPixmapItem : public HGraphicsObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(HGraphicsPixmapItem)
 
 public:
     explicit HGraphicsPixmapItem(QGraphicsItem *parent = nullptr);
@@ -37,22 +37,12 @@ protected:
     HGraphicsPixmapItem(HGraphicsPixmapItemPrivate &p, QGraphicsItem *parent = nullptr);
 
 protected:
-    QRectF boundingRect() const override;
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+    void init() override;
     void contextMenuEvent(QGraphicsSceneContextMenuEvent *) override;
-    void mousePressEvent(QGraphicsSceneMouseEvent *) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *) override;
-    void hoverMoveEvent(QGraphicsSceneHoverEvent *) override;
-
-protected:
-    QScopedPointer<HGraphicsPixmapItemPrivate> d_ptr;
+    void drawContent(QPainter *painter, const QStyleOptionGraphicsItem *option) override;
 
 private:
-    void init();
-    void openPixmap();
-    bool isInResizeArea(const QPointF &);
+    void openFile();
 };
 
 HE_END_NAMESPACE

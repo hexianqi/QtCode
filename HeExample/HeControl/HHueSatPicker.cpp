@@ -144,7 +144,7 @@ void HHueSatPicker::setColor(const QColor &value)
         int ss = qMax(0, s - span / 2);
         setSatRange(ss, ss + span);
     }
-    d_ptr->point = QPointF(hueToX(h), satToY(s));
+    d_ptr->pos = QPointF(h / 360.0, s / 255.0);
     d_ptr->color = value;
     emit colorPicked(value);
     update();
@@ -179,8 +179,9 @@ void HHueSatPicker::paintEvent(QPaintEvent *)
     option.initFrom(this);
     if (option.state & QStyle::State_Enabled)
     {
+        auto point = QPointF(hueToX(d_ptr->pos.x()), satToY(d_ptr->pos.y()));
         painter.drawPixmap(contentsRect().topLeft(), d_ptr->pixmap);
-        HDrawHelper::drawCrosshair(&painter, d_ptr->point, 3, Qt::black);
+        HDrawHelper::drawCrosshair(&painter, point, 3, Qt::black);
     }
     else
     {
@@ -210,35 +211,40 @@ void HHueSatPicker::buildPixmap()
 
 double HHueSatPicker::hueFromX(double value) const
 {
-    return (d_ptr->maximumHue - value * (d_ptr->maximumHue - d_ptr->minimumHue) / contentsRect().width()) / 359.0;
+    auto rect = contentsRect();
+    return (d_ptr->maximumHue - (value - rect.x()) *  (d_ptr->maximumHue - d_ptr->minimumHue) / rect.width()) / 360.0;
 }
 
 double HHueSatPicker::hueToX(double value) const
 {
-    return contentsRect().width() * (1.0 - value / (d_ptr->maximumHue - d_ptr->minimumHue));
+    auto rect = contentsRect();
+    return (d_ptr->maximumHue - value * 360.0) * rect.width() / (d_ptr->maximumHue - d_ptr->minimumHue) + rect.x();
 }
 
 double HHueSatPicker::satFromY(double value) const
 {
-    return (d_ptr->maximumSat - value * (d_ptr->maximumSat - d_ptr->minimumSat) / contentsRect().height()) / 255.0;
+    auto rect = contentsRect();
+    return (d_ptr->maximumSat - (value - rect.y()) *  (d_ptr->maximumSat - d_ptr->minimumSat) / rect.height()) / 255.0;
 }
 
 double HHueSatPicker::satToY(double value) const
 {
-    return contentsRect().height() * (1.0 - value / (d_ptr->maximumSat - d_ptr->minimumSat));
+    auto rect = contentsRect();
+    return (d_ptr->maximumSat - value * 255.0) * rect.height() / (d_ptr->maximumSat - d_ptr->minimumSat) + rect.y();
 }
 
 void HHueSatPicker::colorPick(const QPointF &point)
 {
-    if (!contentsRect().contains(point.toPoint()))
+    auto rect = contentsRect();
+    if (!rect.contains(point.toPoint()))
         return;
-    auto h = hueFromX(point.x() - contentsRect().x());
-    auto s = satFromY(point.y() - contentsRect().y());
+    auto h = hueFromX(point.x());
+    auto s = satFromY(point.y());
     auto v = d_ptr->value / 255.0;
     if (h < 0.0 || h > 1.0 || s < 0.0 || s > 1.0)
         return;
+    d_ptr->pos = QPointF(h, s);
     emit colorPicked(QColor::fromHsvF(h, s, v));
-    d_ptr->point = point;
     update();
 }
 

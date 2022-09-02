@@ -1,18 +1,21 @@
 #pragma once
 
 #include "HGraphicsPixmapItem.h"
+#include "HGraphicsObject_p.h"
 
 HE_BEGIN_NAMESPACE
 
-class HGraphicsPixmapItemPrivate
+class HGraphicsPixmapItemPrivate : public HGraphicsObjectPrivate
 {
+public:
+    HGraphicsPixmapItemPrivate();
+
 public:
     QPixmap pixmap;
     QString title;
     QColor textColor = Qt::red;
-    QSizeF itemSize = QSizeF(0, 0);
-    bool resizing = false;          // 是否正在改变大小的过程中
-    QVector<int> resizePos = { 9, 6, 3 };
+    QString fileName;
+    QMovie *movie = nullptr;
 };
 
 HE_END_NAMESPACE

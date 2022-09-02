@@ -1,4 +1,5 @@
 #include "HGraphicsSliderItem_p.h"
+#include <QtGui/QPainter>
 #include <QtWidgets/QGraphicsSceneEvent>
 
 HE_BEGIN_NAMESPACE
@@ -22,6 +23,11 @@ HGraphicsSliderItem::HGraphicsSliderItem(HGraphicsSliderItemPrivate &p, QGraphic
 
 HGraphicsSliderItem::~HGraphicsSliderItem()
 {
+}
+
+int HGraphicsSliderItem::type() const
+{
+    return Type;
 }
 
 void HGraphicsSliderItem::setOrientation(Qt::Orientation value)
@@ -63,7 +69,7 @@ void HGraphicsSliderItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void HGraphicsSliderItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_D(HGraphicsSliderItem);
-    if (d->slidePressed )
+    if (d->slidePressed)
     {
         auto range = d->maxValue - d->minValue;
         auto temp = 0;
@@ -86,131 +92,49 @@ void HGraphicsSliderItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     HGraphicsObject::mouseReleaseEvent(event);
 }
 
-void HGraphicsSliderItem::init()
+void HGraphicsSliderItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 {
-    HGraphicsObject::init();
-    setZValue(1);
+    Q_D(HGraphicsSliderItem);
+    auto point = event->pos();
+    d->inSliderRect = d->sliderRect.contains(point);
+    HGraphicsObject::hoverMoveEvent(event);
 }
 
-void HGraphicsSliderItem::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option)
+void HGraphicsSliderItem::drawContent(QPainter *painter, const QStyleOptionGraphicsItem */*option*/)
 {
-
-}
-
-
-
-HE_END_NAMESPACE
-
-void sliderGraphicsPixmapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(widget);
-    painter->save();
-    painter->setRenderHint(QPainter::Antialiasing);
-
-    QRectF thisRectF = boundingRect();
-    if(option->state & QStyle::State_Selected)
-    {
-        painter->setPen(QColor("#D8D8D8"));
-        painter->drawRect(thisRectF);
-        setZValue(2);
-    }
-    else
-    {
-        setZValue(1);
-        painter->fillRect(thisRectF, QBrush(Qt::transparent));
-    }
-
-    QRect rect = thisRectF.toRect();
+    Q_D(HGraphicsSliderItem);
+    auto rect = boundingRect().toRect();
     painter->save();
     painter->setPen(Qt::transparent);
-    if(sliderOrientation == Qt::Horizontal)
+    if (d->orientation == Qt::Horizontal)
     {
-        QRect sliderRect = QRect(5,(rect.height() - 12) / 2,rect.width() - 10,12);
-        painter->save();
-        QColor slightlyOpaqueBlack(0, 0, 0, 63);
-        painter->setBrush(slightlyOpaqueBlack);
+        auto sliderRect = QRect(5, (rect.height() - 12) / 2, rect.width() - 10, 12);
+        int width = 1.0 * sliderRect.width() * (d->nowValue - d->minValue)  / (d->maxValue - d->minValue);
+        int x = qBound(5, width - 5, rect.width() - 25);
+        painter->setBrush(QColor("#0000003F"));
         painter->drawRect(sliderRect);
-        painter->restore();
-
-        painter->save();
         painter->setBrush(QColor("#00beac"));
-        int nowValueWidth = static_cast<int>(static_cast<float>(sliderRect.width() * (nowValue - minValue))  / static_cast<float>(maxValue - minValue));
-        sliderRect.setWidth(nowValueWidth);
+        sliderRect.setWidth(width);
         painter->drawRoundRect(sliderRect);
-
-        int thisSliderRectX = nowValueWidth + 5;
-        if(thisSliderRectX < 5)
-            thisSliderRectX = 5;
-        if(thisSliderRectX > (5 + rect.width() - 20))
-            thisSliderRectX = 5 + rect.width() - 20 - 10;
-
-        thisSliderRect = QRect(thisSliderRectX,sliderRect.y() - 4,20,20);
-
-        if(pressThisSlider || inThisSliderRect)
-            painter->setBrush(QColor("#01968c"));
-        painter->drawEllipse(thisSliderRect);
-        painter->restore();
+        d->sliderRect = QRect(x, sliderRect.y() - 4, 20, 20);
     }
     else
     {
-        QRect sliderRect = QRect((rect.width() - 12) / 2,5,12,rect.height() - 10);
-        painter->save();
-        QColor slightlyOpaqueBlack(0, 0, 0, 63);
-        painter->setBrush(slightlyOpaqueBlack);
+        auto sliderRect = QRect((rect.width() - 12) / 2, 5, 12, rect.height() - 10);
+        int height = 1.0 * sliderRect.height() * (d->nowValue - d->minValue)  / (d->maxValue - d->minValue);
+        int y = qBound(5, height - 5, rect.width() - 25);
+        painter->setBrush(QColor("#0000003F"));
         painter->drawRect(sliderRect);
-        painter->restore();
-        painter->save();
         painter->setBrush(QColor("#00beac"));
-        int nowValueHeight = static_cast<int>(static_cast<float>(sliderRect.height() * (nowValue - minValue))  / static_cast<float>(maxValue - minValue));
-        sliderRect.setHeight(nowValueHeight);
+        sliderRect.setHeight(height);
         painter->drawRoundRect(sliderRect);
-
-        int thisSliderRectY = nowValueHeight + 5;
-        if(thisSliderRectY < 5)
-            thisSliderRectY = 5;
-        if(thisSliderRectY > (5 + rect.height() - 20))
-            thisSliderRectY = 5 + rect.height() - 20 - 10;
-
-        thisSliderRect = QRect(sliderRect.x() - 4,thisSliderRectY,20,20);
-
-        if(pressThisSlider || inThisSliderRect)
-            painter->setBrush(QColor("#01968c"));
-        painter->drawEllipse(thisSliderRect);
-        painter->restore();
+        d->sliderRect = QRect(sliderRect.x() - 4, y, 20, 20);
     }
-    painter->restore();
-
-    if(option->state & QStyle::State_Selected)
-    {
-        qreal w = thisRectF.width();
-        qreal h = thisRectF.height();
-        painter->setPen(Qt::red);
-        for (int i = 0; i < 3; ++i)//三角形
-            painter->drawLine(static_cast<int>(w - g_cResizePos[i]) , static_cast<int>(h), static_cast<int>(w), static_cast<int>(h - g_cResizePos[i]));
-    }
-
+    if (d->slidePressed || d->inSliderRect)
+        painter->setBrush(QColor("#01968c"));
+    painter->drawEllipse(d->sliderRect);
     painter->restore();
 }
 
-void sliderGraphicsPixmapItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
-{
-    QPointF point = event->pos();
-
-    if (isResizing || (IsInResizeArea(point) && isSelected()))
-        setCursor(Qt::SizeFDiagCursor);
-    else
-        setCursor(Qt::ArrowCursor);
-
-    if(thisSliderRect.contains(point.x(),point.y()))
-    {
-        inThisSliderRect = true;
-    }
-    else
-    {
-        inThisSliderRect = false;
-    }
-    update();
-
-    QGraphicsObject::hoverMoveEvent(event);
-}
+HE_END_NAMESPACE
 
