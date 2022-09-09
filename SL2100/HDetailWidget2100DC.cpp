@@ -44,6 +44,8 @@ void HDetailWidget2100DC::initHash()
     d->lineEdits.insert("[显色指数Ra]",         ui->lineEdit_071);
     d->lineEdits.insert("[显色指数R9]",         ui->lineEdit_072);
     d->lineEdits.insert("[显色指数Rx]",         ui->lineEdit_073);
+    d->lineEdits.insert("[TM30_Rf]",            ui->lineEdit_081);
+    d->lineEdits.insert("[TM30_Rg]",            ui->lineEdit_082);
     d->lineEdits.insert("[光量子(380-780)]",    ui->lineEdit_051);
     d->lineEdits.insert("[光量子(400-700)]",    ui->lineEdit_052);
     d->lineEdits.insert("[光量子(700-800)]",    ui->lineEdit_053);
