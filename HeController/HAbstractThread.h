@@ -36,11 +36,6 @@ protected:
     virtual bool isSupport(HActionType action);
 
 protected:
-    virtual void debugMode();
-    virtual void offlineMode();
-    virtual void normalMode();
-
-protected:
     virtual bool openProtocol();
     virtual void closeProtocol();
 

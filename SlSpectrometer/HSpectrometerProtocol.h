@@ -21,17 +21,17 @@ public:
     bool close();
     void setSimulate(bool b);
     bool setIntegralTime(double value);
-    bool getSpectrum(vector<int> &value);
+    bool getSample(vector<int> &value);
     bool setRam(vector<unsigned char> value);
     bool getRam(vector<unsigned char> &value);
     bool sn(vector<unsigned char> &value);
 
 public:
-    bool getSpectrumI(double integrationTime, vector<int> &value);
+    bool getSampleI(double integrationTime, vector<int> &value);
     bool clearState();
     bool queryState(int *value);
     bool startSample(double integrationTime);
-    bool getSpectrumT(vector<int> &value);
+    bool getSampleT(vector<int> &value);
 
 protected:
     bool setData(unsigned char cmd, vector<unsigned char> value, int sleepTime = 0);

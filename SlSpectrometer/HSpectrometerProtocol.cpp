@@ -117,7 +117,7 @@ bool HSpectrometerProtocol::setIntegralTime(double value)
     return setData(0x01, data);
 }
 
-bool HSpectrometerProtocol::getSpectrum(vector<int> &value)
+bool HSpectrometerProtocol::getSample(vector<int> &value)
 {
     if (_simulate)
     {
@@ -127,12 +127,13 @@ bool HSpectrometerProtocol::getSpectrum(vector<int> &value)
         return true;
     }
 
+    unsigned int i, size;
     vector<unsigned char> data;
     if (!getData(4176 + 4, 0x02, 0x00, data))
         return false;
-    size_t size = data.size() / 2;
+    size = data.size() / 2;
     value.resize(size);
-    for (size_t i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
         value[i] = data[2 * i] * 256 + data[2 * i + 1];
     return true;
 }
@@ -160,7 +161,7 @@ bool HSpectrometerProtocol::setRam(vector<unsigned char> value)
 bool HSpectrometerProtocol::getRam(vector<unsigned char> &value)
 {
     vector<unsigned char> buff;
-    size_t size = 250 + 4;
+    unsigned int size = 250 + 4;
     if (!getData(size, 0x04, 0x01, buff))
         return false;
     value.clear();
@@ -198,7 +199,7 @@ bool HSpectrometerProtocol::sn(vector<unsigned char> &value)
     return true;
 }
 
-bool HSpectrometerProtocol::getSpectrumI(double integrationTime, vector<int> &value)
+bool HSpectrometerProtocol::getSampleI(double integrationTime, vector<int> &value)
 {
     _state = 0;
     unsigned int t = static_cast<unsigned int>(integrationTime * 1000);
@@ -287,7 +288,7 @@ bool HSpectrometerProtocol::startSample(double integrationTime)
 #endif
 }
 
-bool HSpectrometerProtocol::getSpectrumT(vector<int> &value)
+bool HSpectrometerProtocol::getSampleT(vector<int> &value)
 {
 #ifdef H_THREAD_COMM
     value = _outdata;
@@ -312,7 +313,7 @@ bool HSpectrometerProtocol::setData(unsigned char cmd, vector<unsigned char> val
 {
     if (value.size() % 2 == 0)
         value.push_back(0);
-    size_t size = value.size() + 3;
+    unsigned int size = value.size() + 3;
     vector<unsigned char> downData;
     vector<unsigned char> upData(4);
     downData.push_back(size / 256);

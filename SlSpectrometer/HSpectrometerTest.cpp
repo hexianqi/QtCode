@@ -5,7 +5,6 @@ HSpectrometerTest::HSpectrometerTest(HSpectrometerCalibrate *p)
 {
     _calibrate = p;
     _avg = false;
-    _fit = true;
 }
 
 HSpectrometerTest::~HSpectrometerTest()
@@ -30,8 +29,9 @@ double HSpectrometerTest::setIntegralTime(double value)
 
 double HSpectrometerTest::calcMaxSample(vector<double> value)
 {
+    unsigned int i;
     double r = 0;
-    for (size_t i = 0; i < value.size(); i++)
+    for (i = 0; i < value.size(); i++)
     {
         if (value[i] > r)
             r = value[i];
@@ -39,7 +39,7 @@ double HSpectrometerTest::calcMaxSample(vector<double> value)
     return r;
 }
 
-vector<double> HSpectrometerTest::preprocess(vector<double> value)
+vector<double> HSpectrometerTest::preprocess(vector<double> value, bool fix)
 {
     if (value.size() < 1)
         return value;
@@ -47,17 +47,15 @@ vector<double> HSpectrometerTest::preprocess(vector<double> value)
     if (_avg)
         value = average(value);
     value = _calibrate->dealBotton(value);
-    return _calibrate->smooth(value);
-}
-
-vector< vector<double> > HSpectrometerTest::calcEnergy(vector<double> value)
-{
-    return _calibrate->calcWaveEnergy(value);
+    value =  _calibrate->smooth(value);
+    if (fix)
+        value = fit(value);
+    return value;
 }
 
 vector<double> HSpectrometerTest::average(vector<double> value)
 {
-    size_t i, j;
+    unsigned int i, j;
     if (_calibrate->checkFrameOverflow(_sampleCache.size()))
         _sampleCache.pop_front();
     _sampleCache.push_back(value);
@@ -69,5 +67,12 @@ vector<double> HSpectrometerTest::average(vector<double> value)
             r += _sampleCache[j][i];
         value[i] = r / j;
     }
+    return value;
+}
+
+vector<double> HSpectrometerTest::fit(vector<double> value)
+{
+    for (unsigned int i = 0; i < value.size(); i++)
+        value[i] = max(0.0, _calibrate->fit(value[i]));
     return value;
 }

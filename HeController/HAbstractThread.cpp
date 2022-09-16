@@ -84,13 +84,41 @@ void HAbstractThread::clearAction()
 
 void HAbstractThread::run()
 {
+    int i;
+    HActionType action;
+
     d_ptr->running = true;
-    if (d_ptr->runMode == 0)
-        debugMode();
-    if (d_ptr->runMode == 1)
-        offlineMode();
-    if (d_ptr->runMode == 2)
-        normalMode();
+    if (!openProtocol())
+    {
+        d_ptr->running = false;
+        return;
+    }
+
+    forever
+    {
+        action = d_ptr->dequeueAction();
+        if (action == ACT_EXIT)
+            break;
+
+        for (i = d_ptr->retry; i >= 0; i--)
+        {
+            try
+            {
+                if (handleAction(action))
+                {
+                    emit actionFinished(action);
+                    break;
+                }
+            }
+            catch (HException &e)
+            {
+                if (i == 0)
+                    emit actionFailed(action, e.message());
+            }
+            msleep(d_ptr->sleepTime);
+        }
+    }
+    closeProtocol();
     d_ptr->running = false;
 }
 
@@ -119,75 +147,6 @@ bool HAbstractThread::isSupport(HActionType action)
             return true;
     }
     return false;
-}
-
-void HAbstractThread::debugMode()
-{
-    HActionType action;
-
-    openProtocol();
-    forever
-    {
-        action = d_ptr->dequeueAction();
-        if (action == ACT_EXIT)
-            break;
-        try
-        {
-            if (handleAction(action))
-                emit actionFinished(action);
-        }
-        catch (HException &e)
-        {
-            emit actionFailed(action, e.message());
-        }
-    }
-    closeProtocol();
-}
-
-void HAbstractThread::offlineMode()
-{
-    forever
-    {
-        auto action = d_ptr->dequeueAction();
-        if (action == ACT_EXIT)
-            break;
-        emit actionFinished(action);
-    }
-}
-
-void HAbstractThread::normalMode()
-{
-    int i;
-    HActionType action;
-
-    if (!openProtocol())
-        return;
-
-    forever
-    {
-        action = d_ptr->dequeueAction();
-        if (action == ACT_EXIT)
-            break;
-
-        for (i = d_ptr->retry; i >= 0; i--)
-        {
-            try
-            {
-                if (handleAction(action))
-                {
-                    emit actionFinished(action);
-                    break;
-                }
-            }
-            catch (HException &e)
-            {
-                if (i == 0)
-                    emit actionFailed(action, e.message());
-            }
-            msleep(d_ptr->sleepTime);
-        }
-    }
-    closeProtocol();
 }
 
 bool HAbstractThread::openProtocol()
@@ -225,7 +184,6 @@ void HAbstractThread::readSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
     settings->beginGroup("Thread");
-    d_ptr->runMode = settings->value("RunMode", 2).toInt();
     d_ptr->retry = settings->value("Retry", 3).toInt();
     d_ptr->sleepTime = settings->value("SleepTime", 1000).toUInt();
     settings->endGroup();
@@ -237,7 +195,6 @@ void HAbstractThread::writeSettings()
     auto settings = new QSettings(fileName, QSettings::IniFormat, this);
     settings->setIniCodec("utf-8");
     settings->beginGroup("Thread");
-    settings->setValue("RunMode", d_ptr->runMode);
     settings->setValue("Retry", d_ptr->retry);
     settings->setValue("SleepTime", d_ptr->sleepTime);
     settings->endGroup();

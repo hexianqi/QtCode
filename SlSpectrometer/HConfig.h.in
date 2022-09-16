@@ -1,0 +1,5 @@
+#pragma once
+
+//#define Q_CC_MSVC
+#define H_THREAD_COMM
+//#define USE_SPEC

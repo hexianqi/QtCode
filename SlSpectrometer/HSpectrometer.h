@@ -1,6 +1,9 @@
 #pragma once
 
 #include "HSpectrometerGlobal.h"
+#include "HSpectrometerData.h"
+
+using namespace std;
 
 class HSpectrometerAlgorithm;
 class HSpectrometerCalibrate;
@@ -14,12 +17,32 @@ public:
     ~HSpectrometer();
 
 public:
+    bool setSmooth(int times, int range);
+    void setStdCurve(vector<double> value);
+    double pelsToWave(int value);
+
+public:
     bool openProtocol();
     bool closeProtocol();
+    bool setIntegralTime(double value);
+    bool getSample(vector<double> &value, double &percent, bool fit);
+    bool getSampleI(double integrationTime, vector<double> &value, double &percent, bool fit);
+    bool getSN(vector<unsigned char> &value);
+    HSpectrometerData *getSpectrometerData(vector<double> value);
 
+
+public:
+    bool clearState();
+    bool queryState(int *value);
+    bool startSample(double integrationTime);
+    bool getSampleT(vector<double> &value, double &percent, bool fit);
+
+protected:
+    vector<double> processSample(vector<int> &data, double &percent, bool fit);
 
 protected:
     HSpectrometerAlgorithm *_algorithm;
     HSpectrometerCalibrate *_calibrate;
     HSpectrometerProtocol *_protocol;
+    HSpectrometerTest *_test;
 };

@@ -6,7 +6,15 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(SlSpectrometer SHARED
+set(DESTDIR "../Dest")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DESTDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DESTDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DESTDIR})
+set(LIBRARY_OUTPUT_PATH ${DESTDIR})
+
+configure_file(HConfig.h.in HConfig.h)
+
+add_library(${PROJECT_NAME} SHARED
   HSpectrometerGlobal.h
   HSpectrometerAlgorithm.cpp
   HSpectrometerAlgorithm.h
@@ -30,4 +38,7 @@ add_library(SlSpectrometer SHARED
   CCyUSB.h
 )
 
-target_compile_definitions(SlSpectrometer PRIVATE SLSPECTROMETER_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE SLSPECTROMETER_LIBRARY)
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
+
+

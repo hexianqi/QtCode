@@ -19,11 +19,11 @@ public:
 public:
     double setIntegralTime(double value);
     double calcMaxSample(vector<double> value);
-    vector<double> preprocess(vector<double> value);
-    vector< vector<double> > calcEnergy(vector<double> value);
+    vector<double> preprocess(vector<double> value, bool fix = true);
 
 protected:
     vector<double> average(vector<double> value);
+    vector<double> fit(vector<double> value);
 
 protected:
     HSpectrometerCalibrate *_calibrate;

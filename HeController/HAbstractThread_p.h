@@ -26,12 +26,11 @@ public:
 public:
     volatile bool running = false;
     QMutex *mutex;
-    QWaitCondition *waitConditionAction;    
+    QWaitCondition *waitConditionAction;
     QQueue<HActionType> actionCache;
     QSet<HActionType> actionSupport;
     QList<IProtocol *> protocols;
     QList<IActionStrategy *> strategys;
-    int runMode = 2;    // 0:测试模式; 1:脱机模式; 2:联机模式;
     int retry = 3;
     uint sleepTime = 1000;
 

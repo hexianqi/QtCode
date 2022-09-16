@@ -15,7 +15,7 @@ public:
     vector<double> dealBotton(vector<double> value);
     vector<double> fit(vector<double> value);
     vector<double> smooth(vector<double> value);
-    vector<vector<double> > calcWaveEnergy(vector<double> value);
+    vector< vector<double> > calcWaveEnergy(vector<double> value);
     bool checkFrameOverflow(int size);
     double toWave(double value);
     double fit(double value);
@@ -35,10 +35,10 @@ protected:
     vector<unsigned char> packPelWave();
     vector<unsigned char> packCurves();
     vector<unsigned char> packFit();
-    bool unpackSetting(vector<unsigned char> value, size_t &pos);
-    bool unpackPelWave(vector<unsigned char> value, size_t &pos);
-    bool unpackCurves(vector<unsigned char> value, size_t &pos);
-    bool unpackFit(vector<unsigned char> value, size_t &pos);
+    bool unpackSetting(vector<unsigned char> value, unsigned int &pos);
+    bool unpackPelWave(vector<unsigned char> value, unsigned int &pos);
+    bool unpackCurves(vector<unsigned char> value, unsigned int &pos);
+    bool unpackFit(vector<unsigned char> value, unsigned int &pos);
 
 protected:
     int _reservePelsF;

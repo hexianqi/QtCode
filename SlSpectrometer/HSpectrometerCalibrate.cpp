@@ -1,8 +1,8 @@
 #include "HSpectrometerCalibrate.h"
 #include "HSpectrometerHelper.h"
-//#include <algorithm>
+#include <math.h>
 
-unsigned int readUInt16(vector<unsigned char> data, size_t &pos)
+unsigned int readUInt16(vector<unsigned char> data, unsigned int &pos)
 {
     auto v1 = data[pos++];
     auto v2 = data[pos++];
@@ -17,7 +17,7 @@ vector<unsigned char> writeUInt16(unsigned int data)
     return r;
 }
 
-bool checkHead(vector<unsigned char> data, size_t &pos, unsigned int &version)
+bool checkHead(vector<unsigned char> data, unsigned int &pos, unsigned int &version)
 {
     if (data.size() < pos + 4)
         return false;
@@ -109,8 +109,8 @@ vector<double> HSpectrometerCalibrate::smooth(vector<double> value)
             avg = value[i];
             for (j = 1; j <= _smoothRange; j++)
             {
-                m = max(i - j, 0);
-                n = min(i + j, size - 1);
+                m = fmax(i - j, 0);
+                n = fmin(i + j, size - 1);
                 avg += value[m] + value[n];
             }
             temp[i] = avg / (2 * _smoothRange + 1);
@@ -124,7 +124,7 @@ vector<vector<double> > HSpectrometerCalibrate::calcWaveEnergy(vector<double> va
 {
     double x, y, r;
     vector<double> xa, ya;
-    unsigned int size = min(value.size(), _stdCurves.size());
+    unsigned int size = fmin(value.size(), _stdCurves.size());
     if (size <= 0)
         return { xa, ya };
 
@@ -265,7 +265,7 @@ vector<unsigned char> HSpectrometerCalibrate::packSetting()
 
 vector<unsigned char> HSpectrometerCalibrate::packPelWave()
 {
-    size_t i;
+    unsigned int i;
     vector<unsigned char> v;
     v.push_back(0x00);		// 大小
     v.push_back(0x00);
@@ -287,7 +287,7 @@ vector<unsigned char> HSpectrometerCalibrate::packPelWave()
 
 vector<unsigned char> HSpectrometerCalibrate::packCurves()
 {
-    size_t i;
+    unsigned int i;
     int value;
     vector<unsigned char> v;
     v.push_back(0x00);		// 大小
@@ -309,7 +309,7 @@ vector<unsigned char> HSpectrometerCalibrate::packCurves()
 
 vector<unsigned char> HSpectrometerCalibrate::packFit()
 {
-    size_t i;
+    unsigned int i;
     vector<unsigned char> v;
     v.push_back(0x00);		// 大小
     v.push_back(0x00);
@@ -329,7 +329,7 @@ vector<unsigned char> HSpectrometerCalibrate::packFit()
     return v;
 }
 
-bool HSpectrometerCalibrate::unpackSetting(vector<unsigned char> value, size_t &pos)
+bool HSpectrometerCalibrate::unpackSetting(vector<unsigned char> value, unsigned int &pos)
 {
     unsigned int version = 0;
     if (!checkHead(value, pos, version))
@@ -344,7 +344,7 @@ bool HSpectrometerCalibrate::unpackSetting(vector<unsigned char> value, size_t &
     return true;
 }
 
-bool HSpectrometerCalibrate::unpackPelWave(vector<unsigned char> value, size_t &pos)
+bool HSpectrometerCalibrate::unpackPelWave(vector<unsigned char> value, unsigned int &pos)
 {
     unsigned int version = 0;
     if (!checkHead(value, pos, version))
@@ -361,7 +361,7 @@ bool HSpectrometerCalibrate::unpackPelWave(vector<unsigned char> value, size_t &
     return true;
 }
 
-bool HSpectrometerCalibrate::unpackCurves(vector<unsigned char> value, size_t &pos)
+bool HSpectrometerCalibrate::unpackCurves(vector<unsigned char> value, unsigned int &pos)
 {
     unsigned int version = 0;
     if (!checkHead(value, pos, version))
@@ -374,7 +374,7 @@ bool HSpectrometerCalibrate::unpackCurves(vector<unsigned char> value, size_t &p
     return true;
 }
 
-bool HSpectrometerCalibrate::unpackFit(vector<unsigned char> value, size_t &pos)
+bool HSpectrometerCalibrate::unpackFit(vector<unsigned char> value, unsigned int &pos)
 {
     unsigned int version = 0;
     if (!checkHead(value, pos, version))
