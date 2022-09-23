@@ -274,6 +274,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_EXIT,                          tr("退出"));
     hashActionComment.insert(ACT_CHECK_DEVICE,                  tr("检查设备"));
     hashActionComment.insert(ACT_UNLOCK_DEVICE,                 tr("设备解锁"));
+    hashActionComment.insert(ACT_GET_SN,                        tr("获取序列号"));
     // 光谱相关操作
     hashActionComment.insert(ACT_SET_INTEGRAL_TIME,             tr("设置积分时间"));
     hashActionComment.insert(ACT_SET_SPECTRUM_AVG_TIMES,        tr("设置光谱平均次数"));
@@ -284,6 +285,7 @@ void HCoreGlobalInstance::initActionComment()
     hashActionComment.insert(ACT_GET_SPECTRUM,                  tr("获取光谱数据"));
     hashActionComment.insert(ACT_GET_SPECTRUM_ENERGY,           tr("获取光谱能量数据"));
     hashActionComment.insert(ACT_GET_RAM,                       tr("获取RAM数据"));
+    hashActionComment.insert(ACT_GET_DATA,                      tr("获取数据"));
     // 电相关操作
     hashActionComment.insert(ACT_SET_OUTPUT_VOLTAGE,            tr("设置输出电压"));
     hashActionComment.insert(ACT_SET_OUTPUT_CURRENT,            tr("设置输出电流"));

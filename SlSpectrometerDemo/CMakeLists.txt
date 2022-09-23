@@ -17,19 +17,22 @@ set(LIBRARY_OUTPUT_PATH ${DESTDIR})
 
 include_directories(..)
 link_directories(${DESTDIR})
-link_libraries(HeControllerd)
+link_libraries(HeCored HeDatad HeControllerd HePlugind SlSpectrometer)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Charts REQUIRED)
 
 add_executable(${PROJECT_NAME}
     main.cpp
     HMainWindowDemo.cpp
     HMainWindowDemo.h
     HMainWindowDemo.ui
+    HMainWindowDemo_p.h
     HThreadDemo.cpp
     HThreadDemo.h
     HThreadDemo_p.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Charts)

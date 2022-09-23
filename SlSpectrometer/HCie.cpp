@@ -1,7 +1,6 @@
 #include "HCie.h"
+#include "HData.h"
 #include "HSpectrometerHelper.h"
-#include <string>
-#include <fstream>
 #include <sstream>
 #include <math.h>
 
@@ -186,57 +185,27 @@ vector<double> HCie1931::calcIsoCoordinate(double tc)
 void HCie1931::read1931()
 {
     int i, n;
-    string str, line;
-    fstream fin("Dat\\CIE1931.dat");
+    stringstream ss(gCIE1931);
 
-    if (getline(fin, line))
-    {
-        stringstream ss(line);
-        ss >> str >> n;
-    }
-    else
-        return;
-
-    getline(fin, line);
-    getline(fin, line);
+    ss >> n;
     _cie1931.resize(n);
-    i = 0;
-    while (getline(fin, line) && i < n)
-    {
-        istringstream ss(line);
+    for (i = 0; i < n ; i++)
         ss >> _cie1931[i].wave >> _cie1931[i].X >> _cie1931[i].Y >> _cie1931[i].Z >> _cie1931[i].x >> _cie1931[i].y >> _cie1931[i].z >> _cie1931[i].slope;
-        i++;
-    }
-    fin.close();
 }
 
 void HCie1931::readTc32()
 {
-    int i, j, n;
-    string str, line;
-    fstream fin("Dat\\CIE_TC_32.dat");
+    int i,j, n;
+    stringstream ss(gCIE_TC_32);
 
-    if (getline(fin, line))
-    {
-        stringstream ss(line);
-        ss >> str >> n;
-    }
-    else
-        return;
-
-    getline(fin, line);
-    getline(fin, line);
+    ss >> n;
     _cieTc32.resize(n);
-    i = 0;
-    while (getline(fin, line) && i < n)
+    for (i = 0; i < n ; i++)
     {
-        istringstream ss(line);
         ss >> _cieTc32[i].wave;
         for (j = 0; j < 15; j++)
             ss >> _cieTc32[i].S[j];
-        i++;
     }
-    fin.close();
 }
 
 HCieUcs::HCieUcs()
@@ -294,25 +263,13 @@ CIE_UCS HCieUcs::findCieUcs(double tc)
 
 void HCieUcs::read()
 {
-    int i, j, n;
-    string str, line;
-    fstream fin("Dat\\CIE_UCS.dat");
+    int i,j, n;
+    stringstream ss(gCIE_UCS);
 
-    if (getline(fin, line))
-    {
-        stringstream ss(line);
-        ss >> str >> n;
-    }
-    else
-        return;
-
-    getline(fin, line);
-    getline(fin, line);
+    ss >> n;
     _cieUcs.resize(n);
-    i = 0;
-    while (getline(fin, line) && i < n)
+    for (i = 0; i < n ; i++)
     {
-        istringstream ss(line);
         ss >> _cieUcs[i].Tc >> _cieUcs[i].urt >> _cieUcs[i].vrt >> _cieUcs[i].xt >> _cieUcs[i].yt >> _cieUcs[i].ur >> _cieUcs[i].vr >> _cieUcs[i].cr >> _cieUcs[i].dr;
         for (j = 0; j < 15; j++)
             ss >> _cieUcs[i].Ur[j];
@@ -320,36 +277,18 @@ void HCieUcs::read()
             ss >> _cieUcs[i].Vr[j];
         for (j = 0; j < 15; j++)
             ss >> _cieUcs[i].Wr[j];
-        i++;
     }
-    fin.close();
 }
 
 void HCieUcs::readP()
 {
     int i, n;
-    string str, line;
-    fstream fin("Dat\\CIE_UCS_P.dat");
+    stringstream ss(gCIE_UCS_P);
 
-    if (getline(fin, line))
-    {
-        stringstream ss(line);
-        ss >> str >> n;
-    }
-    else
-        return;
-
-    getline(fin, line);
-    getline(fin, line);
+    ss >> n;
     _cieUcsP.resize(n);
-    i = 0;
-    while (getline(fin, line) && i < n)
-    {
-        istringstream ss(line);
+    for (i = 0; i < n ; i++)
         ss >> _cieUcsP[i].Tc >> _cieUcsP[i].urt >> _cieUcsP[i].vrt;
-        i++;
-    }
-    fin.close();
 }
 
 HCieDaylight::HCieDaylight()
@@ -367,31 +306,17 @@ vector<double> HCieDaylight::calcRefSourceSpectrum(double tc, vector<double> wav
 
 void HCieDaylight::read()
 {
-    int i, j, n;
-    string str, line;
-    fstream fin("Dat\\CIE_DAY.dat");
+    int i,j, n;
+    stringstream ss(gCIE_DAY);
 
-    if (getline(fin, line))
-    {
-        stringstream ss(line);
-        ss >> str >> n;
-    }
-    else
-        return;
-
-    getline(fin, line);
-    getline(fin, line);
+    ss >> n;
     _cieDaylight.resize(n);
-    i = 0;
-    while (getline(fin, line) && i < n)
+    for (i = 0; i < n ; i++)
     {
-        istringstream ss(line);
         ss >> _cieDaylight[i].wave;
         for (j = 0; j < 3; j++)
             ss >> _cieDaylight[i].S[j];
-        i++;
     }
-    fin.close();
 }
 
 double HCieDaylight::calcRefSpectrum(double tc, double wave)
@@ -491,32 +416,17 @@ vector<double> HPhotopicVision::calcPhotopic(vector<double> wave, vector<double>
 
 void HPhotopicVision::read()
 {
-    unsigned int i, n;
-    string str, line;
+    int i, n;
     vector<double> wave, ratio;
-    fstream fin("Dat\\PhotopicVision.dat");
+    stringstream ss(gPhotopicVision);
 
-    if (getline(fin, line))
-    {
-        stringstream ss(line);
-        ss >> str >> n;
-    }
-    else
+    ss >> n;
+    if (n < 2)
         return;
-
-    getline(fin, line);
-    getline(fin, line);
     wave.resize(n);
     ratio.resize(n);
-    i = 0;
-    while (getline(fin, line) && i < n)
-    {
-        istringstream ss(line);
+    for (i = 0; i < n ; i++)
         ss >> wave[i] >> ratio[i];
-        i++;
-    }
-    fin.close();
-
     if (wave.size() < 2)
         return;
 
@@ -524,53 +434,3 @@ void HPhotopicVision::read()
     _wave = r[0];
     _ratio = r[1];
 }
-
-// data.h
-// extern const char *gdat;
-
-// data.cpp
-//#include "data.h"
-//const char *gdat = "16\n"
-//                   "0.0950125098376374401853193354250\n"
-//                   "0.281603550779258913230460501460\n"
-//                   "0.458016777657227386342419442983\n"
-//                   "0.617876244402643748446671764049\n"
-//                   "0.755404408355003033895101194847\n"
-//                   "0.865631202387831743880467897713\n"
-//                   "0.944575023073232576077988415535\n"
-//                   "0.989400934991649932596154173450\n"
-//                   "0.189450610455068496285396723209\n"
-//                   "0.182603415044923588866763667977\n"
-//                   "0.169156519395002538189312079058\n"
-//                   "0.149595988816576732081501730116\n"
-//                   "0.124628971255533872052476277863\n"
-//                   "0.0951585116824927848099251053810\n"
-//                   "0.0622535239386478928628438391746\n"
-//                   "0.0271524594117540948517805723700\n";
-
-// main.cpp
-//#include <iostream>
-//#include <sstream>
-//#include <vector>
-//#include "data.h"
-//using namespace std;
-//int main()
-//{
-//    int n;
-//    vector<double> value;
-//    stringstream ss(gdat);
-
-//    ss >> n;
-//    value.resize(n);
-
-//    for (int i = 0; i < n ; i++)
-//        ss >> value[i];
-
-//    for (unsigned int i = 0; i < value.size(); i++)
-//        cout << i << " : " << value[i] << endl;
-//    return 0;
-//}
-
-
-
-

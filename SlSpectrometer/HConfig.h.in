@@ -1,5 +1,5 @@
 #pragma once
 
-//#define Q_CC_MSVC
-#define H_THREAD_COMM
-//#define USE_SPEC
+#cmakedefine Q_CC_MSVC
+#cmakedefine H_THREAD_COMM
+#cmakedefine H_USE_SPEC

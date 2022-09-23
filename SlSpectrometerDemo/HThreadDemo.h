@@ -18,6 +18,20 @@ class HThreadDemo : public HAbstractThread
 public:
     explicit HThreadDemo(QObject *parent = nullptr);
     ~HThreadDemo() override;
+
+public:
+    QString typeName() override;
+
+public:
+    QString threadInfo() override;
+
+protected:
+    bool handleAction(HActionType action) override;
+
+protected:
+    bool openProtocol() override;
+    void closeProtocol() override;
+    bool handleGetSpectrom();
 };
 
 

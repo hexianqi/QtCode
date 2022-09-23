@@ -6,7 +6,7 @@
 #include <mutex>
 #include <condition_variable>
 
-#ifdef USE_SPEC
+#ifdef H_USE_SPEC
 #define DOWN_SIZE 4
 #else
 #define DOWN_SIZE 8
@@ -57,7 +57,7 @@ void processing_thread(HUsbPortCy *port)
 HSpectrometerProtocol::HSpectrometerProtocol()
 {
     _integralTime = 2;
-    _simulate = false;
+    _simulate = true;
     _port = new HUsbPortCy;
 #ifdef H_THREAD_COMM
     _thread = new thread(processing_thread, _port);
@@ -179,6 +179,14 @@ bool HSpectrometerProtocol::getRam(vector<unsigned char> &value)
 
 bool HSpectrometerProtocol::sn(vector<unsigned char> &value)
 {
+    if (_simulate)
+    {
+        value.clear();
+        for (int i = 0; i < 4; i++)
+            value.push_back(i + 1);
+        return true;
+    }
+
     vector<unsigned char> downData;
     vector<unsigned char> upData(8);
     downData.push_back(0x00);
@@ -252,7 +260,7 @@ bool HSpectrometerProtocol::queryState(int *value)
 
 bool HSpectrometerProtocol::startSample(double integrationTime)
 {
-#ifdef USE_SPEC
+#ifdef H_USE_SPEC
     _downData[0] = 0x00;
     _downData[1] = 0x04;
     _downData[2] = 0x02;

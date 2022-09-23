@@ -40,7 +40,8 @@ bool HSpectrometer::openProtocol()
 {
     if (!_protocol->open())
         return false;
-
+    if (_protocol->isSimulate())
+        return true;
     vector<unsigned char> data;
     if (!_protocol->getRam(data))
         return false;
@@ -97,6 +98,11 @@ bool HSpectrometer::clearState()
 bool HSpectrometer::queryState(int *value)
 {
     return _protocol->queryState(value);
+}
+
+bool HSpectrometer::startSample(double integrationTime)
+{
+    return _protocol->startSample(integrationTime);
 }
 
 bool HSpectrometer::getSampleT(vector<double> &value, double &percent, bool fit)

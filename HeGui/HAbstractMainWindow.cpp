@@ -266,7 +266,6 @@ void HAbstractMainWindow::showDeviceFailed(const QString &port, const QString &t
 
 void HAbstractMainWindow::showActionFailed(HActionType action, const QString &text)
 {
-    Q_UNUSED(action);
     auto msg = tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action), text);
     QMessageBox::warning(this, "", msg);
 }

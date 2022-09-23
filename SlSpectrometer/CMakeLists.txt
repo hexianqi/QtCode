@@ -12,6 +12,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DESTDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DESTDIR})
 set(LIBRARY_OUTPUT_PATH ${DESTDIR})
 
+option(Q_CC_MSVC "Use Visual C++ compiled" OFF)
+option(H_THREAD_COMM "Use Thread Communicate" ON)
+option(H_USE_SPEC "Use Spec" OFF)
+
 configure_file(HConfig.h.in HConfig.h)
 
 add_library(${PROJECT_NAME} SHARED
@@ -33,12 +37,19 @@ add_library(${PROJECT_NAME} SHARED
   HCie.h
   HUsbPortCy.cpp
   HUsbPortCy.h
+  HData_CIE_DAY.cpp
+  HData_CIE_TC_32.cpp
+  HData_CIE_UCS.cpp
+  HData_CIE_UCS_P.cpp
+  HData_CIE1931.cpp
+  HData_PhotopicVision.cpp
+  HData.h
   HConfig.h
   CCyUSB.cpp
   CCyUSB.h
+  SongLang.cpp
+  SongLang.h
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE SLSPECTROMETER_LIBRARY)
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
-
-
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})

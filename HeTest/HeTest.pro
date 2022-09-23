@@ -38,7 +38,7 @@ SOURCES     += \
             HTestAlgorithm.cpp \
             HTestPlugin.cpp \
             HTestGsl.cpp \
-            HTestData.cpp
+            HTestData.cpp \
 
 HEADERS     += \
             HTestCore.h \

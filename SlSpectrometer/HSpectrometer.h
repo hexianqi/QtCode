@@ -25,17 +25,16 @@ public:
     bool openProtocol();
     bool closeProtocol();
     bool setIntegralTime(double value);
-    bool getSample(vector<double> &value, double &percent, bool fit);
-    bool getSampleI(double integrationTime, vector<double> &value, double &percent, bool fit);
+    bool getSample(vector<double> &value, double &percent, bool fit = true);
+    bool getSampleI(double integrationTime, vector<double> &value, double &percent, bool fit = true);
     bool getSN(vector<unsigned char> &value);
     HSpectrometerData *getSpectrometerData(vector<double> value);
-
 
 public:
     bool clearState();
     bool queryState(int *value);
     bool startSample(double integrationTime);
-    bool getSampleT(vector<double> &value, double &percent, bool fit);
+    bool getSampleT(vector<double> &value, double &percent, bool fit = true);
 
 protected:
     vector<double> processSample(vector<int> &data, double &percent, bool fit);

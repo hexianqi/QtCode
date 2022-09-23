@@ -14,6 +14,7 @@ using HActionType = long long;
 #define     ACT_EXIT                                0x00000001
 #define     ACT_CHECK_DEVICE                        0x00000011
 #define     ACT_UNLOCK_DEVICE                       0x00000012
+#define     ACT_GET_SN                              0x00000021
 
 #define     ACT_SET_INTEGRAL_TIME                   0x00010101
 #define     ACT_SET_SPECTRUM_AVG_TIMES              0x00010102
@@ -24,6 +25,7 @@ using HActionType = long long;
 #define     ACT_GET_SPECTRUM                        0x00010112
 #define     ACT_GET_SPECTRUM_ENERGY                 0x00010113
 #define     ACT_GET_RAM                             0x00010114
+#define     ACT_GET_DATA                            0x00010115
 
 #define     ACT_SET_OUTPUT_VOLTAGE                  0x00020101
 #define     ACT_SET_OUTPUT_CURRENT                  0x00020102

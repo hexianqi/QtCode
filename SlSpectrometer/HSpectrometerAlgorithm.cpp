@@ -22,6 +22,8 @@ HSpectrometerData *HSpectrometerAlgorithm::calcSpectrum(vector<double> wave, vec
     if (wave.empty() || wave.size() != energy.size())
         return nullptr;
     auto data = new HSpectrometerData;
+    data->Wave = wave;
+    data->Energy = energy;
     calcEnergy(data);
     calcChromaticity(data);
     calcRenderingIndex(data);
