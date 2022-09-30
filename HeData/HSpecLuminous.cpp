@@ -1,5 +1,7 @@
 #include "HSpecLuminous_p.h"
+#include "HDataHelper.h"
 #include <QtCore/QDataStream>
+#include <QtCore/QVector>
 
 HE_BEGIN_NAMESPACE
 
@@ -37,6 +39,27 @@ void HSpecLuminous::writeContent(QDataStream &s)
     s << quint32(2);
     s << d->datas;
     s << d->selfAbsorption;
+}
+
+QVector<uchar> HSpecLuminous::toBinaryData()
+{
+    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
+                               << HDataHelper::writeUInt16(1)   // 版本
+                               << HDataHelper::writeDouble(data("[标准光谱光通量]").toDouble())
+                               << HDataHelper::writeDouble(data("[光谱光通量系数]").toDouble());
+    r[0] = uchar(r.size() / 256);
+    r[1] = uchar(r.size() % 256);
+    return r;
+}
+
+bool HSpecLuminous::fromBinaryData(const QVector<uchar> &data, int &pos)
+{
+    int version = 0;
+    if (!HDataHelper::checkHead(data, pos, version))
+        return false;
+    setData("[标准光谱光通量]", HDataHelper::readDouble(data, pos));
+    setData("[光谱光通量系数]", HDataHelper::readDouble(data, pos));
+    return true;
 }
 
 void HSpecLuminous::restoreDefault()

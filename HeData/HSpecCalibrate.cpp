@@ -75,15 +75,18 @@ void HSpecCalibrate::writeContent(QDataStream &s)
 QVector<uchar> HSpecCalibrate::toBinaryData()
 {
     auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)       // 大小
-                               << HDataHelper::writeUInt16(1)       // 版本
+                               << HDataHelper::writeUInt16(2)       // 版本
                                << d_ptr->setting->toBinaryData()
                                << d_ptr->pelsWave->toBinaryData()
-                               << d_ptr->fitting->toBinaryData();
+                               << d_ptr->fitting->toBinaryData()
+                               << d_ptr->luminous->toBinaryData();
     r[0] = uchar(r.size() / 256);
     r[1] = uchar(r.size() % 256);
     return r;
 }
-
+/***************************************************************************************************
+**      2022-09-30  版本02    增加luminous
+***************************************************************************************************/
 bool HSpecCalibrate::fromBinaryData(QVector<uchar> data)
 {
     int pos = 0;
@@ -96,6 +99,11 @@ bool HSpecCalibrate::fromBinaryData(QVector<uchar> data)
         return false;
     if (!d_ptr->fitting->fromBinaryData(data, pos))
         return false;
+    if (version >= 2)
+    {
+        if (!d_ptr->luminous->fromBinaryData(data, pos))
+            return false;
+    }
     return true;
 }
 

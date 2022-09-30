@@ -13,9 +13,36 @@ quint16 HDataHelper::readUInt16(QVector<uchar> data, int &pos)
     return v1 * 256 + v2;
 }
 
+double HDataHelper::readDouble(QVector<uchar> data, int &pos)
+{
+    return readString(data, pos).toDouble();
+}
+
+QString HDataHelper::readString(QVector<uchar> data, int &pos)
+{
+    QString r;
+    auto size = readUInt16(data, pos);
+    for (int i = 0; i < size; i++, pos++)
+        r.append(data[pos]);
+    return r;
+}
+
 QVector<uchar> HDataHelper::writeUInt16(quint16 data)
 {
     return QVector<uchar>() << uchar(data / 256) << uchar(data % 256);
+}
+
+QVector<uchar> HDataHelper::writeDouble(double data)
+{
+    return writeString(QString::number(data, 'e'));
+}
+
+QVector<uchar> HDataHelper::writeString(QString data)
+{
+    auto r = writeUInt16(data.size());
+    for (auto c : data)
+        r << c.toLatin1();
+    return r;
 }
 
 bool HDataHelper::checkHead(const QVector<uchar> &data, int &pos, int &version)

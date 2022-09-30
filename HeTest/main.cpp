@@ -18,6 +18,9 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStyleFactory>
 
+#include <string>
+#include <sstream>
+
 void testGslChart()
 {
     auto p = HTestGsl::interpEval();
@@ -41,6 +44,40 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
+
+    double d = 1.2345678901E-10;
+    auto str = QString::number(d, 'e', 12);
+    QVector<uchar> ch;
+    for (auto c : str)
+        ch.append(c.toLatin1());
+
+    QString str2;
+    for (auto c : ch)
+        str2.append(c);
+    auto d2 = str2.toDouble();
+
+//    qDebug() << d;
+//    qDebug() << str;
+//    qDebug() << ch;
+//    qDebug() << str2;
+//    qDebug() << d2;
+
+    std::ostringstream stream;
+    stream << d;
+    auto strB =  stream.str();
+
+    qDebug() << d;
+    qDebug() << QString::fromStdString(strB);
+
+
+    std::string strA = "1.234567890E+10";
+    auto v = std::stod(strA);
+    qDebug() << &strA;
+    qDebug() << v;
+
+    return 0;
+
+
 
 //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;

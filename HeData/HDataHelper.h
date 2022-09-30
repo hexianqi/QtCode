@@ -13,7 +13,11 @@ class HDataHelper
 {
 public:
     static quint16 readUInt16(QVector<uchar> data, int &pos);
+    static double readDouble(QVector<uchar> data, int &pos);
+    static QString readString(QVector<uchar> data, int &pos);
     static QVector<uchar> writeUInt16(quint16 data);
+    static QVector<uchar> writeDouble(double data);
+    static QVector<uchar> writeString(QString data);
     static bool checkHead(const QVector<uchar> &data, int &pos, int &version);
 
 public:

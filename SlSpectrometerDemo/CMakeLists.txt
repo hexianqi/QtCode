@@ -19,9 +19,8 @@ include_directories(..)
 link_directories(${DESTDIR})
 link_libraries(HeCored HeDatad HeControllerd HePlugind SlSpectrometer)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Charts REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Widgets Charts)
 
 add_executable(${PROJECT_NAME}
     main.cpp
