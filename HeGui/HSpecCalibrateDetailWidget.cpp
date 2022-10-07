@@ -46,6 +46,7 @@ void HSpecCalibrateDetailWidget::initHash()
     d->lineEdits.insert("[色温]",       ui->lineEdit_003);
     d->lineEdits.insert("[色坐标]",     ui->lineEdit_004);
     d->lineEdits.insert("[显色指数Ra]", ui->lineEdit_005);
+    d->lineEdits.insert("[光谱光通量]", ui->lineEdit_006);
 }
 
 HE_END_NAMESPACE

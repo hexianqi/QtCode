@@ -42,16 +42,19 @@ void HSpecFittingPolynom::writeContent(QDataStream &s)
     s << d->ca;
     s << d->cova;
 }
+/***************************************************************************************************
+**      2022-10-07  版本02    增加 [光谱拟合多项式项数]
+***************************************************************************************************/
 
 QVector<uchar> HSpecFittingPolynom::toBinaryData()
 {
     Q_D(HSpecFittingPolynom);
-    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)  // 大小
-                               << HDataHelper::writeUInt16(1)  // 版本
-                               << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
+    auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)   // 大小
+                               << HDataHelper::writeUInt16(2);  // 版本
+    r << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
     for (auto p : d->fittingPoints)
         r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
-//    r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
+    r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
     r[0] = uchar(r.size() / 256);
     r[1] = uchar(r.size() % 256);
     return r;
@@ -72,7 +75,8 @@ bool HSpecFittingPolynom::fromBinaryData(QVector<uchar> data, int &pos)
         auto y = HDataHelper::readUInt16(data, pos) / 10000.0;
         d->fittingPoints << QPointF(x, y);
     }
-//    setData("[光谱拟合多项式项数]", HDataHelper::readUInt16(data, pos));
+    if (version >= 2)
+        setData("[光谱拟合多项式项数]", HDataHelper::readUInt16(data, pos));
     setData("[光谱拟合取样次数]", size);
     setData("[光谱拟合有效范围]", QPointF(d->fittingPoints.first().x(), d->fittingPoints.last().x()));
     calcLinear();
