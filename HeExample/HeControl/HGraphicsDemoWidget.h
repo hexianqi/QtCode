@@ -24,6 +24,14 @@ protected slots:
 
 private:
     void init();
+    void initGraphicsView();
+    void addTestItem();
+    void addPixmapItem();
+    void addSliderItem();
+    void addColorBoardItem();
+    void addNoteItem();
+    void addDiscButtonItem();
+    void addProxyWidget();
 
 private:
     Ui::HGraphicsDemoWidget *ui;

@@ -46,7 +46,7 @@ bool HSpecStrategy::handle(HActionType action)
     switch(action)
     {
     case ACT_SET_INTEGRAL_TIME:
-        return d->protocol->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 500));
+        return d->protocol->setData(action, uint(d->testSpec->data("[积分时间]").toDouble() * 1000));
     case ACT_SET_SPECTRUM_AVG_TIMES:
         return d->protocol->setData(action, d->testSpec->data("[光谱平均次数]").toInt());
     case ACT_SET_SPECTRUM_SAMPLE_DELAY:

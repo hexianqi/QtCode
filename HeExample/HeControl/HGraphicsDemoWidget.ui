@@ -44,13 +44,10 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="2">
-    <widget class="QWidget" name="widget" native="true">
-     <property name="maximumSize">
-      <size>
-       <width>0</width>
-       <height>16777215</height>
-      </size>
+   <item row="1" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string/>
      </property>
     </widget>
    </item>

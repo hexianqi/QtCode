@@ -9,6 +9,8 @@ HEADERS += \
     $$PWD/HGraphicsObject_p.h \
     $$PWD/HGraphicsPixmapItem.h \
     $$PWD/HGraphicsPixmapItem_p.h \
+    $$PWD/HGraphicsProxyWidget.h \
+    $$PWD/HGraphicsProxyWidget_p.h \
     $$PWD/HGraphicsSliderItem.h \
     $$PWD/HGraphicsSliderItem_p.h \
     $$PWD/HGraphicsView.h \
@@ -20,5 +22,6 @@ SOURCES += \
     $$PWD/HGraphicsNoteItem.cpp \
     $$PWD/HGraphicsObject.cpp \
     $$PWD/HGraphicsPixmapItem.cpp \
+    $$PWD/HGraphicsProxyWidget.cpp \
     $$PWD/HGraphicsSliderItem.cpp \
     $$PWD/HGraphicsView.cpp
