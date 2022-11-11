@@ -16,6 +16,10 @@ option(Q_CC_MSVC "Use Visual C++ compiled" OFF)
 option(H_THREAD_COMM "Use Thread Communicate" ON)
 option(H_USE_SPEC "Use Spec" OFF)
 
+include_directories("D:/Qt/modules/gsl/win32/include")
+link_directories("D:/Qt/modules/gsl/win32/lib")
+link_libraries(gsl gslcblas)
+
 configure_file(HConfig.h.in HConfig.h)
 
 add_library(${PROJECT_NAME} SHARED
@@ -35,6 +39,8 @@ add_library(${PROJECT_NAME} SHARED
   HSpectrometer.h
   HCie.cpp
   HCie.h
+  HIesTm30.cpp
+  HIesTm30.h
   HUsbPortCy.cpp
   HUsbPortCy.h
   HData_CIE_DAY.cpp
@@ -42,6 +48,8 @@ add_library(${PROJECT_NAME} SHARED
   HData_CIE_UCS.cpp
   HData_CIE_UCS_P.cpp
   HData_CIE1931.cpp
+  HData_CIE1964.cpp
+  HData_CIE_IES.cpp
   HData_PhotopicVision.cpp
   HData.h
   HConfig.h

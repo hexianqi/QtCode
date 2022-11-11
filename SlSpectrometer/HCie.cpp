@@ -195,7 +195,7 @@ void HCie1931::read1931()
 
 void HCie1931::readTc32()
 {
-    int i,j, n;
+    int i, j, n;
     stringstream ss(gCIE_TC_32);
 
     ss >> n;

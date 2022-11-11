@@ -1,6 +1,7 @@
 #include "HGraphicsProxyWidget_p.h"
 #include "HGraphicsHelper.h"
 #include <QtGui/QPainter>
+#include <QtWidgets/QGraphicsLayout>
 #include <QtWidgets/QGraphicsScene>
 #include <QtWidgets/QGraphicsSceneEvent>
 #include <QtWidgets/QStyleOptionGraphicsItem>
@@ -37,6 +38,16 @@ void HGraphicsProxyWidget::setCenterWidget(QWidget *w)
     update();
 }
 
+void HGraphicsProxyWidget::setCenterLayout(QGraphicsLayout *layout)
+{
+    setLayout(layout);
+    setContentsMargins(10, 10, 10, 10);
+
+    adjustSize();
+    d_ptr->itemSize = sizeHint(Qt::PreferredSize);
+    d_ptr->minimumSizeHint = sizeHint(Qt::MinimumDescent);
+}
+
 QVariant HGraphicsProxyWidget::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
     if ((change == ItemPositionChange || change == ItemPositionHasChanged) && scene())
@@ -52,6 +63,7 @@ void HGraphicsProxyWidget::paint(QPainter *painter, const QStyleOptionGraphicsIt
 {
     painter->save();
     painter->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::TextAntialiasing);
+    painter->fillRect(option->rect, QBrush(QColor("#e0e0e0")));
     if (option->state & QStyle::State_Selected)
     {
         auto w = boundingRect().width();
@@ -72,15 +84,16 @@ void HGraphicsProxyWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
         if (isInResizeArea(pos))
         {
             d_ptr->resizing = true;
+            return;
         }
-        else
+        if (widget() && widget()->childAt(pos.toPoint()))
         {
-            d_ptr->grabbedByWidget = widget()->childAt(pos.toPoint());
-            if (d_ptr->grabbedByWidget)
-                QGraphicsProxyWidget::mousePressEvent(event);
-            else
-                QGraphicsItem::mousePressEvent(event);
+            QGraphicsProxyWidget::mousePressEvent(event);
+            d_ptr->grabbedByWidget = true;
+            return;
         }
+        QGraphicsItem::mousePressEvent(event);
+        d_ptr->grabbedByWidget = false;
     }
 }
 
@@ -95,13 +108,16 @@ void HGraphicsProxyWidget::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         if (h >= d_ptr->minimumSizeHint.height())
             d_ptr->itemSize.setHeight(h);
         resize(w ,h);
+        if (layout())
+            layout()->invalidate();
         prepareGeometryChange();
     }
     else
     {
         if (d_ptr->grabbedByWidget)
-            return;
-        QGraphicsItem::mouseMoveEvent(event);
+            QGraphicsProxyWidget::mouseMoveEvent(event);
+        else
+            QGraphicsItem::mouseMoveEvent(event);
     }
 }
 
@@ -121,11 +137,15 @@ void HGraphicsProxyWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void HGraphicsProxyWidget::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-    d_ptr->grabbedByWidget = widget()->childAt(event->pos().toPoint());
-    if (d_ptr->grabbedByWidget)
+    if (widget() && widget()->childAt(event->pos().toPoint()))
+    {
         QGraphicsProxyWidget::mouseDoubleClickEvent(event);
-    else
-        QGraphicsItem::mouseDoubleClickEvent(event);
+        d_ptr->grabbedByWidget = true;
+        return;
+    }
+
+    QGraphicsItem::mouseDoubleClickEvent(event);
+    d_ptr->grabbedByWidget = false;
 }
 
 void HGraphicsProxyWidget::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
@@ -149,7 +169,6 @@ void HGraphicsProxyWidget::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 void HGraphicsProxyWidget::init()
 {
     setAcceptHoverEvents(true);
-    setZValue(1);
     setFlags(ItemIsMovable | ItemSendsScenePositionChanges | ItemIsSelectable | ItemIsFocusable);
 }
 

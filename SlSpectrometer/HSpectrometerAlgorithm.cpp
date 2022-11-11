@@ -1,4 +1,5 @@
 #include "HSpectrometerAlgorithm.h"
+#include "HSpectrometerHelper.h"
 #include <math.h>
 
 HSpectrometerAlgorithm::HSpectrometerAlgorithm()
@@ -7,6 +8,7 @@ HSpectrometerAlgorithm::HSpectrometerAlgorithm()
     _cieUcs = new HCieUcs();
     _cieDaylight = new HCieDaylight();
     _photopicVision = new HPhotopicVision();
+    _iesTm30 = new HIesTm30();
 }
 
 HSpectrometerAlgorithm::~HSpectrometerAlgorithm()
@@ -15,6 +17,7 @@ HSpectrometerAlgorithm::~HSpectrometerAlgorithm()
     delete _cieUcs;
     delete _cieDaylight;
     delete _photopicVision;
+    delete _iesTm30;
 }
 
 HSpectrometerData *HSpectrometerAlgorithm::calcSpectrum(vector<double> wave, vector<double> energy)
@@ -23,7 +26,7 @@ HSpectrometerData *HSpectrometerAlgorithm::calcSpectrum(vector<double> wave, vec
         return nullptr;
     auto data = new HSpectrometerData;
     data->Wave = wave;
-    data->Energy = energy;
+    data->TestEnergy = energy;
     calcEnergy(data);
     calcChromaticity(data);
     calcRenderingIndex(data);
@@ -54,7 +57,7 @@ void HSpectrometerAlgorithm::calcEnergy(HSpectrometerData *data)
     for (i = 0; i < size; i++)
     {
         x = data->Wave[i];
-        y = data->Energy[i];
+        y = data->TestEnergy[i];
         sumEnergy += y;
         if (y > maxEnergy)
         {
@@ -67,7 +70,7 @@ void HSpectrometerAlgorithm::calcEnergy(HSpectrometerData *data)
     x = 0;
     for (i = n - 1; i > 1; i--)
     {
-        if (data->Energy[i - 1] < maxEnergy / 2 && data->Energy[i + 1] > maxEnergy / 2)
+        if (data->TestEnergy[i - 1] < maxEnergy / 2 && data->TestEnergy[i + 1] > maxEnergy / 2)
         {
             x = data->Wave[i];
             break;
@@ -76,7 +79,7 @@ void HSpectrometerAlgorithm::calcEnergy(HSpectrometerData *data)
     y = 0;
     for (i = n + 1; i < size - 1; i++)
     {
-        if (data->Energy[i - 1] > maxEnergy / 2 && data->Energy[i + 1] < maxEnergy / 2)
+        if (data->TestEnergy[i - 1] > maxEnergy / 2 && data->TestEnergy[i + 1] < maxEnergy / 2)
         {
             y = data->Wave[i];
             break;
@@ -86,14 +89,12 @@ void HSpectrometerAlgorithm::calcEnergy(HSpectrometerData *data)
     data->EnergyMax = maxEnergy;
     data->WavePeak = maxWave;
     data->Bandwidth = fabs(x - y);
-    data->EnergyPercent.resize(size);
-    for (i = 0; i < size; i++)
-        data->EnergyPercent[i] = 100 * data->Energy[i] / maxEnergy;
+    data->TestEnergyPercent = HSpectrometerHelper::percent(data->TestEnergy);
 }
 
 void HSpectrometerAlgorithm::calcChromaticity(HSpectrometerData *data)
 {
-    auto r1 = _cie1931->calcCoordinate(data->Wave, data->Energy);
+    auto r1 = _cie1931->calcCoordinate(data->Wave, data->TestEnergy);
     data->CoordinateU = r1[0];
     data->CoordinateV = r1[1];
     data->CoordinateX = r1[2];
@@ -135,7 +136,7 @@ void HSpectrometerAlgorithm::calcRenderingIndex(HSpectrometerData *data)
 
     auto ck = data->CoordinateC;
     auto dk = data->CoordinateD;
-    auto col = _cie1931->calcColorReflectance(data->Wave, data->Energy);
+    auto col = _cie1931->calcColorReflectance(data->Wave, data->TestEnergy);
     auto uki = col.at(0);
     auto vki = col.at(1);
     auto Yki = col.at(2);
@@ -162,12 +163,33 @@ void HSpectrometerAlgorithm::calcRenderingIndex(HSpectrometerData *data)
 
 void HSpectrometerAlgorithm::calcPhotopicVision(HSpectrometerData *data)
 {
-    auto r = _photopicVision->calcPhotopic(data->Wave, data->Energy);
+    auto r = _photopicVision->calcPhotopic(data->Wave, data->TestEnergy);
     data->VisionFlux = r[0];
     data->VisionEfficien = r[1];
     data->RatioRed = r[2];
     data->RatioGreen = r[3];
     data->RatioBlue = r[4];
+}
+
+void HSpectrometerAlgorithm::calcTM30(HSpectrometerData *data)
+{
+    data->ReferenceEnergy = _cieDaylight->calcRefSourceSpectrum(data->ColorTemperature, data->Wave);
+    data->ReferenceEnergyPercent = HSpectrometerHelper::percent(data->ReferenceEnergy);
+    auto r3 = _iesTm30->calc(data->Wave, data->TestEnergy, data->ReferenceEnergy);
+    data->TM30_Rf = r3.Rf;
+    data->TM30_Rg = r3.Rg;
+    data->TM30_Rfi = r3.Rfi;
+    data->TM30_hj_at = r3.hj.at;
+    data->TM30_hj_bt = r3.hj.bt;
+    data->TM30_hj_ar = r3.hj.ar;
+    data->TM30_hj_br = r3.hj.br;
+    data->TM30_hj_atn = r3.hj.atn;
+    data->TM30_hj_btn = r3.hj.btn;
+    data->TM30_hj_arn = r3.hj.arn;
+    data->TM30_hj_brn = r3.hj.brn;
+    data->TM30_hj_Rf = r3.hj.Rf;
+    data->TM30_hj_Rcs = r3.hj.Rcs;
+    data->TM30_hj_Rhs = r3.hj.Rhs;
 }
 
 CIE_UCS HSpectrometerAlgorithm::calcCieUcs(double tc)

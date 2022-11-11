@@ -2,6 +2,7 @@
 
 #include "HSpectrometerData.h"
 #include "HCie.h"
+#include "HIesTm30.h"
 
 class HSpectrometerAlgorithm
 {
@@ -20,6 +21,7 @@ protected:
     void calcChromaticity(HSpectrometerData *);
     void calcRenderingIndex(HSpectrometerData *);
     void calcPhotopicVision(HSpectrometerData *);
+    void calcTM30(HSpectrometerData *);
 
 protected:
     CIE_UCS calcCieUcs(double tc);
@@ -32,5 +34,6 @@ protected:
     HCieUcs *_cieUcs;
     HCieDaylight *_cieDaylight;
     HPhotopicVision *_photopicVision;
+    HIesTm30 *_iesTm30;
 };
 

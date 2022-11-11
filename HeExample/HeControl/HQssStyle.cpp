@@ -29,7 +29,7 @@ QString HQssStyle::typeName()
     return "HQssStyle";
 }
 
-QString HQssStyle::toStyleSheet()
+QString HQssStyle::toStyleSheet(QVariantMap /*param*/)
 {
     return d_ptr->styleSheet.value(d_ptr->current);
 }

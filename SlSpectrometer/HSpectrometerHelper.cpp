@@ -85,3 +85,35 @@ vector<vector<double> > HSpectrometerHelper::interpolate(vector<double> xs, vect
     }
     return {xr, yr};
 }
+
+double HSpectrometerHelper::sum(vector<double> value)
+{
+    if (value.size() < 1)
+        return 0.0;
+    auto r = 0.0;
+    for (auto v : value)
+        r += v;
+    return r;
+}
+
+double HSpectrometerHelper::mean(vector<double> value)
+{
+    if (value.size() < 1)
+        return 0.0;
+    return sum(value) / value.size();
+}
+
+vector<double> HSpectrometerHelper::percent(vector<double> value)
+{
+    if (value.size() < 1)
+        return {};
+
+    vector<double> result;
+    auto max = value.front();
+    for (auto v : value)
+        if (v > max)
+            max = v;
+    for (auto v : value)
+        result.push_back(100 * v / max);
+    return result;
+}

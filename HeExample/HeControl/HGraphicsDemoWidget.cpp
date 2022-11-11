@@ -4,6 +4,7 @@
 #include "HGraphicsView.h"
 #include "HGraphicsColorBoardItem.h"
 #include "HGraphicsDiscButtonItem.h"
+#include "HGraphicsFlowLayout.h"
 #include "HGraphicsNoteItem.h"
 #include "HGraphicsPixmapItem.h"
 #include "HGraphicsSliderItem.h"
@@ -96,6 +97,7 @@ void HGraphicsDemoWidget::init()
     addNoteItem();
     addDiscButtonItem();
     addProxyWidget();
+    addFlowLayout();
     initGraphicsView();
 }
 
@@ -206,6 +208,28 @@ void HGraphicsDemoWidget::addProxyWidget()
     d_ptr->scene->addItem(proxy);
 }
 
-
+void HGraphicsDemoWidget::addFlowLayout()
+{
+    auto pushbutton1 = new QPushButton;
+    auto pushbutton2 = new QPushButton;
+    auto pushbutton3 = new QPushButton;
+    auto pushbutton4 = new QPushButton;
+    auto proxyWidget0 = new HGraphicsProxyWidget;
+    auto proxyWidget1 = new QGraphicsProxyWidget;
+    auto proxyWidget2 = new QGraphicsProxyWidget;
+    auto proxyWidget3 = new QGraphicsProxyWidget;
+    auto proxyWidget4 = new QGraphicsProxyWidget;
+    auto layout = new HGraphicsFlowLayout;
+    proxyWidget1->setWidget(pushbutton1);
+    proxyWidget2->setWidget(pushbutton2);
+    proxyWidget3->setWidget(pushbutton3);
+    proxyWidget4->setWidget(pushbutton4);
+    layout->addItem(proxyWidget1);
+    layout->addItem(proxyWidget2);
+    layout->addItem(proxyWidget3);
+    layout->addItem(proxyWidget4);
+    proxyWidget0->setCenterLayout(layout);
+    d_ptr->scene->addItem(proxyWidget0);
+}
 
 HE_END_NAMESPACE

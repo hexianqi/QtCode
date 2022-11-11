@@ -44,7 +44,7 @@ public:
                   int padding = 8,                                  // 间距
                   int radius = 5,                                   // 圆角半径
                   const QString &normalColor = "#E6F8F5",           // 文字颜色
-                  const QString &normalBackground = "#1ABC9C",       // 背景颜色
+                  const QString &normalBackground = "#1ABC9C",      // 背景颜色
                   const QString &hoverColor = "#FFFFFF",            // 悬停颜色
                   const QString &hoverBackground = "#2EE1C1",       // 悬停背景颜色
                   const QString &pressedColor = "#A7EEE6",          // 按下颜色

@@ -13,9 +13,16 @@ public:
     static vector<double> uv2cd(double u, double v);
     static double planck(double tc, double wave);
     static double planckPrime(double tc, double wave);
+    // 插值
     static double interpolate(double x, double x1, double y1, double x2, double y2);
     static double interpolate(double x, vector<double> xs, vector<double> ys);
     static vector<vector<double> > interpolate(vector<double> xs, vector<double> ys, double x1, double x2, double interval = 0.1);
+    // 求和
+    static double sum(vector<double> value);
+    // 平均值
+    static double mean(vector<double> value);
+    // 百分比
+    static vector<double> percent(vector<double> value);
 
 };
 

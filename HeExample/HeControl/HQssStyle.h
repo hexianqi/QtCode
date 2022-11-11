@@ -23,7 +23,7 @@ public:
     QString typeName() override;
 
 public:
-    QString toStyleSheet() override;
+    QString toStyleSheet(QVariantMap param = QVariantMap()) override;
     QPalette toPalette() override;
     QColor color(const QString &flag) override;
     QStringList styles() override;

@@ -20,7 +20,7 @@ public:
 
 public:
     void initialize(QVariantMap param = QVariantMap()) override;
-    QString toStyleSheet() override;
+    QString toStyleSheet(QVariantMap param = QVariantMap()) override;
 
 protected:
     HAbstractCustomStyle(HAbstractCustomStylePrivate &p, QObject *parent = nullptr);

@@ -158,9 +158,7 @@ IES_HUE_BIN::IES_HUE_BIN()
 void IES_HUE_BIN::calc(IES_TM30 *p, double factor)
 {
     int i,j,n;
-    QList<int> list;
     auto g = group(p->reference.h);
-
     at.fill(0.0, 16);
     bt.fill(0.0, 16);
     ar.fill(0.0, 16);
@@ -313,7 +311,6 @@ void HIesTm30::readCes()
 
 QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
 {
-    int c = 0;
     int i,j,k,l;
     double sum;
     QVector<double> X(100);
@@ -341,7 +338,6 @@ QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
             i++;
             j++;
             k++;
-            c++;
             continue;
         }
         if (spd[i].x() < _cie1964[j].wave || spd[i].x() < _iesCes[k].wave)
@@ -363,7 +359,7 @@ QList<QVector<double> > HIesTm30::calcTristimulus(const QPolygonF &spd)
         Y[i] = Y[i] * sum;;
         Z[i] = Z[i] * sum;;
     }
-    return { X, Y, Z};
+    return { X, Y, Z };
 }
 
 HE_END_NAMESPACE

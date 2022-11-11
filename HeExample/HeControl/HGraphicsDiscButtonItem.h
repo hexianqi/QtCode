@@ -47,30 +47,3 @@ protected:
 };
 
 HE_END_NAMESPACE
-
-//    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)override;
-
-
-//    void hoverMoveEvent(QGraphicsSceneHoverEvent* event)override;
-//    void mouseMoveEvent(QGraphicsSceneMouseEvent* event)override;
-//    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event)override;
-//private:
-//    QRectF drawRect;//整个大圆的范围
-//    bool isPointInCir(const QPoint &point, const QRect & rect);
-//    QPainterPath fanShaped[4];
-//    QRectF centerCircularRect;//中心圆按钮的范围
-//    QPainterPath gradientArc(double startAngle, double angleLength, double arcHeight);
-//    enum class pressBtnType //按下的是哪个按钮
-//    {
-//        up = 0,
-//        left,
-//        down,
-//        right,
-//        center,
-//        None
-//    };
-//    pressBtnType pressedBtn{pressBtnType::None};
-//};
-
-//#endif // DISCBUTTONGRAPHICSPIXMAPITEM_H
-

@@ -29,6 +29,7 @@ SOURCES     += \
             HTestCore.cpp \
             HTestDir.cpp \
             HTestEigen.cpp \
+    HTestFile.cpp \
             HTestMedia_ff.cpp \
             HTestMedia_vlc.cpp \
             HTestOpenGL.cpp \
@@ -44,6 +45,7 @@ HEADERS     += \
             HTestCore.h \
             HTestDir.h \
             HTestEigen.h \
+            HTestFile.h \
             HTestMedia.h \
             HTestOpenGL.h \
             HTestSql.h \

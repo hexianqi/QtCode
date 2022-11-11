@@ -105,7 +105,7 @@ bool HThreadDemo::handleGetSpectrom()
         return true;
 
     for (unsigned int i = 0; i < data->Wave.size(); i++)
-        p << QPointF(data->Wave.at(i), data->EnergyPercent.at(i));
+        p << QPointF(data->Wave.at(i), data->TestEnergyPercent.at(i));
     d->testData->setData("[能量曲线]", p);
     d->testData->setData("[峰值波长]", data->WavePeak);
     d->testData->setData("[峰值带宽]", data->Bandwidth);

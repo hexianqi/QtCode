@@ -24,6 +24,7 @@ public:
 
 public:
     void setCenterWidget(QWidget *);
+    void setCenterLayout(QGraphicsLayout *);
 
 protected:
     HGraphicsProxyWidget(HGraphicsProxyWidgetPrivate &p, QGraphicsItem *parent = nullptr);

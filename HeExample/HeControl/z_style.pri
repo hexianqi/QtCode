@@ -1,4 +1,8 @@
 HEADERS += \
+    $$PWD/HColorThemeStyle.h \
+    $$PWD/HColorThemeStyle_p.h \
+    $$PWD/HGradientThemeStyle.h \
+    $$PWD/HGradientThemeStyle_p.h \
     $$PWD/IStyleFactory.h \
     $$PWD/IStyle.h \
     $$PWD/ICustomStyle.h \
@@ -14,6 +18,8 @@ HEADERS += \
 
 
 SOURCES += \
+    $$PWD/HColorThemeStyle.cpp \
+    $$PWD/HGradientThemeStyle.cpp \
     $$PWD/HStyleFactory.cpp \
     $$PWD/HAbstractCustomStyle.cpp \
     $$PWD/HFlatStyle.cpp \

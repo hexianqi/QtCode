@@ -12,7 +12,7 @@ class IStyle : public IInitializeable
 {
 public:
     // 样式表
-    virtual QString toStyleSheet() = 0;
+    virtual QString toStyleSheet(QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_END_NAMESPACE

@@ -21,15 +21,15 @@ void HAbstractCustomStyle::initialize(QVariantMap param)
     d_ptr->param = param;
 }
 
-QString HAbstractCustomStyle::toStyleSheet()
+QString HAbstractCustomStyle::toStyleSheet(QVariantMap param)
 {
-    auto list = QStringList() << pushButton()
-                              << lineEdit()
-                              << progressBar()
-                              << slider()
-                              << radioButton()
-                              << checkBox()
-                              << scrollBar();
+    auto list = QStringList() << pushButton(param)
+                              << lineEdit(param)
+                              << progressBar(param)
+                              << slider(param)
+                              << radioButton(param)
+                              << checkBox(param)
+                              << scrollBar(param);
     return list.join("\n");
 }
 

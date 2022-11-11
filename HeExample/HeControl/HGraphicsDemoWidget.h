@@ -32,6 +32,7 @@ private:
     void addNoteItem();
     void addDiscButtonItem();
     void addProxyWidget();
+    void addFlowLayout();
 
 private:
     Ui::HGraphicsDemoWidget *ui;
