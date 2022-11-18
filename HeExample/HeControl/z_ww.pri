@@ -16,8 +16,7 @@ SOURCES += \
     $$PWD/HNavigationSlider.cpp \
     $$PWD/HTipWidget.cpp
 
-RESOURCES += \
-    $$PWD/ww.qrc
+RESOURCES += $$PWD/ww.qrc
 
 include(z_ww_color.pri)
 include(z_ww_lineEdit.pri)

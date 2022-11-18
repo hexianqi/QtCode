@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/ysa/bottom.png</file>
+        <file>Resources/ysa/left.png</file>
+        <file>Resources/ysa/right.png</file>
+        <file>Resources/ysa/top.png</file>
+    </qresource>
+</RCC>

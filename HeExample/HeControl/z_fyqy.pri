@@ -26,8 +26,7 @@ SOURCES += \
     $$PWD/HLightButton.cpp \
     $$PWD/HNavButton.cpp \
 
-RESOURCES += \
-    $$PWD/fyqy.qrc
+RESOURCES += $$PWD/fyqy.qrc
 
 include(z_fyqy_calendar.pri)
 include(z_fyqy_special.pri)

@@ -46,16 +46,14 @@ int main(int argc, char *argv[])
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
 
-    HTestFile::toString("CIE1964.dat", "HData_CIE1964.cpp");
-    HTestFile::toString("CIE224_2017_R99_1nm.dat", "HData_CIE_IES.cpp");
+//    HTestFile::toString("CIE1964.dat", "HData_CIE1964.cpp");
+//    HTestFile::toString("CIE224_2017_R99_1nm.dat", "HData_CIE_IES.cpp");
 
  //    HTestMedia::videoPlayer_vlc("media\\Titanic.ts");
 //    return 0;
 
 //    HControlFactoryWidget cw;
 //    cw.show();
-    return 0;
-
 
     HControlDemoWidget dw;
     dw.show();

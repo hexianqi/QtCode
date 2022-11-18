@@ -361,59 +361,6 @@ void HConfigManage::processAll(ITestData *test, QStringList optional, QString ke
     processQuality(test, optional, keyQuality);
 }
 
-//void HConfigManage::postProcess(ITestData *test, QStringList optional)
-//{
-//    auto set = optional.toSet();
-//    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标]" << "[色坐标x]" << "[色坐标y]");
-//    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uv]" << "[色坐标u]" << "[色坐标v]");
-//    set = HDataHelper::supplement(set, QSet<QString>() << "[色坐标uvp]" << "[色坐标up]" << "[色坐标vp]");
-//    optional = set.toList();
-//    auto data = test->select(optional);
-
-//    test->setData("[调整组]", "-");
-//    if (test->data("[使用调整]").toBool())
-//    {
-//        QVariantMap value;
-//        if (d_ptr->adjust != nullptr)
-//        {
-//            value = d_ptr->adjust->correct(data);
-//            test->setData("[调整组]", d_ptr->adjust->useIndex());
-//        }
-//        else if (d_ptr->adjust2 != nullptr)
-//        {
-//            value = d_ptr->adjust2->correct(test->data("[色温]").toDouble(), data);
-//            test->setData("[调整组]", d_ptr->adjust2->useIndex());
-//        }
-//        if (!value.isEmpty())
-//            data = unify(test, value, optional);
-//    }
-//    if (d_ptr->chromatism != nullptr)
-//    {
-//        test->setData("[色容差]", d_ptr->chromatism->calcSdcm(test->data("[色温]").toDouble(), test->data("[色坐标]").toPointF()));
-//        test->setData("[色容差详情]", d_ptr->chromatism->toMap());
-////        auto std = d_ptr->chromatism->toMap();
-////        test->setData("[色容差标准Json]", HCore::toJson(std));
-//    }
-
-//    if (d_ptr->grade != nullptr)
-//    {
-//        QString text;
-//        auto level = d_ptr->grade->calcLevel(data, &text);
-//        test->setData("[分级]", level);
-//        test->setData("[分级别名]", text);
-//    }
-
-//    if (d_ptr->quality != nullptr)
-//    {
-//        QVariantMap colors;
-//        auto report = d_ptr->quality->check(data, &colors);
-//        auto color = d_ptr->quality->color(report);
-//        test->setData("[品质]", report);
-//        test->setData("[品质颜色]", color);
-//        test->setData("[品质不符合颜色]", colors);
-//    }
-//}
-
 bool HConfigManage::processChromatism(ITestData *test)
 {
     if (d_ptr->chromatism == nullptr)

@@ -11,10 +11,16 @@ HEADERS += \
     $$PWD/HDiscButton_p.h \
     $$PWD/HHoverShowWidget.h \
     $$PWD/HHoverShowWidget_p.h \
+    $$PWD/HLotteryTurntableWidget.h \
+    $$PWD/HLotteryTurntableWidget_p.h \
     $$PWD/HOnOffWidget.h \
     $$PWD/HOnOffWidget_p.h \
     $$PWD/HRulerWidget.h \
-    $$PWD/HRulerWidget_p.h
+    $$PWD/HRulerWidget_p.h \
+    $$PWD/HTimeSlider.h \
+    $$PWD/HTimeSlider_p.h \
+    $$PWD/HTimelineWidget.h \
+    $$PWD/HTimelineWidget_p.h
 
 SOURCES += \
     $$PWD/HChatWidget.cpp \
@@ -22,7 +28,12 @@ SOURCES += \
     $$PWD/HComboBoxTableView.cpp \
     $$PWD/HDiscButton.cpp \
     $$PWD/HHoverShowWidget.cpp \
+    $$PWD/HLotteryTurntableWidget.cpp \
     $$PWD/HOnOffWidget.cpp \
-    $$PWD/HRulerWidget.cpp
+    $$PWD/HRulerWidget.cpp \
+    $$PWD/HTimeSlider.cpp \
+    $$PWD/HTimelineWidget.cpp
+
+RESOURCES += $$PWD/ysa.qrc
 
 include(z_ysa_graphics.pri)

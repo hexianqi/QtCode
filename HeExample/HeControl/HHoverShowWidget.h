@@ -24,10 +24,12 @@ public:
 
 public:
     void setInfoText(const QString &text);
-    void setStyle();
 
 protected:
     HHoverShowWidget(HHoverShowWidgetPrivate &p, QWidget *parent = nullptr);
+
+protected:
+    void init();
 
 protected:
     QScopedPointer<HHoverShowWidgetPrivate> d_ptr;

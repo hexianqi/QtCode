@@ -44,6 +44,7 @@ private:
 
     // YSA
     void addYSA();
+    void addYSAWidget();
     void addTableComboBox();
     void addChatWidget();
 

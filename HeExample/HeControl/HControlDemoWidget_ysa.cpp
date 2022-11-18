@@ -4,18 +4,31 @@
 #include "HComboBoxTableView.h"
 #include "HDiscButton.h"
 #include "HOnOffWidget.h"
+#include "HLotteryTurntableWidget.h"
+#include "HTimeSlider.h"
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLayout>
 
 HE_BEGIN_NAMESPACE
 
 void HControlDemoWidget::addYSA()
 {
     addTab(tr("友善啊"), tr("图形视图框架"), new HGraphicsDemoWidget);
-    addTab(tr("友善啊"), tr("开关按钮"), new HOnOffWidget);
-    addTab(tr("友善啊"), tr("圆形按钮"), new HDiscButton);
+    addTab(tr("友善啊"), tr("转盘"), new HLotteryTurntableWidget);
     addTableComboBox();
     addChatWidget();
+    addYSAWidget();
+}
+
+void HControlDemoWidget::addYSAWidget()
+{
+    auto layout = new QGridLayout;
+    layout->addWidget(new HOnOffWidget);
+    layout->addWidget(new HDiscButton);
+    layout->addWidget(new HTimeSlider);
+    addTab(tr("友善啊"), tr("控件"), layout);
 }
 
 void HControlDemoWidget::addTableComboBox()
