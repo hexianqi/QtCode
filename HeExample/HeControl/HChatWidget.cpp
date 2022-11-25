@@ -4,10 +4,10 @@
 
 HE_BEGIN_NAMESPACE
 
-HChatInfo::HChatInfo(QString userName, QString message) :
-    userName(userName),
-    message(message)
+HChatInfo::HChatInfo(QString userName, QString message)
 {
+    this->userName = userName;
+    this->message = message;
 }
 
 HChatWidget::HChatWidget(QWidget *parent) :

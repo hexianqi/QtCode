@@ -1,13 +1,14 @@
 #pragma once
 
 #include "HTimelineWidget.h"
+#include <QtCore/QMap>
 
 HE_BEGIN_NAMESPACE
 
 class HTimelineWidgetPrivate
 {
 public:
-    QHash<QDate, QString> infos;
+    QMap<QDate, QString> infos;
 };
 
 HE_END_NAMESPACE

@@ -38,7 +38,6 @@ protected:
     void writeSettings() override;
 
 protected:
-
     virtual void postProcess(bool append);
     virtual void refreshWidget(bool append);
     void handleStateChanged(bool);

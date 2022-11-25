@@ -93,7 +93,7 @@ void HSpecPrintTemplate2000DC::paintBody(QPainter *painter, QRectF rect, int /*p
     painter->drawText(QRectF(x, y , w, h1), Qt::AlignLeft | Qt::AlignVCenter, tr("光度参数："));
     y += h1;
     painter->setFont(font2);
-    text = tr(" 光通量：Φ = %1lm    光功率：Φ e = %2mW    光效率：%3lm/W").arg(toString("[光通量]"), toString("[光功率]"), toString("[光效率]"));
+    text = tr(" 光强度：%1mcd    光通量：%2lm    光功率：%3mW    光效率：%4lm/W").arg(toString("[光强度]"), toString("[光通量]"), toString("[光功率]"), toString("[光效率]"));
     painter->drawText(QRectF(x, y , w, h2), Qt::AlignLeft | Qt::AlignVCenter, text);
     y += h2;
     text = tr(" 光量子(umol/s)：%1[380-780nm]  %2[400-700nm]  %3[700-800nm]").arg(toString("[光量子(380-780)]"), toString("[光量子(400-700)]"), toString("[光量子(700-800)]"));
@@ -121,7 +121,7 @@ void HSpecPrintTemplate2000DC::paintBody(QPainter *painter, QRectF rect, int /*p
 void HSpecPrintTemplate2000DC::init()
 {
     Q_D(HSpecPrintTemplate2000DC);
-    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息2|" << "|光合信息|" << "|色容差信息|" << "|TM30信息|" << "|直流电信息|");
+    d->types = HCore::membership(QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息|" << "|光谱信息2|" << "|光度信息|" << "|光合信息|" << "|色容差信息|" << "|TM30信息|" << "|直流电信息|");
     d->params.insert("Header",          tr("松朗光色电综合测试报告"));
     d->params.insert("Title",           tr("光色电综合测试报告"));
     d->params.insert("DrawHeader",      true);

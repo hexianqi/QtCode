@@ -116,8 +116,8 @@ void HBuilder2000DC::buildConfigManage()
         auto luminousItem = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
         auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
         auto luminouss = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
-        luminousItem->setData("[项类型]", "[光通量]");
-        luminous->insert("[光通量]", luminousItem);
+        luminousItem->setData("[项类型]", "[光强度]");
+        luminous->insert("[光强度]", luminousItem);
         luminous->setTotalGears(5);
         luminouss->insert("模块1", luminous);
 
@@ -234,7 +234,7 @@ void HBuilder2000DC::buildDatabase()
     db->openConnection();
     HSqlHelper::updateSpecTable(db);
 
-    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息2|" << "|光谱信息3|" << "|色容差信息|" << "|光合信息|" << "|TM30信息|";
+    auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息|" << "|光合信息|" << "|TM30信息|";
     auto field = QStringList() << "ID" << HSql::membership(group);
     auto model = createSqlTableModel("Spec", field);
     db->insertTableModel(model);
@@ -298,6 +298,6 @@ void HBuilder2000DC::buildMenu()
 void HBuilder2000DC::buildTestWidget()
 {
     ITestWidget *widget = new HTestWidget2000DC;
-    widget->setVisible(false);
+//    widget->setVisible(false);
     HAppContext::setContextPointer("ITestWidget", widget);
 }

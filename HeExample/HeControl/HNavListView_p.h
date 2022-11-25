@@ -117,4 +117,8 @@ public:
 
 HE_END_NAMESPACE
 
-Q_DECLARE_METATYPE(HE_NAMESPACE::HNavListModel::HTreeNode *)
+#ifdef HE_NAMESPACE
+    Q_DECLARE_METATYPE(HE_NAMESPACE::HNavListModel::HTreeNode *);
+#else
+    Q_DECLARE_METATYPE(HNavListModel::HTreeNode *);
+#endif

@@ -6,6 +6,13 @@
 #include "HOnOffWidget.h"
 #include "HLotteryTurntableWidget.h"
 #include "HTimeSlider.h"
+#include "HTimelineWidget.h"
+#include "HColorSelectionRing.h"
+#include "HLineShadowWidget.h"
+#include "HColorGradientRoundedButton.h"
+#include "HProcessDisplayWidget.h"
+#include "HIrregularPopupWidget.h"
+#include <QtCore/QDate>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QLabel>
@@ -18,16 +25,24 @@ void HControlDemoWidget::addYSA()
     addTab(tr("友善啊"), tr("图形视图框架"), new HGraphicsDemoWidget);
     addTab(tr("友善啊"), tr("转盘"), new HLotteryTurntableWidget);
     addTableComboBox();
-    addChatWidget();
+    addChat();
+    addTimeline();
+    addProcessDisplay();
     addYSAWidget();
 }
 
 void HControlDemoWidget::addYSAWidget()
 {
     auto layout = new QGridLayout;
+    auto irregularPopup = new HIrregularPopupWidget;
+    irregularPopup->setText("黄河之水天上来");
     layout->addWidget(new HOnOffWidget);
     layout->addWidget(new HDiscButton);
+    layout->addWidget(new HColorGradientRoundedButton);
     layout->addWidget(new HTimeSlider);
+    layout->addWidget(new HColorSelectionRing);
+    layout->addWidget(new HLineShadowWidget);
+    layout->addWidget(irregularPopup);
     addTab(tr("友善啊"), tr("控件"), layout);
 }
 
@@ -43,7 +58,7 @@ void HControlDemoWidget::addTableComboBox()
     addTab(tr("友善啊"), tr("表格组合框"), comboBox);
 }
 
-void HControlDemoWidget::addChatWidget()
+void HControlDemoWidget::addChat()
 {
     auto widget = new HChatWidget();
     widget->setUserName("张三");
@@ -55,7 +70,30 @@ void HControlDemoWidget::addChatWidget()
     widget->addChart("李四", "是呀");
     widget->addChart("张三", "明镜高堂悲白发，朝如青丝暮成雪");
     widget->addChart("李四", "黄河之水天上来，奔流到海不复回");
-    addTab(tr("友善啊"), tr("聊天记录展示控件"), widget);
+    addTab(tr("友善啊"), tr("时间轴"), widget);
+}
+
+void HControlDemoWidget::addTimeline()
+{
+    auto widget = new HTimelineWidget();
+    widget->addInfo(QDate(2021, 10, 1), "国庆节放假");
+    widget->addInfo(QDate(2021, 8, 1), "建党百年，伟大征程");
+    widget->addInfo(QDate(2021, 5, 1), "劳动节放假");
+    widget->addInfo(QDate(2021, 3, 8), "妇女节，女士放假，男士未放假");
+    widget->addInfo(QDate(2020, 11, 11), "购物节");
+    widget->addInfo(QDate(2020, 12, 26), "圣诞节");
+    widget->addInfo(QDate(2020, 4, 1), "愚人节");
+    widget->addInfo(QDate(2020, 1, 20), "新冠疫情开始爆发");
+    widget->addInfo(QDate(2019, 10, 1), "东风17、东风41亮相");
+    addTab(tr("友善啊"), tr("聊天记录展示"), widget);
+}
+
+void HControlDemoWidget::addProcessDisplay()
+{
+    auto widget = new HProcessDisplayWidget;
+    widget->setProcess(QStringList() << "确认订单信息" << "提交订单" << "订单完成" << "商品评价" << "追加评论");
+    widget->setCurrentStep(2);
+    addTab(tr("友善啊"), tr("流程进度展示"), widget);
 }
 
 HE_END_NAMESPACE

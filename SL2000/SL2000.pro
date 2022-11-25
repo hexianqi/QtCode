@@ -75,7 +75,7 @@ if (contains(DEFINES, SL2000)) {
 }
 
 TARGET                      = $$TARGET_NAME
-VERSION                     = 1.0.0.1
+VERSION                     = 1.1.0.1
 RC_ICONS                    = Image/Icon.ico
 RC_LANG                     = 0x0004
 QMAKE_TARGET_COMPANY        = "SongLang"

@@ -10,7 +10,7 @@
 
 HTestWidget2000DCPrivate::HTestWidget2000DCPrivate()
 {
-    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息2|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
+    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
     displays = QStringList() << "[调整组]" << "[分级]" << HCore::membership(list);
 }
 
@@ -82,6 +82,14 @@ void HTestWidget2000DC::writeSettings()
     settings->beginGroup("SpecTestWidget");
     settings->setValue("Probe", d->testData->data("[使用光探头]"));
     settings->endGroup();
+}
+
+void HTestWidget2000DC::postProcess(bool append)
+{
+    Q_D(HTestWidget2000DC);
+    if (!d->testData->data("[使用光探头]").toBool())
+        d->testData->setData("[光强度]", 0.0);
+    HSpecTestWidget::postProcess(append);
 }
 
 void HTestWidget2000DC::setProbe(bool b)

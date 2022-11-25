@@ -42,4 +42,10 @@ enum HQualityReport
 
 HE_END_NAMESPACE
 
-Q_DECLARE_METATYPE(HE_NAMESPACE::HQualityReport);
+#ifdef HE_NAMESPACE
+    Q_DECLARE_METATYPE(HE_NAMESPACE::HQualityReport);
+#else
+    Q_DECLARE_METATYPE(HQualityReport);
+#endif
+
+

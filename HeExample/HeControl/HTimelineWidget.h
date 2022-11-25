@@ -27,7 +27,7 @@ protected:
 
 protected:
     void paintEvent(QPaintEvent *)override;
-    void drawYearCircle(QPainter *, int x, int y);
+    void drawBigCircle(QPainter *, int x, int y);
     void drawSmallCircle(QPainter *, int x, int y);
 
 protected:

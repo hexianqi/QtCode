@@ -46,7 +46,9 @@ private:
     void addYSA();
     void addYSAWidget();
     void addTableComboBox();
-    void addChatWidget();
+    void addChat();
+    void addTimeline();
+    void addProcessDisplay();
 
     // ww
     void addWw();

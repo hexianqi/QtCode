@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1144</width>
-    <height>262</height>
+    <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,6 +17,32 @@
    <property name="verticalSpacing">
     <number>9</number>
    </property>
+   <item row="2" column="10">
+    <widget class="QLineEdit" name="lineEdit_014">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="5">
+    <widget class="QLabel" name="label_324">
+     <property name="text">
+      <string>mW</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
    <item row="6" column="7">
     <widget class="QLineEdit" name="lineEdit_063">
      <property name="minimumSize">
@@ -157,16 +183,6 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="11">
-    <widget class="QLabel" name="label_316">
-     <property name="text">
-      <string>lm/W</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="10">
     <widget class="QLineEdit" name="lineEdit_004">
      <property name="minimumSize">
@@ -186,7 +202,7 @@
    <item row="2" column="9">
     <widget class="QLabel" name="label_014">
      <property name="text">
-      <string>光功率：</string>
+      <string>光通量：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -216,16 +232,6 @@
      </property>
      <property name="readOnly">
       <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="5">
-    <widget class="QLabel" name="label_324">
-     <property name="text">
-      <string>mW</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
@@ -373,8 +379,8 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="11">
-    <widget class="QLabel" name="label_302">
+   <item row="4" column="11">
+    <widget class="QLabel" name="label_316">
      <property name="text">
       <string>mW</string>
      </property>
@@ -627,7 +633,7 @@
    <item row="1" column="11">
     <widget class="QLabel" name="label_301">
      <property name="text">
-      <string>lm</string>
+      <string>mcd</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -678,22 +684,6 @@
    </item>
    <item row="1" column="1">
     <widget class="QLineEdit" name="lineEdit_001">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="10">
-    <widget class="QLineEdit" name="lineEdit_014">
      <property name="minimumSize">
       <size>
        <width>100</width>
@@ -842,20 +832,10 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="9">
-    <widget class="QLabel" name="label_15">
-     <property name="text">
-      <string>光效率：</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="9">
     <widget class="QLabel" name="label_004">
      <property name="text">
-      <string>光通量：</string>
+      <string>光强度：</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -935,22 +915,6 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="10">
-    <widget class="QLineEdit" name="lineEdit_024">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -1059,6 +1023,78 @@
      </property>
      <property name="readOnly">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="10">
+    <widget class="QLineEdit" name="lineEdit_024">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="11">
+    <widget class="QLabel" name="label_302">
+     <property name="text">
+      <string>lm</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="9">
+    <widget class="QLabel" name="label_15">
+     <property name="text">
+      <string>光功率：</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="10">
+    <widget class="QLineEdit" name="lineEdit_034">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="9">
+    <widget class="QLabel" name="label_16">
+     <property name="text">
+      <string>光效率：</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="11">
+    <widget class="QLabel" name="label_327">
+     <property name="text">
+      <string>lm/W</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>

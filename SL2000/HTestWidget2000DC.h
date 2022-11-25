@@ -29,5 +29,6 @@ protected:
     void createMenu() override;
     void readSettings() override;
     void writeSettings() override;
+    void postProcess(bool append) override;
     void setProbe(bool b);
 };
