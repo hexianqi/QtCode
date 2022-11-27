@@ -154,6 +154,7 @@ void HBuilder2000DC::buildTestData()
     elec->setCalibrate(d->configManage->elecCalibrateCollection());
     elec->setData("[输出电压]", 10);
     luminous->setCalibrate(d->configManage->luminousCalibrateCollection());
+    luminous->setData("[光测试类型]", "[光强度]");
     data->setSuccessor(product)->setSuccessor(luminous)->setSuccessor(elec)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
     HAppContext::setContextPointer("ITestProduct", product);
