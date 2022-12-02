@@ -23,8 +23,16 @@ HEADERS += \
     $$PWD/HLotteryTurntableWidget_p.h \
     $$PWD/HOnOffWidget.h \
     $$PWD/HOnOffWidget_p.h \
+    $$PWD/HPatternLockWidget.h \
+    $$PWD/HPatternLockWidget_p.h \
     $$PWD/HProcessDisplayWidget.h \
     $$PWD/HProcessDisplayWidget_p.h \
+    $$PWD/HRotatingClockWidget.h \
+    $$PWD/HRotatingClockWidget_p.h \
+    $$PWD/HRoundMenuWidget.h \
+    $$PWD/HRoundMenuWidget_p.h \
+    $$PWD/HRoundShadowWidget.h \
+    $$PWD/HRoundShadowWidget_p.h \
     $$PWD/HRulerWidget.h \
     $$PWD/HRulerWidget_p.h \
     $$PWD/HTimeSlider.h \
@@ -44,7 +52,11 @@ SOURCES += \
     $$PWD/HLineShadowWidget.cpp \
     $$PWD/HLotteryTurntableWidget.cpp \
     $$PWD/HOnOffWidget.cpp \
+    $$PWD/HPatternLockWidget.cpp \
     $$PWD/HProcessDisplayWidget.cpp \
+    $$PWD/HRotatingClockWidget.cpp \
+    $$PWD/HRoundMenuWidget.cpp \
+    $$PWD/HRoundShadowWidget.cpp \
     $$PWD/HRulerWidget.cpp \
     $$PWD/HTimeSlider.cpp \
     $$PWD/HTimelineWidget.cpp

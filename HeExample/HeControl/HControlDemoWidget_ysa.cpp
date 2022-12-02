@@ -12,10 +12,15 @@
 #include "HColorGradientRoundedButton.h"
 #include "HProcessDisplayWidget.h"
 #include "HIrregularPopupWidget.h"
+#include "HPatternLockWidget.h"
+#include "HRotatingClockWidget.h"
+#include "HRoundMenuWidget.h"
 #include <QtCore/QDate>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QLayout>
 
 HE_BEGIN_NAMESPACE
@@ -24,18 +29,27 @@ void HControlDemoWidget::addYSA()
 {
     addTab(tr("友善啊"), tr("图形视图框架"), new HGraphicsDemoWidget);
     addTab(tr("友善啊"), tr("转盘"), new HLotteryTurntableWidget);
-    addTableComboBox();
+    addTab(tr("友善啊"), tr("时钟"), new HRotatingClockWidget);
     addChat();
     addTimeline();
     addProcessDisplay();
+    addPatternLock();
     addYSAWidget();
 }
 
 void HControlDemoWidget::addYSAWidget()
 {
     auto layout = new QGridLayout;
+    auto comboBox = new QComboBox;
+    auto view = new HComboBoxTableView(comboBox);
+    comboBox->setModel(view->model());
+    comboBox->setView(view);
+    comboBox->setEditable(true);
+    comboBox->lineEdit()->setReadOnly(true);
+    comboBox->setStyleSheet("QComboBox { border-radius: 6px; border: 1px solid #00bcd4; padding:6px 10px 6px 10px; font-size:28px; color: #000000; selection-background-color: #00beac; }");
     auto irregularPopup = new HIrregularPopupWidget;
     irregularPopup->setText("黄河之水天上来");
+    addTab(tr("友善啊"), tr("表格组合框"), comboBox);
     layout->addWidget(new HOnOffWidget);
     layout->addWidget(new HDiscButton);
     layout->addWidget(new HColorGradientRoundedButton);
@@ -44,18 +58,6 @@ void HControlDemoWidget::addYSAWidget()
     layout->addWidget(new HLineShadowWidget);
     layout->addWidget(irregularPopup);
     addTab(tr("友善啊"), tr("控件"), layout);
-}
-
-void HControlDemoWidget::addTableComboBox()
-{
-    auto comboBox = new QComboBox;
-    auto view = new HComboBoxTableView(comboBox);
-    comboBox->setModel(view->model());
-    comboBox->setView(view);
-    comboBox->setEditable(true);
-    comboBox->lineEdit()->setReadOnly(true);
-    comboBox->setStyleSheet("QComboBox { border-radius: 6px; border: 1px solid #00bcd4; padding:6px 10px 6px 10px; font-size:28px; color: #000000; selection-background-color: #00beac; }");
-    addTab(tr("友善啊"), tr("表格组合框"), comboBox);
 }
 
 void HControlDemoWidget::addChat()
@@ -70,7 +72,7 @@ void HControlDemoWidget::addChat()
     widget->addChart("李四", "是呀");
     widget->addChart("张三", "明镜高堂悲白发，朝如青丝暮成雪");
     widget->addChart("李四", "黄河之水天上来，奔流到海不复回");
-    addTab(tr("友善啊"), tr("时间轴"), widget);
+    addTab(tr("友善啊"), tr("聊天记录展示"), widget);
 }
 
 void HControlDemoWidget::addTimeline()
@@ -85,7 +87,9 @@ void HControlDemoWidget::addTimeline()
     widget->addInfo(QDate(2020, 4, 1), "愚人节");
     widget->addInfo(QDate(2020, 1, 20), "新冠疫情开始爆发");
     widget->addInfo(QDate(2019, 10, 1), "东风17、东风41亮相");
-    addTab(tr("友善啊"), tr("聊天记录展示"), widget);
+    auto menu = new HRoundMenuWidget(widget);
+    menu->setFixedSize(300, 300);
+    addTab(tr("友善啊"), tr("时间轴"), widget);
 }
 
 void HControlDemoWidget::addProcessDisplay()
@@ -94,6 +98,30 @@ void HControlDemoWidget::addProcessDisplay()
     widget->setProcess(QStringList() << "确认订单信息" << "提交订单" << "订单完成" << "商品评价" << "追加评论");
     widget->setCurrentStep(2);
     addTab(tr("友善啊"), tr("流程进度展示"), widget);
+}
+
+void HControlDemoWidget::addPatternLock()
+{
+    auto widget = new HPatternLockWidget(4);
+    auto btn = new QPushButton("还原");
+    auto lineEdit = new QLineEdit;
+    auto spinbox = new QSpinBox;
+    spinbox->setRange(2,9);
+    spinbox->setMinimumWidth(100);
+    spinbox->setValue(widget->number());
+    auto hb = new QHBoxLayout;
+    hb->addWidget(new QLabel("设置的密码："));
+    hb->addWidget(lineEdit);
+    hb->addWidget(new QLabel("设置行列数："));
+    hb->addWidget(spinbox);
+    hb->addWidget(btn);
+    auto vb = new QVBoxLayout;
+    vb->addWidget(widget,5);
+    vb->addLayout(hb,1);
+    connect(widget, &HPatternLockWidget::passwordChanged, lineEdit, &QLineEdit::setText);
+    connect(spinbox, QOverload<int>::of(&QSpinBox::valueChanged), widget, &HPatternLockWidget::setNumber);
+    connect(btn, &QPushButton::clicked, widget, &HPatternLockWidget::reset);
+    addTab(tr("友善啊"), tr("图案密码锁"), vb);
 }
 
 HE_END_NAMESPACE

@@ -46,5 +46,34 @@
         <file>Resources/image/gifwidget.png</file>
         <file>Resources/image/back.png</file>
         <file>Resources/image/next.png</file>
+        <file>Resources/image/Add.png</file>
+        <file>Resources/image/App.png</file>
+        <file>Resources/image/Chat.png</file>
+        <file>Resources/image/Close.png</file>
+        <file>Resources/image/Delete.png</file>
+        <file>Resources/image/Down Button.png</file>
+        <file>Resources/image/Gear.png</file>
+        <file>Resources/image/home.png</file>
+        <file>Resources/image/Left Arrow.png</file>
+        <file>Resources/image/Left Arrow2.png</file>
+        <file>Resources/image/List.png</file>
+        <file>Resources/image/List2.png</file>
+        <file>Resources/image/Love.png</file>
+        <file>Resources/image/Minus.png</file>
+        <file>Resources/image/More.png</file>
+        <file>Resources/image/Navigation.png</file>
+        <file>Resources/image/Off.png</file>
+        <file>Resources/image/Pause.png</file>
+        <file>Resources/image/Play.png</file>
+        <file>Resources/image/Profile.png</file>
+        <file>Resources/image/Right Arrow.png</file>
+        <file>Resources/image/Right.png</file>
+        <file>Resources/image/Star.png</file>
+        <file>Resources/image/Up Arrow.png</file>
+        <file>Resources/image/Update.png</file>
+        <file>Resources/image/Update2.png</file>
+        <file>Resources/image/Wifi.png</file>
+        <file>Resources/image/Zoom.png</file>
+        <file>Resources/image/Next2.png</file>
     </qresource>
 </RCC>

@@ -45,10 +45,10 @@ private:
     // YSA
     void addYSA();
     void addYSAWidget();
-    void addTableComboBox();
     void addChat();
     void addTimeline();
     void addProcessDisplay();
+    void addPatternLock();
 
     // ww
     void addWw();
