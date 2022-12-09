@@ -11,7 +11,8 @@ TRANSLATIONS    = SL1000_en.ts
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 DEFINES     += \
-            SL1000A \
+#            SL1000A \
+            SL1000RGB \
             SIMULATE
 
 SOURCES     += \
@@ -43,8 +44,15 @@ Release {
 }
 
 include(SL1000A.pri)
+include(SL1000RGB.pri)
 
-TARGET_NAME                 = SL1000A
+if (contains(DEFINES, SL1000A)) {
+    TARGET_NAME = SL1000A
+} else : if (contains(DEFINES, SL1000RGB)) {
+    TARGET_NAME = SL1000RGB
+} else {
+    TARGET_NAME = Test
+}
 
 TARGET                      = $$TARGET_NAME
 VERSION                     = 1.0.0.1

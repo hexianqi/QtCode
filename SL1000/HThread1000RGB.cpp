@@ -1,47 +1,39 @@
-#include "HIntegrateThread_p.h"
-#include "IControllerFactory.h"
-#include "IActionStrategy.h"
-#include "HControllerHelper.h"
+#include "HThread1000RGB_p.h"
+#include "HStrategy1000RGB.h"
 #include "HeCore/HAppContext.h"
-#include "HeData/ITestData.h"
 #include "HeCommunicate/IProtocol.h"
 #include "HeCommunicate/IProtocolCollection.h"
+#include "HeController/IControllerFactory.h"
+#include "HeController/HControllerHelper.h"
+#include "HeData/ITestData.h"
 
-HE_BEGIN_NAMESPACE
-
-HIntegrateThreadPrivate::HIntegrateThreadPrivate()
+HThread1000RGBPrivate::HThread1000RGBPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
                   << ACT_INTEGRATE_TEST;
 }
 
-HIntegrateThread::HIntegrateThread(QObject *parent) :
-    HAbstractThread(*new HIntegrateThreadPrivate, parent)
+HThread1000RGB::HThread1000RGB(QObject *parent) :
+    HAbstractThread(*new HThread1000RGBPrivate, parent)
 {
     init();
 }
 
-HIntegrateThread::HIntegrateThread(HIntegrateThreadPrivate &p, QObject *parent) :
-    HAbstractThread(p, parent)
+HThread1000RGB::~HThread1000RGB() = default;
+
+QString HThread1000RGB::typeName()
 {
+    return "HThread1000RGB";
 }
 
-HIntegrateThread::~HIntegrateThread() = default;
-
-QString HIntegrateThread::typeName()
-{
-    return "HIntegrateThread";
-}
-
-QString HIntegrateThread::threadInfo()
+QString HThread1000RGB::threadInfo()
 {
     return tr("线程");
 }
 
-bool HIntegrateThread::handleAction(HActionType action)
+bool HThread1000RGB::handleAction(HActionType action)
 {
-    Q_D(HIntegrateThread);
-
+    Q_D(HThread1000RGB);
     switch(action)
     {
     case ACT_SINGLE_TEST:
@@ -73,38 +65,39 @@ bool HIntegrateThread::handleAction(HActionType action)
     return HAbstractThread::handleAction(action);
 }
 
-void HIntegrateThread::handleData()
+void HThread1000RGB::handleData()
 {
-    Q_D(HIntegrateThread);
-    auto f = d->testData->data("[光谱光通量]").toDouble();
-    auto p = d->testData->data("[电功率]").toDouble();
-    auto e = d->testData->data("[明视觉光效率]").toDouble();
-    auto x = d->testData->data("[光合光子通量效率]").toDouble();
-    auto y = d->testData->data("[荧光效能]").toDouble();
-    d->testData->setData("[光通量]", f);
-    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
-    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
-    d->testData->setData("[光合光子通量效率]", p < 0.00001 ? x :  x / p);
-    d->testData->setData("[荧光效能]", p < 0.00001 ? y :  y / p);
+//    Q_D(HThread1000RGB);
+//    auto f = d->testData->data("[光谱光通量]").toDouble();
+//    auto p = d->testData->data("[电功率]").toDouble();
+//    auto e = d->testData->data("[明视觉光效率]").toDouble();
+//    auto x = d->testData->data("[光合光子通量效率]").toDouble();
+//    auto y = d->testData->data("[荧光效能]").toDouble();
+//    d->testData->setData("[光通量]", f);
+//    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+//    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
+//    d->testData->setData("[光合光子通量效率]", p < 0.00001 ? x :  x / p);
+//    d->testData->setData("[荧光效能]", p < 0.00001 ? y :  y / p);
 }
 
-void HIntegrateThread::init()
+
+void HThread1000RGB::init()
 {
-    Q_D(HIntegrateThread);
+    Q_D(HThread1000RGB);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
     auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
     d->protocolSpec = protocolCollection->value("Spec");
     d->protocolElse = protocolCollection->value("Else");
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
-    d->strategyElec = factory->createStrategy("HElecStrategy", this);
+    d->strategyElec = new HStrategy1000RGB(this);
     d->strategyLuminous = factory->createStrategy("HLuminousStrategy", this);
-    d->strategyMotor = factory->createStrategy("HMotorStrategy", this);
     d->strategySpec->setProtocol(d->protocolSpec);
     d->strategyElec->setProtocol(d->protocolElse);
     d->strategyLuminous->setProtocol(d->protocolElse);
-    d->strategyMotor->setProtocol(d->protocolElse);
     d->protocols << d->protocolSpec << d->protocolElse;
-    d->strategys << d->strategySpec << d->strategyElec << d->strategyLuminous << d->strategyMotor;
+    d->strategys << d->strategySpec << d->strategyElec << d->strategyLuminous;
 }
 
-HE_END_NAMESPACE
+
+
+

@@ -9,10 +9,6 @@
 HThread2000ACPrivate::HThread2000ACPrivate()
 {
     actionSupport << ACT_INTEGRATE_TEST;
-    auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
-    protocolSpec = protocolCollection->value("Spec");
-    protocolElec = protocolCollection->value("Elec");
-    protocols << protocolSpec << protocolElec;
 }
 
 HThread2000AC::HThread2000AC(QObject *parent) :
@@ -56,9 +52,13 @@ void HThread2000AC::init()
 {
     Q_D(HThread2000AC);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+    auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
+    d->protocolSpec = protocolCollection->value("Spec");
+    d->protocolElec = protocolCollection->value("Elec");
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
     d->strategyElec = factory->createStrategy("HPowerFactorStrategy", this);
     d->strategySpec->setProtocol(d->protocolSpec);
     d->strategyElec->setProtocol(d->protocolElec);
+    d->protocols << d->protocolSpec << d->protocolElec;
     d->strategys << d->strategySpec << d->strategyElec;
 }

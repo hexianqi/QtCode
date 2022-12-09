@@ -13,10 +13,6 @@ HSpecElecThreadPrivate::HSpecElecThreadPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
                   << ACT_INTEGRATE_TEST;
-    auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
-    protocolSpec = protocolCollection->value("Spec");
-    protocolElse = protocolCollection->value("Else");
-    protocols << protocolSpec << protocolElse;
 }
 
 HSpecElecThread::HSpecElecThread(QObject *parent) :
@@ -77,10 +73,14 @@ void HSpecElecThread::init()
 {
     Q_D(HSpecElecThread);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+    auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
+    d->protocolSpec = protocolCollection->value("Spec");
+    d->protocolElse = protocolCollection->value("Else");
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
     d->strategyElec = factory->createStrategy("HElecStrategy", this);
     d->strategySpec->setProtocol(d->protocolSpec);
     d->strategyElec->setProtocol(d->protocolElse);
+    d->protocols << d->protocolSpec << d->protocolElse;
     d->strategys << d->strategySpec << d->strategyElec;
 }
 

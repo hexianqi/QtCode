@@ -75,7 +75,7 @@ bool HElecStrategy::handle(HActionType action)
     case ACT_GET_REVERSE_CURRENT:
         d->protocol->getData(action, sample);
         d->testData->setData("[反向漏流_F]", sample);
-        return true;;
+        return true;
     case ACT_RESET_STATE_TRIGGER:
         return d->protocol->setData(action, 0);
     case ACT_QUERY_STATE_TRIGGER:

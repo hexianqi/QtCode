@@ -6,11 +6,6 @@
 
 HE_BEGIN_NAMESPACE
 
-HSpecThreadPrivate::HSpecThreadPrivate()
-{
-    protocols << HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
-}
-
 HSpecThread::HSpecThread(QObject *parent) :
     HAbstractThread(*new HSpecThreadPrivate, parent)
 {
@@ -38,6 +33,7 @@ void HSpecThread::init()
 {
     Q_D(HSpecThread);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+    d->protocols << HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection")->value("Spec");
     auto strategy = factory->createStrategy("HSpecStrategy", this);
     strategy->setProtocol(d->protocols.first());
     d->strategys << strategy;

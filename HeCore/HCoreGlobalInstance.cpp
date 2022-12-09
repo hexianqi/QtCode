@@ -558,11 +558,27 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[TM30_hj_btn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_arn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
     hashDataFormatInfo.insert("[TM30_hj_brn]",                  hashDataFormatInfo.value("[TM30_hj_atn]"));
-
     // 布局参数
     hashDataFormatInfo.insert("[布局行数]",                     new HDataFormatInfo("[布局行数]", 0, 70));
     hashDataFormatInfo.insert("[布局列数]",                     new HDataFormatInfo("[布局列数]", 0, 70));
     hashDataFormatInfo.insert("[布局数值]",                     new HDataFormatInfo("[布局数值]", 0, 65535));
+    // RGBW
+    auto list1 = QStringList() << "R" << "G" << "B" << "W";
+    auto list2 = QStringList() << "共阴" << "共阳";
+    for (auto s1 : list1)
+    {
+        hashDataFormatInfo.insert(QString("[实测电压-%1]").arg(s1), hashDataFormatInfo.value("[电压]"));
+        hashDataFormatInfo.insert(QString("[实测电流-%1]").arg(s1), hashDataFormatInfo.value("[电流-毫安]"));
+        hashDataFormatInfo.insert(QString("[反向漏流-%1]").arg(s1), hashDataFormatInfo.value("[电流-微安]"));
+        for (auto s2 : list2)
+        {
+            for (int i = 1; i <= 2; i++)
+            {
+                hashDataFormatInfo.insert(QString("[输出电流-%1%2%3]").arg(s2, s1, QString::number(i)), hashDataFormatInfo.value("[电流-毫安]"));
+                hashDataFormatInfo.insert(QString("[实测电流-%1%2%3]").arg(s2, s1, QString::number(i)), hashDataFormatInfo.value("[电流-毫安]"));
+            }
+        }
+    }
 
 //    //电机参数
 //    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));

@@ -11,10 +11,6 @@ HThread2100DCPrivate::HThread2100DCPrivate()
 {
     actionSupport << ACT_SINGLE_TEST
                   << ACT_INTEGRATE_TEST;
-    auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
-    protocolSpec = protocolCollection->value("Spec");
-    protocolElec = protocolCollection->value("Elec");
-    protocols << protocolSpec << protocolElec;
 }
 
 HThread2100DC::HThread2100DC(QObject *parent) :
@@ -77,9 +73,13 @@ void HThread2100DC::init()
 {
     Q_D(HThread2100DC);
     auto factory = HAppContext::getContextPointer<IControllerFactory>("IControllerFactory");
+    auto protocolCollection = HAppContext::getContextPointer<IProtocolCollection>("IProtocolCollection");
+    d->protocolSpec = protocolCollection->value("Spec");
+    d->protocolElec = protocolCollection->value("Elec");
     d->strategySpec = factory->createStrategy("HSpecStrategy", this);
     d->strategyElec = new HDaXinStrategy(this);
     d->strategySpec->setProtocol(d->protocolSpec);
     d->strategyElec->setProtocol(d->protocolElec);
+    d->protocols << d->protocolSpec << d->protocolElec;
     d->strategys << d->strategySpec << d->strategyElec;
 }

@@ -220,7 +220,7 @@ void HBuilder1000A::buildMemento()
     if (!ok || !mementos->contains("Angle"))
     {
         auto memento = d->controllerFactory->createMemento("HMemento");
-        memento->setDataType(QStringList() << "[输出电流_档位]" << "[输出电压]" << "[输出电流]" << "[光档位]");
+        memento->setDataType(QStringList() << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[光档位]");
         mementos->insert("Angle", memento);
     }
     HAppContext::setContextPointer("IMementoCollection", mementos);

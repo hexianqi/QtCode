@@ -1,4 +1,5 @@
 #include "HMainWindow1000A.h"
+#include "HMainWindow1000RGB.h"
 #include "HeCore/HCoreGlobalInstance.h"
 #include "HeSql/HSqlGlobalInstance.h"
 #include <QtCore/QTextCodec>
@@ -18,6 +19,11 @@ int main(int argc, char *argv[])
 #ifdef SL1000A
     QApplication::setApplicationName("SL1000A");
     HMainWindow1000A w;
+#endif
+
+#ifdef SL1000RGB
+    QApplication::setApplicationName("SL1000RGB");
+    HMainWindow1000RGB w;
 #endif
 
     w.showMaximized();
