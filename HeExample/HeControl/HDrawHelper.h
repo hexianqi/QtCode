@@ -48,6 +48,10 @@ public:
     // 创建平滑曲线路径
     static QPainterPath createSmoothCurve(const QVector<QPointF> &points);
     static QPainterPath createSmoothCurve2(const QVector<QPointF> &points);
+
+public:
+    // 随机颜色
+    static QColor randomColor();
 };
 
 HE_END_NAMESPACE

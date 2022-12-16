@@ -8,13 +8,15 @@
 #include "HTimeSlider.h"
 #include "HTimelineWidget.h"
 #include "HColorSelectionRing.h"
-#include "HLineShadowWidget.h"
 #include "HColorGradientRoundedButton.h"
 #include "HProcessDisplayWidget.h"
 #include "HIrregularPopupWidget.h"
 #include "HPatternLockWidget.h"
 #include "HRotatingClockWidget.h"
 #include "HRoundMenuWidget.h"
+#include "HJsonTextEdit.h"
+#include "HYsaSpecialWidget.h"
+#include "HBinaryTreeWidget.h"
 #include <QtCore/QDate>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLineEdit>
@@ -30,11 +32,13 @@ void HControlDemoWidget::addYSA()
     addTab(tr("友善啊"), tr("图形视图框架"), new HGraphicsDemoWidget);
     addTab(tr("友善啊"), tr("转盘"), new HLotteryTurntableWidget);
     addTab(tr("友善啊"), tr("时钟"), new HRotatingClockWidget);
+    addTab(tr("友善啊"), tr("二叉树"), new HBinaryTreeWidget);
     addChat();
     addTimeline();
     addProcessDisplay();
     addPatternLock();
     addYSAWidget();
+    addTab(tr("友善啊"), tr("特殊窗体"), new HYsaSpecialWidget);
 }
 
 void HControlDemoWidget::addYSAWidget()
@@ -49,14 +53,14 @@ void HControlDemoWidget::addYSAWidget()
     comboBox->setStyleSheet("QComboBox { border-radius: 6px; border: 1px solid #00bcd4; padding:6px 10px 6px 10px; font-size:28px; color: #000000; selection-background-color: #00beac; }");
     auto irregularPopup = new HIrregularPopupWidget;
     irregularPopup->setText("黄河之水天上来");
-    addTab(tr("友善啊"), tr("表格组合框"), comboBox);
+    layout->addWidget(comboBox);
     layout->addWidget(new HOnOffWidget);
     layout->addWidget(new HDiscButton);
     layout->addWidget(new HColorGradientRoundedButton);
     layout->addWidget(new HTimeSlider);
     layout->addWidget(new HColorSelectionRing);
-    layout->addWidget(new HLineShadowWidget);
     layout->addWidget(irregularPopup);
+    layout->addWidget(new HJsonTextEdit);
     addTab(tr("友善啊"), tr("控件"), layout);
 }
 

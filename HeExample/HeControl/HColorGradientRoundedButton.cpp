@@ -1,6 +1,6 @@
 #include "HColorGradientRoundedButton_p.h"
+#include "HDrawHelper.h"
 #include <QtCore/QPropertyAnimation>
-#include <QtCore/QRandomGenerator>
 #include <QtGui/QtEvents>
 #include <QtGui/QPainter>
 #include <QtWidgets/QGraphicsDropShadowEffect>
@@ -17,13 +17,6 @@ QVariant colorInterpolator(const HDoubleColor &start, const HDoubleColor &end, q
     auto sb = start.second.blue() + ((end.second.blue() - start.second.blue()) * progress);
 
     return QVariant::fromValue(HDoubleColor(QColor(fr, fg, fb), QColor(sr, sg, sb)));
-}
-
-QColor randomColor()
-{
-    return QColor(QRandomGenerator::global()->bounded(255),
-                  QRandomGenerator::global()->bounded(255),
-                  QRandomGenerator::global()->bounded(255));
 }
 
 HDoubleColor::HDoubleColor(QColor frist, QColor second)
@@ -123,8 +116,8 @@ void HColorGradientRoundedButton::init()
     effect->setBlurRadius(25);
     effect->setColor(Qt::black);
 
-    d_ptr->startColor = HDoubleColor(randomColor(), randomColor());
-    d_ptr->endColor = HDoubleColor(randomColor(), randomColor());
+    d_ptr->startColor = HDoubleColor(HDrawHelper::randomColor(), HDrawHelper::randomColor());
+    d_ptr->endColor = HDoubleColor(HDrawHelper::randomColor(), HDrawHelper::randomColor());
     d_ptr->currentColor = d_ptr->startColor;
     d_ptr->animation = new QPropertyAnimation(this, "currentColor");
     d_ptr->animation->setDuration(400);

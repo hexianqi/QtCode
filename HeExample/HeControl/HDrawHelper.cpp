@@ -1,4 +1,5 @@
 #include "HDrawHelper.h"
+#include <QtCore/QRandomGenerator>
 #include <QtGui/QPainter>
 #include <QtGui/QImage>
 #include <QtGui/QScreen>
@@ -226,6 +227,13 @@ QPainterPath HDrawHelper::createSmoothCurve2(const QVector<QPointF> &points)
 
     return path;
 
+}
+
+QColor HDrawHelper::randomColor()
+{
+    return QColor(QRandomGenerator::global()->bounded(255),
+                  QRandomGenerator::global()->bounded(255),
+                  QRandomGenerator::global()->bounded(255));
 }
 
 HE_END_NAMESPACE

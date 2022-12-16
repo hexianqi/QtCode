@@ -36,7 +36,6 @@ void HIntegrateModel::syncTestData(quint32 type)
     {
         d->testSpec->setCalibrate(d->configManage->specCalibrate("1"));
         addAction(ACT_RESET_SPECTRUM);
-//        type &= ~IConfigManage::ContainSpec;
     }
     if ((type & IConfigManage::ContainElec) != 0u)
     {

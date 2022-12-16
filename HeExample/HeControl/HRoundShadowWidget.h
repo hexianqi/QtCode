@@ -22,7 +22,7 @@ public:
         PressedRight,              // 鼠标按下右侧
         PressedBottom,             // 鼠标按下下侧
         PressedRightBottom,        // 鼠标按下右下侧
-        PressedButNotInPadding     // 按下但没在右、下、右下边缘
+        PressedNotInPadding        // 按下但没在右、下、右下边缘
     };
 
 public:
@@ -30,18 +30,17 @@ public:
     ~HRoundShadowWidget() override;
 
 public:
-    void setCenterWidgetLayout(QLayout * layout);
+    void setCenterWidgetLayout(QLayout *);
 
 protected:
-    void mouseMoveEvent(QMouseEvent *) override;
     void mousePressEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
 
 protected:
     QScopedPointer<HRoundShadowWidgetPrivate> d_ptr;
 
 private:
-    void setLayout(QLayout *);
     void updatePaddingRect();
 };
 

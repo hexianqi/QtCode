@@ -567,6 +567,7 @@ void HCoreGlobalInstance::initDataFormatInfo()
     auto list2 = QStringList() << "共阴" << "共阳";
     for (auto s1 : list1)
     {
+        hashDataFormatInfo.insert(QString("[输出电流-%1]").arg(s1), hashDataFormatInfo.value("[电流-毫安]"));
         hashDataFormatInfo.insert(QString("[实测电压-%1]").arg(s1), hashDataFormatInfo.value("[电压]"));
         hashDataFormatInfo.insert(QString("[实测电流-%1]").arg(s1), hashDataFormatInfo.value("[电流-毫安]"));
         hashDataFormatInfo.insert(QString("[反向漏流-%1]").arg(s1), hashDataFormatInfo.value("[电流-微安]"));
