@@ -54,7 +54,7 @@ void HControlDemoWidget::addFFPlayer()
 
 void HControlDemoWidget::addVlcPlayer()
 {
-    addTab(tr("媒体"), tr("VLC"), new HVlcPlayer(this));
+//    addTab(tr("媒体"), tr("VLC"), new HVlcPlayer(this));
 }
 
 HE_END_NAMESPACE

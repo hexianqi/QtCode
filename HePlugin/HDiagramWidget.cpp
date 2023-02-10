@@ -253,6 +253,14 @@ void HDiagramWidget::setPolygonColor(int id, const QColor &value)
     refreshPixmap();
 }
 
+void HDiagramWidget::setPolygonColors(QHash<int, QColor> value)
+{
+    if (d_ptr->polygonColors == value)
+        return;
+    d_ptr->polygonColors = value;
+    refreshPixmap();
+}
+
 void HDiagramWidget::resizeEvent(QResizeEvent *event)
 {
     setPlotArea(d_ptr->calcPlotArea(event->size()));

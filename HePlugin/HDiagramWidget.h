@@ -71,6 +71,7 @@ public:
     virtual void removePolygon(int id);
     virtual void clearPolygon();
     virtual void setPolygonColor(int id, const QColor &value);
+    virtual void setPolygonColors(QHash<int, QColor>);
 
 protected:
     HDiagramWidget(HDiagramWidgetPrivate &p, QWidget *parent = nullptr);

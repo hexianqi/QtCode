@@ -49,6 +49,7 @@ private:
     void addTimeline();
     void addProcessDisplay();
     void addPatternLock();
+    void addGradientProgressBar();
 
     // ww
     void addWw();

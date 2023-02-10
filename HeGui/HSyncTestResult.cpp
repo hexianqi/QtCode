@@ -1,4 +1,4 @@
-#include "HTestResult_p.h"
+#include "HSyncTestResult_p.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/IDataFactory.h"
@@ -7,14 +7,14 @@
 
 HE_BEGIN_NAMESPACE
 
-HTestResultPrivate::HTestResultPrivate()
+HSyncTestResultPrivate::HSyncTestResultPrivate()
 {
     testData = HAppContext::getContextPointer<ITestData>("ITestData");
     xlsxStream = HAppContext::getContextPointer<IDataFactory>("IDataFactory")->createXlsxStream("HXlsxStream");
     xlsxStream->setWriteContent([=](Document *p) { writeContent(p); });
 }
 
-void HTestResultPrivate::writeContent(Document *p)
+void HSyncTestResultPrivate::writeContent(Document *p)
 {
     int i, j;
     auto title = QStringList() << "Index" << HCore::toCaptionUnit(syncType);
@@ -28,55 +28,55 @@ void HTestResultPrivate::writeContent(Document *p)
     }
 }
 
-HTestResult::HTestResult(QObject *parent) :
+HSyncTestResult::HSyncTestResult(QObject *parent) :
     QObject(parent),
-    d_ptr(new HTestResultPrivate)
+    d_ptr(new HSyncTestResultPrivate)
 {
 }
 
-HTestResult::HTestResult(HTestResultPrivate &p, QObject *parent) :
+HSyncTestResult::HSyncTestResult(HSyncTestResultPrivate &p, QObject *parent) :
     QObject(parent),
     d_ptr(&p)
 {
 }
 
-HTestResult::~HTestResult()
+HSyncTestResult::~HSyncTestResult()
 {
     clear();
 }
 
-void HTestResult::initialize(QVariantMap /*param*/)
+void HSyncTestResult::initialize(QVariantMap /*param*/)
 {
 }
 
-QString HTestResult::typeName()
+QString HSyncTestResult::typeName()
 {
-    return "HTestResult";
+    return "HSyncTestResult";
 }
 
-ITestData *HTestResult::at(int i)
+ITestData *HSyncTestResult::at(int i)
 {
     if (i < 0 || i >= d_ptr->results.size())
         return nullptr;
     return d_ptr->results.at(i);
 }
 
-ITestData *HTestResult::last()
+ITestData *HSyncTestResult::last()
 {
     return isEmpty() ? nullptr : d_ptr->results.last();
 }
 
-bool HTestResult::isEmpty()
+bool HSyncTestResult::isEmpty()
 {
     return d_ptr->results.isEmpty();
 }
 
-int HTestResult::size()
+int HSyncTestResult::size()
 {
     return d_ptr->results.size();
 }
 
-void HTestResult::clear()
+void HSyncTestResult::clear()
 {
     if (isEmpty())
         return;
@@ -85,7 +85,7 @@ void HTestResult::clear()
     d_ptr->modified = true;
 }
 
-void HTestResult::update(bool append)
+void HSyncTestResult::update(bool append)
 {
     if (append || isEmpty())
         d_ptr->results.append(d_ptr->testData->clone());
@@ -94,7 +94,7 @@ void HTestResult::update(bool append)
     d_ptr->modified = true;
 }
 
-void HTestResult::remove(int index, int count)
+void HSyncTestResult::remove(int index, int count)
 {
     if (isEmpty() || count < 1 || index < 0)
         return;
@@ -106,23 +106,23 @@ void HTestResult::remove(int index, int count)
     }
 }
 
-void HTestResult::setModified(bool b)
+void HSyncTestResult::setModified(bool b)
 {
     d_ptr->modified = b;
 }
 
-void HTestResult::setSyncType(QStringList value)
+void HSyncTestResult::setSyncType(QStringList value)
 {
     d_ptr->syncType = value;
 }
 
-void HTestResult::setSyncFile(const QString &value)
+void HSyncTestResult::setSyncFile(const QString &value)
 {
     d_ptr->syncFile = value;
     d_ptr->modified = true;
 }
 
-void HTestResult::syncFile()
+void HSyncTestResult::syncFile()
 {
     if (d_ptr->syncFile.isEmpty() || !d_ptr->modified)
         return;

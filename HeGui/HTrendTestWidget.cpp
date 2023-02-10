@@ -201,7 +201,7 @@ void HTrendTestWidget::handleResultChanged(HActionType, bool first)
     d->testData->setData("[测量日期时间]", QDateTime::currentDateTime());
     d->result.append(d->testData->select(d->displays));
     d->energyWidget->refreshWidget();
-    d->tableWidget->refreshResult(true);
+    d->tableWidget->refreshLast(true);
     d->chartView->addPoint(d->interval * d->result.size(), d->testData->data(d->current).toDouble());
 }
 

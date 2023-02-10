@@ -1,7 +1,7 @@
 HEADERS += \
-    $$PWD/HTestResult.h \
-    $$PWD/HTestResult_p.h \
-    $$PWD/ITestResult.h
+    $$PWD/HSyncTestResult.h \
+    $$PWD/HSyncTestResult_p.h \
+    $$PWD/ISyncTestResult.h
 
 SOURCES += \
-    $$PWD/HTestResult.cpp
+    $$PWD/HSyncTestResult.cpp

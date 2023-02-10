@@ -5,9 +5,6 @@ HTestData1000RGBPrivate::HTestData1000RGBPrivate()
     sourceIo.fill(0, 5);
     outputCurrentF.fill(0, 4);
     outputCurrentR.fill(0, 4);
-    measuredVoltage.fill(0, 4);
-    measuredCurrent.fill(0, 4);
-    reverseCurrent.fill(0, 4);
     addData("[电模块]", 0);
     addData("[电源模式]", 0);
     addData("[电源开关]", QVariant::fromValue(sourceIo));
@@ -17,10 +14,25 @@ HTestData1000RGBPrivate::HTestData1000RGBPrivate()
     addData("[输出电压_F]", 0.0);
     addData("[反向电压]", 0.0);
     addData("[反向电压_F]", 0.0);
-    addData("[输出电流-RGBW_F]", QVariant::fromValue(outputCurrentF));
     addData("[实测电压_F]", 0.0);
     addData("[实测电流_F]", 0.0);
     addData("[反向漏流_F]", 0.0);
+    addData("[输出电流-R]", 0.0);
+    addData("[输出电流-G]", 0.0);
+    addData("[输出电流-B]", 0.0);
+    addData("[输出电流-W]", 0.0);
+    addData("[实测电压-R]", 0.0);
+    addData("[实测电压-G]", 0.0);
+    addData("[实测电压-B]", 0.0);
+    addData("[实测电压-W]", 0.0);
+    addData("[实测电流-R]", 0.0);
+    addData("[实测电流-G]", 0.0);
+    addData("[实测电流-B]", 0.0);
+    addData("[实测电流-W]", 0.0);
+    addData("[反向漏流-R]", 0.0);
+    addData("[反向漏流-G]", 0.0);
+    addData("[反向漏流-B]", 0.0);
+    addData("[反向漏流-W]", 0.0);
 }
 
 HTestData1000RGB::HTestData1000RGB() :
@@ -50,20 +62,23 @@ bool HTestData1000RGB::setData(QString type, QVariant value)
     Q_D(HTestData1000RGB);
     if (type == "[电模块]")
         return setModule(value.toInt());
+    if (type == "[电源开关]")
+    {
+        auto v = value.value<QVector<int>>();
+        if (v.size() < 5)
+            return false;
+        d->sourceIo = v;
+        d->setData("[电源开关]", value);
+    }
     if (type == "[输出电流_档位]" || type == "[实测电流_档位]")
         return setCurrentGears(value.toInt());
     if (type =="[电流_档位]")
     {
         d->currentGears = value.toDouble();
-        for (int i = 0; i < 4; i++)
-        {
-            auto index = d->sourceIo[0] * 8 + i * 2 + d->currentGears;
-            d->outputCurrentF[i] = d->calibrate->toFiction(d->outputCurrentR[i], OutputCurrent, index);
-        }
         d->setData("[电流_档位]", d->currentGears);
+        syncCurrent();
         return true;
     }
-
     if (type == "[输出电压]")
     {
         auto v = value.toDouble();
@@ -82,42 +97,59 @@ bool HTestData1000RGB::setData(QString type, QVariant value)
     {
         auto v = value.toDouble();
         for (int i = 0; i < 4; i++)
-            d->outputCurrentF[i] = d->sourceIo.at(i + 1) == 1 ? v : 0;
+            d->outputCurrentF[i] = v;
         return true;
     }
     if (type == "[输出电流]")
     {
         auto v = value.toDouble();
         for (int i = 0; i < 4; i++)
-        {
-            if (d->sourceIo.at(i + 1) == 1)
-            {
-                auto index = d->sourceIo[0] * 8 + i * 2 + d->currentGears;
-                d->outputCurrentR[i] = v;
-                d->outputCurrentF[i] = d->calibrate->toFiction(v, OutputCurrent, index);
-            }
-            else
-            {
-                d->outputCurrentR[i] = 0;
-                d->outputCurrentF[i] = 0;
-            }
-        }
+            d->outputCurrentR[i] = v;
+        setData("[输出电流-R]", d->outputCurrentR[0]);
+        setData("[输出电流-G]", d->outputCurrentR[1]);
+        setData("[输出电流-B]", d->outputCurrentR[2]);
+        setData("[输出电流-W]", d->outputCurrentR[3]);
+        syncCurrent();
         return true;
     }
-
+    if (type == "[输出电流-RGBW]")
+    {
+        auto v = value.value<QVector<double>>();
+        if (v.size() < 4)
+            return false;
+        d->outputCurrentR = v;
+        setData("[输出电流-R]", d->outputCurrentR[0]);
+        setData("[输出电流-G]", d->outputCurrentR[1]);
+        setData("[输出电流-B]", d->outputCurrentR[2]);
+        setData("[输出电流-W]", d->outputCurrentR[3]);
+        syncCurrent();
+        return true;
+    }
     if (type == "[实测电压-RGBW_F]")
     {
-        d->measuredVoltage = calcSample(MeasuredVoltage, value, "[实测电压_F]");
+        auto v = toReal(MeasuredVoltage, value, "[实测电压_F]");
+        setData("[实测电压-R]", v[0]);
+        setData("[实测电压-G]", v[1]);
+        setData("[实测电压-B]", v[2]);
+        setData("[实测电压-W]", v[3]);
         return true;
     }
     if (type == "[实测电流-RGBW_F]")
     {
-        d->measuredCurrent = calcSample(MeasuredCurrent, value, "[实测电流_F]", true);
+        auto v = toReal(MeasuredCurrent, value, "[实测电流_F]", true);
+        setData("[实测电流-R]", v[0]);
+        setData("[实测电流-G]", v[1]);
+        setData("[实测电流-B]", v[2]);
+        setData("[实测电流-W]", v[3]);
         return true;
     }
     if (type == "[反向漏流-RGBW_F]")
     {
-        d->reverseCurrent = calcSample(ReverseCurrent, value, "[反向漏流_F]");
+        auto v = toReal(ReverseCurrent, value, "[反向漏流_F]");
+        setData("[反向漏流-R]", v[0]);
+        setData("[反向漏流-G]", v[1]);
+        setData("[反向漏流-B]", v[2]);
+        setData("[反向漏流-W]", v[3]);
         return true;
     }
     return HTestData::setData(type, value);
@@ -154,7 +186,7 @@ bool HTestData1000RGB::setCurrentGears(int value)
     return true;
 }
 
-QVector<double> HTestData1000RGB::calcSample(HElecType type, QVariant value, QString name, bool calcIndex)
+QVector<double> HTestData1000RGB::toReal(HElecType type, QVariant value, QString name, bool calcIndex)
 {
     Q_D(HTestData1000RGB);
     QVector<double> result(4, 0);
@@ -171,4 +203,14 @@ QVector<double> HTestData1000RGB::calcSample(HElecType type, QVariant value, QSt
         }
     }
     return result;
+}
+
+void HTestData1000RGB::syncCurrent()
+{
+    Q_D(HTestData1000RGB);
+    for (int i = 0; i < 4; i++)
+    {
+        auto index = d->sourceIo[0] * 8 + i * 2 + d->currentGears;
+        d->outputCurrentF[i] = d->calibrate->toFiction(d->outputCurrentR[i], OutputCurrent, index);
+    }
 }

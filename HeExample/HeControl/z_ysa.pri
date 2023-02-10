@@ -33,6 +33,10 @@ HEADERS += \
     $$PWD/HPatternLockWidget_p.h \
     $$PWD/HProcessDisplayWidget.h \
     $$PWD/HProcessDisplayWidget_p.h \
+    $$PWD/HProgressButton.h \
+    $$PWD/HProgressButton_p.h \
+    $$PWD/HReelWidget.h \
+    $$PWD/HReelWidget_p.h \
     $$PWD/HRotatingClockWidget.h \
     $$PWD/HRotatingClockWidget_p.h \
     $$PWD/HRoundMenuWidget.h \
@@ -41,6 +45,10 @@ HEADERS += \
     $$PWD/HRoundShadowWidget_p.h \
     $$PWD/HRulerWidget.h \
     $$PWD/HRulerWidget_p.h \
+    $$PWD/HSlideButtonGroup.h \
+    $$PWD/HSlideButtonGroup_p.h \
+    $$PWD/HTextSpotlightWidget.h \
+    $$PWD/HTextSpotlightWidget_p.h \
     $$PWD/HTimeSlider.h \
     $$PWD/HTimeSlider_p.h \
     $$PWD/HTimelineWidget.h \
@@ -64,10 +72,14 @@ SOURCES += \
     $$PWD/HOnOffWidget.cpp \
     $$PWD/HPatternLockWidget.cpp \
     $$PWD/HProcessDisplayWidget.cpp \
+    $$PWD/HProgressButton.cpp \
+    $$PWD/HReelWidget.cpp \
     $$PWD/HRotatingClockWidget.cpp \
     $$PWD/HRoundMenuWidget.cpp \
     $$PWD/HRoundShadowWidget.cpp \
     $$PWD/HRulerWidget.cpp \
+    $$PWD/HSlideButtonGroup.cpp \
+    $$PWD/HTextSpotlightWidget.cpp \
     $$PWD/HTimeSlider.cpp \
     $$PWD/HTimelineWidget.cpp \
     $$PWD/HYsaSpecialWidget.cpp

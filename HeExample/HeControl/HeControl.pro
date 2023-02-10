@@ -62,9 +62,9 @@ unix {
 }
 
 include(_liudianwu.pri)
-include(media.pri)
-include(multimedia.pri)
-include(openGL.pri)
+#include(media.pri)
+#include(multimedia.pri)
+#include(openGL.pri)
 include(sql.pri)
 include(widget.pri)
 

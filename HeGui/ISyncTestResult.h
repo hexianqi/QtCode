@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2021-01-26  ITestResult测试结果集接口。
+**      2021-01-26  ISyncTestResult 测试结果同步集接口。
 ***************************************************************************************************/
 
 #pragma once
@@ -10,7 +10,7 @@ HE_BEGIN_NAMESPACE
 
 class ITestData;
 
-class ITestResult : public IInitializeable
+class ISyncTestResult : public IInitializeable
 {
 public:
     // 结果

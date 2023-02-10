@@ -17,6 +17,10 @@
 #include "HJsonTextEdit.h"
 #include "HYsaSpecialWidget.h"
 #include "HBinaryTreeWidget.h"
+#include "HGradientProgressBar.h"
+#include "HTextSpotlightWidget.h"
+#include "HProgressButton.h"
+#include "HSlideButtonGroup.h"
 #include <QtCore/QDate>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLineEdit>
@@ -37,6 +41,7 @@ void HControlDemoWidget::addYSA()
     addTimeline();
     addProcessDisplay();
     addPatternLock();
+    addGradientProgressBar();
     addYSAWidget();
     addTab(tr("友善啊"), tr("特殊窗体"), new HYsaSpecialWidget);
 }
@@ -61,6 +66,9 @@ void HControlDemoWidget::addYSAWidget()
     layout->addWidget(new HColorSelectionRing);
     layout->addWidget(irregularPopup);
     layout->addWidget(new HJsonTextEdit);
+    layout->addWidget(new HTextSpotlightWidget);
+    layout->addWidget(new HProgressButton);
+    layout->addWidget(new HSlideButtonGroup);
     addTab(tr("友善啊"), tr("控件"), layout);
 }
 
@@ -126,6 +134,20 @@ void HControlDemoWidget::addPatternLock()
     connect(spinbox, QOverload<int>::of(&QSpinBox::valueChanged), widget, &HPatternLockWidget::setNumber);
     connect(btn, &QPushButton::clicked, widget, &HPatternLockWidget::reset);
     addTab(tr("友善啊"), tr("图案密码锁"), vb);
+}
+
+void HControlDemoWidget::addGradientProgressBar()
+{
+    auto vb = new QVBoxLayout;
+    auto bar = new HGradientProgressBar;
+    auto slider = new QSlider(Qt::Horizontal);
+    slider->setRange(0,100);
+    bar->setRange(0,100);
+    vb->addWidget(bar);
+    vb->addStretch();
+    vb->addWidget(slider);
+    connect(slider, &QSlider::valueChanged, bar, &QProgressBar::setValue);
+    addTab(tr("友善啊"), tr("渐变进度条"), vb);
 }
 
 HE_END_NAMESPACE

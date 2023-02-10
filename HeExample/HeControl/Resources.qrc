@@ -75,5 +75,11 @@
         <file>Resources/image/Wifi.png</file>
         <file>Resources/image/Zoom.png</file>
         <file>Resources/image/Next2.png</file>
+        <file>Resources/image/coin1.png</file>
+        <file>Resources/image/coin2.png</file>
+        <file>Resources/image/like1.png</file>
+        <file>Resources/image/like2.png</file>
+        <file>Resources/image/star1.png</file>
+        <file>Resources/image/star2.png</file>
     </qresource>
 </RCC>

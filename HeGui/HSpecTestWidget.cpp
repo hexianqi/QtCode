@@ -2,7 +2,7 @@
 #include "HGuiHelper.h"
 #include "ITestDetailWidget.h"
 #include "ITestSetWidget.h"
-#include "HTestResult.h"
+#include "HSyncTestResult.h"
 #include "HSpecEnergyWidget.h"
 #include "HSpecChromatismChartView.h"
 #include "HResultTableWidget.h"
@@ -75,7 +75,7 @@ void HSpecTestWidget::init()
 {
     Q_D(HSpecTestWidget);
     HTestWidget::init();
-    d->testResult = new HTestResult(this);
+    d->testResult = new HSyncTestResult(this);
     d->testResult->setSyncType(d->displays);
     d->testResult->setSyncFile(d->syncFile);
     d->textExport->setExportPath(d->exportPath);
@@ -321,7 +321,7 @@ void HSpecTestWidget::refreshWidget(bool append)
     d->energyWidget->refreshWidget();
     d->chromatismWidget->refreshWidget();
     d->detailWidget->refreshWidget();
-    d->tableWidget->refreshResult(append);
+    d->tableWidget->refreshLast(append);
     if (append)
     {
         d->cieWidget->addPoint(point);
@@ -530,7 +530,7 @@ void HSpecTestWidget::editProduct()
     if (dlg.exec() != QDialog::Accepted)
         return;
     d->testResult->setModified();
-    d->tableWidget->refreshResult(row, data);
+    d->tableWidget->refreshRow(row, data);
 }
 
 HE_END_NAMESPACE

@@ -60,24 +60,31 @@ void HResultTableWidget::clearResult()
     fillContents();
 }
 
-void HResultTableWidget::refreshResult(bool append)
+void HResultTableWidget::refreshLast(bool append, ITestData *data)
 {
-    Q_D(HResultTableWidget);
-    auto value = d->testData->toString(d->displays);
-    int row = rowCount() - 1;
+    auto row = rowCount() - 1;
     if (append || row < 0)
     {
         row++;
-        insertRow(row, value);
+        insertRow(row);
         scrollToBottom();
     }
-    else
-        setRow(row, value);
+    refreshRow(row, data);
+//    auto value = d->testData->toString(d->displays);
+//    int row = rowCount() - 1;
+//    if (append || row < 0)
+//    {
+//        row++;
+//        insertRow(row, value);
+//        scrollToBottom();
+//    }
+//    else
+//        setRow(row, value);
 
-    setRowBackgroundColor(row, d->testData->data("[品质不符合颜色]").toMap());
+//    setRowBackgroundColor(row, d->testData->data("[品质不符合颜色]").toMap());
 }
 
-void HResultTableWidget::refreshResult(int row, ITestData *data)
+void HResultTableWidget::refreshRow(int row, ITestData *data)
 {
     Q_D(HResultTableWidget);
     if (row < 0 || row >= rowCount())
@@ -85,7 +92,6 @@ void HResultTableWidget::refreshResult(int row, ITestData *data)
 
     if (data == nullptr)
         data = d->testData;
-
     setRow(row, data->toString(d->displays));
     setRowBackgroundColor(row, data->data("[品质不符合颜色]").toMap());
 }

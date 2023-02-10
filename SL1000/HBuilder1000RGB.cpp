@@ -2,6 +2,7 @@
 #include "HProtocol1000RGB.h"
 #include "HTestData1000RGB.h"
 #include "HThread1000RGB.h"
+#include "HTestWidget1000RGB.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/IConfigManage.h"
@@ -221,7 +222,7 @@ void HBuilder1000RGB::buildMenu()
 //    auto adjust = new QMenu(tr("调整(&A)"));
 //    auto quality = new QMenu(tr("品质(&Q)"));
     auto device = new QMenu(tr("设备配置(&T)"));
-    auto test = new QMenu(tr("其他测试(&E)"));
+//    auto test = new QMenu(tr("其他测试(&E)"));
 //    auto database = new QMenu(tr("数据库(&D)"));
     auto account = new QMenu(tr("账号管理(&M)"));
     calibrate->menuAction()->setProperty("authority", 1);
@@ -258,7 +259,7 @@ void HBuilder1000RGB::buildMenu()
 //    d->mainWindow->insertMenu(adjust);
 //    d->mainWindow->insertMenu(quality);
     d->mainWindow->insertMenu(device);
-    d->mainWindow->insertMenu(test);
+//   d->mainWindow->insertMenu(test);
 //    d->mainWindow->insertMenu(database);
 //    d->mainWindow->insertMenu(account);
 #ifndef QT_DEBUG
@@ -268,5 +269,6 @@ void HBuilder1000RGB::buildMenu()
 
 void HBuilder1000RGB::buildTestWidget()
 {
-
+    ITestWidget *widget = new HTestWidget1000RGB;
+    HAppContext::setContextPointer("ITestWidget", widget);
 }

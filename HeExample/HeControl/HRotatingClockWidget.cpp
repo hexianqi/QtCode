@@ -29,7 +29,7 @@ void HRotatingClockWidget::paintEvent(QPaintEvent *)
     auto center = QPointF(rect().center());
 
     painter.save();
-    painter.setRenderHint(QPainter::Antialiasing,true);
+    painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(QPen(Qt::white, 4, Qt::SolidLine, Qt::RoundCap));
     painter.drawLine(center.x(), center.y() - distance * 0.2, center.x() + distance * 0.2, center.y());
     painter.drawLine(center.x() + distance * 0.2, center.y(), center.x(), center.y() + distance * 0.2);

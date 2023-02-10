@@ -26,8 +26,8 @@ public:
     void setSelected(const QStringList &);
     void setFixedRowCount(int);
     void clearResult();
-    void refreshResult(bool append);
-    void refreshResult(int row, ITestData *data = nullptr);
+    void refreshLast(bool append, ITestData *data = nullptr);
+    void refreshRow(int row, ITestData *data = nullptr);
 
 public:
     QStringList selected();

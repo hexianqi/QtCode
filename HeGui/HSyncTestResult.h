@@ -4,19 +4,19 @@
 
 #pragma once
 
-#include "ITestResult.h"
+#include "ISyncTestResult.h"
 
 HE_BEGIN_NAMESPACE
 
-class HTestResultPrivate;
+class HSyncTestResultPrivate;
 
-class HTestResult : public QObject, public ITestResult
+class HSyncTestResult : public QObject, public ISyncTestResult
 {
     Q_OBJECT
 
 public:
-    explicit HTestResult(QObject *parent = nullptr);
-    ~HTestResult() override;
+    explicit HSyncTestResult(QObject *parent = nullptr);
+    ~HSyncTestResult() override;
 
 public:
     void initialize(QVariantMap param = QVariantMap()) override;
@@ -36,10 +36,10 @@ public:
     void syncFile() override;
 
 protected:
-    HTestResult(HTestResultPrivate &p, QObject *parent = nullptr);
+    HSyncTestResult(HSyncTestResultPrivate &p, QObject *parent = nullptr);
 
 protected:
-    QScopedPointer<HTestResultPrivate> d_ptr;
+    QScopedPointer<HSyncTestResultPrivate> d_ptr;
 };
 
 HE_END_NAMESPACE

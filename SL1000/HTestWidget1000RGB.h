@@ -4,10 +4,6 @@
 
 HE_USE_NAMESPACE
 
-namespace Ui {
-class HTestWidget1000RGB;
-}
-
 class HTestWidget1000RGBPrivate;
 
 class HTestWidget1000RGB : public HTestWidget
@@ -19,6 +15,9 @@ public:
     explicit HTestWidget1000RGB(QWidget *parent = nullptr);
     ~HTestWidget1000RGB();
 
+public:
+    QString typeName() override;
+
 protected:
     void init() override;
     void createWidget() override;
@@ -28,8 +27,7 @@ protected:
     void clearResult() override;
     void exportExcel() override;
     void handleAction(HActionType) override;
-
-private:
-    Ui::HTestWidget1000RGB *ui;
+    void resetSpec();
+    void resetGrade();
 };
 

@@ -1,14 +1,14 @@
 #pragma once
 
-#include "HTestResult.h"
+#include "HSyncTestResult.h"
 #include "HeData/IXlsxStream.h"
 
 HE_BEGIN_NAMESPACE
 
-class HTestResultPrivate
+class HSyncTestResultPrivate
 {
 public:
-    HTestResultPrivate();
+    HSyncTestResultPrivate();
 
 public:
     void writeContent(Document *);

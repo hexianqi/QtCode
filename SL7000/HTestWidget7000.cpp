@@ -289,7 +289,7 @@ void HTestWidget7000::refreshWidget()
     d->chromatismWidget->refreshWidget();
     d->detailWidget->refreshWidget();
     d->locationWidget->refreshResult();
-    d->tableWidget->refreshResult(d->index);
+    d->tableWidget->refreshRow(d->index);
     d->cieWidget->addPoint(point);
 }
 
@@ -353,7 +353,7 @@ void HTestWidget7000::editProduct()
     if (dlg.exec() != QDialog::Accepted)
         return;
     d->testResult->setModified();
-    d->tableWidget->refreshResult(row, data);
+    d->tableWidget->refreshRow(row, data);
 }
 
 int HTestWidget7000::next(int index)

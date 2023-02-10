@@ -29,8 +29,8 @@ public:
 protected:
     bool setModule(int value);
     bool setCurrentGears(int value);
-    QVector<double> calcSample(HElecType type, QVariant value, QString name, bool calcIndex = false);
-//    void calcRelation(HElecType type);
+    QVector<double> toReal(HElecType type, QVariant value, QString name, bool calcIndex = false);
+    void syncCurrent();
 };
 
 

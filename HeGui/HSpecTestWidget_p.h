@@ -16,7 +16,7 @@ class HTm30RhshjChartView;
 HE_BEGIN_NAMESPACE
 
 class IConfigManage;
-class ITestResult;
+class ISyncTestResult;
 class ISqlHandle;
 class IPrint;
 class IPrintTemplate;
@@ -62,7 +62,7 @@ public:
 
 public:
     IConfigManage *configManage = nullptr;
-    ITestResult *testResult = nullptr;
+    ISyncTestResult *testResult = nullptr;
     ISqlHandle *sqlHandle = nullptr;
     IPrint *print = nullptr;
     IPrintTemplate *specPrintTemplate = nullptr;

@@ -18,7 +18,4 @@ public:
     QVector<int> sourceIo;
     QVector<int> outputCurrentF;
     QVector<double> outputCurrentR;
-    QVector<double> measuredVoltage;
-    QVector<double> measuredCurrent;
-    QVector<double> reverseCurrent;
 };
