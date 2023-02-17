@@ -23,4 +23,7 @@ public:
     HCie1931Widget *cieWidget = nullptr;
     HCartesianWidget *energyWidget = nullptr;
     QHash<int, HResultTableWidget *> tableWidgets;
+
+public:
+    QHash<int, QStringList> displays;
 };

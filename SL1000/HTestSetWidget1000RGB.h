@@ -26,6 +26,18 @@ public:
     void handleAction(HActionType action) override;
     bool setTestState(bool b) override;
 
+protected slots:
+    void on_pushButton_1_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
+    void on_pushButton_5_clicked();
+    void on_pushButton_11_clicked();
+
+protected:
+    int nextIndex(int);
+    bool setCrystalIndex(int);
+
 //protected slots:
 //    void on_checkBox_1_clicked(bool b);
 //    void on_checkBox_2_clicked(bool b);

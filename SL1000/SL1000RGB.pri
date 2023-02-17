@@ -12,6 +12,7 @@ HEADERS += \
     $$PWD/HTestResult1000RGB.h \
     $$PWD/HTestResult1000RGB_p.h \
     $$PWD/HTestSetWidget1000RGB.h \
+    $$PWD/HTestSetWidget1000RGB_p.h \
     $$PWD/HTestWidget1000RGB.h \
     $$PWD/HTestWidget1000RGB_p.h \
     $$PWD/HThread1000RGB.h \

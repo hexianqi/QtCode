@@ -67,17 +67,17 @@ bool HThread1000RGB::handleAction(HActionType action)
 
 void HThread1000RGB::handleData()
 {
-    Q_D(HThread1000RGB);
-    auto f = d->testData->data("[光谱光通量]").toDouble();
-    auto p = d->testData->data("[电功率]").toDouble();
-    auto e = d->testData->data("[明视觉光效率]").toDouble();
-    auto x = d->testData->data("[光合光子通量效率]").toDouble();
-    auto y = d->testData->data("[荧光效能]").toDouble();
-    d->testData->setData("[光通量]", f);
-    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
-    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
-    d->testData->setData("[光合光子通量效率]", p < 0.00001 ? x :  x / p);
-    d->testData->setData("[荧光效能]", p < 0.00001 ? y :  y / p);
+//    Q_D(HThread1000RGB);
+//    auto f = d->testData->data("[光谱光通量]").toDouble();
+//    auto p = d->testData->data("[电功率]").toDouble();
+//    auto e = d->testData->data("[明视觉光效率]").toDouble();
+//    auto x = d->testData->data("[光合光子通量效率]").toDouble();
+//    auto y = d->testData->data("[荧光效能]").toDouble();
+//    d->testData->setData("[光通量]", f);
+//    d->testData->setData("[光效率]", p < 0.00001 ? 0.0 :  f / p);
+//    d->testData->setData("[光功率]", e < 0.00001 ? 0.0 : 1000 * f / e);
+//    d->testData->setData("[光合光子通量效率]", p < 0.00001 ? x :  x / p);
+//    d->testData->setData("[荧光效能]", p < 0.00001 ? y :  y / p);
 }
 
 void HThread1000RGB::init()

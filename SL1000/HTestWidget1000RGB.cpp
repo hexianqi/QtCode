@@ -7,9 +7,15 @@
 #include "HeGui/HResultTableWidget.h"
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QSplitter>
+#include <QtWidgets/QToolBar>
 
 HTestWidget1000RGBPrivate::HTestWidget1000RGBPrivate()
 {
+//    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
+//    displays = QStringList() << "[调整组]" << "[分级]" << HCore::membership(list);
+
+
+//    displays.insert()
 
 }
 
@@ -56,7 +62,12 @@ void HTestWidget1000RGB::createMenu()
 
 void HTestWidget1000RGB::createToolBar()
 {
-
+    Q_D(HTestWidget1000RGB);
+    auto toolBar = new QToolBar(tr("操作(&O)"));
+    toolBar->addAction(d->actionStart);
+    toolBar->addAction(d->actionStop);
+    toolBar->addAction(d->actionClear);
+    d->toolBars << toolBar;
 }
 
 void HTestWidget1000RGB::initWidget()
@@ -103,6 +114,7 @@ void HTestWidget1000RGB::clearResult()
 {
     Q_D(HTestWidget1000RGB);
     d->testResult->clearResult();
+    d->energyWidget->clearPolygon();
     d->cieWidget->clearPoint();
     for (auto w : d->tableWidgets)
         w->clearResult();
@@ -113,9 +125,22 @@ void HTestWidget1000RGB::exportExcel()
 
 }
 
-void HTestWidget1000RGB::handleAction(HActionType)
+void HTestWidget1000RGB::handleAction(HActionType action)
 {
-
+    Q_D(HTestWidget1000RGB);
+    if (action >= 0xF0000000)
+    {
+        setTest(false);
+        clearResult();
+        if (action == ACT_RESET_SPECTRUM)
+            resetSpec();
+//        if (action == ACT_RESET_CHROMATISM)
+//            d->chromatismWidget->initMenuShow();
+        if (action == ACT_RESET_GRADE)
+            resetGrade();
+        return;
+    }
+    HTestWidget::handleAction(action);
 }
 
 void HTestWidget1000RGB::resetSpec()

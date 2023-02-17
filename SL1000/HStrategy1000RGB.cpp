@@ -39,8 +39,12 @@ bool HStrategy1000RGB::handle(HActionType action)
     {
     case ACT_SET_SOURCE_MODE:
         return d->protocol->setData(action, d->testData->data("[电源模式]").toInt());
+    case ACT_SET_SOURCE_IO:
+        return d->protocol->setData(ACT_SET_SOURCE_IO, d->testData->data("[电源开关]").value<QVector<int>>());
     case ACT_SET_OUTPUT_VOLTAGE:
         return d->protocol->setData(action, d->testData->data("[输出电压_F]").toInt());
+    case ACT_SET_REVERSE_VOLTAGE:
+        return d->protocol->setData(action, d->testData->data("[反向电压_F]").toInt());
     case ACT_SET_OUTPUT_CURRENT:
         return d->protocol->setData(ACT_SET_OUTPUT_CURRENT, d->testData->data("[输出电流-RGBW_F]").value<QVector<int>>());
     case ACT_SET_GEARS_OUTPUT_CURRENT:
@@ -50,10 +54,6 @@ bool HStrategy1000RGB::handle(HActionType action)
         if (!d->protocol->setData(ACT_SET_GEARS_OUTPUT_CURRENT, d->testData->data("[电流_档位]").toInt()))
             return false;
         return d->protocol->setData(ACT_SET_OUTPUT_CURRENT, d->testData->data("[输出电流-RGBW_F]").value<QVector<int>>());
-    case ACT_SET_REVERSE_VOLTAGE:
-        return d->protocol->setData(action, d->testData->data("[反向电压_F]").toInt());
-    case ACT_SET_SOURCE_IO:
-        return d->protocol->setData(ACT_SET_SOURCE_IO, d->testData->data("[电源开关]").value<QVector<int>>());
     case ACT_GET_ELEC_DATA:
         d->protocol->getData(action, buff);
         d->testData->setData("[实测电压-RGBW_F]", QVariant::fromValue(QVector<int>() << buff[0] << buff[3] << buff[6] << buff[9]));

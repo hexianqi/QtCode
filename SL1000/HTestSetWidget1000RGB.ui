@@ -56,7 +56,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox_2"/>
+         <widget class="QComboBox" name="comboBox_12"/>
         </item>
        </layout>
       </item>
@@ -76,9 +76,12 @@
          </spacer>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_1">
+         <widget class="QRadioButton" name="radioButton_11">
           <property name="text">
            <string>共阴</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -96,7 +99,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="radioButton_12">
           <property name="text">
            <string>共阳</string>
           </property>
@@ -173,7 +176,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QCheckBox" name="checkBox_1">
+         <widget class="QCheckBox" name="checkBox_11">
           <property name="text">
            <string>R</string>
           </property>
@@ -194,28 +197,28 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QCheckBox" name="checkBox_2">
+         <widget class="QCheckBox" name="checkBox_12">
           <property name="text">
            <string>G</string>
           </property>
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QCheckBox" name="checkBox_3">
+         <widget class="QCheckBox" name="checkBox_13">
           <property name="text">
            <string>B</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QCheckBox" name="checkBox_4">
+         <widget class="QCheckBox" name="checkBox_14">
           <property name="text">
            <string>W</string>
           </property>
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QCheckBox" name="checkBox_5">
+         <widget class="QCheckBox" name="checkBox_15">
           <property name="text">
            <string>综合</string>
           </property>
