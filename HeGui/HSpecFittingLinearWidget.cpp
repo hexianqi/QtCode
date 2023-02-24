@@ -50,7 +50,7 @@ void HSpecFittingLinearWidget::saveData()
     Q_D(HSpecFittingLinearWidget);
     d->data->setData("[光谱拟合积分时间范围]", d->integralTime);
     d->data->setData("[光谱拟合基准像元]", d->pel);
-    d->data->setFittingPoints(d->points);
+    d->data->setPoints(d->points);
 }
 
 void HSpecFittingLinearWidget::showData()

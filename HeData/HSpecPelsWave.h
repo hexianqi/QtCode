@@ -1,5 +1,5 @@
 /***************************************************************************************************
-**      2018-06-19  HSpecPelsWave 像元波长数据类。
+**      2023-02-22  HSpecPelsWave
 ***************************************************************************************************/
 
 #pragma once
@@ -18,22 +18,22 @@ public:
     explicit HSpecPelsWave();
 
 public:
-    QString typeName() override;
-
-public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
-    QVector<uchar> toBinaryData();
-    bool fromBinaryData(const QVector<uchar> &data, int &pos);
 
 public:
-    void restoreDefault();
-    void setPelsWave(const QPolygonF &value);
-    QPolygonF pelsWave();
-    double handle(double value);
+    virtual QVector<uchar> toBinaryData();
+    virtual bool fromBinaryData(const QVector<uchar> &data, int &pos);
+
+public:
+    virtual void restoreDefault();
+    virtual void setPoints(const QPolygonF &value);
+    virtual QPolygonF points();
+    virtual double handle(double value) = 0;
 
 protected:
-    HSpecPelsWave(HSpecPelsWavePrivate &p);
+    HSpecPelsWave(HSpecPelsWavePrivate &);
 };
 
 HE_END_NAMESPACE
+

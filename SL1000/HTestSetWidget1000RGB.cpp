@@ -3,6 +3,7 @@
 #include "HeData/ITestData.h"
 #include "HeController/IModel.h"
 #include "HePlugin/HPluginHelper.h"
+#include <QtWidgets/QMessageBox>
 
 HTestSetWidget1000RGBPrivate::HTestSetWidget1000RGBPrivate()
 {
@@ -20,7 +21,7 @@ HTestSetWidget1000RGBPrivate::HTestSetWidget1000RGBPrivate()
 }
 
 HTestSetWidget1000RGB::HTestSetWidget1000RGB(QWidget *parent) :
-    HAbstractTestSetWidget(parent),
+    HAbstractTestSetWidget(*new HTestSetWidget1000RGBPrivate, parent),
     ui(new Ui::HTestSetWidget1000RGB)
 {
     ui->setupUi(this);
@@ -86,7 +87,7 @@ void HTestSetWidget1000RGB::handleAction(HActionType action)
 bool HTestSetWidget1000RGB::setTestState(bool b)
 {
     Q_D(HTestSetWidget1000RGB);
-    if (!HAbstractTestSetWidget::setTestState(b))
+    if (d->testState == b)
         return false;
 
     if (b)
@@ -96,7 +97,10 @@ bool HTestSetWidget1000RGB::setTestState(bool b)
         {
             auto i = nextIndex(-1);
             if (!setCrystalIndex(i))
+            {
+                QMessageBox::critical(this, tr("提示"), tr("请先配置要测试的灯组合！"), QMessageBox::Ok);
                 return false;
+            }
             d->model->addAction(ACT_SINGLE_TEST);
         }
         else
@@ -124,6 +128,8 @@ bool HTestSetWidget1000RGB::setTestState(bool b)
     ui->pushButton_3->setEnabled(!b);
     ui->pushButton_4->setEnabled(!b);
     ui->pushButton_5->setEnabled(!b);
+    d->testState = b;
+    emit testStateChanged(b);
     return true;
 }
 

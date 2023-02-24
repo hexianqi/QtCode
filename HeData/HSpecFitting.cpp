@@ -1,6 +1,4 @@
 #include "HSpecFitting_p.h"
-#include <QtCore/QDataStream>
-#include <QtDebug>
 
 HE_BEGIN_NAMESPACE
 
@@ -15,30 +13,13 @@ HSpecFitting::HSpecFitting(HSpecFittingPrivate &p) :
 {
 }
 
-void HSpecFitting::readContent(QDataStream &s)
-{
-    Q_D(HSpecFitting);
-    quint32 version;
-    s >> version;
-    s >> d->datas;
-    s >> d->fittingPoints;
-}
-
-void HSpecFitting::writeContent(QDataStream &s)
-{
-    Q_D(HSpecFitting);
-    s << quint32(1);
-    s << d->datas;
-    s << d->fittingPoints;
-}
-
 void HSpecFitting::clear()
 {
     Q_D(HSpecFitting);
-    d->fittingPoints.clear();
+    d->points.clear();
 }
 
-void HSpecFitting::setFittingPoints(QPolygonF value)
+void HSpecFitting::setPoints(QPolygonF value)
 {
     Q_D(HSpecFitting);
     setData("[光谱拟合取样次数]", value.size());
@@ -55,31 +36,30 @@ void HSpecFitting::setFittingPoints(QPolygonF value)
     }
     for (i = 0; i < value.size(); i++)
         value[i].setY(y[i] / t);
-    d->fittingPoints = value;
+    d->points = value;
 }
 
-double HSpecFitting::handle(double value, bool abovezero)
-{
-    auto rate = calcRate(value);
-    value = value / rate;
-    if (abovezero)
-        value = qMax(0.0, value);
-    return value;
-}
-
-QPolygonF HSpecFitting::fittingPoints()
+QPolygonF HSpecFitting::points()
 {
     Q_D(HSpecFitting);
-    return d->fittingPoints;
+    return d->points;
 }
 
-QPolygonF HSpecFitting::fittingCurve(double interval)
+QPolygonF HSpecFitting::curve(double interval)
 {
     auto r = data("[光谱拟合有效范围]").toPointF();
     QPolygonF p;
     for (double d = r.x() - 100; d < r.y() + 100; d += interval)
         p << QPointF(d, calcRate(d));
     return p;
+}
+
+QVector<double> HSpecFitting::handle(QVector<double> value, bool abovezero)
+{
+    QVector<double> r;
+    for (auto v : value)
+        r << handle(v, abovezero);
+    return r;
 }
 
 void HSpecFitting::init()
@@ -89,20 +69,16 @@ void HSpecFitting::init()
     setData("[光谱拟合取样次数]", 100);
     setData("[光谱拟合积分时间范围]", QPointF(10, 100));
     setData("[光谱拟合有效范围]", QPointF(0, 65535));
-    d->fittingPoints.clear();
+    d->points.clear();
 }
 
-double HSpecFitting::calcRate(double /*value*/)
+double HSpecFitting::handle(double value, bool abovezero)
 {
-    return 1.0;
-}
-
-QVector<double> HSpecFitting::handle(QVector<double> value, bool abovezero)
-{
-    QVector<double> r;
-    for (auto v : value)
-        r << handle(v, abovezero);
-    return r;
+    auto rate = calcRate(value);
+    value = value / rate;
+    if (abovezero)
+        value = qMax(0.0, value);
+    return value;
 }
 
 HE_END_NAMESPACE

@@ -11,6 +11,7 @@ class HSpecPelsWaveWidgetPrivate
 {
 public:
     QSpinBox *spinBox = nullptr;
+    QSpinBox *spinBox2 = nullptr;
     HEntireTableWidget *tableWidget = nullptr;
     HSpecPelsWave *data;
 };

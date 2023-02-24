@@ -28,11 +28,13 @@ public:
 
 public:
     void clear() override;
-    void setFittingPoints(QPolygonF value) override;
+    void setPoints(QPolygonF value) override;
     QVector<double> handle(QVector<double> value, bool abovezero = true) override;
 
 protected:
     void init() override;
+    double handle(double value, bool abovezero = true) override;
+    double calcRate(double value) override;
     double handle(int i, double value, bool abovezero = true);
     double calcRate(int i, double value);
 };

@@ -9,7 +9,7 @@ HE_BEGIN_NAMESPACE
 class HSpecFittingPrivate : public HAbstractDataItemPrivate
 {
 public:
-    QPolygonF fittingPoints;
+    QPolygonF points;
 };
 
 HE_END_NAMESPACE

@@ -9,7 +9,8 @@ HE_BEGIN_NAMESPACE
 class HSpecPelsWavePrivate : public HAbstractDataItemPrivate
 {
 public:
-    QPolygonF pelsWave;
+    QPolygonF points;
 };
 
 HE_END_NAMESPACE
+

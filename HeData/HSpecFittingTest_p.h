@@ -8,7 +8,7 @@ HE_BEGIN_NAMESPACE
 class HSpecFittingTestPrivate : public HSpecFittingPrivate
 {
 public:
-    QList<QPolygonF> allFittingPoints;
+    QList<QPolygonF> allPoints;
 };
 
 HE_END_NAMESPACE

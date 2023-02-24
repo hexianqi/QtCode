@@ -17,7 +17,7 @@
 #include "HeData/ITestData.h"
 #include "HeData/ISpecCalibrate.h"
 #include "HeData/HSpecFitting.h"
-#include "HeData/HSpecPelsWave.h"
+#include "HeData/HSpecPelsWaveLinear.h"
 #include "HeData/HSpecSetting.h"
 #include "HeData/HSpecStdCurve.h"
 #include "HeData/HSpecLuminous.h"
@@ -196,8 +196,8 @@ void HSpecCalibrateWidget::refreshCcdView()
 {
     Q_D(HSpecCalibrateWidget);
     d->fittingTimes++;
-    d->ccdView->addLineSeries(d->fittingTimes, d->fittingWidget->fittingCurve());
-    d->ccdView->addScatterSeries(d->fittingTimes, d->fittingWidget->fittingPoints());
+    d->ccdView->addLineSeries(d->fittingTimes, d->fittingWidget->curve());
+    d->ccdView->addScatterSeries(d->fittingTimes, d->fittingWidget->points());
 }
 
 void HSpecCalibrateWidget::refreshSpecWidget()

@@ -28,7 +28,7 @@ void HSpecFittingPolynom::readContent(QDataStream &s)
     quint32 version;
     s >> version;
     s >> d->datas;
-    s >> d->fittingPoints;
+    s >> d->points;
     s >> d->ca;
     s >> d->cova;
 }
@@ -38,7 +38,7 @@ void HSpecFittingPolynom::writeContent(QDataStream &s)
     Q_D(HSpecFittingPolynom);
     s << quint32(1);
     s << d->datas;
-    s << d->fittingPoints;
+    s << d->points;
     s << d->ca;
     s << d->cova;
 }
@@ -51,8 +51,8 @@ QVector<uchar> HSpecFittingPolynom::toBinaryData()
     Q_D(HSpecFittingPolynom);
     auto r =  QVector<uchar>() << HDataHelper::writeUInt16(0)   // 大小
                                << HDataHelper::writeUInt16(2);  // 版本
-    r << HDataHelper::writeUInt16(static_cast<quint16>(d->fittingPoints.size()));
-    for (auto p : d->fittingPoints)
+    r << HDataHelper::writeUInt16(static_cast<quint16>(d->points.size()));
+    for (auto p : d->points)
         r << HDataHelper::writeUInt16(static_cast<quint16>(p.x())) << HDataHelper::writeUInt16(static_cast<quint16>(p.y() * 10000));
     r << HDataHelper::writeUInt16(data("[光谱拟合多项式项数]").toInt());
     r[0] = uchar(r.size() / 256);
@@ -67,50 +67,50 @@ bool HSpecFittingPolynom::fromBinaryData(QVector<uchar> data, int &pos)
     if (!HDataHelper::checkHead(data, pos, version))
         return false;
 
-    d->fittingPoints.clear();
+    d->points.clear();
     auto size = HDataHelper::readUInt16(data, pos);
     for (int i = 0; i < size; i++)
     {
         auto x = HDataHelper::readUInt16(data, pos);
         auto y = HDataHelper::readUInt16(data, pos) / 10000.0;
-        d->fittingPoints << QPointF(x, y);
+        d->points << QPointF(x, y);
     }
     if (version >= 2)
         setData("[光谱拟合多项式项数]", HDataHelper::readUInt16(data, pos));
     setData("[光谱拟合取样次数]", size);
-    setData("[光谱拟合有效范围]", QPointF(d->fittingPoints.first().x(), d->fittingPoints.last().x()));
-    calcLinear();
+    setData("[光谱拟合有效范围]", QPointF(d->points.first().x(), d->points.last().x()));
+    linear();
     return true;
 }
 
 void HSpecFittingPolynom::clear()
 {
     Q_D(HSpecFittingPolynom);
-    HSpecFitting::clear();
+    d->points.clear();
     d->ca.clear();
     d->cova.clear();
 }
 
-void HSpecFittingPolynom::setFittingPoints(QPolygonF value)
+void HSpecFittingPolynom::setPoints(QPolygonF value)
 {
-    HSpecFitting::setFittingPoints(value);
-    calcLinear();
+    HSpecFitting::setPoints(value);
+    linear();
 }
 
 void HSpecFittingPolynom::init()
 {
     Q_D(HSpecFittingPolynom);
-    HSpecFitting::init();
-    setData("[光谱拟合多项式项数]", 7);
     d->ca.clear();
     d->cova.clear();
+    setData("[光谱拟合多项式项数]", 7);
+    HSpecFitting::init();
 }
 
 double HSpecFittingPolynom::calcRate(double value)
 {
     auto range = data("[光谱拟合有效范围]").toPointF();
     if (value >= range.x() && value <= range.y())
-        return calcPolynom(value);
+        return linearEst(value);
 
     double x1, x2, y1, y2;
     if (value < range.x())
@@ -124,12 +124,22 @@ double HSpecFittingPolynom::calcRate(double value)
         x2 = range.y();
     }
 
-    y1 = calcPolynom(x1);
-    y2 = calcPolynom(x2);
+    y1 = linearEst(x1);
+    y2 = linearEst(x2);
     return HMath::interpolate(value, x1, y1, x2, y2);
 }
 
-double HSpecFittingPolynom::calcPolynom(double value)
+void HSpecFittingPolynom::linear()
+{
+    Q_D(HSpecFittingPolynom);
+    double chisq;
+    d->ca.clear();
+    d->cova.clear();
+    d->ca.resize(data("[光谱拟合多项式项数]").toInt());
+    HMultiFit::linear(d->points, d->ca, d->cova, &chisq);
+}
+
+double HSpecFittingPolynom::linearEst(double value)
 {
     Q_D(HSpecFittingPolynom);
     if (d->ca.size() < 2)
@@ -137,16 +147,6 @@ double HSpecFittingPolynom::calcPolynom(double value)
     double y, error;
     HMultiFit::linear_est(value, d->ca, d->cova, &y, &error);
     return  y;
-}
-
-void HSpecFittingPolynom::calcLinear()
-{
-    Q_D(HSpecFittingPolynom);
-    double chisq;
-    d->ca.clear();
-    d->cova.clear();
-    d->ca.resize(data("[光谱拟合多项式项数]").toInt());
-    HMultiFit::linear(d->fittingPoints, d->ca, d->cova, &chisq);
 }
 
 HE_END_NAMESPACE

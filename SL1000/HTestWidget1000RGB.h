@@ -27,7 +27,14 @@ protected:
     void clearResult() override;
     void exportExcel() override;
     void handleAction(HActionType) override;
+
+protected slots:
+    void handleStateChanged(bool);
+    void handleResultChanged(HActionType, bool);
+
+protected:
     void resetSpec();
     void resetGrade();
+    void refreshWidget(bool append);
 };
 

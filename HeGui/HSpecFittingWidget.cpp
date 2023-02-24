@@ -28,14 +28,14 @@ HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *pa
     init();
 }
 
-QPolygonF HSpecFittingWidget::fittingPoints()
+QPolygonF HSpecFittingWidget::points()
 {
-    return d_ptr->data->fittingPoints();
+    return d_ptr->data->points();
 }
 
-QPolygonF HSpecFittingWidget::fittingCurve()
+QPolygonF HSpecFittingWidget::curve()
 {
-    return d_ptr->data->fittingCurve(1);
+    return d_ptr->data->curve(1);
 }
 
 void HSpecFittingWidget::setData(HSpecFitting *p)

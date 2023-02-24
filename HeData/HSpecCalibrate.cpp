@@ -6,7 +6,8 @@
 #include "HSpecFittingPolynom.h"
 #include "HSpecFittingTest.h"
 #include "HSpecStdCurve.h"
-#include "HSpecPelsWave.h"
+#include "HSpecPelsWaveLinear.h"
+#include "HSpecPelsWavePolynom.h"
 #include "HSpecLuminous.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
@@ -20,7 +21,7 @@ HSpecCalibratePrivate::HSpecCalibratePrivate()
     setting = new HSpecSetting;
     fitting = new HSpecFittingPolynom;
     stdCurve = new HSpecStdCurve;
-    pelsWave = new HSpecPelsWave;
+    pelsWave = new HSpecPelsWavePolynom;//new HSpecPelsWaveLinear;
     luminous = new HSpecLuminous;
 }
 

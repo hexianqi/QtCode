@@ -50,9 +50,10 @@ bool HSpecFittingPolynomWidget::initParam()
 void HSpecFittingPolynomWidget::saveData()
 {
     Q_D(HSpecFittingPolynomWidget);
-    d->data->setData("[光谱拟合积分时间范围]", d->integralTime);d->data->setData("[光谱拟合基准像元]", d->pel);
+    d->data->setData("[光谱拟合积分时间范围]", d->integralTime);
+    d->data->setData("[光谱拟合基准像元]", d->pel);
     d->data->setData("[光谱拟合多项式项数]", d->polyTime);
-    d->data->setFittingPoints(d->points);
+    d->data->setPoints(d->points);
 }
 
 void HSpecFittingPolynomWidget::showData()

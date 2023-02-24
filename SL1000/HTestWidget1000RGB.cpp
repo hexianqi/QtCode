@@ -1,6 +1,7 @@
 #include "HTestWidget1000RGB_p.h"
 #include "HTestResult1000RGB.h"
 #include "HTestSetWidget1000RGB.h"
+#include "HeCore/HCore.h"
 #include "HeData/ITestData.h"
 #include "HePlugin/HCie1931Widget.h"
 #include "HePlugin/HCartesianWidget.h"
@@ -11,12 +12,15 @@
 
 HTestWidget1000RGBPrivate::HTestWidget1000RGBPrivate()
 {
-//    auto list = QStringList() << "|时间信息2|" << "|产品信息3|" << "|环境信息|"  << "|直流电信息|" << "|光度信息|" << "|光谱信息5|" << "|色容差信息2|" << "|光合信息|" << "|TM30信息2|";
-//    displays = QStringList() << "[调整组]" << "[分级]" << HCore::membership(list);
-
-
-//    displays.insert()
-
+    auto list = HCore::membership("|光谱信息4|");
+    displays.insert(0, QStringList() << "[实测电压-R]" << "[实测电流-R]" << "[反向漏流-R]" << list);
+    displays.insert(1, QStringList() << "[实测电压-G]" << "[实测电流-G]" << "[反向漏流-G]" << list);
+    displays.insert(2, QStringList() << "[实测电压-B]" << "[实测电流-B]" << "[反向漏流-B]" << list);
+    displays.insert(3, QStringList() << "[实测电压-W]" << "[实测电流-W]" << "[反向漏流-W]" << list);
+    displays.insert(4, QStringList() << "[实测电压-R]" << "[实测电流-R]" << "[反向漏流-R]"
+                                     << "[实测电压-G]" << "[实测电流-G]" << "[反向漏流-G]"
+                                     << "[实测电压-B]" << "[实测电流-B]" << "[反向漏流-B]"
+                                     << "[实测电压-W]" << "[实测电流-W]" << "[反向漏流-W]" << list);
 }
 
 HTestWidget1000RGB::HTestWidget1000RGB(QWidget *parent) :
@@ -79,14 +83,18 @@ void HTestWidget1000RGB::initWidget()
     auto tabWidget3 = new QTabWidget;
     auto splitter1 = new QSplitter(Qt::Horizontal);
     auto splitter2 = new QSplitter(Qt::Vertical);
-    auto splitter3 = new QSplitter(Qt::Horizontal);
     d->energyWidget->setPolygonColor(0, Qt::red);
     d->energyWidget->setPolygonColor(1, Qt::green);
     d->energyWidget->setPolygonColor(2, Qt::blue);
     d->energyWidget->setPolygonColor(3, Qt::white);
     d->energyWidget->setPolygonColor(4, QColor(255, 85, 0));
-    tabWidget1->addTab(d->energyWidget, tr("相对光谱功率分布"));
-    //    tabWidget2->addTab(d->cieWidget, d->cieWidget->windowTitle());
+    d->tableWidgets[0]->setDisplay(d->displays[0]);
+    d->tableWidgets[1]->setDisplay(d->displays[1]);
+    d->tableWidgets[2]->setDisplay(d->displays[2]);
+    d->tableWidgets[3]->setDisplay(d->displays[3]);
+    d->tableWidgets[4]->setDisplay(d->displays[4]);
+//    tabWidget1->addTab(d->cieWidget, d->cieWidget->windowTitle());
+    tabWidget2->addTab(d->energyWidget, tr("相对光谱功率分布"));
     tabWidget3->addTab(d->tableWidgets[0], tr("R"));
     tabWidget3->addTab(d->tableWidgets[1], tr("G"));
     tabWidget3->addTab(d->tableWidgets[2], tr("B"));
@@ -94,18 +102,19 @@ void HTestWidget1000RGB::initWidget()
     tabWidget3->addTab(d->tableWidgets[4], tr("综合"));
     splitter1->addWidget(tabWidget1);
     splitter1->addWidget(tabWidget2);
+    splitter1->addWidget(d->testSetWidget);
     splitter1->setHandleWidth(15);
-    splitter1->setStretchFactor(0, 2);
+    splitter1->setStretchFactor(0, 1);
     splitter1->setStretchFactor(1, 1);
     splitter2->addWidget(splitter1);
     splitter2->addWidget(tabWidget3);
     splitter2->setHandleWidth(15);
     splitter2->setStretchFactor(1, 1);
-    splitter3->addWidget(splitter2);
-    splitter3->addWidget(d->testSetWidget);
-    splitter3->setHandleWidth(15);
-    splitter3->setStretchFactor(0, 1);
-    layout->addWidget(splitter3);
+    layout->addWidget(splitter2);
+//    connect(d->testSetWidget, &ITestSetWidget::testStateChanged, this, &HTestWidget1000RGB::handleStateChanged);
+//    connect(d->testSetWidget, &ITestSetWidget::resultChanged, this, &HTestWidget1000RGB::handleResultChanged);
+    connect(d->testSetWidget, SIGNAL(testStateChanged(bool)), this, SLOT(handleStateChanged(bool)));
+    connect(d->testSetWidget, SIGNAL(resultChanged(HActionType, bool)), this, SLOT(handleResultChanged(HActionType, bool)));
     resetSpec();
     resetGrade();
 }
@@ -113,7 +122,7 @@ void HTestWidget1000RGB::initWidget()
 void HTestWidget1000RGB::clearResult()
 {
     Q_D(HTestWidget1000RGB);
-    d->testResult->clearResult();
+    d->testResult->clear();
     d->energyWidget->clearPolygon();
     d->cieWidget->clearPoint();
     for (auto w : d->tableWidgets)
@@ -127,7 +136,7 @@ void HTestWidget1000RGB::exportExcel()
 
 void HTestWidget1000RGB::handleAction(HActionType action)
 {
-    Q_D(HTestWidget1000RGB);
+ //   Q_D(HTestWidget1000RGB);
     if (action >= 0xF0000000)
     {
         setTest(false);
@@ -143,6 +152,23 @@ void HTestWidget1000RGB::handleAction(HActionType action)
     HTestWidget::handleAction(action);
 }
 
+void HTestWidget1000RGB::handleStateChanged(bool b)
+{
+    Q_D(HTestWidget1000RGB);
+    d->actionStart->setEnabled(!b);
+    d->actionStop->setEnabled(b);
+    d->actionClear->setEnabled(!b);
+    if (b)
+        d->energyWidget->clearPolygon();
+}
+
+void HTestWidget1000RGB::handleResultChanged(HActionType, bool append)
+{
+    Q_D(HTestWidget1000RGB);
+    refreshWidget(append);
+    d->testResult->update(append);
+}
+
 void HTestWidget1000RGB::resetSpec()
 {
     Q_D(HTestWidget1000RGB);
@@ -153,5 +179,18 @@ void HTestWidget1000RGB::resetSpec()
 void HTestWidget1000RGB::resetGrade()
 {
 
+}
+
+void HTestWidget1000RGB::refreshWidget(bool append)
+{
+    Q_D(HTestWidget1000RGB);
+    auto id = d_ptr->testData->data("[TypeId]").toInt();
+    auto point = d->testData->data("[色坐标]").toPointF();
+    d->energyWidget->addPolygon(id, d_ptr->testData->data("[光谱能量曲线]").value<QPolygonF>());
+    d->tableWidgets[id]->refreshLast(append);
+    if (append)
+        d->cieWidget->addPoint(point);
+    else
+        d->cieWidget->setPointFocus(point);
 }
 

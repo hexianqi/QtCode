@@ -24,8 +24,8 @@ signals:
     void fittingFinished();
 
 public:
-    QPolygonF fittingPoints();
-    QPolygonF fittingCurve();
+    QPolygonF points();
+    QPolygonF curve();
 
 public:
     void setData(HSpecFitting *);

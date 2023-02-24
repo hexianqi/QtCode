@@ -1,4 +1,10 @@
 HEADERS += \
+    $$PWD/HSpecPelsWave.h \
+    $$PWD/HSpecPelsWaveLinear.h \
+    $$PWD/HSpecPelsWaveLinear_p.h \
+    $$PWD/HSpecPelsWavePolynom.h \
+    $$PWD/HSpecPelsWavePolynom_p.h \
+    $$PWD/HSpecPelsWave_p.h \
     $$PWD/ISpecCalibrate.h \
     $$PWD/ISpecCalibrateCollection.h \
     $$PWD/HSpecCalibrate.h \
@@ -9,8 +15,6 @@ HEADERS += \
     $$PWD/HSpecSetting_p.h \
     $$PWD/HSpecStdCurve.h \
     $$PWD/HSpecStdCurve_p.h \
-    $$PWD/HSpecPelsWave.h \
-    $$PWD/HSpecPelsWave_p.h \
     $$PWD/HSpecLuminous.h \
     $$PWD/HSpecLuminous_p.h \
     $$PWD/HSpecFitting.h \
@@ -26,9 +30,11 @@ HEADERS += \
 SOURCES += \
     $$PWD/HSpecCalibrate.cpp \
     $$PWD/HSpecCalibrateCollection.cpp \
+    $$PWD/HSpecPelsWave.cpp \
+    $$PWD/HSpecPelsWaveLinear.cpp \
+    $$PWD/HSpecPelsWavePolynom.cpp \
     $$PWD/HSpecSetting.cpp \
     $$PWD/HSpecStdCurve.cpp \
-    $$PWD/HSpecPelsWave.cpp \
     $$PWD/HSpecLuminous.cpp \
     $$PWD/HSpecFitting.cpp \
     $$PWD/HSpecFittingLinear.cpp \

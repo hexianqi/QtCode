@@ -28,7 +28,7 @@ public:
 
 public:
     void clear() override;
-    void setFittingPoints(QPolygonF value) override;
+    void setPoints(QPolygonF value) override;
 
 protected:
     HSpecFittingPolynom(HSpecFittingPolynomPrivate &p);
@@ -36,8 +36,8 @@ protected:
 protected:
     void init() override;
     double calcRate(double value) override;
-    double calcPolynom(double value);
-    void calcLinear();
+    void linear();
+    double linearEst(double value);
 };
 
 HE_END_NAMESPACE
