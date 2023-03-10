@@ -1,6 +1,8 @@
 #include "HSpecFittingWidget_p.h"
-#include "HeData/HSpecFitting.h"
+#include "ui_HSpecFittingWidget.h"
 #include "HeCore/HAppContext.h"
+#include "HeData/HSpecFitting.h"
+#include "HePlugin/HPluginHelper.h"
 #include "HeController/IModel.h"
 #include "HeData/ITestSpec.h"
 #include <QtWidgets/QMessageBox>
@@ -16,16 +18,16 @@ HSpecFittingWidgetPrivate::HSpecFittingWidgetPrivate()
 
 HSpecFittingWidget::HSpecFittingWidget(QWidget *parent) :
     QWidget(parent),
-    d_ptr(new HSpecFittingWidgetPrivate)
+    d_ptr(new HSpecFittingWidgetPrivate),
+    ui(new Ui::HSpecFittingWidget)
 {
+    ui->setupUi(this);
     init();
 }
 
-HSpecFittingWidget::HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent) :
-    QWidget(parent),
-    d_ptr(&p)
+HSpecFittingWidget::~HSpecFittingWidget()
 {
-    init();
+    delete ui;
 }
 
 QPolygonF HSpecFittingWidget::points()
@@ -57,9 +59,17 @@ bool HSpecFittingWidget::setTestState(bool b)
 
     if (b)
     {
-        if (!initParam())
-            return false;
-        d_ptr->lastSample = 0.0;
+        auto times = ui->spinBox_1->value();
+        auto t1 = ui->doubleSpinBox_1->value();
+        auto t2 = ui->doubleSpinBox_2->value();
+        if (t1 > t2)
+            qSwap(t1, t2);
+        d_ptr->integralTime = QPointF(t1, t2);
+        d_ptr->pel = ui->spinBox_2->value();
+        d_ptr->polyTime = ui->spinBox_3->value();
+        d_ptr->points.clear();
+        for (int i = 1; i <= times; i++)
+            d_ptr->points << QPointF(0.0, t1 + (t2 - t1) * i / times);
         d_ptr->curTimes = 0;
         d_ptr->progressDialog->setRange(0, d_ptr->points.size());
         d_ptr->progressDialog->setValue(0);
@@ -68,6 +78,12 @@ bool HSpecFittingWidget::setTestState(bool b)
     }
     d_ptr->testSpec->setFitting(!b);
     d_ptr->testState = b;
+    ui->spinBox_1->setEnabled(!b);
+    ui->spinBox_2->setEnabled(!b);
+    ui->spinBox_3->setEnabled(!b);
+    ui->doubleSpinBox_1->setEnabled(!b);
+    ui->doubleSpinBox_2->setEnabled(!b);
+    ui->checkBox_1->setEnabled(!b);
     emit stateChanged(b);
     return true;
 }
@@ -87,12 +103,6 @@ void HSpecFittingWidget::handleAction(HActionType action)
         return;
 
     auto sample = d_ptr->testSpec->sample(1, d_ptr->pel);
-//    if (sample < d_ptr->lastSample)
-//    {
-//        cancel(tr("采样数据不对（积分时间：%1ms）!").arg(d_ptr->points[d_ptr->curTimes].y()));
-//        return;
-//    }
-//    d_ptr->lastSample = sample;
     d_ptr->points[d_ptr->curTimes].setX(sample);
     d_ptr->curTimes += 1;
     d_ptr->progressDialog->setValue(d_ptr->curTimes);
@@ -110,6 +120,19 @@ void HSpecFittingWidget::handleAction(HActionType action)
     QMessageBox::information(this, tr("提示"), tr("拟合完成！"), QMessageBox::Yes);
 }
 
+void HSpecFittingWidget::init()
+{
+    d_ptr->progressDialog = new QProgressDialog(tr("正在采样...."), tr("取消"), 0, 100, this);
+    d_ptr->progressDialog->reset();
+    HPluginHelper::initWidget("[光谱拟合取样次数]", ui->spinBox_1);
+    HPluginHelper::initWidget("[光谱像元]", ui->spinBox_2);
+    HPluginHelper::initWidget("[线性多项式项数]", ui->spinBox_3);
+    HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_1);
+    HPluginHelper::initWidget("[积分时间]", ui->doubleSpinBox_2);
+    connect(d_ptr->progressDialog, &QProgressDialog::canceled, this, [=]{ setTestState(false); });
+    setWindowTitle(tr("光谱拟合"));
+}
+
 void HSpecFittingWidget::cancel(const QString &text)
 {
     d_ptr->progressDialog->cancel();
@@ -117,12 +140,36 @@ void HSpecFittingWidget::cancel(const QString &text)
     QMessageBox::warning(this, tr("提示"), text, QMessageBox::Yes);
 }
 
-void HSpecFittingWidget::init()
+void HSpecFittingWidget::saveData()
 {
-    d_ptr->progressDialog = new QProgressDialog(tr("正在采样...."), tr("取消"), 0, 100, this);
-    d_ptr->progressDialog->reset();
-    connect(d_ptr->progressDialog, &QProgressDialog::canceled, this, [=]{ setTestState(false); });
-    setWindowTitle(tr("光谱拟合"));
+    int i;
+    double temp, max = 0.0;
+    QPolygonF points;
+    for (auto point : d_ptr->points)
+    {
+        temp = point.x() / point.y();
+        if (temp > max)
+            max = temp;
+        points << QPointF(point.x(), temp);
+    }
+    for (i = 0; i < points.size(); i++)
+        points[i].setY(points[i].y() / max);
+    d_ptr->data->setData("[光谱拟合积分时间范围]", d_ptr->integralTime);
+    d_ptr->data->setData("[光谱拟合基准像元]", d_ptr->pel);
+    d_ptr->data->setData("[线性多项式项数]", d_ptr->polyTime);
+    d_ptr->data->setData("[线性策略]", ui->checkBox_1->isChecked() ? "HPolynomStrategy" : "HPlineStrategy");
+    d_ptr->data->setPoints(points);
+}
+
+void HSpecFittingWidget::showData()
+{
+    auto integralTime = d_ptr->data->data("[光谱拟合积分时间范围]").toPointF();
+    ui->doubleSpinBox_1->setValue(integralTime.x());
+    ui->doubleSpinBox_2->setValue(integralTime.y());
+    ui->spinBox_1->setValue(d_ptr->data->data("[光谱拟合取样次数]").toInt());
+    ui->spinBox_2->setValue(d_ptr->data->data("[光谱拟合基准像元]").toInt());
+    ui->spinBox_3->setValue(d_ptr->data->data("[线性多项式项数]").toInt());
+    ui->checkBox_1->setChecked(d_ptr->data->data("[线性策略]").toString() == "HPolynomStrategy");
 }
 
 HE_END_NAMESPACE

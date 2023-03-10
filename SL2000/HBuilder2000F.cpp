@@ -36,12 +36,7 @@ void HBuilder2000F::buildConfigManage()
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
-        {
-            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
-            auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
-            spec->setFitting(fit);
-            specs->insert("1", spec);
-        }
+            specs->insert("1", d->dataFactory->createSpecCalibrate("HSpecCalibrate"));
 
         QVariantMap param[6];
         param[0].insert("itemClassName",    "HElecCalibrateItem");

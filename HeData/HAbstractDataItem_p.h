@@ -8,6 +8,7 @@ class HAbstractDataItemPrivate
 {
 public:
     QVariantMap datas;
+    bool modified = true;
 };
 
 HE_END_NAMESPACE

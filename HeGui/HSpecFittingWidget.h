@@ -1,11 +1,15 @@
 /***************************************************************************************************
-**      2019-03-27  HSpecFittingWidget 拟合配置窗体。
+**      2019-07-22  HSpecFittingPolynomWidget 拟合配置窗体（多项式）。
 ***************************************************************************************************/
 
 #pragma once
 
 #include "HeCore/HActionType.h"
 #include <QtWidgets/QWidget>
+
+namespace Ui {
+class HSpecFittingWidget;
+}
 
 HE_BEGIN_NAMESPACE
 
@@ -18,6 +22,7 @@ class HSpecFittingWidget : public QWidget
 
 public:
     explicit HSpecFittingWidget(QWidget *parent = nullptr);
+    ~HSpecFittingWidget() override;
 
 signals:
     void stateChanged(bool b);
@@ -30,23 +35,20 @@ public:
 public:
     void setData(HSpecFitting *);
     void clearData();
-    virtual bool setTestState(bool b);
-    virtual void handleAction(HActionType action);
+    bool setTestState(bool b);
+    void handleAction(HActionType action);
 
 protected:
-    HSpecFittingWidget(HSpecFittingWidgetPrivate &p, QWidget *parent = nullptr);
-
-protected:
+    void init();
     void cancel(const QString &text);
-    virtual bool initParam() = 0;
-    virtual void saveData() = 0;
-    virtual void showData() = 0;
+    void saveData();
+    void showData();
 
 protected:
     QScopedPointer<HSpecFittingWidgetPrivate> d_ptr;
 
 private:
-    void init();
+    Ui::HSpecFittingWidget *ui;
 };
 
 HE_END_NAMESPACE

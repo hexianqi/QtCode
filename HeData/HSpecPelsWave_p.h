@@ -6,9 +6,17 @@
 
 HE_BEGIN_NAMESPACE
 
+class IDataFactory;
+class ILinearStrategy;
+
 class HSpecPelsWavePrivate : public HAbstractDataItemPrivate
 {
 public:
+    HSpecPelsWavePrivate();
+
+public:
+    IDataFactory *factory = nullptr;
+    ILinearStrategy *strategy = nullptr;
     QPolygonF points;
 };
 

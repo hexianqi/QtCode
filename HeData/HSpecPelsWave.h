@@ -18,6 +18,9 @@ public:
     explicit HSpecPelsWave();
 
 public:
+    QString typeName() override;
+
+public:
     void readContent(QDataStream &) override;
     void writeContent(QDataStream &) override;
 
@@ -29,10 +32,13 @@ public:
     virtual void restoreDefault();
     virtual void setPoints(const QPolygonF &value);
     virtual QPolygonF points();
-    virtual double handle(double value) = 0;
+    virtual double handle(double value);
 
 protected:
     HSpecPelsWave(HSpecPelsWavePrivate &);
+
+protected:
+    virtual void initStrategy();
 };
 
 HE_END_NAMESPACE

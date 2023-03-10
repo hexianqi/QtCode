@@ -44,7 +44,7 @@ class IAdjust2Collection;
 class IAdjustItem;
 class IAdjustItemCollection;
 
-class HSpecFitting;
+class ILinearStrategy;
 
 class IDataFactory : public IInitializeable
 {
@@ -107,8 +107,10 @@ public:
     virtual IAdjust2 *createAdjust2(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IAdjustItemCollection *createAdjustItemCollection(QString type, QVariantMap param = QVariantMap()) = 0;
     virtual IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) = 0;
-    // 创建光谱拟合
-    virtual HSpecFitting *createSpecFitting(QString type, QVariantMap param = QVariantMap()) = 0;
+
+public:
+    // 创建线性策略
+    virtual ILinearStrategy *createLinearStrategy(QString type, QVariantMap param = QVariantMap()) = 0;
 };
 
 HE_END_NAMESPACE

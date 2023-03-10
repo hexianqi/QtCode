@@ -65,7 +65,8 @@ public:
     IAdjustItemCollection *createAdjustItemCollection(QString type, QVariantMap param = QVariantMap()) override;
     IAdjustItem *createAdjustItem(QString type, QVariantMap param = QVariantMap()) override;
 
-    HSpecFitting *createSpecFitting(QString type, QVariantMap param = QVariantMap()) override;
+public:
+    ILinearStrategy *createLinearStrategy(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:
     HDataFactory(HDataFactoryPrivate &p, QObject *parent = nullptr);

@@ -24,7 +24,11 @@ void HAbstractDataItem::initialize(QVariantMap param)
 
 void HAbstractDataItem::setData(QString name, QVariant value)
 {
-    d_ptr->datas.insert(name, value);
+    if (d_ptr->datas.value(name) != value)
+    {
+        d_ptr->datas.insert(name, value);
+        d_ptr->modified = true;
+    }
 }
 
 void HAbstractDataItem::setData(QVariantMap value)

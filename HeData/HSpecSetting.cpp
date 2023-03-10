@@ -26,12 +26,11 @@ QString HSpecSetting::typeName()
 
 void HSpecSetting::readContent(QDataStream &s)
 {
-    Q_D(HSpecSetting);
     quint32 version;
-    QVariantMap data;
+    QVariantMap datas;
     s >> version;
-    s >> data;
-    d->datas = HCoreHelper::unite(d->datas, data);
+    s >> datas;
+    setData(datas);
 }
 
 void HSpecSetting::writeContent(QDataStream &s)

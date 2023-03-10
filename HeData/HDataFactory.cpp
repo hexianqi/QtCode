@@ -38,8 +38,8 @@
 #include "HAdjustCollection.h"
 #include "HAdjust2Collection.h"
 #include "HAdjustItem.h"
-#include "HSpecFittingLinear.h"
-#include "HSpecFittingPolynom.h"
+#include "HPlineStrategy.h"
+#include "HPolynomStrategy.h"
 #include "HeCore/HFactory.h"
 
 HE_BEGIN_NAMESPACE
@@ -340,19 +340,21 @@ IAdjustItem *HDataFactory::createAdjustItem(QString type, QVariantMap param)
     return p;
 }
 
-HSpecFitting *HDataFactory::createSpecFitting(QString type, QVariantMap param)
+ILinearStrategy *HDataFactory::createLinearStrategy(QString type, QVariantMap param)
 {
-    return HFactory::createObject<HSpecFitting>(type, param);
+    return HFactory::createObject<ILinearStrategy>(type, param);
 }
 
 void HDataFactory::registerClass()
 {
     HFactory::registerClass<HParallelGrade>("HParallelGrade");
     HFactory::registerClass<HSequentialGrade>("HSequentialGrade");
+
     HFactory::registerClass<HGradeItem>("HGradeItem");
     HFactory::registerClass<HGradeItem2D>("HGradeItem2D");
-    HFactory::registerClass<HSpecFittingLinear>("HSpecFittingLinear");
-    HFactory::registerClass<HSpecFittingPolynom>("HSpecFittingPolynom");
+
+    HFactory::registerClass<HPlineStrategy>("HPlineStrategy");
+    HFactory::registerClass<HPolynomStrategy>("HPolynomStrategy");
 
     HFactory::registerClass<HTestData>("HTestData");
     HFactory::registerClass<HTestProduct>("HTestProduct");

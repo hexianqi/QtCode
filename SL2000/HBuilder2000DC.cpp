@@ -33,7 +33,6 @@
 
 HBuilder2000DCPrivate::HBuilder2000DCPrivate()
 {
-    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
 //    sqlField = QStringList() << "ID" << "Manufacturer" << "ProductName" << "ProductModel" << "SampleNumber" << "Tester" << "TestInstitute"
 //                             << "Temperature" << "Humidity" << "TestDate" << "TestTime"
@@ -83,12 +82,7 @@ void HBuilder2000DC::buildConfigManage()
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
-        {
-            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
-            auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
-            spec->setFitting(fit);
-            specs->insert("1", spec);
-        }
+            specs->insert("1", d->dataFactory->createSpecCalibrate("HSpecCalibrate"));
 
         QVariantMap param[6];
         param[0].insert("itemClassName",    "HElecCalibrateItem");

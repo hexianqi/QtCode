@@ -435,11 +435,10 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[光谱平滑帧数]",                 new HDataFormatInfo("[光谱平滑帧数]", 1, 100));
     hashDataFormatInfo.insert("[光谱平滑次数]",                 new HDataFormatInfo("[光谱平滑次数]", 0, 100));
     hashDataFormatInfo.insert("[光谱平滑范围]",                 new HDataFormatInfo("[光谱平滑范围]", 0, 100));
-    hashDataFormatInfo.insert("[光谱拟合取样次数]",             new HDataFormatInfo("[光谱拟合取样次数]", 30, 500));
-    hashDataFormatInfo.insert("[光谱拟合有效范围]",             new HDataFormatInfo("[光谱拟合有效范围]", 0, 65535));
-    hashDataFormatInfo.insert("[光谱拟合多项式项数]",           new HDataFormatInfo("[光谱拟合多项式项数]", 2, 20));
     hashDataFormatInfo.insert("[标准光谱光通量]",               new HDataFormatInfo("[标准光谱光通量]", "lm", 0, 99999, 2, 100));
     hashDataFormatInfo.insert("[光谱光通量系数]",               new HDataFormatInfo("[光谱光通量系数]", 0, 99999999));
+    hashDataFormatInfo.insert("[线性多项式项数]",               new HDataFormatInfo("[线性多项式项数]", 2, 20));
+    hashDataFormatInfo.insert("[线性取样次数]",                 new HDataFormatInfo("[线性取样次数]", 2, 500));
     // 光谱数据
     hashDataFormatInfo.insert("[光谱采样值]",                   new HDataFormatInfo("[光谱采样值]", 0.0, 65536.0, 1));
     hashDataFormatInfo.insert("[光谱采样比率]",                 hashDataFormatInfo.value("[百分比]"));

@@ -18,8 +18,15 @@ public:
     explicit HSpecFitting();
 
 public:
-    virtual QVector<uchar> toBinaryData() = 0;
-    virtual bool fromBinaryData(QVector<uchar> data, int &pos) = 0;
+    QString typeName() override;
+
+public:
+    void readContent(QDataStream &) override;
+    void writeContent(QDataStream &) override;
+
+public:
+    virtual QVector<uchar> toBinaryData();
+    virtual bool fromBinaryData(QVector<uchar> data, int &pos);
 
 public:
     virtual void clear();
@@ -32,9 +39,8 @@ protected:
     HSpecFitting(HSpecFittingPrivate &p);
 
 protected:
-    virtual void init();
+    virtual void initStrategy();
     virtual double handle(double value, bool abovezero = true);
-    virtual double calcRate(double value) = 0;
 };
 
 HE_END_NAMESPACE

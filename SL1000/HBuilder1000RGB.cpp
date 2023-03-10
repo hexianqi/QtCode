@@ -29,7 +29,6 @@
 
 HBuilder1000RGBPrivate::HBuilder1000RGBPrivate()
 {
-    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
 //    HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
@@ -60,12 +59,7 @@ void HBuilder1000RGB::buildConfigManage()
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
-        {
-            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
-            auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
-            spec->setFitting(fit);
-            specs->insert("1", spec);
-        }
+            specs->insert("1", d->dataFactory->createSpecCalibrate("HSpecCalibrate"));
 
         auto list1 = QStringList() << "共阴" << "共阳";
         auto list2 = QStringList() << "R" << "G" << "B" << "W";

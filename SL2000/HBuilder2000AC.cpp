@@ -29,7 +29,6 @@
 
 HBuilder2000ACPrivate::HBuilder2000ACPrivate()
 {
-    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingLinear : 插值拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     deploy.insert("PfProtocol",     "HUi2008Protocol");     // HUi2008Protocol:UI2008; HUi2010Protocol:UI2010
     HAppContext::setContextValue("GradeOptional",   QStringList() << "[交流电压]" << "[交流电流]" << "[交流电功率]" << "[功率因数]" << "[光谱光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
@@ -57,12 +56,7 @@ void HBuilder2000AC::buildConfigManage()
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
-        {
-            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
-            auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
-            spec->setFitting(fit);
-            specs->insert("1", spec);
-        }
+            specs->insert("1", d->dataFactory->createSpecCalibrate("HSpecCalibrate"));
 
         auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
         chromatisms->dataStream()->readFile(":/dat/Chromatism.hcc");

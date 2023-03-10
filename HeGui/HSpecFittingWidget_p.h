@@ -22,9 +22,9 @@ public:
 
 public:
     bool testState = false;
+    int polyTime = 7;
     int pel = 0;
     int curTimes = 0;
-    double lastSample = 0.0;
     QPointF integralTime;
     QPolygonF points;
 };

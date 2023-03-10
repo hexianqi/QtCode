@@ -2,12 +2,9 @@
 #include "IDataFactory.h"
 #include "HDataHelper.h"
 #include "HSpecSetting.h"
-#include "HSpecFittingLinear.h"
-#include "HSpecFittingPolynom.h"
-#include "HSpecFittingTest.h"
+#include "HSpecFitting.h"
 #include "HSpecStdCurve.h"
-#include "HSpecPelsWaveLinear.h"
-#include "HSpecPelsWavePolynom.h"
+#include "HSpecPelsWave.h"
 #include "HSpecLuminous.h"
 #include "HeCore/HAppContext.h"
 #include <QtCore/QDataStream>
@@ -19,9 +16,9 @@ HSpecCalibratePrivate::HSpecCalibratePrivate()
 {
     factory = HAppContext::getContextPointer<IDataFactory>("IDataFactory");
     setting = new HSpecSetting;
-    fitting = new HSpecFittingPolynom;
+    fitting = new HSpecFitting;
     stdCurve = new HSpecStdCurve;
-    pelsWave = new HSpecPelsWavePolynom;//new HSpecPelsWaveLinear;
+    pelsWave = new HSpecPelsWave;
     luminous = new HSpecLuminous;
 }
 
@@ -48,28 +45,35 @@ QString HSpecCalibrate::typeName()
     return "HSpecCalibrate";
 }
 
+/***************************************************************************************************
+**      2023-03-09  版本02 删除fitting->typeName()
+***************************************************************************************************/
 void HSpecCalibrate::readContent(QDataStream &s)
 {
     quint32 version;
-    QString type;
     s >> version;
     d_ptr->setting->readContent(s);
     d_ptr->pelsWave->readContent(s);
     d_ptr->stdCurve->readContent(s);
     d_ptr->luminous->readContent(s);
-    s >> type;
-    d_ptr->fitting = d_ptr->factory->createSpecFitting(type);
+    if (version == 1)
+    {
+        QString type;
+        s >> type;
+        // d_ptr->fitting = d_ptr->factory->createSpecFitting(type);
+    }
     d_ptr->fitting->readContent(s);
 }
 
 void HSpecCalibrate::writeContent(QDataStream &s)
 {
-    s << quint32(1);
+    s << quint32(2);
     d_ptr->setting->writeContent(s);
     d_ptr->pelsWave->writeContent(s);
     d_ptr->stdCurve->writeContent(s);
     d_ptr->luminous->writeContent(s);
-    s << d_ptr->fitting->typeName();
+    // 版本02 删除
+    // s << d_ptr->fitting->typeName();
     d_ptr->fitting->writeContent(s);
 }
 
