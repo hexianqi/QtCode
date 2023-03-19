@@ -23,7 +23,7 @@
 HBuilderSpecPrivate::HBuilderSpecPrivate()
 {
     deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingPline : 多线段拟合
-    deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
+    deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b; HCcdProtocol11:1305(COM)
 }
 
 HBuilderSpec::HBuilderSpec(QObject *parent) :
@@ -46,12 +46,7 @@ void HBuilderSpec::buildConfigManage()
     {
         auto specs = d->dataFactory->createSpecCalibrateCollection("HSpecCalibrateCollection");
         if (!specs->dataStream()->readFile(":/dat/Spectrum.hcs"))
-        {
-            auto fit = d->dataFactory->createSpecFitting(deployItem("SpecFitting"));
-            auto spec = d->dataFactory->createSpecCalibrate("HSpecCalibrate");
-            spec->setFitting(fit);
-            specs->insert("1", spec);
-        }
+            specs->insert("1", d->dataFactory->createSpecCalibrate("HSpecCalibrate"));
         d->configManage->setContain(IConfigManage::ContainSpec);
         d->configManage->setSpecCalibrateCollection(specs);
     }

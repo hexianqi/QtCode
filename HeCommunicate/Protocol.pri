@@ -1,4 +1,6 @@
 HEADERS += \
+    $$PWD/HCcd1305Protocol_COM.h \
+    $$PWD/HCcd1305Protocol_COM_p.h \
     $$PWD/IProtocol.h \
     $$PWD/IProtocolCollection.h \
     $$PWD/HProtocolCollection.h \
@@ -21,6 +23,7 @@ HEADERS += \
     $$PWD/HUi2010Protocol_p.h
 
 SOURCES += \
+    $$PWD/HCcd1305Protocol_COM.cpp \
     $$PWD/HProtocolCollection.cpp \
     $$PWD/HAbstractProtocol.cpp \
     $$PWD/HLittleProtocol.cpp \

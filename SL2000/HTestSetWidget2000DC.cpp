@@ -216,7 +216,7 @@ void HTestSetWidget2000DC::init()
     HPluginHelper::initWidget("[输出电压]", ui->doubleSpinBox_2);
     HPluginHelper::initWidget("[输出电流]", ui->doubleSpinBox_3);
     HPluginHelper::initWidget("[反向电压]", ui->doubleSpinBox_4);
-    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  "));// << tr("  分选测试  "));
+    ui->comboBox_1->addItems(QStringList() << tr("  单次测试  ") << tr("  反复测试  ") << tr("  持续测试  ") << tr("  间隔测试  ") << tr("  触发测试  "));
     for (i = 0; i < d->testData->data("[输出电流_档位数]").toInt(); i++)
         ui->comboBox_2->addItem(tr("  %1档  ").arg(i+1));
     ui->comboBox_3->addItem(tr("  自动  "));
