@@ -22,7 +22,6 @@
 
 HBuilderSpecPrivate::HBuilderSpecPrivate()
 {
-    deploy.insert("SpecFitting",    "HSpecFittingPolynom"); // HSpecFittingPolynom: 多项式拟合; HSpecFittingPline : 多线段拟合
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b; HCcdProtocol11:1305(COM)
 }
 

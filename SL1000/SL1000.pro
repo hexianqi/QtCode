@@ -12,7 +12,8 @@ TRANSLATIONS    = SL1000_en.ts
 
 DEFINES     += \
 #            SL1000A \
-            SL1000RGB \
+            SL1000I \
+#            SL1000RGB \
             SIMULATE
 
 SOURCES     += \
@@ -44,6 +45,7 @@ Release {
 }
 
 include(SL1000A.pri)
+include(SL1000I.pri)
 include(SL1000RGB.pri)
 
 if (contains(DEFINES, SL1000A)) {

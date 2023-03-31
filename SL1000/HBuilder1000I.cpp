@@ -1,6 +1,5 @@
-#include "HBuilder1000A_p.h"
-#include "HTestWidget1000A.h"
-#include "HSpecPrintTemplate1000A.h"
+#include "HBuilder1000I_p.h"
+#include "HTestWidget1000I.h"
 #include "HeCore/HAppContext.h"
 #include "HeCore/HCore.h"
 #include "HeData/IConfigManage.h"
@@ -12,7 +11,6 @@
 #include "HeData/ILuminousCalibrate.h"
 #include "HeData/ILuminousCalibrateItem.h"
 #include "HeData/ILuminousCalibrateCollection.h"
-#include "HeData/IChromatismCollection.h"
 #include "HeData/ITestSpec.h"
 #include "HeCommunicate/ICommunicateFactory.h"
 #include "HeCommunicate/IProtocol.h"
@@ -24,45 +22,36 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
-#include "HeSql/ISqlFactory.h"
-#include "HeSql/ISqlDatabase.h"
-#include "HeSql/HSql.h"
-#include "HeSql/HSqlHelper.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 
-HBuilder1000APrivate::HBuilder1000APrivate()
+HBuilder1000IPrivate::HBuilder1000IPrivate()
 {
     deploy.insert("CcdProtocol",    "HCcdProtocol01");      // HCcdProtocol01:1305; HCcdProtocol02:554b
     HAppContext::setContextValue("SpecCalibrateSetWidgetType",  "HSpecCalibrateSetWidget2");
     HAppContext::setContextValue("AdjustSetWidgetType",         "HAdjustSetWidget2");
-    HAppContext::setContextValue("AdjustOptional",              QStringList() << "[实测电压]" << "[实测电流]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[显色指数R9]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("GradeOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标]");
-    HAppContext::setContextValue("SpecQualityOptional",         QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[光强度]" << "[光通量]" << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[显色指数Ra]" << "[色坐标x]" << "[色坐标y]");
-    HAppContext::setContextValue("AngleQualityOptional",        HCore::membership("|光强角度信息2|"));
-    HAppContext::setContextValue("TrendOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[电功率]" << "[光强度]" << "[光通量]"  << "[峰值波长]" << "[主波长]" << "[色纯度]" << "[色温]" << "[色坐标x]" << "[色坐标y]" << "[显色指数Ra]" << "[显色指数R9]");
+    HAppContext::setContextValue("AdjustOptional",              QStringList() << "[实测电压]" << "[实测电流]" << "[辐射强度]" << "[辐射通量]" << "[峰值波长]");
+    HAppContext::setContextValue("GradeOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[辐射强度]" << "[辐射通量]" << "[峰值波长]");
+    HAppContext::setContextValue("SpecQualityOptional",         QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[辐射强度]" << "[辐射通量]" << "[峰值波长]");
+//    HAppContext::setContextValue("AngleQualityOptional",        HCore::membership("|辐射强度角度信息2|"));
+    HAppContext::setContextValue("TrendOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[电功率]" << "[辐射强度]" << "[辐射通量]"  << "[峰值波长]");
 }
 
-HBuilder1000A::HBuilder1000A(QObject *parent) :
-    HAbstractBuilder(*new HBuilder1000APrivate, parent)
+HBuilder1000I::HBuilder1000I(QObject *parent) :
+    HAbstractBuilder(*new HBuilder1000IPrivate, parent)
 {
 }
 
-HBuilder1000A::HBuilder1000A(HBuilder1000APrivate &p, QObject *parent) :
-    HAbstractBuilder(p, parent)
+HBuilder1000I::~HBuilder1000I() = default;
+
+QString HBuilder1000I::typeName()
 {
+    return "HBuilder1000I";
 }
 
-HBuilder1000A::~HBuilder1000A() = default;
-
-QString HBuilder1000A::typeName()
+void HBuilder1000I::buildConfigManage()
 {
-    return "HBuilder1000A";
-}
-
-void HBuilder1000A::buildConfigManage()
-{
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     d->configManage = d->dataFactory->createConfigManage("HConfigManage");
     if (!d->configManage->stream()->readFile(d->configFileName))
     {
@@ -84,37 +73,35 @@ void HBuilder1000A::buildConfigManage()
         param[5].insert("itemClassName",    "HElecCalibrateItem");
         param[5].insert("itemTypes",        QStringList() << "[反向漏流]");
         auto elec = d->dataFactory->createElecCalibrate("HElecCalibrate");
-        auto elecC = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
+        auto elecs = d->dataFactory->createElecCalibrateCollection("HElecCalibrateCollection");
         elec->setItemCollection(OutputVoltage,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[0]));
         elec->setItemCollection(OutputCurrent,   d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[1]));
         elec->setItemCollection(MeasuredVoltage, d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[2]));
         elec->setItemCollection(MeasuredCurrent, d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[3]));
         elec->setItemCollection(ReverseVoltage,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[4]));
         elec->setItemCollection(ReverseCurrent,  d->dataFactory->createElecCalibrateItemCollection("HElecCalibrateItemCollection", param[5]));
-        elecC->insert("模块1", elec);
+        elecs->insert("模块1", elec);
 
         auto luminousC = d->dataFactory->createLuminousCalibrateCollection("HLuminousCalibrateCollection");
         auto luminous = d->dataFactory->createLuminousCalibrate("HLuminousCalibrate");
-        auto luminousI = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
-        luminousI->setData("[项类型]", "[光强度]");
-        luminous->insert("[光强度]", luminousI);
+        auto luminousI1 = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
+        auto luminousI2 = d->dataFactory->createLuminousCalibrateItem("HLuminousCalibrateItem");
+        luminousI1->setData("[项类型]", "[辐射强度]");
+        luminousI2->setData("[项类型]", "[辐射通量]");
+        luminous->insert("[辐射强度]", luminousI1);
+        luminous->insert("[辐射通量]", luminousI2);
         luminous->setTotalGears(5);
         luminousC->insert("模块1", luminous);
-
-        auto chromatisms = d->dataFactory->createChromatismCollection("HChromatismCollection");
-        chromatisms->dataStream()->readFile(":/dat/Chromatism.hcc");
 
         d->configManage->setContain(IConfigManage::ContainSpec
                                     | IConfigManage::ContainElec
                                     | IConfigManage::ContainLuminous
-                                    | IConfigManage::ContainChromatism
                                     | IConfigManage::ContainGrade
                                     | IConfigManage::ContainAdjust
                                     | IConfigManage::ContainQuality);
         d->configManage->setSpecCalibrateCollection(specs);
-        d->configManage->setElecCalibrateCollection(elecC);
+        d->configManage->setElecCalibrateCollection(elecs);
         d->configManage->setLuminousCalibrateCollection(luminousC);
-        d->configManage->setChromatismCollection(chromatisms);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
         d->configManage->addQualityCollection("Spec",   d->dataFactory->createQualityCollection("HQualityCollection"));
@@ -123,9 +110,9 @@ void HBuilder1000A::buildConfigManage()
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
 
-void HBuilder1000A::buildTestData()
+void HBuilder1000I::buildTestData()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     auto data = d->dataFactory->createTestData("HTestData");
     auto product = d->dataFactory->createTestData("HTestProduct");
     auto elec = d->dataFactory->createTestData("HTestElec");
@@ -143,29 +130,27 @@ void HBuilder1000A::buildTestData()
     HAppContext::setContextPointer("ITestSpec", spec);
 }
 
-void HBuilder1000A::buildTemplate()
+void HBuilder1000I::buildTemplate()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     auto textExport = d->dataFactory->createTextExport("HTextExport");
     auto specTextTemplate = d->guiFactory->createTextExportTemplate("HSpecTextExportTemplate");
-    auto angleTextTemplate = d->guiFactory->createTextExportTemplate("HAngleTextExportTemplate");
+//    auto angleTextTemplate = d->guiFactory->createTextExportTemplate("HAngleTextExportTemplate");
     auto print = d->dataFactory->createPrint("HPrint");
-    auto anglePrintTemplate = d->guiFactory->createPrintTemplate("HAnglePrintTemplate");
-    auto tagPrintTemplate = d->guiFactory->createPrintTemplate("HTagPrintTemplate");
-    auto specPrintTemplate = new HSpecPrintTemplate1000A(this);
+//    auto anglePrintTemplate = d->guiFactory->createPrintTemplate("HAnglePrintTemplate");
+    auto specPrintTemplate = new HSpecPrintTemplate1000I(this);
     specPrintTemplate->initialize();
     HAppContext::setContextPointer("ITextExport", textExport);
     HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
-    HAppContext::setContextPointer("IAngleTextExportTemplate", angleTextTemplate);
+//    HAppContext::setContextPointer("IAngleTextExportTemplate", angleTextTemplate);
     HAppContext::setContextPointer("IPrint", print);
-    HAppContext::setContextPointer("IAnglePrintTemplate", anglePrintTemplate);
+//    HAppContext::setContextPointer("IAnglePrintTemplate", anglePrintTemplate);
     HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
-    HAppContext::setContextPointer("ITagPrintTemplate", tagPrintTemplate);
 }
 
-void HBuilder1000A::buildDevice()
+void HBuilder1000I::buildDevice()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
 #ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto device2 = d->communicateFactory->createDevice("HSimulateDevice");
@@ -183,25 +168,25 @@ void HBuilder1000A::buildDevice()
     HAppContext::setContextPointer("IProtocolCollection", protocols);
 }
 
-void HBuilder1000A::buildThread()
+void HBuilder1000I::buildThread()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     auto thread = d->controllerFactory->createThread("HIntegrateThread");
     auto threads = d->controllerFactory->createThreadCollection("HThreadCollection");
     threads->insert("1", thread);
     HAppContext::setContextPointer("IThreadCollection", threads);
 }
 
-void HBuilder1000A::buildModel()
+void HBuilder1000I::buildModel()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     auto model = d->controllerFactory->createModel("HIntegrateModel");
     HAppContext::setContextPointer("IModel", model);
 }
 
-void HBuilder1000A::buildMemento()
+void HBuilder1000I::buildMemento()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     auto mementos = d->controllerFactory->createMementoCollection("HMementoCollection");
     auto ok = mementos->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
     if (!ok || !mementos->contains("Spec"))
@@ -219,32 +204,14 @@ void HBuilder1000A::buildMemento()
     HAppContext::setContextPointer("IMementoCollection", mementos);
 }
 
-void HBuilder1000A::buildDatabase()
+void HBuilder1000I::buildDatabase()
 {
-    Q_D(HBuilder1000A);
-    auto db = d->sqlFactory->createDatabase("HSqliteDatabase");
-    db->openConnection();
 
-    HSqlHelper::updateSpecTable(db);
-    // Spec
-    {
-        auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|" << "|光度信息|" << "|光谱信息3|" << "|色容差信息|" << "|光合信息|" << "|TM30信息|";
-        auto field = QStringList() << "ID" << HSql::membership(group);
-        auto model = createSqlTableModel("Spec", field);
-        db->insertTableModel(model);
-    }
-    // Angle
-    HSqlHelper::updateSpecTable(db);
-    {
-        auto field = QStringList() << "ID" << HSql::membership("|光强角度信息|");
-        auto model = createSqlTableModel("Angle", field);
-        db->insertTableModel(model);
-    }
 }
 
-void HBuilder1000A::buildMenu()
+void HBuilder1000I::buildMenu()
 {
-    Q_D(HBuilder1000A);
+    Q_D(HBuilder1000I);
     QVariantMap param[7];
     param[0].insert("authority",            1);
     param[1].insert("property",             param[0]);
@@ -270,27 +237,25 @@ void HBuilder1000A::buildMenu()
     calibrate->addAction(d->guiFactory->createAction(tr("光谱定标(&S)..."), "HSpecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("电定标(&E)..."), "HElecCalibrateHandler"));
     calibrate->addAction(d->guiFactory->createAction(tr("光定标(&E)..."), "HLuminousCalibrateHandler"));
-    calibrate->addAction(d->guiFactory->createAction(tr("光通量自吸收配置(&L)..."), "HSpecLuminousHandler"));
-    calibrate->addAction(d->guiFactory->createAction(tr("色温配置(&T)..."), "HSpecTcHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据配置(&E)..."), "HGradeEditHandler"));
     grade->addAction(d->guiFactory->createAction(tr("分级数据选择(&S)..."), "HGradeSelectHandler"));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据配置(&E)..."), "HAdjustEditHandler", param[1]));
     adjust->addAction(d->guiFactory->createAction(tr("调整数据选择(&S)..."), "HAdjustSelectHandler"));
     quality->addAction(d->guiFactory->createAction(tr("光谱品质数据配置(&E)..."), "HQualityEditHandler", param[2]));
     quality->addAction(d->guiFactory->createAction(tr("光谱品质数据选择(&S)..."), "HQualitySelectHandler", param[2]));
-    quality->addAction(d->guiFactory->createAction(tr("光强角品质数据配置(&E)..."), "HQualityEditHandler", param[3]));
-    quality->addAction(d->guiFactory->createAction(tr("光强角品质数据选择(&S)..."), "HQualitySelectHandler", param[3]));
+    quality->addAction(d->guiFactory->createAction(tr("辐射强度角品质数据配置(&E)..."), "HQualityEditHandler", param[3]));
+    quality->addAction(d->guiFactory->createAction(tr("辐射强度角品质数据选择(&S)..."), "HQualitySelectHandler", param[3]));
     device->addAction(d->guiFactory->createAction(tr("从设备读取数据(&G)..."), "HImportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("写入数据到设备(&S)..."), "HExportDeviceHandler"));
     device->addAction(d->guiFactory->createAction(tr("导入标准曲线(&I)..."), "HImportCurveHandler"));
     device->addAction(d->guiFactory->createAction(tr("导出标准曲线(&E)..."), "HExportCurveHandler"));
-    test->addAction(d->guiFactory->createAction(tr("光强角度测试(&A)..."), "HAngleTestHandler"));
+//    test->addAction(d->guiFactory->createAction(tr("辐射强度角度测试(&A)..."), "HAngleITestHandler"));
     test->addAction(d->guiFactory->createAction(tr("老化测试(&I)..."), "HTrendTestHandler"));
     test->addAction(d->guiFactory->createAction(tr("IV测试(&I)..."), "HIVTestHandler"));
-    database->addAction(d->guiFactory->createAction(tr("光谱产品信息配置(&E)..."), "HProductEditHandler"));
-    database->addAction(d->guiFactory->createAction(tr("光谱数据打印配置(&P)..."), "HPrintSettingHandler", param[6]));
-    database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&S)..."), "HSqlBrowserHandler", param[4]));
-    database->addAction(d->guiFactory->createAction(tr("光强角数据库浏览(&A)..."), "HSqlBrowserHandler", param[5]));
+//    database->addAction(d->guiFactory->createAction(tr("光谱产品信息配置(&E)..."), "HProductEditHandler"));
+//    database->addAction(d->guiFactory->createAction(tr("光谱数据打印配置(&P)..."), "HPrintSettingHandler", param[6]));
+//    database->addAction(d->guiFactory->createAction(tr("光谱数据库浏览(&S)..."), "HSqlBrowserHandler", param[4]));
+//    database->addAction(d->guiFactory->createAction(tr("辐射强度角数据库浏览(&A)..."), "HSqlBrowserHandler", param[5]));
     account->addAction(d->guiFactory->createAction(tr("管理员登入(&I)..."), "HLoginInHandler"));
     account->addAction(d->guiFactory->createAction(tr("注销(&O)..."), "HLoginOutHandler"));
     d->mainWindow->insertMenu(calibrate);
@@ -304,10 +269,11 @@ void HBuilder1000A::buildMenu()
 #ifndef QT_DEBUG
     d->mainWindow->setAuthority(0);
 #endif
+
 }
 
-void HBuilder1000A::buildTestWidget()
+void HBuilder1000I::buildTestWidget()
 {
-    ITestWidget *widget = new HTestWidget1000A;
+    ITestWidget *widget = new HTestWidget1000I;
     HAppContext::setContextPointer("ITestWidget", widget);
 }
