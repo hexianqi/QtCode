@@ -349,18 +349,12 @@ void HCoreGlobalInstance::initActionComment()
 //    hashActionComment.insert(ACT_SET_LED_NUM,                    QStringList() << tr("ACT_SET_LED_NUM") << tr("设置LED编号"));
 //    hashActionComment.insert(ACT_SET_LED_ADDRESS,                QStringList() << tr("ACT_SET_LED_ADDRESS") << tr("设置LED地址"));
 
-//    hashActionComment.insert(ACT_SET_MOTOR_MODULE,           QStringList() << tr("ACT_SET_MOTOR_MODULE") << tr("设置电机模块"));
-//    hashActionComment.insert(ACT_SET_MOTOR_DIRECTION,        QStringList() << tr("ACT_SET_MOTOR_DIRECTION") << tr("设置电机走步方向"));
-//    hashActionComment.insert(ACT_SET_MOTOR_STEP,             QStringList() << tr("ACT_SET_MOTOR_STEP") << tr("设置电机走步"));
-
 //    hashActionComment.insert(ACT_SET_TEMPERATURE_MODULE,     QStringList() << tr("ACT_SET_TEMPERATURE_MODULE") << tr("设置温度模块"));
 //    hashActionComment.insert(ACT_SET_TEMPERATURE_TYPE,       QStringList() << tr("ACT_SET_TEMPERATURE_TYPE") << tr("设置温度类型"));
 //    hashActionComment.insert(ACT_SET_TEMPERATURE_GEARS,      QStringList() << tr("ACT_SET_TEMPERATURE_GEARS") << tr("设置温度档位"));
 //    hashActionComment.insert(ACT_SET_TEMPERATURE_CALIBRATE,  QStringList() << tr("ACT_SET_TEMPERATURE_CALIBRATE") << tr("设置温度校准数据"));
 //    hashActionComment.insert(ACT_GET_TEMPERATURE,            QStringList() << tr("ACT_GET_TEMPERATURE") << tr("获取温度"));
 //    hashActionComment.insert(ACT_GET_TEMPERATURE_CALIBRATE,  QStringList() << tr("ACT_GET_TEMPERATURE_CALIBRATE") << tr("获取温度校准数据"));
-
-//    hashActionComment.insert(ACT_GET_LAMPS_ELEC,             QStringList() << tr("ACT_GET_LAMPS_ELEC") << tr("获取灯具电量参数"));
 
 //    hashActionComment.insert(ACT_PLC_RESET_MOTOR,            QStringList() << tr("ACT_PLC_RESET_MOTOR") << tr("电机复位"));
 //    hashActionComment.insert(ACT_PLC_SEND_DATA,              QStringList() << tr("ACT_PLC_SEND_DATA") << tr("发送数据"));
@@ -378,8 +372,6 @@ void HCoreGlobalInstance::initActionComment()
 //    hashActionComment.insert(ACT_COB_RESET_MOTOR_STEP,       QStringList() << tr("ACT_COB_RESET_MOTOR_STEP") << tr("电机复位"));
 //    hashActionComment.insert(ACT_COB_SET_MOTOR_STEP,         QStringList() << tr("ACT_COB_SET_MOTOR_STEP") << tr("电机移动"));
 //    hashActionComment.insert(ACT_COB_QUERY_STATE,            QStringList() << tr("ACT_COB_QUERY_STATE") << tr("查询状态"));
-
-//    hashActionComment.insert(ACT_SET_MOTOR_ANGULAR,          QStringList() << tr("ACT_SET_MOTOR_ANGULAR") << tr("设置电机角度"));
 }
 
 void HCoreGlobalInstance::initErrorComment()
@@ -527,6 +519,20 @@ void HCoreGlobalInstance::initDataFormatInfo()
     hashDataFormatInfo.insert("[左1/5光强度角]",                hashDataFormatInfo.value("[光强度角]"));
     hashDataFormatInfo.insert("[右1/5光强度角]",                hashDataFormatInfo.value("[光强度角]"));
     hashDataFormatInfo.insert("[1/5光强度夹角]",                hashDataFormatInfo.value("[光强度角]"));
+    // 辐射参数
+    hashDataFormatInfo.insert("[辐射通量]",                     new HDataFormatInfo("[辐射通量]", "W", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[辐射强度]",                     new HDataFormatInfo("[辐射强度]", "W/sr", 0, 99999, 2, 100));
+    hashDataFormatInfo.insert("[辐射强度角]",                   new HDataFormatInfo("[辐射强度角]", "°", -90, 90, 1));
+    hashDataFormatInfo.insert("[最大辐射强度]",                 hashDataFormatInfo.value("[辐射强度]"));
+    hashDataFormatInfo.insert("[法向辐射强度]",                 hashDataFormatInfo.value("[辐射强度]"));
+    hashDataFormatInfo.insert("[角度辐射通量]",                 hashDataFormatInfo.value("[辐射通量]"));
+    hashDataFormatInfo.insert("[最大辐射强度角]",               hashDataFormatInfo.value("[辐射强度角]"));
+    hashDataFormatInfo.insert("[左半辐射强度角]",               hashDataFormatInfo.value("[辐射强度角]"));
+    hashDataFormatInfo.insert("[右半辐射强度角]",               hashDataFormatInfo.value("[辐射强度角]"));
+    hashDataFormatInfo.insert("[半辐射强度夹角]",               hashDataFormatInfo.value("[辐射强度角]"));
+    hashDataFormatInfo.insert("[左1/5辐射强度角]",              hashDataFormatInfo.value("[辐射强度角]"));
+    hashDataFormatInfo.insert("[右1/5辐射强度角]",              hashDataFormatInfo.value("[辐射强度角]"));
+    hashDataFormatInfo.insert("[1/5辐射强度夹角]",              hashDataFormatInfo.value("[辐射强度角]"));
     // 数据库参数
     hashDataFormatInfo.insert("[样品编号]",                     new HDataFormatInfo("[样品编号]", 0, 99999));
     hashDataFormatInfo.insert("[环境温度]",                     new HDataFormatInfo("[环境温度]", "℃", -100, 1000, 1));
@@ -579,17 +585,6 @@ void HCoreGlobalInstance::initDataFormatInfo()
             }
         }
     }
-
-//    //电机参数
-//    hashFormatInfo.insert(tr("[电机步进]"),              FTypeInfo(tr("[电机步进]"), 0, 65535));
-//    //其他参数
-//    hashFormatInfo.insert(tr("[ID]"),                              FTypeInfo(tr("[ID]"), 0, 65536));
-//    hashFormatInfo.insert(tr("[总数]"),                            FTypeInfo(tr("[总数]"), 0, 65536));
-//    hashFormatInfo.insert(tr("[分级]"),                            FTypeInfo(tr("[分级]"), 0, 65536));
-//    hashFormatInfo.insert(tr("[合格]"),                            FTypeInfo(tr("[合格]"), 0, 100));
-//    hashFormatInfo.insert(tr("[百分比]"),                          FTypeInfo(tr("[百分比]"), tr("%"), 0, 1000, 1));
-//    hashFormatInfo.insert(tr("[良品率]"),                          FTypeInfo(tr("[良品率]"), tr("%"), 0, 1000, 1));
-//    hashFormatInfo.insert(tr("[线路地址]"),                        FTypeInfo(tr("[线路地址]"), 0, 0xFFFFFFFF));
 }
 
 void HCoreGlobalInstance::initDataCaption()
@@ -780,13 +775,13 @@ void HCoreGlobalInstance::initDataGroup()
     hashDataGroup.insert("|光强角度信息2|", QStringList() << "[最大光强度]" << "[法向光强度]" << "[角度光通量]" << "[最大光强度角]"
                                                           << "[左半光强度角]" << "[右半光强度角]" << "[半光强度夹角]"
                                                           << "[左1/5光强度角]" << "[右1/5光强度角]" << "[1/5光强度夹角]");
-//    hashDataGroup.insert("|辐射强度角度信息|",  QStringList() << "[最大辐射强度]" << "[法向辐射强度]" << "[最大辐射强度角]"
-//                                                              << "[左半辐射强度角]" << "[右半辐射强度角]" << "[半辐射强度夹角]"
-//                                                              << "[左1/5辐射强度角]" << "[右1/5辐射强度角]" << "[1/5辐射强度夹角]"
-//                                                              << "[辐射强度角度分布]");
-//    hashDataGroup.insert("|辐射强度角度信息2|", QStringList() << "[最大辐射强度]" << "[法向辐射强度]" << "[最大辐射强度角]"
-//                                                             << "[左半辐射强度角]" << "[右半辐射强度角]" << "[半辐射强度夹角]"
-//                                                             << "[左1/5辐射强度角]" << "[右1/5辐射强度角]" << "[1/5辐射强度夹角]");
+    hashDataGroup.insert("|辐射强度角度信息|",   QStringList() << "[最大辐射强度]" << "[法向辐射强度]" << "[角度辐射通量]" << "[最大辐射强度角]"
+                                                               << "[左半辐射强度角]" << "[右半辐射强度角]" << "[半辐射强度夹角]"
+                                                               << "[左1/5辐射强度角]" << "[右1/5辐射强度角]" << "[1/5辐射强度夹角]"
+                                                               << "[辐射强度角度分布]");
+    hashDataGroup.insert("|辐射强度角度信息2|",  QStringList() << "[最大辐射强度]" << "[法向辐射强度]" << "[角度辐射通量]" << "[最大辐射强度角]"
+                                                               << "[左半辐射强度角]" << "[右半辐射强度角]" << "[半辐射强度夹角]"
+                                                               << "[左1/5辐射强度角]" << "[右1/5辐射强度角]" << "[1/5辐射强度夹角]");
 }
 
 void HCoreGlobalInstance::initMimeType()

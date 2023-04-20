@@ -68,6 +68,8 @@ bool HTestLuminous::setData(QString type, QVariant value)
         return setSample(value.toInt());
     if (type == "[光强角度分布采样值]")
         return setAngleSample(value.value<QVector<double>>());
+    if (type == "[辐射强度角度分布采样值]")
+        return setAngleSample(value.value<QVector<double>>(), true);
     return HTestData::setData(type, value);
 }
 
@@ -95,7 +97,7 @@ bool HTestLuminous::setType(QString value)
     Q_D(HTestLuminous);
     if (!d->calibrate->contains(value))
         return false;
-    d->setData("[光通道]", value == "[光亮度]" || value == "[光强度]" ? 1 : 2);
+    d->setData("[光通道]", value == "[光亮度]" || value == "[光强度]" || value == "[辐射强度]" ? 1 : 2);
     return d->setData("[光测试类型]", value);
 }
 
@@ -116,19 +118,20 @@ bool HTestLuminous::setSample(double value)
     return true;
 }
 
-bool HTestLuminous::setAngleSample(QVector<double> value)
+bool HTestLuminous::setAngleSample(QVector<double> value, bool infrared)
 {
     Q_D(HTestLuminous);
     int i;
     QPolygonF poly, poly1, poly2;
     auto gears = data("[光档位]").toInt();
     auto size = value.size();
+    auto type = infrared ? "[辐射强度]" : "[光强度]";
 
     if (size <= 0)
         return false;
 
     for (int i = 0; i < size; i++)
-        poly.append(QPointF(i * 0.9 - 90.0, d->calibrate->toReal(value[i], "[光强度]", gears)));
+        poly.append(QPointF(i * 0.9 - 90.0, d->calibrate->toReal(value[i], type, gears)));
 
     poly1 = HMath::interpolate(poly, -90.0, 90.0, 0.1);
     poly2 = HMath::interpolate(poly, -90.0, 90.0, 1);
@@ -185,17 +188,34 @@ bool HTestLuminous::setAngleSample(QVector<double> value)
     }
     for (i = 1; i < size; i++)
         flux += M_PI * radian * (poly1.at(i-1).y() + poly1.at(i).y()) * (qAbs(cos(radian * i)) + qAbs(cos(radian * (i-1)))) / 4;
-    d->setData("[光强角度分布]", poly2);
-    d->setData("[最大光强度]", maxIv);
-    d->setData("[法向光强度]", poly1.at(size / 2).y());
-    d->setData("[角度光通量]", flux);
-    d->setData("[最大光强度角]", maxN / 10.0 - 90.0);
-    d->setData("[左半光强度角]", theta1);
-    d->setData("[右半光强度角]", theta2);
-    d->setData("[半光强度夹角]", qAbs(theta1 - theta2));
-    d->setData("[左1/5光强度角]", theta3);
-    d->setData("[右1/5光强度角]", theta4);
-    d->setData("[1/5光强度夹角]", qAbs(theta3 - theta4));
+    if (infrared)
+    {
+        d->setData("[辐射强度角度分布]", poly2);
+        d->setData("[最大辐射强度]", maxIv);
+        d->setData("[法向辐射强度]", poly1.at(size / 2).y());
+        d->setData("[角度辐射通量]", flux);
+        d->setData("[最大辐射强度角]", maxN / 10.0 - 90.0);
+        d->setData("[左半辐射强度角]", theta1);
+        d->setData("[右半辐射强度角]", theta2);
+        d->setData("[半辐射强度夹角]", qAbs(theta1 - theta2));
+        d->setData("[左1/5辐射强度角]", theta3);
+        d->setData("[右1/5辐射强度角]", theta4);
+        d->setData("[1/5辐射强度夹角]", qAbs(theta3 - theta4));
+    }
+    else
+    {
+        d->setData("[光强角度分布]", poly2);
+        d->setData("[最大光强度]", maxIv);
+        d->setData("[法向光强度]", poly1.at(size / 2).y());
+        d->setData("[角度光通量]", flux);
+        d->setData("[最大光强度角]", maxN / 10.0 - 90.0);
+        d->setData("[左半光强度角]", theta1);
+        d->setData("[右半光强度角]", theta2);
+        d->setData("[半光强度夹角]", qAbs(theta1 - theta2));
+        d->setData("[左1/5光强度角]", theta3);
+        d->setData("[右1/5光强度角]", theta4);
+        d->setData("[1/5光强度夹角]", qAbs(theta3 - theta4));
+    }
     return true;
 }
 

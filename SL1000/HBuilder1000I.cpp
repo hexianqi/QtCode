@@ -33,7 +33,7 @@ HBuilder1000IPrivate::HBuilder1000IPrivate()
     HAppContext::setContextValue("AdjustOptional",              QStringList() << "[实测电压]" << "[实测电流]" << "[辐射强度]" << "[辐射通量]" << "[峰值波长]");
     HAppContext::setContextValue("GradeOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[辐射强度]" << "[辐射通量]" << "[峰值波长]");
     HAppContext::setContextValue("SpecQualityOptional",         QStringList() << "[实测电压]" << "[实测电流]" << "[反向漏流]" << "[电功率]" << "[辐射强度]" << "[辐射通量]" << "[峰值波长]");
-//    HAppContext::setContextValue("AngleQualityOptional",        HCore::membership("|辐射强度角度信息2|"));
+    HAppContext::setContextValue("AngleQualityOptional",        HCore::membership("|辐射强度角度信息2|"));
     HAppContext::setContextValue("TrendOptional",               QStringList() << "[实测电压]" << "[实测电流]" << "[电功率]" << "[辐射强度]" << "[辐射通量]"  << "[峰值波长]");
 }
 
@@ -138,14 +138,14 @@ void HBuilder1000I::buildTemplate()
 //    auto angleTextTemplate = d->guiFactory->createTextExportTemplate("HAngleTextExportTemplate");
     auto print = d->dataFactory->createPrint("HPrint");
 //    auto anglePrintTemplate = d->guiFactory->createPrintTemplate("HAnglePrintTemplate");
-    auto specPrintTemplate = new HSpecPrintTemplate1000I(this);
-    specPrintTemplate->initialize();
-    HAppContext::setContextPointer("ITextExport", textExport);
-    HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
+//    auto specPrintTemplate = new HSpecPrintTemplate1000I(this);
+//    specPrintTemplate->initialize();
+//    HAppContext::setContextPointer("ITextExport", textExport);
+//    HAppContext::setContextPointer("ISpecTextExportTemplate", specTextTemplate);
 //    HAppContext::setContextPointer("IAngleTextExportTemplate", angleTextTemplate);
     HAppContext::setContextPointer("IPrint", print);
 //    HAppContext::setContextPointer("IAnglePrintTemplate", anglePrintTemplate);
-    HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
+//    HAppContext::setContextPointer("ISpecPrintTemplate", specPrintTemplate);
 }
 
 void HBuilder1000I::buildDevice()

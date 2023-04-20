@@ -7,5 +7,17 @@ class HTestWidget1000IPrivate : public HTestWidgetPrivate
 {
 public:
     HTestWidget1000IPrivate();
+
+public:
+    IConfigManage *configManage = nullptr;
+    ISyncTestResult *testResult = nullptr;
+    ISqlHandle *sqlHandle = nullptr;
+    IPrint *print = nullptr;
+    IPrintTemplate *printTemplate = nullptr;
+    ITextExport *textExport = nullptr;
+    ITextExportTemplate *textExportTemplate = nullptr;
+
+public:
+    QStringList displays;
 };
 
