@@ -16,7 +16,7 @@ class HMainWindow1000RGB : public HAbstractMainWindow
     Q_DECLARE_PRIVATE(HMainWindow1000RGB)
 
 public:
-    HMainWindow1000RGB(QWidget *parent = nullptr, const HConstructionCallHelper &helper = HConstructionCallHelper());
+    HMainWindow1000RGB(QWidget *parent = nullptr);
     ~HMainWindow1000RGB() override;
 
 protected:

@@ -2,8 +2,8 @@
 #include "HBuilder7000.h"
 #include "HeData/IConfigManage.h"
 
-HMainWindow7000::HMainWindow7000(QWidget *parent, const HConstructionCallHelper &helper) :
-    HAbstractMainWindow(*new HMainWindow7000Private(this), helper, parent)
+HMainWindow7000::HMainWindow7000(QWidget *parent) :
+    HAbstractMainWindow(*new HMainWindow7000Private, parent)
 {
 }
 

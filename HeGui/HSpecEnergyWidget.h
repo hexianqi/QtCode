@@ -24,6 +24,7 @@ public:
     void refreshWidget();
     void addProgressBar(const QString &type);
     void setProgressBarVisible(const QString &type, bool b);
+    void setToolTipTypes(const QStringList &value = QStringList());
 
 protected:
     HSpecEnergyWidget(HSpecEnergyWidgetPrivate &p, QWidget *parent = nullptr);

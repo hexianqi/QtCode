@@ -48,15 +48,15 @@ void HUsbPortCyPrivate::unloadDLL()
 #endif
 
 
-HUsbPortCy::HUsbPortCy() :
-    HAbstractPort(*new HUsbPortCyPrivate)
+HUsbPortCy::HUsbPortCy(QObject *parent) :
+    HAbstractPort(*new HUsbPortCyPrivate, parent)
 {
     Q_D(HUsbPortCy);
     d->loadDll();
 }
 
-HUsbPortCy::HUsbPortCy(HUsbPortCyPrivate &p) :
-    HAbstractPort(p)
+HUsbPortCy::HUsbPortCy(HUsbPortCyPrivate &p, QObject *parent) :
+    HAbstractPort(p, parent)
 {
     Q_D(HUsbPortCy);
     d->loadDll();

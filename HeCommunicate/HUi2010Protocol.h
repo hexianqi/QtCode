@@ -1,28 +1,33 @@
 /***************************************************************************************************
-**      2019-05-27  HUi2010Protocol UI2010协议。
+**      2023-05-26  HUi2010Protocol
 ***************************************************************************************************/
 
 #pragma once
 
-#include "HLittleProtocol.h"
+#include "HAbstractProtocol.h"
 
 HE_BEGIN_NAMESPACE
 
 class HUi2010ProtocolPrivate;
 
-class HUi2010Protocol : HLittleProtocol
+class HUi2010Protocol : public HAbstractProtocol
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HUi2010Protocol)
 
 public:
-    explicit HUi2010Protocol();
+    explicit HUi2010Protocol(QObject *parent = nullptr);
     ~HUi2010Protocol() override;
 
 public:
     QString typeName() override;
 
 public:
-    bool getData(HActionType action, QVector<double> &value, int delay = 0) override;
+    bool getData(HActionType action, QVariantList &value, QVariant::Type type = QVariant::Int, int delay = 0) override;
+
+protected:
+    virtual void init();
 };
 
 HE_END_NAMESPACE
+

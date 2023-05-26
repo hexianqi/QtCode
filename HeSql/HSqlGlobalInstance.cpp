@@ -156,18 +156,6 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("PPFE",                    "[光合光子通量效率]");
     hashFieldType.insert("FluorescenceEfficiency",  "[荧光效能]");
     hashFieldType.insert("FluorescenceRatio",       "[荧光蓝光比]");
-    // 光强角
-    hashFieldType.insert("ADLI_LIMax",              "[最大光强度]");
-    hashFieldType.insert("ADLI_LINormal",           "[法向光强度]");
-    hashFieldType.insert("ADLI_LF",                 "[角度光通量]");
-    hashFieldType.insert("ADLI_AngleMax",           "[最大光强度角]");
-    hashFieldType.insert("ADLI_AngleHalfLeft",      "[左半光强度角]");
-    hashFieldType.insert("ADLI_AngleHalfRight",     "[右半光强度角]");
-    hashFieldType.insert("ADLI_AngleHalfOff",       "[半光强度夹角]");
-    hashFieldType.insert("ADLI_AngleFifthLeft",     "[左1/5光强度角]");
-    hashFieldType.insert("ADLI_AngleFifthRight",    "[右1/5光强度角]");
-    hashFieldType.insert("ADLI_AngleFifthOff",      "[1/5光强度夹角]");
-    hashFieldType.insert("ADLI_Graph",              "[光强角度分布]");
     // TM30
     hashFieldType.insert("TM30_Rf",                 "[TM30_Rf]");
     hashFieldType.insert("TM30_Rg",                 "[TM30_Rg]");
@@ -183,7 +171,32 @@ void HSqlGlobalInstance::initFieldType()
     hashFieldType.insert("TM30_hj_btn",             "[TM30_hj_btn]");
     hashFieldType.insert("TM30_hj_arn",             "[TM30_hj_arn]");
     hashFieldType.insert("TM30_hj_brn",             "[TM30_hj_brn]");
-
+    // 光强角度分布参数
+    hashFieldType.insert("ADLI_LIMax",              "[最大光强度]");
+    hashFieldType.insert("ADLI_LINormal",           "[法向光强度]");
+    hashFieldType.insert("ADLI_LF",                 "[角度光通量]");
+    hashFieldType.insert("ADLI_AngleMax",           "[最大光强度角]");
+    hashFieldType.insert("ADLI_AngleHalfLeft",      "[左半光强度角]");
+    hashFieldType.insert("ADLI_AngleHalfRight",     "[右半光强度角]");
+    hashFieldType.insert("ADLI_AngleHalfOff",       "[半光强度夹角]");
+    hashFieldType.insert("ADLI_AngleFifthLeft",     "[左1/5光强度角]");
+    hashFieldType.insert("ADLI_AngleFifthRight",    "[右1/5光强度角]");
+    hashFieldType.insert("ADLI_AngleFifthOff",      "[1/5光强度夹角]");
+    hashFieldType.insert("ADLI_Graph",              "[光强角度分布]");
+    // 辐射参数
+    hashFieldType.insert("RadiantFlux",             "[辐射通量]");
+    hashFieldType.insert("RadiantIntensity",        "[辐射强度]");
+    hashFieldType.insert("ADRI_RIMax",              "[最大辐射强度]");
+    hashFieldType.insert("ADRI_RINormal",           "[法向辐射强度]");
+    hashFieldType.insert("ADRI_RF",                 "[角度辐射通量]");
+    hashFieldType.insert("ADRI_AngleMax",           "[最大辐射强度角]");
+    hashFieldType.insert("ADRI_AngleHalfLeft",      "[左半辐射强度角]");
+    hashFieldType.insert("ADRI_AngleHalfRight",     "[右半辐射强度角]");
+    hashFieldType.insert("ADRI_AngleHalfOff",       "[半辐射强度夹角]");
+    hashFieldType.insert("ADRI_AngleFifthLeft",     "[左1/5辐射强度角]");
+    hashFieldType.insert("ADRI_AngleFifthRight",    "[右1/5辐射强度角]");
+    hashFieldType.insert("ADRI_AngleFifthOff",      "[1/5辐射强度夹角]");
+    hashFieldType.insert("ADRI_Graph",              "[辐射角度分布]");
 }
 
 void HSqlGlobalInstance::initFieldCreateStyle()
@@ -260,18 +273,6 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("PPFE",                     "PPFE numeric(18, 3)");
     hashFieldCreateStyle.insert("FluorescenceEfficiency",   "FluorescenceEfficiency numeric(18, 3)");
     hashFieldCreateStyle.insert("FluorescenceRatio",        "FluorescenceRatio numeric(18, 3)");
-    // 光强角
-    hashFieldCreateStyle.insert("ADLI_LIMax",               "ADLI_LIMax numeric(18, 3)");
-    hashFieldCreateStyle.insert("ADLI_LINormal",            "ADLI_LINormal numeric(18, 3)");
-    hashFieldCreateStyle.insert("ADLI_LF",                  "ADLI_LF numeric(18, 3)");
-    hashFieldCreateStyle.insert("ADLI_AngleMax",            "ADLI_AngleMax numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_AngleHalfLeft",       "ADLI_AngleHalfLeft numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_AngleHalfRight",      "ADLI_AngleHalfRight numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_AngleHalfOff",        "ADLI_AngleHalfOff numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_AngleFifthLeft",      "ADLI_AngleFifthLeft numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_AngleFifthRight",     "ADLI_AngleFifthRight numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_AngleFifthOff",       "ADLI_AngleFifthOff numeric(18, 1)");
-    hashFieldCreateStyle.insert("ADLI_Graph",               "ADLI_Graph ntext");
     // TM30
     hashFieldCreateStyle.insert("TM30_Rf",                 "TM30_Rf numeric(18, 2)");
     hashFieldCreateStyle.insert("TM30_Rg",                 "TM30_Rg numeric(18, 2)");
@@ -287,24 +288,51 @@ void HSqlGlobalInstance::initFieldCreateStyle()
     hashFieldCreateStyle.insert("TM30_hj_btn",             "TM30_hj_btn nchar(200)");
     hashFieldCreateStyle.insert("TM30_hj_arn",             "TM30_hj_arn nchar(200)");
     hashFieldCreateStyle.insert("TM30_hj_brn",             "TM30_hj_brn nchar(200)");
+    // 光强角
+    hashFieldCreateStyle.insert("ADLI_LIMax",               "ADLI_LIMax numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADLI_LINormal",            "ADLI_LINormal numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADLI_LF",                  "ADLI_LF numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADLI_AngleMax",            "ADLI_AngleMax numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleHalfLeft",       "ADLI_AngleHalfLeft numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleHalfRight",      "ADLI_AngleHalfRight numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleHalfOff",        "ADLI_AngleHalfOff numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleFifthLeft",      "ADLI_AngleFifthLeft numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleFifthRight",     "ADLI_AngleFifthRight numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_AngleFifthOff",       "ADLI_AngleFifthOff numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADLI_Graph",               "ADLI_Graph ntext");
+    // 辐射参数
+    hashFieldCreateStyle.insert("RadiantIntensity",         "RadiantIntensity numeric(18, 2)");
+    hashFieldCreateStyle.insert("RadiantFlux",              "RadiantFlux numeric(18, 2)");
+    hashFieldCreateStyle.insert("ADRI_RIMax",               "ADRI_RIMax numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADRI_RINormal",            "ADRI_RINormal numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADRI_RF",                  "ADRI_RF numeric(18, 3)");
+    hashFieldCreateStyle.insert("ADRI_AngleMax",            "ADRI_AngleMax numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_AngleHalfLeft",       "ADRI_AngleHalfLeft numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_AngleHalfRight",      "ADRI_AngleHalfRight numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_AngleHalfOff",        "ADRI_AngleHalfOff numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_AngleFifthLeft",      "ADRI_AngleFifthLeft numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_AngleFifthRight",     "ADRI_AngleFifthRight numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_AngleFifthOff",       "ADRI_AngleFifthOff numeric(18, 1)");
+    hashFieldCreateStyle.insert("ADRI_Graph",               "ADRI_Graph ntext");
 }
 
 void HSqlGlobalInstance::initFieldGroup()
 {
-    // |产品信息2|      - [Note]
-    // |产品信息3|      - [ProductName][TestInstitute][Note]
-    // |光谱信息2|      - [CC_u][CC_v]
-    // |光谱信息3|      - [CC_u][CC_v][LuminousFluxSpec]
-    // |光谱信息4|      - [CC_u][CC_v][EnergyGraph][ReflectGraph]
-    // |光谱信息5|      - [CC_u][CC_v][LuminousFluxSpec][EnergyGraph][ReflectGraph]
-    // |光度信息2|      - [LuminousIntensity]
-    // |光度信息3|      = [LuminousPower][LuminousEfficiency]
-    // |光度信息4|      = [LuminousPower]
-    // |色容差信息2|    - [SDCM_Detail]
-    // |直流电信息2|    - [ReverseVoltage][ReverseCurrent]
-    // |TM30信息2|      = [TM30_Rf][TM30_Rg]
-    // |TM30信息3|      - [TM30_Rf][TM30_Rg]
-    // |光强角度信息2|  - [ADLI_Graph]
+    // |产品信息2|          - [Note]
+    // |产品信息3|          - [ProductName][TestInstitute][Note]
+    // |光谱信息2|          - [CC_u][CC_v]
+    // |光谱信息3|          - [CC_u][CC_v][LuminousFluxSpec]
+    // |光谱信息4|          - [CC_u][CC_v][EnergyGraph][ReflectGraph]
+    // |光谱信息5|          - [CC_u][CC_v][LuminousFluxSpec][EnergyGraph][ReflectGraph]
+    // |光度信息2|          - [LuminousIntensity]
+    // |光度信息3|          = [LuminousPower][LuminousEfficiency]
+    // |光度信息4|          = [LuminousPower]
+    // |色容差信息2|        - [SDCM_Detail]
+    // |直流电信息2|        - [ReverseVoltage][ReverseCurrent]
+    // |TM30信息2|          = [TM30_Rf][TM30_Rg]
+    // |TM30信息3|          - [TM30_Rf][TM30_Rg]
+    // |光强角度信息2|      - [ADLI_Graph]
+    // |辐射强度角度信息2|  - [ADLI_Graph]
 
     hashFieldGroup.insert("|产品信息|",      QStringList() << "Manufacturer" << "ProductName" << "ProductModel"  << "SampleNumber" << "TestInstitute" << "Tester" << "Note");
     hashFieldGroup.insert("|产品信息2|",     QStringList() << "Manufacturer" << "ProductName" << "ProductModel"  << "SampleNumber" << "TestInstitute" << "Tester");
@@ -360,7 +388,6 @@ void HSqlGlobalInstance::initFieldGroup()
     hashFieldGroup.insert("|直流电信息|",    QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ReverseVoltage" << "ReverseCurrent" << "ElecPower");
     hashFieldGroup.insert("|直流电信息2|",   QStringList() << "OutputVoltage" << "MeasuredVoltage" << "OutputCurrent" << "MeasuredCurrent" << "ElecPower");
     hashFieldGroup.insert("|交流电信息|",    QStringList() << "ACVoltage" << "ACCurrent" << "ACPower" << "ACFactor");
-
     hashFieldGroup.insert("|光强角度信息|",  QStringList() << "ADLI_LIMax" << "ADLI_LINormal" << "ADLI_LF" << "ADLI_AngleMax"
                                                            << "ADLI_AngleHalfLeft" << "ADLI_AngleHalfRight" << "ADLI_AngleHalfOff"
                                                            << "ADLI_AngleFifthLeft" << "ADLI_AngleFifthRight" << "ADLI_AngleFifthOff"
@@ -368,13 +395,20 @@ void HSqlGlobalInstance::initFieldGroup()
     hashFieldGroup.insert("|光强角度信息2|", QStringList() << "ADLI_LIMax" << "ADLI_LINormal" << "ADLI_LF" << "ADLI_AngleMax"
                                                            << "ADLI_AngleHalfLeft" << "ADLI_AngleHalfRight" << "ADLI_AngleHalfOff"
                                                            << "ADLI_AngleFifthLeft" << "ADLI_AngleFifthRight" << "ADLI_AngleFifthOff");
+    hashFieldGroup.insert("|辐射强度角度信息|",   QStringList() << "ADRI_RIMax" << "ADRI_RINormal" << "ADRI_RF" << "ADRI_AngleMax"
+                                                                << "ADRI_AngleHalfLeft" << "ADRI_AngleHalfRight" << "ADRI_AngleHalfOff"
+                                                                << "ADRI_AngleFifthLeft" << "ADRI_AngleFifthRight" << "ADRI_AngleFifthOff"
+                                                                << "ADRI_Graph");
+    hashFieldGroup.insert("|辐射强度角度信息2|",  QStringList() << "ADRI_RIMax" << "ADRI_RINormal" << "ADRI_RF" << "ADRI_AngleMax"
+                                                                << "ADRI_AngleHalfLeft" << "ADRI_AngleHalfRight" << "ADRI_AngleHalfOff"
+                                                                << "ADRI_AngleFifthLeft" << "ADRI_AngleFifthRight" << "ADRI_AngleFifthOff");
     // 数据格式
-    hashFieldGroup.insert("|Json格式|",      QStringList() << "SDCM_Detail");
-    hashFieldGroup.insert("|列表格式|",      QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
-                                                           << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
-                                                           << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
-    hashFieldGroup.insert("|多边形格式_02|", QStringList() << "ADLI_Graph");
-    hashFieldGroup.insert("|多边形格式_11|", QStringList() << "EnergyGraph" << "ReflectGraph");
+    hashFieldGroup.insert("|Json格式|",           QStringList() << "SDCM_Detail");
+    hashFieldGroup.insert("|列表格式|",           QStringList() << "TM30_Rfi" << "TM30_hj_Rf" << "TM30_hj_Rcs" << "TM30_hj_Rhs"
+                                                                << "TM30_hj_at" << "TM30_hj_bt" << "TM30_hj_ar" << "TM30_hj_br"
+                                                                << "TM30_hj_atn" << "TM30_hj_btn" << "TM30_hj_arn" << "TM30_hj_brn");
+    hashFieldGroup.insert("|多边形格式_02|",      QStringList() << "ADLI_Graph" << "ADRI_Graph");
+    hashFieldGroup.insert("|多边形格式_11|",      QStringList() << "EnergyGraph" << "ReflectGraph");
 }
 
 HE_END_NAMESPACE

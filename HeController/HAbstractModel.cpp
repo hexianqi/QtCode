@@ -10,7 +10,6 @@ HE_BEGIN_NAMESPACE
 
 HAbstractModelPrivate::HAbstractModelPrivate()
 {
-    initialized = false;
     configFileName = HAppContext::getContextValue<QString>("ConfigFileName");
     configManage = HAppContext::getContextPointer<IConfigManage>("IConfigManage");
     threads = HAppContext::getContextPointer<IThreadCollection>("IThreadCollection");
@@ -30,11 +29,7 @@ HAbstractModel::HAbstractModel(HAbstractModelPrivate &p, QObject *parent) :
 
 HAbstractModel::~HAbstractModel()
 {
-    if (d_ptr->initialized)
-    {
-        stopDelayThread();
-        stopWorkThread();
-    }
+    stop();
 }
 
 void HAbstractModel::initialize(QVariantMap /*param*/)
@@ -43,13 +38,32 @@ void HAbstractModel::initialize(QVariantMap /*param*/)
 
 void HAbstractModel::start()
 {
-    if (d_ptr->initialized)
+    if (d_ptr->running)
         return;
 
-    initDelayThread();
-    initWorkThread();
+    if (!d_ptr->initialized)
+    {
+        initWorkThread();
+        initDelayThread();
+        d_ptr->initialized = true;
+    }
+    startWorkThread();
+    startDelayThread();
     syncDeviceAll();
-    d_ptr->initialized = true;
+    d_ptr->running = true;
+}
+
+void HAbstractModel::stop()
+{
+    if (!d_ptr->running)
+        return;
+
+    if (d_ptr->initialized)
+    {
+        stopDelayThread();
+        stopWorkThread();
+    }
+    d_ptr->running = false;
 }
 
 void HAbstractModel::addAction(HActionType action, ulong delay)
@@ -121,12 +135,18 @@ void HAbstractModel::setConfigFile(const QString &/*fileName*/)
 void HAbstractModel::initDelayThread()
 {
     d_ptr->delayThread = new HDelayThread(this);
-    d_ptr->delayThread->start();
+}
+
+void HAbstractModel::startDelayThread()
+{
+    if (!d_ptr->delayThread->isRunning())
+        d_ptr->delayThread->start();
 }
 
 void HAbstractModel::stopDelayThread()
 {
-    d_ptr->delayThread->stop();
+    if (d_ptr->delayThread->isRunning())
+        d_ptr->delayThread->stop();
 }
 
 void HAbstractModel::initWorkThread()
@@ -143,14 +163,24 @@ void HAbstractModel::initWorkThread()
         list << t->threadInfo();
     }
     emit threadInitFinished(list);
+}
+
+void HAbstractModel::startWorkThread()
+{
     for (auto t : d_ptr->threads->values())
-        t->start();
+    {
+        if (!t->isRunning())
+            t->start();
+    }
 }
 
 void HAbstractModel::stopWorkThread()
 {
     for (auto t : d_ptr->threads->values())
-        t->stop();
+    {
+        if (t->isRunning())
+            t->stop();
+    }
 }
 
 HE_END_NAMESPACE

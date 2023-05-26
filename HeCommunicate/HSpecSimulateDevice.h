@@ -12,10 +12,11 @@ class HSpecSimulateDevicePrivate;
 
 class HSpecSimulateDevice : public HAbstractDevice
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HSpecSimulateDevice)
 
 public:
-    explicit HSpecSimulateDevice();
+    explicit HSpecSimulateDevice(QObject *parent = nullptr);
     ~HSpecSimulateDevice() override;
 
 public:
@@ -30,10 +31,11 @@ public:
     bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HSpecSimulateDevice(HSpecSimulateDevicePrivate &);
+    HSpecSimulateDevice(HSpecSimulateDevicePrivate &, QObject *parent = nullptr);
 
 protected:
     double simulate(double value);
+    uchar simulate(int value);
 };
 
 HE_END_NAMESPACE

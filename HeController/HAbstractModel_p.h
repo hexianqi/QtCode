@@ -14,7 +14,8 @@ public:
     HAbstractModelPrivate();
 
 public:
-    bool initialized;
+    bool initialized = false;
+    bool running = false;
     QString configFileName;
     IConfigManage *configManage = nullptr;
     IThreadCollection *threads = nullptr;

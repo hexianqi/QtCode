@@ -1,12 +1,10 @@
 #pragma once
 
 #include "HKeyenceProtocol.h"
-#include "HeCommunicate/HBigProtocol_p.h"
+#include "HeCommunicate/HAbstractProtocol_p.h"
 
-class HKeyenceProtocolPrivate : public HBigProtocolPrivate
+class HKeyenceProtocolPrivate : public HAbstractProtocolPrivate
 {
-public:
-    HKeyenceProtocolPrivate();
 };
 
 

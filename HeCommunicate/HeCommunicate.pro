@@ -49,6 +49,7 @@ Release {
 }
 
 include(codec.pri)
+include(convert.pri)
 include(device.pri)
 include(port.pri)
 include(protocol.pri)

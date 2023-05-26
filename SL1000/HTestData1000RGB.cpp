@@ -2,12 +2,12 @@
 
 HTestData1000RGBPrivate::HTestData1000RGBPrivate()
 {
-    sourceIo.fill(0, 5);
-    outputCurrentF.fill(0, 4);
-    outputCurrentR.fill(0, 4);
+    sourceIo.reserve(5);
+    outputCurrentF.reserve(4);
+    outputCurrentR.reserve(4);
     addData("[电模块]", 0);
     addData("[电源模式]", 0);
-    addData("[电源开关]", QVariant::fromValue(sourceIo));
+    addData("[电源开关]", sourceIo);
     addData("[电流_档位数]", 2);
     addData("[电流_档位]", 0);
     addData("[输出电压]", 0.0);
@@ -64,7 +64,7 @@ bool HTestData1000RGB::setData(QString type, QVariant value)
         return setModule(value.toInt());
     if (type == "[电源开关]")
     {
-        auto v = value.value<QVector<int>>();
+        auto v = value.toList();
         if (v.size() < 5)
             return false;
         d->sourceIo = v;
@@ -95,7 +95,7 @@ bool HTestData1000RGB::setData(QString type, QVariant value)
     }
     if (type == "[输出电流_F]")
     {
-        auto v = value.toDouble();
+        auto v = value.toInt();
         for (int i = 0; i < 4; i++)
             d->outputCurrentF[i] = v;
         return true;
@@ -114,7 +114,7 @@ bool HTestData1000RGB::setData(QString type, QVariant value)
     }
     if (type == "[输出电流-RGBW]")
     {
-        auto v = value.value<QVector<double>>();
+        auto v = value.toList();
         if (v.size() < 4)
             return false;
         d->outputCurrentR = v;
@@ -159,7 +159,7 @@ QVariant HTestData1000RGB::data(QString type)
 {
     Q_D(HTestData1000RGB);
     if (type == "[输出电流-RGBW_F]")
-        return QVariant::fromValue(d->outputCurrentF);
+        return d->outputCurrentF;
     return HTestData::data(type);
 }
 
@@ -177,12 +177,14 @@ bool HTestData1000RGB::setCurrentGears(int value)
     Q_D(HTestData1000RGB);
     if (value < 0 || value > 16)
         return false;
+    d->sourceIo.clear();
+    for (int i = 0; i < 5; i++)
+        d->sourceIo << 0;
     d->currentGears = value % 2;
-    d->sourceIo.fill(0, 5);
     d->sourceIo[0] = value / 8;
     d->sourceIo[(value / 2) % 4 + 1] = 1;
     d->setData("[电流_档位]", d->currentGears);
-    d->setData("[电源开关]", QVariant::fromValue(d->sourceIo));
+    d->setData("[电源开关]", d->sourceIo);
     return true;
 }
 
@@ -190,16 +192,16 @@ QVector<double> HTestData1000RGB::toReal(HElecType type, QVariant value, QString
 {
     Q_D(HTestData1000RGB);
     QVector<double> result(4, 0);
-    auto v = value.value<QVector<int>>();
+    auto v = value.toList();
     if (v.size() < 4)
         return result;
     for (int i = 0; i < 4; i++)
     {
         if (d->sourceIo.at(i + 1) == 1)
         {
-            auto index = calcIndex ? d->sourceIo[0] * 8 + i * 2 + d->currentGears : 0;
+            auto index = calcIndex ? d->sourceIo[0].toInt() * 8 + i * 2 + d->currentGears : 0;
             d->setData(name, v[i]);
-            result[i] = d->calibrate->toReal(v[i], type, index);
+            result[i] = d->calibrate->toReal(v[i].toDouble(), type, index);
         }
     }
     return result;
@@ -210,7 +212,7 @@ void HTestData1000RGB::syncCurrent()
     Q_D(HTestData1000RGB);
     for (int i = 0; i < 4; i++)
     {
-        auto index = d->sourceIo[0] * 8 + i * 2 + d->currentGears;
-        d->outputCurrentF[i] = d->calibrate->toFiction(d->outputCurrentR[i], OutputCurrent, index);
+        auto index = d->sourceIo[0].toInt() * 8 + i * 2 + d->currentGears;
+        d->outputCurrentF[i] = int(d->calibrate->toFiction(d->outputCurrentR[i].toDouble(), OutputCurrent, index));
     }
 }

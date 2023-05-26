@@ -10,11 +10,13 @@ HE_BEGIN_NAMESPACE
 
 class HAbstractPortPrivate;
 
-class HAbstractPort : public IPort
+class HAbstractPort : public QObject, public IPort
 {
+    Q_OBJECT
+
 public:
-    explicit HAbstractPort();
-    virtual ~HAbstractPort();
+    explicit HAbstractPort(QObject *parent = nullptr);
+    ~HAbstractPort() override;
 
 public:
     void initialize(QVariantMap param = QVariantMap()) override;
@@ -22,7 +24,7 @@ public:
 public:
     bool isConnected() override;
     void setTimeOut(int value) override;
-    bool open(int portNum = 1) override;
+    bool open(int num = 1) override;
     bool close() override;
     bool clear() override;
     int write(QVector<uchar> data) override;
@@ -30,7 +32,7 @@ public:
     bool transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0) override;
 
 protected:
-    HAbstractPort(HAbstractPortPrivate &);
+    HAbstractPort(HAbstractPortPrivate &, QObject *parent = nullptr);
 
 protected:
     virtual bool openPort(int portNum) = 0;

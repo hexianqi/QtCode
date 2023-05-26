@@ -39,9 +39,9 @@ QString HSpecStrategy::typeName()
 bool HSpecStrategy::handle(HActionType action)
 {
     Q_D(HSpecStrategy);
-    uint i;
-    QVector<uchar> ubuff;
-    QVector<double> dbuff;
+    QVariant sample;
+    QVariantList samples;
+    QVector<uchar> buff;
 
     switch(action)
     {
@@ -52,18 +52,18 @@ bool HSpecStrategy::handle(HActionType action)
     case ACT_SET_SPECTRUM_SAMPLE_DELAY:
         return d->protocol->setData(action, d->testSpec->data("[光谱采样延时]").toInt());
     case ACT_GET_INTEGRAL_TIME:
-        d->protocol->getData(action, i);
-        d->testSpec->setData("[积分时间]", i / 500.0);
+        d->protocol->getData(action, sample, QVariant::UInt);
+        d->testSpec->setData("[积分时间]", sample.toDouble() / 1000.0);
         return true;
     case ACT_GET_SPECTRUM:
-        d->protocol->getData(action, dbuff);//d->testSpec->data("[光谱采样等待时间]").toInt());
-        d->testSpec->setSample(dbuff, true);
+        d->protocol->getData(action, samples, QVariant::Double);//d->testSpec->data("[光谱采样等待时间]").toInt());
+        d->testSpec->setSample(samples, true);
         return true;
     case ACT_SET_RAM:
         return d->protocol->setData(action, d->testSpec->getRam());
     case ACT_GET_RAM:
-        d->protocol->getData(action, ubuff);
-        if (!d->testSpec->setRam(ubuff))
+        d->protocol->getData(action, buff);
+        if (!d->testSpec->setRam(buff))
             throw HException(E_DEVICE_DATA_RETURN_ERROR);
         return true;
     }

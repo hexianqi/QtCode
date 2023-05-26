@@ -12,10 +12,11 @@ class HDaXinDevicePrivate;
 
 class HDaXinDevice : public HAbstractDevice
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HDaXinDevice)
 
 public:
-    explicit HDaXinDevice();
+    explicit HDaXinDevice(QObject *parent = nullptr);
     ~HDaXinDevice() override;
 
 public:
@@ -26,5 +27,5 @@ public:
     bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    bool check() override;
+    bool checkDevice() override;
 };

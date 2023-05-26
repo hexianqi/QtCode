@@ -2,12 +2,14 @@
 
 HE_BEGIN_NAMESPACE
 
-HAbstractCodec::HAbstractCodec() :
+HAbstractCodec::HAbstractCodec(QObject *parent) :
+    QObject(parent),
     d_ptr(new HAbstractCodecPrivate)
 {
 }
 
-HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p) :
+HAbstractCodec::HAbstractCodec(HAbstractCodecPrivate &p, QObject *parent) :
+    QObject(parent),
     d_ptr(&p)
 {
 }

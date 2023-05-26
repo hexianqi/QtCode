@@ -24,6 +24,7 @@ public:
 
 public:
     void start() override;
+    void stop() override;
     void addAction(HActionType action, ulong delay = 0) override;
     void syncDeviceAll() override;
 
@@ -40,8 +41,10 @@ protected:
 protected:
     void setConfigFile(const QString &fileName);
     void initDelayThread();
+    void startDelayThread();
     void stopDelayThread();
     void initWorkThread();
+    void startWorkThread();
     void stopWorkThread();
 
 protected:

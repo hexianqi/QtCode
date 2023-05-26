@@ -33,10 +33,9 @@ void HImportCurveHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
 
     int i,n;
     double t;
-    QString str;
     QVector<double> curve;
     QTextStream s(&file);
-    s >> n >> str;
+    s >> n;
     if (n < 2000)
     {
         QMessageBox::warning(d->mainWindow, "", tr("\n无效标准曲线数据！\n"));

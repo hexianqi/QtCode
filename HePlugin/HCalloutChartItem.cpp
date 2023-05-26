@@ -61,11 +61,9 @@ QRectF HCalloutChartItem::boundingRect() const
     return rect;
 }
 
-void HCalloutChartItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void HCalloutChartItem::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widget*/)
 {
     Q_D(HCalloutChartItem);
-    Q_UNUSED(option)
-    Q_UNUSED(widget)
     QPainterPath path;
     path.addRoundedRect(d->rect, 5, 5);
     auto anchor = mapFromParent(d->chart->mapToPosition(d->anchor));

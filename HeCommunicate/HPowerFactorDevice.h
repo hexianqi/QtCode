@@ -12,10 +12,11 @@ class HPowerFactorDevicePrivate;
 
 class HPowerFactorDevice : public HAbstractDevice
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HPowerFactorDevice)
 
 public:
-    explicit HPowerFactorDevice();
+    explicit HPowerFactorDevice(QObject *parent = nullptr);
     ~HPowerFactorDevice() override;
 
 public:

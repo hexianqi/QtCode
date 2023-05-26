@@ -5,14 +5,11 @@
 
 HE_BEGIN_NAMESPACE
 
-HSlDevice3Private::HSlDevice3Private()
+HSlDevice3::HSlDevice3(QObject *parent) :
+    HSlDevice1(*new HSlDevice3Private, parent)
 {
-    codec = QSharedPointer<ICodec>(new HSlCodec);
-}
-
-HSlDevice3::HSlDevice3() :
-    HSlDevice1(*new HSlDevice3Private)
-{
+    Q_D(HSlDevice3);
+    d->codec = new HSlCodec(this);
 }
 
 HSlDevice3::~HSlDevice3() = default;

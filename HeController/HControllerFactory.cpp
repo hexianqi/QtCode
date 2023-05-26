@@ -42,22 +42,25 @@ QString HControllerFactory::typeName()
     return "HControllerFactory";
 }
 
-IThread *HControllerFactory::createThread(QString type, QVariantMap param)
+IThread *HControllerFactory::createThread(QString type, QObject *parent, QVariantMap param)
 {
-    return HObjectFactory::createObject<IThread>(type, param, this);
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IThread>(type, param, parent);
 }
 
-IThreadCollection *HControllerFactory::createThreadCollection(QString type, QVariantMap param)
+IThreadCollection *HControllerFactory::createThreadCollection(QString /*type*/, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HThreadCollection;
     p->initialize(param);
     return p;
 }
 
-IModel *HControllerFactory::createModel(QString type, QVariantMap param)
+IModel *HControllerFactory::createModel(QString type, QObject *parent, QVariantMap param)
 {
-    return HObjectFactory::createObject<IModel>(type, param, this);
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IModel>(type, param, parent);
 }
 
 IActionStrategy *HControllerFactory::createStrategy(QString type, QObject *parent, QVariantMap param)
@@ -67,17 +70,17 @@ IActionStrategy *HControllerFactory::createStrategy(QString type, QObject *paren
     return HObjectFactory::createObject<IActionStrategy>(type, param, parent);
 }
 
-IMemento *HControllerFactory::createMemento(QString type, QVariantMap param)
+IMemento *HControllerFactory::createMemento(QString /*type*/, QObject *parent, QVariantMap param)
 {
-    Q_UNUSED(type)
-    auto p = new HMemento(this);
+    if (parent == nullptr)
+        parent = this;
+    auto p = new HMemento(parent);
     p->initialize(param);
     return p;
 }
 
-IMementoCollection *HControllerFactory::createMementoCollection(QString type, QVariantMap param)
+IMementoCollection *HControllerFactory::createMementoCollection(QString /*type*/, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HMementoCollection;
     p->initialize(param);
     return p;

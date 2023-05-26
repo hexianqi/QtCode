@@ -12,7 +12,7 @@ class HMainWindowSpec : public HAbstractMainWindow
     Q_DECLARE_PRIVATE(HMainWindowSpec)
 
 public:
-    HMainWindowSpec(QWidget *parent = nullptr, const HConstructionCallHelper &helper = HConstructionCallHelper());
+    HMainWindowSpec(QWidget *parent = nullptr);
     ~HMainWindowSpec() override;
 
 protected:

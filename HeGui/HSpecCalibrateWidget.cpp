@@ -112,9 +112,8 @@ void HSpecCalibrateWidget::handleFitStateChanged(bool b)
     ui->tabWidget_1->setCurrentIndex(b ? 0 : 2);
 }
 
-void HSpecCalibrateWidget::on_tabWidget_1_currentChanged(int index)
+void HSpecCalibrateWidget::on_tabWidget_1_currentChanged(int /*index*/)
 {
-    Q_UNUSED(index);
     refreshSpecWidget();
 }
 

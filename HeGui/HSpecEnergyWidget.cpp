@@ -44,22 +44,22 @@ void HSpecEnergyWidget::initCoordinate()
 
 void HSpecEnergyWidget::refreshWidget()
 {
-    QString tip;
-
     for (auto bar : d_ptr->progressBars)
         bar->setValue(d_ptr->testData->data(bar->property("showType").toString()).toDouble());
 
     int state = d_ptr->testData->data("[光谱采样溢出状态]").toInt();
     if (state == 0)
-    {
         d_ptr->specWidget->addPolygon(0, d_ptr->testData->data("[光谱能量曲线]").value<QPolygonF>());
-        tip = d_ptr->testData->toHtmlTable(d_ptr->toolTipTypes, Qt::white);
-    }
     else if (state < 0)
         d_ptr->specWidget->setCenter(tr("光谱采样数值太小!"), Qt::green, Qt::black);
     else
         d_ptr->specWidget->setCenter(tr("光谱采样数值太大!"), Qt::red, Qt::white);
-    d_ptr->specWidget->setToolTip(tip);
+
+    if (d_ptr->toolTipTypes.size() > 0)
+    {
+        auto tip = state == 0 ? d_ptr->testData->toHtmlTable(d_ptr->toolTipTypes, Qt::white) : "";
+        d_ptr->specWidget->setToolTip(tip);
+    }
 }
 
 void HSpecEnergyWidget::addProgressBar(const QString &type)
@@ -81,6 +81,13 @@ void HSpecEnergyWidget::setProgressBarVisible(const QString &type, bool b)
     if (!d_ptr->progressBars.contains(type))
         return;
     d_ptr->progressBars.value(type)->setVisible(b);
+}
+
+void HSpecEnergyWidget::setToolTipTypes(const QStringList &value)
+{
+    if (d_ptr->toolTipTypes == value)
+        return;
+    d_ptr->toolTipTypes = value;
 }
 
 void HSpecEnergyWidget::init()

@@ -16,7 +16,7 @@ class HMainWindow2000AC : public HAbstractMainWindow
     Q_DECLARE_PRIVATE(HMainWindow2000AC)
 
 public:
-    explicit HMainWindow2000AC(QWidget *parent = nullptr, const HConstructionCallHelper &helper = HConstructionCallHelper());
+    explicit HMainWindow2000AC(QWidget *parent = nullptr);
     ~HMainWindow2000AC() override;
 
 protected:

@@ -4,26 +4,26 @@
 
 #pragma once
 
-#include "HeCommunicate/HBigProtocol.h"
+#include "HeCommunicate/HAbstractProtocol.h"
 
 HE_USE_NAMESPACE
 
 class HKeyenceProtocolPrivate;
 
-class HKeyenceProtocol : public HBigProtocol
+class HKeyenceProtocol : public HAbstractProtocol
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HKeyenceProtocol)
 
 public:
-    explicit HKeyenceProtocol();
+    explicit HKeyenceProtocol(QObject *parent = nullptr);
     ~HKeyenceProtocol() override;
 
 public:
-    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
-    HKeyenceProtocol(HKeyenceProtocolPrivate &);
+    virtual void init();
 };
 
 

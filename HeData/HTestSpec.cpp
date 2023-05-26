@@ -244,7 +244,7 @@ bool HTestSpec::setData(QString type, QVariant value)
     if (type == "[积分时间]")
         return d->setIntegralTime(value.toDouble());
     if (type == "[光谱采样值]")
-        return setSample(value.value<QVector<double>>());
+        return setSample(value.toList());
     return HTestData::setData(type, value);
 }
 
@@ -289,12 +289,15 @@ bool HTestSpec::setCalibrate(void *p)
     return true;
 }
 
-bool HTestSpec::setSample(QVector<double> value, bool avg)
+bool HTestSpec::setSample(QVariantList value, bool avg)
 {
     Q_D(HTestSpec);
     if (value.isEmpty())
         return false;
-    return d->setSample(value, avg);
+    QVector<double> data;
+    for (auto i : value)
+        data << i.toDouble();
+    return d->setSample(data, avg);
 }
 
 void HTestSpec::setFitting(bool b)

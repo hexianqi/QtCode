@@ -1,4 +1,6 @@
 #include "HCommunicateFactory_p.h"
+#include "HBigUCharConvert.h"
+#include "HLittleUCharConvert.h"
 #include "HSerialPort.h"
 #include "HUsbPortCy.h"
 #include "HSpecSimulateDevice.h"
@@ -7,8 +9,7 @@
 #include "HSlDevice2.h"
 #include "HSlDevice3.h"
 #include "HPowerFactorDevice.h"
-#include "HLittleProtocol.h"
-#include "HBigProtocol.h"
+#include "HProtocol.h"
 #include "HCcd1305Protocol.h"
 #include "HCcd1305Protocol_COM.h"
 #include "HCcd554bProtocol.h"
@@ -16,7 +17,7 @@
 #include "HUi2008Protocol.h"
 #include "HUi2010Protocol.h"
 #include "HProtocolCollection.h"
-#include "HeCore/HFactory.h"
+#include "HeCore/HObjectFactory.h"
 
 HE_BEGIN_NAMESPACE
 
@@ -45,24 +46,36 @@ QString HCommunicateFactory::typeName()
     return "HCommunicateFactory";
 }
 
-IPort *HCommunicateFactory::createPort(QString type, QVariantMap param)
+IUCharConvert *HCommunicateFactory::createUCharConvert(QString type, QObject *parent, QVariantMap param)
 {
-    return HFactory::createObject<IPort>(type, param);
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IUCharConvert>(type, param, parent);
 }
 
-IDevice *HCommunicateFactory::createDevice(QString type, QVariantMap param)
+IPort *HCommunicateFactory::createPort(QString type, QObject *parent, QVariantMap param)
 {
-    return HFactory::createObject<IDevice>(type, param);
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IPort>(type, param, parent);
 }
 
-IProtocol *HCommunicateFactory::createProtocol(QString type, QVariantMap param)
+IDevice *HCommunicateFactory::createDevice(QString type, QObject *parent, QVariantMap param)
 {
-    return HFactory::createObject<IProtocol>(type, param);
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IDevice>(type, param, parent);
 }
 
-IProtocolCollection *HCommunicateFactory::createProtocolCollection(QString type, QVariantMap param)
+IProtocol *HCommunicateFactory::createProtocol(QString type, QObject *parent, QVariantMap param)
 {
-    Q_UNUSED(type)
+    if (parent == nullptr)
+        parent = this;
+    return HObjectFactory::createObject<IProtocol>(type, param, parent);
+}
+
+IProtocolCollection *HCommunicateFactory::createProtocolCollection(QString /*type*/, QVariantMap param)
+{
     auto p = new HProtocolCollection;
     p->initialize(param);
     return p;
@@ -70,25 +83,26 @@ IProtocolCollection *HCommunicateFactory::createProtocolCollection(QString type,
 
 void HCommunicateFactory::registerClass()
 {
-    HFactory::registerClass<HSerialPort>("HSerialPort");
-    HFactory::registerClass<HUsbPortCy>("HUsbPortCy");
-    HFactory::registerClass<HSpecSimulateDevice>("HSpecSimulateDevice");
-    HFactory::registerClass<HSimulateDevice>("HSimulateDevice");
-    HFactory::registerClass<HSlDevice1>("HSlDevice1");
-    HFactory::registerClass<HSlDevice2>("HSlDevice2");
-    HFactory::registerClass<HSlDevice3>("HSlDevice3");
-    HFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
-    HFactory::registerClass<HLittleProtocol>("HLittleProtocol");
-    HFactory::registerClass<HBigProtocol>("HBigProtocol");
-    HFactory::registerClass<HCcd1305Protocol>("HCcd1305Protocol");
-    HFactory::registerClass<HCcd1305Protocol_COM>("HCcd1305Protocol_COM");
-    HFactory::registerClass<HCcd554bProtocol>("HCcd554bProtocol");
-    HFactory::registerClass<HCcd1305Protocol>("HCcdProtocol01");
-    HFactory::registerClass<HCcd1305Protocol_COM>("HCcdProtocol11");
-    HFactory::registerClass<HCcd554bProtocol>("HCcdProtocol02");
-    HFactory::registerClass<HSl1000Protocol>("HSl1000Protocol");
-    HFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
-    HFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");
+    HObjectFactory::registerClass<HBigUCharConvert>("HBigUCharConvert");
+    HObjectFactory::registerClass<HLittleUCharConvert>("HLittleUCharConvert");
+    HObjectFactory::registerClass<HSerialPort>("HSerialPort");
+    HObjectFactory::registerClass<HUsbPortCy>("HUsbPortCy");
+    HObjectFactory::registerClass<HSpecSimulateDevice>("HSpecSimulateDevice");
+    HObjectFactory::registerClass<HSimulateDevice>("HSimulateDevice");
+    HObjectFactory::registerClass<HSlDevice1>("HSlDevice1");
+    HObjectFactory::registerClass<HSlDevice2>("HSlDevice2");
+    HObjectFactory::registerClass<HSlDevice3>("HSlDevice3");
+    HObjectFactory::registerClass<HPowerFactorDevice>("HPowerFactorDevice");
+    HObjectFactory::registerClass<HProtocol>("HProtocol");
+    HObjectFactory::registerClass<HCcd1305Protocol>("HCcd1305Protocol");
+    HObjectFactory::registerClass<HCcd1305Protocol_COM>("HCcd1305Protocol_COM");
+    HObjectFactory::registerClass<HCcd554bProtocol>("HCcd554bProtocol");
+    HObjectFactory::registerClass<HCcd1305Protocol>("HCcdProtocol01");
+    HObjectFactory::registerClass<HCcd1305Protocol_COM>("HCcdProtocol11");
+    HObjectFactory::registerClass<HCcd554bProtocol>("HCcdProtocol02");
+    HObjectFactory::registerClass<HSl1000Protocol>("HSl1000Protocol");
+    HObjectFactory::registerClass<HUi2008Protocol>("HUi2008Protocol");
+    HObjectFactory::registerClass<HUi2010Protocol>("HUi2010Protocol");
 }
 
 HE_END_NAMESPACE

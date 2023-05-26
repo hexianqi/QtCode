@@ -13,11 +13,11 @@ SOURCES     += \
             main.cpp
 
 HEADERS     += \
-    HMainWindow.h \
-    HMainWindow_p.h
+            HMainWindow.h \
+            HMainWindow_p.h
 
 FORMS       += \
-    HMainWindow.ui
+            HMainWindow.ui
 
 ThirdPath   = $$PWD/../QExtSerialPort
 

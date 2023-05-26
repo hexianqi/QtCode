@@ -9,13 +9,13 @@ HSlCodecPrivate::HSlCodecPrivate()
     checkCodes << true << true;
 }
 
-HSlCodec::HSlCodec() :
-    HAbstractCodec(*new HSlCodecPrivate)
+HSlCodec::HSlCodec(QObject *parent) :
+    HAbstractCodec(*new HSlCodecPrivate, parent)
 {
 }
 
-HSlCodec::HSlCodec(HSlCodecPrivate &p) :
-    HAbstractCodec(p)
+HSlCodec::HSlCodec(HSlCodecPrivate &p, QObject *parent) :
+    HAbstractCodec(p, parent)
 {
 }
 
@@ -98,9 +98,8 @@ bool HSlCodec::isCheckCode(int n)
     return d->checkCodes[n];
 }
 
-int HSlCodec::encryptSize(QVector<uchar> value)
+int HSlCodec::encryptSize(QVector<uchar> /*value*/)
 {
-    Q_UNUSED(value)
     return 2;
     // return qCeil(value.size() / 7.0);
 }

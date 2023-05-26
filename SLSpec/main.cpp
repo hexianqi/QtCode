@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     HCoreGlobalInstance::instance()->initialize();
 
-    HMainWindowSpec w;
+    H_TCD(HMainWindowSpec) w;
     w.show();
     return a.exec();
 }

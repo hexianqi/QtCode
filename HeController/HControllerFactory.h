@@ -24,11 +24,11 @@ public:
     QString typeName() override;
 
 public:
-    IThread *createThread(QString type, QVariantMap param) override;
+    IThread *createThread(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IThreadCollection *createThreadCollection(QString type, QVariantMap param = QVariantMap()) override;
-    IModel *createModel(QString type, QVariantMap param = QVariantMap()) override;
+    IModel *createModel(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IActionStrategy *createStrategy(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
-    IMemento *createMemento(QString type, QVariantMap param = QVariantMap()) override;
+    IMemento *createMemento(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IMementoCollection *createMementoCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:

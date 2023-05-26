@@ -26,6 +26,8 @@ public:
     virtual int remove(QString key) = 0;
     // 第一个值
     virtual T *first() = 0;
+    // 最后一个值
+    virtual T *last() = 0;
     // key值
     virtual T *value(QString key) = 0;
     // key项

@@ -30,6 +30,9 @@ HSpecDiagramWidget::HSpecDiagramWidget(HSpecDiagramWidgetPrivate &p, QWidget *pa
 void HSpecDiagramWidget::setWaveRange(QPointF value)
 {
     setCoordinate(QRectF(value.x(), 0, value.y() - value.x(), 100), 10, 5);
+    setVisibleRibbon(value.y() <= 800);
+    if (value.y() > 800)
+        setDrawRibbon(false);
 }
 
 void HSpecDiagramWidget::setDrawCenter(bool b)

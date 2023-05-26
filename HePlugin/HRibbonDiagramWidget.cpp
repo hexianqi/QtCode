@@ -27,6 +27,14 @@ HRibbonDiagramWidget::HRibbonDiagramWidget(HRibbonDiagramWidgetPrivate &p, QWidg
     init();
 }
 
+void HRibbonDiagramWidget::setVisibleRibbon(bool b)
+{
+    Q_D(HRibbonDiagramWidget);
+    if (d->actionRibbon->isVisible() == b)
+        return;
+    d->actionRibbon->setVisible(b);
+}
+
 void HRibbonDiagramWidget::setDrawRibbon(bool b)
 {
     Q_D(HRibbonDiagramWidget);

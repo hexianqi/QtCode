@@ -128,6 +128,9 @@ QPolygonF HSpecFitting::points()
 QPolygonF HSpecFitting::curve(double interval)
 {
     Q_D(HSpecFitting);
+    if (points().isEmpty())
+        return QPolygonF();
+
     initStrategy();
     QPolygonF p;
     auto b = d->points.size() < 2 ? 0.0 : d->points.first().x() - 100.0;

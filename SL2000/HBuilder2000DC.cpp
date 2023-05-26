@@ -179,9 +179,13 @@ void HBuilder2000DC::buildDevice()
 #ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto device2 = d->communicateFactory->createDevice("HSimulateDevice");
-    auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
-    auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
+    auto convert1 = d->communicateFactory->createUCharConvert("HLittleUCharConvert");
+    auto convert2 = d->communicateFactory->createUCharConvert("HLittleUCharConvert");
+    auto protocol1 = d->communicateFactory->createProtocol("HProtocol");
+    auto protocol2 = d->communicateFactory->createProtocol("HProtocol");
+    protocol1->setConvert(convert1);
     protocol1->setDevice(device1);
+    protocol2->setConvert(convert2);
     protocol2->setDevice(device2);
 #else
     auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));

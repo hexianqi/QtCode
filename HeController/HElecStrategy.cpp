@@ -40,8 +40,8 @@ QString HElecStrategy::typeName()
 bool HElecStrategy::handle(HActionType action)
 {
     Q_D(HElecStrategy);
-    int sample;
-    QVector<int> buff;
+    QVariant sample;
+    QVariantList samples;
 
     switch(action)
     {
@@ -56,30 +56,30 @@ bool HElecStrategy::handle(HActionType action)
     case ACT_SET_REVERSE_VOLTAGE:
         return d->protocol->setData(action, d->testData->data("[反向电压_F]").toInt());
     case ACT_GET_ELEC_DATA:
-        d->protocol->getData(action, buff);
-        if (buff.length() > 0)
-            d->testData->setData("[实测电压_F]", buff.at(0));
-        if (buff.length() > 1)
-            d->testData->setData("[实测电流_F]", buff.at(1));
-        if (buff.length() > 2)
-            d->testData->setData("[反向漏流_F]", buff.at(2));
+        d->protocol->getData(action, samples, QVariant::Int);
+        if (samples.length() > 0)
+            d->testData->setData("[实测电压_F]", samples.at(0));
+        if (samples.length() > 1)
+            d->testData->setData("[实测电流_F]", samples.at(1));
+        if (samples.length() > 2)
+            d->testData->setData("[反向漏流_F]", samples.at(2));
         return true;
     case ACT_GET_MEASURED_VOLTAGE:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[实测电压_F]", sample);
         return true;
     case ACT_GET_MEASURED_CURRENT:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[实测电流_F]", sample);
         return true;
     case ACT_GET_REVERSE_CURRENT:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[反向漏流_F]", sample);
         return true;
     case ACT_RESET_STATE_TRIGGER:
         return d->protocol->setData(action, 0);
     case ACT_QUERY_STATE_TRIGGER:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[触发状态]", sample);
         return true;
     }

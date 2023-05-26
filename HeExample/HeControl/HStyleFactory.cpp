@@ -36,10 +36,9 @@ IStyle *HStyleFactory::createStyle(QString type, QVariantMap param)
     return HObjectFactory::createObject<IStyle>(type, param, this);
 }
 
-IQssStyle *HStyleFactory::createQssStyle(QString type, QVariantMap param)
+IQssStyle *HStyleFactory::createQssStyle(QString /*type*/, QVariantMap param)
 {
 //    return HObjectFactory::createObject<IQssStyle>(type, param, this);
-    Q_UNUSED(type);
     auto p = new HQssStyle(this);
     p->initialize(param);
     return p;

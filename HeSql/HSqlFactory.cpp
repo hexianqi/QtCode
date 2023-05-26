@@ -32,41 +32,36 @@ QString HSqlFactory::typeName()
     return "HSqlFactory";
 }
 
-ISqlDatabase *HSqlFactory::createDatabase(QString type, QVariantMap param)
+ISqlDatabase *HSqlFactory::createDatabase(QString /*type*/, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HSqliteDatabase(this);
     p->initialize(param);
     return p;
 }
 
-ISqlTableModel *HSqlFactory::createTableModel(QString type, QVariantMap param)
+ISqlTableModel *HSqlFactory::createTableModel(QString /*type*/, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HSqlTableModel(this);
     p->initialize(param);
     return p;
 }
 
-ISqlHandle *HSqlFactory::createHandle(QString type, QVariantMap param)
+ISqlHandle *HSqlFactory::createHandle(QString /*type*/, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HSqlHandle(this);
     p->initialize(param);
     return p;
 }
 
-ISqlOutput *HSqlFactory::createOutput(QString type, QVariantMap param)
+ISqlOutput *HSqlFactory::createOutput(QString /*type*/, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HSqlOutput(this);
     p->initialize(param);
     return p;
 }
 
-ISqlBrowser *HSqlFactory::createBrowser(QString type, QWidget *parent, QVariantMap param)
+ISqlBrowser *HSqlFactory::createBrowser(QString /*type*/, QWidget *parent, QVariantMap param)
 {
-    Q_UNUSED(type)
     auto p = new HSqlBrowser(parent);
     p->initialize(param);
     return p;

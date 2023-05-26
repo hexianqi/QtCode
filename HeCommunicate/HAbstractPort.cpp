@@ -5,12 +5,14 @@
 
 HE_BEGIN_NAMESPACE
 
-HAbstractPort::HAbstractPort() :
+HAbstractPort::HAbstractPort(QObject *parent) :
+    QObject(parent),
     d_ptr(new HAbstractPortPrivate)
 {
 }
 
-HAbstractPort::HAbstractPort(HAbstractPortPrivate &p) :
+HAbstractPort::HAbstractPort(HAbstractPortPrivate &p, QObject *parent) :
+    QObject(parent),
     d_ptr(&p)
 {
 }
@@ -33,15 +35,13 @@ void HAbstractPort::setTimeOut(int value)
     d_ptr->timeOut = value;
 }
 
-bool HAbstractPort::open(int portNum)
+bool HAbstractPort::open(int num)
 {
     if (isConnected())
         return true;
-    if (!openPort(portNum))
+    if (!openPort(num))
         return false;
-    d_ptr->portNum = portNum;
     d_ptr->connected = true;
-    clear();
     return true;
 }
 

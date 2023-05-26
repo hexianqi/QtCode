@@ -4,25 +4,29 @@
 
 #pragma once
 
-#include "HLittleProtocol.h"
+#include "HAbstractProtocol.h"
 
 HE_BEGIN_NAMESPACE
 
 class HUi2008ProtocolPrivate;
 
-class HUi2008Protocol : public HLittleProtocol
+class HUi2008Protocol : public HAbstractProtocol
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HUi2008Protocol)
 
 public:
-    explicit HUi2008Protocol();
+    explicit HUi2008Protocol(QObject *parent = nullptr);
     ~HUi2008Protocol() override;
 
 public:
     QString typeName() override;
 
 public:
-    bool getData(HActionType action, QVector<double> &value, int delay = 0) override;
+    bool getData(HActionType action, QVariantList &value, QVariant::Type type = QVariant::Int, int delay = 0) override;
+
+protected:
+    virtual void init();
 };
 
 HE_END_NAMESPACE

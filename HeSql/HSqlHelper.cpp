@@ -144,16 +144,26 @@ void HSqlHelper::updateSpecTable(ISqlDatabase *db)
         // 1.1.1.6 添加列SDCM
         if (version < 0x01010106)
             addColumn("Spec", "SDCM_Detail");
-        // 1.1.1.7 添加列SDCM
+        // 1.1.1.7 添加列光强度
         if (version < 0x01010107)
             addColumn("Spec", "LuminousIntensity");
     }
     setVersion("Spec", 0x01010107, db->openConnection());
 }
 
+void HSqlHelper::updateSpecITable(ISqlDatabase *db)
+{
+    setVersion("SpecI", 0x01010101, db->openConnection());
+}
+
 void HSqlHelper::updateAngleTable(ISqlDatabase *db)
 {
     setVersion("Angle", 0x01010101, db->openConnection());
+}
+
+void HSqlHelper::updateAngleITable(ISqlDatabase *db)
+{
+    setVersion("AngleI", 0x01010101, db->openConnection());
 }
 
 HE_END_NAMESPACE

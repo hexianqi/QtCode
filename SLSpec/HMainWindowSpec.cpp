@@ -2,8 +2,8 @@
 #include "HBuilderSpec.h"
 #include "HeData/IConfigManage.h"
 
-HMainWindowSpec::HMainWindowSpec(QWidget *parent, const HConstructionCallHelper &helper) :
-    HAbstractMainWindow(*new HMainWindowSpecPrivate(this), helper, parent)
+HMainWindowSpec::HMainWindowSpec(QWidget *parent) :
+    HAbstractMainWindow(*new HMainWindowSpecPrivate, parent)
 {
 }
 

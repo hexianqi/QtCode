@@ -33,44 +33,44 @@ QString HStrategy1000RGB::typeName()
 bool HStrategy1000RGB::handle(HActionType action)
 {
     Q_D(HStrategy1000RGB);
-    QVector<int> buff;
+    QVariantList samlpes;
 
     switch(action)
     {
     case ACT_SET_SOURCE_MODE:
         return d->protocol->setData(action, d->testData->data("[电源模式]").toInt());
     case ACT_SET_SOURCE_IO:
-        return d->protocol->setData(ACT_SET_SOURCE_IO, d->testData->data("[电源开关]").value<QVector<int>>());
+        return d->protocol->setData(ACT_SET_SOURCE_IO, d->testData->data("[电源开关]").toList());
     case ACT_SET_OUTPUT_VOLTAGE:
         return d->protocol->setData(action, d->testData->data("[输出电压_F]").toInt());
     case ACT_SET_REVERSE_VOLTAGE:
         return d->protocol->setData(action, d->testData->data("[反向电压_F]").toInt());
     case ACT_SET_OUTPUT_CURRENT:
-        return d->protocol->setData(ACT_SET_OUTPUT_CURRENT, d->testData->data("[输出电流-RGBW_F]").value<QVector<int>>());
+        return d->protocol->setData(ACT_SET_OUTPUT_CURRENT, d->testData->data("[输出电流-RGBW_F]").toList());
     case ACT_SET_GEARS_OUTPUT_CURRENT:
     case ACT_SET_GEARS_MEASURED_CURRENT:
-        if (!d->protocol->setData(ACT_SET_SOURCE_IO, d->testData->data("[电源开关]").value<QVector<int>>()))
+        if (!d->protocol->setData(ACT_SET_SOURCE_IO, d->testData->data("[电源开关]").toList()))
             return false;
         if (!d->protocol->setData(ACT_SET_GEARS_OUTPUT_CURRENT, d->testData->data("[电流_档位]").toInt()))
             return false;
-        return d->protocol->setData(ACT_SET_OUTPUT_CURRENT, d->testData->data("[输出电流-RGBW_F]").value<QVector<int>>());
+        return d->protocol->setData(ACT_SET_OUTPUT_CURRENT, d->testData->data("[输出电流-RGBW_F]").toList());
     case ACT_GET_ELEC_DATA:
-        d->protocol->getData(action, buff);
-        d->testData->setData("[实测电压-RGBW_F]", QVariant::fromValue(QVector<int>() << buff[0] << buff[3] << buff[6] << buff[9]));
-        d->testData->setData("[实测电流-RGBW_F]", QVariant::fromValue(QVector<int>() << buff[1] << buff[4] << buff[7] << buff[10]));
-        d->testData->setData("[反向漏流-RGBW_F]", QVariant::fromValue(QVector<int>() << buff[2] << buff[5] << buff[8] << buff[11]));
+        d->protocol->getData(action, samlpes, QVariant::Int);
+        d->testData->setData("[实测电压-RGBW_F]", QVariantList() << samlpes[0] << samlpes[3] << samlpes[6] << samlpes[9]);
+        d->testData->setData("[实测电流-RGBW_F]", QVariantList() << samlpes[1] << samlpes[4] << samlpes[7] << samlpes[10]);
+        d->testData->setData("[反向漏流-RGBW_F]", QVariantList() << samlpes[2] << samlpes[5] << samlpes[8] << samlpes[11]);
         return true;
     case ACT_GET_MEASURED_VOLTAGE:
-        d->protocol->getData(action, buff);
-        d->testData->setData("[实测电压-RGBW_F]", QVariant::fromValue(buff));
+        d->protocol->getData(action, samlpes, QVariant::Int);
+        d->testData->setData("[实测电压-RGBW_F]", samlpes);
         return true;
     case ACT_GET_MEASURED_CURRENT:
-        d->protocol->getData(action, buff);
-        d->testData->setData("[实测电流-RGBW_F]", QVariant::fromValue(buff));
+        d->protocol->getData(action, samlpes, QVariant::Int);
+        d->testData->setData("[实测电流-RGBW_F]", samlpes);
         return true;
     case ACT_GET_REVERSE_CURRENT:
-        d->protocol->getData(action, buff);
-        d->testData->setData("[反向漏流-RGBW_F]", QVariant::fromValue(buff));
+        d->protocol->getData(action, samlpes, QVariant::Int);
+        d->testData->setData("[反向漏流-RGBW_F]", samlpes);
         return true;
     }
     return false;

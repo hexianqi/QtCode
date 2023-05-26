@@ -19,19 +19,19 @@ int main(int argc, char *argv[])
 
 #ifdef SL1000A
     QApplication::setApplicationName("SL1000A");
-    HMainWindow1000A a;
+    H_TCD(HMainWindow1000A) a;
     a.showMaximized();
 #endif
 
 #ifdef SL1000I
     QApplication::setApplicationName("SL1000I");
-    HMainWindow1000I i;
+    H_TCD(HMainWindow1000I) i;
     i.showMaximized();
 #endif
 
 #ifdef SL1000RGB
     QApplication::setApplicationName("SL1000RGB");
-    HMainWindow1000RGB r;
+    H_TCD(HMainWindow1000RGB) r;
     r.showMaximized();
 #endif
 

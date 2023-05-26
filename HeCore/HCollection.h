@@ -34,6 +34,7 @@ public:
     void insert(QString key, T *value) override;
     int remove(QString key) override;
     T *first() override;
+    T *last() override;
     T *value(QString key) override;
     T *item(QString key) override;
     T *itemAt(int index) override;
@@ -115,6 +116,12 @@ template <typename T>
 T *HCollection<T>::first()
 {
     return d_ptr->items.first();
+}
+
+template <typename T>
+T *HCollection<T>::last()
+{
+    return d_ptr->items.last();
 }
 
 template <typename T>

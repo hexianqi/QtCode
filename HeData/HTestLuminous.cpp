@@ -18,16 +18,6 @@ HTestLuminousPrivate::HTestLuminousPrivate()
     addData("[光通量]", 0.0);
     addData("[光强度]", 0.0);
     addData("[光亮度]", 0.0);
-    addData("[最大光强度]", 0.0);
-    addData("[法向光强度]", 0.0);
-    addData("[角度光通量]", 0.0);
-    addData("[最大光强度角]", 0.0);
-    addData("[左半光强度角]", 0.0);
-    addData("[右半光强度角]", 0.0);
-    addData("[半光强度夹角]", 0.0);
-    addData("[左1/5光强度角]", 0.0);
-    addData("[右1/5光强度角]", 0.0);
-    addData("[1/5光强度夹角]", 0.0);
 }
 
 HTestLuminous::HTestLuminous() :
@@ -66,10 +56,8 @@ bool HTestLuminous::setData(QString type, QVariant value)
         return setGears(value.toInt());
     if (type == "[光采样值]")
         return setSample(value.toInt());
-    if (type == "[光强角度分布采样值]")
-        return setAngleSample(value.value<QVector<double>>());
-    if (type == "[辐射强度角度分布采样值]")
-        return setAngleSample(value.value<QVector<double>>(), true);
+    if (type == "[角度分布采样值]")
+        return setAngleSample(value.toList());
     return HTestData::setData(type, value);
 }
 
@@ -118,20 +106,21 @@ bool HTestLuminous::setSample(double value)
     return true;
 }
 
-bool HTestLuminous::setAngleSample(QVector<double> value, bool infrared)
+bool HTestLuminous::setAngleSample(QVariantList value)
 {
     Q_D(HTestLuminous);
     int i;
     QPolygonF poly, poly1, poly2;
     auto gears = data("[光档位]").toInt();
     auto size = value.size();
+    auto infrared = data("[红外测试]").toBool();
     auto type = infrared ? "[辐射强度]" : "[光强度]";
 
     if (size <= 0)
         return false;
 
     for (int i = 0; i < size; i++)
-        poly.append(QPointF(i * 0.9 - 90.0, d->calibrate->toReal(value[i], type, gears)));
+        poly.append(QPointF(i * 0.9 - 90.0, d->calibrate->toReal(value[i].toDouble(), type, gears)));
 
     poly1 = HMath::interpolate(poly, -90.0, 90.0, 0.1);
     poly2 = HMath::interpolate(poly, -90.0, 90.0, 1);

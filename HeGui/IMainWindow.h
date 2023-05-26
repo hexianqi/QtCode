@@ -5,13 +5,14 @@
 #pragma once
 
 #include "HNamespace.h"
+#include "HeCore/IConstructionDestruction.h"
 #include <functional>
 #include <QtCore/QVariant>
 #include <QtWidgets/QMainWindow>
 
 HE_BEGIN_NAMESPACE
 
-class IMainWindow : public QMainWindow
+class IMainWindow : public QMainWindow, public IConstructionDestruction
 {
     Q_OBJECT
 

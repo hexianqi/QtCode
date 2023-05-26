@@ -10,14 +10,16 @@ HE_BEGIN_NAMESPACE
 
 class HAbstractCodecPrivate;
 
-class HAbstractCodec : public ICodec
+class HAbstractCodec : public QObject, public ICodec
 {
+    Q_OBJECT
+
 public:
-    explicit HAbstractCodec();
-    virtual ~HAbstractCodec();
+    explicit HAbstractCodec(QObject *parent = nullptr);
+    ~HAbstractCodec() override;
 
 protected:
-    HAbstractCodec(HAbstractCodecPrivate &);
+    HAbstractCodec(HAbstractCodecPrivate &, QObject *parent = nullptr);
 
 protected:
     QScopedPointer<HAbstractCodecPrivate> d_ptr;

@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
 #ifdef SL2100DC
     QApplication::setApplicationName("SL2100DC");
-    HMainWindow2100DC w;
+    H_TCD(HMainWindow2100DC) w;
 #endif
 
     w.showMaximized();

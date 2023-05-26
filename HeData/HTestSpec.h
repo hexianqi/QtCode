@@ -28,7 +28,7 @@ public:
 
 public:
     bool setCalibrate(void *) override;
-    bool setSample(QVector<double> value, bool avg = false) override;
+    bool setSample(QVariantList value, bool avg = false) override;
     void setFitting(bool b) override;
 
 public:

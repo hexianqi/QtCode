@@ -12,10 +12,11 @@ class HSerialPortPrivate;
 
 class HSerialPort : public HAbstractPort
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HSerialPort)
 
 public:
-    explicit HSerialPort();
+    explicit HSerialPort(QObject *parent = nullptr);
     ~HSerialPort() override;
 
 public:
@@ -28,7 +29,7 @@ public:
     void setParity(uchar value);
 
 protected:
-    HSerialPort(HSerialPortPrivate &);
+    HSerialPort(HSerialPortPrivate &, QObject *parent = nullptr);
 
 protected:
     bool openPort(int portNum) override;

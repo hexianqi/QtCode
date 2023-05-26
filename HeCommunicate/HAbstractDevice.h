@@ -10,11 +10,13 @@ HE_BEGIN_NAMESPACE
 
 class HAbstractDevicePrivate;
 
-class HAbstractDevice : public IDevice
+class HAbstractDevice : public QObject, public IDevice
 {
+    Q_OBJECT
+
 public:
-    explicit HAbstractDevice();
-    virtual ~HAbstractDevice();
+    explicit HAbstractDevice(QObject *parent = nullptr);
+    ~HAbstractDevice() override;
 
 public:
     void initialize(QVariantMap param = QVariantMap()) override;
@@ -31,12 +33,12 @@ public:
     bool close() override;
 
 protected:
-    HAbstractDevice(HAbstractDevicePrivate &);
+    HAbstractDevice(HAbstractDevicePrivate &, QObject *parent = nullptr);
 
 protected:
     virtual bool open(int num);
     virtual bool tryOpen(int num);
-    virtual bool check();
+    virtual bool checkDevice();
     virtual void transport(QVector<uchar> &downData, QVector<uchar> &upData, int delay = 0);
 
 protected:

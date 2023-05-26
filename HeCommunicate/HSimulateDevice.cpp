@@ -12,13 +12,13 @@ HSimulateDevicePrivate::HSimulateDevicePrivate()
     actionParams.insert(ACT_GET_ANGLE_DISTRIBUTION,      QList<uchar>() << 0x01 << 0x92);
 }
 
-HSimulateDevice::HSimulateDevice() :
-    HAbstractDevice(*new HSimulateDevicePrivate)
+HSimulateDevice::HSimulateDevice(QObject *parent) :
+    HAbstractDevice(*new HSimulateDevicePrivate, parent)
 {
 }
 
-HSimulateDevice::HSimulateDevice(HSimulateDevicePrivate &p) :
-    HAbstractDevice(p)
+HSimulateDevice::HSimulateDevice(HSimulateDevicePrivate &p, QObject *parent) :
+    HAbstractDevice(p, parent)
 {
 }
 

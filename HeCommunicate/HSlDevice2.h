@@ -12,10 +12,11 @@ class HSlDevice2Private;
 
 class HSlDevice2 : public HAbstractDevice
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HSlDevice2)
 
 public:
-    explicit HSlDevice2();
+    explicit HSlDevice2(QObject *parent = nullptr);
     ~HSlDevice2() override;
 
 public:
@@ -26,7 +27,7 @@ public:
     bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    HSlDevice2(HSlDevice2Private &);
+    HSlDevice2(HSlDevice2Private &, QObject *parent = nullptr);
 
 protected:
     bool setDataOnce(uchar cmd, QVector<uchar> value, int delay = 0);

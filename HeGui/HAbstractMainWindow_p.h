@@ -16,17 +16,15 @@ class IMementoCollection;
 class HAbstractMainWindowPrivate
 {
 public:
-    HAbstractMainWindowPrivate(HAbstractMainWindow *);
+    HAbstractMainWindowPrivate();
 
 public:
     bool showLogo = false;
 
 public:
-    HAbstractMainWindow *q_ptr = nullptr;
     IBuilder *builder = nullptr;
     IModel *model = nullptr;
     ITestWidget *testWidget = nullptr;
-    IMementoCollection *mementos = nullptr;
 
 public:
     QMap<QString, quint32> importExport;

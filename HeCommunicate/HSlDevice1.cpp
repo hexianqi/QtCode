@@ -5,13 +5,13 @@
 
 HE_BEGIN_NAMESPACE
 
-HSlDevice1::HSlDevice1() :
-    HAbstractDevice(*new HSlDevice1Private)
+HSlDevice1::HSlDevice1(QObject *parent) :
+    HAbstractDevice(*new HSlDevice1Private, parent)
 {
 }
 
-HSlDevice1::HSlDevice1(HSlDevice1Private &p) :
-    HAbstractDevice(p)
+HSlDevice1::HSlDevice1(HSlDevice1Private &p, QObject *parent) :
+    HAbstractDevice(p, parent)
 {
 }
 
@@ -34,14 +34,7 @@ bool HSlDevice1::setData(HActionType action, QVector<uchar> value, int delay)
     auto upData = QVector<uchar>(6);
 
     transport(downData, upData, delay);
-
-    if (upData.size() < 6
-            || upData[0] != d->deviceID
-            || upData[3] != param[2]
-            || upData[4] != param[3])
-        throw HException(E_DEVICE_DATA_RETURN_ERROR);
-    if (upData[5] != 0x00)
-        throw HException(HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]));
+    checkData(upData, param[2], param[3]);
     return true;
 }
 
@@ -56,15 +49,21 @@ bool HSlDevice1::getData(HActionType action, QVector<uchar> &value, int delay)
     auto upData = QVector<uchar>(6 + param[0] * 256 + param[1]);
 
     transport(downData, upData, delay);
-
-    if (upData.size() < 6
-            || upData[0] != d->deviceID
-            || upData[3] != param[2]
-            || upData[4] != param[3])
-        throw HException(E_DEVICE_DATA_RETURN_ERROR);
-    if (upData[5] != 0x00)
-        throw HException(HErrorType(E_DEVICE_FEEDBACK_OK + upData[5]));
+    checkData(upData, param[2], param[3]);
     value = upData.mid(6);
+    return true;
+}
+
+bool HSlDevice1::checkData(QVector<uchar> value, uchar cmd1, uchar cmd2)
+{
+    Q_D(HSlDevice1);
+    if (value.size() < 6
+        || value[0] != d->deviceID
+        || value[3] != cmd1
+        || value[4] != cmd2)
+        throw HException(E_DEVICE_DATA_RETURN_ERROR);
+    if (value[5] != 0x00)
+        throw HException(HErrorType(E_DEVICE_FEEDBACK_OK + value[5]));
     return true;
 }
 

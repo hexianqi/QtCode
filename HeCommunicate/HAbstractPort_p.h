@@ -7,7 +7,6 @@ HE_BEGIN_NAMESPACE
 class HAbstractPortPrivate
 {
 public:
-    int portNum = 1;
     int timeOut = 3000;
     bool connected = false;
 };

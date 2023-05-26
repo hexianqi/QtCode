@@ -33,7 +33,7 @@ protected:
     bool setType(QString value);
     bool setGears(int value);
     bool setSample(double value);
-    bool setAngleSample(QVector<double> value, bool infrared = false);
+    bool setAngleSample(QVariantList value);
     bool matchGears();
 };
 

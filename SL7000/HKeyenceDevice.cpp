@@ -3,8 +3,8 @@
 #include "HeCommunicate/IPort.h"
 #include <QtCore/QVector>
 
-HKeyenceDevice::HKeyenceDevice() :
-    HAbstractDevice(*new HKeyenceDevicePrivate)
+HKeyenceDevice::HKeyenceDevice(QObject *parent) :
+    HAbstractDevice(*new HKeyenceDevicePrivate, parent)
 {
 }
 
@@ -54,7 +54,7 @@ bool HKeyenceDevice::getData(HActionType action, QVector<uchar> &value, int /*de
     return true;
 }
 
-bool HKeyenceDevice::check()
+bool HKeyenceDevice::checkDevice()
 {
     return true;
 }

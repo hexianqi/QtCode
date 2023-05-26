@@ -10,9 +10,11 @@ class HAbstractProtocolPrivate
 {
 public:
     HAbstractProtocolPrivate();
+    ~HAbstractProtocolPrivate();
 
 public:
     IDevice *device = nullptr;
+    IUCharConvert *convert = nullptr;
     QMutex *mutex = nullptr;
 };
 

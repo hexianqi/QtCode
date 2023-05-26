@@ -12,10 +12,11 @@ class HSlDevice3Private;
 
 class HSlDevice3 : public HSlDevice1
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HSlDevice3)
 
 public:
-    explicit HSlDevice3();
+    explicit HSlDevice3(QObject *parent = nullptr);
     ~HSlDevice3() override;
 
 public:

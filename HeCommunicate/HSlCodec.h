@@ -12,10 +12,11 @@ class HSlCodecPrivate;
 
 class HSlCodec : public HAbstractCodec
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HSlCodec)
 
 public:
-    explicit HSlCodec();
+    explicit HSlCodec(QObject *parent = nullptr);
     ~HSlCodec() override;
 
 public:
@@ -29,7 +30,7 @@ public:
     bool check(QVector<uchar> value) override;
 
 protected:
-    HSlCodec(HSlCodecPrivate &);
+    HSlCodec(HSlCodecPrivate &, QObject *parent = nullptr);
 
 protected:
     void setEncrypt(const QVector<bool> &value);

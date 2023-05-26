@@ -6,12 +6,14 @@
 
 HE_BEGIN_NAMESPACE
 
-HAbstractDevice::HAbstractDevice() :
+HAbstractDevice::HAbstractDevice(QObject *parent) :
+    QObject(parent),
     d_ptr(new HAbstractDevicePrivate)
 {
 }
 
-HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p) :
+HAbstractDevice::HAbstractDevice(HAbstractDevicePrivate &p, QObject *parent) :
+    QObject(parent),
     d_ptr(&p)
 {
 }
@@ -98,7 +100,7 @@ bool HAbstractDevice::open(int num)
     {
         if (!d_ptr->port->open(num))
             return false;
-        if (check())
+        if (checkDevice())
             return true;
     }
     catch (HException &e)
@@ -122,7 +124,7 @@ bool HAbstractDevice::tryOpen(int num)
     return false;
 }
 
-bool HAbstractDevice::check()
+bool HAbstractDevice::checkDevice()
 {
     QVector<uchar> data;
     return getData(ACT_CHECK_DEVICE, data);

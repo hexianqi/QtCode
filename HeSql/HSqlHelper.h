@@ -27,8 +27,12 @@ public:
     static int getVersion(const QString &tableName, QSqlDatabase db = QSqlDatabase());
     // 更新光谱表格
     static void updateSpecTable(ISqlDatabase *db);
+    // 更新光谱红外表格
+    static void updateSpecITable(ISqlDatabase *db);
     // 更新光强角表格
     static void updateAngleTable(ISqlDatabase *db);
+    // 更新辐射强度角表格
+    static void updateAngleITable(ISqlDatabase *db);
 };
 
 HE_END_NAMESPACE

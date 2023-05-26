@@ -453,8 +453,6 @@ void HSpecTestWidget::resetSpec()
     d->spdWidget->setAxisXRange(point.x(), point.y());
 }
 
-
-
 void HSpecTestWidget::resetGrade()
 {
     Q_D(HSpecTestWidget);

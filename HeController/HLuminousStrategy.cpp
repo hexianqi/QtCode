@@ -34,8 +34,8 @@ QString HLuminousStrategy::typeName()
 bool HLuminousStrategy::handle(HActionType action)
 {
     Q_D(HLuminousStrategy);
-    int sample;
-    QVector<double> buff;
+    QVariant sample;
+    QVariantList samples;
 
     switch(action)
     {
@@ -44,14 +44,14 @@ bool HLuminousStrategy::handle(HActionType action)
     case ACT_SET_LUMINOUS_GEARS:
         return d->protocol->setData(action, d->testData->data("[光档位]").toInt() + 1);
     case ACT_GET_LUMINOUS_DATA:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[光采样值]", sample);
         return true;
     case ACT_START_ANGLE_TEST:
         return d->protocol->setData(action);
     case ACT_GET_ANGLE_DISTRIBUTION:
-        d->protocol->getData(action, buff);
-        d->testData->setData("[光强角度分布采样值]", QVariant::fromValue(buff));
+        d->protocol->getData(action, samples, QVariant::Double);
+        d->testData->setData("[角度分布采样值]", sample);
         return true;
     }
     return false;

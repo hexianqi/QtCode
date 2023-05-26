@@ -401,6 +401,7 @@ void HCoreGlobalInstance::initErrorComment()
     hashErrorComment.insert(E_DEVICE_FEEDBACK_BUSY,             tr("设备反馈 - 模块繁忙"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_CHIP_NORESPONSE,  tr("设备反馈 - 芯片无响应"));
     hashErrorComment.insert(E_DEVICE_FEEDBACK_COMMAND_ERROR,    tr("设备反馈 - 命令错误"));
+    hashErrorComment.insert(E_CONVERT_INVALID_UCHAR,            tr("字节转换器无效"));
     hashErrorComment.insert(E_PROTOCOL_INVALID,                 tr("通讯协议无效"));
     hashErrorComment.insert(E_STRATEGY_ACTION_NOT_SUPPORT,      tr("策略不支持此命令"));
     hashErrorComment.insert(E_THREAD_NO_HANDLE,                 tr("线程无法处理"));

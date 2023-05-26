@@ -5,13 +5,13 @@
 
 HE_BEGIN_NAMESPACE
 
-HSlDevice2::HSlDevice2() :
-    HAbstractDevice(*new HSlDevice2Private)
+HSlDevice2::HSlDevice2(QObject *parent) :
+    HAbstractDevice(*new HSlDevice2Private, parent)
 {
 }
 
-HSlDevice2::HSlDevice2(HSlDevice2Private &p) :
-    HAbstractDevice(p)
+HSlDevice2::HSlDevice2(HSlDevice2Private &p, QObject *parent) :
+    HAbstractDevice(p, parent)
 {
 }
 

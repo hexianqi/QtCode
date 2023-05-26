@@ -4,13 +4,13 @@
 
 HE_BEGIN_NAMESPACE
 
-HSerialPort::HSerialPort() :
-    HAbstractPort(*new HSerialPortPrivate)
+HSerialPort::HSerialPort(QObject *parent) :
+    HAbstractPort(*new HSerialPortPrivate, parent)
 {
 }
 
-HSerialPort::HSerialPort(HSerialPortPrivate &p) :
-    HAbstractPort(p)
+HSerialPort::HSerialPort(HSerialPortPrivate &p, QObject *parent) :
+    HAbstractPort(p, parent)
 {
 }
 

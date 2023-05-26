@@ -11,10 +11,7 @@ class ICodec;
 class HSlDevice3Private : public HSlDevice1Private
 {
 public:
-    HSlDevice3Private();
-
-public:
-    QSharedPointer<ICodec> codec;
+    ICodec *codec;
 };
 
 HE_END_NAMESPACE

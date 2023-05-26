@@ -42,15 +42,13 @@ QModelIndex HRbTableHeaderModel::index(int row, int column, const QModelIndex &p
     return createIndex(row, column, childItem);
 }
 
-int HRbTableHeaderModel::rowCount(const QModelIndex &parent) const
+int HRbTableHeaderModel::rowCount(const QModelIndex &/*parent*/) const
 {
-    Q_UNUSED(parent);
     return d_ptr->rowCount;
 }
 
-int HRbTableHeaderModel::columnCount(const QModelIndex &parent) const
+int HRbTableHeaderModel::columnCount(const QModelIndex &/*parent*/) const
 {
-    Q_UNUSED(parent);
     return d_ptr->columnCount;
 }
 

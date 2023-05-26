@@ -33,16 +33,16 @@ int main(int argc, char *argv[])
 
 #ifdef SL2000
     QApplication::setApplicationName("SL2000");
-    HMainWindow2000 w;
+    H_TCD(HMainWindow2000) w;
 #elif SL2000AC
     QApplication::setApplicationName("SL2000AC");
-    HMainWindow2000AC w;
+    H_TCD(HMainWindow2000AC) w;
 #elif SL2000DC
     QApplication::setApplicationName("SL2000DC");
-    HMainWindow2000DC w;
+    H_TCD(HMainWindow2000DC) w;
 #elif SL2000F
     QApplication::setApplicationName("SL2000F");
-    HMainWindow2000F w;
+    H_TCD(HMainWindow2000F) w;
 #endif
 
     w.showMaximized();

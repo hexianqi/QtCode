@@ -2,8 +2,8 @@
 #include "HBuilder2100DC.h"
 #include "HeData/IConfigManage.h"
 
-HMainWindow2100DC::HMainWindow2100DC(QWidget *parent, const HConstructionCallHelper &helper) :
-    HAbstractMainWindow(*new HMainWindow2100DCPrivate(this), helper, parent)
+HMainWindow2100DC::HMainWindow2100DC(QWidget *parent) :
+    HAbstractMainWindow(*new HMainWindow2100DCPrivate, parent)
 {
 }
 

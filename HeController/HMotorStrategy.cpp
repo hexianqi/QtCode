@@ -31,7 +31,7 @@ QString HMotorStrategy::typeName()
 bool HMotorStrategy::handle(HActionType action)
 {
     Q_D(HMotorStrategy);
-    int sample;
+    QVariant sample;
 
     switch(action)
     {
@@ -40,7 +40,7 @@ bool HMotorStrategy::handle(HActionType action)
     case ACT_RESET_MOTOR_LOCATION:
         return d->protocol->setData(action);
     case ACT_QUERY_MOTOR_STATE:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[电机状态]", sample);
         return true;
     }

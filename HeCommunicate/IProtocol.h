@@ -10,6 +10,8 @@
 HE_BEGIN_NAMESPACE
 
 class IDevice;
+class IPort;
+class IUCharConvert;
 
 class IProtocol : public IInitializeable
 {
@@ -18,6 +20,10 @@ public:
     virtual QString portType() = 0;
     // 设置设备
     virtual void setDevice(IDevice *) = 0;
+    // 设置转换器
+    virtual void setConvert(IUCharConvert *) = 0;
+    // 设置端口
+    virtual void setPort(IPort *, int num = 0, bool autoScan = true) = 0;
     // 打开
     virtual bool open() = 0;
     // 关闭
@@ -26,23 +32,16 @@ public:
 public:
     // 设置数据
     virtual bool setData(HActionType action) = 0;
-    virtual bool setData(HActionType action, int value, int delay = 0) = 0;
-    virtual bool setData(HActionType action, uchar value, int delay = 0) = 0;
-    virtual bool setData(HActionType action, uint value, int delay = 0) = 0;
-    virtual bool setData(HActionType action, double value, int delay = 0) = 0;
-    virtual bool setData(HActionType action, QVector<int> value, int delay = 0) = 0;
+    virtual bool setData(HActionType action, QVariant value, int delay = 0) = 0;
+    virtual bool setData(HActionType action, QVariantList value, int delay = 0) = 0;
     virtual bool setData(HActionType action, QVector<uchar> value, int delay = 0) = 0;
-    virtual bool setData(HActionType action, QVector<uint> value, int delay = 0) = 0;
-    virtual bool setData(HActionType action, QVector<double> value, int delay = 0) = 0;
+
+public:
     // 读取数据
     virtual bool getData(HActionType action) = 0;
-    virtual bool getData(HActionType action, int &value, int delay = 0) = 0;
-    virtual bool getData(HActionType action, uchar &value, int delay = 0) = 0;
-    virtual bool getData(HActionType action, uint &value, int delay = 0) = 0;
-    virtual bool getData(HActionType action, QVector<int> &value, int delay = 0) = 0;
+    virtual bool getData(HActionType action, QVariant &value, QVariant::Type type = QVariant::Int, int delay = 0) = 0;
+    virtual bool getData(HActionType action, QVariantList &value, QVariant::Type type = QVariant::Int, int delay = 0) = 0;
     virtual bool getData(HActionType action, QVector<uchar> &value, int delay = 0) = 0;
-    virtual bool getData(HActionType action, QVector<uint> &value, int delay = 0) = 0;
-    virtual bool getData(HActionType action, QVector<double> &value, int delay = 0) = 0;
 };
 
 HE_END_NAMESPACE

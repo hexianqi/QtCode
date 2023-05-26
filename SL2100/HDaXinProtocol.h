@@ -4,25 +4,25 @@
 
 #pragma once
 
-#include "HeCommunicate/HBigProtocol.h"
+#include "HeCommunicate/HAbstractProtocol.h"
 
 HE_USE_NAMESPACE
 
 class HDaXinProtocolPrivate;
 
-class HDaXinProtocol : public HBigProtocol
+class HDaXinProtocol : public HAbstractProtocol
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HDaXinProtocol)
 
 public:
-    explicit HDaXinProtocol();
+    explicit HDaXinProtocol(QObject *parent = nullptr);
     ~HDaXinProtocol() override;
 
 public:
-    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
-    HDaXinProtocol(HDaXinProtocolPrivate &);
+    virtual void init();
 };
 

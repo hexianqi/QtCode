@@ -32,8 +32,8 @@ bool HPowerFactorStrategy::handle(HActionType action)
     Q_D(HPowerFactorStrategy);
     if (action == ACT_GET_ELEC_DATA)
     {
-        QVector<double> data;
-        if (d->protocol->getData(action, data) && data.size() >= 4)
+        QVariantList data;
+        if (d->protocol->getData(action, data, QVariant::Double) && data.size() >= 4)
         {
             d->testData->setData("[交流电压]", data[0]);
             d->testData->setData("[交流电流]", data[1]);

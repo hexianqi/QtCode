@@ -42,15 +42,15 @@ void HUsbPortLpc214Private::unloadDLL()
 }
 #endif
 
-HUsbPortLpc214::HUsbPortLpc214() :
-    HAbstractPort(*new HUsbPortLpc214Private)
+HUsbPortLpc214::HUsbPortLpc214(QObject *parent) :
+    HAbstractPort(*new HUsbPortLpc214Private, parent)
 {
     Q_D(HUsbPortLpc214);
     d->loadDll();
 }
 
-HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p) :
-    HAbstractPort(p)
+HUsbPortLpc214::HUsbPortLpc214(HUsbPortLpc214Private &p, QObject *parent) :
+    HAbstractPort(p, parent)
 {
     Q_D(HUsbPortLpc214);
     d->loadDll();
@@ -72,9 +72,8 @@ QString HUsbPortLpc214::portType()
     return "USB";
 }
 
-bool HUsbPortLpc214::openPort(int portNum)
+bool HUsbPortLpc214::openPort(int /*portNum*/)
 {
-    Q_UNUSED(portNum)
     return true;
 }
 

@@ -56,8 +56,8 @@ HDaXinDevicePrivate::HDaXinDevicePrivate()
     sa = 0xFB;
 }
 
-HDaXinDevice::HDaXinDevice() :
-    HAbstractDevice(*new HDaXinDevicePrivate)
+HDaXinDevice::HDaXinDevice(QObject *parent) :
+    HAbstractDevice(*new HDaXinDevicePrivate, parent)
 {
 }
 
@@ -129,7 +129,7 @@ bool HDaXinDevice::getData(HActionType action, QVector<uchar> &value, int delay)
     return true;
 }
 
-bool HDaXinDevice::check()
+bool HDaXinDevice::checkDevice()
 {
     return setData(ACT_SET_SOURCE_OPERATION, QVector<uchar>() << 0x00) &&
            setData(ACT_SET_OUTPUT_CURRENT, QVector<uchar>() << 0x00 << 0x00);

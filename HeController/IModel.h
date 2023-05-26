@@ -18,7 +18,7 @@ public:
     using QObject::QObject;
 
 signals:
-    void threadInitFinished(QStringList list);
+    void threadInitFinished(const QStringList &list);
     void threadStartFailed(const QString &port, const QString &text);
     void threadStateChanged(const QString &name, int state);
     void actionFailed(HActionType action, const QString &text);
@@ -26,6 +26,7 @@ signals:
 
 public:
     virtual void start() = 0;
+    virtual void stop() = 0;
     virtual void addAction(HActionType action, ulong delay = 0) = 0;
     virtual void syncTestData(quint32 type) = 0;
     virtual void syncDevice(quint32 type) = 0;

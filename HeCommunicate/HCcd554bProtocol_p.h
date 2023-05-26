@@ -1,14 +1,12 @@
 #pragma once
 
 #include "HCcd554bProtocol.h"
-#include "HLittleProtocol_p.h"
+#include "HAbstractProtocol_p.h"
 
 HE_BEGIN_NAMESPACE
 
-class HCcd554bProtocolPrivate : public HLittleProtocolPrivate
+class HCcd554bProtocolPrivate : public HAbstractProtocolPrivate
 {
-public:
-    HCcd554bProtocolPrivate();
 };
 
 HE_END_NAMESPACE

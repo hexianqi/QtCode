@@ -23,9 +23,10 @@ public:
     QString typeName() override;
 
 public:
-    IPort *createPort(QString type, QVariantMap param = QVariantMap()) override;
-    IDevice *createDevice(QString type, QVariantMap param = QVariantMap()) override;
-    IProtocol *createProtocol(QString type, QVariantMap param = QVariantMap()) override;
+    IUCharConvert *createUCharConvert(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
+    IPort *createPort(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
+    IDevice *createDevice(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
+    IProtocol *createProtocol(QString type, QObject *parent = nullptr, QVariantMap param = QVariantMap()) override;
     IProtocolCollection *createProtocolCollection(QString type, QVariantMap param = QVariantMap()) override;
 
 protected:

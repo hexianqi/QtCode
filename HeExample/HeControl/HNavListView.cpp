@@ -152,9 +152,8 @@ void HNavListModel::expand(const QModelIndex &index)
     refreshList();
 }
 
-int HNavListModel::rowCount(const QModelIndex &parent) const
+int HNavListModel::rowCount(const QModelIndex &/*parent*/) const
 {
-    Q_UNUSED(parent);
     return _listNodes.size();
 }
 
@@ -206,9 +205,8 @@ HNavListDelegate::HNavListDelegate(QObject *parent) :
     _view = qobject_cast<HNavListView *>(parent);
 }
 
-QSize HNavListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+QSize HNavListDelegate::sizeHint(const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
 {
-    Q_UNUSED(option);
     auto node = index.data(Qt::UserRole).value<HNavListModel::HTreeNode *>();
     if (node->level == 1)
         return {50, 35};

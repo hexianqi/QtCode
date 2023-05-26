@@ -95,9 +95,8 @@ void HGraphicsObject::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
     QGraphicsObject::hoverMoveEvent(event);
 }
 
-void HGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void HGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget */*widget*/)
 {
-    Q_UNUSED(widget);
     painter->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::TextAntialiasing);
     drawBound(painter, option);
     drawContent(painter, option);

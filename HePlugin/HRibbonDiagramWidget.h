@@ -13,6 +13,7 @@ public:
     explicit HRibbonDiagramWidget(QWidget *parent = nullptr);
 
 public:
+    virtual void setVisibleRibbon(bool b);
     virtual void setDrawRibbon(bool b);
     virtual void setPolygonRibbon(const QPolygonF &value, bool refresh = true);
 

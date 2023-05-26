@@ -12,7 +12,7 @@ class ITestSpec : public virtual ITestData
 {
 public:
     // 设置采样数据
-    virtual bool setSample(QVector<double> value, bool avg = false) = 0;
+    virtual bool setSample(QVariantList value, bool avg = false) = 0;
     // 设置是否拟合
     virtual void setFitting(bool b) = 0;
 

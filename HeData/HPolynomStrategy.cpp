@@ -53,11 +53,13 @@ double HPolynomStrategy::estimate(double value)
 void HPolynomStrategy::linear()
 {
     Q_D(HPolynomStrategy);
+    d->ca.clear();
+    d->cova.clear();
+    if (d->points.isEmpty())
+        return;
     double chisq;
     auto size = qMin(d->datas.value("[线性多项式项数]", 7).toInt(), d->points.size());
     d->datas["[线性有效范围]"] = QPointF(d->points.first().x(), d->points.last().x());
-    d->ca.clear();
-    d->cova.clear();
     if (size > 1)
     {
         d->ca.resize(size);

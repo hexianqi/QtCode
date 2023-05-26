@@ -22,6 +22,10 @@
 #include "HeGui/IGuiFactory.h"
 #include "HeGui/IMainWindow.h"
 #include "HeGui/HAction.h"
+#include "HeSql/ISqlFactory.h"
+#include "HeSql/ISqlDatabase.h"
+#include "HeSql/HSql.h"
+#include "HeSql/HSqlHelper.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 
@@ -104,8 +108,8 @@ void HBuilder1000I::buildConfigManage()
         d->configManage->setLuminousCalibrateCollection(luminousC);
         d->configManage->setGradeCollection(d->dataFactory->createGradeCollection("HGradeCollection"));
         d->configManage->setAdjustCollection(d->dataFactory->createAdjustCollection("HAdjustCollection"));
-        d->configManage->addQualityCollection("Spec",   d->dataFactory->createQualityCollection("HQualityCollection"));
-        d->configManage->addQualityCollection("Angle",  d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("SpecI",  d->dataFactory->createQualityCollection("HQualityCollection"));
+        d->configManage->addQualityCollection("AngleI", d->dataFactory->createQualityCollection("HQualityCollection"));
     }
     HAppContext::setContextPointer("IConfigManage", d->configManage);
 }
@@ -122,6 +126,7 @@ void HBuilder1000I::buildTestData()
     elec->setCalibrate(d->configManage->elecCalibrateCollection());
     elec->setData("[输出电压]", 10);
     luminous->setCalibrate(d->configManage->luminousCalibrateCollection());
+    luminous->setData("[红外测试]", true);
     data->setSuccessor(product)->setSuccessor(luminous)->setSuccessor(elec)->setSuccessor(spec);
     HAppContext::setContextPointer("ITestData", data);
     HAppContext::setContextPointer("ITestProduct", product);
@@ -154,13 +159,17 @@ void HBuilder1000I::buildDevice()
 #ifdef SIMULATE // 模拟设备
     auto device1 = d->communicateFactory->createDevice("HSpecSimulateDevice");
     auto device2 = d->communicateFactory->createDevice("HSimulateDevice");
-    auto protocol1 = d->communicateFactory->createProtocol("HLittleProtocol");
-    auto protocol2 = d->communicateFactory->createProtocol("HLittleProtocol");
+    auto convert1 = d->communicateFactory->createUCharConvert("HLittleUCharConvert");
+    auto convert2 = d->communicateFactory->createUCharConvert("HLittleUCharConvert");
+    auto protocol1 = d->communicateFactory->createProtocol("HProtocol");
+    auto protocol2 = d->communicateFactory->createProtocol("HProtocol");
+    protocol1->setConvert(convert1);
     protocol1->setDevice(device1);
+    protocol2->setConvert(convert2);
     protocol2->setDevice(device2);
 #else
-    auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
-    auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol");
+    auto protocol1 = d->communicateFactory->createProtocol(deployItem("CcdProtocol"), this);
+    auto protocol2 = d->communicateFactory->createProtocol("HSl1000Protocol", this);
 #endif
     auto protocols = d->communicateFactory->createProtocolCollection("HProtocolCollection");
     protocols->insert("Spec", protocol1);
@@ -189,24 +198,42 @@ void HBuilder1000I::buildMemento()
     Q_D(HBuilder1000I);
     auto mementos = d->controllerFactory->createMementoCollection("HMementoCollection");
     auto ok = mementos->readFile(QString("%1.tmp").arg(QApplication::applicationName()));
-    if (!ok || !mementos->contains("Spec"))
+    if (!ok || !mementos->contains("SpecI"))
     {
         auto memento = d->controllerFactory->createMemento("HMemento");
         memento->setDataType(QStringList() << "[积分时间]" << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[反向电压]" << "[光测试类型]" << "[光档位]");
-        mementos->insert("Spec", memento);
+        mementos->insert("SpecI", memento);
     }
-    if (!ok || !mementos->contains("Angle"))
+    if (!ok || !mementos->contains("AngleI"))
     {
         auto memento = d->controllerFactory->createMemento("HMemento");
         memento->setDataType(QStringList() << "[输出电流_档位]" << "[实测电流_档位]" << "[输出电压]" << "[输出电流]" << "[光档位]");
-        mementos->insert("Angle", memento);
+        mementos->insert("AngleI", memento);
     }
     HAppContext::setContextPointer("IMementoCollection", mementos);
 }
 
 void HBuilder1000I::buildDatabase()
 {
+    Q_D(HBuilder1000I);
+    auto db = d->sqlFactory->createDatabase("HSqliteDatabase");
+    db->openConnection();
 
+    HSqlHelper::updateSpecITable(db);
+    // SpecI
+    {
+        auto group = QStringList() << "|产品信息2|" << "|环境信息|" << "|时间信息2|" << "|直流电信息|";
+        auto field = QStringList() << "ID" << HSql::membership(group) << "[辐射强度]" << "[辐射通量]"  << "[峰值波长]";
+        auto model = createSqlTableModel("SpecI", field);
+        db->insertTableModel(model);
+    }
+    // AngleI
+    HSqlHelper::updateAngleITable(db);
+    {
+        auto field = QStringList() << "ID" << HSql::membership("|辐射强度角度信息|");
+        auto model = createSqlTableModel("AngleI", field);
+        db->insertTableModel(model);
+    }
 }
 
 void HBuilder1000I::buildMenu()
@@ -215,9 +242,9 @@ void HBuilder1000I::buildMenu()
     QVariantMap param[7];
     param[0].insert("authority",            1);
     param[1].insert("property",             param[0]);
-    param[2].insert("key",                  "Spec");
+    param[2].insert("key",                  "SpecI");
     param[2].insert("optional",             "SpecQualityOptional");
-    param[3].insert("key",                  "Angle");
+    param[3].insert("key",                  "AngleI");
     param[3].insert("optional",             "AngleQualityOptional");
     param[4].insert("sqlBrowser",           "ISpecSqlBrowser");
     param[5].insert("sqlBrowser",           "IAngleSqlBrowser");
@@ -269,7 +296,6 @@ void HBuilder1000I::buildMenu()
 #ifndef QT_DEBUG
     d->mainWindow->setAuthority(0);
 #endif
-
 }
 
 void HBuilder1000I::buildTestWidget()

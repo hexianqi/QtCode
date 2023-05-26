@@ -33,20 +33,20 @@ QString HKeyenceStrategy::typeName()
 bool HKeyenceStrategy::handle(HActionType action)
 {
     Q_D(HKeyenceStrategy);
-    int sample;
+    QVariant sample;
     QPoint point;
 
     switch(action)
     {
     case ACT_SET_MOTOR_LOCATION:
         point = d->testData->data("[电机定位]").toPoint();
-        return d->protocol->setData(action, QVector<uchar>() << point.x() << point.y());
+        return d->protocol->setData(action, QVariantList() << point.x() << point.y());
     case ACT_RESET_MOTOR_LOCATION:
     case ACT_SET_MOTOR_PREPARE_TEST:
     case ACT_SET_MOTOR_CANCEL_TEST:
         return d->protocol->setData(action);
     case ACT_QUERY_MOTOR_STATE:
-        d->protocol->getData(action, sample);
+        d->protocol->getData(action, sample, QVariant::Int);
         d->testData->setData("[电机状态]", sample);
         return true;
     }

@@ -15,7 +15,7 @@ public:
     IElecCalibrateCollection *collection = nullptr;
     IElecCalibrate *calibrate = nullptr;
     int currentGears = 0;
-    QVector<int> sourceIo;
-    QVector<int> outputCurrentF;
-    QVector<double> outputCurrentR;
+    QVariantList sourceIo;
+    QVariantList outputCurrentF;
+    QVariantList outputCurrentR;
 };

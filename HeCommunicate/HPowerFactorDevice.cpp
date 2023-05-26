@@ -5,8 +5,8 @@
 
 HE_BEGIN_NAMESPACE
 
-HPowerFactorDevice::HPowerFactorDevice() :
-    HAbstractDevice(*new HPowerFactorDevicePrivate)
+HPowerFactorDevice::HPowerFactorDevice(QObject *parent) :
+    HAbstractDevice(*new HPowerFactorDevicePrivate, parent)
 {
 }
 

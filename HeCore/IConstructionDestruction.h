@@ -34,4 +34,6 @@ public:
     }
 };
 
+#define H_TCD(className)    TConstructionDestruction<className>
+
 HE_END_NAMESPACE

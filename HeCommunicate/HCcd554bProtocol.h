@@ -4,26 +4,29 @@
 
 #pragma once
 
-#include "HLittleProtocol.h"
+#include "HAbstractProtocol.h"
 
 HE_BEGIN_NAMESPACE
 
 class HCcd554bProtocolPrivate;
 
-class HCcd554bProtocol : public HLittleProtocol
+class HCcd554bProtocol : public HAbstractProtocol
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HCcd554bProtocol)
 
 public:
-    explicit HCcd554bProtocol();
+    explicit HCcd554bProtocol(QObject *parent = nullptr);
     ~HCcd554bProtocol() override;
 
 public:
-    void initialize(QVariantMap param = QVariantMap()) override;
     QString typeName() override;
 
 protected:
-    HCcd554bProtocol(HCcd554bProtocolPrivate &);
+    HCcd554bProtocol(HCcd554bProtocolPrivate &, QObject *parent = nullptr);
+
+protected:
+    virtual void init();
 };
 
 HE_END_NAMESPACE

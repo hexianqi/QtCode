@@ -1,10 +1,8 @@
 #pragma once
 
 #include "HDaXinProtocol.h"
-#include "HeCommunicate/HBigProtocol_p.h"
+#include "HeCommunicate/HAbstractProtocol_p.h"
 
-class HDaXinProtocolPrivate : public HBigProtocolPrivate
+class HDaXinProtocolPrivate : public HAbstractProtocolPrivate
 {
-public:
-    HDaXinProtocolPrivate();
 };

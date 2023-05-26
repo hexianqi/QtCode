@@ -74,9 +74,11 @@ void HBuilderSpec::buildDevice()
 {
     Q_D(HBuilderSpec);
 #ifdef SIMULATE // 模拟设备
-     auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
-     auto protocol = d->communicateFactory->createProtocol("HLittleProtocol");
-     protocol->setDevice(device);
+    auto device = d->communicateFactory->createDevice("HSpecSimulateDevice");
+    auto convert = d->communicateFactory->createUCharConvert("HLittleUCharConvert");
+    auto protocol = d->communicateFactory->createProtocol("HProtocol");
+    protocol->setConvert(convert);
+    protocol->setDevice(device);
 #else
     auto protocol = d->communicateFactory->createProtocol(deployItem("CcdProtocol"));
 #endif

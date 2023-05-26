@@ -5,61 +5,55 @@
 #include "HeController/IModel.h"
 #include "HeController/IMementoCollection.h"
 #include <QtCore/QSettings>
+#include <QtCore/QTimer>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QMessageBox>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolBar>
 
 HE_BEGIN_NAMESPACE
 
-HAbstractMainWindowPrivate::HAbstractMainWindowPrivate(HAbstractMainWindow *p) :
-    q_ptr(p)
+HAbstractMainWindowPrivate::HAbstractMainWindowPrivate()
 {
-    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(QApplication::applicationName()));
-    HAppContext::setContextValue("ConfigFileName", QString("%1.cfg").arg(QApplication::applicationName()));
-    HAppContext::setContextPointer("IMainWindow", p);
     logo.load(":/image/Logo.png");
 }
 
 HAbstractMainWindow::HAbstractMainWindow(QWidget *parent) :
     IMainWindow(parent),
-    d_ptr(new HAbstractMainWindowPrivate(this))
+    d_ptr(new HAbstractMainWindowPrivate)
 {
-    initialize();
 }
 
-HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, const HConstructionCallHelper &helper, QWidget *parent) :
+HAbstractMainWindow::HAbstractMainWindow(HAbstractMainWindowPrivate &p, QWidget *parent) :
     IMainWindow(parent),
     d_ptr(&p)
 {
-    helper.initialize(this);
 }
 
 HAbstractMainWindow::~HAbstractMainWindow()
 {
+
+}
+
+void HAbstractMainWindow::afterConstruction()
+{
+    initialize();
+}
+
+void HAbstractMainWindow::beforeDestruction()
+{
     writeSettings();
     d_ptr->testWidget->close();
     d_ptr->model->saveFile();
-    if (d_ptr->mementos)
-        d_ptr->mementos->writeFile();
+    d_ptr->model->stop();
+    saveMemento();
 }
 
 void HAbstractMainWindow::setAuthority(int value)
 {
     updateAuthority(menuBar()->actions(), value);
-}
-
-void HAbstractMainWindow::updateAuthority(QList<QAction *> actions, int value)
-{
-    for (auto action : actions)
-    {
-        action->setVisible(value >= action->property("authority").toInt());
-        auto menu = action->menu();
-        if (menu != nullptr)
-            updateAuthority(menu->actions(), value);
-    }
 }
 
 QAction *HAbstractMainWindow::insertMenu(QMenu *menu)
@@ -84,6 +78,99 @@ QVariant HAbstractMainWindow::blockAndRun(std::function<QVariant (QVariantMap)> 
     return result;
 }
 
+void HAbstractMainWindow::showDeviceFailed(const QString &port, const QString &text)
+{
+    auto msg = tr("\n“%1”设备连接失败！错误原因“%2”。\n").arg(port, text);
+    QMessageBox::critical(this, "", msg);
+#ifndef QT_DEBUG
+    close();
+#endif
+}
+
+void HAbstractMainWindow::showActionFailed(HActionType action, const QString &text)
+{
+    auto msg = tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action), text);
+    QMessageBox::warning(this, "", msg);
+}
+
+void HAbstractMainWindow::updateStatusBar(QStringList list)
+{
+    for (auto w : d_ptr->labels)
+        statusBar()->removeWidget(w);
+    d_ptr->labels.clear();
+    for (const auto &s : list)
+    {
+        auto l = new QLabel;
+        l->setText(tr("%1:<font color=#FF0000>关闭</font>").arg(s));
+        d_ptr->labels.insert(s, l);
+        statusBar()->addWidget(l);
+    }
+}
+
+void HAbstractMainWindow::updateLabel(const QString &name, int state)
+{
+    if (!d_ptr->labels.contains(name))
+        return;
+    QString text = state == 1 ? tr("%1:<font color=#00FF00>开启</font>").arg(name) : tr("%1:<font color=#FF0000>关闭</font>").arg(name);
+    d_ptr->labels.value(name)->setText(text);
+}
+
+void HAbstractMainWindow::updatetWindowTitle()
+{
+    auto fileName = HAppContext::getContextValue<QString>("ConfigFileName");
+    setWindowTitle(QApplication::applicationName() + " - " + fileName);
+}
+
+void HAbstractMainWindow::openFile()
+{
+    if (!d_ptr->model->openFile())
+        return;
+    QMessageBox::information(this, "", tr("\n打开文件成功！\n"));
+    updatetWindowTitle();
+}
+
+void HAbstractMainWindow::saveFile()
+{
+    if (!d_ptr->model->saveFile())
+        return;
+    QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
+}
+
+void HAbstractMainWindow::saveAsFile()
+{
+    if (!d_ptr->model->saveAsFile())
+        return;
+    QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
+    updatetWindowTitle();
+}
+
+void HAbstractMainWindow::importFile(QAction *p)
+{
+    if (p == nullptr || !d_ptr->model->importFile(p->data().toUInt()))
+        return;
+    QMessageBox::information(this, "", tr("\n导入成功！\n"));
+}
+
+void HAbstractMainWindow::exportFile(QAction *p)
+{
+    if (p == nullptr || !d_ptr->model->exportFile(p->data().toUInt()))
+        return;
+    QMessageBox::information(this, "", tr("\n导出成功！\n"));
+}
+
+void HAbstractMainWindow::about()
+{
+    QString abbreviation,text;
+
+    abbreviation = QApplication::applicationName().split(" ").first();
+    text = tr("<h2>%1</h2><p>").arg(abbreviation)
+           + tr("<p>版本 %1<p>").arg(QApplication::applicationVersion())
+           + tr("<p>%1<p>").arg(QApplication::applicationName())
+           + tr("<p>版权所有：2017-2019 %1 保留所有权利。<p>").arg(QApplication::organizationName())
+           + tr("<p>%1<p>").arg(summary());
+    QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
+}
+
 QString HAbstractMainWindow::summary()
 {
     return QString();
@@ -91,6 +178,9 @@ QString HAbstractMainWindow::summary()
 
 void HAbstractMainWindow::initialize()
 {
+    HAppContext::setContextPointer("IMainWindow", this);
+    HAppContext::setContextValue("Settings", QString("Ini\\%1.ini").arg(QApplication::applicationName()));
+    HAppContext::setContextValue("ConfigFileName", QString("%1.cfg").arg(QApplication::applicationName()));
     readSettings();
     initImportExport();
     createAction();
@@ -104,7 +194,6 @@ void HAbstractMainWindow::initialize()
     initModel();
     initCentralWidget();
     initWindow();
-    d_ptr->mementos = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
 }
 
 void HAbstractMainWindow::initImportExport()
@@ -215,7 +304,7 @@ void HAbstractMainWindow::initModel()
     connect(d_ptr->model, &IModel::threadStartFailed, this, &HAbstractMainWindow::showDeviceFailed);
     connect(d_ptr->model, &IModel::threadStateChanged, this, &HAbstractMainWindow::updateLabel);
     connect(d_ptr->model, &IModel::actionFailed, this, &HAbstractMainWindow::showActionFailed);
-    d_ptr->model->start();
+    QTimer::singleShot(100, d_ptr->model, &IModel::start);
 }
 
 void HAbstractMainWindow::initCentralWidget()
@@ -255,97 +344,22 @@ void HAbstractMainWindow::writeSettings()
     settings->endGroup();
 }
 
-void HAbstractMainWindow::showDeviceFailed(const QString &port, const QString &text)
+void HAbstractMainWindow::updateAuthority(QList<QAction *> actions, int value)
 {
-    auto msg = tr("\n“%1”设备连接失败！错误原因“%2”。\n").arg(port, text);
-    QMessageBox::critical(this, "", msg);
-#ifndef QT_DEBUG
-    close();
-#endif
-}
-
-void HAbstractMainWindow::showActionFailed(HActionType action, const QString &text)
-{
-    auto msg = tr("\n指令“%1”错误！错误原因是“%2”\n").arg(HCore::toComment(action), text);
-    QMessageBox::warning(this, "", msg);
-}
-
-void HAbstractMainWindow::updateStatusBar(QStringList list)
-{
-    for (auto w : d_ptr->labels)
-        statusBar()->removeWidget(w);
-    d_ptr->labels.clear();
-    for (const auto &s : list)
+    for (auto action : actions)
     {
-        auto l = new QLabel;
-        l->setText(tr("%1:<font color=#FF0000>关闭</font>").arg(s));
-        d_ptr->labels.insert(s, l);
-        statusBar()->addWidget(l);
+        action->setVisible(value >= action->property("authority").toInt());
+        auto menu = action->menu();
+        if (menu != nullptr)
+            updateAuthority(menu->actions(), value);
     }
 }
 
-void HAbstractMainWindow::updateLabel(const QString &name, int state)
+void HAbstractMainWindow::saveMemento()
 {
-    if (!d_ptr->labels.contains(name))
-        return;
-    QString text = state == 1 ? tr("%1:<font color=#00FF00>开启</font>").arg(name) : tr("%1:<font color=#FF0000>关闭</font>").arg(name);
-    d_ptr->labels.value(name)->setText(text);
-}
-
-void HAbstractMainWindow::updatetWindowTitle()
-{
-    auto fileName = HAppContext::getContextValue<QString>("ConfigFileName");
-    setWindowTitle(QApplication::applicationName() + " - " + fileName);
-}
-
-void HAbstractMainWindow::openFile()
-{
-    if (!d_ptr->model->openFile())
-        return;
-    QMessageBox::information(this, "", tr("\n打开文件成功！\n"));
-    updatetWindowTitle();
-}
-
-void HAbstractMainWindow::saveFile()
-{
-    if (!d_ptr->model->saveFile())
-        return;
-    QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
-}
-
-void HAbstractMainWindow::saveAsFile()
-{
-    if (!d_ptr->model->saveAsFile())
-        return;
-    QMessageBox::information(this, "", tr("\n保存文件成功！\n"));
-    updatetWindowTitle();
-}
-
-void HAbstractMainWindow::importFile(QAction *p)
-{
-    if (p == nullptr || !d_ptr->model->importFile(p->data().toUInt()))
-        return;
-    QMessageBox::information(this, "", tr("\n导入成功！\n"));
-}
-
-void HAbstractMainWindow::exportFile(QAction *p)
-{
-    if (p == nullptr || !d_ptr->model->exportFile(p->data().toUInt()))
-        return;
-    QMessageBox::information(this, "", tr("\n导出成功！\n"));
-}
-
-void HAbstractMainWindow::about()
-{
-    QString abbreviation,text;
-
-    abbreviation = QApplication::applicationName().split(" ").first();
-    text = tr("<h2>%1</h2><p>").arg(abbreviation)
-            + tr("<p>版本 %1<p>").arg(QApplication::applicationVersion())
-            + tr("<p>%1<p>").arg(QApplication::applicationName())
-            + tr("<p>版权所有：2017-2019 %1 保留所有权利。<p>").arg(QApplication::organizationName())
-            + tr("<p>%1<p>").arg(summary());
-    QMessageBox::about(this, tr("关于 %1").arg(abbreviation), text);
+    auto mementos = HAppContext::getContextPointer<IMementoCollection>("IMementoCollection");
+    if (mementos != nullptr)
+        mementos->writeFile();
 }
 
 HE_END_NAMESPACE

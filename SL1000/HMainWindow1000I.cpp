@@ -2,8 +2,8 @@
 #include "HBuilder1000I.h"
 #include "HeData/IConfigManage.h"
 
-HMainWindow1000I::HMainWindow1000I(QWidget *parent, const HConstructionCallHelper &helper) :
-    HAbstractMainWindow(*new HMainWindow1000IPrivate(this), helper, parent)
+HMainWindow1000I::HMainWindow1000I(QWidget *parent) :
+    HAbstractMainWindow(*new HMainWindow1000IPrivate, parent)
 {
 }
 

@@ -11,37 +11,29 @@ union CharFloat
     unsigned char c[4];
 };
 
-HUi2010ProtocolPrivate::HUi2010ProtocolPrivate()
+HUi2010Protocol::HUi2010Protocol(QObject *parent) :
+    HAbstractProtocol(*new HUi2010ProtocolPrivate, parent)
 {
-    QVariantMap param;
-    param.insert("timeOut", 1000);
-    param.insert("baudRate", 19200);
-    auto port = new HSerialPort();
-    port->initialize(param);
-    device = new HPowerFactorDevice;
-    device->setPort(port, 4, true);
-    device->addActionParam(ACT_CHECK_DEVICE,    QList<uchar>() << 0x00 << 0x14 << 0x33);
-    device->addActionParam(ACT_GET_ELEC_DATA,   QList<uchar>() << 0x00 << 0x14 << 0x33);
+    init();
 }
 
-HUi2010Protocol::HUi2010Protocol() :
-    HLittleProtocol(*new HUi2010ProtocolPrivate)
+HUi2010Protocol::~HUi2010Protocol()
 {
 }
-
-HUi2010Protocol::~HUi2010Protocol() = default;
 
 QString HUi2010Protocol::typeName()
 {
     return "HUi2010Protocol";
 }
 
-bool HUi2010Protocol::getData(HActionType action, QVector<double> &value, int delay)
+bool HUi2010Protocol::getData(HActionType action, QVariantList &value, QVariant::Type /*type*/, int delay)
 {
     QVector<uchar> data;
-    HLittleProtocol::getData(action, data, delay);
+    if (!HAbstractProtocol::getData(action, data, delay))
+        return false;
+
     if (value.isEmpty())
-        value.resize(data.size() / 4);
+        value.reserve(data.size() / 4);
     auto size = qMin(value.size(), data.size() / 4);
     for (int i = 0; i < size; i++)
     {
@@ -51,6 +43,20 @@ bool HUi2010Protocol::getData(HActionType action, QVector<double> &value, int de
         value[i] = double(cf.f);
     }
     return true;
+}
+
+void HUi2010Protocol::init()
+{
+    Q_D(HUi2010Protocol);
+    QVariantMap param;
+    param.insert("timeOut", 1000);
+    param.insert("baudRate", 19200);
+    auto port = new HSerialPort(this);
+    port->initialize(param);
+    d->device = new HPowerFactorDevice(this);
+    d->device->setPort(port, 4, true);
+    d->device->addActionParam(ACT_CHECK_DEVICE,    QList<uchar>() << 0x00 << 0x14 << 0x33);
+    d->device->addActionParam(ACT_GET_ELEC_DATA,   QList<uchar>() << 0x00 << 0x14 << 0x33);
 }
 
 HE_END_NAMESPACE

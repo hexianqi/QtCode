@@ -12,10 +12,11 @@ class HKeyenceDevicePrivate;
 
 class HKeyenceDevice : public HAbstractDevice
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HKeyenceDevice)
 
 public:
-    explicit HKeyenceDevice();
+    explicit HKeyenceDevice(QObject *parent = nullptr);
     ~HKeyenceDevice() override;
 
 public:
@@ -26,5 +27,5 @@ public:
     bool getData(HActionType action, QVector<uchar> &value, int delay = 0) override;
 
 protected:
-    bool check() override;
+    bool checkDevice() override;
 };

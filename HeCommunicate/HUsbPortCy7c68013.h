@@ -12,10 +12,11 @@ class HUsbPortCy7c68013Private;
 
 class HUsbPortCy7c68013 : public HAbstractPort
 {
+    Q_OBJECT
     Q_DECLARE_PRIVATE(HUsbPortCy7c68013)
 
 public:
-    explicit HUsbPortCy7c68013();
+    explicit HUsbPortCy7c68013(QObject *parent = nullptr);
     ~HUsbPortCy7c68013() override;
 
 public:
@@ -24,7 +25,7 @@ public:
     QString portType() override;
 
 protected:
-    HUsbPortCy7c68013(HUsbPortCy7c68013Private &);
+    HUsbPortCy7c68013(HUsbPortCy7c68013Private &, QObject *parent = nullptr);
 
 protected:
     bool openPort(int portNum) override;

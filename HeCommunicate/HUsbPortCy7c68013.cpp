@@ -5,13 +5,13 @@
 
 HE_BEGIN_NAMESPACE
 
-HUsbPortCy7c68013::HUsbPortCy7c68013() :
-    HAbstractPort(*new HUsbPortCy7c68013Private)
+HUsbPortCy7c68013::HUsbPortCy7c68013(QObject *parent) :
+    HAbstractPort(*new HUsbPortCy7c68013Private, parent)
 {
 }
 
-HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private&p) :
-    HAbstractPort(p)
+HUsbPortCy7c68013::HUsbPortCy7c68013(HUsbPortCy7c68013Private &p, QObject *parent) :
+    HAbstractPort(p, parent)
 {
 }
 

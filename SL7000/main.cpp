@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 #ifdef SL7000
     QApplication::setApplicationName("SL7000");
-    HMainWindow7000 w;
+    H_TCD(HMainWindow7000) w;
 #endif
 
     w.showMaximized();

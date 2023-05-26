@@ -37,7 +37,7 @@ void HExportCurveHandler::execute(QObject */*sender*/, QVariantMap /*param*/)
         return;
     }
     QTextStream s(&file);
-    s << curve.size() << "\t1" << endl;
+    s << curve.size() << endl;
     for (auto v : curve)
         s << QString::number(v, 'f', 1) << endl;
     file.close();

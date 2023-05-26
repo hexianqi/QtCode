@@ -18,7 +18,7 @@ public:
     // 设置超时
     virtual void setTimeOut(int value) = 0;
     // 打开
-    virtual bool open(int portNum = 1) = 0;
+    virtual bool open(int num = 1) = 0;
     // 关闭
     virtual bool close() = 0;
     // 清空缓存

@@ -8,16 +8,17 @@ HE_BEGIN_NAMESPACE
 void HControllerHelper::multGetSpectrum(IProtocol *protocol, ITestData *testData, int times)
 {
     int i,j;
-    QVector<double> sample1, sample2;
+    QVector<double> sample1;
+    QVariantList sample2;
 
     times = qMin(1, times);
     for (i = 0; i < times; i++)
     {
-        protocol->getData(ACT_GET_SPECTRUM, sample2);
+        protocol->getData(ACT_GET_SPECTRUM, sample2, QVariant::Double);
         if (sample1.size() < sample2.size())
             sample1.resize(sample2.size());
         for (j = 0; j < sample2.size(); j++)
-            sample1[j] += 1.0 * sample2.at(j) / times;
+            sample1[j] += 1.0 * sample2.at(j).toDouble() / times;
     }
     testData->setData("[光谱采样值]", QVariant::fromValue(sample1));
 }

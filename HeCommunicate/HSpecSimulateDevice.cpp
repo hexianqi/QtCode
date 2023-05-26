@@ -5,13 +5,13 @@
 
 HE_BEGIN_NAMESPACE
 
-HSpecSimulateDevice::HSpecSimulateDevice() :
-    HAbstractDevice(*new HSpecSimulateDevicePrivate)
+HSpecSimulateDevice::HSpecSimulateDevice(QObject *parent) :
+    HAbstractDevice(*new HSpecSimulateDevicePrivate, parent)
 {
 }
 
-HSpecSimulateDevice::HSpecSimulateDevice(HSpecSimulateDevicePrivate &p) :
-    HAbstractDevice(p)
+HSpecSimulateDevice::HSpecSimulateDevice(HSpecSimulateDevicePrivate &p, QObject *parent) :
+    HAbstractDevice(p, parent)
 {
 }
 
@@ -42,15 +42,21 @@ bool HSpecSimulateDevice::setData(HActionType action, QVector<uchar> value, int 
 
 bool HSpecSimulateDevice::getData(HActionType action, QVector<uchar> &value, int /*delay*/)
 {
+    int i;
     if (action == ACT_GET_SPECTRUM)
     {
         value.clear();
-        for (int i = 0; i < 2304; i++)
+        for (i = 0; i < 2304; i++)
         {
             auto v = int(simulate(i));
             value << uchar(v % 256);
             value << uchar(v / 256);
         }
+    }
+    else
+    {
+        for (i = 0; i < value.size(); i++)
+            value[i] = simulate(255);
     }
     return true;
 }
@@ -71,6 +77,11 @@ double HSpecSimulateDevice::simulate(double value)
 //    auto p = 0.9 + sin(qDegreesToRadians(d->intergalTime * 1.8)) * 0.1;    // 误差和积分时间成sin曲线关系
     auto p = 0.9 + sin(qDegreesToRadians(t * 180 / 60000)) * 0.1;            // 误差和采样值成sin曲线关系
     return t * p + 1000;
+}
+
+uchar HSpecSimulateDevice::simulate(int value)
+{
+    return QRandomGenerator::global()->bounded(value);
 }
 
 HE_END_NAMESPACE
